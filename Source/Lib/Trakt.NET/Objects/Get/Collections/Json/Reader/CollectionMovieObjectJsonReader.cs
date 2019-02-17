@@ -36,6 +36,15 @@
 
                                 break;
                             }
+                        case JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_UPDATED_AT:
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktCollectionMovie.UpdatedAt = value.Second;
+
+                                break;
+                            }
                         case JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_MOVIE:
                             traktCollectionMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;

@@ -11,6 +11,9 @@
         /// <summary>Gets or sets the UTC datetime, when the movie was collected.</summary>
         public DateTime? CollectedAt { get; set; }
 
+        /// <summary>Gets or sets the UTC datetime, when the movie was updated.</summary>
+        public DateTime? UpdatedAt { get; set; }
+
         /// <summary>
         /// Gets or sets the collected Trakt movie. See also <seealso cref="ITraktMovie" />.
         /// <para>Nullable</para>
@@ -141,17 +144,6 @@
             {
                 if (Movie != null)
                     Movie.Votes = value;
-            }
-        }
-
-        public DateTime? UpdatedAt
-        {
-            get { return Movie?.UpdatedAt; }
-
-            set
-            {
-                if (Movie != null)
-                    Movie.UpdatedAt = value;
             }
         }
 

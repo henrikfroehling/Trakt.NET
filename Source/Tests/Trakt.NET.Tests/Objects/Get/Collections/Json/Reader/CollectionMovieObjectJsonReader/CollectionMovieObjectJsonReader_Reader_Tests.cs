@@ -25,6 +25,7 @@
 
                 traktCollectionMovie.Should().NotBeNull();
                 traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktCollectionMovie.Movie.Should().NotBeNull();
                 traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -56,6 +57,7 @@
 
                 traktCollectionMovie.Should().NotBeNull();
                 traktCollectionMovie.CollectedAt.Should().BeNull();
+                traktCollectionMovie.UpdatedAt.Should().BeNull();
 
                 traktCollectionMovie.Movie.Should().NotBeNull();
                 traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -87,6 +89,7 @@
 
                 traktCollectionMovie.Should().NotBeNull();
                 traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktCollectionMovie.Movie.Should().BeNull();
 
@@ -111,6 +114,7 @@
 
                 traktCollectionMovie.Should().NotBeNull();
                 traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktCollectionMovie.Movie.Should().NotBeNull();
                 traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -155,6 +159,7 @@
 
                 traktCollectionMovie.Should().NotBeNull();
                 traktCollectionMovie.CollectedAt.Should().BeNull();
+                traktCollectionMovie.UpdatedAt.Should().BeNull();
 
                 traktCollectionMovie.Movie.Should().NotBeNull();
                 traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -181,6 +186,7 @@
 
                 traktCollectionMovie.Should().NotBeNull();
                 traktCollectionMovie.CollectedAt.Should().BeNull();
+                traktCollectionMovie.UpdatedAt.Should().BeNull();
                 traktCollectionMovie.Movie.Should().BeNull();
 
                 traktCollectionMovie.Metadata.Should().NotBeNull();
@@ -204,6 +210,7 @@
 
                 traktCollectionMovie.Should().NotBeNull();
                 traktCollectionMovie.CollectedAt.Should().BeNull();
+                traktCollectionMovie.UpdatedAt.Should().BeNull();
 
                 traktCollectionMovie.Movie.Should().NotBeNull();
                 traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -235,6 +242,7 @@
 
                 traktCollectionMovie.Should().NotBeNull();
                 traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktCollectionMovie.Movie.Should().BeNull();
 
@@ -259,6 +267,7 @@
 
                 traktCollectionMovie.Should().NotBeNull();
                 traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktCollectionMovie.Movie.Should().NotBeNull();
                 traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");

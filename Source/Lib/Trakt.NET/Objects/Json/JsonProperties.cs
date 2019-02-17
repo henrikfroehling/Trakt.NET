@@ -127,6 +127,7 @@
 
         // collections
         internal const string COLLECTION_MOVIE_PROPERTY_NAME_COLLECTED_AT = "collected_at";
+        internal const string COLLECTION_MOVIE_PROPERTY_NAME_UPDATED_AT = "updated_at";
         internal const string COLLECTION_MOVIE_PROPERTY_NAME_MOVIE = "movie";
         internal const string COLLECTION_MOVIE_PROPERTY_NAME_METADATA = "metadata";
 

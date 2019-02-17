@@ -87,7 +87,7 @@
         /// <param name="otherDate">The second datetime, which will be compared to the first datetime.</param>
         /// <returns>The number of years between the two given datetimes.</returns>
         public static int YearsBetween(this DateTime value, DateTime otherDate)
-            => (new DateTime(1, 1, 1) + (value.Max(otherDate) - value.Min(otherDate))).Year - 1;
+            => Math.Abs(value.Year - otherDate.Year);
 
         /// <summary>Converts the given datetime to a string, containing only the date in the Trakt date format.</summary>
         /// <param name="value">The datetime, which should be converted. Will be automatically converted to universal (UTC) datetime.</param>
