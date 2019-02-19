@@ -6,6 +6,9 @@
     <LangVersion>latest</LangVersion>
 	<Copyright>Copyright © 2017 - 2019 Henrik Fröhling</Copyright>
 	<RootNamespace>TraktNet.Tests</RootNamespace>
+	<ApplicationIcon />
+	<OutputType>Library</OutputType>
+	<StartupObject />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
