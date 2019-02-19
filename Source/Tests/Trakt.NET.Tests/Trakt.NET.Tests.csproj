@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <IsPackable>false</IsPackable>
     <LangVersion>latest</LangVersion>
-	<Copyright>Copyright © 2017 - 2019 Henrik Fröhling</Copyright>
+	<Copyright>Copyright © 2017 - 2019 Henrik Fröhling et al.</Copyright>
 	<RootNamespace>TraktNet.Tests</RootNamespace>
 	<ApplicationIcon />
 	<OutputType>Library</OutputType>
