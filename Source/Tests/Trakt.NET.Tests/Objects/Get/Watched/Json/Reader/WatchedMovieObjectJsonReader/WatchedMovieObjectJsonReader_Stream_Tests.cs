@@ -24,6 +24,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().Be(1);
                 traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedMovie.Movie.Should().NotBeNull();
                 traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -48,6 +49,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().BeNull();
                 traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedMovie.Movie.Should().NotBeNull();
                 traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -72,6 +74,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().Be(1);
                 traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedMovie.Movie.Should().NotBeNull();
                 traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -96,6 +99,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().Be(1);
                 traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.LastUpdatedAt.Should().BeNull();
                 traktWatchedMovie.Movie.Should().BeNull();
             }
         }
@@ -112,6 +116,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().Be(1);
                 traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().BeNull();
                 traktWatchedMovie.Movie.Should().BeNull();
             }
         }
@@ -144,6 +149,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().BeNull();
                 traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().BeNull();
 
                 traktWatchedMovie.Movie.Should().NotBeNull();
                 traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -168,6 +174,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().BeNull();
                 traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedMovie.Movie.Should().NotBeNull();
                 traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -192,6 +199,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().Be(1);
                 traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().BeNull();
 
                 traktWatchedMovie.Movie.Should().NotBeNull();
                 traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -216,6 +224,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().Be(1);
                 traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
                 traktWatchedMovie.Movie.Should().BeNull();
             }
         }
@@ -232,6 +241,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().BeNull();
                 traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().BeNull();
                 traktWatchedMovie.Movie.Should().BeNull();
             }
         }

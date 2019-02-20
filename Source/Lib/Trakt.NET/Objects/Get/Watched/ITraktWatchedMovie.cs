@@ -9,6 +9,8 @@
 
         DateTime? LastWatchedAt { get; set; }
 
+        DateTime? LastUpdatedAt { get; set; }
+
         ITraktMovie Movie { get; set; }
     }
 }
