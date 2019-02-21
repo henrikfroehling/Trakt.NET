@@ -9,7 +9,7 @@
 
         int? Year { get; }
 
-        Range<int> Years { get; }
+        Range<int>? Years { get; }
 
         string[] Genres { get; }
 
@@ -17,9 +17,9 @@
 
         string[] Countries { get; }
 
-        Range<int> Runtimes { get; }
+        Range<int>? Runtimes { get; }
 
-        Range<int> Ratings { get; }
+        Range<int>? Ratings { get; }
 
         ITraktFilter WithQuery(string query);
 
