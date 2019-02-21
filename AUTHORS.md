@@ -6,4 +6,4 @@ Contributors include:
 
 * [Romans Pokrovskis](https://github.com/Amoenus)
 * [MCs88](https://github.com/MCs88)
-* [arnaudmaichac](https://github.com/arnaudmaichac)
+* [Arnaud Maichac](https://github.com/arnaudmaichac)
