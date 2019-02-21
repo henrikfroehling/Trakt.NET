@@ -147,6 +147,17 @@
             }
         }
 
+        public DateTime? MovieUpdatedAt
+        {
+            get { return Movie?.UpdatedAt; }
+
+            set
+            {
+                if (Movie != null)
+                    Movie.UpdatedAt = value;
+            }
+        }
+
         public string LanguageCode
         {
             get { return Movie?.LanguageCode; }

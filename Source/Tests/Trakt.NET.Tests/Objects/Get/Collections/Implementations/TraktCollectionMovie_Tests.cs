@@ -29,7 +29,7 @@
             collectionMovie.Overview.Should().BeNullOrEmpty();
             collectionMovie.Released.Should().NotHaveValue();
             collectionMovie.Runtime.Should().NotHaveValue();
-            collectionMovie.UpdatedAt.Should().NotHaveValue();
+            collectionMovie.MovieUpdatedAt.Should().NotHaveValue();
             collectionMovie.Trailer.Should().BeNullOrEmpty();
             collectionMovie.Homepage.Should().BeNullOrEmpty();
             collectionMovie.Rating.Should().NotHaveValue();
@@ -92,6 +92,7 @@
             collectionMovie.Overview.Should().BeNullOrEmpty();
             collectionMovie.Released.Should().NotHaveValue();
             collectionMovie.Runtime.Should().NotHaveValue();
+            collectionMovie.MovieUpdatedAt.Should().NotHaveValue();
             collectionMovie.Trailer.Should().BeNullOrEmpty();
             collectionMovie.Homepage.Should().BeNullOrEmpty();
             collectionMovie.Rating.Should().NotHaveValue();
@@ -154,6 +155,7 @@
             collectionMovie.Overview.Should().Be("Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.");
             collectionMovie.Released.Should().Be(DateTime.Parse("2015-12-18"));
             collectionMovie.Runtime.Should().Be(136);
+            collectionMovie.MovieUpdatedAt.Should().Be(DateTime.Parse("2019-02-05T08:41:00.000Z").ToUniversalTime());
             collectionMovie.Trailer.Should().Be("http://youtube.com/watch?v=sGbxmsDFVnE");
             collectionMovie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
             collectionMovie.Rating.Should().Be(8.10213f);
