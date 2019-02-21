@@ -60,7 +60,5 @@
         ITraktFilter Clear();
 
         IDictionary<string, object> GetParameters();
-
-        string ToString();
     }
 }

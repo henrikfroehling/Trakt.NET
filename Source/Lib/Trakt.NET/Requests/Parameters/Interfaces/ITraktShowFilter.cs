@@ -13,5 +13,11 @@
         ITraktShowFilter WithNetworks(string network, params string[] networks);
 
         ITraktShowFilter ClearNetworks();
+
+        ITraktShowFilter AddStates(TraktShowStatus status, params TraktShowStatus[] states);
+
+        ITraktShowFilter WithStates(TraktShowStatus status, params TraktShowStatus[] states);
+
+        ITraktShowFilter ClearStates();
     }
 }
