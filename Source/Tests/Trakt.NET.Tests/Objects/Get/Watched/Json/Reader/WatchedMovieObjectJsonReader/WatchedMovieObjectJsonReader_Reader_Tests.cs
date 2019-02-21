@@ -50,6 +50,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().BeNull();
                 traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedMovie.Movie.Should().NotBeNull();
                 traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -75,6 +76,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().Be(1);
                 traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedMovie.Movie.Should().NotBeNull();
                 traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -100,7 +102,16 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().Be(1);
                 traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchedMovie.Movie.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().BeNull();
+
+                traktWatchedMovie.Movie.Should().NotBeNull();
+                traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+                traktWatchedMovie.Movie.Year.Should().Be(2015);
+                traktWatchedMovie.Movie.Ids.Should().NotBeNull();
+                traktWatchedMovie.Movie.Ids.Trakt.Should().Be(94024U);
+                traktWatchedMovie.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+                traktWatchedMovie.Movie.Ids.Imdb.Should().Be("tt2488496");
+                traktWatchedMovie.Movie.Ids.Tmdb.Should().Be(140607U);
             }
         }
 
@@ -116,7 +127,8 @@
 
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().Be(1);
-                traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
                 traktWatchedMovie.Movie.Should().BeNull();
             }
         }
@@ -132,8 +144,9 @@
                 var traktWatchedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktWatchedMovie.Should().NotBeNull();
-                traktWatchedMovie.Plays.Should().BeNull();
-                traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.Plays.Should().Be(1);
+                traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().BeNull();
                 traktWatchedMovie.Movie.Should().BeNull();
             }
         }
@@ -150,7 +163,44 @@
 
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().BeNull();
+                traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.LastUpdatedAt.Should().BeNull();
+                traktWatchedMovie.Movie.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public async Task Test_WatchedMovieObjectJsonReader_ReadObject_From_JsonReader_Incomplete_7()
+        {
+            var traktJsonReader = new WatchedMovieObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_INCOMPLETE_7))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktWatchedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+                traktWatchedMovie.Should().NotBeNull();
+                traktWatchedMovie.Plays.Should().BeNull();
                 traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.Movie.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public async Task Test_WatchedMovieObjectJsonReader_ReadObject_From_JsonReader_Incomplete_8()
+        {
+            var traktJsonReader = new WatchedMovieObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_INCOMPLETE_8))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktWatchedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+                traktWatchedMovie.Should().NotBeNull();
+                traktWatchedMovie.Plays.Should().BeNull();
+                traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().BeNull();
 
                 traktWatchedMovie.Movie.Should().NotBeNull();
                 traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -176,6 +226,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().BeNull();
                 traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedMovie.Movie.Should().NotBeNull();
                 traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -201,6 +252,7 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().Be(1);
                 traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedMovie.Movie.Should().NotBeNull();
                 traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -226,7 +278,16 @@
                 traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().Be(1);
                 traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchedMovie.Movie.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().BeNull();
+
+                traktWatchedMovie.Movie.Should().NotBeNull();
+                traktWatchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+                traktWatchedMovie.Movie.Year.Should().Be(2015);
+                traktWatchedMovie.Movie.Ids.Should().NotBeNull();
+                traktWatchedMovie.Movie.Ids.Trakt.Should().Be(94024U);
+                traktWatchedMovie.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+                traktWatchedMovie.Movie.Ids.Imdb.Should().Be("tt2488496");
+                traktWatchedMovie.Movie.Ids.Tmdb.Should().Be(140607U);
             }
         }
 
@@ -241,8 +302,27 @@
                 var traktWatchedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktWatchedMovie.Should().NotBeNull();
+                traktWatchedMovie.Plays.Should().Be(1);
+                traktWatchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedMovie.Movie.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public async Task Test_WatchedMovieObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_5()
+        {
+            var traktJsonReader = new WatchedMovieObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_NOT_VALID_5))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktWatchedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+                traktWatchedMovie.Should().NotBeNull();
                 traktWatchedMovie.Plays.Should().BeNull();
                 traktWatchedMovie.LastWatchedAt.Should().BeNull();
+                traktWatchedMovie.LastUpdatedAt.Should().BeNull();
                 traktWatchedMovie.Movie.Should().BeNull();
             }
         }
