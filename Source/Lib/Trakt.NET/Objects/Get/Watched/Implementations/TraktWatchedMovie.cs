@@ -13,6 +13,9 @@
         /// <summary>Gets or sets the UTC datetime, when the movie was last watched.</summary>
         public DateTime? LastWatchedAt { get; set; }
 
+        /// <summary>Gets or sets the UTC datetime, when the movie was last updated.</summary>
+        public DateTime? LastUpdatedAt { get; set; }
+
         /// <summary>Gets or sets the Trakt movie. See also <seealso cref="ITraktMovie" />.<para>Nullable</para></summary>
         public ITraktMovie Movie { get; set; }
 
