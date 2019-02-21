@@ -9,6 +9,7 @@
     using Requests.Handler;
     using Requests.Movies;
     using Requests.Parameters;
+    using Requests.Parameters.OldFilters;
     using Responses;
     using System;
     using System.Collections.Generic;

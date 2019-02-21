@@ -9,6 +9,7 @@
     using Objects.Get.Users.Lists;
     using Requests.Handler;
     using Requests.Parameters;
+    using Requests.Parameters.OldFilters;
     using Requests.Shows;
     using Requests.Shows.OAuth;
     using Responses;

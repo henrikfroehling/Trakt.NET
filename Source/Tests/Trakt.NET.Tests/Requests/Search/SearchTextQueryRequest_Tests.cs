@@ -8,6 +8,7 @@
     using TraktNet.Enums;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Parameters.OldFilters;
     using TraktNet.Requests.Search;
     using Xunit;
 

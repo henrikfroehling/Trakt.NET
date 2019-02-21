@@ -9,6 +9,7 @@
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Calendars;
     using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Parameters.OldFilters;
     using Xunit;
 
     [Category("Requests.Calendars.Shows")]

@@ -2,6 +2,7 @@
 {
     using System;
     using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Parameters.OldFilters;
 
     public partial class TraktCalendarModule_Tests
     {

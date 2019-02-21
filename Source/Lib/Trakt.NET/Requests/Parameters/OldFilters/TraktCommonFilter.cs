@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Requests.Parameters
+﻿namespace TraktNet.Requests.Parameters.OldFilters
 {
     using System;
     using System.Collections.Generic;

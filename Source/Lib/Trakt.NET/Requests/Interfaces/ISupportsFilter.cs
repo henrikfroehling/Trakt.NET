@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Requests.Interfaces
 {
-    using Parameters;
+    using Parameters.OldFilters;
 
     internal interface ISupportsFilter
     {

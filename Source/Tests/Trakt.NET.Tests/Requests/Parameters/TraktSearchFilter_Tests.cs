@@ -3,7 +3,7 @@
     using FluentAssertions;
     using System.Collections.Generic;
     using Traits;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Parameters.OldFilters;
     using TraktNet.Utils;
     using Xunit;
 

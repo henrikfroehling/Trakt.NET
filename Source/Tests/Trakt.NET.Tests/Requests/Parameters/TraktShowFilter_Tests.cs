@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using Traits;
     using TraktNet.Enums;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Parameters.OldFilters;
     using TraktNet.Utils;
     using Xunit;
 

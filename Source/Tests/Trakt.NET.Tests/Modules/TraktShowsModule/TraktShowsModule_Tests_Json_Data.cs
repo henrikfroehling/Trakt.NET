@@ -3,6 +3,7 @@
     using System;
     using TraktNet.Enums;
     using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Parameters.OldFilters;
 
     public partial class TraktShowsModule_Tests
     {

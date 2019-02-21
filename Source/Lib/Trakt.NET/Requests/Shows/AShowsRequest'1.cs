@@ -3,6 +3,7 @@
     using Base;
     using Interfaces;
     using Parameters;
+    using Parameters.OldFilters;
     using System.Collections.Generic;
 
     internal abstract class AShowsRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ISupportsExtendedInfo, ISupportsFilter, ISupportsPagination

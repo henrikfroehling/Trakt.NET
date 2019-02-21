@@ -7,6 +7,7 @@
     using Traits;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Parameters.OldFilters;
     using TraktNet.Requests.Shows;
     using Xunit;
 
