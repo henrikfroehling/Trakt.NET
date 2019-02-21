@@ -18,6 +18,7 @@
 
             watchedMovie.Plays.Should().NotHaveValue();
             watchedMovie.LastWatchedAt.Should().NotHaveValue();
+            watchedMovie.LastUpdatedAt.Should().NotHaveValue();
             watchedMovie.Movie.Should().BeNull();
             watchedMovie.Title.Should().BeNullOrEmpty();
             watchedMovie.Year.Should().NotHaveValue();
@@ -47,6 +48,7 @@
             watchedMovie.Should().NotBeNull();
             watchedMovie.Plays.Should().Be(10);
             watchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            watchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
             watchedMovie.Movie.Should().NotBeNull();
             watchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -103,6 +105,7 @@
             watchedMovie.Should().NotBeNull();
             watchedMovie.Plays.Should().Be(10);
             watchedMovie.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            watchedMovie.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
             watchedMovie.Movie.Should().NotBeNull();
             watchedMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -154,6 +157,7 @@
             @"{
                 ""plays"": 10,
                 ""last_watched_at"": ""2014-09-01T09:10:11.000Z"",
+                ""last_updated_at"": ""2014-09-01T09:10:11.000Z"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
                   ""year"": 2015,
@@ -170,6 +174,7 @@
             @"{
                 ""plays"": 10,
                 ""last_watched_at"": ""2014-09-01T09:10:11.000Z"",
+                ""last_updated_at"": ""2014-09-01T09:10:11.000Z"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
                   ""year"": 2015,
