@@ -133,11 +133,11 @@
             collectionMovie.Movie.Overview.Should().Be("Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.");
             collectionMovie.Movie.Released.Should().Be(DateTime.Parse("2015-12-18"));
             collectionMovie.Movie.Runtime.Should().Be(136);
-            collectionMovie.Movie.UpdatedAt.Should().Be(DateTime.Parse("2019-02-05T08:41:00.000Z").ToUniversalTime());
-            collectionMovie.Movie.Trailer.Should().Be("http://youtube.com/watch?v=sGbxmsDFVnE");
+            collectionMovie.Movie.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
+            collectionMovie.Movie.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
             collectionMovie.Movie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
-            collectionMovie.Movie.Rating.Should().Be(8.10213f);
-            collectionMovie.Movie.Votes.Should().Be(39843);
+            collectionMovie.Movie.Rating.Should().Be(8.31988f);
+            collectionMovie.Movie.Votes.Should().Be(9338);
             collectionMovie.Movie.LanguageCode.Should().Be("en");
             collectionMovie.Movie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             collectionMovie.Movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
@@ -155,11 +155,11 @@
             collectionMovie.Overview.Should().Be("Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.");
             collectionMovie.Released.Should().Be(DateTime.Parse("2015-12-18"));
             collectionMovie.Runtime.Should().Be(136);
-            collectionMovie.MovieUpdatedAt.Should().Be(DateTime.Parse("2019-02-05T08:41:00.000Z").ToUniversalTime());
-            collectionMovie.Trailer.Should().Be("http://youtube.com/watch?v=sGbxmsDFVnE");
+            collectionMovie.MovieUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
+            collectionMovie.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
             collectionMovie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
-            collectionMovie.Rating.Should().Be(8.10213f);
-            collectionMovie.Votes.Should().Be(39843);
+            collectionMovie.Rating.Should().Be(8.31988f);
+            collectionMovie.Votes.Should().Be(9338);
             collectionMovie.LanguageCode.Should().Be("en");
             collectionMovie.AvailableTranslationLanguageCodes.Should().NotBeNull().And.HaveCount(4).And.Contain("en", "de", "en", "it");
             collectionMovie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
@@ -194,40 +194,39 @@
             @"{
                 ""collected_at"": ""2014-09-01T09:10:11.000Z"",
                 ""updated_at"": ""2014-09-01T09:10:11.000Z"",
-                ""movie"": {  
-                   ""title"": ""Star Wars: The Force Awakens"",
-                   ""year"": 2015,
-                   ""ids"": {  
-                      ""trakt"": 94024,
-                      ""slug"": ""star-wars-the-force-awakens-2015"",
-                      ""imdb"": ""tt2488496"",
-                      ""tmdb"": 140607
-                   },
-                   ""tagline"": ""Every generation has a story."",
-                   ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                   ""released"": ""2015-12-18"",
-                   ""runtime"": 136,
-                   ""country"": ""us"",
-                   ""trailer"": ""http://youtube.com/watch?v=sGbxmsDFVnE"",
-                   ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                   ""rating"": 8.10213,
-                   ""votes"": 39843,
-                   ""comment_count"": 146,
-                   ""updated_at"": ""2019-02-05T08:41:00.000Z"",
-                   ""language"": ""en"",
-                   ""available_translations"": [
-                      ""de"",
-                      ""en"",
-                      ""es"",
-                      ""it"",
-                   ],
-                   ""genres"": [
-                      ""action"",
-                      ""adventure"",
-                      ""fantasy"",
-                      ""science-fiction""
-                   ],
-                   ""certification"": ""PG-13""
+                ""movie"": {
+                  ""title"": ""Star Wars: The Force Awakens"",
+                  ""year"": 2015,
+                  ""ids"": {
+                    ""trakt"": 94024,
+                    ""slug"": ""star-wars-the-force-awakens-2015"",
+                    ""imdb"": ""tt2488496"",
+                    ""tmdb"": 140607
+                  },
+                  ""tagline"": ""Every generation has a story."",
+                  ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                  ""released"": ""2015-12-18"",
+                  ""runtime"": 136,
+                  ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                  ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                  ""rating"": 8.31988,
+                  ""votes"": 9338,
+                  ""updated_at"": ""2016-03-31T09:01:59Z"",
+                  ""language"": ""en"",
+                  ""available_translations"": [
+                    ""en"",
+                    ""de"",
+                    ""en"",
+                    ""it""
+                  ],
+                  ""genres"": [
+                    ""action"",
+                    ""adventure"",
+                    ""fantasy"",
+                    ""science-fiction""
+                  ],
+                  ""certification"": ""PG-13"",
+                  ""country"": ""us""
                 },
                 ""metadata"": {
                   ""media_type"": ""bluray"",
