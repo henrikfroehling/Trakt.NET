@@ -8,6 +8,8 @@
     {
         DateTime? CollectedAt { get; set; }
 
+        DateTime? MovieUpdatedAt { get; set; }
+
         ITraktMovie Movie { get; set; }
 
         ITraktMetadata Metadata { get; set; }
