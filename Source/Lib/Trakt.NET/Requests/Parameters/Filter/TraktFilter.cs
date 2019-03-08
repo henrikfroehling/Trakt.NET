@@ -1,9 +1,8 @@
 ﻿namespace TraktNet.Requests.Parameters.Filter
 {
-    using Interfaces;
     using Utils;
 
-    public abstract class TraktFilter : ITraktFilter
+    public abstract class TraktFilter
     {
         public string Query { get; protected set; }
 
