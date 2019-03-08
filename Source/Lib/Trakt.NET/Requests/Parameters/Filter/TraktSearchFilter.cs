@@ -2,5 +2,8 @@
 {
     public sealed class TraktSearchFilter : TraktShowFilter<TraktSearchFilter>
     {
+        internal TraktSearchFilter()
+        {
+        }
     }
 }

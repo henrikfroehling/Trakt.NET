@@ -2,5 +2,8 @@
 {
     public sealed class TraktCalendarFilter : TraktFilter<TraktCalendarFilter>
     {
+        internal TraktCalendarFilter()
+        {
+        }
     }
 }

@@ -2,5 +2,8 @@
 {
     public sealed class TraktMovieFilter : TraktShowAndMovieFilter<TraktMovieFilter>
     {
+        internal TraktMovieFilter()
+        {
+        }
     }
 }

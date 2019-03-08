@@ -2,5 +2,8 @@
 {
     public sealed class TraktShowFilter : TraktShowFilter<TraktShowFilter>
     {
+        internal TraktShowFilter()
+        {
+        }
     }
 }
