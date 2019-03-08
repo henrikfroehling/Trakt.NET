@@ -1,14 +1,14 @@
-﻿namespace TraktNet.Requests.Parameters.Filter
+﻿namespace TraktNet.Requests.Parameters.Filter.Builder
 {
     using Enums;
     using System;
     using System.Collections.Generic;
 
-    public abstract class TraktShowFilter<T> : TraktShowAndMovieFilter<TraktShowFilter<T>> where T : TraktShowFilter<T>
+    public class TraktShowFilterBuilder<T, U> : TraktShowAndMovieFilterBuilder<TraktShowFilterBuilder<T, U>, U> where T : TraktShowFilterBuilder<T, U> where U : TraktShowFilter
     {
-        public string[] Networks { get; protected set; }
-
-        public TraktShowStatus[] States { get; protected set; }
+        protected TraktShowFilterBuilder(U filter) : base(filter)
+        {
+        }
 
         public T AddNetworks(string network, params string[] networks)
         {
@@ -24,7 +24,7 @@
 
         public T ClearNetworks()
         {
-            Networks = null;
+            _filter.Networks = null;
             return (T)this;
         }
 
@@ -42,7 +42,7 @@
 
         public T ClearStates()
         {
-            States = null;
+            _filter.States = null;
             return (T)this;
         }
 
@@ -53,46 +53,20 @@
             ClearStates();
         }
 
-        protected bool HasNetworksSet => Networks != null && Networks.Length > 0;
-
-        protected bool HasStatesSet => States != null && States.Length > 0;
-
-        internal override bool HasValues => base.HasValues || HasNetworksSet || HasStatesSet;
-
-        internal override IDictionary<string, object> GetParameters()
-        {
-            var parameters = base.GetParameters();
-
-            if (HasNetworksSet)
-                parameters.Add("networks", string.Join(",", Networks));
-
-            if (HasStatesSet)
-            {
-                var statesAsString = new string[States.Length];
-
-                for (int i = 0; i < States.Length; i++)
-                    statesAsString[i] = States[i].UriName;
-
-                parameters.Add("status", string.Join(",", statesAsString));
-            }
-
-            return parameters;
-        }
-
         private void AddNetworks(bool keepExisting, string network, params string[] networks)
         {
             if (string.IsNullOrEmpty(network) && (networks == null || networks.Length <= 0))
             {
                 if (!keepExisting)
-                    Networks = null;
+                    _filter.Networks = null;
 
                 return;
             }
 
             var networksList = new List<string>();
 
-            if (keepExisting && Networks != null && Networks.Length > 0)
-                networksList.AddRange(Networks);
+            if (keepExisting && _filter.Networks != null && _filter.Networks.Length > 0)
+                networksList.AddRange(_filter.Networks);
 
             if (!string.IsNullOrEmpty(network))
                 networksList.Add(network);
@@ -100,7 +74,7 @@
             if (networks != null && networks.Length > 0)
                 networksList.AddRange(networks);
 
-            Networks = networksList.ToArray();
+            _filter.Networks = networksList.ToArray();
         }
 
         private void AddStates(bool keepExisting, TraktShowStatus status, params TraktShowStatus[] states)
@@ -108,15 +82,15 @@
             if ((status == null || status == TraktShowStatus.Unspecified) && (states == null || states.Length <= 0))
             {
                 if (!keepExisting)
-                    States = null;
+                    _filter.States = null;
 
                 return;
             }
 
             var statesList = new List<TraktShowStatus>();
 
-            if (keepExisting && States != null && States.Length > 0)
-                statesList.AddRange(States);
+            if (keepExisting && _filter.States != null && _filter.States.Length > 0)
+                statesList.AddRange(_filter.States);
 
             if (status != null && status != TraktShowStatus.Unspecified)
                 statesList.Add(status);
@@ -132,7 +106,7 @@
                 statesList.AddRange(states);
             }
 
-            States = statesList.ToArray();
+            _filter.States = statesList.ToArray();
         }
     }
 }

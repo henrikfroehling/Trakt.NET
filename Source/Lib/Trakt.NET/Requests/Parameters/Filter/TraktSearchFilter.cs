@@ -1,9 +1,8 @@
 ﻿namespace TraktNet.Requests.Parameters.Filter
 {
-    public sealed class TraktSearchFilter : TraktShowFilter<TraktSearchFilter>
+    using Interfaces;
+
+    public sealed class TraktSearchFilter : TraktShowFilter, ITraktSearchFilter
     {
-        internal TraktSearchFilter()
-        {
-        }
     }
 }

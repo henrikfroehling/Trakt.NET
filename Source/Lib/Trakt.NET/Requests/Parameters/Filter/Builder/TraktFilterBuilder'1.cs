@@ -1,23 +1,32 @@
-﻿namespace TraktNet.Requests.Parameters.Filter
+﻿namespace TraktNet.Requests.Parameters.Filter.Builder
 {
     using System;
     using System.Collections.Generic;
     using Utils;
 
-    public abstract class TraktFilter<T> : TraktFilter where T : TraktFilter<T>
+    public abstract class TraktFilterBuilder<T, U> where T : TraktFilterBuilder<T, U> where U : ATraktFilter
     {
+        protected U _filter;
+
+        protected TraktFilterBuilder(U filter)
+        {
+            _filter = filter ?? throw new ArgumentNullException(nameof(filter));
+        }
+
+        public U Build() => _filter;
+
         public T WithQuery(string query)
         {
             if (query != null && query == string.Empty)
                 throw new ArgumentException("query not valid", nameof(query));
 
-            Query = query;
+            _filter.Query = query;
             return (T)this;
         }
 
         public T ClearQuery()
         {
-            Query = null;
+            _filter.Query = null;
             return (T)this;
         }
 
@@ -26,8 +35,8 @@
             if (year < 0 || year.ToString().Length != 4)
                 throw new ArgumentOutOfRangeException(nameof(year), "year not valid");
 
-            Years = null;
-            Year = year;
+            _filter.Years = null;
+            _filter.Year = year;
             return (T)this;
         }
 
@@ -39,15 +48,15 @@
             if (endYear < 0 || endYear.ToString().Length != 4)
                 throw new ArgumentOutOfRangeException(nameof(endYear), "year not valid");
 
-            Year = null;
-            Years = new Range<int>(startYear, endYear);
+            _filter.Year = null;
+            _filter.Years = new Range<int>(startYear, endYear);
             return (T)this;
         }
 
         public T ClearYears()
         {
-            Year = null;
-            Years = null;
+            _filter.Year = null;
+            _filter.Years = null;
             return (T)this;
         }
 
@@ -65,7 +74,7 @@
 
         public T ClearGenres()
         {
-            Genres = null;
+            _filter.Genres = null;
             return (T)this;
         }
 
@@ -83,7 +92,7 @@
 
         public T ClearLanguages()
         {
-            Languages = null;
+            _filter.Languages = null;
             return (T)this;
         }
 
@@ -101,7 +110,7 @@
 
         public T ClearCountries()
         {
-            Countries = null;
+            _filter.Countries = null;
             return (T)this;
         }
 
@@ -110,13 +119,13 @@
             if (begin < 0 || end < 0 || end < begin)
                 throw new ArgumentOutOfRangeException("runtimes not valid");
 
-            Runtimes = new Range<int>(begin, end);
+            _filter.Runtimes = new Range<int>(begin, end);
             return (T)this;
         }
 
         public T ClearRuntimes()
         {
-            Runtimes = null;
+            _filter.Runtimes = null;
             return (T)this;
         }
 
@@ -125,13 +134,13 @@
             if (begin < 0 || end < 0 || end < begin || end > 100)
                 throw new ArgumentOutOfRangeException("ratings not valid");
 
-            Ratings = new Range<int>(begin, end);
+            _filter.Ratings = new Range<int>(begin, end);
             return (T)this;
         }
 
         public T ClearRatings()
         {
-            Ratings = null;
+            _filter.Ratings = null;
             return (T)this;
         }
 
@@ -139,66 +148,6 @@
         {
             ClearAll();
             return (T)this;
-        }
-
-        public override string ToString()
-        {
-            var parameters = GetParameters();
-
-            if (parameters.Count <= 0)
-                return string.Empty;
-
-            var keyValues = new List<string>();
-
-            foreach (var param in parameters)
-                keyValues.Add($"{param.Key}={param.Value}");
-
-            return string.Join("&", keyValues);
-        }
-
-        protected bool HasQuerySet => !string.IsNullOrEmpty(Query);
-
-        protected bool HasYearSet => Year.HasValue && Year.Value.ToString().Length == 4;
-
-        protected bool HasYearsSet()
-        {
-            if (Years.HasValue)
-            {
-                Range<int> years = Years.Value;
-                int startYear = years.Begin;
-                int endYear = years.End;
-                return startYear <= endYear && startYear.ToString().Length == 4 && endYear.ToString().Length == 4;
-            }
-
-            return false;
-        }
-
-        protected bool HasGenresSet => Genres != null && Genres.Length > 0;
-
-        protected bool HasLanguagesSet => Languages != null && Languages.Length > 0;
-
-        protected bool HasCountriesSet => Countries != null && Countries.Length > 0;
-
-        protected bool HasRuntimesSet()
-        {
-            if (Runtimes.HasValue)
-            {
-                Range<int> runtimes = Runtimes.Value;
-                return runtimes.Begin > 0 && runtimes.End > 0 && runtimes.End > runtimes.Begin;
-            }
-
-            return false;
-        }
-
-        protected bool HasRatingsSet()
-        {
-            if (Ratings.HasValue)
-            {
-                Range<int> ratings = Ratings.Value;
-                return ratings.Begin > 0 && ratings.End > 0 && ratings.End > ratings.Begin && ratings.End <= 100;
-            }
-
-            return false;
         }
 
         protected virtual void ClearAll()
@@ -212,66 +161,20 @@
             ClearRatings();
         }
 
-        internal virtual bool HasValues => HasQuerySet || HasYearSet || HasYearsSet() || HasGenresSet || HasLanguagesSet || HasCountriesSet || HasRuntimesSet() || HasRatingsSet();
-
-        internal virtual IDictionary<string, object> GetParameters()
-        {
-            var parameters = new Dictionary<string, object>();
-
-            if (HasQuerySet)
-                parameters.Add("query", Query);
-
-            if (HasYearSet && !HasYearsSet())
-                parameters.Add("years", $"{Year.Value}");
-            else if (!HasYearSet && HasYearsSet())
-            {
-                int startYear = Years.Value.Begin;
-                int endYear = Years.Value.End;
-
-                if (startYear <= endYear)
-                    parameters.Add("years", $"{startYear}-{endYear}");
-                else
-                    parameters.Add("years", $"{endYear}-{startYear}");
-            }
-
-            if (HasGenresSet)
-                parameters.Add("genres", string.Join(",", Genres));
-
-            if (HasLanguagesSet)
-                parameters.Add("languages", string.Join(",", Languages));
-
-            if (HasCountriesSet)
-                parameters.Add("countries", string.Join(",", Countries));
-
-            if (HasRuntimesSet())
-            {
-                var runtimes = Runtimes.Value;
-                parameters.Add("runtimes", $"{runtimes.Begin}-{runtimes.End}");
-            }
-
-            if (HasRatingsSet())
-            {
-                var ratings = Ratings.Value;
-                parameters.Add("ratings", $"{ratings.Begin}-{ratings.End}");
-            }
-
-            return parameters;
-        }
-
         private void AddGenres(bool keepExisting, string genre, params string[] genres)
         {
             if (string.IsNullOrEmpty(genre) && (genres == null || genres.Length <= 0))
             {
                 if (!keepExisting)
-                    Genres = null;
+                    _filter.Genres = null;
 
                 return;
             }
 
             var genresList = new List<string>();
 
-            if (keepExisting && Genres != null && Genres.Length > 0)
-                genresList.AddRange(Genres);
+            if (keepExisting && _filter.Genres != null && _filter.Genres.Length > 0)
+                genresList.AddRange(_filter.Genres);
 
             if (!string.IsNullOrEmpty(genre))
                 genresList.Add(genre);
@@ -279,7 +182,7 @@
             if (genres != null && genres.Length > 0)
                 genresList.AddRange(genres);
 
-            Genres = genresList.ToArray();
+            _filter.Genres = genresList.ToArray();
         }
 
         private void AddLanguages(bool keepExisting, string language, params string[] languages)
@@ -287,15 +190,15 @@
             if (string.IsNullOrEmpty(language) && (languages == null || languages.Length <= 0))
             {
                 if (!keepExisting)
-                    Languages = null;
+                    _filter.Languages = null;
 
                 return;
             }
 
             var languagesList = new List<string>();
 
-            if (keepExisting && Languages != null && Languages.Length > 0)
-                languagesList.AddRange(Languages);
+            if (keepExisting && _filter.Languages != null && _filter.Languages.Length > 0)
+                languagesList.AddRange(_filter.Languages);
 
             if (!string.IsNullOrEmpty(language))
             {
@@ -316,7 +219,7 @@
                 languagesList.AddRange(languages);
             }
 
-            Languages = languagesList.ToArray();
+            _filter.Languages = languagesList.ToArray();
         }
 
         private void AddCountries(bool keepExisting, string country, params string[] countries)
@@ -324,15 +227,15 @@
             if (string.IsNullOrEmpty(country) && (countries == null || countries.Length <= 0))
             {
                 if (!keepExisting)
-                    Countries = null;
+                    _filter.Countries = null;
 
                 return;
             }
 
             var countriesList = new List<string>();
 
-            if (keepExisting && Countries != null && Countries.Length > 0)
-                countriesList.AddRange(Countries);
+            if (keepExisting && _filter.Countries != null && _filter.Countries.Length > 0)
+                countriesList.AddRange(_filter.Countries);
 
             if (!string.IsNullOrEmpty(country))
             {
@@ -353,7 +256,7 @@
                 countriesList.AddRange(countries);
             }
 
-            Countries = countriesList.ToArray();
+            _filter.Countries = countriesList.ToArray();
         }
     }
 }

@@ -1,9 +1,8 @@
 ﻿namespace TraktNet.Requests.Parameters.Filter
 {
-    public sealed class TraktMovieFilter : TraktShowAndMovieFilter<TraktMovieFilter>
+    using Interfaces;
+
+    public sealed class TraktMovieFilter : ATraktShowAndMovieFilter, ITraktMovieFilter
     {
-        internal TraktMovieFilter()
-        {
-        }
     }
 }

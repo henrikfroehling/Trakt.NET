@@ -1,13 +1,15 @@
 ﻿namespace TraktNet.Requests.Parameters.Filter
 {
+    using Builder;
+
     public static class TraktFilterDirectory
     {
-        public static TraktCalendarFilter CalendarFilter => new TraktCalendarFilter();
+        public static TraktCalendarFilterBuilder CalendarFilter = new TraktCalendarFilterBuilder();
 
-        public static TraktMovieFilter MovieFilter => new TraktMovieFilter();
+        public static TraktMovieFilterBuilder MovieFilter = new TraktMovieFilterBuilder();
 
-        public static TraktShowFilter ShowFilter => new TraktShowFilter();
+        public static TraktShowFilterBuilder ShowFilter = new TraktShowFilterBuilder();
 
-        public static TraktSearchFilter SearchFilter => new TraktSearchFilter();
+        public static TraktSearchFilterBuilder SearchFilter = new TraktSearchFilterBuilder();
     }
 }

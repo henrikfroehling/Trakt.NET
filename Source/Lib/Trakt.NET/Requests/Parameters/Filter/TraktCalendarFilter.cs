@@ -1,9 +1,8 @@
 ﻿namespace TraktNet.Requests.Parameters.Filter
 {
-    public sealed class TraktCalendarFilter : TraktFilter<TraktCalendarFilter>
+    using Interfaces;
+
+    public sealed class TraktCalendarFilter : ATraktFilter, ITraktCalendarFilter
     {
-        internal TraktCalendarFilter()
-        {
-        }
     }
 }

@@ -1,10 +1,12 @@
-﻿namespace TraktNet.Requests.Parameters.Filter
+﻿namespace TraktNet.Requests.Parameters.Filter.Builder
 {
     using System.Collections.Generic;
 
-    public abstract class TraktShowAndMovieFilter<T> : TraktFilter<TraktShowAndMovieFilter<T>> where T : TraktShowAndMovieFilter<T>
+    public abstract class TraktShowAndMovieFilterBuilder<T, U> : TraktFilterBuilder<TraktShowAndMovieFilterBuilder<T, U>, U> where T : TraktShowAndMovieFilterBuilder<T, U> where U : ATraktShowAndMovieFilter
     {
-        public string[] Certifications { get; protected set; }
+        protected TraktShowAndMovieFilterBuilder(U filter) : base(filter)
+        {
+        }
 
         public T AddCertifications(string certification, params string[] certifications)
         {
@@ -20,7 +22,7 @@
 
         public T ClearCertifications()
         {
-            Certifications = null;
+            _filter.Certifications = null;
             return (T)this;
         }
 
@@ -30,34 +32,20 @@
             ClearCertifications();
         }
 
-        protected bool HasCertificationsSet => Certifications != null && Certifications.Length > 0;
-
-        internal override bool HasValues => base.HasValues || HasCertificationsSet;
-
-        internal override IDictionary<string, object> GetParameters()
-        {
-            var parameters = base.GetParameters();
-
-            if (HasCertificationsSet)
-                parameters.Add("certifications", string.Join(",", Certifications));
-
-            return parameters;
-        }
-
         private void AddCertifications(bool keepExisting, string certification, params string[] certifications)
         {
             if (string.IsNullOrEmpty(certification) && (certifications == null || certifications.Length <= 0))
             {
                 if (!keepExisting)
-                    Certifications = null;
+                    _filter.Certifications = null;
 
                 return;
             }
 
             var certificationsList = new List<string>();
 
-            if (keepExisting && Certifications != null && Certifications.Length > 0)
-                certificationsList.AddRange(Certifications);
+            if (keepExisting && _filter.Certifications != null && _filter.Certifications.Length > 0)
+                certificationsList.AddRange(_filter.Certifications);
 
             if (!string.IsNullOrEmpty(certification))
                 certificationsList.Add(certification);
@@ -65,7 +53,7 @@
             if (certifications != null && certifications.Length > 0)
                 certificationsList.AddRange(certifications);
 
-            Certifications = certificationsList.ToArray();
+            _filter.Certifications = certificationsList.ToArray();
         }
     }
 }
