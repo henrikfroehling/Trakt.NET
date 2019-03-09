@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.Requests.Interfaces
 {
-    using Parameters.OldFilters;
+    using Parameters.Filter;
 
     internal interface ISupportsFilter
     {
-        TraktCommonFilter Filter { get; set; }
+        ITraktFilter Filter { get; set; }
     }
 }

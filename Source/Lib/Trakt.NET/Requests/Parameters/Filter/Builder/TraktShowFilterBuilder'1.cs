@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class TraktShowFilterBuilder<T, U> : TraktShowAndMovieFilterBuilder<TraktShowFilterBuilder<T, U>, U> where T : TraktShowFilterBuilder<T, U> where U : TraktShowFilter
+    public abstract class TraktShowFilterBuilder<T, U> : TraktShowAndMovieFilterBuilder<TraktShowFilterBuilder<T, U>, U> where T : TraktShowFilterBuilder<T, U> where U : TraktShowFilter
     {
         protected TraktShowFilterBuilder(U filter) : base(filter)
         {

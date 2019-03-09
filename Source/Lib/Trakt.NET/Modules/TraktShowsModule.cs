@@ -9,7 +9,7 @@
     using Objects.Get.Users.Lists;
     using Requests.Handler;
     using Requests.Parameters;
-    using Requests.Parameters.OldFilters;
+    using Requests.Parameters.Filter;
     using Requests.Shows;
     using Requests.Shows.OAuth;
     using Responses;
@@ -494,7 +494,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -506,7 +506,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                  TraktShowFilter filter = null,
+                                                                                  ITraktShowFilter filter = null,
                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default)
         {
@@ -533,7 +533,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -545,7 +545,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktShow>> GetPopularShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                         TraktShowFilter filter = null,
+                                                                         ITraktShowFilter filter = null,
                                                                          TraktPagedParameters pagedParameters = null,
                                                                          CancellationToken cancellationToken = default)
         {
@@ -573,7 +573,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -586,7 +586,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
                                                                                    TraktExtendedInfo extendedInfo = null,
-                                                                                   TraktShowFilter filter = null,
+                                                                                   ITraktShowFilter filter = null,
                                                                                    TraktPagedParameters pagedParameters = null,
                                                                                    CancellationToken cancellationToken = default)
         {
@@ -615,7 +615,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -628,7 +628,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostWatchedShowsAsync(TraktTimePeriod period = null,
                                                                                     TraktExtendedInfo extendedInfo = null,
-                                                                                    TraktShowFilter filter = null,
+                                                                                    ITraktShowFilter filter = null,
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default)
         {
@@ -657,7 +657,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -670,7 +670,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostCollectedShowsAsync(TraktTimePeriod period = null,
                                                                                       TraktExtendedInfo extendedInfo = null,
-                                                                                      TraktShowFilter filter = null,
+                                                                                      ITraktShowFilter filter = null,
                                                                                       TraktPagedParameters pagedParameters = null,
                                                                                       CancellationToken cancellationToken = default)
         {
@@ -698,7 +698,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -710,7 +710,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                                TraktShowFilter filter = null,
+                                                                                                ITraktShowFilter filter = null,
                                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                                 CancellationToken cancellationToken = default)
         {

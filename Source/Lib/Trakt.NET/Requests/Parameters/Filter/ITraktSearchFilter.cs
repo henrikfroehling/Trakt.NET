@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Requests.Parameters.Filter.Interfaces
+﻿namespace TraktNet.Requests.Parameters.Filter
 {
     public interface ITraktSearchFilter : ITraktShowFilter
     {

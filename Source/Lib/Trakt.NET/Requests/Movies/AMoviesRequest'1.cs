@@ -3,14 +3,14 @@
     using Base;
     using Interfaces;
     using Parameters;
-    using Parameters.OldFilters;
+    using Parameters.Filter;
     using System.Collections.Generic;
 
     internal abstract class AMoviesRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ISupportsExtendedInfo, ISupportsFilter, ISupportsPagination
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public TraktCommonFilter Filter { get; set; }
+        public ITraktFilter Filter { get; set; }
 
         public uint? Page { get; set; }
 

@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Requests.Parameters.Filter
 {
     using Enums;
-    using Interfaces;
     using System.Collections.Generic;
 
     public class TraktShowFilter : ATraktShowAndMovieFilter, ITraktShowFilter

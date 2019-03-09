@@ -2,7 +2,7 @@
 {
     using System;
     using TraktNet.Requests.Parameters;
-    using TraktNet.Requests.Parameters.OldFilters;
+    using TraktNet.Requests.Parameters.Filter;
 
     public partial class TraktCalendarModule_Tests
     {
@@ -12,14 +12,15 @@
         private readonly DateTime TODAY = DateTime.UtcNow;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
 
-        private readonly TraktCalendarFilter FILTER = new TraktCalendarFilter()
+        private readonly ITraktCalendarFilter FILTER = TraktFilterDirectory.CalendarFilter
             .WithQuery("calendar movie")
-            .WithStartYear(2016)
+            .WithYear(2016)
             .WithGenres("drama", "fantasy")
             .WithLanguages("en", "de")
             .WithCountries("us")
             .WithRuntimes(30, 60)
-            .WithRatings(80, 95);
+            .WithRatings(80, 95)
+            .Build();
 
         public DateTime StartDateTime { get; }
         public DateTime EndDateTime { get; }

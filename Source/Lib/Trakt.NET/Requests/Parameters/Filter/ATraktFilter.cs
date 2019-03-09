@@ -1,6 +1,5 @@
 ﻿namespace TraktNet.Requests.Parameters.Filter
 {
-    using Interfaces;
     using System.Collections.Generic;
     using Utils;
 
