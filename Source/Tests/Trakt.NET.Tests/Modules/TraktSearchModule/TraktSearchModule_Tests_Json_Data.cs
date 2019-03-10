@@ -2,6 +2,7 @@
 {
     using TraktNet.Enums;
     using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Parameters.Filter;
 
     public partial class TraktSearchModule_Tests
     {
@@ -21,13 +22,14 @@
         private readonly TraktSearchField TEXT_QUERY_SEARCH_FIELD_TITLE = TraktSearchField.Title;
         private readonly TraktSearchField TEXT_QUERY_SEARCH_FIELD_OVERVIEW = TraktSearchField.Overview;
 
-        private readonly TraktSearchFilter FILTER = new TraktSearchFilter()
-            .WithStartYear(2011)
+        private readonly ITraktSearchFilter FILTER = TraktFilterDirectory.SearchFilter
+            .WithYear(2011)
             .WithGenres("action", "thriller")
             .WithLanguages("en", "de")
             .WithCountries("us")
             .WithRuntimes(70, 140)
-            .WithRatings(70, 95);
+            .WithRatings(70, 95)
+            .Build();
 
         private string GetIdLookupUri { get; }
         private string GetTextQueryUri { get; }

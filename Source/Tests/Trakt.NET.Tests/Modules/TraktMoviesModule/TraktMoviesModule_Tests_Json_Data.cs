@@ -3,6 +3,7 @@
     using System;
     using TraktNet.Enums;
     using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Parameters.Filter;
 
     public partial class TraktMoviesModule_Tests
     {
@@ -21,15 +22,16 @@
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
         private readonly DateTime TODAY = DateTime.UtcNow;
 
-        private readonly TraktMovieFilter FILTER = new TraktMovieFilter()
+        private readonly ITraktMovieFilter FILTER = TraktFilterDirectory.MovieFilter
             .WithCertifications("TV-MA")
             .WithQuery("most anticipated movie")
-            .WithStartYear(2016)
+            .WithYear(2016)
             .WithGenres("action", "fantasy")
             .WithLanguages("en", "de")
             .WithCountries("us")
             .WithRuntimes(90, 180)
-            .WithRatings(70, 90);
+            .WithRatings(70, 90)
+            .Build();
 
         private const string BOX_OFFICE_MOVIES_JSON =
             @"[
