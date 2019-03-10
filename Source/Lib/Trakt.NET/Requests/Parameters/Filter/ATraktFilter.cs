@@ -93,7 +93,7 @@
                 Range<int> years = Years.Value;
                 int startYear = years.Begin;
                 int endYear = years.End;
-                return startYear <= endYear && startYear.ToString().Length == 4 && endYear.ToString().Length == 4;
+                return startYear.ToString().Length == 4 && endYear.ToString().Length == 4;
             }
 
             return false;
