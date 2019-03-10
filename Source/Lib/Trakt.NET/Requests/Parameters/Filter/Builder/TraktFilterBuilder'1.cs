@@ -117,7 +117,7 @@
         public T WithRuntimes(int begin, int end)
         {
             if (begin < 0 || end < 0 || end < begin)
-                throw new ArgumentOutOfRangeException("runtimes not valid");
+                throw new ArgumentOutOfRangeException("runtimes not valid", default(Exception));
 
             _filter.Runtimes = new Range<int>(begin, end);
             return (T)this;
@@ -132,7 +132,7 @@
         public T WithRatings(int begin, int end)
         {
             if (begin < 0 || end < 0 || end < begin || end > 100)
-                throw new ArgumentOutOfRangeException("ratings not valid");
+                throw new ArgumentOutOfRangeException("ratings not valid", default(Exception));
 
             _filter.Ratings = new Range<int>(begin, end);
             return (T)this;
@@ -203,7 +203,7 @@
             if (!string.IsNullOrEmpty(language))
             {
                 if (language.Length > 2 || language.Length < 2)
-                    throw new ArgumentOutOfRangeException("language not valid", nameof(language));
+                    throw new ArgumentOutOfRangeException(nameof(language), "language not valid");
 
                 languagesList.Add(language);
             }
@@ -213,7 +213,7 @@
                 for (int i = 0; i < languages.Length; i++)
                 {
                     if (languages[i].Length > 2 || languages[i].Length < 2)
-                        throw new ArgumentOutOfRangeException("language not valid", nameof(languages));
+                        throw new ArgumentOutOfRangeException(nameof(language), "language not valid");
                 }
 
                 languagesList.AddRange(languages);
@@ -240,7 +240,7 @@
             if (!string.IsNullOrEmpty(country))
             {
                 if (country.Length > 2 || country.Length < 2)
-                    throw new ArgumentOutOfRangeException("country not valid", nameof(country));
+                    throw new ArgumentOutOfRangeException(nameof(country), "country not valid");
 
                 countriesList.Add(country);
             }
@@ -250,7 +250,7 @@
                 for (int i = 0; i < countries.Length; i++)
                 {
                     if (countries[i].Length > 2 || countries[i].Length < 2)
-                        throw new ArgumentOutOfRangeException("country not valid", nameof(countries));
+                        throw new ArgumentOutOfRangeException(nameof(country), "country not valid");
                 }
 
                 countriesList.AddRange(countries);
