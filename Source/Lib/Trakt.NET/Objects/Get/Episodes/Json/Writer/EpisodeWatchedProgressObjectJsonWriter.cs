@@ -3,7 +3,6 @@
     using Extensions;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -11,9 +10,7 @@
     {
         public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktEpisodeWatchedProgress obj, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
-
+            CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (obj.Number.HasValue)

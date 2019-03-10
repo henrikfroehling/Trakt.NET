@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Json
 {
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -32,5 +33,11 @@
         }
 
         public abstract Task<TReturnType> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default);
+
+        protected void CheckJsonTextReader(JsonTextReader jsonReader)
+        {
+            if (jsonReader == null)
+                throw new ArgumentNullException(nameof(jsonReader));
+        }
     }
 }

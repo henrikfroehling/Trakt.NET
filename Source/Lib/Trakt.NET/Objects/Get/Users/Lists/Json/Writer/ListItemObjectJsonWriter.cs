@@ -8,7 +8,6 @@
     using People.Json.Writer;
     using Seasons.Json.Writer;
     using Shows.Json.Writer;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -16,9 +15,7 @@
     {
         public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktListItem obj, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
-
+            CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (!string.IsNullOrEmpty(obj.Rank))
