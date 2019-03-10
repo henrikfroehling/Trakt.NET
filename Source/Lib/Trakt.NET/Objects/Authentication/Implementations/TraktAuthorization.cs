@@ -7,7 +7,7 @@
     /// <summary>
     /// Represents a Trakt authorization response, which contains information, such as access token and refresh token.
     /// </summary>
-    public class TraktAuthorization : ITraktAuthorization
+    public sealed class TraktAuthorization : ITraktAuthorization
     {
         private const uint DEFAULT_EXPIRES_IN_SECONDS = 7776000;
 
