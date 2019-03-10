@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var userLikeItemReader = new UserLikeItemObjectJsonReader();
-                //var userLikeItemReadingTasks = new List<Task<ITraktUserLikeItem>>();
                 var userLikeItems = new List<ITraktUserLikeItem>();
-
-                //userLikeItemReadingTasks.Add(userLikeItemReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktUserLikeItem userLikeItem = await userLikeItemReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (userLikeItem != null)
                 {
                     userLikeItems.Add(userLikeItem);
-                    //userLikeItemReadingTasks.Add(userLikeItemReader.ReadObjectAsync(jsonReader, cancellationToken));
                     userLikeItem = await userLikeItemReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readUserLikeItems = await Task.WhenAll(userLikeItemReadingTasks);
-                //return (IEnumerable<ITraktUserLikeItem>)readUserLikeItems.GetEnumerator();
                 return userLikeItems;
             }
 

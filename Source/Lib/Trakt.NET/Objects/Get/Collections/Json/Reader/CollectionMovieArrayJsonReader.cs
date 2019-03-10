@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var collectionMovieReader = new CollectionMovieObjectJsonReader();
-                //var collectionMovieReadingTasks = new List<Task<ITraktCollectionMovie>>();
                 var collectionMovies = new List<ITraktCollectionMovie>();
-
-                //collectionMovieReadingTasks.Add(collectionMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktCollectionMovie collectionMovie = await collectionMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (collectionMovie != null)
                 {
                     collectionMovies.Add(collectionMovie);
-                    //collectionMovieReadingTasks.Add(collectionMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                     collectionMovie = await collectionMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readCollectionMovies = await Task.WhenAll(collectionMovieReadingTasks);
-                //return (IEnumerable<ITraktCollectionMovie>)readCollectionMovies.GetEnumerator();
                 return collectionMovies;
             }
 

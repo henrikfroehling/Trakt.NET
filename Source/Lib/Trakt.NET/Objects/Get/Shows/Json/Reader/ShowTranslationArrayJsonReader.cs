@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var movieTranslationReader = new ShowTranslationObjectJsonReader();
-                //var traktShowTranslationReadingTasks = new List<Task<ITraktShowTranslation>>();
                 var traktShowTranslations = new List<ITraktShowTranslation>();
-
-                //traktShowTranslationReadingTasks.Add(movieTranslationReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktShowTranslation traktShowTranslation = await movieTranslationReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (traktShowTranslation != null)
                 {
                     traktShowTranslations.Add(traktShowTranslation);
-                    //traktShowTranslationReadingTasks.Add(movieTranslationReader.ReadObjectAsync(jsonReader, cancellationToken));
                     traktShowTranslation = await movieTranslationReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readShowTranslations = await Task.WhenAll(traktShowTranslationReadingTasks);
-                //return (IEnumerable<ITraktShowTranslation>)readShowTranslations.GetEnumerator();
                 return traktShowTranslations;
             }
 

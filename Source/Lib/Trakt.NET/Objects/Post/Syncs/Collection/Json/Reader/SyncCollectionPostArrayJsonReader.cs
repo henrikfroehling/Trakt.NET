@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var syncCollectionPostReader = new SyncCollectionPostObjectJsonReader();
-                //var syncCollectionPostReadingTasks = new List<Task<ITraktSyncCollectionPost>>();
                 var syncCollectionPosts = new List<ITraktSyncCollectionPost>();
-
-                //syncCollectionPostReadingTasks.Add(syncCollectionPostReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktSyncCollectionPost syncCollectionPost = await syncCollectionPostReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (syncCollectionPost != null)
                 {
                     syncCollectionPosts.Add(syncCollectionPost);
-                    //syncCollectionPostReadingTasks.Add(syncCollectionPostReader.ReadObjectAsync(jsonReader, cancellationToken));
                     syncCollectionPost = await syncCollectionPostReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readSyncCollectionPosts = await Task.WhenAll(syncCollectionPostReadingTasks);
-                //return (IEnumerable<ITraktSyncCollectionPost>)readSyncCollectionPosts.GetEnumerator();
                 return syncCollectionPosts;
             }
 

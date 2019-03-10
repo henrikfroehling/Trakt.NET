@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var commentReader = new CommentObjectJsonReader();
-                //var commentReadingTasks = new List<Task<ITraktComment>>();
                 var comments = new List<ITraktComment>();
-
-                //commentReadingTasks.Add(commentReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktComment comment = await commentReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (comment != null)
                 {
                     comments.Add(comment);
-                    //commentReadingTasks.Add(commentReader.ReadObjectAsync(jsonReader, cancellationToken));
                     comment = await commentReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readComments = await Task.WhenAll(commentReadingTasks);
-                //return (IEnumerable<ITraktComment>)readComments.GetEnumerator();
                 return comments;
             }
 

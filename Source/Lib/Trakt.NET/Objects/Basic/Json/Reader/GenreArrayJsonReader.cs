@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var genreReader = new GenreObjectJsonReader();
-                //var genreReadingTasks = new List<Task<ITraktGenre>>();
                 var genres = new List<ITraktGenre>();
-
-                //genreReadingTasks.Add(genreReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktGenre genre = await genreReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (genre != null)
                 {
                     genres.Add(genre);
-                    //genreReadingTasks.Add(genreReader.ReadObjectAsync(jsonReader, cancellationToken));
                     genre = await genreReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readGenres = await Task.WhenAll(genreReadingTasks);
-                //return (IEnumerable<ITraktGenre>)readGenres.GetEnumerator();
                 return genres;
             }
 

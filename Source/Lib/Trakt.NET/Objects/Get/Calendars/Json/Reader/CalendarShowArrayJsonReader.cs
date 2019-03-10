@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var calendarShowReader = new CalendarShowObjectJsonReader();
-                //var calendarShowReadingTasks = new List<Task<ITraktCalendarShow>>();
                 var calendarShows = new List<ITraktCalendarShow>();
-
-                //calendarShowReadingTasks.Add(calendarShowReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktCalendarShow calendarShow = await calendarShowReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (calendarShow != null)
                 {
                     calendarShows.Add(calendarShow);
-                    //calendarShowReadingTasks.Add(calendarShowReader.ReadObjectAsync(jsonReader, cancellationToken));
                     calendarShow = await calendarShowReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readCalendarShows = await Task.WhenAll(calendarShowReadingTasks);
-                //return (IEnumerable<ITraktCalendarShow>)readCalendarShows.GetEnumerator();
                 return calendarShows;
             }
 

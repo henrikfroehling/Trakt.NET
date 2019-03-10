@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var syncRatingsPostResponseNotFoundMovieObjectReader = new SyncRatingsPostResponseNotFoundMovieObjectJsonReader();
-                //var syncRatingsPostResponseNotFoundMovieReadingTasks = new List<Task<ITraktSyncRatingsPostResponseNotFoundMovie>>();
                 var syncRatingsPostResponseNotFoundMovies = new List<ITraktSyncRatingsPostResponseNotFoundMovie>();
-
-                //syncRatingsPostResponseNotFoundMovieReadingTasks.Add(syncRatingsPostResponseNotFoundMovieObjectReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktSyncRatingsPostResponseNotFoundMovie syncRatingsPostResponseNotFoundMovie = await syncRatingsPostResponseNotFoundMovieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (syncRatingsPostResponseNotFoundMovie != null)
                 {
                     syncRatingsPostResponseNotFoundMovies.Add(syncRatingsPostResponseNotFoundMovie);
-                    //syncRatingsPostResponseNotFoundMovieReadingTasks.Add(syncRatingsPostResponseNotFoundMovieObjectReader.ReadObjectAsync(jsonReader, cancellationToken));
                     syncRatingsPostResponseNotFoundMovie = await syncRatingsPostResponseNotFoundMovieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readSyncRatingsPostResponseNotFoundMovies = await Task.WhenAll(syncRatingsPostResponseNotFoundMovieReadingTasks);
-                //return (IEnumerable<ITraktSyncRatingsPostResponseNotFoundMovie>)readSyncRatingsPostResponseNotFoundMovies.GetEnumerator();
                 return syncRatingsPostResponseNotFoundMovies;
             }
 

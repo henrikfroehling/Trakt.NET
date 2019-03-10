@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var searchResultReader = new SearchResultObjectJsonReader();
-                //var searchResultReadingTasks = new List<Task<ITraktSearchResult>>();
                 var searchResults = new List<ITraktSearchResult>();
-
-                //searchResultReadingTasks.Add(searchResultReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktSearchResult searchResult = await searchResultReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (searchResult != null)
                 {
                     searchResults.Add(searchResult);
-                    //searchResultReadingTasks.Add(searchResultReader.ReadObjectAsync(jsonReader, cancellationToken));
                     searchResult = await searchResultReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readSearchResults = await Task.WhenAll(searchResultReadingTasks);
-                //return (IEnumerable<ITraktSearchResult>)readSearchResults.GetEnumerator();
                 return searchResults;
             }
 

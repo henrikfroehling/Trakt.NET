@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var crewMemberReader = new CrewMemberObjectJsonReader();
-                //var crewMemberReadingTasks = new List<Task<ITraktCrewMember>>();
                 var crewMembers = new List<ITraktCrewMember>();
-
-                //crewMemberReadingTasks.Add(crewMemberReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktCrewMember crewMember = await crewMemberReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (crewMember != null)
                 {
                     crewMembers.Add(crewMember);
-                    //crewMemberReadingTasks.Add(crewMemberReader.ReadObjectAsync(jsonReader, cancellationToken));
                     crewMember = await crewMemberReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readCrewMembers = await Task.WhenAll(crewMemberReadingTasks);
-                //return (IEnumerable<ITraktCrewMember>)readCrewMembers.GetEnumerator();
                 return crewMembers;
             }
 
