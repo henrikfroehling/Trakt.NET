@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var userFollowerReader = new UserFollowerObjectJsonReader();
-                //var userFollowerReadingTasks = new List<Task<ITraktUserFollower>>();
                 var userFollowers = new List<ITraktUserFollower>();
-
-                //userFollowerReadingTasks.Add(userFollowerReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktUserFollower userFollower = await userFollowerReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (userFollower != null)
                 {
                     userFollowers.Add(userFollower);
-                    //userFollowerReadingTasks.Add(userFollowerReader.ReadObjectAsync(jsonReader, cancellationToken));
                     userFollower = await userFollowerReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readUserFollowers = await Task.WhenAll(userFollowerReadingTasks);
-                //return (IEnumerable<ITraktUserFollower>)readUserFollowers.GetEnumerator();
                 return userFollowers;
             }
 

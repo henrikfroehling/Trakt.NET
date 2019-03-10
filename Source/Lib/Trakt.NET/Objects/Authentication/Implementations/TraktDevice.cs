@@ -5,7 +5,7 @@
     /// <summary>
     /// Represents a Trakt device response.
     /// </summary>
-    public class TraktDevice : ITraktDevice
+    public sealed class TraktDevice : ITraktDevice
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktDevice" /> class.

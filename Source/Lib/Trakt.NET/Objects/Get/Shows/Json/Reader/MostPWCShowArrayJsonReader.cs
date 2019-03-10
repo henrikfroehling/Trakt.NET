@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var mostPWCShowReader = new MostPWCShowObjectJsonReader();
-                //var traktMostPWCShowReadingTasks = new List<Task<ITraktMostPWCShow>>();
                 var traktMostPWCShows = new List<ITraktMostPWCShow>();
-
-                //traktMostPWCShowReadingTasks.Add(mostPWCShowReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktMostPWCShow traktMostPWCShow = await mostPWCShowReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (traktMostPWCShow != null)
                 {
                     traktMostPWCShows.Add(traktMostPWCShow);
-                    //traktMostPWCShowReadingTasks.Add(mostPWCShowReader.ReadObjectAsync(jsonReader, cancellationToken));
                     traktMostPWCShow = await mostPWCShowReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readMostPWCShows = await Task.WhenAll(traktMostPWCShowReadingTasks);
-                //return (IEnumerable<ITraktMostPWCShow>)readMostPWCShows.GetEnumerator();
                 return traktMostPWCShows;
             }
 

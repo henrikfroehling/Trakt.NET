@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var postResponseNotFoundSeasonObjectReader = new PostResponseNotFoundSeasonObjectJsonReader();
-                //var postResponseNotFoundSeasonReadingTasks = new List<Task<ITraktPostResponseNotFoundSeason>>();
                 var postResponseNotFoundSeasons = new List<ITraktPostResponseNotFoundSeason>();
-
-                //postResponseNotFoundSeasonReadingTasks.Add(postResponseNotFoundSeasonReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktPostResponseNotFoundSeason postResponseNotFoundSeason = await postResponseNotFoundSeasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (postResponseNotFoundSeason != null)
                 {
                     postResponseNotFoundSeasons.Add(postResponseNotFoundSeason);
-                    //postResponseNotFoundSeasonReadingTasks.Add(postResponseNotFoundSeasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken));
                     postResponseNotFoundSeason = await postResponseNotFoundSeasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readPostResponseNotFoundSeasons = await Task.WhenAll(postResponseNotFoundSeasonReadingTasks);
-                //return (IEnumerable<ITraktPostResponseNotFoundSeason>)readPostResponseNotFoundSeasons.GetEnumerator();
                 return postResponseNotFoundSeasons;
             }
 

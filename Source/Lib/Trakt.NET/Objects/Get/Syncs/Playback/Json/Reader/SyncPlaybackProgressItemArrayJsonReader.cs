@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var playbackProgressItemReader = new SyncPlaybackProgressItemObjectJsonReader();
-                //var playbackProgressItemReadingTasks = new List<Task<ITraktSyncPlaybackProgressItem>>();
                 var playbackProgressItems = new List<ITraktSyncPlaybackProgressItem>();
-
-                //playbackProgressItemReadingTasks.Add(playbackProgressItemReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktSyncPlaybackProgressItem playbackProgressItem = await playbackProgressItemReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (playbackProgressItem != null)
                 {
                     playbackProgressItems.Add(playbackProgressItem);
-                    //playbackProgressItemReadingTasks.Add(playbackProgressItemReader.ReadObjectAsync(jsonReader, cancellationToken));
                     playbackProgressItem = await playbackProgressItemReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readSyncPlaybackProgressItems = await Task.WhenAll(playbackProgressItemReadingTasks);
-                //return (IEnumerable<ITraktSyncPlaybackProgressItem>)readSyncPlaybackProgressItems.GetEnumerator();
                 return playbackProgressItems;
             }
 

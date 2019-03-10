@@ -9,6 +9,7 @@
     using Requests.Handler;
     using Requests.Movies;
     using Requests.Parameters;
+    using Requests.Parameters.Filter;
     using Responses;
     using System;
     using System.Collections.Generic;
@@ -397,7 +398,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -409,7 +410,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                    TraktMovieFilter filter = null,
+                                                                                    ITraktMovieFilter filter = null,
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default)
         {
@@ -436,7 +437,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -448,7 +449,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMovie>> GetPopularMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                           TraktMovieFilter filter = null,
+                                                                           ITraktMovieFilter filter = null,
                                                                            TraktPagedParameters pagedParameters = null,
                                                                            CancellationToken cancellationToken = default)
         {
@@ -476,7 +477,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -489,7 +490,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod period = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
-                                                                                     TraktMovieFilter filter = null,
+                                                                                     ITraktMovieFilter filter = null,
                                                                                      TraktPagedParameters pagedParameters = null,
                                                                                      CancellationToken cancellationToken = default)
         {
@@ -518,7 +519,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -531,7 +532,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod period = null,
                                                                                       TraktExtendedInfo extendedInfo = null,
-                                                                                      TraktMovieFilter filter = null,
+                                                                                      ITraktMovieFilter filter = null,
                                                                                       TraktPagedParameters pagedParameters = null,
                                                                                       CancellationToken cancellationToken = default)
         {
@@ -560,7 +561,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -573,7 +574,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
                                                                                         TraktExtendedInfo extendedInfo = null,
-                                                                                        TraktMovieFilter filter = null,
+                                                                                        ITraktMovieFilter filter = null,
                                                                                         TraktPagedParameters pagedParameters = null,
                                                                                         CancellationToken cancellationToken = default)
         {
@@ -601,7 +602,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>
@@ -613,7 +614,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                                  TraktMovieFilter filter = null,
+                                                                                                  ITraktMovieFilter filter = null,
                                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                                   CancellationToken cancellationToken = default)
         {

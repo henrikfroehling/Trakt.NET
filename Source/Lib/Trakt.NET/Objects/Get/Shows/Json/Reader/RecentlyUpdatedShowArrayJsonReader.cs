@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var recentlyUpdatedShowReader = new RecentlyUpdatedShowObjectJsonReader();
-                //var traktRecentlyUpdatedShowReadingTasks = new List<Task<ITraktRecentlyUpdatedShow>>();
                 var traktRecentlyUpdatedShows = new List<ITraktRecentlyUpdatedShow>();
-
-                //traktRecentlyUpdatedShowReadingTasks.Add(recentlyUpdatedShowReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktRecentlyUpdatedShow traktRecentlyUpdatedShow = await recentlyUpdatedShowReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (traktRecentlyUpdatedShow != null)
                 {
                     traktRecentlyUpdatedShows.Add(traktRecentlyUpdatedShow);
-                    //traktRecentlyUpdatedShowReadingTasks.Add(recentlyUpdatedShowReader.ReadObjectAsync(jsonReader, cancellationToken));
                     traktRecentlyUpdatedShow = await recentlyUpdatedShowReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readRecentlyUpdatedShows = await Task.WhenAll(traktRecentlyUpdatedShowReadingTasks);
-                //return (IEnumerable<ITraktRecentlyUpdatedShow>)readRecentlyUpdatedShows.GetEnumerator();
                 return traktRecentlyUpdatedShows;
             }
 

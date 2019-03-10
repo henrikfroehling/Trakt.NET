@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var episodeReader = new EpisodeObjectJsonReader();
-                //var traktEpisodeReadingTasks = new List<Task<ITraktEpisode>>();
                 var traktEpisodes = new List<ITraktEpisode>();
-
-                //traktEpisodeReadingTasks.Add(episodeReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktEpisode traktEpisode = await episodeReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (traktEpisode != null)
                 {
                     traktEpisodes.Add(traktEpisode);
-                    //traktEpisodeReadingTasks.Add(episodeReader.ReadObjectAsync(jsonReader, cancellationToken));
                     traktEpisode = await episodeReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readEpisodes = await Task.WhenAll(traktEpisodeReadingTasks);
-                //return (IEnumerable<ITraktEpisode>)readEpisodes.GetEnumerator();
                 return traktEpisodes;
             }
 

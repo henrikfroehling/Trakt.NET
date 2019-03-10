@@ -2,7 +2,6 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -10,9 +9,7 @@
     {
         public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktSeasonIds obj, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
-
+            CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
             await jsonWriter.WritePropertyNameAsync(JsonProperties.SEASON_IDS_PROPERTY_NAME_TRAKT, cancellationToken).ConfigureAwait(false);
             await jsonWriter.WriteValueAsync(obj.Trakt).ConfigureAwait(false);

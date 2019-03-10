@@ -6,7 +6,6 @@
     using Newtonsoft.Json;
     using Objects.Json;
     using Shows.Json.Writer;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -14,9 +13,7 @@
     {
         public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktSyncPlaybackProgressItem obj, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
-
+            CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_PLAYBACK_PROGRESS_ITEM_PROPERTY_NAME_ID, cancellationToken).ConfigureAwait(false);

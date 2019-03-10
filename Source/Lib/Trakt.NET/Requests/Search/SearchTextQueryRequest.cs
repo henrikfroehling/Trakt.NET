@@ -2,13 +2,13 @@
 {
     using Enums;
     using Interfaces;
-    using Parameters;
+    using Parameters.Filter;
     using System;
     using System.Collections.Generic;
 
     internal sealed class SearchTextQueryRequest : ASearchRequest, ISupportsFilter
     {
-        public TraktCommonFilter Filter { get; set; }
+        public ITraktFilter Filter { get; set; }
 
         internal TraktSearchField SearchFields { get; set; }
 

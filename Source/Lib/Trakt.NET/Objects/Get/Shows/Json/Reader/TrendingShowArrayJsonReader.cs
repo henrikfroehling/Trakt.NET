@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var trendingShowReader = new TrendingShowObjectJsonReader();
-                //var traktTrendingShowReadingTasks = new List<Task<ITraktTrendingShow>>();
                 var traktTrendingShows = new List<ITraktTrendingShow>();
-
-                //traktTrendingShowReadingTasks.Add(trendingShowReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktTrendingShow traktTrendingShow = await trendingShowReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (traktTrendingShow != null)
                 {
                     traktTrendingShows.Add(traktTrendingShow);
-                    //traktTrendingShowReadingTasks.Add(trendingShowReader.ReadObjectAsync(jsonReader, cancellationToken));
                     traktTrendingShow = await trendingShowReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readTrendingShows = await Task.WhenAll(traktTrendingShowReadingTasks);
-                //return (IEnumerable<ITraktTrendingShow>)readTrendingShows.GetEnumerator();
                 return traktTrendingShows;
             }
 

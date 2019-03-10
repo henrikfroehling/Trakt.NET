@@ -18,6 +18,7 @@
             var collectionMovie = new TraktCollectionMovie();
 
             collectionMovie.CollectedAt.Should().NotHaveValue();
+            collectionMovie.UpdatedAt.Should().NotHaveValue();
             collectionMovie.Metadata.Should().BeNull();
 
             collectionMovie.Movie.Should().BeNull();
@@ -28,7 +29,7 @@
             collectionMovie.Overview.Should().BeNullOrEmpty();
             collectionMovie.Released.Should().NotHaveValue();
             collectionMovie.Runtime.Should().NotHaveValue();
-            collectionMovie.UpdatedAt.Should().NotHaveValue();
+            collectionMovie.MovieUpdatedAt.Should().NotHaveValue();
             collectionMovie.Trailer.Should().BeNullOrEmpty();
             collectionMovie.Homepage.Should().BeNullOrEmpty();
             collectionMovie.Rating.Should().NotHaveValue();
@@ -48,6 +49,7 @@
 
             collectionMovie.Should().NotBeNull();
             collectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            collectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
             collectionMovie.Metadata.Should().NotBeNull();
             collectionMovie.Metadata.MediaType.Should().Be(TraktMediaType.Bluray);
@@ -90,7 +92,7 @@
             collectionMovie.Overview.Should().BeNullOrEmpty();
             collectionMovie.Released.Should().NotHaveValue();
             collectionMovie.Runtime.Should().NotHaveValue();
-            collectionMovie.UpdatedAt.Should().NotHaveValue();
+            collectionMovie.MovieUpdatedAt.Should().NotHaveValue();
             collectionMovie.Trailer.Should().BeNullOrEmpty();
             collectionMovie.Homepage.Should().BeNullOrEmpty();
             collectionMovie.Rating.Should().NotHaveValue();
@@ -110,6 +112,7 @@
 
             collectionMovie.Should().NotBeNull();
             collectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            collectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
             collectionMovie.Metadata.Should().NotBeNull();
             collectionMovie.Metadata.MediaType.Should().Be(TraktMediaType.Bluray);
@@ -152,7 +155,7 @@
             collectionMovie.Overview.Should().Be("Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.");
             collectionMovie.Released.Should().Be(DateTime.Parse("2015-12-18"));
             collectionMovie.Runtime.Should().Be(136);
-            collectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
+            collectionMovie.MovieUpdatedAt.Should().Be(DateTime.Parse("2016-03-31T09:01:59Z").ToUniversalTime());
             collectionMovie.Trailer.Should().Be("http://youtube.com/watch?v=uwa7N0ShN2U");
             collectionMovie.Homepage.Should().Be("http://www.starwars.com/films/star-wars-episode-vii");
             collectionMovie.Rating.Should().Be(8.31988f);
@@ -167,6 +170,7 @@
         private const string MINIMAL_JSON =
             @"{
                 ""collected_at"": ""2014-09-01T09:10:11.000Z"",
+                ""updated_at"": ""2014-09-01T09:10:11.000Z"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
                   ""year"": 2015,
@@ -189,6 +193,7 @@
         private const string FULL_JSON =
             @"{
                 ""collected_at"": ""2014-09-01T09:10:11.000Z"",
+                ""updated_at"": ""2014-09-01T09:10:11.000Z"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
                   ""year"": 2015,

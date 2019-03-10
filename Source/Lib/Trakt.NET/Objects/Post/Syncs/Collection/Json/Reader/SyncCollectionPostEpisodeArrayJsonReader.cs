@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var syncCollectionPostEpisodeReader = new SyncCollectionPostEpisodeObjectJsonReader();
-                //var syncCollectionPostEpisodeReadingTasks = new List<Task<ITraktSyncCollectionPostEpisode>>();
                 var syncCollectionPostEpisodes = new List<ITraktSyncCollectionPostEpisode>();
-
-                //syncCollectionPostEpisodeReadingTasks.Add(syncCollectionPostEpisodeReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktSyncCollectionPostEpisode syncCollectionPostEpisode = await syncCollectionPostEpisodeReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (syncCollectionPostEpisode != null)
                 {
                     syncCollectionPostEpisodes.Add(syncCollectionPostEpisode);
-                    //syncCollectionPostEpisodeReadingTasks.Add(syncCollectionPostEpisodeReader.ReadObjectAsync(jsonReader, cancellationToken));
                     syncCollectionPostEpisode = await syncCollectionPostEpisodeReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readSyncCollectionPostEpisodes = await Task.WhenAll(syncCollectionPostEpisodeReadingTasks);
-                //return (IEnumerable<ITraktSyncCollectionPostEpisode>)readSyncCollectionPostEpisodes.GetEnumerator();
                 return syncCollectionPostEpisodes;
             }
 

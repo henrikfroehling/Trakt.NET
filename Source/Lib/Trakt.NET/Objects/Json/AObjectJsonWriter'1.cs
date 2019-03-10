@@ -34,5 +34,11 @@
         }
 
         public abstract Task WriteObjectAsync(JsonTextWriter jsonWriter, TObjectType obj, CancellationToken cancellationToken = default);
+
+        protected void CheckJsonTextWriter(JsonTextWriter jsonWriter)
+        {
+            if (jsonWriter == null)
+                throw new ArgumentNullException(nameof(jsonWriter));
+        }
     }
 }

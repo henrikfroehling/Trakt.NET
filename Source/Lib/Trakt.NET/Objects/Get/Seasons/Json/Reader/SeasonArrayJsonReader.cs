@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var seasonReader = new SeasonObjectJsonReader();
-                //var traktSeasonReadingTasks = new List<Task<ITraktSeason>>();
                 var traktSeasons = new List<ITraktSeason>();
-
-                //traktSeasonReadingTasks.Add(seasonReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktSeason traktSeason = await seasonReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (traktSeason != null)
                 {
                     traktSeasons.Add(traktSeason);
-                    //traktSeasonReadingTasks.Add(seasonReader.ReadObjectAsync(jsonReader, cancellationToken));
                     traktSeason = await seasonReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readSeasons = await Task.WhenAll(traktSeasonReadingTasks);
-                //return (IEnumerable<ITraktSeason>)readSeasons.GetEnumerator();
                 return traktSeasons;
             }
 

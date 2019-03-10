@@ -4,6 +4,7 @@
     using Extensions;
     using Interfaces;
     using Parameters;
+    using Parameters.Filter;
     using System;
     using System.Collections.Generic;
 
@@ -15,7 +16,7 @@
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
-        public TraktCommonFilter Filter { get; set; }
+        public ITraktFilter Filter { get; set; }
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
