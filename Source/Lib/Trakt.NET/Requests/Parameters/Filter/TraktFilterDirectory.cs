@@ -4,12 +4,12 @@
 
     public static class TraktFilterDirectory
     {
-        public static TraktCalendarFilterBuilder CalendarFilter = new TraktCalendarFilterBuilder();
+        public static TraktCalendarFilterBuilder CalendarFilter => new TraktCalendarFilterBuilder();
 
-        public static TraktMovieFilterBuilder MovieFilter = new TraktMovieFilterBuilder();
+        public static TraktMovieFilterBuilder MovieFilter => new TraktMovieFilterBuilder();
 
-        public static TraktShowFilterBuilder ShowFilter = new TraktShowFilterBuilder();
+        public static TraktShowFilterBuilder ShowFilter => new TraktShowFilterBuilder();
 
-        public static TraktSearchFilterBuilder SearchFilter = new TraktSearchFilterBuilder();
+        public static TraktSearchFilterBuilder SearchFilter => new TraktSearchFilterBuilder();
     }
 }
