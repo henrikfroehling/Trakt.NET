@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var watchedMovieReader = new WatchedMovieObjectJsonReader();
-                //var watchedMovieReadingTasks = new List<Task<ITraktWatchedMovie>>();
                 var watchedMovies = new List<ITraktWatchedMovie>();
-
-                //watchedMovieReadingTasks.Add(watchedMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktWatchedMovie watchedMovie = await watchedMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (watchedMovie != null)
                 {
                     watchedMovies.Add(watchedMovie);
-                    //watchedMovieReadingTasks.Add(watchedMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                     watchedMovie = await watchedMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readWatchedMovies = await Task.WhenAll(watchedMovieReadingTasks);
-                //return (IEnumerable<ITraktWatchedMovie>)readWatchedMovies.GetEnumerator();
                 return watchedMovies;
             }
 

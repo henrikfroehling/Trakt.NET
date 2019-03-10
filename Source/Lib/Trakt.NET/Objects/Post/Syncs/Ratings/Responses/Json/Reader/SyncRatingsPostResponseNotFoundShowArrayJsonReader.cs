@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var syncRatingsPostResponseNotFoundShowObjectReader = new SyncRatingsPostResponseNotFoundShowObjectJsonReader();
-                //var syncRatingsPostResponseNotFoundShowReadingTasks = new List<Task<ITraktSyncRatingsPostResponseNotFoundShow>>();
                 var syncRatingsPostResponseNotFoundShows = new List<ITraktSyncRatingsPostResponseNotFoundShow>();
-
-                //syncRatingsPostResponseNotFoundShowReadingTasks.Add(syncRatingsPostResponseNotFoundShowObjectReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktSyncRatingsPostResponseNotFoundShow syncRatingsPostResponseNotFoundShow = await syncRatingsPostResponseNotFoundShowObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (syncRatingsPostResponseNotFoundShow != null)
                 {
                     syncRatingsPostResponseNotFoundShows.Add(syncRatingsPostResponseNotFoundShow);
-                    //syncRatingsPostResponseNotFoundShowReadingTasks.Add(syncRatingsPostResponseNotFoundShowObjectReader.ReadObjectAsync(jsonReader, cancellationToken));
                     syncRatingsPostResponseNotFoundShow = await syncRatingsPostResponseNotFoundShowObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readSyncRatingsPostResponseNotFoundShows = await Task.WhenAll(syncRatingsPostResponseNotFoundShowReadingTasks);
-                //return (IEnumerable<ITraktSyncRatingsPostResponseNotFoundShow>)readSyncRatingsPostResponseNotFoundShows.GetEnumerator();
                 return syncRatingsPostResponseNotFoundShows;
             }
 

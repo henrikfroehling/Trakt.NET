@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var historyItemReader = new HistoryItemObjectJsonReader();
-                //var historyItemReadingTasks = new List<Task<ITraktHistoryItem>>();
                 var historyItems = new List<ITraktHistoryItem>();
-
-                //historyItemReadingTasks.Add(historyItemReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktHistoryItem historyItem = await historyItemReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (historyItem != null)
                 {
                     historyItems.Add(historyItem);
-                    //historyItemReadingTasks.Add(historyItemReader.ReadObjectAsync(jsonReader, cancellationToken));
                     historyItem = await historyItemReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readHistoryItems = await Task.WhenAll(historyItemReadingTasks);
-                //return (IEnumerable<ITraktHistoryItem>)readHistoryItems.GetEnumerator();
                 return historyItems;
             }
 
