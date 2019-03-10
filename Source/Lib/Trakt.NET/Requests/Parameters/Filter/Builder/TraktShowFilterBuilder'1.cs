@@ -79,34 +79,47 @@
 
         private void AddStates(bool keepExisting, TraktShowStatus status, params TraktShowStatus[] states)
         {
-            if ((status == null || status == TraktShowStatus.Unspecified) && (states == null || states.Length <= 0))
-            {
-                if (!keepExisting)
-                    _filter.States = null;
-
-                return;
-            }
-
             var statesList = new List<TraktShowStatus>();
 
-            if (keepExisting && _filter.States != null && _filter.States.Length > 0)
-                statesList.AddRange(_filter.States);
-
-            if (status != null && status != TraktShowStatus.Unspecified)
+            if (CheckStatus(status))
                 statesList.Add(status);
 
+            if (CheckStates(states))
+                statesList.AddRange(states);
+
+            if (keepExisting)
+            {
+                if (_filter.States != null && _filter.States.Length > 0)
+                    statesList.InsertRange(0, _filter.States);
+
+                _filter.States = statesList.ToArray();
+            }
+            else
+                _filter.States = statesList.ToArray();
+        }
+
+        private bool CheckStatus(TraktShowStatus status)
+        {
+            if (status == null || status == TraktShowStatus.Unspecified)
+                throw new ArgumentException("status not valid", nameof(status));
+
+            return true;
+        }
+
+        private bool CheckStates(TraktShowStatus[] states)
+        {
             if (states != null && states.Length > 0)
             {
                 for (int i = 0; i < states.Length; i++)
                 {
                     if (states[i] == null || states[i] == TraktShowStatus.Unspecified)
-                        throw new ArgumentException("status not valid", nameof(states));
+                        throw new ArgumentException("status item not valid", nameof(states));
                 }
 
-                statesList.AddRange(states);
+                return true;
             }
 
-            _filter.States = statesList.ToArray();
+            return false;
         }
     }
 }

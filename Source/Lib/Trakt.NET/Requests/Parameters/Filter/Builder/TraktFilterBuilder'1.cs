@@ -187,76 +187,102 @@
 
         private void AddLanguages(bool keepExisting, string language, params string[] languages)
         {
-            if (string.IsNullOrEmpty(language) && (languages == null || languages.Length <= 0))
-            {
-                if (!keepExisting)
-                    _filter.Languages = null;
-
-                return;
-            }
-
             var languagesList = new List<string>();
 
-            if (keepExisting && _filter.Languages != null && _filter.Languages.Length > 0)
-                languagesList.AddRange(_filter.Languages);
+            if (CheckLanguage(language))
+                languagesList.Add(language);
 
+            if (CheckLanguages(languages))
+                languagesList.AddRange(languages);
+
+            if (keepExisting)
+            {
+                if (_filter.Languages != null && _filter.Languages.Length > 0)
+                    languagesList.InsertRange(0, _filter.Languages);
+
+                _filter.Languages = languagesList.ToArray();
+            }
+            else
+                _filter.Languages = languagesList.ToArray();
+        }
+
+        private bool CheckLanguage(string language)
+        {
             if (!string.IsNullOrEmpty(language))
             {
                 if (language.Length > 2 || language.Length < 2)
                     throw new ArgumentOutOfRangeException(nameof(language), "language not valid");
 
-                languagesList.Add(language);
+                return true;
             }
 
+            return false;
+        }
+
+        private bool CheckLanguages(string[] languages)
+        {
             if (languages != null && languages.Length > 0)
             {
                 for (int i = 0; i < languages.Length; i++)
                 {
                     if (languages[i].Length > 2 || languages[i].Length < 2)
-                        throw new ArgumentOutOfRangeException(nameof(language), "language not valid");
+                        throw new ArgumentOutOfRangeException(nameof(languages), "language item not valid");
                 }
 
-                languagesList.AddRange(languages);
+                return true;
             }
 
-            _filter.Languages = languagesList.ToArray();
+            return false;
         }
 
         private void AddCountries(bool keepExisting, string country, params string[] countries)
         {
-            if (string.IsNullOrEmpty(country) && (countries == null || countries.Length <= 0))
-            {
-                if (!keepExisting)
-                    _filter.Countries = null;
-
-                return;
-            }
-
             var countriesList = new List<string>();
 
-            if (keepExisting && _filter.Countries != null && _filter.Countries.Length > 0)
-                countriesList.AddRange(_filter.Countries);
+            if (CheckCountry(country))
+                countriesList.Add(country);
 
+            if (CheckCountries(countries))
+                countriesList.AddRange(countries);
+
+            if (keepExisting)
+            {
+                if (_filter.Countries != null && _filter.Countries.Length > 0)
+                    countriesList.InsertRange(0, _filter.Countries);
+
+                _filter.Countries = countriesList.ToArray();
+            }
+            else
+                _filter.Countries = countriesList.ToArray();
+        }
+
+        private bool CheckCountry(string country)
+        {
             if (!string.IsNullOrEmpty(country))
             {
                 if (country.Length > 2 || country.Length < 2)
                     throw new ArgumentOutOfRangeException(nameof(country), "country not valid");
 
-                countriesList.Add(country);
+                return true;
             }
 
+            return false;
+        }
+
+        private bool CheckCountries(string[] countries)
+        {
             if (countries != null && countries.Length > 0)
             {
                 for (int i = 0; i < countries.Length; i++)
                 {
                     if (countries[i].Length > 2 || countries[i].Length < 2)
-                        throw new ArgumentOutOfRangeException(nameof(country), "country not valid");
+                        throw new ArgumentOutOfRangeException(nameof(countries), "country item not valid");
                 }
 
-                countriesList.AddRange(countries);
+                return true;
             }
 
-            _filter.Countries = countriesList.ToArray();
+            return false;
         }
     }
 }
