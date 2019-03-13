@@ -360,8 +360,6 @@
         {
             ITraktMovie movie = new TraktMovie
             {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
                 Ids = new TraktMovieIds
                 {
                     Trakt = 28,
@@ -385,28 +383,6 @@
             Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.PauseMovieAsync(null, PAUSE_PROGRESS);
             act.Should().Throw<ArgumentNullException>();
 
-            movie.Title = string.Empty;
-
-            act = () => client.Scrobble.PauseMovieAsync(movie, PAUSE_PROGRESS);
-            act.Should().Throw<ArgumentException>();
-
-            movie.Title = "Guardians of the Galaxy";
-            movie.Year = 0;
-
-            act = () => client.Scrobble.PauseMovieAsync(movie, PAUSE_PROGRESS);
-            act.Should().Throw<ArgumentOutOfRangeException>();
-
-            movie.Year = 123;
-
-            act = () => client.Scrobble.PauseMovieAsync(movie, PAUSE_PROGRESS);
-            act.Should().Throw<ArgumentOutOfRangeException>();
-
-            movie.Year = 12345;
-
-            act = () => client.Scrobble.PauseMovieAsync(movie, PAUSE_PROGRESS);
-            act.Should().Throw<ArgumentOutOfRangeException>();
-
-            movie.Year = 2014;
             movie.Ids = null;
 
             act = () => client.Scrobble.PauseMovieAsync(movie, PAUSE_PROGRESS);
