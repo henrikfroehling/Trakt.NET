@@ -357,12 +357,6 @@
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie), "movie must not be null");
 
-            if (string.IsNullOrEmpty(movie.Title))
-                throw new ArgumentException("movie title not valid", nameof(movie.Title));
-
-            if (movie.Year <= 0 || movie.Year.ToString().Length != 4)
-                throw new ArgumentOutOfRangeException(nameof(movie), "movie year not valid");
-
             if (movie.Ids == null)
                 throw new ArgumentNullException(nameof(movie.Ids), "movie.Ids must not be null");
 
