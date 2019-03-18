@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\..\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\..\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props')" />
   <Import Project="..\..\..\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props" Condition="Exists('..\..\..\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props')" />
@@ -410,6 +410,10 @@
     <Compile Include="Objects\Basic\Json\Reader\CommentArrayJsonReader\CommentArrayJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CommentArrayJsonReader\CommentArrayJsonReader_Stream_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CommentArrayJsonReader\CommentArrayJsonReader_Tests_Json_Data.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CommentItemObjectJsonReader\CommentItemObjectJsonReader_Json_String_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CommentItemObjectJsonReader\CommentItemObjectJsonReader_Reader_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CommentItemObjectJsonReader\CommentItemObjectJsonReader_Stream_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Reader\CommentItemObjectJsonReader\CommentItemObjectJsonReader_Tests_Json_Data.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CommentObjectJsonReader\CommentObjectJsonReader_Json_String_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CommentObjectJsonReader\CommentObjectJsonReader_Reader_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Reader\CommentObjectJsonReader\CommentObjectJsonReader_Stream_Tests.cs" />
