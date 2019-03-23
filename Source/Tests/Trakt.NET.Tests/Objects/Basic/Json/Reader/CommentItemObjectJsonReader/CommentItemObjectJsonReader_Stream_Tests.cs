@@ -17,11 +17,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Complete()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -95,11 +95,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().BeNull();
@@ -173,11 +173,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -244,11 +244,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_3()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_3.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -313,11 +313,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_4()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_4.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -385,11 +385,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_5()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_5.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -454,11 +454,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_6()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_6.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -509,11 +509,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_7()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_7.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -529,11 +529,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_8()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_8.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().BeNull();
@@ -557,11 +557,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_9()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_9.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().BeNull();
@@ -588,11 +588,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_10()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_10.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().BeNull();
@@ -616,11 +616,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_11()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_11.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().BeNull();
@@ -647,11 +647,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Incomplete_12()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_INCOMPLETE_12.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().BeNull();
@@ -691,11 +691,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().BeNull();
@@ -769,11 +769,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -840,11 +840,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -909,11 +909,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Not_Valid_4()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_4.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -981,11 +981,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Not_Valid_5()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_5.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -1050,11 +1050,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Not_Valid_6()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_6.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().Be(TraktObjectType.Movie);
@@ -1105,11 +1105,11 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Not_Valid_7()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = JSON_NOT_VALID_7.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
 
                 traktCommentItem.Should().NotBeNull();
                 traktCommentItem.Type.Should().BeNull();
@@ -1124,19 +1124,19 @@
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Null()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
-            ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(default(Stream));
+            var jsonReader = new CommentItemObjectJsonReader();
+            ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(default(Stream));
             traktCommentItem.Should().BeNull();
         }
 
         [Fact]
         public async Task Test_CommentItemObjectJsonReader_ReadObject_From_Stream_Empty()
         {
-            var traktJsonReader = new CommentItemObjectJsonReader();
+            var jsonReader = new CommentItemObjectJsonReader();
 
             using (var stream = string.Empty.ToStream())
             {
-                ITraktCommentItem traktCommentItem = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktCommentItem traktCommentItem = await jsonReader.ReadObjectAsync(stream);
                 traktCommentItem.Should().BeNull();
             }
         }
