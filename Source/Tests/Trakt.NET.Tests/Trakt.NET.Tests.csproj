@@ -582,6 +582,24 @@
     <Compile Include="Objects\Basic\Json\Writer\CertificationsObjectJsonWriter\CertificationsObjectJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CertificationsObjectJsonWriter\CertificationsObjectJsonWriter_Object_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\CertificationsObjectJsonWriter\CertificationsObjectJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentArrayJsonWriter\CommentArrayJsonWriter_Array_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentArrayJsonWriter\CommentArrayJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentArrayJsonWriter\CommentArrayJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentItemArrayJsonWriter\CommentItemArrayJsonWriter_Array_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentItemArrayJsonWriter\CommentItemArrayJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentItemArrayJsonWriter\CommentItemArrayJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentItemObjectJsonWriter\CommentItemObjectJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentItemObjectJsonWriter\CommentItemObjectJsonWriter_Object_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentItemObjectJsonWriter\CommentItemObjectJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentLikeArrayJsonWriter\CommentLikeArrayJsonWriter_Array_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentLikeArrayJsonWriter\CommentLikeArrayJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentLikeArrayJsonWriter\CommentLikeArrayJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentLikeObjectJsonWriter\CommentLikeObjectJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentLikeObjectJsonWriter\CommentLikeObjectJsonWriter_Object_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentLikeObjectJsonWriter\CommentLikeObjectJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentObjectJsonWriter\CommentObjectJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentObjectJsonWriter\CommentObjectJsonWriter_Object_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\CommentObjectJsonWriter\CommentObjectJsonWriter_StringWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\ErrorArrayJsonWriter\ErrorArrayJsonWriter_Array_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\ErrorArrayJsonWriter\ErrorArrayJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\ErrorArrayJsonWriter\ErrorArrayJsonWriter_StringWriter_Tests.cs" />
@@ -1632,8 +1650,6 @@
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Objects\Basic\Json\Writer\CommentArrayJsonWriter\" />
-    <Folder Include="Objects\Basic\Json\Writer\CommentObjectJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\CrewArrayJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\CrewMemberArrayJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\CrewMemberObjectJsonWriter\" />
