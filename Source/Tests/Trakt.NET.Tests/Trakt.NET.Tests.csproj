@@ -642,6 +642,12 @@
     <Compile Include="Objects\Basic\Json\Writer\RatingObjectJsonWriter\RatingObjectJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\RatingObjectJsonWriter\RatingObjectJsonWriter_Object_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\RatingObjectJsonWriter\RatingObjectJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\SearchResultArrayJsonWriter\SearchResultArrayJsonWriter_Array_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\SearchResultArrayJsonWriter\SearchResultArrayJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\SearchResultArrayJsonWriter\SearchResultArrayJsonWriter_StringWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\SearchResultObjectJsonWriter\SearchResultObjectJsonWriter_JsonWriter_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\SearchResultObjectJsonWriter\SearchResultObjectJsonWriter_Object_Tests.cs" />
+    <Compile Include="Objects\Basic\Json\Writer\SearchResultObjectJsonWriter\SearchResultObjectJsonWriter_StringWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\SharingArrayJsonWriter\SharingArrayJsonWriter_Array_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\SharingArrayJsonWriter\SharingArrayJsonWriter_JsonWriter_Tests.cs" />
     <Compile Include="Objects\Basic\Json\Writer\SharingArrayJsonWriter\SharingArrayJsonWriter_StringWriter_Tests.cs" />
@@ -1654,8 +1660,6 @@
     <Folder Include="Objects\Basic\Json\Writer\CrewMemberArrayJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\CrewMemberObjectJsonWriter\" />
     <Folder Include="Objects\Basic\Json\Writer\CrewObjectJsonWriter\" />
-    <Folder Include="Objects\Basic\Json\Writer\SearchResultArrayJsonWriter\" />
-    <Folder Include="Objects\Basic\Json\Writer\SearchResultObjectJsonWriter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
