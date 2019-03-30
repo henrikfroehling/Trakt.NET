@@ -20,7 +20,7 @@ Features
 - Language Service
         </description>
         <summary>.NET wrapper library for the Trakt.tv API.</summary>
-        <releaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#100-alpha3</releaseNotes>
+        <releaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#100-beta</releaseNotes>
         <copyright>Copyright (c) 2016 - 2019 Henrik Fröhling et al.</copyright>
         <language>en-US</language>
         <tags>trakt REST</tags>
