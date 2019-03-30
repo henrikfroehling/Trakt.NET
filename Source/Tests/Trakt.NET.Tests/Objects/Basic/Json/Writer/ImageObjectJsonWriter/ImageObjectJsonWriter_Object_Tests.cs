@@ -15,7 +15,7 @@
         public void Test_ImageObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new ImageObjectJsonWriter();
-            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktImage));
+            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 

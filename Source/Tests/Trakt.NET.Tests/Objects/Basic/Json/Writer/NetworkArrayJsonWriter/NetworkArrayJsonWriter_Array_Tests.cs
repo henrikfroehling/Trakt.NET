@@ -16,7 +16,7 @@
         public void Test_NetworkArrayJsonWriter_WriteArray_Array_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
-            Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktNetwork>));
+            Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 
@@ -24,7 +24,6 @@
         public async Task Test_NetworkArrayJsonWriter_WriteArray_Array_Empty()
         {
             IEnumerable<ITraktNetwork> traktNetworks = new List<TraktNetwork>();
-
             var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
             string json = await traktJsonWriter.WriteArrayAsync(traktNetworks);
             json.Should().Be("[]");

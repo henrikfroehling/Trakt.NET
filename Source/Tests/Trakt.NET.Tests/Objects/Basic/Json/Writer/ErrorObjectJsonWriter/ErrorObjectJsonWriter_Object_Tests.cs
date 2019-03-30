@@ -15,7 +15,7 @@
         public void Test_ErrorObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new ErrorObjectJsonWriter();
-            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktError));
+            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 
@@ -23,7 +23,6 @@
         public async Task Test_ErrorObjectJsonWriter_WriteObject_Object_Empty()
         {
             ITraktError traktError = new TraktError();
-
             var traktJsonWriter = new ErrorObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktError);
             json.Should().Be("{}");
