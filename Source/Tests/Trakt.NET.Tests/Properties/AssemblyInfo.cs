@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Trakt.NET.Tests")]
-[assembly: AssemblyCopyright("Copyright © 2017 - 2019 Henrik Fröhling")]
+[assembly: AssemblyCopyright("Copyright (c) 2016 - 2019 Henrik Fröhling et al.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
