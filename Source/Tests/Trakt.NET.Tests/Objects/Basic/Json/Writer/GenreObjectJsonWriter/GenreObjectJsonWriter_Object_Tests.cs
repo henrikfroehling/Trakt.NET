@@ -15,7 +15,7 @@
         public void Test_GenreObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new GenreObjectJsonWriter();
-            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktGenre));
+            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 

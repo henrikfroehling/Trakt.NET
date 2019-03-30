@@ -16,7 +16,7 @@
         public void Test_CertificationArrayJsonWriter_WriteArray_Array_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
-            Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktCertification>));
+            Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 
@@ -24,7 +24,6 @@
         public async Task Test_CertificationArrayJsonWriter_WriteArray_Array_Empty()
         {
             IEnumerable<ITraktCertification> traktCertifications = new List<TraktCertification>();
-
             var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
             string json = await traktJsonWriter.WriteArrayAsync(traktCertifications);
             json.Should().Be("[]");

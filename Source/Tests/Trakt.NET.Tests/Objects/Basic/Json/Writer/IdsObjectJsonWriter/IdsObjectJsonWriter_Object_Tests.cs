@@ -15,7 +15,7 @@
         public void Test_IdsObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new IdsObjectJsonWriter();
-            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktIds));
+            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 
