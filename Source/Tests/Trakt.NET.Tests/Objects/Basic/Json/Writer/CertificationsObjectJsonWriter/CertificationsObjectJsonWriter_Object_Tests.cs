@@ -16,7 +16,7 @@
         public void Test_CertificationsObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new CertificationsObjectJsonWriter();
-            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktCertifications));
+            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             action.Should().Throw<ArgumentNullException>();
         }
 
@@ -24,7 +24,6 @@
         public async Task Test_CertificationsObjectJsonWriter_WriteObject_Object_Empty()
         {
             ITraktCertifications traktCertifications = new TraktCertifications();
-
             var traktJsonWriter = new CertificationsObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCertifications);
             json.Should().Be("{}");
