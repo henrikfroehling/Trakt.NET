@@ -12,6 +12,8 @@
 
         TraktMediaAudioChannel AudioChannels { get; set; }
 
+        TraktMediaHDR HDR { get; set; }
+
         bool? ThreeDimensional { get; set; }
     }
 }

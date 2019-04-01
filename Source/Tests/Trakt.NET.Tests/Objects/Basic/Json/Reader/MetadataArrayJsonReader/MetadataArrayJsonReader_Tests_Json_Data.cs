@@ -11,6 +11,7 @@
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 },
                 {
@@ -18,6 +19,7 @@
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 }
               ]";
@@ -29,12 +31,14 @@
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 },
                 {
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 }
               ]";
@@ -45,6 +49,7 @@
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 },
                 {
@@ -52,6 +57,7 @@
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 }
               ]";
@@ -63,6 +69,7 @@
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 },
                 {
@@ -70,6 +77,7 @@
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 }
               ]";
@@ -81,6 +89,7 @@
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 },
                 {
@@ -88,6 +97,7 @@
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 }
               ]";
@@ -99,6 +109,7 @@
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 },
                 {
@@ -106,6 +117,7 @@
                   ""resolution"": ""hd_720p"",
                   ""audio"": ""aac"",
                   ""audio_channels"": ""5.1"",
+                  ""hdr"": ""dolby_vision"",
                   ""3d"": true
                 }
               ]";

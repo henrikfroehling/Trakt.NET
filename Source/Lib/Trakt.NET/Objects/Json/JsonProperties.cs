@@ -87,6 +87,7 @@
         internal const string METADATA_PROPERTY_NAME_AUDIO = "audio";
         internal const string METADATA_PROPERTY_NAME_AUDIO_CHANNELS = "audio_channels";
         internal const string METADATA_PROPERTY_NAME_3D = "3d";
+        internal const string METADATA_PROPERTY_NAME_HDR = "hdr";
 
         internal const string NETWORK_PROPERTY_NAME_NAME = "name";
 

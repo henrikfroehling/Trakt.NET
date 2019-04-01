@@ -47,6 +47,12 @@
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.METADATA_PROPERTY_NAME_3D, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.ThreeDimensional, cancellationToken).ConfigureAwait(false);
             }
+
+            if (obj.HDR != null && obj.HDR != TraktMediaHDR.Unspecified)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.METADATA_PROPERTY_NAME_HDR, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.HDR.ObjectName, cancellationToken).ConfigureAwait(false);
+            }
         }
     }
 }
