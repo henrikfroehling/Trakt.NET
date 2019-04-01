@@ -39,6 +39,24 @@
         /// <summary>The collection item has 7.1 audio channels.</summary>
         public static TraktMediaAudioChannel Channels_7_1 { get; } = new TraktMediaAudioChannel(1024, "7.1", "7.1", "Channels 7.1");
 
+        /// <summary>The collection item has 5.1.2 audio channels.</summary>
+        public static TraktMediaAudioChannel Channels_5_1_2 { get; } = new TraktMediaAudioChannel(2048, "5.1.2", "5.1.2", "Channels 5.1.2");
+
+        /// <summary>The collection item has 5.1.4 audio channels.</summary>
+        public static TraktMediaAudioChannel Channels_5_1_4 { get; } = new TraktMediaAudioChannel(4096, "5.1.4", "5.1.4", "Channels 5.1.4");
+
+        /// <summary>The collection item has 7.1.2 audio channels.</summary>
+        public static TraktMediaAudioChannel Channels_7_1_2 { get; } = new TraktMediaAudioChannel(8192, "7.1.2", "7.1.2", "Channels 7.1.2");
+
+        /// <summary>The collection item has 7.1.4 audio channels.</summary>
+        public static TraktMediaAudioChannel Channels_7_1_4 { get; } = new TraktMediaAudioChannel(16384, "7.1.4", "7.1.4", "Channels 7.1.4");
+
+        /// <summary>The collection item has 9.1 audio channels.</summary>
+        public static TraktMediaAudioChannel Channels_9_1 { get; } = new TraktMediaAudioChannel(32768, "9.1", "9.1", "Channels 9.1");
+
+        /// <summary>The collection item has 10.1 audio channels.</summary>
+        public static TraktMediaAudioChannel Channels_10_1 { get; } = new TraktMediaAudioChannel(65536, "10.1", "10.1", "Channels 10.1");
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktMediaAudioChannel" /> class.<para />
         /// The initialized <see cref="TraktMediaAudioChannel" /> is invalid.

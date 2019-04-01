@@ -47,6 +47,7 @@
                     MediaResolution = TraktMediaResolution.UHD_4k,
                     Audio = TraktMediaAudio.DolbyAtmos,
                     AudioChannels = TraktMediaAudioChannel.Channels_7_1,
+                    HDR = TraktMediaHDR.DolbyVision,
                     ThreeDimensional = true
                 }
             };
@@ -56,7 +57,7 @@
                 var traktJsonWriter = new ArrayJsonWriter<ITraktMetadata>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktMetadata);
                 json.Should().Be(@"[{""media_type"":""digital"",""resolution"":""uhd_4k"",""audio"":""dolby_atmos""," +
-                                 @"""audio_channels"":""7.1"",""3d"":true}]");
+                                 @"""audio_channels"":""7.1"",""3d"":true,""hdr"":""dolby_vision""}]");
             }
         }
 
@@ -71,6 +72,7 @@
                     MediaResolution = TraktMediaResolution.UHD_4k,
                     Audio = TraktMediaAudio.DolbyAtmos,
                     AudioChannels = TraktMediaAudioChannel.Channels_7_1,
+                    HDR = TraktMediaHDR.DolbyVision,
                     ThreeDimensional = true
                 },
                 new TraktMetadata
@@ -79,6 +81,7 @@
                     MediaResolution = TraktMediaResolution.UHD_4k,
                     Audio = TraktMediaAudio.DolbyAtmos,
                     AudioChannels = TraktMediaAudioChannel.Channels_7_1,
+                    HDR = TraktMediaHDR.DolbyVision,
                     ThreeDimensional = true
                 }
             };
@@ -88,9 +91,9 @@
                 var traktJsonWriter = new ArrayJsonWriter<ITraktMetadata>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktMetadata);
                 json.Should().Be(@"[{""media_type"":""digital"",""resolution"":""uhd_4k"",""audio"":""dolby_atmos""," +
-                                 @"""audio_channels"":""7.1"",""3d"":true}," +
+                                 @"""audio_channels"":""7.1"",""3d"":true,""hdr"":""dolby_vision""}," +
                                  @"{""media_type"":""digital"",""resolution"":""uhd_4k"",""audio"":""dolby_atmos""," +
-                                 @"""audio_channels"":""7.1"",""3d"":true}]");
+                                 @"""audio_channels"":""7.1"",""3d"":true,""hdr"":""dolby_vision""}]");
             }
         }
     }
