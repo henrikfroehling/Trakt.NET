@@ -6,6 +6,12 @@
     <IsPackable>false</IsPackable>
 
     <Copyright>Copyright © 2017 - 2019 Henrik Fröhling et al.</Copyright>
+
+    <ApplicationIcon />
+
+    <OutputType>Library</OutputType>
+
+    <StartupObject />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
