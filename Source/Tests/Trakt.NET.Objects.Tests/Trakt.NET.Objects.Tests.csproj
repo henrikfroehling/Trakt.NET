@@ -12,6 +12,8 @@
     <OutputType>Library</OutputType>
 
     <StartupObject />
+
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
