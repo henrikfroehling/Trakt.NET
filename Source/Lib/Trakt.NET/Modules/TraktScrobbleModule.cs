@@ -385,10 +385,10 @@
                 throw new ArgumentNullException(nameof(movie), "movie must not be null");
 
             if (movie.Ids == null)
-                throw new ArgumentNullException(nameof(movie.Ids), "movie.Ids must not be null");
+                throw new ArgumentNullException(nameof(movie), "movie.Ids must not be null");
 
             if (!movie.Ids.HasAnyId)
-                throw new ArgumentException("movie.Ids have no valid id", nameof(movie.Ids));
+                throw new ArgumentException("movie.Ids have no valid id", nameof(movie));
         }
 
         private void Validate(ITraktEpisode episode, ITraktShow show)
@@ -402,13 +402,13 @@
                     throw new ArgumentNullException(nameof(show), "episode ids not set or have no valid id - show must not be null");
 
                 if (string.IsNullOrEmpty(show.Title))
-                    throw new ArgumentException("episode ids not set or have no valid id  - show title not valid", nameof(show.Title));
+                    throw new ArgumentException("episode ids not set or have no valid id  - show title not valid", nameof(show));
 
                 if (episode.SeasonNumber < 0)
-                    throw new ArgumentOutOfRangeException(nameof(episode.SeasonNumber), "episode ids not set or have no valid id  - episode season number not valid");
+                    throw new ArgumentOutOfRangeException(nameof(episode), "episode ids not set or have no valid id  - episode season number not valid");
 
                 if (episode.Number <= 0)
-                    throw new ArgumentOutOfRangeException(nameof(episode.Number), "episode ids not set or have no valid id  - episode number not valid");
+                    throw new ArgumentOutOfRangeException(nameof(episode), "episode ids not set or have no valid id  - episode number not valid");
             }
         }
 
