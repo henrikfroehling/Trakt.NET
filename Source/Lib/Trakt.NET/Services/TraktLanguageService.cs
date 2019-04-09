@@ -37,7 +37,7 @@
         /// <returns>A list containing the found languages names. If the given language codes list is null or empty, an empty list will be returned.</returns>
         public static IEnumerable<string> GetAvailableTranslationLanguages(IEnumerable<string> availableTranslationLanguageCodes)
         {
-            if (availableTranslationLanguageCodes == null || availableTranslationLanguageCodes.Count() <= 0)
+            if (availableTranslationLanguageCodes == null || !availableTranslationLanguageCodes.Any())
                 return new List<string>();
 
             var languages = new List<string>(availableTranslationLanguageCodes.Count());
