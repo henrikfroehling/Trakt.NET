@@ -5,10 +5,10 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
 
-[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0alpha3-orange.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.0.0-alpha3)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0beta-orange.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.0.0-beta)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![CodeFactor](https://www.codefactor.io/repository/github/henrikfroehling/Trakt.NET/badge)](https://www.codefactor.io/repository/github/henrikfroehling/Trakt.NET)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=henrikfroehling_Trakt.NET&metric=alert_status)](https://sonarcloud.io/dashboard?id=henrikfroehling_Trakt.NET)
 
 ### Features
 
@@ -47,7 +47,8 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 | Branch | Status | Description |
 |---|---|---|
-| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI?branchName=develop)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=4) | This branch tracks the current and possibly unstable development. |
+| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. |
+| [release](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.0.0) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Release)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=6) | This branch tracks the current development of the next upcoming release. |
 
 ### Getting Started
 

@@ -332,12 +332,6 @@
             }
             else
             {
-                var listItemsShow = new TraktUserCustomListItemsPostShow
-                {
-                    Ids = show.Ids,
-                    Seasons = showSeasons
-                };
-
                 (_listItemsPost.Shows as List<ITraktUserCustomListItemsPostShow>)?.Add(
                     new TraktUserCustomListItemsPostShow
                     {

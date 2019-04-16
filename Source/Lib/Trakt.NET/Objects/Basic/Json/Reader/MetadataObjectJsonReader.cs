@@ -35,6 +35,9 @@
                         case JsonProperties.METADATA_PROPERTY_NAME_AUDIO_CHANNELS:
                             traktMetadata.AudioChannels = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaAudioChannel>(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.METADATA_PROPERTY_NAME_HDR:
+                            traktMetadata.HDR = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaHDR>(jsonReader, cancellationToken);
+                            break;
                         case JsonProperties.METADATA_PROPERTY_NAME_3D:
                             traktMetadata.ThreeDimensional = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;

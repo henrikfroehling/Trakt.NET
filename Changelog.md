@@ -4,6 +4,45 @@ Release notes
 Version 1.0.0
 ===
 
+#### 1.0.0-beta
+
+Breaking Changes:
+
+- New response classes
+  - `TraktNoContentResponse` replaces all `Task` return types in `Modules`
+  - `TraktResponse<TContentType>` replaces all `Task<TItem>` return types in `Modules`
+  - `TraktListResponse<TContentType>` replaces all `Task<IEnumerable<TItem>>` return types in `Modules`
+  - `TraktPagedResponse<TContentType>` replaces all `Task<TraktPaginationListResult<TItem>>` return types in `Modules`
+  - [More information](https://github.com/henrikfroehling/TraktApiSharp/wiki/00-Prereleases#v100-alpha1)
+
+- .NET Standard 1.1 replaces PCL
+
+Added:
+
+- Add missing "token" property in ITraktAccountSettings ([Issue 27](https://github.com/henrikfroehling/TraktApiSharp/issues/27))
+- post builder feature: add support for posting collected episodes without ids ([Issue 30](https://github.com/henrikfroehling/TraktApiSharp/issues/30))
+- Implement missing json object and array reader ([Issue 33](https://github.com/henrikfroehling/TraktApiSharp/issues/33))
+- Implement missing json object and array writer ([Issue 34](https://github.com/henrikfroehling/TraktApiSharp/issues/34))
+- Add missing filter support for text query search ([Issue 72](https://github.com/henrikfroehling/TraktApiSharp/issues/72))
+
+Fixed:
+
+- Fix serialization service ([Issue 23](https://github.com/henrikfroehling/TraktApiSharp/issues/23))
+- Fix post builder for sync collection post ([Issue 35](https://github.com/henrikfroehling/TraktApiSharp/issues/35))
+- Refreshing authorization not working with expired or invalid access token ([Issue 36](https://github.com/henrikfroehling/TraktApiSharp/issues/36))
+- Revoking authorization not working with expired or invalid access token ([Issue 37](https://github.com/henrikfroehling/TraktApiSharp/issues/37))
+- Wrong type assignment for lists ([Issue 61](https://github.com/henrikfroehling/TraktApiSharp/issues/61))
+- Bad Request when adding items to a list ([Issue 62](https://github.com/henrikfroehling/TraktApiSharp/issues/62))
+- Exception when search text query is empty ([Issue 64](https://github.com/henrikfroehling/TraktApiSharp/issues/64))
+- Invalid implementation for Networks / List / Get networks ([Issue 65](https://github.com/henrikfroehling/TraktApiSharp/issues/65))
+- Redundant checks for ITraktMovie properties in TraktScrobbleModule ([Issue 94](https://github.com/henrikfroehling/TraktApiSharp/issues/94))
+
+Improved:
+
+- Improve test coverage ([Issue 49](https://github.com/henrikfroehling/TraktApiSharp/issues/49))
+
+---------
+
 #### 1.0.0-alpha3
 (2018-06-17)
 
