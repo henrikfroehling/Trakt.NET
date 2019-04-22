@@ -3,8 +3,8 @@
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
+    using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Tests.Trakt.NET.Tests.Utility;
     using Xunit;
 
     [Category("Modules.Authentication")]

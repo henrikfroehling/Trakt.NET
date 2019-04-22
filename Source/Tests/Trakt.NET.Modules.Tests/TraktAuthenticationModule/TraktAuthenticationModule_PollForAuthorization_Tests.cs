@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Tests.Modules.TraktAuthenticationModule
+﻿namespace TraktNet.Modules.Tests.TraktAuthenticationModule
 {
     using FluentAssertions;
     using System;

@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Core.Tests.Services.TraktSerializationService
 {
     using System;
+    using Trakt.NET.Tests.Utility;
     using TraktNet.Objects.Authentication;
-    using TraktNet.Tests.Trakt.NET.Tests.Utility;
 
     public partial class TraktSerializationService_Tests
     {

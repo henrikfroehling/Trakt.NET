@@ -3,7 +3,7 @@
     using FluentAssertions;
     using System;
     using System.Collections.Generic;
-    using Traits;
+    using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Users.OAuth;
