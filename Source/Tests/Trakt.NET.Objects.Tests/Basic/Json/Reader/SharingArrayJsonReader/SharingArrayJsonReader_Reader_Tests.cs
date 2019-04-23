@@ -77,7 +77,7 @@
                 sharings[0].Slack.Should().BeTrue();
 
                 sharings[1].Should().NotBeNull();
-                sharings[1].Twitter.Should().BeTrue();
+                sharings[1].Twitter.Should().BeNull();
                 sharings[1].Google.Should().BeTrue();
                 sharings[1].Tumblr.Should().BeTrue();
                 sharings[1].Medium.Should().BeTrue();
@@ -99,7 +99,7 @@
                 ITraktSharing[] sharings = traktSharings.ToArray();
 
                 sharings[0].Should().NotBeNull();
-                sharings[0].Twitter.Should().BeTrue();
+                sharings[0].Twitter.Should().BeNull();
                 sharings[0].Google.Should().BeTrue();
                 sharings[0].Tumblr.Should().BeTrue();
                 sharings[0].Medium.Should().BeTrue();
@@ -135,7 +135,7 @@
                 sharings[0].Slack.Should().BeTrue();
 
                 sharings[1].Should().NotBeNull();
-                sharings[1].Twitter.Should().BeTrue();
+                sharings[1].Twitter.Should().BeNull();
                 sharings[1].Google.Should().BeTrue();
                 sharings[1].Tumblr.Should().BeTrue();
                 sharings[1].Medium.Should().BeTrue();
@@ -157,7 +157,7 @@
                 ITraktSharing[] sharings = traktSharings.ToArray();
 
                 sharings[0].Should().NotBeNull();
-                sharings[0].Twitter.Should().BeTrue();
+                sharings[0].Twitter.Should().BeNull();
                 sharings[0].Google.Should().BeTrue();
                 sharings[0].Tumblr.Should().BeTrue();
                 sharings[0].Medium.Should().BeTrue();
@@ -186,14 +186,14 @@
                 ITraktSharing[] sharings = traktSharings.ToArray();
 
                 sharings[0].Should().NotBeNull();
-                sharings[0].Twitter.Should().BeTrue();
+                sharings[0].Twitter.Should().BeNull();
                 sharings[0].Google.Should().BeTrue();
                 sharings[0].Tumblr.Should().BeTrue();
                 sharings[0].Medium.Should().BeTrue();
                 sharings[0].Slack.Should().BeTrue();
 
                 sharings[1].Should().NotBeNull();
-                sharings[1].Twitter.Should().BeTrue();
+                sharings[1].Twitter.Should().BeNull();
                 sharings[1].Google.Should().BeTrue();
                 sharings[1].Tumblr.Should().BeTrue();
                 sharings[1].Medium.Should().BeTrue();

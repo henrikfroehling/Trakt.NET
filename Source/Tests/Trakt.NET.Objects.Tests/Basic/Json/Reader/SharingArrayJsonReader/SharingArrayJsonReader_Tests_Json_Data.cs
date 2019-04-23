@@ -32,7 +32,6 @@
                   ""slack"": true
                 },
                 {
-                  ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
@@ -43,7 +42,6 @@
         private const string JSON_INCOMPLETE_2 =
             @"[
                 {
-                  ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
@@ -68,7 +66,7 @@
                   ""slack"": true
                 },
                 {
-                  ""twitter"": true,
+                  ""tw"": true,
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
@@ -79,7 +77,7 @@
         private const string JSON_NOT_VALID_2 =
             @"[
                 {
-                  ""twitter"": true,
+                  ""tw"": true,
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
@@ -97,14 +95,14 @@
         private const string JSON_NOT_VALID_3 =
             @"[
                 {
-                  ""twitter"": true,
+                  ""tw"": true,
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
                   ""slack"": true
                 },
                 {
-                  ""twitter"": true,
+                  ""tw"": true,
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,

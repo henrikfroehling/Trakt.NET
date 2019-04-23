@@ -4,7 +4,6 @@
     {
         private const string JSON_COMPLETE =
             @"{
-                ""facebook"": true,
                 ""twitter"": true,
                 ""google"": true,
                 ""tumblr"": true,
@@ -14,7 +13,6 @@
 
         private const string JSON_INCOMPLETE_1 =
             @"{
-                ""twitter"": true,
                 ""google"": true,
                 ""tumblr"": true,
                 ""medium"": true,
@@ -23,8 +21,7 @@
 
         private const string JSON_INCOMPLETE_2 =
             @"{
-                ""facebook"": true,
-                ""google"": true,
+                ""twitter"": true,
                 ""tumblr"": true,
                 ""medium"": true,
                 ""slack"": true
@@ -32,74 +29,56 @@
 
         private const string JSON_INCOMPLETE_3 =
             @"{
-                ""facebook"": true,
                 ""twitter"": true,
-                ""tumblr"": true,
+                ""google"": true,
                 ""medium"": true,
                 ""slack"": true
               }";
 
         private const string JSON_INCOMPLETE_4 =
             @"{
-                ""facebook"": true,
                 ""twitter"": true,
                 ""google"": true,
-                ""medium"": true,
+                ""tumblr"": true,
                 ""slack"": true
               }";
 
         private const string JSON_INCOMPLETE_5 =
             @"{
-                ""facebook"": true,
                 ""twitter"": true,
                 ""google"": true,
                 ""tumblr"": true,
-                ""slack"": true
+                ""medium"": true
               }";
 
         private const string JSON_INCOMPLETE_6 =
             @"{
-                ""facebook"": true,
-                ""twitter"": true,
-                ""google"": true,
-                ""tumblr"": true,
-                ""medium"": true
+                ""twitter"": true
               }";
 
         private const string JSON_INCOMPLETE_7 =
             @"{
-                ""facebook"": true
+                ""google"": true
               }";
 
         private const string JSON_INCOMPLETE_8 =
             @"{
-                ""twitter"": true
+                ""tumblr"": true
               }";
 
         private const string JSON_INCOMPLETE_9 =
             @"{
-                ""google"": true
-              }";
-
-        private const string JSON_INCOMPLETE_10 =
-            @"{
-                ""tumblr"": true
-              }";
-
-        private const string JSON_INCOMPLETE_11 =
-            @"{
                 ""medium"": true
               }";
 
-        private const string JSON_INCOMPLETE_12 =
+        private const string JSON_INCOMPLETE_10 =
             @"{
                 ""slack"": true
               }";
 
         private const string JSON_NOT_VALID_1 =
             @"{
-                ""fb"": true,
-                ""twitter"": true,
+                ""tw"": true,
                 ""google"": true,
                 ""tumblr"": true,
                 ""medium"": true,
@@ -108,9 +87,8 @@
 
         private const string JSON_NOT_VALID_2 =
             @"{
-                ""facebook"": true,
-                ""tw"": true,
-                ""google"": true,
+                ""twitter"": true,
+                ""goo"": true,
                 ""tumblr"": true,
                 ""medium"": true,
                 ""slack"": true
@@ -118,37 +96,24 @@
 
         private const string JSON_NOT_VALID_3 =
             @"{
-                ""facebook"": true,
                 ""twitter"": true,
-                ""go"": true,
-                ""tumblr"": true,
+                ""google"": true,
+                ""tmbl"": true,
                 ""medium"": true,
                 ""slack"": true
               }";
 
         private const string JSON_NOT_VALID_4 =
             @"{
-                ""facebook"": true,
                 ""twitter"": true,
                 ""google"": true,
-                ""tb"": true,
-                ""medium"": true,
+                ""tumblr"": true,
+                ""med"": true,
                 ""slack"": true
               }";
 
         private const string JSON_NOT_VALID_5 =
             @"{
-                ""facebook"": true,
-                ""twitter"": true,
-                ""google"": true,
-                ""tumblr"": true,
-                ""md"": true,
-                ""slack"": true
-              }";
-
-        private const string JSON_NOT_VALID_6 =
-            @"{
-                ""facebook"": true,
                 ""twitter"": true,
                 ""google"": true,
                 ""tumblr"": true,
@@ -156,13 +121,12 @@
                 ""sl"": true
               }";
 
-        private const string JSON_NOT_VALID_7 =
+        private const string JSON_NOT_VALID_6 =
             @"{
-                ""fb"": true,
                 ""tw"": true,
-                ""go"": true,
-                ""tb"": true,
-                ""md"": true,
+                ""goo"": true,
+                ""tmbl"": true,
+                ""med"": true,
                 ""sl"": true
               }";
     }
