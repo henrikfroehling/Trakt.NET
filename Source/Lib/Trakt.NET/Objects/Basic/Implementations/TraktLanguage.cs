@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Basic.Implementations
+﻿namespace TraktNet.Objects.Basic
 {
     /// <summary>A Trakt language.</summary>
     public class TraktLanguage : ITraktLanguage
