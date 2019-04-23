@@ -45,7 +45,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -87,7 +86,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -130,7 +128,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -173,7 +170,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -216,7 +212,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -259,7 +254,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -302,7 +296,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -344,7 +337,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -387,7 +379,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -430,7 +421,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -473,7 +463,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -516,7 +505,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -558,7 +546,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -601,7 +588,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -644,7 +630,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -687,7 +672,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -729,7 +713,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -772,7 +755,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -815,7 +797,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -857,7 +838,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -900,7 +880,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -942,7 +921,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -990,7 +968,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();

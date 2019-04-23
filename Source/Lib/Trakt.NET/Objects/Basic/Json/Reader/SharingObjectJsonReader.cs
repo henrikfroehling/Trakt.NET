@@ -22,9 +22,6 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SHARING_PROPERTY_NAME_FACEBOOK:
-                            traktSharing.Facebook = await jsonReader.ReadAsBooleanAsync(cancellationToken);
-                            break;
                         case JsonProperties.SHARING_PROPERTY_NAME_TWITTER:
                             traktSharing.Twitter = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;

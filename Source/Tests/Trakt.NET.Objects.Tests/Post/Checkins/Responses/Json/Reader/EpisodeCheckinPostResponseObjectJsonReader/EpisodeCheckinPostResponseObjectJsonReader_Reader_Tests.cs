@@ -26,7 +26,6 @@
                 checkinEpisodeResponse.Id.Should().Be(3373536620UL);
                 checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinEpisodeResponse.Sharing.Should().NotBeNull();
-                checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -69,7 +68,6 @@
                 checkinEpisodeResponse.Id.Should().Be(0UL);
                 checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinEpisodeResponse.Sharing.Should().NotBeNull();
-                checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -112,7 +110,6 @@
                 checkinEpisodeResponse.Id.Should().Be(3373536620UL);
                 checkinEpisodeResponse.WatchedAt.Should().BeNull();
                 checkinEpisodeResponse.Sharing.Should().NotBeNull();
-                checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -192,7 +189,6 @@
                 checkinEpisodeResponse.Id.Should().Be(3373536620UL);
                 checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinEpisodeResponse.Sharing.Should().NotBeNull();
-                checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -226,7 +222,6 @@
                 checkinEpisodeResponse.Id.Should().Be(3373536620UL);
                 checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinEpisodeResponse.Sharing.Should().NotBeNull();
-                checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -298,7 +293,6 @@
                 checkinEpisodeResponse.Id.Should().Be(0UL);
                 checkinEpisodeResponse.WatchedAt.Should().BeNull();
                 checkinEpisodeResponse.Sharing.Should().NotBeNull();
-                checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -379,7 +373,6 @@
                 checkinEpisodeResponse.Id.Should().Be(0UL);
                 checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinEpisodeResponse.Sharing.Should().NotBeNull();
-                checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -422,7 +415,6 @@
                 checkinEpisodeResponse.Id.Should().Be(3373536620UL);
                 checkinEpisodeResponse.WatchedAt.Should().BeNull();
                 checkinEpisodeResponse.Sharing.Should().NotBeNull();
-                checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -502,7 +494,6 @@
                 checkinEpisodeResponse.Id.Should().Be(3373536620UL);
                 checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinEpisodeResponse.Sharing.Should().NotBeNull();
-                checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -536,7 +527,6 @@
                 checkinEpisodeResponse.Id.Should().Be(3373536620UL);
                 checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinEpisodeResponse.Sharing.Should().NotBeNull();
-                checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
                 checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();

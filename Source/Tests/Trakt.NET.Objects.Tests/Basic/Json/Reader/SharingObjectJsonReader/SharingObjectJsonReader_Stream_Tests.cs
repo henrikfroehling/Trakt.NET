@@ -21,7 +21,6 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
                 traktSharing.Twitter.Should().BeTrue();
                 traktSharing.Google.Should().BeTrue();
                 traktSharing.Tumblr.Should().BeTrue();
@@ -40,8 +39,7 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeNull();
-                traktSharing.Twitter.Should().BeTrue();
+                traktSharing.Twitter.Should().BeNull();
                 traktSharing.Google.Should().BeTrue();
                 traktSharing.Tumblr.Should().BeTrue();
                 traktSharing.Medium.Should().BeTrue();
@@ -59,9 +57,8 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
-                traktSharing.Twitter.Should().BeNull();
-                traktSharing.Google.Should().BeTrue();
+                traktSharing.Twitter.Should().BeTrue();
+                traktSharing.Google.Should().BeNull();
                 traktSharing.Tumblr.Should().BeTrue();
                 traktSharing.Medium.Should().BeTrue();
                 traktSharing.Slack.Should().BeTrue();
@@ -78,10 +75,9 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
                 traktSharing.Twitter.Should().BeTrue();
-                traktSharing.Google.Should().BeNull();
-                traktSharing.Tumblr.Should().BeTrue();
+                traktSharing.Google.Should().BeTrue();
+                traktSharing.Tumblr.Should().BeNull();
                 traktSharing.Medium.Should().BeTrue();
                 traktSharing.Slack.Should().BeTrue();
             }
@@ -97,11 +93,10 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
                 traktSharing.Twitter.Should().BeTrue();
                 traktSharing.Google.Should().BeTrue();
-                traktSharing.Tumblr.Should().BeNull();
-                traktSharing.Medium.Should().BeTrue();
+                traktSharing.Tumblr.Should().BeTrue();
+                traktSharing.Medium.Should().BeNull();
                 traktSharing.Slack.Should().BeTrue();
             }
         }
@@ -116,12 +111,11 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
                 traktSharing.Twitter.Should().BeTrue();
                 traktSharing.Google.Should().BeTrue();
                 traktSharing.Tumblr.Should().BeTrue();
-                traktSharing.Medium.Should().BeNull();
-                traktSharing.Slack.Should().BeTrue();
+                traktSharing.Medium.Should().BeTrue();
+                traktSharing.Slack.Should().BeNull();
             }
         }
 
@@ -135,11 +129,10 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
                 traktSharing.Twitter.Should().BeTrue();
-                traktSharing.Google.Should().BeTrue();
-                traktSharing.Tumblr.Should().BeTrue();
-                traktSharing.Medium.Should().BeTrue();
+                traktSharing.Google.Should().BeNull();
+                traktSharing.Tumblr.Should().BeNull();
+                traktSharing.Medium.Should().BeNull();
                 traktSharing.Slack.Should().BeNull();
             }
         }
@@ -154,9 +147,8 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
                 traktSharing.Twitter.Should().BeNull();
-                traktSharing.Google.Should().BeNull();
+                traktSharing.Google.Should().BeTrue();
                 traktSharing.Tumblr.Should().BeNull();
                 traktSharing.Medium.Should().BeNull();
                 traktSharing.Slack.Should().BeNull();
@@ -173,10 +165,9 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeNull();
-                traktSharing.Twitter.Should().BeTrue();
+                traktSharing.Twitter.Should().BeNull();
                 traktSharing.Google.Should().BeNull();
-                traktSharing.Tumblr.Should().BeNull();
+                traktSharing.Tumblr.Should().BeTrue();
                 traktSharing.Medium.Should().BeNull();
                 traktSharing.Slack.Should().BeNull();
             }
@@ -192,11 +183,10 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeNull();
                 traktSharing.Twitter.Should().BeNull();
-                traktSharing.Google.Should().BeTrue();
+                traktSharing.Google.Should().BeNull();
                 traktSharing.Tumblr.Should().BeNull();
-                traktSharing.Medium.Should().BeNull();
+                traktSharing.Medium.Should().BeTrue();
                 traktSharing.Slack.Should().BeNull();
             }
         }
@@ -211,45 +201,6 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeNull();
-                traktSharing.Twitter.Should().BeNull();
-                traktSharing.Google.Should().BeNull();
-                traktSharing.Tumblr.Should().BeTrue();
-                traktSharing.Medium.Should().BeNull();
-                traktSharing.Slack.Should().BeNull();
-            }
-        }
-
-        [Fact]
-        public async Task Test_SharingObjectJsonReader_ReadObject_From_Stream_Incomplete_11()
-        {
-            var traktJsonReader = new SharingObjectJsonReader();
-
-            using (var stream = JSON_INCOMPLETE_11.ToStream())
-            {
-                var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
-
-                traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeNull();
-                traktSharing.Twitter.Should().BeNull();
-                traktSharing.Google.Should().BeNull();
-                traktSharing.Tumblr.Should().BeNull();
-                traktSharing.Medium.Should().BeTrue();
-                traktSharing.Slack.Should().BeNull();
-            }
-        }
-
-        [Fact]
-        public async Task Test_SharingObjectJsonReader_ReadObject_From_Stream_Incomplete_12()
-        {
-            var traktJsonReader = new SharingObjectJsonReader();
-
-            using (var stream = JSON_INCOMPLETE_12.ToStream())
-            {
-                var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
-
-                traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeNull();
                 traktSharing.Twitter.Should().BeNull();
                 traktSharing.Google.Should().BeNull();
                 traktSharing.Tumblr.Should().BeNull();
@@ -268,8 +219,7 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeNull();
-                traktSharing.Twitter.Should().BeTrue();
+                traktSharing.Twitter.Should().BeNull();
                 traktSharing.Google.Should().BeTrue();
                 traktSharing.Tumblr.Should().BeTrue();
                 traktSharing.Medium.Should().BeTrue();
@@ -287,9 +237,8 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
-                traktSharing.Twitter.Should().BeNull();
-                traktSharing.Google.Should().BeTrue();
+                traktSharing.Twitter.Should().BeTrue();
+                traktSharing.Google.Should().BeNull();
                 traktSharing.Tumblr.Should().BeTrue();
                 traktSharing.Medium.Should().BeTrue();
                 traktSharing.Slack.Should().BeTrue();
@@ -306,10 +255,9 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
                 traktSharing.Twitter.Should().BeTrue();
-                traktSharing.Google.Should().BeNull();
-                traktSharing.Tumblr.Should().BeTrue();
+                traktSharing.Google.Should().BeTrue();
+                traktSharing.Tumblr.Should().BeNull();
                 traktSharing.Medium.Should().BeTrue();
                 traktSharing.Slack.Should().BeTrue();
             }
@@ -325,11 +273,10 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
                 traktSharing.Twitter.Should().BeTrue();
                 traktSharing.Google.Should().BeTrue();
-                traktSharing.Tumblr.Should().BeNull();
-                traktSharing.Medium.Should().BeTrue();
+                traktSharing.Tumblr.Should().BeTrue();
+                traktSharing.Medium.Should().BeNull();
                 traktSharing.Slack.Should().BeTrue();
             }
         }
@@ -344,12 +291,11 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
                 traktSharing.Twitter.Should().BeTrue();
                 traktSharing.Google.Should().BeTrue();
                 traktSharing.Tumblr.Should().BeTrue();
-                traktSharing.Medium.Should().BeNull();
-                traktSharing.Slack.Should().BeTrue();
+                traktSharing.Medium.Should().BeTrue();
+                traktSharing.Slack.Should().BeNull();
             }
         }
 
@@ -363,26 +309,6 @@
                 var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeTrue();
-                traktSharing.Twitter.Should().BeTrue();
-                traktSharing.Google.Should().BeTrue();
-                traktSharing.Tumblr.Should().BeTrue();
-                traktSharing.Medium.Should().BeTrue();
-                traktSharing.Slack.Should().BeNull();
-            }
-        }
-
-        [Fact]
-        public async Task Test_SharingObjectJsonReader_ReadObject_From_Stream_Not_Valid_7()
-        {
-            var traktJsonReader = new SharingObjectJsonReader();
-
-            using (var stream = JSON_NOT_VALID_7.ToStream())
-            {
-                var traktSharing = await traktJsonReader.ReadObjectAsync(stream);
-
-                traktSharing.Should().NotBeNull();
-                traktSharing.Facebook.Should().BeNull();
                 traktSharing.Twitter.Should().BeNull();
                 traktSharing.Google.Should().BeNull();
                 traktSharing.Tumblr.Should().BeNull();

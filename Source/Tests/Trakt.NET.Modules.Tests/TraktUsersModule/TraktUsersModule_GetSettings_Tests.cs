@@ -48,7 +48,6 @@
             responseValue.Account.Time24Hr.Should().BeFalse();
             responseValue.Account.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
             responseValue.Connections.Should().NotBeNull();
-            responseValue.Connections.Facebook.Should().BeTrue();
             responseValue.Connections.Twitter.Should().BeTrue();
             responseValue.Connections.Google.Should().BeTrue();
             responseValue.Connections.Tumblr.Should().BeFalse();

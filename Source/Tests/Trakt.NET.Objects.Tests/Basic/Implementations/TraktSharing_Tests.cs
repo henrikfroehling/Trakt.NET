@@ -15,7 +15,6 @@
         {
             var traktSharing = new TraktSharing();
 
-            traktSharing.Facebook.Should().BeNull();
             traktSharing.Twitter.Should().BeNull();
             traktSharing.Google.Should().BeNull();
             traktSharing.Tumblr.Should().BeNull();
@@ -30,7 +29,6 @@
             var traktSharing = await jsonReader.ReadObjectAsync(JSON) as TraktSharing;
 
             traktSharing.Should().NotBeNull();
-            traktSharing.Facebook.Should().BeTrue();
             traktSharing.Twitter.Should().BeTrue();
             traktSharing.Google.Should().BeTrue();
             traktSharing.Tumblr.Should().BeTrue();
@@ -40,7 +38,6 @@
 
         private const string JSON =
             @"{
-                ""facebook"": true,
                 ""twitter"": true,
                 ""google"": true,
                 ""tumblr"": true,
