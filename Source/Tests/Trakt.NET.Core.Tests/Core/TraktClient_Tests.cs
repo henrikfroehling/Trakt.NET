@@ -164,6 +164,14 @@
         }
 
         [Fact]
+        public void Test_TraktClient_Get_LanguagesModule()
+        {
+            var client = new TraktClient();
+
+            client.Languages.Should().NotBeNull();
+        }
+
+        [Fact]
         public void Test_TraktClient_Get_MoviesModule()
         {
             var client = new TraktClient();
