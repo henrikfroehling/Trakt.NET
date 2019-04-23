@@ -48,7 +48,6 @@
                 userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().NotBeNull();
-                userSettings.Connections.Facebook.Should().BeTrue();
                 userSettings.Connections.Twitter.Should().BeTrue();
                 userSettings.Connections.Google.Should().BeTrue();
                 userSettings.Connections.Tumblr.Should().BeTrue();
@@ -82,7 +81,6 @@
                 userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().NotBeNull();
-                userSettings.Connections.Facebook.Should().BeTrue();
                 userSettings.Connections.Twitter.Should().BeTrue();
                 userSettings.Connections.Google.Should().BeTrue();
                 userSettings.Connections.Tumblr.Should().BeTrue();
@@ -127,7 +125,6 @@
                 userSettings.Account.Should().BeNull();
 
                 userSettings.Connections.Should().NotBeNull();
-                userSettings.Connections.Facebook.Should().BeTrue();
                 userSettings.Connections.Twitter.Should().BeTrue();
                 userSettings.Connections.Google.Should().BeTrue();
                 userSettings.Connections.Tumblr.Should().BeTrue();
@@ -219,7 +216,6 @@
                 userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().NotBeNull();
-                userSettings.Connections.Facebook.Should().BeTrue();
                 userSettings.Connections.Twitter.Should().BeTrue();
                 userSettings.Connections.Google.Should().BeTrue();
                 userSettings.Connections.Tumblr.Should().BeTrue();
@@ -306,7 +302,6 @@
                 userSettings.Account.Should().BeNull();
 
                 userSettings.Connections.Should().NotBeNull();
-                userSettings.Connections.Facebook.Should().BeTrue();
                 userSettings.Connections.Twitter.Should().BeTrue();
                 userSettings.Connections.Google.Should().BeTrue();
                 userSettings.Connections.Tumblr.Should().BeTrue();
@@ -360,7 +355,6 @@
                 userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().NotBeNull();
-                userSettings.Connections.Facebook.Should().BeTrue();
                 userSettings.Connections.Twitter.Should().BeTrue();
                 userSettings.Connections.Google.Should().BeTrue();
                 userSettings.Connections.Tumblr.Should().BeTrue();
@@ -405,7 +399,6 @@
                 userSettings.Account.Should().BeNull();
 
                 userSettings.Connections.Should().NotBeNull();
-                userSettings.Connections.Facebook.Should().BeTrue();
                 userSettings.Connections.Twitter.Should().BeTrue();
                 userSettings.Connections.Google.Should().BeTrue();
                 userSettings.Connections.Tumblr.Should().BeTrue();
@@ -497,7 +490,6 @@
                 userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
                 userSettings.Connections.Should().NotBeNull();
-                userSettings.Connections.Facebook.Should().BeTrue();
                 userSettings.Connections.Twitter.Should().BeTrue();
                 userSettings.Connections.Google.Should().BeTrue();
                 userSettings.Connections.Tumblr.Should().BeTrue();

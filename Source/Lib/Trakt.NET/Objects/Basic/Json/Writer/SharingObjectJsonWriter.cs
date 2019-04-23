@@ -12,12 +12,6 @@
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
-            if (obj.Facebook.HasValue)
-            {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHARING_PROPERTY_NAME_FACEBOOK, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.Facebook, cancellationToken).ConfigureAwait(false);
-            }
-
             if (obj.Twitter.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.SHARING_PROPERTY_NAME_TWITTER, cancellationToken).ConfigureAwait(false);

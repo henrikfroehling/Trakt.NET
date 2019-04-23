@@ -54,7 +54,6 @@
             responseValue.User.IsVIP.Should().BeTrue();
             responseValue.User.IsVIP_EP.Should().BeFalse();
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Sharing.Medium.Should().BeTrue();
@@ -98,7 +97,6 @@
             responseValue.User.IsVIP.Should().BeTrue();
             responseValue.User.IsVIP_EP.Should().BeFalse();
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Sharing.Medium.Should().BeTrue();

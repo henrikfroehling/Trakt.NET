@@ -27,7 +27,6 @@
                 movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
                 movieScrobbleResponse.Progress.Should().Be(85.9f);
                 movieScrobbleResponse.Sharing.Should().NotBeNull();
-                movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Google.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -59,7 +58,6 @@
                 movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
                 movieScrobbleResponse.Progress.Should().Be(85.9f);
                 movieScrobbleResponse.Sharing.Should().NotBeNull();
-                movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Google.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -91,7 +89,6 @@
                 movieScrobbleResponse.Action.Should().BeNull();
                 movieScrobbleResponse.Progress.Should().Be(85.9f);
                 movieScrobbleResponse.Sharing.Should().NotBeNull();
-                movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Google.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -123,7 +120,6 @@
                 movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
                 movieScrobbleResponse.Progress.Should().BeNull();
                 movieScrobbleResponse.Sharing.Should().NotBeNull();
-                movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Google.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -181,7 +177,6 @@
                 movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
                 movieScrobbleResponse.Progress.Should().Be(85.9f);
                 movieScrobbleResponse.Sharing.Should().NotBeNull();
-                movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Google.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -263,7 +258,6 @@
                 movieScrobbleResponse.Action.Should().BeNull();
                 movieScrobbleResponse.Progress.Should().BeNull();
                 movieScrobbleResponse.Sharing.Should().NotBeNull();
-                movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Google.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -314,7 +308,6 @@
                 movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
                 movieScrobbleResponse.Progress.Should().Be(85.9f);
                 movieScrobbleResponse.Sharing.Should().NotBeNull();
-                movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Google.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -346,7 +339,6 @@
                 movieScrobbleResponse.Action.Should().BeNull();
                 movieScrobbleResponse.Progress.Should().Be(85.9f);
                 movieScrobbleResponse.Sharing.Should().NotBeNull();
-                movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Google.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -378,7 +370,6 @@
                 movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
                 movieScrobbleResponse.Progress.Should().BeNull();
                 movieScrobbleResponse.Sharing.Should().NotBeNull();
-                movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Google.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -436,7 +427,6 @@
                 movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
                 movieScrobbleResponse.Progress.Should().Be(85.9f);
                 movieScrobbleResponse.Sharing.Should().NotBeNull();
-                movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Google.Should().BeTrue();
                 movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();

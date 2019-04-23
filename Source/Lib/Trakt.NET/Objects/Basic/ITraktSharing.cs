@@ -2,8 +2,6 @@
 {
     public interface ITraktSharing
     {
-        bool? Facebook { get; set; }
-
         bool? Twitter { get; set; }
 
         bool? Google { get; set; }

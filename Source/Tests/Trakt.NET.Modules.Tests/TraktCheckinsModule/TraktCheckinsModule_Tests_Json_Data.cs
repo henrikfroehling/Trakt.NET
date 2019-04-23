@@ -17,7 +17,6 @@
 
         private readonly ITraktSharing SHARING = new TraktSharing
         {
-            Facebook = true,
             Google = false,
             Twitter = true
         };
@@ -63,7 +62,6 @@
                 ""id"": 3373536619,
                 ""watched_at"": ""2014-08-06T01:11:37.953Z"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""tumblr"": false
                 },
@@ -84,7 +82,6 @@
                 ""id"": 3373536620,
                 ""watched_at"": ""2014-08-06T06:54:36.859Z"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""tumblr"": false
                 },

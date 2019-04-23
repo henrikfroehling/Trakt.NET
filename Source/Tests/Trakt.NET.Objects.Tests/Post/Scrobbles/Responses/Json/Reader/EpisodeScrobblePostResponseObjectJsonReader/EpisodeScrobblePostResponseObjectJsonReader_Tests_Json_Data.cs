@@ -8,7 +8,6 @@
                 ""action"": ""scrobble"",
                 ""progress"": 85.9,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -46,7 +45,6 @@
                 ""action"": ""scrobble"",
                 ""progress"": 85.9,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -84,7 +82,6 @@
                 ""id"": 3373536623,
                 ""progress"": 85.9,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -122,7 +119,6 @@
                 ""id"": 3373536623,
                 ""action"": ""scrobble"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -192,7 +188,6 @@
                 ""action"": ""scrobble"",
                 ""progress"": 85.9,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -219,7 +214,6 @@
                 ""action"": ""scrobble"",
                 ""progress"": 85.9,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -258,7 +252,6 @@
         private const string JSON_INCOMPLETE_10 =
             @"{
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -305,7 +298,6 @@
                 ""action"": ""scrobble"",
                 ""progress"": 85.9,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -344,7 +336,6 @@
                 ""act"": ""scrobble"",
                 ""progress"": 85.9,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -383,7 +374,6 @@
                 ""action"": ""scrobble"",
                 ""prog"": 85.9,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -422,7 +412,6 @@
                 ""action"": ""scrobble"",
                 ""progress"": 85.9,
                 ""share"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -461,7 +450,6 @@
                 ""action"": ""scrobble"",
                 ""progress"": 85.9,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -500,7 +488,6 @@
                 ""action"": ""scrobble"",
                 ""progress"": 85.9,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -539,7 +526,6 @@
                 ""act"": ""scrobble"",
                 ""prog"": 85.9,
                 ""share"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,

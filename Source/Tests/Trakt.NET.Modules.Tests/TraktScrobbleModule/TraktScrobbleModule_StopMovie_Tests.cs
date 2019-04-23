@@ -44,7 +44,6 @@
             responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
             responseValue.Progress.Should().Be(STOP_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeFalse();
             responseValue.Sharing.Twitter.Should().BeFalse();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Movie.Should().NotBeNull();
@@ -86,7 +85,6 @@
             responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
             responseValue.Progress.Should().Be(STOP_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeFalse();
             responseValue.Sharing.Twitter.Should().BeFalse();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Movie.Should().NotBeNull();
@@ -128,7 +126,6 @@
             responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
             responseValue.Progress.Should().Be(STOP_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeFalse();
             responseValue.Sharing.Twitter.Should().BeFalse();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Movie.Should().NotBeNull();
@@ -171,7 +168,6 @@
             responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
             responseValue.Progress.Should().Be(STOP_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeFalse();
             responseValue.Sharing.Twitter.Should().BeFalse();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Movie.Should().NotBeNull();
@@ -214,7 +210,6 @@
             responseValue.Action.Should().Be(TraktScrobbleActionType.Stop);
             responseValue.Progress.Should().Be(STOP_PROGRESS);
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeFalse();
             responseValue.Sharing.Twitter.Should().BeFalse();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Movie.Should().NotBeNull();

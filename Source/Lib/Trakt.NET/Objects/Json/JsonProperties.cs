@@ -103,7 +103,6 @@
         internal const string SEARCH_RESULT_PROPERTY_NAME_PERSON = "person";
         internal const string SEARCH_RESULT_PROPERTY_NAME_LIST = "list";
 
-        internal const string SHARING_PROPERTY_NAME_FACEBOOK = "facebook";
         internal const string SHARING_PROPERTY_NAME_TWITTER = "twitter";
         internal const string SHARING_PROPERTY_NAME_GOOGLE = "google";
         internal const string SHARING_PROPERTY_NAME_TUMBLR = "tumblr";

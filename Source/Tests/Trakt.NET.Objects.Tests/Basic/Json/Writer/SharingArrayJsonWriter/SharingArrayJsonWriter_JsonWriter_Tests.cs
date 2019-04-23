@@ -44,7 +44,6 @@
             {
                 new TraktSharing
                 {
-                    Facebook = true,
                     Twitter = true,
                     Google = true,
                     Tumblr = true,
@@ -58,7 +57,7 @@
             {
                 var traktJsonWriter = new ArrayJsonWriter<ITraktSharing>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktSharing);
-                stringWriter.ToString().Should().Be(@"[{""facebook"":true,""twitter"":true,""google"":true," +
+                stringWriter.ToString().Should().Be(@"[{""twitter"":true,""google"":true," +
                                                     @"""tumblr"":true,""medium"":true,""slack"":true}]");
             }
         }
@@ -70,7 +69,6 @@
             {
                 new TraktSharing
                 {
-                    Facebook = true,
                     Twitter = true,
                     Google = true,
                     Tumblr = true,
@@ -79,7 +77,6 @@
                 },
                 new TraktSharing
                 {
-                    Facebook = true,
                     Twitter = true,
                     Google = true,
                     Tumblr = true,
@@ -93,9 +90,9 @@
             {
                 var traktJsonWriter = new ArrayJsonWriter<ITraktSharing>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktSharing);
-                stringWriter.ToString().Should().Be(@"[{""facebook"":true,""twitter"":true,""google"":true," +
+                stringWriter.ToString().Should().Be(@"[{""twitter"":true,""google"":true," +
                                                     @"""tumblr"":true,""medium"":true,""slack"":true}," +
-                                                    @"{""facebook"":true,""twitter"":true,""google"":true," +
+                                                    @"{""twitter"":true,""google"":true," +
                                                     @"""tumblr"":true,""medium"":true,""slack"":true}]");
             }
         }

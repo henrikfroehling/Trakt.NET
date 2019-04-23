@@ -42,7 +42,6 @@
             {
                 new TraktSharing
                 {
-                    Facebook = true,
                     Twitter = true,
                     Google = true,
                     Tumblr = true,
@@ -55,7 +54,7 @@
             {
                 var traktJsonWriter = new ArrayJsonWriter<ITraktSharing>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktSharing);
-                json.Should().Be(@"[{""facebook"":true,""twitter"":true,""google"":true," +
+                json.Should().Be(@"[{""twitter"":true,""google"":true," +
                                  @"""tumblr"":true,""medium"":true,""slack"":true}]");
             }
         }
@@ -67,7 +66,6 @@
             {
                 new TraktSharing
                 {
-                    Facebook = true,
                     Twitter = true,
                     Google = true,
                     Tumblr = true,
@@ -76,7 +74,6 @@
                 },
                 new TraktSharing
                 {
-                    Facebook = true,
                     Twitter = true,
                     Google = true,
                     Tumblr = true,
@@ -89,9 +86,9 @@
             {
                 var traktJsonWriter = new ArrayJsonWriter<ITraktSharing>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktSharing);
-                json.Should().Be(@"[{""facebook"":true,""twitter"":true,""google"":true," +
+                json.Should().Be(@"[{""twitter"":true,""google"":true," +
                                  @"""tumblr"":true,""medium"":true,""slack"":true}," +
-                                 @"{""facebook"":true,""twitter"":true,""google"":true," +
+                                 @"{""twitter"":true,""google"":true," +
                                  @"""tumblr"":true,""medium"":true,""slack"":true}]");
             }
         }

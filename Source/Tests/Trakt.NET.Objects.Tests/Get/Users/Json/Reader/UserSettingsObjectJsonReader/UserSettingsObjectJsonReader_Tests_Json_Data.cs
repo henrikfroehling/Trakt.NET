@@ -31,7 +31,6 @@
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -53,7 +52,6 @@
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -89,7 +87,6 @@
                   }
                 },
                 ""connections"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -165,7 +162,6 @@
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -211,7 +207,6 @@
         private const string JSON_INCOMPLETE_7 =
             @"{
                 ""connections"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -257,7 +252,6 @@
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -299,7 +293,6 @@
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -341,7 +334,6 @@
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""conn"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -383,7 +375,6 @@
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""connections"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -425,7 +416,6 @@
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
                 },
                 ""conn"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
