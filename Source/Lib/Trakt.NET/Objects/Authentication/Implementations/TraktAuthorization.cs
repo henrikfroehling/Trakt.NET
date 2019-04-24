@@ -84,49 +84,49 @@ namespace TraktNet.Objects.Authentication
                 && other.Scope == Scope
                 && other.TokenType == TokenType;
 
-        /// <summary>Creates a new <see cref="TraktAuthorization" /> instance with the given values.</summary>
-        /// <param name="accessToken">The access token for the new <see cref="TraktAuthorization" /> instance.</param>
-        /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
-        /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
-        public static TraktAuthorization CreateWith(string accessToken, string refreshToken = null)
+        /// <summary>Creates a new <see cref="ITraktAuthorization" /> instance with the given values.</summary>
+        /// <param name="accessToken">The access token for the new <see cref="ITraktAuthorization" /> instance.</param>
+        /// <param name="refreshToken">The optional refresh token for the new <see cref="ITraktAuthorization" /> instance.</param>
+        /// <returns>A new <see cref="ITraktAuthorization" /> instance with the given values.</returns>
+        public static ITraktAuthorization CreateWith(string accessToken, string refreshToken = null)
         {
-            TraktAuthorization traktAuthorization = CreateWith(DateTime.UtcNow, accessToken, refreshToken);
+            ITraktAuthorization traktAuthorization = CreateWith(DateTime.UtcNow, accessToken, refreshToken);
             traktAuthorization.IgnoreExpiration = true;
             return traktAuthorization;
         }
 
-        /// <summary>Creates a new <see cref="TraktAuthorization" /> instance with the given values.</summary>
+        /// <summary>Creates a new <see cref="ITraktAuthorization" /> instance with the given values.</summary>
         /// <param name="expiresInSeconds">The seconds, after which the given access token will expire.</param>
-        /// <param name="accessToken">The access token for the new <see cref="TraktAuthorization" /> instance.</param>
-        /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
-        /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
-        public static TraktAuthorization CreateWith(uint expiresInSeconds, string accessToken, string refreshToken = null)
+        /// <param name="accessToken">The access token for the new <see cref="ITraktAuthorization" /> instance.</param>
+        /// <param name="refreshToken">The optional refresh token for the new <see cref="ITraktAuthorization" /> instance.</param>
+        /// <returns>A new <see cref="ITraktAuthorization" /> instance with the given values.</returns>
+        public static ITraktAuthorization CreateWith(uint expiresInSeconds, string accessToken, string refreshToken = null)
             => CreateWith(DateTime.UtcNow, expiresInSeconds, accessToken, refreshToken);
 
         /// <summary>
-        /// Creates a new <see cref="TraktAuthorization" /> instance with the given values.
-        /// <see cref="ExpiresInSeconds" /> of the created <see cref="TraktAuthorization" /> instance will have the default
+        /// Creates a new <see cref="ITraktAuthorization" /> instance with the given values.
+        /// <see cref="ExpiresInSeconds" /> of the created <see cref="ITraktAuthorization" /> instance will have the default
         /// value of 3600 * 24 * 90 seconds, equal to 90 days.
         /// </summary>
         /// <param name="createdAt">The datetime, when the given access token was created. Will be converted to UTC datetime.</param>
-        /// <param name="accessToken">The access token for the new <see cref="TraktAuthorization" /> instance.</param>
-        /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
-        /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
-        public static TraktAuthorization CreateWith(DateTime createdAt, string accessToken, string refreshToken = null)
+        /// <param name="accessToken">The access token for the new <see cref="ITraktAuthorization" /> instance.</param>
+        /// <param name="refreshToken">The optional refresh token for the new <see cref="ITraktAuthorization" /> instance.</param>
+        /// <returns>A new <see cref="ITraktAuthorization" /> instance with the given values.</returns>
+        public static ITraktAuthorization CreateWith(DateTime createdAt, string accessToken, string refreshToken = null)
         {
-            TraktAuthorization traktAuthorization = CreateWith(createdAt, DEFAULT_EXPIRES_IN_SECONDS, accessToken, refreshToken);
+            ITraktAuthorization traktAuthorization = CreateWith(createdAt, DEFAULT_EXPIRES_IN_SECONDS, accessToken, refreshToken);
             traktAuthorization.IgnoreExpiration = true;
             return traktAuthorization;
         }
 
-        /// <summary>Creates a new <see cref="TraktAuthorization" /> instance with the given values.</summary>
+        /// <summary>Creates a new <see cref="ITraktAuthorization" /> instance with the given values.</summary>
         /// <param name="createdAt">The datetime, when the given access token was created. Will be converted to UTC datetime.</param>
         /// <param name="expiresInSeconds">The seconds, after which the given access token will expire.</param>
-        /// <param name="accessToken">The access token for the new <see cref="TraktAuthorization" /> instance.</param>
-        /// <param name="refreshToken">The optional refresh token for the new <see cref="TraktAuthorization" /> instance.</param>
-        /// <returns>A new <see cref="TraktAuthorization" /> instance with the given values.</returns>
-        public static TraktAuthorization CreateWith(DateTime createdAt, uint expiresInSeconds,
-                                                    string accessToken, string refreshToken = null)
+        /// <param name="accessToken">The access token for the new <see cref="ITraktAuthorization" /> instance.</param>
+        /// <param name="refreshToken">The optional refresh token for the new <see cref="ITraktAuthorization" /> instance.</param>
+        /// <returns>A new <see cref="ITraktAuthorization" /> instance with the given values.</returns>
+        public static ITraktAuthorization CreateWith(DateTime createdAt, uint expiresInSeconds,
+                                                     string accessToken, string refreshToken = null)
             => new TraktAuthorization
             {
                 AccessToken = accessToken ?? string.Empty,

@@ -34,7 +34,7 @@
             traktAuthorization.IsExpired.Should().BeTrue();
             traktAuthorization.IsValid.Should().BeFalse();
             traktAuthorization.IsRefreshPossible.Should().BeFalse();
-            traktAuthorization.CreatedAt.Should().Be(default(DateTime));
+            traktAuthorization.CreatedAt.Should().Be(default);
             traktAuthorization.IgnoreExpiration.Should().BeFalse();
         }
 
@@ -148,7 +148,7 @@
         {
             var traktAuthorization = new TraktAuthorization();
 
-            traktAuthorization.CreatedAt.Should().Be(default(DateTime));
+            traktAuthorization.CreatedAt.Should().Be(default);
 
             traktAuthorization.CreatedAtTimestamp = 1506271312;
             traktAuthorization.CreatedAt.Should().Be(s_timestampOriginPlusCurrent);
@@ -228,7 +228,7 @@
             DateTime createdAtUtcNow = DateTime.UtcNow;
             ulong createdAtUtcNowTimestamp = TestUtility.CalculateTimestamp(createdAtUtcNow);
 
-            TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(ACCESS_TOKEN);
+            ITraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(ACCESS_TOKEN);
 
             traktAuthorization.Should().NotBeNull();
             traktAuthorization.AccessToken.Should().Be(ACCESS_TOKEN);
@@ -250,7 +250,7 @@
             DateTime createdAtUtcNow = DateTime.UtcNow;
             ulong createdAtUtcNowTimestamp = TestUtility.CalculateTimestamp(createdAtUtcNow);
 
-            TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(ACCESS_TOKEN, REFRESH_TOKEN);
+            ITraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(ACCESS_TOKEN, REFRESH_TOKEN);
 
             traktAuthorization.Should().NotBeNull();
             traktAuthorization.AccessToken.Should().Be(ACCESS_TOKEN);
@@ -272,7 +272,7 @@
             DateTime createdAtUtcNow = DateTime.UtcNow;
             ulong createdAtUtcNowTimestamp = TestUtility.CalculateTimestamp(createdAtUtcNow);
 
-            TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(EXPIRES_IN_SECONDS, ACCESS_TOKEN);
+            ITraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(EXPIRES_IN_SECONDS, ACCESS_TOKEN);
 
             traktAuthorization.Should().NotBeNull();
             traktAuthorization.AccessToken.Should().Be(ACCESS_TOKEN);
@@ -294,7 +294,7 @@
             DateTime createdAtUtcNow = DateTime.UtcNow;
             ulong createdAtUtcNowTimestamp = TestUtility.CalculateTimestamp(createdAtUtcNow);
 
-            TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(EXPIRES_IN_SECONDS, ACCESS_TOKEN, REFRESH_TOKEN);
+            ITraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(EXPIRES_IN_SECONDS, ACCESS_TOKEN, REFRESH_TOKEN);
 
             traktAuthorization.Should().NotBeNull();
             traktAuthorization.AccessToken.Should().Be(ACCESS_TOKEN);
@@ -313,7 +313,7 @@
         [Fact]
         public void Test_TraktAuthorization_CreateWith_CreatedAt_And_AccessToken()
         {
-            TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(s_createdAt, ACCESS_TOKEN);
+            ITraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(s_createdAt, ACCESS_TOKEN);
 
             traktAuthorization.Should().NotBeNull();
             traktAuthorization.AccessToken.Should().Be(ACCESS_TOKEN);
@@ -332,7 +332,7 @@
         [Fact]
         public void Test_TraktAuthorization_CreateWith_CreatedAt_And_AccessToken_And_RefreshToken()
         {
-            TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(s_createdAt, ACCESS_TOKEN, REFRESH_TOKEN);
+            ITraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(s_createdAt, ACCESS_TOKEN, REFRESH_TOKEN);
 
             traktAuthorization.Should().NotBeNull();
             traktAuthorization.AccessToken.Should().Be(ACCESS_TOKEN);
@@ -351,7 +351,7 @@
         [Fact]
         public void Test_TraktAuthorization_CreateWith_CreatedAt_And_ExpiresIn_And_AccessToken()
         {
-            TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(s_createdAt, EXPIRES_IN_SECONDS, ACCESS_TOKEN);
+            ITraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(s_createdAt, EXPIRES_IN_SECONDS, ACCESS_TOKEN);
 
             traktAuthorization.Should().NotBeNull();
             traktAuthorization.AccessToken.Should().Be(ACCESS_TOKEN);
@@ -370,7 +370,7 @@
         [Fact]
         public void Test_TraktAuthorization_CreateWith_CreatedAt_And_ExpiresIn_And_AccessToken_And_RefreshToken()
         {
-            TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(s_createdAt, EXPIRES_IN_SECONDS, ACCESS_TOKEN, REFRESH_TOKEN);
+            ITraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(s_createdAt, EXPIRES_IN_SECONDS, ACCESS_TOKEN, REFRESH_TOKEN);
 
             traktAuthorization.Should().NotBeNull();
             traktAuthorization.AccessToken.Should().Be(ACCESS_TOKEN);
@@ -392,7 +392,7 @@
             DateTime createdAtUtcNow = DateTime.UtcNow;
             ulong createdAtUtcNowTimestamp = TestUtility.CalculateTimestamp(createdAtUtcNow);
 
-            TraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(null, REFRESH_TOKEN);
+            ITraktAuthorization traktAuthorization = TraktAuthorization.CreateWith(null, REFRESH_TOKEN);
 
             traktAuthorization.Should().NotBeNull();
             traktAuthorization.AccessToken.Should().NotBeNull().And.BeEmpty();
