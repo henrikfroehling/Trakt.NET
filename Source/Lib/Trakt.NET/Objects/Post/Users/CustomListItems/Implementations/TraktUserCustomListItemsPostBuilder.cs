@@ -210,7 +210,7 @@
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="seasons">
         /// An array of season numbers for seasons in the given show.
-        /// All seasons numbers will be added to the ratings.
+        /// All seasons numbers will be added to the custom list items post.
         /// </param>
         /// <returns>The current <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
