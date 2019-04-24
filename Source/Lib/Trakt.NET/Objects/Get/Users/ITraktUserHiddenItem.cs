@@ -22,7 +22,8 @@
         /// <summary>
         /// Gets or sets the movie, if <see cref="Type" /> is <see cref="TraktHiddenItemType.Movie" />.
         /// See also <seealso cref="ITraktMovie" />.
-        /// <para>Nullable<
+        /// <para>Nullable</para>
+        /// </summary>
         ITraktMovie Movie { get; set; }
 
         /// <summary>
