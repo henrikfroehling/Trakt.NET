@@ -11,6 +11,8 @@
         /// <summary>Gets or sets the cast member. See also <seealso cref="ITraktPerson" />.<para>Nullable</para></summary>
         public ITraktPerson Person { get; set; }
 
+        /// <summary>Gets a string representation of the cast member.</summary>
+        /// <returns>A string representation of the cast member.</returns>
         public override string ToString()
         {
             var character = !string.IsNullOrEmpty(Character) ? Character : "charactor not set";

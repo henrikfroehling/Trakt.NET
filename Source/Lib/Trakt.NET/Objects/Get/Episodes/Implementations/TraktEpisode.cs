@@ -21,7 +21,7 @@
 
         /// <summary>
         /// Gets or sets the collection of ids for the episode for various web services.
-        /// See also <seealso cref="TraktEpisodeIds" />.
+        /// See also <seealso cref="ITraktEpisodeIds" />.
         /// <para>Nullable</para>
         /// </summary>
         public ITraktEpisodeIds Ids { get; set; }
@@ -51,10 +51,10 @@
         public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
 
         /// <summary>Gets or sets the list of <see cref="ITraktEpisodeTranslation" />s for the episode.<para>Nullable</para></summary>
-        /// <seealso cref="TraktSeason.Episodes" />
+        /// <seealso cref="ITraktSeason.Episodes" />
         /// <remarks>
         /// This property is set automatically if this episode is in a
-        /// <see cref="TraktSeason.Episodes" /> collection and the episode's season
+        /// <see cref="ITraktSeason.Episodes" /> collection and the episode's season
         /// is in a collection of seasons returned by
         /// <see cref="TraktSeasonsModule.GetAllSeasonsAsync(string, TraktExtendedInfo, string, CancellationToken)" />
         /// and a translation language code was specified.
@@ -64,6 +64,7 @@
         /// </remarks>
         public IEnumerable<ITraktEpisodeTranslation> Translations { get; set; }
 
+        /// <summary>Gets or sets the comment count of the episode.<para>Nullable</para></summary>
         public int? CommentCount { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Basic
 {
+    /// <summary>A Trakt certification.</summary>
     public class TraktCertification : ITraktCertification
     {
         /// <summary>Gets or sets the certification name.<para>Nullable</para></summary>

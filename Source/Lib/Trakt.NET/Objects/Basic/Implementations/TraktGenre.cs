@@ -14,6 +14,8 @@
         /// <summary>Gets or sets the genre type. See also <seealso cref="TraktGenreType" />.<para>Nullable</para></summary>
         public TraktGenreType Type { get; set; }
 
+        /// <summary>Gets a string representation of the genre.</summary>
+        /// <returns>A string representation of the genre.</returns>
         public override string ToString()
         {
             var name = !string.IsNullOrEmpty(Name) ? Name : "name not set";
