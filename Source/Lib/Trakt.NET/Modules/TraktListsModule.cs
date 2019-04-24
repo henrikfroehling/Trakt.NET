@@ -6,9 +6,16 @@
     using Requests.Lists;
     using Requests.Parameters;
     using Responses;
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Provides access to data retrieving methods specific to lists.
+    /// <para>
+    /// This module contains all methods of the <a href ="https://trakt.docs.apiary.io/#reference/lists">"Trakt API Doc - Lists"</a> section.
+    /// </para>
+    /// </summary>
     public class TraktListsModule : ATraktModule
     {
         internal TraktListsModule(TraktClient client) : base(client)
@@ -22,8 +29,11 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/lists/popular/get-popular-lists">"Trakt API Doc - Lists: Popular"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktList}"/> instance containing the queried popular lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -52,8 +62,11 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/lists/trending/get-trending-lists">"Trakt API Doc - Lists: Trending"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktList}"/> instance containing the queried trending lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.

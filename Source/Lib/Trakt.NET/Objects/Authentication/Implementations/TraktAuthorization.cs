@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Authentication
+namespace TraktNet.Objects.Authentication
 {
     using Enums;
     using Extensions;
@@ -26,6 +26,7 @@
         /// <summary>Gets or sets the token type. See also <seealso cref="TraktAccessTokenType" />.</summary>
         public TraktAccessTokenType TokenType { get; set; }
 
+        /// <summary>Gets or sets the timestamp, when this token was created.</summary>
         public ulong CreatedAtTimestamp { get; set; }
 
         /// <summary>
@@ -55,8 +56,11 @@
         /// <summary>Returns the UTC DateTime, when this authorization information was created.</summary>
         public DateTime CreatedAt => CreatedAtTimestamp > 0 ? new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(CreatedAtTimestamp) : default;
 
+        /// <summary>Gets or sets, whether token expiration should be ignored.</summary>
         public bool IgnoreExpiration { get; set; }
 
+        /// <summary>Gets a string representation of the authorization token.</summary>
+        /// <returns>A string representation of the authorization token.</returns>
         public override string ToString()
         {
             string value = IsValid ? AccessToken : "no valid access token";
@@ -64,6 +68,9 @@
             return value;
         }
 
+        /// <summary>Compares this instance with another <see cref="ITraktAuthorization" /> instance.</summary>
+        /// <param name="other">The other <see cref="ITraktAuthorization" /> instance, with which this instance will be compared.</param>
+        /// <returns>True, if both instances are equal, otherwise false.</returns>
         public bool Equals(ITraktAuthorization other)
             => other != null
                 && other.IsValid == IsValid

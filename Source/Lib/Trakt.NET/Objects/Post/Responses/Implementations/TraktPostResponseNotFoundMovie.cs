@@ -2,8 +2,10 @@
 {
     using Get.Movies;
 
+    /// <summary>A Trakt movie, which was not found.</summary>
     public class TraktPostResponseNotFoundMovie : ITraktPostResponseNotFoundMovie
     {
+        /// <summary>Gets or sets the ids of the not found movie. See also <seealso cref="ITraktMovieIds" />.</summary>
         public ITraktMovieIds Ids { get; set; }
     }
 }
