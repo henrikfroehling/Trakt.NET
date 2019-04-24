@@ -23,6 +23,7 @@
             Comments = new TraktCommentsModule(this);
             Episodes = new TraktEpisodesModule(this);
             Genres = new TraktGenresModule(this);
+            Languages = new TraktLanguagesModule(this);
             Lists = new TraktListsModule(this);
             Movies = new TraktMoviesModule(this);
             Networks = new TraktNetworksModule(this);
@@ -125,6 +126,9 @@
 
         /// <summary>Provides access to the genres module. See <seealso cref="TraktGenresModule" />.</summary>
         public TraktGenresModule Genres { get; }
+
+        /// <summary>Provides access to the languages module. See <seealso cref="TraktLanguagesModule" />.</summary>
+        public TraktLanguagesModule Languages { get; }
 
         /// <summary>Provides access to the lists module. See <seealso cref="TraktListsModule" />.</summary>
         public TraktListsModule Lists { get; }

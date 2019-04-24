@@ -82,6 +82,9 @@
 
         internal const string IMAGE_PROPERTY_NAME_FULL = "full";
 
+        internal const string LANGUAGE_PROPERTY_NAME_NAME = "name";
+        internal const string LANGUAGE_PROPERTY_NAME_CODE = "code";
+
         internal const string METADATA_PROPERTY_NAME_MEDIA_TYPE = "media_type";
         internal const string METADATA_PROPERTY_NAME_RESOLUTION = "resolution";
         internal const string METADATA_PROPERTY_NAME_AUDIO = "audio";

@@ -141,6 +141,7 @@
             s_jsonIOFactories.Add(typeof(ITraktGenre), new GenreJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktIds), new IdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktImage), new ImageJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktLanguage), new LanguageJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMetadata), new MetadataJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktNetwork), new NetworkJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktRating), new RatingJsonIOFactory());
