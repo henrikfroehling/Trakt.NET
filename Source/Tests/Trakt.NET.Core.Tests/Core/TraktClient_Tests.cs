@@ -140,6 +140,14 @@
         }
 
         [Fact]
+        public void Test_TraktClient_Get_CountriesModule()
+        {
+            var client = new TraktClient();
+
+            client.Countries.Should().NotBeNull();
+        }
+
+        [Fact]
         public void Test_TraktClient_Get_EpisodesModule()
         {
             var client = new TraktClient();

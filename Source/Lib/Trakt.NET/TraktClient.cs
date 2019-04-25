@@ -22,6 +22,7 @@
             Certifications = new TraktCertificationsModule(this);
             Checkins = new TraktCheckinsModule(this);
             Comments = new TraktCommentsModule(this);
+            Countries = new TraktCountriesModule(this);
             Episodes = new TraktEpisodesModule(this);
             Genres = new TraktGenresModule(this);
             Languages = new TraktLanguagesModule(this);
@@ -124,6 +125,9 @@
 
         /// <summary>Provides access to the commends module. See <seealso cref="TraktCommentsModule" />.</summary>
         public TraktCommentsModule Comments { get; }
+
+        /// <summary>Provides access to the countries module. See <seealso cref="TraktCountriesModule" />.</summary>
+        public TraktCountriesModule Countries { get; }
 
         /// <summary>Provides access to the episodes module. See <seealso cref="TraktEpisodesModule" />.</summary>
         public TraktEpisodesModule Episodes { get; }
