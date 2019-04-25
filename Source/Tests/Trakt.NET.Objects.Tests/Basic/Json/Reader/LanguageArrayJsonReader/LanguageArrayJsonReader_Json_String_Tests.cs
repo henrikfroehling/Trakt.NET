@@ -16,18 +16,18 @@
         public async Task Test_LanguageArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
             var jsonReader = new LanguageArrayJsonReader();
-            IEnumerable<ITraktLanguage> traktlanguages = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
-            traktlanguages.Should().NotBeNull().And.BeEmpty();
+            IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
+            traktLanguages.Should().NotBeNull().And.BeEmpty();
         }
 
         [Fact]
         public async Task Test_LanguageArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new LanguageArrayJsonReader();
-            IEnumerable<ITraktLanguage> traktlanguages = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
+            IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
-            traktlanguages.Should().NotBeNull();
-            ITraktLanguage[] languages = traktlanguages.ToArray();
+            traktLanguages.Should().NotBeNull();
+            ITraktLanguage[] languages = traktLanguages.ToArray();
 
             languages[0].Should().NotBeNull();
             languages[0].Name.Should().Be("English");
@@ -42,10 +42,10 @@
         public async Task Test_LanguageArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
             var jsonReader = new LanguageArrayJsonReader();
-            IEnumerable<ITraktLanguage> traktlanguages = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
+            IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
-            traktlanguages.Should().NotBeNull();
-            ITraktLanguage[] languages = traktlanguages.ToArray();
+            traktLanguages.Should().NotBeNull();
+            ITraktLanguage[] languages = traktLanguages.ToArray();
 
             languages[0].Should().NotBeNull();
             languages[0].Name.Should().Be("English");
@@ -60,10 +60,10 @@
         public async Task Test_LanguageArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
             var jsonReader = new LanguageArrayJsonReader();
-            IEnumerable<ITraktLanguage> traktlanguages = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
+            IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
-            traktlanguages.Should().NotBeNull();
-            ITraktLanguage[] languages = traktlanguages.ToArray();
+            traktLanguages.Should().NotBeNull();
+            ITraktLanguage[] languages = traktLanguages.ToArray();
 
             languages[0].Should().NotBeNull();
             languages[0].Name.Should().BeNull();
@@ -78,10 +78,10 @@
         public async Task Test_LanguageArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new LanguageArrayJsonReader();
-            IEnumerable<ITraktLanguage> traktlanguages = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
+            IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
-            traktlanguages.Should().NotBeNull();
-            ITraktLanguage[] languages = traktlanguages.ToArray();
+            traktLanguages.Should().NotBeNull();
+            ITraktLanguage[] languages = traktLanguages.ToArray();
 
             languages[0].Should().NotBeNull();
             languages[0].Name.Should().Be("English");
@@ -96,10 +96,10 @@
         public async Task Test_LanguageArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new LanguageArrayJsonReader();
-            IEnumerable<ITraktLanguage> traktlanguages = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
+            IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
-            traktlanguages.Should().NotBeNull();
-            ITraktLanguage[] languages = traktlanguages.ToArray();
+            traktLanguages.Should().NotBeNull();
+            ITraktLanguage[] languages = traktLanguages.ToArray();
 
             languages[0].Should().NotBeNull();
             languages[0].Name.Should().Be("English");
@@ -114,10 +114,10 @@
         public async Task Test_LanguageArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new LanguageArrayJsonReader();
-            IEnumerable<ITraktLanguage> traktlanguages = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
+            IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
-            traktlanguages.Should().NotBeNull();
-            ITraktLanguage[] languages = traktlanguages.ToArray();
+            traktLanguages.Should().NotBeNull();
+            ITraktLanguage[] languages = traktLanguages.ToArray();
 
             languages[0].Should().NotBeNull();
             languages[0].Name.Should().BeNull();
@@ -132,16 +132,16 @@
         public async Task Test_LanguageArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new LanguageArrayJsonReader();
-            IEnumerable<ITraktLanguage> traktlanguages = await jsonReader.ReadArrayAsync(default(string));
-            traktlanguages.Should().BeNull();
+            IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(default(string));
+            traktLanguages.Should().BeNull();
         }
 
         [Fact]
         public async Task Test_LanguageArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
             var jsonReader = new LanguageArrayJsonReader();
-            IEnumerable<ITraktLanguage> traktlanguages = await jsonReader.ReadArrayAsync(string.Empty);
-            traktlanguages.Should().BeNull();
+            IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(string.Empty);
+            traktLanguages.Should().BeNull();
         }
     }
 }

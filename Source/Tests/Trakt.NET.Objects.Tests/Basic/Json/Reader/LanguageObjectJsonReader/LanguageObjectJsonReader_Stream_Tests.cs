@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Basic;
     using TraktNet.Objects.Basic.Json.Reader;
     using Xunit;
 
@@ -18,7 +19,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().Be("English");
@@ -33,7 +34,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().BeNull();
@@ -48,7 +49,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().Be("English");
@@ -63,7 +64,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().BeNull();
@@ -78,7 +79,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().Be("English");
@@ -93,7 +94,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().BeNull();
@@ -106,7 +107,7 @@
         {
             var traktJsonReader = new LanguageObjectJsonReader();
 
-            var traktLanguage = await traktJsonReader.ReadObjectAsync(default(Stream));
+            ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(default(Stream));
             traktLanguage.Should().BeNull();
         }
 
@@ -117,7 +118,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(stream);
                 traktLanguage.Should().BeNull();
             }
         }
