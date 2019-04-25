@@ -2,10 +2,8 @@
 {
     using System;
 
-    /// <summary>
-    /// Represents a Trakt device response.
-    /// </summary>
-    public sealed class TraktDevice : ITraktDevice
+    /// <summary>Represents a Trakt device response.</summary>
+    public class TraktDevice : ITraktDevice
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktDevice" /> class.
@@ -31,6 +29,7 @@
         /// <summary>Gets or sets the interval, at which the access token should be polled.</summary>
         public uint IntervalInSeconds { get; set; }
 
+        /// <summary>Gets the interval in milliseconds, at which the access token should be polled.</summary>
         public uint IntervalInMilliseconds => IntervalInSeconds * 1000;
 
         /// <summary>
@@ -50,6 +49,8 @@
         /// <summary>Gets, whether this device is expired without actually using it for polling for an access token.</summary>
         public bool IsExpiredUnused => CreatedAt.AddSeconds(ExpiresInSeconds) <= DateTime.UtcNow;
 
+        /// <summary>Gets a string representation of the device.</summary>
+        /// <returns>A string representation of the device.</returns>
         public override string ToString()
         {
             string value = !string.IsNullOrEmpty(DeviceCode) ? $"{DeviceCode}" : "no valid device code";
@@ -57,6 +58,9 @@
             return value;
         }
 
+        /// <summary>Compares this instance with another <see cref="ITraktDevice" /> instance.</summary>
+        /// <param name="other">The other <see cref="ITraktDevice" /> instance, with which this instance will be compared.</param>
+        /// <returns>True, if both instances are equal, otherwise false.</returns>
         public bool Equals(ITraktDevice other)
         {
             return other != null

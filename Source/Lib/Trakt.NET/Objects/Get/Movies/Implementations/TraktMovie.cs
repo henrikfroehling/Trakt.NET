@@ -58,8 +58,10 @@
         /// <summary>Gets or sets the content certification of the movie.<para>Nullable</para></summary>
         public string Certification { get; set; }
 
+        /// <summary>Gets or sets the content country code of the movie.<para>Nullable</para></summary>
         public string CountryCode { get; set; }
 
+        /// <summary>Gets or sets the comment count of the movie.<para>Nullable</para></summary>
         public int? CommentCount { get; set; }
     }
 }

@@ -23,6 +23,7 @@
         /// <summary>Gets or sets the Trakt show. See also <seealso cref="ITraktShow" />.<para>Nullable</para></summary>
         public ITraktShow Show { get; set; }
 
+        /// <summary>Gets or sets the show title.<para>Nullable</para></summary>
         public string Title
         {
             get { return Show?.Title; }
@@ -34,6 +35,7 @@
             }
         }
 
+        /// <summary>Gets or sets the show release year (first episode of the first season).</summary>
         public int? Year
         {
             get { return Show?.Year; }
@@ -45,6 +47,11 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets the collection of ids for the show for various web services.
+        /// See also <seealso cref="ITraktShowIds" />.
+        /// <para>Nullable</para>
+        /// </summary>
         public ITraktShowIds Ids
         {
             get { return Show?.Ids; }
@@ -56,6 +63,7 @@
             }
         }
 
+        /// <summary>Gets or sets the synopsis of the show.<para>Nullable</para></summary>
         public string Overview
         {
             get { return Show?.Overview; }
@@ -67,6 +75,7 @@
             }
         }
 
+        /// <summary>Gets or sets the UTC datetime when the first episode of the first season of the show was aired.</summary>
         public DateTime? FirstAired
         {
             get { return Show?.FirstAired; }
@@ -78,6 +87,7 @@
             }
         }
 
+        /// <summary>Gets or sets the air time of the show. See also <seealso cref="ITraktShowAirs" />.<para>Nullable</para></summary>
         public ITraktShowAirs Airs
         {
             get { return Show?.Airs; }
@@ -89,6 +99,7 @@
             }
         }
 
+        /// <summary>Gets or sets the runtime for the show's episodes, in minutes.</summary>
         public int? Runtime
         {
             get { return Show?.Runtime; }
@@ -100,6 +111,7 @@
             }
         }
 
+        /// <summary>Gets or sets the content certification of the show.<para>Nullable</para></summary>
         public string Certification
         {
             get { return Show?.Certification; }
@@ -111,6 +123,7 @@
             }
         }
 
+        /// <summary>Gets or sets the producing network name of the show.<para>Nullable</para></summary>
         public string Network
         {
             get { return Show?.Network; }
@@ -122,6 +135,7 @@
             }
         }
 
+        /// <summary>Gets or sets the two letter language code for the country in which the show is produced.<para>Nullable</para></summary>
         public string CountryCode
         {
             get { return Show?.CountryCode; }
@@ -133,6 +147,7 @@
             }
         }
 
+        /// <summary>Gets or sets the web address of a trailer for the show.<para>Nullable</para></summary>
         public string Trailer
         {
             get { return Show?.Trailer; }
@@ -144,6 +159,7 @@
             }
         }
 
+        /// <summary>Gets or sets the web address of the homepage of the show.<para>Nullable</para></summary>
         public string Homepage
         {
             get { return Show?.Homepage; }
@@ -155,6 +171,7 @@
             }
         }
 
+        /// <summary>Gets or sets the show's current status. See also <seealso cref="TraktShowStatus" />.<para>Nullable</para></summary>
         public TraktShowStatus Status
         {
             get { return Show?.Status; }
@@ -166,6 +183,7 @@
             }
         }
 
+        /// <summary>Gets or sets the average user rating of the show.</summary>
         public float? Rating
         {
             get { return Show?.Rating; }
@@ -177,6 +195,7 @@
             }
         }
 
+        /// <summary>Gets or sets the number of votes for the show.</summary>
         public int? Votes
         {
             get { return Show?.Votes; }
@@ -188,6 +207,7 @@
             }
         }
 
+        /// <summary>Gets or sets the UTC datetime when the show was last updated.</summary>
         public DateTime? UpdatedAt
         {
             get { return Show?.UpdatedAt; }
@@ -199,6 +219,7 @@
             }
         }
 
+        /// <summary>Gets or sets the two letter language code of the show.<para>Nullable</para></summary>
         public string LanguageCode
         {
             get { return Show?.LanguageCode; }
@@ -210,6 +231,7 @@
             }
         }
 
+        /// <summary>Gets or sets the list of translation language codes (two letters) for the show.<para>Nullable</para></summary>
         public IEnumerable<string> AvailableTranslationLanguageCodes
         {
             get { return Show?.AvailableTranslationLanguageCodes; }
@@ -221,6 +243,7 @@
             }
         }
 
+        /// <summary>Gets or sets the collection of Trakt genre slugs for the show.<para>Nullable</para></summary>
         public IEnumerable<string> Genres
         {
             get { return Show?.Genres; }
@@ -232,6 +255,7 @@
             }
         }
 
+        /// <summary>Gets or sets the absolute number of already aired episodes in all seasons of the show.</summary>
         public int? AiredEpisodes
         {
             get { return Show?.AiredEpisodes; }
@@ -243,6 +267,7 @@
             }
         }
 
+        /// <summary>Gets or sets the collection of Trakt seasons for the show. See also <seealso cref="ITraktSeason" />.<para>Nullable</para></summary>
         public IEnumerable<ITraktSeason> Seasons
         {
             get { return Show?.Seasons; }
@@ -254,6 +279,7 @@
             }
         }
 
+        /// <summary>Gets or sets the comment count of the show.<para>Nullable</para></summary>
         public int? CommentCount
         {
             get { return Show?.CommentCount; }

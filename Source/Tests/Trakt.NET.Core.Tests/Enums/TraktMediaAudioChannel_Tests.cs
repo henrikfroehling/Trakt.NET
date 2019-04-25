@@ -14,16 +14,24 @@
         {
             var allValues = TraktEnumeration.GetAll<TraktMediaAudioChannel>();
 
+<<<<<<< HEAD
             allValues.Should().NotBeNull().And.HaveCount(18);
+=======
+            allValues.Should().NotBeNull().And.HaveCount(12);
+>>>>>>> release-1.0.0
             allValues.Should().Contain(new List<TraktMediaAudioChannel>() { TraktMediaAudioChannel.Unspecified, TraktMediaAudioChannel.Channels_1_0,
                                                                             TraktMediaAudioChannel.Channels_2_0, TraktMediaAudioChannel.Channels_2_1,
                                                                             TraktMediaAudioChannel.Channels_3_0, TraktMediaAudioChannel.Channels_3_1,
                                                                             TraktMediaAudioChannel.Channels_4_0, TraktMediaAudioChannel.Channels_4_1,
                                                                             TraktMediaAudioChannel.Channels_5_0, TraktMediaAudioChannel.Channels_5_1,
+<<<<<<< HEAD
                                                                             TraktMediaAudioChannel.Channels_6_1, TraktMediaAudioChannel.Channels_7_1,
                                                                             TraktMediaAudioChannel.Channels_5_1_2, TraktMediaAudioChannel.Channels_5_1_4,
                                                                             TraktMediaAudioChannel.Channels_7_1_2, TraktMediaAudioChannel.Channels_7_1_4,
                                                                             TraktMediaAudioChannel.Channels_9_1, TraktMediaAudioChannel.Channels_10_1 });
+=======
+                                                                            TraktMediaAudioChannel.Channels_6_1, TraktMediaAudioChannel.Channels_7_1 });
+>>>>>>> release-1.0.0
         }
     }
 }

@@ -16,13 +16,6 @@
         public ITraktSyncMoviesLastActivities Movies { get; set; }
 
         /// <summary>
-        /// Gets or sets a collection of UTC datetimes of last activities for episodes.
-        /// See also <seealso cref="ITraktSyncEpisodesLastActivities" />.
-        /// <para>Nullable</para>
-        /// </summary>
-        public ITraktSyncEpisodesLastActivities Episodes { get; set; }
-
-        /// <summary>
         /// Gets or sets a collection of UTC datetimes of last activities for shows.
         /// See also <seealso cref="ITraktSyncShowsLastActivities" />.
         /// <para>Nullable</para>
@@ -35,6 +28,13 @@
         /// <para>Nullable</para>
         /// </summary>
         public ITraktSyncSeasonsLastActivities Seasons { get; set; }
+
+        /// <summary>
+        /// Gets or sets a collection of UTC datetimes of last activities for episodes.
+        /// See also <seealso cref="ITraktSyncEpisodesLastActivities" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        public ITraktSyncEpisodesLastActivities Episodes { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of UTC datetimes of last activities for comments.

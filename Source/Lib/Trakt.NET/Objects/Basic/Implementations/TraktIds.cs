@@ -49,6 +49,8 @@
             return string.Empty;
         }
 
+        /// <summary>Gets a string representation of the ids.</summary>
+        /// <returns>A string representation of the ids.</returns>
         public override string ToString()
         {
             var bestId = GetBestId();
