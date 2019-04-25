@@ -38,12 +38,4 @@
     <ProjectReference Include="..\Trakt.NET.Tests.Utility\Trakt.NET.Tests.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Core\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Services\TraktSerializationService\" />
-  </ItemGroup>
-
 </Project>

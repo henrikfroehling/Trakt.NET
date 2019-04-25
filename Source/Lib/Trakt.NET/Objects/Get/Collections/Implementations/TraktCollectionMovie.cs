@@ -162,8 +162,8 @@
             }
         }
 
-        public DateTime? MovieUpdatedAt
         /// <summary>Gets or sets the UTC datetime when the movie was last updated.</summary>
+        public DateTime? MovieUpdatedAt
         {
             get { return Movie?.UpdatedAt; }
 
