@@ -52,6 +52,9 @@
         internal const string COMMENT_LIKE_PROPERTY_NAME_LIKED_AT = "liked_at";
         internal const string COMMENT_LIKE_PROPERTY_NAME_USER = "user";
 
+        internal const string COUNTRY_PROPERTY_NAME_NAME = "name";
+        internal const string COUNTRY_PROPERTY_NAME_CODE = "code";
+
         internal const string CREW_MEMBER_PROPERTY_NAME_JOB = "job";
         internal const string CREW_MEMBER_PROPERTY_NAME_PERSON = "person";
 

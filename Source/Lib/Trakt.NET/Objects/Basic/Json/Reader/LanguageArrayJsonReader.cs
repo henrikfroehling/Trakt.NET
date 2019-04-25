@@ -25,7 +25,6 @@
                     language = await languageReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                 }
 
-
                 return languages;
             }
 

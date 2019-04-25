@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Basic;
     using TraktNet.Objects.Basic.Json.Reader;
     using Xunit;
 
@@ -19,7 +20,7 @@
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().Be("English");
@@ -35,7 +36,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().BeNull();
@@ -51,7 +52,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().Be("English");
@@ -67,7 +68,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().BeNull();
@@ -83,7 +84,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().Be("English");
@@ -99,7 +100,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktLanguage.Should().NotBeNull();
                 traktLanguage.Name.Should().BeNull();
@@ -112,7 +113,7 @@
         {
             var traktJsonReader = new LanguageObjectJsonReader();
 
-            var traktLanguage = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             traktLanguage.Should().BeNull();
         }
 
@@ -124,7 +125,7 @@
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
+                ITraktLanguage traktLanguage = await traktJsonReader.ReadObjectAsync(jsonReader);
                 traktLanguage.Should().BeNull();
             }
         }
