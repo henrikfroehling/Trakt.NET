@@ -36,17 +36,17 @@
         public ITraktMovie Movie { get; set; }
 
         /// <summary>
-        /// Gets or sets the episode, if <see cref="Type" /> is <see cref="TraktSyncType.Episode" />.
-        /// See also <seealso cref="ITraktEpisode" />.
-        /// <para>Nullable</para>
-        /// </summary>
-        public ITraktEpisode Episode { get; set; }
-
-        /// <summary>
         /// Gets or sets the show, if <see cref="Type" /> is <see cref="TraktSyncType.Episode" />.
         /// See also <seealso cref="ITraktShow" />.
         /// <para>Nullable</para>
         /// </summary>
         public ITraktShow Show { get; set; }
+
+        /// <summary>
+        /// Gets or sets the episode, if <see cref="Type" /> is <see cref="TraktSyncType.Episode" />.
+        /// See also <seealso cref="ITraktEpisode" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        public ITraktEpisode Episode { get; set; }
     }
 }

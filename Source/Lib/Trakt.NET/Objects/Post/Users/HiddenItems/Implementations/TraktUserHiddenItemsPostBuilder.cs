@@ -7,15 +7,34 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// This is a helper class to build a <see cref="ITraktUserHiddenItemsPost" />.
+    /// <para>
+    /// It is recommended to use this class to build an user hidden items post.<para /> 
+    /// An instance of this class can be obtained with <see cref="TraktUserHiddenItemsPost.Builder()" />.
+    /// </para>
+    /// </summary>
     public class TraktUserHiddenItemsPostBuilder
     {
         private readonly ITraktUserHiddenItemsPost _hiddenItemsPost;
 
+        /// <summary>Initializes a new instance of the <see cref="TraktUserHiddenItemsPostBuilder" /> class.</summary>
         public TraktUserHiddenItemsPostBuilder()
         {
             _hiddenItemsPost = new TraktUserHiddenItemsPost();
         }
 
+        /// <summary>Adds a <see cref="ITraktMovie" />, which will be added to the user hidden items post.</summary>
+        /// <param name="movie">The Trakt movie, which will be added.</param>
+        /// <returns>The current <see cref="TraktUserHiddenItemsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movie is null.
+        /// Thrown, if the given movie ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given movie has no valid ids set.
+        /// Thrown, if the given movie has an year set, which has more or less than four digits.
+        /// </exception>
         public TraktUserHiddenItemsPostBuilder AddMovie(ITraktMovie movie)
         {
             ValidateMovie(movie);
@@ -37,6 +56,18 @@
             return this;
         }
 
+        /// <summary>Adds a collection of <see cref="ITraktMovie" />s, which will be added to the hidden items post.</summary>
+        /// <param name="movies">A collection of Trakt movies, which will be added.</param>
+        /// <returns>The current <see cref="TraktUserHiddenItemsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movies collection is null.
+        /// Thrown, if one of the given movies is null.
+        /// Thrown, if one of the given movies' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given movies has no valid ids set.
+        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
+        /// </exception>
         public TraktUserHiddenItemsPostBuilder AddMovies(IEnumerable<ITraktMovie> movies)
         {
             if (movies == null)
@@ -51,6 +82,17 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the user hidden items post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <returns>The current <see cref="TraktUserHiddenItemsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
         public TraktUserHiddenItemsPostBuilder AddShow(ITraktShow show)
         {
             ValidateShow(show);
@@ -72,6 +114,18 @@
             return this;
         }
 
+        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the hidden items post.</summary>
+        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
+        /// <returns>The current <see cref="TraktUserHiddenItemsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
         public TraktUserHiddenItemsPostBuilder AddShows(IEnumerable<ITraktShow> shows)
         {
             if (shows == null)
@@ -86,6 +140,27 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the user hidden items post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="season">
+        /// A season number for a season in the given show. The complete season will be added to the hidden items list.
+        /// </param>
+        /// <param name="seasons">
+        /// An optional array of season numbers for seasons in the given show.
+        /// The complete seasons will be added to the hidden items list.
+        /// </param>
+        /// <returns>The current <see cref="TraktUserHiddenItemsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
         public TraktUserHiddenItemsPostBuilder AddShow(ITraktShow show, int season, params int[] seasons)
         {
             ValidateShow(show);
@@ -126,6 +201,25 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the hidden items post.</summary>
+        /// <param name="show">The Trakt show, which will be added.</param>
+        /// <param name="seasons">
+        /// An array of season numbers for seasons in the given show.
+        /// All seasons numbers will be added to the hidden items post.
+        /// </param>
+        /// <returns>The current <see cref="TraktUserHiddenItemsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given show is null.
+        /// Thrown, if the given show ids are null.
+        /// Thrown, if the given seasons array is null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given show has no valid ids set.
+        /// Thrown, if the given show has an year set, which has more or less than four digits.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if at least one of the given season numbers is below zero.
+        /// </exception>
         public TraktUserHiddenItemsPostBuilder AddShow(ITraktShow show, int[] seasons)
         {
             ValidateShow(show);
@@ -165,6 +259,14 @@
             return this;
         }
 
+        /// <summary>Adds a <see cref="ITraktSeason" />, which will be added to the user hidden items post.</summary>
+        /// <param name="season">The Trakt season, which will be added.</param>
+        /// <returns>The current <see cref="TraktUserHiddenItemsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given season is null.
+        /// Thrown, if the given season ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if the given season has no valid ids set.</exception>
         public TraktUserHiddenItemsPostBuilder AddSeason(ITraktSeason season)
         {
             ValidateSeason(season);
@@ -184,6 +286,15 @@
             return this;
         }
 
+        /// <summary>Adds a collection of <see cref="ITraktSeason" />s, which will be added to the hidden items post.</summary>
+        /// <param name="seasons">A collection of Trakt seasons, which will be added.</param>
+        /// <returns>The current <see cref="TraktUserHiddenItemsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given seasons is null.
+        /// Thrown, if one of the given seasons' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if one of the given seasons has no valid ids set.</exception>
         public TraktUserHiddenItemsPostBuilder AddSeasons(IEnumerable<ITraktSeason> seasons)
         {
             if (seasons == null)
@@ -198,6 +309,7 @@
             return this;
         }
 
+        /// <summary>Removes all already added movies, shows and seasons.</summary>
         public void Reset()
         {
             if (_hiddenItemsPost.Movies != null)
@@ -219,6 +331,11 @@
             }
         }
 
+        /// <summary>
+        /// Returns an <see cref="ITraktUserHiddenItemsPost" /> instance, which contains all
+        /// added movies, shows and seasons.
+        /// </summary>
+        /// <returns>An <see cref="ITraktUserHiddenItemsPost" /> instance.</returns>
         public ITraktUserHiddenItemsPost Build() => _hiddenItemsPost;
 
         private void ValidateMovie(ITraktMovie movie)

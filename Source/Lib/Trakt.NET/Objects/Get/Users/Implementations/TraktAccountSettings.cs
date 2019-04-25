@@ -12,6 +12,7 @@
         /// <summary>Gets or sets the user's cover image url.<para>Nullable</para></summary>
         public string CoverImage { get; set; }
 
+        /// <summary>Gets or sets the user's token.<para>Nullable</para></summary>
         public string Token { get; set; }
     }
 }

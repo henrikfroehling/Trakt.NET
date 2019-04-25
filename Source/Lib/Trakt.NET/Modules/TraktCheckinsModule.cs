@@ -41,7 +41,10 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktMovieCheckinPostResponse" /> instance, containing the successfully checked in movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -93,7 +96,10 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
@@ -143,7 +149,10 @@
         /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
         /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
         /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given show's title is null or empty.</exception>
@@ -187,7 +196,10 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/checkin/delete-any-active-checkins">"Trakt API Doc - Checkin: Checkin"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktNoContentResponse> DeleteAnyActiveCheckinsAsync(CancellationToken cancellationToken = default)
         {

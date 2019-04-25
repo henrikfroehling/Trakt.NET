@@ -5,6 +5,7 @@
     using Modules;
     using Objects.Authentication;
     using Requests.Handler;
+    using System.Net.Http;
 
     /// <summary>
     /// Provides access to all functionality of this library.
@@ -39,7 +40,10 @@
 
         /// <summary>Initializes a new instance of the <see cref="TraktClient" /> class.</summary>
         /// <param name="clientId">The Trakt Client Id. See <seealso cref="ClientId" />.</param>
-        /// <param name="httpClientProvider"></param>
+        /// <param name="httpClientProvider">
+        /// A custom <see cref="HttpClient" /> provider, which can be used to provide a <see cref="HttpClient" /> with a custom <see cref="HttpMessageHandler" />.
+        /// If not set, a default implementation (<see cref="Requests.Handler.HttpClientProvider" />) will be used.
+        /// </param>
         public TraktClient(string clientId, IHttpClientProvider httpClientProvider = default) : this(httpClientProvider)
         {
             ClientId = clientId;
