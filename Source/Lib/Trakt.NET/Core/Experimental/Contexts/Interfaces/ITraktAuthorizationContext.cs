@@ -9,6 +9,5 @@
         string ClientSecret { get; set; }
 
         ITraktAuthorization Authorization { get; set; }
-
     }
 }
