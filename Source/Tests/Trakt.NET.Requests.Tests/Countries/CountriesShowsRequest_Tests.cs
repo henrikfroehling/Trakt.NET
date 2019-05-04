@@ -1,4 +1,4 @@
-﻿namespace Trakt.NET.Requests.Tests.Countries
+﻿namespace TraktNet.Requests.Tests.Countries
 {
     using FluentAssertions;
     using Trakt.NET.Tests.Utility.Traits;

@@ -1,4 +1,4 @@
-﻿namespace Trakt.NET.Objects.Tests.Post.Users.Json.Reader
+﻿namespace TraktNet.Objects.Tests.Post.Users.Json.Reader
 {
     using FluentAssertions;
     using System.Collections.Generic;

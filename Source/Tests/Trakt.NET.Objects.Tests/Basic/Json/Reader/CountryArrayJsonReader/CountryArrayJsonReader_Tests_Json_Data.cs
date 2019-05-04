@@ -1,4 +1,4 @@
-﻿namespace Trakt.NET.Objects.Tests.Basic.Json.Reader
+﻿namespace TraktNet.Objects.Tests.Basic.Json.Reader
 {
     public partial class CountryArrayJsonReader_Tests
     {

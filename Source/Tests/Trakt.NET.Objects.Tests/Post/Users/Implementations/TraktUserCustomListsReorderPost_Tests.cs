@@ -1,4 +1,4 @@
-﻿namespace Trakt.NET.Objects.Tests.Post.Users.Implementations
+﻿namespace TraktNet.Objects.Tests.Post.Users.Implementations
 {
     using FluentAssertions;
     using System.Collections.Generic;
