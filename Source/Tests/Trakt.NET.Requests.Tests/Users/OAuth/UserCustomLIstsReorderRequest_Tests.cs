@@ -22,7 +22,7 @@
         public void Test_UserCustomListsReorderRequest_Has_Valid_UriTemplate()
         {
             var request = new UserCustomListsReorderRequest();
-            request.UriTemplate.Should().Be("users/{username}/lists/reorders");
+            request.UriTemplate.Should().Be("users/{username}/lists/reorder");
         }
 
         [Fact]
