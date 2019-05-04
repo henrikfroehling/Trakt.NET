@@ -15,7 +15,7 @@
             if (obj.Rank != null)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_CUSTOM_LISTS_REORDER_POST_PROPERTY_NAME_RANK, cancellationToken).ConfigureAwait(false);
-                await JsonWriterHelper.WriteUnsignedIntArrayAsync(jsonWriter, obj.Rank, cancellationToken).ConfigureAwait(false);
+                await JsonWriterHelper.WriteUnsignedIntegerArrayAsync(jsonWriter, obj.Rank, cancellationToken).ConfigureAwait(false);
             }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);

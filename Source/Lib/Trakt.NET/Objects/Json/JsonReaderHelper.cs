@@ -134,7 +134,7 @@
             return new Pair<bool, uint>(false, default);
         }
 
-        internal static async Task<Pair<bool, ulong>> ReadUnsignedLongIntegerAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        internal static async Task<Pair<bool, ulong>> ReadUnsignedLongValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken))
             {

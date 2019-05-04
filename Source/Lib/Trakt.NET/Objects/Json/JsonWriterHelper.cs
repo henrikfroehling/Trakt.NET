@@ -47,7 +47,7 @@
             await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
         }
 
-        internal static async Task WriteUnsignedIntArrayAsync(JsonTextWriter jsonWriter, IEnumerable<uint> values, CancellationToken cancellationToken = default)
+        internal static async Task WriteUnsignedIntegerArrayAsync(JsonTextWriter jsonWriter, IEnumerable<uint> values, CancellationToken cancellationToken = default)
         {
             if (jsonWriter == null)
                 throw new ArgumentNullException(nameof(jsonWriter));

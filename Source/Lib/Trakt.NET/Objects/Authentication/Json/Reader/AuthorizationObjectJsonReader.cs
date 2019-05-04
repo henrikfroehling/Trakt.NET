@@ -48,7 +48,7 @@
                             break;
                         case JsonProperties.AUTHORIZATION_PROPERTY_NAME_CREATED_AT:
                             {
-                                var value = await JsonReaderHelper.ReadUnsignedLongIntegerAsync(jsonReader, cancellationToken);
+                                var value = await JsonReaderHelper.ReadUnsignedLongValueAsync(jsonReader, cancellationToken);
 
                                 if (value.First)
                                     traktAuthorization.CreatedAtTimestamp = value.Second;
