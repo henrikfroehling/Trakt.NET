@@ -944,8 +944,13 @@
         internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_SORT_BY = "sort_by";
         internal const string USER_CUSTOM_LIST_POST_PROPERTY_NAME_SORT_HOW = "sort_how";
 
+        internal const string USER_CUSTOM_LISTS_REORDER_POST_PROPERTY_NAME_RANK = "rank";
+
         // post users responses
         internal const string USER_FOLLOW_USER_POST_RESPONSE_PROPERTY_NAME_APPROVED_AT = "approved_at";
         internal const string USER_FOLLOW_USER_POST_RESPONSE_PROPERTY_NAME_USER = "user";
+
+        internal const string USER_CUSTOM_LISTS_REORDER_POST_RESPONSE_PROPERTY_NAME_UPDATED = "updated";
+        internal const string USER_CUSTOM_LISTS_REORDER_POST_RESPONSE_PROPERTY_NAME_SKIPPED_IDS = "skipped_ids";
     }
 }

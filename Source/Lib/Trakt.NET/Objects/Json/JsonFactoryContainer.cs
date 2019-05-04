@@ -374,8 +374,10 @@
 
             // user post objects
             s_jsonIOFactories.Add(typeof(ITraktUserCustomListPost), new UserCustomListPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserCustomListsReorderPost), new UserCustomListsReorderPostJsonIOFactory());
 
             // user response post objects
+            s_jsonIOFactories.Add(typeof(ITraktUserCustomListsReorderPostResponse), new UserCustomListsReorderPostResponseJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserFollowUserPostResponse), new UserFollowUserPostResponseJsonIOFactory());
 
             // user statistic objects

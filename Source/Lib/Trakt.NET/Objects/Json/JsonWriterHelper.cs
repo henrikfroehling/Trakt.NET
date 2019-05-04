@@ -47,6 +47,24 @@
             await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
         }
 
+        internal static async Task WriteUnsignedIntArrayAsync(JsonTextWriter jsonWriter, IEnumerable<uint> values, CancellationToken cancellationToken = default)
+        {
+            if (jsonWriter == null)
+                throw new ArgumentNullException(nameof(jsonWriter));
+
+            if (values == null)
+                throw new ArgumentNullException(nameof(values));
+
+            var writerTasks = new List<Task>();
+            await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
+
+            foreach (uint value in values)
+                writerTasks.Add(jsonWriter.WriteValueAsync(value, cancellationToken));
+
+            await Task.WhenAll(writerTasks).ConfigureAwait(false);
+            await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
+        }
+
         internal static async Task WriteDistributionAsync(JsonTextWriter jsonWriter, IDictionary<string, int> distribution, CancellationToken cancellationToken = default)
         {
             if (jsonWriter == null)
