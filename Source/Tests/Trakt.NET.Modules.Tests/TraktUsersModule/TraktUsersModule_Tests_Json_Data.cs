@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Modules.Tests.TraktUsersModule
 {
     using System;
+    using System.Collections.Generic;
     using TraktNet.Enums;
     using TraktNet.Requests.Parameters;
 
@@ -51,6 +52,7 @@
         private readonly TraktAccessScope NEW_PRIVACY = TraktAccessScope.Private;
         private const bool NEW_DISPLAY_NUMBERS = false;
         private const bool NEW_ALLOW_COMMENTS = false;
+        private readonly IEnumerable<uint> REORDERED_CUSTOM_LISTS = new List<uint> { 823, 224, 88768, 356456, 245, 2, 890 };
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 
@@ -1382,6 +1384,14 @@
                   ""shows"": [],
                   ""seasons"": []
                 }
+              }";
+
+        private const string CUSTOM_LISTS_REORDER_POST_RESPONSE_JSON =
+            @"{
+                ""updated"": 6,
+                ""skipped_ids"": [
+                  2
+                ]
               }";
     }
 }

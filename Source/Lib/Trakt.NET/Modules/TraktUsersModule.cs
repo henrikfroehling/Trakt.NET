@@ -652,6 +652,39 @@
         }
 
         /// <summary>
+        /// Reorders an user's custom lists.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/lists/reorder-a-user's-lists">"Trakt API Doc - Users: Reorder Lists"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the custom lists should be reordered.</param>
+        /// <param name="reorderedListsRank">A collection of list ids. Represents the new order of an user's custom lists.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktUserCustomListsReorderPostResponse" /> instance containing information about the successfully updated custom lists order.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedListsRank"/> is null.</exception>
+        public Task<TraktResponse<ITraktUserCustomListsReorderPostResponse>> ReorderCustomListsAsync(string usernameOrSlug, IEnumerable<uint> reorderedListsRank,
+                                                                                                     CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListsReorderRequest
+            {
+                Username = usernameOrSlug,
+                RequestBody = new TraktUserCustomListsReorderPost
+                {
+                    Rank = reorderedListsRank
+                }
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Deletes an user's custom list.
         /// <para>OAuth authorization required.</para>
         /// <para>
