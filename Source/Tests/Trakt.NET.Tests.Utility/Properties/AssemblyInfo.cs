@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Trakt.NET.Objects.Authentication.Tests")]
 [assembly: InternalsVisibleTo("Trakt.NET.Objects.Basic.Tests")]
 [assembly: InternalsVisibleTo("Trakt.NET.Objects.Get.Tests")]
+[assembly: InternalsVisibleTo("Trakt.NET.Objects.Post.Tests")]
 [assembly: InternalsVisibleTo("Trakt.NET.Objects.Tests")]
 [assembly: InternalsVisibleTo("Trakt.NET.Requests.Tests")]
 
