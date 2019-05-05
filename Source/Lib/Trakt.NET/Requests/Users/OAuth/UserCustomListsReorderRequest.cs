@@ -26,10 +26,10 @@
             base.Validate();
 
             if (Username == null)
-                throw new ArgumentNullException(nameof(Username));
+                throw new ArgumentNullException($"{nameof(Username)} must not be null", default(Exception));
 
             if (Username == string.Empty || Username.ContainsSpace())
-                throw new ArgumentException("username not valid", nameof(Username));
+                throw new ArgumentException($"{nameof(Username)} is not valid");
         }
     }
 }
