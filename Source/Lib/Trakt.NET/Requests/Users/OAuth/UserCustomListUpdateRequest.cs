@@ -8,13 +8,13 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class UserCustomListUpdateRequest : APutRequest<ITraktList, TraktUserCustomListPost>, IHasId
+    internal sealed class UserCustomListUpdateRequest : APutRequest<ITraktList, ITraktUserCustomListPost>, IHasId
     {
         internal string Username { get; set; }
 
         public string Id { get; set; }
 
-        public override TraktUserCustomListPost RequestBody { get; set; }
+        public override ITraktUserCustomListPost RequestBody { get; set; }
 
         public RequestObjectType RequestObjectType => RequestObjectType.Lists;
 
