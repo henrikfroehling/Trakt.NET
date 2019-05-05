@@ -1,4 +1,4 @@
-﻿namespace Trakt.NET.Objects.Tests.Basic.Json.Writer
+﻿namespace TraktNet.Objects.Tests.Basic.Json.Writer
 {
     using FluentAssertions;
     using System;

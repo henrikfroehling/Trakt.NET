@@ -48,6 +48,24 @@
             return default;
         }
 
+        internal static async Task<IEnumerable<uint>> ReadUnsignedIntegerArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        {
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
+            {
+                var values = new List<uint>();
+
+                while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.Integer)
+                {
+                    if (uint.TryParse(jsonReader.Value.ToString(), out uint value))
+                        values.Add(value);
+                }
+
+                return values;
+            }
+
+            return default;
+        }
+
         internal static async Task<Pair<bool, DateTime>> ReadDateTimeValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken))
@@ -116,7 +134,7 @@
             return new Pair<bool, uint>(false, default);
         }
 
-        internal static async Task<Pair<bool, ulong>> ReadUnsignedLongIntegerAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        internal static async Task<Pair<bool, ulong>> ReadUnsignedLongValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken))
             {

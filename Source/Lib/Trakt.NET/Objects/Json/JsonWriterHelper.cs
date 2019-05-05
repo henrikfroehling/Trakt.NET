@@ -10,12 +10,7 @@
     {
         internal static async Task WriteStringArrayAsync(JsonTextWriter jsonWriter, IEnumerable<string> values, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
-
-            if (values == null)
-                throw new ArgumentNullException(nameof(values));
-
+            CheckValues(jsonWriter, values);
             var writerTasks = new List<Task>();
             await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
 
@@ -31,12 +26,7 @@
 
         internal static async Task WriteUnsignedLongArrayAsync(JsonTextWriter jsonWriter, IEnumerable<ulong> values, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
-
-            if (values == null)
-                throw new ArgumentNullException(nameof(values));
-
+            CheckValues(jsonWriter, values);
             var writerTasks = new List<Task>();
             await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
 
@@ -47,14 +37,22 @@
             await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
         }
 
+        internal static async Task WriteUnsignedIntegerArrayAsync(JsonTextWriter jsonWriter, IEnumerable<uint> values, CancellationToken cancellationToken = default)
+        {
+            CheckValues(jsonWriter, values);
+            var writerTasks = new List<Task>();
+            await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
+
+            foreach (uint value in values)
+                writerTasks.Add(jsonWriter.WriteValueAsync(value, cancellationToken));
+
+            await Task.WhenAll(writerTasks).ConfigureAwait(false);
+            await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
+        }
+
         internal static async Task WriteDistributionAsync(JsonTextWriter jsonWriter, IDictionary<string, int> distribution, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
-
-            if (distribution == null)
-                throw new ArgumentNullException(nameof(distribution));
-
+            CheckValues(jsonWriter, distribution);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             for (int i = 1; i <= 10; i++)
@@ -76,6 +74,24 @@
             }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
+        }
+
+        private static void CheckValues<T>(JsonTextWriter jsonWriter, IEnumerable<T> values)
+        {
+            if (jsonWriter == null)
+                throw new ArgumentNullException(nameof(jsonWriter));
+
+            if (values == null)
+                throw new ArgumentNullException(nameof(values));
+        }
+
+        private static void CheckValues(JsonTextWriter jsonWriter, IDictionary<string, int> distribution)
+        {
+            if (jsonWriter == null)
+                throw new ArgumentNullException(nameof(jsonWriter));
+
+            if (distribution == null)
+                throw new ArgumentNullException(nameof(distribution));
         }
     }
 }

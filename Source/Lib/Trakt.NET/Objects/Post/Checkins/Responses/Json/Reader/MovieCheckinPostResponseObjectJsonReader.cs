@@ -28,7 +28,7 @@
                     {
                         case JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_ID:
                             {
-                                var value = await JsonReaderHelper.ReadUnsignedLongIntegerAsync(jsonReader, cancellationToken);
+                                var value = await JsonReaderHelper.ReadUnsignedLongValueAsync(jsonReader, cancellationToken);
 
                                 if (value.First)
                                     checkinMovieResponse.Id = value.Second;

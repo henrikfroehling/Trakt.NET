@@ -1,4 +1,4 @@
-﻿namespace Trakt.NET.Objects.Tests.Basic.Implementations
+﻿namespace TraktNet.Objects.Tests.Basic.Implementations
 {
     using FluentAssertions;
     using System.Threading.Tasks;
