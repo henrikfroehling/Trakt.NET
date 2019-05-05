@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Tests.Post.Comments.Responses.Json.Reader
+﻿namespace TraktNet.Objects.Post.Tests.Comments.Responses.Json.Reader
 {
     using FluentAssertions;
     using Newtonsoft.Json;
