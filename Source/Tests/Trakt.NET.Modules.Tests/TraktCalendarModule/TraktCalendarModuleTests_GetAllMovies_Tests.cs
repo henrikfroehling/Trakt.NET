@@ -345,6 +345,7 @@
             try
             {
                 await client.Calendar.GetAllMoviesAsync();
+                Assert.False(true);
             }
             catch (Exception exception)
             {

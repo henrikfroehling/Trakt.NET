@@ -345,6 +345,7 @@
             try
             {
                 await client.Calendar.GetUserNewShowsAsync();
+                Assert.False(true);
             }
             catch (Exception exception)
             {

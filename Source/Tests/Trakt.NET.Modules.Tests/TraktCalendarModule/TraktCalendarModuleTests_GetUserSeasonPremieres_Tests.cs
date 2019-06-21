@@ -345,6 +345,7 @@
             try
             {
                 await client.Calendar.GetUserSeasonPremieresAsync();
+                Assert.False(true);
             }
             catch (Exception exception)
             {
