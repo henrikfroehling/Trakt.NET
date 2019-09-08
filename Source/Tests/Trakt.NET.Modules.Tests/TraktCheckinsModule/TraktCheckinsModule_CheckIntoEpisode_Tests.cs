@@ -988,7 +988,7 @@
         [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
         [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
         [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
-        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktCheckinException))]
         [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
         [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
         [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
