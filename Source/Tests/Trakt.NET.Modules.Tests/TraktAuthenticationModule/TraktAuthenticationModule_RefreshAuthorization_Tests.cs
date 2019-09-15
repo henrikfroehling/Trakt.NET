@@ -55,8 +55,40 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktAuthenticationOAuthException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktAuthenticationModule_RefreshAuthorization_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, statusCode);
+            client.Authorization = MockAuthorization;
+
+            try
+            {
+                await client.Authentication.RefreshAuthorizationAsync();
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
+        }
+
         [Fact]
-        public async Task Test_TraktAuthenticationModule_RefreshAuthorization_Throws_AuthenticationOAuthException_Unauthorized()
+        public async Task Test_TraktAuthenticationModule_RefreshAuthorization_Throws_AuthenticationOAuthException()
         {
             string errorJson = await TestUtility.SerializeObject(MockAuthorizationError);
             errorJson.Should().NotBeNullOrEmpty();
@@ -66,156 +98,6 @@
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
             act.Should().Throw<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationRefreshErrorMessage);
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_AuthenticationOAuthException_NotFound()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.NotFound);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationOAuthException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.BadRequest);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.Forbidden);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.MethodNotAllowed);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.Conflict);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.InternalServerError);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.BadGateway);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)412);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)422);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)429);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)503);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)504);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)520);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)521);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)522);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
@@ -364,6 +246,38 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktAuthenticationOAuthException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, statusCode);
+            client.Authorization = MockAuthorization;
+
+            try
+            {
+                await client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
+        }
+
         [Fact]
         public async Task Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_AuthenticationOAuthException()
         {
@@ -375,156 +289,6 @@
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
             act.Should().Throw<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationRefreshErrorMessage);
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_NotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.NotFound);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktAuthenticationOAuthException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.BadRequest);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.Forbidden);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.MethodNotAllowed);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.Conflict);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.InternalServerError);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.BadGateway);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)412);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)422);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)429);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)503);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)504);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)520);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)521);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)522);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN);
-            act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
@@ -628,6 +392,38 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktAuthenticationOAuthException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, statusCode);
+            client.Authorization = MockAuthorization;
+
+            try
+            {
+                await client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
+        }
+
         [Fact]
         public async Task Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_AuthenticationOAuthException()
         {
@@ -639,156 +435,6 @@
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
             act.Should().Throw<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationRefreshErrorMessage);
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_NotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.NotFound);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktAuthenticationOAuthException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.BadRequest);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.Forbidden);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.MethodNotAllowed);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.Conflict);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.InternalServerError);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.BadGateway);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)412);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)422);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)429);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)503);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)504);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)520);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)521);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)522);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId);
-            act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
@@ -885,6 +531,38 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktAuthenticationOAuthException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, statusCode);
+            client.Authorization = MockAuthorization;
+
+            try
+            {
+                await client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
+        }
+
         [Fact]
         public async Task Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_AuthenticationOAuthException()
         {
@@ -896,156 +574,6 @@
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
             act.Should().Throw<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationRefreshErrorMessage);
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_NotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.NotFound);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktAuthenticationOAuthException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.BadRequest);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.Forbidden);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.MethodNotAllowed);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.Conflict);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.InternalServerError);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.BadGateway);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)412);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)422);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)429);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)503);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)504);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)520);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)521);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)522);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]
@@ -1135,6 +663,38 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktAuthenticationOAuthException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        {
+            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, statusCode);
+            client.Authorization = MockAuthorization;
+
+            try
+            {
+                await client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
+        }
+
         [Fact]
         public async Task Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_AuthenticationOAuthException()
         {
@@ -1146,156 +706,6 @@
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
             act.Should().Throw<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationRefreshErrorMessage);
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_NotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.NotFound);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktAuthenticationOAuthException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.BadRequest);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.Forbidden);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.MethodNotAllowed);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.Conflict);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.InternalServerError);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, HttpStatusCode.BadGateway);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)412);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)422);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)429);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)503);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)504);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)520);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)521);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_RefreshAuthorization_With_Token_And_ClientId_And_ClientSecret_And_RedirectUri_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(REFRESH_AUTHORIZATION_URI, (HttpStatusCode)522);
-            client.Authorization = MockAuthorization;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.RefreshAuthorizationAsync(TestConstants.MOCK_REFRESH_TOKEN, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktServerUnavailableException>();
         }
 
         [Fact]

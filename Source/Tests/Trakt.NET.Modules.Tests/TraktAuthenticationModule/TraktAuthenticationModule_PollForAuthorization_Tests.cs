@@ -100,139 +100,36 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_AuthorizationException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktAuthenticationModule_PollForAuthorization_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Unauthorized);
+            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, statusCode);
             client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktAuthorizationException>();
-        }
 
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_AuthenticationDeviceException_NotFound()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.NotFound);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Forbidden);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.MethodNotAllowed);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_AuthenticationDeviceException_Conflict()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Conflict);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.InternalServerError);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.BadGateway);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)412);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)422);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_AuthenticationDeviceException_RateLimit()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)429);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)503);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)504);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)520);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)521);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)522);
-            client.Authentication.Device = MockDevice;
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+            try
+            {
+                await client.Authentication.PollForAuthorizationAsync();
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
         [Fact]
@@ -394,124 +291,35 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_AuthorizationException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktAuthenticationModule_PollForAuthorization_Wíth_Device_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Unauthorized);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktAuthorizationException>();
-        }
+            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, statusCode);
 
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_AuthenticationDeviceException_NotFound()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.NotFound);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Forbidden);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.MethodNotAllowed);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_AuthenticationDeviceException_Conflict()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Conflict);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.InternalServerError);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.BadGateway);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)412);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)422);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_AuthenticationDeviceException_RateLimit()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)429);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)503);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)504);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)520);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)521);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)522);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<TraktServerUnavailableException>();
+            try
+            {
+                await client.Authentication.PollForAuthorizationAsync(MockDevice);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
         [Fact]
@@ -658,124 +466,35 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_AuthorizationException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_And_ClientId_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Unauthorized);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktAuthorizationException>();
-        }
+            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, statusCode);
 
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_AuthenticationDeviceException_NotFound()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.NotFound);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Forbidden);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.MethodNotAllowed);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_AuthenticationDeviceException_Conflict()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Conflict);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.InternalServerError);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.BadGateway);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)412);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)422);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_AuthenticationDeviceException_RateLimit()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)429);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)503);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)504);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)520);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)521);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)522);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<TraktServerUnavailableException>();
+            try
+            {
+                await client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
         [Fact]
@@ -920,124 +639,35 @@
             clientAuthorization.IsExpired.Should().BeFalse();
         }
 
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_AuthorizationException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktAuthenticationDeviceException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_And_ClientId_And_ClientSecret_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Unauthorized);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktAuthorizationException>();
-        }
+            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, statusCode);
 
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_AuthenticationDeviceException_NotFound()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.NotFound);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Forbidden);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.MethodNotAllowed);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_AuthenticationDeviceException_Conflict()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.Conflict);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.InternalServerError);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, HttpStatusCode.BadGateway);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)412);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)422);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_AuthenticationDeviceException_RateLimit()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)429);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktAuthenticationDeviceException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)503);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)504);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)520);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)521);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_WIth_Device_And_ClientId_And_ClientSecret_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient(POLL_FOR_AUTHORIZATION_URI, (HttpStatusCode)522);
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktServerUnavailableException>();
+            try
+            {
+                await client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, TraktClientSecret);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
         [Fact]
