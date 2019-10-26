@@ -27,7 +27,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		..\.github\CODEOWNERS = ..\.github\CODEOWNERS
 		..\coding_style.md = ..\coding_style.md
 		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
-		..\.github\ISSUE_TEMPLATE\Custom.md = ..\.github\ISSUE_TEMPLATE\Custom.md
 		..\LICENSE.md = ..\LICENSE.md
 		..\PublishRelease.txt = ..\PublishRelease.txt
 		..\README.md = ..\README.md
