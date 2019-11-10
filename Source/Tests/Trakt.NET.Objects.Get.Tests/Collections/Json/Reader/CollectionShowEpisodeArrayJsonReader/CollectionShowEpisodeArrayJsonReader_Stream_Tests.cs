@@ -490,8 +490,8 @@
         {
             var jsonReader = new CollectionShowEpisodeArrayJsonReader();
 
-            var traktEpisodeCollectionProgress = await jsonReader.ReadArrayAsync(default(Stream));
-            traktEpisodeCollectionProgress.Should().BeNull();
+            var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(default(Stream));
+            traktCollectionShowEpisodes.Should().BeNull();
         }
 
         [Fact]
@@ -501,8 +501,8 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                var traktEpisodeCollectionProgress = await jsonReader.ReadArrayAsync(stream);
-                traktEpisodeCollectionProgress.Should().BeNull();
+                var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(stream);
+                traktCollectionShowEpisodes.Should().BeNull();
             }
         }
     }
