@@ -1,10 +1,13 @@
-[Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/packages/Trakt.NET.svg?style=social)](https://twitter.com/intent/tweet?url=https://www.nuget.org/packages/Trakt.NET&via=henrikfroehling&hashtags=TraktNET)[![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/henrikfroehling)
+[Trakt.NET](https://github.com/henrikfroehling/Trakt.NET)
+[![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET&hashtags=Trakt,Nuget,CSharp)
+[![Twitter Follow](https://img.shields.io/twitter/follow/henrikfroehling?style=social)](https://twitter.com/henrikfroehling)
 ===
 
 _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApiSharp).**_
 
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
 
+[![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-green)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
 [![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0beta-orange.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.0.0-beta)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
