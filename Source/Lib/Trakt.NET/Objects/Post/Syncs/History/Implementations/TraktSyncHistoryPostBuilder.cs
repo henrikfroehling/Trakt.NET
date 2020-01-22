@@ -445,7 +445,7 @@
             if (!movie.Ids.HasAnyId)
                 throw new ArgumentException("no movie ids set or valid", nameof(movie.Ids));
 
-            if (movie.Year.HasValue && movie.Year.Value.ToString().Length != 4)
+            if (!movie.Year.HasValue)
                 throw new ArgumentException("movie year not valid", nameof(movie.Year));
         }
 
@@ -460,7 +460,7 @@
             if (!show.Ids.HasAnyId)
                 throw new ArgumentException("no show ids set or valid", nameof(show.Ids));
 
-            if (show.Year.HasValue && show.Year.Value.ToString().Length != 4)
+            if (!show.Year.HasValue)
                 throw new ArgumentException("show year not valid", nameof(show.Year));
         }
 
