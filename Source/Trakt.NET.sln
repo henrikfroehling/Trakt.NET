@@ -30,6 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
 		..\.github\ISSUE_TEMPLATE\feature_request.md = ..\.github\ISSUE_TEMPLATE\feature_request.md
 		..\LICENSE.md = ..\LICENSE.md
+		Lib\Trakt.NET\nuget.config = Lib\Trakt.NET\nuget.config
 		..\PublishRelease.txt = ..\PublishRelease.txt
 		..\README.md = ..\README.md
 		Lib\Trakt.NET\Trakt.NET.nuspec = Lib\Trakt.NET\Trakt.NET.nuspec
