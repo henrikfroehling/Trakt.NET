@@ -47,7 +47,7 @@
             if (obj.Released.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.MOVIE_PROPERTY_NAME_RELEASED, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.Released.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Released.Value.ToTraktDateString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Runtime.HasValue)
