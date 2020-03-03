@@ -18,8 +18,10 @@
         private const string HEADER_STARTDATE_KEY = "X-Start-Date";
         private const string HEADER_ENDDATE_KEY = "X-End-Date";
         private const string HEADER_PRIVATE_USER_KEY = "X-Private-User";
-        private const string HEADER_X_ITEM_ID = "X-Item-ID";
-        private const string HEADER_X_ITEM_TYPE = "X-Item-Type";
+        private const string HEADER_ITEM_ID = "X-Item-ID";
+        private const string HEADER_ITEM_TYPE = "X-Item-Type";
+        private const string HEADER_APPLIED_SORT_BY = "X-Applied-Sort-By";
+        private const string HEADER_APPLIED_SORT_HOW = "X-Applied-Sort-How";
 
         internal static void ParseResponseHeaderValues(ITraktResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
         {
@@ -53,6 +55,12 @@
             if (responseHeaders.TryGetValues(HEADER_SORT_HOW_KEY, out values))
                 headerResults.SortHow = values.First();
 
+            if (responseHeaders.TryGetValues(HEADER_APPLIED_SORT_BY, out values))
+                headerResults.AppliedSortBy = values.First();
+
+            if (responseHeaders.TryGetValues(HEADER_APPLIED_SORT_HOW, out values))
+                headerResults.AppliedSortHow = values.First();
+
             if (responseHeaders.TryGetValues(HEADER_PRIVATE_USER_KEY, out values))
             {
                 string strIsPrivateUser = values.First();
@@ -77,7 +85,7 @@
                     headerResults.EndDate = endDate.ToUniversalTime();
             }
 
-            if (responseHeaders.TryGetValues(HEADER_X_ITEM_ID, out values))
+            if (responseHeaders.TryGetValues(HEADER_ITEM_ID, out values))
             {
                 string strXItemId = values.First();
 
@@ -85,7 +93,7 @@
                     headerResults.ItemId = id;
             }
 
-            if (responseHeaders.TryGetValues(HEADER_X_ITEM_TYPE, out values))
+            if (responseHeaders.TryGetValues(HEADER_ITEM_TYPE, out values))
                 headerResults.ItemType = values.First();
         }
 
