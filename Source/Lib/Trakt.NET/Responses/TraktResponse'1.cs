@@ -20,6 +20,12 @@
         /// <summary>Gets the value of the set "sort-how" response header. Might not be set.</summary>
         public string SortHow { get; set; }
 
+        /// <summary>Gets the value of the set "applied-sort-by" response header. Might not be set.</summary>
+        public string AppliedSortBy { get; set; }
+
+        /// <summary>Gets the value of the set "applied-sort-how" response header. Might not be set.</summary>
+        public string AppliedSortHow { get; set; }
+
         /// <summary>Gets the value of the set "start-date" response header. Might not be set.</summary>
         public DateTime? StartDate { get; set; }
 
