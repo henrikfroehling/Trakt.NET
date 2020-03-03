@@ -82,11 +82,11 @@
                 string strXItemId = values.First();
 
                 if (int.TryParse(strXItemId, out int id))
-                    headerResults.XItemId = id;
+                    headerResults.ItemId = id;
             }
 
             if (responseHeaders.TryGetValues(HEADER_X_ITEM_TYPE, out values))
-                headerResults.XItemType = values.First();
+                headerResults.ItemType = values.First();
         }
 
         internal static void ParsePagedResponseHeaderValues(ITraktPagedResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
