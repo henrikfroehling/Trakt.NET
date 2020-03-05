@@ -21,10 +21,10 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonMovieCreditsCrewItem_From_Minimal_Json()
+        public async Task Test_TraktPersonMovieCreditsCrewItem_From_Json()
         {
             var jsonReader = new PersonMovieCreditsCrewItemObjectJsonReader();
-            var creditsCrewItem = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktPersonMovieCreditsCrewItem;
+            var creditsCrewItem = await jsonReader.ReadObjectAsync(JSON) as TraktPersonMovieCreditsCrewItem;
 
             creditsCrewItem.Should().NotBeNull();
             creditsCrewItem.Job.Should().Be("Director");
@@ -52,7 +52,7 @@
             creditsCrewItem.Movie.Certification.Should().BeNullOrEmpty();
         }
 
-        private const string MINIMAL_JSON =
+        private const string JSON =
             @"{
                 ""job"": ""Director"",
                 ""jobs"": [

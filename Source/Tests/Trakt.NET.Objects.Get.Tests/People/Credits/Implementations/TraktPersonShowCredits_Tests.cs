@@ -21,10 +21,10 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonShowCredits_From_Minimal_Json()
+        public async Task Test_TraktPersonShowCredits_From_Json()
         {
             var jsonReader = new PersonShowCreditsObjectJsonReader();
-            var credits = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktPersonShowCredits;
+            var credits = await jsonReader.ReadObjectAsync(JSON) as TraktPersonShowCredits;
 
             credits.Should().NotBeNull();
             credits.Cast.Should().NotBeNull().And.HaveCount(2);
@@ -845,7 +845,7 @@
             editingCrew[1].Show.AiredEpisodes.Should().NotHaveValue();
         }
 
-        private const string MINIMAL_JSON =
+        private const string JSON =
             @"{
                 ""cast"": [
                   {

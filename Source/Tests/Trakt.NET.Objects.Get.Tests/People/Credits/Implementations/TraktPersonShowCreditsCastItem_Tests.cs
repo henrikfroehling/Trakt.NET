@@ -21,10 +21,10 @@
         }
 
         [Fact]
-        public async Task Test_TraktPersonShowCreditsCastItem_From_Minimal_Json()
+        public async Task Test_TraktPersonShowCreditsCastItem_From_Json()
         {
             var jsonReader = new PersonShowCreditsCastItemObjectJsonReader();
-            var creditsCastItem = await jsonReader.ReadObjectAsync(MINIMAL_JSON) as TraktPersonShowCreditsCastItem;
+            var creditsCastItem = await jsonReader.ReadObjectAsync(JSON) as TraktPersonShowCreditsCastItem;
 
             creditsCastItem.Should().NotBeNull();
             creditsCastItem.Character.Should().Be("Joe Brody");
@@ -59,7 +59,7 @@
             creditsCastItem.Show.AiredEpisodes.Should().NotHaveValue();
         }
 
-        private const string MINIMAL_JSON =
+        private const string JSON =
             @"{
                 ""character"": ""Joe Brody"",
                 ""characters"": [
