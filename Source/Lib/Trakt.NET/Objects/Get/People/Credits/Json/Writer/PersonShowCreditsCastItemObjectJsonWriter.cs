@@ -19,6 +19,9 @@
                 await jsonWriter.WriteValueAsync(obj.Character, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Characters != null)
+                await JsonWriterHelper.WriteStringArrayAsync(jsonWriter, obj.Characters, cancellationToken).ConfigureAwait(false);
+
             if (obj.Show != null)
             {
                 var movieObjectJsonWriter = new ShowObjectJsonWriter();

@@ -281,9 +281,11 @@
         internal const string PERSON_MOVIE_CREDITS_PROPERTY_NAME_CREW = "crew";
 
         internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTER = "character";
+        internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTERS = "characters";
         internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_SHOW = "show";
 
         internal const string PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_JOB = "job";
+        internal const string PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_JOBS = "jobs";
         internal const string PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_SHOW = "show";
 
         internal const string PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_PRODUCTION = "production";
