@@ -22,6 +22,7 @@
         internal const string CAST_AND_CREW_PROPERTY_NAME_CREW = "crew";
 
         internal const string CAST_MEMBER_PROPERTY_NAME_CHARACTER = "character";
+        internal const string CAST_MEMBER_PROPERTY_NAME_CHARACTERS = "characters";
         internal const string CAST_MEMBER_PROPERTY_NAME_PERSON = "person";
 
         internal const string CERTIFICATION_PROPERTY_NAME_NAME = "name";
@@ -53,6 +54,7 @@
         internal const string COMMENT_LIKE_PROPERTY_NAME_USER = "user";
 
         internal const string CREW_MEMBER_PROPERTY_NAME_JOB = "job";
+        internal const string CREW_MEMBER_PROPERTY_NAME_JOBS = "jobs";
         internal const string CREW_MEMBER_PROPERTY_NAME_PERSON = "person";
 
         internal const string CREW_PROPERTY_NAME_PRODUCTION = "production";
