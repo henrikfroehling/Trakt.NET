@@ -34,7 +34,7 @@
 
             creditsCast[0].Should().NotBeNull();
             creditsCast[0].Character.Should().Be("Rey");
-            creditsCast[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Ray");
+            creditsCast[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Rey");
             creditsCast[0].Movie.Should().NotBeNull();
             creditsCast[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             creditsCast[0].Movie.Year.Should().Be(2015);
