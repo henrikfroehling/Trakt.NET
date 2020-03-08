@@ -12,6 +12,12 @@
         /// <summary>Gets or sets the characters collection of the cast position.<para>Nullable</para></summary>
         public IEnumerable<string> Characters { get; set; }
 
+        /// <summary>Gets or sets the episode count of the cast position.<para>Nullable</para></summary>
+        public int? EpisodeCount { get; set; }
+
+        /// <summary>Gets or sets the series regular value of the cast position.<para>Nullable</para></summary>
+        public bool? SeriesRegular { get; set; }
+
         /// <summary>
         /// Gets or sets the show of the cast position. See also <seealso cref="ITraktShow" />.
         /// <para>Nullable</para>

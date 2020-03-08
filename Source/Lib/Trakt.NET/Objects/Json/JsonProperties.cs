@@ -284,10 +284,13 @@
 
         internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTER = "character";
         internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTERS = "characters";
+        internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_EPISODE_COUNT = "episode_count";
+        internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_SERIES_REGULAR = "series_regular";
         internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_SHOW = "show";
 
         internal const string PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_JOB = "job";
         internal const string PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_JOBS = "jobs";
+        internal const string PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_EPISODE_COUNT = "episode_count";
         internal const string PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_SHOW = "show";
 
         internal const string PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_PRODUCTION = "production";

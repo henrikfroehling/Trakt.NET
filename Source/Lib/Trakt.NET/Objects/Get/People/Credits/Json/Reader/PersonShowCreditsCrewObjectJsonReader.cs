@@ -16,7 +16,7 @@
             {
                 var creditsShowCrewItemsReader = new PersonShowCreditsCrewItemArrayJsonReader();
 
-                ITraktPersonShowCreditsCrew movieCreditsCrew = new TraktPersonShowCreditsCrew();
+                ITraktPersonShowCreditsCrew showCreditsCrew = new TraktPersonShowCreditsCrew();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -25,37 +25,37 @@
                     switch (propertyName)
                     {
                         case JsonProperties.PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_PRODUCTION:
-                            movieCreditsCrew.Production = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            showCreditsCrew.Production = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_ART:
-                            movieCreditsCrew.Art = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            showCreditsCrew.Art = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_CREW:
-                            movieCreditsCrew.Crew = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            showCreditsCrew.Crew = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_COSTUME_AND_MAKE_UP:
-                            movieCreditsCrew.CostumeAndMakeup = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            showCreditsCrew.CostumeAndMakeup = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_DIRECTING:
-                            movieCreditsCrew.Directing = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            showCreditsCrew.Directing = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_WRITING:
-                            movieCreditsCrew.Writing = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            showCreditsCrew.Writing = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_SOUND:
-                            movieCreditsCrew.Sound = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            showCreditsCrew.Sound = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_CAMERA:
-                            movieCreditsCrew.Camera = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            showCreditsCrew.Camera = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_LIGHTING:
-                            movieCreditsCrew.Lighting = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            showCreditsCrew.Lighting = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_VISUAL_EFFECTS:
-                            movieCreditsCrew.VisualEffects = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            showCreditsCrew.VisualEffects = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_EDITING:
-                            movieCreditsCrew.Editing = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            showCreditsCrew.Editing = await creditsShowCrewItemsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -63,7 +63,7 @@
                     }
                 }
 
-                return movieCreditsCrew;
+                return showCreditsCrew;
             }
 
             return await Task.FromResult(default(ITraktPersonShowCreditsCrew));

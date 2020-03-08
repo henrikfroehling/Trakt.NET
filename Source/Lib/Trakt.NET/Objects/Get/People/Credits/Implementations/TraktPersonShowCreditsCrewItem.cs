@@ -12,6 +12,9 @@
         /// <summary>Gets or sets the jobs collection of the crew position.<para>Nullable</para></summary>
         public IEnumerable<string> Jobs { get; set; }
 
+        /// <summary>Gets or sets the episode count of the crew position.<para>Nullable</para></summary>
+        public int? EpisodeCount { get; set; }
+
         /// <summary>
         /// Gets or sets the show of the crew position. See also <seealso cref="ITraktShow" />.
         /// <para>Nullable</para>
