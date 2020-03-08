@@ -414,6 +414,10 @@
         internal const string SHOW_WATCHED_PROGRESS_PROPERTY_NAME_LAST_EPISODE = "last_episode";
         internal const string SHOW_WATCHED_PROGRESS_PROPERTY_NAME_RESET_AT = "reset_at";
 
+        internal const string SHOW_CAST_MEMBER_PROPERTY_NAME_EPISODE_COUNT = "episode_count";
+
+        internal const string SHOW_CREW_MEMBER_PROPERTY_NAME_EPISODE_COUNT = "episode_count";
+
         internal const string TRENDING_SHOW_PROPERTY_NAME_WATCHERS = "watchers";
         internal const string TRENDING_SHOW_PROPERTY_NAME_SHOW = "show";
 
