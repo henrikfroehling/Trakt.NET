@@ -260,11 +260,11 @@
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
-        /// <returns>An <see cref="ITraktCastAndCrew" /> instance, containing the cast and crew for a season with the given showIdOrSlug and the given season number.</returns>
+        /// <returns>An <see cref="ITraktShowCastAndCrew" /> instance, containing the cast and crew for a season with the given showIdOrSlug and the given season number.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        public Task<TraktResponse<ITraktCastAndCrew>> GetSeasonPeopleAsync(string showIdOrSlug, uint seasonNumber, TraktExtendedInfo extendedInfo = null,
-                                                                           CancellationToken cancellationToken = default)
+        public Task<TraktResponse<ITraktShowCastAndCrew>> GetSeasonPeopleAsync(string showIdOrSlug, uint seasonNumber, TraktExtendedInfo extendedInfo = null,
+                                                                               CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
