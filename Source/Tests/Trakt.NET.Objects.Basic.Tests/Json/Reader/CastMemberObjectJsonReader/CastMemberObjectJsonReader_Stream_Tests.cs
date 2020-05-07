@@ -22,6 +22,7 @@
 
                 traktCastMember.Should().NotBeNull();
                 traktCastMember.Character.Should().Be("Joe Brody");
+                traktCastMember.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 traktCastMember.Person.Should().NotBeNull();
                 traktCastMember.Person.Name.Should().Be("Bryan Cranston");
                 traktCastMember.Person.Ids.Should().NotBeNull();
@@ -44,6 +45,7 @@
 
                 traktCastMember.Should().NotBeNull();
                 traktCastMember.Character.Should().BeNull();
+                traktCastMember.Characters.Should().BeNull();
                 traktCastMember.Person.Should().NotBeNull();
                 traktCastMember.Person.Name.Should().Be("Bryan Cranston");
                 traktCastMember.Person.Ids.Should().NotBeNull();
@@ -66,6 +68,7 @@
 
                 traktCastMember.Should().NotBeNull();
                 traktCastMember.Character.Should().Be("Joe Brody");
+                traktCastMember.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 traktCastMember.Person.Should().BeNull();
             }
         }
@@ -81,6 +84,7 @@
 
                 traktCastMember.Should().NotBeNull();
                 traktCastMember.Character.Should().BeNull();
+                traktCastMember.Characters.Should().BeNull();
                 traktCastMember.Person.Should().NotBeNull();
                 traktCastMember.Person.Name.Should().Be("Bryan Cranston");
                 traktCastMember.Person.Ids.Should().NotBeNull();
@@ -103,6 +107,7 @@
 
                 traktCastMember.Should().NotBeNull();
                 traktCastMember.Character.Should().Be("Joe Brody");
+                traktCastMember.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 traktCastMember.Person.Should().BeNull();
             }
         }
@@ -118,6 +123,7 @@
 
                 traktCastMember.Should().NotBeNull();
                 traktCastMember.Character.Should().BeNull();
+                traktCastMember.Characters.Should().BeNull();
                 traktCastMember.Person.Should().BeNull();
             }
         }
