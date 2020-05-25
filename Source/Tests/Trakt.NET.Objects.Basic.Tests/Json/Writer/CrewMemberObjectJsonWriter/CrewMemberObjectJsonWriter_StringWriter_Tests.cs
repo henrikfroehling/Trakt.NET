@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
@@ -52,6 +53,25 @@
         }
 
         [Fact]
+        public async Task Test_CrewMemberObjectJsonWriter_WriteObject_StringWriter_Only_Jobs_Property()
+        {
+            ITraktCrewMember traktCrewMember = new TraktCrewMember
+            {
+                Jobs = new List<string>
+                {
+                    "Crew Member"
+                }
+            };
+
+            using (var stringWriter = new StringWriter())
+            {
+                var traktJsonWriter = new CrewMemberObjectJsonWriter();
+                string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktCrewMember);
+                json.Should().Be(@"{""jobs"":[""Crew Member""]}");
+            }
+        }
+
+        [Fact]
         public async Task Test_CrewMemberObjectJsonWriter_WriteObject_StringWriter_Only_Person_Property()
         {
             ITraktCrewMember traktCrewMember = new TraktCrewMember
@@ -86,6 +106,10 @@
             ITraktCrewMember traktCrewMember = new TraktCrewMember
             {
                 Job = "Crew Member",
+                Jobs = new List<string>
+                {
+                    "Crew Member"
+                },
                 Person = new TraktPerson
                 {
                     Name = "Bryan Cranston",
@@ -104,7 +128,7 @@
             {
                 var traktJsonWriter = new CrewMemberObjectJsonWriter();
                 string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktCrewMember);
-                json.Should().Be(@"{""job"":""Crew Member""," +
+                json.Should().Be(@"{""job"":""Crew Member"",""jobs"":[""Crew Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}");
