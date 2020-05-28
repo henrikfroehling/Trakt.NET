@@ -16,7 +16,8 @@ jobs:
 
     runs-on: windows-latest
     env:
-      Solution_Name: Source/Trakt.NET.sln
+      Solution_Name: '**/Trakt.NET.sln'
+      Test_Projects: '**/*Tests.csproj'
 
     steps:
     - name: Get Sources
@@ -43,5 +44,10 @@ jobs:
     # Decode the base 64 encoded pfx and save the Signing_Certificate
     - name: Build solution
       run: dotnet build $env:Solution_Name --configuration $env:Configuration --no-restore /m /p:BuildInParallel=true
+      env:
+        Configuration: ${{ matrix.configuration }}
+        
+    - name: Run tests
+      run: dotnet test $env:Test_Projects --configuration $env:Configuration --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Exclude="[xunit*]*"
       env:
         Configuration: ${{ matrix.configuration }}
