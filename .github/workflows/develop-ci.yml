@@ -16,7 +16,7 @@ jobs:
 
     runs-on: windows-latest
     env:
-      Solution_Name: Trakt.NET.sln
+      Solution_Name: Source/Trakt.NET.sln
 
     steps:
     - name: Get Sources
