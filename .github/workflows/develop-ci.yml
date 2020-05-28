@@ -36,12 +36,12 @@ jobs:
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore packages
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+      run: dotnet restore $env:Solution_Name
       env:
         Configuration: ${{ matrix.configuration }}
 
     # Decode the base 64 encoded pfx and save the Signing_Certificate
     - name: Build solution
-      run: msbuild $env:Solution_Name /p:Configuration=$env:Configuration /m /p:BuildInParallel=true
+      run: dotnet build $env:Solution_Name --configuration $env:Configuration --no-restore /m /p:BuildInParallel=true
       env:
         Configuration: ${{ matrix.configuration }}
