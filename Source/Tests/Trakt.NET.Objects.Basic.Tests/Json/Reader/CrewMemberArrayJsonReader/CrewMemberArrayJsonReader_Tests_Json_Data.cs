@@ -8,6 +8,9 @@
             @"[
                 {
                   ""job"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ],
                   ""person"": {
                     ""name"": ""Bryan Cranston"",
                     ""ids"": {
@@ -21,6 +24,9 @@
                 },
                 {
                   ""job"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ],
                   ""person"": {
                     ""name"": ""Samuel L.Jackson"",
                     ""ids"": {
@@ -50,6 +56,9 @@
                 },
                 {
                   ""job"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ],
                   ""person"": {
                     ""name"": ""Samuel L.Jackson"",
                     ""ids"": {
@@ -67,26 +76,9 @@
             @"[
                 {
                   ""job"": ""Director"",
-                  ""person"": {
-                    ""name"": ""Bryan Cranston"",
-                    ""ids"": {
-                      ""trakt"": 297737,
-                      ""slug"": ""bryan-cranston"",
-                      ""imdb"": ""nm0186505"",
-                      ""tmdb"": 17419,
-                      ""tvrage"": 1797
-                    }
-                  }
-                },
-                {
-                  ""job"": ""Director""
-                }
-              ]";
-
-        private const string JSON_NOT_VALID_1 =
-            @"[
-                {
-                  ""j"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ],
                   ""person"": {
                     ""name"": ""Bryan Cranston"",
                     ""ids"": {
@@ -100,6 +92,35 @@
                 },
                 {
                   ""job"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ]
+                }
+              ]";
+
+        private const string JSON_NOT_VALID_1 =
+            @"[
+                {
+                  ""j"": ""Director"",
+                  ""js"": [
+                    ""Director""
+                  ],
+                  ""person"": {
+                    ""name"": ""Bryan Cranston"",
+                    ""ids"": {
+                      ""trakt"": 297737,
+                      ""slug"": ""bryan-cranston"",
+                      ""imdb"": ""nm0186505"",
+                      ""tmdb"": 17419,
+                      ""tvrage"": 1797
+                    }
+                  }
+                },
+                {
+                  ""job"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ],
                   ""person"": {
                     ""name"": ""Samuel L.Jackson"",
                     ""ids"": {
@@ -117,6 +138,9 @@
             @"[
                 {
                   ""job"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ],
                   ""person"": {
                     ""name"": ""Bryan Cranston"",
                     ""ids"": {
@@ -130,6 +154,9 @@
                 },
                 {
                   ""job"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ],
                   ""pers"": {
                     ""name"": ""Samuel L.Jackson"",
                     ""ids"": {
@@ -147,6 +174,9 @@
             @"[
                 {
                   ""j"": ""Director"",
+                  ""js"": [
+                    ""Director""
+                  ],
                   ""person"": {
                     ""name"": ""Bryan Cranston"",
                     ""ids"": {
@@ -160,6 +190,9 @@
                 },
                 {
                   ""job"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ],
                   ""pers"": {
                     ""name"": ""Samuel L.Jackson"",
                     ""ids"": {

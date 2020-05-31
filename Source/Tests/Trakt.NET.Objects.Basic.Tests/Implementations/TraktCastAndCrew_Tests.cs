@@ -32,6 +32,7 @@
 
             castMemberItems[0].Should().NotBeNull();
             castMemberItems[0].Character.Should().Be("Joe Brody");
+            castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             castMemberItems[0].Person.Should().NotBeNull();
             castMemberItems[0].Person.Name.Should().Be("Bryan Cranston");
             castMemberItems[0].Person.Ids.Should().NotBeNull();
@@ -43,6 +44,7 @@
 
             castMemberItems[1].Should().NotBeNull();
             castMemberItems[1].Character.Should().Be("Jules Winfield");
+            castMemberItems[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Jules Winfield");
             castMemberItems[1].Person.Should().NotBeNull();
             castMemberItems[1].Person.Name.Should().Be("Samuel L.Jackson");
             castMemberItems[1].Person.Ids.Should().NotBeNull();
@@ -60,6 +62,7 @@
 
             productionCrew[0].Should().NotBeNull();
             productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Person.Should().NotBeNull();
             productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
             productionCrew[0].Person.Ids.Should().NotBeNull();
@@ -71,6 +74,7 @@
 
             productionCrew[1].Should().NotBeNull();
             productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Person.Should().NotBeNull();
             productionCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
             productionCrew[1].Person.Ids.Should().NotBeNull();
@@ -85,6 +89,7 @@
 
             artCrew[0].Should().NotBeNull();
             artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Person.Should().NotBeNull();
             artCrew[0].Person.Name.Should().Be("Bryan Cranston");
             artCrew[0].Person.Ids.Should().NotBeNull();
@@ -96,6 +101,7 @@
 
             artCrew[1].Should().NotBeNull();
             artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Person.Should().NotBeNull();
             artCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
             artCrew[1].Person.Ids.Should().NotBeNull();
@@ -110,6 +116,7 @@
 
             crewCrew[0].Should().NotBeNull();
             crewCrew[0].Job.Should().Be("Crew Member");
+            crewCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crewCrew[0].Person.Should().NotBeNull();
             crewCrew[0].Person.Name.Should().Be("Bryan Cranston");
             crewCrew[0].Person.Ids.Should().NotBeNull();
@@ -121,6 +128,7 @@
 
             crewCrew[1].Should().NotBeNull();
             crewCrew[1].Job.Should().Be("Crew Member");
+            crewCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crewCrew[1].Person.Should().NotBeNull();
             crewCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
             crewCrew[1].Person.Ids.Should().NotBeNull();
@@ -135,6 +143,7 @@
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
             costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Person.Should().NotBeNull();
             costumeAndMakeupCrew[0].Person.Name.Should().Be("Bryan Cranston");
             costumeAndMakeupCrew[0].Person.Ids.Should().NotBeNull();
@@ -146,6 +155,7 @@
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
             costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Person.Should().NotBeNull();
             costumeAndMakeupCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
             costumeAndMakeupCrew[1].Person.Ids.Should().NotBeNull();
@@ -160,6 +170,7 @@
 
             directingCrew[0].Should().NotBeNull();
             directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Person.Should().NotBeNull();
             directingCrew[0].Person.Name.Should().Be("Bryan Cranston");
             directingCrew[0].Person.Ids.Should().NotBeNull();
@@ -171,6 +182,7 @@
 
             directingCrew[1].Should().NotBeNull();
             directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Person.Should().NotBeNull();
             directingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
             directingCrew[1].Person.Ids.Should().NotBeNull();
@@ -185,6 +197,7 @@
 
             writingCrew[0].Should().NotBeNull();
             writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Person.Should().NotBeNull();
             writingCrew[0].Person.Name.Should().Be("Bryan Cranston");
             writingCrew[0].Person.Ids.Should().NotBeNull();
@@ -196,6 +209,7 @@
 
             writingCrew[1].Should().NotBeNull();
             writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Person.Should().NotBeNull();
             writingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
             writingCrew[1].Person.Ids.Should().NotBeNull();
@@ -210,6 +224,7 @@
 
             soundCrew[0].Should().NotBeNull();
             soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Person.Should().NotBeNull();
             soundCrew[0].Person.Name.Should().Be("Bryan Cranston");
             soundCrew[0].Person.Ids.Should().NotBeNull();
@@ -221,6 +236,7 @@
 
             soundCrew[1].Should().NotBeNull();
             soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Person.Should().NotBeNull();
             soundCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
             soundCrew[1].Person.Ids.Should().NotBeNull();
@@ -235,6 +251,7 @@
 
             cameraCrew[0].Should().NotBeNull();
             cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Person.Should().NotBeNull();
             cameraCrew[0].Person.Name.Should().Be("Bryan Cranston");
             cameraCrew[0].Person.Ids.Should().NotBeNull();
@@ -246,6 +263,7 @@
 
             cameraCrew[1].Should().NotBeNull();
             cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Person.Should().NotBeNull();
             cameraCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
             cameraCrew[1].Person.Ids.Should().NotBeNull();
@@ -260,6 +278,7 @@
 
             lightingCrew[0].Should().NotBeNull();
             lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Person.Should().NotBeNull();
             lightingCrew[0].Person.Name.Should().Be("Bryan Cranston");
             lightingCrew[0].Person.Ids.Should().NotBeNull();
@@ -271,6 +290,7 @@
 
             lightingCrew[1].Should().NotBeNull();
             lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Person.Should().NotBeNull();
             lightingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
             lightingCrew[1].Person.Ids.Should().NotBeNull();
@@ -285,6 +305,7 @@
 
             vfxCrew[0].Should().NotBeNull();
             vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Person.Should().NotBeNull();
             vfxCrew[0].Person.Name.Should().Be("Bryan Cranston");
             vfxCrew[0].Person.Ids.Should().NotBeNull();
@@ -296,6 +317,7 @@
 
             vfxCrew[1].Should().NotBeNull();
             vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Person.Should().NotBeNull();
             vfxCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
             vfxCrew[1].Person.Ids.Should().NotBeNull();
@@ -310,6 +332,7 @@
 
             editingCrew[0].Should().NotBeNull();
             editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Person.Should().NotBeNull();
             editingCrew[0].Person.Name.Should().Be("Bryan Cranston");
             editingCrew[0].Person.Ids.Should().NotBeNull();
@@ -321,6 +344,7 @@
 
             editingCrew[1].Should().NotBeNull();
             editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Person.Should().NotBeNull();
             editingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
             editingCrew[1].Person.Ids.Should().NotBeNull();
@@ -336,6 +360,9 @@
                 ""cast"": [
                   {
                     ""character"": ""Joe Brody"",
+                    ""characters"": [
+                      ""Joe Brody""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -349,6 +376,9 @@
                   },
                   {
                     ""character"": ""Jules Winfield"",
+                    ""characters"": [
+                      ""Jules Winfield""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -365,6 +395,9 @@
                   ""production"": [
                     {
                       ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -378,6 +411,9 @@
                     },
                     {
                       ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""person"": {
                         ""name"": ""Samuel L.Jackson"",
                         ""ids"": {
@@ -393,6 +429,9 @@
                   ""art"": [
                     {
                       ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -406,6 +445,9 @@
                     },
                     {
                       ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""person"": {
                         ""name"": ""Samuel L.Jackson"",
                         ""ids"": {
@@ -421,6 +463,9 @@
                   ""crew"": [
                     {
                       ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -434,6 +479,9 @@
                     },
                     {
                       ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""person"": {
                         ""name"": ""Samuel L.Jackson"",
                         ""ids"": {
@@ -449,6 +497,9 @@
                   ""costume & make-up"": [
                     {
                       ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -462,6 +513,9 @@
                     },
                     {
                       ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""person"": {
                         ""name"": ""Samuel L.Jackson"",
                         ""ids"": {
@@ -477,6 +531,9 @@
                   ""directing"": [
                     {
                       ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -490,6 +547,9 @@
                     },
                     {
                       ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""person"": {
                         ""name"": ""Samuel L.Jackson"",
                         ""ids"": {
@@ -505,6 +565,9 @@
                   ""writing"": [
                     {
                       ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -518,6 +581,9 @@
                     },
                     {
                       ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""person"": {
                         ""name"": ""Samuel L.Jackson"",
                         ""ids"": {
@@ -533,6 +599,9 @@
                   ""sound"": [
                     {
                       ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -546,6 +615,9 @@
                     },
                     {
                       ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""person"": {
                         ""name"": ""Samuel L.Jackson"",
                         ""ids"": {
@@ -561,6 +633,9 @@
                   ""camera"": [
                     {
                       ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -574,6 +649,9 @@
                     },
                     {
                       ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""person"": {
                         ""name"": ""Samuel L.Jackson"",
                         ""ids"": {
@@ -589,6 +667,9 @@
                   ""lighting"": [
                     {
                       ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -602,6 +683,9 @@
                     },
                     {
                       ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""person"": {
                         ""name"": ""Samuel L.Jackson"",
                         ""ids"": {
@@ -617,6 +701,9 @@
                   ""visual effects"": [
                     {
                       ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -630,6 +717,9 @@
                     },
                     {
                       ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""person"": {
                         ""name"": ""Samuel L.Jackson"",
                         ""ids"": {
@@ -645,6 +735,9 @@
                   ""editing"": [
                     {
                       ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -658,6 +751,9 @@
                     },
                     {
                       ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""person"": {
                         ""name"": ""Samuel L.Jackson"",
                         ""ids"": {

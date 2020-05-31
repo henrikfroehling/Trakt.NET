@@ -247,7 +247,11 @@
             s_jsonIOFactories.Add(typeof(ITraktShowAlias), new ShowAliasJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktShowIds), new ShowIdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktShowTranslation), new ShowTranslationJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktShowCastAndCrew), new ShowCastAndCrewJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktShowCastMember), new ShowCastMemberJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktShowCollectionProgress), new ShowCollectionProgressJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktShowCrew), new ShowCrewJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktShowCrewMember), new ShowCrewMemberJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktShowWatchedProgress), new ShowWatchedProgressJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMostAnticipatedShow), new MostAnticipatedShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMostPWCShow), new MostPWCShowJsonIOFactory());

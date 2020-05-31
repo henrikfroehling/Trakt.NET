@@ -19,6 +19,12 @@
                 await jsonWriter.WriteValueAsync(obj.Job, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Jobs != null)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.CREW_MEMBER_PROPERTY_NAME_JOBS, cancellationToken).ConfigureAwait(false);
+                await JsonWriterHelper.WriteStringArrayAsync(jsonWriter, obj.Jobs, cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.Person != null)
             {
                 var personObjectJsonWriter = new PersonObjectJsonWriter();

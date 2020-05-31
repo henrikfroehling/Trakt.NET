@@ -469,5 +469,166 @@
                   ""vip_ep"": true
                 }
               ]";
+
+        private const string EPISODE_PEOPLE_JSON =
+            @"{
+                ""cast"": [
+                  {
+                    ""character"": ""Rick Grimes"",
+                    ""person"": {
+                      ""name"": ""Andrew Lincoln"",
+                      ""ids"": {
+                        ""trakt"": 413156,
+                        ""slug"": ""andrew-lincoln"",
+                        ""imdb"": ""nm0511088"",
+                        ""tmdb"": 7062,
+                        ""tvrage"": 61194
+                      }
+                    }
+                  },
+                  {
+                    ""character"": ""Daryl Dixon"",
+                    ""person"": {
+                      ""name"": ""Norman Reedus"",
+                      ""ids"": {
+                        ""trakt"": 5158,
+                        ""slug"": ""norman-reedus"",
+                        ""imdb"": ""nm0005342"",
+                        ""tmdb"": 4886,
+                        ""tvrage"": 26542
+                      }
+                    }
+                  },
+                  {
+                    ""character"": ""Glenn Rhee"",
+                    ""person"": {
+                      ""name"": ""Steven Yeun"",
+                      ""ids"": {
+                        ""trakt"": 436936,
+                        ""slug"": ""steven-yeun"",
+                        ""imdb"": ""nm3081796"",
+                        ""tmdb"": 215055,
+                        ""tvrage"": null
+                      }
+                    }
+                  }
+                ],
+                ""crew"": {
+                  ""production"": [
+                    {
+                      ""job"": ""Casting"",
+                      ""person"": {
+                        ""name"": ""Sharon Bialy"",
+                        ""ids"": {
+                          ""trakt"": 3025,
+                          ""slug"": ""sharon-bialy"",
+                          ""imdb"": ""nm0080544"",
+                          ""tmdb"": 6479,
+                          ""tvrage"": null
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Executive Producer"",
+                      ""person"": {
+                        ""name"": ""Gregory Nicotero"",
+                        ""ids"": {
+                          ""trakt"": 6779,
+                          ""slug"": ""gregory-nicotero"",
+                          ""imdb"": ""nm0630524"",
+                          ""tmdb"": 59287,
+                          ""tvrage"": null
+                        }
+                      }
+                    }
+                  ],
+                  ""crew"": [
+                    {
+                      ""job"": ""Makeup Effects"",
+                      ""person"": {
+                        ""name"": ""Gregory Nicotero"",
+                        ""ids"": {
+                          ""trakt"": 6779,
+                          ""slug"": ""gregory-nicotero"",
+                          ""imdb"": ""nm0630524"",
+                          ""tmdb"": 59287,
+                          ""tvrage"": null
+                        }
+                      }
+                    }
+                  ],
+                  ""art"": [
+                    {
+                      ""job"": ""Production Design"",
+                      ""person"": {
+                        ""name"": ""Graham 'Grace' Walker"",
+                        ""ids"": {
+                          ""trakt"": 42993,
+                          ""slug"": ""graham-grace-walker"",
+                          ""imdb"": ""nm0907767"",
+                          ""tmdb"": 62743,
+                          ""tvrage"": null
+                        }
+                      }
+                    }
+                  ],
+                  ""sound"": [
+                    {
+                      ""job"": ""Music"",
+                      ""person"": {
+                        ""name"": ""Bear McCreary"",
+                        ""ids"": {
+                          ""trakt"": 45352,
+                          ""slug"": ""bear-mccreary"",
+                          ""imdb"": ""nm0566970"",
+                          ""tmdb"": 59811,
+                          ""tvrage"": null
+                        }
+                      }
+                    }
+                  ],
+                  ""writing"": [
+                    {
+                      ""job"": ""Comic Book"",
+                      ""person"": {
+                        ""name"": ""Robert Kirkman"",
+                        ""ids"": {
+                          ""trakt"": 214252,
+                          ""slug"": ""robert-kirkman"",
+                          ""imdb"": ""nm3079117"",
+                          ""tmdb"": 1223867,
+                          ""tvrage"": 330021
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Comic Book"",
+                      ""person"": {
+                        ""name"": ""Charlie Adlard"",
+                        ""ids"": {
+                          ""trakt"": 466776,
+                          ""slug"": ""charlie-adlard"",
+                          ""imdb"": ""nm1891501"",
+                          ""tmdb"": 1223881,
+                          ""tvrage"": null
+                        }
+                      }
+                    },
+                    {
+                      ""job"": ""Comic Book"",
+                      ""person"": {
+                        ""name"": ""Tony Moore"",
+                        ""ids"": {
+                          ""trakt"": 570113,
+                          ""slug"": ""tony-moore"",
+                          ""imdb"": ""nm3877885"",
+                          ""tmdb"": 1223882,
+                          ""tvrage"": null
+                        }
+                      }
+                    }
+                  ]
+                }
+              }";
     }
 }

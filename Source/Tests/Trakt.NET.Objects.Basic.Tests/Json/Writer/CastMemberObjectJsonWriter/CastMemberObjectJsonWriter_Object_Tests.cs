@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
@@ -43,6 +44,22 @@
         }
 
         [Fact]
+        public async Task Test_CastMemberObjectJsonWriter_WriteObject_Object_Only_Characters_Property()
+        {
+            ITraktCastMember traktCastMember = new TraktCastMember
+            {
+                Characters = new List<string>
+                {
+                    "Character"
+                }
+            };
+
+            var traktJsonWriter = new CastMemberObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktCastMember);
+            json.Should().Be(@"{""characters"":[""Character""]}");
+        }
+
+        [Fact]
         public async Task Test_CastMemberObjectJsonWriter_WriteObject_Object_Only_Person_Property()
         {
             ITraktCastMember traktCastMember = new TraktCastMember
@@ -68,6 +85,10 @@
             ITraktCastMember traktCastMember = new TraktCastMember
             {
                 Character = "Character",
+                Characters = new List<string>
+                {
+                    "Character"
+                },
                 Person = new TraktPerson
                 {
                     Name = "Person",
@@ -80,7 +101,7 @@
 
             var traktJsonWriter = new CastMemberObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCastMember);
-            json.Should().Be(@"{""character"":""Character"",""person"":{""name"":""Person"",""ids"":{""trakt"":0,""slug"":""person""}}}");
+            json.Should().Be(@"{""character"":""Character"",""characters"":[""Character""],""person"":{""name"":""Person"",""ids"":{""trakt"":0,""slug"":""person""}}}");
         }
     }
 }

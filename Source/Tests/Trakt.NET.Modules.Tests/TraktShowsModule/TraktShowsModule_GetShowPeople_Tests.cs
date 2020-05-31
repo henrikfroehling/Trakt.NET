@@ -7,7 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Basic;
+    using TraktNet.Objects.Get.Shows;
     using TraktNet.Responses;
     using Xunit;
 
@@ -20,14 +20,14 @@
         public async Task Test_TraktShowsModule_GetShowPeople()
         {
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, SHOW_PEOPLE_JSON);
-            TraktResponse<ITraktCastAndCrew> response = await client.Shows.GetShowPeopleAsync(SHOW_ID);
+            TraktResponse<ITraktShowCastAndCrew> response = await client.Shows.GetShowPeopleAsync(SHOW_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            ITraktCastAndCrew responseValue = response.Value;
+            ITraktShowCastAndCrew responseValue = response.Value;
 
             responseValue.Cast.Should().NotBeNull().And.HaveCount(3);
             responseValue.Crew.Should().NotBeNull();
@@ -51,14 +51,14 @@
                 $"{GET_SHOW_PEOPLE_URI}?extended={EXTENDED_INFO}",
                 SHOW_PEOPLE_JSON);
 
-            TraktResponse<ITraktCastAndCrew> response = await client.Shows.GetShowPeopleAsync(SHOW_ID, EXTENDED_INFO);
+            TraktResponse<ITraktShowCastAndCrew> response = await client.Shows.GetShowPeopleAsync(SHOW_ID, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            ITraktCastAndCrew responseValue = response.Value;
+            ITraktShowCastAndCrew responseValue = response.Value;
 
             responseValue.Cast.Should().NotBeNull().And.HaveCount(3);
             responseValue.Crew.Should().NotBeNull();
@@ -112,7 +112,7 @@
         {
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, SHOW_PEOPLE_JSON);
 
-            Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(null);
+            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(null);
             act.Should().Throw<ArgumentException>();
 
             act = () => client.Shows.GetShowPeopleAsync(string.Empty);

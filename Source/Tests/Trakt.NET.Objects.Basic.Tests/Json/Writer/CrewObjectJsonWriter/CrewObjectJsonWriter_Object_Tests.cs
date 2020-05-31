@@ -40,6 +40,10 @@
                     new TraktCrewMember
                     {
                         Job = "Production Member",
+                        Jobs = new List<string>
+                        {
+                            "Production Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -58,7 +62,7 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""production"":[{""job"":""Production Member""," +
+            json.Should().Be(@"{""production"":[{""job"":""Production Member"",""jobs"":[""Production Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");
@@ -74,6 +78,10 @@
                     new TraktCrewMember
                     {
                         Job = "Art Member",
+                        Jobs = new List<string>
+                        {
+                            "Art Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -92,7 +100,7 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""art"":[{""job"":""Art Member""," +
+            json.Should().Be(@"{""art"":[{""job"":""Art Member"",""jobs"":[""Art Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");
@@ -108,6 +116,10 @@
                     new TraktCrewMember
                     {
                         Job = "Crew Member",
+                        Jobs = new List<string>
+                        {
+                            "Crew Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -126,7 +138,7 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""crew"":[{""job"":""Crew Member""," +
+            json.Should().Be(@"{""crew"":[{""job"":""Crew Member"",""jobs"":[""Crew Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");
@@ -142,6 +154,10 @@
                     new TraktCrewMember
                     {
                         Job = "CostumeAndMakeup Member",
+                        Jobs = new List<string>
+                        {
+                            "CostumeAndMakeup Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -160,7 +176,7 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""costume & make-up"":[{""job"":""CostumeAndMakeup Member""," +
+            json.Should().Be(@"{""costume & make-up"":[{""job"":""CostumeAndMakeup Member"",""jobs"":[""CostumeAndMakeup Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");
@@ -176,6 +192,10 @@
                     new TraktCrewMember
                     {
                         Job = "Directing Member",
+                        Jobs = new List<string>
+                        {
+                            "Directing Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -194,7 +214,7 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""directing"":[{""job"":""Directing Member""," +
+            json.Should().Be(@"{""directing"":[{""job"":""Directing Member"",""jobs"":[""Directing Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");
@@ -210,6 +230,10 @@
                     new TraktCrewMember
                     {
                         Job = "Writing Member",
+                        Jobs = new List<string>
+                        {
+                            "Writing Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -228,7 +252,7 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""writing"":[{""job"":""Writing Member""," +
+            json.Should().Be(@"{""writing"":[{""job"":""Writing Member"",""jobs"":[""Writing Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");
@@ -244,6 +268,10 @@
                     new TraktCrewMember
                     {
                         Job = "Sound Member",
+                        Jobs = new List<string>
+                        {
+                            "Sound Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -262,7 +290,7 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""sound"":[{""job"":""Sound Member""," +
+            json.Should().Be(@"{""sound"":[{""job"":""Sound Member"",""jobs"":[""Sound Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");
@@ -278,6 +306,10 @@
                     new TraktCrewMember
                     {
                         Job = "Camera Member",
+                        Jobs = new List<string>
+                        {
+                            "Camera Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -296,7 +328,7 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""camera"":[{""job"":""Camera Member""," +
+            json.Should().Be(@"{""camera"":[{""job"":""Camera Member"",""jobs"":[""Camera Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");
@@ -312,6 +344,10 @@
                     new TraktCrewMember
                     {
                         Job = "Lighting Member",
+                        Jobs = new List<string>
+                        {
+                            "Lighting Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -330,7 +366,7 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""lighting"":[{""job"":""Lighting Member""," +
+            json.Should().Be(@"{""lighting"":[{""job"":""Lighting Member"",""jobs"":[""Lighting Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");
@@ -346,6 +382,10 @@
                     new TraktCrewMember
                     {
                         Job = "VisualEffects Member",
+                        Jobs = new List<string>
+                        {
+                            "VisualEffects Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -364,7 +404,7 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""visual effects"":[{""job"":""VisualEffects Member""," +
+            json.Should().Be(@"{""visual effects"":[{""job"":""VisualEffects Member"",""jobs"":[""VisualEffects Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");
@@ -380,6 +420,10 @@
                     new TraktCrewMember
                     {
                         Job = "Editing Member",
+                        Jobs = new List<string>
+                        {
+                            "Editing Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -398,7 +442,7 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""editing"":[{""job"":""Editing Member""," +
+            json.Should().Be(@"{""editing"":[{""job"":""Editing Member"",""jobs"":[""Editing Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");
@@ -414,6 +458,10 @@
                     new TraktCrewMember
                     {
                         Job = "Production Member",
+                        Jobs = new List<string>
+                        {
+                            "Production Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -433,6 +481,10 @@
                     new TraktCrewMember
                     {
                         Job = "Art Member",
+                        Jobs = new List<string>
+                        {
+                            "Art Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -452,6 +504,10 @@
                     new TraktCrewMember
                     {
                         Job = "Crew Member",
+                        Jobs = new List<string>
+                        {
+                            "Crew Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -471,6 +527,10 @@
                     new TraktCrewMember
                     {
                         Job = "CostumeAndMakeup Member",
+                        Jobs = new List<string>
+                        {
+                            "CostumeAndMakeup Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -490,6 +550,10 @@
                     new TraktCrewMember
                     {
                         Job = "Directing Member",
+                        Jobs = new List<string>
+                        {
+                            "Directing Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -509,6 +573,10 @@
                     new TraktCrewMember
                     {
                         Job = "Writing Member",
+                        Jobs = new List<string>
+                        {
+                            "Writing Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -528,6 +596,10 @@
                     new TraktCrewMember
                     {
                         Job = "Sound Member",
+                        Jobs = new List<string>
+                        {
+                            "Sound Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -547,6 +619,10 @@
                     new TraktCrewMember
                     {
                         Job = "Camera Member",
+                        Jobs = new List<string>
+                        {
+                            "Camera Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -566,6 +642,10 @@
                     new TraktCrewMember
                     {
                         Job = "Lighting Member",
+                        Jobs = new List<string>
+                        {
+                            "Lighting Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -585,6 +665,10 @@
                     new TraktCrewMember
                     {
                         Job = "VisualEffects Member",
+                        Jobs = new List<string>
+                        {
+                            "VisualEffects Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -604,6 +688,10 @@
                     new TraktCrewMember
                     {
                         Job = "Editing Member",
+                        Jobs = new List<string>
+                        {
+                            "Editing Member"
+                        },
                         Person = new TraktPerson
                         {
                             Name = "Bryan Cranston",
@@ -622,47 +710,47 @@
 
             var traktJsonWriter = new CrewObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCrew);
-            json.Should().Be(@"{""production"":[{""job"":""Production Member""," +
+            json.Should().Be(@"{""production"":[{""job"":""Production Member"",""jobs"":[""Production Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                             @"""art"":[{""job"":""Art Member""," +
+                             @"""art"":[{""job"":""Art Member"",""jobs"":[""Art Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                             @"""crew"":[{""job"":""Crew Member""," +
+                             @"""crew"":[{""job"":""Crew Member"",""jobs"":[""Crew Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                             @"""costume & make-up"":[{""job"":""CostumeAndMakeup Member""," +
+                             @"""costume & make-up"":[{""job"":""CostumeAndMakeup Member"",""jobs"":[""CostumeAndMakeup Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                             @"""directing"":[{""job"":""Directing Member""," +
+                             @"""directing"":[{""job"":""Directing Member"",""jobs"":[""Directing Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                             @"""writing"":[{""job"":""Writing Member""," +
+                             @"""writing"":[{""job"":""Writing Member"",""jobs"":[""Writing Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                             @"""sound"":[{""job"":""Sound Member""," +
+                             @"""sound"":[{""job"":""Sound Member"",""jobs"":[""Sound Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                             @"""camera"":[{""job"":""Camera Member""," +
+                             @"""camera"":[{""job"":""Camera Member"",""jobs"":[""Camera Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                             @"""lighting"":[{""job"":""Lighting Member""," +
+                             @"""lighting"":[{""job"":""Lighting Member"",""jobs"":[""Lighting Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                             @"""visual effects"":[{""job"":""VisualEffects Member""," +
+                             @"""visual effects"":[{""job"":""VisualEffects Member"",""jobs"":[""VisualEffects Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                             @"""editing"":[{""job"":""Editing Member""," +
+                             @"""editing"":[{""job"":""Editing Member"",""jobs"":[""Editing Member""]," +
                              @"""person"":{""name"":""Bryan Cranston""," +
                              @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                              @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}");

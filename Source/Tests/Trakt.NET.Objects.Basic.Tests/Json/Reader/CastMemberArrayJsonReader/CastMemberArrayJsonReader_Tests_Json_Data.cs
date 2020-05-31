@@ -8,6 +8,9 @@
             @"[
                 {
                   ""character"": ""Joe Brody"",
+                  ""characters"": [
+                    ""Joe Brody""
+                  ],
                   ""person"": {
                     ""name"": ""Bryan Cranston"",
                     ""ids"": {
@@ -21,6 +24,9 @@
                 },
                 {
                   ""character"": ""Jules Winfield"",
+                  ""characters"": [
+                    ""Jules Winfield""
+                  ],
                   ""person"": {
                     ""name"": ""Samuel L.Jackson"",
                     ""ids"": {
@@ -50,6 +56,9 @@
                 },
                 {
                   ""character"": ""Jules Winfield"",
+                  ""characters"": [
+                    ""Jules Winfield""
+                  ],
                   ""person"": {
                     ""name"": ""Samuel L.Jackson"",
                     ""ids"": {
@@ -67,26 +76,9 @@
             @"[
                 {
                   ""character"": ""Joe Brody"",
-                  ""person"": {
-                    ""name"": ""Bryan Cranston"",
-                    ""ids"": {
-                      ""trakt"": 297737,
-                      ""slug"": ""bryan-cranston"",
-                      ""imdb"": ""nm0186505"",
-                      ""tmdb"": 17419,
-                      ""tvrage"": 1797
-                    }
-                  }
-                },
-                {
-                  ""character"": ""Jules Winfield""
-                }
-              ]";
-
-        private const string JSON_NOT_VALID_1 =
-            @"[
-                {
-                  ""ch"": ""Joe Brody"",
+                  ""characters"": [
+                    ""Joe Brody""
+                  ],
                   ""person"": {
                     ""name"": ""Bryan Cranston"",
                     ""ids"": {
@@ -100,6 +92,35 @@
                 },
                 {
                   ""character"": ""Jules Winfield"",
+                  ""characters"": [
+                    ""Jules Winfield""
+                  ]
+                }
+              ]";
+
+        private const string JSON_NOT_VALID_1 =
+            @"[
+                {
+                  ""ch"": ""Joe Brody"",
+                  ""chs"": [
+                    ""Joe Brody""
+                  ],
+                  ""person"": {
+                    ""name"": ""Bryan Cranston"",
+                    ""ids"": {
+                      ""trakt"": 297737,
+                      ""slug"": ""bryan-cranston"",
+                      ""imdb"": ""nm0186505"",
+                      ""tmdb"": 17419,
+                      ""tvrage"": 1797
+                    }
+                  }
+                },
+                {
+                  ""character"": ""Jules Winfield"",
+                  ""characters"": [
+                    ""Jules Winfield""
+                  ],
                   ""person"": {
                     ""name"": ""Samuel L.Jackson"",
                     ""ids"": {
@@ -117,6 +138,9 @@
             @"[
                 {
                   ""character"": ""Joe Brody"",
+                  ""characters"": [
+                    ""Joe Brody""
+                  ],
                   ""person"": {
                     ""name"": ""Bryan Cranston"",
                     ""ids"": {
@@ -130,6 +154,9 @@
                 },
                 {
                   ""character"": ""Jules Winfield"",
+                  ""characters"": [
+                    ""Jules Winfield""
+                  ],
                   ""pers"": {
                     ""name"": ""Samuel L.Jackson"",
                     ""ids"": {
@@ -147,6 +174,9 @@
             @"[
                 {
                   ""ch"": ""Joe Brody"",
+                  ""chs"": [
+                    ""Joe Brody""
+                  ],
                   ""person"": {
                     ""name"": ""Bryan Cranston"",
                     ""ids"": {
@@ -160,6 +190,9 @@
                 },
                 {
                   ""character"": ""Jules Winfield"",
+                  ""characters"": [
+                    ""Jules Winfield""
+                  ],
                   ""pers"": {
                     ""name"": ""Samuel L.Jackson"",
                     ""ids"": {
