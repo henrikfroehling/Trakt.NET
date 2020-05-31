@@ -28,6 +28,9 @@
                         case JsonProperties.PERSON_MOVIE_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTER:
                             movieCreditsCastItem.Character = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
+                        case JsonProperties.PERSON_MOVIE_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTERS:
+                            movieCreditsCastItem.Characters = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
+                            break;
                         case JsonProperties.PERSON_MOVIE_CREDITS_CAST_ITEM_PROPERTY_NAME_MOVIE:
                             movieCreditsCastItem.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;

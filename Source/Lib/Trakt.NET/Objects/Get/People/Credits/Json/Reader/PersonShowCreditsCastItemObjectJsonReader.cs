@@ -17,7 +17,7 @@
             {
                 var showObjectReader = new ShowObjectJsonReader();
 
-                ITraktPersonShowCreditsCastItem movieCreditsCastItem = new TraktPersonShowCreditsCastItem();
+                ITraktPersonShowCreditsCastItem showCreditsCastItem = new TraktPersonShowCreditsCastItem();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -26,10 +26,25 @@
                     switch (propertyName)
                     {
                         case JsonProperties.PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTER:
-                            movieCreditsCastItem.Character = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            showCreditsCastItem.Character = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTERS:
+                            showCreditsCastItem.Characters = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_EPISODE_COUNT:
+                            {
+                                var value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    showCreditsCastItem.EpisodeCount = value.Second;
+
+                                break;
+                            }
+                        case JsonProperties.PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_SERIES_REGULAR:
+                            showCreditsCastItem.SeriesRegular = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_SHOW:
-                            movieCreditsCastItem.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            showCreditsCastItem.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -37,7 +52,7 @@
                     }
                 }
 
-                return movieCreditsCastItem;
+                return showCreditsCastItem;
             }
 
             return await Task.FromResult(default(ITraktPersonShowCreditsCastItem));

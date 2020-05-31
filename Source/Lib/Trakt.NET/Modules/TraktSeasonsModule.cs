@@ -244,6 +244,40 @@
         }
 
         /// <summary>
+        /// Gets all people for a <see cref="ITraktSeason" /> in a show with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/seasons/people/get-all-people-for-a-season">"Trakt API Doc - Seasons: People"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="seasonNumber">The number of the season, for which the people should be queried.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the people should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktShowCastAndCrew" /> instance, containing the cast and crew for a season with the given showIdOrSlug and the given season number.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        public Task<TraktResponse<ITraktShowCastAndCrew>> GetSeasonPeopleAsync(string showIdOrSlug, uint seasonNumber, TraktExtendedInfo extendedInfo = null,
+                                                                               CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SeasonPeopleRequest
+            {
+                Id = showIdOrSlug,
+                SeasonNumber = seasonNumber,
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets the ratings for a <see cref="ITraktSeason" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>

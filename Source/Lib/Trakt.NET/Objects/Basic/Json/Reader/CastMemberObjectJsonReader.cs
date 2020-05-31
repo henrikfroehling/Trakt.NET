@@ -27,6 +27,9 @@
                         case JsonProperties.CAST_MEMBER_PROPERTY_NAME_CHARACTER:
                             traktCastMember.Character = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
+                        case JsonProperties.CAST_MEMBER_PROPERTY_NAME_CHARACTERS:
+                            traktCastMember.Characters = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
+                            break;
                         case JsonProperties.CAST_MEMBER_PROPERTY_NAME_PERSON:
                             traktCastMember.Person = await personReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;

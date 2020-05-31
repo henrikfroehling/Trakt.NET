@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
+namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     public partial class CrewObjectJsonReader_Tests
     {
@@ -7,6 +7,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -20,6 +23,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -35,6 +41,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -48,6 +57,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -63,6 +75,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -76,6 +91,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -91,6 +109,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -104,6 +125,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -119,6 +143,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -132,6 +159,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -147,6 +177,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -160,6 +193,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -175,6 +211,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -188,6 +227,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -203,6 +245,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -216,6 +261,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -231,6 +279,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -244,6 +295,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -259,6 +313,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -272,6 +329,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -287,6 +347,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -300,6 +363,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -319,6 +385,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -332,6 +401,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -347,6 +419,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -360,6 +435,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -375,6 +453,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -388,6 +469,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -403,6 +487,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -416,6 +503,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -431,6 +521,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -444,6 +537,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -459,6 +555,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -472,6 +571,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -487,6 +589,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -500,6 +605,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -515,6 +623,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -528,6 +639,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -543,6 +657,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -556,6 +673,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -571,6 +691,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -584,6 +707,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -603,6 +729,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -616,6 +745,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -631,6 +763,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -644,6 +779,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -659,6 +797,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -672,6 +813,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -687,6 +831,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -700,6 +847,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -715,6 +865,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -728,6 +881,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -743,6 +899,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -756,6 +915,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -771,6 +933,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -784,6 +949,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -799,6 +967,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -812,6 +983,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -827,6 +1001,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -840,6 +1017,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -855,6 +1035,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -868,6 +1051,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -887,6 +1073,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -900,6 +1089,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -915,6 +1107,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -928,6 +1123,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -943,6 +1141,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -956,6 +1157,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -971,6 +1175,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -984,6 +1191,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -999,6 +1209,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1012,6 +1225,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1027,6 +1243,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1040,6 +1259,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1055,6 +1277,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1068,6 +1293,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1083,6 +1311,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1096,6 +1327,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1111,6 +1345,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1124,6 +1361,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1139,6 +1379,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1152,6 +1395,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1171,6 +1417,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1184,6 +1433,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1199,6 +1451,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1212,6 +1467,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1227,6 +1485,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1240,6 +1501,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1255,6 +1519,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1268,6 +1535,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1283,6 +1553,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1296,6 +1569,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1311,6 +1587,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1324,6 +1603,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1339,6 +1621,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1352,6 +1637,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1367,6 +1655,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1380,6 +1671,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1395,6 +1689,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1408,6 +1705,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1423,6 +1723,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1436,6 +1739,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1455,6 +1761,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1468,6 +1777,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1483,6 +1795,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1496,6 +1811,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1511,6 +1829,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1524,6 +1845,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1539,6 +1863,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1552,6 +1879,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1567,6 +1897,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1580,6 +1913,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1595,6 +1931,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1608,6 +1947,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1623,6 +1965,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1636,6 +1981,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1651,6 +1999,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1664,6 +2015,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1679,6 +2033,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1692,6 +2049,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1707,6 +2067,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1720,6 +2083,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1739,6 +2105,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1752,6 +2121,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1767,6 +2139,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1780,6 +2155,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1795,6 +2173,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1808,6 +2189,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1823,6 +2207,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1836,6 +2223,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1851,6 +2241,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1864,6 +2257,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1879,6 +2275,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1892,6 +2291,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1907,6 +2309,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1920,6 +2325,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1935,6 +2343,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1948,6 +2359,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1963,6 +2377,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -1976,6 +2393,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -1991,6 +2411,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2004,6 +2427,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2023,6 +2449,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2036,6 +2465,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2051,6 +2483,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2064,6 +2499,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2079,6 +2517,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2092,6 +2533,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2107,6 +2551,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2120,6 +2567,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2135,6 +2585,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2148,6 +2601,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2163,6 +2619,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2176,6 +2635,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2191,6 +2653,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2204,6 +2669,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2219,6 +2687,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2232,6 +2703,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2247,6 +2721,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2260,6 +2737,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2275,6 +2755,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2288,6 +2771,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2307,6 +2793,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2320,6 +2809,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2335,6 +2827,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2348,6 +2843,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2363,6 +2861,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2376,6 +2877,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2391,6 +2895,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2404,6 +2911,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2419,6 +2929,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2432,6 +2945,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2447,6 +2963,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2460,6 +2979,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2475,6 +2997,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2488,6 +3013,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2503,6 +3031,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2516,6 +3047,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2531,6 +3065,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2544,6 +3081,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2559,6 +3099,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2572,6 +3115,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2591,6 +3137,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2604,6 +3153,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2619,6 +3171,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2632,6 +3187,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2647,6 +3205,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2660,6 +3221,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2675,6 +3239,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2688,6 +3255,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2703,6 +3273,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2716,6 +3289,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2731,6 +3307,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2744,6 +3323,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2759,6 +3341,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2772,6 +3357,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2787,6 +3375,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2800,6 +3391,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2815,6 +3409,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2828,6 +3425,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2843,6 +3443,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2856,6 +3459,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2875,6 +3481,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2888,6 +3497,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2903,6 +3515,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2916,6 +3531,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2931,6 +3549,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2944,6 +3565,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2959,6 +3583,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -2972,6 +3599,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -2987,6 +3617,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3000,6 +3633,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3015,6 +3651,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3028,6 +3667,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3043,6 +3685,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3056,6 +3701,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3071,6 +3719,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3084,6 +3735,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3099,6 +3753,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3112,6 +3769,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3127,6 +3787,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3140,6 +3803,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3159,6 +3825,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3172,6 +3841,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3187,6 +3859,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3200,6 +3875,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3215,6 +3893,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3228,6 +3909,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3243,6 +3927,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3256,6 +3943,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3271,6 +3961,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3284,6 +3977,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3299,6 +3995,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3312,6 +4011,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3327,6 +4029,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3340,6 +4045,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3355,6 +4063,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3368,6 +4079,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3383,6 +4097,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3396,6 +4113,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3411,6 +4131,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3424,6 +4147,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3443,6 +4169,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3456,6 +4185,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3475,6 +4207,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3488,6 +4223,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3507,6 +4245,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3520,6 +4261,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3539,6 +4283,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3552,6 +4299,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3571,6 +4321,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3584,6 +4337,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3603,6 +4359,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3616,6 +4375,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3635,6 +4397,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3648,6 +4413,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3667,6 +4435,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3680,6 +4451,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3699,6 +4473,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3712,6 +4489,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3731,6 +4511,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3744,6 +4527,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3763,6 +4549,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3776,6 +4565,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3795,6 +4587,9 @@
                 ""prod"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3808,6 +4603,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3823,6 +4621,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3836,6 +4637,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3851,6 +4655,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3864,6 +4671,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3879,6 +4689,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3892,6 +4705,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3907,6 +4723,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3920,6 +4739,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3935,6 +4757,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3948,6 +4773,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3963,6 +4791,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -3976,6 +4807,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -3991,6 +4825,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4004,6 +4841,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4019,6 +4859,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4032,6 +4875,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4047,6 +4893,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4060,6 +4909,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4075,6 +4927,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4088,6 +4943,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4107,6 +4965,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4120,6 +4981,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4135,6 +4999,9 @@
                 ""a"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4148,6 +5015,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4163,6 +5033,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4176,6 +5049,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4191,6 +5067,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4204,6 +5083,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4219,6 +5101,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4232,6 +5117,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4247,6 +5135,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4260,6 +5151,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4275,6 +5169,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4288,6 +5185,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4303,6 +5203,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4316,6 +5219,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4331,6 +5237,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4344,6 +5253,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4359,6 +5271,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4372,6 +5287,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4387,6 +5305,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4400,6 +5321,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4419,6 +5343,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4432,6 +5359,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4447,6 +5377,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4460,6 +5393,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4475,6 +5411,9 @@
                 ""cr"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4488,6 +5427,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4503,6 +5445,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4516,6 +5461,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4531,6 +5479,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4544,6 +5495,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4559,6 +5513,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4572,6 +5529,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4587,6 +5547,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4600,6 +5563,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4615,6 +5581,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4628,6 +5597,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4643,6 +5615,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4656,6 +5631,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4671,6 +5649,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4684,6 +5665,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4699,6 +5683,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4712,6 +5699,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4731,6 +5721,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4744,6 +5737,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4759,6 +5755,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4772,6 +5771,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4787,6 +5789,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4800,6 +5805,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4815,6 +5823,9 @@
                 ""cos &"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4828,6 +5839,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4843,6 +5857,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4856,6 +5873,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4871,6 +5891,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4884,6 +5907,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4899,6 +5925,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4912,6 +5941,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4927,6 +5959,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4940,6 +5975,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4955,6 +5993,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4968,6 +6009,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -4983,6 +6027,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -4996,6 +6043,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5011,6 +6061,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5024,6 +6077,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5043,6 +6099,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5056,6 +6115,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5071,6 +6133,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5084,6 +6149,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5099,6 +6167,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5112,6 +6183,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5127,6 +6201,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5140,6 +6217,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5155,6 +6235,9 @@
                 ""dir"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5168,6 +6251,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5183,6 +6269,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5196,6 +6285,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5211,6 +6303,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5224,6 +6319,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5239,6 +6337,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5252,6 +6353,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5267,6 +6371,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5280,6 +6387,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5295,6 +6405,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5308,6 +6421,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5323,6 +6439,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5336,6 +6455,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5355,6 +6477,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5368,6 +6493,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5383,6 +6511,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5396,6 +6527,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5411,6 +6545,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5424,6 +6561,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5439,6 +6579,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5452,6 +6595,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5467,6 +6613,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5480,6 +6629,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5495,6 +6647,9 @@
                 ""writ"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5508,6 +6663,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5523,6 +6681,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5536,6 +6697,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5551,6 +6715,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5564,6 +6731,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5579,6 +6749,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5592,6 +6765,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5607,6 +6783,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5620,6 +6799,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5635,6 +6817,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5648,6 +6833,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5667,6 +6855,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5680,6 +6871,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5695,6 +6889,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5708,6 +6905,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5723,6 +6923,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5736,6 +6939,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5751,6 +6957,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5764,6 +6973,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5779,6 +6991,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5792,6 +7007,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5807,6 +7025,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5820,6 +7041,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5835,6 +7059,9 @@
                 ""so"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5848,6 +7075,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5863,6 +7093,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5876,6 +7109,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5891,6 +7127,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5904,6 +7143,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5919,6 +7161,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5932,6 +7177,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5947,6 +7195,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5960,6 +7211,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -5979,6 +7233,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -5992,6 +7249,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6007,6 +7267,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6020,6 +7283,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6035,6 +7301,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6048,6 +7317,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6063,6 +7335,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6076,6 +7351,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6091,6 +7369,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6104,6 +7385,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6119,6 +7403,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6132,6 +7419,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6147,6 +7437,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6160,6 +7453,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6175,6 +7471,9 @@
                 ""cam"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6188,6 +7487,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6203,6 +7505,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6216,6 +7521,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6231,6 +7539,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6244,6 +7555,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6259,6 +7573,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6272,6 +7589,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6291,6 +7611,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6304,6 +7627,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6319,6 +7645,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6332,6 +7661,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6347,6 +7679,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6360,6 +7695,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6375,6 +7713,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6388,6 +7729,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6403,6 +7747,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6416,6 +7763,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6431,6 +7781,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6444,6 +7797,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6459,6 +7815,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6472,6 +7831,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6487,6 +7849,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6500,6 +7865,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6515,6 +7883,9 @@
                 ""light"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6528,6 +7899,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6543,6 +7917,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6556,6 +7933,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6571,6 +7951,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6584,6 +7967,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6603,6 +7989,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6616,6 +8005,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6631,6 +8023,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6644,6 +8039,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6659,6 +8057,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6672,6 +8073,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6687,6 +8091,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6700,6 +8107,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6715,6 +8125,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6728,6 +8141,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6743,6 +8159,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6756,6 +8175,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6771,6 +8193,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6784,6 +8209,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6799,6 +8227,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6812,6 +8243,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6827,6 +8261,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6840,6 +8277,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6855,6 +8295,9 @@
                 ""vfx"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6868,6 +8311,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6883,6 +8329,9 @@
                 ""editing"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6896,6 +8345,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6915,6 +8367,9 @@
                 ""production"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6928,6 +8383,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6943,6 +8401,9 @@
                 ""art"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6956,6 +8417,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6971,6 +8435,9 @@
                 ""crew"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -6984,6 +8451,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -6999,6 +8469,9 @@
                 ""costume & make-up"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7012,6 +8485,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7027,6 +8503,9 @@
                 ""directing"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7040,6 +8519,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7055,6 +8537,9 @@
                 ""writing"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7068,6 +8553,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7083,6 +8571,9 @@
                 ""sound"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7096,6 +8587,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7111,6 +8605,9 @@
                 ""camera"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7124,6 +8621,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7139,6 +8639,9 @@
                 ""lighting"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7152,6 +8655,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7167,6 +8673,9 @@
                 ""visual effects"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7180,6 +8689,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7195,6 +8707,9 @@
                 ""edit"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7208,6 +8723,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7227,6 +8745,9 @@
                 ""prod"": [
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7240,6 +8761,9 @@
                   },
                   {
                     ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7255,6 +8779,9 @@
                 ""a"": [
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7268,6 +8795,9 @@
                   },
                   {
                     ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7283,6 +8813,9 @@
                 ""cr"": [
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7296,6 +8829,9 @@
                   },
                   {
                     ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7311,6 +8847,9 @@
                 ""cos &"": [
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7324,6 +8863,9 @@
                   },
                   {
                     ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7339,6 +8881,9 @@
                 ""dir"": [
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7352,6 +8897,9 @@
                   },
                   {
                     ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7367,6 +8915,9 @@
                 ""writ"": [
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7380,6 +8931,9 @@
                   },
                   {
                     ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7395,6 +8949,9 @@
                 ""so"": [
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7408,6 +8965,9 @@
                   },
                   {
                     ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7423,6 +8983,9 @@
                 ""cam"": [
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7436,6 +8999,9 @@
                   },
                   {
                     ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7451,6 +9017,9 @@
                 ""light"": [
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7464,6 +9033,9 @@
                   },
                   {
                     ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7479,6 +9051,9 @@
                 ""vfx"": [
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7492,6 +9067,9 @@
                   },
                   {
                     ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {
@@ -7507,6 +9085,9 @@
                 ""edit"": [
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Bryan Cranston"",
                       ""ids"": {
@@ -7520,6 +9101,9 @@
                   },
                   {
                     ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""person"": {
                       ""name"": ""Samuel L.Jackson"",
                       ""ids"": {

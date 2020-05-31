@@ -21,6 +21,7 @@
             Full = false;
             NoSeasons = false;
             Episodes = false;
+            GuestStars = false;
         }
 
         /// <summary>
@@ -63,8 +64,14 @@
         /// </summary>
         public bool Episodes { get; set; }
 
+        /// <summary>
+        /// Gets or sets, whether guest_stars information should be retrieved.
+        /// <para>See also <see cref="SetGuestStars()" /> and <see cref="ResetGuestStars()" />.</para>
+        /// </summary>
+        public bool GuestStars { get; set; }
+
         /// <summary>Returns, whether any flag is enabled.</summary>
-        public bool HasAnySet => Metadata || Full || NoSeasons || Episodes;
+        public bool HasAnySet => Metadata || Full || NoSeasons || Episodes || GuestStars;
 
         /// <summary>
         /// Enables the metadata information flag.
@@ -154,6 +161,28 @@
             return this;
         }
 
+        /// <summary>
+        /// Enables the guest_stars information flag.
+        /// <para>See also <see cref="GuestStars" />.</para>
+        /// </summary>
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo SetGuestStars()
+        {
+            GuestStars = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Disables the guest_stars information flag.
+        /// <para>See also <see cref="GuestStars" />.</para>
+        /// </summary>
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo ResetGuestStars()
+        {
+            GuestStars = false;
+            return this;
+        }
+
         /// <summary>Disables all flags.</summary>
         /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
         public TraktExtendedInfo Reset()
@@ -162,6 +191,7 @@
             Full = false;
             NoSeasons = false;
             Episodes = false;
+            GuestStars = false;
             return this;
         }
 
@@ -185,6 +215,9 @@
 
             if (Episodes)
                 options.Add("episodes");
+
+            if (GuestStars)
+                options.Add("guest_stars");
 
             return options;
         }

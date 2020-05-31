@@ -19,6 +19,18 @@
                 await jsonWriter.WriteValueAsync(obj.Job, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Jobs != null)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_JOBS, cancellationToken).ConfigureAwait(false);
+                await JsonWriterHelper.WriteStringArrayAsync(jsonWriter, obj.Jobs, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.EpisodeCount.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_EPISODE_COUNT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.EpisodeCount.Value, cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.Show != null)
             {
                 var movieObjectJsonWriter = new ShowObjectJsonWriter();
