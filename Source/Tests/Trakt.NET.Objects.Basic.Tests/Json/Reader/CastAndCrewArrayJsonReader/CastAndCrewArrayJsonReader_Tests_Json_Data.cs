@@ -10,6 +10,9 @@
                   ""cast"": [
                     {
                       ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -27,6 +30,9 @@
                   ""cast"": [
                     {
                       ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -48,6 +54,9 @@
                   ""cast"": [
                     {
                       ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -64,7 +73,10 @@
                 {
                   ""cast"": [
                     {
-                      ""character"": ""Joe Brody""
+                      ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ]
                     }
                   ]
                 }
@@ -75,7 +87,10 @@
                 {
                   ""cast"": [
                     {
-                      ""character"": ""Joe Brody""
+                      ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ]
                     }
                   ]
                 },
@@ -83,6 +98,9 @@
                   ""cast"": [
                     {
                       ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -104,6 +122,9 @@
                   ""ca"": [
                     {
                       ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -121,6 +142,9 @@
                   ""cast"": [
                     {
                       ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -142,6 +166,9 @@
                   ""cast"": [
                     {
                       ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -159,6 +186,9 @@
                   ""ca"": [
                     {
                       ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -180,6 +210,9 @@
                   ""ca"": [
                     {
                       ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
@@ -197,6 +230,9 @@
                   ""ca"": [
                     {
                       ""character"": ""Joe Brody"",
+                      ""characters"": [
+                        ""Joe Brody""
+                      ],
                       ""person"": {
                         ""name"": ""Bryan Cranston"",
                         ""ids"": {
