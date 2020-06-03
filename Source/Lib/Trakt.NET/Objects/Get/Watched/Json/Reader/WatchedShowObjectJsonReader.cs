@@ -38,6 +38,15 @@
 
                                 break;
                             }
+                        case JsonProperties.WATCHED_SHOW_PROPERTY_NAME_RESET_AT:
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktWatchedShow.ResetAt = value.Second;
+
+                                break;
+                            }
                         case JsonProperties.WATCHED_SHOW_PROPERTY_NAME_SHOW:
                             traktWatchedShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;

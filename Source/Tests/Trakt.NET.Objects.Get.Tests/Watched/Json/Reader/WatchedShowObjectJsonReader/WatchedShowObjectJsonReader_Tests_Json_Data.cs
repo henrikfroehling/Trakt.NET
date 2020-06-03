@@ -6,6 +6,7 @@
             @"{
                 ""plays"": 1,
                 ""last_watched_at"": ""2014-09-01T09:10:11.000Z"",
+                ""reset_at"": ""2014-09-01T09:10:11.000Z"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
@@ -55,6 +56,7 @@
         private const string JSON_INCOMPLETE_1 =
             @"{
                 ""last_watched_at"": ""2014-09-01T09:10:11.000Z"",
+                ""reset_at"": ""2014-09-01T09:10:11.000Z"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
@@ -104,6 +106,7 @@
         private const string JSON_INCOMPLETE_2 =
             @"{
                 ""plays"": 1,
+                ""reset_at"": ""2014-09-01T09:10:11.000Z"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
@@ -154,6 +157,18 @@
             @"{
                 ""plays"": 1,
                 ""last_watched_at"": ""2014-09-01T09:10:11.000Z"",
+                ""show"": {
+                  ""title"": ""Game of Thrones"",
+                  ""year"": 2011,
+                  ""ids"": {
+                    ""trakt"": 1390,
+                    ""slug"": ""game-of-thrones"",
+                    ""tvdb"": 121361,
+                    ""imdb"": ""tt0944947"",
+                    ""tmdb"": 1399,
+                    ""tvrage"": 24493
+                  }
+                },
                 ""seasons"": [
                   {
                     ""number"": 1,
@@ -192,31 +207,76 @@
             @"{
                 ""plays"": 1,
                 ""last_watched_at"": ""2014-09-01T09:10:11.000Z"",
-                ""show"": {
-                  ""title"": ""Game of Thrones"",
-                  ""year"": 2011,
-                  ""ids"": {
-                    ""trakt"": 1390,
-                    ""slug"": ""game-of-thrones"",
-                    ""tvdb"": 121361,
-                    ""imdb"": ""tt0944947"",
-                    ""tmdb"": 1399,
-                    ""tvrage"": 24493
+                ""reset_at"": ""2014-09-01T09:10:11.000Z"",
+                ""seasons"": [
+                  {
+                    ""number"": 1,
+                    ""episodes"": [
+                      {
+                        ""number"": 1,
+                        ""plays"": 1,
+                        ""last_watched_at"": ""2014-09-01T09:10:11.000Z""
+                      },
+                      {
+                        ""number"": 2,
+                        ""plays"": 1,
+                        ""last_watched_at"": ""2014-09-01T09:10:11.000Z""
+                      }
+                    ]
+                  },
+                  {
+                    ""number"": 2,
+                    ""episodes"": [
+                      {
+                        ""number"": 1,
+                        ""plays"": 1,
+                        ""last_watched_at"": ""2014-09-01T09:10:11.000Z""
+                      },
+                      {
+                        ""number"": 2,
+                        ""plays"": 1,
+                        ""last_watched_at"": ""2014-09-01T09:10:11.000Z""
+                      }
+                    ]
                   }
-                }
+                ]
               }";
 
         private const string JSON_INCOMPLETE_5 =
             @"{
-                ""plays"": 1
+                ""plays"": 1,
+                ""last_watched_at"": ""2014-09-01T09:10:11.000Z"",
+                ""reset_at"": ""2014-09-01T09:10:11.000Z"",
+                ""show"": {
+                  ""title"": ""Game of Thrones"",
+                  ""year"": 2011,
+                  ""ids"": {
+                    ""trakt"": 1390,
+                    ""slug"": ""game-of-thrones"",
+                    ""tvdb"": 121361,
+                    ""imdb"": ""tt0944947"",
+                    ""tmdb"": 1399,
+                    ""tvrage"": 24493
+                  }
+                }
               }";
 
         private const string JSON_INCOMPLETE_6 =
             @"{
-                ""last_watched_at"": ""2014-09-01T09:10:11.000Z""
+                ""plays"": 1
               }";
 
         private const string JSON_INCOMPLETE_7 =
+            @"{
+                ""last_watched_at"": ""2014-09-01T09:10:11.000Z""
+              }";
+
+        private const string JSON_INCOMPLETE_8 =
+            @"{
+                ""reset_at"": ""2014-09-01T09:10:11.000Z""
+              }";
+
+        private const string JSON_INCOMPLETE_9 =
             @"{
                 ""show"": {
                   ""title"": ""Game of Thrones"",
@@ -232,7 +292,7 @@
                 }
               }";
 
-        private const string JSON_INCOMPLETE_8 =
+        private const string JSON_INCOMPLETE_10 =
             @"{
                 ""seasons"": [
                   {
@@ -272,6 +332,7 @@
             @"{
                 ""pl"": 1,
                 ""last_watched_at"": ""2014-09-01T09:10:11.000Z"",
+                ""reset_at"": ""2014-09-01T09:10:11.000Z"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
@@ -322,6 +383,7 @@
             @"{
                 ""plays"": 1,
                 ""lwa"": ""2014-09-01T09:10:11.000Z"",
+                ""reset_at"": ""2014-09-01T09:10:11.000Z"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
@@ -372,7 +434,8 @@
             @"{
                 ""plays"": 1,
                 ""last_watched_at"": ""2014-09-01T09:10:11.000Z"",
-                ""sh"": {
+                ""ra"": ""2014-09-01T09:10:11.000Z"",
+                ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
                   ""ids"": {
@@ -422,6 +485,58 @@
             @"{
                 ""plays"": 1,
                 ""last_watched_at"": ""2014-09-01T09:10:11.000Z"",
+                ""reset_at"": ""2014-09-01T09:10:11.000Z"",
+                ""sh"": {
+                  ""title"": ""Game of Thrones"",
+                  ""year"": 2011,
+                  ""ids"": {
+                    ""trakt"": 1390,
+                    ""slug"": ""game-of-thrones"",
+                    ""tvdb"": 121361,
+                    ""imdb"": ""tt0944947"",
+                    ""tmdb"": 1399,
+                    ""tvrage"": 24493
+                  }
+                },
+                ""seasons"": [
+                  {
+                    ""number"": 1,
+                    ""episodes"": [
+                      {
+                        ""number"": 1,
+                        ""plays"": 1,
+                        ""last_watched_at"": ""2014-09-01T09:10:11.000Z""
+                      },
+                      {
+                        ""number"": 2,
+                        ""plays"": 1,
+                        ""last_watched_at"": ""2014-09-01T09:10:11.000Z""
+                      }
+                    ]
+                  },
+                  {
+                    ""number"": 2,
+                    ""episodes"": [
+                      {
+                        ""number"": 1,
+                        ""plays"": 1,
+                        ""last_watched_at"": ""2014-09-01T09:10:11.000Z""
+                      },
+                      {
+                        ""number"": 2,
+                        ""plays"": 1,
+                        ""last_watched_at"": ""2014-09-01T09:10:11.000Z""
+                      }
+                    ]
+                  }
+                ]
+              }";
+
+        private const string JSON_NOT_VALID_5 =
+            @"{
+                ""plays"": 1,
+                ""last_watched_at"": ""2014-09-01T09:10:11.000Z"",
+                ""reset_at"": ""2014-09-01T09:10:11.000Z"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
@@ -468,10 +583,11 @@
                 ]
               }";
 
-        private const string JSON_NOT_VALID_5 =
+        private const string JSON_NOT_VALID_6 =
             @"{
                 ""pl"": 1,
                 ""lwa"": ""2014-09-01T09:10:11.000Z"",
+                ""ra"": ""2014-09-01T09:10:11.000Z"",
                 ""sh"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,

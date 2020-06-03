@@ -26,6 +26,12 @@
                 await jsonWriter.WriteValueAsync(obj.LastWatchedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.ResetAt.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.WATCHED_SHOW_PROPERTY_NAME_RESET_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.ResetAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.Show != null)
             {
                 var showObjectJsonWriter = new ShowObjectJsonWriter();
