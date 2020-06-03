@@ -4,6 +4,78 @@ Release notes
 Version 1.0.0
 ===
 
+#### 1.0.0
+(2020-06-03)
+
+Breaking Changes:
+
+- New response classes
+  - `TraktNoContentResponse` replaces all `Task` return types in `Modules`
+  - `TraktResponse<TContentType>` replaces all `Task<TItem>` return types in `Modules`
+  - `TraktListResponse<TContentType>` replaces all `Task<IEnumerable<TItem>>` return types in `Modules`
+  - `TraktPagedResponse<TContentType>` replaces all `Task<TraktPaginationListResult<TItem>>` return types in `Modules`
+  - [More information](https://github.com/henrikfroehling/TraktApiSharp/wiki/00-Prereleases#v100-alpha1)
+
+- .NET Standard 1.1 replaces PCL
+
+Changes:
+- Split up test project in multiple test projects (release) ([Issue 107](https://github.com/henrikfroehling/Trakt.NET/issues/107)
+- Split up TraktNET.Objects.Tests in multiple test projects (release) ([Issue 117](https://github.com/henrikfroehling/TraktApiSharp/issues/117))
+
+Added:
+- Add support for new people methods ([Issue 125](https://github.com/henrikfroehling/Trakt.NET/issues/125)
+
+Improved:
+
+- Source Code Documentation ([Issue 28](https://github.com/henrikfroehling/Trakt.NET/issues/28)
+- Improve / replace UriTemplate implementation (release) ([Issue 121](https://github.com/henrikfroehling/Trakt.NET/issues/121)
+- Improve test coverage
+
+#### 1.0.0-beta
+(2019-03-30)
+
+Breaking Changes:
+
+- New response classes
+  - `TraktNoContentResponse` replaces all `Task` return types in `Modules`
+  - `TraktResponse<TContentType>` replaces all `Task<TItem>` return types in `Modules`
+  - `TraktListResponse<TContentType>` replaces all `Task<IEnumerable<TItem>>` return types in `Modules`
+  - `TraktPagedResponse<TContentType>` replaces all `Task<TraktPaginationListResult<TItem>>` return types in `Modules`
+  - [More information](https://github.com/henrikfroehling/TraktApiSharp/wiki/00-Prereleases#v100-alpha1)
+
+- .NET Standard 1.1 replaces PCL
+
+Changes:
+
+- Rename library / project / repository to "Trakt.NET" ([Issue 3](https://github.com/henrikfroehling/Trakt.NET/issues/3)
+- Move all examples into their own repository ([Issue 57](https://github.com/henrikfroehling/TraktApiSharp/issues/57))
+
+Added:
+
+- Add missing "token" property in ITraktAccountSettings ([Issue 27](https://github.com/henrikfroehling/Trakt.NET/issues/27)
+- Add missing filter support for text query search ([Issue 72](https://github.com/henrikfroehling/Trakt.NET/issues/72)
+
+Fixed:
+
+- Fix serialization service ([Issue 23](https://github.com/henrikfroehling/Trakt.NET/issues/23)
+- post builder feature: add support for posting collected episodes without ids ([Issue 30](https://github.com/henrikfroehling/Trakt.NET/issues/30)
+- Implement missing json object and array reader ([Issue 33](https://github.com/henrikfroehling/Trakt.NET/issues/33)
+- Implement missing json object and array writer ([Issue 34](https://github.com/henrikfroehling/Trakt.NET/issues/34)
+- Fix post builder for sync collection post ([Issue 35](https://github.com/henrikfroehling/Trakt.NET/issues/35)
+- Refreshing authorization not working with expired or invalid access token ([Issue 36](https://github.com/henrikfroehling/Trakt.NET/issues/36)
+- Revoking authorization not working with expired or invalid access token ([Issue 37](https://github.com/henrikfroehling/Trakt.NET/issues/37)
+- Wrong type assignment for lists ([Issue 61](https://github.com/henrikfroehling/Trakt.NET/issues/61)
+- Bad Request when adding items to a list ([Issue 62](https://github.com/henrikfroehling/Trakt.NET/issues/62)
+- Exception when search text query is empty ([Issue 64](https://github.com/henrikfroehling/Trakt.NET/issues/64)
+- Invalid implementation for Networks / List / Get networks ([Issue 65](https://github.com/henrikfroehling/Trakt.NET/issues/65)
+- Redundant checks for ITraktMovie properties in TraktScrobbleModule ([Issue 94](https://github.com/henrikfroehling/Trakt.NET/issues/94)
+
+Improved:
+
+- Improve test coverage ([Issue 49](https://github.com/henrikfroehling/TraktApiSharp/issues/49))
+
+---------
+
 #### 1.0.0-alpha3
 (2018-06-17)
 
