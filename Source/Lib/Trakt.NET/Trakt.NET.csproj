@@ -22,7 +22,7 @@ Features
 - Language Service</Description>
     <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
     <PackageTags>trakt REST</PackageTags>
-    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#100-alpha3</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#100</PackageReleaseNotes>
     <ProjectGuid>{C3B51555-C0AF-4DA6-8D78-75B38F06B578}</ProjectGuid>
   </PropertyGroup>
 
