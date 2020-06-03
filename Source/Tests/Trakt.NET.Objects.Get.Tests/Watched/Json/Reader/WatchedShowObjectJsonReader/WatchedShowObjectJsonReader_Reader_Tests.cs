@@ -26,6 +26,7 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().Be(1);
                 traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
                 traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedShow.Show.Should().NotBeNull();
@@ -89,6 +90,7 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().BeNull();
                 traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
                 traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedShow.Show.Should().NotBeNull();
@@ -152,6 +154,7 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().Be(1);
                 traktWatchedShow.LastWatchedAt.Should().BeNull();
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
                 traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedShow.Show.Should().NotBeNull();
@@ -215,7 +218,8 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().Be(1);
                 traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchedShow.ResetAt.Should().BeNull();
+                traktWatchedShow.LastUpdatedAt.Should().BeNull();
+                traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedShow.Show.Should().NotBeNull();
                 traktWatchedShow.Show.Title.Should().Be("Game of Thrones");
@@ -278,9 +282,19 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().Be(1);
                 traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.ResetAt.Should().BeNull();
 
-                traktWatchedShow.Show.Should().BeNull();
+                traktWatchedShow.Show.Should().NotBeNull();
+                traktWatchedShow.Show.Title.Should().Be("Game of Thrones");
+                traktWatchedShow.Show.Year.Should().Be(2011);
+                traktWatchedShow.Show.Ids.Should().NotBeNull();
+                traktWatchedShow.Show.Ids.Trakt.Should().Be(1390U);
+                traktWatchedShow.Show.Ids.Slug.Should().Be("game-of-thrones");
+                traktWatchedShow.Show.Ids.Tvdb.Should().Be(121361U);
+                traktWatchedShow.Show.Ids.Imdb.Should().Be("tt0944947");
+                traktWatchedShow.Show.Ids.Tmdb.Should().Be(1399U);
+                traktWatchedShow.Show.Ids.TvRage.Should().Be(24493U);
 
                 traktWatchedShow.WatchedSeasons.Should().NotBeNull().And.HaveCount(2);
                 var seasons = traktWatchedShow.WatchedSeasons.ToArray();
@@ -332,6 +346,62 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().Be(1);
                 traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+
+                traktWatchedShow.Show.Should().BeNull();
+
+                traktWatchedShow.WatchedSeasons.Should().NotBeNull().And.HaveCount(2);
+                var seasons = traktWatchedShow.WatchedSeasons.ToArray();
+
+                seasons[0].Should().NotBeNull();
+                seasons[0].Number.Should().Be(1);
+                seasons[0].Episodes.Should().NotBeNull().And.HaveCount(2);
+
+                var episodes = seasons[0].Episodes.ToArray();
+
+                episodes[0].Should().NotBeNull();
+                episodes[0].Number.Should().Be(1);
+                episodes[0].Plays.Should().Be(1);
+                episodes[0].LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+
+                episodes[1].Should().NotBeNull();
+                episodes[1].Number.Should().Be(2);
+                episodes[1].Plays.Should().Be(1);
+                episodes[1].LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+
+                seasons[1].Should().NotBeNull();
+                seasons[1].Number.Should().Be(2);
+                seasons[1].Episodes.Should().NotBeNull().And.HaveCount(2);
+
+                episodes = seasons[1].Episodes.ToArray();
+
+                episodes[0].Should().NotBeNull();
+                episodes[0].Number.Should().Be(1);
+                episodes[0].Plays.Should().Be(1);
+                episodes[0].LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+
+                episodes[1].Should().NotBeNull();
+                episodes[1].Number.Should().Be(2);
+                episodes[1].Plays.Should().Be(1);
+                episodes[1].LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            }
+        }
+
+        [Fact]
+        public async Task Test_WatchedShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_6()
+        {
+            var traktJsonReader = new WatchedShowObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_INCOMPLETE_6))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktWatchedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+                traktWatchedShow.Should().NotBeNull();
+                traktWatchedShow.Plays.Should().Be(1);
+                traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
                 traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedShow.Show.Should().NotBeNull();
@@ -350,27 +420,6 @@
         }
 
         [Fact]
-        public async Task Test_WatchedShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_6()
-        {
-            var traktJsonReader = new WatchedShowObjectJsonReader();
-
-            using (var reader = new StringReader(JSON_INCOMPLETE_6))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
-
-                traktWatchedShow.Should().NotBeNull();
-                traktWatchedShow.Plays.Should().Be(1);
-                traktWatchedShow.LastWatchedAt.Should().BeNull();
-                traktWatchedShow.ResetAt.Should().BeNull();
-
-                traktWatchedShow.Show.Should().BeNull();
-
-                traktWatchedShow.WatchedSeasons.Should().BeNull();
-            }
-        }
-
-        [Fact]
         public async Task Test_WatchedShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_7()
         {
             var traktJsonReader = new WatchedShowObjectJsonReader();
@@ -381,8 +430,9 @@
                 var traktWatchedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktWatchedShow.Should().NotBeNull();
-                traktWatchedShow.Plays.Should().BeNull();
-                traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.Plays.Should().Be(1);
+                traktWatchedShow.LastWatchedAt.Should().BeNull();
+                traktWatchedShow.LastUpdatedAt.Should().BeNull();
                 traktWatchedShow.ResetAt.Should().BeNull();
 
                 traktWatchedShow.Show.Should().BeNull();
@@ -403,8 +453,9 @@
 
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().BeNull();
-                traktWatchedShow.LastWatchedAt.Should().BeNull();
-                traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.LastUpdatedAt.Should().BeNull();
+                traktWatchedShow.ResetAt.Should().BeNull();
 
                 traktWatchedShow.Show.Should().BeNull();
 
@@ -425,18 +476,10 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().BeNull();
                 traktWatchedShow.LastWatchedAt.Should().BeNull();
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
                 traktWatchedShow.ResetAt.Should().BeNull();
 
-                traktWatchedShow.Show.Should().NotBeNull();
-                traktWatchedShow.Show.Title.Should().Be("Game of Thrones");
-                traktWatchedShow.Show.Year.Should().Be(2011);
-                traktWatchedShow.Show.Ids.Should().NotBeNull();
-                traktWatchedShow.Show.Ids.Trakt.Should().Be(1390U);
-                traktWatchedShow.Show.Ids.Slug.Should().Be("game-of-thrones");
-                traktWatchedShow.Show.Ids.Tvdb.Should().Be(121361U);
-                traktWatchedShow.Show.Ids.Imdb.Should().Be("tt0944947");
-                traktWatchedShow.Show.Ids.Tmdb.Should().Be(1399U);
-                traktWatchedShow.Show.Ids.TvRage.Should().Be(24493U);
+                traktWatchedShow.Show.Should().BeNull();
 
                 traktWatchedShow.WatchedSeasons.Should().BeNull();
             }
@@ -455,6 +498,60 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().BeNull();
                 traktWatchedShow.LastWatchedAt.Should().BeNull();
+                traktWatchedShow.LastUpdatedAt.Should().BeNull();
+                traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+
+                traktWatchedShow.Show.Should().BeNull();
+
+                traktWatchedShow.WatchedSeasons.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public async Task Test_WatchedShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_11()
+        {
+            var traktJsonReader = new WatchedShowObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_INCOMPLETE_11))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktWatchedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+                traktWatchedShow.Should().NotBeNull();
+                traktWatchedShow.Plays.Should().BeNull();
+                traktWatchedShow.LastWatchedAt.Should().BeNull();
+                traktWatchedShow.LastUpdatedAt.Should().BeNull();
+                traktWatchedShow.ResetAt.Should().BeNull();
+
+                traktWatchedShow.Show.Should().NotBeNull();
+                traktWatchedShow.Show.Title.Should().Be("Game of Thrones");
+                traktWatchedShow.Show.Year.Should().Be(2011);
+                traktWatchedShow.Show.Ids.Should().NotBeNull();
+                traktWatchedShow.Show.Ids.Trakt.Should().Be(1390U);
+                traktWatchedShow.Show.Ids.Slug.Should().Be("game-of-thrones");
+                traktWatchedShow.Show.Ids.Tvdb.Should().Be(121361U);
+                traktWatchedShow.Show.Ids.Imdb.Should().Be("tt0944947");
+                traktWatchedShow.Show.Ids.Tmdb.Should().Be(1399U);
+                traktWatchedShow.Show.Ids.TvRage.Should().Be(24493U);
+
+                traktWatchedShow.WatchedSeasons.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public async Task Test_WatchedShowObjectJsonReader_ReadObject_From_JsonReader_Incomplete_12()
+        {
+            var traktJsonReader = new WatchedShowObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_INCOMPLETE_12))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktWatchedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+                traktWatchedShow.Should().NotBeNull();
+                traktWatchedShow.Plays.Should().BeNull();
+                traktWatchedShow.LastWatchedAt.Should().BeNull();
+                traktWatchedShow.LastUpdatedAt.Should().BeNull();
                 traktWatchedShow.ResetAt.Should().BeNull();
 
                 traktWatchedShow.Show.Should().BeNull();
@@ -509,6 +606,7 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().BeNull();
                 traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
                 traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedShow.Show.Should().NotBeNull();
@@ -572,6 +670,7 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().Be(1);
                 traktWatchedShow.LastWatchedAt.Should().BeNull();
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
                 traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedShow.Show.Should().NotBeNull();
@@ -635,7 +734,8 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().Be(1);
                 traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchedShow.ResetAt.Should().BeNull();
+                traktWatchedShow.LastUpdatedAt.Should().BeNull();
+                traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedShow.Show.Should().NotBeNull();
                 traktWatchedShow.Show.Title.Should().Be("Game of Thrones");
@@ -698,9 +798,19 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().Be(1);
                 traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.ResetAt.Should().BeNull();
 
-                traktWatchedShow.Show.Should().BeNull();
+                traktWatchedShow.Show.Should().NotBeNull();
+                traktWatchedShow.Show.Title.Should().Be("Game of Thrones");
+                traktWatchedShow.Show.Year.Should().Be(2011);
+                traktWatchedShow.Show.Ids.Should().NotBeNull();
+                traktWatchedShow.Show.Ids.Trakt.Should().Be(1390U);
+                traktWatchedShow.Show.Ids.Slug.Should().Be("game-of-thrones");
+                traktWatchedShow.Show.Ids.Tvdb.Should().Be(121361U);
+                traktWatchedShow.Show.Ids.Imdb.Should().Be("tt0944947");
+                traktWatchedShow.Show.Ids.Tmdb.Should().Be(1399U);
+                traktWatchedShow.Show.Ids.TvRage.Should().Be(24493U);
 
                 traktWatchedShow.WatchedSeasons.Should().NotBeNull().And.HaveCount(2);
                 var seasons = traktWatchedShow.WatchedSeasons.ToArray();
@@ -752,6 +862,62 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().Be(1);
                 traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+
+                traktWatchedShow.Show.Should().BeNull();
+
+                traktWatchedShow.WatchedSeasons.Should().NotBeNull().And.HaveCount(2);
+                var seasons = traktWatchedShow.WatchedSeasons.ToArray();
+
+                seasons[0].Should().NotBeNull();
+                seasons[0].Number.Should().Be(1);
+                seasons[0].Episodes.Should().NotBeNull().And.HaveCount(2);
+
+                var episodes = seasons[0].Episodes.ToArray();
+
+                episodes[0].Should().NotBeNull();
+                episodes[0].Number.Should().Be(1);
+                episodes[0].Plays.Should().Be(1);
+                episodes[0].LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+
+                episodes[1].Should().NotBeNull();
+                episodes[1].Number.Should().Be(2);
+                episodes[1].Plays.Should().Be(1);
+                episodes[1].LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+
+                seasons[1].Should().NotBeNull();
+                seasons[1].Number.Should().Be(2);
+                seasons[1].Episodes.Should().NotBeNull().And.HaveCount(2);
+
+                episodes = seasons[1].Episodes.ToArray();
+
+                episodes[0].Should().NotBeNull();
+                episodes[0].Number.Should().Be(1);
+                episodes[0].Plays.Should().Be(1);
+                episodes[0].LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+
+                episodes[1].Should().NotBeNull();
+                episodes[1].Number.Should().Be(2);
+                episodes[1].Plays.Should().Be(1);
+                episodes[1].LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            }
+        }
+
+        [Fact]
+        public async Task Test_WatchedShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_6()
+        {
+            var traktJsonReader = new WatchedShowObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_NOT_VALID_6))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktWatchedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+                traktWatchedShow.Should().NotBeNull();
+                traktWatchedShow.Plays.Should().Be(1);
+                traktWatchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                traktWatchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
                 traktWatchedShow.ResetAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
                 traktWatchedShow.Show.Should().NotBeNull();
@@ -770,11 +936,11 @@
         }
 
         [Fact]
-        public async Task Test_WatchedShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_6()
+        public async Task Test_WatchedShowObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_7()
         {
             var traktJsonReader = new WatchedShowObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_6))
+            using (var reader = new StringReader(JSON_NOT_VALID_7))
             using (var jsonReader = new JsonTextReader(reader))
             {
                 var traktWatchedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
@@ -782,6 +948,7 @@
                 traktWatchedShow.Should().NotBeNull();
                 traktWatchedShow.Plays.Should().BeNull();
                 traktWatchedShow.LastWatchedAt.Should().BeNull();
+                traktWatchedShow.LastUpdatedAt.Should().BeNull();
                 traktWatchedShow.ResetAt.Should().BeNull();
 
                 traktWatchedShow.Show.Should().BeNull();

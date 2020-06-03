@@ -13,6 +13,9 @@
         /// <summary>Gets or sets the UTC datetime, when the show was last watched.</summary>
         DateTime? LastWatchedAt { get; set; }
 
+        /// <summary>Gets or sets the UTC datetime, when the show was last updated.</summary>
+        DateTime? LastUpdatedAt { get; set; }
+
         /// <summary>Gets or sets the UTC datetime, when the show was resetted.</summary>
         DateTime? ResetAt { get; set; }
 
