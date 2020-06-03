@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Reflection;
 
-    public abstract class TraktEnumeration : IComparable<TraktEnumeration>, IEquatable<TraktEnumeration>
+    public abstract class TraktEnumeration : IComparable<TraktEnumeration>, IEquatable<TraktEnumeration>, IEqualityComparer<TraktEnumeration>
     {
         protected const string DISPLAY_NAME_UNSPECIFIED = "Unspecified";
 
@@ -48,6 +48,24 @@
         /// <returns>An indication of their relative values.</returns>
         public int CompareTo(TraktEnumeration other) => Value.CompareTo(other.Value);
 
+        public static bool operator==(TraktEnumeration left, TraktEnumeration right)
+        {
+            if (left is null)
+                return right is null;
+
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(TraktEnumeration left, TraktEnumeration right) => !(left == right);
+
+        public static bool operator <(TraktEnumeration left, TraktEnumeration right) => left.CompareTo(right) < 0;
+
+        public static bool operator >(TraktEnumeration left, TraktEnumeration right) => left.CompareTo(right) > 0;
+
+        public static bool operator <=(TraktEnumeration left, TraktEnumeration right) => left.CompareTo(right) <= 0;
+
+        public static bool operator >=(TraktEnumeration left, TraktEnumeration right) => left.CompareTo(right) >= 0;
+
         /// <summary>Returns, whether this enumeration instance is equal to another enumeration instance.</summary>
         /// <param name="other">The other enumeration instance to compare with.</param>
         /// <returns>True, if both enumeration instances are equal, otherwise false.</returns>
@@ -62,9 +80,15 @@
             return typeMatches && valueMatches;
         }
 
+        public override bool Equals(object obj) => Equals(obj as TraktEnumeration);
+
         /// <summary>Returns the hash code of this enumeration.</summary>
         /// <returns>An hash code of this enumeration.</returns>
         public override int GetHashCode() => Value.GetHashCode();
+
+        public bool Equals(TraktEnumeration left, TraktEnumeration right) => left.Equals(right);
+
+        public int GetHashCode(TraktEnumeration obj) => obj.GetHashCode();
 
         /// <summary>Returns a list of all enumerations of an enumeration of type T.</summary>
         /// <typeparam name="T">The enumeration, of which a list of all enumerations should be returned.</typeparam>

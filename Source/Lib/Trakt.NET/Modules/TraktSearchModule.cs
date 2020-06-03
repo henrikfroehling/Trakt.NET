@@ -41,8 +41,11 @@
         /// The extended info, which determines how much data about the movies, shows, episodes, people and / or lists should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -91,8 +94,11 @@
         /// The extended info, which determines how much data about the lookup object(s) should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktSearchResult}"/> instance containing the found movies, shows, episodes, people and / or lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.

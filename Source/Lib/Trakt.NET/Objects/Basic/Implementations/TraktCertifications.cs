@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
 
+    /// <summary>Represents a collection of Trakt certifications.</summary>
     public class TraktCertifications : ITraktCertifications
     {
         /// <summary>

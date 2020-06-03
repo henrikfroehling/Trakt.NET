@@ -3,7 +3,6 @@
     using Get.People.Json.Writer;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -11,15 +10,19 @@
     {
         public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktCastMember obj, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
-
+            CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (!string.IsNullOrEmpty(obj.Character))
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.CAST_MEMBER_PROPERTY_NAME_CHARACTER, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Character, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Characters != null)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.CAST_MEMBER_PROPERTY_NAME_CHARACTERS, cancellationToken).ConfigureAwait(false);
+                await JsonWriterHelper.WriteStringArrayAsync(jsonWriter, obj.Characters, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Person != null)

@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var creditsCastItemReader = new PersonShowCreditsCastItemObjectJsonReader();
-                //var creditsCastItemReadingTasks = new List<Task<ITraktPersonShowCreditsCastItem>>();
                 var creditsCastItems = new List<ITraktPersonShowCreditsCastItem>();
-
-                //creditsCastItemReadingTasks.Add(creditsCastItemReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktPersonShowCreditsCastItem creditsCastItem = await creditsCastItemReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (creditsCastItem != null)
                 {
                     creditsCastItems.Add(creditsCastItem);
-                    //creditsCastItemReadingTasks.Add(creditsCastItemReader.ReadObjectAsync(jsonReader, cancellationToken));
                     creditsCastItem = await creditsCastItemReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readCreditsCastItems = await Task.WhenAll(creditsCastItemReadingTasks);
-                //return (IEnumerable<ITraktPersonShowCreditsCastItem>)readCreditsCastItems.GetEnumerator();
                 return creditsCastItems;
             }
 

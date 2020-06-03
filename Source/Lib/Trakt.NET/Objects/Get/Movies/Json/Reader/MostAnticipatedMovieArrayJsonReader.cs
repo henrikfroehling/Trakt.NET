@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var mostAnticipatedMovieReader = new MostAnticipatedMovieObjectJsonReader();
-                //var traktMostAnticipatedMovieReadingTasks = new List<Task<ITraktMostAnticipatedMovie>>();
                 var traktMostAnticipatedMovies = new List<ITraktMostAnticipatedMovie>();
-
-                //traktMostAnticipatedMovieReadingTasks.Add(mostAnticipatedMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktMostAnticipatedMovie traktMostAnticipatedMovie = await mostAnticipatedMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (traktMostAnticipatedMovie != null)
                 {
                     traktMostAnticipatedMovies.Add(traktMostAnticipatedMovie);
-                    //traktMostAnticipatedMovieReadingTasks.Add(mostAnticipatedMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                     traktMostAnticipatedMovie = await mostAnticipatedMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readMostAnticipatedMovies = await Task.WhenAll(traktMostAnticipatedMovieReadingTasks);
-                //return (IEnumerable<ITraktMostAnticipatedMovie>)readMostAnticipatedMovies.GetEnumerator();
                 return traktMostAnticipatedMovies;
             }
 

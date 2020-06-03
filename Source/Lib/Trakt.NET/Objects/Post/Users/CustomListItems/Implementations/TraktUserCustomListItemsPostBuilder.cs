@@ -46,7 +46,7 @@
             if (!movie.Ids.HasAnyId)
                 throw new ArgumentException("no movie ids set or valid", nameof(movie.Ids));
 
-            if (movie.Year.HasValue && movie.Year.Value.ToString().Length != 4)
+            if (!movie.Year.HasValue)
                 throw new ArgumentException("movie year not valid", nameof(movie.Year));
 
             EnsureMoviesListExists();
@@ -210,7 +210,7 @@
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="seasons">
         /// An array of season numbers for seasons in the given show.
-        /// All seasons numbers will be added to the ratings.
+        /// All seasons numbers will be added to the custom list items post.
         /// </param>
         /// <returns>The current <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
         /// <exception cref="ArgumentNullException">
@@ -332,12 +332,6 @@
             }
             else
             {
-                var listItemsShow = new TraktUserCustomListItemsPostShow
-                {
-                    Ids = show.Ids,
-                    Seasons = showSeasons
-                };
-
                 (_listItemsPost.Shows as List<ITraktUserCustomListItemsPostShow>)?.Add(
                     new TraktUserCustomListItemsPostShow
                     {
@@ -452,7 +446,7 @@
             if (!show.Ids.HasAnyId)
                 throw new ArgumentException("no show ids set or valid", nameof(show.Ids));
 
-            if (show.Year.HasValue && show.Year.Value.ToString().Length != 4)
+            if (!show.Year.HasValue)
                 throw new ArgumentException("show year not valid", nameof(show.Year));
         }
 

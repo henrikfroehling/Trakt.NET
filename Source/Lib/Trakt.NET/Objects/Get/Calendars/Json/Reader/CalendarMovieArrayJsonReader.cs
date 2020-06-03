@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var calendarMovieReader = new CalendarMovieObjectJsonReader();
-                //var calendarMovieReadingTasks = new List<Task<ITraktCalendarMovie>>();
                 var calendarMovies = new List<ITraktCalendarMovie>();
-
-                //calendarMovieReadingTasks.Add(calendarMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktCalendarMovie calendarMovie = await calendarMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (calendarMovie != null)
                 {
                     calendarMovies.Add(calendarMovie);
-                    //calendarMovieReadingTasks.Add(calendarMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                     calendarMovie = await calendarMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readCalendarMovies = await Task.WhenAll(calendarMovieReadingTasks);
-                //return (IEnumerable<ITraktCalendarMovie>)readCalendarMovies.GetEnumerator();
                 return calendarMovies;
             }
 

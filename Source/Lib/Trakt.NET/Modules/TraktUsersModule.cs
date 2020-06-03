@@ -48,7 +48,10 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/settings/retrieve-settings">"Trakt API Doc - Users: Settings"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktUserSettings" /> instance containing the user's settings.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktResponse<ITraktUserSettings>> GetSettingsAsync(CancellationToken cancellationToken = default)
@@ -68,7 +71,10 @@
         /// The extended info, which determines how much data about the follow request users should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktUserFollowRequest" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktListResponse<ITraktUserFollowRequest>> GetFollowRequestsAsync(TraktExtendedInfo extendedInfo = null,
@@ -96,8 +102,11 @@
         /// The extended info, which determines how much data about the hidden items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserHiddenItem}"/> instance containing the queried hidden items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -139,8 +148,11 @@
         /// </para>
         /// </summary>
         /// <param name="hiddenItemsPost">An <see cref="ITraktUserHiddenItemsPost" /> instance containing all shows, seasons and movies, which should be added.</param>
-        /// <param name="hiddenItemsSection"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="hiddenItemsSection">Determines, which type of hidden items section should be queried. <see cref="TraktHiddenItemsSection "/></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktUserHiddenItemsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given hidden items post is null.</exception>
@@ -172,8 +184,11 @@
         /// </para>
         /// </summary>
         /// <param name="hiddenItemsPost">An <see cref="ITraktUserHiddenItemsPost" /> instance containing all shows, seasons and movies, which should be removed.</param>
-        /// <param name="hiddenItemsSection"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="hiddenItemsSection">Determines, which type of hidden items section should be queried. <see cref="TraktHiddenItemsSection "/></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktUserHiddenItemsRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given hidden items post is null.</exception>
@@ -200,8 +215,11 @@
         /// </para>
         /// </summary>
         /// <param name="likeType">Determines, which type of objects liked should be queried. See also <seealso cref="TraktUserLikeType" />.</param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserLikeItem}"/> instance containing the queried like items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -237,7 +255,10 @@
         /// The extended info, which determines how much data about the user's profile should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktUser" /> instance containing the user's profile information.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
@@ -266,7 +287,10 @@
         /// The extended info, which determines how much data about the collected movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktCollectionMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
@@ -296,7 +320,10 @@
         /// The extended info, which determines how much data about the collected shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktCollectionShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
@@ -329,8 +356,11 @@
         /// The extended info, which determines how much data about the commented objects should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserComment}"/> instance containing the queried comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -371,7 +401,10 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom lists should be queried.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktList" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
@@ -396,7 +429,10 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list should be queried.</param>
         /// <param name="listIdOrSlug">The id or slug of the custom list, which should be queried.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>Anv <see cref="ITraktList" /> instance containing the custom list informations.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -425,7 +461,10 @@
         /// <para>See also <seealso cref="GetCustomListAsync(string, string, CancellationToken)" />.</para>
         /// </summary>
         /// <param name="userListsQueryParams">A list of usernames and list ids. See also <seealso cref="TraktMultipleUserListsQueryParams" />.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktList" /> instances with the data of each queried custom list.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -464,8 +503,11 @@
         /// The extended info, which determines how much data about the list items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktListItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -504,7 +546,10 @@
         /// <param name="privacy">Determines the visibility of the newly created custom list. See also <seealso cref="TraktAccessScope" />.</param>
         /// <param name="displayNumbers">Determines, if ranking numbers should be visible on the newly created custom list.</param>
         /// <param name="allowComments">Determines, if comments are allowed on the newly created custom list.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktList" /> instance containing information about the successfully created custom list.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -557,7 +602,10 @@
         /// <param name="privacy">A new visibility setting for the custom list with the given id.</param>
         /// <param name="displayNumbers">A new ranking numbers visibility setting for the custom list with the given id.</param>
         /// <param name="allowComments">A new comments allowed setting for the custom list with the given id.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktList" /> instance containing information about the successfully updated custom list.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -612,7 +660,10 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list should be deleted.</param>
         /// <param name="listIdOrSlug">The id or slug of the list, which should be deleted.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given username or slug is null, empty or contains spaces.
@@ -646,7 +697,10 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be added to a custom list.</param>
         /// <param name="listIdOrSlug">The id or slug of the custom list, to which items should be added.</param>
         /// <param name="listItemsPost">An <see cref="ITraktUserCustomListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be added.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktUserCustomListItemsPostResponse" /> instance, which contains information about which items were added, existing and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given list items post is null.</exception>
@@ -686,7 +740,10 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be removed from a custom list.</param>
         /// <param name="listIdOrSlug">The id or slug of the custom list, from which items should be removed.</param>
         /// <param name="listItemsRemovePost">An <see cref="ITraktUserCustomListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be removed.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktUserCustomListItemsPostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown if the given list items remove post is null.</exception>
@@ -721,8 +778,11 @@
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list comments should be queried.</param>
         /// <param name="listIdOrSlug">The id or slug of the custom list, for which the comments should be queried.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried custom list comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -762,7 +822,10 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list should be liked.</param>
         /// <param name="listIdOrSlug">The id or slug of the list, which should be liked.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given username or slug is null, empty or contains spaces.
@@ -790,7 +853,10 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which a like on a custom list should be removed.</param>
         /// <param name="listIdOrSlug">The id or slug of the list, for which a like should be removed.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
         /// Thrown, if the given username or slug is null, empty or contains spaces.
@@ -821,7 +887,10 @@
         /// The extended info, which determines how much data about the follower users should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktUserFollower" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
@@ -850,7 +919,10 @@
         /// The extended info, which determines how much data about the following users should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktUserFollower" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
@@ -879,7 +951,10 @@
         /// The extended info, which determines how much data about the friend users should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktUserFriend" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
@@ -904,7 +979,10 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, which should be followed.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="ITraktUserFollowUserPostResponse" /> instance containing information whether the request was successful.
         /// See <see cref="ITraktUserFollowUserPostResponse.ApprovedAt" />.
@@ -931,7 +1009,10 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, which should be unfollowed.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         public Task<TraktNoContentResponse> UnfollowUserAsync(string usernameOrSlug, CancellationToken cancellationToken = default)
@@ -953,7 +1034,10 @@
         /// </para>
         /// </summary>
         /// <param name="followerRequestId">The id of the follower request, which should be approved.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktUserFollower" /> instance containing information about the approved user.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given follower request id is null, empty or contains spaces.</exception>
@@ -977,7 +1061,10 @@
         /// </para>
         /// </summary>
         /// <param name="followerRequestId">The id of the follower request, which should be denied.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given follower request id is null, empty or contains spaces.</exception>
         public Task<TraktNoContentResponse> DenyFollowRequestAsync(uint followerRequestId, CancellationToken cancellationToken = default)
@@ -1008,8 +1095,11 @@
         /// The extended info, which determines how much data about the history items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// A <see cref="TraktPagedResponse{ITraktHistoryItem}"/> instance containing the queried history items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -1059,7 +1149,10 @@
         /// The extended info, which determines how much data about the rating items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktRatingsItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
@@ -1092,8 +1185,11 @@
         /// The extended info, which determines how much data about the watchlist items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktWatchlistItem}"/> instance containing the queried watchlist items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -1133,7 +1229,10 @@
         /// The extended info, which determines how much data about the currently watching item should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktUserWatchingItem" /> instance containing the movie or episode an user is currently watching.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
@@ -1162,7 +1261,10 @@
         /// The extended info, which determines how much data about the watched movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktWatchedMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
@@ -1191,7 +1293,10 @@
         /// The extended info, which determines how much data about the watched shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktWatchedShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
@@ -1216,7 +1321,10 @@
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the statistics should be queried.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktUserStatistics" /> instance coontaining statistics about movies, shows and episodes.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>

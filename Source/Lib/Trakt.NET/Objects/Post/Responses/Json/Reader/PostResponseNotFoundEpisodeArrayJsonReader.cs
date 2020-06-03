@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var postResponseNotFoundEpisodeObjectReader = new PostResponseNotFoundEpisodeObjectJsonReader();
-                //var postResponseNotFoundEpisodeReadingTasks = new List<Task<ITraktPostResponseNotFoundEpisode>>();
                 var postResponseNotFoundEpisodes = new List<ITraktPostResponseNotFoundEpisode>();
-
-                //postResponseNotFoundEpisodeReadingTasks.Add(postResponseNotFoundEpisodeReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktPostResponseNotFoundEpisode postResponseNotFoundEpisode = await postResponseNotFoundEpisodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (postResponseNotFoundEpisode != null)
                 {
                     postResponseNotFoundEpisodes.Add(postResponseNotFoundEpisode);
-                    //postResponseNotFoundEpisodeReadingTasks.Add(postResponseNotFoundEpisodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken));
                     postResponseNotFoundEpisode = await postResponseNotFoundEpisodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readPostResponseNotFoundEpisodes = await Task.WhenAll(postResponseNotFoundEpisodeReadingTasks);
-                //return (IEnumerable<ITraktPostResponseNotFoundEpisode>)readPostResponseNotFoundEpisodes.GetEnumerator();
                 return postResponseNotFoundEpisodes;
             }
 

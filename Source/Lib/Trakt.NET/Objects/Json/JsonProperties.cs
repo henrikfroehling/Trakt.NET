@@ -22,6 +22,7 @@
         internal const string CAST_AND_CREW_PROPERTY_NAME_CREW = "crew";
 
         internal const string CAST_MEMBER_PROPERTY_NAME_CHARACTER = "character";
+        internal const string CAST_MEMBER_PROPERTY_NAME_CHARACTERS = "characters";
         internal const string CAST_MEMBER_PROPERTY_NAME_PERSON = "person";
 
         internal const string CERTIFICATION_PROPERTY_NAME_NAME = "name";
@@ -53,6 +54,7 @@
         internal const string COMMENT_LIKE_PROPERTY_NAME_USER = "user";
 
         internal const string CREW_MEMBER_PROPERTY_NAME_JOB = "job";
+        internal const string CREW_MEMBER_PROPERTY_NAME_JOBS = "jobs";
         internal const string CREW_MEMBER_PROPERTY_NAME_PERSON = "person";
 
         internal const string CREW_PROPERTY_NAME_PRODUCTION = "production";
@@ -258,9 +260,11 @@
 
         // people credits
         internal const string PERSON_MOVIE_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTER = "character";
+        internal const string PERSON_MOVIE_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTERS = "characters";
         internal const string PERSON_MOVIE_CREDITS_CAST_ITEM_PROPERTY_NAME_MOVIE = "movie";
 
         internal const string PERSON_MOVIE_CREDITS_CREW_ITEM_PROPERTY_NAME_JOB = "job";
+        internal const string PERSON_MOVIE_CREDITS_CREW_ITEM_PROPERTY_NAME_JOBS = "jobs";
         internal const string PERSON_MOVIE_CREDITS_CREW_ITEM_PROPERTY_NAME_MOVIE = "movie";
 
         internal const string PERSON_MOVIE_CREDITS_CREW_PROPERTY_NAME_PRODUCTION = "production";
@@ -279,9 +283,14 @@
         internal const string PERSON_MOVIE_CREDITS_PROPERTY_NAME_CREW = "crew";
 
         internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTER = "character";
+        internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTERS = "characters";
+        internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_EPISODE_COUNT = "episode_count";
+        internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_SERIES_REGULAR = "series_regular";
         internal const string PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_SHOW = "show";
 
         internal const string PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_JOB = "job";
+        internal const string PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_JOBS = "jobs";
+        internal const string PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_EPISODE_COUNT = "episode_count";
         internal const string PERSON_SHOW_CREDITS_CREW_ITEM_PROPERTY_NAME_SHOW = "show";
 
         internal const string PERSON_SHOW_CREDITS_CREW_PROPERTY_NAME_PRODUCTION = "production";
@@ -407,6 +416,10 @@
         internal const string SHOW_WATCHED_PROGRESS_PROPERTY_NAME_NEXT_EPISODE = "next_episode";
         internal const string SHOW_WATCHED_PROGRESS_PROPERTY_NAME_LAST_EPISODE = "last_episode";
         internal const string SHOW_WATCHED_PROGRESS_PROPERTY_NAME_RESET_AT = "reset_at";
+
+        internal const string SHOW_CAST_MEMBER_PROPERTY_NAME_EPISODE_COUNT = "episode_count";
+
+        internal const string SHOW_CREW_MEMBER_PROPERTY_NAME_EPISODE_COUNT = "episode_count";
 
         internal const string TRENDING_SHOW_PROPERTY_NAME_WATCHERS = "watchers";
         internal const string TRENDING_SHOW_PROPERTY_NAME_SHOW = "show";

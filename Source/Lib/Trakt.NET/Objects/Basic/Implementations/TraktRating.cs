@@ -14,6 +14,8 @@
         /// <summary>Gets or sets the rating distribution.<para>Nullable</para></summary>
         public IDictionary<string, int> Distribution { get; set; }
 
+        /// <summary>Gets a string representation of the rating.</summary>
+        /// <returns>A string representation of the rating.</returns>
         public override string ToString()
         {
             var rating = Rating.HasValue ? Rating.Value.ToString() : default(float).ToString();

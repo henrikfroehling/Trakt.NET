@@ -1,14 +1,17 @@
-[Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) [![Twitter](https://img.shields.io/twitter/url/https://www.nuget.org/packages/Trakt.NET.svg?style=social)](https://twitter.com/intent/tweet?url=https://www.nuget.org/packages/Trakt.NET&via=henrikfroehling&hashtags=TraktNET)[![Twitter Follow](https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow)](https://twitter.com/henrikfroehling)
+[Trakt.NET](https://github.com/henrikfroehling/Trakt.NET)
+[![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET&hashtags=Trakt,Nuget,CSharp)
+[![Twitter Follow](https://img.shields.io/twitter/follow/henrikfroehling?style=social)](https://twitter.com/henrikfroehling)
 ===
 
 _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApiSharp).**_
 
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
 
-[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0alpha3-orange.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.0.0-alpha3)
+[![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-green)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.0-green.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.0.0)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![CodeFactor](https://www.codefactor.io/repository/github/henrikfroehling/Trakt.NET/badge)](https://www.codefactor.io/repository/github/henrikfroehling/Trakt.NET)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=henrikfroehling_Trakt.NET&metric=alert_status)](https://sonarcloud.io/dashboard?id=henrikfroehling_Trakt.NET)
 
 ### Features
 
@@ -47,7 +50,8 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 | Branch | Status | Description |
 |---|---|---|
-| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status branch develop](https://ci.appveyor.com/api/projects/status/3moho8dlsdjiyuxp/branch/develop?svg=true&passingText=develop%20-%20passing&pendingText=develop%20-%20pending&failingText=develop%20-%20failing)](https://ci.appveyor.com/project/henrikfroehling/trakt-net/branch/develop) | This branch tracks the current and possibly unstable development. |
+| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. |
+| [release](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.0.0) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Release)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=6) | This branch tracks the current development of the next upcoming release. |
 
 ### Getting Started
 
@@ -197,7 +201,7 @@ if (theMartian)
 ```text
 The MIT License (MIT)
 
-Copyright © 2016 - 2019 Henrik Fröhling et al.
+Copyright © 2016 - 2020 Henrik Fröhling et al.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

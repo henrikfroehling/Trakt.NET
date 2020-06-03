@@ -44,7 +44,10 @@
         /// <para>See also <seealso cref="GetMutlipleCommentsAsync(uint[], CancellationToken)" />.</para>
         /// </summary>
         /// <param name="commentId">The comment's id.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktComment" /> instance with the queried comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
@@ -72,7 +75,10 @@
         /// The extended info, which determines how much data about the comment's media item should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktCommentItem" /> instance with the queried comment's media item.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
@@ -102,8 +108,11 @@
         /// The extended info, which determines how much data about the comment's likes should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktCommentLike}"/> instance containing the queried likes and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -139,7 +148,10 @@
         /// <para>See also <seealso cref="GetCommentAsync(uint, CancellationToken)" />.</para>
         /// </summary>
         /// <param name="commentIds">An array of comment ids.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktComment" /> instances with the data of each queried comment.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if one of the given comment ids is null, empty or contains spaces.</exception>
@@ -174,8 +186,11 @@
         /// The extended info, which determines how much data about the commented objects should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserComment}"/> instance containing the queried recently updated comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -219,8 +234,11 @@
         /// The extended info, which determines how much data about the commented objects should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserComment}"/> instance containing the queried recently created comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -264,8 +282,11 @@
         /// The extended info, which determines how much data about the commented objects should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktUserComment}"/> instance containing the queried trending comments and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -306,7 +327,10 @@
         /// <param name="comment">The comment's content for the given movie. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -357,7 +381,10 @@
         /// <param name="comment">The comment's content for the given show. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -404,7 +431,10 @@
         /// <param name="comment">The comment's content for the given season. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -449,7 +479,10 @@
         /// <param name="comment">The comment's content for the given episode. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -494,7 +527,10 @@
         /// <param name="comment">The comment's content for the given list. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
         /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -538,7 +574,10 @@
         /// <param name="commentId">The id of the comment, which should be updated.</param>
         /// <param name="comment">The new comment's content. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully updated comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -576,7 +615,10 @@
         /// <param name="commentId">The id of the comment, for which the reply should be posted.</param>
         /// <param name="comment">The comment's content. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted reply's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">
@@ -612,7 +654,10 @@
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be deleted.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         public Task<TraktNoContentResponse> DeleteCommentAsync(uint commentId, CancellationToken cancellationToken = default)
@@ -635,7 +680,10 @@
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be liked.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         public Task<TraktNoContentResponse> LikeCommentAsync(uint commentId, CancellationToken cancellationToken = default)
@@ -658,7 +706,10 @@
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be unliked.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
         public Task<TraktNoContentResponse> UnlikeCommentAsync(uint commentId, CancellationToken cancellationToken = default)
@@ -681,8 +732,11 @@
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, for which the replies should be queried.</param>
-        /// <param name="pagedParameters"></param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>
         /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried replies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
@@ -728,16 +782,16 @@
                 throw new ArgumentNullException(nameof(movie), "movie must not be null");
 
             if (string.IsNullOrEmpty(movie.Title))
-                throw new ArgumentException("movie title not valid", nameof(movie.Title));
+                throw new ArgumentException("movie title not valid", nameof(movie));
 
             if (movie.Year <= 0 || movie.Year.ToString().Length != 4)
-                throw new ArgumentOutOfRangeException(nameof(movie.Year), "movie year not valid");
+                throw new ArgumentOutOfRangeException(nameof(movie), "movie year not valid");
 
             if (movie.Ids == null)
-                throw new ArgumentNullException(nameof(movie.Ids), "movie ids must not be null");
+                throw new ArgumentNullException(nameof(movie), "movie ids must not be null");
 
             if (!movie.Ids.HasAnyId)
-                throw new ArgumentException("movie ids have no valid id", nameof(movie.Ids));
+                throw new ArgumentException("movie ids have no valid id", nameof(movie));
         }
 
         private void ValidateShow(ITraktShow show)
@@ -746,13 +800,13 @@
                 throw new ArgumentNullException(nameof(show), "show must not be null");
 
             if (string.IsNullOrEmpty(show.Title))
-                throw new ArgumentException("show title not valid", nameof(show.Title));
+                throw new ArgumentException("show title not valid", nameof(show));
 
             if (show.Ids == null)
-                throw new ArgumentNullException(nameof(show.Ids), "show ids must not be null");
+                throw new ArgumentNullException(nameof(show), "show ids must not be null");
 
             if (!show.Ids.HasAnyId)
-                throw new ArgumentException("show ids have no valid id", nameof(show.Ids));
+                throw new ArgumentException("show ids have no valid id", nameof(show));
         }
 
         private void ValidateSeason(ITraktSeason season)
@@ -761,10 +815,10 @@
                 throw new ArgumentNullException(nameof(season), "season must not be null");
 
             if (season.Ids == null)
-                throw new ArgumentNullException(nameof(season.Ids), "season ids must not be null");
+                throw new ArgumentNullException(nameof(season), "season ids must not be null");
 
             if (!season.Ids.HasAnyId)
-                throw new ArgumentException("season ids have no valid id", nameof(season.Ids));
+                throw new ArgumentException("season ids have no valid id", nameof(season));
         }
 
         private void ValidateEpisode(ITraktEpisode episode)
@@ -773,10 +827,10 @@
                 throw new ArgumentNullException(nameof(episode), "episode must not be null");
 
             if (episode.Ids == null)
-                throw new ArgumentNullException(nameof(episode.Ids), "episode ids must not be null");
+                throw new ArgumentNullException(nameof(episode), "episode ids must not be null");
 
             if (!episode.Ids.HasAnyId)
-                throw new ArgumentException("episode ids have no valid id", nameof(episode.Ids));
+                throw new ArgumentException("episode ids have no valid id", nameof(episode));
         }
 
         private void ValidateList(ITraktList list)
@@ -785,10 +839,10 @@
                 throw new ArgumentNullException(nameof(list), "list must not be null");
 
             if (list.Ids == null)
-                throw new ArgumentNullException(nameof(list.Ids), "list ids must not be null");
+                throw new ArgumentNullException(nameof(list), "list ids must not be null");
 
             if (!list.Ids.HasAnyId)
-                throw new ArgumentException("list ids have no valid id", nameof(list.Ids));
+                throw new ArgumentException("list ids have no valid id", nameof(list));
         }
     }
 }

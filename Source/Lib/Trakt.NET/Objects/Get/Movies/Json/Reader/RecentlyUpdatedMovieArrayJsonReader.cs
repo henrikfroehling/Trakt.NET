@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var recentlyUpdatedMovieReader = new RecentlyUpdatedMovieObjectJsonReader();
-                //var traktRecentlyUpdatedMovieReadingTasks = new List<Task<ITraktRecentlyUpdatedMovie>>();
                 var traktRecentlyUpdatedMovies = new List<ITraktRecentlyUpdatedMovie>();
-
-                //traktRecentlyUpdatedMovieReadingTasks.Add(recentlyUpdatedMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktRecentlyUpdatedMovie traktRecentlyUpdatedMovie = await recentlyUpdatedMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (traktRecentlyUpdatedMovie != null)
                 {
                     traktRecentlyUpdatedMovies.Add(traktRecentlyUpdatedMovie);
-                    //traktRecentlyUpdatedMovieReadingTasks.Add(recentlyUpdatedMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                     traktRecentlyUpdatedMovie = await recentlyUpdatedMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readRecentlyUpdatedMovies = await Task.WhenAll(traktRecentlyUpdatedMovieReadingTasks);
-                //return (IEnumerable<ITraktRecentlyUpdatedMovie>)readRecentlyUpdatedMovies.GetEnumerator();
                 return traktRecentlyUpdatedMovies;
             }
 

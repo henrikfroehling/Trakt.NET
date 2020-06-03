@@ -7,11 +7,11 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class UserCustomListAddRequest : APostRequest<ITraktList, TraktUserCustomListPost>
+    internal sealed class UserCustomListAddRequest : APostRequest<ITraktList, ITraktUserCustomListPost>
     {
         internal string Username { get; set; }
 
-        public override TraktUserCustomListPost RequestBody { get; set; }
+        public override ITraktUserCustomListPost RequestBody { get; set; }
 
         public override string UriTemplate => "users/{username}/lists";
 

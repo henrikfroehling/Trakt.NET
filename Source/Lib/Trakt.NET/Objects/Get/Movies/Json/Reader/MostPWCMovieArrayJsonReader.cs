@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var mostPWCMovieReader = new MostPWCMovieObjectJsonReader();
-                //var traktMostPWCMovieReadingTasks = new List<Task<ITraktMostPWCMovie>>();
                 var traktMostPWCMovies = new List<ITraktMostPWCMovie>();
-
-                //traktMostPWCMovieReadingTasks.Add(mostPWCMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktMostPWCMovie traktMostPWCMovie = await mostPWCMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (traktMostPWCMovie != null)
                 {
                     traktMostPWCMovies.Add(traktMostPWCMovie);
-                    //traktMostPWCMovieReadingTasks.Add(mostPWCMovieReader.ReadObjectAsync(jsonReader, cancellationToken));
                     traktMostPWCMovie = await mostPWCMovieReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readMostPWCMovies = await Task.WhenAll(traktMostPWCMovieReadingTasks);
-                //return (IEnumerable<ITraktMostPWCMovie>)readMostPWCMovies.GetEnumerator();
                 return traktMostPWCMovies;
             }
 

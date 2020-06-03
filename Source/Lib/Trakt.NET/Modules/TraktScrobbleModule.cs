@@ -38,7 +38,10 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
@@ -64,7 +67,10 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
@@ -90,7 +96,10 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
@@ -116,7 +125,10 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">
@@ -146,7 +158,10 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">
@@ -176,7 +191,10 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">
@@ -207,7 +225,10 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
@@ -237,7 +258,10 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
@@ -267,7 +291,10 @@
         /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
         /// <param name="appVersion">Optional application version for the scrobble.</param>
         /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
@@ -358,10 +385,10 @@
                 throw new ArgumentNullException(nameof(movie), "movie must not be null");
 
             if (movie.Ids == null)
-                throw new ArgumentNullException(nameof(movie.Ids), "movie.Ids must not be null");
+                throw new ArgumentNullException(nameof(movie), "movie.Ids must not be null");
 
             if (!movie.Ids.HasAnyId)
-                throw new ArgumentException("movie.Ids have no valid id", nameof(movie.Ids));
+                throw new ArgumentException("movie.Ids have no valid id", nameof(movie));
         }
 
         private void Validate(ITraktEpisode episode, ITraktShow show)
@@ -375,13 +402,13 @@
                     throw new ArgumentNullException(nameof(show), "episode ids not set or have no valid id - show must not be null");
 
                 if (string.IsNullOrEmpty(show.Title))
-                    throw new ArgumentException("episode ids not set or have no valid id  - show title not valid", nameof(show.Title));
+                    throw new ArgumentException("episode ids not set or have no valid id  - show title not valid", nameof(show));
 
                 if (episode.SeasonNumber < 0)
-                    throw new ArgumentOutOfRangeException(nameof(episode.SeasonNumber), "episode ids not set or have no valid id  - episode season number not valid");
+                    throw new ArgumentOutOfRangeException(nameof(episode), "episode ids not set or have no valid id  - episode season number not valid");
 
                 if (episode.Number <= 0)
-                    throw new ArgumentOutOfRangeException(nameof(episode.Number), "episode ids not set or have no valid id  - episode number not valid");
+                    throw new ArgumentOutOfRangeException(nameof(episode), "episode ids not set or have no valid id  - episode number not valid");
             }
         }
 

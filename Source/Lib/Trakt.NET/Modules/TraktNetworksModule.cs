@@ -5,6 +5,7 @@
     using Requests.Handler;
     using Requests.Networks;
     using Responses;
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -27,7 +28,10 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/networks/list/get-networks">"Trakt API Doc - Networks: List"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="cancellationToken"></param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
         /// <returns>A list of <see cref="ITraktNetwork" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktListResponse<ITraktNetwork>> GetNetworksAsync(CancellationToken cancellationToken = default)

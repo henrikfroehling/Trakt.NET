@@ -2,7 +2,6 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -13,8 +12,7 @@
 
         public override async Task WriteArrayAsync(JsonTextWriter jsonWriter, IEnumerable<ITraktAuthorization> objects, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
+            CheckJsonTextWriter(jsonWriter);
 
             var objectJsonWriter = new AuthorizationObjectJsonWriter
             {

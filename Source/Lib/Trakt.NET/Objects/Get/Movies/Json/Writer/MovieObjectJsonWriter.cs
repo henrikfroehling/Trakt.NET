@@ -3,7 +3,6 @@
     using Extensions;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -11,9 +10,7 @@
     {
         public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktMovie obj, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
-
+            CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (!string.IsNullOrEmpty(obj.Title))
@@ -50,7 +47,7 @@
             if (obj.Released.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.MOVIE_PROPERTY_NAME_RELEASED, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.Released.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Released.Value.ToTraktDateString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Runtime.HasValue)

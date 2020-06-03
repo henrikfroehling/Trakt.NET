@@ -14,17 +14,17 @@
         public int? Number { get; set; }
 
         /// <summary>
+        /// Gets or sets the title of the season.
+        /// <para>Nullable</para>
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
         /// Gets or sets the collection of ids for the season for various web services.
         /// See also <seealso cref="ITraktSeasonIds" />.
         /// <para>Nullable</para>
         /// </summary>
         public ITraktSeasonIds Ids { get; set; }
-
-        /// <summary>
-        /// Gets or sets the title of the season.
-        /// <para>Nullable</para>
-        /// </summary>
-        public string Title { get; set; }
 
         /// <summary>Gets or sets the average user rating of the season.</summary>
         public float? Rating { get; set; }
@@ -57,6 +57,7 @@
         /// </remarks>
         public IEnumerable<ITraktEpisode> Episodes { get; set; }
 
+        /// <summary>Gets or sets the comment count of the season.<para>Nullable</para></summary>
         public int? CommentCount { get; set; }
     }
 }

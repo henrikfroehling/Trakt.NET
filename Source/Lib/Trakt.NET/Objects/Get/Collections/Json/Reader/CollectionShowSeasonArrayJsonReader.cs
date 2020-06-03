@@ -16,21 +16,15 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
                 var collectionShowSeasonObjectReader = new CollectionShowSeasonObjectJsonReader();
-                //var collectionShowSeasonReadingTasks = new List<Task<ITraktCollectionShowSeason>>();
                 var collectionShowSeasons = new List<ITraktCollectionShowSeason>();
-
-                //collectionShowSeasonReadingTasks.Add(collectionShowSeasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken));
                 ITraktCollectionShowSeason collectionShowSeason = await collectionShowSeasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
 
                 while (collectionShowSeason != null)
                 {
                     collectionShowSeasons.Add(collectionShowSeason);
-                    //collectionShowSeasonReadingTasks.Add(collectionShowSeasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken));
                     collectionShowSeason = await collectionShowSeasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                 }
 
-                //var readCollectionShowSeasons = await Task.WhenAll(collectionShowSeasonReadingTasks);
-                //return (IEnumerable<ITraktCollectionShowSeason>)readCollectionShowSeasons.GetEnumerator();
                 return collectionShowSeasons;
             }
 

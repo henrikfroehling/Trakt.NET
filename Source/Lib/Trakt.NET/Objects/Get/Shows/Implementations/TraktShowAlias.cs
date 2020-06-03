@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Shows
 {
-    /// <summary>An alias for a Trakt c.</summary>
+    /// <summary>An alias for a Trakt show.</summary>
     public class TraktShowAlias : ITraktShowAlias
     {
         /// <summary>Gets or sets the title of the show alias.<para>Nullable</para></summary>

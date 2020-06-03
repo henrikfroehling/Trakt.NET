@@ -35,9 +35,7 @@
 
         public virtual async Task WriteArrayAsync(JsonTextWriter jsonWriter, IEnumerable<TObjectType> objects, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
-
+            CheckJsonTextWriter(jsonWriter);
             var objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<TObjectType>();
             var writerTasks = new List<Task>();
             await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
@@ -47,6 +45,12 @@
 
             await Task.WhenAll(writerTasks).ConfigureAwait(false);
             await jsonWriter.WriteEndArrayAsync(cancellationToken).ConfigureAwait(false);
+        }
+
+        protected void CheckJsonTextWriter(JsonTextWriter jsonWriter)
+        {
+            if (jsonWriter == null)
+                throw new ArgumentNullException(nameof(jsonWriter));
         }
     }
 }

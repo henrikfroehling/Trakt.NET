@@ -4,7 +4,6 @@
     using Movies.Json.Writer;
     using Newtonsoft.Json;
     using Objects.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -12,15 +11,13 @@
     {
         public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktCalendarMovie obj, CancellationToken cancellationToken = default)
         {
-            if (jsonWriter == null)
-                throw new ArgumentNullException(nameof(jsonWriter));
-
+            CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (obj.CalendarRelease.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.CALENDAR_MOVIE_PROPERTY_NAME_RELEASED, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.CalendarRelease.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.CalendarRelease.Value.ToTraktDateString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Movie != null)
