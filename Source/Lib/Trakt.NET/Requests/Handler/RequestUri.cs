@@ -31,12 +31,14 @@ namespace TraktNet.Requests.Handler
 
         private enum State
         {
+#pragma warning disable S125
             None,
             Default,
             ParsingParameter,       // {???}
             ParsingPathReplacement, // {identifier}
             ParsingPathSegment,     // {/identifier}
             ParsingQueries,         // {?identifier[,identifier]}
+#pragma warning restore S125
         }
 
         private readonly string _uriTemplate;
