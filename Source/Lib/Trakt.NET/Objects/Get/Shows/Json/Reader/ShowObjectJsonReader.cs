@@ -4,7 +4,6 @@
     using Newtonsoft.Json;
     using Objects.Json;
     using Seasons.Json.Reader;
-    using Shows;
     using System.Threading;
     using System.Threading.Tasks;
 

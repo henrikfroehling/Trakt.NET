@@ -2,7 +2,6 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
-    using Shows;
     using System.Threading;
     using System.Threading.Tasks;
 

@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Movies.Json.Reader
 {
     using Newtonsoft.Json;
-    using Objects.Get.Movies;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
