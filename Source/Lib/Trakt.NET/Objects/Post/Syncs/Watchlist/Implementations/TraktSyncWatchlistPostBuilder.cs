@@ -125,32 +125,6 @@
             return this;
         }
 
-        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the watchlist post.</summary>
-        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
-        /// <returns>The current <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given shows collection is null.
-        /// Thrown, if one of the given shows is null.
-        /// Thrown, if one of the given shows' ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if one of the given shows has no valid ids set.
-        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
-        /// </exception>
-        public TraktSyncWatchlistPostBuilder AddShows(IEnumerable<ITraktShow> shows)
-        {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
-
-            if (!shows.Any())
-                return this;
-
-            foreach (var show in shows)
-                AddShow(show);
-
-            return this;
-        }
-
         /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the watchlist post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="season">
@@ -355,6 +329,32 @@
 
                 (_watchlistPost.Shows as List<ITraktSyncWatchlistPostShow>)?.Add(watchlistShow);
             }
+
+            return this;
+        }
+
+        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the watchlist post.</summary>
+        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncWatchlistPostBuilder AddShows(IEnumerable<ITraktShow> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (!shows.Any())
+                return this;
+
+            foreach (var show in shows)
+                AddShow(show);
 
             return this;
         }

@@ -89,32 +89,6 @@
             return AddShowOrIgnore(show);
         }
 
-        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the history remove post.</summary>
-        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
-        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given shows collection is null.
-        /// Thrown, if one of the given shows is null.
-        /// Thrown, if one of the given shows' ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if one of the given shows has no valid ids set.
-        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
-        /// </exception>
-        public TraktSyncHistoryRemovePostBuilder AddShows(IEnumerable<ITraktShow> shows)
-        {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
-
-            if (!shows.Any())
-                return this;
-
-            foreach (var show in shows)
-                AddShow(show);
-
-            return this;
-        }
-
         /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the history remove post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <param name="season">
@@ -207,6 +181,32 @@
 
             var showSeasons = CreateShowSeasons(seasons);
             CreateOrSetShow(show, showSeasons);
+
+            return this;
+        }
+
+        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the history remove post.</summary>
+        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryRemovePostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncHistoryRemovePostBuilder AddShows(IEnumerable<ITraktShow> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (!shows.Any())
+                return this;
+
+            foreach (var show in shows)
+                AddShow(show);
 
             return this;
         }

@@ -43,32 +43,6 @@
             return AddMovieOrIgnore(movie);
         }
 
-        /// <summary>Adds a collection of <see cref="ITraktMovie" />s, which will be added to the ratings post.</summary>
-        /// <param name="movies">A collection of Trakt movies, which will be added.</param>
-        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given movies collection is null.
-        /// Thrown, if one of the given movies is null.
-        /// Thrown, if one of the given movies' ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if one of the given movies has no valid ids set.
-        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
-        /// </exception>
-        public TraktSyncRatingsPostBuilder AddMovies(IEnumerable<ITraktMovie> movies)
-        {
-            if (movies == null)
-                throw new ArgumentNullException(nameof(movies));
-
-            if (!movies.Any())
-                return this;
-
-            foreach (var movie in movies)
-                AddMovie(movie);
-
-            return this;
-        }
-
         /// <summary>Adds a <see cref="ITraktMovie" />, which will be added to the ratings post.</summary>
         /// <param name="movie">The Trakt movie, which will be added.</param>
         /// <param name="rating">A rating from 1 to 10 for the given movie.</param>
@@ -114,6 +88,32 @@
             return AddMovieOrIgnore(movie, rating, ratedAt);
         }
 
+        /// <summary>Adds a collection of <see cref="ITraktMovie" />s, which will be added to the ratings post.</summary>
+        /// <param name="movies">A collection of Trakt movies, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movies collection is null.
+        /// Thrown, if one of the given movies is null.
+        /// Thrown, if one of the given movies' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given movies has no valid ids set.
+        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncRatingsPostBuilder AddMovies(IEnumerable<ITraktMovie> movies)
+        {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
+            if (!movies.Any())
+                return this;
+
+            foreach (var movie in movies)
+                AddMovie(movie);
+
+            return this;
+        }
+
         /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the ratings post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
@@ -131,32 +131,6 @@
             EnsureShowsListExists();
 
             return AddShowOrIgnore(show);
-        }
-
-        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the ratings post.</summary>
-        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
-        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given shows collection is null.
-        /// Thrown, if one of the given shows is null.
-        /// Thrown, if one of the given shows' ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if one of the given shows has no valid ids set.
-        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
-        /// </exception>
-        public TraktSyncRatingsPostBuilder AddShows(IEnumerable<ITraktShow> shows)
-        {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
-
-            if (!shows.Any())
-                return this;
-
-            foreach (var show in shows)
-                AddShow(show);
-
-            return this;
         }
 
         /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the ratings post.</summary>
@@ -515,6 +489,32 @@
             return this;
         }
 
+        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the ratings post.</summary>
+        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncRatingsPostBuilder AddShows(IEnumerable<ITraktShow> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (!shows.Any())
+                return this;
+
+            foreach (var show in shows)
+                AddShow(show);
+
+            return this;
+        }
+
         /// <summary>Adds a <see cref="ITraktEpisode" />, which will be added to the ratings post.</summary>
         /// <param name="episode">The Trakt episode, which will be added.</param>
         /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
@@ -529,29 +529,6 @@
             EnsureEpisodesListExists();
 
             return AddEpisodeOrIgnore(episode);
-        }
-
-        /// <summary>Adds a collection of <see cref="ITraktEpisode" />s, which will be added to the ratings post.</summary>
-        /// <param name="episodes">A collection of Trakt episodes, which will be added.</param>
-        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given episodes collection is null.
-        /// Thrown, if one of the given episodes is null.
-        /// Thrown, if one of the given episodes' ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">Thrown, if one of the given episodes has no valid ids set.</exception>
-        public TraktSyncRatingsPostBuilder AddEpisodes(IEnumerable<ITraktEpisode> episodes)
-        {
-            if (episodes == null)
-                throw new ArgumentNullException(nameof(episodes));
-
-            if (!episodes.Any())
-                return this;
-
-            foreach (var episode in episodes)
-                AddEpisode(episode);
-
-            return this;
         }
 
         /// <summary>Adds a <see cref="ITraktEpisode" />, which will be added to the ratings post.</summary>
@@ -591,6 +568,29 @@
             EnsureEpisodesListExists();
 
             return AddEpisodeOrIgnore(episode, rating, ratedAt);
+        }
+
+        /// <summary>Adds a collection of <see cref="ITraktEpisode" />s, which will be added to the ratings post.</summary>
+        /// <param name="episodes">A collection of Trakt episodes, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episodes collection is null.
+        /// Thrown, if one of the given episodes is null.
+        /// Thrown, if one of the given episodes' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if one of the given episodes has no valid ids set.</exception>
+        public TraktSyncRatingsPostBuilder AddEpisodes(IEnumerable<ITraktEpisode> episodes)
+        {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
+            if (!episodes.Any())
+                return this;
+
+            foreach (var episode in episodes)
+                AddEpisode(episode);
+
+            return this;
         }
 
         /// <summary>Removes all already added movies, shows, seasons and episodes.</summary>

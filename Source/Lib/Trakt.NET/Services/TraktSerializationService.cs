@@ -30,6 +30,23 @@
             return authorizationObjectJsonWriter.WriteObjectAsync(authorization, cancellationToken);
         }
 
+        /// <summary>Serializes a <typeparamref name="TObjectType"/> instance to a JSON string.</summary>
+        /// <typeparam name="TObjectType">The type of the object, which will be serialized to a JSON string.</typeparam>
+        /// <param name="obj">The object instance, which will be serialized.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the serialization should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>Returns a JSON string of the given object instance.</returns>
+        public static Task<string> SerializeAsync<TObjectType>(TObjectType obj, CancellationToken cancellationToken = default)
+        {
+            if (EqualityComparer<TObjectType>.Default.Equals(obj, default))
+                throw new ArgumentNullException(nameof(obj), "object must not be null");
+
+            IObjectJsonWriter<TObjectType> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<TObjectType>();
+            return objectJsonWriter.WriteObjectAsync(obj, cancellationToken);
+        }
+
         /// <summary>Deserializes a JSON string to a <see cref="ITraktAuthorization" /> instance.</summary>
         /// <param name="authorizationJson">The JSON string, which will be deserialized to a <see cref="ITraktAuthorization" /> instance.</param>
         /// <param name="cancellationToken">
@@ -49,23 +66,6 @@
             AuthorizationObjectJsonReader authorizationObjectJsonReader = (objectJsonReader as AuthorizationObjectJsonReader);
             authorizationObjectJsonReader.CompleteDeserialization = true;
             return authorizationObjectJsonReader.ReadObjectAsync(authorizationJson, cancellationToken);
-        }
-
-        /// <summary>Serializes a <typeparamref name="TObjectType"/> instance to a JSON string.</summary>
-        /// <typeparam name="TObjectType">The type of the object, which will be serialized to a JSON string.</typeparam>
-        /// <param name="obj">The object instance, which will be serialized.</param>
-        /// <param name="cancellationToken">
-        /// Propagates notification that the serialization should be canceled.<para/>
-        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
-        /// </param>
-        /// <returns>Returns a JSON string of the given object instance.</returns>
-        public static Task<string> SerializeAsync<TObjectType>(TObjectType obj, CancellationToken cancellationToken = default)
-        {
-            if (EqualityComparer<TObjectType>.Default.Equals(obj, default))
-                throw new ArgumentNullException(nameof(obj), "object must not be null");
-
-            IObjectJsonWriter<TObjectType> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<TObjectType>();
-            return objectJsonWriter.WriteObjectAsync(obj, cancellationToken);
         }
 
         /// <summary>Deserializes a JSON string to a <typeparamref name="TObjectType"/> instance.</summary>

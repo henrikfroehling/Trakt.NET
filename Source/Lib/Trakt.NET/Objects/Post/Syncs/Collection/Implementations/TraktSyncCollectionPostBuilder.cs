@@ -40,61 +40,6 @@
             return AddMovieOrIgnore(movie);
         }
 
-        /// <summary>Adds a collection of <see cref="ITraktMovie" />s, which will be added to the collection post.</summary>
-        /// <param name="movies">A collection of Trakt movies, which will be added.</param>
-        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given movies collection is null.
-        /// Thrown, if one of the given movies is null.
-        /// Thrown, if one of the given movies' ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if one of the given movies has no valid ids set.
-        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
-        /// </exception>
-        public TraktSyncCollectionPostBuilder AddMovies(IEnumerable<ITraktMovie> movies)
-        {
-            if (movies == null)
-                throw new ArgumentNullException(nameof(movies));
-
-            if (!movies.Any())
-                return this;
-
-            foreach (ITraktMovie movie in movies)
-                AddMovie(movie);
-
-            return this;
-        }
-
-        /// <summary>Adds a collection of <see cref="ITraktMovie" />s, which will be added to the collection post.</summary>
-        /// <param name="movies">
-        /// A collection of Trakt movie tuples - each containing a movie, metadata and a collectedAt datetime -, which will be added.
-        /// The given metadata and collectedAt datetime can be null.
-        /// </param>
-        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given movies collection is null.
-        /// Thrown, if one of the given movies is null.
-        /// Thrown, if one of the given movies' ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if one of the given movies has no valid ids set.
-        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
-        /// </exception>
-        public TraktSyncCollectionPostBuilder AddMovies(IEnumerable<Tuple<ITraktMovie, ITraktMetadata, DateTime?>> movies)
-        {
-            if (movies == null)
-                throw new ArgumentNullException(nameof(movies));
-
-            if (!movies.Any())
-                return this;
-
-            foreach (Tuple<ITraktMovie, ITraktMetadata, DateTime?> movieValues in movies)
-                AddMovieOrIgnore(movieValues.Item1, movieValues.Item2, movieValues.Item3);
-
-            return this;
-        }
-
         /// <summary>Adds a <see cref="ITraktMovie" />, which will be added to the collection post.</summary>
         /// <param name="movie">The Trakt movie, which will be added.</param>
         /// <param name="collectedAt">The datetime, when the given movie was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
@@ -153,6 +98,61 @@
             return AddMovieOrIgnore(movie, metadata, collectedAt);
         }
 
+        /// <summary>Adds a collection of <see cref="ITraktMovie" />s, which will be added to the collection post.</summary>
+        /// <param name="movies">A collection of Trakt movies, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movies collection is null.
+        /// Thrown, if one of the given movies is null.
+        /// Thrown, if one of the given movies' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given movies has no valid ids set.
+        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddMovies(IEnumerable<ITraktMovie> movies)
+        {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
+            if (!movies.Any())
+                return this;
+
+            foreach (ITraktMovie movie in movies)
+                AddMovie(movie);
+
+            return this;
+        }
+
+        /// <summary>Adds a collection of <see cref="ITraktMovie" />s, which will be added to the collection post.</summary>
+        /// <param name="movies">
+        /// A collection of Trakt movie tuples - each containing a movie, metadata and a collectedAt datetime -, which will be added.
+        /// The given metadata and collectedAt datetime can be null.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movies collection is null.
+        /// Thrown, if one of the given movies is null.
+        /// Thrown, if one of the given movies' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given movies has no valid ids set.
+        /// Thrown, if one of the given movies has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddMovies(IEnumerable<Tuple<ITraktMovie, ITraktMetadata, DateTime?>> movies)
+        {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
+            if (!movies.Any())
+                return this;
+
+            foreach (Tuple<ITraktMovie, ITraktMetadata, DateTime?> movieValues in movies)
+                AddMovieOrIgnore(movieValues.Item1, movieValues.Item2, movieValues.Item3);
+
+            return this;
+        }
+
         /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the collection post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
@@ -169,61 +169,6 @@
             ValidateShow(show);
             EnsureShowsListExists();
             return AddShowOrIgnore(show);
-        }
-
-        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the collection post.</summary>
-        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
-        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given shows collection is null.
-        /// Thrown, if one of the given shows is null.
-        /// Thrown, if one of the given shows' ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if one of the given shows has no valid ids set.
-        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
-        /// </exception>
-        public TraktSyncCollectionPostBuilder AddShows(IEnumerable<ITraktShow> shows)
-        {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
-
-            if (!shows.Any())
-                return this;
-
-            foreach (ITraktShow show in shows)
-                AddShow(show);
-
-            return this;
-        }
-
-        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the collection post.</summary>
-        /// <param name="shows">
-        /// A collection of Trakt show tuples - each containing a show, metadata and a collectedAt datetime -, which will be added.
-        /// The given metadata and collectedAt datetime can be null.
-        /// </param>
-        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given shows collection is null.
-        /// Thrown, if one of the given shows is null.
-        /// Thrown, if one of the given shows' ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if one of the given shows has no valid ids set.
-        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
-        /// </exception>
-        public TraktSyncCollectionPostBuilder AddShows(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?>> shows)
-        {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
-
-            if (!shows.Any())
-                return this;
-
-            foreach (Tuple<ITraktShow, ITraktMetadata, DateTime?> showValues in shows)
-                AddShowOrIgnore(showValues.Item1, showValues.Item2, showValues.Item3);
-
-            return this;
         }
 
         /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the collection post.</summary>
@@ -657,6 +602,61 @@
         }
 
         /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the collection post.</summary>
+        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddShows(IEnumerable<ITraktShow> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (!shows.Any())
+                return this;
+
+            foreach (ITraktShow show in shows)
+                AddShow(show);
+
+            return this;
+        }
+
+        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the collection post.</summary>
+        /// <param name="shows">
+        /// A collection of Trakt show tuples - each containing a show, metadata and a collectedAt datetime -, which will be added.
+        /// The given metadata and collectedAt datetime can be null.
+        /// </param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncCollectionPostBuilder AddShows(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?>> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (!shows.Any())
+                return this;
+
+            foreach (Tuple<ITraktShow, ITraktMetadata, DateTime?> showValues in shows)
+                AddShowOrIgnore(showValues.Item1, showValues.Item2, showValues.Item3);
+
+            return this;
+        }
+
+        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the collection post.</summary>
         /// <param name="shows">
         /// A collection of Trakt show tuples - each containing a show, metadata, a collectedAt datetime and a collection of seasons and episodes -, which will be added.
         /// The given metadata and collectedAt datetime can be null.
@@ -703,6 +703,55 @@
             ValidateEpisode(episode);
             EnsureEpisodesListExists();
             return AddEpisodeOrIgnore(episode);
+        }
+
+        /// <summary>Adds a <see cref="ITraktEpisode" />, which will be added to the collection post.</summary>
+        /// <param name="episode">The Trakt episode, which will be added.</param>
+        /// <param name="collectedAt">The datetime, when the given episode was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episode is null.
+        /// Thrown, if the given episode ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
+        public TraktSyncCollectionPostBuilder AddEpisode(ITraktEpisode episode, DateTime collectedAt)
+        {
+            ValidateEpisode(episode);
+            EnsureEpisodesListExists();
+            return AddEpisodeOrIgnore(episode, null, collectedAt);
+        }
+
+        /// <summary>Adds a <see cref="ITraktEpisode" />, which will be added to the collection post.</summary>
+        /// <param name="episode">The Trakt episode, which will be added.</param>
+        /// <param name="metadata">An <see cref="TraktMetadata" /> instance, containing metadata about the given episode.</param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episode is null.
+        /// Thrown, if the given episode ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
+        public TraktSyncCollectionPostBuilder AddEpisode(ITraktEpisode episode, TraktMetadata metadata)
+        {
+            ValidateEpisode(episode);
+            EnsureEpisodesListExists();
+            return AddEpisodeOrIgnore(episode, metadata);
+        }
+
+        /// <summary>Adds a <see cref="ITraktEpisode" />, which will be added to the collection post.</summary>
+        /// <param name="episode">The Trakt episode, which will be added.</param>
+        /// <param name="metadata">An <see cref="ITraktMetadata" /> instance, containing metadata about the given episode.</param>
+        /// <param name="collectedAt">The datetime, when the given episode was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episode is null.
+        /// Thrown, if the given episode ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
+        public TraktSyncCollectionPostBuilder AddEpisode(ITraktEpisode episode, ITraktMetadata metadata, DateTime collectedAt)
+        {
+            ValidateEpisode(episode);
+            EnsureEpisodesListExists();
+            return AddEpisodeOrIgnore(episode, metadata, collectedAt);
         }
 
         /// <summary>Adds a collection of <see cref="ITraktEpisode" />s, which will be added to the collection post.</summary>
@@ -755,55 +804,6 @@
                 AddEpisodeOrIgnore(episodeValues.Item1, episodeValues.Item2, episodeValues.Item3);
 
             return this;
-        }
-
-        /// <summary>Adds a <see cref="ITraktEpisode" />, which will be added to the collection post.</summary>
-        /// <param name="episode">The Trakt episode, which will be added.</param>
-        /// <param name="collectedAt">The datetime, when the given episode was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
-        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given episode is null.
-        /// Thrown, if the given episode ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
-        public TraktSyncCollectionPostBuilder AddEpisode(ITraktEpisode episode, DateTime collectedAt)
-        {
-            ValidateEpisode(episode);
-            EnsureEpisodesListExists();
-            return AddEpisodeOrIgnore(episode, null, collectedAt);
-        }
-
-        /// <summary>Adds a <see cref="ITraktEpisode" />, which will be added to the collection post.</summary>
-        /// <param name="episode">The Trakt episode, which will be added.</param>
-        /// <param name="metadata">An <see cref="TraktMetadata" /> instance, containing metadata about the given episode.</param>
-        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given episode is null.
-        /// Thrown, if the given episode ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
-        public TraktSyncCollectionPostBuilder AddEpisode(ITraktEpisode episode, TraktMetadata metadata)
-        {
-            ValidateEpisode(episode);
-            EnsureEpisodesListExists();
-            return AddEpisodeOrIgnore(episode, metadata);
-        }
-
-        /// <summary>Adds a <see cref="ITraktEpisode" />, which will be added to the collection post.</summary>
-        /// <param name="episode">The Trakt episode, which will be added.</param>
-        /// <param name="metadata">An <see cref="ITraktMetadata" /> instance, containing metadata about the given episode.</param>
-        /// <param name="collectedAt">The datetime, when the given episode was collected. Will be converted to the Trakt UTC-datetime and -format.</param>
-        /// <returns>The current <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given episode is null.
-        /// Thrown, if the given episode ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
-        public TraktSyncCollectionPostBuilder AddEpisode(ITraktEpisode episode, ITraktMetadata metadata, DateTime collectedAt)
-        {
-            ValidateEpisode(episode);
-            EnsureEpisodesListExists();
-            return AddEpisodeOrIgnore(episode, metadata, collectedAt);
         }
 
         /// <summary>Removes all already added movies, shows, seasons and episodes.</summary>

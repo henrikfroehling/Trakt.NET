@@ -43,6 +43,26 @@
             return AddMovieOrIgnore(movie);
         }
 
+        /// <summary>Adds a <see cref="ITraktMovie" />, which will be added to the history post.</summary>
+        /// <param name="movie">The Trakt movie, which will be added.</param>
+        /// <param name="watchedAt">The datetime, when the given movie was watched. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given movie is null.
+        /// Thrown, if the given movie ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given movie has no valid ids set.
+        /// Thrown, if the given movie has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncHistoryPostBuilder AddMovie(ITraktMovie movie, DateTime watchedAt)
+        {
+            ValidateMovie(movie);
+            EnsureMoviesListExists();
+
+            return AddMovieOrIgnore(movie, watchedAt);
+        }
+
         /// <summary>Adds a collection of <see cref="ITraktMovie" />s, which will be added to the history post.</summary>
         /// <param name="movies">A collection of Trakt movies, which will be added.</param>
         /// <returns>The current <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
@@ -69,26 +89,6 @@
             return this;
         }
 
-        /// <summary>Adds a <see cref="ITraktMovie" />, which will be added to the history post.</summary>
-        /// <param name="movie">The Trakt movie, which will be added.</param>
-        /// <param name="watchedAt">The datetime, when the given movie was watched. Will be converted to the Trakt UTC-datetime and -format.</param>
-        /// <returns>The current <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given movie is null.
-        /// Thrown, if the given movie ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given movie has no valid ids set.
-        /// Thrown, if the given movie has an year set, which has more or less than four digits.
-        /// </exception>
-        public TraktSyncHistoryPostBuilder AddMovie(ITraktMovie movie, DateTime watchedAt)
-        {
-            ValidateMovie(movie);
-            EnsureMoviesListExists();
-
-            return AddMovieOrIgnore(movie, watchedAt);
-        }
-
         /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the history post.</summary>
         /// <param name="show">The Trakt show, which will be added.</param>
         /// <returns>The current <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
@@ -106,32 +106,6 @@
             EnsureShowsListExists();
 
             return AddShowOrIgnore(show);
-        }
-
-        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the history post.</summary>
-        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
-        /// <returns>The current <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given shows collection is null.
-        /// Thrown, if one of the given shows is null.
-        /// Thrown, if one of the given shows' ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if one of the given shows has no valid ids set.
-        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
-        /// </exception>
-        public TraktSyncHistoryPostBuilder AddShows(IEnumerable<ITraktShow> shows)
-        {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
-
-            if (!shows.Any())
-                return this;
-
-            foreach (var show in shows)
-                AddShow(show);
-
-            return this;
         }
 
         /// <summary>Adds a <see cref="ITraktShow" />, which will be added to the history post.</summary>
@@ -349,6 +323,32 @@
             return this;
         }
 
+        /// <summary>Adds a collection of <see cref="ITraktShow" />s, which will be added to the history post.</summary>
+        /// <param name="shows">A collection of Trakt shows, which will be added.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given shows collection is null.
+        /// Thrown, if one of the given shows is null.
+        /// Thrown, if one of the given shows' ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if one of the given shows has no valid ids set.
+        /// Thrown, if one of the given shows has an year set, which has more or less than four digits.
+        /// </exception>
+        public TraktSyncHistoryPostBuilder AddShows(IEnumerable<ITraktShow> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            if (!shows.Any())
+                return this;
+
+            foreach (var show in shows)
+                AddShow(show);
+
+            return this;
+        }
+
         /// <summary>Adds a <see cref="ITraktEpisode" />, which will be added to the history post.</summary>
         /// <param name="episode">The Trakt episode, which will be added.</param>
         /// <returns>The current <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
@@ -363,6 +363,23 @@
             EnsureEpisodesListExists();
 
             return AddEpisodeOrIgnore(episode);
+        }
+
+        /// <summary>Adds a <see cref="ITraktEpisode" />, which will be added to the history post.</summary>
+        /// <param name="episode">The Trakt episode, which will be added.</param>
+        /// <param name="watchedAt">The datetime, when the given episode was watched. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <returns>The current <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown, if the given episode is null.
+        /// Thrown, if the given episode ids are null.
+        /// </exception>
+        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
+        public TraktSyncHistoryPostBuilder AddEpisode(ITraktEpisode episode, DateTime watchedAt)
+        {
+            ValidateEpisode(episode);
+            EnsureEpisodesListExists();
+
+            return AddEpisodeOrIgnore(episode, watchedAt);
         }
 
         /// <summary>Adds a collection of <see cref="ITraktEpisode" />s, which will be added to the history post.</summary>
@@ -386,23 +403,6 @@
                 AddEpisode(episode);
 
             return this;
-        }
-
-        /// <summary>Adds a <see cref="ITraktEpisode" />, which will be added to the history post.</summary>
-        /// <param name="episode">The Trakt episode, which will be added.</param>
-        /// <param name="watchedAt">The datetime, when the given episode was watched. Will be converted to the Trakt UTC-datetime and -format.</param>
-        /// <returns>The current <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given episode is null.
-        /// Thrown, if the given episode ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
-        public TraktSyncHistoryPostBuilder AddEpisode(ITraktEpisode episode, DateTime watchedAt)
-        {
-            ValidateEpisode(episode);
-            EnsureEpisodesListExists();
-
-            return AddEpisodeOrIgnore(episode, watchedAt);
         }
 
         /// <summary>Removes all already added movies, shows, seasons and episodes from the builder.</summary>
