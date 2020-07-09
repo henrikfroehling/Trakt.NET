@@ -154,18 +154,22 @@
 
             if (authorizationRequirement != AuthorizationRequirement.NotRequired)
             {
-                if (authorizationRequirement == AuthorizationRequirement.Required)
+                if (!_client.Authentication.IsAuthorized)
                 {
-                    if (!_client.Authentication.IsAuthorized)
-                        throw new TraktAuthorizationException("authorization is required for this request, but the current authorization parameters are invalid");
-                }
-                else if (authorizationRequirement == AuthorizationRequirement.Optional && _client.Configuration.ForceAuthorization)
-                {
-                    if (!_client.Authentication.IsAuthorized)
-                        throw new TraktAuthorizationException("authorization is optional for this request, but forced and the current authorization parameters are invalid");
+                    switch (authorizationRequirement)
+                    {
+                        case AuthorizationRequirement.Optional:
+                            if (_client.Configuration.ForceAuthorization)
+                                throw new TraktAuthorizationException("authorization is optional for this request, but forced and the current authorization parameters are invalid");
+
+                            break;
+                        case AuthorizationRequirement.Required:
+                            throw new TraktAuthorizationException("authorization is required for this request, but the current authorization parameters are invalid");
+                    }
                 }
 
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _client.Authentication.Authorization.AccessToken);
+                if (authorizationRequirement == AuthorizationRequirement.Required || (authorizationRequirement == AuthorizationRequirement.Optional && _client.Configuration.ForceAuthorization))
+                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _client.Authentication.Authorization.AccessToken);
             }
         }
     }

@@ -1,6 +1,18 @@
 Release notes
 =============
 
+Version 1.0.1
+===
+
+#### 1.0.1
+(2020-07-09)
+
+Fixed:
+
+- Fix wrongly thrown exception, when authorization is optional ([Issue 154](https://github.com/henrikfroehling/Trakt.NET/issues/154)
+
+---------
+
 Version 1.0.0
 ===
 
