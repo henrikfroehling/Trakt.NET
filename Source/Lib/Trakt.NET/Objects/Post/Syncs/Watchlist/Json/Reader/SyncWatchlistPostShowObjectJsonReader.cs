@@ -25,16 +25,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_TITLE:
+                        case JsonProperties.PROPERTY_NAME_TITLE:
                             syncWatchlistPostShow.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_YEAR:
+                        case JsonProperties.PROPERTY_NAME_YEAR:
                             syncWatchlistPostShow.Year = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             syncWatchlistPostShow.Ids = await showIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_WATCHLIST_POST_SHOW_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             syncWatchlistPostShow.Seasons = await seasonArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

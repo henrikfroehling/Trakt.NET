@@ -16,14 +16,14 @@
             if (obj.Ids != null)
             {
                 var showIdsObjectJsonWriter = new ShowIdsObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_SHOW_PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
                 await showIdsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Ids, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Seasons != null)
             {
                 var customListItemsPostShowSeasonArrayJsonWriter = new ArrayJsonWriter<ITraktUserCustomListItemsPostShowSeason>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_SHOW_PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
                 await customListItemsPostShowSeasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
             }
 

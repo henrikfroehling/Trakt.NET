@@ -27,19 +27,19 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             syncHistoryRemovePostResponseNotFoundGroup.Movies = await notFoundMoviesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             syncHistoryRemovePostResponseNotFoundGroup.Shows = await notFoundShowsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             syncHistoryRemovePostResponseNotFoundGroup.Seasons = await notFoundSeasonsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             syncHistoryRemovePostResponseNotFoundGroup.Episodes = await notFoundEpisodesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             syncHistoryRemovePostResponseNotFoundGroup.HistoryIds = await JsonReaderHelper.ReadUnsignedLongArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

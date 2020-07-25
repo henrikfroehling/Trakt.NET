@@ -14,7 +14,7 @@
 
             if (obj.HistoryIds.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_GROUP_PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.HistoryIds, cancellationToken).ConfigureAwait(false);
             }
         }

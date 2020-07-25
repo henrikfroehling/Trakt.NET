@@ -13,7 +13,7 @@
             if (obj.Movie != null)
             {
                 var movieObjectJsonWriter = new MovieObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.MOVIE_COMMENT_POST_PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
                 await movieObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Movie, cancellationToken).ConfigureAwait(false);
             }
         }

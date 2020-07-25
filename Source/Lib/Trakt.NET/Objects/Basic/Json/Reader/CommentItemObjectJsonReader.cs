@@ -33,22 +33,22 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.COMMENT_ITEM_PROPERTY_NAME_TYPE:
+                        case JsonProperties.PROPERTY_NAME_TYPE:
                             traktCommentItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktObjectType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.COMMENT_ITEM_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktCommentItem.Movie = await movieObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;
-                        case JsonProperties.COMMENT_ITEM_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktCommentItem.Show = await showObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;
-                        case JsonProperties.COMMENT_ITEM_PROPERTY_NAME_SEASON:
+                        case JsonProperties.PROPERTY_NAME_SEASON:
                             traktCommentItem.Season = await seasonObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;
-                        case JsonProperties.COMMENT_ITEM_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             traktCommentItem.Episode = await episodeObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;
-                        case JsonProperties.COMMENT_ITEM_PROPERTY_NAME_LIST:
+                        case JsonProperties.PROPERTY_NAME_LIST:
                             traktCommentItem.List = await listObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;
                         default:

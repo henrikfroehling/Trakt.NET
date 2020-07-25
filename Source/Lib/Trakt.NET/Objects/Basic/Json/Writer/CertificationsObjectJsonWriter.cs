@@ -15,7 +15,7 @@
             if (obj.US != null)
             {
                 var certificationArrayJsonWriter = new ArrayJsonWriter<ITraktCertification>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CERTIFICATIONS_PROPERTY_NAME_US, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_US, cancellationToken).ConfigureAwait(false);
                 await certificationArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.US, cancellationToken).ConfigureAwait(false);
             }
 

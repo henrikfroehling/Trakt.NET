@@ -22,10 +22,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.LANGUAGE_PROPERTY_NAME_NAME:
+                        case JsonProperties.PROPERTY_NAME_NAME:
                             traktLanguage.Name = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                             break;
-                        case JsonProperties.LANGUAGE_PROPERTY_NAME_CODE:
+                        case JsonProperties.PROPERTY_NAME_CODE:
                             traktLanguage.Code = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                             break;
                         default:

@@ -23,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.RECENTLY_UPDATED_SHOW_PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -32,7 +32,7 @@
 
                                 break;
                             }
-                        case JsonProperties.RECENTLY_UPDATED_SHOW_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktRecentlyUpdatedShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

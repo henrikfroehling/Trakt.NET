@@ -16,14 +16,14 @@
 
             if (obj.LikedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COMMENT_LIKE_PROPERTY_NAME_LIKED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LIKED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.LikedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.User != null)
             {
                 var userObjectJsonWriter = new UserObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COMMENT_LIKE_PROPERTY_NAME_USER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_USER, cancellationToken).ConfigureAwait(false);
                 await userObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.User, cancellationToken).ConfigureAwait(false);
             }
 

@@ -14,13 +14,13 @@
 
             if (obj.Updated.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_CUSTOM_LISTS_REORDER_POST_RESPONSE_PROPERTY_NAME_UPDATED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_UPDATED, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Updated.Value, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.SkippedIds != null)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_CUSTOM_LISTS_REORDER_POST_RESPONSE_PROPERTY_NAME_SKIPPED_IDS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SKIPPED_IDS, cancellationToken).ConfigureAwait(false);
                 await JsonWriterHelper.WriteUnsignedIntegerArrayAsync(jsonWriter, obj.SkippedIds, cancellationToken).ConfigureAwait(false);
             }
 

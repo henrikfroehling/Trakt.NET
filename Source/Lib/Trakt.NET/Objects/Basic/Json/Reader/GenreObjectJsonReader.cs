@@ -22,10 +22,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.GENRE_PROPERTY_NAME_NAME:
+                        case JsonProperties.PROPERTY_NAME_NAME:
                             traktGenre.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.GENRE_PROPERTY_NAME_SLUG:
+                        case JsonProperties.PROPERTY_NAME_SLUG:
                             traktGenre.Slug = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

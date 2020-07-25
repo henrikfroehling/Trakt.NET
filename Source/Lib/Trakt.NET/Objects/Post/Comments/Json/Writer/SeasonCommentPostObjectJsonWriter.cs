@@ -13,7 +13,7 @@
             if (obj.Season != null)
             {
                 var seasonObjectJsonWriter = new SeasonObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SEASON_COMMENT_POST_PROPERTY_NAME_SEASON, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASON, cancellationToken).ConfigureAwait(false);
                 await seasonObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Season, cancellationToken).ConfigureAwait(false);
             }
         }

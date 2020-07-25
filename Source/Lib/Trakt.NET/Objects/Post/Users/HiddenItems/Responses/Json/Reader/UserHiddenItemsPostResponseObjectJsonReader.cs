@@ -24,10 +24,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_PROPERTY_NAME_ADDED:
+                        case JsonProperties.PROPERTY_NAME_ADDED:
                             hiddenItemsPostResponse.Added = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.PROPERTY_NAME_NOT_FOUND:
                             hiddenItemsPostResponse.NotFound = await responseNotFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

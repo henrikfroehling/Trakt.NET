@@ -26,25 +26,25 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_SHARING:
+                        case JsonProperties.PROPERTY_NAME_SHARING:
                             movieCheckinPost.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_MESSAGE:
+                        case JsonProperties.PROPERTY_NAME_MESSAGE:
                             movieCheckinPost.Message = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_APP_VERSION:
+                        case JsonProperties.PROPERTY_NAME_APP_VERSION:
                             movieCheckinPost.AppVersion = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_APP_DATE:
+                        case JsonProperties.PROPERTY_NAME_APP_DATE:
                             movieCheckinPost.AppDate = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_VENUE_ID:
+                        case JsonProperties.PROPERTY_NAME_VENUE_ID:
                             movieCheckinPost.FoursquareVenueId = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_VENUE_NAME:
+                        case JsonProperties.PROPERTY_NAME_VENUE_NAME:
                             movieCheckinPost.FoursquareVenueName = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_CHECKIN_POST_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             movieCheckinPost.Movie = await movieReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

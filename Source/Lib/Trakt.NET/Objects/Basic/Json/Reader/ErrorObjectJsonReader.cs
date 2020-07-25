@@ -22,10 +22,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.ERROR_PROPERTY_NAME_ERROR:
+                        case JsonProperties.PROPERTY_NAME_ERROR:
                             traktError.Error = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.ERROR_PROPERTY_NAME_ERROR_DESCRIPTION:
+                        case JsonProperties.PROPERTY_NAME_ERROR_DESCRIPTION:
                             traktError.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

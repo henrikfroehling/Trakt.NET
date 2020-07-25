@@ -14,14 +14,14 @@
             if (obj.Episode != null)
             {
                 var episodeObjectJsonWriter = new EpisodeObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_EPISODE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODE, cancellationToken).ConfigureAwait(false);
                 await episodeObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Episode, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Show != null)
             {
                 var showObjectJsonWriter = new ShowObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.EPISODE_SCROBBLE_POST_RESPONSE_PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
                 await showObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Show, cancellationToken).ConfigureAwait(false);
             }
         }

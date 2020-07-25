@@ -24,16 +24,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SEASON_COLLECTION_PROGRESS_PROPERTY_NAME_NUMBER:
+                        case JsonProperties.PROPERTY_NAME_NUMBER:
                             traktSeasonCollectionProgress.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SEASON_COLLECTION_PROGRESS_PROPERTY_NAME_AIRED:
+                        case JsonProperties.PROPERTY_NAME_AIRED:
                             traktSeasonCollectionProgress.Aired = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SEASON_COLLECTION_PROGRESS_PROPERTY_NAME_COMPLETED:
+                        case JsonProperties.PROPERTY_NAME_COMPLETED:
                             traktSeasonCollectionProgress.Completed = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SEASON_COLLECTION_PROGRESS_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             traktSeasonCollectionProgress.Episodes = await episodeCollectionProgressArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -25,13 +25,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTER:
+                        case JsonProperties.PROPERTY_NAME_CHARACTER:
                             showCreditsCastItem.Character = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTERS:
+                        case JsonProperties.PROPERTY_NAME_CHARACTERS:
                             showCreditsCastItem.Characters = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_EPISODE_COUNT:
+                        case JsonProperties.PROPERTY_NAME_EPISODE_COUNT:
                             {
                                 var value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -40,10 +40,10 @@
 
                                 break;
                             }
-                        case JsonProperties.PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_SERIES_REGULAR:
+                        case JsonProperties.PROPERTY_NAME_SERIES_REGULAR:
                             showCreditsCastItem.SeriesRegular = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.PERSON_SHOW_CREDITS_CAST_ITEM_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             showCreditsCastItem.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

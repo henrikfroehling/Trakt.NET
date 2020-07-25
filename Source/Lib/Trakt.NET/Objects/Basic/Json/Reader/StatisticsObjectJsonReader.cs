@@ -22,25 +22,25 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.STATISTICS_PROPERTY_NAME_WATCHERS:
+                        case JsonProperties.PROPERTY_NAME_WATCHERS:
                             traktStatistics.Watchers = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.STATISTICS_PROPERTY_NAME_PLAYS:
+                        case JsonProperties.PROPERTY_NAME_PLAYS:
                             traktStatistics.Plays = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.STATISTICS_PROPERTY_NAME_COLLECTORS:
+                        case JsonProperties.PROPERTY_NAME_COLLECTORS:
                             traktStatistics.Collectors = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.STATISTICS_PROPERTY_NAME_COLLECTED_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_COLLECTED_EPISODES:
                             traktStatistics.CollectedEpisodes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.STATISTICS_PROPERTY_NAME_COMMENTS:
+                        case JsonProperties.PROPERTY_NAME_COMMENTS:
                             traktStatistics.Comments = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.STATISTICS_PROPERTY_NAME_LISTS:
+                        case JsonProperties.PROPERTY_NAME_LISTS:
                             traktStatistics.Lists = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.STATISTICS_PROPERTY_NAME_VOTES:
+                        case JsonProperties.PROPERTY_NAME_VOTES:
                             traktStatistics.Votes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

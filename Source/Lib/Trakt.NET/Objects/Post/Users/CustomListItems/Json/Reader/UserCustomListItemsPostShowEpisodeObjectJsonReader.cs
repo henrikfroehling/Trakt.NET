@@ -23,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER:
+                        case JsonProperties.PROPERTY_NAME_NUMBER:
                             {
                                 Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 

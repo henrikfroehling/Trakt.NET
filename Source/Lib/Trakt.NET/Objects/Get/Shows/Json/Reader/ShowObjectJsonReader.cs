@@ -28,19 +28,19 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SHOW_PROPERTY_NAME_TITLE:
+                        case JsonProperties.PROPERTY_NAME_TITLE:
                             traktShow.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_YEAR:
+                        case JsonProperties.PROPERTY_NAME_YEAR:
                             traktShow.Year = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             traktShow.Ids = await idsObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_OVERVIEW:
+                        case JsonProperties.PROPERTY_NAME_OVERVIEW:
                             traktShow.Overview = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_FIRST_AIRED:
+                        case JsonProperties.PROPERTY_NAME_FIRST_AIRED:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -49,37 +49,37 @@
 
                                 break;
                             }
-                        case JsonProperties.SHOW_PROPERTY_NAME_AIRS:
+                        case JsonProperties.PROPERTY_NAME_AIRS:
                             traktShow.Airs = await airsObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_RUNTIME:
+                        case JsonProperties.PROPERTY_NAME_RUNTIME:
                             traktShow.Runtime = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_CERTIFICATION:
+                        case JsonProperties.PROPERTY_NAME_CERTIFICATION:
                             traktShow.Certification = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_NETWORK:
+                        case JsonProperties.PROPERTY_NAME_NETWORK:
                             traktShow.Network = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_COUNTRY:
+                        case JsonProperties.PROPERTY_NAME_COUNTRY:
                             traktShow.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_TRAILER:
+                        case JsonProperties.PROPERTY_NAME_TRAILER:
                             traktShow.Trailer = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_HOMEPAGE:
+                        case JsonProperties.PROPERTY_NAME_HOMEPAGE:
                             traktShow.Homepage = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_STATUS:
+                        case JsonProperties.PROPERTY_NAME_STATUS:
                             traktShow.Status = await JsonReaderHelper.ReadEnumerationValueAsync<TraktShowStatus>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_RATING:
+                        case JsonProperties.PROPERTY_NAME_RATING:
                             traktShow.Rating = (float?)await jsonReader.ReadAsDoubleAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_VOTES:
+                        case JsonProperties.PROPERTY_NAME_VOTES:
                             traktShow.Votes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -88,22 +88,22 @@
 
                                 break;
                             }
-                        case JsonProperties.SHOW_PROPERTY_NAME_LANGUAGE:
+                        case JsonProperties.PROPERTY_NAME_LANGUAGE:
                             traktShow.LanguageCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_AVAILABLE_TRANSLATIONS:
+                        case JsonProperties.PROPERTY_NAME_AVAILABLE_TRANSLATIONS:
                             traktShow.AvailableTranslationLanguageCodes = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_GENRES:
+                        case JsonProperties.PROPERTY_NAME_GENRES:
                             traktShow.Genres = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_AIRED_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_AIRED_EPISODES:
                             traktShow.AiredEpisodes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             traktShow.Seasons = await seasonsArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SHOW_PROPERTY_NAME_COMMENT_COUNT:
+                        case JsonProperties.PROPERTY_NAME_COMMENT_COUNT:
                             traktShow.CommentCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

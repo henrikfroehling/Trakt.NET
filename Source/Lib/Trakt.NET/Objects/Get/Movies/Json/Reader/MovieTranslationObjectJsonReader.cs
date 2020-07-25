@@ -22,16 +22,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_TITLE:
+                        case JsonProperties.PROPERTY_NAME_TITLE:
                             traktMovieTranslation.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_OVERVIEW:
+                        case JsonProperties.PROPERTY_NAME_OVERVIEW:
                             traktMovieTranslation.Overview = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_LANGUAGE_CODE:
+                        case JsonProperties.PROPERTY_NAME_LANGUAGE:
                             traktMovieTranslation.LanguageCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_TAGLINE:
+                        case JsonProperties.PROPERTY_NAME_TAGLINE:
                             traktMovieTranslation.Tagline = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

@@ -15,26 +15,26 @@
 
             if (!string.IsNullOrEmpty(obj.Character))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CAST_MEMBER_PROPERTY_NAME_CHARACTER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_CHARACTER, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Character, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Characters != null)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CAST_MEMBER_PROPERTY_NAME_CHARACTERS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_CHARACTERS, cancellationToken).ConfigureAwait(false);
                 await JsonWriterHelper.WriteStringArrayAsync(jsonWriter, obj.Characters, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.EpisodeCount.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_CAST_MEMBER_PROPERTY_NAME_EPISODE_COUNT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODE_COUNT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.EpisodeCount.Value, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Person != null)
             {
                 var personObjectJsonWriter = new PersonObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CAST_MEMBER_PROPERTY_NAME_PERSON, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_PERSON, cancellationToken).ConfigureAwait(false);
                 await personObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Person, cancellationToken).ConfigureAwait(false);
             }
 

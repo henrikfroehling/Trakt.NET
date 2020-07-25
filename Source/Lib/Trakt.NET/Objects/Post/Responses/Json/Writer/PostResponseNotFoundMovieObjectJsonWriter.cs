@@ -16,7 +16,7 @@
             if (obj.Ids != null)
             {
                 var movieIdsObjectJsonWriter = new MovieIdsObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.POST_RESPONSE_NOT_FOUND_EPISODE_PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
                 await movieIdsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Ids, cancellationToken).ConfigureAwait(false);
             }
 

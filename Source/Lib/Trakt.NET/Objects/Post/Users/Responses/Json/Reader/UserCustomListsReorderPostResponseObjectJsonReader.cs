@@ -22,10 +22,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_CUSTOM_LISTS_REORDER_POST_RESPONSE_PROPERTY_NAME_UPDATED:
+                        case JsonProperties.PROPERTY_NAME_UPDATED:
                             userCustomListsReorderPostResponse.Updated = await jsonReader.ReadAsInt32Async(cancellationToken).ConfigureAwait(false);
                             break;
-                        case JsonProperties.USER_CUSTOM_LISTS_REORDER_POST_RESPONSE_PROPERTY_NAME_SKIPPED_IDS:
+                        case JsonProperties.PROPERTY_NAME_SKIPPED_IDS:
                             userCustomListsReorderPostResponse.SkippedIds = await JsonReaderHelper.ReadUnsignedIntegerArrayAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;
                         default:

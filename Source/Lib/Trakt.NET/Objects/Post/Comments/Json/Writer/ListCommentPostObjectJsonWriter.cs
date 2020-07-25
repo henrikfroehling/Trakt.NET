@@ -13,7 +13,7 @@
             if (obj.List != null)
             {
                 var listObjectJsonWriter = new ListObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.LIST_COMMENT_POST_PROPERTY_NAME_LIST, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LIST, cancellationToken).ConfigureAwait(false);
                 await listObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.List, cancellationToken).ConfigureAwait(false);
             }
         }

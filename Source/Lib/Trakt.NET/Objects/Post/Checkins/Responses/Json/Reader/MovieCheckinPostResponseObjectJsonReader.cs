@@ -26,7 +26,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_ID:
+                        case JsonProperties.PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedLongValueAsync(jsonReader, cancellationToken);
 
@@ -35,7 +35,7 @@
 
                                 break;
                             }
-                        case JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_WATCHED_AT:
+                        case JsonProperties.PROPERTY_NAME_WATCHED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -44,10 +44,10 @@
 
                                 break;
                             }
-                        case JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_SHARING:
+                        case JsonProperties.PROPERTY_NAME_SHARING:
                             checkinMovieResponse.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             checkinMovieResponse.Movie = await movieReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

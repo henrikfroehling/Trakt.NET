@@ -23,10 +23,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.BOX_OFFICE_MOVIE_PROPERTY_NAME_REVENUE:
+                        case JsonProperties.PROPERTY_NAME_REVENUE:
                             traktBoxOfficeMovie.Revenue = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.BOX_OFFICE_MOVIE_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktBoxOfficeMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

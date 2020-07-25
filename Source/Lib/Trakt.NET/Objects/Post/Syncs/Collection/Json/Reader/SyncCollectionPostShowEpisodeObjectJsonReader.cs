@@ -25,7 +25,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_COLLECTION_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER:
+                        case JsonProperties.PROPERTY_NAME_NUMBER:
                             {
                                 Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -34,7 +34,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_COLLECTION_POST_SHOW_EPISODE_PROPERTY_NAME_COLLECTED_AT:
+                        case JsonProperties.PROPERTY_NAME_COLLECTED_AT:
                             {
                                 Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -43,19 +43,19 @@
 
                                 break;
                             }
-                        case JsonProperties.METADATA_PROPERTY_NAME_MEDIA_TYPE:
+                        case JsonProperties.PROPERTY_NAME_MEDIA_TYPE:
                             traktSyncCollectionPostShowEpisode.MediaType = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.METADATA_PROPERTY_NAME_RESOLUTION:
+                        case JsonProperties.PROPERTY_NAME_RESOLUTION:
                             traktSyncCollectionPostShowEpisode.MediaResolution = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaResolution>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.METADATA_PROPERTY_NAME_AUDIO:
+                        case JsonProperties.PROPERTY_NAME_AUDIO:
                             traktSyncCollectionPostShowEpisode.Audio = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaAudio>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.METADATA_PROPERTY_NAME_AUDIO_CHANNELS:
+                        case JsonProperties.PROPERTY_NAME_AUDIO_CHANNELS:
                             traktSyncCollectionPostShowEpisode.AudioChannels = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaAudioChannel>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.METADATA_PROPERTY_NAME_3D:
+                        case JsonProperties.PROPERTY_NAME_3D:
                             traktSyncCollectionPostShowEpisode.ThreeDimensional = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         default:

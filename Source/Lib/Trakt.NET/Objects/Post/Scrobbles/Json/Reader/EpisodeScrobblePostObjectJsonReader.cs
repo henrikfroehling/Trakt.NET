@@ -27,7 +27,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SCROBBLE_POST_PROPERTY_NAME_PROGRESS:
+                        case JsonProperties.PROPERTY_NAME_PROGRESS:
                             {
                                 Pair<bool, float> value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
 
@@ -36,16 +36,16 @@
 
                                 break;
                             }
-                        case JsonProperties.SCROBBLE_POST_PROPERTY_NAME_APP_VERSION:
+                        case JsonProperties.PROPERTY_NAME_APP_VERSION:
                             episodeScrobblePost.AppVersion = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SCROBBLE_POST_PROPERTY_NAME_APP_DATE:
+                        case JsonProperties.PROPERTY_NAME_APP_DATE:
                             episodeScrobblePost.AppDate = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_SCROBBLE_POST_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             episodeScrobblePost.Show = await showReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_SCROBBLE_POST_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             episodeScrobblePost.Episode = await episodeReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

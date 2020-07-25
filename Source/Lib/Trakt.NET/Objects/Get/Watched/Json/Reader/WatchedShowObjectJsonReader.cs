@@ -26,10 +26,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.WATCHED_SHOW_PROPERTY_NAME_PLAYS:
+                        case JsonProperties.PROPERTY_NAME_PLAYS:
                             traktWatchedShow.Plays = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.WATCHED_SHOW_PROPERTY_NAME_LAST_WATCHED_AT:
+                        case JsonProperties.PROPERTY_NAME_LAST_WATCHED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -38,7 +38,7 @@
 
                                 break;
                             }
-                        case JsonProperties.WATCHED_SHOW_PROPERTY_NAME_LAST_UPDATED_AT:
+                        case JsonProperties.PROPERTY_NAME_LAST_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -47,7 +47,7 @@
 
                                 break;
                             }
-                        case JsonProperties.WATCHED_SHOW_PROPERTY_NAME_RESET_AT:
+                        case JsonProperties.PROPERTY_NAME_RESET_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -56,10 +56,10 @@
 
                                 break;
                             }
-                        case JsonProperties.WATCHED_SHOW_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktWatchedShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.WATCHED_SHOW_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             traktWatchedShow.WatchedSeasons = await showSeasonsArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

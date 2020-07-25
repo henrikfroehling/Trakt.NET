@@ -27,7 +27,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CALENDAR_SHOW_PROPERTY_NAME_FIRST_AIRED:
+                        case JsonProperties.PROPERTY_NAME_FIRST_AIRED:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -36,10 +36,10 @@
 
                                 break;
                             }
-                        case JsonProperties.CALENDAR_SHOW_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktCalendarShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CALENDAR_SHOW_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             traktCalendarShow.Episode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

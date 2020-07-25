@@ -22,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_COMMENTS_LAST_ACTIVITIES_PROPERTY_NAME_LIKED_AT:
+                        case JsonProperties.PROPERTY_NAME_LIKED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

@@ -15,20 +15,20 @@
 
             if (!string.IsNullOrEmpty(obj.Comment))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COMMENT_POST_PROPERTY_NAME_COMMENT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COMMENT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Comment).ConfigureAwait(false);
             }
 
             if (obj.Spoiler.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COMMENT_POST_PROPERTY_NAME_SPOILER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SPOILER, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Spoiler, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Sharing != null)
             {
                 var sharingObjectJsonWriter = new SharingObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COMMENT_POST_PROPERTY_NAME_SHARING, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHARING, cancellationToken).ConfigureAwait(false);
                 await sharingObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Sharing, cancellationToken).ConfigureAwait(false);
             }
 

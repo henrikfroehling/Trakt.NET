@@ -23,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CERTIFICATIONS_PROPERTY_NAME_US:
+                        case JsonProperties.PROPERTY_NAME_US:
                             traktCertifications.US = await certificationsArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

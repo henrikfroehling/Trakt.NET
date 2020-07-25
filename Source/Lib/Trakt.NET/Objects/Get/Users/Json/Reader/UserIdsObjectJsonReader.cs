@@ -22,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_IDS_PROPERTY_NAME_SLUG:
+                        case JsonProperties.PROPERTY_NAME_SLUG:
                             traktUserIds.Slug = jsonReader.ReadAsString();
                             break;
                         default:

@@ -23,16 +23,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PERSON_PROPERTY_NAME_NAME:
+                        case JsonProperties.PROPERTY_NAME_NAME:
                             traktPerson.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.PERSON_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             traktPerson.Ids = await idsObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.PERSON_PROPERTY_NAME_BIOGRAPHY:
+                        case JsonProperties.PROPERTY_NAME_BIOGRAPHY:
                             traktPerson.Biography = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.PERSON_PROPERTY_NAME_BIRTHDAY:
+                        case JsonProperties.PROPERTY_NAME_BIRTHDAY:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -41,7 +41,7 @@
 
                                 break;
                             }
-                        case JsonProperties.PERSON_PROPERTY_NAME_DEATH:
+                        case JsonProperties.PROPERTY_NAME_DEATH:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -50,10 +50,10 @@
 
                                 break;
                             }
-                        case JsonProperties.PERSON_PROPERTY_NAME_BIRTHPLACE:
+                        case JsonProperties.PROPERTY_NAME_BIRTHPLACE:
                             traktPerson.Birthplace = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.PERSON_PROPERTY_NAME_HOMEPAGE:
+                        case JsonProperties.PROPERTY_NAME_HOMEPAGE:
                             traktPerson.Homepage = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

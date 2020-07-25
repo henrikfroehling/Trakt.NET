@@ -22,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CHECKIN_POST_ERROR_RESPONSE_PROPERTY_NAME_EXPIRES_AT:
+                        case JsonProperties.PROPERTY_NAME_EXPIRES_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

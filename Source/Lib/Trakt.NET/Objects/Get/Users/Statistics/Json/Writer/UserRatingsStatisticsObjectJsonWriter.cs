@@ -14,13 +14,13 @@
 
             if (obj.Total.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_RATINGS_STATISTICS_PROPERTY_NAME_TOTAL, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TOTAL, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Total, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Distribution != null)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_RATINGS_STATISTICS_PROPERTY_NAME_DISTRIBUTION, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_DISTRIBUTION, cancellationToken).ConfigureAwait(false);
                 await JsonWriterHelper.WriteDistributionAsync(jsonWriter, obj.Distribution, cancellationToken).ConfigureAwait(false);
             }
 

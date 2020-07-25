@@ -26,13 +26,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             hiddenItemsPostResponseNotFoundGroup.Movies = await notFoundMoviesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             hiddenItemsPostResponseNotFoundGroup.Shows = await notFoundShowsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             hiddenItemsPostResponseNotFoundGroup.Seasons = await notFoundSeasonsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

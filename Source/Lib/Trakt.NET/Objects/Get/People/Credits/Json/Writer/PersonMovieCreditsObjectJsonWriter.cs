@@ -15,14 +15,14 @@
             if (obj.Cast != null)
             {
                 var personMovieCreditsCastItemArrayJsonWriter = new ArrayJsonWriter<ITraktPersonMovieCreditsCastItem>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PERSON_MOVIE_CREDITS_PROPERTY_NAME_CAST, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_CAST, cancellationToken).ConfigureAwait(false);
                 await personMovieCreditsCastItemArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Cast, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Crew != null)
             {
                 var personMovieCreditsCrewObjectJsonWriter = new PersonMovieCreditsCrewObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PERSON_MOVIE_CREDITS_PROPERTY_NAME_CREW, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_CREW, cancellationToken).ConfigureAwait(false);
                 await personMovieCreditsCrewObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Crew, cancellationToken).ConfigureAwait(false);
             }
 

@@ -24,7 +24,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.POST_RESPONSE_NOT_FOUND_SHOW_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             postResponseNotFoundShow.Ids = await showIdsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

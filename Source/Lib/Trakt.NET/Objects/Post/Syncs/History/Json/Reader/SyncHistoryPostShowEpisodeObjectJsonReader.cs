@@ -24,7 +24,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_HISTORY_POST_SHOW_EPISODE_PROPERTY_NAME_WATCHED_AT:
+                        case JsonProperties.PROPERTY_NAME_WATCHED_AT:
                             {
                                 Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -33,7 +33,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_HISTORY_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER:
+                        case JsonProperties.PROPERTY_NAME_NUMBER:
                             {
                                 Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 

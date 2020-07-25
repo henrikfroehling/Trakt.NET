@@ -24,10 +24,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_HIDDEN_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED:
+                        case JsonProperties.PROPERTY_NAME_DELETED:
                             hiddenItemsRemovePostResponse.Deleted = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.PROPERTY_NAME_NOT_FOUND:
                             hiddenItemsRemovePostResponse.NotFound = await responseNotFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -14,14 +14,14 @@
 
             if (obj.Number.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COLLECTION_SHOW_SEASON_PROPERTY_NAME_NUMBER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NUMBER, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Number, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Episodes != null)
             {
                 var collectionShowEpisodeArrayJsonWriter = new ArrayJsonWriter<ITraktCollectionShowEpisode>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COLLECTION_SHOW_SEASON_PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
                 await collectionShowEpisodeArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Episodes, cancellationToken).ConfigureAwait(false);
             }
 

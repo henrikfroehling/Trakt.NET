@@ -15,28 +15,28 @@
             if (obj.Movies != null)
             {
                 var syncRatingsPostResponseNotFoundMovieArrayJsonWriter = new ArrayJsonWriter<ITraktSyncRatingsPostResponseNotFoundMovie>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIES, cancellationToken).ConfigureAwait(false);
                 await syncRatingsPostResponseNotFoundMovieArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Movies, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Shows != null)
             {
                 var syncRatingsPostResponseNotFoundShowArrayJsonWriter = new ArrayJsonWriter<ITraktSyncRatingsPostResponseNotFoundShow>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOWS, cancellationToken).ConfigureAwait(false);
                 await syncRatingsPostResponseNotFoundShowArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Shows, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Seasons != null)
             {
                 var syncRatingsPostResponseNotFoundSeasonArrayJsonWriter = new ArrayJsonWriter<ITraktSyncRatingsPostResponseNotFoundSeason>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
                 await syncRatingsPostResponseNotFoundSeasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Episodes != null)
             {
                 var syncRatingsPostResponseNotFoundEpisodeArrayJsonWriter = new ArrayJsonWriter<ITraktSyncRatingsPostResponseNotFoundEpisode>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
                 await syncRatingsPostResponseNotFoundEpisodeArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Episodes, cancellationToken).ConfigureAwait(false);
             }
 

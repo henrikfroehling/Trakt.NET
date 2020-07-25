@@ -22,16 +22,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_SHOWS_STATISTICS_PROPERTY_NAME_WATCHED:
+                        case JsonProperties.PROPERTY_NAME_WATCHED:
                             userShowsStatistics.Watched = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.USER_SHOWS_STATISTICS_PROPERTY_NAME_COLLECTED:
+                        case JsonProperties.PROPERTY_NAME_COLLECTED:
                             userShowsStatistics.Collected = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.USER_SHOWS_STATISTICS_PROPERTY_NAME_RATINGS:
+                        case JsonProperties.PROPERTY_NAME_RATINGS:
                             userShowsStatistics.Ratings = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.USER_SHOWS_STATISTICS_PROPERTY_NAME_COMMENTS:
+                        case JsonProperties.PROPERTY_NAME_COMMENTS:
                             userShowsStatistics.Comments = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

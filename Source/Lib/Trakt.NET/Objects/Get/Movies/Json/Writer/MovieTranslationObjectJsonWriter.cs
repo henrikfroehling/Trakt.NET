@@ -14,25 +14,25 @@
 
             if (!string.IsNullOrEmpty(obj.Title))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_TITLE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TITLE, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Title, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.Overview))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_OVERVIEW, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_OVERVIEW, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Overview, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.LanguageCode))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_LANGUAGE_CODE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LANGUAGE, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.LanguageCode, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.Tagline))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.MOVIE_TRANSLATION_PROPERTY_NAME_TAGLINE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TAGLINE, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Tagline, cancellationToken).ConfigureAwait(false);
             }
 

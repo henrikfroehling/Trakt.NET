@@ -27,7 +27,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_COLLECTED_AT:
+                        case JsonProperties.PROPERTY_NAME_COLLECTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -36,7 +36,7 @@
 
                                 break;
                             }
-                        case JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -45,10 +45,10 @@
 
                                 break;
                             }
-                        case JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktCollectionMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_METADATA:
+                        case JsonProperties.PROPERTY_NAME_METADATA:
                             traktCollectionMovie.Metadata = await metadataObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

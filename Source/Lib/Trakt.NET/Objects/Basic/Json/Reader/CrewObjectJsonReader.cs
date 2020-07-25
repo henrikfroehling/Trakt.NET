@@ -23,37 +23,37 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CREW_PROPERTY_NAME_PRODUCTION:
+                        case JsonProperties.PROPERTY_NAME_PRODUCTION:
                             traktCrew.Production = await crewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_ART:
+                        case JsonProperties.PROPERTY_NAME_ART:
                             traktCrew.Art = await crewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_CREW:
+                        case JsonProperties.PROPERTY_NAME_CREW:
                             traktCrew.Crew = await crewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_COSTUME_AND_MAKE_UP:
+                        case JsonProperties.PROPERTY_NAME_COSTUME_AND_MAKE_UP:
                             traktCrew.CostumeAndMakeup = await crewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_DIRECTING:
+                        case JsonProperties.PROPERTY_NAME_DIRECTING:
                             traktCrew.Directing = await crewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_WRITING:
+                        case JsonProperties.PROPERTY_NAME_WRITING:
                             traktCrew.Writing = await crewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_SOUND:
+                        case JsonProperties.PROPERTY_NAME_SOUND:
                             traktCrew.Sound = await crewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_CAMERA:
+                        case JsonProperties.PROPERTY_NAME_CAMERA:
                             traktCrew.Camera = await crewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_LIGHTING:
+                        case JsonProperties.PROPERTY_NAME_LIGHTING:
                             traktCrew.Lighting = await crewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_VISUAL_EFFECTS:
+                        case JsonProperties.PROPERTY_NAME_VISUAL_EFFECTS:
                             traktCrew.VisualEffects = await crewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_EDITING:
+                        case JsonProperties.PROPERTY_NAME_EDITING:
                             traktCrew.Editing = await crewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

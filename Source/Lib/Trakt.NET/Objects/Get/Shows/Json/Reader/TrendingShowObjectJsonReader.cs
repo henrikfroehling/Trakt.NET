@@ -23,10 +23,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.TRENDING_SHOW_PROPERTY_NAME_WATCHERS:
+                        case JsonProperties.PROPERTY_NAME_WATCHERS:
                             traktTrendingShow.Watchers = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.TRENDING_SHOW_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktTrendingShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

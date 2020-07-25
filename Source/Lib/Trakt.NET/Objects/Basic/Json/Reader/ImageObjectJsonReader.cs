@@ -22,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.IMAGE_PROPERTY_NAME_FULL:
+                        case JsonProperties.PROPERTY_NAME_FULL:
                             traktImage.Full = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

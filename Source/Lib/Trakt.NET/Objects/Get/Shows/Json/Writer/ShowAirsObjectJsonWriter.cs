@@ -14,19 +14,19 @@
 
             if (!string.IsNullOrEmpty(obj.Day))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_AIRS_PROPERTY_NAME_DAY, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_DAY, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Day, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.Time))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_AIRS_PROPERTY_NAME_TIME, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TIME, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Time, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.TimeZoneId))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_AIRS_PROPERTY_NAME_TIMEZONE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TIMEZONE, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.TimeZoneId, cancellationToken).ConfigureAwait(false);
             }
 

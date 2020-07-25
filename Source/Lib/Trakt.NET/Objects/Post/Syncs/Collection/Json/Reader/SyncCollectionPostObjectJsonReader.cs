@@ -25,13 +25,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_COLLECTION_POST_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             traktSyncCollectionPost.Movies = await syncCollectionPostMovieArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_COLLECTION_POST_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             traktSyncCollectionPost.Shows = await syncCollectionPostShowArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_COLLECTION_POST_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             traktSyncCollectionPost.Episodes = await syncCollectionPostEpisodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

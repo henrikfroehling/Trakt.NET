@@ -28,28 +28,28 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_SHARING:
+                        case JsonProperties.PROPERTY_NAME_SHARING:
                             episodeCheckinPost.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_MESSAGE:
+                        case JsonProperties.PROPERTY_NAME_MESSAGE:
                             episodeCheckinPost.Message = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_APP_VERSION:
+                        case JsonProperties.PROPERTY_NAME_APP_VERSION:
                             episodeCheckinPost.AppVersion = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_APP_DATE:
+                        case JsonProperties.PROPERTY_NAME_APP_DATE:
                             episodeCheckinPost.AppDate = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_VENUE_ID:
+                        case JsonProperties.PROPERTY_NAME_VENUE_ID:
                             episodeCheckinPost.FoursquareVenueId = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CHECKIN_POST_PROPERTY_NAME_VENUE_NAME:
+                        case JsonProperties.PROPERTY_NAME_VENUE_NAME:
                             episodeCheckinPost.FoursquareVenueName = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_CHECKIN_POST_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             episodeCheckinPost.Show = await showReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_CHECKIN_POST_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             episodeCheckinPost.Episode = await episodeReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

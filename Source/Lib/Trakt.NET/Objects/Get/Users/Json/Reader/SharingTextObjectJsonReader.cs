@@ -22,10 +22,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SHARING_TEXT_PROPERTY_NAME_WATCHING:
+                        case JsonProperties.PROPERTY_NAME_WATCHING:
                             traktSharingText.Watching = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHARING_TEXT_PROPERTY_NAME_WATCHED:
+                        case JsonProperties.PROPERTY_NAME_WATCHED:
                             traktSharingText.Watched = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

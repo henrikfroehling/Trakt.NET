@@ -14,25 +14,25 @@
 
             if (!string.IsNullOrEmpty(obj.TimeZoneId))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TIMEZONE_ID, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TIMEZONE, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.TimeZoneId, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Time24Hr.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TIME_24HR, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TIME_24HR, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Time24Hr, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.CoverImage))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_COVER_IMAGE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COVER_IMAGE, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.CoverImage, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.Token))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TOKEN, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TOKEN, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Token, cancellationToken).ConfigureAwait(false);
             }
 

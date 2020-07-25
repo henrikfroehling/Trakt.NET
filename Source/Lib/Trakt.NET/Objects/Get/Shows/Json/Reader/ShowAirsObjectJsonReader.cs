@@ -22,13 +22,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SHOW_AIRS_PROPERTY_NAME_DAY:
+                        case JsonProperties.PROPERTY_NAME_DAY:
                             traktShowAirs.Day = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_AIRS_PROPERTY_NAME_TIME:
+                        case JsonProperties.PROPERTY_NAME_TIME:
                             traktShowAirs.Time = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_AIRS_PROPERTY_NAME_TIMEZONE:
+                        case JsonProperties.PROPERTY_NAME_TIMEZONE:
                             traktShowAirs.TimeZoneId = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

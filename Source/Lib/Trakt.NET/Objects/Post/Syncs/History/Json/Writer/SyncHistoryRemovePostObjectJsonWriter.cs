@@ -13,7 +13,7 @@
 
             if (obj.HistoryIds != null)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_HISTORY_REMOVE_POST_PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
                 await JsonWriterHelper.WriteUnsignedLongArrayAsync(jsonWriter, obj.HistoryIds, cancellationToken).ConfigureAwait(false);
             }
         }

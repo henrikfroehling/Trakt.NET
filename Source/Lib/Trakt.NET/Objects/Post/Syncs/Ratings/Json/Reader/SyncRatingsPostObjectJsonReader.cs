@@ -25,13 +25,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_RATINGS_POST_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             syncRatingsPost.Movies = await movieArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_RATINGS_POST_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             syncRatingsPost.Shows = await showArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_RATINGS_POST_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             syncRatingsPost.Episodes = await episodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

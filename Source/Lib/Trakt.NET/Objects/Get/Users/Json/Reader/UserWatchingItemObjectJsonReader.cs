@@ -29,7 +29,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_WATCHING_ITEM_PROPERTY_NAME_STARTED_AT:
+                        case JsonProperties.PROPERTY_NAME_STARTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -38,7 +38,7 @@
 
                                 break;
                             }
-                        case JsonProperties.USER_WATCHING_ITEM_PROPERTY_NAME_EXPIRES_AT:
+                        case JsonProperties.PROPERTY_NAME_EXPIRES_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -47,19 +47,19 @@
 
                                 break;
                             }
-                        case JsonProperties.USER_WATCHING_ITEM_PROPERTY_NAME_ACTION:
+                        case JsonProperties.PROPERTY_NAME_ACTION:
                             traktUserWatchingItem.Action = await JsonReaderHelper.ReadEnumerationValueAsync<TraktHistoryActionType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_WATCHING_ITEM_PROPERTY_NAME_TYPE:
+                        case JsonProperties.PROPERTY_NAME_TYPE:
                             traktUserWatchingItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSyncType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_WATCHING_ITEM_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktUserWatchingItem.Movie = await movieReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_WATCHING_ITEM_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktUserWatchingItem.Show = await showReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_WATCHING_ITEM_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             traktUserWatchingItem.Episode = await episodeReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

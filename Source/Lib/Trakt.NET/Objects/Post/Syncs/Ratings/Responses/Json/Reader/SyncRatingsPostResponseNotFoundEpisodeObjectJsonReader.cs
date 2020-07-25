@@ -24,10 +24,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_EPISODE_PROPERTY_NAME_RATING:
+                        case JsonProperties.PROPERTY_NAME_RATING:
                             syncRatingsPostResponseNotFoundEpisode.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_EPISODE_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             syncRatingsPostResponseNotFoundEpisode.Ids = await episodeIdsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

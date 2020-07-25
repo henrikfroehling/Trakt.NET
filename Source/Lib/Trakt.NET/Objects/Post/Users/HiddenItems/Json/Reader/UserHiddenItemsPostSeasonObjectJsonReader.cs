@@ -24,7 +24,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_SEASON_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             hiddenItemsPostSeason.Ids = await seasonIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

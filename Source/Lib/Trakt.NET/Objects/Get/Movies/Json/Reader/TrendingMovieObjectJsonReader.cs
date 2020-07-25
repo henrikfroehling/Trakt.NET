@@ -23,10 +23,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.TRENDING_MOVIE_PROPERTY_NAME_WATCHERS:
+                        case JsonProperties.PROPERTY_NAME_WATCHERS:
                             traktTrendingMovie.Watchers = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.TRENDING_MOVIE_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktTrendingMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

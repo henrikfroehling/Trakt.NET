@@ -12,13 +12,13 @@
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
-            await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_WATCHLIST_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER, cancellationToken).ConfigureAwait(false);
+            await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NUMBER, cancellationToken).ConfigureAwait(false);
             await jsonWriter.WriteValueAsync(obj.Number, cancellationToken).ConfigureAwait(false);
 
             if (obj.Episodes != null)
             {
                 var syncWatchlistPostShowEpisodeArrayJsonWriter = new ArrayJsonWriter<ITraktSyncWatchlistPostShowEpisode>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_WATCHLIST_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
                 await syncWatchlistPostShowEpisodeArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Episodes, cancellationToken).ConfigureAwait(false);
             }
 

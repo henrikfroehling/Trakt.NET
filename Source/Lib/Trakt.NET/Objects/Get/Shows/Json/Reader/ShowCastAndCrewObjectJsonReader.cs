@@ -24,10 +24,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CAST_AND_CREW_PROPERTY_NAME_CAST:
+                        case JsonProperties.PROPERTY_NAME_CAST:
                             traktShowCastAndCrew.Cast = await showCastReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CAST_AND_CREW_PROPERTY_NAME_CREW:
+                        case JsonProperties.PROPERTY_NAME_CREW:
                             traktShowCastAndCrew.Crew = await showCrewReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

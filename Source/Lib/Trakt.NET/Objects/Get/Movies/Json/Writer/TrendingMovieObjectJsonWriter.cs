@@ -14,14 +14,14 @@
 
             if (obj.Watchers.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.TRENDING_MOVIE_PROPERTY_NAME_WATCHERS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_WATCHERS, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Watchers, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Movie != null)
             {
                 var movieObjectJsonWriter = new MovieObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.TRENDING_MOVIE_PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
                 await movieObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Movie, cancellationToken).ConfigureAwait(false);
             }
 

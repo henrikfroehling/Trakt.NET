@@ -22,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.NETWORK_PROPERTY_NAME_NAME:
+                        case JsonProperties.PROPERTY_NAME_NAME:
                             traktNetwork.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

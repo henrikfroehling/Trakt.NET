@@ -17,33 +17,33 @@
 
             if (obj.Aired.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_COLLECTION_PROGRESS_PROPERTY_NAME_AIRED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_AIRED, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Aired, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Completed.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_COLLECTION_PROGRESS_PROPERTY_NAME_COMPLETED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COMPLETED, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Completed, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.LastCollectedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_COLLECTION_PROGRESS_PROPERTY_NAME_LAST_COLLECTED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LAST_COLLECTED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.LastCollectedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Seasons != null)
             {
                 var seasonCollectionProgressArrayJsonWriter = new ArrayJsonWriter<ITraktSeasonCollectionProgress>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_COLLECTION_PROGRESS_PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
                 await seasonCollectionProgressArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.HiddenSeasons != null)
             {
                 var seasonArrayJsonWriter = new ArrayJsonWriter<ITraktSeason>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_COLLECTION_PROGRESS_PROPERTY_NAME_HIDDEN_SEASONS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_HIDDEN_SEASONS, cancellationToken).ConfigureAwait(false);
                 await seasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.HiddenSeasons, cancellationToken).ConfigureAwait(false);
             }
 
@@ -51,13 +51,13 @@
 
             if (obj.NextEpisode != null)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_COLLECTION_PROGRESS_PROPERTY_NAME_NEXT_EPISODE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NEXT_EPISODE, cancellationToken).ConfigureAwait(false);
                 await episodeObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.NextEpisode, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.LastEpisode != null)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_COLLECTION_PROGRESS_PROPERTY_NAME_LAST_EPISODE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LAST_EPISODE, cancellationToken).ConfigureAwait(false);
                 await episodeObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.LastEpisode, cancellationToken).ConfigureAwait(false);
             }
 

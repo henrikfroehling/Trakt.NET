@@ -25,10 +25,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.COLLECTION_SHOW_EPISODE_PROPERTY_NAME_NUMBER:
+                        case JsonProperties.PROPERTY_NAME_NUMBER:
                             traktCollectionShowEpisode.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.COLLECTION_SHOW_EPISODE_PROPERTY_NAME_COLLECTED_AT:
+                        case JsonProperties.PROPERTY_NAME_COLLECTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -37,7 +37,7 @@
 
                                 break;
                             }
-                        case JsonProperties.COLLECTION_SHOW_EPISODE_PROPERTY_NAME_METADATA:
+                        case JsonProperties.PROPERTY_NAME_METADATA:
                             traktCollectionShowEpisode.Metadata = await metadataObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

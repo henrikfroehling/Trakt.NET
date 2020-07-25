@@ -17,21 +17,21 @@
 
             if (obj.CollectedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_COLLECTED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COLLECTED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.CollectedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Movie != null)
             {
                 var movieObjectJsonWriter = new MovieObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
                 await movieObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Movie, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Metadata != null)
             {
                 var metadataObjectJsonWriter = new MetadataObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COLLECTION_MOVIE_PROPERTY_NAME_METADATA, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_METADATA, cancellationToken).ConfigureAwait(false);
                 await metadataObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Metadata, cancellationToken).ConfigureAwait(false);
             }
 
