@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal abstract class ArrayJsonReader<TReturnType> : IArrayJsonReader<TReturnType>
+    internal class ArrayJsonReader<TReturnType> : IArrayJsonReader<TReturnType>
     {
         public virtual Task<IEnumerable<TReturnType>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
         {
@@ -33,7 +33,29 @@
             }
         }
 
-        public abstract Task<IEnumerable<TReturnType>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default);
+        public virtual async Task<IEnumerable<TReturnType>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        {
+
+            if (jsonReader == null)
+                return await Task.FromResult(default(IEnumerable<TReturnType>));
+
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
+            {
+                var objectReader = JsonFactoryContainer.CreateObjectReader<TReturnType>();
+                var objects = new List<TReturnType>();
+                TReturnType obj = await objectReader.ReadObjectAsync(jsonReader, cancellationToken);
+
+                while (obj != null)
+                {
+                    objects.Add(obj);
+                    obj = await objectReader.ReadObjectAsync(jsonReader, cancellationToken);
+                }
+
+                return objects;
+            }
+
+            return await Task.FromResult(default(IEnumerable<TReturnType>));
+        }
 
         protected void CheckJsonTextReader(JsonTextReader jsonReader)
         {
