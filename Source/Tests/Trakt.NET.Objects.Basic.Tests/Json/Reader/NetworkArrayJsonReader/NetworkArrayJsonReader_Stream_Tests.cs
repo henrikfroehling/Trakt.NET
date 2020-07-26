@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -15,7 +15,7 @@
         [Fact]
         public async Task Test_NetworkArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var jsonReader = new NetworkArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktNetwork>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -27,7 +27,7 @@
         [Fact]
         public async Task Test_NetworkArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var jsonReader = new NetworkArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktNetwork>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -47,7 +47,7 @@
         [Fact]
         public async Task Test_NetworkArrayJsonReader_ReadArray_From_Stream_Not_Valid()
         {
-            var jsonReader = new NetworkArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktNetwork>();
 
             using (var stream = JSON_NOT_VALID.ToStream())
             {
@@ -67,7 +67,7 @@
         [Fact]
         public async Task Test_NetworkArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var jsonReader = new NetworkArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktNetwork>();
 
             var traktNetworks = await jsonReader.ReadArrayAsync(default(Stream));
             traktNetworks.Should().BeNull();
@@ -76,7 +76,7 @@
         [Fact]
         public async Task Test_NetworkArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var jsonReader = new NetworkArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktNetwork>();
 
             using (var stream = string.Empty.ToStream())
             {

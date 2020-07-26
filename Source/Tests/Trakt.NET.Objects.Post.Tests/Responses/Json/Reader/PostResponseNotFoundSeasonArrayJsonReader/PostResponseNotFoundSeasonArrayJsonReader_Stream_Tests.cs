@@ -6,7 +6,8 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Post.Responses.Json.Reader;
+    using TraktNet.Objects.Json;
+    using TraktNet.Objects.Post.Responses;
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
@@ -15,7 +16,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var jsonReader = new PostResponseNotFoundSeasonArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundSeason>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -27,7 +28,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var jsonReader = new PostResponseNotFoundSeasonArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundSeason>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -55,7 +56,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Stream_Not_Valid()
         {
-            var jsonReader = new PostResponseNotFoundSeasonArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundSeason>();
 
             using (var stream = JSON_NOT_VALID.ToStream())
             {
@@ -79,7 +80,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var jsonReader = new PostResponseNotFoundSeasonArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundSeason>();
 
             var notFoundSeasons = await jsonReader.ReadArrayAsync(default(Stream));
             notFoundSeasons.Should().BeNull();
@@ -88,7 +89,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var jsonReader = new PostResponseNotFoundSeasonArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundSeason>();
 
             using (var stream = string.Empty.ToStream())
             {

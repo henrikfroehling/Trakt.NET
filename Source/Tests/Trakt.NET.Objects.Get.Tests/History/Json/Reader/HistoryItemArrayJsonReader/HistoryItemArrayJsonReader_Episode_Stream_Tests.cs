@@ -7,7 +7,8 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
-    using TraktNet.Objects.Get.History.Json.Reader;
+    using TraktNet.Objects.Get.History;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.History.JsonReader")]
@@ -16,7 +17,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Episode_Read_Array_From_Stream_Complete()
         {
-            var jsonReader = new HistoryItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var stream = TYPE_EPISODE_JSON_COMPLETE.ToStream())
             {
@@ -144,7 +145,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Episode_Read_Array_From_Stream_Incomplete_1()
         {
-            var jsonReader = new HistoryItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_1.ToStream())
             {
@@ -272,7 +273,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Episode_Read_Array_From_Stream_Incomplete_2()
         {
-            var jsonReader = new HistoryItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var stream = TYPE_EPISODE_JSON_INCOMPLETE_2.ToStream())
             {
@@ -400,7 +401,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Episode_Read_Array_From_Stream_Not_Valid_1()
         {
-            var jsonReader = new HistoryItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var stream = TYPE_EPISODE_JSON_NOT_VALID_1.ToStream())
             {
@@ -528,7 +529,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Episode_Read_Array_From_Stream_Not_Valid_2()
         {
-            var jsonReader = new HistoryItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var stream = TYPE_EPISODE_JSON_NOT_VALID_2.ToStream())
             {
@@ -656,7 +657,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Episode_Read_Array_From_Stream_Not_Valid_3()
         {
-            var jsonReader = new HistoryItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var stream = TYPE_EPISODE_JSON_NOT_VALID_3.ToStream())
             {

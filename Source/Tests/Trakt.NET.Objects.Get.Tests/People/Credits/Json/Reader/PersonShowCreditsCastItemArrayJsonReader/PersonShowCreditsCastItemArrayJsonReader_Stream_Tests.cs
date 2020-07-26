@@ -6,7 +6,8 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.People.Credits.Json.Reader;
+    using TraktNet.Objects.Get.People.Credits;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.People.Credits.JsonReader")]
@@ -15,7 +16,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var traktJsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -27,7 +28,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Stream_Complete()
         {
-            var traktJsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -67,7 +68,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Stream_Incomplete_1()
         {
-            var traktJsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -107,7 +108,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Stream_Incomplete_2()
         {
-            var traktJsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -138,7 +139,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Stream_Not_Valid_1()
         {
-            var traktJsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -178,7 +179,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Stream_Not_Valid_2()
         {
-            var traktJsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -209,7 +210,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Stream_Not_Valid_3()
         {
-            var traktJsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -240,7 +241,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Stream_Null()
         {
-            var traktJsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             var showCreditsCastItems = await traktJsonReader.ReadArrayAsync(default(Stream));
             showCreditsCastItems.Should().BeNull();
@@ -249,7 +250,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Stream_Empty()
         {
-            var traktJsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             using (var stream = string.Empty.ToStream())
             {

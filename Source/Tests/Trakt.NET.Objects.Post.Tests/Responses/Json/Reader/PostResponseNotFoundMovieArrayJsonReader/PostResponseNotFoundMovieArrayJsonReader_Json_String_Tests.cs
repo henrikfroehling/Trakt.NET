@@ -4,7 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Post.Responses.Json.Reader;
+    using TraktNet.Objects.Json;
+    using TraktNet.Objects.Post.Responses;
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
@@ -13,7 +14,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new PostResponseNotFoundMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundMovie>();
 
             var notFoundMovies = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             notFoundMovies.Should().NotBeNull().And.BeEmpty();
@@ -22,7 +23,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new PostResponseNotFoundMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundMovie>();
 
             var notFoundMovies = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
             notFoundMovies.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -47,7 +48,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Not_Valid()
         {
-            var jsonReader = new PostResponseNotFoundMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundMovie>();
 
             var notFoundMovies = await jsonReader.ReadArrayAsync(JSON_NOT_VALID);
             notFoundMovies.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -68,7 +69,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new PostResponseNotFoundMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundMovie>();
 
             var notFoundMovies = await jsonReader.ReadArrayAsync(default(string));
             notFoundMovies.Should().BeNull();
@@ -77,7 +78,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new PostResponseNotFoundMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundMovie>();
 
             var notFoundMovies = await jsonReader.ReadArrayAsync(string.Empty);
             notFoundMovies.Should().BeNull();

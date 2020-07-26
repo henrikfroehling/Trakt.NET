@@ -8,7 +8,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -17,7 +17,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -29,7 +29,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -57,7 +57,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Incomplete_1()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -85,7 +85,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Incomplete_2()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -113,7 +113,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Not_Valid_1()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -141,7 +141,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Not_Valid_2()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -169,7 +169,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Not_Valid_3()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -197,7 +197,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
             IEnumerable<ITraktSharing> traktSharings = await jsonReader.ReadArrayAsync(default(Stream));
             traktSharings.Should().BeNull();
         }
@@ -205,7 +205,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = string.Empty.ToStream())
             {

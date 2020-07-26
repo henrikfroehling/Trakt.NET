@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -15,7 +15,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -27,7 +27,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -51,7 +51,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Incomplete_1()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -75,7 +75,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Incomplete_2()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -99,7 +99,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Incomplete_3()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_INCOMPLETE_3.ToStream())
             {
@@ -123,7 +123,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Incomplete_4()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_INCOMPLETE_4.ToStream())
             {
@@ -147,7 +147,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Incomplete_5()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_INCOMPLETE_5.ToStream())
             {
@@ -171,7 +171,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Incomplete_6()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_INCOMPLETE_6.ToStream())
             {
@@ -195,7 +195,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Not_Valid_1()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -219,7 +219,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Not_Valid_2()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -243,7 +243,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Not_Valid_3()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -267,7 +267,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Not_Valid_4()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = JSON_NOT_VALID_4.ToStream())
             {
@@ -291,7 +291,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             var traktCertifications = await traktJsonReader.ReadArrayAsync(default(Stream));
             traktCertifications.Should().BeNull();
@@ -300,7 +300,7 @@
         [Fact]
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var traktJsonReader = new CertificationArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCertification>();
 
             using (var stream = string.Empty.ToStream())
             {

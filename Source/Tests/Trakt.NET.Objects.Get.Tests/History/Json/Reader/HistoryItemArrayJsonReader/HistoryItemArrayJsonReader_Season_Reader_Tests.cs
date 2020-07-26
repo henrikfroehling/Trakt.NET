@@ -8,7 +8,8 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
-    using TraktNet.Objects.Get.History.Json.Reader;
+    using TraktNet.Objects.Get.History;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.History.JsonReader")]
@@ -17,7 +18,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Season_Read_Array_From_JsonReader_Complete()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -78,7 +79,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Season_Read_Array_From_JsonReader_Incomplete_1()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -139,7 +140,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Season_Read_Array_From_JsonReader_Incomplete_2()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -200,7 +201,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Season_Read_Array_From_JsonReader_Not_Valid_1()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -261,7 +262,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Season_Read_Array_From_JsonReader_Not_Valid_2()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -322,7 +323,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_Season_Read_Array_From_JsonReader_Not_Valid_3()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var reader = new StringReader(TYPE_SEASON_JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))

@@ -8,7 +8,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -17,7 +17,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Movie_ReadArray_From_Stream_Empty_Array()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -29,7 +29,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Movie_ReadArray_From_Stream_Complete()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
 
             using (var stream = TYPE_MOVIE_JSON_COMPLETE.ToStream())
             {
@@ -77,7 +77,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Movie_ReadArray_From_Stream_Incomplete_1()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
 
             using (var stream = TYPE_MOVIE_JSON_INCOMPLETE_1.ToStream())
             {
@@ -125,7 +125,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Movie_ReadArray_From_Stream_Incomplete_2()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
 
             using (var stream = TYPE_MOVIE_JSON_INCOMPLETE_2.ToStream())
             {
@@ -173,7 +173,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Movie_ReadArray_From_Stream_Not_Valid_1()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
 
             using (var stream = TYPE_MOVIE_JSON_NOT_VALID_1.ToStream())
             {
@@ -221,7 +221,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Movie_ReadArray_From_Stream_Not_Valid_2()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
 
             using (var stream = TYPE_MOVIE_JSON_NOT_VALID_2.ToStream())
             {
@@ -269,7 +269,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Movie_ReadArray_From_Stream_Not_Valid_3()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
 
             using (var stream = TYPE_MOVIE_JSON_NOT_VALID_3.ToStream())
             {

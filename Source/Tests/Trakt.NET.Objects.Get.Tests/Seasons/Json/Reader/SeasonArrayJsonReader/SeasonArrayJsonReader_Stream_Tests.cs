@@ -7,7 +7,8 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.Seasons.Json.Reader;
+    using TraktNet.Objects.Get.Seasons;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Seasons.JsonReader")]
@@ -16,7 +17,7 @@
         [Fact]
         public async Task Test_SeasonArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var traktJsonReader = new SeasonArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeason>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -28,7 +29,7 @@
         [Fact]
         public async Task Test_SeasonArrayJsonReader_ReadArray_From_Stream_Minimal_Complete()
         {
-            var traktJsonReader = new SeasonArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeason>();
 
             using (var stream = MINIMAL_JSON_COMPLETE.ToStream())
             {
@@ -74,7 +75,7 @@
         [Fact]
         public async Task Test_SeasonArrayJsonReader_ReadArray_From_Stream_Full_Complete()
         {
-            var traktJsonReader = new SeasonArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeason>();
 
             using (var stream = FULL_JSON_COMPLETE.ToStream())
             {
@@ -206,7 +207,7 @@
         [Fact]
         public async Task Test_SeasonArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var traktJsonReader = new SeasonArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeason>();
 
             var traktSeasons = await traktJsonReader.ReadArrayAsync(default(Stream));
             traktSeasons.Should().BeNull();
@@ -215,7 +216,7 @@
         [Fact]
         public async Task Test_SeasonArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var traktJsonReader = new SeasonArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeason>();
 
             using (var stream = string.Empty.ToStream())
             {

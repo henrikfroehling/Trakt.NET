@@ -6,7 +6,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.Episodes.Json.Reader;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Episodes.JsonReader")]
@@ -15,7 +16,7 @@
         [Fact]
         public async Task Test_EpisodeIdsArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
         {
-            var traktJsonReader = new EpisodeIdsArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktEpisodeIds>();
 
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
@@ -28,7 +29,7 @@
         [Fact]
         public async Task Test_EpisodeIdsArrayJsonReader_ReadArray_From_JsonReader_Complete()
         {
-            var traktJsonReader = new EpisodeIdsArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktEpisodeIds>();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -59,7 +60,7 @@
         [Fact]
         public async Task Test_EpisodeIdsArrayJsonReader_ReadArray_From_JsonReader_Incomplete_1()
         {
-            var traktJsonReader = new EpisodeIdsArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktEpisodeIds>();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -90,7 +91,7 @@
         [Fact]
         public async Task Test_EpisodeIdsArrayJsonReader_ReadArray_From_JsonReader_Incomplete_2()
         {
-            var traktJsonReader = new EpisodeIdsArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktEpisodeIds>();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -121,7 +122,7 @@
         [Fact]
         public async Task Test_EpisodeIdsArrayJsonReader_ReadArray_From_JsonReader_Not_Valid_1()
         {
-            var traktJsonReader = new EpisodeIdsArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktEpisodeIds>();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -152,7 +153,7 @@
         [Fact]
         public async Task Test_EpisodeIdsArrayJsonReader_ReadArray_From_JsonReader_Not_Valid_2()
         {
-            var traktJsonReader = new EpisodeIdsArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktEpisodeIds>();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -183,7 +184,7 @@
         [Fact]
         public async Task Test_EpisodeIdsArrayJsonReader_ReadArray_From_JsonReader_Not_Valid_3()
         {
-            var traktJsonReader = new EpisodeIdsArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktEpisodeIds>();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -214,7 +215,7 @@
         [Fact]
         public async Task Test_EpisodeIdsArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
-            var traktJsonReader = new EpisodeIdsArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktEpisodeIds>();
             var traktEpisodeIds = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             traktEpisodeIds.Should().BeNull();
         }
@@ -222,7 +223,7 @@
         [Fact]
         public async Task Test_EpisodeIdsArrayJsonReader_ReadArray_From_JsonReader_Empty()
         {
-            var traktJsonReader = new EpisodeIdsArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktEpisodeIds>();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
