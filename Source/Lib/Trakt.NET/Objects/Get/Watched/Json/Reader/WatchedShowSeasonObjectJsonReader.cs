@@ -14,7 +14,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var watchedShowEpisodeArrayReader = new WatchedShowEpisodeArrayJsonReader();
+                var watchedShowEpisodeArrayReader = new ArrayJsonReader<ITraktWatchedShowEpisode>();
 
                 ITraktWatchedShowSeason traktWatchedShowSeason = new TraktWatchedShowSeason();
 

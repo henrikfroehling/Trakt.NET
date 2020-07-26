@@ -3,7 +3,7 @@
     using Episodes.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
-    using Seasons.Json.Reader;
+    using Seasons;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -16,8 +16,8 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var seasonsArrayReader = new SeasonArrayJsonReader();
-                var seasonCollectionProgressArrayReader = new SeasonCollectionProgressArrayJsonReader();
+                var seasonsArrayReader = new ArrayJsonReader<ITraktSeason>();
+                var seasonCollectionProgressArrayReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
                 var episodeObjectReader = new EpisodeObjectJsonReader();
 
                 ITraktShowCollectionProgress traktShowCollectionProgress = new TraktShowCollectionProgress();

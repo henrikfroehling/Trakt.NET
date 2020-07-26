@@ -14,7 +14,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var showCastReader = new ShowCastMemberArrayJsonReader();
+                var showCastReader = new ArrayJsonReader<ITraktShowCastMember>();
                 var showCrewReader = new ShowCrewObjectJsonReader();
                 ITraktShowCastAndCrew traktShowCastAndCrew = new TraktShowCastAndCrew();
 

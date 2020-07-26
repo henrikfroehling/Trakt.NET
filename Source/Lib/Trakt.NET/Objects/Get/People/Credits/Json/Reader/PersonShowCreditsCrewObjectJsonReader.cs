@@ -14,7 +14,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var creditsShowCrewItemsReader = new PersonShowCreditsCrewItemArrayJsonReader();
+                var creditsShowCrewItemsReader = new ArrayJsonReader<ITraktPersonShowCreditsCrewItem>();
 
                 ITraktPersonShowCreditsCrew showCreditsCrew = new TraktPersonShowCreditsCrew();
 

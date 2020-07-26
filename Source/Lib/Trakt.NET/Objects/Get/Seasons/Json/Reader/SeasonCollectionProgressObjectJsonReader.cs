@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Seasons.Json.Reader
 {
-    using Episodes.Json.Reader;
+    using Episodes;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -15,7 +15,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var episodeCollectionProgressArrayReader = new EpisodeCollectionProgressArrayJsonReader();
+                var episodeCollectionProgressArrayReader = new ArrayJsonReader<ITraktEpisodeCollectionProgress>();
                 ITraktSeasonCollectionProgress traktSeasonCollectionProgress = new TraktSeasonCollectionProgress();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

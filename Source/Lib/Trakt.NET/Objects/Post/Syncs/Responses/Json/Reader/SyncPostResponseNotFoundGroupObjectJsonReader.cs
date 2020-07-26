@@ -2,7 +2,8 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
-    using Post.Responses.Json.Reader;
+    using Post.Responses;
+    using Responses;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -15,10 +16,10 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var notFoundMoviesReader = new PostResponseNotFoundMovieArrayJsonReader();
-                var notFoundShowsReader = new PostResponseNotFoundShowArrayJsonReader();
-                var notFoundSeasonsReader = new PostResponseNotFoundSeasonArrayJsonReader();
-                var notFoundEpisodesReader = new PostResponseNotFoundEpisodeArrayJsonReader();
+                var notFoundMoviesReader = new ArrayJsonReader<ITraktPostResponseNotFoundMovie>();
+                var notFoundShowsReader = new ArrayJsonReader<ITraktPostResponseNotFoundShow>();
+                var notFoundSeasonsReader = new ArrayJsonReader<ITraktPostResponseNotFoundSeason>();
+                var notFoundEpisodesReader = new ArrayJsonReader<ITraktPostResponseNotFoundEpisode>();
                 ITraktSyncPostResponseNotFoundGroup syncPostResponseNotFoundGroup = new TraktSyncPostResponseNotFoundGroup();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

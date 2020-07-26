@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Seasons.Json.Reader
 {
-    using Episodes.Json.Reader;
+    using Episodes;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -16,7 +16,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var idsObjectReader = new SeasonIdsObjectJsonReader();
-                var episodesArrayReader = new EpisodeArrayJsonReader();
+                var episodesArrayReader = new ArrayJsonReader<ITraktEpisode>();
                 ITraktSeason traktSeason = new TraktSeason();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

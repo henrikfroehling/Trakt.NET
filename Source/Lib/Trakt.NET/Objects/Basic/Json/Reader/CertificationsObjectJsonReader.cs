@@ -14,7 +14,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var certificationsArrayReader = new CertificationArrayJsonReader();
+                var certificationsArrayReader = new ArrayJsonReader<ITraktCertification>();
                 ITraktCertifications traktCertifications = new TraktCertifications();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

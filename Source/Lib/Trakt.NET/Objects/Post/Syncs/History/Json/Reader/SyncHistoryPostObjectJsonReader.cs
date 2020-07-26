@@ -14,9 +14,9 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieArrayJsonReader = new SyncHistoryPostMovieArrayJsonReader();
-                var showArrayJsonReader = new SyncHistoryPostShowArrayJsonReader();
-                var episodeArrayJsonReader = new SyncHistoryPostEpisodeArrayJsonReader();
+                var movieArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryPostMovie>();
+                var showArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryPostShow>();
+                var episodeArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryPostEpisode>();
                 ITraktSyncHistoryPost syncHistoryPost = new TraktSyncHistoryPost();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

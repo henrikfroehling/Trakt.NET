@@ -3,9 +3,9 @@
     using Episodes.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
-    using Seasons.Json.Reader;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Objects.Get.Seasons;
 
     internal class ShowWatchedProgressObjectJsonReader : AObjectJsonReader<ITraktShowWatchedProgress>
     {
@@ -16,8 +16,8 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var seasonsArrayReader = new SeasonArrayJsonReader();
-                var seasonWatchedProgressArrayReader = new SeasonWatchedProgressArrayJsonReader();
+                var seasonsArrayReader = new ArrayJsonReader<ITraktSeason>();
+                var seasonWatchedProgressArrayReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
                 var episodeObjectReader = new EpisodeObjectJsonReader();
 
                 ITraktShowWatchedProgress traktShowWatchedProgress = new TraktShowWatchedProgress();

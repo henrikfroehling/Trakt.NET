@@ -20,7 +20,7 @@
             {
                 ITraktSyncCollectionPostShow traktSyncCollectionPostShow = new TraktSyncCollectionPostShow();
                 var showIdsObjectJsonReader = new ShowIdsObjectJsonReader();
-                var syncCollectionPostShowSeasonArrayJsonReader = new SyncCollectionPostShowSeasonArrayReader();
+                var syncCollectionPostShowSeasonArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostShowSeason>();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {

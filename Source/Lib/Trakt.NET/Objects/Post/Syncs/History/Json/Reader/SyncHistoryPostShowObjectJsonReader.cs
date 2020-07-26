@@ -18,7 +18,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var showIdsObjectJsonReader = new ShowIdsObjectJsonReader();
-                var seasonArrayJsonReader = new SyncHistoryPostShowSeasonArrayJsonReader();
+                var seasonArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryPostShowSeason>();
                 ITraktSyncHistoryPostShow syncHistoryPostShow = new TraktSyncHistoryPostShow();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

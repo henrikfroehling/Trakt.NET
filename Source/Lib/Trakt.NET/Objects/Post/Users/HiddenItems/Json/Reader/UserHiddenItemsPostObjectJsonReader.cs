@@ -14,9 +14,9 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieArrayJsonReader = new UserHiddenItemsPostMovieArrayJsonReader();
-                var showArrayJsonReader = new UserHiddenItemsPostShowArrayJsonReader();
-                var seasonArrayJsonReader = new UserHiddenItemsPostSeasonArrayJsonReader();
+                var movieArrayJsonReader = new ArrayJsonReader<ITraktUserHiddenItemsPostMovie>();
+                var showArrayJsonReader = new ArrayJsonReader<ITraktUserHiddenItemsPostShow>();
+                var seasonArrayJsonReader = new ArrayJsonReader<ITraktUserHiddenItemsPostSeason>();
                 ITraktUserHiddenItemsPost hiddenItemsPost = new TraktUserHiddenItemsPost();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)

@@ -3,7 +3,7 @@
     using Enums;
     using Newtonsoft.Json;
     using Objects.Json;
-    using Seasons.Json.Reader;
+    using Seasons;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -18,7 +18,7 @@
             {
                 var idsObjectReader = new ShowIdsObjectJsonReader();
                 var airsObjectReader = new ShowAirsObjectJsonReader();
-                var seasonsArrayReader = new SeasonArrayJsonReader();
+                var seasonsArrayReader = new ArrayJsonReader<ITraktSeason>();
 
                 ITraktShow traktShow = new TraktShow();
 

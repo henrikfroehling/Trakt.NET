@@ -15,7 +15,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var idsObjectReader = new EpisodeIdsObjectJsonReader();
-                var translationArrayReader = new EpisodeTranslationArrayJsonReader();
+                var translationArrayReader = new ArrayJsonReader<ITraktEpisodeTranslation>();
                 ITraktEpisode traktEpisode = new TraktEpisode();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
