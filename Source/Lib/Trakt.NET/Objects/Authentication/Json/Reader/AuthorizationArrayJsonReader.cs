@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class AuthorizationArrayJsonReader : AArrayJsonReader<ITraktAuthorization>
+    internal class AuthorizationArrayJsonReader : ArrayJsonReader<ITraktAuthorization>
     {
         internal bool CompleteDeserialization { get; set; }
 

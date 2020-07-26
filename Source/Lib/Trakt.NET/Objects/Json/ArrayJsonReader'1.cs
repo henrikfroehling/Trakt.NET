@@ -7,7 +7,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal abstract class AArrayJsonReader<TReturnType> : IArrayJsonReader<TReturnType>
+    internal abstract class ArrayJsonReader<TReturnType> : IArrayJsonReader<TReturnType>
     {
         public virtual Task<IEnumerable<TReturnType>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
         {

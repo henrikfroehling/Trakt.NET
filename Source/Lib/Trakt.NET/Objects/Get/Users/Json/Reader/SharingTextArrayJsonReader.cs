@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class SharingTextArrayJsonReader : AArrayJsonReader<ITraktSharingText>
+    internal class SharingTextArrayJsonReader : ArrayJsonReader<ITraktSharingText>
     {
         public override async Task<IEnumerable<ITraktSharingText>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

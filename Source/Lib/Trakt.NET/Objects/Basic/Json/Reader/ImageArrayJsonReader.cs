@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class ImageArrayJsonReader : AArrayJsonReader<ITraktImage>
+    internal class ImageArrayJsonReader : ArrayJsonReader<ITraktImage>
     {
         public override async Task<IEnumerable<ITraktImage>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

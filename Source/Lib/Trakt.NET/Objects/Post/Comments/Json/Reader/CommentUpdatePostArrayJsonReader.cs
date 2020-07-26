@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class CommentUpdatePostArrayJsonReader : AArrayJsonReader<ITraktCommentUpdatePost>
+    internal class CommentUpdatePostArrayJsonReader : ArrayJsonReader<ITraktCommentUpdatePost>
     {
         public override async Task<IEnumerable<ITraktCommentUpdatePost>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

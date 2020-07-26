@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class MovieTranslationArrayJsonReader : AArrayJsonReader<ITraktMovieTranslation>
+    internal class MovieTranslationArrayJsonReader : ArrayJsonReader<ITraktMovieTranslation>
     {
         public override async Task<IEnumerable<ITraktMovieTranslation>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class EpisodeScrobblePostResponseArrayJsonReader : AArrayJsonReader<ITraktEpisodeScrobblePostResponse>
+    internal class EpisodeScrobblePostResponseArrayJsonReader : ArrayJsonReader<ITraktEpisodeScrobblePostResponse>
     {
         public override async Task<IEnumerable<ITraktEpisodeScrobblePostResponse>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

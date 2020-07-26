@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class SyncWatchlistPostArrayJsonReader : AArrayJsonReader<ITraktSyncWatchlistPost>
+    internal class SyncWatchlistPostArrayJsonReader : ArrayJsonReader<ITraktSyncWatchlistPost>
     {
         public override async Task<IEnumerable<ITraktSyncWatchlistPost>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

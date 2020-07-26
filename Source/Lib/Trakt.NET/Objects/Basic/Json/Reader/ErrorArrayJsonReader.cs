@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class ErrorArrayJsonReader : AArrayJsonReader<ITraktError>
+    internal class ErrorArrayJsonReader : ArrayJsonReader<ITraktError>
     {
         public override async Task<IEnumerable<ITraktError>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

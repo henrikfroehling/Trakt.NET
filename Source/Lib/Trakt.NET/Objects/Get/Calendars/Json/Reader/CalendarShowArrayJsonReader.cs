@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class CalendarShowArrayJsonReader : AArrayJsonReader<ITraktCalendarShow>
+    internal class CalendarShowArrayJsonReader : ArrayJsonReader<ITraktCalendarShow>
     {
         public override async Task<IEnumerable<ITraktCalendarShow>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

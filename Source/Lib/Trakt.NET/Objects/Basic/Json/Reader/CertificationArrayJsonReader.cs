@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class CertificationArrayJsonReader : AArrayJsonReader<ITraktCertification>
+    internal class CertificationArrayJsonReader : ArrayJsonReader<ITraktCertification>
     {
         public override async Task<IEnumerable<ITraktCertification>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class SyncPlaybackProgressItemArrayJsonReader : AArrayJsonReader<ITraktSyncPlaybackProgressItem>
+    internal class SyncPlaybackProgressItemArrayJsonReader : ArrayJsonReader<ITraktSyncPlaybackProgressItem>
     {
         public override async Task<IEnumerable<ITraktSyncPlaybackProgressItem>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

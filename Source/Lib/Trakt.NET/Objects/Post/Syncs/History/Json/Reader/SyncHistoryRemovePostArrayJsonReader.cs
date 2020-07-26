@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class SyncHistoryRemovePostArrayJsonReader : AArrayJsonReader<ITraktSyncHistoryRemovePost>
+    internal class SyncHistoryRemovePostArrayJsonReader : ArrayJsonReader<ITraktSyncHistoryRemovePost>
     {
         public override async Task<IEnumerable<ITraktSyncHistoryRemovePost>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

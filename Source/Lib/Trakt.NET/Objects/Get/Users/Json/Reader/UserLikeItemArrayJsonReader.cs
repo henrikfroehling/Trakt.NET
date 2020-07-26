@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class UserLikeItemArrayJsonReader : AArrayJsonReader<ITraktUserLikeItem>
+    internal class UserLikeItemArrayJsonReader : ArrayJsonReader<ITraktUserLikeItem>
     {
         public override async Task<IEnumerable<ITraktUserLikeItem>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {

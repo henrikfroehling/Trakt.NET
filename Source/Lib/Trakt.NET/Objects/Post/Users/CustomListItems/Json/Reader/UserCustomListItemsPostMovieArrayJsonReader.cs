@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class UserCustomListItemsPostMovieArrayJsonReader : AArrayJsonReader<ITraktUserCustomListItemsPostMovie>
+    internal class UserCustomListItemsPostMovieArrayJsonReader : ArrayJsonReader<ITraktUserCustomListItemsPostMovie>
     {
         public override async Task<IEnumerable<ITraktUserCustomListItemsPostMovie>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
