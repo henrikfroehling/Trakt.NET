@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktUserCustomListsReorderPost> CreateObjectReader() => new UserCustomListsReorderPostObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserCustomListsReorderPost> CreateArrayReader() => new UserCustomListsReorderPostArrayJsonReader();
-
         public IObjectJsonWriter<ITraktUserCustomListsReorderPost> CreateObjectWriter() => new UserCustomListsReorderPostObjectJsonWriter();
     }
 }

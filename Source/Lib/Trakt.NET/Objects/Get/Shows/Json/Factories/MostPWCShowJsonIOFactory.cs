@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktMostPWCShow> CreateObjectReader() => new MostPWCShowObjectJsonReader();
 
-        public IArrayJsonReader<ITraktMostPWCShow> CreateArrayReader() => new MostPWCShowArrayJsonReader();
-
         public IObjectJsonWriter<ITraktMostPWCShow> CreateObjectWriter() => new MostPWCShowObjectJsonWriter();
     }
 }

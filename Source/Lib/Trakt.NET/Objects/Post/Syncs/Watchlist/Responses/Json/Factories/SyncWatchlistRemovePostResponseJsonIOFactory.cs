@@ -9,9 +9,6 @@
         public IObjectJsonReader<ITraktSyncWatchlistRemovePostResponse> CreateObjectReader()
             => new SyncWatchlistRemovePostResponseObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncWatchlistRemovePostResponse> CreateArrayReader()
-            => new SyncWatchlistRemovePostResponseArrayJsonReader();
-
         public IObjectJsonWriter<ITraktSyncWatchlistRemovePostResponse> CreateObjectWriter()
             => new SyncWatchlistRemovePostResponseObjectJsonWriter();
     }

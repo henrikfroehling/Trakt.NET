@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktNetwork> CreateObjectReader() => new NetworkObjectJsonReader();
 
-        public IArrayJsonReader<ITraktNetwork> CreateArrayReader() => new NetworkArrayJsonReader();
-
         public IObjectJsonWriter<ITraktNetwork> CreateObjectWriter() => new NetworkObjectJsonWriter();
     }
 }

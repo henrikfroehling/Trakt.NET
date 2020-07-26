@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktHistoryItem> CreateObjectReader() => new HistoryItemObjectJsonReader();
 
-        public IArrayJsonReader<ITraktHistoryItem> CreateArrayReader() => new HistoryItemArrayJsonReader();
-
         public IObjectJsonWriter<ITraktHistoryItem> CreateObjectWriter() => new HistoryItemObjectJsonWriter();
     }
 }

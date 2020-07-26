@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktUserLikeItem> CreateObjectReader() => new UserLikeItemObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserLikeItem> CreateArrayReader() => new UserLikeItemArrayJsonReader();
-
         public IObjectJsonWriter<ITraktUserLikeItem> CreateObjectWriter() => new UserLikeItemObjectJsonWriter();
     }
 }

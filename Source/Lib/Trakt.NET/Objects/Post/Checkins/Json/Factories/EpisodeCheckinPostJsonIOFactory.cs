@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktEpisodeCheckinPost> CreateObjectReader() => new EpisodeCheckinPostObjectJsonReader();
 
-        public IArrayJsonReader<ITraktEpisodeCheckinPost> CreateArrayReader() => new EpisodeCheckinPostArrayJsonReader();
-
         public IObjectJsonWriter<ITraktEpisodeCheckinPost> CreateObjectWriter() => new EpisodeCheckinPostObjectJsonWriter();
     }
 }

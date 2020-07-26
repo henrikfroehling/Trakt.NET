@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktSeason> CreateObjectReader() => new SeasonObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSeason> CreateArrayReader() => new SeasonArrayJsonReader();
-
         public IObjectJsonWriter<ITraktSeason> CreateObjectWriter() => new SeasonObjectJsonWriter();
     }
 }

@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktSharing> CreateObjectReader() => new SharingObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSharing> CreateArrayReader() => new SharingArrayJsonReader();
-
         public IObjectJsonWriter<ITraktSharing> CreateObjectWriter() => new SharingObjectJsonWriter();
     }
 }

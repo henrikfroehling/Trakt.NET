@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktMetadata> CreateObjectReader() => new MetadataObjectJsonReader();
 
-        public IArrayJsonReader<ITraktMetadata> CreateArrayReader() => new MetadataArrayJsonReader();
-
         public IObjectJsonWriter<ITraktMetadata> CreateObjectWriter() => new MetadataObjectJsonWriter();
     }
 }

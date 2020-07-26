@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktEpisodeScrobblePostResponse> CreateObjectReader() => new EpisodeScrobblePostResponseObjectJsonReader();
 
-        public IArrayJsonReader<ITraktEpisodeScrobblePostResponse> CreateArrayReader() => new EpisodeScrobblePostResponseArrayJsonReader();
-
         public IObjectJsonWriter<ITraktEpisodeScrobblePostResponse> CreateObjectWriter() => new EpisodeScrobblePostResponseObjectJsonWriter();
     }
 }

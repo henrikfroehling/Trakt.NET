@@ -9,9 +9,6 @@
         public IObjectJsonReader<ITraktSyncRatingsPostResponseNotFoundEpisode> CreateObjectReader()
             => new SyncRatingsPostResponseNotFoundEpisodeObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncRatingsPostResponseNotFoundEpisode> CreateArrayReader()
-            => new SyncRatingsPostResponseNotFoundEpisodeArrayJsonReader();
-
         public IObjectJsonWriter<ITraktSyncRatingsPostResponseNotFoundEpisode> CreateObjectWriter()
             => new SyncRatingsPostResponseNotFoundEpisodeObjectJsonWriter();
     }

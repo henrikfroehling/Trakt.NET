@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktListIds> CreateObjectReader() => new ListIdsObjectJsonReader();
 
-        public IArrayJsonReader<ITraktListIds> CreateArrayReader() => new ListIdsArrayJsonReader();
-
         public IObjectJsonWriter<ITraktListIds> CreateObjectWriter() => new ListIdsObjectJsonWriter();
     }
 }

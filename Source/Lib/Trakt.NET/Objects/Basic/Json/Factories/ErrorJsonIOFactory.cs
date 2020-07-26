@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktError> CreateObjectReader() => new ErrorObjectJsonReader();
 
-        public IArrayJsonReader<ITraktError> CreateArrayReader() => new ErrorArrayJsonReader();
-
         public IObjectJsonWriter<ITraktError> CreateObjectWriter() => new ErrorObjectJsonWriter();
     }
 }

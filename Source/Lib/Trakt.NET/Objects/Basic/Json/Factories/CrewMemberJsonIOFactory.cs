@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktCrewMember> CreateObjectReader() => new CrewMemberObjectJsonReader();
 
-        public IArrayJsonReader<ITraktCrewMember> CreateArrayReader() => new CrewMemberArrayJsonReader();
-
         public IObjectJsonWriter<ITraktCrewMember> CreateObjectWriter() => new CrewMemberObjectJsonWriter();
     }
 }

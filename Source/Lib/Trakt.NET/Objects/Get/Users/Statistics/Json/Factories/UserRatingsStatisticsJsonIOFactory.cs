@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktUserRatingsStatistics> CreateObjectReader() => new UserRatingsStatisticsObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserRatingsStatistics> CreateArrayReader() => new UserRatingsStatisticsArrayJsonReader();
-
         public IObjectJsonWriter<ITraktUserRatingsStatistics> CreateObjectWriter() => new UserRatingsStatisticsObjectJsonWriter();
     }
 }

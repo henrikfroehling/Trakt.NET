@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktAccountSettings> CreateObjectReader() => new AccountSettingsObjectJsonReader();
 
-        public IArrayJsonReader<ITraktAccountSettings> CreateArrayReader() => new AccountSettingsArrayJsonReader();
-
         public IObjectJsonWriter<ITraktAccountSettings> CreateObjectWriter() => new AccountSettingsObjectJsonWriter();
     }
 }

@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktCheckinPostErrorResponse> CreateObjectReader() => new CheckinPostErrorResponseObjectJsonReader();
 
-        public IArrayJsonReader<ITraktCheckinPostErrorResponse> CreateArrayReader() => new CheckinPostErrorResponseArrayJsonReader();
-
         public IObjectJsonWriter<ITraktCheckinPostErrorResponse> CreateObjectWriter() => new CheckinPostErrorResponseObjectJsonWriter();
     }
 }

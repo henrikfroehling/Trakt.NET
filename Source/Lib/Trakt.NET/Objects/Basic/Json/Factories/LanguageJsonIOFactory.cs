@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktLanguage> CreateObjectReader() => new LanguageObjectJsonReader();
 
-        public IArrayJsonReader<ITraktLanguage> CreateArrayReader() => new LanguageArrayJsonReader();
-
         public IObjectJsonWriter<ITraktLanguage> CreateObjectWriter() => new LanguageObjectJsonWriter();
     }
 }

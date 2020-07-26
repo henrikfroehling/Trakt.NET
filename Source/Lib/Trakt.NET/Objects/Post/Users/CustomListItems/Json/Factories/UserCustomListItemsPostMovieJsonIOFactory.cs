@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktUserCustomListItemsPostMovie> CreateObjectReader() => new UserCustomListItemsPostMovieObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserCustomListItemsPostMovie> CreateArrayReader() => new UserCustomListItemsPostMovieArrayJsonReader();
-
         public IObjectJsonWriter<ITraktUserCustomListItemsPostMovie> CreateObjectWriter() => new UserCustomListItemsPostMovieObjectJsonWriter();
     }
 }
