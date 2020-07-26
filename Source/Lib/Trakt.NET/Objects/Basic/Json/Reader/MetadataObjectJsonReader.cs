@@ -23,22 +23,22 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.METADATA_PROPERTY_NAME_MEDIA_TYPE:
+                        case JsonProperties.PROPERTY_NAME_MEDIA_TYPE:
                             traktMetadata.MediaType = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.METADATA_PROPERTY_NAME_RESOLUTION:
+                        case JsonProperties.PROPERTY_NAME_RESOLUTION:
                             traktMetadata.MediaResolution = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaResolution>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.METADATA_PROPERTY_NAME_AUDIO:
+                        case JsonProperties.PROPERTY_NAME_AUDIO:
                             traktMetadata.Audio = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaAudio>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.METADATA_PROPERTY_NAME_AUDIO_CHANNELS:
+                        case JsonProperties.PROPERTY_NAME_AUDIO_CHANNELS:
                             traktMetadata.AudioChannels = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaAudioChannel>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.METADATA_PROPERTY_NAME_HDR:
+                        case JsonProperties.PROPERTY_NAME_HDR:
                             traktMetadata.HDR = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaHDR>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.METADATA_PROPERTY_NAME_3D:
+                        case JsonProperties.PROPERTY_NAME_3D:
                             traktMetadata.ThreeDimensional = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         default:

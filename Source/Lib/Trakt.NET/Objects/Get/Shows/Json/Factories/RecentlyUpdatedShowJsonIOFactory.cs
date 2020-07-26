@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktRecentlyUpdatedShow> CreateObjectReader() => new RecentlyUpdatedShowObjectJsonReader();
 
-        public IArrayJsonReader<ITraktRecentlyUpdatedShow> CreateArrayReader() => new RecentlyUpdatedShowArrayJsonReader();
-
         public IObjectJsonWriter<ITraktRecentlyUpdatedShow> CreateObjectWriter() => new RecentlyUpdatedShowObjectJsonWriter();
     }
 }

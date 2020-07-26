@@ -15,14 +15,14 @@
 
             if (obj.FollowedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_FOLLOWER_PROPERTY_NAME_FOLLOWED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_FOLLOWED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.FollowedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.User != null)
             {
                 var userObjectJsonWriter = new UserObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_FOLLOWER_PROPERTY_NAME_USER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_USER, cancellationToken).ConfigureAwait(false);
                 await userObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.User, cancellationToken).ConfigureAwait(false);
             }
 

@@ -121,7 +121,7 @@
             if (json.Length == 0)
                 throw new ArgumentException(nameof(json), "json string must not be empty");
 
-            IArrayJsonReader<TObjectType> arrayJsonReader = JsonFactoryContainer.CreateArrayReader<TObjectType>();
+            IArrayJsonReader<TObjectType> arrayJsonReader = new ArrayJsonReader<TObjectType>();
             return arrayJsonReader.ReadArrayAsync(json, cancellationToken);
         }
     }

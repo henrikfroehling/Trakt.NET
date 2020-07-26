@@ -32,7 +32,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.WATCHLIST_ITEM_PROPERTY_NAME_LISTED_AT:
+                        case JsonProperties.PROPERTY_NAME_LISTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -41,19 +41,19 @@
 
                                 break;
                             }
-                        case JsonProperties.WATCHLIST_ITEM_PROPERTY_NAME_TYPE:
+                        case JsonProperties.PROPERTY_NAME_TYPE:
                             traktWatchlistItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSyncItemType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.WATCHLIST_ITEM_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktWatchlistItem.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.WATCHLIST_ITEM_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktWatchlistItem.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.WATCHLIST_ITEM_PROPERTY_NAME_SEASON:
+                        case JsonProperties.PROPERTY_NAME_SEASON:
                             traktWatchlistItem.Season = await seasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.WATCHLIST_ITEM_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             traktWatchlistItem.Episode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

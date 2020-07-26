@@ -97,13 +97,6 @@
             return factory.CreateObjectReader();
         }
 
-        public static IArrayJsonReader<TReturnType> CreateArrayReader<TReturnType>()
-        {
-            var factory = GetJsonIOFactory<TReturnType>();
-            Debug.Assert(factory != null, $"factory for {nameof(TReturnType)} should not be null");
-            return factory.CreateArrayReader();
-        }
-
         public static IObjectJsonWriter<TObjectType> CreateObjectWriter<TObjectType>()
         {
             var factory = GetJsonIOFactory<TObjectType>();

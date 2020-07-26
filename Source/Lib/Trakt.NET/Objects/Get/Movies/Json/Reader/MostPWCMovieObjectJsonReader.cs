@@ -23,16 +23,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_WATCHER_COUNT:
+                        case JsonProperties.PROPERTY_NAME_WATCHER_COUNT:
                             traktMostPWCMovie.WatcherCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_PLAY_COUNT:
+                        case JsonProperties.PROPERTY_NAME_PLAY_COUNT:
                             traktMostPWCMovie.PlayCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_COLLECTED_COUNT:
+                        case JsonProperties.PROPERTY_NAME_COLLECTED_COUNT:
                             traktMostPWCMovie.CollectedCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktMostPWCMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

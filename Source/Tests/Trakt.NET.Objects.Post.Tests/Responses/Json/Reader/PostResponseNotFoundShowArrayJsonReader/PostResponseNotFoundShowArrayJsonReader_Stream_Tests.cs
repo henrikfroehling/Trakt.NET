@@ -6,7 +6,8 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Post.Responses.Json.Reader;
+    using TraktNet.Objects.Json;
+    using TraktNet.Objects.Post.Responses;
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
@@ -15,7 +16,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var jsonReader = new PostResponseNotFoundShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundShow>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -27,7 +28,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var jsonReader = new PostResponseNotFoundShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundShow>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -59,7 +60,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_Stream_Not_Valid()
         {
-            var jsonReader = new PostResponseNotFoundShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundShow>();
 
             using (var stream = JSON_NOT_VALID.ToStream())
             {
@@ -85,7 +86,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var jsonReader = new PostResponseNotFoundShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundShow>();
 
             var traktShowCollectionProgress = await jsonReader.ReadArrayAsync(default(Stream));
             traktShowCollectionProgress.Should().BeNull();
@@ -94,7 +95,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var jsonReader = new PostResponseNotFoundShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundShow>();
 
             using (var stream = string.Empty.ToStream())
             {

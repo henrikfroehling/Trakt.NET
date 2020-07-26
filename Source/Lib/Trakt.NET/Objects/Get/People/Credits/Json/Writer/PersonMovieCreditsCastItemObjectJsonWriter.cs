@@ -15,20 +15,20 @@
 
             if (!string.IsNullOrEmpty(obj.Character))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PERSON_MOVIE_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_CHARACTER, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Character, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Characters != null)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PERSON_MOVIE_CREDITS_CAST_ITEM_PROPERTY_NAME_CHARACTERS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_CHARACTERS, cancellationToken).ConfigureAwait(false);
                 await JsonWriterHelper.WriteStringArrayAsync(jsonWriter, obj.Characters, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Movie != null)
             {
                 var movieObjectJsonWriter = new MovieObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PERSON_MOVIE_CREDITS_CAST_ITEM_PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
                 await movieObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Movie, cancellationToken).ConfigureAwait(false);
             }
 

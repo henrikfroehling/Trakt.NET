@@ -22,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.RATING_PROPERTY_NAME_RATING:
+                        case JsonProperties.PROPERTY_NAME_RATING:
                             {
                                 var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
 
@@ -31,10 +31,10 @@
 
                                 break;
                             }
-                        case JsonProperties.RATING_PROPERTY_NAME_VOTES:
+                        case JsonProperties.PROPERTY_NAME_VOTES:
                             traktRating.Votes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.RATING_PROPERTY_NAME_DISTRIBUTION:
+                        case JsonProperties.PROPERTY_NAME_DISTRIBUTION:
                             traktRating.Distribution = await JsonReaderHelper.ReadDistributionAsync(jsonReader, cancellationToken);
                             break;
                         default:

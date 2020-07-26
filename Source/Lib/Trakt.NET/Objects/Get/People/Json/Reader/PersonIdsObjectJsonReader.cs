@@ -22,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PERSON_IDS_PROPERTY_NAME_TRAKT:
+                        case JsonProperties.PROPERTY_NAME_TRAKT:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -31,13 +31,13 @@
 
                                 break;
                             }
-                        case JsonProperties.PERSON_IDS_PROPERTY_NAME_SLUG:
+                        case JsonProperties.PROPERTY_NAME_SLUG:
                             traktPersonIds.Slug = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.PERSON_IDS_PROPERTY_NAME_IMDB:
+                        case JsonProperties.PROPERTY_NAME_IMDB:
                             traktPersonIds.Imdb = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.PERSON_IDS_PROPERTY_NAME_TMDB:
+                        case JsonProperties.PROPERTY_NAME_TMDB:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -46,7 +46,7 @@
 
                                 break;
                             }
-                        case JsonProperties.PERSON_IDS_PROPERTY_NAME_TVRAGE:
+                        case JsonProperties.PROPERTY_NAME_TVRAGE:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 

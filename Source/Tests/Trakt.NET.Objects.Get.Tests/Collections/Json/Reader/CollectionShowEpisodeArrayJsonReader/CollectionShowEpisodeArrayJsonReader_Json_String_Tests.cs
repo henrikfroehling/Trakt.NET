@@ -6,7 +6,8 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
-    using TraktNet.Objects.Get.Collections.Json.Reader;
+    using TraktNet.Objects.Get.Collections;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Collections.JsonReader")]
@@ -15,7 +16,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktCollectionShowEpisodes.Should().NotBeNull().And.BeEmpty();
@@ -24,7 +25,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
             traktCollectionShowEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -65,7 +66,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
             traktCollectionShowEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -106,7 +107,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
             traktCollectionShowEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -147,7 +148,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Incomplete_3()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_3);
             traktCollectionShowEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -183,7 +184,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Incomplete_4()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_4);
             traktCollectionShowEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -219,7 +220,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Incomplete_5()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_5);
             traktCollectionShowEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -255,7 +256,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Incomplete_6()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_6);
             traktCollectionShowEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -296,7 +297,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
             traktCollectionShowEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -337,7 +338,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
             traktCollectionShowEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -378,7 +379,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
             traktCollectionShowEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -414,7 +415,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Not_Valid_4()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_4);
             traktCollectionShowEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -450,7 +451,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(default(string));
             traktCollectionShowEpisodes.Should().BeNull();
@@ -459,7 +460,7 @@
         [Fact]
         public async Task Test_CollectionShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new CollectionShowEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
             var traktCollectionShowEpisodes = await jsonReader.ReadArrayAsync(string.Empty);
             traktCollectionShowEpisodes.Should().BeNull();

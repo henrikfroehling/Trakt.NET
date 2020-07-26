@@ -27,7 +27,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_LIKE_ITEM_PROPERTY_NAME_LIKED_AT:
+                        case JsonProperties.PROPERTY_NAME_LIKED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -36,13 +36,13 @@
 
                                 break;
                             }
-                        case JsonProperties.USER_LIKE_ITEM_PROPERTY_NAME_TYPE:
+                        case JsonProperties.PROPERTY_NAME_TYPE:
                             traktUserLikeItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktUserLikeType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_LIKE_ITEM_PROPERTY_NAME_COMMENT:
+                        case JsonProperties.PROPERTY_NAME_COMMENT:
                             traktUserLikeItem.Comment = await commentReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_LIKE_ITEM_PROPERTY_NAME_LIST:
+                        case JsonProperties.PROPERTY_NAME_LIST:
                             traktUserLikeItem.List = await listReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -4,7 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Post.Responses.Json.Reader;
+    using TraktNet.Objects.Json;
+    using TraktNet.Objects.Post.Responses;
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
@@ -13,7 +14,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundEpisode>();
 
             var notFoundEpisodes = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             notFoundEpisodes.Should().NotBeNull().And.BeEmpty();
@@ -22,7 +23,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundEpisode>();
 
             var notFoundEpisodes = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
             notFoundEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -49,7 +50,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Not_Valid()
         {
-            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundEpisode>();
 
             var notFoundEpisodes = await jsonReader.ReadArrayAsync(JSON_NOT_VALID);
             notFoundEpisodes.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -71,7 +72,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundEpisode>();
 
             var notFoundEpisodes = await jsonReader.ReadArrayAsync(default(string));
             notFoundEpisodes.Should().BeNull();
@@ -80,7 +81,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundEpisodeArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new PostResponseNotFoundEpisodeArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundEpisode>();
 
             var notFoundEpisodes = await jsonReader.ReadArrayAsync(string.Empty);
             notFoundEpisodes.Should().BeNull();

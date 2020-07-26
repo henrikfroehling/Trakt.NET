@@ -7,7 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -16,7 +16,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
             IEnumerable<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(default(Stream));
             traktSearchResults.Should().BeNull();
         }
@@ -24,7 +24,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
 
             using (var stream = string.Empty.ToStream())
             {

@@ -16,26 +16,26 @@
 
             if (obj.Plays.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_PLAYS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_PLAYS, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Plays, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.LastWatchedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_LAST_WATCHED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LAST_WATCHED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.LastWatchedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.LastUpdatedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_LAST_UPDATED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LAST_UPDATED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.LastUpdatedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Movie != null)
             {
                 var movieObjectJsonWriter = new MovieObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
                 await movieObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Movie, cancellationToken).ConfigureAwait(false);
             }
 

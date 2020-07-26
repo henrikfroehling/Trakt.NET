@@ -24,7 +24,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_IMAGES_PROPERTY_NAME_AVATAR:
+                        case JsonProperties.PROPERTY_NAME_AVATAR:
                             traktUserImage.Avatar = await imageReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

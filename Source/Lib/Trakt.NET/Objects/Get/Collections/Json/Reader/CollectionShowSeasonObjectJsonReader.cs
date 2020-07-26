@@ -14,7 +14,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var collectionShowEpisodeArrayReader = new CollectionShowEpisodeArrayJsonReader();
+                var collectionShowEpisodeArrayReader = new ArrayJsonReader<ITraktCollectionShowEpisode>();
 
                 ITraktCollectionShowSeason traktCollectionShowSeason = new TraktCollectionShowSeason();
 
@@ -24,10 +24,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.COLLECTION_SHOW_SEASON_PROPERTY_NAME_NUMBER:
+                        case JsonProperties.PROPERTY_NAME_NUMBER:
                             traktCollectionShowSeason.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.COLLECTION_SHOW_SEASON_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             traktCollectionShowSeason.Episodes = await collectionShowEpisodeArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

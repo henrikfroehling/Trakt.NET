@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktSyncEpisodesLastActivities> CreateObjectReader() => new SyncEpisodesLastActivitiesObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncEpisodesLastActivities> CreateArrayReader() => new SyncEpisodesLastActivitiesArrayJsonReader();
-
         public IObjectJsonWriter<ITraktSyncEpisodesLastActivities> CreateObjectWriter() => new SyncEpisodesLastActivitiesObjectJsonWriter();
     }
 }

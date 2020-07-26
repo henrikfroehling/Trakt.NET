@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -15,7 +15,7 @@
         [Fact]
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new CountryArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCountry>();
             IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktCountries.Should().NotBeNull().And.BeEmpty();
         }
@@ -23,7 +23,7 @@
         [Fact]
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new CountryArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCountry>();
             IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
             traktCountries.Should().NotBeNull();
@@ -41,7 +41,7 @@
         [Fact]
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new CountryArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCountry>();
             IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
             traktCountries.Should().NotBeNull();
@@ -59,7 +59,7 @@
         [Fact]
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new CountryArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCountry>();
             IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
             traktCountries.Should().NotBeNull();
@@ -77,7 +77,7 @@
         [Fact]
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new CountryArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCountry>();
             IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             traktCountries.Should().NotBeNull();
@@ -95,7 +95,7 @@
         [Fact]
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new CountryArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCountry>();
             IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
             traktCountries.Should().NotBeNull();
@@ -113,7 +113,7 @@
         [Fact]
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new CountryArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCountry>();
             IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
             traktCountries.Should().NotBeNull();
@@ -131,7 +131,7 @@
         [Fact]
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new CountryArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCountry>();
             IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(default(string));
             traktCountries.Should().BeNull();
         }
@@ -139,7 +139,7 @@
         [Fact]
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new CountryArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCountry>();
             IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(string.Empty);
             traktCountries.Should().BeNull();
         }

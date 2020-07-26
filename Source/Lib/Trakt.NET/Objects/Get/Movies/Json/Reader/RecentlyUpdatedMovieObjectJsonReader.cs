@@ -23,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.RECENTLY_UPDATED_MOVIE_PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -32,7 +32,7 @@
 
                                 break;
                             }
-                        case JsonProperties.RECENTLY_UPDATED_MOVIE_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktRecentlyUpdatedMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

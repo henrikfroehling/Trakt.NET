@@ -19,25 +19,25 @@
         {
             if (obj.Movies.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_MOVIES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIES, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Movies, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Shows.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_SHOWS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOWS, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Shows, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Seasons.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Seasons, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Episodes.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Episodes, cancellationToken).ConfigureAwait(false);
             }
         }

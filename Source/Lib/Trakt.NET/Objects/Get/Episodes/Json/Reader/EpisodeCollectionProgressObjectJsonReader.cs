@@ -22,13 +22,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.EPISODE_COLLECTION_PROGRESS_PROPERTY_NAME_NUMBER:
+                        case JsonProperties.PROPERTY_NAME_NUMBER:
                             traktEpisodeCollectionProgress.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_COLLECTION_PROGRESS_PROPERTY_NAME_COMPLETED:
+                        case JsonProperties.PROPERTY_NAME_COMPLETED:
                             traktEpisodeCollectionProgress.Completed = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_COLLECTION_PROGRESS_PROPERTY_NAME_COLLECTED_AT:
+                        case JsonProperties.PROPERTY_NAME_COLLECTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

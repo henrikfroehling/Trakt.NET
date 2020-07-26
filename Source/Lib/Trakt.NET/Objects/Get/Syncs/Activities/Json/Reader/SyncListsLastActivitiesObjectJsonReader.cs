@@ -22,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_LISTS_LAST_ACTIVITIES_PROPERTY_NAME_LIKED_AT:
+                        case JsonProperties.PROPERTY_NAME_LIKED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -31,7 +31,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_LISTS_LAST_ACTIVITIES_PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -40,7 +40,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_LISTS_LAST_ACTIVITIES_PROPERTY_NAME_COMMENTED_AT:
+                        case JsonProperties.PROPERTY_NAME_COMMENTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

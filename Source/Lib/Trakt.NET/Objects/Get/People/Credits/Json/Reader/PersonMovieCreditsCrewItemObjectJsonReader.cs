@@ -25,13 +25,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PERSON_MOVIE_CREDITS_CREW_ITEM_PROPERTY_NAME_JOB:
+                        case JsonProperties.PROPERTY_NAME_JOB:
                             movieCreditsCrewItem.Job = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.PERSON_MOVIE_CREDITS_CREW_ITEM_PROPERTY_NAME_JOBS:
+                        case JsonProperties.PROPERTY_NAME_JOBS:
                             movieCreditsCrewItem.Jobs = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.PERSON_MOVIE_CREDITS_CREW_ITEM_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             movieCreditsCrewItem.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

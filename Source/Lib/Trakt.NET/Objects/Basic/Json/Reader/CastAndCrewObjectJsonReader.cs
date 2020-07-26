@@ -14,7 +14,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var castReader = new CastMemberArrayJsonReader();
+                var castReader = new ArrayJsonReader<ITraktCastMember>();
                 var crewReader = new CrewObjectJsonReader();
                 ITraktCastAndCrew traktCastAndCrew = new TraktCastAndCrew();
 
@@ -24,10 +24,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CAST_AND_CREW_PROPERTY_NAME_CAST:
+                        case JsonProperties.PROPERTY_NAME_CAST:
                             traktCastAndCrew.Cast = await castReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CAST_AND_CREW_PROPERTY_NAME_CREW:
+                        case JsonProperties.PROPERTY_NAME_CREW:
                             traktCastAndCrew.Crew = await crewReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -15,26 +15,26 @@
 
             if (!string.IsNullOrEmpty(obj.Job))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CREW_MEMBER_PROPERTY_NAME_JOB, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_JOB, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Job, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Jobs != null)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CREW_MEMBER_PROPERTY_NAME_JOBS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_JOBS, cancellationToken).ConfigureAwait(false);
                 await JsonWriterHelper.WriteStringArrayAsync(jsonWriter, obj.Jobs, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.EpisodeCount.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_CREW_MEMBER_PROPERTY_NAME_EPISODE_COUNT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODE_COUNT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.EpisodeCount.Value, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Person != null)
             {
                 var personObjectJsonWriter = new PersonObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CREW_MEMBER_PROPERTY_NAME_PERSON, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_PERSON, cancellationToken).ConfigureAwait(false);
                 await personObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Person, cancellationToken).ConfigureAwait(false);
             }
 

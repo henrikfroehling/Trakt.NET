@@ -25,10 +25,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_PLAYS:
+                        case JsonProperties.PROPERTY_NAME_PLAYS:
                             traktWatchedMovie.Plays = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_LAST_WATCHED_AT:
+                        case JsonProperties.PROPERTY_NAME_LAST_WATCHED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -37,7 +37,7 @@
 
                                 break;
                             }
-                        case JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_LAST_UPDATED_AT:
+                        case JsonProperties.PROPERTY_NAME_LAST_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -46,7 +46,7 @@
 
                                 break;
                             }
-                        case JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktWatchedMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

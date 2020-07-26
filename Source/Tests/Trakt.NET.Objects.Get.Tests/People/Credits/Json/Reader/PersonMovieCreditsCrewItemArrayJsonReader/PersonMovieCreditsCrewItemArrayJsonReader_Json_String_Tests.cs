@@ -4,7 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.People.Credits.Json.Reader;
+    using TraktNet.Objects.Get.People.Credits;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.People.Credits.JsonReader")]
@@ -13,7 +14,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             movieCreditsCrewItems.Should().NotBeNull().And.BeEmpty();
@@ -22,7 +23,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
@@ -55,7 +56,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
@@ -88,7 +89,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
@@ -114,7 +115,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
@@ -147,7 +148,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
@@ -173,7 +174,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
@@ -199,7 +200,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(default(string));
             movieCreditsCrewItems.Should().BeNull();
@@ -208,7 +209,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(string.Empty);
             movieCreditsCrewItems.Should().BeNull();

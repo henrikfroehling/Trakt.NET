@@ -15,9 +15,9 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktSyncCollectionPost traktSyncCollectionPost = new TraktSyncCollectionPost();
-                var syncCollectionPostMovieArrayJsonReader = new SyncCollectionPostMovieArrayJsonReader();
-                var syncCollectionPostShowArrayJsonReader = new SyncCollectionPostShowArrayJsonReader();
-                var syncCollectionPostEpisodeArrayJsonReader = new SyncCollectionPostEpisodeArrayJsonReader();
+                var syncCollectionPostMovieArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostMovie>();
+                var syncCollectionPostShowArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostShow>();
+                var syncCollectionPostEpisodeArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostEpisode>();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -25,13 +25,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_COLLECTION_POST_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             traktSyncCollectionPost.Movies = await syncCollectionPostMovieArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_COLLECTION_POST_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             traktSyncCollectionPost.Shows = await syncCollectionPostShowArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_COLLECTION_POST_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             traktSyncCollectionPost.Episodes = await syncCollectionPostEpisodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

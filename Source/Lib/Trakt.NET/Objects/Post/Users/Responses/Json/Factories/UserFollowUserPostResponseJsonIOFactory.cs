@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktUserFollowUserPostResponse> CreateObjectReader() => new UserFollowUserPostResponseObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserFollowUserPostResponse> CreateArrayReader() => new UserFollowUserPostResponseArrayJsonReader();
-
         public IObjectJsonWriter<ITraktUserFollowUserPostResponse> CreateObjectWriter() => new UserFollowUserPostResponseObjectJsonWriter();
     }
 }

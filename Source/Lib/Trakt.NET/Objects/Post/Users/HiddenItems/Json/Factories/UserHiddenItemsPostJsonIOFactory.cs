@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktUserHiddenItemsPost> CreateObjectReader() => new UserHiddenItemsPostObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserHiddenItemsPost> CreateArrayReader() => new UserHiddenItemsPostArrayJsonReader();
-
         public IObjectJsonWriter<ITraktUserHiddenItemsPost> CreateObjectWriter() => new UserHiddenItemsPostObjectJsonWriter();
     }
 }

@@ -22,16 +22,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             syncPostResponseGroup.Movies = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             syncPostResponseGroup.Shows = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             syncPostResponseGroup.Seasons = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             syncPostResponseGroup.Episodes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

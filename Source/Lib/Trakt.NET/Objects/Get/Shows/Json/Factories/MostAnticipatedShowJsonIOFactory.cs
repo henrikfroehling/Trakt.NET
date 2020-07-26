@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktMostAnticipatedShow> CreateObjectReader() => new MostAnticipatedShowObjectJsonReader();
 
-        public IArrayJsonReader<ITraktMostAnticipatedShow> CreateArrayReader() => new MostAnticipatedShowArrayJsonReader();
-
         public IObjectJsonWriter<ITraktMostAnticipatedShow> CreateObjectWriter() => new MostAnticipatedShowObjectJsonWriter();
     }
 }

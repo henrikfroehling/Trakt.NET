@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Get.Calendars;
-    using TraktNet.Objects.Get.Calendars.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Calendars.JsonReader")]
@@ -18,7 +18,7 @@
         [Fact]
         public async Task Test_CalendarMovieArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
         {
-            var traktJsonReader = new CalendarMovieArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCalendarMovie>();
 
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
@@ -31,7 +31,7 @@
         [Fact]
         public async Task Test_CalendarMovieArrayJsonReader_ReadArray_From_JsonReader_Complete()
         {
-            var traktJsonReader = new CalendarMovieArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCalendarMovie>();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -68,7 +68,7 @@
         [Fact]
         public async Task Test_CalendarMovieArrayJsonReader_ReadArray_From_JsonReader_Incomplete_1()
         {
-            var traktJsonReader = new CalendarMovieArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCalendarMovie>();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -105,7 +105,7 @@
         [Fact]
         public async Task Test_CalendarMovieArrayJsonReader_ReadArray_From_JsonReader_Incomplete_2()
         {
-            var traktJsonReader = new CalendarMovieArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCalendarMovie>();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -142,7 +142,7 @@
         [Fact]
         public async Task Test_CalendarMovieArrayJsonReader_ReadArray_From_JsonReader_Not_Valid_1()
         {
-            var traktJsonReader = new CalendarMovieArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCalendarMovie>();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -179,7 +179,7 @@
         [Fact]
         public async Task Test_CalendarMovieArrayJsonReader_ReadArray_From_JsonReader_Not_Valid_2()
         {
-            var traktJsonReader = new CalendarMovieArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCalendarMovie>();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -216,7 +216,7 @@
         [Fact]
         public async Task Test_CalendarMovieArrayJsonReader_ReadArray_From_JsonReader_Not_Valid_3()
         {
-            var traktJsonReader = new CalendarMovieArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCalendarMovie>();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -253,7 +253,7 @@
         [Fact]
         public async Task Test_CalendarMovieArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
-            var traktJsonReader = new CalendarMovieArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCalendarMovie>();
             IEnumerable<ITraktCalendarMovie> traktCalendarMovies = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             traktCalendarMovies.Should().BeNull();
         }
@@ -261,7 +261,7 @@
         [Fact]
         public async Task Test_CalendarMovieArrayJsonReader_ReadArray_From_JsonReader_Empty()
         {
-            var traktJsonReader = new CalendarMovieArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCalendarMovie>();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

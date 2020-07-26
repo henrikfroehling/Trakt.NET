@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -16,7 +16,7 @@
         [Fact]
         public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var traktJsonReader = new CommentLikeArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCommentLike>();
             IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktCommentLikes.Should().NotBeNull().And.BeEmpty();
         }
@@ -24,7 +24,7 @@
         [Fact]
         public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var traktJsonReader = new CommentLikeArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCommentLike>();
             IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(JSON_COMPLETE);
 
             traktCommentLikes.Should().NotBeNull();
@@ -56,7 +56,7 @@
         [Fact]
         public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
-            var traktJsonReader = new CommentLikeArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCommentLike>();
             IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
             traktCommentLikes.Should().NotBeNull();
@@ -81,7 +81,7 @@
         [Fact]
         public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
-            var traktJsonReader = new CommentLikeArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCommentLike>();
             IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
             traktCommentLikes.Should().NotBeNull();
@@ -106,7 +106,7 @@
         [Fact]
         public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
-            var traktJsonReader = new CommentLikeArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCommentLike>();
             IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             traktCommentLikes.Should().NotBeNull();
@@ -138,7 +138,7 @@
         [Fact]
         public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
-            var traktJsonReader = new CommentLikeArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCommentLike>();
             IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
             traktCommentLikes.Should().NotBeNull();
@@ -163,7 +163,7 @@
         [Fact]
         public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
-            var traktJsonReader = new CommentLikeArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCommentLike>();
             IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
             traktCommentLikes.Should().NotBeNull();
@@ -188,7 +188,7 @@
         [Fact]
         public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var traktJsonReader = new CommentLikeArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCommentLike>();
             IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(default(string));
             traktCommentLikes.Should().BeNull();
         }
@@ -196,7 +196,7 @@
         [Fact]
         public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var traktJsonReader = new CommentLikeArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktCommentLike>();
             IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(string.Empty);
             traktCommentLikes.Should().BeNull();
         }

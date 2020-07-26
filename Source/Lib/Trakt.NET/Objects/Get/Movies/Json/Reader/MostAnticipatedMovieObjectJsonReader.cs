@@ -23,10 +23,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOST_ANTICIPATED_MOVIE_PROPERTY_NAME_LIST_COUNT:
+                        case JsonProperties.PROPERTY_NAME_LIST_COUNT:
                             traktMostAnticipatedMovie.ListCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_ANTICIPATED_MOVIE_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktMostAnticipatedMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -22,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_CUSTOM_LISTS_REORDER_POST_PROPERTY_NAME_RANK:
+                        case JsonProperties.PROPERTY_NAME_RANK:
                             customListsReorderPost.Rank = await JsonReaderHelper.ReadUnsignedIntegerArrayAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;
                         default:

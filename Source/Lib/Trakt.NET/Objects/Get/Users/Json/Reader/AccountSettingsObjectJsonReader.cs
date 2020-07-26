@@ -22,16 +22,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TIMEZONE_ID:
+                        case JsonProperties.PROPERTY_NAME_TIMEZONE:
                             traktAccountSettings.TimeZoneId = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TIME_24HR:
+                        case JsonProperties.PROPERTY_NAME_TIME_24HR:
                             traktAccountSettings.Time24Hr = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_COVER_IMAGE:
+                        case JsonProperties.PROPERTY_NAME_COVER_IMAGE:
                             traktAccountSettings.CoverImage = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TOKEN:
+                        case JsonProperties.PROPERTY_NAME_TOKEN:
                             traktAccountSettings.Token = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

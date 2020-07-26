@@ -17,21 +17,21 @@
 
             if (obj.FirstAiredInCalendar.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CALENDAR_SHOW_PROPERTY_NAME_FIRST_AIRED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_FIRST_AIRED, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.FirstAiredInCalendar.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Show != null)
             {
                 var showObjectJsonWriter = new ShowObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CALENDAR_SHOW_PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
                 await showObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Show, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Episode != null)
             {
                 var episodeObjectJsonWriter = new EpisodeObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CALENDAR_SHOW_PROPERTY_NAME_EPISODE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODE, cancellationToken).ConfigureAwait(false);
                 await episodeObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Episode, cancellationToken).ConfigureAwait(false);
             }
 

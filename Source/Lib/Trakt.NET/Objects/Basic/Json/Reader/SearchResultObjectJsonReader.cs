@@ -33,10 +33,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_TYPE:
+                        case JsonProperties.PROPERTY_NAME_TYPE:
                             traktSearchResult.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSearchResultType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_SCORE:
+                        case JsonProperties.PROPERTY_NAME_SCORE:
                             {
                                 var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
 
@@ -45,19 +45,19 @@
 
                                 break;
                             }
-                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktSearchResult.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktSearchResult.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             traktSearchResult.Episode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_PERSON:
+                        case JsonProperties.PROPERTY_NAME_PERSON:
                             traktSearchResult.Person = await personObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SEARCH_RESULT_PROPERTY_NAME_LIST:
+                        case JsonProperties.PROPERTY_NAME_LIST:
                             traktSearchResult.List = await listObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

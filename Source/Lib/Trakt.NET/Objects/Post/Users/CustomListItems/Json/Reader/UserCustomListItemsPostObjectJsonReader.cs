@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Users.CustomListItems.Json.Reader
 {
-    using Get.People.Json.Reader;
+    using Get.People;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -15,9 +15,9 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieArrayJsonReader = new UserCustomListItemsPostMovieArrayJsonReader();
-                var showArrayJsonReader = new UserCustomListItemsPostShowArrayJsonReader();
-                var personArrayJsonReader = new PersonArrayJsonReader();
+                var movieArrayJsonReader = new ArrayJsonReader<ITraktUserCustomListItemsPostMovie>();
+                var showArrayJsonReader = new ArrayJsonReader<ITraktUserCustomListItemsPostShow>();
+                var personArrayJsonReader = new ArrayJsonReader<ITraktPerson>();
                 ITraktUserCustomListItemsPost customListItemsPost = new TraktUserCustomListItemsPost();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -26,13 +26,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             customListItemsPost.Movies = await movieArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             customListItemsPost.Shows = await showArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_PROPERTY_NAME_PEOPLE:
+                        case JsonProperties.PROPERTY_NAME_PEOPLE:
                             customListItemsPost.People = await personArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

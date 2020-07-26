@@ -32,7 +32,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.HISTORY_ITEM_PROPERTY_NAME_ID:
+                        case JsonProperties.PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedLongValueAsync(jsonReader, cancellationToken);
 
@@ -41,7 +41,7 @@
 
                                 break;
                             }
-                        case JsonProperties.HISTORY_ITEM_PROPERTY_NAME_WATCHED_AT:
+                        case JsonProperties.PROPERTY_NAME_WATCHED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -50,22 +50,22 @@
 
                                 break;
                             }
-                        case JsonProperties.HISTORY_ITEM_PROPERTY_NAME_ACTION:
+                        case JsonProperties.PROPERTY_NAME_ACTION:
                             traktHistoryItem.Action = await JsonReaderHelper.ReadEnumerationValueAsync<TraktHistoryActionType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.HISTORY_ITEM_PROPERTY_NAME_TYPE:
+                        case JsonProperties.PROPERTY_NAME_TYPE:
                             traktHistoryItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSyncItemType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.HISTORY_ITEM_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktHistoryItem.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.HISTORY_ITEM_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktHistoryItem.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.HISTORY_ITEM_PROPERTY_NAME_SEASON:
+                        case JsonProperties.PROPERTY_NAME_SEASON:
                             traktHistoryItem.Season = await seasonObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.HISTORY_ITEM_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             traktHistoryItem.Episode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

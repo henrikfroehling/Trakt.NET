@@ -14,10 +14,10 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var postResponseMoviesReader = new SyncRatingsPostResponseNotFoundMovieArrayJsonReader();
-                var postResponseShowsReader = new SyncRatingsPostResponseNotFoundShowArrayJsonReader();
-                var postResponseSeasonsReader = new SyncRatingsPostResponseNotFoundSeasonArrayJsonReader();
-                var postResponseEpisodesReader = new SyncRatingsPostResponseNotFoundEpisodeArrayJsonReader();
+                var postResponseMoviesReader = new ArrayJsonReader<ITraktSyncRatingsPostResponseNotFoundMovie>();
+                var postResponseShowsReader = new ArrayJsonReader<ITraktSyncRatingsPostResponseNotFoundShow>();
+                var postResponseSeasonsReader = new ArrayJsonReader<ITraktSyncRatingsPostResponseNotFoundSeason>();
+                var postResponseEpisodesReader = new ArrayJsonReader<ITraktSyncRatingsPostResponseNotFoundEpisode>();
                 ITraktSyncRatingsPostResponseNotFoundGroup syncRatingsPostResponseNotFoundGroup = new TraktSyncRatingsPostResponseNotFoundGroup();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -26,16 +26,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             syncRatingsPostResponseNotFoundGroup.Movies = await postResponseMoviesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             syncRatingsPostResponseNotFoundGroup.Shows = await postResponseShowsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             syncRatingsPostResponseNotFoundGroup.Seasons = await postResponseSeasonsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             syncRatingsPostResponseNotFoundGroup.Episodes = await postResponseEpisodesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

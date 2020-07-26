@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktUserHiddenItemsPostSeason> CreateObjectReader() => new UserHiddenItemsPostSeasonObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserHiddenItemsPostSeason> CreateArrayReader() => new UserHiddenItemsPostSeasonArrayJsonReader();
-
         public IObjectJsonWriter<ITraktUserHiddenItemsPostSeason> CreateObjectWriter() => new UserHiddenItemsPostSeasonObjectJsonWriter();
     }
 }

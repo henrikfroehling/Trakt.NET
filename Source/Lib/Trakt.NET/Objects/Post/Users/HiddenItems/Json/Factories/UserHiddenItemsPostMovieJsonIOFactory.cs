@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktUserHiddenItemsPostMovie> CreateObjectReader() => new UserHiddenItemsPostMovieObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserHiddenItemsPostMovie> CreateArrayReader() => new UserHiddenItemsPostMovieArrayJsonReader();
-
         public IObjectJsonWriter<ITraktUserHiddenItemsPostMovie> CreateObjectWriter() => new UserHiddenItemsPostMovieObjectJsonWriter();
     }
 }

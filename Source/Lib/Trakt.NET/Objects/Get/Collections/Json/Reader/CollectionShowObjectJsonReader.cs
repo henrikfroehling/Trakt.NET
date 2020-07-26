@@ -16,7 +16,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var showObjectReader = new ShowObjectJsonReader();
-                var showSeasonsArrayReader = new CollectionShowSeasonArrayJsonReader();
+                var showSeasonsArrayReader = new ArrayJsonReader<ITraktCollectionShowSeason>();
 
                 ITraktCollectionShow traktCollectionShow = new TraktCollectionShow();
 
@@ -26,7 +26,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.COLLECTION_SHOW_PROPERTY_NAME_LAST_COLLECTED_AT:
+                        case JsonProperties.PROPERTY_NAME_LAST_COLLECTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -35,10 +35,10 @@
 
                                 break;
                             }
-                        case JsonProperties.COLLECTION_SHOW_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktCollectionShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.COLLECTION_SHOW_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             traktCollectionShow.CollectionSeasons = await showSeasonsArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

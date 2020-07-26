@@ -26,10 +26,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.COMMENT_POST_PROPERTY_NAME_COMMENT:
+                        case JsonProperties.PROPERTY_NAME_COMMENT:
                             seasonCommentPost.Comment = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.COMMENT_POST_PROPERTY_NAME_SPOILER:
+                        case JsonProperties.PROPERTY_NAME_SPOILER:
                             {
                                 bool? value = await jsonReader.ReadAsBooleanAsync(cancellationToken);
 
@@ -38,10 +38,10 @@
 
                                 break;
                             }
-                        case JsonProperties.COMMENT_POST_PROPERTY_NAME_SHARING:
+                        case JsonProperties.PROPERTY_NAME_SHARING:
                             seasonCommentPost.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SEASON_COMMENT_POST_PROPERTY_NAME_SEASON:
+                        case JsonProperties.PROPERTY_NAME_SEASON:
                             seasonCommentPost.Season = await seasonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

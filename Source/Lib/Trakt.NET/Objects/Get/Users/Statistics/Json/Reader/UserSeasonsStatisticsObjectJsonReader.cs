@@ -22,10 +22,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_SEASONS_STATISTICS_PROPERTY_NAME_RATINGS:
+                        case JsonProperties.PROPERTY_NAME_RATINGS:
                             userSeasonsStatistics.Ratings = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.USER_SEASONS_STATISTICS_PROPERTY_NAME_COMMENTS:
+                        case JsonProperties.PROPERTY_NAME_COMMENTS:
                             userSeasonsStatistics.Comments = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

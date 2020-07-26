@@ -14,7 +14,7 @@
 
             if (!string.IsNullOrEmpty(obj.Full))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.IMAGE_PROPERTY_NAME_FULL, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_FULL, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Full, cancellationToken).ConfigureAwait(false);
             }
 

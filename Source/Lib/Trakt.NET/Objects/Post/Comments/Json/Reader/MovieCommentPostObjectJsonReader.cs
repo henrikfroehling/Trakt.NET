@@ -26,10 +26,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.COMMENT_POST_PROPERTY_NAME_COMMENT:
+                        case JsonProperties.PROPERTY_NAME_COMMENT:
                             movieCommentPost.Comment = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.COMMENT_POST_PROPERTY_NAME_SPOILER:
+                        case JsonProperties.PROPERTY_NAME_SPOILER:
                             {
                                 bool? value = await jsonReader.ReadAsBooleanAsync(cancellationToken);
 
@@ -38,10 +38,10 @@
 
                                 break;
                             }
-                        case JsonProperties.COMMENT_POST_PROPERTY_NAME_SHARING:
+                        case JsonProperties.PROPERTY_NAME_SHARING:
                             movieCommentPost.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_COMMENT_POST_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             movieCommentPost.Movie = await movieReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -30,7 +30,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_PLAYBACK_PROGRESS_ITEM_PROPERTY_NAME_ID:
+                        case JsonProperties.PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -39,7 +39,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_PLAYBACK_PROGRESS_ITEM_PROPERTY_NAME_PROGRESS:
+                        case JsonProperties.PROPERTY_NAME_PROGRESS:
                             {
                                 var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
 
@@ -48,7 +48,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_PLAYBACK_PROGRESS_ITEM_PROPERTY_NAME_PAUSED_AT:
+                        case JsonProperties.PROPERTY_NAME_PAUSED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -57,16 +57,16 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_PLAYBACK_PROGRESS_ITEM_PROPERTY_NAME_TYPE:
+                        case JsonProperties.PROPERTY_NAME_TYPE:
                             traktPlaybackProgressItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSyncType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_PLAYBACK_PROGRESS_ITEM_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktPlaybackProgressItem.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_PLAYBACK_PROGRESS_ITEM_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktPlaybackProgressItem.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_PLAYBACK_PROGRESS_ITEM_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             traktPlaybackProgressItem.Episode = await episodeObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -25,16 +25,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_COLLECTION_POST_RESPONSE_PROPERTY_NAME_ADDED:
+                        case JsonProperties.PROPERTY_NAME_ADDED:
                             syncCollectionPostResponse.Added = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_COLLECTION_POST_RESPONSE_PROPERTY_NAME_UPDATED:
+                        case JsonProperties.PROPERTY_NAME_UPDATED:
                             syncCollectionPostResponse.Updated = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_COLLECTION_POST_RESPONSE_PROPERTY_NAME_EXISTING:
+                        case JsonProperties.PROPERTY_NAME_EXISTING:
                             syncCollectionPostResponse.Existing = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_COLLECTION_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.PROPERTY_NAME_NOT_FOUND:
                             syncCollectionPostResponse.NotFound = await notFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

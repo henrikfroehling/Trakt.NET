@@ -14,13 +14,13 @@
 
             if (!string.IsNullOrEmpty(obj.Title))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_ALIAS_PROPERTY_NAME_TITLE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TITLE, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Title, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.CountryCode))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHOW_ALIAS_PROPERTY_NAME_COUNTRY, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COUNTRY, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.CountryCode, cancellationToken).ConfigureAwait(false);
             }
 

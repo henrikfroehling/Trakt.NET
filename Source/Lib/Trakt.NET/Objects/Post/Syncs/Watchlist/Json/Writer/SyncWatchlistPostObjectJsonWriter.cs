@@ -15,21 +15,21 @@
             if (obj.Movies != null)
             {
                 var syncWatchlistPostMovieArrayJsonWriter = new ArrayJsonWriter<ITraktSyncWatchlistPostMovie>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_WATCHLIST_POST_PROPERTY_NAME_MOVIES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIES, cancellationToken).ConfigureAwait(false);
                 await syncWatchlistPostMovieArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Movies, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Shows != null)
             {
                 var syncWatchlistPostShowArrayJsonWriter = new ArrayJsonWriter<ITraktSyncWatchlistPostShow>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_WATCHLIST_POST_PROPERTY_NAME_SHOWS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOWS, cancellationToken).ConfigureAwait(false);
                 await syncWatchlistPostShowArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Shows, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Episodes != null)
             {
                 var syncWatchlistPostEpisodeArrayJsonWriter = new ArrayJsonWriter<ITraktSyncWatchlistPostEpisode>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_WATCHLIST_POST_PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
                 await syncWatchlistPostEpisodeArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Episodes, cancellationToken).ConfigureAwait(false);
             }
 

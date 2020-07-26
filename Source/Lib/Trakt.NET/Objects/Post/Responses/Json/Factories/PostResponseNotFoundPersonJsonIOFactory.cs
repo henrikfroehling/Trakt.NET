@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktPostResponseNotFoundPerson> CreateObjectReader() => new PostResponseNotFoundPersonObjectJsonReader();
 
-        public IArrayJsonReader<ITraktPostResponseNotFoundPerson> CreateArrayReader() => new PostResponseNotFoundPersonArrayJsonReader();
-
         public IObjectJsonWriter<ITraktPostResponseNotFoundPerson> CreateObjectWriter() => new PostResponseNotFoundPersonObjectJsonWriter();
     }
 }

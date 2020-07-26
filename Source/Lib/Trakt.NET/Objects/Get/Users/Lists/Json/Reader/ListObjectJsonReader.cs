@@ -26,28 +26,28 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.LIST_PROPERTY_NAME_NAME:
+                        case JsonProperties.PROPERTY_NAME_NAME:
                             traktList.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.LIST_PROPERTY_NAME_DESCRIPTION:
+                        case JsonProperties.PROPERTY_NAME_DESCRIPTION:
                             traktList.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.LIST_PROPERTY_NAME_PRIVACY:
+                        case JsonProperties.PROPERTY_NAME_PRIVACY:
                             traktList.Privacy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktAccessScope>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.LIST_PROPERTY_NAME_DISPLAY_NUMBERS:
+                        case JsonProperties.PROPERTY_NAME_DISPLAY_NUMBERS:
                             traktList.DisplayNumbers = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.LIST_PROPERTY_NAME_ALLOW_COMMENTS:
+                        case JsonProperties.PROPERTY_NAME_ALLOW_COMMENTS:
                             traktList.AllowComments = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.LIST_PROPERTY_NAME_SORT_BY:
+                        case JsonProperties.PROPERTY_NAME_SORT_BY:
                             traktList.SortBy = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.LIST_PROPERTY_NAME_SORT_HOW:
+                        case JsonProperties.PROPERTY_NAME_SORT_HOW:
                             traktList.SortHow = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.LIST_PROPERTY_NAME_CREATED_AT:
+                        case JsonProperties.PROPERTY_NAME_CREATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -56,7 +56,7 @@
 
                                 break;
                             }
-                        case JsonProperties.LIST_PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -65,19 +65,19 @@
 
                                 break;
                             }
-                        case JsonProperties.LIST_PROPERTY_NAME_ITEM_COUNT:
+                        case JsonProperties.PROPERTY_NAME_ITEM_COUNT:
                             traktList.ItemCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.LIST_PROPERTY_NAME_COMMENT_COUNT:
+                        case JsonProperties.PROPERTY_NAME_COMMENT_COUNT:
                             traktList.CommentCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.LIST_PROPERTY_NAME_LIKES:
+                        case JsonProperties.PROPERTY_NAME_LIKES:
                             traktList.Likes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.LIST_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             traktList.Ids = await idsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.LIST_PROPERTY_NAME_USER:
+                        case JsonProperties.PROPERTY_NAME_USER:
                             traktList.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

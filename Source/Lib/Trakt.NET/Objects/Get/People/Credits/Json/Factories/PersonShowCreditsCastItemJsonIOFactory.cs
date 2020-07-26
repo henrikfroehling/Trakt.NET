@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktPersonShowCreditsCastItem> CreateObjectReader() => new PersonShowCreditsCastItemObjectJsonReader();
 
-        public IArrayJsonReader<ITraktPersonShowCreditsCastItem> CreateArrayReader() => new PersonShowCreditsCastItemArrayJsonReader();
-
         public IObjectJsonWriter<ITraktPersonShowCreditsCastItem> CreateObjectWriter() => new PersonShowCreditsCastItemObjectJsonWriter();
     }
 }

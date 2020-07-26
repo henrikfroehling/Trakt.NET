@@ -22,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SEASON_IDS_PROPERTY_NAME_TRAKT:
+                        case JsonProperties.PROPERTY_NAME_TRAKT:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -31,7 +31,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SEASON_IDS_PROPERTY_NAME_TVDB:
+                        case JsonProperties.PROPERTY_NAME_TVDB:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -40,7 +40,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SEASON_IDS_PROPERTY_NAME_TMDB:
+                        case JsonProperties.PROPERTY_NAME_TMDB:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -49,7 +49,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SEASON_IDS_PROPERTY_NAME_TVRAGE:
+                        case JsonProperties.PROPERTY_NAME_TVRAGE:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 

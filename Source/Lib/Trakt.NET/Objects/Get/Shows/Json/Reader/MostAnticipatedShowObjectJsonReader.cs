@@ -23,10 +23,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOST_ANTICIPATED_SHOW_PROPERTY_NAME_LIST_COUNT:
+                        case JsonProperties.PROPERTY_NAME_LIST_COUNT:
                             traktMostAnticipatedShow.ListCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_ANTICIPATED_SHOW_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktMostAnticipatedShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

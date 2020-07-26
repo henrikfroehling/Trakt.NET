@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktComment> CreateObjectReader() => new CommentObjectJsonReader();
 
-        public IArrayJsonReader<ITraktComment> CreateArrayReader() => new CommentArrayJsonReader();
-
         public IObjectJsonWriter<ITraktComment> CreateObjectWriter() => new CommentObjectJsonWriter();
     }
 }

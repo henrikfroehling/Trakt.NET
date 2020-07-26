@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktMostAnticipatedMovie> CreateObjectReader() => new MostAnticipatedMovieObjectJsonReader();
 
-        public IArrayJsonReader<ITraktMostAnticipatedMovie> CreateArrayReader() => new MostAnticipatedMovieArrayJsonReader();
-
         public IObjectJsonWriter<ITraktMostAnticipatedMovie> CreateObjectWriter() => new MostAnticipatedMovieObjectJsonWriter();
     }
 }

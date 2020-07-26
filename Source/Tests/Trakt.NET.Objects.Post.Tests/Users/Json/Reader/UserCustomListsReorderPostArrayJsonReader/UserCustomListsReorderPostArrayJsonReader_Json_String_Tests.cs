@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Json;
     using TraktNet.Objects.Post.Users;
-    using TraktNet.Objects.Post.Users.Json.Reader;
     using Xunit;
 
     [Category("Objects.Post.Users.JsonReader")]
@@ -15,7 +15,7 @@
         [Fact]
         public async Task Test_UserCustomListsReorderPostArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var traktJsonReader = new UserCustomListsReorderPostArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktUserCustomListsReorderPost>();
             IEnumerable<ITraktUserCustomListsReorderPost> traktUserCustomListsReorderPosts = await traktJsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktUserCustomListsReorderPosts.Should().NotBeNull().And.BeEmpty();
         }
@@ -23,7 +23,7 @@
         [Fact]
         public async Task Test_UserCustomListsReorderPostArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var traktJsonReader = new UserCustomListsReorderPostArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktUserCustomListsReorderPost>();
             IEnumerable<ITraktUserCustomListsReorderPost> traktUserCustomListsReorderPosts = await traktJsonReader.ReadArrayAsync(JSON_COMPLETE);
 
             traktUserCustomListsReorderPosts.Should().NotBeNull();
@@ -41,7 +41,7 @@
         [Fact]
         public async Task Test_UserCustomListsReorderPostArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
-            var traktJsonReader = new UserCustomListsReorderPostArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktUserCustomListsReorderPost>();
             IEnumerable<ITraktUserCustomListsReorderPost> traktUserCustomListsReorderPosts = await traktJsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
             traktUserCustomListsReorderPosts.Should().NotBeNull();
@@ -58,7 +58,7 @@
         [Fact]
         public async Task Test_UserCustomListsReorderPostArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
-            var traktJsonReader = new UserCustomListsReorderPostArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktUserCustomListsReorderPost>();
             IEnumerable<ITraktUserCustomListsReorderPost> traktUserCustomListsReorderPosts = await traktJsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
             traktUserCustomListsReorderPosts.Should().NotBeNull();
@@ -75,7 +75,7 @@
         [Fact]
         public async Task Test_UserCustomListsReorderPostArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
-            var traktJsonReader = new UserCustomListsReorderPostArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktUserCustomListsReorderPost>();
             IEnumerable<ITraktUserCustomListsReorderPost> traktUserCustomListsReorderPosts = await traktJsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             traktUserCustomListsReorderPosts.Should().NotBeNull();
@@ -92,7 +92,7 @@
         [Fact]
         public async Task Test_UserCustomListsReorderPostArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
-            var traktJsonReader = new UserCustomListsReorderPostArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktUserCustomListsReorderPost>();
             IEnumerable<ITraktUserCustomListsReorderPost> traktUserCustomListsReorderPosts = await traktJsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
             traktUserCustomListsReorderPosts.Should().NotBeNull();
@@ -109,7 +109,7 @@
         [Fact]
         public async Task Test_UserCustomListsReorderPostArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
-            var traktJsonReader = new UserCustomListsReorderPostArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktUserCustomListsReorderPost>();
             IEnumerable<ITraktUserCustomListsReorderPost> traktUserCustomListsReorderPosts = await traktJsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
             traktUserCustomListsReorderPosts.Should().NotBeNull();
@@ -125,7 +125,7 @@
         [Fact]
         public async Task Test_UserCustomListsReorderPostArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var traktJsonReader = new UserCustomListsReorderPostArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktUserCustomListsReorderPost>();
             IEnumerable<ITraktUserCustomListsReorderPost> traktUserCustomListsReorderPosts = await traktJsonReader.ReadArrayAsync(default(string));
             traktUserCustomListsReorderPosts.Should().BeNull();
         }
@@ -133,7 +133,7 @@
         [Fact]
         public async Task Test_UserCustomListsReorderPostArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var traktJsonReader = new UserCustomListsReorderPostArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktUserCustomListsReorderPost>();
             IEnumerable<ITraktUserCustomListsReorderPost> traktUserCustomListsReorderPosts = await traktJsonReader.ReadArrayAsync(string.Empty);
             traktUserCustomListsReorderPosts.Should().BeNull();
         }

@@ -29,7 +29,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_HIDDEN_AT:
+                        case JsonProperties.PROPERTY_NAME_HIDDEN_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -38,16 +38,16 @@
 
                                 break;
                             }
-                        case JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_TYPE:
+                        case JsonProperties.PROPERTY_NAME_TYPE:
                             traktUserHiddenItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktHiddenItemType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktUserHiddenItem.Movie = await movieReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktUserHiddenItem.Show = await showReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_SEASON:
+                        case JsonProperties.PROPERTY_NAME_SEASON:
                             traktUserHiddenItem.Season = await seasonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

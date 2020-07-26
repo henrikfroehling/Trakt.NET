@@ -6,7 +6,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Post.Responses.Json.Reader;
+    using TraktNet.Objects.Json;
+    using TraktNet.Objects.Post.Responses;
     using Xunit;
 
     [Category("Objects.Post.Responses.JsonReader")]
@@ -15,7 +16,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
         {
-            var traktJsonReader = new PostResponseNotFoundPersonArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundPerson>();
 
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
@@ -28,7 +29,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Complete()
         {
-            var traktJsonReader = new PostResponseNotFoundPersonArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundPerson>();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -59,7 +60,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Not_Valid()
         {
-            var traktJsonReader = new PostResponseNotFoundPersonArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundPerson>();
 
             using (var reader = new StringReader(JSON_NOT_VALID))
             using (var jsonReader = new JsonTextReader(reader))
@@ -85,7 +86,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
-            var traktJsonReader = new PostResponseNotFoundPersonArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundPerson>();
 
             var notFoundPersons = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             notFoundPersons.Should().BeNull();
@@ -94,7 +95,7 @@
         [Fact]
         public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Empty()
         {
-            var traktJsonReader = new PostResponseNotFoundPersonArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundPerson>();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

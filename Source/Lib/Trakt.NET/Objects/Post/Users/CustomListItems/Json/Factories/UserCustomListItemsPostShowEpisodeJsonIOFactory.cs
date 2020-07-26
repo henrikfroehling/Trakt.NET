@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktUserCustomListItemsPostShowEpisode> CreateObjectReader() => new UserCustomListItemsPostShowEpisodeObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserCustomListItemsPostShowEpisode> CreateArrayReader() => new UserCustomListItemsPostShowEpisodeArrayJsonReader();
-
         public IObjectJsonWriter<ITraktUserCustomListItemsPostShowEpisode> CreateObjectWriter() => new UserCustomListItemsPostShowEpisodeObjectJsonWriter();
     }
 }

@@ -28,16 +28,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_SETTINGS_PROPERTY_NAME_USER:
+                        case JsonProperties.PROPERTY_NAME_USER:
                             traktUserSettings.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_SETTINGS_PROPERTY_NAME_ACCOUNT:
+                        case JsonProperties.PROPERTY_NAME_ACCOUNT:
                             traktUserSettings.Account = await accountSettingsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_SETTINGS_PROPERTY_NAME_CONNECTIONS:
+                        case JsonProperties.PROPERTY_NAME_CONNECTIONS:
                             traktUserSettings.Connections = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_SETTINGS_PROPERTY_NAME_SHARING_TEXT:
+                        case JsonProperties.PROPERTY_NAME_SHARING_TEXT:
                             traktUserSettings.SharingText = await sharingTextReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -22,19 +22,19 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             syncHistoryRemovePostResponseGroup.Movies = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             syncHistoryRemovePostResponseGroup.Shows = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             syncHistoryRemovePostResponseGroup.Seasons = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_GROUP_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             syncHistoryRemovePostResponseGroup.Episodes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_GROUP_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             syncHistoryRemovePostResponseGroup.HistoryIds = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

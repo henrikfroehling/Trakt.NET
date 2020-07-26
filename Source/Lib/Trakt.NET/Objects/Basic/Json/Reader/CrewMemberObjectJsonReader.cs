@@ -24,13 +24,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CREW_MEMBER_PROPERTY_NAME_JOB:
+                        case JsonProperties.PROPERTY_NAME_JOB:
                             traktCrewMember.Job = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CREW_MEMBER_PROPERTY_NAME_JOBS:
+                        case JsonProperties.PROPERTY_NAME_JOBS:
                             traktCrewMember.Jobs = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_MEMBER_PROPERTY_NAME_PERSON:
+                        case JsonProperties.PROPERTY_NAME_PERSON:
                             traktCrewMember.Person = await personReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

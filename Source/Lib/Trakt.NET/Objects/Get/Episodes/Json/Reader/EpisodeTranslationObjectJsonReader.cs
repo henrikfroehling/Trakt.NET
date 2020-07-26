@@ -22,13 +22,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.EPISODE_TRANSLATION_PROPERTY_NAME_TITLE:
+                        case JsonProperties.PROPERTY_NAME_TITLE:
                             traktEpisodeTranslation.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_TRANSLATION_PROPERTY_NAME_OVERVIEW:
+                        case JsonProperties.PROPERTY_NAME_OVERVIEW:
                             traktEpisodeTranslation.Overview = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_TRANSLATION_PROPERTY_NAME_LANGUAGE_CODE:
+                        case JsonProperties.PROPERTY_NAME_LANGUAGE:
                             traktEpisodeTranslation.LanguageCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

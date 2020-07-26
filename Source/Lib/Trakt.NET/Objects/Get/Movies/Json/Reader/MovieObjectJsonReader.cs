@@ -23,22 +23,22 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOVIE_PROPERTY_NAME_TITLE:
+                        case JsonProperties.PROPERTY_NAME_TITLE:
                             traktMovie.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_YEAR:
+                        case JsonProperties.PROPERTY_NAME_YEAR:
                             traktMovie.Year = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             traktMovie.Ids = await idsObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_TAGLINE:
+                        case JsonProperties.PROPERTY_NAME_TAGLINE:
                             traktMovie.Tagline = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_OVERVIEW:
+                        case JsonProperties.PROPERTY_NAME_OVERVIEW:
                             traktMovie.Overview = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_RELEASED:
+                        case JsonProperties.PROPERTY_NAME_RELEASED:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -47,22 +47,22 @@
 
                                 break;
                             }
-                        case JsonProperties.MOVIE_PROPERTY_NAME_RUNTIME:
+                        case JsonProperties.PROPERTY_NAME_RUNTIME:
                             traktMovie.Runtime = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_TRAILER:
+                        case JsonProperties.PROPERTY_NAME_TRAILER:
                             traktMovie.Trailer = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_HOMEPAGE:
+                        case JsonProperties.PROPERTY_NAME_HOMEPAGE:
                             traktMovie.Homepage = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_RATING:
+                        case JsonProperties.PROPERTY_NAME_RATING:
                             traktMovie.Rating = (float?)await jsonReader.ReadAsDoubleAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_VOTES:
+                        case JsonProperties.PROPERTY_NAME_VOTES:
                             traktMovie.Votes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -71,22 +71,22 @@
 
                                 break;
                             }
-                        case JsonProperties.MOVIE_PROPERTY_NAME_LANGUAGE:
+                        case JsonProperties.PROPERTY_NAME_LANGUAGE:
                             traktMovie.LanguageCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_AVAILABLE_TRANSLATIONS:
+                        case JsonProperties.PROPERTY_NAME_AVAILABLE_TRANSLATIONS:
                             traktMovie.AvailableTranslationLanguageCodes = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_GENRES:
+                        case JsonProperties.PROPERTY_NAME_GENRES:
                             traktMovie.Genres = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_CERTIFICATION:
+                        case JsonProperties.PROPERTY_NAME_CERTIFICATION:
                             traktMovie.Certification = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_COUNTRY:
+                        case JsonProperties.PROPERTY_NAME_COUNTRY:
                             traktMovie.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_PROPERTY_NAME_COMMENT_COUNT:
+                        case JsonProperties.PROPERTY_NAME_COMMENT_COUNT:
                             traktMovie.CommentCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

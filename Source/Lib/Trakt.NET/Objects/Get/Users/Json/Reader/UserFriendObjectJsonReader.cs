@@ -23,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_FRIEND_PROPERTY_NAME_FRIENDS_AT:
+                        case JsonProperties.PROPERTY_NAME_FRIENDS_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -32,7 +32,7 @@
 
                                 break;
                             }
-                        case JsonProperties.USER_FRIEND_PROPERTY_NAME_USER:
+                        case JsonProperties.PROPERTY_NAME_USER:
                             traktUserFriend.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

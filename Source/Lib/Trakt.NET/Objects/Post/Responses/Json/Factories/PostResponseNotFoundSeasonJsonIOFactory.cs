@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktPostResponseNotFoundSeason> CreateObjectReader() => new PostResponseNotFoundSeasonObjectJsonReader();
 
-        public IArrayJsonReader<ITraktPostResponseNotFoundSeason> CreateArrayReader() => new PostResponseNotFoundSeasonArrayJsonReader();
-
         public IObjectJsonWriter<ITraktPostResponseNotFoundSeason> CreateObjectWriter() => new PostResponseNotFoundSeasonObjectJsonWriter();
     }
 }

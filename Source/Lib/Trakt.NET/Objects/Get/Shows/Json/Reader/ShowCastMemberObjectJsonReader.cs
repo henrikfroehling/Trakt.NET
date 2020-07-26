@@ -24,13 +24,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CAST_MEMBER_PROPERTY_NAME_CHARACTER:
+                        case JsonProperties.PROPERTY_NAME_CHARACTER:
                             traktShowCastMember.Character = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CAST_MEMBER_PROPERTY_NAME_CHARACTERS:
+                        case JsonProperties.PROPERTY_NAME_CHARACTERS:
                             traktShowCastMember.Characters = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SHOW_CAST_MEMBER_PROPERTY_NAME_EPISODE_COUNT:
+                        case JsonProperties.PROPERTY_NAME_EPISODE_COUNT:
                             {
                                 var value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -39,7 +39,7 @@
 
                                 break;
                             }
-                        case JsonProperties.CAST_MEMBER_PROPERTY_NAME_PERSON:
+                        case JsonProperties.PROPERTY_NAME_PERSON:
                             traktShowCastMember.Person = await personReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

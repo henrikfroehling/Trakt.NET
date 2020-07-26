@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktCalendarShow> CreateObjectReader() => new CalendarShowObjectJsonReader();
 
-        public IArrayJsonReader<ITraktCalendarShow> CreateArrayReader() => new CalendarShowArrayJsonReader();
-
         public IObjectJsonWriter<ITraktCalendarShow> CreateObjectWriter() => new CalendarShowObjectJsonWriter();
     }
 }

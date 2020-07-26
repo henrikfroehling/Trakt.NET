@@ -22,13 +22,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CERTIFICATION_PROPERTY_NAME_NAME:
+                        case JsonProperties.PROPERTY_NAME_NAME:
                             traktCertification.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CERTIFICATION_PROPERTY_NAME_SLUG:
+                        case JsonProperties.PROPERTY_NAME_SLUG:
                             traktCertification.Slug = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.CERTIFICATION_PROPERTY_NAME_DESCRIPTION:
+                        case JsonProperties.PROPERTY_NAME_DESCRIPTION:
                             traktCertification.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

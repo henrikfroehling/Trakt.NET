@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktCountry> CreateObjectReader() => new CountryObjectJsonReader();
 
-        public IArrayJsonReader<ITraktCountry> CreateArrayReader() => new CountryArrayJsonReader();
-
         public IObjectJsonWriter<ITraktCountry> CreateObjectWriter() => new CountryObjectJsonWriter();
     }
 }
