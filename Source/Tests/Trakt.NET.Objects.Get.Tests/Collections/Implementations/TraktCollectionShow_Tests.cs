@@ -19,6 +19,7 @@
             var collectionShow = new TraktCollectionShow();
 
             collectionShow.LastCollectedAt.Should().NotHaveValue();
+            collectionShow.LastUpdatedAt.Should().NotHaveValue();
             collectionShow.Show.Should().BeNull();
             collectionShow.CollectionSeasons.Should().BeNull();
 
@@ -53,6 +54,7 @@
 
             collectionShow.Should().NotBeNull();
             collectionShow.LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+            collectionShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
             collectionShow.Show.Should().NotBeNull();
             collectionShow.Show.Title.Should().Be("Game of Thrones");
@@ -182,6 +184,7 @@
 
             collectionShow.Should().NotBeNull();
             collectionShow.LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+            collectionShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
             collectionShow.Show.Should().NotBeNull();
             collectionShow.Show.Title.Should().Be("Game of Thrones");
@@ -312,6 +315,7 @@
         private const string MINIMAL_JSON =
             @"{
                 ""last_collected_at"": ""2014-07-14T01:00:00.000Z"",
+                ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
@@ -385,6 +389,7 @@
         private const string FULL_JSON =
             @"{
                 ""last_collected_at"": ""2014-07-14T01:00:00.000Z"",
+                ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,

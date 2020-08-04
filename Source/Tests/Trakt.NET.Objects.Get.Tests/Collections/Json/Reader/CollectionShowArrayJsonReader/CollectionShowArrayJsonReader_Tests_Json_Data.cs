@@ -8,6 +8,7 @@
             @"[
                 {
                   ""last_collected_at"": ""2014-07-14T01:00:00.000Z"",
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -79,6 +80,7 @@
                 },
                 {
                   ""last_collected_at"": ""2014-07-14T01:00:00.000Z"",
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -154,6 +156,7 @@
             @"[
                 {
                   ""last_collected_at"": ""2014-07-14T01:00:00.000Z"",
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -224,6 +227,7 @@
                   ]
                 },
                 {
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -298,6 +302,7 @@
         private const string JSON_INCOMPLETE_2 =
             @"[
                 {
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -369,6 +374,7 @@
                 },
                 {
                   ""last_collected_at"": ""2014-07-14T01:00:00.000Z"",
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -444,6 +450,7 @@
             @"[
                 {
                   ""last_collected_at"": ""2014-07-14T01:00:00.000Z"",
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -515,6 +522,7 @@
                 },
                 {
                   ""lca"": ""2014-07-14T01:00:00.000Z"",
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -590,6 +598,7 @@
             @"[
                 {
                   ""lca"": ""2014-07-14T01:00:00.000Z"",
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -661,6 +670,7 @@
                 },
                 {
                   ""last_collected_at"": ""2014-07-14T01:00:00.000Z"",
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -736,6 +746,7 @@
             @"[
                 {
                   ""lca"": ""2014-07-14T01:00:00.000Z"",
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -807,6 +818,7 @@
                 },
                 {
                   ""lca"": ""2014-07-14T01:00:00.000Z"",
+                  ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,

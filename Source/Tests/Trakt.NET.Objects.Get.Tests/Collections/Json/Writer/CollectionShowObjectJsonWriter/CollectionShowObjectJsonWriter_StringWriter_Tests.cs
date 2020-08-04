@@ -43,6 +43,22 @@
         }
 
         [Fact]
+        public async Task Test_CollectionShowObjectJsonWriter_WriteObject_StringWriter_Only_LastUpdatedAt_Property()
+        {
+            ITraktCollectionShow traktCollectionShow = new TraktCollectionShow
+            {
+                LastUpdatedAt = LAST_UPDATED_AT
+            };
+
+            using (var stringWriter = new StringWriter())
+            {
+                var traktJsonWriter = new CollectionShowObjectJsonWriter();
+                string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktCollectionShow);
+                json.Should().Be($"{{\"last_updated_at\":\"{LAST_UPDATED_AT.ToTraktLongDateTimeString()}\"}}");
+            }
+        }
+
+        [Fact]
         public async Task Test_CollectionShowObjectJsonWriter_WriteObject_StringWriter_Only_Show_Property()
         {
             ITraktCollectionShow traktCollectionShow = new TraktCollectionShow
@@ -179,6 +195,7 @@
             ITraktCollectionShow traktCollectionShow = new TraktCollectionShow
             {
                 LastCollectedAt = LAST_COLLECTED_AT,
+                LastUpdatedAt = LAST_UPDATED_AT,
                 Show = new TraktShow
                 {
                     Title = "Game of Thrones",
@@ -269,6 +286,7 @@
                 var traktJsonWriter = new CollectionShowObjectJsonWriter();
                 string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktCollectionShow);
                 json.Should().Be($"{{\"last_collected_at\":\"{LAST_COLLECTED_AT.ToTraktLongDateTimeString()}\"," +
+                                 $"\"last_updated_at\":\"{LAST_UPDATED_AT.ToTraktLongDateTimeString()}\"," +
                                  @"""show"":{""title"":""Game of Thrones"",""year"":2011," +
                                  @"""ids"":{""trakt"":1390,""slug"":""game-of-thrones""," +
                                  @"""tvdb"":121361,""imdb"":""tt0944947""," +

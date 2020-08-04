@@ -43,6 +43,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -120,6 +121,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
@@ -210,6 +212,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -287,6 +290,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().BeNull();
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
@@ -377,6 +381,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().BeNull();
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -454,6 +459,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
@@ -544,6 +550,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -621,6 +628,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().BeNull();
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
@@ -711,6 +719,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().BeNull();
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -788,6 +797,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
@@ -878,6 +888,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().BeNull();
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -955,6 +966,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().BeNull();
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
