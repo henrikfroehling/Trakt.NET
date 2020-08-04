@@ -35,6 +35,15 @@
 
                                 break;
                             }
+                        case JsonProperties.PROPERTY_NAME_LAST_UPDATED_AT:
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktCollectionShow.LastUpdatedAt = value.Second;
+
+                                break;
+                            }
                         case JsonProperties.PROPERTY_NAME_SHOW:
                             traktCollectionShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;

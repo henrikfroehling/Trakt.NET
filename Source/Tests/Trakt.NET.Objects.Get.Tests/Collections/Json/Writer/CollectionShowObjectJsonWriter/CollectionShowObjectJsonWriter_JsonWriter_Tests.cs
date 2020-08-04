@@ -19,6 +19,7 @@
     public partial class CollectionShowObjectJsonWriter_Tests
     {
         private readonly DateTime LAST_COLLECTED_AT = DateTime.UtcNow;
+        private readonly DateTime LAST_UPDATED_AT = DateTime.UtcNow;
         private readonly DateTime COLLECTED_AT = DateTime.UtcNow;
 
         [Fact]
@@ -44,6 +45,23 @@
                 var traktJsonWriter = new CollectionShowObjectJsonWriter();
                 await traktJsonWriter.WriteObjectAsync(jsonWriter, traktCollectionShow);
                 stringWriter.ToString().Should().Be($"{{\"last_collected_at\":\"{LAST_COLLECTED_AT.ToTraktLongDateTimeString()}\"}}");
+            }
+        }
+
+        [Fact]
+        public async Task Test_CollectionShowObjectJsonWriter_WriteObject_JsonWriter_Only_LastUpdatedAt_Property()
+        {
+            ITraktCollectionShow traktCollectionShow = new TraktCollectionShow
+            {
+                LastUpdatedAt = LAST_UPDATED_AT
+            };
+
+            using (var stringWriter = new StringWriter())
+            using (var jsonWriter = new JsonTextWriter(stringWriter))
+            {
+                var traktJsonWriter = new CollectionShowObjectJsonWriter();
+                await traktJsonWriter.WriteObjectAsync(jsonWriter, traktCollectionShow);
+                stringWriter.ToString().Should().Be($"{{\"last_updated_at\":\"{LAST_UPDATED_AT.ToTraktLongDateTimeString()}\"}}");
             }
         }
 
@@ -186,6 +204,7 @@
             ITraktCollectionShow traktCollectionShow = new TraktCollectionShow
             {
                 LastCollectedAt = LAST_COLLECTED_AT,
+                LastUpdatedAt = LAST_UPDATED_AT,
                 Show = new TraktShow
                 {
                     Title = "Game of Thrones",
@@ -277,6 +296,7 @@
                 var traktJsonWriter = new CollectionShowObjectJsonWriter();
                 await traktJsonWriter.WriteObjectAsync(jsonWriter, traktCollectionShow);
                 stringWriter.ToString().Should().Be($"{{\"last_collected_at\":\"{LAST_COLLECTED_AT.ToTraktLongDateTimeString()}\"," +
+                                                    $"\"last_updated_at\":\"{LAST_UPDATED_AT.ToTraktLongDateTimeString()}\"," +
                                                     @"""show"":{""title"":""Game of Thrones"",""year"":2011," +
                                                     @"""ids"":{""trakt"":1390,""slug"":""game-of-thrones""," +
                                                     @"""tvdb"":121361,""imdb"":""tt0944947""," +

@@ -10,6 +10,9 @@
         /// <summary>Gets or sets the UTC datetime, when the last episode was collected in the show.</summary>
         DateTime? LastCollectedAt { get; set; }
 
+        /// <summary>Gets or sets the UTC datetime, when the show was last updated.</summary>
+        DateTime? LastUpdatedAt { get; set; }
+
         /// <summary>
         /// Gets or sets the collected Trakt show. See also <seealso cref="ITraktShow" />.
         /// <para>Nullable</para>
