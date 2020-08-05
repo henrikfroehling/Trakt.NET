@@ -25,6 +25,9 @@
                         case JsonProperties.PROPERTY_NAME_SLUG:
                             traktUserIds.Slug = jsonReader.ReadAsString();
                             break;
+                        case JsonProperties.PROPERTY_NAME_UUID:
+                            traktUserIds.UUID = jsonReader.ReadAsString();
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
