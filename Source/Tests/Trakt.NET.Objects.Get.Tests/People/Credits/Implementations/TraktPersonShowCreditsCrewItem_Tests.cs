@@ -15,7 +15,6 @@
         {
             var creditsCrewItem = new TraktPersonShowCreditsCrewItem();
 
-            creditsCrewItem.Job.Should().BeNullOrEmpty();
             creditsCrewItem.Jobs.Should().BeNullOrEmpty();
             creditsCrewItem.Show.Should().BeNull();
         }
@@ -27,7 +26,6 @@
             var creditsCrewItem = await jsonReader.ReadObjectAsync(JSON) as TraktPersonShowCreditsCrewItem;
 
             creditsCrewItem.Should().NotBeNull();
-            creditsCrewItem.Job.Should().Be("Director");
             creditsCrewItem.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             creditsCrewItem.Show.Should().NotBeNull();
             creditsCrewItem.Show.Title.Should().Be("Game of Thrones");
@@ -61,7 +59,6 @@
 
         private const string JSON =
             @"{
-                ""job"": ""Director"",
                 ""jobs"": [
                   ""Director""
                 ],

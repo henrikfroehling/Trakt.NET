@@ -33,7 +33,7 @@
 
             ITraktPersonMovieCreditsCastItem[] cast = responseValue.Cast.ToArray();
 
-            cast[0].Character.Should().Be("Li (voice)");
+            cast[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Li (voice)");
             cast[0].Movie.Should().NotBeNull();
             cast[0].Movie.Title.Should().Be("Kung Fu Panda 3");
             cast[0].Movie.Year.Should().Be(2016);
@@ -43,7 +43,7 @@
             cast[0].Movie.Ids.Imdb.Should().Be("tt2267968");
             cast[0].Movie.Ids.Tmdb.Should().Be(140300U);
 
-            cast[1].Character.Should().Be("Joe Brody");
+            cast[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             cast[1].Movie.Should().NotBeNull();
             cast[1].Movie.Title.Should().Be("Godzilla");
             cast[1].Movie.Year.Should().Be(2014);
@@ -62,7 +62,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] directing = responseValue.Crew.Directing.ToArray();
 
-            directing[0].Job.Should().Be("Director");
+            directing[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directing[0].Movie.Should().NotBeNull();
             directing[0].Movie.Title.Should().Be("Godzilla");
             directing[0].Movie.Year.Should().Be(2014);
@@ -78,7 +78,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] production = responseValue.Crew.Production.ToArray();
 
-            production[0].Job.Should().Be("Producer");
+            production[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             production[0].Movie.Should().NotBeNull();
             production[0].Movie.Title.Should().Be("Godzilla");
             production[0].Movie.Year.Should().Be(2014);
@@ -94,7 +94,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] writing = responseValue.Crew.Writing.ToArray();
 
-            writing[0].Job.Should().Be("Screenplay");
+            writing[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Screenplay");
             writing[0].Movie.Should().NotBeNull();
             writing[0].Movie.Title.Should().Be("Godzilla");
             writing[0].Movie.Year.Should().Be(2014);
@@ -121,7 +121,7 @@
 
             ITraktPersonMovieCreditsCastItem[] cast = responseValue.Cast.ToArray();
 
-            cast[0].Character.Should().Be("Li (voice)");
+            cast[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Li (voice)");
             cast[0].Movie.Should().NotBeNull();
             cast[0].Movie.Title.Should().Be("Kung Fu Panda 3");
             cast[0].Movie.Year.Should().Be(2016);
@@ -131,7 +131,7 @@
             cast[0].Movie.Ids.Imdb.Should().Be("tt2267968");
             cast[0].Movie.Ids.Tmdb.Should().Be(140300U);
 
-            cast[1].Character.Should().Be("Joe Brody");
+            cast[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             cast[1].Movie.Should().NotBeNull();
             cast[1].Movie.Title.Should().Be("Godzilla");
             cast[1].Movie.Year.Should().Be(2014);
@@ -150,7 +150,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] directing = responseValue.Crew.Directing.ToArray();
 
-            directing[0].Job.Should().Be("Director");
+            directing[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directing[0].Movie.Should().NotBeNull();
             directing[0].Movie.Title.Should().Be("Godzilla");
             directing[0].Movie.Year.Should().Be(2014);
@@ -166,7 +166,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] production = responseValue.Crew.Production.ToArray();
 
-            production[0].Job.Should().Be("Producer");
+            production[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             production[0].Movie.Should().NotBeNull();
             production[0].Movie.Title.Should().Be("Godzilla");
             production[0].Movie.Year.Should().Be(2014);
@@ -182,7 +182,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] writing = responseValue.Crew.Writing.ToArray();
 
-            writing[0].Job.Should().Be("Screenplay");
+            writing[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Screenplay");
             writing[0].Movie.Should().NotBeNull();
             writing[0].Movie.Title.Should().Be("Godzilla");
             writing[0].Movie.Year.Should().Be(2014);

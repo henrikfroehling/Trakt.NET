@@ -31,19 +31,6 @@
         }
 
         [Fact]
-        public async Task Test_CastMemberObjectJsonWriter_WriteObject_Object_Only_Character_Property()
-        {
-            ITraktCastMember traktCastMember = new TraktCastMember
-            {
-                Character = "Character"
-            };
-
-            var traktJsonWriter = new CastMemberObjectJsonWriter();
-            string json = await traktJsonWriter.WriteObjectAsync(traktCastMember);
-            json.Should().Be(@"{""character"":""Character""}");
-        }
-
-        [Fact]
         public async Task Test_CastMemberObjectJsonWriter_WriteObject_Object_Only_Characters_Property()
         {
             ITraktCastMember traktCastMember = new TraktCastMember
@@ -84,7 +71,6 @@
         {
             ITraktCastMember traktCastMember = new TraktCastMember
             {
-                Character = "Character",
                 Characters = new List<string>
                 {
                     "Character"
@@ -101,7 +87,7 @@
 
             var traktJsonWriter = new CastMemberObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktCastMember);
-            json.Should().Be(@"{""character"":""Character"",""characters"":[""Character""],""person"":{""name"":""Person"",""ids"":{""trakt"":0,""slug"":""person""}}}");
+            json.Should().Be(@"{""characters"":[""Character""],""person"":{""name"":""Person"",""ids"":{""trakt"":0,""slug"":""person""}}}");
         }
     }
 }

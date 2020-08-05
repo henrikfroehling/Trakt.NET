@@ -7,7 +7,6 @@
         private const string JSON_COMPLETE =
             @"[
                 {
-                  ""job"": ""Director"",
                   ""jobs"": [
                     ""Director""
                   ],
@@ -23,7 +22,6 @@
                   }
                 },
                 {
-                  ""job"": ""Director"",
                   ""jobs"": [
                     ""Director""
                   ],
@@ -55,7 +53,6 @@
                   }
                 },
                 {
-                  ""job"": ""Director"",
                   ""jobs"": [
                     ""Director""
                   ],
@@ -75,7 +72,6 @@
         private const string JSON_INCOMPLETE_2 =
             @"[
                 {
-                  ""job"": ""Director"",
                   ""jobs"": [
                     ""Director""
                   ],
@@ -91,7 +87,6 @@
                   }
                 },
                 {
-                  ""job"": ""Director"",
                   ""jobs"": [
                     ""Director""
                   ]
@@ -117,7 +112,6 @@
                   }
                 },
                 {
-                  ""job"": ""Director"",
                   ""jobs"": [
                     ""Director""
                   ],
@@ -137,7 +131,6 @@
         private const string JSON_NOT_VALID_2 =
             @"[
                 {
-                  ""job"": ""Director"",
                   ""jobs"": [
                     ""Director""
                   ],
@@ -153,7 +146,6 @@
                   }
                 },
                 {
-                  ""job"": ""Director"",
                   ""jobs"": [
                     ""Director""
                   ],
@@ -189,7 +181,6 @@
                   }
                 },
                 {
-                  ""job"": ""Director"",
                   ""jobs"": [
                     ""Director""
                   ],

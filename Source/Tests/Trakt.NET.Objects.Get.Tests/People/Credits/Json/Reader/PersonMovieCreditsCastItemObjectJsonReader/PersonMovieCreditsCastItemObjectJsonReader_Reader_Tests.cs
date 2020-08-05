@@ -22,7 +22,7 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().Be("Joe Brody");
+                movieCreditsCastItem.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 movieCreditsCastItem.Movie.Should().NotBeNull();
                 movieCreditsCastItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 movieCreditsCastItem.Movie.Year.Should().Be(2015);
@@ -45,7 +45,7 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().BeNull();
+                movieCreditsCastItem.Characters.Should().BeNull();
                 movieCreditsCastItem.Movie.Should().NotBeNull();
                 movieCreditsCastItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 movieCreditsCastItem.Movie.Year.Should().Be(2015);
@@ -68,7 +68,7 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().Be("Joe Brody");
+                movieCreditsCastItem.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 movieCreditsCastItem.Movie.Should().BeNull();
             }
         }
@@ -84,7 +84,7 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().BeNull();
+                movieCreditsCastItem.Characters.Should().BeNull();
                 movieCreditsCastItem.Movie.Should().NotBeNull();
                 movieCreditsCastItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 movieCreditsCastItem.Movie.Year.Should().Be(2015);
@@ -107,7 +107,7 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().Be("Joe Brody");
+                movieCreditsCastItem.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 movieCreditsCastItem.Movie.Should().BeNull();
             }
         }
@@ -123,7 +123,7 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().BeNull();
+                movieCreditsCastItem.Characters.Should().BeNull();
                 movieCreditsCastItem.Movie.Should().BeNull();
             }
         }

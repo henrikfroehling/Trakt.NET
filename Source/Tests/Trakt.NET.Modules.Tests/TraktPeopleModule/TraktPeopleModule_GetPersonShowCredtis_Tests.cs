@@ -33,7 +33,7 @@
 
             ITraktPersonShowCreditsCastItem[] cast = responseValue.Cast.ToArray();
 
-            cast[0].Character.Should().Be("Walter White");
+            cast[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Walter White");
             cast[0].Show.Should().NotBeNull();
             cast[0].Show.Title.Should().Be("Breaking Bad");
             cast[0].Show.Year.Should().Be(2008);
@@ -45,7 +45,7 @@
             cast[0].Show.Ids.Tmdb.Should().Be(1396U);
             cast[0].Show.Ids.TvRage.Should().Be(18164U);
 
-            cast[1].Character.Should().Be("Hal");
+            cast[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Hal");
             cast[1].Show.Should().NotBeNull();
             cast[1].Show.Title.Should().Be("Malcolm in the Middle");
             cast[1].Show.Year.Should().Be(2000);
@@ -69,7 +69,7 @@
 
             ITraktPersonShowCreditsCrewItem[] production = responseValue.Crew.Production.ToArray();
 
-            production[0].Job.Should().Be("Producer");
+            production[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             production[0].Show.Should().NotBeNull();
             production[0].Show.Title.Should().Be("Breaking Bad");
             production[0].Show.Year.Should().Be(2008);
@@ -102,7 +102,7 @@
 
             ITraktPersonShowCreditsCastItem[] cast = responseValue.Cast.ToArray();
 
-            cast[0].Character.Should().Be("Walter White");
+            cast[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Walter White");
             cast[0].Show.Should().NotBeNull();
             cast[0].Show.Title.Should().Be("Breaking Bad");
             cast[0].Show.Year.Should().Be(2008);
@@ -114,7 +114,7 @@
             cast[0].Show.Ids.Tmdb.Should().Be(1396U);
             cast[0].Show.Ids.TvRage.Should().Be(18164U);
 
-            cast[1].Character.Should().Be("Hal");
+            cast[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Hal");
             cast[1].Show.Should().NotBeNull();
             cast[1].Show.Title.Should().Be("Malcolm in the Middle");
             cast[1].Show.Year.Should().Be(2000);
@@ -138,7 +138,7 @@
 
             ITraktPersonShowCreditsCrewItem[] production = responseValue.Crew.Production.ToArray();
 
-            production[0].Job.Should().Be("Producer");
+            production[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             production[0].Show.Should().NotBeNull();
             production[0].Show.Title.Should().Be("Breaking Bad");
             production[0].Show.Year.Should().Be(2008);

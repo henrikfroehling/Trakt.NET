@@ -37,7 +37,6 @@
                 var items = traktCrewMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Job.Should().Be("Director");
                 items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -49,7 +48,6 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Job.Should().Be("Director");
                 items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 items[1].Person.Should().NotBeNull();
                 items[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -75,7 +73,6 @@
                 var items = traktCrewMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Job.Should().BeNull();
                 items[0].Jobs.Should().BeNull();
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -87,7 +84,6 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Job.Should().Be("Director");
                 items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 items[1].Person.Should().NotBeNull();
                 items[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -113,7 +109,6 @@
                 var items = traktCrewMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Job.Should().Be("Director");
                 items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -125,7 +120,6 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Job.Should().Be("Director");
                 items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 items[1].Person.Should().BeNull();
             }
@@ -144,7 +138,6 @@
                 var items = traktCrewMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Job.Should().BeNull();
                 items[0].Jobs.Should().BeNull();
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -156,7 +149,6 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Job.Should().Be("Director");
                 items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 items[1].Person.Should().NotBeNull();
                 items[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -182,7 +174,6 @@
                 var items = traktCrewMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Job.Should().Be("Director");
                 items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -194,7 +185,6 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Job.Should().Be("Director");
                 items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 items[1].Person.Should().BeNull();
             }
@@ -213,7 +203,6 @@
                 var items = traktCrewMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Job.Should().BeNull();
                 items[0].Jobs.Should().BeNull();
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -225,7 +214,6 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Job.Should().Be("Director");
                 items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 items[1].Person.Should().BeNull();
             }

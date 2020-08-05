@@ -31,7 +31,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
+            items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -42,7 +42,7 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().NotBeNull();
             items[1].Movie.Title.Should().Be("TRON: Legacy");
             items[1].Movie.Year.Should().Be(2010);
@@ -64,7 +64,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
+            items[0].Jobs.Should().BeNull();
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -75,7 +75,7 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().NotBeNull();
             items[1].Movie.Title.Should().Be("TRON: Legacy");
             items[1].Movie.Year.Should().Be(2010);
@@ -97,7 +97,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
+            items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -108,7 +108,7 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().BeNull();
         }
 
@@ -123,7 +123,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
+            items[0].Jobs.Should().BeNull();
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -134,7 +134,7 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().NotBeNull();
             items[1].Movie.Title.Should().Be("TRON: Legacy");
             items[1].Movie.Year.Should().Be(2010);
@@ -156,7 +156,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
+            items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -167,7 +167,7 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().BeNull();
         }
 
@@ -182,7 +182,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
+            items[0].Jobs.Should().BeNull();
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -193,7 +193,7 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().BeNull();
         }
 

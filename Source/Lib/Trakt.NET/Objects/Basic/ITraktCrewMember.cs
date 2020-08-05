@@ -6,9 +6,6 @@
     /// <summary>A Trakt crew member.</summary>
     public interface ITraktCrewMember
     {
-        /// <summary>Gets or sets the job name of the crew member.<para>Nullable</para></summary>
-        string Job { get; set; }
-
         /// <summary>Gets or sets the jobs collection of the crew member.<para>Nullable</para></summary>
         IEnumerable<string> Jobs { get; set; }
 

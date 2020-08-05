@@ -40,7 +40,6 @@
                 ITraktCastMember[] castMemberItems = items[0].Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
-                castMemberItems[0].Character.Should().Be("Joe Brody");
                 castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 castMemberItems[0].Person.Should().NotBeNull();
                 castMemberItems[0].Person.Name.Should().Be("Bryan Cranston");
@@ -56,7 +55,6 @@
                 castMemberItems = items[1].Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
-                castMemberItems[0].Character.Should().Be("Joe Brody");
                 castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 castMemberItems[0].Person.Should().NotBeNull();
                 castMemberItems[0].Person.Name.Should().Be("Bryan Cranston");
@@ -85,7 +83,6 @@
                 ITraktCastMember[] castMemberItems = items[0].Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
-                castMemberItems[0].Character.Should().Be("Joe Brody");
                 castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 castMemberItems[0].Person.Should().NotBeNull();
                 castMemberItems[0].Person.Name.Should().Be("Bryan Cranston");
@@ -101,7 +98,6 @@
                 castMemberItems = items[1].Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
-                castMemberItems[0].Character.Should().Be("Joe Brody");
                 castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 castMemberItems[0].Person.Should().BeNull();
 
@@ -123,7 +119,6 @@
                 ITraktCastMember[] castMemberItems = items[0].Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
-                castMemberItems[0].Character.Should().Be("Joe Brody");
                 castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 castMemberItems[0].Person.Should().BeNull();
 
@@ -132,7 +127,6 @@
                 castMemberItems = items[1].Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
-                castMemberItems[0].Character.Should().Be("Joe Brody");
                 castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 castMemberItems[0].Person.Should().NotBeNull();
                 castMemberItems[0].Person.Name.Should().Be("Bryan Cranston");
@@ -165,7 +159,6 @@
                 ITraktCastMember[] castMemberItems = items[1].Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
-                castMemberItems[0].Character.Should().Be("Joe Brody");
                 castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 castMemberItems[0].Person.Should().NotBeNull();
                 castMemberItems[0].Person.Name.Should().Be("Bryan Cranston");
@@ -194,7 +187,6 @@
                 ITraktCastMember[] castMemberItems = items[0].Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
-                castMemberItems[0].Character.Should().Be("Joe Brody");
                 castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 castMemberItems[0].Person.Should().NotBeNull();
                 castMemberItems[0].Person.Name.Should().Be("Bryan Cranston");

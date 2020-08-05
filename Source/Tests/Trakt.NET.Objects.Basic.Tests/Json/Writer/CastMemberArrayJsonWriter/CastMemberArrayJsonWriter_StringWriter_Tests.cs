@@ -43,7 +43,6 @@
             {
                 new TraktCastMember
                 {
-                    Character = "Character 1",
                     Characters = new List<string>
                     {
                         "Character 1"
@@ -63,7 +62,7 @@
             {
                 var traktJsonWriter = new ArrayJsonWriter<ITraktCastMember>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktCastMembers);
-                json.Should().Be(@"[{""character"":""Character 1"",""characters"":[""Character 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}]");
+                json.Should().Be(@"[{""characters"":[""Character 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}]");
             }
         }
 
@@ -74,7 +73,6 @@
             {
                 new TraktCastMember
                 {
-                    Character = "Character 1",
                     Characters = new List<string>
                     {
                         "Character 1"
@@ -90,7 +88,6 @@
                 },
                 new TraktCastMember
                 {
-                    Character = "Character 2",
                     Characters = new List<string>
                     {
                         "Character 2"
@@ -110,8 +107,8 @@
             {
                 var traktJsonWriter = new ArrayJsonWriter<ITraktCastMember>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktCastMembers);
-                json.Should().Be(@"[{""character"":""Character 1"",""characters"":[""Character 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}," +
-                                 @"{""character"":""Character 2"",""characters"":[""Character 2""],""person"":{""name"":""Person 2"",""ids"":{""trakt"":0,""slug"":""person-2""}}}]");
+                json.Should().Be(@"[{""characters"":[""Character 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}," +
+                                 @"{""characters"":[""Character 2""],""person"":{""name"":""Person 2"",""ids"":{""trakt"":0,""slug"":""person-2""}}}]");
             }
         }
     }

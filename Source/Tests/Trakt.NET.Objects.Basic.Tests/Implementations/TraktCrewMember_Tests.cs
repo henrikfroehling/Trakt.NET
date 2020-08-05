@@ -15,7 +15,6 @@
         {
             var traktCrewMember = new TraktCrewMember();
 
-            traktCrewMember.Job.Should().BeNull();
             traktCrewMember.Jobs.Should().BeNull();
             traktCrewMember.Person.Should().BeNull();
         }
@@ -27,7 +26,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON) as TraktCrewMember;
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().Be("Director");
             traktCrewMember.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             traktCrewMember.Person.Should().NotBeNull();
             traktCrewMember.Person.Name.Should().Be("Bryan Cranston");
@@ -41,7 +39,6 @@
 
         private const string JSON =
             @"{
-                ""job"": ""Director"",
                 ""jobs"": [
                   ""Director""
                 ],

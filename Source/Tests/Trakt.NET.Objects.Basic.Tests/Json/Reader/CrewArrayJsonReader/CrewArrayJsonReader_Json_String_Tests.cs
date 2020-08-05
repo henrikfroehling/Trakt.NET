@@ -33,7 +33,6 @@
             ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
             productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Person.Should().NotBeNull();
             productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -59,7 +58,6 @@
             productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
             productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Person.Should().NotBeNull();
             productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -95,7 +93,6 @@
             ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
             productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Person.Should().NotBeNull();
             productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -121,7 +118,6 @@
             productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
             productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Person.Should().BeNull();
 
@@ -150,7 +146,6 @@
             ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
             productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Person.Should().BeNull();
 
@@ -169,7 +164,6 @@
             productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
             productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Person.Should().NotBeNull();
             productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -205,7 +199,6 @@
             ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().BeNull();
             productionCrew[0].Jobs.Should().BeNull();
             productionCrew[0].Person.Should().NotBeNull();
             productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -231,7 +224,6 @@
             productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
             productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Person.Should().NotBeNull();
             productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -267,7 +259,6 @@
             ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
             productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Person.Should().NotBeNull();
             productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -293,7 +284,6 @@
             productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().BeNull();
             productionCrew[0].Jobs.Should().BeNull();
             productionCrew[0].Person.Should().NotBeNull();
             productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -329,7 +319,6 @@
             ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().BeNull();
             productionCrew[0].Jobs.Should().BeNull();
             productionCrew[0].Person.Should().NotBeNull();
             productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -355,7 +344,6 @@
             productionCrew = crews[1].Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().BeNull();
             productionCrew[0].Jobs.Should().BeNull();
             productionCrew[0].Person.Should().NotBeNull();
             productionCrew[0].Person.Name.Should().Be("Bryan Cranston");

@@ -39,23 +39,6 @@
         }
 
         [Fact]
-        public async Task Test_CrewMemberObjectJsonWriter_WriteObject_JsonWriter_Only_Job_Property()
-        {
-            ITraktCrewMember traktCrewMember = new TraktCrewMember
-            {
-                Job = "Crew Member"
-            };
-
-            using (var stringWriter = new StringWriter())
-            using (var jsonWriter = new JsonTextWriter(stringWriter))
-            {
-                var traktJsonWriter = new CrewMemberObjectJsonWriter();
-                await traktJsonWriter.WriteObjectAsync(jsonWriter, traktCrewMember);
-                stringWriter.ToString().Should().Be(@"{""job"":""Crew Member""}");
-            }
-        }
-
-        [Fact]
         public async Task Test_CrewMemberObjectJsonWriter_WriteObject_JsonWriter_Only_Jobs_Property()
         {
             ITraktCrewMember traktCrewMember = new TraktCrewMember
@@ -110,7 +93,6 @@
         {
             ITraktCrewMember traktCrewMember = new TraktCrewMember
             {
-                Job = "Crew Member",
                 Jobs = new List<string>
                 {
                     "Crew Member"
@@ -134,7 +116,7 @@
             {
                 var traktJsonWriter = new CrewMemberObjectJsonWriter();
                 await traktJsonWriter.WriteObjectAsync(jsonWriter, traktCrewMember);
-                stringWriter.ToString().Should().Be(@"{""job"":""Crew Member"",""jobs"":[""Crew Member""]," +
+                stringWriter.ToString().Should().Be(@"{""jobs"":[""Crew Member""]," +
                                                     @"""person"":{""name"":""Bryan Cranston""," +
                                                     @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                                     @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}");

@@ -9,7 +9,6 @@
                 {
                   ""cast"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ],
@@ -29,7 +28,6 @@
                 {
                   ""cast"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ],
@@ -53,7 +51,6 @@
                 {
                   ""cast"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ],
@@ -73,7 +70,6 @@
                 {
                   ""cast"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ]
@@ -87,7 +83,6 @@
                 {
                   ""cast"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ]
@@ -97,7 +92,6 @@
                 {
                   ""cast"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ],
@@ -121,7 +115,6 @@
                 {
                   ""ca"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ],
@@ -141,7 +134,6 @@
                 {
                   ""cast"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ],
@@ -165,7 +157,6 @@
                 {
                   ""cast"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ],
@@ -185,7 +176,6 @@
                 {
                   ""ca"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ],
@@ -209,7 +199,6 @@
                 {
                   ""ca"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ],
@@ -229,7 +218,6 @@
                 {
                   ""ca"": [
                     {
-                      ""character"": ""Joe Brody"",
                       ""characters"": [
                         ""Joe Brody""
                       ],

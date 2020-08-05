@@ -21,7 +21,7 @@
                 var movieCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCrewItem.Should().NotBeNull();
-                movieCreditsCrewItem.Job.Should().Be("Director");
+                movieCreditsCrewItem.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 movieCreditsCrewItem.Movie.Should().NotBeNull();
                 movieCreditsCrewItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 movieCreditsCrewItem.Movie.Year.Should().Be(2015);
@@ -43,7 +43,7 @@
                 var movieCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCrewItem.Should().NotBeNull();
-                movieCreditsCrewItem.Job.Should().BeNull();
+                movieCreditsCrewItem.Jobs.Should().BeNull();
                 movieCreditsCrewItem.Movie.Should().NotBeNull();
                 movieCreditsCrewItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 movieCreditsCrewItem.Movie.Year.Should().Be(2015);
@@ -65,7 +65,7 @@
                 var movieCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCrewItem.Should().NotBeNull();
-                movieCreditsCrewItem.Job.Should().Be("Director");
+                movieCreditsCrewItem.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 movieCreditsCrewItem.Movie.Should().BeNull();
             }
         }
@@ -80,7 +80,7 @@
                 var movieCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCrewItem.Should().NotBeNull();
-                movieCreditsCrewItem.Job.Should().BeNull();
+                movieCreditsCrewItem.Jobs.Should().BeNull();
                 movieCreditsCrewItem.Movie.Should().NotBeNull();
                 movieCreditsCrewItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 movieCreditsCrewItem.Movie.Year.Should().Be(2015);
@@ -102,7 +102,7 @@
                 var movieCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCrewItem.Should().NotBeNull();
-                movieCreditsCrewItem.Job.Should().Be("Director");
+                movieCreditsCrewItem.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 movieCreditsCrewItem.Movie.Should().BeNull();
             }
         }
@@ -117,7 +117,7 @@
                 var movieCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 movieCreditsCrewItem.Should().NotBeNull();
-                movieCreditsCrewItem.Job.Should().BeNull();
+                movieCreditsCrewItem.Jobs.Should().BeNull();
                 movieCreditsCrewItem.Movie.Should().BeNull();
             }
         }

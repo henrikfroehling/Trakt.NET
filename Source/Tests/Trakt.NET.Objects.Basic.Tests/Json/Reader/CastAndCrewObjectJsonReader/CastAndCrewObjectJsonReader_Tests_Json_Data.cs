@@ -6,7 +6,6 @@
             @"{
                 ""cast"": [
                   {
-                    ""character"": ""Joe Brody"",
                     ""characters"": [
                       ""Joe Brody""
                     ],
@@ -22,7 +21,6 @@
                     }
                   },
                   {
-                    ""character"": ""Jules Winfield"",
                     ""characters"": [
                       ""Jules Winfield""
                     ],
@@ -41,7 +39,6 @@
                 ""crew"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -57,7 +54,6 @@
                       }
                     },
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -75,7 +71,6 @@
                   ],
                   ""art"": [
                     {
-                      ""job"": ""Artist"",
                       ""jobs"": [
                         ""Artist""
                       ],
@@ -91,7 +86,6 @@
                       }
                     },
                     {
-                      ""job"": ""Artist"",
                       ""jobs"": [
                         ""Artist""
                       ],
@@ -109,7 +103,6 @@
                   ],
                   ""crew"": [
                     {
-                      ""job"": ""Crew Member"",
                       ""jobs"": [
                         ""Crew Member""
                       ],
@@ -125,7 +118,6 @@
                       }
                     },
                     {
-                      ""job"": ""Crew Member"",
                       ""jobs"": [
                         ""Crew Member""
                       ],
@@ -143,7 +135,6 @@
                   ],
                   ""costume & make-up"": [
                     {
-                      ""job"": ""Make-Up Artist"",
                       ""jobs"": [
                         ""Make-Up Artist""
                       ],
@@ -159,7 +150,6 @@
                       }
                     },
                     {
-                      ""job"": ""Make-Up Artist"",
                       ""jobs"": [
                         ""Make-Up Artist""
                       ],
@@ -177,7 +167,6 @@
                   ],
                   ""directing"": [
                     {
-                      ""job"": ""Director"",
                       ""jobs"": [
                         ""Director""
                       ],
@@ -193,7 +182,6 @@
                       }
                     },
                     {
-                      ""job"": ""Director"",
                       ""jobs"": [
                         ""Director""
                       ],
@@ -211,7 +199,6 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Writer"",
                       ""jobs"": [
                         ""Writer""
                       ],
@@ -227,7 +214,6 @@
                       }
                     },
                     {
-                      ""job"": ""Writer"",
                       ""jobs"": [
                         ""Writer""
                       ],
@@ -245,7 +231,6 @@
                   ],
                   ""sound"": [
                     {
-                      ""job"": ""Sound Designer"",
                       ""jobs"": [
                         ""Sound Designer""
                       ],
@@ -261,7 +246,6 @@
                       }
                     },
                     {
-                      ""job"": ""Sound Designer"",
                       ""jobs"": [
                         ""Sound Designer""
                       ],
@@ -279,7 +263,6 @@
                   ],
                   ""camera"": [
                     {
-                      ""job"": ""Camera"",
                       ""jobs"": [
                         ""Camera""
                       ],
@@ -295,7 +278,6 @@
                       }
                     },
                     {
-                      ""job"": ""Camera"",
                       ""jobs"": [
                         ""Camera""
                       ],
@@ -313,7 +295,6 @@
                   ],
                   ""lighting"": [
                     {
-                      ""job"": ""Light Technician"",
                       ""jobs"": [
                         ""Light Technician""
                       ],
@@ -329,7 +310,6 @@
                       }
                     },
                     {
-                      ""job"": ""Light Technician"",
                       ""jobs"": [
                         ""Light Technician""
                       ],
@@ -347,7 +327,6 @@
                   ],
                   ""visual effects"": [
                     {
-                      ""job"": ""VFX Artist"",
                       ""jobs"": [
                         ""VFX Artist""
                       ],
@@ -363,7 +342,6 @@
                       }
                     },
                     {
-                      ""job"": ""VFX Artist"",
                       ""jobs"": [
                         ""VFX Artist""
                       ],
@@ -381,7 +359,6 @@
                   ],
                   ""editing"": [
                     {
-                      ""job"": ""Editor"",
                       ""jobs"": [
                         ""Editor""
                       ],
@@ -397,7 +374,6 @@
                       }
                     },
                     {
-                      ""job"": ""Editor"",
                       ""jobs"": [
                         ""Editor""
                       ],
@@ -421,7 +397,6 @@
                 ""crew"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -437,7 +412,6 @@
                       }
                     },
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -455,7 +429,6 @@
                   ],
                   ""art"": [
                     {
-                      ""job"": ""Artist"",
                       ""jobs"": [
                         ""Artist""
                       ],
@@ -471,7 +444,6 @@
                       }
                     },
                     {
-                      ""job"": ""Artist"",
                       ""jobs"": [
                         ""Artist""
                       ],
@@ -489,7 +461,6 @@
                   ],
                   ""crew"": [
                     {
-                      ""job"": ""Crew Member"",
                       ""jobs"": [
                         ""Crew Member""
                       ],
@@ -505,7 +476,6 @@
                       }
                     },
                     {
-                      ""job"": ""Crew Member"",
                       ""jobs"": [
                         ""Crew Member""
                       ],
@@ -523,7 +493,6 @@
                   ],
                   ""costume & make-up"": [
                     {
-                      ""job"": ""Make-Up Artist"",
                       ""jobs"": [
                         ""Make-Up Artist""
                       ],
@@ -539,7 +508,6 @@
                       }
                     },
                     {
-                      ""job"": ""Make-Up Artist"",
                       ""jobs"": [
                         ""Make-Up Artist""
                       ],
@@ -557,7 +525,6 @@
                   ],
                   ""directing"": [
                     {
-                      ""job"": ""Director"",
                       ""jobs"": [
                         ""Director""
                       ],
@@ -573,7 +540,6 @@
                       }
                     },
                     {
-                      ""job"": ""Director"",
                       ""jobs"": [
                         ""Director""
                       ],
@@ -591,7 +557,6 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Writer"",
                       ""jobs"": [
                         ""Writer""
                       ],
@@ -607,7 +572,6 @@
                       }
                     },
                     {
-                      ""job"": ""Writer"",
                       ""jobs"": [
                         ""Writer""
                       ],
@@ -625,7 +589,6 @@
                   ],
                   ""sound"": [
                     {
-                      ""job"": ""Sound Designer"",
                       ""jobs"": [
                         ""Sound Designer""
                       ],
@@ -641,7 +604,6 @@
                       }
                     },
                     {
-                      ""job"": ""Sound Designer"",
                       ""jobs"": [
                         ""Sound Designer""
                       ],
@@ -659,7 +621,6 @@
                   ],
                   ""camera"": [
                     {
-                      ""job"": ""Camera"",
                       ""jobs"": [
                         ""Camera""
                       ],
@@ -675,7 +636,6 @@
                       }
                     },
                     {
-                      ""job"": ""Camera"",
                       ""jobs"": [
                         ""Camera""
                       ],
@@ -693,7 +653,6 @@
                   ],
                   ""lighting"": [
                     {
-                      ""job"": ""Light Technician"",
                       ""jobs"": [
                         ""Light Technician""
                       ],
@@ -709,7 +668,6 @@
                       }
                     },
                     {
-                      ""job"": ""Light Technician"",
                       ""jobs"": [
                         ""Light Technician""
                       ],
@@ -727,7 +685,6 @@
                   ],
                   ""visual effects"": [
                     {
-                      ""job"": ""VFX Artist"",
                       ""jobs"": [
                         ""VFX Artist""
                       ],
@@ -743,7 +700,6 @@
                       }
                     },
                     {
-                      ""job"": ""VFX Artist"",
                       ""jobs"": [
                         ""VFX Artist""
                       ],
@@ -761,7 +717,6 @@
                   ],
                   ""editing"": [
                     {
-                      ""job"": ""Editor"",
                       ""jobs"": [
                         ""Editor""
                       ],
@@ -777,7 +732,6 @@
                       }
                     },
                     {
-                      ""job"": ""Editor"",
                       ""jobs"": [
                         ""Editor""
                       ],
@@ -800,7 +754,6 @@
             @"{
                 ""cast"": [
                   {
-                    ""character"": ""Joe Brody"",
                     ""characters"": [
                       ""Joe Brody""
                     ],
@@ -816,7 +769,6 @@
                     }
                   },
                   {
-                    ""character"": ""Jules Winfield"",
                     ""characters"": [
                       ""Jules Winfield""
                     ],
@@ -838,7 +790,6 @@
             @"{
                 ""ca"": [
                   {
-                    ""character"": ""Joe Brody"",
                     ""characters"": [
                       ""Joe Brody""
                     ],
@@ -854,7 +805,6 @@
                     }
                   },
                   {
-                    ""character"": ""Jules Winfield"",
                     ""characters"": [
                       ""Jules Winfield""
                     ],
@@ -873,7 +823,6 @@
                 ""crew"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -889,7 +838,6 @@
                       }
                     },
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -907,7 +855,6 @@
                   ],
                   ""art"": [
                     {
-                      ""job"": ""Artist"",
                       ""jobs"": [
                         ""Artist""
                       ],
@@ -923,7 +870,6 @@
                       }
                     },
                     {
-                      ""job"": ""Artist"",
                       ""jobs"": [
                         ""Artist""
                       ],
@@ -941,7 +887,6 @@
                   ],
                   ""crew"": [
                     {
-                      ""job"": ""Crew Member"",
                       ""jobs"": [
                         ""Crew Member""
                       ],
@@ -957,7 +902,6 @@
                       }
                     },
                     {
-                      ""job"": ""Crew Member"",
                       ""jobs"": [
                         ""Crew Member""
                       ],
@@ -975,7 +919,6 @@
                   ],
                   ""costume & make-up"": [
                     {
-                      ""job"": ""Make-Up Artist"",
                       ""jobs"": [
                         ""Make-Up Artist""
                       ],
@@ -991,7 +934,6 @@
                       }
                     },
                     {
-                      ""job"": ""Make-Up Artist"",
                       ""jobs"": [
                         ""Make-Up Artist""
                       ],
@@ -1009,7 +951,6 @@
                   ],
                   ""directing"": [
                     {
-                      ""job"": ""Director"",
                       ""jobs"": [
                         ""Director""
                       ],
@@ -1025,7 +966,6 @@
                       }
                     },
                     {
-                      ""job"": ""Director"",
                       ""jobs"": [
                         ""Director""
                       ],
@@ -1043,7 +983,6 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Writer"",
                       ""jobs"": [
                         ""Writer""
                       ],
@@ -1059,7 +998,6 @@
                       }
                     },
                     {
-                      ""job"": ""Writer"",
                       ""jobs"": [
                         ""Writer""
                       ],
@@ -1077,7 +1015,6 @@
                   ],
                   ""sound"": [
                     {
-                      ""job"": ""Sound Designer"",
                       ""jobs"": [
                         ""Sound Designer""
                       ],
@@ -1093,7 +1030,6 @@
                       }
                     },
                     {
-                      ""job"": ""Sound Designer"",
                       ""jobs"": [
                         ""Sound Designer""
                       ],
@@ -1111,7 +1047,6 @@
                   ],
                   ""camera"": [
                     {
-                      ""job"": ""Camera"",
                       ""jobs"": [
                         ""Camera""
                       ],
@@ -1127,7 +1062,6 @@
                       }
                     },
                     {
-                      ""job"": ""Camera"",
                       ""jobs"": [
                         ""Camera""
                       ],
@@ -1145,7 +1079,6 @@
                   ],
                   ""lighting"": [
                     {
-                      ""job"": ""Light Technician"",
                       ""jobs"": [
                         ""Light Technician""
                       ],
@@ -1161,7 +1094,6 @@
                       }
                     },
                     {
-                      ""job"": ""Light Technician"",
                       ""jobs"": [
                         ""Light Technician""
                       ],
@@ -1179,7 +1111,6 @@
                   ],
                   ""visual effects"": [
                     {
-                      ""job"": ""VFX Artist"",
                       ""jobs"": [
                         ""VFX Artist""
                       ],
@@ -1195,7 +1126,6 @@
                       }
                     },
                     {
-                      ""job"": ""VFX Artist"",
                       ""jobs"": [
                         ""VFX Artist""
                       ],
@@ -1213,7 +1143,6 @@
                   ],
                   ""editing"": [
                     {
-                      ""job"": ""Editor"",
                       ""jobs"": [
                         ""Editor""
                       ],
@@ -1229,7 +1158,6 @@
                       }
                     },
                     {
-                      ""job"": ""Editor"",
                       ""jobs"": [
                         ""Editor""
                       ],
@@ -1252,7 +1180,6 @@
             @"{
                 ""cast"": [
                   {
-                    ""character"": ""Joe Brody"",
                     ""characters"": [
                       ""Joe Brody""
                     ],
@@ -1268,7 +1195,6 @@
                     }
                   },
                   {
-                    ""character"": ""Jules Winfield"",
                     ""characters"": [
                       ""Jules Winfield""
                     ],
@@ -1287,7 +1213,6 @@
                 ""cr"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -1303,7 +1228,6 @@
                       }
                     },
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -1321,7 +1245,6 @@
                   ],
                   ""art"": [
                     {
-                      ""job"": ""Artist"",
                       ""jobs"": [
                         ""Artist""
                       ],
@@ -1337,7 +1260,6 @@
                       }
                     },
                     {
-                      ""job"": ""Artist"",
                       ""jobs"": [
                         ""Artist""
                       ],
@@ -1355,7 +1277,6 @@
                   ],
                   ""crew"": [
                     {
-                      ""job"": ""Crew Member"",
                       ""jobs"": [
                         ""Crew Member""
                       ],
@@ -1371,7 +1292,6 @@
                       }
                     },
                     {
-                      ""job"": ""Crew Member"",
                       ""jobs"": [
                         ""Crew Member""
                       ],
@@ -1389,7 +1309,6 @@
                   ],
                   ""costume & make-up"": [
                     {
-                      ""job"": ""Make-Up Artist"",
                       ""jobs"": [
                         ""Make-Up Artist""
                       ],
@@ -1405,7 +1324,6 @@
                       }
                     },
                     {
-                      ""job"": ""Make-Up Artist"",
                       ""jobs"": [
                         ""Make-Up Artist""
                       ],
@@ -1423,7 +1341,6 @@
                   ],
                   ""directing"": [
                     {
-                      ""job"": ""Director"",
                       ""jobs"": [
                         ""Director""
                       ],
@@ -1439,7 +1356,6 @@
                       }
                     },
                     {
-                      ""job"": ""Director"",
                       ""jobs"": [
                         ""Director""
                       ],
@@ -1457,7 +1373,6 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Writer"",
                       ""jobs"": [
                         ""Writer""
                       ],
@@ -1473,7 +1388,6 @@
                       }
                     },
                     {
-                      ""job"": ""Writer"",
                       ""jobs"": [
                         ""Writer""
                       ],
@@ -1491,7 +1405,6 @@
                   ],
                   ""sound"": [
                     {
-                      ""job"": ""Sound Designer"",
                       ""jobs"": [
                         ""Sound Designer""
                       ],
@@ -1507,7 +1420,6 @@
                       }
                     },
                     {
-                      ""job"": ""Sound Designer"",
                       ""jobs"": [
                         ""Sound Designer""
                       ],
@@ -1525,7 +1437,6 @@
                   ],
                   ""camera"": [
                     {
-                      ""job"": ""Camera"",
                       ""jobs"": [
                         ""Camera""
                       ],
@@ -1541,7 +1452,6 @@
                       }
                     },
                     {
-                      ""job"": ""Camera"",
                       ""jobs"": [
                         ""Camera""
                       ],
@@ -1559,7 +1469,6 @@
                   ],
                   ""lighting"": [
                     {
-                      ""job"": ""Light Technician"",
                       ""jobs"": [
                         ""Light Technician""
                       ],
@@ -1575,7 +1484,6 @@
                       }
                     },
                     {
-                      ""job"": ""Light Technician"",
                       ""jobs"": [
                         ""Light Technician""
                       ],
@@ -1593,7 +1501,6 @@
                   ],
                   ""visual effects"": [
                     {
-                      ""job"": ""VFX Artist"",
                       ""jobs"": [
                         ""VFX Artist""
                       ],
@@ -1609,7 +1516,6 @@
                       }
                     },
                     {
-                      ""job"": ""VFX Artist"",
                       ""jobs"": [
                         ""VFX Artist""
                       ],
@@ -1627,7 +1533,6 @@
                   ],
                   ""editing"": [
                     {
-                      ""job"": ""Editor"",
                       ""jobs"": [
                         ""Editor""
                       ],
@@ -1643,7 +1548,6 @@
                       }
                     },
                     {
-                      ""job"": ""Editor"",
                       ""jobs"": [
                         ""Editor""
                       ],
@@ -1666,7 +1570,6 @@
             @"{
                 ""ca"": [
                   {
-                    ""character"": ""Joe Brody"",
                     ""characters"": [
                       ""Joe Brody""
                     ],
@@ -1682,7 +1585,6 @@
                     }
                   },
                   {
-                    ""character"": ""Jules Winfield"",
                     ""characters"": [
                       ""Jules Winfield""
                     ],
@@ -1701,7 +1603,6 @@
                 ""cr"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -1717,7 +1618,6 @@
                       }
                     },
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -1735,7 +1635,6 @@
                   ],
                   ""art"": [
                     {
-                      ""job"": ""Artist"",
                       ""jobs"": [
                         ""Artist""
                       ],
@@ -1751,7 +1650,6 @@
                       }
                     },
                     {
-                      ""job"": ""Artist"",
                       ""jobs"": [
                         ""Artist""
                       ],
@@ -1769,7 +1667,6 @@
                   ],
                   ""crew"": [
                     {
-                      ""job"": ""Crew Member"",
                       ""jobs"": [
                         ""Crew Member""
                       ],
@@ -1785,7 +1682,6 @@
                       }
                     },
                     {
-                      ""job"": ""Crew Member"",
                       ""jobs"": [
                         ""Crew Member""
                       ],
@@ -1803,7 +1699,6 @@
                   ],
                   ""costume & make-up"": [
                     {
-                      ""job"": ""Make-Up Artist"",
                       ""jobs"": [
                         ""Make-Up Artist""
                       ],
@@ -1819,7 +1714,6 @@
                       }
                     },
                     {
-                      ""job"": ""Make-Up Artist"",
                       ""jobs"": [
                         ""Make-Up Artist""
                       ],
@@ -1837,7 +1731,6 @@
                   ],
                   ""directing"": [
                     {
-                      ""job"": ""Director"",
                       ""jobs"": [
                         ""Director""
                       ],
@@ -1853,7 +1746,6 @@
                       }
                     },
                     {
-                      ""job"": ""Director"",
                       ""jobs"": [
                         ""Director""
                       ],
@@ -1871,7 +1763,6 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Writer"",
                       ""jobs"": [
                         ""Writer""
                       ],
@@ -1887,7 +1778,6 @@
                       }
                     },
                     {
-                      ""job"": ""Writer"",
                       ""jobs"": [
                         ""Writer""
                       ],
@@ -1905,7 +1795,6 @@
                   ],
                   ""sound"": [
                     {
-                      ""job"": ""Sound Designer"",
                       ""jobs"": [
                         ""Sound Designer""
                       ],
@@ -1921,7 +1810,6 @@
                       }
                     },
                     {
-                      ""job"": ""Sound Designer"",
                       ""jobs"": [
                         ""Sound Designer""
                       ],
@@ -1939,7 +1827,6 @@
                   ],
                   ""camera"": [
                     {
-                      ""job"": ""Camera"",
                       ""jobs"": [
                         ""Camera""
                       ],
@@ -1955,7 +1842,6 @@
                       }
                     },
                     {
-                      ""job"": ""Camera"",
                       ""jobs"": [
                         ""Camera""
                       ],
@@ -1973,7 +1859,6 @@
                   ],
                   ""lighting"": [
                     {
-                      ""job"": ""Light Technician"",
                       ""jobs"": [
                         ""Light Technician""
                       ],
@@ -1989,7 +1874,6 @@
                       }
                     },
                     {
-                      ""job"": ""Light Technician"",
                       ""jobs"": [
                         ""Light Technician""
                       ],
@@ -2007,7 +1891,6 @@
                   ],
                   ""visual effects"": [
                     {
-                      ""job"": ""VFX Artist"",
                       ""jobs"": [
                         ""VFX Artist""
                       ],
@@ -2023,7 +1906,6 @@
                       }
                     },
                     {
-                      ""job"": ""VFX Artist"",
                       ""jobs"": [
                         ""VFX Artist""
                       ],
@@ -2041,7 +1923,6 @@
                   ],
                   ""editing"": [
                     {
-                      ""job"": ""Editor"",
                       ""jobs"": [
                         ""Editor""
                       ],
@@ -2057,7 +1938,6 @@
                       }
                     },
                     {
-                      ""job"": ""Editor"",
                       ""jobs"": [
                         ""Editor""
                       ],

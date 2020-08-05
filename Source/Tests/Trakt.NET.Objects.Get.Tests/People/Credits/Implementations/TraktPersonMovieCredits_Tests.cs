@@ -33,7 +33,6 @@
             var creditsCast = credits.Cast.ToArray();
 
             creditsCast[0].Should().NotBeNull();
-            creditsCast[0].Character.Should().Be("Rey");
             creditsCast[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Rey");
             creditsCast[0].Movie.Should().NotBeNull();
             creditsCast[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -58,7 +57,6 @@
             creditsCast[0].Movie.Certification.Should().BeNullOrEmpty();
 
             creditsCast[1].Should().NotBeNull();
-            creditsCast[1].Character.Should().Be("Han Solo");
             creditsCast[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Han Solo");
             creditsCast[1].Movie.Should().NotBeNull();
             creditsCast[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -89,7 +87,6 @@
             var productionCrew = creditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer 1");
             productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer 1");
             productionCrew[0].Movie.Should().NotBeNull();
             productionCrew[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -114,7 +111,6 @@
             productionCrew[0].Movie.Certification.Should().BeNullOrEmpty();
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer 2");
             productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer 2");
             productionCrew[1].Movie.Should().NotBeNull();
             productionCrew[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -143,7 +139,6 @@
             var artCrew = creditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Art Director 1");
             artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Art Director 1");
             artCrew[0].Movie.Should().NotBeNull();
             artCrew[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -168,7 +163,6 @@
             artCrew[0].Movie.Certification.Should().BeNullOrEmpty();
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Art Director 2");
             artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Art Director 2");
             artCrew[1].Movie.Should().NotBeNull();
             artCrew[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -197,7 +191,6 @@
             var crew = creditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member 1");
             crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member 1");
             crew[0].Movie.Should().NotBeNull();
             crew[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -222,7 +215,6 @@
             crew[0].Movie.Certification.Should().BeNullOrEmpty();
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member 2");
             crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member 2");
             crew[1].Movie.Should().NotBeNull();
             crew[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -251,7 +243,6 @@
             var costumeAndMakeupCrew = creditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Costume Designer");
             costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Costume Designer");
             costumeAndMakeupCrew[0].Movie.Should().NotBeNull();
             costumeAndMakeupCrew[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -276,7 +267,6 @@
             costumeAndMakeupCrew[0].Movie.Certification.Should().BeNullOrEmpty();
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make Up Artist");
             costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make Up Artist");
             costumeAndMakeupCrew[1].Movie.Should().NotBeNull();
             costumeAndMakeupCrew[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -305,7 +295,6 @@
             var directingCrew = creditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director 1");
             directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director 1");
             directingCrew[0].Movie.Should().NotBeNull();
             directingCrew[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -330,7 +319,6 @@
             directingCrew[0].Movie.Certification.Should().BeNullOrEmpty();
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director 2");
             directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director 2");
             directingCrew[1].Movie.Should().NotBeNull();
             directingCrew[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -359,7 +347,6 @@
             var writingCrew = creditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer 1");
             writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer 1");
             writingCrew[0].Movie.Should().NotBeNull();
             writingCrew[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -384,7 +371,6 @@
             writingCrew[0].Movie.Certification.Should().BeNullOrEmpty();
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer 2");
             writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer 2");
             writingCrew[1].Movie.Should().NotBeNull();
             writingCrew[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -413,7 +399,6 @@
             var soundCrew = creditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer 1");
             soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer 1");
             soundCrew[0].Movie.Should().NotBeNull();
             soundCrew[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -438,7 +423,6 @@
             soundCrew[0].Movie.Certification.Should().BeNullOrEmpty();
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer 2");
             soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer 2");
             soundCrew[1].Movie.Should().NotBeNull();
             soundCrew[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -467,7 +451,6 @@
             var cameraCrew = creditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera Man 1");
             cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera Man 1");
             cameraCrew[0].Movie.Should().NotBeNull();
             cameraCrew[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -492,7 +475,6 @@
             cameraCrew[0].Movie.Certification.Should().BeNullOrEmpty();
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera Man 2");
             cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera Man 2");
             cameraCrew[1].Movie.Should().NotBeNull();
             cameraCrew[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -521,7 +503,6 @@
             var lightingCrew = creditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician 1");
             lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician 1");
             lightingCrew[0].Movie.Should().NotBeNull();
             lightingCrew[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -546,7 +527,6 @@
             lightingCrew[0].Movie.Certification.Should().BeNullOrEmpty();
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician 2");
             lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician 2");
             lightingCrew[1].Movie.Should().NotBeNull();
             lightingCrew[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -575,7 +555,6 @@
             var vfxCrew = creditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist 1");
             vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist 1");
             vfxCrew[0].Movie.Should().NotBeNull();
             vfxCrew[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -600,7 +579,6 @@
             vfxCrew[0].Movie.Certification.Should().BeNullOrEmpty();
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist 2");
             vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist 2");
             vfxCrew[1].Movie.Should().NotBeNull();
             vfxCrew[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -629,7 +607,6 @@
             var editingCrew = creditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor 1");
             editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor 1");
             editingCrew[0].Movie.Should().NotBeNull();
             editingCrew[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -654,7 +631,6 @@
             editingCrew[0].Movie.Certification.Should().BeNullOrEmpty();
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor 2");
             editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor 2");
             editingCrew[1].Movie.Should().NotBeNull();
             editingCrew[1].Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -683,7 +659,6 @@
             @"{
                 ""cast"": [
                   {
-                     ""character"": ""Rey"",
                      ""characters"": [
                        ""Rey""
                      ],
@@ -699,7 +674,6 @@
                      }
                   },
                   {
-                     ""character"": ""Han Solo"",
                      ""characters"": [
                        ""Han Solo""
                      ],
@@ -718,7 +692,6 @@
                 ""crew"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer 1"",
                       ""jobs"": [
                         ""Producer 1""
                       ],
@@ -734,7 +707,6 @@
                       }
                     },
                     {
-                      ""job"": ""Producer 2"",
                       ""jobs"": [
                         ""Producer 2""
                       ],
@@ -752,7 +724,6 @@
                   ],
                   ""art"": [
                     {
-                      ""job"": ""Art Director 1"",
                       ""jobs"": [
                         ""Art Director 1""
                       ],
@@ -768,7 +739,6 @@
                       }
                     },
                     {
-                      ""job"": ""Art Director 2"",
                       ""jobs"": [
                         ""Art Director 2""
                       ],
@@ -786,7 +756,6 @@
                   ],
                   ""crew"": [
                     {
-                      ""job"": ""Crew Member 1"",
                       ""jobs"": [
                         ""Crew Member 1""
                       ],
@@ -802,7 +771,6 @@
                       }
                     },
                     {
-                      ""job"": ""Crew Member 2"",
                       ""jobs"": [
                         ""Crew Member 2""
                       ],
@@ -820,7 +788,6 @@
                   ],
                   ""costume & make-up"": [
                     {
-                      ""job"": ""Costume Designer"",
                       ""jobs"": [
                         ""Costume Designer""
                       ],
@@ -836,7 +803,6 @@
                       }
                     },
                     {
-                      ""job"": ""Make Up Artist"",
                       ""jobs"": [
                         ""Make Up Artist""
                       ],
@@ -854,7 +820,6 @@
                   ],
                   ""directing"": [
                     {
-                      ""job"": ""Director 1"",
                       ""jobs"": [
                         ""Director 1""
                       ],
@@ -870,7 +835,6 @@
                       }
                     },
                     {
-                      ""job"": ""Director 2"",
                       ""jobs"": [
                         ""Director 2""
                       ],
@@ -888,7 +852,6 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Writer 1"",
                       ""jobs"": [
                         ""Writer 1""
                       ],
@@ -904,7 +867,6 @@
                       }
                     },
                     {
-                      ""job"": ""Writer 2"",
                       ""jobs"": [
                         ""Writer 2""
                       ],
@@ -922,7 +884,6 @@
                   ],
                   ""sound"": [
                     {
-                      ""job"": ""Sound Designer 1"",
                       ""jobs"": [
                         ""Sound Designer 1""
                       ],
@@ -938,7 +899,6 @@
                       }
                     },
                     {
-                      ""job"": ""Sound Designer 2"",
                       ""jobs"": [
                         ""Sound Designer 2""
                       ],
@@ -956,7 +916,6 @@
                   ],
                   ""camera"": [
                     {
-                      ""job"": ""Camera Man 1"",
                       ""jobs"": [
                         ""Camera Man 1""
                       ],
@@ -972,7 +931,6 @@
                       }
                     },
                     {
-                      ""job"": ""Camera Man 2"",
                       ""jobs"": [
                         ""Camera Man 2""
                       ],
@@ -990,7 +948,6 @@
                   ],
                   ""lighting"": [
                     {
-                      ""job"": ""Light Technician 1"",
                       ""jobs"": [
                         ""Light Technician 1""
                       ],
@@ -1006,7 +963,6 @@
                       }
                     },
                     {
-                      ""job"": ""Light Technician 2"",
                       ""jobs"": [
                         ""Light Technician 2""
                       ],
@@ -1024,7 +980,6 @@
                   ],
                   ""visual effects"": [
                     {
-                      ""job"": ""VFX Artist 1"",
                       ""jobs"": [
                         ""VFX Artist 1""
                       ],
@@ -1040,7 +995,6 @@
                       }
                     },
                     {
-                      ""job"": ""VFX Artist 2"",
                       ""jobs"": [
                         ""VFX Artist 2""
                       ],
@@ -1058,7 +1012,6 @@
                   ],
                   ""editing"": [
                     {
-                      ""job"": ""Editor 1"",
                       ""jobs"": [
                         ""Editor 1""
                       ],
@@ -1074,7 +1027,6 @@
                       }
                     },
                     {
-                      ""job"": ""Editor 2"",
                       ""jobs"": [
                         ""Editor 2""
                       ],

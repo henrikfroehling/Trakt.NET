@@ -25,9 +25,6 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PROPERTY_NAME_JOB:
-                            showCreditsCrewItem.Job = await jsonReader.ReadAsStringAsync(cancellationToken);
-                            break;
                         case JsonProperties.PROPERTY_NAME_JOBS:
                             showCreditsCrewItem.Jobs = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;

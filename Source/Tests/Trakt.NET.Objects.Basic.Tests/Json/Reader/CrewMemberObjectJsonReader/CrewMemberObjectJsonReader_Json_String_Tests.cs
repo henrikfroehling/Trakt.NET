@@ -17,7 +17,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().Be("Director");
             traktCrewMember.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             traktCrewMember.Person.Should().NotBeNull();
             traktCrewMember.Person.Name.Should().Be("Bryan Cranston");
@@ -37,7 +36,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().BeNull();
             traktCrewMember.Jobs.Should().BeNull();
             traktCrewMember.Person.Should().NotBeNull();
             traktCrewMember.Person.Name.Should().Be("Bryan Cranston");
@@ -57,7 +55,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().Be("Director");
             traktCrewMember.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             traktCrewMember.Person.Should().BeNull();
         }
@@ -70,7 +67,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().BeNull();
             traktCrewMember.Jobs.Should().BeNull();
             traktCrewMember.Person.Should().NotBeNull();
             traktCrewMember.Person.Name.Should().Be("Bryan Cranston");
@@ -90,7 +86,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().Be("Director");
             traktCrewMember.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             traktCrewMember.Person.Should().BeNull();
         }
@@ -103,7 +98,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().BeNull();
             traktCrewMember.Jobs.Should().BeNull();
             traktCrewMember.Person.Should().BeNull();
         }

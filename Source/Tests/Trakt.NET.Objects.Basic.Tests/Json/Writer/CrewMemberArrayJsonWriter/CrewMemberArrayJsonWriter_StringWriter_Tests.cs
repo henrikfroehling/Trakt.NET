@@ -43,7 +43,6 @@
             {
                 new TraktCrewMember
                 {
-                    Job = "Crew Member",
                     Jobs = new List<string>
                     {
                         "Crew Member"
@@ -67,7 +66,7 @@
             {
                 var traktJsonWriter = new ArrayJsonWriter<ITraktCrewMember>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktCrewMembers);
-                json.Should().Be(@"[{""job"":""Crew Member"",""jobs"":[""Crew Member""]," +
+                json.Should().Be(@"[{""jobs"":[""Crew Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]");
@@ -81,7 +80,6 @@
             {
                 new TraktCrewMember
                 {
-                    Job = "Crew Member",
                     Jobs = new List<string>
                     {
                         "Crew Member"
@@ -101,7 +99,6 @@
                 },
                 new TraktCrewMember
                 {
-                    Job = "Crew Member",
                     Jobs = new List<string>
                     {
                         "Crew Member"
@@ -125,11 +122,11 @@
             {
                 var traktJsonWriter = new ArrayJsonWriter<ITraktCrewMember>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktCrewMembers);
-                json.Should().Be(@"[{""job"":""Crew Member"",""jobs"":[""Crew Member""]," +
+                json.Should().Be(@"[{""jobs"":[""Crew Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}," +
-                                 @"{""job"":""Crew Member"",""jobs"":[""Crew Member""]," +
+                                 @"{""jobs"":[""Crew Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]");
