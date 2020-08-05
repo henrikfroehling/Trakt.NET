@@ -47,6 +47,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_COVER_IMAGE = "cover_image";
         internal const string PROPERTY_NAME_CREATED_AT = "created_at";
         internal const string PROPERTY_NAME_CREW = "crew";
+        internal const string PROPERTY_NAME_DATE_FORMAT = "date_format";
         internal const string PROPERTY_NAME_DAY = "day";
         internal const string PROPERTY_NAME_DEATH = "death";
         internal const string PROPERTY_NAME_DELETED = "deleted";

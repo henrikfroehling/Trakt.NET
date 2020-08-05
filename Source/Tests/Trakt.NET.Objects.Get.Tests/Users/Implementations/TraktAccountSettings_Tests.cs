@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Enums;
     using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
@@ -19,6 +20,7 @@
             accountSettings.Time24Hr.Should().BeNull();
             accountSettings.CoverImage.Should().BeNull();
             accountSettings.Token.Should().BeNull();
+            accountSettings.DateFormat.Should().BeNull();
         }
 
         [Fact]
@@ -32,6 +34,7 @@
             accountSettings.Time24Hr.Should().BeTrue();
             accountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
             accountSettings.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
+            accountSettings.DateFormat.Should().NotBeNull().And.Be(TraktDateFormat.DayMonthYear);
         }
 
         private const string JSON =
@@ -39,7 +42,8 @@
                 ""timezone"": ""America/Los_Angeles"",
                 ""time_24hr"": true,
                 ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
-                ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
+                ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24"",
+                ""date_format"": ""dmy""
               }";
     }
 }
