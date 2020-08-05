@@ -373,7 +373,7 @@
         public Task<TraktPagedResponse<ITraktUserComment>> GetCommentsAsync(string usernameOrSlug,
                                                                             TraktCommentType commentType = null,
                                                                             TraktObjectType objectType = null,
-                                                                            bool? includeReplies = null,
+                                                                            TraktIncludeReplies? includeReplies = null,
                                                                             TraktExtendedInfo extendedInfo = null,
                                                                             TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default)

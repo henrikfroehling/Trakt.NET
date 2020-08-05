@@ -3,6 +3,7 @@
     using Enums;
     using Extensions;
     using Objects.Get.Users;
+    using Parameters;
     using System;
     using System.Collections.Generic;
 
@@ -14,7 +15,7 @@
 
         internal TraktObjectType ObjectType { get; set; }
 
-        internal bool? IncludeReplies { get; set; }
+        internal TraktIncludeReplies? IncludeReplies { get; set; }
 
         public override string UriTemplate => "users/{username}/comments{/comment_type}{/object_type}{?include_replies,extended,page,limit}";
 
@@ -31,7 +32,7 @@
                 uriParams.Add("object_type", ObjectType.UriName);
 
             if (IncludeReplies.HasValue)
-                uriParams.Add("include_replies", IncludeReplies.ToString().ToLower());
+                uriParams.Add("include_replies", IncludeReplies.Value.ToString().ToLower());
 
             return uriParams;
         }
