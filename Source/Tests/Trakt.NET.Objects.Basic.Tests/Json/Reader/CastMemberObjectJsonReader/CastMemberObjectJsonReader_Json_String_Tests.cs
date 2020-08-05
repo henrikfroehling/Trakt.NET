@@ -17,7 +17,6 @@
             var traktCastMember = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
             traktCastMember.Should().NotBeNull();
-            traktCastMember.Character.Should().Be("Joe Brody");
             traktCastMember.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             traktCastMember.Person.Should().NotBeNull();
             traktCastMember.Person.Name.Should().Be("Bryan Cranston");
@@ -37,7 +36,6 @@
             var traktCastMember = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
             traktCastMember.Should().NotBeNull();
-            traktCastMember.Character.Should().BeNull();
             traktCastMember.Characters.Should().BeNull();
             traktCastMember.Person.Should().NotBeNull();
             traktCastMember.Person.Name.Should().Be("Bryan Cranston");
@@ -57,7 +55,6 @@
             var traktCastMember = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
             traktCastMember.Should().NotBeNull();
-            traktCastMember.Character.Should().Be("Joe Brody");
             traktCastMember.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             traktCastMember.Person.Should().BeNull();
         }
@@ -70,7 +67,6 @@
             var traktCastMember = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
             traktCastMember.Should().NotBeNull();
-            traktCastMember.Character.Should().BeNull();
             traktCastMember.Characters.Should().BeNull();
             traktCastMember.Person.Should().NotBeNull();
             traktCastMember.Person.Name.Should().Be("Bryan Cranston");
@@ -90,7 +86,6 @@
             var traktCastMember = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
             traktCastMember.Should().NotBeNull();
-            traktCastMember.Character.Should().Be("Joe Brody");
             traktCastMember.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             traktCastMember.Person.Should().BeNull();
         }
@@ -103,7 +98,6 @@
             var traktCastMember = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
             traktCastMember.Should().NotBeNull();
-            traktCastMember.Character.Should().BeNull();
             traktCastMember.Characters.Should().BeNull();
             traktCastMember.Person.Should().BeNull();
         }

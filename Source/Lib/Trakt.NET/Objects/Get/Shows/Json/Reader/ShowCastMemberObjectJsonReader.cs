@@ -24,9 +24,6 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PROPERTY_NAME_CHARACTER:
-                            traktShowCastMember.Character = await jsonReader.ReadAsStringAsync(cancellationToken);
-                            break;
                         case JsonProperties.PROPERTY_NAME_CHARACTERS:
                             traktShowCastMember.Characters = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;

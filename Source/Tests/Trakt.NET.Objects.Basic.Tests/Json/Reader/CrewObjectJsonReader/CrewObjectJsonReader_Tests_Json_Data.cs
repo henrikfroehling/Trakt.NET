@@ -6,7 +6,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -22,7 +21,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -40,7 +38,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -56,7 +53,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -74,7 +70,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -90,7 +85,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -108,7 +102,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -124,7 +117,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -142,7 +134,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -158,7 +149,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -176,7 +166,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -192,7 +181,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -210,7 +198,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -226,7 +213,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -244,7 +230,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -260,7 +245,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -278,7 +262,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -294,7 +277,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -312,7 +294,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -328,7 +309,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -346,7 +326,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -362,7 +341,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -384,7 +362,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -400,7 +377,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -418,7 +394,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -434,7 +409,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -452,7 +426,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -468,7 +441,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -486,7 +458,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -502,7 +473,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -520,7 +490,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -536,7 +505,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -554,7 +522,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -570,7 +537,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -588,7 +554,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -604,7 +569,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -622,7 +586,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -638,7 +601,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -656,7 +618,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -672,7 +633,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -690,7 +650,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -706,7 +665,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -728,7 +686,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -744,7 +701,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -762,7 +718,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -778,7 +733,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -796,7 +750,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -812,7 +765,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -830,7 +782,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -846,7 +797,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -864,7 +814,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -880,7 +829,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -898,7 +846,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -914,7 +861,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -932,7 +878,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -948,7 +893,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -966,7 +910,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -982,7 +925,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -1000,7 +942,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -1016,7 +957,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -1034,7 +974,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -1050,7 +989,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -1072,7 +1010,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -1088,7 +1025,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -1106,7 +1042,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -1122,7 +1057,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -1140,7 +1074,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -1156,7 +1089,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -1174,7 +1106,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -1190,7 +1121,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -1208,7 +1138,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -1224,7 +1153,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -1242,7 +1170,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -1258,7 +1185,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -1276,7 +1202,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -1292,7 +1217,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -1310,7 +1234,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -1326,7 +1249,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -1344,7 +1266,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -1360,7 +1281,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -1378,7 +1298,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -1394,7 +1313,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -1416,7 +1334,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -1432,7 +1349,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -1450,7 +1366,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -1466,7 +1381,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -1484,7 +1398,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -1500,7 +1413,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -1518,7 +1430,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -1534,7 +1445,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -1552,7 +1462,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -1568,7 +1477,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -1586,7 +1494,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -1602,7 +1509,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -1620,7 +1526,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -1636,7 +1541,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -1654,7 +1558,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -1670,7 +1573,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -1688,7 +1590,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -1704,7 +1605,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -1722,7 +1622,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -1738,7 +1637,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -1760,7 +1658,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -1776,7 +1673,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -1794,7 +1690,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -1810,7 +1705,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -1828,7 +1722,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -1844,7 +1737,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -1862,7 +1754,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -1878,7 +1769,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -1896,7 +1786,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -1912,7 +1801,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -1930,7 +1818,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -1946,7 +1833,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -1964,7 +1850,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -1980,7 +1865,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -1998,7 +1882,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -2014,7 +1897,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -2032,7 +1914,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -2048,7 +1929,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -2066,7 +1946,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -2082,7 +1961,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -2104,7 +1982,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -2120,7 +1997,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -2138,7 +2014,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -2154,7 +2029,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -2172,7 +2046,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -2188,7 +2061,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -2206,7 +2078,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -2222,7 +2093,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -2240,7 +2110,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -2256,7 +2125,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -2274,7 +2142,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -2290,7 +2157,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -2308,7 +2174,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -2324,7 +2189,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -2342,7 +2206,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -2358,7 +2221,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -2376,7 +2238,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -2392,7 +2253,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -2410,7 +2270,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -2426,7 +2285,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -2448,7 +2306,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -2464,7 +2321,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -2482,7 +2338,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -2498,7 +2353,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -2516,7 +2370,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -2532,7 +2385,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -2550,7 +2402,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -2566,7 +2417,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -2584,7 +2434,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -2600,7 +2449,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -2618,7 +2466,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -2634,7 +2481,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -2652,7 +2498,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -2668,7 +2513,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -2686,7 +2530,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -2702,7 +2545,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -2720,7 +2562,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -2736,7 +2577,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -2754,7 +2594,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -2770,7 +2609,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -2792,7 +2630,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -2808,7 +2645,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -2826,7 +2662,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -2842,7 +2677,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -2860,7 +2694,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -2876,7 +2709,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -2894,7 +2726,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -2910,7 +2741,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -2928,7 +2758,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -2944,7 +2773,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -2962,7 +2790,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -2978,7 +2805,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -2996,7 +2822,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -3012,7 +2837,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -3030,7 +2854,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -3046,7 +2869,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -3064,7 +2886,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -3080,7 +2901,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -3098,7 +2918,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -3114,7 +2933,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -3136,7 +2954,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -3152,7 +2969,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -3170,7 +2986,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -3186,7 +3001,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -3204,7 +3018,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -3220,7 +3033,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -3238,7 +3050,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -3254,7 +3065,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -3272,7 +3082,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -3288,7 +3097,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -3306,7 +3114,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -3322,7 +3129,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -3340,7 +3146,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -3356,7 +3161,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -3374,7 +3178,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -3390,7 +3193,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -3408,7 +3210,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -3424,7 +3225,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -3442,7 +3242,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -3458,7 +3257,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -3480,7 +3278,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -3496,7 +3293,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -3514,7 +3310,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -3530,7 +3325,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -3548,7 +3342,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -3564,7 +3357,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -3582,7 +3374,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -3598,7 +3389,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -3616,7 +3406,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -3632,7 +3421,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -3650,7 +3438,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -3666,7 +3453,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -3684,7 +3470,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -3700,7 +3485,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -3718,7 +3502,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -3734,7 +3517,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -3752,7 +3534,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -3768,7 +3549,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -3786,7 +3566,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -3802,7 +3581,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -3824,7 +3602,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -3840,7 +3617,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -3858,7 +3634,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -3874,7 +3649,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -3892,7 +3666,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -3908,7 +3681,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -3926,7 +3698,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -3942,7 +3713,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -3960,7 +3730,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -3976,7 +3745,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -3994,7 +3762,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -4010,7 +3777,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -4028,7 +3794,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -4044,7 +3809,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -4062,7 +3826,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -4078,7 +3841,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -4096,7 +3858,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -4112,7 +3873,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -4130,7 +3890,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -4146,7 +3905,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -4168,7 +3926,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -4184,7 +3941,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -4206,7 +3962,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -4222,7 +3977,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -4244,7 +3998,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -4260,7 +4013,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -4282,7 +4034,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -4298,7 +4049,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -4320,7 +4070,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -4336,7 +4085,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -4358,7 +4106,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -4374,7 +4121,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -4396,7 +4142,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -4412,7 +4157,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -4434,7 +4178,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -4450,7 +4193,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -4472,7 +4214,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -4488,7 +4229,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -4510,7 +4250,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -4526,7 +4265,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -4548,7 +4286,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -4564,7 +4301,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -4586,7 +4322,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""prod"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -4602,7 +4337,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -4620,7 +4354,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -4636,7 +4369,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -4654,7 +4386,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -4670,7 +4401,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -4688,7 +4418,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -4704,7 +4433,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -4722,7 +4450,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -4738,7 +4465,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -4756,7 +4482,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -4772,7 +4497,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -4790,7 +4514,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -4806,7 +4529,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -4824,7 +4546,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -4840,7 +4561,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -4858,7 +4578,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -4874,7 +4593,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -4892,7 +4610,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -4908,7 +4625,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -4926,7 +4642,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -4942,7 +4657,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -4964,7 +4678,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -4980,7 +4693,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -4998,7 +4710,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""a"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -5014,7 +4725,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -5032,7 +4742,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -5048,7 +4757,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -5066,7 +4774,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -5082,7 +4789,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -5100,7 +4806,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -5116,7 +4821,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -5134,7 +4838,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -5150,7 +4853,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -5168,7 +4870,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -5184,7 +4885,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -5202,7 +4902,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -5218,7 +4917,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -5236,7 +4934,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -5252,7 +4949,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -5270,7 +4966,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -5286,7 +4981,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -5304,7 +4998,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -5320,7 +5013,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -5342,7 +5034,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -5358,7 +5049,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -5376,7 +5066,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -5392,7 +5081,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -5410,7 +5098,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""cr"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -5426,7 +5113,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -5444,7 +5130,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -5460,7 +5145,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -5478,7 +5162,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -5494,7 +5177,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -5512,7 +5194,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -5528,7 +5209,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -5546,7 +5226,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -5562,7 +5241,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -5580,7 +5258,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -5596,7 +5273,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -5614,7 +5290,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -5630,7 +5305,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -5648,7 +5322,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -5664,7 +5337,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -5682,7 +5354,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -5698,7 +5369,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -5720,7 +5390,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -5736,7 +5405,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -5754,7 +5422,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -5770,7 +5437,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -5788,7 +5454,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -5804,7 +5469,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -5822,7 +5486,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""cos &"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -5838,7 +5501,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -5856,7 +5518,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -5872,7 +5533,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -5890,7 +5550,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -5906,7 +5565,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -5924,7 +5582,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -5940,7 +5597,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -5958,7 +5614,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -5974,7 +5629,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -5992,7 +5646,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -6008,7 +5661,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -6026,7 +5678,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -6042,7 +5693,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -6060,7 +5710,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -6076,7 +5725,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -6098,7 +5746,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -6114,7 +5761,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -6132,7 +5778,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -6148,7 +5793,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -6166,7 +5810,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -6182,7 +5825,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -6200,7 +5842,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -6216,7 +5857,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -6234,7 +5874,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""dir"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -6250,7 +5889,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -6268,7 +5906,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -6284,7 +5921,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -6302,7 +5938,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -6318,7 +5953,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -6336,7 +5970,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -6352,7 +5985,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -6370,7 +6002,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -6386,7 +6017,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -6404,7 +6034,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -6420,7 +6049,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -6438,7 +6066,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -6454,7 +6081,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -6476,7 +6102,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -6492,7 +6117,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -6510,7 +6134,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -6526,7 +6149,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -6544,7 +6166,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -6560,7 +6181,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -6578,7 +6198,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -6594,7 +6213,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -6612,7 +6230,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -6628,7 +6245,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -6646,7 +6262,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writ"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -6662,7 +6277,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -6680,7 +6294,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -6696,7 +6309,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -6714,7 +6326,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -6730,7 +6341,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -6748,7 +6358,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -6764,7 +6373,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -6782,7 +6390,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -6798,7 +6405,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -6816,7 +6422,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -6832,7 +6437,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -6854,7 +6458,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -6870,7 +6473,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -6888,7 +6490,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -6904,7 +6505,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -6922,7 +6522,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -6938,7 +6537,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -6956,7 +6554,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -6972,7 +6569,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -6990,7 +6586,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -7006,7 +6601,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -7024,7 +6618,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -7040,7 +6633,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -7058,7 +6650,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""so"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -7074,7 +6665,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -7092,7 +6682,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -7108,7 +6697,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -7126,7 +6714,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -7142,7 +6729,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -7160,7 +6746,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -7176,7 +6761,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -7194,7 +6778,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -7210,7 +6793,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -7232,7 +6814,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -7248,7 +6829,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -7266,7 +6846,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -7282,7 +6861,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -7300,7 +6878,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -7316,7 +6893,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -7334,7 +6910,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -7350,7 +6925,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -7368,7 +6942,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -7384,7 +6957,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -7402,7 +6974,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -7418,7 +6989,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -7436,7 +7006,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -7452,7 +7021,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -7470,7 +7038,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""cam"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -7486,7 +7053,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -7504,7 +7070,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -7520,7 +7085,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -7538,7 +7102,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -7554,7 +7117,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -7572,7 +7134,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -7588,7 +7149,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -7610,7 +7170,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -7626,7 +7185,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -7644,7 +7202,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -7660,7 +7217,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -7678,7 +7234,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -7694,7 +7249,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -7712,7 +7266,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -7728,7 +7281,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -7746,7 +7298,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -7762,7 +7313,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -7780,7 +7330,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -7796,7 +7345,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -7814,7 +7362,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -7830,7 +7377,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -7848,7 +7394,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -7864,7 +7409,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -7882,7 +7426,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""light"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -7898,7 +7441,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -7916,7 +7458,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -7932,7 +7473,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -7950,7 +7490,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -7966,7 +7505,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -7988,7 +7526,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -8004,7 +7541,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -8022,7 +7558,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -8038,7 +7573,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -8056,7 +7590,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -8072,7 +7605,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -8090,7 +7622,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -8106,7 +7637,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -8124,7 +7654,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -8140,7 +7669,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -8158,7 +7686,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -8174,7 +7701,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -8192,7 +7718,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -8208,7 +7733,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -8226,7 +7750,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -8242,7 +7765,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -8260,7 +7782,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -8276,7 +7797,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -8294,7 +7814,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""vfx"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -8310,7 +7829,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -8328,7 +7846,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -8344,7 +7861,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -8366,7 +7882,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -8382,7 +7897,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -8400,7 +7914,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -8416,7 +7929,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -8434,7 +7946,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -8450,7 +7961,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -8468,7 +7978,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -8484,7 +7993,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -8502,7 +8010,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -8518,7 +8025,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -8536,7 +8042,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -8552,7 +8057,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -8570,7 +8074,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -8586,7 +8089,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -8604,7 +8106,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -8620,7 +8121,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -8638,7 +8138,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -8654,7 +8153,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -8672,7 +8170,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -8688,7 +8185,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -8706,7 +8202,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""edit"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -8722,7 +8217,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -8744,7 +8238,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
             @"{
                 ""prod"": [
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -8760,7 +8253,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Producer"",
                     ""jobs"": [
                       ""Producer""
                     ],
@@ -8778,7 +8270,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""a"": [
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -8794,7 +8285,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Artist"",
                     ""jobs"": [
                       ""Artist""
                     ],
@@ -8812,7 +8302,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""cr"": [
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -8828,7 +8317,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
                     ""jobs"": [
                       ""Crew Member""
                     ],
@@ -8846,7 +8334,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""cos &"": [
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -8862,7 +8349,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
                     ""jobs"": [
                       ""Make-Up Artist""
                     ],
@@ -8880,7 +8366,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""dir"": [
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -8896,7 +8381,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Director"",
                     ""jobs"": [
                       ""Director""
                     ],
@@ -8914,7 +8398,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""writ"": [
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -8930,7 +8413,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Writer"",
                     ""jobs"": [
                       ""Writer""
                     ],
@@ -8948,7 +8430,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""so"": [
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -8964,7 +8445,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
                     ""jobs"": [
                       ""Sound Designer""
                     ],
@@ -8982,7 +8462,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""cam"": [
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -8998,7 +8477,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Camera"",
                     ""jobs"": [
                       ""Camera""
                     ],
@@ -9016,7 +8494,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""light"": [
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -9032,7 +8509,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
                     ""jobs"": [
                       ""Light Technician""
                     ],
@@ -9050,7 +8526,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""vfx"": [
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -9066,7 +8541,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
                     ""jobs"": [
                       ""VFX Artist""
                     ],
@@ -9084,7 +8558,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                 ],
                 ""edit"": [
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],
@@ -9100,7 +8573,6 @@ namespace TraktNet.Objects.Basic.Tests.Json.Reader
                     }
                   },
                   {
-                    ""job"": ""Editor"",
                     ""jobs"": [
                       ""Editor""
                     ],

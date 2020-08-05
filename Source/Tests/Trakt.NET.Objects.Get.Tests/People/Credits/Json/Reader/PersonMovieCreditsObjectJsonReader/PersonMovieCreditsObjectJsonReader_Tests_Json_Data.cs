@@ -6,7 +6,9 @@
             @"{
                 ""cast"": [
                   {
-                    ""character"": ""Rey"",
+                    ""characters"": [
+                      ""Rey""
+                    ],
                     ""movie"": {
                       ""title"": ""Star Wars: The Force Awakens"",
                       ""year"": 2015,
@@ -19,7 +21,9 @@
                     }
                   },
                   {
-                    ""character"": ""Sam Flynn"",
+                    ""characters"": [
+                      ""Sam Flynn""
+                    ],
                     ""movie"": {
                       ""title"": ""TRON: Legacy"",
                       ""year"": 2010,
@@ -35,7 +39,9 @@
                 ""crew"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -48,7 +54,9 @@
                       }
                     },
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -63,7 +71,9 @@
                   ],
                   ""art"": [
                     {
-                      ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -76,7 +86,9 @@
                       }
                     },
                     {
-                      ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -91,7 +103,9 @@
                   ],
                   ""crew"": [
                     {
-                      ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -104,7 +118,9 @@
                       }
                     },
                     {
-                      ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -119,7 +135,9 @@
                   ],
                   ""costume & make-up"": [
                     {
-                      ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -132,7 +150,9 @@
                       }
                     },
                     {
-                      ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -147,7 +167,9 @@
                   ],
                   ""directing"": [
                     {
-                      ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -160,7 +182,9 @@
                       }
                     },
                     {
-                      ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -175,7 +199,9 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -188,7 +214,9 @@
                       }
                     },
                     {
-                      ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -203,7 +231,9 @@
                   ],
                   ""sound"": [
                     {
-                      ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -216,7 +246,9 @@
                       }
                     },
                     {
-                      ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -231,7 +263,9 @@
                   ],
                   ""camera"": [
                     {
-                      ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -244,7 +278,9 @@
                       }
                     },
                     {
-                      ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -259,7 +295,9 @@
                   ],
                   ""lighting"": [
                     {
-                      ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -272,7 +310,9 @@
                       }
                     },
                     {
-                      ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -287,7 +327,9 @@
                   ],
                   ""visual effects"": [
                     {
-                      ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -300,7 +342,9 @@
                       }
                     },
                     {
-                      ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -315,7 +359,9 @@
                   ],
                   ""editing"": [
                     {
-                      ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -328,7 +374,9 @@
                       }
                     },
                     {
-                      ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -349,7 +397,9 @@
                 ""crew"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -362,7 +412,9 @@
                       }
                     },
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -377,7 +429,9 @@
                   ],
                   ""art"": [
                     {
-                      ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -390,7 +444,9 @@
                       }
                     },
                     {
-                      ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -405,7 +461,9 @@
                   ],
                   ""crew"": [
                     {
-                      ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -418,7 +476,9 @@
                       }
                     },
                     {
-                      ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -433,7 +493,9 @@
                   ],
                   ""costume & make-up"": [
                     {
-                      ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -446,7 +508,9 @@
                       }
                     },
                     {
-                      ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -461,7 +525,9 @@
                   ],
                   ""directing"": [
                     {
-                      ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -474,7 +540,9 @@
                       }
                     },
                     {
-                      ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -489,7 +557,9 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -502,7 +572,9 @@
                       }
                     },
                     {
-                      ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -517,7 +589,9 @@
                   ],
                   ""sound"": [
                     {
-                      ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -530,7 +604,9 @@
                       }
                     },
                     {
-                      ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -545,7 +621,9 @@
                   ],
                   ""camera"": [
                     {
-                      ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -558,7 +636,9 @@
                       }
                     },
                     {
-                      ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -573,7 +653,9 @@
                   ],
                   ""lighting"": [
                     {
-                      ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -586,7 +668,9 @@
                       }
                     },
                     {
-                      ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -601,7 +685,9 @@
                   ],
                   ""visual effects"": [
                     {
-                      ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -614,7 +700,9 @@
                       }
                     },
                     {
-                      ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -629,7 +717,9 @@
                   ],
                   ""editing"": [
                     {
-                      ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -642,7 +732,9 @@
                       }
                     },
                     {
-                      ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -662,7 +754,9 @@
             @"{
                 ""cast"": [
                   {
-                    ""character"": ""Rey"",
+                    ""characters"": [
+                      ""Rey""
+                    ],
                     ""movie"": {
                       ""title"": ""Star Wars: The Force Awakens"",
                       ""year"": 2015,
@@ -675,7 +769,9 @@
                     }
                   },
                   {
-                    ""character"": ""Sam Flynn"",
+                    ""characters"": [
+                      ""Sam Flynn""
+                    ],
                     ""movie"": {
                       ""title"": ""TRON: Legacy"",
                       ""year"": 2010,
@@ -694,7 +790,9 @@
             @"{
                 ""ca"": [
                   {
-                    ""character"": ""Rey"",
+                    ""characters"": [
+                      ""Rey""
+                    ],
                     ""movie"": {
                       ""title"": ""Star Wars: The Force Awakens"",
                       ""year"": 2015,
@@ -707,7 +805,9 @@
                     }
                   },
                   {
-                    ""character"": ""Sam Flynn"",
+                    ""characters"": [
+                      ""Sam Flynn""
+                    ],
                     ""movie"": {
                       ""title"": ""TRON: Legacy"",
                       ""year"": 2010,
@@ -723,7 +823,9 @@
                 ""crew"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -736,7 +838,9 @@
                       }
                     },
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -751,7 +855,9 @@
                   ],
                   ""art"": [
                     {
-                      ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -764,7 +870,9 @@
                       }
                     },
                     {
-                      ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -779,7 +887,9 @@
                   ],
                   ""crew"": [
                     {
-                      ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -792,7 +902,9 @@
                       }
                     },
                     {
-                      ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -807,7 +919,9 @@
                   ],
                   ""costume & make-up"": [
                     {
-                      ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -820,7 +934,9 @@
                       }
                     },
                     {
-                      ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -835,7 +951,9 @@
                   ],
                   ""directing"": [
                     {
-                      ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -848,7 +966,9 @@
                       }
                     },
                     {
-                      ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -863,7 +983,9 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -876,7 +998,9 @@
                       }
                     },
                     {
-                      ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -891,7 +1015,9 @@
                   ],
                   ""sound"": [
                     {
-                      ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -904,7 +1030,9 @@
                       }
                     },
                     {
-                      ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -919,7 +1047,9 @@
                   ],
                   ""camera"": [
                     {
-                      ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -932,7 +1062,9 @@
                       }
                     },
                     {
-                      ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -947,7 +1079,9 @@
                   ],
                   ""lighting"": [
                     {
-                      ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -960,7 +1094,9 @@
                       }
                     },
                     {
-                      ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -975,7 +1111,9 @@
                   ],
                   ""visual effects"": [
                     {
-                      ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -988,7 +1126,9 @@
                       }
                     },
                     {
-                      ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1003,7 +1143,9 @@
                   ],
                   ""editing"": [
                     {
-                      ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1016,7 +1158,9 @@
                       }
                     },
                     {
-                      ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1036,7 +1180,9 @@
             @"{
                 ""cast"": [
                   {
-                    ""character"": ""Rey"",
+                    ""characters"": [
+                      ""Rey""
+                    ],
                     ""movie"": {
                       ""title"": ""Star Wars: The Force Awakens"",
                       ""year"": 2015,
@@ -1049,7 +1195,9 @@
                     }
                   },
                   {
-                    ""character"": ""Sam Flynn"",
+                    ""characters"": [
+                      ""Sam Flynn""
+                    ],
                     ""movie"": {
                       ""title"": ""TRON: Legacy"",
                       ""year"": 2010,
@@ -1065,7 +1213,9 @@
                 ""cr"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1078,7 +1228,9 @@
                       }
                     },
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1093,7 +1245,9 @@
                   ],
                   ""art"": [
                     {
-                      ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1106,7 +1260,9 @@
                       }
                     },
                     {
-                      ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1121,7 +1277,9 @@
                   ],
                   ""crew"": [
                     {
-                      ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1134,7 +1292,9 @@
                       }
                     },
                     {
-                      ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1149,7 +1309,9 @@
                   ],
                   ""costume & make-up"": [
                     {
-                      ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1162,7 +1324,9 @@
                       }
                     },
                     {
-                      ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1177,7 +1341,9 @@
                   ],
                   ""directing"": [
                     {
-                      ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1190,7 +1356,9 @@
                       }
                     },
                     {
-                      ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1205,7 +1373,9 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1218,7 +1388,9 @@
                       }
                     },
                     {
-                      ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1233,7 +1405,9 @@
                   ],
                   ""sound"": [
                     {
-                      ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1246,7 +1420,9 @@
                       }
                     },
                     {
-                      ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1261,7 +1437,9 @@
                   ],
                   ""camera"": [
                     {
-                      ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1274,7 +1452,9 @@
                       }
                     },
                     {
-                      ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1289,7 +1469,9 @@
                   ],
                   ""lighting"": [
                     {
-                      ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1302,7 +1484,9 @@
                       }
                     },
                     {
-                      ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1317,7 +1501,9 @@
                   ],
                   ""visual effects"": [
                     {
-                      ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1330,7 +1516,9 @@
                       }
                     },
                     {
-                      ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1345,7 +1533,9 @@
                   ],
                   ""editing"": [
                     {
-                      ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1358,7 +1548,9 @@
                       }
                     },
                     {
-                      ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1378,7 +1570,9 @@
             @"{
                 ""ca"": [
                   {
-                    ""character"": ""Rey"",
+                    ""characters"": [
+                      ""Rey""
+                    ],
                     ""movie"": {
                       ""title"": ""Star Wars: The Force Awakens"",
                       ""year"": 2015,
@@ -1391,7 +1585,9 @@
                     }
                   },
                   {
-                    ""character"": ""Sam Flynn"",
+                    ""characters"": [
+                      ""Sam Flynn""
+                    ],
                     ""movie"": {
                       ""title"": ""TRON: Legacy"",
                       ""year"": 2010,
@@ -1407,7 +1603,9 @@
                 ""cr"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1420,7 +1618,9 @@
                       }
                     },
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1435,7 +1635,9 @@
                   ],
                   ""art"": [
                     {
-                      ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1448,7 +1650,9 @@
                       }
                     },
                     {
-                      ""job"": ""Artist"",
+                      ""jobs"": [
+                        ""Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1463,7 +1667,9 @@
                   ],
                   ""crew"": [
                     {
-                      ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1476,7 +1682,9 @@
                       }
                     },
                     {
-                      ""job"": ""Crew Member"",
+                      ""jobs"": [
+                        ""Crew Member""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1491,7 +1699,9 @@
                   ],
                   ""costume & make-up"": [
                     {
-                      ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1504,7 +1714,9 @@
                       }
                     },
                     {
-                      ""job"": ""Make-Up Artist"",
+                      ""jobs"": [
+                        ""Make-Up Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1519,7 +1731,9 @@
                   ],
                   ""directing"": [
                     {
-                      ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1532,7 +1746,9 @@
                       }
                     },
                     {
-                      ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1547,7 +1763,9 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1560,7 +1778,9 @@
                       }
                     },
                     {
-                      ""job"": ""Writer"",
+                      ""jobs"": [
+                        ""Writer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1575,7 +1795,9 @@
                   ],
                   ""sound"": [
                     {
-                      ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1588,7 +1810,9 @@
                       }
                     },
                     {
-                      ""job"": ""Sound Designer"",
+                      ""jobs"": [
+                        ""Sound Designer""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1603,7 +1827,9 @@
                   ],
                   ""camera"": [
                     {
-                      ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1616,7 +1842,9 @@
                       }
                     },
                     {
-                      ""job"": ""Camera"",
+                      ""jobs"": [
+                        ""Camera""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1631,7 +1859,9 @@
                   ],
                   ""lighting"": [
                     {
-                      ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1644,7 +1874,9 @@
                       }
                     },
                     {
-                      ""job"": ""Light Technician"",
+                      ""jobs"": [
+                        ""Light Technician""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1659,7 +1891,9 @@
                   ],
                   ""visual effects"": [
                     {
-                      ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1672,7 +1906,9 @@
                       }
                     },
                     {
-                      ""job"": ""VFX Artist"",
+                      ""jobs"": [
+                        ""VFX Artist""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,
@@ -1687,7 +1923,9 @@
                   ],
                   ""editing"": [
                     {
-                      ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""movie"": {
                         ""title"": ""Star Wars: The Force Awakens"",
                         ""year"": 2015,
@@ -1700,7 +1938,9 @@
                       }
                     },
                     {
-                      ""job"": ""Editor"",
+                      ""jobs"": [
+                        ""Editor""
+                      ],
                       ""movie"": {
                         ""title"": ""TRON: Legacy"",
                         ""year"": 2010,

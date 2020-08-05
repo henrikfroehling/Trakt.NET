@@ -21,7 +21,7 @@
                 var showCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCastItem.Should().NotBeNull();
-                showCreditsCastItem.Character.Should().Be("Joe Brody");
+                showCreditsCastItem.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 showCreditsCastItem.Show.Should().NotBeNull();
                 showCreditsCastItem.Show.Title.Should().Be("Game of Thrones");
                 showCreditsCastItem.Show.Year.Should().Be(2011);
@@ -45,7 +45,7 @@
                 var showCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCastItem.Should().NotBeNull();
-                showCreditsCastItem.Character.Should().BeNull();
+                showCreditsCastItem.Characters.Should().BeNull();
                 showCreditsCastItem.Show.Should().NotBeNull();
                 showCreditsCastItem.Show.Title.Should().Be("Game of Thrones");
                 showCreditsCastItem.Show.Year.Should().Be(2011);
@@ -69,7 +69,7 @@
                 var showCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCastItem.Should().NotBeNull();
-                showCreditsCastItem.Character.Should().Be("Joe Brody");
+                showCreditsCastItem.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 showCreditsCastItem.Show.Should().BeNull();
             }
         }
@@ -84,7 +84,7 @@
                 var showCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCastItem.Should().NotBeNull();
-                showCreditsCastItem.Character.Should().BeNull();
+                showCreditsCastItem.Characters.Should().BeNull();
                 showCreditsCastItem.Show.Should().NotBeNull();
                 showCreditsCastItem.Show.Title.Should().Be("Game of Thrones");
                 showCreditsCastItem.Show.Year.Should().Be(2011);
@@ -108,7 +108,7 @@
                 var showCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCastItem.Should().NotBeNull();
-                showCreditsCastItem.Character.Should().Be("Joe Brody");
+                showCreditsCastItem.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 showCreditsCastItem.Show.Should().BeNull();
             }
         }
@@ -123,7 +123,7 @@
                 var showCreditsCastItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCastItem.Should().NotBeNull();
-                showCreditsCastItem.Character.Should().BeNull();
+                showCreditsCastItem.Characters.Should().BeNull();
                 showCreditsCastItem.Show.Should().BeNull();
             }
         }

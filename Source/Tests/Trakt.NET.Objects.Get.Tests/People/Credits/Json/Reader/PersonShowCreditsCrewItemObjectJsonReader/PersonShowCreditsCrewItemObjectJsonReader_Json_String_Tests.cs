@@ -17,7 +17,7 @@
             var showCreditsCrewItem = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
             showCreditsCrewItem.Should().NotBeNull();
-            showCreditsCrewItem.Job.Should().Be("Director");
+            showCreditsCrewItem.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             showCreditsCrewItem.Show.Should().NotBeNull();
             showCreditsCrewItem.Show.Title.Should().Be("Game of Thrones");
             showCreditsCrewItem.Show.Year.Should().Be(2011);
@@ -38,7 +38,7 @@
             var showCreditsCrewItem = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
             showCreditsCrewItem.Should().NotBeNull();
-            showCreditsCrewItem.Job.Should().BeNull();
+            showCreditsCrewItem.Jobs.Should().BeNull();
             showCreditsCrewItem.Show.Should().NotBeNull();
             showCreditsCrewItem.Show.Title.Should().Be("Game of Thrones");
             showCreditsCrewItem.Show.Year.Should().Be(2011);
@@ -59,7 +59,7 @@
             var showCreditsCrewItem = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
             showCreditsCrewItem.Should().NotBeNull();
-            showCreditsCrewItem.Job.Should().Be("Director");
+            showCreditsCrewItem.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             showCreditsCrewItem.Show.Should().BeNull();
         }
 
@@ -71,7 +71,7 @@
             var showCreditsCrewItem = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
             showCreditsCrewItem.Should().NotBeNull();
-            showCreditsCrewItem.Job.Should().BeNull();
+            showCreditsCrewItem.Jobs.Should().BeNull();
             showCreditsCrewItem.Show.Should().NotBeNull();
             showCreditsCrewItem.Show.Title.Should().Be("Game of Thrones");
             showCreditsCrewItem.Show.Year.Should().Be(2011);
@@ -92,7 +92,7 @@
             var showCreditsCrewItem = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
             showCreditsCrewItem.Should().NotBeNull();
-            showCreditsCrewItem.Job.Should().Be("Director");
+            showCreditsCrewItem.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             showCreditsCrewItem.Show.Should().BeNull();
         }
 
@@ -104,7 +104,7 @@
             var showCreditsCrewItem = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
             showCreditsCrewItem.Should().NotBeNull();
-            showCreditsCrewItem.Job.Should().BeNull();
+            showCreditsCrewItem.Jobs.Should().BeNull();
             showCreditsCrewItem.Show.Should().BeNull();
         }
 

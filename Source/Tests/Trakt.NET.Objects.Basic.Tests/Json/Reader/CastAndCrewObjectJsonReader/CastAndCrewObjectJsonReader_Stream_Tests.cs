@@ -26,7 +26,6 @@
                 var castMemberItems = traktCastAndCrew.Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
-                castMemberItems[0].Character.Should().Be("Joe Brody");
                 castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 castMemberItems[0].Person.Should().NotBeNull();
                 castMemberItems[0].Person.Name.Should().Be("Bryan Cranston");
@@ -38,7 +37,6 @@
                 castMemberItems[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 castMemberItems[1].Should().NotBeNull();
-                castMemberItems[1].Character.Should().Be("Jules Winfield");
                 castMemberItems[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Jules Winfield");
                 castMemberItems[1].Person.Should().NotBeNull();
                 castMemberItems[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -56,7 +54,6 @@
                 var productionCrew = crew.Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().Be("Producer");
                 productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -68,7 +65,6 @@
                 productionCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 productionCrew[1].Should().NotBeNull();
-                productionCrew[1].Job.Should().Be("Producer");
                 productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[1].Person.Should().NotBeNull();
                 productionCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -83,7 +79,6 @@
                 var artCrew = crew.Art.ToArray();
 
                 artCrew[0].Should().NotBeNull();
-                artCrew[0].Job.Should().Be("Artist");
                 artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
                 artCrew[0].Person.Should().NotBeNull();
                 artCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -95,7 +90,6 @@
                 artCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 artCrew[1].Should().NotBeNull();
-                artCrew[1].Job.Should().Be("Artist");
                 artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
                 artCrew[1].Person.Should().NotBeNull();
                 artCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -110,7 +104,6 @@
                 var crewCrew = crew.Crew.ToArray();
 
                 crewCrew[0].Should().NotBeNull();
-                crewCrew[0].Job.Should().Be("Crew Member");
                 crewCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
                 crewCrew[0].Person.Should().NotBeNull();
                 crewCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -122,7 +115,6 @@
                 crewCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 crewCrew[1].Should().NotBeNull();
-                crewCrew[1].Job.Should().Be("Crew Member");
                 crewCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
                 crewCrew[1].Person.Should().NotBeNull();
                 crewCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -137,7 +129,6 @@
                 var costumeAndMakeupCrew = crew.CostumeAndMakeup.ToArray();
 
                 costumeAndMakeupCrew[0].Should().NotBeNull();
-                costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
                 costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
                 costumeAndMakeupCrew[0].Person.Should().NotBeNull();
                 costumeAndMakeupCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -149,7 +140,6 @@
                 costumeAndMakeupCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 costumeAndMakeupCrew[1].Should().NotBeNull();
-                costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
                 costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
                 costumeAndMakeupCrew[1].Person.Should().NotBeNull();
                 costumeAndMakeupCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -164,7 +154,6 @@
                 var directingCrew = crew.Directing.ToArray();
 
                 directingCrew[0].Should().NotBeNull();
-                directingCrew[0].Job.Should().Be("Director");
                 directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 directingCrew[0].Person.Should().NotBeNull();
                 directingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -176,7 +165,6 @@
                 directingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 directingCrew[1].Should().NotBeNull();
-                directingCrew[1].Job.Should().Be("Director");
                 directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 directingCrew[1].Person.Should().NotBeNull();
                 directingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -191,7 +179,6 @@
                 var writingCrew = crew.Writing.ToArray();
 
                 writingCrew[0].Should().NotBeNull();
-                writingCrew[0].Job.Should().Be("Writer");
                 writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
                 writingCrew[0].Person.Should().NotBeNull();
                 writingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -203,7 +190,6 @@
                 writingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 writingCrew[1].Should().NotBeNull();
-                writingCrew[1].Job.Should().Be("Writer");
                 writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
                 writingCrew[1].Person.Should().NotBeNull();
                 writingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -218,7 +204,6 @@
                 var soundCrew = crew.Sound.ToArray();
 
                 soundCrew[0].Should().NotBeNull();
-                soundCrew[0].Job.Should().Be("Sound Designer");
                 soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
                 soundCrew[0].Person.Should().NotBeNull();
                 soundCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -230,7 +215,6 @@
                 soundCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 soundCrew[1].Should().NotBeNull();
-                soundCrew[1].Job.Should().Be("Sound Designer");
                 soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
                 soundCrew[1].Person.Should().NotBeNull();
                 soundCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -245,7 +229,6 @@
                 var cameraCrew = crew.Camera.ToArray();
 
                 cameraCrew[0].Should().NotBeNull();
-                cameraCrew[0].Job.Should().Be("Camera");
                 cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
                 cameraCrew[0].Person.Should().NotBeNull();
                 cameraCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -257,7 +240,6 @@
                 cameraCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 cameraCrew[1].Should().NotBeNull();
-                cameraCrew[1].Job.Should().Be("Camera");
                 cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
                 cameraCrew[1].Person.Should().NotBeNull();
                 cameraCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -272,7 +254,6 @@
                 var lightingCrew = crew.Lighting.ToArray();
 
                 lightingCrew[0].Should().NotBeNull();
-                lightingCrew[0].Job.Should().Be("Light Technician");
                 lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
                 lightingCrew[0].Person.Should().NotBeNull();
                 lightingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -284,7 +265,6 @@
                 lightingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 lightingCrew[1].Should().NotBeNull();
-                lightingCrew[1].Job.Should().Be("Light Technician");
                 lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
                 lightingCrew[1].Person.Should().NotBeNull();
                 lightingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -299,7 +279,6 @@
                 var vfxCrew = crew.VisualEffects.ToArray();
 
                 vfxCrew[0].Should().NotBeNull();
-                vfxCrew[0].Job.Should().Be("VFX Artist");
                 vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
                 vfxCrew[0].Person.Should().NotBeNull();
                 vfxCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -311,7 +290,6 @@
                 vfxCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 vfxCrew[1].Should().NotBeNull();
-                vfxCrew[1].Job.Should().Be("VFX Artist");
                 vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
                 vfxCrew[1].Person.Should().NotBeNull();
                 vfxCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -326,7 +304,6 @@
                 var editingCrew = crew.Editing.ToArray();
 
                 editingCrew[0].Should().NotBeNull();
-                editingCrew[0].Job.Should().Be("Editor");
                 editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
                 editingCrew[0].Person.Should().NotBeNull();
                 editingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -338,7 +315,6 @@
                 editingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 editingCrew[1].Should().NotBeNull();
-                editingCrew[1].Job.Should().Be("Editor");
                 editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
                 editingCrew[1].Person.Should().NotBeNull();
                 editingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -370,7 +346,6 @@
                 var productionCrew = crew.Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().Be("Producer");
                 productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -382,7 +357,6 @@
                 productionCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 productionCrew[1].Should().NotBeNull();
-                productionCrew[1].Job.Should().Be("Producer");
                 productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[1].Person.Should().NotBeNull();
                 productionCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -397,7 +371,6 @@
                 var artCrew = crew.Art.ToArray();
 
                 artCrew[0].Should().NotBeNull();
-                artCrew[0].Job.Should().Be("Artist");
                 artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
                 artCrew[0].Person.Should().NotBeNull();
                 artCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -409,7 +382,6 @@
                 artCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 artCrew[1].Should().NotBeNull();
-                artCrew[1].Job.Should().Be("Artist");
                 artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
                 artCrew[1].Person.Should().NotBeNull();
                 artCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -424,7 +396,6 @@
                 var crewCrew = crew.Crew.ToArray();
 
                 crewCrew[0].Should().NotBeNull();
-                crewCrew[0].Job.Should().Be("Crew Member");
                 crewCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
                 crewCrew[0].Person.Should().NotBeNull();
                 crewCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -436,7 +407,6 @@
                 crewCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 crewCrew[1].Should().NotBeNull();
-                crewCrew[1].Job.Should().Be("Crew Member");
                 crewCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
                 crewCrew[1].Person.Should().NotBeNull();
                 crewCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -451,7 +421,6 @@
                 var costumeAndMakeupCrew = crew.CostumeAndMakeup.ToArray();
 
                 costumeAndMakeupCrew[0].Should().NotBeNull();
-                costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
                 costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
                 costumeAndMakeupCrew[0].Person.Should().NotBeNull();
                 costumeAndMakeupCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -463,7 +432,6 @@
                 costumeAndMakeupCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 costumeAndMakeupCrew[1].Should().NotBeNull();
-                costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
                 costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
                 costumeAndMakeupCrew[1].Person.Should().NotBeNull();
                 costumeAndMakeupCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -478,7 +446,6 @@
                 var directingCrew = crew.Directing.ToArray();
 
                 directingCrew[0].Should().NotBeNull();
-                directingCrew[0].Job.Should().Be("Director");
                 directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 directingCrew[0].Person.Should().NotBeNull();
                 directingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -490,7 +457,6 @@
                 directingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 directingCrew[1].Should().NotBeNull();
-                directingCrew[1].Job.Should().Be("Director");
                 directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 directingCrew[1].Person.Should().NotBeNull();
                 directingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -505,7 +471,6 @@
                 var writingCrew = crew.Writing.ToArray();
 
                 writingCrew[0].Should().NotBeNull();
-                writingCrew[0].Job.Should().Be("Writer");
                 writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
                 writingCrew[0].Person.Should().NotBeNull();
                 writingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -517,7 +482,6 @@
                 writingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 writingCrew[1].Should().NotBeNull();
-                writingCrew[1].Job.Should().Be("Writer");
                 writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
                 writingCrew[1].Person.Should().NotBeNull();
                 writingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -532,7 +496,6 @@
                 var soundCrew = crew.Sound.ToArray();
 
                 soundCrew[0].Should().NotBeNull();
-                soundCrew[0].Job.Should().Be("Sound Designer");
                 soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
                 soundCrew[0].Person.Should().NotBeNull();
                 soundCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -544,7 +507,6 @@
                 soundCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 soundCrew[1].Should().NotBeNull();
-                soundCrew[1].Job.Should().Be("Sound Designer");
                 soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
                 soundCrew[1].Person.Should().NotBeNull();
                 soundCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -559,7 +521,6 @@
                 var cameraCrew = crew.Camera.ToArray();
 
                 cameraCrew[0].Should().NotBeNull();
-                cameraCrew[0].Job.Should().Be("Camera");
                 cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
                 cameraCrew[0].Person.Should().NotBeNull();
                 cameraCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -571,7 +532,6 @@
                 cameraCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 cameraCrew[1].Should().NotBeNull();
-                cameraCrew[1].Job.Should().Be("Camera");
                 cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
                 cameraCrew[1].Person.Should().NotBeNull();
                 cameraCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -586,7 +546,6 @@
                 var lightingCrew = crew.Lighting.ToArray();
 
                 lightingCrew[0].Should().NotBeNull();
-                lightingCrew[0].Job.Should().Be("Light Technician");
                 lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
                 lightingCrew[0].Person.Should().NotBeNull();
                 lightingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -598,7 +557,6 @@
                 lightingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 lightingCrew[1].Should().NotBeNull();
-                lightingCrew[1].Job.Should().Be("Light Technician");
                 lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
                 lightingCrew[1].Person.Should().NotBeNull();
                 lightingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -613,7 +571,6 @@
                 var vfxCrew = crew.VisualEffects.ToArray();
 
                 vfxCrew[0].Should().NotBeNull();
-                vfxCrew[0].Job.Should().Be("VFX Artist");
                 vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
                 vfxCrew[0].Person.Should().NotBeNull();
                 vfxCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -625,7 +582,6 @@
                 vfxCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 vfxCrew[1].Should().NotBeNull();
-                vfxCrew[1].Job.Should().Be("VFX Artist");
                 vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
                 vfxCrew[1].Person.Should().NotBeNull();
                 vfxCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -640,7 +596,6 @@
                 var editingCrew = crew.Editing.ToArray();
 
                 editingCrew[0].Should().NotBeNull();
-                editingCrew[0].Job.Should().Be("Editor");
                 editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
                 editingCrew[0].Person.Should().NotBeNull();
                 editingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -652,7 +607,6 @@
                 editingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 editingCrew[1].Should().NotBeNull();
-                editingCrew[1].Job.Should().Be("Editor");
                 editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
                 editingCrew[1].Person.Should().NotBeNull();
                 editingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -679,7 +633,6 @@
                 var castMemberItems = traktCastAndCrew.Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
-                castMemberItems[0].Character.Should().Be("Joe Brody");
                 castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 castMemberItems[0].Person.Should().NotBeNull();
                 castMemberItems[0].Person.Name.Should().Be("Bryan Cranston");
@@ -691,7 +644,6 @@
                 castMemberItems[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 castMemberItems[1].Should().NotBeNull();
-                castMemberItems[1].Character.Should().Be("Jules Winfield");
                 castMemberItems[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Jules Winfield");
                 castMemberItems[1].Person.Should().NotBeNull();
                 castMemberItems[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -725,7 +677,6 @@
                 var productionCrew = crew.Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().Be("Producer");
                 productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -737,7 +688,6 @@
                 productionCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 productionCrew[1].Should().NotBeNull();
-                productionCrew[1].Job.Should().Be("Producer");
                 productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[1].Person.Should().NotBeNull();
                 productionCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -752,7 +702,6 @@
                 var artCrew = crew.Art.ToArray();
 
                 artCrew[0].Should().NotBeNull();
-                artCrew[0].Job.Should().Be("Artist");
                 artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
                 artCrew[0].Person.Should().NotBeNull();
                 artCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -764,7 +713,6 @@
                 artCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 artCrew[1].Should().NotBeNull();
-                artCrew[1].Job.Should().Be("Artist");
                 artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
                 artCrew[1].Person.Should().NotBeNull();
                 artCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -779,7 +727,6 @@
                 var crewCrew = crew.Crew.ToArray();
 
                 crewCrew[0].Should().NotBeNull();
-                crewCrew[0].Job.Should().Be("Crew Member");
                 crewCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
                 crewCrew[0].Person.Should().NotBeNull();
                 crewCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -791,7 +738,6 @@
                 crewCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 crewCrew[1].Should().NotBeNull();
-                crewCrew[1].Job.Should().Be("Crew Member");
                 crewCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
                 crewCrew[1].Person.Should().NotBeNull();
                 crewCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -806,7 +752,6 @@
                 var costumeAndMakeupCrew = crew.CostumeAndMakeup.ToArray();
 
                 costumeAndMakeupCrew[0].Should().NotBeNull();
-                costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
                 costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
                 costumeAndMakeupCrew[0].Person.Should().NotBeNull();
                 costumeAndMakeupCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -818,7 +763,6 @@
                 costumeAndMakeupCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 costumeAndMakeupCrew[1].Should().NotBeNull();
-                costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
                 costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
                 costumeAndMakeupCrew[1].Person.Should().NotBeNull();
                 costumeAndMakeupCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -833,7 +777,6 @@
                 var directingCrew = crew.Directing.ToArray();
 
                 directingCrew[0].Should().NotBeNull();
-                directingCrew[0].Job.Should().Be("Director");
                 directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 directingCrew[0].Person.Should().NotBeNull();
                 directingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -845,7 +788,6 @@
                 directingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 directingCrew[1].Should().NotBeNull();
-                directingCrew[1].Job.Should().Be("Director");
                 directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 directingCrew[1].Person.Should().NotBeNull();
                 directingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -860,7 +802,6 @@
                 var writingCrew = crew.Writing.ToArray();
 
                 writingCrew[0].Should().NotBeNull();
-                writingCrew[0].Job.Should().Be("Writer");
                 writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
                 writingCrew[0].Person.Should().NotBeNull();
                 writingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -872,7 +813,6 @@
                 writingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 writingCrew[1].Should().NotBeNull();
-                writingCrew[1].Job.Should().Be("Writer");
                 writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
                 writingCrew[1].Person.Should().NotBeNull();
                 writingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -887,7 +827,6 @@
                 var soundCrew = crew.Sound.ToArray();
 
                 soundCrew[0].Should().NotBeNull();
-                soundCrew[0].Job.Should().Be("Sound Designer");
                 soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
                 soundCrew[0].Person.Should().NotBeNull();
                 soundCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -899,7 +838,6 @@
                 soundCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 soundCrew[1].Should().NotBeNull();
-                soundCrew[1].Job.Should().Be("Sound Designer");
                 soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
                 soundCrew[1].Person.Should().NotBeNull();
                 soundCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -914,7 +852,6 @@
                 var cameraCrew = crew.Camera.ToArray();
 
                 cameraCrew[0].Should().NotBeNull();
-                cameraCrew[0].Job.Should().Be("Camera");
                 cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
                 cameraCrew[0].Person.Should().NotBeNull();
                 cameraCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -926,7 +863,6 @@
                 cameraCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 cameraCrew[1].Should().NotBeNull();
-                cameraCrew[1].Job.Should().Be("Camera");
                 cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
                 cameraCrew[1].Person.Should().NotBeNull();
                 cameraCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -941,7 +877,6 @@
                 var lightingCrew = crew.Lighting.ToArray();
 
                 lightingCrew[0].Should().NotBeNull();
-                lightingCrew[0].Job.Should().Be("Light Technician");
                 lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
                 lightingCrew[0].Person.Should().NotBeNull();
                 lightingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -953,7 +888,6 @@
                 lightingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 lightingCrew[1].Should().NotBeNull();
-                lightingCrew[1].Job.Should().Be("Light Technician");
                 lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
                 lightingCrew[1].Person.Should().NotBeNull();
                 lightingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -968,7 +902,6 @@
                 var vfxCrew = crew.VisualEffects.ToArray();
 
                 vfxCrew[0].Should().NotBeNull();
-                vfxCrew[0].Job.Should().Be("VFX Artist");
                 vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
                 vfxCrew[0].Person.Should().NotBeNull();
                 vfxCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -980,7 +913,6 @@
                 vfxCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 vfxCrew[1].Should().NotBeNull();
-                vfxCrew[1].Job.Should().Be("VFX Artist");
                 vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
                 vfxCrew[1].Person.Should().NotBeNull();
                 vfxCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -995,7 +927,6 @@
                 var editingCrew = crew.Editing.ToArray();
 
                 editingCrew[0].Should().NotBeNull();
-                editingCrew[0].Job.Should().Be("Editor");
                 editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
                 editingCrew[0].Person.Should().NotBeNull();
                 editingCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -1007,7 +938,6 @@
                 editingCrew[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 editingCrew[1].Should().NotBeNull();
-                editingCrew[1].Job.Should().Be("Editor");
                 editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
                 editingCrew[1].Person.Should().NotBeNull();
                 editingCrew[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -1034,7 +964,6 @@
                 var castMemberItems = traktCastAndCrew.Cast.ToArray();
 
                 castMemberItems[0].Should().NotBeNull();
-                castMemberItems[0].Character.Should().Be("Joe Brody");
                 castMemberItems[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 castMemberItems[0].Person.Should().NotBeNull();
                 castMemberItems[0].Person.Name.Should().Be("Bryan Cranston");
@@ -1046,7 +975,6 @@
                 castMemberItems[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 castMemberItems[1].Should().NotBeNull();
-                castMemberItems[1].Character.Should().Be("Jules Winfield");
                 castMemberItems[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Jules Winfield");
                 castMemberItems[1].Person.Should().NotBeNull();
                 castMemberItems[1].Person.Name.Should().Be("Samuel L.Jackson");

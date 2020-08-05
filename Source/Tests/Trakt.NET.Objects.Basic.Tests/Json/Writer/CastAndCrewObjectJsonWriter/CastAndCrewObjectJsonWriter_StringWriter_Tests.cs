@@ -45,7 +45,6 @@
                 {
                     new TraktCastMember
                     {
-                        Character = "Character 1",
                         Characters = new List<string>
                         {
                             "Character 1"
@@ -61,7 +60,6 @@
                     },
                     new TraktCastMember
                     {
-                        Character = "Character 2",
                         Characters = new List<string>
                         {
                             "Character 2"
@@ -82,8 +80,8 @@
             {
                 var traktJsonWriter = new CastAndCrewObjectJsonWriter();
                 string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktCastAndCrew);
-                json.Should().Be(@"{""cast"":[{""character"":""Character 1"",""characters"":[""Character 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}," +
-                                 @"{""character"":""Character 2"",""characters"":[""Character 2""],""person"":{""name"":""Person 2"",""ids"":{""trakt"":0,""slug"":""person-2""}}}]}");
+                json.Should().Be(@"{""cast"":[{""characters"":[""Character 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}," +
+                                 @"{""characters"":[""Character 2""],""person"":{""name"":""Person 2"",""ids"":{""trakt"":0,""slug"":""person-2""}}}]}");
             }
         }
 
@@ -98,7 +96,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Director 1",
                             Jobs = new List<string>
                             {
                                 "Director 1"
@@ -114,7 +111,6 @@
                         },
                         new TraktCrewMember
                         {
-                            Job = "Director 2",
                             Jobs = new List<string>
                             {
                                 "Director 2"
@@ -133,7 +129,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Editor 1",
                             Jobs = new List<string>
                             {
                                 "Editor 1"
@@ -149,7 +144,6 @@
                         },
                         new TraktCrewMember
                         {
-                            Job = "Editor 2",
                             Jobs = new List<string>
                             {
                                 "Editor 2"
@@ -173,11 +167,11 @@
                 string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktCastAndCrew);
                 json.Should().Be(@"{""crew"":{" +
                                  @"""directing"":" +
-                                 @"[{""job"":""Director 1"",""jobs"":[""Director 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}," +
-                                 @"{""job"":""Director 2"",""jobs"":[""Director 2""],""person"":{""name"":""Person 2"",""ids"":{""trakt"":0,""slug"":""person-2""}}}]," +
+                                 @"[{""jobs"":[""Director 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}," +
+                                 @"{""jobs"":[""Director 2""],""person"":{""name"":""Person 2"",""ids"":{""trakt"":0,""slug"":""person-2""}}}]," +
                                  @"""editing"":" +
-                                 @"[{""job"":""Editor 1"",""jobs"":[""Editor 1""],""person"":{""name"":""Person 3"",""ids"":{""trakt"":0,""slug"":""person-3""}}}," +
-                                 @"{""job"":""Editor 2"",""jobs"":[""Editor 2""],""person"":{""name"":""Person 4"",""ids"":{""trakt"":0,""slug"":""person-4""}}}]" +
+                                 @"[{""jobs"":[""Editor 1""],""person"":{""name"":""Person 3"",""ids"":{""trakt"":0,""slug"":""person-3""}}}," +
+                                 @"{""jobs"":[""Editor 2""],""person"":{""name"":""Person 4"",""ids"":{""trakt"":0,""slug"":""person-4""}}}]" +
                                  @"}}");
             }
         }
@@ -191,7 +185,6 @@
                 {
                     new TraktCastMember
                     {
-                        Character = "Character 1",
                         Characters = new List<string>
                         {
                             "Character 1"
@@ -207,7 +200,6 @@
                     },
                     new TraktCastMember
                     {
-                        Character = "Character 2",
                         Characters = new List<string>
                         {
                             "Character 2"
@@ -228,7 +220,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Director 1",
                             Jobs = new List<string>
                             {
                                 "Director 1"
@@ -244,7 +235,6 @@
                         },
                         new TraktCrewMember
                         {
-                            Job = "Director 2",
                             Jobs = new List<string>
                             {
                                 "Director 2"
@@ -263,7 +253,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Editor 1",
                             Jobs = new List<string>
                             {
                                 "Editor 1"
@@ -279,7 +268,6 @@
                         },
                         new TraktCrewMember
                         {
-                            Job = "Editor 2",
                             Jobs = new List<string>
                             {
                                 "Editor 2"
@@ -301,15 +289,15 @@
             {
                 var traktJsonWriter = new CastAndCrewObjectJsonWriter();
                 string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktCastAndCrew);
-                json.Should().Be(@"{""cast"":[{""character"":""Character 1"",""characters"":[""Character 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}," +
-                                 @"{""character"":""Character 2"",""characters"":[""Character 2""],""person"":{""name"":""Person 2"",""ids"":{""trakt"":0,""slug"":""person-2""}}}]," +
+                json.Should().Be(@"{""cast"":[{""characters"":[""Character 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}," +
+                                 @"{""characters"":[""Character 2""],""person"":{""name"":""Person 2"",""ids"":{""trakt"":0,""slug"":""person-2""}}}]," +
                                  @"""crew"":{" +
                                  @"""directing"":" +
-                                 @"[{""job"":""Director 1"",""jobs"":[""Director 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}," +
-                                 @"{""job"":""Director 2"",""jobs"":[""Director 2""],""person"":{""name"":""Person 2"",""ids"":{""trakt"":0,""slug"":""person-2""}}}]," +
+                                 @"[{""jobs"":[""Director 1""],""person"":{""name"":""Person 1"",""ids"":{""trakt"":0,""slug"":""person-1""}}}," +
+                                 @"{""jobs"":[""Director 2""],""person"":{""name"":""Person 2"",""ids"":{""trakt"":0,""slug"":""person-2""}}}]," +
                                  @"""editing"":" +
-                                 @"[{""job"":""Editor 1"",""jobs"":[""Editor 1""],""person"":{""name"":""Person 3"",""ids"":{""trakt"":0,""slug"":""person-3""}}}," +
-                                 @"{""job"":""Editor 2"",""jobs"":[""Editor 2""],""person"":{""name"":""Person 4"",""ids"":{""trakt"":0,""slug"":""person-4""}}}]}" +
+                                 @"[{""jobs"":[""Editor 1""],""person"":{""name"":""Person 3"",""ids"":{""trakt"":0,""slug"":""person-3""}}}," +
+                                 @"{""jobs"":[""Editor 2""],""person"":{""name"":""Person 4"",""ids"":{""trakt"":0,""slug"":""person-4""}}}]}" +
                                  @"}");
             }
         }

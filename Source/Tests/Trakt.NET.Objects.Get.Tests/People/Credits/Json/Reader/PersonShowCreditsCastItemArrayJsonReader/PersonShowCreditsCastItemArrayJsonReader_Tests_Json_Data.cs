@@ -7,7 +7,9 @@
         private const string JSON_COMPLETE =
             @"[
                 {
-                  ""character"": ""Joe Brody"",
+                  ""characters"": [
+                    ""Joe Brody""
+                  ],
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -22,7 +24,9 @@
                   }
                 },
                 {
-                  ""character"": ""Iris West"",
+                  ""characters"": [
+                    ""Iris West""
+                  ],
                   ""show"": {
                     ""title"": ""The Flash"",
                     ""year"": 2014,
@@ -55,7 +59,9 @@
                   }
                 },
                 {
-                  ""character"": ""Iris West"",
+                  ""characters"": [
+                    ""Iris West""
+                  ],
                   ""show"": {
                     ""title"": ""The Flash"",
                     ""year"": 2014,
@@ -74,7 +80,9 @@
         private const string JSON_INCOMPLETE_2 =
             @"[
                 {
-                  ""character"": ""Joe Brody"",
+                  ""characters"": [
+                    ""Joe Brody""
+                  ],
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -89,7 +97,9 @@
                   }
                 },
                 {
-                  ""character"": ""Iris West""
+                  ""characters"": [
+                    ""Iris West""
+                  ]
                 }
               ]";
 
@@ -111,7 +121,9 @@
                   }
                 },
                 {
-                  ""character"": ""Iris West"",
+                  ""characters"": [
+                    ""Iris West""
+                  ],
                   ""show"": {
                     ""title"": ""The Flash"",
                     ""year"": 2014,
@@ -130,7 +142,9 @@
         private const string JSON_NOT_VALID_2 =
             @"[
                 {
-                  ""character"": ""Joe Brody"",
+                  ""characters"": [
+                    ""Joe Brody""
+                  ],
                   ""show"": {
                     ""title"": ""Game of Thrones"",
                     ""year"": 2011,
@@ -145,7 +159,9 @@
                   }
                 },
                 {
-                  ""character"": ""Iris West"",
+                  ""characters"": [
+                    ""Iris West""
+                  ],
                   ""sh"": {
                     ""title"": ""The Flash"",
                     ""year"": 2014,
@@ -179,7 +195,9 @@
                   }
                 },
                 {
-                  ""character"": ""Iris West"",
+                  ""characters"": [
+                    ""Iris West""
+                  ],
                   ""sh"": {
                     ""title"": ""The Flash"",
                     ""year"": 2014,

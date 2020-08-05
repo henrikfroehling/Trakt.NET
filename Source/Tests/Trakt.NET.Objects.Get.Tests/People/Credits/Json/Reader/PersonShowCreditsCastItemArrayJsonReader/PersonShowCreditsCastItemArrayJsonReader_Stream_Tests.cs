@@ -38,7 +38,7 @@
                 var items = showCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().Be("Joe Brody");
+                items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 items[0].Show.Should().NotBeNull();
                 items[0].Show.Title.Should().Be("Game of Thrones");
                 items[0].Show.Year.Should().Be(2011);
@@ -51,7 +51,7 @@
                 items[0].Show.Ids.TvRage.Should().Be(24493U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Iris West");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
                 items[1].Show.Should().NotBeNull();
                 items[1].Show.Title.Should().Be("The Flash");
                 items[1].Show.Year.Should().Be(2014);
@@ -78,7 +78,7 @@
                 var items = showCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().BeNull();
+                items[0].Characters.Should().BeNull();
                 items[0].Show.Should().NotBeNull();
                 items[0].Show.Title.Should().Be("Game of Thrones");
                 items[0].Show.Year.Should().Be(2011);
@@ -91,7 +91,7 @@
                 items[0].Show.Ids.TvRage.Should().Be(24493U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Iris West");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
                 items[1].Show.Should().NotBeNull();
                 items[1].Show.Title.Should().Be("The Flash");
                 items[1].Show.Year.Should().Be(2014);
@@ -118,7 +118,7 @@
                 var items = showCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().Be("Joe Brody");
+                items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 items[0].Show.Should().NotBeNull();
                 items[0].Show.Title.Should().Be("Game of Thrones");
                 items[0].Show.Year.Should().Be(2011);
@@ -131,7 +131,7 @@
                 items[0].Show.Ids.TvRage.Should().Be(24493U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Iris West");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
                 items[1].Show.Should().BeNull();
             }
         }
@@ -149,7 +149,7 @@
                 var items = showCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().BeNull();
+                items[0].Characters.Should().BeNull();
                 items[0].Show.Should().NotBeNull();
                 items[0].Show.Title.Should().Be("Game of Thrones");
                 items[0].Show.Year.Should().Be(2011);
@@ -162,7 +162,7 @@
                 items[0].Show.Ids.TvRage.Should().Be(24493U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Iris West");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
                 items[1].Show.Should().NotBeNull();
                 items[1].Show.Title.Should().Be("The Flash");
                 items[1].Show.Year.Should().Be(2014);
@@ -189,7 +189,7 @@
                 var items = showCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().Be("Joe Brody");
+                items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 items[0].Show.Should().NotBeNull();
                 items[0].Show.Title.Should().Be("Game of Thrones");
                 items[0].Show.Year.Should().Be(2011);
@@ -202,7 +202,7 @@
                 items[0].Show.Ids.TvRage.Should().Be(24493U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Iris West");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
                 items[1].Show.Should().BeNull();
             }
         }
@@ -220,7 +220,7 @@
                 var items = showCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().BeNull();
+                items[0].Characters.Should().BeNull();
                 items[0].Show.Should().NotBeNull();
                 items[0].Show.Title.Should().Be("Game of Thrones");
                 items[0].Show.Year.Should().Be(2011);
@@ -233,7 +233,7 @@
                 items[0].Show.Ids.TvRage.Should().Be(24493U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Iris West");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
                 items[1].Show.Should().BeNull();
             }
         }

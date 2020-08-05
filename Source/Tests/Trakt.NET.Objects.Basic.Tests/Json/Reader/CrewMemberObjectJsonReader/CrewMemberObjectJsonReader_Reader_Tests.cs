@@ -22,7 +22,6 @@
                 var traktCrewMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCrewMember.Should().NotBeNull();
-                traktCrewMember.Job.Should().Be("Director");
                 traktCrewMember.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 traktCrewMember.Person.Should().NotBeNull();
                 traktCrewMember.Person.Name.Should().Be("Bryan Cranston");
@@ -46,7 +45,6 @@
                 var traktCrewMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCrewMember.Should().NotBeNull();
-                traktCrewMember.Job.Should().BeNull();
                 traktCrewMember.Jobs.Should().BeNull();
                 traktCrewMember.Person.Should().NotBeNull();
                 traktCrewMember.Person.Name.Should().Be("Bryan Cranston");
@@ -70,7 +68,6 @@
                 var traktCrewMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCrewMember.Should().NotBeNull();
-                traktCrewMember.Job.Should().Be("Director");
                 traktCrewMember.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 traktCrewMember.Person.Should().BeNull();
             }
@@ -87,7 +84,6 @@
                 var traktCrewMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCrewMember.Should().NotBeNull();
-                traktCrewMember.Job.Should().BeNull();
                 traktCrewMember.Jobs.Should().BeNull();
                 traktCrewMember.Person.Should().NotBeNull();
                 traktCrewMember.Person.Name.Should().Be("Bryan Cranston");
@@ -111,7 +107,6 @@
                 var traktCrewMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCrewMember.Should().NotBeNull();
-                traktCrewMember.Job.Should().Be("Director");
                 traktCrewMember.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 traktCrewMember.Person.Should().BeNull();
             }
@@ -128,7 +123,6 @@
                 var traktCrewMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCrewMember.Should().NotBeNull();
-                traktCrewMember.Job.Should().BeNull();
                 traktCrewMember.Jobs.Should().BeNull();
                 traktCrewMember.Person.Should().BeNull();
             }

@@ -15,7 +15,6 @@
         {
             var creditsCrewItem = new TraktPersonMovieCreditsCrewItem();
 
-            creditsCrewItem.Job.Should().BeNullOrEmpty();
             creditsCrewItem.Jobs.Should().BeNullOrEmpty();
             creditsCrewItem.Movie.Should().BeNull();
         }
@@ -27,7 +26,6 @@
             var creditsCrewItem = await jsonReader.ReadObjectAsync(JSON) as TraktPersonMovieCreditsCrewItem;
 
             creditsCrewItem.Should().NotBeNull();
-            creditsCrewItem.Job.Should().Be("Director");
             creditsCrewItem.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             creditsCrewItem.Movie.Should().NotBeNull();
             creditsCrewItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -54,7 +52,6 @@
 
         private const string JSON =
             @"{
-                ""job"": ""Director"",
                 ""jobs"": [
                   ""Director""
                 ],

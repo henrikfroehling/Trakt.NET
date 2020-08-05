@@ -31,7 +31,7 @@
             var items = showCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
+            items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -44,7 +44,7 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Show.Should().NotBeNull();
             items[1].Show.Title.Should().Be("The Flash");
             items[1].Show.Year.Should().Be(2014);
@@ -68,7 +68,7 @@
             var items = showCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
+            items[0].Jobs.Should().BeNull();
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -81,7 +81,7 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Show.Should().NotBeNull();
             items[1].Show.Title.Should().Be("The Flash");
             items[1].Show.Year.Should().Be(2014);
@@ -105,7 +105,7 @@
             var items = showCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
+            items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -118,7 +118,7 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Show.Should().BeNull();
         }
 
@@ -133,7 +133,7 @@
             var items = showCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
+            items[0].Jobs.Should().BeNull();
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -146,7 +146,7 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Show.Should().NotBeNull();
             items[1].Show.Title.Should().Be("The Flash");
             items[1].Show.Year.Should().Be(2014);
@@ -170,7 +170,7 @@
             var items = showCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
+            items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -183,7 +183,7 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Show.Should().BeNull();
         }
 
@@ -198,7 +198,7 @@
             var items = showCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
+            items[0].Jobs.Should().BeNull();
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -211,7 +211,7 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Show.Should().BeNull();
         }
 

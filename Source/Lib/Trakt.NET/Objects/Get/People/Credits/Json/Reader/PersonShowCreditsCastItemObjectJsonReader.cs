@@ -25,9 +25,6 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PROPERTY_NAME_CHARACTER:
-                            showCreditsCastItem.Character = await jsonReader.ReadAsStringAsync(cancellationToken);
-                            break;
                         case JsonProperties.PROPERTY_NAME_CHARACTERS:
                             showCreditsCastItem.Characters = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;

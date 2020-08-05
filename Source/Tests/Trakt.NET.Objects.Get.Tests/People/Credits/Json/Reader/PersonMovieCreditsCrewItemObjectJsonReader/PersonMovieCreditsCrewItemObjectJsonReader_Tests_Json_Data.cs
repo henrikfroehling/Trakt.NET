@@ -4,7 +4,9 @@
     {
         private const string JSON_COMPLETE =
             @"{
-                ""job"": ""Director"",
+                ""jobs"": [
+                    ""Director""
+                  ],
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
                   ""year"": 2015,
@@ -33,7 +35,9 @@
 
         private const string JSON_INCOMPLETE_2 =
             @"{
-                ""job"": ""Director""
+                ""jobs"": [
+                    ""Director""
+                  ]
               }";
 
         private const string JSON_NOT_VALID_1 =
@@ -53,7 +57,9 @@
 
         private const string JSON_NOT_VALID_2 =
             @"{
-                ""job"": ""Director"",
+                ""jobs"": [
+                    ""Director""
+                  ],
                 ""mov"": {
                   ""title"": ""Star Wars: The Force Awakens"",
                   ""year"": 2015,

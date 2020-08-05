@@ -28,7 +28,6 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_CAMERA = "camera";
         internal const string PROPERTY_NAME_CAST = "cast";
         internal const string PROPERTY_NAME_CERTIFICATION = "certification";
-        internal const string PROPERTY_NAME_CHARACTER = "character";
         internal const string PROPERTY_NAME_CHARACTERS = "characters";
         internal const string PROPERTY_NAME_CODE = "code";
         internal const string PROPERTY_NAME_COLLECTED = "collected";
@@ -86,7 +85,6 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_IMDB = "imdb";
         internal const string PROPERTY_NAME_INTERVAL = "interval";
         internal const string PROPERTY_NAME_ITEM_COUNT = "item_count";
-        internal const string PROPERTY_NAME_JOB = "job";
         internal const string PROPERTY_NAME_JOBS = "jobs";
         internal const string PROPERTY_NAME_JOINED_AT = "joined_at";
         internal const string PROPERTY_NAME_LANGUAGE = "language";

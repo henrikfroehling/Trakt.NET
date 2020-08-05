@@ -13,12 +13,6 @@
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
-            if (!string.IsNullOrEmpty(obj.Character))
-            {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_CHARACTER, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.Character, cancellationToken).ConfigureAwait(false);
-            }
-
             if (obj.Characters != null)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_CHARACTERS, cancellationToken).ConfigureAwait(false);
