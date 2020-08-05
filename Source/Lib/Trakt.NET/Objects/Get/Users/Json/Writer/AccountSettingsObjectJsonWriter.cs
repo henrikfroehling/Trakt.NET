@@ -36,6 +36,12 @@
                 await jsonWriter.WriteValueAsync(obj.Token, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.DateFormat != null)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_DATE_FORMAT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.DateFormat.ObjectName, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

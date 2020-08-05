@@ -1,5 +1,7 @@
 ﻿namespace TraktNet.Objects.Get.Users
 {
+    using Enums;
+
     /// <summary>Represents Trakt user account settings.</summary>
     public class TraktAccountSettings : ITraktAccountSettings
     {
@@ -14,5 +16,8 @@
 
         /// <summary>Gets or sets the user's token.<para>Nullable</para></summary>
         public string Token { get; set; }
+
+        /// <summary>Gets or sets the user's date format.<para>Nullable</para></summary>
+        public TraktDateFormat DateFormat { get; set; }
     }
 }

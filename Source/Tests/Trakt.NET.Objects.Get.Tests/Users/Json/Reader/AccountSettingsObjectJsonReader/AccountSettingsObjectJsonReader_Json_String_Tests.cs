@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Enums;
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
@@ -21,6 +22,7 @@
             userAccountSettings.Time24Hr.Should().BeTrue();
             userAccountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
             userAccountSettings.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
+            userAccountSettings.DateFormat.Should().NotBeNull().And.Be(TraktDateFormat.DayMonthYear);
         }
 
         [Fact]
@@ -35,6 +37,7 @@
             userAccountSettings.Time24Hr.Should().BeTrue();
             userAccountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
             userAccountSettings.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
+            userAccountSettings.DateFormat.Should().NotBeNull().And.Be(TraktDateFormat.DayMonthYear);
         }
 
         [Fact]
@@ -49,6 +52,7 @@
             userAccountSettings.Time24Hr.Should().BeNull();
             userAccountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
             userAccountSettings.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
+            userAccountSettings.DateFormat.Should().NotBeNull().And.Be(TraktDateFormat.DayMonthYear);
         }
 
         [Fact]
@@ -63,6 +67,7 @@
             userAccountSettings.Time24Hr.Should().BeTrue();
             userAccountSettings.CoverImage.Should().BeNull();
             userAccountSettings.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
+            userAccountSettings.DateFormat.Should().NotBeNull().And.Be(TraktDateFormat.DayMonthYear);
         }
 
         [Fact]
@@ -77,6 +82,7 @@
             userAccountSettings.Time24Hr.Should().BeTrue();
             userAccountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
             userAccountSettings.Token.Should().BeNull();
+            userAccountSettings.DateFormat.Should().NotBeNull().And.Be(TraktDateFormat.DayMonthYear);
         }
 
         [Fact]
@@ -88,9 +94,10 @@
 
             userAccountSettings.Should().NotBeNull();
             userAccountSettings.TimeZoneId.Should().Be("America/Los_Angeles");
-            userAccountSettings.Time24Hr.Should().BeNull();
-            userAccountSettings.CoverImage.Should().BeNull();
-            userAccountSettings.Token.Should().BeNull();
+            userAccountSettings.Time24Hr.Should().BeTrue();
+            userAccountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+            userAccountSettings.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
+            userAccountSettings.DateFormat.Should().BeNull();
         }
 
         [Fact]
@@ -101,10 +108,11 @@
             var userAccountSettings = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_6);
 
             userAccountSettings.Should().NotBeNull();
-            userAccountSettings.TimeZoneId.Should().BeNull();
-            userAccountSettings.Time24Hr.Should().BeTrue();
+            userAccountSettings.TimeZoneId.Should().Be("America/Los_Angeles");
+            userAccountSettings.Time24Hr.Should().BeNull();
             userAccountSettings.CoverImage.Should().BeNull();
             userAccountSettings.Token.Should().BeNull();
+            userAccountSettings.DateFormat.Should().BeNull();
         }
 
         [Fact]
@@ -116,9 +124,10 @@
 
             userAccountSettings.Should().NotBeNull();
             userAccountSettings.TimeZoneId.Should().BeNull();
-            userAccountSettings.Time24Hr.Should().BeNull();
-            userAccountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+            userAccountSettings.Time24Hr.Should().BeTrue();
+            userAccountSettings.CoverImage.Should().BeNull();
             userAccountSettings.Token.Should().BeNull();
+            userAccountSettings.DateFormat.Should().BeNull();
         }
 
         [Fact]
@@ -131,8 +140,39 @@
             userAccountSettings.Should().NotBeNull();
             userAccountSettings.TimeZoneId.Should().BeNull();
             userAccountSettings.Time24Hr.Should().BeNull();
+            userAccountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+            userAccountSettings.Token.Should().BeNull();
+            userAccountSettings.DateFormat.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_AccountSettingsObjectJsonReader_ReadObject_From_Json_String_Incomplete_9()
+        {
+            var jsonReader = new AccountSettingsObjectJsonReader();
+
+            var userAccountSettings = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_9);
+
+            userAccountSettings.Should().NotBeNull();
+            userAccountSettings.TimeZoneId.Should().BeNull();
+            userAccountSettings.Time24Hr.Should().BeNull();
             userAccountSettings.CoverImage.Should().BeNull();
             userAccountSettings.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
+            userAccountSettings.DateFormat.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_AccountSettingsObjectJsonReader_ReadObject_From_Json_String_Incomplete_10()
+        {
+            var jsonReader = new AccountSettingsObjectJsonReader();
+
+            var userAccountSettings = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_10);
+
+            userAccountSettings.Should().NotBeNull();
+            userAccountSettings.TimeZoneId.Should().BeNull();
+            userAccountSettings.Time24Hr.Should().BeNull();
+            userAccountSettings.CoverImage.Should().BeNull();
+            userAccountSettings.Token.Should().BeNull();
+            userAccountSettings.DateFormat.Should().NotBeNull().And.Be(TraktDateFormat.DayMonthYear);
         }
 
         [Fact]
@@ -147,6 +187,7 @@
             userAccountSettings.Time24Hr.Should().BeTrue();
             userAccountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
             userAccountSettings.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
+            userAccountSettings.DateFormat.Should().NotBeNull().And.Be(TraktDateFormat.DayMonthYear);
         }
 
         [Fact]
@@ -161,6 +202,7 @@
             userAccountSettings.Time24Hr.Should().BeNull();
             userAccountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
             userAccountSettings.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
+            userAccountSettings.DateFormat.Should().NotBeNull().And.Be(TraktDateFormat.DayMonthYear);
         }
 
         [Fact]
@@ -175,6 +217,7 @@
             userAccountSettings.Time24Hr.Should().BeTrue();
             userAccountSettings.CoverImage.Should().BeNull();
             userAccountSettings.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
+            userAccountSettings.DateFormat.Should().NotBeNull().And.Be(TraktDateFormat.DayMonthYear);
         }
 
         [Fact]
@@ -189,6 +232,7 @@
             userAccountSettings.Time24Hr.Should().BeTrue();
             userAccountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
             userAccountSettings.Token.Should().BeNull();
+            userAccountSettings.DateFormat.Should().NotBeNull().And.Be(TraktDateFormat.DayMonthYear);
         }
 
         [Fact]
@@ -199,10 +243,26 @@
             var userAccountSettings = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_5);
 
             userAccountSettings.Should().NotBeNull();
+            userAccountSettings.TimeZoneId.Should().Be("America/Los_Angeles");
+            userAccountSettings.Time24Hr.Should().BeTrue();
+            userAccountSettings.CoverImage.Should().Be("https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042");
+            userAccountSettings.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
+            userAccountSettings.DateFormat.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_AccountSettingsObjectJsonReader_ReadObject_From_Json_String_Not_Valid_6()
+        {
+            var jsonReader = new AccountSettingsObjectJsonReader();
+
+            var userAccountSettings = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_6);
+
+            userAccountSettings.Should().NotBeNull();
             userAccountSettings.TimeZoneId.Should().BeNull();
             userAccountSettings.Time24Hr.Should().BeNull();
             userAccountSettings.CoverImage.Should().BeNull();
             userAccountSettings.Token.Should().BeNull();
+            userAccountSettings.DateFormat.Should().BeNull();
         }
 
         [Fact]
