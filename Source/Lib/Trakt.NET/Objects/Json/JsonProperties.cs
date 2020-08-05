@@ -184,6 +184,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_USER_CODE = "user_code";
         internal const string PROPERTY_NAME_USER_RATING = "user_rating";
         internal const string PROPERTY_NAME_USERNAME = "username";
+        internal const string PROPERTY_NAME_UUID = "uuid";
         internal const string PROPERTY_NAME_VENUE_ID = "venue_id";
         internal const string PROPERTY_NAME_VENUE_NAME = "venue_name";
         internal const string PROPERTY_NAME_VERIFICATION_URL = "verification_url";

@@ -4,12 +4,14 @@
     {
         private const string JSON_COMPLETE =
             @"{
-                ""slug"": ""sean""
+                ""slug"": ""sean"",
+                ""uuid"": ""b6589fc6ab0dc82cf12099d1c2d40ab994e8410c""
               }";
 
         private const string JSON_NOT_VALID =
             @"{
-                ""sl"": ""sean""
+                ""sl"": ""sean"",
+                ""id"": ""b6589fc6ab0dc82cf12099d1c2d40ab994e8410c""
               }";
     }
 }

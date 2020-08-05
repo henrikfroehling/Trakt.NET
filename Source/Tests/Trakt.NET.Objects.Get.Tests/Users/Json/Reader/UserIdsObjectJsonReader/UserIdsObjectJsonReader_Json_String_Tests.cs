@@ -18,6 +18,7 @@
 
             userIds.Should().NotBeNull();
             userIds.Slug.Should().Be("sean");
+            userIds.UUID.Should().Be("b6589fc6ab0dc82cf12099d1c2d40ab994e8410c");
         }
 
         [Fact]
@@ -29,6 +30,7 @@
 
             userIds.Should().NotBeNull();
             userIds.Slug.Should().BeNull();
+            userIds.UUID.Should().BeNull();
         }
 
         [Fact]

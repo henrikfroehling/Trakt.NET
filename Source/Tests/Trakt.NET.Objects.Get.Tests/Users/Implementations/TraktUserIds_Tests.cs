@@ -16,6 +16,7 @@
             var userIds = new TraktUserIds();
 
             userIds.Slug.Should().BeNull();
+            userIds.UUID.Should().BeNull();
         }
 
         [Fact]
@@ -26,11 +27,13 @@
 
             userIds.Should().NotBeNull();
             userIds.Slug.Should().Be("sean");
+            userIds.UUID.Should().Be("b6589fc6ab0dc82cf12099d1c2d40ab994e8410c");
         }
 
         private const string JSON =
             @"{
-                ""slug"": ""sean""
+                ""slug"": ""sean"",
+                ""uuid"": ""b6589fc6ab0dc82cf12099d1c2d40ab994e8410c""
               }";
     }
 }
