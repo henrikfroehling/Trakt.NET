@@ -23,7 +23,7 @@ Features
         <releaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#101</releaseNotes>
         <copyright>Copyright (c) 2016 - 2020 Henrik Fröhling et al.</copyright>
         <language>en-US</language>
-        <tags>trakt REST</tags>
+        <tags>trakt rest api</tags>
         <dependencies>
             <dependency id="Newtonsoft.Json" version="12.0.3" />
         </dependencies>
