@@ -8,7 +8,7 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
 
 [![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-green)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
-[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.1-green.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.0.1)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.2-green.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.0.2)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=henrikfroehling_Trakt.NET&metric=alert_status)](https://sonarcloud.io/dashboard?id=henrikfroehling_Trakt.NET)

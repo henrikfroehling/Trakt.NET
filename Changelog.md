@@ -1,6 +1,18 @@
 Release notes
 =============
 
+Version 1.0.2
+===
+
+#### 1.0.2
+(2020-08-18)
+
+Fixed:
+
+- Exception when $Object.Year is not valid when adding to a UserCustomList ([Issue 173](https://github.com/henrikfroehling/Trakt.NET/issues/173)
+
+---------
+
 Version 1.0.1
 ===
 
