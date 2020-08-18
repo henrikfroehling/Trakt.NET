@@ -46,9 +46,6 @@
             if (!movie.Ids.HasAnyId)
                 throw new ArgumentException("no movie ids set or valid", nameof(movie.Ids));
 
-            if (!movie.Year.HasValue)
-                throw new ArgumentException("movie year not valid", nameof(movie.Year));
-
             EnsureMoviesListExists();
 
             var existingMovie = _listItemsPost.Movies.FirstOrDefault(m => m.Ids == movie.Ids);
@@ -445,9 +442,6 @@
 
             if (!show.Ids.HasAnyId)
                 throw new ArgumentException("no show ids set or valid", nameof(show.Ids));
-
-            if (!show.Year.HasValue)
-                throw new ArgumentException("show year not valid", nameof(show.Year));
         }
 
         private void EnsureMoviesListExists()
