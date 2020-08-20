@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Movies
 {
+    using Enums;
     using System;
     using System.Collections.Generic;
 
@@ -229,6 +230,18 @@
             {
                 if (Movie != null)
                     Movie.CommentCount = value;
+            }
+        }
+
+        /// <summary>Gets or sets the movie's current status. See also <seealso cref="TraktMovieStatus" />.<para>Nullable</para></summary>
+        public TraktMovieStatus Status
+        {
+            get { return Movie?.Status; }
+
+            set
+            {
+                if (Movie != null)
+                    Movie.Status = value;
             }
         }
     }

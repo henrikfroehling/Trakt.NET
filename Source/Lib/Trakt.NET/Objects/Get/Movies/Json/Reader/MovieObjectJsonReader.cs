@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Movies.Json.Reader
 {
+    using Enums;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -88,6 +89,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_COMMENT_COUNT:
                             traktMovie.CommentCount = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_STATUS:
+                            traktMovie.Status = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMovieStatus>(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

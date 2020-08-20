@@ -122,6 +122,12 @@
                 await jsonWriter.WriteValueAsync(obj.CommentCount, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Status != null)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_STATUS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Status.ObjectName, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }
