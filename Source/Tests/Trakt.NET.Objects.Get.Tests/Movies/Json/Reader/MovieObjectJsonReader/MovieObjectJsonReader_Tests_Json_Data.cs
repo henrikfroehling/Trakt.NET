@@ -2,7 +2,7 @@
 {
     public partial class MovieObjectJsonReader_Tests
     {
-        private const string MINIMAL_JSON_COMPLETE =
+        private const string JSON_COMPLETE =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -11,10 +11,35 @@
                   ""slug"": ""star-wars-the-force-awakens-2015"",
                   ""imdb"": ""tt2488496"",
                   ""tmdb"": 140607
-                }
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string MINIMAL_JSON_INCOMPLETE_1 =
+        private const string JSON_INCOMPLETE_1 =
             @"{
                 ""year"": 2015,
                 ""ids"": {
@@ -22,10 +47,35 @@
                   ""slug"": ""star-wars-the-force-awakens-2015"",
                   ""imdb"": ""tt2488496"",
                   ""tmdb"": 140607
-                }
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string MINIMAL_JSON_INCOMPLETE_2 =
+        private const string JSON_INCOMPLETE_2 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""ids"": {
@@ -33,26 +83,605 @@
                   ""slug"": ""star-wars-the-force-awakens-2015"",
                   ""imdb"": ""tt2488496"",
                   ""tmdb"": 140607
-                }
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string MINIMAL_JSON_INCOMPLETE_3 =
+        private const string JSON_INCOMPLETE_3 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015
+                ""year"": 2015,
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string MINIMAL_JSON_INCOMPLETE_4 =
+        private const string JSON_INCOMPLETE_4 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_5 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_6 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_7 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_8 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_9 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_10 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_11 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_12 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_13 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_14 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_15 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_16 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""country"": ""us"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_17 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""status"": ""released""
+              }";
+
+        private const string JSON_INCOMPLETE_18 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us""
+              }";
+        private const string JSON_INCOMPLETE_19 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens""
               }";
 
-        private const string MINIMAL_JSON_INCOMPLETE_5 =
+        private const string JSON_INCOMPLETE_20 =
             @"{
                 ""year"": 2015
               }";
 
-        private const string MINIMAL_JSON_INCOMPLETE_6 =
+        private const string JSON_INCOMPLETE_21 =
             @"{
                 ""ids"": {
                   ""trakt"": 94024,
@@ -62,741 +691,57 @@
                 }
               }";
 
-        private const string MINIMAL_JSON_NOT_VALID_1 =
-            @"{
-                ""ti"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                }
-              }";
-
-        private const string MINIMAL_JSON_NOT_VALID_2 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""ye"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                }
-              }";
-
-        private const string MINIMAL_JSON_NOT_VALID_3 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""id"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                }
-              }";
-
-        private const string MINIMAL_JSON_NOT_VALID_4 =
-            @"{
-                ""ti"": ""Star Wars: The Force Awakens"",
-                ""ye"": 2015,
-                ""id"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                }
-              }";
-
-        private const string FULL_JSON_COMPLETE =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_1 =
-            @"{
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_2 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_3 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_4 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_5 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_6 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_7 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_8 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_9 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_10 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_11 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_12 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_13 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_14 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_15 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""certification"": ""PG-13"",
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_16 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""country"": ""us""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_17 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens"",
-                ""year"": 2015,
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                },
-                ""tagline"": ""Every generation has a story."",
-                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""released"": ""2015-12-18"",
-                ""runtime"": 136,
-                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
-                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""rating"": 8.31988,
-                ""votes"": 9338,
-                ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""language"": ""en"",
-                ""available_translations"": [
-                  ""en"",
-                  ""de"",
-                  ""en"",
-                  ""it""
-                ],
-                ""genres"": [
-                  ""action"",
-                  ""adventure"",
-                  ""fantasy"",
-                  ""science-fiction""
-                ],
-                ""certification"": ""PG-13""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_18 =
-            @"{
-                ""title"": ""Star Wars: The Force Awakens""
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_19 =
-            @"{
-                ""year"": 2015
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_20 =
-            @"{
-                ""ids"": {
-                  ""trakt"": 94024,
-                  ""slug"": ""star-wars-the-force-awakens-2015"",
-                  ""imdb"": ""tt2488496"",
-                  ""tmdb"": 140607
-                }
-              }";
-
-        private const string FULL_JSON_INCOMPLETE_21 =
+        private const string JSON_INCOMPLETE_22 =
             @"{
                 ""tagline"": ""Every generation has a story.""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_22 =
+        private const string JSON_INCOMPLETE_23 =
             @"{
                 ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_23 =
+        private const string JSON_INCOMPLETE_24 =
             @"{
                 ""released"": ""2015-12-18""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_24 =
+        private const string JSON_INCOMPLETE_25 =
             @"{
                 ""runtime"": 136
               }";
 
-        private const string FULL_JSON_INCOMPLETE_25 =
+        private const string JSON_INCOMPLETE_26 =
             @"{
                 ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_26 =
+        private const string JSON_INCOMPLETE_27 =
             @"{
                 ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_27 =
+        private const string JSON_INCOMPLETE_28 =
             @"{
                 ""rating"": 8.31988
               }";
 
-        private const string FULL_JSON_INCOMPLETE_28 =
+        private const string JSON_INCOMPLETE_29 =
             @"{
                 ""votes"": 9338
               }";
 
-        private const string FULL_JSON_INCOMPLETE_29 =
+        private const string JSON_INCOMPLETE_30 =
             @"{
                 ""updated_at"": ""2016-03-31T09:01:59Z""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_30 =
+        private const string JSON_INCOMPLETE_31 =
             @"{
                 ""language"": ""en""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_31 =
+        private const string JSON_INCOMPLETE_32 =
             @"{
                 ""available_translations"": [
                   ""en"",
@@ -806,7 +751,7 @@
                 ]
               }";
 
-        private const string FULL_JSON_INCOMPLETE_32 =
+        private const string JSON_INCOMPLETE_33 =
             @"{
                 ""genres"": [
                   ""action"",
@@ -816,17 +761,22 @@
                 ]
               }";
 
-        private const string FULL_JSON_INCOMPLETE_33 =
+        private const string JSON_INCOMPLETE_34 =
             @"{
                 ""certification"": ""PG-13""
               }";
 
-        private const string FULL_JSON_INCOMPLETE_34 =
+        private const string JSON_INCOMPLETE_35 =
             @"{
                 ""country"": ""us""
               }";
 
-        private const string FULL_JSON_NOT_VALID_1 =
+        private const string JSON_INCOMPLETE_36 =
+            @"{
+                ""status"": ""released""
+              }";
+
+        private const string JSON_NOT_VALID_1 =
             @"{
                 ""ti"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -859,10 +809,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_2 =
+        private const string JSON_NOT_VALID_2 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""ye"": 2015,
@@ -895,10 +846,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_3 =
+        private const string JSON_NOT_VALID_3 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -931,10 +883,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_4 =
+        private const string JSON_NOT_VALID_4 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -967,10 +920,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_5 =
+        private const string JSON_NOT_VALID_5 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1003,10 +957,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_6 =
+        private const string JSON_NOT_VALID_6 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1018,7 +973,7 @@
                 },
                 ""tagline"": ""Every generation has a story."",
                 ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""re"": ""2015-12-18"",
+                ""rel"": ""2015-12-18"",
                 ""runtime"": 136,
                 ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
                 ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
@@ -1039,10 +994,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_7 =
+        private const string JSON_NOT_VALID_7 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1055,7 +1011,7 @@
                 ""tagline"": ""Every generation has a story."",
                 ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
                 ""released"": ""2015-12-18"",
-                ""ru"": 136,
+                ""rt"": 136,
                 ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
                 ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
                 ""rating"": 8.31988,
@@ -1075,10 +1031,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_8 =
+        private const string JSON_NOT_VALID_8 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1111,10 +1068,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_9 =
+        private const string JSON_NOT_VALID_9 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1147,10 +1105,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_10 =
+        private const string JSON_NOT_VALID_10 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1166,7 +1125,7 @@
                 ""runtime"": 136,
                 ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
                 ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""ra"": 8.31988,
+                ""rat"": 8.31988,
                 ""votes"": 9338,
                 ""updated_at"": ""2016-03-31T09:01:59Z"",
                 ""language"": ""en"",
@@ -1183,10 +1142,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_11 =
+        private const string JSON_NOT_VALID_11 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1203,7 +1163,7 @@
                 ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
                 ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
                 ""rating"": 8.31988,
-                ""vo"": 9338,
+                ""vt"": 9338,
                 ""updated_at"": ""2016-03-31T09:01:59Z"",
                 ""language"": ""en"",
                 ""available_translations"": [
@@ -1219,10 +1179,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_12 =
+        private const string JSON_NOT_VALID_12 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1255,10 +1216,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_13 =
+        private const string JSON_NOT_VALID_13 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1277,7 +1239,7 @@
                 ""rating"": 8.31988,
                 ""votes"": 9338,
                 ""updated_at"": ""2016-03-31T09:01:59Z"",
-                ""la"": ""en"",
+                ""lang"": ""en"",
                 ""available_translations"": [
                   ""en"",
                   ""de"",
@@ -1291,10 +1253,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_14 =
+        private const string JSON_NOT_VALID_14 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1314,7 +1277,7 @@
                 ""votes"": 9338,
                 ""updated_at"": ""2016-03-31T09:01:59Z"",
                 ""language"": ""en"",
-                ""availtr"": [
+                ""avtr"": [
                   ""en"",
                   ""de"",
                   ""en"",
@@ -1327,10 +1290,11 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_15 =
+        private const string JSON_NOT_VALID_15 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1356,17 +1320,18 @@
                   ""en"",
                   ""it""
                 ],
-                ""ge"": [
+                ""gen"": [
                   ""action"",
                   ""adventure"",
                   ""fantasy"",
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_16 =
+        private const string JSON_NOT_VALID_16 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1399,10 +1364,11 @@
                   ""science-fiction""
                 ],
                 ""cert"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_17 =
+        private const string JSON_NOT_VALID_17 =
             @"{
                 ""title"": ""Star Wars: The Force Awakens"",
                 ""year"": 2015,
@@ -1435,10 +1401,48 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""co"": ""us""
+                ""co"": ""us"",
+                ""status"": ""released""
               }";
 
-        private const string FULL_JSON_NOT_VALID_18 =
+        private const string JSON_NOT_VALID_18 =
+            @"{
+                ""title"": ""Star Wars: The Force Awakens"",
+                ""year"": 2015,
+                ""ids"": {
+                  ""trakt"": 94024,
+                  ""slug"": ""star-wars-the-force-awakens-2015"",
+                  ""imdb"": ""tt2488496"",
+                  ""tmdb"": 140607
+                },
+                ""tagline"": ""Every generation has a story."",
+                ""overview"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
+                ""released"": ""2015-12-18"",
+                ""runtime"": 136,
+                ""trailer"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+                ""homepage"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+                ""rating"": 8.31988,
+                ""votes"": 9338,
+                ""updated_at"": ""2016-03-31T09:01:59Z"",
+                ""language"": ""en"",
+                ""available_translations"": [
+                  ""en"",
+                  ""de"",
+                  ""en"",
+                  ""it""
+                ],
+                ""genres"": [
+                  ""action"",
+                  ""adventure"",
+                  ""fantasy"",
+                  ""science-fiction""
+                ],
+                ""certification"": ""PG-13"",
+                ""country"": ""us"",
+                ""st"": ""released""
+              }";
+
+        private const string JSON_NOT_VALID_19 =
             @"{
                 ""ti"": ""Star Wars: The Force Awakens"",
                 ""ye"": 2015,
@@ -1450,28 +1454,29 @@
                 },
                 ""tl"": ""Every generation has a story."",
                 ""ov"": ""Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers."",
-                ""re"": ""2015-12-18"",
-                ""ru"": 136,
+                ""rel"": ""2015-12-18"",
+                ""rt"": 136,
                 ""tr"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
                 ""hp"": ""http://www.starwars.com/films/star-wars-episode-vii"",
-                ""ra"": 8.31988,
-                ""vo"": 9338,
+                ""rat"": 8.31988,
+                ""vt"": 9338,
                 ""ua"": ""2016-03-31T09:01:59Z"",
-                ""la"": ""en"",
-                ""availtr"": [
+                ""lang"": ""en"",
+                ""avtr"": [
                   ""en"",
                   ""de"",
                   ""en"",
                   ""it""
                 ],
-                ""ge"": [
+                ""gen"": [
                   ""action"",
                   ""adventure"",
                   ""fantasy"",
                   ""science-fiction""
                 ],
                 ""cert"": ""PG-13"",
-                ""co"": ""us""
+                ""co"": ""us"",
+                ""st"": ""released""
               }";
     }
 }
