@@ -4,6 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Enums;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Movies.Json.Reader;
     using Xunit;
@@ -33,6 +34,7 @@
             movie.Genres.Should().BeNull();
             movie.Certification.Should().BeNullOrEmpty();
             movie.CountryCode.Should().BeNullOrEmpty();
+            movie.Status.Should().BeNull();
         }
 
         [Fact]
@@ -63,6 +65,7 @@
             movie.Genres.Should().BeNull();
             movie.Certification.Should().BeNullOrEmpty();
             movie.CountryCode.Should().BeNullOrEmpty();
+            movie.Status.Should().BeNull();
         }
 
         [Fact]
@@ -93,6 +96,7 @@
             movie.Genres.Should().NotBeNull().And.HaveCount(4).And.Contain("action", "adventure", "fantasy", "science-fiction");
             movie.Certification.Should().Be("PG-13");
             movie.CountryCode.Should().Be("us");
+            movie.Status.Should().Be(TraktMovieStatus.Released);
         }
 
         private const string MINIMAL_JSON =
@@ -140,7 +144,8 @@
                   ""science-fiction""
                 ],
                 ""certification"": ""PG-13"",
-                ""country"": ""us""
+                ""country"": ""us"",
+                ""status"": ""released""
               }";
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Movies
 {
+    using Enums;
     using System;
     using System.Collections.Generic;
 
@@ -63,5 +64,8 @@
 
         /// <summary>Gets or sets the comment count of the movie.<para>Nullable</para></summary>
         public int? CommentCount { get; set; }
+
+        /// <summary>Gets or sets the movie's current status. See also <seealso cref="TraktMovieStatus" />.<para>Nullable</para></summary>
+        public TraktMovieStatus Status { get; set; }
     }
 }
