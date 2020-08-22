@@ -24,16 +24,19 @@
         private readonly TraktListType LIST_ITEM_TYPE = TraktListType.Official;
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private const string LANGUAGE_CODE = "en";
+        private readonly TraktLastActivity LAST_ACTIVITY = TraktLastActivity.Collected;
 
         private string ProgressHidden { get; }
         private string ProgressSpecials { get; }
         private string ProgressCountSpecials { get; }
+        private string LastActivity { get; }
 
         public TraktShowsModule_Tests()
         {
             ProgressHidden = PROGRESS_HIDDEN.ToString().ToLower();
             ProgressSpecials = PROGRESS_SPECIALS.ToString().ToLower();
             ProgressCountSpecials = PROGRESS_COUNT_SPECIALS.ToString().ToLower();
+            LastActivity = LAST_ACTIVITY.UriName.ToLower();
         }
 
         private readonly ITraktShowFilter FILTER = TraktFilterDirectory.ShowFilter

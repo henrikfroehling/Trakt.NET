@@ -308,6 +308,78 @@
         }
 
         [Fact]
+        public async Task Test_TraktShowsModule_GetShowWatchedProgress_With_Hidden_And_LastActivity()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_SHOW_WATCHED_PROGRESS_URI}?hidden={ProgressHidden}&last_activity={LastActivity}",
+                SHOW_WATCHED_PROGRESS_JSON);
+
+            TraktResponse<ITraktShowWatchedProgress> response =
+                await client.Shows.GetShowWatchedProgressAsync(SHOW_ID, PROGRESS_HIDDEN, null, null, LAST_ACTIVITY);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            ITraktShowWatchedProgress responseValue = response.Value;
+
+            responseValue.Aired.Should().Be(6);
+            responseValue.Completed.Should().Be(6);
+            responseValue.LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+            responseValue.Seasons.Should().NotBeNull();
+            responseValue.Seasons.Should().HaveCount(1);
+
+            ITraktSeasonWatchedProgress[] seasons = responseValue.Seasons.ToArray();
+
+            seasons[0].Number.Should().Be(1);
+            seasons[0].Aired.Should().Be(6);
+            seasons[0].Completed.Should().Be(6);
+            seasons[0].Episodes.Should().NotBeNull();
+            seasons[0].Episodes.Should().HaveCount(6);
+
+            ITraktEpisodeWatchedProgress[] episodes = seasons[0].Episodes.ToArray();
+
+            episodes[0].Number.Should().Be(1);
+            episodes[0].Completed.Should().BeTrue();
+            episodes[0].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[1].Number.Should().Be(2);
+            episodes[1].Completed.Should().BeTrue();
+            episodes[1].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[2].Number.Should().Be(3);
+            episodes[2].Completed.Should().BeTrue();
+            episodes[2].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[3].Number.Should().Be(4);
+            episodes[3].Completed.Should().BeTrue();
+            episodes[3].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[4].Number.Should().Be(5);
+            episodes[4].Completed.Should().BeTrue();
+            episodes[4].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[5].Number.Should().Be(6);
+            episodes[5].Completed.Should().BeTrue();
+            episodes[5].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            responseValue.HiddenSeasons.Should().NotBeNull();
+            responseValue.HiddenSeasons.Should().HaveCount(1);
+
+            ITraktSeason[] hiddenSeasons = responseValue.HiddenSeasons.ToArray();
+
+            hiddenSeasons[0].Number.Should().Be(2);
+            hiddenSeasons[0].Ids.Should().NotBeNull();
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
+
+            responseValue.NextEpisode.Should().BeNull();
+        }
+
+        [Fact]
         public async Task Test_TraktShowsModule_GetShowWatchedProgress_With_Specials()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
@@ -452,6 +524,78 @@
         }
 
         [Fact]
+        public async Task Test_TraktShowsModule_GetShowWatchedProgress_With_Specials_And_LastActivity()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_SHOW_WATCHED_PROGRESS_URI}?specials={ProgressSpecials}&last_activity={LastActivity}",
+                SHOW_WATCHED_PROGRESS_JSON);
+
+            TraktResponse<ITraktShowWatchedProgress> response =
+                await client.Shows.GetShowWatchedProgressAsync(SHOW_ID, null, PROGRESS_SPECIALS, null, LAST_ACTIVITY);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            ITraktShowWatchedProgress responseValue = response.Value;
+
+            responseValue.Aired.Should().Be(6);
+            responseValue.Completed.Should().Be(6);
+            responseValue.LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+            responseValue.Seasons.Should().NotBeNull();
+            responseValue.Seasons.Should().HaveCount(1);
+
+            ITraktSeasonWatchedProgress[] seasons = responseValue.Seasons.ToArray();
+
+            seasons[0].Number.Should().Be(1);
+            seasons[0].Aired.Should().Be(6);
+            seasons[0].Completed.Should().Be(6);
+            seasons[0].Episodes.Should().NotBeNull();
+            seasons[0].Episodes.Should().HaveCount(6);
+
+            ITraktEpisodeWatchedProgress[] episodes = seasons[0].Episodes.ToArray();
+
+            episodes[0].Number.Should().Be(1);
+            episodes[0].Completed.Should().BeTrue();
+            episodes[0].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[1].Number.Should().Be(2);
+            episodes[1].Completed.Should().BeTrue();
+            episodes[1].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[2].Number.Should().Be(3);
+            episodes[2].Completed.Should().BeTrue();
+            episodes[2].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[3].Number.Should().Be(4);
+            episodes[3].Completed.Should().BeTrue();
+            episodes[3].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[4].Number.Should().Be(5);
+            episodes[4].Completed.Should().BeTrue();
+            episodes[4].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[5].Number.Should().Be(6);
+            episodes[5].Completed.Should().BeTrue();
+            episodes[5].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            responseValue.HiddenSeasons.Should().NotBeNull();
+            responseValue.HiddenSeasons.Should().HaveCount(1);
+
+            ITraktSeason[] hiddenSeasons = responseValue.HiddenSeasons.ToArray();
+
+            hiddenSeasons[0].Number.Should().Be(2);
+            hiddenSeasons[0].Ids.Should().NotBeNull();
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
+
+            responseValue.NextEpisode.Should().BeNull();
+        }
+
+        [Fact]
         public async Task Test_TraktShowsModule_GetShowWatchedProgress_With_CountSpecials()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
@@ -524,14 +668,86 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowWatchedProgress_Complete()
+        public async Task Test_TraktShowsModule_GetShowWatchedProgress_With_LastActivity()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_SHOW_WATCHED_PROGRESS_URI}?hidden={ProgressHidden}&specials={ProgressSpecials}&count_specials={ProgressCountSpecials}",
+                $"{GET_SHOW_WATCHED_PROGRESS_URI}?last_activity={LastActivity}",
                 SHOW_WATCHED_PROGRESS_JSON);
 
             TraktResponse<ITraktShowWatchedProgress> response =
-                await client.Shows.GetShowWatchedProgressAsync(SHOW_ID, PROGRESS_HIDDEN, PROGRESS_SPECIALS, PROGRESS_COUNT_SPECIALS);
+                await client.Shows.GetShowWatchedProgressAsync(SHOW_ID, null, null, null, LAST_ACTIVITY);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            ITraktShowWatchedProgress responseValue = response.Value;
+
+            responseValue.Aired.Should().Be(6);
+            responseValue.Completed.Should().Be(6);
+            responseValue.LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+            responseValue.Seasons.Should().NotBeNull();
+            responseValue.Seasons.Should().HaveCount(1);
+
+            ITraktSeasonWatchedProgress[] seasons = responseValue.Seasons.ToArray();
+
+            seasons[0].Number.Should().Be(1);
+            seasons[0].Aired.Should().Be(6);
+            seasons[0].Completed.Should().Be(6);
+            seasons[0].Episodes.Should().NotBeNull();
+            seasons[0].Episodes.Should().HaveCount(6);
+
+            ITraktEpisodeWatchedProgress[] episodes = seasons[0].Episodes.ToArray();
+
+            episodes[0].Number.Should().Be(1);
+            episodes[0].Completed.Should().BeTrue();
+            episodes[0].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[1].Number.Should().Be(2);
+            episodes[1].Completed.Should().BeTrue();
+            episodes[1].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[2].Number.Should().Be(3);
+            episodes[2].Completed.Should().BeTrue();
+            episodes[2].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[3].Number.Should().Be(4);
+            episodes[3].Completed.Should().BeTrue();
+            episodes[3].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[4].Number.Should().Be(5);
+            episodes[4].Completed.Should().BeTrue();
+            episodes[4].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            episodes[5].Number.Should().Be(6);
+            episodes[5].Completed.Should().BeTrue();
+            episodes[5].LastWatchedAt.Should().Be(DateTime.Parse("2015-03-21T19:03:58.000Z").ToUniversalTime());
+
+            responseValue.HiddenSeasons.Should().NotBeNull();
+            responseValue.HiddenSeasons.Should().HaveCount(1);
+
+            ITraktSeason[] hiddenSeasons = responseValue.HiddenSeasons.ToArray();
+
+            hiddenSeasons[0].Number.Should().Be(2);
+            hiddenSeasons[0].Ids.Should().NotBeNull();
+            hiddenSeasons[0].Ids.Trakt.Should().Be(3051U);
+            hiddenSeasons[0].Ids.Tvdb.Should().Be(498968U);
+            hiddenSeasons[0].Ids.Tmdb.Should().Be(53334U);
+            hiddenSeasons[0].Ids.TvRage.Should().BeNull();
+
+            responseValue.NextEpisode.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowWatchedProgress_Complete()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_SHOW_WATCHED_PROGRESS_URI}?hidden={ProgressHidden}&specials={ProgressSpecials}&count_specials={ProgressCountSpecials}&last_activity={LastActivity}",
+                SHOW_WATCHED_PROGRESS_JSON);
+
+            TraktResponse<ITraktShowWatchedProgress> response =
+                await client.Shows.GetShowWatchedProgressAsync(SHOW_ID, PROGRESS_HIDDEN, PROGRESS_SPECIALS, PROGRESS_COUNT_SPECIALS, LAST_ACTIVITY);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
