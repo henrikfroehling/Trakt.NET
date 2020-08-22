@@ -10,8 +10,7 @@
     {
         public override async Task<IEnumerable<ITraktUserFollowUserPostResponse>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(IEnumerable<ITraktUserFollowUserPostResponse>));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {

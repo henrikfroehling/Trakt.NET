@@ -10,8 +10,7 @@
     {
         public override async Task<IEnumerable<ITraktUserCustomListsReorderPostResponse>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(IEnumerable<ITraktUserCustomListsReorderPostResponse>)).ConfigureAwait(false);
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken).ConfigureAwait(false) && jsonReader.TokenType == JsonToken.StartArray)
             {
