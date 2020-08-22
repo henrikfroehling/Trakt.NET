@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Requests.Shows.OAuth
 {
     using Base;
+    using Enums;
     using Extensions;
     using Interfaces;
     using System;
@@ -15,6 +16,8 @@
         internal bool? Specials { get; set; }
 
         internal bool? CountSpecials { get; set; }
+
+        internal TraktLastActivity LastActivity { get; set; }
 
         public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
@@ -35,6 +38,9 @@
 
             if (CountSpecials.HasValue)
                 uriParams.Add("count_specials", CountSpecials.Value.ToString().ToLower());
+
+            if (LastActivity != null && LastActivity != TraktLastActivity.Unspecified)
+                uriParams.Add("last_activity", LastActivity.UriName);
 
             return uriParams;
         }
