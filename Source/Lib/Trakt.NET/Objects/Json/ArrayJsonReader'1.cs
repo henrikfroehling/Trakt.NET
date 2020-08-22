@@ -11,33 +11,27 @@
     {
         public virtual Task<IEnumerable<TReturnType>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
         {
-            if (string.IsNullOrEmpty(json))
+            CheckJson(json);
+
+            if (json == string.Empty)
                 return Task.FromResult(default(IEnumerable<TReturnType>));
 
-            using (var reader = new StringReader(json))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
+            using var reader = new StringReader(json);
+            using var jsonReader = new JsonTextReader(reader);
+            return ReadArrayAsync(jsonReader, cancellationToken);
         }
 
         public virtual Task<IEnumerable<TReturnType>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default)
         {
-            if (stream == null)
-                return Task.FromResult(default(IEnumerable<TReturnType>));
-
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
-            {
-                return ReadArrayAsync(jsonReader, cancellationToken);
-            }
+            CheckStream(stream);
+            using var streamReader = new StreamReader(stream);
+            using var jsonReader = new JsonTextReader(streamReader);
+            return ReadArrayAsync(jsonReader, cancellationToken);
         }
 
         public virtual async Task<IEnumerable<TReturnType>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-
-            if (jsonReader == null)
-                return await Task.FromResult(default(IEnumerable<TReturnType>));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
@@ -55,6 +49,18 @@
             }
 
             return await Task.FromResult(default(IEnumerable<TReturnType>));
+        }
+
+        protected void CheckJson(string json)
+        {
+            if (json == null)
+                throw new ArgumentNullException(nameof(json));
+        }
+
+        protected void CheckStream(Stream stream)
+        {
+            if (stream == null)
+                throw new ArgumentNullException(nameof(stream));
         }
 
         protected void CheckJsonTextReader(JsonTextReader jsonReader)
