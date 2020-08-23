@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Calendars;
     using TraktNet.Objects.Get.Calendars.Json.Reader;
     using Xunit;
 
@@ -314,12 +315,11 @@
         }
 
         [Fact]
-        public async Task Test_CalendarShowObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_CalendarShowObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new CalendarShowObjectJsonReader();
-
-            var traktCalendarShow = await jsonReader.ReadObjectAsync(default(Stream));
-            traktCalendarShow.Should().BeNull();
+            Func<Task<ITraktCalendarShow>> traktCalendarShow = () => jsonReader.ReadObjectAsync(default(Stream));
+            traktCalendarShow.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -1036,11 +1037,11 @@
         }
 
         [Fact]
-        public async Task Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Null()
+        public void Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCollectionShow>();
-            var traktCollectionShows = await jsonReader.ReadArrayAsync(default(Stream));
-            traktCollectionShows.Should().BeNull();
+            Func<Task<IEnumerable<ITraktCollectionShow>>> traktCollectionShows = () => jsonReader.ReadArrayAsync(default(Stream));
+            traktCollectionShows.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

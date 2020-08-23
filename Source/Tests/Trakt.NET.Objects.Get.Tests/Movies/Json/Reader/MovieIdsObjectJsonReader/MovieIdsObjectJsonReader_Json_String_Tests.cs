@@ -1,8 +1,10 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Movies.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Movies.Json.Reader;
     using Xunit;
 
@@ -206,12 +208,11 @@
         }
 
         [Fact]
-        public async Task Test_MovieIdsObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_MovieIdsObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new MovieIdsObjectJsonReader();
-
-            var traktMovieIds = await jsonReader.ReadObjectAsync(default(string));
-            traktMovieIds.Should().BeNull();
+            Func<Task<ITraktMovieIds>> traktMovieIds = () => jsonReader.ReadObjectAsync(default(string));
+            traktMovieIds.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

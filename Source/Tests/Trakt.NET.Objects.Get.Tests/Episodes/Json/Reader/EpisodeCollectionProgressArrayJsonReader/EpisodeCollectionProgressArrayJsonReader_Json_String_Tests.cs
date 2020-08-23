@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
@@ -275,12 +276,11 @@
         }
 
         [Fact]
-        public async Task Test_EpisodeCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Null()
+        public void Test_EpisodeCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktEpisodeCollectionProgress>();
-
-            var traktEpisodeCollectionProgress = await jsonReader.ReadArrayAsync(default(string));
-            traktEpisodeCollectionProgress.Should().BeNull();
+            Func<Task<IEnumerable<ITraktEpisodeCollectionProgress>>> traktEpisodeCollectionProgress = () => jsonReader.ReadArrayAsync(default(string));
+            traktEpisodeCollectionProgress.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

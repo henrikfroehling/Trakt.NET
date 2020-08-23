@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Extensions;
+    using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.People.Json.Reader;
     using Xunit;
 
@@ -619,12 +620,11 @@
         }
 
         [Fact]
-        public async Task Test_PersonObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_PersonObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new PersonObjectJsonReader();
-
-            var traktPerson = await jsonReader.ReadObjectAsync(default(string));
-            traktPerson.Should().BeNull();
+            Func<Task<ITraktPerson>> traktPerson = () => jsonReader.ReadObjectAsync(default(string));
+            traktPerson.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

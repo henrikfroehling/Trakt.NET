@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Objects.Get.Collections;
     using TraktNet.Objects.Get.Collections.Json.Reader;
     using Xunit;
 
@@ -774,12 +775,11 @@
         }
 
         [Fact]
-        public async Task Test_CollectionShowObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_CollectionShowObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new CollectionShowObjectJsonReader();
-
-            var traktCollectionShow = await jsonReader.ReadObjectAsync(default(string));
-            traktCollectionShow.Should().BeNull();
+            Func<Task<ITraktCollectionShow>> traktCollectionShow = () => jsonReader.ReadObjectAsync(default(string));
+            traktCollectionShow.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -195,11 +196,11 @@
         }
 
         [Fact]
-        public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Null()
+        public void Test_SharingArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktSharing>();
-            IEnumerable<ITraktSharing> traktSharings = await jsonReader.ReadArrayAsync(default(Stream));
-            traktSharings.Should().BeNull();
+            Func<Task<IEnumerable<ITraktSharing>>> traktSharings = () => jsonReader.ReadArrayAsync(default(Stream));
+            traktSharings.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

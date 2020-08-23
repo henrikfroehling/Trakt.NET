@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
@@ -129,12 +130,11 @@
         }
 
         [Fact]
-        public async Task Test_CrewMemberObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_CrewMemberObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new CrewMemberObjectJsonReader();
-
-            var traktCrewMember = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktCrewMember.Should().BeNull();
+            Func<Task<ITraktCrewMember>> traktCrewMember = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            traktCrewMember.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

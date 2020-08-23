@@ -1,6 +1,8 @@
 ﻿namespace TraktNet.Objects.Get.Tests.People.Credits.Json.Reader
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
@@ -216,12 +218,11 @@
         }
 
         [Fact]
-        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
-
-            var showCreditsCastItems = await jsonReader.ReadArrayAsync(default(string));
-            showCreditsCastItems.Should().BeNull();
+            Func<Task<IEnumerable<ITraktPersonShowCreditsCastItem>>> showCreditsCastItems = () => jsonReader.ReadArrayAsync(default(string));
+            showCreditsCastItems.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

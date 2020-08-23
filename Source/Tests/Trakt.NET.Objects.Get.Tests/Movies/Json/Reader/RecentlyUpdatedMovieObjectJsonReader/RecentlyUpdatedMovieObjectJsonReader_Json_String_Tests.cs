@@ -4,6 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Movies.Json.Reader;
     using Xunit;
 
@@ -104,12 +105,11 @@
         }
 
         [Fact]
-        public async Task Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new RecentlyUpdatedMovieObjectJsonReader();
-
-            var traktRecentlyUpdatedMovie = await jsonReader.ReadObjectAsync(default(string));
-            traktRecentlyUpdatedMovie.Should().BeNull();
+            Func<Task<ITraktRecentlyUpdatedMovie>> traktRecentlyUpdatedMovie = () => jsonReader.ReadObjectAsync(default(string));
+            traktRecentlyUpdatedMovie.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

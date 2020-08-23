@@ -1,8 +1,10 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Episodes.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Episodes;
     using TraktNet.Objects.Get.Episodes.Json.Reader;
     using Xunit;
 
@@ -153,12 +155,11 @@
         }
 
         [Fact]
-        public async Task Test_EpisodeTranslationObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_EpisodeTranslationObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new EpisodeTranslationObjectJsonReader();
-
-            var traktEpisodeTranslation = await jsonReader.ReadObjectAsync(default(string));
-            traktEpisodeTranslation.Should().BeNull();
+            Func<Task<ITraktEpisodeTranslation>> traktEpisodeTranslation = () => jsonReader.ReadObjectAsync(default(string));
+            traktEpisodeTranslation.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

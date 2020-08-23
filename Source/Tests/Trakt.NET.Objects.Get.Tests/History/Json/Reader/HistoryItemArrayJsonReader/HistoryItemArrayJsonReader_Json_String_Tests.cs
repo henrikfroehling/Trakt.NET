@@ -1,6 +1,8 @@
 ﻿namespace TraktNet.Objects.Get.Tests.History.Json.Reader
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Get.History;
@@ -19,11 +21,11 @@
         }
 
         [Fact]
-        public async Task Test_HistoryItemArrayJsonReader_ReadArray_From_Json_String_Null()
+        public void Test_HistoryItemArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktHistoryItem>();
-            var traktHistoryItems = await jsonReader.ReadArrayAsync(default(string));
-            traktHistoryItems.Should().BeNull();
+            Func<Task<IEnumerable<ITraktHistoryItem>>> traktHistoryItems = () => jsonReader.ReadArrayAsync(default(string));
+            traktHistoryItems.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

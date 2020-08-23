@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -159,11 +160,11 @@
         }
 
         [Fact]
-        public async Task Test_LanguageArrayJsonReader_ReadArray_From_Stream_Null()
+        public void Test_LanguageArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktLanguage>();
-            IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(default(Stream));
-            traktLanguages.Should().BeNull();
+            Func<Task<IEnumerable<ITraktLanguage>>> traktLanguages = () => jsonReader.ReadArrayAsync(default(Stream));
+            traktLanguages.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

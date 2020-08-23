@@ -2,6 +2,8 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
@@ -26,11 +28,11 @@
         }
 
         [Fact]
-        public async Task Test_HistoryItemArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public void Test_HistoryItemArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
-            var traktHistoryItems = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktHistoryItems.Should().BeNull();
+            Func<Task<IEnumerable<ITraktHistoryItem>>> traktHistoryItems = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            traktHistoryItems.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Episodes;
     using TraktNet.Objects.Get.Episodes.Json.Reader;
     using Xunit;
 
@@ -189,12 +190,11 @@
         }
 
         [Fact]
-        public async Task Test_EpisodeCollectionProgressObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_EpisodeCollectionProgressObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new EpisodeCollectionProgressObjectJsonReader();
-
-            var traktEpisodeCollectionProgress = await traktJsonReader.ReadObjectAsync(default(Stream));
-            traktEpisodeCollectionProgress.Should().BeNull();
+            Func<Task<ITraktEpisodeCollectionProgress>> traktEpisodeCollectionProgress = () => traktJsonReader.ReadObjectAsync(default(Stream));
+            traktEpisodeCollectionProgress.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -1,10 +1,12 @@
 ﻿namespace TraktNet.Objects.Get.Tests.History.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.History;
     using TraktNet.Objects.Get.History.Json.Reader;
     using Xunit;
 
@@ -12,12 +14,11 @@
     public partial class HistoryItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_HistoryItemObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_HistoryItemObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new HistoryItemObjectJsonReader();
-
-            var traktHistoryItem = await jsonReader.ReadObjectAsync(default(Stream));
-            traktHistoryItem.Should().BeNull();
+            Func<Task<ITraktHistoryItem>> traktHistoryItem = () => jsonReader.ReadObjectAsync(default(Stream));
+            traktHistoryItem.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -258,11 +259,11 @@
         }
 
         [Fact]
-        public async Task Test_CertificationsArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public void Test_CertificationsArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktCertifications>();
-            IEnumerable<ITraktCertifications> multipleTraktCertifications = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            multipleTraktCertifications.Should().BeNull();
+            Func<Task<IEnumerable<ITraktCertifications>>> multipleTraktCertifications = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            multipleTraktCertifications.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
