@@ -6,6 +6,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Checkins.Responses;
     using TraktNet.Objects.Post.Checkins.Responses.Json.Reader;
     using Xunit;
 
@@ -566,12 +567,11 @@
         }
 
         [Fact]
-        public async Task Test_EpisodeCheckinPostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_EpisodeCheckinPostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new EpisodeCheckinPostResponseObjectJsonReader();
-
-            var checkinEpisodeResponse = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            checkinEpisodeResponse.Should().BeNull();
+            Func<Task<ITraktEpisodeCheckinPostResponse>> checkinEpisodeResponse = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            checkinEpisodeResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

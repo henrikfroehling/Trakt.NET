@@ -1,6 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Responses.Json.Reader
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -78,12 +80,11 @@
         }
 
         [Fact]
-        public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Stream_Null()
+        public void Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundMovie>();
-
-            var notFoundMovies = await jsonReader.ReadArrayAsync(default(Stream));
-            notFoundMovies.Should().BeNull();
+            Func<Task<IEnumerable<ITraktPostResponseNotFoundMovie>>> notFoundMovies = () => jsonReader.ReadArrayAsync(default(Stream));
+            notFoundMovies.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

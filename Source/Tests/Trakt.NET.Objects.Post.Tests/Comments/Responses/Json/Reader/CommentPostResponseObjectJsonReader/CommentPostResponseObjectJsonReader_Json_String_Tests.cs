@@ -4,6 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Comments.Responses;
     using TraktNet.Objects.Post.Comments.Responses.Json.Reader;
     using Xunit;
 
@@ -1135,12 +1136,11 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_CommentPostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new CommentPostResponseObjectJsonReader();
-
-            var traktCommentPostResponse = await jsonReader.ReadObjectAsync(default(string));
-            traktCommentPostResponse.Should().BeNull();
+            Func<Task<ITraktCommentPostResponse>> traktCommentPostResponse = () => jsonReader.ReadObjectAsync(default(string));
+            traktCommentPostResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

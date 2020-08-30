@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Get.Shows.Json.Reader;
     using Xunit;
 
@@ -130,12 +131,11 @@
         }
 
         [Fact]
-        public async Task Test_RecentlyUpdatedShowObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_RecentlyUpdatedShowObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new RecentlyUpdatedShowObjectJsonReader();
-
-            var traktRecentlyUpdatedShow = await traktJsonReader.ReadObjectAsync(default(Stream));
-            traktRecentlyUpdatedShow.Should().BeNull();
+            Func<Task<ITraktRecentlyUpdatedShow>> traktRecentlyUpdatedShow = () => traktJsonReader.ReadObjectAsync(default(Stream));
+            traktRecentlyUpdatedShow.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -1,11 +1,13 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Users.CustomListItems.Responses.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Users.CustomListItems.Responses;
     using TraktNet.Objects.Post.Users.CustomListItems.Responses.Json.Reader;
     using Xunit;
 
@@ -920,12 +922,11 @@
         }
 
         [Fact]
-        public async Task Test_UserCustomListItemsPostResponseObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_UserCustomListItemsPostResponseObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new UserCustomListItemsPostResponseObjectJsonReader();
-
-            var customListItemsPostResponse = await jsonReader.ReadObjectAsync(default(Stream));
-            customListItemsPostResponse.Should().BeNull();
+            Func<Task<ITraktUserCustomListItemsPostResponse>> customListItemsPostResponse = () => jsonReader.ReadObjectAsync(default(Stream));
+            customListItemsPostResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

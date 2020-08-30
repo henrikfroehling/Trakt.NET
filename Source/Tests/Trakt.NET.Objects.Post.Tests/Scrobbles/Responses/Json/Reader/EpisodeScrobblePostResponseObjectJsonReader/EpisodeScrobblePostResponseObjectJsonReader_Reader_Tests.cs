@@ -2,10 +2,12 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Objects.Post.Scrobbles.Responses;
     using TraktNet.Objects.Post.Scrobbles.Responses.Json.Reader;
     using Xunit;
 
@@ -689,12 +691,11 @@
         }
 
         [Fact]
-        public async Task Test_EpisodeScrobblePostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_EpisodeScrobblePostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new EpisodeScrobblePostResponseObjectJsonReader();
-
-            var episodeScrobbleResponse = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            episodeScrobbleResponse.Should().BeNull();
+            Func<Task<ITraktEpisodeScrobblePostResponse>> episodeScrobbleResponse = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            episodeScrobbleResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

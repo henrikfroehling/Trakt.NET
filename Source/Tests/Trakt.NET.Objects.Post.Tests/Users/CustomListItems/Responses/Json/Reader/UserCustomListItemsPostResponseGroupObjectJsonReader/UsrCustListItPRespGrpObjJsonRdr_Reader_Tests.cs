@@ -2,9 +2,11 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Users.CustomListItems.Responses;
     using TraktNet.Objects.Post.Users.CustomListItems.Responses.Json.Reader;
     using Xunit;
 
@@ -335,12 +337,11 @@
         }
 
         [Fact]
-        public async Task Test_UserCustomListItemsPostResponseGroupObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_UserCustomListItemsPostResponseGroupObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new UserCustomListItemsPostResponseGroupObjectJsonReader();
-
-            var customListItemsPostResponseGroup = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            customListItemsPostResponseGroup.Should().BeNull();
+            Func<Task<ITraktUserCustomListItemsPostResponseGroup>> customListItemsPostResponseGroup = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            customListItemsPostResponseGroup.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

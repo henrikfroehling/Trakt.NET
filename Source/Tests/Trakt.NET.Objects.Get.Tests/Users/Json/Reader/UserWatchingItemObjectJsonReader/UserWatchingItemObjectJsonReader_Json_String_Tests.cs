@@ -1,8 +1,10 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Users.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
@@ -10,12 +12,11 @@
     public partial class UserWatchingItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_UserWatchingItemObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_UserWatchingItemObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new UserWatchingItemObjectJsonReader();
-
-            var traktUserWatchingItem = await jsonReader.ReadObjectAsync(default(string));
-            traktUserWatchingItem.Should().BeNull();
+            Func<Task<ITraktUserWatchingItem>> traktUserWatchingItem = () => jsonReader.ReadObjectAsync(default(string));
+            traktUserWatchingItem.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -1,9 +1,11 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Users.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
@@ -266,12 +268,11 @@
         }
 
         [Fact]
-        public async Task Test_AccountSettingsObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_AccountSettingsObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new AccountSettingsObjectJsonReader();
-
-            var userAccountSettings = await jsonReader.ReadObjectAsync(default(string));
-            userAccountSettings.Should().BeNull();
+            Func<Task<ITraktAccountSettings>> userAccountSettings = () => jsonReader.ReadObjectAsync(default(string));
+            userAccountSettings.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
