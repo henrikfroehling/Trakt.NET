@@ -1,10 +1,12 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Users.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
@@ -102,12 +104,11 @@
         }
 
         [Fact]
-        public async Task Test_SharingTextObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_SharingTextObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new SharingTextObjectJsonReader();
-
-            var userSharingText = await jsonReader.ReadObjectAsync(default(Stream));
-            userSharingText.Should().BeNull();
+            Func<Task<ITraktSharingText>> userSharingText = () => jsonReader.ReadObjectAsync(default(Stream));
+            userSharingText.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

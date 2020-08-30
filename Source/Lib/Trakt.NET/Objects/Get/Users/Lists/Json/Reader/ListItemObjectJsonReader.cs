@@ -15,8 +15,7 @@
     {
         public override async Task<ITraktListItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktListItem));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {

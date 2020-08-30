@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktCountry> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktCountry)).ConfigureAwait(false);
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken).ConfigureAwait(false) && jsonReader.TokenType == JsonToken.StartObject)
             {

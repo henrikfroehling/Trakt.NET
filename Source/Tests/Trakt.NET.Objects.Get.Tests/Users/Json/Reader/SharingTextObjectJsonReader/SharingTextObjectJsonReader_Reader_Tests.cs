@@ -2,9 +2,11 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
@@ -108,12 +110,11 @@
         }
 
         [Fact]
-        public async Task Test_SharingTextObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_SharingTextObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new SharingTextObjectJsonReader();
-
-            var userSharingText = await traktJsonReader.ReadObjectAsync(default(string));
-            userSharingText.Should().BeNull();
+            Func<Task<ITraktSharingText>> userSharingText = () => traktJsonReader.ReadObjectAsync(default(string));
+            userSharingText.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

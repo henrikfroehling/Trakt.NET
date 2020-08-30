@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktPostResponseNotFoundPerson> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktPostResponseNotFoundPerson));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {

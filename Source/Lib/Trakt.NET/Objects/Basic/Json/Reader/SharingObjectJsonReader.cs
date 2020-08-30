@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktSharing> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSharing));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {

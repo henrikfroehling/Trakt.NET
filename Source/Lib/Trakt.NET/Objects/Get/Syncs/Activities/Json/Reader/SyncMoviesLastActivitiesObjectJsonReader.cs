@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktSyncMoviesLastActivities> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncMoviesLastActivities));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {

@@ -2,6 +2,8 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -228,12 +230,11 @@
         }
 
         [Fact]
-        public async Task Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCastItem>();
-
-            var movieCreditsCastItems = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            movieCreditsCastItems.Should().BeNull();
+            Func<Task<IEnumerable<ITraktPersonMovieCreditsCastItem>>> movieCreditsCastItems = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            movieCreditsCastItems.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
@@ -77,11 +78,11 @@
         }
 
         [Fact]
-        public async Task Test_CountryObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_CountryObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new CountryObjectJsonReader();
-            ITraktCountry traktCountry = await jsonReader.ReadObjectAsync(default(string));
-            traktCountry.Should().BeNull();
+            Func<Task<ITraktCountry>> traktCountry = () => jsonReader.ReadObjectAsync(default(string));
+            traktCountry.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

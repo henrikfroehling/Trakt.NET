@@ -1,10 +1,12 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Seasons.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Seasons.Json.Reader;
     using Xunit;
 
@@ -250,12 +252,11 @@
         }
 
         [Fact]
-        public async Task Test_SeasonIdsObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_SeasonIdsObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new SeasonIdsObjectJsonReader();
-
-            var traktSeasonIds = await traktJsonReader.ReadObjectAsync(default(Stream));
-            traktSeasonIds.Should().BeNull();
+            Func<Task<ITraktSeasonIds>> traktSeasonIds = () => traktJsonReader.ReadObjectAsync(default(Stream));
+            traktSeasonIds.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

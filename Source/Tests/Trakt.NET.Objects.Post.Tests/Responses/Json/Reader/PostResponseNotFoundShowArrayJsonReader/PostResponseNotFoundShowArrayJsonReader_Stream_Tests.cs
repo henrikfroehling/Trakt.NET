@@ -1,6 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Responses.Json.Reader
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -84,12 +86,11 @@
         }
 
         [Fact]
-        public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_Stream_Null()
+        public void Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundShow>();
-
-            var traktShowCollectionProgress = await jsonReader.ReadArrayAsync(default(Stream));
-            traktShowCollectionProgress.Should().BeNull();
+            Func<Task<IEnumerable<ITraktPostResponseNotFoundShow>>> traktShowCollectionProgress = () => jsonReader.ReadArrayAsync(default(Stream));
+            traktShowCollectionProgress.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

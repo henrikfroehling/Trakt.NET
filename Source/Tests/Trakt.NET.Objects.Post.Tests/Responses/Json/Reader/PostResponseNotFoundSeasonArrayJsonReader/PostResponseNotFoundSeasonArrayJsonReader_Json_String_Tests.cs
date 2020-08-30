@@ -1,6 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Responses.Json.Reader
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
@@ -67,12 +69,11 @@
         }
 
         [Fact]
-        public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Null()
+        public void Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundSeason>();
-
-            var notFoundSeasons = await jsonReader.ReadArrayAsync(default(string));
-            notFoundSeasons.Should().BeNull();
+            Func<Task<IEnumerable<ITraktPostResponseNotFoundSeason>>> notFoundSeasons = () => jsonReader.ReadArrayAsync(default(string));
+            notFoundSeasons.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

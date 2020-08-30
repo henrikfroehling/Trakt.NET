@@ -4,6 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Calendars;
     using TraktNet.Objects.Get.Calendars.Json.Reader;
     using Xunit;
 
@@ -104,12 +105,11 @@
         }
 
         [Fact]
-        public async Task Test_CalendarMovieObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_CalendarMovieObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new CalendarMovieObjectJsonReader();
-
-            var traktCalendarMovie = await jsonReader.ReadObjectAsync(default(string));
-            traktCalendarMovie.Should().BeNull();
+            Func<Task<ITraktCalendarMovie>> traktCalendarMovie = () => jsonReader.ReadObjectAsync(default(string));
+            traktCalendarMovie.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

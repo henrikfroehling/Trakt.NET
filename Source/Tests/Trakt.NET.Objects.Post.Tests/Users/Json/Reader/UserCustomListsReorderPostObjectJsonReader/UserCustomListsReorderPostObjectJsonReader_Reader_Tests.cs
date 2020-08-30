@@ -2,10 +2,12 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Users;
     using TraktNet.Objects.Post.Users.Json.Reader;
     using Xunit;
 
@@ -44,11 +46,11 @@
         }
 
         [Fact]
-        public async Task Test_UserCustomListsReorderPostObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_UserCustomListsReorderPostObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new UserCustomListsReorderPostObjectJsonReader();
-            var traktUserCustomListsReorderPost = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktUserCustomListsReorderPost.Should().BeNull();
+            Func<Task<ITraktUserCustomListsReorderPost>> traktUserCustomListsReorderPost = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            traktUserCustomListsReorderPost.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

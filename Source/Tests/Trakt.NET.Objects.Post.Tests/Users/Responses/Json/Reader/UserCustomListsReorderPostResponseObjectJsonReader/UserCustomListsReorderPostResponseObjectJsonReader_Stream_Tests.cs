@@ -1,11 +1,13 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Users.Responses.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Users.Responses;
     using TraktNet.Objects.Post.Users.Responses.Json.Reader;
     using Xunit;
 
@@ -106,11 +108,11 @@
         }
 
         [Fact]
-        public async Task Test_UserCustomListsReorderPostResponseObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_UserCustomListsReorderPostResponseObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new UserCustomListsReorderPostResponseObjectJsonReader();
-            var traktUserCustomListsReorderPostResponse = await traktJsonReader.ReadObjectAsync(default(Stream));
-            traktUserCustomListsReorderPostResponse.Should().BeNull();
+            Func<Task<ITraktUserCustomListsReorderPostResponse>> traktUserCustomListsReorderPostResponse = () => traktJsonReader.ReadObjectAsync(default(Stream));
+            traktUserCustomListsReorderPostResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

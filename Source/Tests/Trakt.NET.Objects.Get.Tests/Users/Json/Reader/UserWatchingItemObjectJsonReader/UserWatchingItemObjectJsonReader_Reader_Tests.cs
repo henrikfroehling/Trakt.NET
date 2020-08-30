@@ -2,9 +2,11 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
@@ -12,12 +14,11 @@
     public partial class UserWatchingItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_UserWatchingItemObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_UserWatchingItemObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new UserWatchingItemObjectJsonReader();
-
-            var traktUserWatchingItem = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktUserWatchingItem.Should().BeNull();
+            Func<Task<ITraktUserWatchingItem>> traktUserWatchingItem = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            traktUserWatchingItem.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

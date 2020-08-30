@@ -2,9 +2,11 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Responses;
     using TraktNet.Objects.Post.Responses.Json.Reader;
     using Xunit;
 
@@ -47,12 +49,11 @@
         }
 
         [Fact]
-        public async Task Test_PostResponseNotFoundPersonObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_PostResponseNotFoundPersonObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new PostResponseNotFoundPersonObjectJsonReader();
-
-            var postResponseNotFoundPerson = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            postResponseNotFoundPerson.Should().BeNull();
+            Func<Task<ITraktPostResponseNotFoundPerson>> postResponseNotFoundPerson = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            postResponseNotFoundPerson.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

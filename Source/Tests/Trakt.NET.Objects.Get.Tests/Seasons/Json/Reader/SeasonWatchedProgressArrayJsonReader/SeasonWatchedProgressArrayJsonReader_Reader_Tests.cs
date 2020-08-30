@@ -3,6 +3,7 @@
     using FluentAssertions;
     using Newtonsoft.Json;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -924,12 +925,11 @@
         }
 
         [Fact]
-        public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public void Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
-
-            var traktSeasonWatchedProgresses = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktSeasonWatchedProgresses.Should().BeNull();
+            Func<Task<IEnumerable<ITraktSeasonWatchedProgress>>> traktSeasonWatchedProgresses = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            traktSeasonWatchedProgresses.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

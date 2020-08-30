@@ -4,6 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Checkins.Responses;
     using TraktNet.Objects.Post.Checkins.Responses.Json.Reader;
     using Xunit;
 
@@ -303,12 +304,11 @@
         }
 
         [Fact]
-        public async Task Test_MovieCheckinPostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_MovieCheckinPostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new MovieCheckinPostResponseObjectJsonReader();
-
-            var checkinMovieResponse = await jsonReader.ReadObjectAsync(default(string));
-            checkinMovieResponse.Should().BeNull();
+            Func<Task<ITraktMovieCheckinPostResponse>> checkinMovieResponse = () => jsonReader.ReadObjectAsync(default(string));
+            checkinMovieResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

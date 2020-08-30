@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktUserCustomListsReorderPost> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserCustomListsReorderPost)).ConfigureAwait(false);
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken).ConfigureAwait(false) && jsonReader.TokenType == JsonToken.StartObject)
             {

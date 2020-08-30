@@ -4,6 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
@@ -133,12 +134,11 @@
         }
 
         [Fact]
-        public async Task Test_UserFriendObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_UserFriendObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new UserFriendObjectJsonReader();
-
-            var userFriend = await jsonReader.ReadObjectAsync(default(string));
-            userFriend.Should().BeNull();
+            Func<Task<ITraktUserFriend>> userFriend = () => jsonReader.ReadObjectAsync(default(string));
+            userFriend.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

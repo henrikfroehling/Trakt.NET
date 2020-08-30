@@ -2,9 +2,11 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.People.Credits;
     using TraktNet.Objects.Get.People.Credits.Json.Reader;
     using Xunit;
 
@@ -135,12 +137,11 @@
         }
 
         [Fact]
-        public async Task Test_PersonShowCreditsCrewItemObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_PersonShowCreditsCrewItemObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new PersonShowCreditsCrewItemObjectJsonReader();
-
-            var showCreditsCrewItem = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            showCreditsCrewItem.Should().BeNull();
+            Func<Task<ITraktPersonShowCreditsCrewItem>> showCreditsCrewItem = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            showCreditsCrewItem.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

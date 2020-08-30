@@ -1,11 +1,13 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Scrobbles.Responses.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Objects.Post.Scrobbles.Responses;
     using TraktNet.Objects.Post.Scrobbles.Responses.Json.Reader;
     using Xunit;
 
@@ -439,12 +441,11 @@
         }
 
         [Fact]
-        public async Task Test_MovieScrobblePostResponseObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_MovieScrobblePostResponseObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new MovieScrobblePostResponseObjectJsonReader();
-
-            var movieScrobbleResponse = await jsonReader.ReadObjectAsync(default(Stream));
-            movieScrobbleResponse.Should().BeNull();
+            Func<Task<ITraktMovieScrobblePostResponse>> movieScrobbleResponse = () => jsonReader.ReadObjectAsync(default(Stream));
+            movieScrobbleResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

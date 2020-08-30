@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
@@ -331,12 +332,11 @@
         }
 
         [Fact]
-        public async Task Test_MetadataObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_MetadataObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new MetadataObjectJsonReader();
-
-            var traktMetadata = await jsonReader.ReadObjectAsync(default(string));
-            traktMetadata.Should().BeNull();
+            Func<Task<ITraktMetadata>> traktMetadata = () => jsonReader.ReadObjectAsync(default(string));
+            traktMetadata.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

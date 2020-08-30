@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
@@ -288,12 +289,11 @@
         }
 
         [Fact]
-        public async Task Test_RatingObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_RatingObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new RatingObjectJsonReader();
-
-            var traktRating = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktRating.Should().BeNull();
+            Func<Task<ITraktRating>> traktRating = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            traktRating.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

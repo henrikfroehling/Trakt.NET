@@ -6,6 +6,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Syncs.Activities;
     using TraktNet.Objects.Get.Syncs.Activities.Json.Reader;
     using Xunit;
 
@@ -948,12 +949,11 @@
         }
 
         [Fact]
-        public async Task Test_SyncLastActivitiesObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_SyncLastActivitiesObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new SyncLastActivitiesObjectJsonReader();
-
-            var lastActivities = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            lastActivities.Should().BeNull();
+            Func<Task<ITraktSyncLastActivities>> lastActivities = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            lastActivities.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

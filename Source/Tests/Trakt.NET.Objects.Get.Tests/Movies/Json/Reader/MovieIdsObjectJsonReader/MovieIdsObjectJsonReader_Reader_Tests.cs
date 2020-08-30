@@ -2,9 +2,11 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Movies.Json.Reader;
     using Xunit;
 
@@ -264,12 +266,11 @@
         }
 
         [Fact]
-        public async Task Test_MovieIdsObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_MovieIdsObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new MovieIdsObjectJsonReader();
-
-            var traktMovieIds = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktMovieIds.Should().BeNull();
+            Func<Task<ITraktMovieIds>> traktMovieIds = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            traktMovieIds.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

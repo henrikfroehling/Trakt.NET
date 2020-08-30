@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Seasons.Json.Reader;
     using Xunit;
 
@@ -304,12 +305,11 @@
         }
 
         [Fact]
-        public async Task Test_SeasonWatchedProgressObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_SeasonWatchedProgressObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new SeasonWatchedProgressObjectJsonReader();
-
-            var traktSeasonWatchedProgress = await jsonReader.ReadObjectAsync(default(string));
-            traktSeasonWatchedProgress.Should().BeNull();
+            Func<Task<ITraktSeasonWatchedProgress>> traktSeasonWatchedProgress = () => jsonReader.ReadObjectAsync(default(string));
+            traktSeasonWatchedProgress.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

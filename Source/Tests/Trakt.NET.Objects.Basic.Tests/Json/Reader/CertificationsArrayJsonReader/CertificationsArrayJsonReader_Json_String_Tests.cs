@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -221,11 +222,11 @@
         }
 
         [Fact]
-        public async Task Test_CertificationsArrayJsonReader_ReadArray_From_Json_String_Null()
+        public void Test_CertificationsArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertifications>();
-            IEnumerable<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(default(string));
-            multipleTraktCertifications.Should().BeNull();
+            Func<Task<IEnumerable<ITraktCertifications>>> multipleTraktCertifications = () => jsonReader.ReadArrayAsync(default(string));
+            multipleTraktCertifications.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
