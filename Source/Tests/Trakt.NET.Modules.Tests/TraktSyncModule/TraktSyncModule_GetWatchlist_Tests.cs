@@ -63,6 +63,102 @@
         }
 
         [Fact]
+        public async Task Test_TraktSyncModule_GetWatchlist_With_Type_And_Sort()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}",
+                WATCHLIST_JSON, 1, 10, 1, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, WATCHLIST_SORT_ORDER);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(WATCHLIST_SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(WATCHLIST_SORT_HOW);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetWatchlist_With_Type_And_Sort_And_ExtendedInfo()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}?extended={EXTENDED_INFO}",
+                WATCHLIST_JSON, PAGE, 10, 1, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, WATCHLIST_SORT_ORDER, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(WATCHLIST_SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(WATCHLIST_SORT_HOW);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetWatchlist_With_Type_And_Sort_And_Page()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}?page={PAGE}",
+                WATCHLIST_JSON, PAGE, 10, 1, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, WATCHLIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(WATCHLIST_SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(WATCHLIST_SORT_HOW);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetWatchlist_With_Type_And_Sort_And_Limit()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}?limit={LIMIT}",
+                WATCHLIST_JSON, 1, LIMIT, 1, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, WATCHLIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(WATCHLIST_SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(WATCHLIST_SORT_HOW);
+        }
+
+        [Fact]
         public async Task Test_TraktSyncModule_GetWatchlist_With_Type_And_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
@@ -71,7 +167,7 @@
                 sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
 
             TraktPagedResponse<ITraktWatchlistItem> response =
-                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, EXTENDED_INFO);
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -96,7 +192,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE);
 
             TraktPagedResponse<ITraktWatchlistItem> response =
-                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -121,7 +217,7 @@
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
             TraktPagedResponse<ITraktWatchlistItem> response =
-                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -144,7 +240,7 @@
                 sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
 
             TraktPagedResponse<ITraktWatchlistItem> response =
-                await client.Sync.GetWatchlistAsync(null, EXTENDED_INFO);
+                await client.Sync.GetWatchlistAsync(null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -169,7 +265,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE);
 
             TraktPagedResponse<ITraktWatchlistItem> response =
-                await client.Sync.GetWatchlistAsync(null, EXTENDED_INFO, pagedParameters);
+                await client.Sync.GetWatchlistAsync(null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -194,7 +290,7 @@
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
             TraktPagedResponse<ITraktWatchlistItem> response =
-                await client.Sync.GetWatchlistAsync(null, EXTENDED_INFO, pagedParameters);
+                await client.Sync.GetWatchlistAsync(null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -219,7 +315,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
             TraktPagedResponse<ITraktWatchlistItem> response =
-                await client.Sync.GetWatchlistAsync(null, EXTENDED_INFO, pagedParameters);
+                await client.Sync.GetWatchlistAsync(null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -244,7 +340,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE);
 
             TraktPagedResponse<ITraktWatchlistItem> response =
-                await client.Sync.GetWatchlistAsync(null, null, pagedParameters);
+                await client.Sync.GetWatchlistAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -269,7 +365,7 @@
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
             TraktPagedResponse<ITraktWatchlistItem> response =
-                await client.Sync.GetWatchlistAsync(null, null, pagedParameters);
+                await client.Sync.GetWatchlistAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -294,7 +390,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
             TraktPagedResponse<ITraktWatchlistItem> response =
-                await client.Sync.GetWatchlistAsync(null, null, pagedParameters);
+                await client.Sync.GetWatchlistAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -312,7 +408,7 @@
         public async Task Test_TraktSyncModule_GetWatchlist_Complete()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}" +
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}" +
                 $"?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
                 WATCHLIST_JSON, PAGE, LIMIT, 1, ITEM_COUNT,
                 sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
@@ -320,7 +416,7 @@
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
             TraktPagedResponse<ITraktWatchlistItem> response =
-                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, EXTENDED_INFO,
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, WATCHLIST_SORT_ORDER, EXTENDED_INFO,
                                                     pagedParameters);
 
             response.Should().NotBeNull();

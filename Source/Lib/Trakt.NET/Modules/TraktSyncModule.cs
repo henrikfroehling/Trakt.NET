@@ -530,6 +530,7 @@
         /// </para>
         /// </summary>
         /// <param name="watchlistItemType">Determines, which type of watchlist items should be queried. See also <seealso cref="TraktSyncItemType" />.</param>
+        /// <param name="sortOrder">Determines the sort order of the returned watchlist items. See also <seealso cref="TraktWatchlistSortOrder" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the watchlist items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
@@ -548,6 +549,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktWatchlistItem>> GetWatchlistAsync(TraktSyncItemType watchlistItemType = null,
+                                                                               TraktWatchlistSortOrder sortOrder = null,
                                                                                TraktExtendedInfo extendedInfo = null,
                                                                                TraktPagedParameters pagedParameters = null,
                                                                                CancellationToken cancellationToken = default)
@@ -557,6 +559,7 @@
             return requestHandler.ExecutePagedRequestAsync(new SyncWatchlistRequest
             {
                 Type = watchlistItemType,
+                Sort = sortOrder,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit

@@ -10,20 +10,27 @@
     {
         internal TraktSyncItemType Type { get; set; }
 
+        public TraktWatchlistSortOrder Sort { get; set; }
+
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
         public uint? Page { get; set; }
 
         public uint? Limit { get; set; }
 
-        public override string UriTemplate => "sync/watchlist{/type}{?extended,page,limit}";
+        public override string UriTemplate => "sync/watchlist{/type}{/sort}{?extended,page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = new Dictionary<string, object>();
 
             if (Type != null && Type != TraktSyncItemType.Unspecified)
+            {
                 uriParams.Add("type", Type.UriName);
+
+                if (Sort != null && Sort != TraktWatchlistSortOrder.Unspecified)
+                    uriParams.Add("sort", Sort.UriName);
+            }
 
             if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
                 uriParams.Add("extended", ExtendedInfo.ToString());
