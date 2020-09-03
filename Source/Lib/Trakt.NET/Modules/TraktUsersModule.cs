@@ -1214,6 +1214,7 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the watchlist items should be queried.</param>
         /// <param name="watchlistItemType">Determines, which type of items in the watchlist should be queried. See also <seealso cref="TraktSyncItemType" />.</param>
+        /// <param name="sortOrder">Determines the sort order of the returned watchlist items. See also <seealso cref="TraktWatchlistSortOrder" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the watchlist items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
@@ -1233,6 +1234,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         public Task<TraktPagedResponse<ITraktWatchlistItem>> GetWatchlistAsync(string usernameOrSlug, TraktSyncItemType watchlistItemType = null,
+                                                                               TraktWatchlistSortOrder sortOrder = null,
                                                                                TraktExtendedInfo extendedInfo = null,
                                                                                TraktPagedParameters pagedParameters = null,
                                                                                CancellationToken cancellationToken = default)
@@ -1243,6 +1245,7 @@
             {
                 Username = usernameOrSlug,
                 Type = watchlistItemType,
+                Sort = sortOrder,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit

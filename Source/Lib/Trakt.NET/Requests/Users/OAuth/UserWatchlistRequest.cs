@@ -12,7 +12,9 @@
 
         internal TraktSyncItemType Type { get; set; }
 
-        public override string UriTemplate => "users/{username}/watchlist{/type}{?extended,page,limit}";
+        public TraktWatchlistSortOrder Sort { get; set; }
+
+        public override string UriTemplate => "users/{username}/watchlist{/type}{/sort}{?extended,page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
@@ -21,7 +23,12 @@
             uriParams.Add("username", Username);
 
             if (Type != null && Type != TraktSyncItemType.Unspecified)
+            {
                 uriParams.Add("type", Type.UriName);
+
+                if (Sort != null && Sort != TraktWatchlistSortOrder.Unspecified)
+                    uriParams.Add("sort", Sort.UriName);
+            }
 
             return uriParams;
         }

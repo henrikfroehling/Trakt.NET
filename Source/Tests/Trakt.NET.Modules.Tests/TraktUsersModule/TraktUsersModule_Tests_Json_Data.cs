@@ -47,6 +47,7 @@
         private const string SORT_BY = "rank";
         private const string SORT_HOW = "asc";
         private readonly TraktSyncItemType WATCHLIST_ITEM_TYPE = TraktSyncItemType.Movie;
+        private readonly TraktWatchlistSortOrder WATCHLIST_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const uint WATCHLIST_LIMIT = 4;
         private const string NEW_DESCRIPTION = "new list description";
         private readonly TraktAccessScope NEW_PRIVACY = TraktAccessScope.Private;
