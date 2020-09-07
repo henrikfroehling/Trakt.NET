@@ -432,24 +432,28 @@
         /// The extended info, which determines how much data about the rating items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>A list of <see cref="ITraktRatingsItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktListResponse<ITraktRatingsItem>> GetRatingsAsync(TraktRatingsItemType ratingsItemType = null,
-                                                                          int[] ratingsFilter = null,
-                                                                          TraktExtendedInfo extendedInfo = null,
-                                                                          CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktRatingsItem>> GetRatingsAsync(TraktRatingsItemType ratingsItemType = null,
+                                                                           int[] ratingsFilter = null,
+                                                                           TraktExtendedInfo extendedInfo = null,
+                                                                           TraktPagedParameters pagedParameters = null,
+                                                                           CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new SyncRatingsRequest
+            return requestHandler.ExecutePagedRequestAsync(new SyncRatingsRequest
             {
                 Type = ratingsItemType,
                 RatingFilter = ratingsFilter,
-                ExtendedInfo = extendedInfo
+                ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             },
             cancellationToken);
         }
