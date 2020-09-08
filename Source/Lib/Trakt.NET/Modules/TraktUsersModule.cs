@@ -1182,6 +1182,7 @@
         /// The extended info, which determines how much data about the rating items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -1189,18 +1190,21 @@
         /// <returns>A list of <see cref="ITraktRatingsItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public Task<TraktListResponse<ITraktRatingsItem>> GetRatingsAsync(string usernameOrSlug, TraktRatingsItemType ratingsItemType = null,
+        public Task<TraktPagedResponse<ITraktRatingsItem>> GetRatingsAsync(string usernameOrSlug, TraktRatingsItemType ratingsItemType = null,
                                                                           int[] ratingsFilter = null, TraktExtendedInfo extendedInfo = null,
+                                                                          TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new UserRatingsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserRatingsRequest
             {
                 Username = usernameOrSlug,
                 Type = ratingsItemType,
                 RatingFilter = ratingsFilter,
-                ExtendedInfo = extendedInfo
+                ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             },
             cancellationToken);
         }
