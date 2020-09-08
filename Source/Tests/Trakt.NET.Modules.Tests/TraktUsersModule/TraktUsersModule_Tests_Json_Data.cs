@@ -25,6 +25,7 @@
         private readonly TraktCommentType COMMENT_TYPE = TraktCommentType.Shout;
         private readonly TraktObjectType OBJECT_TYPE = TraktObjectType.Episode;
         private const uint PAGE = 2;
+        private const int LIMIT = 4;
         private const uint COMMENTS_LIMIT = 6;
         private readonly TraktHiddenItemsSection HIDDEN_ITEMS_SECTION = TraktHiddenItemsSection.Calendar;
         private const int HIDDEN_ITEMS_COUNT = 3;
@@ -54,6 +55,7 @@
         private const bool NEW_DISPLAY_NUMBERS = false;
         private const bool NEW_ALLOW_COMMENTS = false;
         private readonly IEnumerable<uint> REORDERED_CUSTOM_LISTS = new List<uint> { 823, 224, 88768, 356456, 245, 2, 890 };
+        private const int RATINGS_ITEM_COUNT = 5;
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 

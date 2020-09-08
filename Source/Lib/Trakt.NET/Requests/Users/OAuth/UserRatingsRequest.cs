@@ -2,12 +2,13 @@
 {
     using Enums;
     using Extensions;
+    using Interfaces;
     using Objects.Get.Ratings;
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    internal sealed class UserRatingsRequest : AUsersGetRequest<ITraktRatingsItem>
+    internal sealed class UserRatingsRequest : AUsersGetRequest<ITraktRatingsItem>, ISupportsPagination
     {
         internal string Username { get; set; }
 
@@ -15,7 +16,11 @@
 
         internal int[] RatingFilter { get; set; }
 
-        public override string UriTemplate => "users/{username}/ratings{/type}{/rating}{?extended}";
+        public uint? Page { get; set; }
+
+        public uint? Limit { get; set; }
+
+        public override string UriTemplate => "users/{username}/ratings{/type}{/rating}{?extended,page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
@@ -38,6 +43,12 @@
                 if (isRatingsSetAndValid)
                     uriParams.Add("rating", string.Join(",", RatingFilter));
             }
+
+            if (Page.HasValue)
+                uriParams.Add("page", Page.Value.ToString());
+
+            if (Limit.HasValue)
+                uriParams.Add("limit", Limit.Value.ToString());
 
             return uriParams;
         }

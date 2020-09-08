@@ -404,13 +404,13 @@
         public async Task Test_TraktSyncModule_GetRatings_With_Type_And_Page()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page={PAGE}",
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}?page={PAGE}",
                 RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
             TraktPagedResponse<ITraktRatingsItem> response =
-                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, null, EXTENDED_INFO, pagedParameters);
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -426,13 +426,13 @@
         public async Task Test_TraktSyncModule_GetRatings_With_Type_And_Limit()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}?limit={LIMIT}",
                 RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
             TraktPagedResponse<ITraktRatingsItem> response =
-                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, null, EXTENDED_INFO, pagedParameters);
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -448,13 +448,13 @@
         public async Task Test_TraktSyncModule_GetRatings_With_Type_And_Page_And_Limit()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}?page={PAGE}&limit={LIMIT}",
                 RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
             TraktPagedResponse<ITraktRatingsItem> response =
-                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, null, EXTENDED_INFO, pagedParameters);
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
