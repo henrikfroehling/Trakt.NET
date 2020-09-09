@@ -1,13 +1,12 @@
 ﻿namespace TraktNet.Objects.Get.Recommendations.Json.Reader
 {
-    using Enums;
     using Newtonsoft.Json;
     using Objects.Json;
     using Shows.Json.Reader;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class RecommendationShowObjectJsonReader : AObjectJsonReader<ITraktRecommendationShow>
+    internal class RecommendationShowObjectJsonReader : ARecommendationObjectJsonReader<ITraktRecommendationShow>
     {
         public override async Task<ITraktRecommendationShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
@@ -24,29 +23,11 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PROPERTY_NAME_RANK:
-                            traktRecommendationShow.Rank = await jsonReader.ReadAsInt32Async(cancellationToken).ConfigureAwait(false);
-                            break;
-                        case JsonProperties.PROPERTY_NAME_LISTED_AT:
-                            {
-                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken).ConfigureAwait(false);
-
-                                if (value.First)
-                                    traktRecommendationShow.ListedAt = value.Second;
-
-                                break;
-                            }
-                        case JsonProperties.PROPERTY_NAME_TYPE:
-                            traktRecommendationShow.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktRecommendationObjectType>(jsonReader, cancellationToken).ConfigureAwait(false);
-                            break;
-                        case JsonProperties.PROPERTY_NAME_NOTES:
-                            traktRecommendationShow.Notes = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                            break;
                         case JsonProperties.PROPERTY_NAME_SHOW:
                             traktRecommendationShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;
                         default:
-                            await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken).ConfigureAwait(false);
+                            await ReadAsync(jsonReader, traktRecommendationShow, propertyName, cancellationToken).ConfigureAwait(false);
                             break;
                     }
                 }
