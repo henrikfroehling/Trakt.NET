@@ -25,11 +25,11 @@
                     switch (propertyName)
                     {
                         case JsonProperties.PROPERTY_NAME_RANK:
-                            traktRecommendationMovie.Rank = await jsonReader.ReadAsInt32Async(cancellationToken).ConfigureAwait(false); ;
+                            traktRecommendationMovie.Rank = await jsonReader.ReadAsInt32Async(cancellationToken).ConfigureAwait(false);
                             break;
                         case JsonProperties.PROPERTY_NAME_LISTED_AT:
                             {
-                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken).ConfigureAwait(false); ;
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken).ConfigureAwait(false);
 
                                 if (value.First)
                                     traktRecommendationMovie.ListedAt = value.Second;
@@ -37,7 +37,7 @@
                                 break;
                             }
                         case JsonProperties.PROPERTY_NAME_TYPE:
-                            traktRecommendationMovie.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktRecommendationObjectType>(jsonReader, cancellationToken).ConfigureAwait(false); ;
+                            traktRecommendationMovie.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktRecommendationObjectType>(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;
                         case JsonProperties.PROPERTY_NAME_NOTES:
                             traktRecommendationMovie.Notes = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
