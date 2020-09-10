@@ -19,8 +19,11 @@
 
         protected virtual async Task WriteRecommendationObjectAsync(JsonTextWriter jsonWriter, TRecommendationObjectType obj, CancellationToken cancellationToken = default)
         {
-            await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RANK, cancellationToken).ConfigureAwait(false);
-            await jsonWriter.WriteValueAsync(obj.Rank, cancellationToken).ConfigureAwait(false);
+            if (obj.Rank.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RANK, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Rank.Value, cancellationToken).ConfigureAwait(false);
+            }
 
             if (obj.ListedAt.HasValue)
             {
