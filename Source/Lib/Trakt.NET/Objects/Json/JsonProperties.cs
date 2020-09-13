@@ -113,6 +113,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_NEXT_EPISODE = "next_episode";
         internal const string PROPERTY_NAME_NOT_FOUND = "not_found";
         internal const string PROPERTY_NAME_NOTE = "note";
+        internal const string PROPERTY_NAME_NOTES = "notes";
         internal const string PROPERTY_NAME_NUMBER = "number";
         internal const string PROPERTY_NAME_NUMBER_ABSOLUTE = "number_abs";
         internal const string PROPERTY_NAME_OVERVIEW = "overview";

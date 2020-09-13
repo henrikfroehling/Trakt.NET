@@ -1,0 +1,30 @@
+﻿namespace TraktNet.Objects.Get.Tests.Users.Json.Reader
+{
+    using FluentAssertions;
+    using System;
+    using System.Threading.Tasks;
+    using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Users;
+    using TraktNet.Objects.Get.Users.Json.Reader;
+    using Xunit;
+
+    [Category("Objects.Get.Users.JsonReader")]
+    public partial class RecommendationObjectJsonReader_Tests
+    {
+        [Fact]
+        public void Test_RecommendationObjectJsonReader_ReadObject_From_Json_String_Null()
+        {
+            var jsonReader = new RecommendationObjectJsonReader();
+            Func<Task<ITraktRecommendation>> traktRecommendation = () => jsonReader.ReadObjectAsync(default(string));
+            traktRecommendation.Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public async Task Test_RecommendationObjectJsonReader_ReadObject_From_Json_String_Empty()
+        {
+            var jsonReader = new RecommendationObjectJsonReader();
+            ITraktRecommendation traktRecommendation = await jsonReader.ReadObjectAsync(string.Empty);
+            traktRecommendation.Should().BeNull();
+        }
+    }
+}

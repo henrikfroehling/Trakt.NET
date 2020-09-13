@@ -363,6 +363,7 @@
             s_jsonIOFactories.Add(typeof(ITraktUserWatchingItem), new UserWatchingItemJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktAccountSettings), new AccountSettingsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSharingText), new SharingTextJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktRecommendation), new RecommendationJsonIOFactory());
 
             // user list objects
             s_jsonIOFactories.Add(typeof(ITraktList), new ListJsonIOFactory());
