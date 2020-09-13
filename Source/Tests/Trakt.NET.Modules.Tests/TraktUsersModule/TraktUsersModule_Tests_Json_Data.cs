@@ -56,6 +56,10 @@
         private const bool NEW_ALLOW_COMMENTS = false;
         private readonly IEnumerable<uint> REORDERED_CUSTOM_LISTS = new List<uint> { 823, 224, 88768, 356456, 245, 2, 890 };
         private const int RATINGS_ITEM_COUNT = 5;
+        private readonly TraktRecommendationObjectType RECOMMENDATION_TYPE = TraktRecommendationObjectType.Movie;
+        private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
+        private const int RECOMMENDATIONS_ITEM_COUNT = 2;
+        private const int RECOMMENDATIONS_LIMIT = 6;
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 
@@ -1396,5 +1400,42 @@
                   2
                 ]
               }";
+
+        private const string USER_RECOMMENDATIONS_JSON =
+            @"[
+                {
+                  ""rank"": 1,
+                  ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""type"": ""movie"",
+                  ""notes"": ""Daft Punk really knocks it out of the park on the soundtrack."",
+                  ""movie"": {
+                    ""title"": ""TRON: Legacy"",
+                    ""year"": 2010,
+                    ""ids"": {
+                      ""trakt"": 1,
+                      ""slug"": ""tron-legacy-2010"",
+                      ""imdb"": ""tt1104001"",
+                      ""tmdb"": 20526
+                    }
+                  }
+                },
+                {
+                  ""rank"": 1,
+                  ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""type"": ""show"",
+                  ""notes"": ""Atmospheric for days."",
+                  ""show"": {
+                    ""title"": ""The Walking Dead"",
+                    ""year"": 2010,
+                    ""ids"": {
+                      ""trakt"": 2,
+                      ""slug"": ""the-walking-dead"",
+                      ""tvdb"": 153021,
+                      ""imdb"": ""tt1520211"",
+                      ""tmdb"": 1402
+                    }
+                  }
+                }
+              ]";
     }
 }
