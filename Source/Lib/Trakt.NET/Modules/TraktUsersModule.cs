@@ -685,6 +685,42 @@
         }
 
         /// <summary>
+        /// Reorders an user's custom list items.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/reorder-list-items/reorder-items-on-a-list">"Trakt API Doc - Users: Reorder List Items"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list items should be reordered.</param>
+        /// <param name="listIdOrSlug">The id or slug of the list, for which the items should be reordered.</param>
+        /// <param name="reorderedListItemsRank">A collection of list item ids. Represents the new order of an user's custom list items.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktUserCustomListsReorderPostResponse" /> instance containing information about the successfully updated custom list items order.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedListItemsRank"/> is null.</exception>
+        public Task<TraktResponse<ITraktUserCustomListsReorderPostResponse>> ReorderCustomListItemsAsync(string usernameOrSlug, string listIdOrSlug,
+                                                                                                         IEnumerable<uint> reorderedListItemsRank,
+                                                                                                         CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListItemsReorderRequest
+            {
+                Username = usernameOrSlug,
+                Id = listIdOrSlug,
+                RequestBody = new TraktUserCustomListsReorderPost
+                {
+                    Rank = reorderedListItemsRank
+                }
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Deletes an user's custom list.
         /// <para>OAuth authorization required.</para>
         /// <para>
