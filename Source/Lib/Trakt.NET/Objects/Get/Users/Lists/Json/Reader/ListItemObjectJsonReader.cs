@@ -33,6 +33,15 @@
 
                     switch (propertyName)
                     {
+                        case JsonProperties.PROPERTY_NAME_ID:
+                            {
+                                var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktListItem.Id = value.Second;
+
+                                break;
+                            }
                         case JsonProperties.PROPERTY_NAME_RANK:
                             traktListItem.Rank = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
