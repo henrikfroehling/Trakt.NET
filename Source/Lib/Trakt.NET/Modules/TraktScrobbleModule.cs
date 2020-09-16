@@ -247,6 +247,39 @@
         }
 
         /// <summary>
+        /// Starts watching a <see cref="ITraktEpisode" /> in a media center. Use this method, if the given episode has no valid ids.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="absoluteEpisodeNumber">The absolute number of the episode, which will be scrobbled.</param>
+        /// <param name="show">The <see cref="ITraktShow" />, which will be used to scrobble the given episode.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
+        /// Thrown, if the given progress value is not between 0 and 100.
+        /// </exception>
+        public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StartEpisodeWithShowAsync(int absoluteEpisodeNumber, ITraktShow show, float progress,
+                                                                                                string appVersion = null, DateTime? appBuildDate = null,
+                                                                                                CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+            ITraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(absoluteEpisodeNumber, progress, show, appVersion, appBuildDate);
+            return requestHandler.ExecuteSingleItemRequestAsync(CreateScrobbleStartRequest<ITraktEpisodeScrobblePostResponse, ITraktEpisodeScrobblePost>(requestBody), cancellationToken);
+        }
+
+        /// <summary>
         /// Pauses watching a <see cref="ITraktEpisode" /> in a media center. Use this method, if the given episode has no valid ids.
         /// <para>OAuth authorization required.</para>
         /// <para>
@@ -280,6 +313,39 @@
         }
 
         /// <summary>
+        /// Pauses watching a <see cref="ITraktEpisode" /> in a media center. Use this method, if the given episode has no valid ids.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="absoluteEpisodeNumber">The absolute number of the episode, which will be scrobbled.</param>
+        /// <param name="show">The <see cref="ITraktShow" />, which will be used to scrobble the given episode.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
+        /// Thrown, if the given progress value is not between 0 and 100.
+        /// </exception>
+        public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> PauseEpisodeWithShowAsync(int absoluteEpisodeNumber, ITraktShow show, float progress,
+                                                                                                string appVersion = null, DateTime? appBuildDate = null,
+                                                                                                CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+            ITraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(absoluteEpisodeNumber, progress, show, appVersion, appBuildDate);
+            return requestHandler.ExecuteSingleItemRequestAsync(CreateScrobblePauseRequest<ITraktEpisodeScrobblePostResponse, ITraktEpisodeScrobblePost>(requestBody), cancellationToken);
+        }
+
+        /// <summary>
         /// Stops watching a <see cref="ITraktEpisode" /> in a media center. Use this method, if the given episode has no valid ids.
         /// <para>OAuth authorization required.</para>
         /// <para>
@@ -309,6 +375,39 @@
         {
             var requestHandler = new RequestHandler(Client);
             ITraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(episode, progress, show, appVersion, appBuildDate);
+            return requestHandler.ExecuteSingleItemRequestAsync(CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, ITraktEpisodeScrobblePost>(requestBody), cancellationToken);
+        }
+
+        /// <summary>
+        /// Stops watching a <see cref="ITraktEpisode" /> in a media center. Use this method, if the given episode has no valid ids.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="absoluteEpisodeNumber">The absolute number of the episode, which will be scrobbled.</param>
+        /// <param name="show">The <see cref="ITraktShow" />, which will be used to scrobble the given episode.</param>
+        /// <param name="progress">The watching progress. Should be a value between 0 and 100.</param>
+        /// <param name="appVersion">Optional application version for the scrobble.</param>
+        /// <param name="appBuildDate">Optional application build date for the scrobble. Will be converted to the Trakt date-format.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if the given episode's ids are null and the given show is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if given show's title is null or empty.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
+        /// Thrown, if the given progress value is not between 0 and 100.
+        /// </exception>
+        public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StopEpisodeWithShowAsync(int absoluteEpisodeNumber, ITraktShow show, float progress,
+                                                                                               string appVersion = null, DateTime? appBuildDate = null,
+                                                                                               CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+            ITraktEpisodeScrobblePost requestBody = CreateEpisodeScrobblePost(absoluteEpisodeNumber, progress, show, appVersion, appBuildDate);
             return requestHandler.ExecuteSingleItemRequestAsync(CreateScrobbleStopRequest<ITraktEpisodeScrobblePostResponse, ITraktEpisodeScrobblePost>(requestBody), cancellationToken);
         }
 
@@ -366,6 +465,39 @@
                           Title = show.Title,
                           Ids = show.Ids
                       }
+                    : null,
+                Progress = progress
+            };
+
+            if (!string.IsNullOrEmpty(appVersion))
+                episodeScrobblePost.AppVersion = appVersion;
+
+            if (appDate.HasValue)
+                episodeScrobblePost.AppDate = appDate.Value.ToTraktDateString();
+
+            return episodeScrobblePost;
+        }
+
+        private ITraktEpisodeScrobblePost CreateEpisodeScrobblePost(int absoluteEpisodeNumber, float progress, ITraktShow show = null,
+                                                                    string appVersion = null, DateTime? appDate = null)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show), "show must not be null");
+
+            ValidateProgress(progress);
+
+            var episodeScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = new TraktEpisode
+                {
+                    NumberAbsolute = absoluteEpisodeNumber
+                },
+                Show = show != null
+                    ? new TraktShow
+                    {
+                        Title = show.Title,
+                        Ids = show.Ids
+                    }
                     : null,
                 Progress = progress
             };
