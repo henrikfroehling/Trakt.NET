@@ -18,6 +18,7 @@
         {
             var listItem = new TraktListItem();
 
+            listItem.Id.Should().BeNull();
             listItem.Rank.Should().BeNull();
             listItem.ListedAt.Should().BeNull();
             listItem.Type.Should().BeNull();
@@ -35,6 +36,7 @@
             var listItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_MINIMAL_JSON) as TraktListItem;
 
             listItem.Should().NotBeNull();
+            listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be("1");
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Movie);
@@ -72,6 +74,7 @@
             var listItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_MINIMAL_JSON) as TraktListItem;
 
             listItem.Should().NotBeNull();
+            listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be("1");
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Show);
@@ -116,6 +119,7 @@
             var listItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_MINIMAL_JSON) as TraktListItem;
 
             listItem.Should().NotBeNull();
+            listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be("1");
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Season);
@@ -146,6 +150,7 @@
             var listItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_MINIMAL_JSON) as TraktListItem;
 
             listItem.Should().NotBeNull();
+            listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be("1");
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Episode);
@@ -208,6 +213,7 @@
             var listItem = await jsonReader.ReadObjectAsync(TYPE_PERSON_MINIMAL_JSON) as TraktListItem;
 
             listItem.Should().NotBeNull();
+            listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be("1");
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Person);
@@ -238,6 +244,7 @@
             var listItem = await jsonReader.ReadObjectAsync(TYPE_MOVIE_FULL_JSON) as TraktListItem;
 
             listItem.Should().NotBeNull();
+            listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be("1");
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Movie);
@@ -275,6 +282,7 @@
             var listItem = await jsonReader.ReadObjectAsync(TYPE_SHOW_FULL_JSON) as TraktListItem;
 
             listItem.Should().NotBeNull();
+            listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be("1");
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Show);
@@ -322,6 +330,7 @@
             var listItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_FULL_JSON) as TraktListItem;
 
             listItem.Should().NotBeNull();
+            listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be("1");
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Season);
@@ -395,6 +404,7 @@
             var listItem = await jsonReader.ReadObjectAsync(TYPE_EPISODE_FULL_JSON) as TraktListItem;
 
             listItem.Should().NotBeNull();
+            listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be("1");
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Episode);
@@ -473,6 +483,7 @@
             var listItem = await jsonReader.ReadObjectAsync(TYPE_PERSON_FULL_JSON) as TraktListItem;
 
             listItem.Should().NotBeNull();
+            listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be("1");
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Person);
@@ -498,6 +509,7 @@
 
         private const string TYPE_MOVIE_MINIMAL_JSON =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""movie"",
@@ -515,6 +527,7 @@
 
         private const string TYPE_SHOW_MINIMAL_JSON =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""show"",
@@ -534,6 +547,7 @@
 
         private const string TYPE_SEASON_MINIMAL_JSON =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""season"",
@@ -550,6 +564,7 @@
 
         private const string TYPE_EPISODE_MINIMAL_JSON =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""episode"",
@@ -581,6 +596,7 @@
 
         private const string TYPE_PERSON_MINIMAL_JSON =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""person"",
@@ -598,6 +614,7 @@
 
         private const string TYPE_MOVIE_FULL_JSON =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""movie"",
@@ -638,6 +655,7 @@
 
         private const string TYPE_SHOW_FULL_JSON =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""show"",
@@ -689,6 +707,7 @@
 
         private const string TYPE_SEASON_FULL_JSON =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""season"",
@@ -737,6 +756,7 @@
 
         private const string TYPE_EPISODE_FULL_JSON =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""episode"",
@@ -823,6 +843,7 @@
 
         private const string TYPE_PERSON_FULL_JSON =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""person"",

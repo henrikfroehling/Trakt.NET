@@ -19,6 +19,7 @@
             var traktListItem = await jsonReader.ReadObjectAsync(TYPE_SEASON_JSON_COMPLETE);
 
             traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
             traktListItem.Rank.Should().Be("1");
             traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             traktListItem.Type.Should().Be(TraktListItemType.Season);

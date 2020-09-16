@@ -11,6 +11,9 @@
     /// <summary>Represents a Trakt user list item.</summary>
     public interface ITraktListItem
     {
+        /// <summary>Gets or sets the id of the list item.<para>Nullable</para></summary>
+        uint? Id { get; set; }
+
         /// <summary>Gets or sets the ranking number of the list item.<para>Nullable</para></summary>
         string Rank { get; set; }
 
