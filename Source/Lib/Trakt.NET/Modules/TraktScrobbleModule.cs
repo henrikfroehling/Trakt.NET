@@ -492,13 +492,11 @@
                 {
                     NumberAbsolute = absoluteEpisodeNumber
                 },
-                Show = show != null
-                    ? new TraktShow
-                    {
-                        Title = show.Title,
-                        Ids = show.Ids
-                    }
-                    : null,
+                Show = new TraktShow
+                {
+                    Title = show.Title,
+                    Ids = show.Ids
+                },
                 Progress = progress
             };
 
