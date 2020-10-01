@@ -75,6 +75,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_GENDER = "gender";
         internal const string PROPERTY_NAME_GENRES = "genres";
         internal const string PROPERTY_NAME_GOOGLE = "google";
+        internal const string PROPERTY_NAME_GUEST_STARS = "guest_stars";
         internal const string PROPERTY_NAME_HDR = "hdr";
         internal const string PROPERTY_NAME_HIDDEN_AT = "hidden_at";
         internal const string PROPERTY_NAME_HIDDEN_SEASONS = "hidden_seasons";
