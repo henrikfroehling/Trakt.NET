@@ -6,7 +6,6 @@
     public interface ITraktSyncCollectionPostBuilder
         : ITraktPostBuilder<ITraktSyncCollectionPost>,
           ITraktPostBuilderWithMovie<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
-          ITraktPostBuilderWithShow<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
           ITraktPostBuilderWithShows<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
           ITraktPostBuilderWithEpisode<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>
     {

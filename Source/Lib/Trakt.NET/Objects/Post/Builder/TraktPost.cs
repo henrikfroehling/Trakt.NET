@@ -4,6 +4,10 @@
 
     public sealed class TraktPost
     {
+        private TraktPost()
+        {
+        }
+
         public static ITraktSyncCollectionPostBuilder NewSyncCollectionPost()
         {
             throw new System.NotImplementedException();

@@ -6,7 +6,6 @@
     public interface ITraktSyncHistoryPostBuilder
         : ITraktPostBuilder<ITraktSyncHistoryPost>,
           ITraktPostBuilderWithMovie<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
-          ITraktPostBuilderWithShow<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
           ITraktPostBuilderWithShows<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
           ITraktPostBuilderWithEpisode<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>
     {
