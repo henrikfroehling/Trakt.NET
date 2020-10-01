@@ -1,11 +1,11 @@
 ﻿namespace TraktNet.Requests.Episodes
 {
     using Interfaces;
-    using Objects.Basic;
+    using Objects.Get.Shows;
     using Parameters;
     using System.Collections.Generic;
 
-    internal sealed class EpisodePeopleRequest : AEpisodeRequest<ITraktCastAndCrew>, ISupportsExtendedInfo
+    internal sealed class EpisodePeopleRequest : AEpisodeRequest<ITraktShowCastAndCrew>, ISupportsExtendedInfo
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 
