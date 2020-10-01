@@ -1,6 +1,6 @@
 Trakt.NET is primarily authored by:
 
-* [Henrik Fr�hling](https://github.com/henrikfroehling) [(henrik.froehling@gmail.com)](mailto:henrik.froehling@gmail.com)
+* [Henrik Fröhling](https://github.com/henrikfroehling) [(henrik.froehling@gmail.com)](mailto:henrik.froehling@gmail.com)
 
 Contributors include:
 
