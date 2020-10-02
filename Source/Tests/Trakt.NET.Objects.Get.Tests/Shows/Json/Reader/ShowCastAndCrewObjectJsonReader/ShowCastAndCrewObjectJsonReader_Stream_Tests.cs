@@ -16,7 +16,6 @@
         [Fact]
         public async Task Test_ShowCastAndCrewObjectJsonReader_ReadObject_From_Stream_Complete()
         {
-
             var traktJsonReader = new ShowCastAndCrewObjectJsonReader();
 
             using (var stream = JSON_COMPLETE.ToStream())
