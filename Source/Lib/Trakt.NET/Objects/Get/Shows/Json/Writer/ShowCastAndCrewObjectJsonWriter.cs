@@ -26,6 +26,13 @@
                 await showCrewObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Crew, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.GuestStars != null)
+            {
+                var showGuestStarArrayJsonWriter = new ArrayJsonWriter<ITraktShowCastMember>();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_GUEST_STARS, cancellationToken).ConfigureAwait(false);
+                await showGuestStarArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.GuestStars, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

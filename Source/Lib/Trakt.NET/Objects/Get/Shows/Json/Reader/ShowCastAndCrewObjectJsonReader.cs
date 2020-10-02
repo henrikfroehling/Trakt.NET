@@ -29,6 +29,9 @@
                         case JsonProperties.PROPERTY_NAME_CREW:
                             traktShowCastAndCrew.Crew = await showCrewReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_GUEST_STARS:
+                            traktShowCastAndCrew.GuestStars = await showCastReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

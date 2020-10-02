@@ -10,5 +10,8 @@
 
         /// <summary>Gets or sets the show crew members. See also <seealso cref="ITraktShowCrew" />.<para>Nullable</para></summary>
         ITraktShowCrew Crew { get; set; }
+
+        /// <summary>Gets or sets a list of guest stars. See also <seealso cref="ITraktShowCastMember" />.<para>Nullable</para></summary>
+        IEnumerable<ITraktShowCastMember> GuestStars { get; set; }
     }
 }
