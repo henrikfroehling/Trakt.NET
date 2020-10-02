@@ -1,15 +1,15 @@
-﻿using FluentAssertions;
-using Newtonsoft.Json;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Trakt.NET.Tests.Utility;
-using Trakt.NET.Tests.Utility.Traits;
-using TraktNet.Objects.Get.Shows.Json.Reader;
-using Xunit;
-
-namespace TraktNet.Objects.Get.Tests.Shows.Json.Reader
+﻿namespace TraktNet.Objects.Get.Tests.Shows.Json.Reader
 {
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Trakt.NET.Tests.Utility;
+    using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Shows.Json.Reader;
+    using Xunit;
+
     [Category("Objects.Get.Shows.JsonReader")]
     public partial class ShowCastAndCrewObjectJsonReader_Tests
     {
