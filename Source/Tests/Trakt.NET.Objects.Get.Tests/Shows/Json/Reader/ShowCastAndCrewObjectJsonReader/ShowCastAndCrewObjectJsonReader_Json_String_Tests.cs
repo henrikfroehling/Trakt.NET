@@ -11,7 +11,7 @@ namespace TraktNet.Objects.Get.Tests.Shows.Json.Reader
     public partial class ShowCastAndCrewObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_ShowAliasObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_ShowCastAndCrewObjectJsonReader_ReadObject_From_Json_String_Complete()
         {
             var jsonReader = new ShowCastAndCrewObjectJsonReader();
 
