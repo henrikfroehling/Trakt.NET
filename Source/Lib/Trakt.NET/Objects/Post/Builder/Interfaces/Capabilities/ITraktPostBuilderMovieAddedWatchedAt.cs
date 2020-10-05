@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface ITraktPostBuilderMovieAddedWatchedAt<TPostBuilderAddMovie, TPostObject> : ITraktPostBuilder<TPostObject>
+    public interface ITraktPostBuilderMovieAddedWatchedAt<TPostBuilderAddMovie, out TPostObject> : ITraktPostBuilder<TPostObject>
     {
         TPostBuilderAddMovie WatchedAt(DateTime watchedAt);
     }

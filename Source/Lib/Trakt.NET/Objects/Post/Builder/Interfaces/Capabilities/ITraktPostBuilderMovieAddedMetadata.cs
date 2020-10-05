@@ -3,7 +3,7 @@
     using Basic;
     using System;
 
-    public interface ITraktPostBuilderMovieAddedMetadata<TPostBuilderAddMovie, TPostObject> : ITraktPostBuilder<TPostObject>
+    public interface ITraktPostBuilderMovieAddedMetadata<TPostBuilderAddMovie, out TPostObject> : ITraktPostBuilder<TPostObject>
     {
         TPostBuilderAddMovie WithMetadata(ITraktMetadata metadata);
 

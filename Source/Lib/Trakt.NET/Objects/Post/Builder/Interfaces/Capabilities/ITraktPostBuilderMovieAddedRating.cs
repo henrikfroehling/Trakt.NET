@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface ITraktPostBuilderMovieAddedRating<TPostBuilderAddMovie, TPostObject> : ITraktPostBuilder<TPostObject>
+    public interface ITraktPostBuilderMovieAddedRating<TPostBuilderAddMovie, out TPostObject> : ITraktPostBuilder<TPostObject>
     {
         TPostBuilderAddMovie WithRating(int rating);
 
