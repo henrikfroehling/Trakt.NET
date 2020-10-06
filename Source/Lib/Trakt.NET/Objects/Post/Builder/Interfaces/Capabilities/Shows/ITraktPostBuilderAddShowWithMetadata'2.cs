@@ -4,7 +4,8 @@
 
     public interface ITraktPostBuilderAddShowWithMetadata<TPostBuilder, TPostObject>
         : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithMetadata<TPostBuilder, TPostObject>, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
+          ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithMetadata<TPostBuilder, TPostObject>, TPostObject>
+          where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
         ITraktPostBuilderShowAddedMetadata<ITraktPostBuilderAddShowWithMetadata<TPostBuilder, TPostObject>, TPostObject> AddShow(ITraktShow show);
     }

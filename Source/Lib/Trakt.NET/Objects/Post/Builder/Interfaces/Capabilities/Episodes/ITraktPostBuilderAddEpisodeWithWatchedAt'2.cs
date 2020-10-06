@@ -4,7 +4,8 @@
 
     public interface ITraktPostBuilderAddEpisodeWithWatchedAt<TPostBuilder, TPostObject>
         : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithEpisode<ITraktPostBuilderAddEpisodeWithWatchedAt<TPostBuilder, TPostObject>, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
+          ITraktPostBuilderWithEpisode<ITraktPostBuilderAddEpisodeWithWatchedAt<TPostBuilder, TPostObject>, TPostObject>
+          where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
         ITraktPostBuilderEpisodeAddedWatchedAt<ITraktPostBuilderAddEpisodeWithWatchedAt<TPostBuilder, TPostObject>, TPostObject> AddEpisode(ITraktEpisode episode);
     }

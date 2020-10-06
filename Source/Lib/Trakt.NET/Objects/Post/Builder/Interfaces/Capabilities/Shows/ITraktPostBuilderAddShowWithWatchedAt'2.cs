@@ -4,7 +4,8 @@
 
     public interface ITraktPostBuilderAddShowWithWatchedAt<TPostBuilder, TPostObject>
         : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithWatchedAt<TPostBuilder, TPostObject>, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
+          ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithWatchedAt<TPostBuilder, TPostObject>, TPostObject>
+          where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
         ITraktPostBuilderShowAddedWatchedAt<ITraktPostBuilderAddShowWithWatchedAt<TPostBuilder, TPostObject>, TPostObject> AddShow(ITraktShow show);
     }

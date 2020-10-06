@@ -4,7 +4,8 @@
 
     public interface ITraktPostBuilderAddEpisodeWithMetadata<TPostBuilder, TPostObject>
         : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithEpisode<ITraktPostBuilderAddEpisodeWithMetadata<TPostBuilder, TPostObject>, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
+          ITraktPostBuilderWithEpisode<ITraktPostBuilderAddEpisodeWithMetadata<TPostBuilder, TPostObject>, TPostObject>
+          where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
         ITraktPostBuilderEpisodeAddedMetadata<ITraktPostBuilderAddEpisodeWithMetadata<TPostBuilder, TPostObject>, TPostObject> AddEpisode(ITraktEpisode episode);
     }

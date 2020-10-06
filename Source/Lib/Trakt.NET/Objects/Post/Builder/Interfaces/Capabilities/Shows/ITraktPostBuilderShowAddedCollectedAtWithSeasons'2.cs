@@ -2,7 +2,8 @@
 {
     using System;
 
-    public interface ITraktPostBuilderShowAddedCollectedAtWithSeasons<TPostBuilderAddShow, out TPostObject> : ITraktPostBuilderShowAddedCollectedAt<TPostBuilderAddShow, TPostObject>
+    public interface ITraktPostBuilderShowAddedCollectedAtWithSeasons<TPostBuilderAddShow, out TPostObject>
+        : ITraktPostBuilderShowAddedCollectedAt<TPostBuilderAddShow, TPostObject>
     {
         TPostBuilderAddShow CollectedAt(DateTime collectedAt, int[] seasons);
 

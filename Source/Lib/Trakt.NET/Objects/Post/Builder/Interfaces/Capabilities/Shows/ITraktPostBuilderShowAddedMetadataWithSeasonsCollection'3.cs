@@ -3,7 +3,8 @@
     using Basic;
     using System;
 
-    public interface ITraktPostBuilderShowAddedMetadataWithSeasonsCollection<TPostBuilderAddShow, out TPostObject, TSeasonCollection> : ITraktPostBuilderShowAddedMetadataWithSeasons<TPostBuilderAddShow, TPostObject>
+    public interface ITraktPostBuilderShowAddedMetadataWithSeasonsCollection<TPostBuilderAddShow, out TPostObject, TSeasonCollection>
+        : ITraktPostBuilderShowAddedMetadataWithSeasons<TPostBuilderAddShow, TPostObject>
     {
         TPostBuilderAddShow WithMetadata(ITraktMetadata metadata, TSeasonCollection seasons);
 

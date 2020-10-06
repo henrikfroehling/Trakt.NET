@@ -2,7 +2,8 @@
 {
     using System;
 
-    public interface ITraktPostBuilderShowAddedWatchedAtWithSeasons<TPostBuilderAddShow, out TPostObject> : ITraktPostBuilderShowAddedWatchedAt<TPostBuilderAddShow, TPostObject>
+    public interface ITraktPostBuilderShowAddedWatchedAtWithSeasons<TPostBuilderAddShow, out TPostObject>
+        : ITraktPostBuilderShowAddedWatchedAt<TPostBuilderAddShow, TPostObject>
     {
         TPostBuilderAddShow WatchedAt(DateTime watchedAt, int[] seasons);
 

@@ -4,7 +4,8 @@
 
     public interface ITraktPostBuilderAddShowWithSeasons<TPostBuilder, TPostObject>
         : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithSeasons<TPostBuilder, TPostObject>, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
+          ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithSeasons<TPostBuilder, TPostObject>, TPostObject>
+          where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
         ITraktPostBuilderShowAddedSeasons<ITraktPostBuilderAddShowWithSeasons<TPostBuilder, TPostObject>, TPostObject> AddShow(ITraktShow show);
     }

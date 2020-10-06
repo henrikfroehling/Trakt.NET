@@ -4,7 +4,8 @@
 
     public interface ITraktPostBuilderAddEpisodeWithRating<TPostBuilder, TPostObject>
         : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithEpisode<ITraktPostBuilderAddEpisodeWithRating<TPostBuilder, TPostObject>, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
+          ITraktPostBuilderWithEpisode<ITraktPostBuilderAddEpisodeWithRating<TPostBuilder, TPostObject>, TPostObject>
+          where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
         ITraktPostBuilderEpisodeAddedRating<ITraktPostBuilderAddEpisodeWithRating<TPostBuilder, TPostObject>, TPostObject> AddEpisode(ITraktEpisode episode);
     }

@@ -4,7 +4,8 @@
 
     public interface ITraktPostBuilderAddShowWithCollectedAt<TPostBuilder, TPostObject>
         : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithCollectedAt<TPostBuilder, TPostObject>, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
+          ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithCollectedAt<TPostBuilder, TPostObject>, TPostObject>
+          where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
         ITraktPostBuilderShowAddedCollectedAt<ITraktPostBuilderAddShowWithCollectedAt<TPostBuilder, TPostObject>, TPostObject> AddShow(ITraktShow show);
     }

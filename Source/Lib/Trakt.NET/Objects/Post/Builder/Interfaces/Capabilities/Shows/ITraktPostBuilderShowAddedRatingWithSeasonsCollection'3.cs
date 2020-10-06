@@ -2,7 +2,8 @@
 {
     using System;
 
-    public interface ITraktPostBuilderShowAddedRatingWithSeasonsCollection<TPostBuilderAddShow, out TPostObject, TSeasonCollection> : ITraktPostBuilderShowAddedRatingWithSeasons<TPostBuilderAddShow, TPostObject>
+    public interface ITraktPostBuilderShowAddedRatingWithSeasonsCollection<TPostBuilderAddShow, out TPostObject, TSeasonCollection>
+        : ITraktPostBuilderShowAddedRatingWithSeasons<TPostBuilderAddShow, TPostObject>
     {
         TPostBuilderAddShow WithRating(int rating, TSeasonCollection seasons);
 

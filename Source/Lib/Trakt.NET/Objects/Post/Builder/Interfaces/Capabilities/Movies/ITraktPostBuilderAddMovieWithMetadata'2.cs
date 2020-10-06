@@ -4,7 +4,8 @@
 
     public interface ITraktPostBuilderAddMovieWithMetadata<TPostBuilder, TPostObject>
         : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithMovie<ITraktPostBuilderAddMovieWithMetadata<TPostBuilder, TPostObject>, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
+          ITraktPostBuilderWithMovie<ITraktPostBuilderAddMovieWithMetadata<TPostBuilder, TPostObject>, TPostObject>
+          where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
         ITraktPostBuilderMovieAddedMetadata<ITraktPostBuilderAddMovieWithMetadata<TPostBuilder, TPostObject>, TPostObject> AddMovie(ITraktMovie movie);
     }
