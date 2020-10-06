@@ -6,6 +6,6 @@
         : ITraktPostBuilder<TPostObject>,
           ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithCollectedAt<TPostBuilder, TPostObject>, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
-        ITraktPostBuilderShowAddedCollectedAt<ITraktPostBuilderAddShowWithCollectedAt<TPostBuilder, TPostObject>, TPostObject> AddShow(ITraktShow movie);
+        ITraktPostBuilderShowAddedCollectedAt<ITraktPostBuilderAddShowWithCollectedAt<TPostBuilder, TPostObject>, TPostObject> AddShow(ITraktShow show);
     }
 }

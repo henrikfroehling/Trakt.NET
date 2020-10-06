@@ -6,6 +6,6 @@
         : ITraktPostBuilder<TPostObject>,
           ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithRating<TPostBuilder, TPostObject>, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
-        ITraktPostBuilderShowAddedRating<ITraktPostBuilderAddShowWithRating<TPostBuilder, TPostObject>, TPostObject> AddShow(ITraktShow movie);
+        ITraktPostBuilderShowAddedRating<ITraktPostBuilderAddShowWithRating<TPostBuilder, TPostObject>, TPostObject> AddShow(ITraktShow show);
     }
 }
