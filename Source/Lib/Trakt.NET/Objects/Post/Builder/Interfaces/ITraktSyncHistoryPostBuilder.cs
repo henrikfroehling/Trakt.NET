@@ -5,9 +5,11 @@
 
     public interface ITraktSyncHistoryPostBuilder
         : ITraktPostBuilder<ITraktSyncHistoryPost>,
-          ITraktPostBuilderWithMovie<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
+          ITraktPostBuilderAddMovieWithWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
           ITraktPostBuilderWithShows<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
-          ITraktPostBuilderWithEpisode<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>
+          ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons>,
+          ITraktPostBuilderAddShowWithWatchedAtWithSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons>,
+          ITraktPostBuilderAddEpisodeWithWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>
     {
     }
 }
