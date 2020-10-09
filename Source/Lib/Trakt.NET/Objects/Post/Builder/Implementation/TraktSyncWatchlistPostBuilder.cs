@@ -14,7 +14,12 @@
         {
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons>, ITraktSyncWatchlistPost, PostSeasons> AddShow(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> AddShowAndSeasons(ITraktShow show)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> AddShowAndSeasonsCollection(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }
@@ -44,17 +49,12 @@
             throw new System.NotImplementedException();
         }
 
-        public ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> WithShow(ITraktShow show)
+        public ITraktSyncWatchlistPostBuilder WithShow(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }
 
         public ITraktSyncWatchlistPostBuilder WithShows(IEnumerable<ITraktShow> shows)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        ITraktSyncWatchlistPostBuilder ITraktPostBuilderWithShow<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>.WithShow(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }

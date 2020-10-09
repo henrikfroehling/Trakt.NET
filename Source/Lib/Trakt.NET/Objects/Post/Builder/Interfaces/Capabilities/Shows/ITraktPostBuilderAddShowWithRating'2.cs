@@ -3,10 +3,8 @@
     using Get.Shows;
 
     public interface ITraktPostBuilderAddShowWithRating<TPostBuilder, TPostObject>
-        : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithRating<TPostBuilder, TPostObject>, TPostObject>
-          where TPostBuilder : ITraktPostBuilder<TPostObject>
+        where TPostBuilder : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithRating<TPostBuilder, TPostObject>
     {
-        ITraktPostBuilderShowAddedRating<ITraktPostBuilderAddShowWithRating<TPostBuilder, TPostObject>, TPostObject> AddShow(ITraktShow show);
+        ITraktPostBuilderShowAddedRating<TPostBuilder, TPostObject> AddRatedShow(ITraktShow show);
     }
 }

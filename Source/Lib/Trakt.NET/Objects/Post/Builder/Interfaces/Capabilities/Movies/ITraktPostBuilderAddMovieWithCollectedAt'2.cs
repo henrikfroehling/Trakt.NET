@@ -3,10 +3,8 @@
     using Get.Movies;
 
     public interface ITraktPostBuilderAddMovieWithCollectedAt<TPostBuilder, TPostObject>
-        : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithMovie<ITraktPostBuilderAddMovieWithCollectedAt<TPostBuilder, TPostObject>, TPostObject>
-          where TPostBuilder : ITraktPostBuilder<TPostObject>
+        where TPostBuilder : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithCollectedAt<TPostBuilder, TPostObject>
     {
-        ITraktPostBuilderMovieAddedCollectedAt<ITraktPostBuilderAddMovieWithCollectedAt<TPostBuilder, TPostObject>, TPostObject> AddMovie(ITraktMovie movie);
+        ITraktPostBuilderMovieAddedCollectedAt<TPostBuilder, TPostObject> AddCollectedMovie(ITraktMovie movie);
     }
 }

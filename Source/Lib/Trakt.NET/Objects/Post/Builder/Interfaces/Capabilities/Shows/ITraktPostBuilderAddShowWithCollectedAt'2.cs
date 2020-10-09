@@ -3,10 +3,8 @@
     using Get.Shows;
 
     public interface ITraktPostBuilderAddShowWithCollectedAt<TPostBuilder, TPostObject>
-        : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithCollectedAt<TPostBuilder, TPostObject>, TPostObject>
-          where TPostBuilder : ITraktPostBuilder<TPostObject>
+        where TPostBuilder : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithCollectedAt<TPostBuilder, TPostObject>
     {
-        ITraktPostBuilderShowAddedCollectedAt<ITraktPostBuilderAddShowWithCollectedAt<TPostBuilder, TPostObject>, TPostObject> AddShow(ITraktShow show);
+        ITraktPostBuilderShowAddedCollectedAt<TPostBuilder, TPostObject> AddCollectedShow(ITraktShow show);
     }
 }

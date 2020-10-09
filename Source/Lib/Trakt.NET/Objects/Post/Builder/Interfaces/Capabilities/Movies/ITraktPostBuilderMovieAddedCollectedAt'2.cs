@@ -2,7 +2,8 @@
 {
     using System;
 
-    public interface ITraktPostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, out TPostObject> : ITraktPostBuilder<TPostObject>
+    public interface ITraktPostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, out TPostObject>
+        where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithCollectedAt<TPostBuilderAddMovie, TPostObject>
     {
         TPostBuilderAddMovie CollectedAt(DateTime collectedAt);
     }

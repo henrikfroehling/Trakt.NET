@@ -14,17 +14,37 @@
         {
         }
 
-        public ITraktPostBuilderEpisodeAddedRating<ITraktPostBuilderAddEpisodeWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>, ITraktSyncRatingsPost> AddEpisode(ITraktEpisode episode)
+        public ITraktPostBuilderEpisodeAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedEpisode(ITraktEpisode episode)
         {
             throw new System.NotImplementedException();
         }
 
-        public ITraktPostBuilderMovieAddedRating<ITraktPostBuilderAddMovieWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>, ITraktSyncRatingsPost> AddMovie(ITraktMovie movie)
+        public ITraktPostBuilderMovieAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedMovie(ITraktMovie movie)
         {
             throw new System.NotImplementedException();
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>, ITraktSyncRatingsPost, PostRatingsSeasons> AddShow(ITraktShow show)
+        public ITraktPostBuilderShowAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedShow(ITraktShow show)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ITraktPostBuilderShowAddedRatingWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedShowAndSeasons(ITraktShow show)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ITraktPostBuilderShowAddedRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> AddRatedShowAndSeasonsCollection(ITraktShow show)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ITraktPostBuilderShowAddedSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddShowAndSeasons(ITraktShow show)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> AddShowAndSeasonsCollection(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }
@@ -54,47 +74,12 @@
             throw new System.NotImplementedException();
         }
 
-        public ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> WithShow(ITraktShow show)
+        public ITraktSyncRatingsPostBuilder WithShow(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }
 
         public ITraktSyncRatingsPostBuilder WithShows(IEnumerable<ITraktShow> shows)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        ITraktPostBuilderShowAddedRatingWithSeasonsCollection<ITraktPostBuilderAddShowWithRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>, ITraktSyncRatingsPost, PostRatingsSeasons> ITraktPostBuilderAddShowWithRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>.AddShow(ITraktShow show)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        ITraktPostBuilderAddEpisodeWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> ITraktPostBuilderWithEpisode<ITraktPostBuilderAddEpisodeWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>, ITraktSyncRatingsPost>.WithEpisode(ITraktEpisode episode)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        ITraktPostBuilderAddEpisodeWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> ITraktPostBuilderWithEpisode<ITraktPostBuilderAddEpisodeWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>, ITraktSyncRatingsPost>.WithEpisodes(IEnumerable<ITraktEpisode> episodes)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        ITraktPostBuilderAddMovieWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> ITraktPostBuilderWithMovie<ITraktPostBuilderAddMovieWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>, ITraktSyncRatingsPost>.WithMovie(ITraktMovie movie)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        ITraktPostBuilderAddMovieWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> ITraktPostBuilderWithMovie<ITraktPostBuilderAddMovieWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>, ITraktSyncRatingsPost>.WithMovies(IEnumerable<ITraktMovie> movies)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        ITraktPostBuilderAddShowWithRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>, ITraktSyncRatingsPost>.WithShow(ITraktShow show)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        ITraktSyncRatingsPostBuilder ITraktPostBuilderWithShow<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>.WithShow(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }

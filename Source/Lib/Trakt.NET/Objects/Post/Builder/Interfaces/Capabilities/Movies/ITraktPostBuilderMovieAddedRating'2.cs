@@ -2,7 +2,8 @@
 {
     using System;
 
-    public interface ITraktPostBuilderMovieAddedRating<TPostBuilderAddMovie, out TPostObject> : ITraktPostBuilder<TPostObject>
+    public interface ITraktPostBuilderMovieAddedRating<TPostBuilderAddMovie, out TPostObject>
+        where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithRating<TPostBuilderAddMovie, TPostObject>
     {
         TPostBuilderAddMovie WithRating(int rating);
 

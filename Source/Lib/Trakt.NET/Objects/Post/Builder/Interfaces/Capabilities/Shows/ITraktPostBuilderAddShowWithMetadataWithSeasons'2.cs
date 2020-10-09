@@ -3,10 +3,8 @@
     using Get.Shows;
 
     public interface ITraktPostBuilderAddShowWithMetadataWithSeasons<TPostBuilder, TPostObject>
-        : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithShow<ITraktPostBuilderAddShowWithMetadataWithSeasons<TPostBuilder, TPostObject>, TPostObject>
-          where TPostBuilder : ITraktPostBuilder<TPostObject>
+        where TPostBuilder : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithMetadataWithSeasons<TPostBuilder, TPostObject>
     {
-        ITraktPostBuilderShowAddedMetadataWithSeasons<ITraktPostBuilderAddShowWithMetadataWithSeasons<TPostBuilder, TPostObject>, TPostObject> AddShow(ITraktShow show);
+        ITraktPostBuilderShowAddedMetadataWithSeasons<TPostBuilder, TPostObject> AddShowAndMetadataAndSeasons(ITraktShow show);
     }
 }

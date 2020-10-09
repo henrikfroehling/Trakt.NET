@@ -5,11 +5,10 @@
     using System;
     using System.Collections.Generic;
 
-    public interface ITraktPostBuilderWithShowsWithMetadata<TPostBuilder, TPostObject>
-        : ITraktPostBuilderWithShows<TPostBuilder, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
+    public interface ITraktPostBuilderWithShowsWithMetadata<TPostBuilder, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
-        TPostBuilder WithShows(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?>> shows);
+        TPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?>> shows);
 
-        TPostBuilder WithShows(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?, PostSeasons>> shows);
+        TPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?, PostSeasons>> shows);
     }
 }

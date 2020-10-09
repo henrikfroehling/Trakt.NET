@@ -5,9 +5,8 @@
     using System;
     using System.Collections.Generic;
 
-    public interface ITraktPostBuilderWithEpisodesWithMetadata<TPostBuilder, TPostObject>
-        : ITraktPostBuilderWithEpisode<TPostBuilder, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
+    public interface ITraktPostBuilderWithEpisodesWithMetadata<TPostBuilder, TPostObject> where TPostBuilder : ITraktPostBuilder<TPostObject>
     {
-        TPostBuilder WithEpisodes(IEnumerable<Tuple<ITraktEpisode, ITraktMetadata, DateTime?>> episodes);
+        TPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, ITraktMetadata, DateTime?>> episodes);
     }
 }

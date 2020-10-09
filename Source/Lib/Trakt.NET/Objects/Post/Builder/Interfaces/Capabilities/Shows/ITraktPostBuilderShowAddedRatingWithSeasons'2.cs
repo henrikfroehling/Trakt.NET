@@ -3,7 +3,7 @@
     using System;
 
     public interface ITraktPostBuilderShowAddedRatingWithSeasons<TPostBuilderAddShow, out TPostObject>
-        : ITraktPostBuilderShowAddedRating<TPostBuilderAddShow, TPostObject>
+        where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithRatingWithSeasons<TPostBuilderAddShow, TPostObject>
     {
         TPostBuilderAddShow WithRating(int rating, int[] seasons);
 

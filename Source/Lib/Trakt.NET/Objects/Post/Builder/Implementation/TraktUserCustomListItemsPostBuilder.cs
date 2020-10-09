@@ -14,7 +14,12 @@
         {
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktPostBuilderAddShowWithSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons>, ITraktUserCustomListItemsPost, PostSeasons> AddShow(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost> AddShowAndSeasons(ITraktShow show)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons> AddShowAndSeasonsCollection(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }
@@ -44,17 +49,12 @@
             throw new System.NotImplementedException();
         }
 
-        public ITraktPostBuilderAddShowWithSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons> WithShow(ITraktShow show)
+        public ITraktUserCustomListItemsPostBuilder WithShow(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }
 
         public ITraktUserCustomListItemsPostBuilder WithShows(IEnumerable<ITraktShow> shows)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        ITraktUserCustomListItemsPostBuilder ITraktPostBuilderWithShow<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>.WithShow(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }

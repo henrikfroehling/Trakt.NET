@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Builder.Interfaces.Capabilities
 {
     public interface ITraktPostBuilderShowAddedSeasonsCollection<TPostBuilderAddShow, out TPostObject, TSeasonCollection>
-        : ITraktPostBuilderShowAddedSeasons<TPostBuilderAddShow, TPostObject>
+        where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
     {
         TPostBuilderAddShow WithSeasons(TSeasonCollection seasons);
     }

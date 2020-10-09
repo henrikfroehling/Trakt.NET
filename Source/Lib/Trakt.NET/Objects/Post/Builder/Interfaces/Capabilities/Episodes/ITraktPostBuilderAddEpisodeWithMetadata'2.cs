@@ -3,10 +3,8 @@
     using Get.Episodes;
 
     public interface ITraktPostBuilderAddEpisodeWithMetadata<TPostBuilder, TPostObject>
-        : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithEpisode<ITraktPostBuilderAddEpisodeWithMetadata<TPostBuilder, TPostObject>, TPostObject>
-          where TPostBuilder : ITraktPostBuilder<TPostObject>
+        where TPostBuilder : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithMetadata<TPostBuilder, TPostObject>
     {
-        ITraktPostBuilderEpisodeAddedMetadata<ITraktPostBuilderAddEpisodeWithMetadata<TPostBuilder, TPostObject>, TPostObject> AddEpisode(ITraktEpisode episode);
+        ITraktPostBuilderEpisodeAddedMetadata<TPostBuilder, TPostObject> AddEpisodeAndMetadata(ITraktEpisode episode);
     }
 }

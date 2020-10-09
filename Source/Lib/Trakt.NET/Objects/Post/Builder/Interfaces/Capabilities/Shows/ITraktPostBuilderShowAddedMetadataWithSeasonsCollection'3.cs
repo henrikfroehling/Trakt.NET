@@ -4,7 +4,7 @@
     using System;
 
     public interface ITraktPostBuilderShowAddedMetadataWithSeasonsCollection<TPostBuilderAddShow, out TPostObject, TSeasonCollection>
-        : ITraktPostBuilderShowAddedMetadataWithSeasons<TPostBuilderAddShow, TPostObject>
+        where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithMetadataWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
     {
         TPostBuilderAddShow WithMetadata(ITraktMetadata metadata, TSeasonCollection seasons);
 

@@ -6,9 +6,13 @@
     public interface ITraktSyncWatchlistPostBuilder
         : ITraktPostBuilder<ITraktSyncWatchlistPost>,
           ITraktPostBuilderWithMovie<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
-          ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons>,
+          ITraktPostBuilderWithMovies<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
+          ITraktPostBuilderWithShow<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
           ITraktPostBuilderWithShows<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
-          ITraktPostBuilderWithEpisode<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>
+          ITraktPostBuilderAddShowWithSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
+          ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons>,
+          ITraktPostBuilderWithEpisode<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
+          ITraktPostBuilderWithEpisodes<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>
     {
     }
 }

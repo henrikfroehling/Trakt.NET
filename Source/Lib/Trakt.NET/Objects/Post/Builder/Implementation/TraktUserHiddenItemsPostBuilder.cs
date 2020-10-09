@@ -14,7 +14,7 @@
         {
         }
 
-        public ITraktPostBuilderShowAddedSeasons<ITraktPostBuilderAddShowWithSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>, ITraktUserHiddenItemsPost> AddShow(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost> AddShowAndSeasons(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }
@@ -44,17 +44,12 @@
             throw new System.NotImplementedException();
         }
 
-        public ITraktPostBuilderAddShowWithSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost> WithShow(ITraktShow show)
+        public ITraktUserHiddenItemsPostBuilder WithShow(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }
 
         public ITraktUserHiddenItemsPostBuilder WithShows(IEnumerable<ITraktShow> shows)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        ITraktUserHiddenItemsPostBuilder ITraktPostBuilderWithShow<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>.WithShow(ITraktShow show)
         {
             throw new System.NotImplementedException();
         }

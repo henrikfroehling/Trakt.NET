@@ -6,9 +6,13 @@
     public interface ITraktUserCustomListItemsPostBuilder
         : ITraktPostBuilder<ITraktUserCustomListItemsPost>,
           ITraktPostBuilderWithMovie<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
+          ITraktPostBuilderWithMovies<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
           ITraktPostBuilderWithPerson<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
-          ITraktPostBuilderAddShowWithSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons>,
-          ITraktPostBuilderWithShows<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>
+          ITraktPostBuilderWithPersons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
+          ITraktPostBuilderWithShow<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
+          ITraktPostBuilderWithShows<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
+          ITraktPostBuilderAddShowWithSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
+          ITraktPostBuilderAddShowWithSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons>
     {
     }
 }

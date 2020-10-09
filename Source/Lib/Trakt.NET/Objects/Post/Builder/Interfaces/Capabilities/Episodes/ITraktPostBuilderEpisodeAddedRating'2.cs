@@ -2,7 +2,8 @@
 {
     using System;
 
-    public interface ITraktPostBuilderEpisodeAddedRating<TPostBuilderAddEpisode, out TPostObject> : ITraktPostBuilder<TPostObject>
+    public interface ITraktPostBuilderEpisodeAddedRating<TPostBuilderAddEpisode, out TPostObject>
+        where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithRating<TPostBuilderAddEpisode, TPostObject>
     {
         TPostBuilderAddEpisode WithRating(int rating);
 

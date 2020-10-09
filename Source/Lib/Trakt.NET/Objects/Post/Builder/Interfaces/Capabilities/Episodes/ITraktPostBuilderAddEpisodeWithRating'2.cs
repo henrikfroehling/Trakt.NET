@@ -3,10 +3,8 @@
     using Get.Episodes;
 
     public interface ITraktPostBuilderAddEpisodeWithRating<TPostBuilder, TPostObject>
-        : ITraktPostBuilder<TPostObject>,
-          ITraktPostBuilderWithEpisode<ITraktPostBuilderAddEpisodeWithRating<TPostBuilder, TPostObject>, TPostObject>
-          where TPostBuilder : ITraktPostBuilder<TPostObject>
+        where TPostBuilder : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithRating<TPostBuilder, TPostObject>
     {
-        ITraktPostBuilderEpisodeAddedRating<ITraktPostBuilderAddEpisodeWithRating<TPostBuilder, TPostObject>, TPostObject> AddEpisode(ITraktEpisode episode);
+        ITraktPostBuilderEpisodeAddedRating<TPostBuilder, TPostObject> AddRatedEpisode(ITraktEpisode episode);
     }
 }

@@ -3,7 +3,7 @@
     using System;
 
     public interface ITraktPostBuilderShowAddedWatchedAtWithSeasons<TPostBuilderAddShow, out TPostObject>
-        : ITraktPostBuilderShowAddedWatchedAt<TPostBuilderAddShow, TPostObject>
+        where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithWatchedAtWithSeasons<TPostBuilderAddShow, TPostObject>
     {
         TPostBuilderAddShow WatchedAt(DateTime watchedAt, int[] seasons);
 
