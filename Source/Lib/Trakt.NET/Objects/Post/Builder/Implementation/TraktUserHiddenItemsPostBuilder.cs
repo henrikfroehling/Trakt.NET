@@ -1,57 +1,73 @@
 ﻿namespace TraktNet.Objects.Post.Builder.Implementation
 {
+    using Helper;
     using Interfaces;
+    using Interfaces.Capabilities;
     using Objects.Get.Movies;
     using Objects.Get.Seasons;
     using Objects.Get.Shows;
-    using Objects.Post.Builder.Interfaces.Capabilities;
     using Objects.Post.Users.HiddenItems;
     using System.Collections.Generic;
 
     public class TraktUserHiddenItemsPostBuilder : ITraktUserHiddenItemsPostBuilder
     {
+        private readonly List<ITraktMovie> _movies;
+        private readonly List<ITraktShow> _shows;
+        private readonly List<ITraktSeason> _seasons;
+        private readonly ITraktPostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost> _showsWithSeasons;
+
         internal TraktUserHiddenItemsPostBuilder()
         {
-        }
-
-        public ITraktPostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost> AddShowAndSeasons(ITraktShow show)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktUserHiddenItemsPost Build()
-        {
-            throw new System.NotImplementedException();
-        }
+            _movies = new List<ITraktMovie>();
+            _shows = new List<ITraktShow>();
+            _seasons = new List<ITraktSeason>();
+            _showsWithSeasons = new TraktPostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>();
+    }
 
         public ITraktUserHiddenItemsPostBuilder WithMovie(ITraktMovie movie)
         {
-            throw new System.NotImplementedException();
+            _movies.Add(movie);
+            return this;
         }
 
         public ITraktUserHiddenItemsPostBuilder WithMovies(IEnumerable<ITraktMovie> movies)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktUserHiddenItemsPostBuilder WithSeason(ITraktSeason season)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktUserHiddenItemsPostBuilder WithSeasons(IEnumerable<ITraktSeason> seasons)
-        {
-            throw new System.NotImplementedException();
+            _movies.AddRange(movies);
+            return this;
         }
 
         public ITraktUserHiddenItemsPostBuilder WithShow(ITraktShow show)
         {
-            throw new System.NotImplementedException();
+            _shows.Add(show);
+            return this;
         }
 
         public ITraktUserHiddenItemsPostBuilder WithShows(IEnumerable<ITraktShow> shows)
         {
-            throw new System.NotImplementedException();
+            _shows.AddRange(shows);
+            return this;
+        }
+
+        public ITraktPostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost> AddShowAndSeasons(ITraktShow show)
+        {
+            return _showsWithSeasons;
+        }
+
+        public ITraktUserHiddenItemsPostBuilder WithSeason(ITraktSeason season)
+        {
+            _seasons.Add(season);
+            return this;
+        }
+
+        public ITraktUserHiddenItemsPostBuilder WithSeasons(IEnumerable<ITraktSeason> seasons)
+        {
+            _seasons.AddRange(seasons);
+            return this;
+        }
+
+        public ITraktUserHiddenItemsPost Build()
+        {
+            return new TraktUserHiddenItemsPost();
         }
     }
 }

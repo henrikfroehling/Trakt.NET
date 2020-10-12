@@ -1,62 +1,80 @@
 ﻿namespace TraktNet.Objects.Post.Builder.Implementation
 {
+    using Helper;
     using Interfaces;
+    using Interfaces.Capabilities;
     using Objects.Get.Movies;
     using Objects.Get.People;
     using Objects.Get.Shows;
-    using Objects.Post.Builder.Interfaces.Capabilities;
     using Objects.Post.Users.CustomListItems;
     using System.Collections.Generic;
 
     public class TraktUserCustomListItemsPostBuilder : ITraktUserCustomListItemsPostBuilder
     {
+        private readonly List<ITraktMovie> _movies;
+        private readonly List<ITraktShow> _shows;
+        private readonly List<ITraktPerson> _persons;
+        private readonly ITraktPostBuilderShowAddedSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost> _showsWithSeasons;
+        private readonly ITraktPostBuilderShowAddedSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons> _showsWithSeasonsCollection;
+
         internal TraktUserCustomListItemsPostBuilder()
         {
-        }
-
-        public ITraktPostBuilderShowAddedSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost> AddShowAndSeasons(ITraktShow show)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons> AddShowAndSeasonsCollection(ITraktShow show)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktUserCustomListItemsPost Build()
-        {
-            throw new System.NotImplementedException();
+            _movies = new List<ITraktMovie>();
+            _shows = new List<ITraktShow>();
+            _persons = new List<ITraktPerson>();
+            _showsWithSeasons = new TraktPostBuilderShowAddedSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>();
+            _showsWithSeasonsCollection = new TraktPostBuilderShowAddedSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons>();
         }
 
         public ITraktUserCustomListItemsPostBuilder WithMovie(ITraktMovie movie)
         {
-            throw new System.NotImplementedException();
+            _movies.Add(movie);
+            return this;
         }
 
         public ITraktUserCustomListItemsPostBuilder WithMovies(IEnumerable<ITraktMovie> movies)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktUserCustomListItemsPostBuilder WithPerson(ITraktPerson person)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktUserCustomListItemsPostBuilder WithPersons(IEnumerable<ITraktPerson> persons)
-        {
-            throw new System.NotImplementedException();
+            _movies.AddRange(movies);
+            return this;
         }
 
         public ITraktUserCustomListItemsPostBuilder WithShow(ITraktShow show)
         {
-            throw new System.NotImplementedException();
+            _shows.Add(show);
+            return this;
         }
 
         public ITraktUserCustomListItemsPostBuilder WithShows(IEnumerable<ITraktShow> shows)
         {
-            throw new System.NotImplementedException();
+            _shows.AddRange(shows);
+            return this;
+        }
+
+        public ITraktPostBuilderShowAddedSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost> AddShowAndSeasons(ITraktShow show)
+        {
+            return _showsWithSeasons;
+        }
+
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons> AddShowAndSeasonsCollection(ITraktShow show)
+        {
+            return _showsWithSeasonsCollection;
+        }
+
+        public ITraktUserCustomListItemsPostBuilder WithPerson(ITraktPerson person)
+        {
+            _persons.Add(person);
+            return this;
+        }
+
+        public ITraktUserCustomListItemsPostBuilder WithPersons(IEnumerable<ITraktPerson> persons)
+        {
+            _persons.AddRange(persons);
+            return this;
+        }
+
+        public ITraktUserCustomListItemsPost Build()
+        {
+            return new TraktUserCustomListItemsPost();
         }
     }
 }

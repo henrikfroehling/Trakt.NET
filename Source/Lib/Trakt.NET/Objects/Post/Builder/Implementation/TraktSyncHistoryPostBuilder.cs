@@ -1,87 +1,116 @@
 ﻿namespace TraktNet.Objects.Post.Builder.Implementation
 {
+    using Helper;
     using Interfaces;
+    using Interfaces.Capabilities;
     using Objects.Get.Episodes;
     using Objects.Get.Movies;
     using Objects.Get.Shows;
-    using Objects.Post.Builder.Interfaces.Capabilities;
     using Objects.Post.Syncs.History;
     using System.Collections.Generic;
 
     public class TraktSyncHistoryPostBuilder : ITraktSyncHistoryPostBuilder
     {
+        private readonly List<ITraktMovie> _movies;
+        private readonly List<ITraktShow> _shows;
+        private readonly List<ITraktEpisode> _episodes;
+        private readonly ITraktPostBuilderMovieAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> _watchedMovies;
+        private readonly ITraktPostBuilderShowAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> _watchedShows;
+        private readonly ITraktPostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> _watchedShowsWithSeasons;
+        private readonly ITraktPostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons> _watchedShowsWithSeasonsCollection;
+        private readonly ITraktPostBuilderShowAddedSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> _showsWithSeasons;
+        private readonly ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons> _showsWithSeasonsCollection;
+        private readonly ITraktPostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> _watchedEpisodes;
+
         internal TraktSyncHistoryPostBuilder()
         {
-        }
-
-        public ITraktPostBuilderShowAddedSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddShowAndSeasons(ITraktShow show)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons> AddShowAndSeasonsCollection(ITraktShow show)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktPostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedEpisode(ITraktEpisode episode)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktPostBuilderMovieAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedMovie(ITraktMovie movie)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktPostBuilderShowAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedShow(ITraktShow show)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktPostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedShowAndSeasons(ITraktShow show)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktPostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons> AddWatchedShowAndSeasonsCollection(ITraktShow show)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktSyncHistoryPost Build()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktSyncHistoryPostBuilder WithEpisode(ITraktEpisode episode)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public ITraktSyncHistoryPostBuilder WithEpisodes(IEnumerable<ITraktEpisode> episodes)
-        {
-            throw new System.NotImplementedException();
+            _movies = new List<ITraktMovie>();
+            _shows = new List<ITraktShow>();
+            _episodes = new List<ITraktEpisode>();
+            _watchedMovies = new TraktPostBuilderMovieAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>();
+            _watchedShows = new TraktPostBuilderShowAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>();
+            _watchedShowsWithSeasons = new TraktPostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>();
+            _watchedShowsWithSeasonsCollection = new TraktPostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons>();
+            _showsWithSeasons = new TraktPostBuilderShowAddedSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>();
+            _showsWithSeasonsCollection = new TraktPostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons>();
+            _watchedEpisodes = new TraktPostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>();
         }
 
         public ITraktSyncHistoryPostBuilder WithMovie(ITraktMovie movie)
         {
-            throw new System.NotImplementedException();
+            _movies.Add(movie);
+            return this;
         }
 
         public ITraktSyncHistoryPostBuilder WithMovies(IEnumerable<ITraktMovie> movies)
         {
-            throw new System.NotImplementedException();
+            _movies.AddRange(movies);
+            return this;
+        }
+
+        public ITraktPostBuilderMovieAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedMovie(ITraktMovie movie)
+        {
+            return _watchedMovies;
         }
 
         public ITraktSyncHistoryPostBuilder WithShow(ITraktShow show)
         {
-            throw new System.NotImplementedException();
+            _shows.Add(show);
+            return this;
         }
 
         public ITraktSyncHistoryPostBuilder WithShows(IEnumerable<ITraktShow> shows)
         {
-            throw new System.NotImplementedException();
+            _shows.AddRange(shows);
+            return this;
         }
+
+        public ITraktPostBuilderShowAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedShow(ITraktShow show)
+        {
+            return _watchedShows;
+        }
+
+        public ITraktPostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedShowAndSeasons(ITraktShow show)
+        {
+            return _watchedShowsWithSeasons;
+        }
+
+        public ITraktPostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons> AddWatchedShowAndSeasonsCollection(ITraktShow show)
+        {
+            return _watchedShowsWithSeasonsCollection;
+        }
+
+        public ITraktPostBuilderShowAddedSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddShowAndSeasons(ITraktShow show)
+        {
+            return _showsWithSeasons;
+        }
+
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons> AddShowAndSeasonsCollection(ITraktShow show)
+        {
+            return _showsWithSeasonsCollection;
+        }
+
+        public ITraktSyncHistoryPostBuilder WithEpisode(ITraktEpisode episode)
+        {
+            _episodes.Add(episode);
+            return this;
+        }
+
+        public ITraktSyncHistoryPostBuilder WithEpisodes(IEnumerable<ITraktEpisode> episodes)
+        {
+            _episodes.AddRange(episodes);
+            return this;
+        }
+
+        public ITraktPostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedEpisode(ITraktEpisode episode)
+        {
+            return _watchedEpisodes;
+        }
+
+        public ITraktSyncHistoryPost Build()
+        {
+            return new TraktSyncHistoryPost();
+        }
+
     }
 }
