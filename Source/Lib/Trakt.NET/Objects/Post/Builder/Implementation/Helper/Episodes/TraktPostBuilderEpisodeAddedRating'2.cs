@@ -1,25 +1,43 @@
 ﻿namespace TraktNet.Objects.Post.Builder.Implementation.Helper
 {
+    using Get.Episodes;
     using Interfaces;
     using Interfaces.Capabilities;
     using System;
+    using System.Collections.Generic;
 
     internal class TraktPostBuilderEpisodeAddedRating<TPostBuilderAddEpisode, TPostObject>
         : ITraktPostBuilderEpisodeAddedRating<TPostBuilderAddEpisode, TPostObject>
           where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithRating<TPostBuilderAddEpisode, TPostObject>
     {
-        internal TraktPostBuilderEpisodeAddedRating()
+        private readonly TPostBuilderAddEpisode _postBuilder;
+        private ITraktEpisode _currentEpisode;
+        private readonly List<Tuple<ITraktEpisode, int>> _episodesAndRating;
+        private readonly List<Tuple<ITraktEpisode, int, DateTime>> _ratedEpisodesAndRating;
+
+        internal TraktPostBuilderEpisodeAddedRating(TPostBuilderAddEpisode postBuilder)
         {
+            _postBuilder = postBuilder;
+            _currentEpisode = null;
+            _episodesAndRating = new List<Tuple<ITraktEpisode, int>>();
+            _ratedEpisodesAndRating = new List<Tuple<ITraktEpisode, int, DateTime>>();
         }
 
         public TPostBuilderAddEpisode WithRating(int rating)
         {
-            throw new NotImplementedException();
+            _episodesAndRating.Add(new Tuple<ITraktEpisode, int>(_currentEpisode, rating));
+            return _postBuilder;
         }
 
         public TPostBuilderAddEpisode WithRating(int rating, DateTime ratedAt)
         {
-            throw new NotImplementedException();
+            _ratedEpisodesAndRating.Add(new Tuple<ITraktEpisode, int, DateTime>(_currentEpisode, rating, ratedAt));
+            return _postBuilder;
+        }
+
+        public void SetCurrentEpisode(ITraktEpisode episode)
+        {
+            _currentEpisode = episode;
         }
     }
 }

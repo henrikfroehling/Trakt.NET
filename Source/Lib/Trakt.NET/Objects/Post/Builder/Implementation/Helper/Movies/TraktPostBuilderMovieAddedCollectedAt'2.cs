@@ -1,20 +1,35 @@
 ﻿namespace TraktNet.Objects.Post.Builder.Implementation.Helper
 {
+    using Get.Movies;
     using Interfaces;
     using Interfaces.Capabilities;
     using System;
+    using System.Collections.Generic;
 
     internal class TraktPostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>
         : ITraktPostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>
           where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithCollectedAt<TPostBuilderAddMovie, TPostObject>
     {
-        internal TraktPostBuilderMovieAddedCollectedAt()
+        private readonly TPostBuilderAddMovie _postBuilder;
+        private ITraktMovie _currentMovie;
+        private readonly List<Tuple<ITraktMovie, DateTime>> _collectedMovies;
+
+        internal TraktPostBuilderMovieAddedCollectedAt(TPostBuilderAddMovie postBuilder)
         {
+            _postBuilder = postBuilder;
+            _currentMovie = null;
+            _collectedMovies = new List<Tuple<ITraktMovie, DateTime>>();
         }
 
         public TPostBuilderAddMovie CollectedAt(DateTime collectedAt)
         {
-            throw new NotImplementedException();
+            _collectedMovies.Add(new Tuple<ITraktMovie, DateTime>(_currentMovie, collectedAt));
+            return _postBuilder;
+        }
+
+        public void SetCurrentMovie(ITraktMovie movie)
+        {
+            _currentMovie = movie;
         }
     }
 }

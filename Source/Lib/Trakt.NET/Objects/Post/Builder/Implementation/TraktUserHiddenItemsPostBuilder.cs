@@ -21,8 +21,8 @@
             _movies = new List<ITraktMovie>();
             _shows = new List<ITraktShow>();
             _seasons = new List<ITraktSeason>();
-            _showsWithSeasons = new TraktPostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>();
-    }
+            _showsWithSeasons = new TraktPostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>(this);
+        }
 
         public ITraktUserHiddenItemsPostBuilder WithMovie(ITraktMovie movie)
         {

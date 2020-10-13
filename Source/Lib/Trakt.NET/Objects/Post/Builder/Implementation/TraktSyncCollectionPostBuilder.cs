@@ -42,18 +42,18 @@
             _showsWithMetadataAndSeasonsCollection = new List<Tuple<ITraktShow, ITraktMetadata, DateTime?, PostSeasons>>();
             _episodes = new List<ITraktEpisode>();
             _episodesWithMetadata = new List<Tuple<ITraktEpisode, ITraktMetadata, DateTime?>>();
-            _collectedMovies = new TraktPostBuilderMovieAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>();
-            _moviesAndMetadata = new TraktPostBuilderMovieAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>();
-            _collectedShows = new TraktPostBuilderShowAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>();
-            _collectedShowsWithSeasons = new TraktPostBuilderShowAddedCollectedAtWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>();
-            _collectedShowsWithSeasonsCollection = new TraktPostBuilderShowAddedCollectedAtWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>();
-            _showsAndMetadata = new TraktPostBuilderShowAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>();
-            _showsAndMetadataWithSeasons = new TraktPostBuilderShowAddedMetadataWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>();
-            _showsAndMetadataWithSeasonsCollection = new TraktPostBuilderShowAddedMetadataWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>();
-            _showsWithSeasons = new TraktPostBuilderShowAddedSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>();
-            _showsWithSeasonsCollection = new TraktPostBuilderShowAddedSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>();
-            _collectedEpisodes = new TraktPostBuilderEpisodeAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>();
-            _episodesAndMetadata = new TraktPostBuilderEpisodeAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>();
+            _collectedMovies = new TraktPostBuilderMovieAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
+            _moviesAndMetadata = new TraktPostBuilderMovieAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
+            _collectedShows = new TraktPostBuilderShowAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
+            _collectedShowsWithSeasons = new TraktPostBuilderShowAddedCollectedAtWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
+            _collectedShowsWithSeasonsCollection = new TraktPostBuilderShowAddedCollectedAtWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>(this);
+            _showsAndMetadata = new TraktPostBuilderShowAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
+            _showsAndMetadataWithSeasons = new TraktPostBuilderShowAddedMetadataWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
+            _showsAndMetadataWithSeasonsCollection = new TraktPostBuilderShowAddedMetadataWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>(this);
+            _showsWithSeasons = new TraktPostBuilderShowAddedSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
+            _showsWithSeasonsCollection = new TraktPostBuilderShowAddedSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>(this);
+            _collectedEpisodes = new TraktPostBuilderEpisodeAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
+            _episodesAndMetadata = new TraktPostBuilderEpisodeAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
         }
 
         public ITraktSyncCollectionPostBuilder WithMovie(ITraktMovie movie)

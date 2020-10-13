@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Builder.Interfaces.Capabilities
 {
+    using Get.Shows;
     using System;
 
     public interface ITraktPostBuilderShowAddedRatingWithSeasonsCollection<TPostBuilderAddShow, out TPostObject, in TSeasonCollection>
@@ -8,5 +9,7 @@
         TPostBuilderAddShow WithRating(int rating, TSeasonCollection seasons);
 
         TPostBuilderAddShow WithRating(int rating, DateTime ratedAt, TSeasonCollection seasons);
+
+        void SetCurrentShow(ITraktShow show);
     }
 }

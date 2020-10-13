@@ -1,25 +1,43 @@
 ﻿namespace TraktNet.Objects.Post.Builder.Implementation.Helper
 {
+    using Get.Movies;
     using Interfaces;
     using Interfaces.Capabilities;
     using System;
+    using System.Collections.Generic;
 
     internal class TraktPostBuilderMovieAddedRating<TPostBuilderAddMovie, TPostObject>
         : ITraktPostBuilderMovieAddedRating<TPostBuilderAddMovie, TPostObject>
           where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithRating<TPostBuilderAddMovie, TPostObject>
     {
-        internal TraktPostBuilderMovieAddedRating()
+        private readonly TPostBuilderAddMovie _postBuilder;
+        private ITraktMovie _currentMovie;
+        private readonly List<Tuple<ITraktMovie, int>> _moviesAndRating;
+        private readonly List<Tuple<ITraktMovie, int, DateTime>> _ratedMoviesAndRating;
+
+        internal TraktPostBuilderMovieAddedRating(TPostBuilderAddMovie postBuilder)
         {
+            _postBuilder = postBuilder;
+            _currentMovie = null;
+            _moviesAndRating = new List<Tuple<ITraktMovie, int>>();
+            _ratedMoviesAndRating = new List<Tuple<ITraktMovie, int, DateTime>>();
         }
 
         public TPostBuilderAddMovie WithRating(int rating)
         {
-            throw new NotImplementedException();
+            _moviesAndRating.Add(new Tuple<ITraktMovie, int>(_currentMovie, rating));
+            return _postBuilder;
         }
 
         public TPostBuilderAddMovie WithRating(int rating, DateTime ratedAt)
         {
-            throw new NotImplementedException();
+            _ratedMoviesAndRating.Add(new Tuple<ITraktMovie, int, DateTime>(_currentMovie, rating, ratedAt));
+            return _postBuilder;
+        }
+
+        public void SetCurrentMovie(ITraktMovie movie)
+        {
+            _currentMovie = movie;
         }
     }
 }
