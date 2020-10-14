@@ -9,7 +9,7 @@
     using Objects.Post.Users.CustomListItems;
     using System.Collections.Generic;
 
-    public class TraktUserCustomListItemsPostBuilder : ITraktUserCustomListItemsPostBuilder
+    public class UserCustomListItemsPostBuilder : ITraktUserCustomListItemsPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;
@@ -17,7 +17,7 @@
         private readonly ITraktPostBuilderShowAddedSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost> _showsWithSeasons;
         private readonly ITraktPostBuilderShowAddedSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons> _showsWithSeasonsCollection;
 
-        internal TraktUserCustomListItemsPostBuilder()
+        internal UserCustomListItemsPostBuilder()
         {
             _movies = new List<ITraktMovie>();
             _shows = new List<ITraktShow>();

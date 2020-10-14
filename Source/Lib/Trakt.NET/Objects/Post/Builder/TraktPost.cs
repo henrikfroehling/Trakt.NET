@@ -9,16 +9,16 @@
         {
         }
 
-        public static ITraktSyncCollectionPostBuilder NewSyncCollectionPost() => new TraktSyncCollectionPostBuilder();
+        public static ITraktSyncCollectionPostBuilder NewSyncCollectionPost() => new SyncCollectionPostBuilder();
 
-        public static ITraktSyncHistoryPostBuilder NewSyncHistoryPost() => new TraktSyncHistoryPostBuilder();
+        public static ITraktSyncHistoryPostBuilder NewSyncHistoryPost() => new SyncHistoryPostBuilder();
 
-        public static ITraktSyncRatingsPostBuilder NewSyncRatingsPost() => new TraktSyncRatingsPostBuilder();
+        public static ITraktSyncRatingsPostBuilder NewSyncRatingsPost() => new SyncRatingsPostBuilder();
 
-        public static ITraktSyncWatchlistPostBuilder NewSyncWatchlistPost() => new TraktSyncWatchlistPostBuilder();
+        public static ITraktSyncWatchlistPostBuilder NewSyncWatchlistPost() => new SyncWatchlistPostBuilder();
 
-        public static ITraktUserCustomListItemsPostBuilder NewUserCustomListItemsPost() => new TraktUserCustomListItemsPostBuilder();
+        public static ITraktUserCustomListItemsPostBuilder NewUserCustomListItemsPost() => new UserCustomListItemsPostBuilder();
 
-        public static ITraktUserHiddenItemsPostBuilder NewUserHiddenItemsPost() => new TraktUserHiddenItemsPostBuilder();
+        public static ITraktUserHiddenItemsPostBuilder NewUserHiddenItemsPost() => new UserHiddenItemsPostBuilder();
     }
 }

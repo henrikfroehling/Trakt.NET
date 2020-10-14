@@ -11,7 +11,7 @@
     using System;
     using System.Collections.Generic;
 
-    public class TraktSyncCollectionPostBuilder : ITraktSyncCollectionPostBuilder
+    public class SyncCollectionPostBuilder : ITraktSyncCollectionPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<Tuple<ITraktMovie, ITraktMetadata, DateTime?>> _moviesWithMetadata;
@@ -33,7 +33,7 @@
         private readonly ITraktPostBuilderEpisodeAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _collectedEpisodes;
         private readonly ITraktPostBuilderEpisodeAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _episodesAndMetadata;
 
-        internal TraktSyncCollectionPostBuilder()
+        internal SyncCollectionPostBuilder()
         {
             _movies = new List<ITraktMovie>();
             _moviesWithMetadata = new List<Tuple<ITraktMovie, ITraktMetadata, DateTime?>>();

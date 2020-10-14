@@ -9,14 +9,14 @@
     using Objects.Post.Users.HiddenItems;
     using System.Collections.Generic;
 
-    public class TraktUserHiddenItemsPostBuilder : ITraktUserHiddenItemsPostBuilder
+    public class UserHiddenItemsPostBuilder : ITraktUserHiddenItemsPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;
         private readonly List<ITraktSeason> _seasons;
         private readonly ITraktPostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost> _showsWithSeasons;
 
-        internal TraktUserHiddenItemsPostBuilder()
+        internal UserHiddenItemsPostBuilder()
         {
             _movies = new List<ITraktMovie>();
             _shows = new List<ITraktShow>();

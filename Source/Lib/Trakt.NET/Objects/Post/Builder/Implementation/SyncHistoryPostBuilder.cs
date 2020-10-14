@@ -9,7 +9,7 @@
     using Objects.Post.Syncs.History;
     using System.Collections.Generic;
 
-    public class TraktSyncHistoryPostBuilder : ITraktSyncHistoryPostBuilder
+    public class SyncHistoryPostBuilder : ITraktSyncHistoryPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;
@@ -22,7 +22,7 @@
         private readonly ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons> _showsWithSeasonsCollection;
         private readonly ITraktPostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> _watchedEpisodes;
 
-        internal TraktSyncHistoryPostBuilder()
+        internal SyncHistoryPostBuilder()
         {
             _movies = new List<ITraktMovie>();
             _shows = new List<ITraktShow>();

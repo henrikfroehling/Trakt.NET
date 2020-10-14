@@ -9,7 +9,7 @@
     using Objects.Post.Syncs.Ratings;
     using System.Collections.Generic;
 
-    public class TraktSyncRatingsPostBuilder : ITraktSyncRatingsPostBuilder
+    public class SyncRatingsPostBuilder : ITraktSyncRatingsPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;
@@ -22,7 +22,7 @@
         private readonly ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> _showsWithSeasonsCollection;
         private readonly ITraktPostBuilderEpisodeAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> _ratedEpisodes;
 
-        internal TraktSyncRatingsPostBuilder()
+        internal SyncRatingsPostBuilder()
         {
             _movies = new List<ITraktMovie>();
             _shows = new List<ITraktShow>();

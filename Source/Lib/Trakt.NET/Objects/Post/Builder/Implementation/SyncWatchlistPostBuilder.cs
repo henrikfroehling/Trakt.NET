@@ -9,7 +9,7 @@
     using Objects.Post.Syncs.Watchlist;
     using System.Collections.Generic;
 
-    public class TraktSyncWatchlistPostBuilder : ITraktSyncWatchlistPostBuilder
+    public class SyncWatchlistPostBuilder : ITraktSyncWatchlistPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;
@@ -17,7 +17,7 @@
         private readonly ITraktPostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> _showsWithSeasons;
         private readonly ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> _showsWithSeasonsCollection;
 
-        internal TraktSyncWatchlistPostBuilder()
+        internal SyncWatchlistPostBuilder()
         {
             _movies = new List<ITraktMovie>();
             _shows = new List<ITraktShow>();
