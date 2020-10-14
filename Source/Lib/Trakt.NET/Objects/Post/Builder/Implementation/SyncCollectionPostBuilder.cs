@@ -14,12 +14,12 @@
     public class SyncCollectionPostBuilder : ITraktSyncCollectionPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
-        private readonly List<Tuple<ITraktMovie, ITraktMetadata, DateTime?>> _moviesWithMetadata;
+        private readonly List<PostBuilderObjectWithMetadata<ITraktMovie>> _moviesWithMetadata;
         private readonly List<ITraktShow> _shows;
-        private readonly List<Tuple<ITraktShow, ITraktMetadata, DateTime?>> _showsWithMetadata;
-        private readonly List<Tuple<ITraktShow, ITraktMetadata, DateTime?, PostSeasons>> _showsWithMetadataAndSeasonsCollection;
+        private readonly List<PostBuilderObjectWithMetadata<ITraktShow>> _showsWithMetadata;
+        private readonly List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>> _showsWithMetadataAndSeasonsCollection;
         private readonly List<ITraktEpisode> _episodes;
-        private readonly List<Tuple<ITraktEpisode, ITraktMetadata, DateTime?>> _episodesWithMetadata;
+        private readonly List<PostBuilderObjectWithMetadata<ITraktEpisode>> _episodesWithMetadata;
         private readonly ITraktPostBuilderMovieAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _collectedMovies;
         private readonly ITraktPostBuilderMovieAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _moviesAndMetadata;
         private readonly ITraktPostBuilderShowAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _collectedShows;
@@ -36,12 +36,12 @@
         internal SyncCollectionPostBuilder()
         {
             _movies = new List<ITraktMovie>();
-            _moviesWithMetadata = new List<Tuple<ITraktMovie, ITraktMetadata, DateTime?>>();
+            _moviesWithMetadata = new List<PostBuilderObjectWithMetadata<ITraktMovie>>();
             _shows = new List<ITraktShow>();
-            _showsWithMetadata = new List<Tuple<ITraktShow, ITraktMetadata, DateTime?>>();
-            _showsWithMetadataAndSeasonsCollection = new List<Tuple<ITraktShow, ITraktMetadata, DateTime?, PostSeasons>>();
+            _showsWithMetadata = new List<PostBuilderObjectWithMetadata<ITraktShow>>();
+            _showsWithMetadataAndSeasonsCollection = new List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>>();
             _episodes = new List<ITraktEpisode>();
-            _episodesWithMetadata = new List<Tuple<ITraktEpisode, ITraktMetadata, DateTime?>>();
+            _episodesWithMetadata = new List<PostBuilderObjectWithMetadata<ITraktEpisode>>();
             _collectedMovies = new PostBuilderMovieAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
             _moviesAndMetadata = new PostBuilderMovieAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
             _collectedShows = new PostBuilderShowAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
@@ -70,7 +70,16 @@
 
         public ITraktSyncCollectionPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, ITraktMetadata, DateTime?>> movies)
         {
-            _moviesWithMetadata.AddRange(movies);
+            foreach (var tuple in movies)
+            {
+                _moviesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
+                {
+                    Object = tuple.Item1,
+                    Metadata = tuple.Item2,
+                    CollectedAt = tuple.Item3
+                });
+            }
+
             return this;
         }
 
@@ -100,13 +109,32 @@
 
         public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?>> shows)
         {
-            _showsWithMetadata.AddRange(shows);
+            foreach (var tuple in shows)
+            {
+                _showsWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktShow>
+                {
+                    Object = tuple.Item1,
+                    Metadata = tuple.Item2,
+                    CollectedAt = tuple.Item3
+                });
+            }
+
             return this;
         }
 
         public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?, PostSeasons>> shows)
         {
-            _showsWithMetadataAndSeasonsCollection.AddRange(shows);
+            foreach (var tuple in shows)
+            {
+                _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
+                {
+                    Object = tuple.Item1,
+                    Metadata = tuple.Item2,
+                    CollectedAt = tuple.Item3,
+                    Seasons = tuple.Item4
+                });
+            }
+
             return this;
         }
 
@@ -172,7 +200,16 @@
 
         public ITraktSyncCollectionPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, ITraktMetadata, DateTime?>> episodes)
         {
-            _episodesWithMetadata.AddRange(episodes);
+            foreach (var tuple in episodes)
+            {
+                _episodesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
+                {
+                    Object = tuple.Item1,
+                    Metadata = tuple.Item2,
+                    CollectedAt = tuple.Item3
+                });
+            }
+
             return this;
         }
 
