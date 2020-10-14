@@ -13,18 +13,19 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>> _collectedShowsWithSeasons;
 
         internal PostBuilderShowAddedCollectedAtWithSeasons(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _collectedShowsWithSeasons = new List<PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>>();
+            CollectedShowsWithSeasons = new List<PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>>();
         }
+
+        public List<PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>> CollectedShowsWithSeasons { get; }
 
         public TPostBuilderAddShow CollectedAt(DateTime collectedAt, int[] seasons)
         {
-            _collectedShowsWithSeasons.Add(new PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            CollectedShowsWithSeasons.Add(new PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 CollectedAt = collectedAt,
@@ -43,7 +44,7 @@
 
             newSeasons.AddRange(seasons);
 
-            _collectedShowsWithSeasons.Add(new PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            CollectedShowsWithSeasons.Add(new PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 CollectedAt = collectedAt,

@@ -12,18 +12,19 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>>> _showsWithSeasons;
 
         internal PostBuilderShowAddedSeasons(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsWithSeasons = new List<PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>>>();
+            ShowsWithSeasons = new List<PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>>>();
         }
-        
+
+        public List<PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>>> ShowsWithSeasons { get; }
+
         public TPostBuilderAddShow WithSeasons(int[] seasons)
         {
-            _showsWithSeasons.Add(new PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            ShowsWithSeasons.Add(new PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 Seasons = seasons.ToList()
@@ -41,7 +42,7 @@
 
             newSeasons.AddRange(seasons);
 
-            _showsWithSeasons.Add(new PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            ShowsWithSeasons.Add(new PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 Seasons = newSeasons

@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Builder
 {
-    internal sealed class PostBuilderObjectWithSeasons<TObject, TSeasons>
+    public sealed class PostBuilderObjectWithSeasons<TObject, TSeasons>
     {
         public TObject Object { get; set; }
 

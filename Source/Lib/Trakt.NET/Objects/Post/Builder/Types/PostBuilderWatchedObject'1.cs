@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class PostBuilderWatchedObject<TObject>
+    public class PostBuilderWatchedObject<TObject>
     {
         public TObject Object { get; set; }
 

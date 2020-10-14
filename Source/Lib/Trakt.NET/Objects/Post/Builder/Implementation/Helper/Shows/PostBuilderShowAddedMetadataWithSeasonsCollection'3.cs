@@ -14,18 +14,19 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>> _showsAndMetadataWithSeasonsCollection;
 
         internal PostBuilderShowAddedMetadataWithSeasonsCollection(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsAndMetadataWithSeasonsCollection = new List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>>();
+            ShowsAndMetadataWithSeasonsCollection = new List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>>();
         }
+
+        public List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>> ShowsAndMetadataWithSeasonsCollection { get; }
 
         public TPostBuilderAddShow WithMetadata(ITraktMetadata metadata, TSeasonCollection seasons)
         {
-            _showsAndMetadataWithSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>
+            ShowsAndMetadataWithSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>
             {
                 Object = _currentShow,
                 Metadata = metadata,
@@ -37,7 +38,7 @@
 
         public TPostBuilderAddShow WithMetadata(ITraktMetadata metadata, DateTime collectedAt, TSeasonCollection seasons)
         {
-            _showsAndMetadataWithSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>
+            ShowsAndMetadataWithSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>
             {
                 Object = _currentShow,
                 Metadata = metadata,

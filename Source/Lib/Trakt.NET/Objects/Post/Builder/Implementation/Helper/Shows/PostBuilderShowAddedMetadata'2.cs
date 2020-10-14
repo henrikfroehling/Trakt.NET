@@ -13,18 +13,19 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<PostBuilderObjectWithMetadata<ITraktShow>> _showsAndMetadata;
 
         internal PostBuilderShowAddedMetadata(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsAndMetadata = new List<PostBuilderObjectWithMetadata<ITraktShow>>();
+            ShowsAndMetadata = new List<PostBuilderObjectWithMetadata<ITraktShow>>();
         }
+
+        public List<PostBuilderObjectWithMetadata<ITraktShow>> ShowsAndMetadata { get; }
 
         public TPostBuilderAddShow WithMetadata(ITraktMetadata metadata)
         {
-            _showsAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktShow>
+            ShowsAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktShow>
             {
                 Object = _currentShow,
                 Metadata = metadata
@@ -35,7 +36,7 @@
 
         public TPostBuilderAddShow WithMetadata(ITraktMetadata metadata, DateTime collectedAt)
         {
-            _showsAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktShow>
+            ShowsAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktShow>
             {
                 Object = _currentShow,
                 Metadata = metadata,

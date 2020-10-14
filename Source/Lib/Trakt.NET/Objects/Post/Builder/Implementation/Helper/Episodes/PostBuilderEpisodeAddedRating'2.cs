@@ -12,18 +12,19 @@
     {
         private readonly TPostBuilderAddEpisode _postBuilder;
         private ITraktEpisode _currentEpisode;
-        private readonly List<PostBuilderRatedObject<ITraktEpisode>> _episodesAndRating;
 
         internal PostBuilderEpisodeAddedRating(TPostBuilderAddEpisode postBuilder)
         {
             _postBuilder = postBuilder;
             _currentEpisode = null;
-            _episodesAndRating = new List<PostBuilderRatedObject<ITraktEpisode>>();
+            EpisodesAndRating = new List<PostBuilderRatedObject<ITraktEpisode>>();
         }
+
+        public List<PostBuilderRatedObject<ITraktEpisode>> EpisodesAndRating { get; }
 
         public TPostBuilderAddEpisode WithRating(int rating)
         {
-            _episodesAndRating.Add(new PostBuilderRatedObject<ITraktEpisode>
+            EpisodesAndRating.Add(new PostBuilderRatedObject<ITraktEpisode>
             {
                 Object = _currentEpisode,
                 Rating = rating
@@ -34,7 +35,7 @@
 
         public TPostBuilderAddEpisode WithRating(int rating, DateTime ratedAt)
         {
-            _episodesAndRating.Add(new PostBuilderRatedObject<ITraktEpisode>
+            EpisodesAndRating.Add(new PostBuilderRatedObject<ITraktEpisode>
             {
                 Object = _currentEpisode,
                 Rating = rating,

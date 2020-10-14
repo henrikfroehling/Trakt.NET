@@ -12,18 +12,19 @@
     {
         private readonly TPostBuilderAddEpisode _postBuilder;
         private ITraktEpisode _currentEpisode;
-        private readonly List<PostBuilderWatchedObject<ITraktEpisode>> _watchedEpisodes;
 
         internal PostBuilderEpisodeAddedWatchedAt(TPostBuilderAddEpisode postBuilder)
         {
             _postBuilder = postBuilder;
             _currentEpisode = null;
-            _watchedEpisodes = new List<PostBuilderWatchedObject<ITraktEpisode>>();
+            WatchedEpisodes = new List<PostBuilderWatchedObject<ITraktEpisode>>();
         }
+
+        public List<PostBuilderWatchedObject<ITraktEpisode>> WatchedEpisodes { get; }
 
         public TPostBuilderAddEpisode WatchedAt(DateTime watchedAt)
         {
-            _watchedEpisodes.Add(new PostBuilderWatchedObject<ITraktEpisode>
+            WatchedEpisodes.Add(new PostBuilderWatchedObject<ITraktEpisode>
             {
                 Object = _currentEpisode,
                 WatchedAt = watchedAt

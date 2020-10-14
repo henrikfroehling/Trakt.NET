@@ -13,18 +13,19 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>> _showsAndRatingWithSeasons;
 
         internal PostBuilderShowAddedRatingWithSeasons(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsAndRatingWithSeasons = new List<PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>>();
+            ShowsAndRatingWithSeasons = new List<PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>>();
         }
+
+        public List<PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>> ShowsAndRatingWithSeasons { get; }
 
         public TPostBuilderAddShow WithRating(int rating, int[] seasons)
         {
-            _showsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            ShowsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 Rating = rating,
@@ -36,7 +37,7 @@
 
         public TPostBuilderAddShow WithRating(int rating, DateTime ratedAt, int[] seasons)
         {
-            _showsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            ShowsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 Rating = rating,
@@ -56,7 +57,7 @@
 
             newSeasons.AddRange(seasons);
 
-            _showsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            ShowsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 Rating = rating,
@@ -75,7 +76,7 @@
 
             newSeasons.AddRange(seasons);
 
-            _showsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            ShowsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 Rating = rating,

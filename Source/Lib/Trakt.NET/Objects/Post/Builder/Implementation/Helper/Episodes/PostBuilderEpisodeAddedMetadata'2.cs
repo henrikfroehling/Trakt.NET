@@ -13,18 +13,19 @@
     {
         private readonly TPostBuilderAddEpisode _postBuilder;
         private ITraktEpisode _currentEpisode;
-        private readonly List<PostBuilderObjectWithMetadata<ITraktEpisode>> _episodesAndMetadata;
 
         internal PostBuilderEpisodeAddedMetadata(TPostBuilderAddEpisode postBuilder)
         {
             _postBuilder = postBuilder;
             _currentEpisode = null;
-            _episodesAndMetadata = new List<PostBuilderObjectWithMetadata<ITraktEpisode>>();
+            EpisodesAndMetadata = new List<PostBuilderObjectWithMetadata<ITraktEpisode>>();
         }
+
+        public List<PostBuilderObjectWithMetadata<ITraktEpisode>> EpisodesAndMetadata { get; }
 
         public TPostBuilderAddEpisode WithMetadata(ITraktMetadata metadata)
         {
-            _episodesAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
+            EpisodesAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
             {
                 Object = _currentEpisode,
                 Metadata = metadata
@@ -35,7 +36,7 @@
 
         public TPostBuilderAddEpisode WithMetadata(ITraktMetadata metadata, DateTime collectedAt)
         {
-            _episodesAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
+            EpisodesAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
             {
                 Object = _currentEpisode,
                 Metadata = metadata,

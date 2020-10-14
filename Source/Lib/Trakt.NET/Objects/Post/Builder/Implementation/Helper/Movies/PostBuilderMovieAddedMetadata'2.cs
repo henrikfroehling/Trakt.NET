@@ -13,18 +13,19 @@
     {
         private readonly TPostBuilderAddMovie _postBuilder;
         private ITraktMovie _currentMovie;
-        private readonly List<PostBuilderObjectWithMetadata<ITraktMovie>> _moviesAndMetadata;
 
         internal PostBuilderMovieAddedMetadata(TPostBuilderAddMovie postBuilder)
         {
             _postBuilder = postBuilder;
             _currentMovie = null;
-            _moviesAndMetadata = new List<PostBuilderObjectWithMetadata<ITraktMovie>>();
+            MoviesAndMetadata = new List<PostBuilderObjectWithMetadata<ITraktMovie>>();
         }
+
+        public List<PostBuilderObjectWithMetadata<ITraktMovie>> MoviesAndMetadata { get; }
 
         public TPostBuilderAddMovie WithMetadata(ITraktMetadata metadata)
         {
-            _moviesAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
+            MoviesAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
             {
                 Object = _currentMovie,
                 Metadata = metadata
@@ -35,7 +36,7 @@
 
         public TPostBuilderAddMovie WithMetadata(ITraktMetadata metadata, DateTime collectedAt)
         {
-            _moviesAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
+            MoviesAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
             {
                 Object = _currentMovie,
                 Metadata = metadata,

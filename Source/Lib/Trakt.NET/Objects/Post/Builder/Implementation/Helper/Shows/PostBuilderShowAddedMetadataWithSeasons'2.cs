@@ -14,18 +14,19 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>> _showsAndMetadataWithSeasons;
 
         internal PostBuilderShowAddedMetadataWithSeasons(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsAndMetadataWithSeasons = new List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>>();
+            ShowsAndMetadataWithSeasons = new List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>>();
         }
+
+        public List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>> ShowsAndMetadataWithSeasons { get; }
 
         public TPostBuilderAddShow WithMetadata(ITraktMetadata metadata, int[] seasons)
         {
-            _showsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
+            ShowsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 Metadata = metadata,
@@ -37,7 +38,7 @@
 
         public TPostBuilderAddShow WithMetadata(ITraktMetadata metadata, DateTime collectedAt, int[] seasons)
         {
-            _showsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
+            ShowsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 Metadata = metadata,
@@ -57,7 +58,7 @@
 
             newSeasons.AddRange(seasons);
 
-            _showsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
+            ShowsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 Metadata = metadata,
@@ -76,7 +77,7 @@
 
             newSeasons.AddRange(seasons);
 
-            _showsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
+            ShowsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
             {
                 Object = _currentShow,
                 Metadata = metadata,

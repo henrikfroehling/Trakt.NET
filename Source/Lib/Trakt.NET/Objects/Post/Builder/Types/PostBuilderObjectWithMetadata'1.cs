@@ -3,7 +3,7 @@
     using Basic;
     using System;
 
-    internal class PostBuilderObjectWithMetadata<TObject>
+    public class PostBuilderObjectWithMetadata<TObject>
     {
         public TObject Object { get; set; }
 

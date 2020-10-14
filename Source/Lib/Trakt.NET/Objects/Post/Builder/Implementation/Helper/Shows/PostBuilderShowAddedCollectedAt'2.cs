@@ -12,18 +12,19 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<PostBuilderCollectedObject<ITraktShow>> _collectedShows;
 
         internal PostBuilderShowAddedCollectedAt(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _collectedShows = new List<PostBuilderCollectedObject<ITraktShow>>();
+            CollectedShows = new List<PostBuilderCollectedObject<ITraktShow>>();
         }
+
+        public List<PostBuilderCollectedObject<ITraktShow>> CollectedShows { get; }
 
         public TPostBuilderAddShow CollectedAt(DateTime collectedAt)
         {
-            _collectedShows.Add(new PostBuilderCollectedObject<ITraktShow>
+            CollectedShows.Add(new PostBuilderCollectedObject<ITraktShow>
             {
                 Object = _currentShow,
                 CollectedAt = collectedAt

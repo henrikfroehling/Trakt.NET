@@ -12,18 +12,19 @@
     {
         private readonly TPostBuilderAddMovie _postBuilder;
         private ITraktMovie _currentMovie;
-        private readonly List<PostBuilderWatchedObject<ITraktMovie>> _watchedMovies;
 
         internal PostBuilderMovieAddedWatchedAt(TPostBuilderAddMovie postBuilder)
         {
             _postBuilder = postBuilder;
             _currentMovie = null;
-            _watchedMovies = new List<PostBuilderWatchedObject<ITraktMovie>>();
+            WatchedMovies = new List<PostBuilderWatchedObject<ITraktMovie>>();
         }
+
+        public List<PostBuilderWatchedObject<ITraktMovie>> WatchedMovies { get; }
 
         public TPostBuilderAddMovie WatchedAt(DateTime watchedAt)
         {
-            _watchedMovies.Add(new PostBuilderWatchedObject<ITraktMovie>
+            WatchedMovies.Add(new PostBuilderWatchedObject<ITraktMovie>
             {
                 Object = _currentMovie,
                 WatchedAt = watchedAt

@@ -12,18 +12,19 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<PostBuilderRatedObject<ITraktShow>> _showsAndRating;
 
         internal PostBuilderShowAddedRating(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsAndRating = new List<PostBuilderRatedObject<ITraktShow>>();
+            ShowsAndRating = new List<PostBuilderRatedObject<ITraktShow>>();
         }
+
+        public List<PostBuilderRatedObject<ITraktShow>> ShowsAndRating { get; }
 
         public TPostBuilderAddShow WithRating(int rating)
         {
-            _showsAndRating.Add(new PostBuilderRatedObject<ITraktShow>
+            ShowsAndRating.Add(new PostBuilderRatedObject<ITraktShow>
             {
                 Object = _currentShow,
                 Rating = rating
@@ -34,7 +35,7 @@
 
         public TPostBuilderAddShow WithRating(int rating, DateTime ratedAt)
         {
-            _showsAndRating.Add(new PostBuilderRatedObject<ITraktShow>
+            ShowsAndRating.Add(new PostBuilderRatedObject<ITraktShow>
             {
                 Object = _currentShow,
                 Rating = rating,

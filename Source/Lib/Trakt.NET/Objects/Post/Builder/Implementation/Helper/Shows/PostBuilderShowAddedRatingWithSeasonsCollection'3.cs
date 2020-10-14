@@ -13,18 +13,19 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>> _showsAndRatingWithSeasonsCollection;
 
         internal PostBuilderShowAddedRatingWithSeasonsCollection(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsAndRatingWithSeasonsCollection = new List<PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>>();
+            ShowsAndRatingWithSeasonsCollection = new List<PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>>();
         }
+
+        public List<PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>> ShowsAndRatingWithSeasonsCollection { get; }
 
         public TPostBuilderAddShow WithRating(int rating, TSeasonCollection seasons)
         {
-            _showsAndRatingWithSeasonsCollection.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>
+            ShowsAndRatingWithSeasonsCollection.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>
             {
                 Object = _currentShow,
                 Rating = rating,
@@ -36,7 +37,7 @@
 
         public TPostBuilderAddShow WithRating(int rating, DateTime ratedAt, TSeasonCollection seasons)
         {
-            _showsAndRatingWithSeasonsCollection.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>
+            ShowsAndRatingWithSeasonsCollection.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>
             {
                 Object = _currentShow,
                 Rating = rating,

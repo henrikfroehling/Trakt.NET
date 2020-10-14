@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class PostBuilderRatedObject<TObject>
+    public class PostBuilderRatedObject<TObject>
     {
         public TObject Object { get; set; }
 

@@ -2,10 +2,13 @@
 {
     using Get.Shows;
     using System;
+    using System.Collections.Generic;
 
     public interface ITraktPostBuilderShowAddedRatingWithSeasons<TPostBuilderAddShow, out TPostObject>
         where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithRatingWithSeasons<TPostBuilderAddShow, TPostObject>
     {
+        List<PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>> ShowsAndRatingWithSeasons { get; }
+
         TPostBuilderAddShow WithRating(int rating, int[] seasons);
 
         TPostBuilderAddShow WithRating(int rating, DateTime ratedAt, int[] seasons);

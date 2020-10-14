@@ -12,18 +12,19 @@
     {
         private readonly TPostBuilderAddMovie _postBuilder;
         private ITraktMovie _currentMovie;
-        private readonly List<PostBuilderRatedObject<ITraktMovie>> _moviesAndRating;
 
         internal PostBuilderMovieAddedRating(TPostBuilderAddMovie postBuilder)
         {
             _postBuilder = postBuilder;
             _currentMovie = null;
-            _moviesAndRating = new List<PostBuilderRatedObject<ITraktMovie>>();
+            MoviesAndRating = new List<PostBuilderRatedObject<ITraktMovie>>();
         }
+
+        public List<PostBuilderRatedObject<ITraktMovie>> MoviesAndRating { get; }
 
         public TPostBuilderAddMovie WithRating(int rating)
         {
-            _moviesAndRating.Add(new PostBuilderRatedObject<ITraktMovie>
+            MoviesAndRating.Add(new PostBuilderRatedObject<ITraktMovie>
             {
                 Object = _currentMovie,
                 Rating = rating
@@ -34,7 +35,7 @@
 
         public TPostBuilderAddMovie WithRating(int rating, DateTime ratedAt)
         {
-            _moviesAndRating.Add(new PostBuilderRatedObject<ITraktMovie>
+            MoviesAndRating.Add(new PostBuilderRatedObject<ITraktMovie>
             {
                 Object = _currentMovie,
                 Rating = rating,
