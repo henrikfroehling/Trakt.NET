@@ -7,7 +7,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class TraktPostBuilderEpisodeAddedMetadata<TPostBuilderAddEpisode, TPostObject>
+    internal class PostBuilderEpisodeAddedMetadata<TPostBuilderAddEpisode, TPostObject>
         : ITraktPostBuilderEpisodeAddedMetadata<TPostBuilderAddEpisode, TPostObject>
           where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithMetadata<TPostBuilderAddEpisode, TPostObject>
     {
@@ -16,7 +16,7 @@
         private readonly List<Tuple<ITraktEpisode, ITraktMetadata>> _episodesAndMetadata;
         private readonly List<Tuple<ITraktEpisode, ITraktMetadata, DateTime>> _collectedEpisodesAndMetadata;
 
-        internal TraktPostBuilderEpisodeAddedMetadata(TPostBuilderAddEpisode postBuilder)
+        internal PostBuilderEpisodeAddedMetadata(TPostBuilderAddEpisode postBuilder)
         {
             _postBuilder = postBuilder;
             _currentEpisode = null;

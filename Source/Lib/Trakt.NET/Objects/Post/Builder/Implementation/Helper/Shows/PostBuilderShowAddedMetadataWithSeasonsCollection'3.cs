@@ -7,7 +7,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class TraktPostBuilderShowAddedMetadataWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
+    internal class PostBuilderShowAddedMetadataWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
         : ITraktPostBuilderShowAddedMetadataWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>,
                                       ITraktPostBuilderAddShowWithMetadataWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
@@ -17,7 +17,7 @@
         private readonly List<Tuple<ITraktShow, ITraktMetadata, TSeasonCollection>> _showsAndMetadataWithSeasonsCollection;
         private readonly List<Tuple<ITraktShow, ITraktMetadata, DateTime, TSeasonCollection>> _collectedShowsAndMetadataWithSeasonsCollection;
 
-        internal TraktPostBuilderShowAddedMetadataWithSeasonsCollection(TPostBuilderAddShow postBuilder)
+        internal PostBuilderShowAddedMetadataWithSeasonsCollection(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;

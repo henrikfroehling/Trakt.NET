@@ -27,13 +27,13 @@
             _movies = new List<ITraktMovie>();
             _shows = new List<ITraktShow>();
             _episodes = new List<ITraktEpisode>();
-            _ratedMovies = new TraktPostBuilderMovieAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>(this);
-            _ratedShows = new TraktPostBuilderShowAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>(this);
-            _ratedShowsWithSeasons = new TraktPostBuilderShowAddedRatingWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>(this);
-            _ratedShowsWithSeasonsCollection = new TraktPostBuilderShowAddedRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>(this);
-            _showsWithSeasons = new TraktPostBuilderShowAddedSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>(this);
-            _showsWithSeasonsCollection = new TraktPostBuilderShowAddedSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>(this);
-            _ratedEpisodes = new TraktPostBuilderEpisodeAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>(this);
+            _ratedMovies = new PostBuilderMovieAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>(this);
+            _ratedShows = new PostBuilderShowAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>(this);
+            _ratedShowsWithSeasons = new PostBuilderShowAddedRatingWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>(this);
+            _ratedShowsWithSeasonsCollection = new PostBuilderShowAddedRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>(this);
+            _showsWithSeasons = new PostBuilderShowAddedSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>(this);
+            _showsWithSeasonsCollection = new PostBuilderShowAddedSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>(this);
+            _ratedEpisodes = new PostBuilderEpisodeAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>(this);
         }
 
         public ITraktSyncRatingsPostBuilder WithMovie(ITraktMovie movie)

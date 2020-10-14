@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class TraktPostBuilderEpisodeAddedWatchedAt<TPostBuilderAddEpisode, TPostObject>
+    internal class PostBuilderEpisodeAddedWatchedAt<TPostBuilderAddEpisode, TPostObject>
         : ITraktPostBuilderEpisodeAddedWatchedAt<TPostBuilderAddEpisode, TPostObject>
           where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithWatchedAt<TPostBuilderAddEpisode, TPostObject>
     {
@@ -14,7 +14,7 @@
         private ITraktEpisode _currentEpisode;
         private readonly List<Tuple<ITraktEpisode, DateTime>> _watchedEpisodes;
 
-        internal TraktPostBuilderEpisodeAddedWatchedAt(TPostBuilderAddEpisode postBuilder)
+        internal PostBuilderEpisodeAddedWatchedAt(TPostBuilderAddEpisode postBuilder)
         {
             _postBuilder = postBuilder;
             _currentEpisode = null;

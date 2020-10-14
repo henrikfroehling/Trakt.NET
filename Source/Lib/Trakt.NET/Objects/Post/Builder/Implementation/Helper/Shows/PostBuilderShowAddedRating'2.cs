@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class TraktPostBuilderShowAddedRating<TPostBuilderAddShow, TPostObject>
+    internal class PostBuilderShowAddedRating<TPostBuilderAddShow, TPostObject>
         : ITraktPostBuilderShowAddedRating<TPostBuilderAddShow, TPostObject>
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithRating<TPostBuilderAddShow, TPostObject>
     {
@@ -15,7 +15,7 @@
         private readonly List<Tuple<ITraktShow, int>> _showsAndRating;
         private readonly List<Tuple<ITraktShow, int, DateTime>> _ratedShowsAndRating;
 
-        internal TraktPostBuilderShowAddedRating(TPostBuilderAddShow postBuilder)
+        internal PostBuilderShowAddedRating(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;

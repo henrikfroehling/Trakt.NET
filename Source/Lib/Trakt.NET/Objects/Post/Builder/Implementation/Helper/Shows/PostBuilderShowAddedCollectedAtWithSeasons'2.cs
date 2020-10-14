@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class TraktPostBuilderShowAddedCollectedAtWithSeasons<TPostBuilderAddShow, TPostObject>
+    internal class PostBuilderShowAddedCollectedAtWithSeasons<TPostBuilderAddShow, TPostObject>
         : ITraktPostBuilderShowAddedCollectedAtWithSeasons<TPostBuilderAddShow, TPostObject>
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithCollectedAtWithSeasons<TPostBuilderAddShow, TPostObject>
     {
@@ -15,7 +15,7 @@
         private ITraktShow _currentShow;
         private readonly List<Tuple<ITraktShow, DateTime, List<int>>> _collectedShowsWithSeasons;
 
-        internal TraktPostBuilderShowAddedCollectedAtWithSeasons(TPostBuilderAddShow postBuilder)
+        internal PostBuilderShowAddedCollectedAtWithSeasons(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;

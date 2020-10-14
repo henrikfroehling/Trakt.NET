@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class TraktPostBuilderShowAddedRatingWithSeasons<TPostBuilderAddShow, TPostObject>
+    internal class PostBuilderShowAddedRatingWithSeasons<TPostBuilderAddShow, TPostObject>
         : ITraktPostBuilderShowAddedRatingWithSeasons<TPostBuilderAddShow, TPostObject>
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithRatingWithSeasons<TPostBuilderAddShow, TPostObject>
     {
@@ -16,7 +16,7 @@
         private readonly List<Tuple<ITraktShow, int, List<int>>> _showsAndRatingWithSeasons;
         private readonly List<Tuple<ITraktShow, int, DateTime, List<int>>> _ratedShowsAndRatingWithSeasons;
 
-        internal TraktPostBuilderShowAddedRatingWithSeasons(TPostBuilderAddShow postBuilder)
+        internal PostBuilderShowAddedRatingWithSeasons(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;

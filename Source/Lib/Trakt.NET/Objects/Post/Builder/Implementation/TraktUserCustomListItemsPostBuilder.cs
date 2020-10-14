@@ -22,8 +22,8 @@
             _movies = new List<ITraktMovie>();
             _shows = new List<ITraktShow>();
             _persons = new List<ITraktPerson>();
-            _showsWithSeasons = new TraktPostBuilderShowAddedSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>(this);
-            _showsWithSeasonsCollection = new TraktPostBuilderShowAddedSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons>(this);
+            _showsWithSeasons = new PostBuilderShowAddedSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>(this);
+            _showsWithSeasonsCollection = new PostBuilderShowAddedSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons>(this);
         }
 
         public ITraktUserCustomListItemsPostBuilder WithMovie(ITraktMovie movie)

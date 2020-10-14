@@ -7,7 +7,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class TraktPostBuilderShowAddedMetadata<TPostBuilderAddShow, TPostObject>
+    internal class PostBuilderShowAddedMetadata<TPostBuilderAddShow, TPostObject>
         : ITraktPostBuilderShowAddedMetadata<TPostBuilderAddShow, TPostObject>
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithMetadata<TPostBuilderAddShow, TPostObject>
     {
@@ -16,7 +16,7 @@
         private readonly List<Tuple<ITraktShow, ITraktMetadata>> _showsAndMetadata;
         private readonly List<Tuple<ITraktShow, ITraktMetadata, DateTime>> _collectedShowsAndMetadata;
 
-        internal TraktPostBuilderShowAddedMetadata(TPostBuilderAddShow postBuilder)
+        internal PostBuilderShowAddedMetadata(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;

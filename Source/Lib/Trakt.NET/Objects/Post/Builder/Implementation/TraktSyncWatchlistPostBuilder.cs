@@ -22,8 +22,8 @@
             _movies = new List<ITraktMovie>();
             _shows = new List<ITraktShow>();
             _episodes = new List<ITraktEpisode>();
-            _showsWithSeasons = new TraktPostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>(this);
-            _showsWithSeasonsCollection = new TraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons>(this);
+            _showsWithSeasons = new PostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>(this);
+            _showsWithSeasonsCollection = new PostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons>(this);
         }
 
         public ITraktSyncWatchlistPostBuilder WithMovie(ITraktMovie movie)

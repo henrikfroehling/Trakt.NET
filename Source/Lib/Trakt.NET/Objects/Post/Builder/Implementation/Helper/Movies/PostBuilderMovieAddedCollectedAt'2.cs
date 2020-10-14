@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class TraktPostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>
+    internal class PostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>
         : ITraktPostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>
           where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithCollectedAt<TPostBuilderAddMovie, TPostObject>
     {
@@ -14,7 +14,7 @@
         private ITraktMovie _currentMovie;
         private readonly List<Tuple<ITraktMovie, DateTime>> _collectedMovies;
 
-        internal TraktPostBuilderMovieAddedCollectedAt(TPostBuilderAddMovie postBuilder)
+        internal PostBuilderMovieAddedCollectedAt(TPostBuilderAddMovie postBuilder)
         {
             _postBuilder = postBuilder;
             _currentMovie = null;

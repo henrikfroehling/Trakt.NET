@@ -6,7 +6,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class TraktPostBuilderShowAddedRatingWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
+    internal class PostBuilderShowAddedRatingWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
         : ITraktPostBuilderShowAddedRatingWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>,
                                       ITraktPostBuilderAddShowWithRatingWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
@@ -16,7 +16,7 @@
         private readonly List<Tuple<ITraktShow, int, TSeasonCollection>> _showsAndRatingWithSeasonsCollection;
         private readonly List<Tuple<ITraktShow, int, DateTime, TSeasonCollection>> _ratedShowsAndRatingWithSeasonsCollection;
 
-        internal TraktPostBuilderShowAddedRatingWithSeasonsCollection(TPostBuilderAddShow postBuilder)
+        internal PostBuilderShowAddedRatingWithSeasonsCollection(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
