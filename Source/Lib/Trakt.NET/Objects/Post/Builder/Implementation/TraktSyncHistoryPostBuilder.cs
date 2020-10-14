@@ -50,6 +50,7 @@
 
         public ITraktPostBuilderMovieAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedMovie(ITraktMovie movie)
         {
+            _watchedMovies.SetCurrentMovie(movie);
             return _watchedMovies;
         }
 
@@ -67,26 +68,31 @@
 
         public ITraktPostBuilderShowAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedShow(ITraktShow show)
         {
+            _watchedShows.SetCurrentShow(show);
             return _watchedShows;
         }
 
         public ITraktPostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedShowAndSeasons(ITraktShow show)
         {
+            _watchedShowsWithSeasons.SetCurrentShow(show);
             return _watchedShowsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons> AddWatchedShowAndSeasonsCollection(ITraktShow show)
         {
+            _watchedShowsWithSeasonsCollection.SetCurrentShow(show);
             return _watchedShowsWithSeasonsCollection;
         }
 
         public ITraktPostBuilderShowAddedSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddShowAndSeasons(ITraktShow show)
         {
+            _showsWithSeasons.SetCurrentShow(show);
             return _showsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons> AddShowAndSeasonsCollection(ITraktShow show)
         {
+            _showsWithSeasonsCollection.SetCurrentShow(show);
             return _showsWithSeasonsCollection;
         }
 
@@ -104,6 +110,7 @@
 
         public ITraktPostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost> AddWatchedEpisode(ITraktEpisode episode)
         {
+            _watchedEpisodes.SetCurrentEpisode(episode);
             return _watchedEpisodes;
         }
 

@@ -76,11 +76,13 @@
 
         public ITraktPostBuilderMovieAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedMovie(ITraktMovie movie)
         {
+            _collectedMovies.SetCurrentMovie(movie);
             return _collectedMovies;
         }
 
         public ITraktPostBuilderMovieAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddMovieAndMetadata(ITraktMovie movie)
         {
+            _moviesAndMetadata.SetCurrentMovie(movie);
             return _moviesAndMetadata;
         }
 
@@ -110,41 +112,49 @@
 
         public ITraktPostBuilderShowAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedShow(ITraktShow show)
         {
+            _collectedShows.SetCurrentShow(show);
             return _collectedShows;
         }
 
         public ITraktPostBuilderShowAddedCollectedAtWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedShowAndSeasons(ITraktShow show)
         {
+            _collectedShowsWithSeasons.SetCurrentShow(show);
             return _collectedShowsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedCollectedAtWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> AddCollectedShowAndSeasonsCollection(ITraktShow show)
         {
+            _collectedShowsWithSeasonsCollection.SetCurrentShow(show);
             return _collectedShowsWithSeasonsCollection;
         }
 
         public ITraktPostBuilderShowAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddShowAndMetadata(ITraktShow show)
         {
+            _showsAndMetadata.SetCurrentShow(show);
             return _showsAndMetadata;
         }
 
         public ITraktPostBuilderShowAddedMetadataWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddShowAndMetadataAndSeasons(ITraktShow show)
         {
+            _showsAndMetadataWithSeasons.SetCurrentShow(show);
             return _showsAndMetadataWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedMetadataWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> AddShowAndMetadataAndSeasonsCollection(ITraktShow show)
         {
+            _showsAndMetadataWithSeasonsCollection.SetCurrentShow(show);
             return _showsAndMetadataWithSeasonsCollection;
         }
 
         public ITraktPostBuilderShowAddedSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddShowAndSeasons(ITraktShow show)
         {
+            _showsWithSeasons.SetCurrentShow(show);
             return _showsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> AddShowAndSeasonsCollection(ITraktShow show)
         {
+            _showsWithSeasonsCollection.SetCurrentShow(show);
             return _showsWithSeasonsCollection;
         }
 
@@ -168,11 +178,13 @@
 
         public ITraktPostBuilderEpisodeAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedEpisode(ITraktEpisode episode)
         {
+            _collectedEpisodes.SetCurrentEpisode(episode);
             return _collectedEpisodes;
         }
 
         public ITraktPostBuilderEpisodeAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddEpisodeAndMetadata(ITraktEpisode episode)
         {
+            _episodesAndMetadata.SetCurrentEpisode(episode);
             return _episodesAndMetadata;
         }
 

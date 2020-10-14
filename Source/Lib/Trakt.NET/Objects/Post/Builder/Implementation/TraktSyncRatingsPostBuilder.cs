@@ -50,6 +50,7 @@
 
         public ITraktPostBuilderMovieAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedMovie(ITraktMovie movie)
         {
+            _ratedMovies.SetCurrentMovie(movie);
             return _ratedMovies;
         }
 
@@ -67,26 +68,31 @@
 
         public ITraktPostBuilderShowAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedShow(ITraktShow show)
         {
+            _ratedShows.SetCurrentShow(show);
             return _ratedShows;
         }
 
         public ITraktPostBuilderShowAddedRatingWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedShowAndSeasons(ITraktShow show)
         {
+            _ratedShowsWithSeasons.SetCurrentShow(show);
             return _ratedShowsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> AddRatedShowAndSeasonsCollection(ITraktShow show)
         {
+            _ratedShowsWithSeasonsCollection.SetCurrentShow(show);
             return _ratedShowsWithSeasonsCollection;
         }
 
         public ITraktPostBuilderShowAddedSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddShowAndSeasons(ITraktShow show)
         {
+            _showsWithSeasons.SetCurrentShow(show);
             return _showsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> AddShowAndSeasonsCollection(ITraktShow show)
         {
+            _showsWithSeasonsCollection.SetCurrentShow(show);
             return _showsWithSeasonsCollection;
         }
 
@@ -104,6 +110,7 @@
 
         public ITraktPostBuilderEpisodeAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedEpisode(ITraktEpisode episode)
         {
+            _ratedEpisodes.SetCurrentEpisode(episode);
             return _ratedEpisodes;
         }
 

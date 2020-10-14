@@ -52,11 +52,13 @@
 
         public ITraktPostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> AddShowAndSeasons(ITraktShow show)
         {
+            _showsWithSeasons.SetCurrentShow(show);
             return _showsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> AddShowAndSeasonsCollection(ITraktShow show)
         {
+            _showsWithSeasonsCollection.SetCurrentShow(show);
             return _showsWithSeasonsCollection;
         }
 
