@@ -13,18 +13,24 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<Tuple<ITraktShow, DateTime, List<int>>> _watchedShowsWithSeasons;
+        private readonly List<PostBuilderWatchedObjectWithSeasons<ITraktShow, IEnumerable<int>>> _watchedShowsWithSeasons;
 
         internal PostBuilderShowAddedWatchedAtWithSeasons(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _watchedShowsWithSeasons = new List<Tuple<ITraktShow, DateTime, List<int>>>();
+            _watchedShowsWithSeasons = new List<PostBuilderWatchedObjectWithSeasons<ITraktShow, IEnumerable<int>>>();
         }
 
         public TPostBuilderAddShow WatchedAt(DateTime watchedAt, int[] seasons)
         {
-            _watchedShowsWithSeasons.Add(new Tuple<ITraktShow, DateTime, List<int>>(_currentShow, watchedAt, seasons.ToList()));
+            _watchedShowsWithSeasons.Add(new PostBuilderWatchedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                WatchedAt = watchedAt,
+                Seasons = seasons.ToList()
+            });
+
             return _postBuilder;
         }
 
@@ -36,7 +42,14 @@
             };
 
             newSeasons.AddRange(seasons);
-            _watchedShowsWithSeasons.Add(new Tuple<ITraktShow, DateTime, List<int>>(_currentShow, watchedAt, newSeasons));
+
+            _watchedShowsWithSeasons.Add(new PostBuilderWatchedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                WatchedAt = watchedAt,
+                Seasons = newSeasons
+            });
+
             return _postBuilder;
         }
 

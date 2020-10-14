@@ -13,26 +13,35 @@
     {
         private readonly TPostBuilderAddEpisode _postBuilder;
         private ITraktEpisode _currentEpisode;
-        private readonly List<Tuple<ITraktEpisode, ITraktMetadata>> _episodesAndMetadata;
-        private readonly List<Tuple<ITraktEpisode, ITraktMetadata, DateTime>> _collectedEpisodesAndMetadata;
+        private readonly List<PostBuilderObjectWithMetadata<ITraktEpisode>> _episodesAndMetadata;
 
         internal PostBuilderEpisodeAddedMetadata(TPostBuilderAddEpisode postBuilder)
         {
             _postBuilder = postBuilder;
             _currentEpisode = null;
-            _episodesAndMetadata = new List<Tuple<ITraktEpisode, ITraktMetadata>>();
-            _collectedEpisodesAndMetadata = new List<Tuple<ITraktEpisode, ITraktMetadata, DateTime>>();
+            _episodesAndMetadata = new List<PostBuilderObjectWithMetadata<ITraktEpisode>>();
         }
 
         public TPostBuilderAddEpisode WithMetadata(ITraktMetadata metadata)
         {
-            _episodesAndMetadata.Add(new Tuple<ITraktEpisode, ITraktMetadata>(_currentEpisode, metadata));
+            _episodesAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
+            {
+                Object = _currentEpisode,
+                Metadata = metadata
+            });
+
             return _postBuilder;
         }
 
         public TPostBuilderAddEpisode WithMetadata(ITraktMetadata metadata, DateTime collectedAt)
         {
-            _collectedEpisodesAndMetadata.Add(new Tuple<ITraktEpisode, ITraktMetadata, DateTime>(_currentEpisode, metadata, collectedAt));
+            _episodesAndMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
+            {
+                Object = _currentEpisode,
+                Metadata = metadata,
+                CollectedAt = collectedAt
+            });
+
             return _postBuilder;
         }
 

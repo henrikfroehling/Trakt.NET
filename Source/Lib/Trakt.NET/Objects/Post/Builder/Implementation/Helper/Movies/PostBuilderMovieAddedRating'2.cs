@@ -12,26 +12,35 @@
     {
         private readonly TPostBuilderAddMovie _postBuilder;
         private ITraktMovie _currentMovie;
-        private readonly List<Tuple<ITraktMovie, int>> _moviesAndRating;
-        private readonly List<Tuple<ITraktMovie, int, DateTime>> _ratedMoviesAndRating;
+        private readonly List<PostBuilderRatedObject<ITraktMovie>> _moviesAndRating;
 
         internal PostBuilderMovieAddedRating(TPostBuilderAddMovie postBuilder)
         {
             _postBuilder = postBuilder;
             _currentMovie = null;
-            _moviesAndRating = new List<Tuple<ITraktMovie, int>>();
-            _ratedMoviesAndRating = new List<Tuple<ITraktMovie, int, DateTime>>();
+            _moviesAndRating = new List<PostBuilderRatedObject<ITraktMovie>>();
         }
 
         public TPostBuilderAddMovie WithRating(int rating)
         {
-            _moviesAndRating.Add(new Tuple<ITraktMovie, int>(_currentMovie, rating));
+            _moviesAndRating.Add(new PostBuilderRatedObject<ITraktMovie>
+            {
+                Object = _currentMovie,
+                Rating = rating
+            });
+
             return _postBuilder;
         }
 
         public TPostBuilderAddMovie WithRating(int rating, DateTime ratedAt)
         {
-            _ratedMoviesAndRating.Add(new Tuple<ITraktMovie, int, DateTime>(_currentMovie, rating, ratedAt));
+            _moviesAndRating.Add(new PostBuilderRatedObject<ITraktMovie>
+            {
+                Object = _currentMovie,
+                Rating = rating,
+                RatedAt = ratedAt
+            });
+
             return _postBuilder;
         }
 

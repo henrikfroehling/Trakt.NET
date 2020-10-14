@@ -14,26 +14,37 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<Tuple<ITraktShow, ITraktMetadata, TSeasonCollection>> _showsAndMetadataWithSeasonsCollection;
-        private readonly List<Tuple<ITraktShow, ITraktMetadata, DateTime, TSeasonCollection>> _collectedShowsAndMetadataWithSeasonsCollection;
+        private readonly List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>> _showsAndMetadataWithSeasonsCollection;
 
         internal PostBuilderShowAddedMetadataWithSeasonsCollection(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsAndMetadataWithSeasonsCollection = new List<Tuple<ITraktShow, ITraktMetadata, TSeasonCollection>>();
-            _collectedShowsAndMetadataWithSeasonsCollection = new List<Tuple<ITraktShow, ITraktMetadata, DateTime, TSeasonCollection>>();
+            _showsAndMetadataWithSeasonsCollection = new List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>>();
         }
 
         public TPostBuilderAddShow WithMetadata(ITraktMetadata metadata, TSeasonCollection seasons)
         {
-            _showsAndMetadataWithSeasonsCollection.Add(new Tuple<ITraktShow, ITraktMetadata, TSeasonCollection>(_currentShow, metadata, seasons));
+            _showsAndMetadataWithSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>
+            {
+                Object = _currentShow,
+                Metadata = metadata,
+                Seasons = seasons
+            });
+
             return _postBuilder;
         }
 
         public TPostBuilderAddShow WithMetadata(ITraktMetadata metadata, DateTime collectedAt, TSeasonCollection seasons)
         {
-            _collectedShowsAndMetadataWithSeasonsCollection.Add(new Tuple<ITraktShow, ITraktMetadata, DateTime, TSeasonCollection>(_currentShow, metadata, collectedAt, seasons));
+            _showsAndMetadataWithSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, TSeasonCollection>
+            {
+                Object = _currentShow,
+                Metadata = metadata,
+                CollectedAt = collectedAt,
+                Seasons = seasons
+            });
+
             return _postBuilder;
         }
 

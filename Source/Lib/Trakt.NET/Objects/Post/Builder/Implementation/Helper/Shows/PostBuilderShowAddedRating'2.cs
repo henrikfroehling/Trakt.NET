@@ -12,26 +12,35 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<Tuple<ITraktShow, int>> _showsAndRating;
-        private readonly List<Tuple<ITraktShow, int, DateTime>> _ratedShowsAndRating;
+        private readonly List<PostBuilderRatedObject<ITraktShow>> _showsAndRating;
 
         internal PostBuilderShowAddedRating(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsAndRating = new List<Tuple<ITraktShow, int>>();
-            _ratedShowsAndRating = new List<Tuple<ITraktShow, int, DateTime>>();
+            _showsAndRating = new List<PostBuilderRatedObject<ITraktShow>>();
         }
 
         public TPostBuilderAddShow WithRating(int rating)
         {
-            _showsAndRating.Add(new Tuple<ITraktShow, int>(_currentShow, rating));
+            _showsAndRating.Add(new PostBuilderRatedObject<ITraktShow>
+            {
+                Object = _currentShow,
+                Rating = rating
+            });
+
             return _postBuilder;
         }
 
         public TPostBuilderAddShow WithRating(int rating, DateTime ratedAt)
         {
-            _ratedShowsAndRating.Add(new Tuple<ITraktShow, int, DateTime>(_currentShow, rating, ratedAt));
+            _showsAndRating.Add(new PostBuilderRatedObject<ITraktShow>
+            {
+                Object = _currentShow,
+                Rating = rating,
+                RatedAt = ratedAt
+            });
+
             return _postBuilder;
         }
 

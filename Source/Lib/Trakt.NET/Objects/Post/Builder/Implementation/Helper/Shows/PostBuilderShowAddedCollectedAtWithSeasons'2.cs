@@ -13,18 +13,24 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<Tuple<ITraktShow, DateTime, List<int>>> _collectedShowsWithSeasons;
+        private readonly List<PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>> _collectedShowsWithSeasons;
 
         internal PostBuilderShowAddedCollectedAtWithSeasons(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _collectedShowsWithSeasons = new List<Tuple<ITraktShow, DateTime, List<int>>>();
+            _collectedShowsWithSeasons = new List<PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>>();
         }
 
         public TPostBuilderAddShow CollectedAt(DateTime collectedAt, int[] seasons)
         {
-            _collectedShowsWithSeasons.Add(new Tuple<ITraktShow, DateTime, List<int>>(_currentShow, collectedAt, seasons.ToList()));
+            _collectedShowsWithSeasons.Add(new PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                CollectedAt = collectedAt,
+                Seasons = seasons.ToList()
+            });
+
             return _postBuilder;
         }
 
@@ -36,7 +42,14 @@
             };
 
             newSeasons.AddRange(seasons);
-            _collectedShowsWithSeasons.Add(new Tuple<ITraktShow, DateTime, List<int>>(_currentShow, collectedAt, newSeasons));
+
+            _collectedShowsWithSeasons.Add(new PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                CollectedAt = collectedAt,
+                Seasons = newSeasons
+            });
+
             return _postBuilder;
         }
 

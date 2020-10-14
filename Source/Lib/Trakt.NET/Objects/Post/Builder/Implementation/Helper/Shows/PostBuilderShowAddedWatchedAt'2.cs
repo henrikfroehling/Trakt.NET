@@ -12,18 +12,23 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<Tuple<ITraktShow, DateTime>> _watchedShows;
+        private readonly List<PostBuilderWatchedObject<ITraktShow>> _watchedShows;
 
         internal PostBuilderShowAddedWatchedAt(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _watchedShows = new List<Tuple<ITraktShow, DateTime>>();
+            _watchedShows = new List<PostBuilderWatchedObject<ITraktShow>>();
         }
 
         public TPostBuilderAddShow WatchedAt(DateTime watchedAt)
         {
-            _watchedShows.Add(new Tuple<ITraktShow, DateTime>(_currentShow, watchedAt));
+            _watchedShows.Add(new PostBuilderWatchedObject<ITraktShow>
+            {
+                Object = _currentShow,
+                WatchedAt = watchedAt
+            });
+
             return _postBuilder;
         }
 

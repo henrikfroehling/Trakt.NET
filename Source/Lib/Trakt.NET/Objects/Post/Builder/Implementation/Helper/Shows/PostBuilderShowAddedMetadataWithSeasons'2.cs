@@ -14,26 +14,37 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<Tuple<ITraktShow, ITraktMetadata, List<int>>> _showsAndMetadataWithSeasons;
-        private readonly List<Tuple<ITraktShow, ITraktMetadata, DateTime, List<int>>> _collectedShowsAndMetadataWithSeasons;
+        private readonly List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>> _showsAndMetadataWithSeasons;
 
         internal PostBuilderShowAddedMetadataWithSeasons(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsAndMetadataWithSeasons = new List<Tuple<ITraktShow, ITraktMetadata, List<int>>>();
-            _collectedShowsAndMetadataWithSeasons = new List<Tuple<ITraktShow, ITraktMetadata, DateTime, List<int>>>();
+            _showsAndMetadataWithSeasons = new List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>>();
         }
 
         public TPostBuilderAddShow WithMetadata(ITraktMetadata metadata, int[] seasons)
         {
-            _showsAndMetadataWithSeasons.Add(new Tuple<ITraktShow, ITraktMetadata, List<int>>(_currentShow, metadata, seasons.ToList()));
+            _showsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                Metadata = metadata,
+                Seasons = seasons.ToList()
+            });
+
             return _postBuilder;
         }
 
         public TPostBuilderAddShow WithMetadata(ITraktMetadata metadata, DateTime collectedAt, int[] seasons)
         {
-            _collectedShowsAndMetadataWithSeasons.Add(new Tuple<ITraktShow, ITraktMetadata, DateTime, List<int>>(_currentShow, metadata, collectedAt, seasons.ToList()));
+            _showsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                Metadata = metadata,
+                CollectedAt = collectedAt,
+                Seasons = seasons.ToList()
+            });
+
             return _postBuilder;
         }
 
@@ -45,7 +56,14 @@
             };
 
             newSeasons.AddRange(seasons);
-            _showsAndMetadataWithSeasons.Add(new Tuple<ITraktShow, ITraktMetadata, List<int>>(_currentShow, metadata, newSeasons));
+
+            _showsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                Metadata = metadata,
+                Seasons = newSeasons
+            });
+
             return _postBuilder;
         }
 
@@ -57,7 +75,15 @@
             };
 
             newSeasons.AddRange(seasons);
-            _collectedShowsAndMetadataWithSeasons.Add(new Tuple<ITraktShow, ITraktMetadata, DateTime, List<int>>(_currentShow, metadata, collectedAt, newSeasons));
+
+            _showsAndMetadataWithSeasons.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                Metadata = metadata,
+                CollectedAt = collectedAt,
+                Seasons = newSeasons
+            });
+
             return _postBuilder;
         }
 

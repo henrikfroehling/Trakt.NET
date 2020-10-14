@@ -13,26 +13,37 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<Tuple<ITraktShow, int, List<int>>> _showsAndRatingWithSeasons;
-        private readonly List<Tuple<ITraktShow, int, DateTime, List<int>>> _ratedShowsAndRatingWithSeasons;
+        private readonly List<PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>> _showsAndRatingWithSeasons;
 
         internal PostBuilderShowAddedRatingWithSeasons(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsAndRatingWithSeasons = new List<Tuple<ITraktShow, int, List<int>>>();
-            _ratedShowsAndRatingWithSeasons = new List<Tuple<ITraktShow, int, DateTime, List<int>>>();
+            _showsAndRatingWithSeasons = new List<PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>>();
         }
 
         public TPostBuilderAddShow WithRating(int rating, int[] seasons)
         {
-            _showsAndRatingWithSeasons.Add(new Tuple<ITraktShow, int, List<int>>(_currentShow, rating, seasons.ToList()));
+            _showsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                Rating = rating,
+                Seasons = seasons.ToList()
+            });
+
             return _postBuilder;
         }
 
         public TPostBuilderAddShow WithRating(int rating, DateTime ratedAt, int[] seasons)
         {
-            _ratedShowsAndRatingWithSeasons.Add(new Tuple<ITraktShow, int, DateTime, List<int>>(_currentShow, rating, ratedAt, seasons.ToList()));
+            _showsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                Rating = rating,
+                RatedAt = ratedAt,
+                Seasons = seasons.ToList()
+            });
+
             return _postBuilder;
         }
 
@@ -44,7 +55,14 @@
             };
 
             newSeasons.AddRange(seasons);
-            _showsAndRatingWithSeasons.Add(new Tuple<ITraktShow, int, List<int>>(_currentShow, rating, newSeasons));
+
+            _showsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                Rating = rating,
+                Seasons = newSeasons
+            });
+
             return _postBuilder;
         }
 
@@ -56,7 +74,15 @@
             };
 
             newSeasons.AddRange(seasons);
-            _ratedShowsAndRatingWithSeasons.Add(new Tuple<ITraktShow, int, DateTime, List<int>>(_currentShow, rating, ratedAt, newSeasons));
+
+            _showsAndRatingWithSeasons.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, IEnumerable<int>>
+            {
+                Object = _currentShow,
+                Rating = rating,
+                RatedAt = ratedAt,
+                Seasons = newSeasons
+            });
+
             return _postBuilder;
         }
 

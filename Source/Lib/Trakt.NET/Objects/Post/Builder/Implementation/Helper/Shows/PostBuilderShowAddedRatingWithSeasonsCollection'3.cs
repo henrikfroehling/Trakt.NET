@@ -13,26 +13,37 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<Tuple<ITraktShow, int, TSeasonCollection>> _showsAndRatingWithSeasonsCollection;
-        private readonly List<Tuple<ITraktShow, int, DateTime, TSeasonCollection>> _ratedShowsAndRatingWithSeasonsCollection;
+        private readonly List<PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>> _showsAndRatingWithSeasonsCollection;
 
         internal PostBuilderShowAddedRatingWithSeasonsCollection(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _showsAndRatingWithSeasonsCollection = new List<Tuple<ITraktShow, int, TSeasonCollection>>();
-            _ratedShowsAndRatingWithSeasonsCollection = new List<Tuple<ITraktShow, int, DateTime, TSeasonCollection>>();
+            _showsAndRatingWithSeasonsCollection = new List<PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>>();
         }
 
         public TPostBuilderAddShow WithRating(int rating, TSeasonCollection seasons)
         {
-            _showsAndRatingWithSeasonsCollection.Add(new Tuple<ITraktShow, int, TSeasonCollection>(_currentShow, rating, seasons));
+            _showsAndRatingWithSeasonsCollection.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>
+            {
+                Object = _currentShow,
+                Rating = rating,
+                Seasons = seasons
+            });
+
             return _postBuilder;
         }
 
         public TPostBuilderAddShow WithRating(int rating, DateTime ratedAt, TSeasonCollection seasons)
         {
-            _ratedShowsAndRatingWithSeasonsCollection.Add(new Tuple<ITraktShow, int, DateTime, TSeasonCollection>(_currentShow, rating, ratedAt, seasons));
+            _showsAndRatingWithSeasonsCollection.Add(new PostBuilderRatedObjectWithSeasons<ITraktShow, TSeasonCollection>
+            {
+                Object = _currentShow,
+                Rating = rating,
+                RatedAt = ratedAt,
+                Seasons = seasons
+            });
+
             return _postBuilder;
         }
 

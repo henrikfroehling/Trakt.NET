@@ -12,18 +12,23 @@
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
-        private readonly List<Tuple<ITraktShow, DateTime>> _collectedShows;
+        private readonly List<PostBuilderCollectedObject<ITraktShow>> _collectedShows;
 
         internal PostBuilderShowAddedCollectedAt(TPostBuilderAddShow postBuilder)
         {
             _postBuilder = postBuilder;
             _currentShow = null;
-            _collectedShows = new List<Tuple<ITraktShow, DateTime>>();
+            _collectedShows = new List<PostBuilderCollectedObject<ITraktShow>>();
         }
 
         public TPostBuilderAddShow CollectedAt(DateTime collectedAt)
         {
-            _collectedShows.Add(new Tuple<ITraktShow, DateTime>(_currentShow, collectedAt));
+            _collectedShows.Add(new PostBuilderCollectedObject<ITraktShow>
+            {
+                Object = _currentShow,
+                CollectedAt = collectedAt
+            });
+
             return _postBuilder;
         }
 
