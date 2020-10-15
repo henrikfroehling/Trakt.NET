@@ -12,6 +12,8 @@
     using Objects.Get.Users.Statistics;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
+    using Objects.Post;
+    using Objects.Post.Builder.Interfaces;
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
@@ -142,9 +144,9 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/users/add-hidden-items/add-hidden-items">"Trakt API Doc - Users: Add Hidden Items"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktUserHiddenItemsPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktUserHiddenItemsPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktUserHiddenItemsPost" />.
-        /// See also <seealso cref="TraktUserHiddenItemsPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewUserHiddenItemsPost()" />.
         /// </para>
         /// </summary>
         /// <param name="hiddenItemsPost">An <see cref="ITraktUserHiddenItemsPost" /> instance containing all shows, seasons and movies, which should be added.</param>
@@ -178,9 +180,9 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/users/remove-hidden-items/remove-hidden-items">"Trakt API Doc - Users: Remove Hidden Items"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktUserHiddenItemsPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktUserHiddenItemsPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktUserHiddenItemsPost" />.
-        /// See also <seealso cref="TraktUserHiddenItemsPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewUserHiddenItemsPost()" />.
         /// </para>
         /// </summary>
         /// <param name="hiddenItemsPost">An <see cref="ITraktUserHiddenItemsPost" /> instance containing all shows, seasons and movies, which should be removed.</param>
@@ -758,9 +760,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/list-items/add-items-to-custom-list">"Trakt API Doc - Users: List Items"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktUserCustomListItemsPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktUserCustomListItemsPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktUserCustomListItemsPost" />.
-        /// See also <seealso cref="TraktUserCustomListItemsPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewUserCustomListItemsPost()" />.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be added to a custom list.</param>
@@ -801,9 +803,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/remove-list-items/remove-items-from-custom-list">"Trakt API Doc - Users: Remove List Items"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktUserCustomListItemsPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktUserCustomListItemsPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktUserCustomListItemsPost" />.
-        /// See also <seealso cref="TraktUserCustomListItemsPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewUserCustomListItemsPost()" />.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be removed from a custom list.</param>
