@@ -400,11 +400,11 @@
 
                 if (season.Episodes?.Count() > 0)
                 {
-                    var episodes = new List<ITraktSyncCollectionPostShowEpisode>();
+                    var syncCollectionPostShowEpisodes = new List<ITraktSyncCollectionPostShowEpisode>();
 
                     foreach (PostEpisode episode in season.Episodes)
                     {
-                        episodes.Add(new TraktSyncCollectionPostShowEpisode
+                        syncCollectionPostShowEpisodes.Add(new TraktSyncCollectionPostShowEpisode
                         {
                             Number = episode.Number,
                             MediaType = episode.Metadata?.MediaType,
@@ -417,7 +417,7 @@
                         });
                     }
 
-                    syncCollectionPostShowSeason.Episodes = episodes;
+                    syncCollectionPostShowSeason.Episodes = syncCollectionPostShowEpisodes;
                 }
 
                 syncCollectionPostShowSeasons.Add(syncCollectionPostShowSeason);
