@@ -1,13 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Builder.Implementation
 {
+    using Get.Movies;
+    using Get.People;
+    using Get.Shows;
     using Helper;
     using Interfaces;
     using Interfaces.Capabilities;
-    using Objects.Get.Movies;
-    using Objects.Get.People;
-    using Objects.Get.Shows;
-    using Objects.Post.Users.CustomListItems;
+    using Post.Users.CustomListItems;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class UserCustomListItemsPostBuilder : ITraktUserCustomListItemsPostBuilder
     {
@@ -76,7 +77,135 @@
 
         public ITraktUserCustomListItemsPost Build()
         {
-            return new TraktUserCustomListItemsPost();
+            ITraktUserCustomListItemsPost userCustomListItemsPost = new TraktUserCustomListItemsPost();
+            AddMovies(userCustomListItemsPost);
+            AddShows(userCustomListItemsPost);
+            AddPersons(userCustomListItemsPost);
+            return userCustomListItemsPost;
+        }
+
+        private void AddMovies(ITraktUserCustomListItemsPost userCustomListItemsPost)
+        {
+            if (userCustomListItemsPost.Movies == null)
+                userCustomListItemsPost.Movies = new List<ITraktUserCustomListItemsPostMovie>();
+
+            foreach (ITraktMovie movie in _movies)
+                (userCustomListItemsPost.Movies as List<ITraktUserCustomListItemsPostMovie>).Add(CreateUserCustomListItemsPostMovie(movie));
+        }
+
+        private void AddShows(ITraktUserCustomListItemsPost userCustomListItemsPost)
+        {
+            if (userCustomListItemsPost.Shows == null)
+                userCustomListItemsPost.Shows = new List<ITraktUserCustomListItemsPostShow>();
+
+            foreach (ITraktShow show in _shows)
+                (userCustomListItemsPost.Shows as List<ITraktUserCustomListItemsPostShow>).Add(CreateUserCustomListItemsPostShow(show));
+
+            foreach (PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>> showEntry in _showsWithSeasons.ShowsWithSeasons)
+                (userCustomListItemsPost.Shows as List<ITraktUserCustomListItemsPostShow>).Add(CreateUserCustomListItemsPostShowWithSeasons(showEntry.Object, showEntry.Seasons));
+
+            foreach (PostBuilderObjectWithSeasons<ITraktShow, PostSeasons> showEntry in _showsWithSeasonsCollection.ShowsWithSeasonsCollection)
+                (userCustomListItemsPost.Shows as List<ITraktUserCustomListItemsPostShow>).Add(CreateUserCustomListItemsPostShowWithSeasonsCollection(showEntry.Object, showEntry.Seasons));
+        }
+
+        private void AddPersons(ITraktUserCustomListItemsPost userCustomListItemsPost)
+        {
+            if (userCustomListItemsPost.People == null)
+                userCustomListItemsPost.People = new List<ITraktPerson>();
+
+            foreach (ITraktPerson episode in _persons)
+                (userCustomListItemsPost.People as List<ITraktPerson>).Add(CreateUserCustomListItemsPostPerson(episode));
+        }
+
+        private ITraktUserCustomListItemsPostMovie CreateUserCustomListItemsPostMovie(ITraktMovie movie)
+        {
+            return new TraktUserCustomListItemsPostMovie
+            {
+                Ids = movie.Ids
+            };
+        }
+
+        private ITraktUserCustomListItemsPostShow CreateUserCustomListItemsPostShow(ITraktShow show)
+        {
+            return new TraktUserCustomListItemsPostShow
+            {
+                Ids = show.Ids
+            };
+        }
+
+        private ITraktUserCustomListItemsPostShow CreateUserCustomListItemsPostShowWithSeasons(ITraktShow show, IEnumerable<int> seasons)
+        {
+            var userCustomListItemsPostShow = CreateUserCustomListItemsPostShow(show);
+
+            if (seasons != null)
+                userCustomListItemsPostShow.Seasons = CreateUserCustomListItemsPostShowSeasons(seasons);
+
+            return userCustomListItemsPostShow;
+        }
+
+        private ITraktUserCustomListItemsPostShow CreateUserCustomListItemsPostShowWithSeasonsCollection(ITraktShow show, PostSeasons seasons)
+        {
+            var userCustomListItemsPostShow = CreateUserCustomListItemsPostShow(show);
+
+            if (seasons != null)
+                userCustomListItemsPostShow.Seasons = CreateUserCustomListItemsPostShowSeasons(seasons);
+
+            return userCustomListItemsPostShow;
+        }
+
+        private IEnumerable<ITraktUserCustomListItemsPostShowSeason> CreateUserCustomListItemsPostShowSeasons(IEnumerable<int> seasons)
+        {
+            var userCustomListItemsPostShowSeasons = new List<ITraktUserCustomListItemsPostShowSeason>();
+
+            foreach (int season in seasons)
+            {
+                userCustomListItemsPostShowSeasons.Add(new TraktUserCustomListItemsPostShowSeason
+                {
+                    Number = season
+                });
+            }
+
+            return userCustomListItemsPostShowSeasons;
+        }
+
+        private IEnumerable<ITraktUserCustomListItemsPostShowSeason> CreateUserCustomListItemsPostShowSeasons(PostSeasons seasons)
+        {
+            var userCustomListItemsPostShowSeasons = new List<ITraktUserCustomListItemsPostShowSeason>();
+
+            foreach (PostSeason season in seasons)
+            {
+                var userCustomListItemsPostShowSeason = new TraktUserCustomListItemsPostShowSeason
+                {
+                    Number = season.Number
+                };
+
+                if (season.Episodes?.Count() > 0)
+                {
+                    var userCustomListItemsPostShowEpisodes = new List<ITraktUserCustomListItemsPostShowEpisode>();
+
+                    foreach (PostEpisode episode in season.Episodes)
+                    {
+                        userCustomListItemsPostShowEpisodes.Add(new TraktUserCustomListItemsPostShowEpisode
+                        {
+                            Number = episode.Number
+                        });
+                    }
+
+                    userCustomListItemsPostShowSeason.Episodes = userCustomListItemsPostShowEpisodes;
+                }
+
+                userCustomListItemsPostShowSeasons.Add(userCustomListItemsPostShowSeason);
+            }
+
+            return userCustomListItemsPostShowSeasons;
+        }
+
+        private ITraktPerson CreateUserCustomListItemsPostPerson(ITraktPerson person)
+        {
+            return new TraktPerson
+            {
+                Ids = person.Ids
+            };
         }
     }
 }
