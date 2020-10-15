@@ -12,7 +12,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class SyncCollectionPostBuilder : ITraktSyncCollectionPostBuilder
+    internal class SyncCollectionPostBuilder : ITraktSyncCollectionPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<PostBuilderObjectWithMetadata<ITraktMovie>> _moviesWithMetadata;

@@ -11,7 +11,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class SyncHistoryRemovePostBuilder : ITraktSyncHistoryRemovePostBuilder
+    internal class SyncHistoryRemovePostBuilder : ITraktSyncHistoryRemovePostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;

@@ -9,7 +9,7 @@
     using Post.Users.HiddenItems;
     using System.Collections.Generic;
 
-    public class UserHiddenItemsPostBuilder : ITraktUserHiddenItemsPostBuilder
+    internal class UserHiddenItemsPostBuilder : ITraktUserHiddenItemsPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;

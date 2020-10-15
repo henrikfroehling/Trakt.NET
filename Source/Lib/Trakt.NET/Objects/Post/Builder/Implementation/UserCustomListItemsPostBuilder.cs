@@ -10,7 +10,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class UserCustomListItemsPostBuilder : ITraktUserCustomListItemsPostBuilder
+    internal class UserCustomListItemsPostBuilder : ITraktUserCustomListItemsPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;
