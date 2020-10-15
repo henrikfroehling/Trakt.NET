@@ -1,12 +1,12 @@
 ﻿namespace TraktNet.Objects.Post.Builder.Implementation
 {
+    using Get.Movies;
+    using Get.Seasons;
+    using Get.Shows;
     using Helper;
     using Interfaces;
     using Interfaces.Capabilities;
-    using Objects.Get.Movies;
-    using Objects.Get.Seasons;
-    using Objects.Get.Shows;
-    using Objects.Post.Users.HiddenItems;
+    using Post.Users.HiddenItems;
     using System.Collections.Generic;
 
     public class UserHiddenItemsPostBuilder : ITraktUserHiddenItemsPostBuilder
@@ -68,7 +68,94 @@
 
         public ITraktUserHiddenItemsPost Build()
         {
-            return new TraktUserHiddenItemsPost();
+            ITraktUserHiddenItemsPost userHiddenItemsPost = new TraktUserHiddenItemsPost();
+            AddMovies(userHiddenItemsPost);
+            AddShows(userHiddenItemsPost);
+            AddSeasons(userHiddenItemsPost);
+            return userHiddenItemsPost;
+        }
+
+        private void AddMovies(ITraktUserHiddenItemsPost userHiddenItemsPost)
+        {
+            if (userHiddenItemsPost.Movies == null)
+                userHiddenItemsPost.Movies = new List<ITraktUserHiddenItemsPostMovie>();
+
+            foreach (ITraktMovie movie in _movies)
+                (userHiddenItemsPost.Movies as List<ITraktUserHiddenItemsPostMovie>).Add(CreateUserHiddenItemsPostMovie(movie));
+        }
+
+        private void AddShows(ITraktUserHiddenItemsPost userHiddenItemsPost)
+        {
+            if (userHiddenItemsPost.Shows == null)
+                userHiddenItemsPost.Shows = new List<ITraktUserHiddenItemsPostShow>();
+
+            foreach (ITraktShow show in _shows)
+                (userHiddenItemsPost.Shows as List<ITraktUserHiddenItemsPostShow>).Add(CreateUserHiddenItemsPostShow(show));
+
+            foreach (PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>> showEntry in _showsWithSeasons.ShowsWithSeasons)
+                (userHiddenItemsPost.Shows as List<ITraktUserHiddenItemsPostShow>).Add(CreateUserHiddenItemsPostShowWithSeasons(showEntry.Object, showEntry.Seasons));
+        }
+
+        private void AddSeasons(ITraktUserHiddenItemsPost userHiddenItemsPost)
+        {
+            if (userHiddenItemsPost.Seasons == null)
+                userHiddenItemsPost.Seasons = new List<ITraktUserHiddenItemsPostSeason>();
+
+            foreach (ITraktSeason season in _seasons)
+                (userHiddenItemsPost.Seasons as List<ITraktUserHiddenItemsPostSeason>).Add(CreateUserHiddenItemsPostSeason(season));
+        }
+
+        private ITraktUserHiddenItemsPostMovie CreateUserHiddenItemsPostMovie(ITraktMovie movie)
+        {
+            return new TraktUserHiddenItemsPostMovie
+            {
+                Ids = movie.Ids,
+                Title = movie.Title,
+                Year = movie.Year
+            };
+        }
+
+        private ITraktUserHiddenItemsPostShow CreateUserHiddenItemsPostShow(ITraktShow show)
+        {
+            return new TraktUserHiddenItemsPostShow
+            {
+                Ids = show.Ids,
+                Title = show.Title,
+                Year = show.Year
+            };
+        }
+
+        private ITraktUserHiddenItemsPostShow CreateUserHiddenItemsPostShowWithSeasons(ITraktShow show, IEnumerable<int> seasons)
+        {
+            var userHiddenItemsPostShow = CreateUserHiddenItemsPostShow(show);
+
+            if (seasons != null)
+                userHiddenItemsPostShow.Seasons = CreateUserHiddenItemsPostShowSeasons(seasons);
+
+            return userHiddenItemsPostShow;
+        }
+
+        private IEnumerable<ITraktUserHiddenItemsPostShowSeason> CreateUserHiddenItemsPostShowSeasons(IEnumerable<int> seasons)
+        {
+            var userHiddenItemsPostShowSeasons = new List<ITraktUserHiddenItemsPostShowSeason>();
+
+            foreach (int season in seasons)
+            {
+                userHiddenItemsPostShowSeasons.Add(new TraktUserHiddenItemsPostShowSeason
+                {
+                    Number = season
+                });
+            }
+
+            return userHiddenItemsPostShowSeasons;
+        }
+
+        private ITraktUserHiddenItemsPostSeason CreateUserHiddenItemsPostSeason(ITraktSeason season)
+        {
+            return new TraktUserHiddenItemsPostSeason
+            {
+                Ids = season.Ids
+            };
         }
     }
 }
