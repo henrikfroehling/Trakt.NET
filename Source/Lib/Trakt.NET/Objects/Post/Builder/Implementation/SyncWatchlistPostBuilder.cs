@@ -1,13 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Builder.Implementation
 {
+    using Get.Episodes;
+    using Get.Movies;
+    using Get.Shows;
     using Helper;
     using Interfaces;
     using Interfaces.Capabilities;
-    using Objects.Get.Episodes;
-    using Objects.Get.Movies;
-    using Objects.Get.Shows;
-    using Objects.Post.Syncs.Watchlist;
+    using Post.Syncs.Watchlist;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class SyncWatchlistPostBuilder : ITraktSyncWatchlistPostBuilder
     {
@@ -76,7 +77,139 @@
 
         public ITraktSyncWatchlistPost Build()
         {
-            return new TraktSyncWatchlistPost();
+            ITraktSyncWatchlistPost syncWatchlistPost = new TraktSyncWatchlistPost();
+            AddMovies(syncWatchlistPost);
+            AddShows(syncWatchlistPost);
+            AddEpisodes(syncWatchlistPost);
+            return syncWatchlistPost;
+        }
+
+        private void AddMovies(ITraktSyncWatchlistPost syncWatchlistPost)
+        {
+            if (syncWatchlistPost.Movies == null)
+                syncWatchlistPost.Movies = new List<ITraktSyncWatchlistPostMovie>();
+
+            foreach (ITraktMovie movie in _movies)
+                (syncWatchlistPost.Movies as List<ITraktSyncWatchlistPostMovie>).Add(CreateSyncWatchlistPostMovie(movie));
+        }
+
+        private void AddShows(ITraktSyncWatchlistPost syncWatchlistPost)
+        {
+            if (syncWatchlistPost.Shows == null)
+                syncWatchlistPost.Shows = new List<ITraktSyncWatchlistPostShow>();
+
+            foreach (ITraktShow show in _shows)
+                (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>).Add(CreateSyncWatchlistPostShow(show));
+
+            foreach (PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>> showEntry in _showsWithSeasons.ShowsWithSeasons)
+                (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>).Add(CreateSyncWatchlistPostShowWithSeasons(showEntry.Object, showEntry.Seasons));
+
+            foreach (PostBuilderObjectWithSeasons<ITraktShow, PostSeasons> showEntry in _showsWithSeasonsCollection.ShowsWithSeasonsCollection)
+                (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>).Add(CreateSyncWatchlistPostShowWithSeasonsCollection(showEntry.Object, showEntry.Seasons));
+        }
+
+        private void AddEpisodes(ITraktSyncWatchlistPost syncWatchlistPost)
+        {
+            if (syncWatchlistPost.Episodes == null)
+                syncWatchlistPost.Episodes = new List<ITraktSyncWatchlistPostEpisode>();
+
+            foreach (ITraktEpisode episode in _episodes)
+                (syncWatchlistPost.Episodes as List<ITraktSyncWatchlistPostEpisode>).Add(CreateSyncWatchlistPostEpisode(episode));
+        }
+
+        private ITraktSyncWatchlistPostMovie CreateSyncWatchlistPostMovie(ITraktMovie movie)
+        {
+            return new TraktSyncWatchlistPostMovie
+            {
+                Ids = movie.Ids,
+                Title = movie.Title,
+                Year = movie.Year
+            };
+        }
+
+        private ITraktSyncWatchlistPostShow CreateSyncWatchlistPostShow(ITraktShow show)
+        {
+            return new TraktSyncWatchlistPostShow
+            {
+                Ids = show.Ids,
+                Title = show.Title,
+                Year = show.Year
+            };
+        }
+
+        private ITraktSyncWatchlistPostShow CreateSyncWatchlistPostShowWithSeasons(ITraktShow show, IEnumerable<int> seasons)
+        {
+            var syncWatchlistPostShow = CreateSyncWatchlistPostShow(show);
+
+            if (seasons != null)
+                syncWatchlistPostShow.Seasons = CreateSyncWatchlistPostShowSeasons(seasons);
+
+            return syncWatchlistPostShow;
+        }
+
+        private ITraktSyncWatchlistPostShow CreateSyncWatchlistPostShowWithSeasonsCollection(ITraktShow show, PostSeasons seasons)
+        {
+            var syncWatchlistPostShow = CreateSyncWatchlistPostShow(show);
+
+            if (seasons != null)
+                syncWatchlistPostShow.Seasons = CreateSyncWatchlistPostShowSeasons(seasons);
+
+            return syncWatchlistPostShow;
+        }
+
+        private IEnumerable<ITraktSyncWatchlistPostShowSeason> CreateSyncWatchlistPostShowSeasons(IEnumerable<int> seasons)
+        {
+            var syncWatchlistPostShowSeasons = new List<ITraktSyncWatchlistPostShowSeason>();
+
+            foreach (int season in seasons)
+            {
+                syncWatchlistPostShowSeasons.Add(new TraktSyncWatchlistPostShowSeason
+                {
+                    Number = season
+                });
+            }
+
+            return syncWatchlistPostShowSeasons;
+        }
+
+        private IEnumerable<ITraktSyncWatchlistPostShowSeason> CreateSyncWatchlistPostShowSeasons(PostSeasons seasons)
+        {
+            var syncWatchlistPostShowSeasons = new List<ITraktSyncWatchlistPostShowSeason>();
+
+            foreach (PostSeason season in seasons)
+            {
+                var syncWatchlistPostShowSeason = new TraktSyncWatchlistPostShowSeason
+                {
+                    Number = season.Number
+                };
+
+                if (season.Episodes?.Count() > 0)
+                {
+                    var syncWatchlistPostShowEpisodes = new List<ITraktSyncWatchlistPostShowEpisode>();
+
+                    foreach (PostEpisode episode in season.Episodes)
+                    {
+                        syncWatchlistPostShowEpisodes.Add(new TraktSyncWatchlistPostShowEpisode
+                        {
+                            Number = episode.Number
+                        });
+                    }
+
+                    syncWatchlistPostShowSeason.Episodes = syncWatchlistPostShowEpisodes;
+                }
+
+                syncWatchlistPostShowSeasons.Add(syncWatchlistPostShowSeason);
+            }
+
+            return syncWatchlistPostShowSeasons;
+        }
+
+        private ITraktSyncWatchlistPostEpisode CreateSyncWatchlistPostEpisode(ITraktEpisode episode)
+        {
+            return new TraktSyncWatchlistPostEpisode
+            {
+                Ids = episode.Ids
+            };
         }
     }
 }
