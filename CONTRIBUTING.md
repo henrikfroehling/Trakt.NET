@@ -11,55 +11,38 @@ Contributing Guidelines
 
 ---
 
-### **Currently, there are the following limits on submitting pull requests**
-- Contributions must be discussed with the maintainer first by opening an issue, or they will likely be declined.
-- Only contributions against the [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop)-branch will be accepted. Authors submitting pull requests that target experimental feature branches or the [master](https://github.com/henrikfroehling/Trakt.NET/tree/master)-branch will likely be asked to target their pull request against the develop-branch.
-- Pull requests that do not merge easily with the tip of the develop-branch will be declined. The author will be asked to merge with the tip of the targeted branch and update the pull request.
-- Submissions must meet funtional expectations, including scenarios for which the maintainer does not yet have open source tests. This means you may be asked to fix and resubmit your pull request against a new open test case if it fails one of these tests.
-- Submissions must follow the rules stated in the [Coding Guidelines](https://github.com/henrikfroehling/Trakt.NET/blob/develop/coding_style.md).
-- Contributions must follow the [additional requirements](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md#additional-requirements-for-pull-requests).
-
----
-
-### **Additional requirements for pull requests**
-- Ensure [cross-platform compatibility](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md#cross-platform-compatibility) for new features.
-- New features must have accompanying [unit tests](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md#unit-tests) with "good" code coverage.
-- Changes to existing functionality needs to be checked that it does not break any existing [unit tests](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md#unit-tests).
-
----
-
-### **Coding conventions**
-- Use the coding style outlined in the [Coding Guidelines](https://github.com/henrikfroehling/Trakt.NET/blob/develop/coding_style.md).
-- Use plain code to validate arguments at public boundaries. Do not use contracts or magic helpers.
-```csharp
-if (argument == null)
-    throw new ArgumentNullException(nameof(argument), "optional message");
-```
-- Use `Debug.Assert()` for checks not needed in release builds. Always include a "message" string in your assert to identify failure conditions.
-
----
-
 ### **Getting started**
 1. Create your own fork of the repository
 2. Do the changes in your fork
    - Create a branch for the change with a descriptive name.
-3. If you like the change:
-   - Be sure you have followed the [Coding Guidelines](https://github.com/henrikfroehling/Trakt.NET/blob/develop/coding_style.md).
-   - Be sure you have followed the [additional requirements](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md#additional-requirements-for-pull-requests).
-   - Send a pull request
+3. If you like your change, send a pull request
+   - Be sure you have followed the [FAQ](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md#faq)
+   - Be sure you have followed the [General Requirements](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md#general-requirements)
 
 ---
 
-### **Build requirements**
+### **Build Requirements**
 - at least Visual Studio 2017 with support for C# 7.2
+
+---
+
+### **FAQ**
+1. Q: Which branch should I target?
+   A: By default you should target the branch `develop`. If you're working on an issue, usually the issue would have a label "target-branch", which states the branch to target for that specific issue.
+2. Q: How do I trigger a CI-Build for my pull request?
+   A: To trigger a CI-Build for you Pull Request branch, you should name your branch in the following pattern: "issue/{target-branch-name}/{your-branch-name}", e.g. "issue/develop/GH-105".
+
+---
+
+### **General Requirements**
+- Do not make big surprise pull requests with a lot of changes and without an associating issue.
+  - First, please open an issue to open a discussion, whether your changes do make an actual improvement.
+- Pull requests that do not merge easily with the tip of the develop-branch will be declined. The author will be asked to merge with the tip of the targeted branch and update the pull request.
+- Submissions must follow the rules stated in the [Coding Guidelines](https://github.com/henrikfroehling/Trakt.NET/blob/develop/coding_style.md).
+- New features must have accompanying with "good" code coverage.
+- Changes to existing functionality needs to be checked that it does not break any existing unit tests.
 
 ---
 
 ### **Cross-platform compatibility**
 - [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) is built against .NET Standard 1.1
-
----
-
-### **Unit Tests**
-- all new tests need to be added to the project `Trakt.NET.Tests`
-  - the test framework is XUnit

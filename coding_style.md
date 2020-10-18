@@ -24,6 +24,12 @@ C# Coding Style
 - prefix interface names with `I` (i.e. `public interface IRequest` instead of `public interface Request`)
 - prefix abstract class names with `A` (i.e. `public abstract ATraktRequest` instead of `public abstract TraktRequest`)
 - all types which are visible publicly throug the API, should have the prefix `Trakt`, interfaces the prefix `ITrakt` (i.e. `public class TraktSomeClass` instead of `public class SomeClass` and `public interface ITraktSomeInterface` instead of `public interface ISomeInterface`)
+- Use `Debug.Assert()` for checks not needed in release builds. Always include a "message" string in your assert to identify failure conditions.
+- Use plain code to validate arguments at public boundaries. Do not use contracts or magic helpers.
+```csharp
+if (argument == null)
+    throw new ArgumentNullException(nameof(argument), "optional message");
+```
 
 ## **Example File**
 `ATraktRequest'1.cs`
