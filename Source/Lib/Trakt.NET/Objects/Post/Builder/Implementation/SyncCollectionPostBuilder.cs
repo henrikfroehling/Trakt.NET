@@ -68,6 +68,20 @@
             return this;
         }
 
+        public ITraktSyncCollectionPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, ITraktMetadata>> movies)
+        {
+            foreach (var tuple in movies)
+            {
+                _moviesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
+                {
+                    Object = tuple.Item1,
+                    Metadata = tuple.Item2
+                });
+            }
+
+            return this;
+        }
+
         public ITraktSyncCollectionPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, ITraktMetadata, DateTime?>> movies)
         {
             foreach (var tuple in movies)
@@ -104,6 +118,20 @@
         public ITraktSyncCollectionPostBuilder WithShows(IEnumerable<ITraktShow> shows)
         {
             _shows.AddRange(shows);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata>> shows)
+        {
+            foreach (var tuple in shows)
+            {
+                _showsWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktShow>
+                {
+                    Object = tuple.Item1,
+                    Metadata = tuple.Item2
+                });
+            }
+
             return this;
         }
 
@@ -195,6 +223,20 @@
         public ITraktSyncCollectionPostBuilder WithEpisodes(IEnumerable<ITraktEpisode> episodes)
         {
             _episodes.AddRange(episodes);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, ITraktMetadata>> episodes)
+        {
+            foreach (var tuple in episodes)
+            {
+                _episodesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
+                {
+                    Object = tuple.Item1,
+                    Metadata = tuple.Item2
+                });
+            }
+
             return this;
         }
 
