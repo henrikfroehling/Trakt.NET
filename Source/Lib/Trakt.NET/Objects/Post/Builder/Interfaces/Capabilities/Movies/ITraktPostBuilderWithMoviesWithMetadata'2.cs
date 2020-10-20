@@ -9,6 +9,8 @@
     {
         TPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, ITraktMetadata>> movies);
 
+        TPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, DateTime?>> movies);
+
         TPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, ITraktMetadata, DateTime?>> movies);
     }
 }

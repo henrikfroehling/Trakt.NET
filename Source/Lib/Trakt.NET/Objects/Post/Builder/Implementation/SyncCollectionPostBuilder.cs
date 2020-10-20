@@ -82,6 +82,20 @@
             return this;
         }
 
+        public ITraktSyncCollectionPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, DateTime?>> movies)
+        {
+            foreach (var tuple in movies)
+            {
+                _moviesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
+                {
+                    Object = tuple.Item1,
+                    CollectedAt = tuple.Item2
+                });
+            }
+
+            return this;
+        }
+
         public ITraktSyncCollectionPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, ITraktMetadata, DateTime?>> movies)
         {
             foreach (var tuple in movies)
@@ -135,6 +149,20 @@
             return this;
         }
 
+        public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, DateTime?>> shows)
+        {
+            foreach (var tuple in shows)
+            {
+                _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
+                {
+                    Object = tuple.Item1,
+                    CollectedAt = tuple.Item2
+                });
+            }
+
+            return this;
+        }
+
         public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?>> shows)
         {
             foreach (var tuple in shows)
@@ -144,6 +172,35 @@
                     Object = tuple.Item1,
                     Metadata = tuple.Item2,
                     CollectedAt = tuple.Item3
+                });
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, PostSeasons>> shows)
+        {
+            foreach (var tuple in shows)
+            {
+                _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
+                {
+                    Object = tuple.Item1,
+                    Metadata = tuple.Item2,
+                    Seasons = tuple.Item3
+                });
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, DateTime?, PostSeasons>> shows)
+        {
+            foreach (var tuple in shows)
+            {
+                _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
+                {
+                    Object = tuple.Item1,
+                    CollectedAt = tuple.Item2
                 });
             }
 
@@ -234,6 +291,20 @@
                 {
                     Object = tuple.Item1,
                     Metadata = tuple.Item2
+                });
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, DateTime?>> episodes)
+        {
+            foreach (var tuple in episodes)
+            {
+                _episodesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
+                {
+                    Object = tuple.Item1,
+                    CollectedAt = tuple.Item2
                 });
             }
 

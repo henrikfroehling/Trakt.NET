@@ -9,6 +9,8 @@
     {
         TPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, ITraktMetadata>> episodes);
 
+        TPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, DateTime?>> episodes);
+
         TPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, ITraktMetadata, DateTime?>> episodes);
     }
 }
