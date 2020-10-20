@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder.Interfaces
+﻿namespace TraktNet.Objects.Post.Builder
 {
     using Capabilities;
     using Post.Syncs.Collection;

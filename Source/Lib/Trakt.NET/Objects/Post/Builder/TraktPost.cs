@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Objects.Post
 {
-    using Builder.Implementation;
-    using Builder.Interfaces;
+    using Builder;
 
     public sealed class TraktPost
     {

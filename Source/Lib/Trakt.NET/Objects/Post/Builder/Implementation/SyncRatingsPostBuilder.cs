@@ -1,11 +1,10 @@
-﻿namespace TraktNet.Objects.Post.Builder.Implementation
+﻿namespace TraktNet.Objects.Post.Builder
 {
+    using Capabilities;
     using Get.Episodes;
     using Get.Movies;
     using Get.Shows;
     using Helper;
-    using Interfaces;
-    using Interfaces.Capabilities;
     using Post.Syncs.Ratings;
     using System;
     using System.Collections.Generic;

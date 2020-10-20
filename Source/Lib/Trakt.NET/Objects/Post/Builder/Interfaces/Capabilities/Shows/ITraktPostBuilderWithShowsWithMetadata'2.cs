@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder.Interfaces.Capabilities
+﻿namespace TraktNet.Objects.Post.Builder.Capabilities
 {
     using Basic;
     using Get.Shows;

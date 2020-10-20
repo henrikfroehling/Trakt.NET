@@ -1,11 +1,10 @@
-﻿namespace TraktNet.Objects.Post.Builder.Implementation
+﻿namespace TraktNet.Objects.Post.Builder
 {
+    using Capabilities;
     using Get.Movies;
     using Get.Seasons;
     using Get.Shows;
     using Helper;
-    using Interfaces;
-    using Interfaces.Capabilities;
     using Post.Users.HiddenItems;
     using System.Collections.Generic;
 

@@ -1,9 +1,8 @@
-﻿namespace TraktNet.Objects.Post.Builder.Implementation.Helper
+﻿namespace TraktNet.Objects.Post.Builder.Helper
 {
     using Basic;
+    using Capabilities;
     using Get.Movies;
-    using Interfaces;
-    using Interfaces.Capabilities;
     using System;
     using System.Collections.Generic;
 

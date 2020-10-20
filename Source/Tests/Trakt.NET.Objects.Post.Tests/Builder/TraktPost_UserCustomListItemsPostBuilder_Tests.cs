@@ -2,7 +2,7 @@
 {
     using FluentAssertions;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Post.Builder.Interfaces;
+    using TraktNet.Objects.Post.Builder;
     using TraktNet.Objects.Post.Users.CustomListItems;
     using Xunit;
 

@@ -1,8 +1,9 @@
-﻿namespace TraktNet.Objects.Post.Tests.Builder
+namespace TraktNet.Objects.Post.Tests.Builder
 {
     using FluentAssertions;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Post.Builder.Interfaces;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Post.Builder;
     using TraktNet.Objects.Post.Syncs.Collection;
     using Xunit;
 

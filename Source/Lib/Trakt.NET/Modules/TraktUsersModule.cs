@@ -13,7 +13,7 @@
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
     using Objects.Post;
-    using Objects.Post.Builder.Interfaces;
+    using Objects.Post.Builder;
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;

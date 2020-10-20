@@ -1,8 +1,7 @@
-﻿namespace TraktNet.Objects.Post.Builder.Implementation.Helper
+﻿namespace TraktNet.Objects.Post.Builder.Helper
 {
+    using Capabilities;
     using Get.Shows;
-    using Interfaces;
-    using Interfaces.Capabilities;
     using System.Collections.Generic;
     using System.Linq;
 
