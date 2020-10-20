@@ -82,7 +82,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, DateTime?>> movies)
+        public ITraktSyncCollectionPostBuilder WithCollectedMovies(IEnumerable<Tuple<ITraktMovie, DateTime?>> movies)
         {
             foreach (var tuple in movies)
             {
@@ -149,7 +149,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, DateTime?>> shows)
+        public ITraktSyncCollectionPostBuilder WithCollectedShows(IEnumerable<Tuple<ITraktShow, DateTime?>> shows)
         {
             foreach (var tuple in shows)
             {
@@ -193,7 +193,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, DateTime?, PostSeasons>> shows)
+        public ITraktSyncCollectionPostBuilder WithCollectedShows(IEnumerable<Tuple<ITraktShow, DateTime?, PostSeasons>> shows)
         {
             foreach (var tuple in shows)
             {
@@ -297,7 +297,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, DateTime?>> episodes)
+        public ITraktSyncCollectionPostBuilder WithCollectedEpisodes(IEnumerable<Tuple<ITraktEpisode, DateTime?>> episodes)
         {
             foreach (var tuple in episodes)
             {
