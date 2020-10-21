@@ -7,7 +7,8 @@
     using System.Collections.Generic;
 
     internal class PostBuilderMovieAddedMetadata<TPostBuilderAddMovie, TPostObject>
-        : ITraktPostBuilderMovieAddedMetadata<TPostBuilderAddMovie, TPostObject>
+        : ITraktPostBuilderMovieAddedMetadata<TPostBuilderAddMovie, TPostObject>,
+          IPostBuilderMovieAddedMetadataDetail
           where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithMetadata<TPostBuilderAddMovie, TPostObject>
     {
         private readonly TPostBuilderAddMovie _postBuilder;

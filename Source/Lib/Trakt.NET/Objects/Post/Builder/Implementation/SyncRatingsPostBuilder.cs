@@ -15,13 +15,13 @@
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;
         private readonly List<ITraktEpisode> _episodes;
-        private readonly ITraktPostBuilderMovieAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> _ratedMovies;
-        private readonly ITraktPostBuilderShowAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> _ratedShows;
-        private readonly ITraktPostBuilderShowAddedRatingWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> _ratedShowsWithSeasons;
-        private readonly ITraktPostBuilderShowAddedRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> _ratedShowsWithSeasonsCollection;
-        private readonly ITraktPostBuilderShowAddedSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> _showsWithSeasons;
-        private readonly ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> _showsWithSeasonsCollection;
-        private readonly ITraktPostBuilderEpisodeAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> _ratedEpisodes;
+        private readonly PostBuilderMovieAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> _ratedMovies;
+        private readonly PostBuilderShowAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> _ratedShows;
+        private readonly PostBuilderShowAddedRatingWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> _ratedShowsWithSeasons;
+        private readonly PostBuilderShowAddedRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> _ratedShowsWithSeasonsCollection;
+        private readonly PostBuilderShowAddedSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> _showsWithSeasons;
+        private readonly PostBuilderShowAddedSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> _showsWithSeasonsCollection;
+        private readonly PostBuilderEpisodeAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> _ratedEpisodes;
 
         internal SyncRatingsPostBuilder()
         {

@@ -8,7 +8,8 @@
     using System.Linq;
 
     internal class PostBuilderShowAddedMetadataWithSeasons<TPostBuilderAddShow, TPostObject>
-        : ITraktPostBuilderShowAddedMetadataWithSeasons<TPostBuilderAddShow, TPostObject>
+        : ITraktPostBuilderShowAddedMetadataWithSeasons<TPostBuilderAddShow, TPostObject>,
+          IPostBuilderShowAddedMetadataWithSeasonsDetail
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithMetadataWithSeasons<TPostBuilderAddShow, TPostObject>
     {
         private readonly TPostBuilderAddShow _postBuilder;

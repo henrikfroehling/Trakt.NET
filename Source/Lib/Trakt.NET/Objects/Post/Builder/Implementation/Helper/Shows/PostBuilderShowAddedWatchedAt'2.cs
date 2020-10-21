@@ -6,7 +6,8 @@
     using System.Collections.Generic;
 
     internal class PostBuilderShowAddedWatchedAt<TPostBuilderAddShow, TPostObject>
-        : ITraktPostBuilderShowAddedWatchedAt<TPostBuilderAddShow, TPostObject>
+        : ITraktPostBuilderShowAddedWatchedAt<TPostBuilderAddShow, TPostObject>,
+          IPostBuilderShowAddedWatchedAtDetail
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithWatchedAt<TPostBuilderAddShow, TPostObject>
     {
         private readonly TPostBuilderAddShow _postBuilder;

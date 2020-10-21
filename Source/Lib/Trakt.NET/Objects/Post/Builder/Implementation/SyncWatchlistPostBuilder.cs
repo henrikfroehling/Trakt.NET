@@ -14,8 +14,8 @@
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;
         private readonly List<ITraktEpisode> _episodes;
-        private readonly ITraktPostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> _showsWithSeasons;
-        private readonly ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> _showsWithSeasonsCollection;
+        private readonly PostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> _showsWithSeasons;
+        private readonly PostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> _showsWithSeasonsCollection;
 
         internal SyncWatchlistPostBuilder()
         {

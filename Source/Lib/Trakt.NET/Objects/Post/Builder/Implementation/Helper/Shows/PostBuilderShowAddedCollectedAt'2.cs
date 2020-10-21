@@ -6,7 +6,8 @@
     using System.Collections.Generic;
 
     internal class PostBuilderShowAddedCollectedAt<TPostBuilderAddShow, TPostObject>
-        : ITraktPostBuilderShowAddedCollectedAt<TPostBuilderAddShow, TPostObject>
+        : ITraktPostBuilderShowAddedCollectedAt<TPostBuilderAddShow, TPostObject>,
+          IPostBuilderShowAddedCollectedAtDetail
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithCollectedAt<TPostBuilderAddShow, TPostObject>
     {
         private readonly TPostBuilderAddShow _postBuilder;

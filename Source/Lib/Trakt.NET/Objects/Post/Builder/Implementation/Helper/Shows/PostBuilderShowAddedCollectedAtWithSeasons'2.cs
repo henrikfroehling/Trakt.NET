@@ -7,7 +7,8 @@
     using System.Linq;
 
     internal class PostBuilderShowAddedCollectedAtWithSeasons<TPostBuilderAddShow, TPostObject>
-        : ITraktPostBuilderShowAddedCollectedAtWithSeasons<TPostBuilderAddShow, TPostObject>
+        : ITraktPostBuilderShowAddedCollectedAtWithSeasons<TPostBuilderAddShow, TPostObject>,
+          IPostBuilderShowAddedCollectedAtWithSeasonsDetail
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithCollectedAtWithSeasons<TPostBuilderAddShow, TPostObject>
     {
         private readonly TPostBuilderAddShow _postBuilder;

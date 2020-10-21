@@ -7,7 +7,8 @@
     using System.Linq;
 
     internal class PostBuilderShowAddedRatingWithSeasons<TPostBuilderAddShow, TPostObject>
-        : ITraktPostBuilderShowAddedRatingWithSeasons<TPostBuilderAddShow, TPostObject>
+        : ITraktPostBuilderShowAddedRatingWithSeasons<TPostBuilderAddShow, TPostObject>,
+          IPostBuilderShowAddedRatingWithSeasonsDetail
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithRatingWithSeasons<TPostBuilderAddShow, TPostObject>
     {
         private readonly TPostBuilderAddShow _postBuilder;

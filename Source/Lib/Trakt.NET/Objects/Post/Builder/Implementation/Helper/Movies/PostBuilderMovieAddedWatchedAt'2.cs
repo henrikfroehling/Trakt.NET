@@ -6,7 +6,8 @@
     using System.Collections.Generic;
 
     internal class PostBuilderMovieAddedWatchedAt<TPostBuilderAddMovie, TPostObject>
-        : ITraktPostBuilderMovieAddedWatchedAt<TPostBuilderAddMovie, TPostObject>
+        : ITraktPostBuilderMovieAddedWatchedAt<TPostBuilderAddMovie, TPostObject>,
+          IPostBuilderMovieAddedWatchedAtDetail
           where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithWatchedAt<TPostBuilderAddMovie, TPostObject>
     {
         private readonly TPostBuilderAddMovie _postBuilder;

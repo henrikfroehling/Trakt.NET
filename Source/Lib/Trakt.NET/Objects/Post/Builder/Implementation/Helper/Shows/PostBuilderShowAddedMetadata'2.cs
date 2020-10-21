@@ -7,7 +7,8 @@
     using System.Collections.Generic;
 
     internal class PostBuilderShowAddedMetadata<TPostBuilderAddShow, TPostObject>
-        : ITraktPostBuilderShowAddedMetadata<TPostBuilderAddShow, TPostObject>
+        : ITraktPostBuilderShowAddedMetadata<TPostBuilderAddShow, TPostObject>,
+          IPostBuilderShowAddedMetadataDetail
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithMetadata<TPostBuilderAddShow, TPostObject>
     {
         private readonly TPostBuilderAddShow _postBuilder;

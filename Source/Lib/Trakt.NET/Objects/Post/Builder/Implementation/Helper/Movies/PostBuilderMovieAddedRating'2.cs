@@ -6,7 +6,8 @@
     using System.Collections.Generic;
 
     internal class PostBuilderMovieAddedRating<TPostBuilderAddMovie, TPostObject>
-        : ITraktPostBuilderMovieAddedRating<TPostBuilderAddMovie, TPostObject>
+        : ITraktPostBuilderMovieAddedRating<TPostBuilderAddMovie, TPostObject>,
+          IPostBuilderMovieAddedRatingDetail
           where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithRating<TPostBuilderAddMovie, TPostObject>
     {
         private readonly TPostBuilderAddMovie _postBuilder;

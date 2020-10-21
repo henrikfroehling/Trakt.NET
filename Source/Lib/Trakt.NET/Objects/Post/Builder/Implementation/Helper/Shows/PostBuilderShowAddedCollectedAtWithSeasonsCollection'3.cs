@@ -6,7 +6,8 @@
     using System.Collections.Generic;
 
     internal class PostBuilderShowAddedCollectedAtWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
-        : ITraktPostBuilderShowAddedCollectedAtWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
+        : ITraktPostBuilderShowAddedCollectedAtWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>,
+          IPostBuilderShowAddedCollectedAtWithSeasonsCollectionDetail<TSeasonCollection>
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>,
                                       ITraktPostBuilderAddShowWithCollectedAtWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
     {

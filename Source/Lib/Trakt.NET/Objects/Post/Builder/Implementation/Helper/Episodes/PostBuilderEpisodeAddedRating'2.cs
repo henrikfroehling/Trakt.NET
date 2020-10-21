@@ -6,7 +6,8 @@
     using System.Collections.Generic;
 
     internal class PostBuilderEpisodeAddedRating<TPostBuilderAddEpisode, TPostObject>
-        : ITraktPostBuilderEpisodeAddedRating<TPostBuilderAddEpisode, TPostObject>
+        : ITraktPostBuilderEpisodeAddedRating<TPostBuilderAddEpisode, TPostObject>,
+          IPostBuilderEpisodeAddedRatingDetail
           where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithRating<TPostBuilderAddEpisode, TPostObject>
     {
         private readonly TPostBuilderAddEpisode _postBuilder;

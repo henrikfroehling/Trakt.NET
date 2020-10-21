@@ -14,8 +14,8 @@
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;
         private readonly List<ITraktPerson> _persons;
-        private readonly ITraktPostBuilderShowAddedSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost> _showsWithSeasons;
-        private readonly ITraktPostBuilderShowAddedSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons> _showsWithSeasonsCollection;
+        private readonly PostBuilderShowAddedSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost> _showsWithSeasons;
+        private readonly PostBuilderShowAddedSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons> _showsWithSeasonsCollection;
 
         internal UserCustomListItemsPostBuilder()
         {

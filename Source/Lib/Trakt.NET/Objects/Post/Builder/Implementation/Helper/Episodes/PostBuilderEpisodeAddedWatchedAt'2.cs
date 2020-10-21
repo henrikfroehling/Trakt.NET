@@ -6,7 +6,8 @@
     using System.Collections.Generic;
 
     internal class PostBuilderEpisodeAddedWatchedAt<TPostBuilderAddEpisode, TPostObject>
-        : ITraktPostBuilderEpisodeAddedWatchedAt<TPostBuilderAddEpisode, TPostObject>
+        : ITraktPostBuilderEpisodeAddedWatchedAt<TPostBuilderAddEpisode, TPostObject>,
+          IPostBuilderEpisodeAddedWatchedAtDetail
           where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithWatchedAt<TPostBuilderAddEpisode, TPostObject>
     {
         private readonly TPostBuilderAddEpisode _postBuilder;

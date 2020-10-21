@@ -16,13 +16,13 @@
         private readonly List<ITraktShow> _shows;
         private readonly List<ITraktEpisode> _episodes;
         private readonly List<ulong> _historyIds;
-        private readonly ITraktPostBuilderMovieAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedMovies;
-        private readonly ITraktPostBuilderShowAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedShows;
-        private readonly ITraktPostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedShowsWithSeasons;
-        private readonly ITraktPostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> _watchedShowsWithSeasonsCollection;
-        private readonly ITraktPostBuilderShowAddedSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _showsWithSeasons;
-        private readonly ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> _showsWithSeasonsCollection;
-        private readonly ITraktPostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedEpisodes;
+        private readonly PostBuilderMovieAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedMovies;
+        private readonly PostBuilderShowAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedShows;
+        private readonly PostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedShowsWithSeasons;
+        private readonly PostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> _watchedShowsWithSeasonsCollection;
+        private readonly PostBuilderShowAddedSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _showsWithSeasons;
+        private readonly PostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> _showsWithSeasonsCollection;
+        private readonly PostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedEpisodes;
 
         internal SyncHistoryRemovePostBuilder()
         {

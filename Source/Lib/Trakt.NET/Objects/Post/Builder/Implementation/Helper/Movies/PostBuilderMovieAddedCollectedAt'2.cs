@@ -6,7 +6,8 @@
     using System.Collections.Generic;
 
     internal class PostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>
-        : ITraktPostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>
+        : ITraktPostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>,
+          IPostBuilderMovieAddedCollectedAtDetail
           where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithCollectedAt<TPostBuilderAddMovie, TPostObject>
     {
         private readonly TPostBuilderAddMovie _postBuilder;
