@@ -216,7 +216,8 @@
                 _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
                 {
                     Object = tuple.Item1,
-                    CollectedAt = tuple.Item2
+                    CollectedAt = tuple.Item2,
+                    Seasons = tuple.Item3
                 });
             }
 
