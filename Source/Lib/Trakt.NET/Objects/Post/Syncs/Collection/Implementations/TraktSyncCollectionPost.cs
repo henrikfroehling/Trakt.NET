@@ -29,10 +29,6 @@
         /// </summary>
         public IEnumerable<ITraktSyncCollectionPostEpisode> Episodes { get; set; }
 
-        /// <summary>Returns a new <see cref="TraktSyncCollectionPostBuilder" /> instance.</summary>
-        /// <returns>A new <see cref="TraktSyncCollectionPostBuilder" /> instance.</returns>
-        public static TraktSyncCollectionPostBuilder Builder() => new TraktSyncCollectionPostBuilder();
-
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {
             IObjectJsonWriter<ITraktSyncCollectionPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktSyncCollectionPost>();

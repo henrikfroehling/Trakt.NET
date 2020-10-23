@@ -29,10 +29,6 @@
         /// </summary>
         public IEnumerable<ITraktSyncWatchlistPostEpisode> Episodes { get; set; }
 
-        /// <summary>Returns a new <see cref="TraktSyncWatchlistPostBuilder" /> instance.</summary>
-        /// <returns>A new <see cref="TraktSyncWatchlistPostBuilder" /> instance.</returns>
-        public static TraktSyncWatchlistPostBuilder Builder() => new TraktSyncWatchlistPostBuilder();
-
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {
             IObjectJsonWriter<ITraktSyncWatchlistPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktSyncWatchlistPost>();

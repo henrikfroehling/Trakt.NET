@@ -30,10 +30,6 @@
         /// </summary>
         public IEnumerable<ITraktPerson> People { get; set; }
 
-        /// <summary>Returns a new <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</summary>
-        /// <returns>A new <see cref="TraktUserCustomListItemsPostBuilder" /> instance.</returns>
-        public static TraktUserCustomListItemsPostBuilder Builder() => new TraktUserCustomListItemsPostBuilder();
-
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {
             IObjectJsonWriter<ITraktUserCustomListItemsPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktUserCustomListItemsPost>();

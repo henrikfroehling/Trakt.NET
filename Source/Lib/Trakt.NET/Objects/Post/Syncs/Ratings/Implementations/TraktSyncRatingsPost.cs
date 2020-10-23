@@ -29,10 +29,6 @@
         /// </summary>
         public IEnumerable<ITraktSyncRatingsPostEpisode> Episodes { get; set; }
 
-        /// <summary>Returns a new <see cref="TraktSyncRatingsPostBuilder" /> instance.</summary>
-        /// <returns>A new <see cref="TraktSyncRatingsPostBuilder" /> instance.</returns>
-        public static TraktSyncRatingsPostBuilder Builder() => new TraktSyncRatingsPostBuilder();
-
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {
             IObjectJsonWriter<ITraktSyncRatingsPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktSyncRatingsPost>();
