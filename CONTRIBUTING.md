@@ -27,10 +27,12 @@ Contributing Guidelines
 ---
 
 ### **FAQ**
-1. Q: Which branch should I target?
-   A: By default you should target the branch `develop`. If you're working on an issue, usually the issue would have a label "target-branch", which states the branch to target for that specific issue.
-2. Q: How do I trigger a CI-Build for my pull request?
-   A: To trigger a CI-Build for you Pull Request branch, you should name your branch in the following pattern: "issue/{target-branch-name}/{your-branch-name}", e.g. "issue/develop/GH-105".
+1. **Q: Which branch should I target?**
+
+   _A: By default you should target the branch `develop`. If you're working on an issue, usually the issue would have a label "target-branch", which states the branch to target for that specific issue._
+2. **Q: How do I trigger a CI-Build for my pull request?**
+
+   _A: To trigger a CI-Build for you Pull Request branch, you should name your branch in the following pattern: `issue/{target-branch-name}/{your-branch-name}`, e.g. `issue/develop/your-branch-name`._
 
 ---
 
@@ -39,7 +41,7 @@ Contributing Guidelines
   - First, please open an issue to open a discussion, whether your changes do make an actual improvement.
 - Pull requests that do not merge easily with the tip of the develop-branch will be declined. The author will be asked to merge with the tip of the targeted branch and update the pull request.
 - Submissions must follow the rules stated in the [Coding Guidelines](https://github.com/henrikfroehling/Trakt.NET/blob/develop/coding_style.md).
-- New features must have accompanying with "good" code coverage.
+- New features must have accompanying tests with "good" code coverage.
 - Changes to existing functionality needs to be checked that it does not break any existing unit tests.
 
 ---
