@@ -9,6 +9,8 @@
     using Objects.Get.Syncs.Playback;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
+    using Objects.Post;
+    using Objects.Post.Builder;
     using Objects.Post.Syncs.Collection;
     using Objects.Post.Syncs.Collection.Responses;
     using Objects.Post.Syncs.History;
@@ -179,9 +181,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/get-collection/add-items-to-collection">"Trakt API Doc - Sync: Add to Collection"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktSyncCollectionPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktSyncCollectionPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktSyncCollectionPost" />.
-        /// See also <seealso cref="TraktSyncCollectionPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewSyncCollectionPost()" />.
         /// </para>
         /// </summary>
         /// <param name="collectionPost">An <see cref="ITraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
@@ -213,9 +215,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-collection/remove-items-from-collection">"Trakt API Doc - Sync: Remove from Collection"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktSyncCollectionPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktSyncCollectionPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktSyncCollectionPost" />.
-        /// See also <seealso cref="TraktSyncCollectionPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewSyncCollectionPost()" />.
         /// </para>
         /// </summary>
         /// <param name="collectionRemovePost">An <see cref="ITraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
@@ -354,9 +356,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/add-to-history/add-items-to-watched-history">"Trakt API Doc - Sync: Add to History"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktSyncHistoryPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktSyncHistoryPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktSyncHistoryPost" />.
-        /// See also <seealso cref="TraktSyncHistoryPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewSyncHistoryPost()" />.
         /// </para>
         /// </summary>
         /// <param name="historyPost">An <see cref="ITraktSyncHistoryPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
@@ -388,9 +390,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-history/remove-items-from-history">"Trakt API Doc - Sync: Remove from History"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktSyncHistoryRemovePostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktSyncHistoryRemovePostBuilder" /> to create an instance
         /// of the required <see cref="ITraktSyncHistoryRemovePost" />.
-        /// See also <seealso cref="TraktSyncHistoryRemovePost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewSyncHistoryRemovePost()" />.
         /// </para>
         /// </summary>
         /// <param name="historyRemovePost">An <see cref="ITraktSyncHistoryRemovePost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
@@ -465,9 +467,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/add-ratings/add-new-ratings">"Trakt API Doc - Sync: Add Ratings"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktSyncRatingsPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktSyncRatingsPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktSyncRatingsPost" />.
-        /// See also <seealso cref="TraktSyncRatingsPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewSyncRatingsPost()" />.
         /// </para>
         /// </summary>
         /// <param name="ratingsPost">An <see cref="ITraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
@@ -499,9 +501,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-ratings/remove-ratings">"Trakt API Doc - Sync: Remove Ratings"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktSyncRatingsPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktSyncRatingsPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktSyncRatingsPost" />.
-        /// See also <seealso cref="TraktSyncRatingsPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewSyncRatingsPost()" />.
         /// </para>
         /// </summary>
         /// <param name="ratingsRemovePost">An <see cref="ITraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
@@ -578,9 +580,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/add-to-watchlist/add-items-to-watchlist">"Trakt API Doc - Sync: Add to Watchlist"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktSyncWatchlistPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktSyncWatchlistPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktSyncWatchlistPost" />.
-        /// See also <seealso cref="TraktSyncWatchlistPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewSyncWatchlistPost()" />.
         /// </para>
         /// </summary>
         /// <param name="watchlistPost">An <see cref="ITraktSyncWatchlistPost" /> instance containing all shows, seasons, episodes and movies, which should be added.</param>
@@ -612,9 +614,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-watchlist/remove-items-from-watchlists">"Trakt API Doc - Sync: Remove from Watchlist"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktSyncWatchlistPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktSyncWatchlistPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktSyncWatchlistPost" />.
-        /// See also <seealso cref="TraktSyncWatchlistPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewSyncWatchlistPost()" />.
         /// </para>
         /// </summary>
         /// <param name="watchlistRemovePost">An <see cref="ITraktSyncWatchlistPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>

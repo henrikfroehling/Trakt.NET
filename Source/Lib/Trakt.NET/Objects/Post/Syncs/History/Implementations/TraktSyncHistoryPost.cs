@@ -29,10 +29,6 @@
         /// </summary>
         public IEnumerable<ITraktSyncHistoryPostEpisode> Episodes { get; set; }
 
-        /// <summary>Returns a new <see cref="TraktSyncHistoryPostBuilder" /> instance.</summary>
-        /// <returns>A new <see cref="TraktSyncHistoryPostBuilder" /> instance.</returns>
-        public static TraktSyncHistoryPostBuilder Builder() => new TraktSyncHistoryPostBuilder();
-
         public virtual Task<string> ToJson(CancellationToken cancellationToken = default)
         {
             IObjectJsonWriter<ITraktSyncHistoryPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktSyncHistoryPost>();

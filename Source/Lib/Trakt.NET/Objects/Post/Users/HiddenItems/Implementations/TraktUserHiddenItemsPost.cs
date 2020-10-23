@@ -29,10 +29,6 @@
         /// </summary>
         public IEnumerable<ITraktUserHiddenItemsPostSeason> Seasons { get; set; }
 
-        /// <summary>Returns a new <see cref="TraktUserHiddenItemsPostBuilder" /> instance.</summary>
-        /// <returns>A new <see cref="TraktUserHiddenItemsPostBuilder" /> instance.</returns>
-        public static TraktUserHiddenItemsPostBuilder Builder() => new TraktUserHiddenItemsPostBuilder();
-
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {
             IObjectJsonWriter<ITraktUserHiddenItemsPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktUserHiddenItemsPost>();
