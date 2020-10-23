@@ -1,5 +1,62 @@
-Release notes
+Changelog
 =============
+
+Version 1.1.0
+===
+
+#### 1.1.0
+(2020-10-23)
+
+Added:
+
+- Add support for "users/{username}/lists/reorder" POST request ([Issue 59](https://github.com/henrikfroehling/Trakt.NET/issues/59))
+- Add support for "users/{username}/lists/{list_id}/items/reorder" POST request ([Issue 66](https://github.com/henrikfroehling/Trakt.NET/issues/66))
+- Add support for "date_format" property in ITraktAccountSettings ([Issue 67](https://github.com/henrikfroehling/Trakt.NET/issues/67))
+- Add support for "last_updated_at" property in "ITraktWatchedShow" ([Issue 68](https://github.com/henrikfroehling/Trakt.NET/issues/68))
+- Add support for "last_updated_at" property in "ITraktCollectionShow" ([Issue 69](https://github.com/henrikfroehling/Trakt.NET/issues/69))
+- Add support for "countries/{type}" GET request ([Issue 76](https://github.com/henrikfroehling/Trakt.NET/issues/76))
+- Add support for "languages/{type}" GET request ([Issue 77](https://github.com/henrikfroehling/Trakt.NET/issues/77))
+- Add support for "updated_at" property in "ITraktCollectionMovie" ([Issue 78](https://github.com/henrikfroehling/Trakt.NET/issues/78))
+- Add support for "last_updated_at" property in "ITraktWatchedMovie" ([Issue 79](https://github.com/henrikfroehling/Trakt.NET/issues/79))
+- Add support for absolute episode numbers in "/checkin" POST request ([Issue 81](https://github.com/henrikfroehling/Trakt.NET/issues/81))
+- Add support for absolute episode numbers in "/scrobble" POST request ([Issue 82](https://github.com/henrikfroehling/Trakt.NET/issues/82))
+- Add support for "last_activity" flag in "shows/{id}/progress/collection" GET request ([Issue 83](https://github.com/henrikfroehling/Trakt.NET/issues/83))
+- Add support for "last_activity" flag in "shows/{id}/progress/watched" GET request ([Issue 84](https://github.com/henrikfroehling/Trakt.NET/issues/84))
+- Add support for "include_replies=only" flag in "users/{username}/comments" GET request ([Issue 85](https://github.com/henrikfroehling/Trakt.NET/issues/85))
+- Add support for "ignore_collected" flag in "recommendations/movies" GET request ([Issue 104](https://github.com/henrikfroehling/Trakt.NET/issues/104))
+- Add support for "ignore_collected" flag in "recommendations/shows" GET request ([Issue 105](https://github.com/henrikfroehling/Trakt.NET/issues/105))
+- Add support for "reset_at" flag in "sync/watched/shows" GET request ([Issue 126](https://github.com/henrikfroehling/Trakt.NET/issues/126))
+- Add support for "reset_at" flag in "users/{username}/watched/shows" GET request ([Issue 127](https://github.com/henrikfroehling/Trakt.NET/issues/127))
+- Add support for pagination for "sync/ratings" GET request ([Issue 128](https://github.com/henrikfroehling/Trakt.NET/issues/128))
+- Add support for pagination for "users/{username}/ratings" GET request ([Issue 129](https://github.com/henrikfroehling/Trakt.NET/issues/129))
+- Add support for new response headers "X-Applied-Sort-By" and "X-Applied-Sort-How" ([Issue 136](https://github.com/henrikfroehling/Trakt.NET/issues/136))
+- Add support for sorting in "sync/watchlist" GET request ([Issue 137](https://github.com/henrikfroehling/Trakt.NET/issues/137))
+- Add support for sorting in "users/{username}/watchlist/" GET request ([Issue 138](https://github.com/henrikfroehling/Trakt.NET/issues/138))
+- Add support for "uuid" property in ITraktUserIds ([Issue 162](https://github.com/henrikfroehling/Trakt.NET/issues/162))
+- Add support for "users/{id}/recommendations/{type}/{sort}" GET request ([Issue 166](https://github.com/henrikfroehling/Trakt.NET/issues/166))
+- Add support for "status" property in ITraktMovie ([Issue 175](https://github.com/henrikfroehling/Trakt.NET/issues/175))
+
+Fixed:
+
+- Merge GH-94: Redundant checks for ITraktMovie properties in TraktScrobbleModule ([Issue 95](https://github.com/henrikfroehling/Trakt.NET/issues/95))
+- Missing properties in ITraktMetadata ([Issue 98](https://github.com/henrikfroehling/Trakt.NET/issues/98))
+- Adding GuestStars as ExtendedInfo when calling GetEpisodePeopleAsync does not return the guest starts ([Issue 184](https://github.com/henrikfroehling/Trakt.NET/issues/184))
+- Return same instance type for people requests in Episodes, Shows and Seasons module ([Issue 185](https://github.com/henrikfroehling/Trakt.NET/issues/185))
+
+Improved:
+
+- Improve post request builder ([Issue 5](https://github.com/henrikfroehling/Trakt.NET/issues/5))
+- Improve / replace UriTemplate implementation ([Issue 58](https://github.com/henrikfroehling/Trakt.NET/issues/58))
+- Improve implementation of filters ([Issue 74](https://github.com/henrikfroehling/Trakt.NET/issues/74))
+- Improve JSON reader implementation ([Issue 143](https://github.com/henrikfroehling/Trakt.NET/issues/143))
+
+Removed:
+
+- Remove Facebook sharing ([Issue 55](https://github.com/henrikfroehling/Trakt.NET/issues/55))
+- Remove prefix "X" from property names in ITraktResponseHeaders ([Issue 135](https://github.com/henrikfroehling/Trakt.NET/issues/135))
+- Remove deprecated properties due to new people methods ([Issue 142](https://github.com/henrikfroehling/Trakt.NET/issues/142))
+
+---------
 
 Version 1.0.2
 ===
