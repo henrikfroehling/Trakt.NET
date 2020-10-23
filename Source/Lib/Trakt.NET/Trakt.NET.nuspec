@@ -6,7 +6,7 @@
         <title>Trakt.NET</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
-        <licenseUrl>https://github.com/henrikfroehling/Trakt.NET/blob/develop/LICENSE.md</licenseUrl>
+        <license>https://github.com/henrikfroehling/Trakt.NET/blob/develop/LICENSE.md</license>
         <projectUrl>https://github.com/henrikfroehling/Trakt.NET</projectUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>.NET wrapper library for the Trakt.tv API.
