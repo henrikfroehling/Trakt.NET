@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktShowCrewMember> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktShowCrewMember));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,13 +23,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CREW_MEMBER_PROPERTY_NAME_JOB:
-                            traktShowCrewMember.Job = await jsonReader.ReadAsStringAsync(cancellationToken);
-                            break;
-                        case JsonProperties.CREW_MEMBER_PROPERTY_NAME_JOBS:
+                        case JsonProperties.PROPERTY_NAME_JOBS:
                             traktShowCrewMember.Jobs = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SHOW_CREW_MEMBER_PROPERTY_NAME_EPISODE_COUNT:
+                        case JsonProperties.PROPERTY_NAME_EPISODE_COUNT:
                             {
                                 var value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -39,7 +35,7 @@
 
                                 break;
                             }
-                        case JsonProperties.CREW_MEMBER_PROPERTY_NAME_PERSON:
+                        case JsonProperties.PROPERTY_NAME_PERSON:
                             traktShowCrewMember.Person = await personReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

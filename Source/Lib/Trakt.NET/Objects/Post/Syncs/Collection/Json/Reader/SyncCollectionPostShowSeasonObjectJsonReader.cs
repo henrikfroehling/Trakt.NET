@@ -10,13 +10,12 @@
     {
         public override async Task<ITraktSyncCollectionPostShowSeason> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncCollectionPostShowSeason));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 ITraktSyncCollectionPostShowSeason traktSyncCollectionPostShowSeason = new TraktSyncCollectionPostShowSeason();
-                var syncCollectionPostShowEpisodeArrayJsonReader = new SyncCollectionPostShowEpisodeArrayJsonReader();
+                var syncCollectionPostShowEpisodeArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostShowEpisode>();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -24,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_COLLECTION_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER:
+                        case JsonProperties.PROPERTY_NAME_NUMBER:
                             {
                                 Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -33,7 +32,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_COLLECTION_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             traktSyncCollectionPostShowSeason.Episodes = await syncCollectionPostShowEpisodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

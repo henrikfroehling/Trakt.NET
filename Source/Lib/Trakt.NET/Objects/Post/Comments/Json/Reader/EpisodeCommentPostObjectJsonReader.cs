@@ -11,8 +11,7 @@
     {
         public override async Task<ITraktEpisodeCommentPost> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktEpisodeCommentPost));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -26,10 +25,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.COMMENT_POST_PROPERTY_NAME_COMMENT:
+                        case JsonProperties.PROPERTY_NAME_COMMENT:
                             episodeCommentPost.Comment = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.COMMENT_POST_PROPERTY_NAME_SPOILER:
+                        case JsonProperties.PROPERTY_NAME_SPOILER:
                             {
                                 bool? value = await jsonReader.ReadAsBooleanAsync(cancellationToken);
 
@@ -38,10 +37,10 @@
 
                                 break;
                             }
-                        case JsonProperties.COMMENT_POST_PROPERTY_NAME_SHARING:
+                        case JsonProperties.PROPERTY_NAME_SHARING:
                             episodeCommentPost.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_COMMENT_POST_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             episodeCommentPost.Episode = await episodeReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -9,6 +9,7 @@
     using Requests.Handler;
     using Requests.Movies;
     using Requests.Parameters;
+    using Requests.Parameters.Filter;
     using Responses;
     using System;
     using System.Collections.Generic;
@@ -448,7 +449,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktTrendingMovie>> GetTrendingMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                    TraktMovieFilter filter = null,
+                                                                                    ITraktMovieFilter filter = null,
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default)
         {
@@ -490,7 +491,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMovie>> GetPopularMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                           TraktMovieFilter filter = null,
+                                                                           ITraktMovieFilter filter = null,
                                                                            TraktPagedParameters pagedParameters = null,
                                                                            CancellationToken cancellationToken = default)
         {
@@ -534,7 +535,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostPlayedMoviesAsync(TraktTimePeriod period = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
-                                                                                     TraktMovieFilter filter = null,
+                                                                                     ITraktMovieFilter filter = null,
                                                                                      TraktPagedParameters pagedParameters = null,
                                                                                      CancellationToken cancellationToken = default)
         {
@@ -579,7 +580,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostWatchedMoviesAsync(TraktTimePeriod period = null,
                                                                                       TraktExtendedInfo extendedInfo = null,
-                                                                                      TraktMovieFilter filter = null,
+                                                                                      ITraktMovieFilter filter = null,
                                                                                       TraktPagedParameters pagedParameters = null,
                                                                                       CancellationToken cancellationToken = default)
         {
@@ -624,7 +625,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCMovie>> GetMostCollectedMoviesAsync(TraktTimePeriod period = null,
                                                                                         TraktExtendedInfo extendedInfo = null,
-                                                                                        TraktMovieFilter filter = null,
+                                                                                        ITraktMovieFilter filter = null,
                                                                                         TraktPagedParameters pagedParameters = null,
                                                                                         CancellationToken cancellationToken = default)
         {
@@ -667,7 +668,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostAnticipatedMovie>> GetMostAnticipatedMoviesAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                                  TraktMovieFilter filter = null,
+                                                                                                  ITraktMovieFilter filter = null,
                                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                                   CancellationToken cancellationToken = default)
         {

@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktSearchResult> CreateObjectReader() => new SearchResultObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSearchResult> CreateArrayReader() => new SearchResultArrayJsonReader();
-
         public IObjectJsonWriter<ITraktSearchResult> CreateObjectWriter() => new SearchResultObjectJsonWriter();
     }
 }

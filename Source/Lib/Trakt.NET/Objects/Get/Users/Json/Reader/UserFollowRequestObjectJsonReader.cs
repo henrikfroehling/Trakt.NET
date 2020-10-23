@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktUserFollowRequest> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserFollowRequest));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -23,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_FOLLOW_REQUEST_PROPERTY_NAME_ID:
+                        case JsonProperties.PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -32,7 +31,7 @@
 
                                 break;
                             }
-                        case JsonProperties.USER_FOLLOW_REQUEST_PROPERTY_NAME_REQUESTED_AT:
+                        case JsonProperties.PROPERTY_NAME_REQUESTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -41,7 +40,7 @@
 
                                 break;
                             }
-                        case JsonProperties.USER_FOLLOW_REQUEST_PROPERTY_NAME_USER:
+                        case JsonProperties.PROPERTY_NAME_USER:
                             traktUserFollowRequest.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

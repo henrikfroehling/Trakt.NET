@@ -1,4 +1,4 @@
-namespace Trakt.NET.Tests.Utility.Traits
+﻿namespace Trakt.NET.Tests.Utility.Traits
 {
     using System.Collections.Generic;
     using Xunit.Abstractions;

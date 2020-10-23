@@ -1,10 +1,13 @@
 ﻿namespace TraktNet.Objects.Get.Tests.People.Credits.Json.Reader
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.People.Credits.Json.Reader;
+    using TraktNet.Objects.Get.People.Credits;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.People.Credits.JsonReader")]
@@ -13,7 +16,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             showCreditsCastItems.Should().NotBeNull().And.BeEmpty();
@@ -22,7 +25,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
@@ -30,7 +33,7 @@
             var items = showCreditsCastItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Character.Should().Be("Joe Brody");
+            items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -43,7 +46,7 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Character.Should().Be("Iris West");
+            items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
             items[1].Show.Should().NotBeNull();
             items[1].Show.Title.Should().Be("The Flash");
             items[1].Show.Year.Should().Be(2014);
@@ -59,7 +62,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
@@ -67,7 +70,7 @@
             var items = showCreditsCastItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Character.Should().BeNull();
+            items[0].Characters.Should().BeNull();
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -80,7 +83,7 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Character.Should().Be("Iris West");
+            items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
             items[1].Show.Should().NotBeNull();
             items[1].Show.Title.Should().Be("The Flash");
             items[1].Show.Year.Should().Be(2014);
@@ -96,7 +99,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
@@ -104,7 +107,7 @@
             var items = showCreditsCastItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Character.Should().Be("Joe Brody");
+            items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -117,14 +120,14 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Character.Should().Be("Iris West");
+            items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
             items[1].Show.Should().BeNull();
         }
 
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
@@ -132,7 +135,7 @@
             var items = showCreditsCastItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Character.Should().BeNull();
+            items[0].Characters.Should().BeNull();
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -145,7 +148,7 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Character.Should().Be("Iris West");
+            items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
             items[1].Show.Should().NotBeNull();
             items[1].Show.Title.Should().Be("The Flash");
             items[1].Show.Year.Should().Be(2014);
@@ -161,7 +164,7 @@
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
@@ -169,7 +172,7 @@
             var items = showCreditsCastItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Character.Should().Be("Joe Brody");
+            items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -182,14 +185,14 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Character.Should().Be("Iris West");
+            items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
             items[1].Show.Should().BeNull();
         }
 
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
@@ -197,7 +200,7 @@
             var items = showCreditsCastItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Character.Should().BeNull();
+            items[0].Characters.Should().BeNull();
             items[0].Show.Should().NotBeNull();
             items[0].Show.Title.Should().Be("Game of Thrones");
             items[0].Show.Year.Should().Be(2011);
@@ -210,23 +213,22 @@
             items[0].Show.Ids.TvRage.Should().Be(24493U);
 
             items[1].Should().NotBeNull();
-            items[1].Character.Should().Be("Iris West");
+            items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Iris West");
             items[1].Show.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
-
-            var showCreditsCastItems = await jsonReader.ReadArrayAsync(default(string));
-            showCreditsCastItems.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
+            Func<Task<IEnumerable<ITraktPersonShowCreditsCastItem>>> showCreditsCastItems = () => jsonReader.ReadArrayAsync(default(string));
+            showCreditsCastItems.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new PersonShowCreditsCastItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
 
             var showCreditsCastItems = await jsonReader.ReadArrayAsync(string.Empty);
             showCreditsCastItems.Should().BeNull();

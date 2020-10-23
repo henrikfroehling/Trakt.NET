@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Movies.Json.Reader
 {
     using Newtonsoft.Json;
-    using Objects.Get.Movies;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
@@ -10,8 +9,7 @@
     {
         public override async Task<ITraktMostPWCMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktMostPWCMovie));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,16 +22,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_WATCHER_COUNT:
+                        case JsonProperties.PROPERTY_NAME_WATCHER_COUNT:
                             traktMostPWCMovie.WatcherCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_PLAY_COUNT:
+                        case JsonProperties.PROPERTY_NAME_PLAY_COUNT:
                             traktMostPWCMovie.PlayCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_COLLECTED_COUNT:
+                        case JsonProperties.PROPERTY_NAME_COLLECTED_COUNT:
                             traktMostPWCMovie.CollectedCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_PWC_MOVIE_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktMostPWCMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

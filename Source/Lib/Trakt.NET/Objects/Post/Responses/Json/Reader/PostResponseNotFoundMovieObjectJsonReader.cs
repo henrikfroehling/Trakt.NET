@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktPostResponseNotFoundMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktPostResponseNotFoundMovie));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.POST_RESPONSE_NOT_FOUND_MOVIE_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             postResponseNotFoundMovie.Ids = await movieIdsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

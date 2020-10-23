@@ -9,14 +9,13 @@
     {
         public override async Task<ITraktSyncWatchlistPost> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncWatchlistPost));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieArrayJsonReader = new SyncWatchlistPostMovieArrayJsonReader();
-                var showArrayJsonReader = new SyncWatchlistPostShowArrayJsonReader();
-                var episodeArrayJsonReader = new SyncWatchlistPostEpisodeArrayJsonReader();
+                var movieArrayJsonReader = new ArrayJsonReader<ITraktSyncWatchlistPostMovie>();
+                var showArrayJsonReader = new ArrayJsonReader<ITraktSyncWatchlistPostShow>();
+                var episodeArrayJsonReader = new ArrayJsonReader<ITraktSyncWatchlistPostEpisode>();
                 ITraktSyncWatchlistPost syncWatchlistPost = new TraktSyncWatchlistPost();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -25,13 +24,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_WATCHLIST_POST_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             syncWatchlistPost.Movies = await movieArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_WATCHLIST_POST_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             syncWatchlistPost.Shows = await showArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_WATCHLIST_POST_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             syncWatchlistPost.Episodes = await episodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

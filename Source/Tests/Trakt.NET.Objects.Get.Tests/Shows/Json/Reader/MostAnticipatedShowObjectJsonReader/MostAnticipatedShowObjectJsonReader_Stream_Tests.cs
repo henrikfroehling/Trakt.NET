@@ -1,10 +1,12 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Shows.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Get.Shows.Json.Reader;
     using Xunit;
 
@@ -129,12 +131,11 @@
         }
 
         [Fact]
-        public async Task Test_MostAnticipatedShowObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_MostAnticipatedShowObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new MostAnticipatedShowObjectJsonReader();
-
-            var traktMostAnticipatedShow = await traktJsonReader.ReadObjectAsync(default(Stream));
-            traktMostAnticipatedShow.Should().BeNull();
+            Func<Task<ITraktMostAnticipatedShow>> traktMostAnticipatedShow = () => traktJsonReader.ReadObjectAsync(default(Stream));
+            traktMostAnticipatedShow.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

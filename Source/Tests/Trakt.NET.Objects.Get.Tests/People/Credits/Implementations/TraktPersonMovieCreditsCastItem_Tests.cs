@@ -15,7 +15,6 @@
         {
             var creditsCastItem = new TraktPersonMovieCreditsCastItem();
 
-            creditsCastItem.Character.Should().BeNullOrEmpty();
             creditsCastItem.Characters.Should().BeNullOrEmpty();
             creditsCastItem.Movie.Should().BeNull();
         }
@@ -27,7 +26,6 @@
             var creditsCastItem = await jsonReader.ReadObjectAsync(JSON) as TraktPersonMovieCreditsCastItem;
 
             creditsCastItem.Should().NotBeNull();
-            creditsCastItem.Character.Should().Be("Joe Brody");
             creditsCastItem.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             creditsCastItem.Movie.Should().NotBeNull();
             creditsCastItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -54,7 +52,6 @@
 
         private const string JSON =
             @"{
-                ""character"": ""Joe Brody"",
                 ""characters"": [
                   ""Joe Brody""
                 ],

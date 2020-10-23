@@ -8,6 +8,7 @@
                 ""resolution"": ""hd_720p"",
                 ""audio"": ""aac"",
                 ""audio_channels"": ""5.1"",
+                ""hdr"": ""dolby_vision"",
                 ""3d"": true
               }";
 
@@ -16,6 +17,7 @@
                 ""resolution"": ""hd_720p"",
                 ""audio"": ""aac"",
                 ""audio_channels"": ""5.1"",
+                ""hdr"": ""dolby_vision"",
                 ""3d"": true
               }";
 
@@ -24,6 +26,7 @@
                 ""media_type"": ""digital"",
                 ""audio"": ""aac"",
                 ""audio_channels"": ""5.1"",
+                ""hdr"": ""dolby_vision"",
                 ""3d"": true
               }";
 
@@ -32,6 +35,7 @@
                 ""media_type"": ""digital"",
                 ""resolution"": ""hd_720p"",
                 ""audio_channels"": ""5.1"",
+                ""hdr"": ""dolby_vision"",
                 ""3d"": true
               }";
 
@@ -40,6 +44,7 @@
                 ""media_type"": ""digital"",
                 ""resolution"": ""hd_720p"",
                 ""audio"": ""aac"",
+                ""hdr"": ""dolby_vision"",
                 ""3d"": true
               }";
 
@@ -48,30 +53,45 @@
                 ""media_type"": ""digital"",
                 ""resolution"": ""hd_720p"",
                 ""audio"": ""aac"",
-                ""audio_channels"": ""5.1""
+                ""audio_channels"": ""5.1"",
+                ""3d"": true
               }";
 
         private const string JSON_INCOMPLETE_6 =
             @"{
-                ""media_type"": ""digital""
+                ""media_type"": ""digital"",
+                ""resolution"": ""hd_720p"",
+                ""audio"": ""aac"",
+                ""audio_channels"": ""5.1"",
+                ""hdr"": ""dolby_vision""
               }";
 
         private const string JSON_INCOMPLETE_7 =
             @"{
-                ""resolution"": ""hd_720p""
+                ""media_type"": ""digital""
               }";
 
         private const string JSON_INCOMPLETE_8 =
             @"{
-                ""audio"": ""aac""
+                ""resolution"": ""hd_720p""
               }";
 
         private const string JSON_INCOMPLETE_9 =
             @"{
-                ""audio_channels"": ""5.1""
+                ""audio"": ""aac""
               }";
 
         private const string JSON_INCOMPLETE_10 =
+            @"{
+                ""audio_channels"": ""5.1""
+              }";
+
+        private const string JSON_INCOMPLETE_11 =
+            @"{
+                ""hdr"": ""dolby_vision""
+              }";
+
+        private const string JSON_INCOMPLETE_12 =
             @"{
                 ""3d"": true
               }";
@@ -82,6 +102,7 @@
                 ""resolution"": ""hd_720p"",
                 ""audio"": ""aac"",
                 ""audio_channels"": ""5.1"",
+                ""hdr"": ""dolby_vision"",
                 ""3d"": true
               }";
 
@@ -91,6 +112,7 @@
                 ""res"": ""hd_720p"",
                 ""audio"": ""aac"",
                 ""audio_channels"": ""5.1"",
+                ""hdr"": ""dolby_vision"",
                 ""3d"": true
               }";
 
@@ -98,8 +120,9 @@
             @"{
                 ""media_type"": ""digital"",
                 ""resolution"": ""hd_720p"",
-                ""aud"": ""aac"",
+                ""au"": ""aac"",
                 ""audio_channels"": ""5.1"",
+                ""hdr"": ""dolby_vision"",
                 ""3d"": true
               }";
 
@@ -109,6 +132,7 @@
                 ""resolution"": ""hd_720p"",
                 ""audio"": ""aac"",
                 ""ac"": ""5.1"",
+                ""hdr"": ""dolby_vision"",
                 ""3d"": true
               }";
 
@@ -118,16 +142,28 @@
                 ""resolution"": ""hd_720p"",
                 ""audio"": ""aac"",
                 ""audio_channels"": ""5.1"",
-                ""d"": true
+                ""hd"": ""dolby_vision"",
+                ""3d"": true
               }";
 
         private const string JSON_NOT_VALID_6 =
             @"{
+                ""media_type"": ""digital"",
+                ""resolution"": ""hd_720p"",
+                ""audio"": ""aac"",
+                ""audio_channels"": ""5.1"",
+                ""hdr"": ""dolby_vision"",
+                ""3"": true
+              }";
+
+        private const string JSON_NOT_VALID_7 =
+            @"{
                 ""mt"": ""digital"",
                 ""res"": ""hd_720p"",
-                ""aud"": ""aac"",
+                ""au"": ""aac"",
                 ""ac"": ""5.1"",
-                ""d"": true
+                ""hd"": ""dolby_vision"",
+                ""3"": true
               }";
     }
 }

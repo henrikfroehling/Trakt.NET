@@ -15,42 +15,42 @@
             if (obj.Movies != null)
             {
                 var userMoviesStatisticsObjectJsonWriter = new UserMoviesStatisticsObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_STATISTICS_PROPERTY_NAME_MOVIES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIES, cancellationToken).ConfigureAwait(false);
                 await userMoviesStatisticsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Movies, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Shows != null)
             {
                 var userShowsStatisticsObjectJsonWriter = new UserShowsStatisticsObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_STATISTICS_PROPERTY_NAME_SHOWS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOWS, cancellationToken).ConfigureAwait(false);
                 await userShowsStatisticsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Shows, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Seasons != null)
             {
                 var userSeasonsStatisticsObjectJsonWriter = new UserSeasonsStatisticsObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_STATISTICS_PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
                 await userSeasonsStatisticsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Episodes != null)
             {
                 var userEpisodesStatisticsObjectJsonWriter = new UserEpisodesStatisticsObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_STATISTICS_PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
                 await userEpisodesStatisticsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Episodes, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Network != null)
             {
                 var userNetworkStatisticsObjectJsonWriter = new UserNetworkStatisticsObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_STATISTICS_PROPERTY_NAME_NETWORK, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NETWORK, cancellationToken).ConfigureAwait(false);
                 await userNetworkStatisticsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Network, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Ratings != null)
             {
                 var userRatingsStatisticsObjectJsonWriter = new UserRatingsStatisticsObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_STATISTICS_PROPERTY_NAME_RATINGS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RATINGS, cancellationToken).ConfigureAwait(false);
                 await userRatingsStatisticsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Ratings, cancellationToken).ConfigureAwait(false);
             }
 

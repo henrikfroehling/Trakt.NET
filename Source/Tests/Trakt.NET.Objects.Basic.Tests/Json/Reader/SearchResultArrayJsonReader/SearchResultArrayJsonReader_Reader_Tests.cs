@@ -2,29 +2,30 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
     public partial class SearchResultArrayJsonReader_Tests
     {
         [Fact]
-        public async Task Test_SearchResultArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public void Test_SearchResultArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
-            var traktJsonReader = new SearchResultArrayJsonReader();
-            IEnumerable<ITraktSearchResult> traktSearchResults = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktSearchResults.Should().BeNull();
+            var traktJsonReader = new ArrayJsonReader<ITraktSearchResult>();
+            Func<Task<IEnumerable<ITraktSearchResult>>> traktSearchResults = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            traktSearchResults.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_ReadArray_From_JsonReader_Empty()
         {
-            var traktJsonReader = new SearchResultArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSearchResult>();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

@@ -2,7 +2,6 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
-    using Shows;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -10,8 +9,7 @@
     {
         public override async Task<ITraktMostPWCShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktMostPWCShow));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,19 +22,19 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_WATCHER_COUNT:
+                        case JsonProperties.PROPERTY_NAME_WATCHER_COUNT:
                             traktMostPWCShow.WatcherCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_PLAY_COUNT:
+                        case JsonProperties.PROPERTY_NAME_PLAY_COUNT:
                             traktMostPWCShow.PlayCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_COLLECTED_COUNT:
+                        case JsonProperties.PROPERTY_NAME_COLLECTED_COUNT:
                             traktMostPWCShow.CollectedCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_COLLECTOR_COUNT:
+                        case JsonProperties.PROPERTY_NAME_COLLECTOR_COUNT:
                             traktMostPWCShow.CollectorCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktMostPWCShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

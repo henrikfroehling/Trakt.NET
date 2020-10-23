@@ -14,13 +14,13 @@
 
             if (!string.IsNullOrEmpty(obj.Watching))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHARING_TEXT_PROPERTY_NAME_WATCHING, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_WATCHING, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Watching, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.Watched))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SHARING_TEXT_PROPERTY_NAME_WATCHED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_WATCHED, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Watched, cancellationToken).ConfigureAwait(false);
             }
 

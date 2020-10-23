@@ -15,7 +15,6 @@
         {
             var creditsCastItem = new TraktPersonShowCreditsCastItem();
 
-            creditsCastItem.Character.Should().BeNullOrEmpty();
             creditsCastItem.Characters.Should().BeNullOrEmpty();
             creditsCastItem.Show.Should().BeNull();
         }
@@ -27,7 +26,6 @@
             var creditsCastItem = await jsonReader.ReadObjectAsync(JSON) as TraktPersonShowCreditsCastItem;
 
             creditsCastItem.Should().NotBeNull();
-            creditsCastItem.Character.Should().Be("Joe Brody");
             creditsCastItem.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             creditsCastItem.Show.Should().NotBeNull();
             creditsCastItem.Show.Title.Should().Be("Game of Thrones");
@@ -61,7 +59,6 @@
 
         private const string JSON =
             @"{
-                ""character"": ""Joe Brody"",
                 ""characters"": [
                   ""Joe Brody""
                 ],

@@ -3,9 +3,6 @@
     /// <summary>Represents Trakt connection options.</summary>
     public interface ITraktSharing
     {
-        /// <summary>Gets or sets, whether Facebook connection is enabled.</summary>
-        bool? Facebook { get; set; }
-
         /// <summary>Gets or sets, whether Twitter connection is enabled.</summary>
         bool? Twitter { get; set; }
 

@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktSyncWatchlistPostResponse> CreateObjectReader() => new SyncWatchlistPostResponseObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncWatchlistPostResponse> CreateArrayReader() => new SyncWatchlistPostResponseArrayJsonReader();
-
         public IObjectJsonWriter<ITraktSyncWatchlistPostResponse> CreateObjectWriter() => new SyncWatchlistPostResponseObjectJsonWriter();
     }
 }

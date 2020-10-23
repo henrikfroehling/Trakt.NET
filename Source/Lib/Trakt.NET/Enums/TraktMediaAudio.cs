@@ -45,6 +45,12 @@
         /// <summary>The collection item has Dolby Atmos audio.</summary>
         public static TraktMediaAudio DolbyAtmos { get; } = new TraktMediaAudio(4096, "dolby_atmos", "dolby_atmos", "Dolby Atmos");
 
+        /// <summary>The collection item has DTS HR audio.</summary>
+        public static TraktMediaAudio DTS_HR { get; } = new TraktMediaAudio(8192, "dts_hr", "dts_hr", "DTS HR");
+
+        /// <summary>The collection item has AURO 3D audio.</summary>
+        public static TraktMediaAudio AURO_3D { get; } = new TraktMediaAudio(16384, "auro_3d", "auro_3d", "AURO 3D");
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktMediaAudio" /> class.<para />
         /// The initialized <see cref="TraktMediaAudio" /> is invalid.

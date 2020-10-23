@@ -7,7 +7,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -16,7 +16,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Person_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
             IEnumerable<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktSearchResults.Should().NotBeNull().And.BeEmpty();
         }
@@ -24,7 +24,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Person_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
             IEnumerable<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(TYPE_PERSON_JSON_COMPLETE);
 
             traktSearchResults.Should().NotBeNull();
@@ -68,7 +68,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Person_ReadArray_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
             IEnumerable<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(TYPE_PERSON_JSON_INCOMPLETE_1);
 
             traktSearchResults.Should().NotBeNull();
@@ -112,7 +112,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Person_ReadArray_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
             IEnumerable<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(TYPE_PERSON_JSON_INCOMPLETE_2);
 
             traktSearchResults.Should().NotBeNull();
@@ -156,7 +156,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Person_ReadArray_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
             IEnumerable<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(TYPE_PERSON_JSON_NOT_VALID_1);
 
             traktSearchResults.Should().NotBeNull();
@@ -200,7 +200,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Person_ReadArray_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
             IEnumerable<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(TYPE_PERSON_JSON_NOT_VALID_2);
 
             traktSearchResults.Should().NotBeNull();
@@ -244,7 +244,7 @@
         [Fact]
         public async Task Test_SearchResultArrayJsonReader_Person_ReadArray_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new SearchResultArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
             IEnumerable<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(TYPE_PERSON_JSON_NOT_VALID_3);
 
             traktSearchResults.Should().NotBeNull();

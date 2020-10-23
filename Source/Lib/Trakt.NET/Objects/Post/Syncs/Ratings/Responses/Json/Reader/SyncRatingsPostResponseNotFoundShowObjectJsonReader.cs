@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktSyncRatingsPostResponseNotFoundShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncRatingsPostResponseNotFoundShow));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,10 +23,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_SHOW_PROPERTY_NAME_RATING:
+                        case JsonProperties.PROPERTY_NAME_RATING:
                             syncRatingsPostResponseNotFoundShow.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_RATINGS_POST_RESPONSE_NOT_FOUND_SHOW_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             syncRatingsPostResponseNotFoundShow.Ids = await showIdsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -14,32 +14,32 @@
 
             if (obj.WatcherCount.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_WATCHER_COUNT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_WATCHER_COUNT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.WatcherCount, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.PlayCount.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_PLAY_COUNT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_PLAY_COUNT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.PlayCount, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.CollectedCount.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_COLLECTED_COUNT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COLLECTED_COUNT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.CollectedCount, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.CollectorCount.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_COLLECTOR_COUNT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COLLECTOR_COUNT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.CollectorCount, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Show != null)
             {
                 var showObjectJsonWriter = new ShowObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.MOST_PWC_SHOW_PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
                 await showObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Show, cancellationToken).ConfigureAwait(false);
             }
 

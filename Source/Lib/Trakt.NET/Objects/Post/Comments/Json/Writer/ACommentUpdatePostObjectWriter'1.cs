@@ -19,13 +19,13 @@
         {
             if (!string.IsNullOrEmpty(obj.Comment))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COMMENT_UPDATE_POST_PROPERTY_NAME_COMMENT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COMMENT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Comment, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Spoiler.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COMMENT_UPDATE_POST_PROPERTY_NAME_SPOILER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SPOILER, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Spoiler, cancellationToken).ConfigureAwait(false);
             }
         }

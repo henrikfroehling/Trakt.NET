@@ -10,6 +10,12 @@
         /// <summary>Gets the value of the set "sort-how" response header. Might not be set.</summary>
         string SortHow { get; set; }
 
+        /// <summary>Gets the value of the set "applied-sort-by" response header. Might not be set.</summary>
+        string AppliedSortBy { get; set; }
+
+        /// <summary>Gets the value of the set "applied-sort-how" response header. Might not be set.</summary>
+        string AppliedSortHow { get; set; }
+
         /// <summary>Gets the value of the set "start-date" response header. Might not be set.</summary>
         DateTime? StartDate { get; set; }
 
@@ -28,10 +34,10 @@
         /// <summary>Gets the value of the set "is-private-user" response header. Might not be set.</summary>
         bool? IsPrivateUser { get; set; }
 
-        /// <summary>Gets the value of the set "x-item-id" response header. Might not be set.</summary>
-        int? XItemId { get; set; }
+        /// <summary>Gets the value of the set "item-id" response header. Might not be set.</summary>
+        int? ItemId { get; set; }
 
-        /// <summary>Gets the value of the set "x-item-type" response header. Might not be set.</summary>
-        string XItemType { get; set; }
+        /// <summary>Gets the value of the set "item-type" response header. Might not be set.</summary>
+        string ItemType { get; set; }
     }
 }

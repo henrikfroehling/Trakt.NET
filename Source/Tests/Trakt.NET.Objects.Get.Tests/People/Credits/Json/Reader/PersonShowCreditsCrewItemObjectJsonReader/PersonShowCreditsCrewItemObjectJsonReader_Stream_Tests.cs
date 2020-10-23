@@ -1,10 +1,12 @@
 ﻿namespace TraktNet.Objects.Get.Tests.People.Credits.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.People.Credits;
     using TraktNet.Objects.Get.People.Credits.Json.Reader;
     using Xunit;
 
@@ -21,7 +23,7 @@
                 var showCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCrewItem.Should().NotBeNull();
-                showCreditsCrewItem.Job.Should().Be("Director");
+                showCreditsCrewItem.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 showCreditsCrewItem.Show.Should().NotBeNull();
                 showCreditsCrewItem.Show.Title.Should().Be("Game of Thrones");
                 showCreditsCrewItem.Show.Year.Should().Be(2011);
@@ -45,7 +47,7 @@
                 var showCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCrewItem.Should().NotBeNull();
-                showCreditsCrewItem.Job.Should().BeNull();
+                showCreditsCrewItem.Jobs.Should().BeNull();
                 showCreditsCrewItem.Show.Should().NotBeNull();
                 showCreditsCrewItem.Show.Title.Should().Be("Game of Thrones");
                 showCreditsCrewItem.Show.Year.Should().Be(2011);
@@ -69,7 +71,7 @@
                 var showCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCrewItem.Should().NotBeNull();
-                showCreditsCrewItem.Job.Should().Be("Director");
+                showCreditsCrewItem.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 showCreditsCrewItem.Show.Should().BeNull();
             }
         }
@@ -84,7 +86,7 @@
                 var showCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCrewItem.Should().NotBeNull();
-                showCreditsCrewItem.Job.Should().BeNull();
+                showCreditsCrewItem.Jobs.Should().BeNull();
                 showCreditsCrewItem.Show.Should().NotBeNull();
                 showCreditsCrewItem.Show.Title.Should().Be("Game of Thrones");
                 showCreditsCrewItem.Show.Year.Should().Be(2011);
@@ -108,7 +110,7 @@
                 var showCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCrewItem.Should().NotBeNull();
-                showCreditsCrewItem.Job.Should().Be("Director");
+                showCreditsCrewItem.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
                 showCreditsCrewItem.Show.Should().BeNull();
             }
         }
@@ -123,18 +125,17 @@
                 var showCreditsCrewItem = await jsonReader.ReadObjectAsync(stream);
 
                 showCreditsCrewItem.Should().NotBeNull();
-                showCreditsCrewItem.Job.Should().BeNull();
+                showCreditsCrewItem.Jobs.Should().BeNull();
                 showCreditsCrewItem.Show.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_PersonShowCreditsCrewItemObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_PersonShowCreditsCrewItemObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new PersonShowCreditsCrewItemObjectJsonReader();
-
-            var showCreditsCrewItem = await jsonReader.ReadObjectAsync(default(Stream));
-            showCreditsCrewItem.Should().BeNull();
+            Func<Task<ITraktPersonShowCreditsCrewItem>> showCreditsCrewItem = () => jsonReader.ReadObjectAsync(default(Stream));
+            showCreditsCrewItem.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

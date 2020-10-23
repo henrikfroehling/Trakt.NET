@@ -9,9 +9,6 @@
         public IObjectJsonReader<ITraktUserCustomListItemsPostResponseGroup> CreateObjectReader()
             => new UserCustomListItemsPostResponseGroupObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserCustomListItemsPostResponseGroup> CreateArrayReader()
-            => new UserCustomListItemsPostResponseGroupArrayJsonReader();
-
         public IObjectJsonWriter<ITraktUserCustomListItemsPostResponseGroup> CreateObjectWriter()
             => new UserCustomListItemsPostResponseGroupObjectJsonWriter();
     }

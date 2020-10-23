@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktSyncRatingsRemovePostResponse> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncRatingsRemovePostResponse));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -25,10 +24,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_RATINGS_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED:
+                        case JsonProperties.PROPERTY_NAME_DELETED:
                             syncRatingsRemovePostResponse.Deleted = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_RATINGS_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.PROPERTY_NAME_NOT_FOUND:
                             syncRatingsRemovePostResponse.NotFound = await notFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

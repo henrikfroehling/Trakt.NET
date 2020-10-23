@@ -8,7 +8,7 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
 
 [![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-green)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
-[![NuGet Package](https://img.shields.io/badge/NuGet-v1.0.2-green.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.0.2)
+[![NuGet Package](https://img.shields.io/badge/NuGet-v1.1.0-green.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.1.0)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=henrikfroehling_Trakt.NET&metric=alert_status)](https://sonarcloud.io/dashboard?id=henrikfroehling_Trakt.NET)
@@ -51,7 +51,8 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 | Branch | Status | Description |
 |---|---|---|
 | [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. |
-| [release](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.0.0) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Release)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=6) | This branch tracks the current development of the next upcoming release. |
+| [release 1.0.0](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.0.0) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Release-1.0.0)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=6) | This branch tracks the current development of release 1.0.0. |
+| [release 1.1.0](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.1.0) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Release-1.1.0)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=13) | This branch tracks the current development of the next upcoming release. |
 
 ### Getting Started
 
@@ -69,7 +70,6 @@ You can also use one of the following NuGet Package Sources, to always get the l
 
 | NuGet-Feed | Package Source Address | Description |
 |---|---|---|
-| AppVeyor | https://ci.appveyor.com/nuget/trakt-net | All CI/CD build packages. |
 | MyGet | https://www.myget.org/F/trakt-net/api/v3/index.json | All CI/CD build packages. |
 
 ### Basic Usage

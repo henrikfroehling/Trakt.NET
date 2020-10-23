@@ -2,6 +2,7 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
@@ -22,7 +23,6 @@
                 var traktCastMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCastMember.Should().NotBeNull();
-                traktCastMember.Character.Should().Be("Joe Brody");
                 traktCastMember.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 traktCastMember.Person.Should().NotBeNull();
                 traktCastMember.Person.Name.Should().Be("Bryan Cranston");
@@ -46,7 +46,6 @@
                 var traktCastMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCastMember.Should().NotBeNull();
-                traktCastMember.Character.Should().BeNull();
                 traktCastMember.Characters.Should().BeNull();
                 traktCastMember.Person.Should().NotBeNull();
                 traktCastMember.Person.Name.Should().Be("Bryan Cranston");
@@ -70,7 +69,6 @@
                 var traktCastMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCastMember.Should().NotBeNull();
-                traktCastMember.Character.Should().Be("Joe Brody");
                 traktCastMember.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 traktCastMember.Person.Should().BeNull();
             }
@@ -87,7 +85,6 @@
                 var traktCastMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCastMember.Should().NotBeNull();
-                traktCastMember.Character.Should().BeNull();
                 traktCastMember.Characters.Should().BeNull();
                 traktCastMember.Person.Should().NotBeNull();
                 traktCastMember.Person.Name.Should().Be("Bryan Cranston");
@@ -111,7 +108,6 @@
                 var traktCastMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCastMember.Should().NotBeNull();
-                traktCastMember.Character.Should().Be("Joe Brody");
                 traktCastMember.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 traktCastMember.Person.Should().BeNull();
             }
@@ -128,19 +124,17 @@
                 var traktCastMember = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCastMember.Should().NotBeNull();
-                traktCastMember.Character.Should().BeNull();
                 traktCastMember.Characters.Should().BeNull();
                 traktCastMember.Person.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CastMemberObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_CastMemberObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new CastMemberObjectJsonReader();
-
-            var traktCastMember = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktCastMember.Should().BeNull();
+            Func<Task<ITraktCastMember>> traktCastMember = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            traktCastMember.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

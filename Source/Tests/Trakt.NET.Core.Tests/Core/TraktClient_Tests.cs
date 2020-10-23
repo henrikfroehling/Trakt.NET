@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Core.Tests
+﻿namespace TraktNet.Core.Tests.Core
 {
     using FluentAssertions;
     using Trakt.NET.Tests.Utility.Traits;
@@ -140,6 +140,14 @@
         }
 
         [Fact]
+        public void Test_TraktClient_Get_CountriesModule()
+        {
+            var client = new TraktClient();
+
+            client.Countries.Should().NotBeNull();
+        }
+
+        [Fact]
         public void Test_TraktClient_Get_EpisodesModule()
         {
             var client = new TraktClient();
@@ -161,6 +169,14 @@
             var client = new TraktClient();
 
             client.Lists.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Test_TraktClient_Get_LanguagesModule()
+        {
+            var client = new TraktClient();
+
+            client.Languages.Should().NotBeNull();
         }
 
         [Fact]

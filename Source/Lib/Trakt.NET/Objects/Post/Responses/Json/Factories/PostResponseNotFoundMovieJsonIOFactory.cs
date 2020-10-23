@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktPostResponseNotFoundMovie> CreateObjectReader() => new PostResponseNotFoundMovieObjectJsonReader();
 
-        public IArrayJsonReader<ITraktPostResponseNotFoundMovie> CreateArrayReader() => new PostResponseNotFoundMovieArrayJsonReader();
-
         public IObjectJsonWriter<ITraktPostResponseNotFoundMovie> CreateObjectWriter() => new PostResponseNotFoundMovieObjectJsonWriter();
     }
 }

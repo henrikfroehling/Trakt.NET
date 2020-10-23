@@ -7,7 +7,9 @@
         private const string JSON_COMPLETE =
             @"[
                 {
-                  ""job"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ],
                   ""movie"": {
                     ""title"": ""Star Wars: The Force Awakens"",
                     ""year"": 2015,
@@ -20,7 +22,9 @@
                   }
                 },
                 {
-                  ""job"": ""Producer"",
+                  ""jobs"": [
+                    ""Producer""
+                  ],
                   ""movie"": {
                     ""title"": ""TRON: Legacy"",
                     ""year"": 2010,
@@ -49,7 +53,9 @@
                   }
                 },
                 {
-                  ""job"": ""Producer"",
+                  ""jobs"": [
+                    ""Producer""
+                  ],
                   ""movie"": {
                     ""title"": ""TRON: Legacy"",
                     ""year"": 2010,
@@ -66,7 +72,9 @@
         private const string JSON_INCOMPLETE_2 =
             @"[
                 {
-                  ""job"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ],
                   ""movie"": {
                     ""title"": ""Star Wars: The Force Awakens"",
                     ""year"": 2015,
@@ -79,7 +87,9 @@
                   }
                 },
                 {
-                  ""job"": ""Producer""
+                  ""jobs"": [
+                    ""Producer""
+                  ]
                 }
               ]";
 
@@ -99,7 +109,9 @@
                   }
                 },
                 {
-                  ""job"": ""Producer"",
+                  ""jobs"": [
+                    ""Producer""
+                  ],
                   ""movie"": {
                     ""title"": ""TRON: Legacy"",
                     ""year"": 2010,
@@ -116,7 +128,9 @@
         private const string JSON_NOT_VALID_2 =
             @"[
                 {
-                  ""job"": ""Director"",
+                  ""jobs"": [
+                    ""Director""
+                  ],
                   ""movie"": {
                     ""title"": ""Star Wars: The Force Awakens"",
                     ""year"": 2015,
@@ -129,7 +143,9 @@
                   }
                 },
                 {
-                  ""job"": ""Producer"",
+                  ""jobs"": [
+                    ""Producer""
+                  ],
                   ""mov"": {
                     ""title"": ""TRON: Legacy"",
                     ""year"": 2010,
@@ -159,7 +175,9 @@
                   }
                 },
                 {
-                  ""job"": ""Producer"",
+                  ""jobs"": [
+                    ""Producer""
+                  ],
                   ""mov"": {
                     ""title"": ""TRON: Legacy"",
                     ""year"": 2010,

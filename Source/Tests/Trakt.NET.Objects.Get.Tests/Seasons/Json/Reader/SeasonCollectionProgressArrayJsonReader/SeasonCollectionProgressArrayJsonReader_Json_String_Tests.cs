@@ -2,10 +2,12 @@
 {
     using FluentAssertions;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.Seasons.Json.Reader;
+    using TraktNet.Objects.Get.Seasons;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Seasons.JsonReader")]
@@ -14,7 +16,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.BeEmpty();
@@ -23,7 +25,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -89,7 +91,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -155,7 +157,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -221,7 +223,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Incomplete_3()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_3);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -287,7 +289,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Incomplete_4()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_4);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -329,7 +331,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Incomplete_5()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_5);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -383,7 +385,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Incomplete_6()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_6);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -437,7 +439,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Incomplete_7()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_7);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -491,7 +493,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Incomplete_8()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_8);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -557,7 +559,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -623,7 +625,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -689,7 +691,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -755,7 +757,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Not_Valid_4()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_4);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -809,7 +811,7 @@
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Not_Valid_5()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_5);
             traktSeasonCollectionProgresses.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(3);
@@ -861,18 +863,17 @@
         }
 
         [Fact]
-        public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Null()
+        public void Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
-
-            var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(default(string));
-            traktSeasonCollectionProgresses.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
+            Func<Task<IEnumerable<ITraktSeasonCollectionProgress>>> traktSeasonCollectionProgresses = () => jsonReader.ReadArrayAsync(default(string));
+            traktSeasonCollectionProgresses.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new SeasonCollectionProgressArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
 
             var traktSeasonCollectionProgresses = await jsonReader.ReadArrayAsync(string.Empty);
             traktSeasonCollectionProgresses.Should().BeNull();

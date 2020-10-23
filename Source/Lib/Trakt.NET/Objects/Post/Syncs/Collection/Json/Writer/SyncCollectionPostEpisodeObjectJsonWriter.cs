@@ -14,14 +14,14 @@
         {
             if (obj.CollectedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_COLLECTION_POST_EPISODE_PROPERTY_NAME_COLLECTED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COLLECTED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.CollectedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Ids != null)
             {
                 var episodeIdsObjectJsonWriter = new EpisodeIdsObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_COLLECTION_POST_EPISODE_PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
                 await episodeIdsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Ids, cancellationToken).ConfigureAwait(false);
             }
 

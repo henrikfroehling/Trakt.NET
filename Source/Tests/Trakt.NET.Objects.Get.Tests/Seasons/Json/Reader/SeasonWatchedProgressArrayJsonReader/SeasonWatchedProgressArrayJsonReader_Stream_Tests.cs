@@ -2,12 +2,14 @@
 {
     using FluentAssertions;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.Seasons.Json.Reader;
+    using TraktNet.Objects.Get.Seasons;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Seasons.JsonReader")]
@@ -16,7 +18,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -28,7 +30,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -97,7 +99,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Incomplete_1()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -166,7 +168,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Incomplete_2()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -235,7 +237,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Incomplete_3()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_INCOMPLETE_3.ToStream())
             {
@@ -304,7 +306,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Incomplete_4()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_INCOMPLETE_4.ToStream())
             {
@@ -349,7 +351,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Incomplete_5()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_INCOMPLETE_5.ToStream())
             {
@@ -406,7 +408,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Incomplete_6()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_INCOMPLETE_6.ToStream())
             {
@@ -463,7 +465,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Incomplete_7()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_INCOMPLETE_7.ToStream())
             {
@@ -520,7 +522,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Incomplete_8()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_INCOMPLETE_8.ToStream())
             {
@@ -589,7 +591,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Not_Valid_1()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -658,7 +660,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Not_Valid_2()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -727,7 +729,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Not_Valid_3()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -796,7 +798,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Not_Valid_4()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_NOT_VALID_4.ToStream())
             {
@@ -853,7 +855,7 @@
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Not_Valid_5()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = JSON_NOT_VALID_5.ToStream())
             {
@@ -908,18 +910,17 @@
         }
 
         [Fact]
-        public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Null()
+        public void Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
-
-            var traktSeasonWatchedProgresses = await traktJsonReader.ReadArrayAsync(default(Stream));
-            traktSeasonWatchedProgresses.Should().BeNull();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
+            Func<Task<IEnumerable<ITraktSeasonWatchedProgress>>> traktSeasonWatchedProgresses = () => traktJsonReader.ReadArrayAsync(default(Stream));
+            traktSeasonWatchedProgresses.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var traktJsonReader = new SeasonWatchedProgressArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
 
             using (var stream = string.Empty.ToStream())
             {

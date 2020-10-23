@@ -7,7 +7,6 @@
                 ""id"": 3373536620,
                 ""watched_at"": ""2014-08-06T06:54:36.859Z"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -44,7 +43,6 @@
             @"{
                 ""watched_at"": ""2014-08-06T06:54:36.859Z"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -81,7 +79,6 @@
             @"{
                 ""id"": 3373536620,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -149,7 +146,6 @@
                 ""id"": 3373536620,
                 ""watched_at"": ""2014-08-06T06:54:36.859Z"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -175,7 +171,6 @@
                 ""id"": 3373536620,
                 ""watched_at"": ""2014-08-06T06:54:36.859Z"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -209,7 +204,6 @@
         private const string JSON_INCOMPLETE_8 =
             @"{
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -255,7 +249,6 @@
                 ""i"": 3373536620,
                 ""watched_at"": ""2014-08-06T06:54:36.859Z"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -293,7 +286,6 @@
                 ""id"": 3373536620,
                 ""wa"": ""2014-08-06T06:54:36.859Z"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -331,7 +323,6 @@
                 ""id"": 3373536620,
                 ""watched_at"": ""2014-08-06T06:54:36.859Z"",
                 ""share"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -369,7 +360,6 @@
                 ""id"": 3373536620,
                 ""watched_at"": ""2014-08-06T06:54:36.859Z"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -407,7 +397,6 @@
                 ""id"": 3373536620,
                 ""watched_at"": ""2014-08-06T06:54:36.859Z"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
@@ -445,7 +434,6 @@
                 ""i"": 3373536620,
                 ""wa"": ""2014-08-06T06:54:36.859Z"",
                 ""share"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,

@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Watched
 {
+    using Enums;
     using Movies;
     using System;
     using System.Collections.Generic;
@@ -12,6 +13,9 @@
 
         /// <summary>Gets or sets the UTC datetime, when the movie was last watched.</summary>
         public DateTime? LastWatchedAt { get; set; }
+
+        /// <summary>Gets or sets the UTC datetime, when the movie was last updated.</summary>
+        public DateTime? LastUpdatedAt { get; set; }
 
         /// <summary>Gets or sets the Trakt movie. See also <seealso cref="ITraktMovie" />.<para>Nullable</para></summary>
         public ITraktMovie Movie { get; set; }
@@ -233,6 +237,18 @@
             {
                 if (Movie != null)
                     Movie.CommentCount = value;
+            }
+        }
+
+        /// <summary>Gets or sets the movie's current status. See also <seealso cref="TraktMovieStatus" />.<para>Nullable</para></summary>
+        public TraktMovieStatus Status
+        {
+            get { return Movie?.Status; }
+
+            set
+            {
+                if (Movie != null)
+                    Movie.Status = value;
             }
         }
     }

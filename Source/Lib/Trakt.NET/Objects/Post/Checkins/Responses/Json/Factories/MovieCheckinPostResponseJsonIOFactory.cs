@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktMovieCheckinPostResponse> CreateObjectReader() => new MovieCheckinPostResponseObjectJsonReader();
 
-        public IArrayJsonReader<ITraktMovieCheckinPostResponse> CreateArrayReader() => new MovieCheckinPostResponseArrayJsonReader();
-
         public IObjectJsonWriter<ITraktMovieCheckinPostResponse> CreateObjectWriter() => new MovieCheckinPostResponseObjectJsonWriter();
     }
 }

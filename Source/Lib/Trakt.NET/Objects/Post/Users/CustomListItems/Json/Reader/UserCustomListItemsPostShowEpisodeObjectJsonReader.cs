@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktUserCustomListItemsPostShowEpisode> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserCustomListItemsPostShowEpisode));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -23,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER:
+                        case JsonProperties.PROPERTY_NAME_NUMBER:
                             {
                                 Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 

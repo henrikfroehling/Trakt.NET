@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktDevice> CreateObjectReader() => new DeviceObjectJsonReader();
 
-        public IArrayJsonReader<ITraktDevice> CreateArrayReader() => new DeviceArrayJsonReader();
-
         public IObjectJsonWriter<ITraktDevice> CreateObjectWriter() => new DeviceObjectJsonWriter();
     }
 }

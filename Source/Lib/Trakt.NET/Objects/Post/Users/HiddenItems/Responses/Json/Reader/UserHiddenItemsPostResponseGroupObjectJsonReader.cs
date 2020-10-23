@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktUserHiddenItemsPostResponseGroup> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserHiddenItemsPostResponseGroup));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,13 +21,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             hiddenItemsPostResponseGroup.Movies = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             hiddenItemsPostResponseGroup.Shows = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_RESPONSE_GROUP_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             hiddenItemsPostResponseGroup.Seasons = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

@@ -13,6 +13,8 @@
 
         public uint? Limit { get; set; }
 
+        public bool? IgnoreCollected { get; set; }
+
         public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = new Dictionary<string, object>();
@@ -22,6 +24,9 @@
 
             if (Limit.HasValue)
                 uriParams.Add("limit", Limit.Value.ToString());
+
+            if (IgnoreCollected.HasValue)
+                uriParams.Add("ignore_collected", IgnoreCollected.Value.ToString().ToLower());
 
             return uriParams;
         }

@@ -61,7 +61,6 @@
                 ""action"": ""start"",
                 ""progress"": 10,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""tumblr"": false
                 },
@@ -83,7 +82,6 @@
                 ""action"": ""pause"",
                 ""progress"": 75,
                 ""sharing"": {
-                  ""facebook"": false,
                   ""twitter"": false,
                   ""tumblr"": false
                 },
@@ -105,7 +103,6 @@
                 ""action"": ""scrobble"",
                 ""progress"": 85,
                 ""sharing"": {
-                  ""facebook"": false,
                   ""twitter"": false,
                   ""tumblr"": false
                 },
@@ -127,7 +124,6 @@
                 ""action"": ""start"",
                 ""progress"": 10,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""tumblr"": false
                 },
@@ -163,7 +159,6 @@
                 ""action"": ""pause"",
                 ""progress"": 75,
                 ""sharing"": {
-                  ""facebook"": false,
                   ""twitter"": true,
                   ""tumblr"": false
                 },
@@ -199,7 +194,6 @@
                 ""action"": ""scrobble"",
                 ""progress"": 85,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""tumblr"": false
                 },

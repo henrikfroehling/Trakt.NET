@@ -68,7 +68,7 @@
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 4;
             private const int _limit = 20;
-            private const bool _includeReplies = true;
+            private const TraktIncludeReplies _includeReplies = TraktIncludeReplies.Only;
 
             private static readonly UserCommentsRequest _request1 = new UserCommentsRequest
             {

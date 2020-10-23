@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Movies.Json.Reader
 {
     using Newtonsoft.Json;
-    using Objects.Get.Movies;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
@@ -10,8 +9,7 @@
     {
         public override async Task<ITraktTrendingMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktTrendingMovie));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,10 +22,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.TRENDING_MOVIE_PROPERTY_NAME_WATCHERS:
+                        case JsonProperties.PROPERTY_NAME_WATCHERS:
                             traktTrendingMovie.Watchers = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.TRENDING_MOVIE_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktTrendingMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

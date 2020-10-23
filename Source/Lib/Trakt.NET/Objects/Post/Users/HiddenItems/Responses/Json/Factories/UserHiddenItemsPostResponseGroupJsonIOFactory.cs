@@ -9,9 +9,6 @@
         public IObjectJsonReader<ITraktUserHiddenItemsPostResponseGroup> CreateObjectReader()
             => new UserHiddenItemsPostResponseGroupObjectJsonReader();
 
-        public IArrayJsonReader<ITraktUserHiddenItemsPostResponseGroup> CreateArrayReader()
-            => new UserHiddenItemsPostResponseGroupArrayJsonReader();
-
         public IObjectJsonWriter<ITraktUserHiddenItemsPostResponseGroup> CreateObjectWriter()
             => new UserHiddenItemsPostResponseGroupObjectJsonWriter();
     }

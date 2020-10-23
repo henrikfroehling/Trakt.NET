@@ -9,12 +9,11 @@
     {
         public override async Task<ITraktShowCastAndCrew> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktShowCastAndCrew));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var showCastReader = new ShowCastMemberArrayJsonReader();
+                var showCastReader = new ArrayJsonReader<ITraktShowCastMember>();
                 var showCrewReader = new ShowCrewObjectJsonReader();
                 ITraktShowCastAndCrew traktShowCastAndCrew = new TraktShowCastAndCrew();
 
@@ -24,11 +23,14 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CAST_AND_CREW_PROPERTY_NAME_CAST:
+                        case JsonProperties.PROPERTY_NAME_CAST:
                             traktShowCastAndCrew.Cast = await showCastReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CAST_AND_CREW_PROPERTY_NAME_CREW:
+                        case JsonProperties.PROPERTY_NAME_CREW:
                             traktShowCastAndCrew.Crew = await showCrewReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_GUEST_STARS:
+                            traktShowCastAndCrew.GuestStars = await showCastReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

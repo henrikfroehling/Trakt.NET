@@ -6,12 +6,11 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class UserFollowUserPostResponseArrayJsonReader : AArrayJsonReader<ITraktUserFollowUserPostResponse>
+    internal class UserFollowUserPostResponseArrayJsonReader : ArrayJsonReader<ITraktUserFollowUserPostResponse>
     {
         public override async Task<IEnumerable<ITraktUserFollowUserPostResponse>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(IEnumerable<ITraktUserFollowUserPostResponse>));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {

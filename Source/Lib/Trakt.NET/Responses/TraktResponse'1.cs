@@ -20,6 +20,12 @@
         /// <summary>Gets the value of the set "sort-how" response header. Might not be set.</summary>
         public string SortHow { get; set; }
 
+        /// <summary>Gets the value of the set "applied-sort-by" response header. Might not be set.</summary>
+        public string AppliedSortBy { get; set; }
+
+        /// <summary>Gets the value of the set "applied-sort-how" response header. Might not be set.</summary>
+        public string AppliedSortHow { get; set; }
+
         /// <summary>Gets the value of the set "start-date" response header. Might not be set.</summary>
         public DateTime? StartDate { get; set; }
 
@@ -38,11 +44,11 @@
         /// <summary>Gets the value of the set "is-private-user" response header. Might not be set.</summary>
         public bool? IsPrivateUser { get; set; }
 
-        /// <summary>Gets the value of the set "x-item-id" response header. Might not be set.</summary>
-        public int? XItemId { get; set; }
+        /// <summary>Gets the value of the set "item-id" response header. Might not be set.</summary>
+        public int? ItemId { get; set; }
 
-        /// <summary>Gets the value of the set "x-item-type" response header. Might not be set.</summary>
-        public string XItemType { get; set; }
+        /// <summary>Gets the value of the set "item-type" response header. Might not be set.</summary>
+        public string ItemType { get; set; }
 
         /// <summary>
         /// Compares this instance with another <see cref="TraktResponse{TResponseContentType}" /> instance.

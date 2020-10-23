@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Core.Tests
+﻿namespace TraktNet.Core.Tests.Core
 {
     using FluentAssertions;
     using Trakt.NET.Tests.Utility.Traits;

@@ -7,7 +7,9 @@
         private const string JSON_COMPLETE =
             @"[
                 {
-                  ""character"": ""Joe Brody"",
+                  ""characters"": [
+                    ""Joe Brody""
+                  ],
                   ""movie"": {
                     ""title"": ""Star Wars: The Force Awakens"",
                     ""year"": 2015,
@@ -20,7 +22,9 @@
                   }
                 },
                 {
-                  ""character"": ""Sam Flynn"",
+                  ""characters"": [
+                    ""Sam Flynn""
+                  ],
                   ""movie"": {
                     ""title"": ""TRON: Legacy"",
                     ""year"": 2010,
@@ -49,7 +53,9 @@
                   }
                 },
                 {
-                  ""character"": ""Sam Flynn"",
+                  ""characters"": [
+                    ""Sam Flynn""
+                  ],
                   ""movie"": {
                     ""title"": ""TRON: Legacy"",
                     ""year"": 2010,
@@ -66,7 +72,9 @@
         private const string JSON_INCOMPLETE_2 =
             @"[
                 {
-                  ""character"": ""Joe Brody"",
+                  ""characters"": [
+                    ""Joe Brody""
+                  ],
                   ""movie"": {
                     ""title"": ""Star Wars: The Force Awakens"",
                     ""year"": 2015,
@@ -79,7 +87,9 @@
                   }
                 },
                 {
-                  ""character"": ""Sam Flynn""
+                  ""characters"": [
+                    ""Sam Flynn""
+                  ]
                 }
               ]";
 
@@ -99,7 +109,9 @@
                   }
                 },
                 {
-                  ""character"": ""Sam Flynn"",
+                  ""characters"": [
+                    ""Sam Flynn""
+                  ],
                   ""movie"": {
                     ""title"": ""TRON: Legacy"",
                     ""year"": 2010,
@@ -116,7 +128,9 @@
         private const string JSON_NOT_VALID_2 =
             @"[
                 {
-                  ""character"": ""Joe Brody"",
+                  ""characters"": [
+                    ""Joe Brody""
+                  ],
                   ""movie"": {
                     ""title"": ""Star Wars: The Force Awakens"",
                     ""year"": 2015,
@@ -129,7 +143,9 @@
                   }
                 },
                 {
-                  ""character"": ""Sam Flynn"",
+                  ""characters"": [
+                    ""Sam Flynn""
+                  ],
                   ""mov"": {
                     ""title"": ""TRON: Legacy"",
                     ""year"": 2010,
@@ -159,7 +175,9 @@
                   }
                 },
                 {
-                  ""character"": ""Sam Flynn"",
+                  ""characters"": [
+                    ""Sam Flynn""
+                  ],
                   ""mov"": {
                     ""title"": ""TRON: Legacy"",
                     ""year"": 2010,

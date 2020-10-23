@@ -2,13 +2,15 @@
 {
     using FluentAssertions;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
-    using TraktNet.Objects.Get.Collections.Json.Reader;
+    using TraktNet.Objects.Get.Collections;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Collections.JsonReader")]
@@ -17,7 +19,7 @@
         [Fact]
         public async Task Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var jsonReader = new CollectionShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShow>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -29,7 +31,7 @@
         [Fact]
         public async Task Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var jsonReader = new CollectionShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShow>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -40,6 +42,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -117,6 +120,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
@@ -195,7 +199,7 @@
         [Fact]
         public async Task Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Incomplete_1()
         {
-            var jsonReader = new CollectionShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShow>();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -206,6 +210,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -283,6 +288,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().BeNull();
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
@@ -361,7 +367,7 @@
         [Fact]
         public async Task Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Incomplete_2()
         {
-            var jsonReader = new CollectionShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShow>();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -372,6 +378,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().BeNull();
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -449,6 +456,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
@@ -527,7 +535,7 @@
         [Fact]
         public async Task Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Not_Valid_1()
         {
-            var jsonReader = new CollectionShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShow>();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -538,6 +546,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -615,6 +624,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().BeNull();
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
@@ -693,7 +703,7 @@
         [Fact]
         public async Task Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Not_Valid_2()
         {
-            var jsonReader = new CollectionShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShow>();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -704,6 +714,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().BeNull();
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -781,6 +792,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
@@ -859,7 +871,7 @@
         [Fact]
         public async Task Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Not_Valid_3()
         {
-            var jsonReader = new CollectionShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShow>();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -870,6 +882,7 @@
 
                 collectionShows[0].Should().NotBeNull();
                 collectionShows[0].LastCollectedAt.Should().BeNull();
+                collectionShows[0].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[0].Show.Should().NotBeNull();
                 collectionShows[0].Show.Title.Should().Be("Game of Thrones");
@@ -947,6 +960,7 @@
 
                 collectionShows[1].Should().NotBeNull();
                 collectionShows[1].LastCollectedAt.Should().BeNull();
+                collectionShows[1].LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
                 collectionShows[1].Show.Should().NotBeNull();
                 collectionShows[1].Show.Title.Should().Be("Game of Thrones");
@@ -1023,17 +1037,17 @@
         }
 
         [Fact]
-        public async Task Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Null()
+        public void Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var jsonReader = new CollectionShowArrayJsonReader();
-            var traktCollectionShows = await jsonReader.ReadArrayAsync(default(Stream));
-            traktCollectionShows.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShow>();
+            Func<Task<IEnumerable<ITraktCollectionShow>>> traktCollectionShows = () => jsonReader.ReadArrayAsync(default(Stream));
+            traktCollectionShows.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_CollectionShowArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var jsonReader = new CollectionShowArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionShow>();
 
             using (var stream = string.Empty.ToStream())
             {

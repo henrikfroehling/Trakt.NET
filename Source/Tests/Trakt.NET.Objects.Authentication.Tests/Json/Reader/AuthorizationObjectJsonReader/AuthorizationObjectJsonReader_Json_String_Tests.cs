@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Authentication.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
@@ -472,11 +473,11 @@
         }
 
         [Fact]
-        public async Task Test_AuthorizationObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_AuthorizationObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var objectJsonReader = new AuthorizationObjectJsonReader();
-            ITraktAuthorization traktAuthorization = await objectJsonReader.ReadObjectAsync(default(string));
-            traktAuthorization.Should().BeNull();
+            Func<Task<ITraktAuthorization>> traktAuthorization = () => objectJsonReader.ReadObjectAsync(default(string));
+            traktAuthorization.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

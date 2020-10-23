@@ -15,14 +15,14 @@
             if (obj.Cast != null)
             {
                 var castMemberArrayJsonWriter = new ArrayJsonWriter<ITraktCastMember>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CAST_AND_CREW_PROPERTY_NAME_CAST, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_CAST, cancellationToken).ConfigureAwait(false);
                 await castMemberArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Cast, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Crew != null)
             {
                 var crewObjectJsonWriter = new CrewObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CAST_AND_CREW_PROPERTY_NAME_CREW, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_CREW, cancellationToken).ConfigureAwait(false);
                 await crewObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Crew, cancellationToken).ConfigureAwait(false);
             }
 

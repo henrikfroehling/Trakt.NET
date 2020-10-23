@@ -4,6 +4,7 @@
     {
         private const string TYPE_MOVIE_JSON_COMPLETE =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""movie"",
@@ -192,6 +193,7 @@
 
         private const string TYPE_SHOW_JSON_COMPLETE =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""show"",
@@ -400,6 +402,7 @@
 
         private const string TYPE_SEASON_JSON_COMPLETE =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""season"",
@@ -578,6 +581,7 @@
 
         private const string TYPE_EPISODE_JSON_COMPLETE =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""episode"",
@@ -972,6 +976,7 @@
 
         private const string TYPE_PERSON_JSON_COMPLETE =
             @"{
+                ""id"": 101,
                 ""rank"": ""1"",
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""person"",

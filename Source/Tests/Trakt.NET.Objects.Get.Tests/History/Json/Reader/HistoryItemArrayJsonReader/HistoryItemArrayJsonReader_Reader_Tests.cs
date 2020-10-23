@@ -2,10 +2,13 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.History.Json.Reader;
+    using TraktNet.Objects.Get.History;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.History.JsonReader")]
@@ -14,7 +17,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
@@ -25,17 +28,17 @@
         }
 
         [Fact]
-        public async Task Test_HistoryItemArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public void Test_HistoryItemArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
-            var traktHistoryItems = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktHistoryItems.Should().BeNull();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
+            Func<Task<IEnumerable<ITraktHistoryItem>>> traktHistoryItems = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            traktHistoryItems.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_ReadArray_From_JsonReader_Empty()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

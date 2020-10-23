@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktSyncHistoryPostEpisode> CreateObjectReader() => new SyncHistoryPostEpisodeObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncHistoryPostEpisode> CreateArrayReader() => new SyncHistoryPostEpisodeArrayJsonReader();
-
         public IObjectJsonWriter<ITraktSyncHistoryPostEpisode> CreateObjectWriter() => new SyncHistoryPostEpisodeObjectJsonWriter();
     }
 }

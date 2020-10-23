@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktMovieRelease> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktMovieRelease));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -23,13 +22,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOVIE_RELEASE_PROPERTY_NAME_COUNTRY:
+                        case JsonProperties.PROPERTY_NAME_COUNTRY:
                             traktMovieRelease.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_RELEASE_PROPERTY_NAME_CERTIFICATION:
+                        case JsonProperties.PROPERTY_NAME_CERTIFICATION:
                             traktMovieRelease.Certification = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_RELEASE_PROPERTY_NAME_RELEASE_DATE:
+                        case JsonProperties.PROPERTY_NAME_RELEASE_DATE:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -38,10 +37,10 @@
 
                                 break;
                             }
-                        case JsonProperties.MOVIE_RELEASE_PROPERTY_NAME_RELEASE_TYPE:
+                        case JsonProperties.PROPERTY_NAME_RELEASE_TYPE:
                             traktMovieRelease.ReleaseType = await JsonReaderHelper.ReadEnumerationValueAsync<TraktReleaseType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_RELEASE_PROPERTY_NAME_NOTE:
+                        case JsonProperties.PROPERTY_NAME_NOTE:
                             traktMovieRelease.Note = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

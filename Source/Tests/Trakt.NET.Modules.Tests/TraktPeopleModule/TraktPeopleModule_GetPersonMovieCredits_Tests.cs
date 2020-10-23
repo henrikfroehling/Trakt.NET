@@ -33,7 +33,7 @@
 
             ITraktPersonMovieCreditsCastItem[] cast = responseValue.Cast.ToArray();
 
-            cast[0].Character.Should().Be("Li (voice)");
+            cast[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Li (voice)");
             cast[0].Movie.Should().NotBeNull();
             cast[0].Movie.Title.Should().Be("Kung Fu Panda 3");
             cast[0].Movie.Year.Should().Be(2016);
@@ -43,7 +43,7 @@
             cast[0].Movie.Ids.Imdb.Should().Be("tt2267968");
             cast[0].Movie.Ids.Tmdb.Should().Be(140300U);
 
-            cast[1].Character.Should().Be("Joe Brody");
+            cast[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             cast[1].Movie.Should().NotBeNull();
             cast[1].Movie.Title.Should().Be("Godzilla");
             cast[1].Movie.Year.Should().Be(2014);
@@ -62,7 +62,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] directing = responseValue.Crew.Directing.ToArray();
 
-            directing[0].Job.Should().Be("Director");
+            directing[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directing[0].Movie.Should().NotBeNull();
             directing[0].Movie.Title.Should().Be("Godzilla");
             directing[0].Movie.Year.Should().Be(2014);
@@ -78,7 +78,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] production = responseValue.Crew.Production.ToArray();
 
-            production[0].Job.Should().Be("Producer");
+            production[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             production[0].Movie.Should().NotBeNull();
             production[0].Movie.Title.Should().Be("Godzilla");
             production[0].Movie.Year.Should().Be(2014);
@@ -94,7 +94,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] writing = responseValue.Crew.Writing.ToArray();
 
-            writing[0].Job.Should().Be("Screenplay");
+            writing[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Screenplay");
             writing[0].Movie.Should().NotBeNull();
             writing[0].Movie.Title.Should().Be("Godzilla");
             writing[0].Movie.Year.Should().Be(2014);
@@ -121,7 +121,7 @@
 
             ITraktPersonMovieCreditsCastItem[] cast = responseValue.Cast.ToArray();
 
-            cast[0].Character.Should().Be("Li (voice)");
+            cast[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Li (voice)");
             cast[0].Movie.Should().NotBeNull();
             cast[0].Movie.Title.Should().Be("Kung Fu Panda 3");
             cast[0].Movie.Year.Should().Be(2016);
@@ -131,7 +131,7 @@
             cast[0].Movie.Ids.Imdb.Should().Be("tt2267968");
             cast[0].Movie.Ids.Tmdb.Should().Be(140300U);
 
-            cast[1].Character.Should().Be("Joe Brody");
+            cast[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
             cast[1].Movie.Should().NotBeNull();
             cast[1].Movie.Title.Should().Be("Godzilla");
             cast[1].Movie.Year.Should().Be(2014);
@@ -150,7 +150,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] directing = responseValue.Crew.Directing.ToArray();
 
-            directing[0].Job.Should().Be("Director");
+            directing[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directing[0].Movie.Should().NotBeNull();
             directing[0].Movie.Title.Should().Be("Godzilla");
             directing[0].Movie.Year.Should().Be(2014);
@@ -166,7 +166,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] production = responseValue.Crew.Production.ToArray();
 
-            production[0].Job.Should().Be("Producer");
+            production[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             production[0].Movie.Should().NotBeNull();
             production[0].Movie.Title.Should().Be("Godzilla");
             production[0].Movie.Year.Should().Be(2014);
@@ -182,7 +182,7 @@
 
             ITraktPersonMovieCreditsCrewItem[] writing = responseValue.Crew.Writing.ToArray();
 
-            writing[0].Job.Should().Be("Screenplay");
+            writing[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Screenplay");
             writing[0].Movie.Should().NotBeNull();
             writing[0].Movie.Title.Should().Be("Godzilla");
             writing[0].Movie.Year.Should().Be(2014);
@@ -193,132 +193,36 @@
             writing[0].Movie.Ids.Tmdb.Should().Be(124905U);
         }
 
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_NotFoundException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktPersonNotFoundException))]
+        [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktPeopleModule_GetPersonMovieCredits_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.NotFound);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktPersonNotFoundException>();
-        }
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, statusCode);
 
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_AuthorizationException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.Unauthorized);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktAuthorizationException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.BadRequest);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.Forbidden);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.MethodNotAllowed);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.Conflict);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.InternalServerError);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, HttpStatusCode.BadGateway);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)412);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)422);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)429);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)503);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)504);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)520);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)521);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonMovieCredits_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, (HttpStatusCode)522);
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerUnavailableException>();
+            try
+            {
+                await client.People.GetPersonMovieCreditsAsync(PERSON_ID);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
         [Fact]

@@ -58,132 +58,36 @@
             responseValue.NotFound.Episodes.Should().NotBeNull().And.BeEmpty();
         }
 
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_NotFoundException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
+        [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktSyncModule_RemoveWatchlistItems_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, HttpStatusCode.NotFound);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktNotFoundException>();
-        }
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, statusCode);
 
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_AuthorizationException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, HttpStatusCode.Unauthorized);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktAuthorizationException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, HttpStatusCode.BadRequest);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, HttpStatusCode.Forbidden);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, HttpStatusCode.MethodNotAllowed);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, HttpStatusCode.Conflict);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, HttpStatusCode.InternalServerError);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, HttpStatusCode.BadGateway);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, (HttpStatusCode)412);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, (HttpStatusCode)422);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, (HttpStatusCode)429);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, (HttpStatusCode)503);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, (HttpStatusCode)504);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, (HttpStatusCode)520);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, (HttpStatusCode)521);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_RemoveWatchlistItems_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, (HttpStatusCode)522);
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
-            act.Should().Throw<TraktServerUnavailableException>();
+            try
+            {
+                await client.Sync.RemoveWatchlistItemsAsync(RemoveWatchlistPost);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
         [Fact]

@@ -16,7 +16,7 @@
             if (obj.Avatar != null)
             {
                 var imageObjectJsonWriter = new ImageObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_IMAGES_PROPERTY_NAME_AVATAR, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_AVATAR, cancellationToken).ConfigureAwait(false);
                 await imageObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Avatar, cancellationToken).ConfigureAwait(false);
             }
 

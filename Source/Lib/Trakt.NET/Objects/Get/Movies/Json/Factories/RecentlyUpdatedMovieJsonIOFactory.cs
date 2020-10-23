@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktRecentlyUpdatedMovie> CreateObjectReader() => new RecentlyUpdatedMovieObjectJsonReader();
 
-        public IArrayJsonReader<ITraktRecentlyUpdatedMovie> CreateArrayReader() => new RecentlyUpdatedMovieArrayJsonReader();
-
         public IObjectJsonWriter<ITraktRecentlyUpdatedMovie> CreateObjectWriter() => new RecentlyUpdatedMovieObjectJsonWriter();
     }
 }

@@ -2,11 +2,13 @@
 {
     using FluentAssertions;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
-    using TraktNet.Objects.Get.Collections.Json.Reader;
+    using TraktNet.Objects.Get.Collections;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.Collections.JsonReader")]
@@ -15,7 +17,7 @@
         [Fact]
         public async Task Test_CollectionMovieArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new CollectionMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionMovie>();
             var traktCollectionMovies = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktCollectionMovies.Should().NotBeNull().And.BeEmpty();
         }
@@ -23,7 +25,7 @@
         [Fact]
         public async Task Test_CollectionMovieArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new CollectionMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionMovie>();
 
             var traktCollectionMovies = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
             traktCollectionMovies.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -72,7 +74,7 @@
         [Fact]
         public async Task Test_CollectionMovieArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new CollectionMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionMovie>();
 
             var traktCollectionMovies = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
             traktCollectionMovies.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -121,7 +123,7 @@
         [Fact]
         public async Task Test_CollectionMovieArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new CollectionMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionMovie>();
 
             var traktCollectionMovies = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
             traktCollectionMovies.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -170,7 +172,7 @@
         [Fact]
         public async Task Test_CollectionMovieArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new CollectionMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionMovie>();
 
             var traktCollectionMovies = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
             traktCollectionMovies.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -219,7 +221,7 @@
         [Fact]
         public async Task Test_CollectionMovieArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new CollectionMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionMovie>();
 
             var traktCollectionMovies = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
             traktCollectionMovies.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -268,7 +270,7 @@
         [Fact]
         public async Task Test_CollectionMovieArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new CollectionMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionMovie>();
 
             var traktCollectionMovies = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
             traktCollectionMovies.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
@@ -315,17 +317,17 @@
         }
 
         [Fact]
-        public async Task Test_CollectionMovieArrayJsonReader_ReadArray_From_Json_String_Null()
+        public void Test_CollectionMovieArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new CollectionMovieArrayJsonReader();
-            var traktCollectionMovies = await jsonReader.ReadArrayAsync(default(string));
-            traktCollectionMovies.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionMovie>();
+            Func<Task<IEnumerable<ITraktCollectionMovie>>> traktCollectionMovies = () => jsonReader.ReadArrayAsync(default(string));
+            traktCollectionMovies.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_CollectionMovieArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new CollectionMovieArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCollectionMovie>();
             var traktCollectionMovies = await jsonReader.ReadArrayAsync(string.Empty);
             traktCollectionMovies.Should().BeNull();
         }

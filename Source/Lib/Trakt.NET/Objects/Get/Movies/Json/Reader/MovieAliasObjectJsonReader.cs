@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktMovieAlias> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktMovieAlias));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,10 +21,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOVIE_ALIAS_PROPERTY_NAME_TITLE:
+                        case JsonProperties.PROPERTY_NAME_TITLE:
                             traktMovieAlias.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_ALIAS_PROPERTY_NAME_COUNTRY:
+                        case JsonProperties.PROPERTY_NAME_COUNTRY:
                             traktMovieAlias.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

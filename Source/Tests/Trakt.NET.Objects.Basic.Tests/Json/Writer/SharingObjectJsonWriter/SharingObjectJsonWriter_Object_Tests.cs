@@ -20,19 +20,6 @@
         }
 
         [Fact]
-        public async Task Test_SharingObjectJsonWriter_WriteObject_Object_Only_Facebook_Property()
-        {
-            ITraktSharing traktSharing = new TraktSharing
-            {
-                Facebook = true
-            };
-
-            var traktJsonWriter = new SharingObjectJsonWriter();
-            string json = await traktJsonWriter.WriteObjectAsync(traktSharing);
-            json.Should().Be(@"{""facebook"":true}");
-        }
-
-        [Fact]
         public async Task Test_SharingObjectJsonWriter_WriteObject_Object_Only_Twitter_Property()
         {
             ITraktSharing traktSharing = new TraktSharing
@@ -102,7 +89,6 @@
         {
             ITraktSharing traktSharing = new TraktSharing
             {
-                Facebook = true,
                 Twitter = true,
                 Google = true,
                 Tumblr = true,
@@ -112,7 +98,7 @@
 
             var traktJsonWriter = new SharingObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktSharing);
-            json.Should().Be(@"{""facebook"":true,""twitter"":true,""google"":true," +
+            json.Should().Be(@"{""twitter"":true,""google"":true," +
                              @"""tumblr"":true,""medium"":true,""slack"":true}");
         }
     }

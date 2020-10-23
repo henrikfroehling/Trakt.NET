@@ -15,26 +15,26 @@
 
             if (obj.Number.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SEASON_WATCHED_PROGRESS_PROPERTY_NAME_NUMBER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NUMBER, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Number, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Aired.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SEASON_WATCHED_PROGRESS_PROPERTY_NAME_AIRED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_AIRED, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Aired, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Completed.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SEASON_WATCHED_PROGRESS_PROPERTY_NAME_COMPLETED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COMPLETED, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Completed, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Episodes != null)
             {
                 var episodeWatchedProgressArrayJsonWriter = new ArrayJsonWriter<ITraktEpisodeWatchedProgress>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SEASON_WATCHED_PROGRESS_PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
                 await episodeWatchedProgressArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Episodes, cancellationToken).ConfigureAwait(false);
             }
 

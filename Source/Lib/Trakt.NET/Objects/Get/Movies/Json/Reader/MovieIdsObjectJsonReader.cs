@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktMovieIds> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktMovieIds));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,7 +21,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOVIE_IDS_PROPERTY_NAME_TRAKT:
+                        case JsonProperties.PROPERTY_NAME_TRAKT:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -31,13 +30,13 @@
 
                                 break;
                             }
-                        case JsonProperties.MOVIE_IDS_PROPERTY_NAME_SLUG:
+                        case JsonProperties.PROPERTY_NAME_SLUG:
                             traktMovieIds.Slug = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_IDS_PROPERTY_NAME_IMDB:
+                        case JsonProperties.PROPERTY_NAME_IMDB:
                             traktMovieIds.Imdb = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.MOVIE_IDS_PROPERTY_NAME_TMDB:
+                        case JsonProperties.PROPERTY_NAME_TMDB:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 

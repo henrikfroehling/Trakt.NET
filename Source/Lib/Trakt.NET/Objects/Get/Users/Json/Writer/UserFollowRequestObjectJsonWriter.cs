@@ -13,19 +13,19 @@
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
-            await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_FOLLOW_REQUEST_PROPERTY_NAME_ID, cancellationToken).ConfigureAwait(false);
+            await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_ID, cancellationToken).ConfigureAwait(false);
             await jsonWriter.WriteValueAsync(obj.Id, cancellationToken).ConfigureAwait(false);
 
             if (obj.RequestedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_FOLLOW_REQUEST_PROPERTY_NAME_REQUESTED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_REQUESTED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.RequestedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.User != null)
             {
                 var userObjectJsonWriter = new UserObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_FOLLOW_REQUEST_PROPERTY_NAME_USER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_USER, cancellationToken).ConfigureAwait(false);
                 await userObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.User, cancellationToken).ConfigureAwait(false);
             }
 

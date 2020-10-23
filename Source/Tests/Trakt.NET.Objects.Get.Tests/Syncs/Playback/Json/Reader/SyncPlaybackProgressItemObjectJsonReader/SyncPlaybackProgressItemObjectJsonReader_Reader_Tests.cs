@@ -2,9 +2,11 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Syncs.Playback;
     using TraktNet.Objects.Get.Syncs.Playback.Json.Reader;
     using Xunit;
 
@@ -12,12 +14,11 @@
     public partial class SyncPlaybackProgressItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_SyncPlaybackProgressItemObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_SyncPlaybackProgressItemObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new SyncPlaybackProgressItemObjectJsonReader();
-
-            var traktPlaybackProgressItem = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktPlaybackProgressItem.Should().BeNull();
+            Func<Task<ITraktSyncPlaybackProgressItem>> traktPlaybackProgressItem = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            traktPlaybackProgressItem.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -12,8 +12,7 @@
     {
         public override async Task<ITraktSyncHistoryPostMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncHistoryPostMovie));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -26,7 +25,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_HISTORY_POST_MOVIE_PROPERTY_NAME_WATCHED_AT:
+                        case JsonProperties.PROPERTY_NAME_WATCHED_AT:
                             {
                                 Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -35,13 +34,13 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_HISTORY_POST_MOVIE_PROPERTY_NAME_TITLE:
+                        case JsonProperties.PROPERTY_NAME_TITLE:
                             syncHistoryPostMovie.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_HISTORY_POST_MOVIE_PROPERTY_NAME_YEAR:
+                        case JsonProperties.PROPERTY_NAME_YEAR:
                             syncHistoryPostMovie.Year = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_HISTORY_POST_MOVIE_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             syncHistoryPostMovie.Ids = await movieIdsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

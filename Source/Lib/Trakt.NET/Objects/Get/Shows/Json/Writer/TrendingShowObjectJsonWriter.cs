@@ -14,14 +14,14 @@
 
             if (obj.Watchers.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.TRENDING_SHOW_PROPERTY_NAME_WATCHERS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_WATCHERS, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Watchers, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Show != null)
             {
                 var showObjectJsonWriter = new ShowObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.TRENDING_SHOW_PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
                 await showObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Show, cancellationToken).ConfigureAwait(false);
             }
 

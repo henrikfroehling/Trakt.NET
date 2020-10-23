@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktSyncPlaybackProgressItem> CreateObjectReader() => new SyncPlaybackProgressItemObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncPlaybackProgressItem> CreateArrayReader() => new SyncPlaybackProgressItemArrayJsonReader();
-
         public IObjectJsonWriter<ITraktSyncPlaybackProgressItem> CreateObjectWriter() => new SyncPlaybackProgressItemObjectJsonWriter();
     }
 }

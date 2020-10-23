@@ -13,7 +13,7 @@
             if (obj.Episode != null)
             {
                 var episodeObjectJsonWriter = new EpisodeObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.EPISODE_COMMENT_POST_PROPERTY_NAME_EPISODE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODE, cancellationToken).ConfigureAwait(false);
                 await episodeObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Episode, cancellationToken).ConfigureAwait(false);
             }
         }

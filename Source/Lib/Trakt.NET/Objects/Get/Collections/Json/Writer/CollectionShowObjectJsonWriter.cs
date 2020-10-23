@@ -16,21 +16,27 @@
 
             if (obj.LastCollectedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COLLECTION_SHOW_PROPERTY_NAME_LAST_COLLECTED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LAST_COLLECTED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.LastCollectedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.LastUpdatedAt.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LAST_UPDATED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.LastUpdatedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Show != null)
             {
                 var showObjectJsonWriter = new ShowObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COLLECTION_SHOW_PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
                 await showObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Show, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.CollectionSeasons != null)
             {
                 var collectionShowSeasonArrayJsonWriter = new ArrayJsonWriter<ITraktCollectionShowSeason>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.COLLECTION_SHOW_PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
                 await collectionShowSeasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.CollectionSeasons, cancellationToken).ConfigureAwait(false);
             }
 

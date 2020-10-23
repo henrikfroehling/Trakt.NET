@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktCommentReplyPost> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktCommentReplyPost));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,10 +21,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.COMMENT_UPDATE_POST_PROPERTY_NAME_COMMENT:
+                        case JsonProperties.PROPERTY_NAME_COMMENT:
                             commentReplyPost.Comment = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.COMMENT_UPDATE_POST_PROPERTY_NAME_SPOILER:
+                        case JsonProperties.PROPERTY_NAME_SPOILER:
                             {
                                 bool? value = await jsonReader.ReadAsBooleanAsync(cancellationToken);
 

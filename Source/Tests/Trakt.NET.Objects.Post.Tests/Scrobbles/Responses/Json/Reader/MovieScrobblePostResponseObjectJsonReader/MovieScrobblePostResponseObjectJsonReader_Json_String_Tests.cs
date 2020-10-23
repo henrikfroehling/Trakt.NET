@@ -1,9 +1,11 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Scrobbles.Responses.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Objects.Post.Scrobbles.Responses;
     using TraktNet.Objects.Post.Scrobbles.Responses.Json.Reader;
     using Xunit;
 
@@ -22,7 +24,6 @@
             movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             movieScrobbleResponse.Progress.Should().Be(85.9f);
             movieScrobbleResponse.Sharing.Should().NotBeNull();
-            movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             movieScrobbleResponse.Sharing.Google.Should().BeTrue();
             movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -50,7 +51,6 @@
             movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             movieScrobbleResponse.Progress.Should().Be(85.9f);
             movieScrobbleResponse.Sharing.Should().NotBeNull();
-            movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             movieScrobbleResponse.Sharing.Google.Should().BeTrue();
             movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -78,7 +78,6 @@
             movieScrobbleResponse.Action.Should().BeNull();
             movieScrobbleResponse.Progress.Should().Be(85.9f);
             movieScrobbleResponse.Sharing.Should().NotBeNull();
-            movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             movieScrobbleResponse.Sharing.Google.Should().BeTrue();
             movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -106,7 +105,6 @@
             movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             movieScrobbleResponse.Progress.Should().BeNull();
             movieScrobbleResponse.Sharing.Should().NotBeNull();
-            movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             movieScrobbleResponse.Sharing.Google.Should().BeTrue();
             movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -156,7 +154,6 @@
             movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             movieScrobbleResponse.Progress.Should().Be(85.9f);
             movieScrobbleResponse.Sharing.Should().NotBeNull();
-            movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             movieScrobbleResponse.Sharing.Google.Should().BeTrue();
             movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -222,7 +219,6 @@
             movieScrobbleResponse.Action.Should().BeNull();
             movieScrobbleResponse.Progress.Should().BeNull();
             movieScrobbleResponse.Sharing.Should().NotBeNull();
-            movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             movieScrobbleResponse.Sharing.Google.Should().BeTrue();
             movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -265,7 +261,6 @@
             movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             movieScrobbleResponse.Progress.Should().Be(85.9f);
             movieScrobbleResponse.Sharing.Should().NotBeNull();
-            movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             movieScrobbleResponse.Sharing.Google.Should().BeTrue();
             movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -293,7 +288,6 @@
             movieScrobbleResponse.Action.Should().BeNull();
             movieScrobbleResponse.Progress.Should().Be(85.9f);
             movieScrobbleResponse.Sharing.Should().NotBeNull();
-            movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             movieScrobbleResponse.Sharing.Google.Should().BeTrue();
             movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -321,7 +315,6 @@
             movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             movieScrobbleResponse.Progress.Should().BeNull();
             movieScrobbleResponse.Sharing.Should().NotBeNull();
-            movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             movieScrobbleResponse.Sharing.Google.Should().BeTrue();
             movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -371,7 +364,6 @@
             movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             movieScrobbleResponse.Progress.Should().Be(85.9f);
             movieScrobbleResponse.Sharing.Should().NotBeNull();
-            movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             movieScrobbleResponse.Sharing.Google.Should().BeTrue();
             movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -396,12 +388,11 @@
         }
 
         [Fact]
-        public async Task Test_MovieScrobblePostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_MovieScrobblePostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new MovieScrobblePostResponseObjectJsonReader();
-
-            var movieScrobbleResponse = await jsonReader.ReadObjectAsync(default(string));
-            movieScrobbleResponse.Should().BeNull();
+            Func<Task<ITraktMovieScrobblePostResponse>> movieScrobbleResponse = () => jsonReader.ReadObjectAsync(default(string));
+            movieScrobbleResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

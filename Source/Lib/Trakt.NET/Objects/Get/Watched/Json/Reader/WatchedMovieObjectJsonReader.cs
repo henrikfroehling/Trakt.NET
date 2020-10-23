@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktWatchedMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktWatchedMovie));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -25,10 +24,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_PLAYS:
+                        case JsonProperties.PROPERTY_NAME_PLAYS:
                             traktWatchedMovie.Plays = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_LAST_WATCHED_AT:
+                        case JsonProperties.PROPERTY_NAME_LAST_WATCHED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -37,7 +36,16 @@
 
                                 break;
                             }
-                        case JsonProperties.WATCHED_MOVIE_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_LAST_UPDATED_AT:
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktWatchedMovie.LastUpdatedAt = value.Second;
+
+                                break;
+                            }
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktWatchedMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

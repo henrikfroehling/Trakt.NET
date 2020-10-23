@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktUserCustomListItemsPostResponse> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserCustomListItemsPostResponse));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,13 +23,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_PROPERTY_NAME_ADDED:
+                        case JsonProperties.PROPERTY_NAME_ADDED:
                             customListItemsPostResponse.Added = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_PROPERTY_NAME_EXISTING:
+                        case JsonProperties.PROPERTY_NAME_EXISTING:
                             customListItemsPostResponse.Existing = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.PROPERTY_NAME_NOT_FOUND:
                             customListItemsPostResponse.NotFound = await responseNotFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

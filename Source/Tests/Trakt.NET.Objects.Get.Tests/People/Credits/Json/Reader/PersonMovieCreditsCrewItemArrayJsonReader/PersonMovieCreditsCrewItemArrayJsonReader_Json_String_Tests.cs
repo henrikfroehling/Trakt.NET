@@ -1,10 +1,13 @@
 ﻿namespace TraktNet.Objects.Get.Tests.People.Credits.Json.Reader
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.People.Credits.Json.Reader;
+    using TraktNet.Objects.Get.People.Credits;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.People.Credits.JsonReader")]
@@ -13,7 +16,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             movieCreditsCrewItems.Should().NotBeNull().And.BeEmpty();
@@ -22,7 +25,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
@@ -30,7 +33,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
+            items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -41,7 +44,7 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().NotBeNull();
             items[1].Movie.Title.Should().Be("TRON: Legacy");
             items[1].Movie.Year.Should().Be(2010);
@@ -55,7 +58,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
@@ -63,7 +66,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
+            items[0].Jobs.Should().BeNull();
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -74,7 +77,7 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().NotBeNull();
             items[1].Movie.Title.Should().Be("TRON: Legacy");
             items[1].Movie.Year.Should().Be(2010);
@@ -88,7 +91,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
@@ -96,7 +99,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
+            items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -107,14 +110,14 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().BeNull();
         }
 
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
@@ -122,7 +125,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
+            items[0].Jobs.Should().BeNull();
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -133,7 +136,7 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().NotBeNull();
             items[1].Movie.Title.Should().Be("TRON: Legacy");
             items[1].Movie.Year.Should().Be(2010);
@@ -147,7 +150,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
@@ -155,7 +158,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
+            items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -166,14 +169,14 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().BeNull();
         }
 
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
@@ -181,7 +184,7 @@
             var items = movieCreditsCrewItems.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
+            items[0].Jobs.Should().BeNull();
             items[0].Movie.Should().NotBeNull();
             items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
             items[0].Movie.Year.Should().Be(2015);
@@ -192,23 +195,22 @@
             items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Producer");
+            items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             items[1].Movie.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
-
-            var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(default(string));
-            movieCreditsCrewItems.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
+            Func<Task<IEnumerable<ITraktPersonMovieCreditsCrewItem>>> movieCreditsCrewItems = () => jsonReader.ReadArrayAsync(default(string));
+            movieCreditsCrewItems.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_PersonMovieCreditsCrewItemArrayJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new PersonMovieCreditsCrewItemArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCrewItem>();
 
             var movieCreditsCrewItems = await jsonReader.ReadArrayAsync(string.Empty);
             movieCreditsCrewItems.Should().BeNull();

@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
-    using Post.Responses.Json.Reader;
+    using Post.Responses;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -10,15 +10,14 @@
     {
         public override async Task<ITraktSyncPostResponseNotFoundGroup> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncPostResponseNotFoundGroup));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var notFoundMoviesReader = new PostResponseNotFoundMovieArrayJsonReader();
-                var notFoundShowsReader = new PostResponseNotFoundShowArrayJsonReader();
-                var notFoundSeasonsReader = new PostResponseNotFoundSeasonArrayJsonReader();
-                var notFoundEpisodesReader = new PostResponseNotFoundEpisodeArrayJsonReader();
+                var notFoundMoviesReader = new ArrayJsonReader<ITraktPostResponseNotFoundMovie>();
+                var notFoundShowsReader = new ArrayJsonReader<ITraktPostResponseNotFoundShow>();
+                var notFoundSeasonsReader = new ArrayJsonReader<ITraktPostResponseNotFoundSeason>();
+                var notFoundEpisodesReader = new ArrayJsonReader<ITraktPostResponseNotFoundEpisode>();
                 ITraktSyncPostResponseNotFoundGroup syncPostResponseNotFoundGroup = new TraktSyncPostResponseNotFoundGroup();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -27,16 +26,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             syncPostResponseNotFoundGroup.Movies = await notFoundMoviesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             syncPostResponseNotFoundGroup.Shows = await notFoundShowsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             syncPostResponseNotFoundGroup.Seasons = await notFoundSeasonsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_POST_RESPONSE_NOT_FOUND_GROUP_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             syncPostResponseNotFoundGroup.Episodes = await notFoundEpisodesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

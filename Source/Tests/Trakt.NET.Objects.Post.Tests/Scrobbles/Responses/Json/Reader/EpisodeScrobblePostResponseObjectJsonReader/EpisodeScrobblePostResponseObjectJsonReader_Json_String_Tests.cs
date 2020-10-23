@@ -1,9 +1,11 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Scrobbles.Responses.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Objects.Post.Scrobbles.Responses;
     using TraktNet.Objects.Post.Scrobbles.Responses.Json.Reader;
     using Xunit;
 
@@ -22,7 +24,6 @@
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             episodeScrobbleResponse.Progress.Should().Be(85.9f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -62,7 +63,6 @@
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             episodeScrobbleResponse.Progress.Should().Be(85.9f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -102,7 +102,6 @@
             episodeScrobbleResponse.Action.Should().BeNull();
             episodeScrobbleResponse.Progress.Should().Be(85.9f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -142,7 +141,6 @@
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             episodeScrobbleResponse.Progress.Should().BeNull();
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -216,7 +214,6 @@
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             episodeScrobbleResponse.Progress.Should().Be(85.9f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -247,7 +244,6 @@
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             episodeScrobbleResponse.Progress.Should().Be(85.9f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -326,7 +322,6 @@
             episodeScrobbleResponse.Action.Should().BeNull();
             episodeScrobbleResponse.Progress.Should().BeNull();
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -398,7 +393,6 @@
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             episodeScrobbleResponse.Progress.Should().Be(85.9f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -438,7 +432,6 @@
             episodeScrobbleResponse.Action.Should().BeNull();
             episodeScrobbleResponse.Progress.Should().Be(85.9f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -478,7 +471,6 @@
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             episodeScrobbleResponse.Progress.Should().BeNull();
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -552,7 +544,6 @@
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             episodeScrobbleResponse.Progress.Should().Be(85.9f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -583,7 +574,6 @@
             episodeScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             episodeScrobbleResponse.Progress.Should().Be(85.9f);
             episodeScrobbleResponse.Sharing.Should().NotBeNull();
-            episodeScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Google.Should().BeTrue();
             episodeScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -619,12 +609,11 @@
         }
 
         [Fact]
-        public async Task Test_EpisodeScrobblePostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_EpisodeScrobblePostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new EpisodeScrobblePostResponseObjectJsonReader();
-
-            var episodeScrobbleResponse = await jsonReader.ReadObjectAsync(default(string));
-            episodeScrobbleResponse.Should().BeNull();
+            Func<Task<ITraktEpisodeScrobblePostResponse>> episodeScrobbleResponse = () => jsonReader.ReadObjectAsync(default(string));
+            episodeScrobbleResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

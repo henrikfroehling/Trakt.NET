@@ -32,7 +32,6 @@
             checkinMovieResponse.Id.Should().Be(3373536620UL);
             checkinMovieResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             checkinMovieResponse.Sharing.Should().NotBeNull();
-            checkinMovieResponse.Sharing.Facebook.Should().BeTrue();
             checkinMovieResponse.Sharing.Twitter.Should().BeTrue();
             checkinMovieResponse.Sharing.Google.Should().BeTrue();
             checkinMovieResponse.Sharing.Tumblr.Should().BeTrue();
@@ -53,7 +52,6 @@
                 ""id"": 3373536620,
                 ""watched_at"": ""2014-08-06T06:54:36.859Z"",
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,

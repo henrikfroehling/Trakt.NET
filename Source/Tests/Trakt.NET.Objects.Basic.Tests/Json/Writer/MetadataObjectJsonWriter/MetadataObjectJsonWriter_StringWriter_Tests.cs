@@ -87,6 +87,22 @@
         }
 
         [Fact]
+        public async Task Test_MetadataObjectJsonWriter_WriteObject_StringWriter_Only_HDR_Property()
+        {
+            ITraktMetadata traktMetadata = new TraktMetadata
+            {
+                HDR  = TraktMediaHDR.DolbyVision
+            };
+
+            using (var stringWriter = new StringWriter())
+            {
+                var traktJsonWriter = new MetadataObjectJsonWriter();
+                string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktMetadata);
+                json.Should().Be(@"{""hdr"":""dolby_vision""}");
+            }
+        }
+
+        [Fact]
         public async Task Test_MetadataObjectJsonWriter_WriteObject_StringWriter_Only_ThreeDimensional_Property()
         {
             ITraktMetadata traktMetadata = new TraktMetadata
@@ -111,6 +127,7 @@
                 MediaResolution = TraktMediaResolution.UHD_4k,
                 Audio = TraktMediaAudio.DolbyAtmos,
                 AudioChannels = TraktMediaAudioChannel.Channels_7_1,
+                HDR = TraktMediaHDR.DolbyVision,
                 ThreeDimensional = true
             };
 
@@ -119,7 +136,7 @@
                 var traktJsonWriter = new MetadataObjectJsonWriter();
                 string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktMetadata);
                 json.Should().Be(@"{""media_type"":""digital"",""resolution"":""uhd_4k"",""audio"":""dolby_atmos""," +
-                                 @"""audio_channels"":""7.1"",""3d"":true}");
+                                 @"""audio_channels"":""7.1"",""3d"":true,""hdr"":""dolby_vision""}");
             }
         }
     }

@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktUserCustomListItemsRemovePostResponse> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserCustomListItemsRemovePostResponse));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,10 +23,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED:
+                        case JsonProperties.PROPERTY_NAME_DELETED:
                             customListItemsRemovePostResponse.Deleted = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.PROPERTY_NAME_NOT_FOUND:
                             customListItemsRemovePostResponse.NotFound = await responseNotFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

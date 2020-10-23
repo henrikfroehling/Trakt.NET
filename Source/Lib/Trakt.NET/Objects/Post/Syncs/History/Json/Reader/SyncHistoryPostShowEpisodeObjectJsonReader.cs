@@ -11,8 +11,7 @@
     {
         public override async Task<ITraktSyncHistoryPostShowEpisode> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncHistoryPostShowEpisode));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_HISTORY_POST_SHOW_EPISODE_PROPERTY_NAME_WATCHED_AT:
+                        case JsonProperties.PROPERTY_NAME_WATCHED_AT:
                             {
                                 Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -33,7 +32,7 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_HISTORY_POST_SHOW_EPISODE_PROPERTY_NAME_NUMBER:
+                        case JsonProperties.PROPERTY_NAME_NUMBER:
                             {
                                 Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 

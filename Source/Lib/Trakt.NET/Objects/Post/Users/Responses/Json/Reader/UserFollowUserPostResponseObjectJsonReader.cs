@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktUserFollowUserPostResponse> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserFollowUserPostResponse));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_FOLLOW_USER_POST_RESPONSE_PROPERTY_NAME_APPROVED_AT:
+                        case JsonProperties.PROPERTY_NAME_APPROVED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -33,7 +32,7 @@
 
                                 break;
                             }
-                        case JsonProperties.USER_FOLLOW_USER_POST_RESPONSE_PROPERTY_NAME_USER:
+                        case JsonProperties.PROPERTY_NAME_USER:
                             userFollowUserPostResponse.User = await userObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

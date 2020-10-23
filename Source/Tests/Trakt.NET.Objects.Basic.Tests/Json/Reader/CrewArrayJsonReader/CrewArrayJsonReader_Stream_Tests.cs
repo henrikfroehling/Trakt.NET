@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -8,7 +9,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -17,7 +18,7 @@
         [Fact]
         public async Task Test_CrewArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var jsonReader = new CrewArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrew>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -29,7 +30,7 @@
         [Fact]
         public async Task Test_CrewArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var jsonReader = new CrewArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrew>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -42,7 +43,6 @@
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().Be("Producer");
                 productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -68,7 +68,6 @@
                 productionCrew = crews[1].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().Be("Producer");
                 productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -95,7 +94,7 @@
         [Fact]
         public async Task Test_CrewArrayJsonReader_ReadArray_From_Stream_Incomplete_1()
         {
-            var jsonReader = new CrewArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrew>();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -108,7 +107,6 @@
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().Be("Producer");
                 productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -134,7 +132,6 @@
                 productionCrew = crews[1].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().Be("Producer");
                 productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[0].Person.Should().BeNull();
 
@@ -154,7 +151,7 @@
         [Fact]
         public async Task Test_CrewArrayJsonReader_ReadArray_From_Stream_Incomplete_2()
         {
-            var jsonReader = new CrewArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrew>();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -167,7 +164,6 @@
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().Be("Producer");
                 productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[0].Person.Should().BeNull();
 
@@ -186,7 +182,6 @@
                 productionCrew = crews[1].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().Be("Producer");
                 productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -213,7 +208,7 @@
         [Fact]
         public async Task Test_CrewArrayJsonReader_ReadArray_From_Stream_Not_Valid_1()
         {
-            var jsonReader = new CrewArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrew>();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -226,7 +221,6 @@
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().BeNull();
                 productionCrew[0].Jobs.Should().BeNull();
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -252,7 +246,6 @@
                 productionCrew = crews[1].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().Be("Producer");
                 productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -279,7 +272,7 @@
         [Fact]
         public async Task Test_CrewArrayJsonReader_ReadArray_From_Stream_Not_Valid_2()
         {
-            var jsonReader = new CrewArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrew>();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -292,7 +285,6 @@
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().Be("Producer");
                 productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -318,7 +310,6 @@
                 productionCrew = crews[1].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().BeNull();
                 productionCrew[0].Jobs.Should().BeNull();
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -345,7 +336,7 @@
         [Fact]
         public async Task Test_CrewArrayJsonReader_ReadArray_From_Stream_Not_Valid_3()
         {
-            var jsonReader = new CrewArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrew>();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -358,7 +349,6 @@
                 ITraktCrewMember[] productionCrew = crews[0].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().BeNull();
                 productionCrew[0].Jobs.Should().BeNull();
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -384,7 +374,6 @@
                 productionCrew = crews[1].Production.ToArray();
 
                 productionCrew[0].Should().NotBeNull();
-                productionCrew[0].Job.Should().BeNull();
                 productionCrew[0].Jobs.Should().BeNull();
                 productionCrew[0].Person.Should().NotBeNull();
                 productionCrew[0].Person.Name.Should().Be("Bryan Cranston");
@@ -409,17 +398,17 @@
         }
 
         [Fact]
-        public async Task Test_CrewArrayJsonReader_ReadArray_From_Stream_Null()
+        public void Test_CrewArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var jsonReader = new CrewArrayJsonReader();
-            IEnumerable<ITraktCrew> traktCrews = await jsonReader.ReadArrayAsync(default(Stream));
-            traktCrews.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktCrew>();
+            Func<Task<IEnumerable<ITraktCrew>>> traktCrews = () => jsonReader.ReadArrayAsync(default(Stream));
+            traktCrews.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_CrewArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var jsonReader = new CrewArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrew>();
 
             using (var stream = string.Empty.ToStream())
             {

@@ -6,7 +6,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -21,7 +23,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -38,7 +42,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -53,7 +59,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -70,7 +78,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -85,7 +95,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -102,7 +114,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -117,7 +131,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -134,7 +150,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -149,7 +167,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -166,7 +186,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -181,7 +203,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -198,7 +222,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -213,7 +239,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -230,7 +258,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -245,7 +275,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -262,7 +294,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -277,7 +311,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -294,7 +330,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -309,7 +347,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -326,7 +366,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -341,7 +383,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -362,7 +406,9 @@
             @"{
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -377,7 +423,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -394,7 +442,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -409,7 +459,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -426,7 +478,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -441,7 +495,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -458,7 +514,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -473,7 +531,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -490,7 +550,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -505,7 +567,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -522,7 +586,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -537,7 +603,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -554,7 +622,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -569,7 +639,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -586,7 +658,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -601,7 +675,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -618,7 +694,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -633,7 +711,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -650,7 +730,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -665,7 +747,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -686,7 +770,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -701,7 +787,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -718,7 +806,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -733,7 +823,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -750,7 +842,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -765,7 +859,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -782,7 +878,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -797,7 +895,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -814,7 +914,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -829,7 +931,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -846,7 +950,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -861,7 +967,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -878,7 +986,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -893,7 +1003,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -910,7 +1022,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -925,7 +1039,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -942,7 +1058,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -957,7 +1075,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -974,7 +1094,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -989,7 +1111,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1010,7 +1134,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1025,7 +1151,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1042,7 +1170,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1057,7 +1187,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1074,7 +1206,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1089,7 +1223,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1106,7 +1242,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1121,7 +1259,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1138,7 +1278,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1153,7 +1295,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1170,7 +1314,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1185,7 +1331,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1202,7 +1350,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1217,7 +1367,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1234,7 +1386,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1249,7 +1403,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1266,7 +1422,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1281,7 +1439,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1298,7 +1458,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1313,7 +1475,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1334,7 +1498,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1349,7 +1515,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1366,7 +1534,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1381,7 +1551,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1398,7 +1570,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1413,7 +1587,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1430,7 +1606,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1445,7 +1623,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1462,7 +1642,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1477,7 +1659,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1494,7 +1678,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1509,7 +1695,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1526,7 +1714,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1541,7 +1731,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1558,7 +1750,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1573,7 +1767,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1590,7 +1786,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1605,7 +1803,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1622,7 +1822,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1637,7 +1839,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1658,7 +1862,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1673,7 +1879,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1690,7 +1898,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1705,7 +1915,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1722,7 +1934,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1737,7 +1951,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1754,7 +1970,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1769,7 +1987,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1786,7 +2006,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1801,7 +2023,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1818,7 +2042,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1833,7 +2059,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1850,7 +2078,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1865,7 +2095,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1882,7 +2114,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1897,7 +2131,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1914,7 +2150,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1929,7 +2167,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1946,7 +2186,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1961,7 +2203,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -1982,7 +2226,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -1997,7 +2243,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2014,7 +2262,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2029,7 +2279,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2046,7 +2298,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2061,7 +2315,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2078,7 +2334,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2093,7 +2351,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2110,7 +2370,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2125,7 +2387,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2142,7 +2406,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2157,7 +2423,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2174,7 +2442,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2189,7 +2459,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2206,7 +2478,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2221,7 +2495,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2238,7 +2514,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2253,7 +2531,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2270,7 +2550,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2285,7 +2567,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2306,7 +2590,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2321,7 +2607,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2338,7 +2626,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2353,7 +2643,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2370,7 +2662,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2385,7 +2679,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2402,7 +2698,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2417,7 +2715,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2434,7 +2734,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2449,7 +2751,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2466,7 +2770,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2481,7 +2787,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2498,7 +2806,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2513,7 +2823,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2530,7 +2842,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2545,7 +2859,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2562,7 +2878,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2577,7 +2895,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2594,7 +2914,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2609,7 +2931,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2630,7 +2954,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2645,7 +2971,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2662,7 +2990,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2677,7 +3007,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2694,7 +3026,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2709,7 +3043,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2726,7 +3062,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2741,7 +3079,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2758,7 +3098,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2773,7 +3115,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2790,7 +3134,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2805,7 +3151,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2822,7 +3170,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2837,7 +3187,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2854,7 +3206,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2869,7 +3223,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2886,7 +3242,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2901,7 +3259,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2918,7 +3278,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2933,7 +3295,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2954,7 +3318,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -2969,7 +3335,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -2986,7 +3354,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3001,7 +3371,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3018,7 +3390,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3033,7 +3407,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3050,7 +3426,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3065,7 +3443,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3082,7 +3462,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3097,7 +3479,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3114,7 +3498,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3129,7 +3515,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3146,7 +3534,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3161,7 +3551,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3178,7 +3570,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3193,7 +3587,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3210,7 +3606,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3225,7 +3623,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3242,7 +3642,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3257,7 +3659,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3278,7 +3682,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3293,7 +3699,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3310,7 +3718,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3325,7 +3735,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3342,7 +3754,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3357,7 +3771,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3374,7 +3790,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3389,7 +3807,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3406,7 +3826,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3421,7 +3843,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3438,7 +3862,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3453,7 +3879,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3470,7 +3898,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3485,7 +3915,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3502,7 +3934,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3517,7 +3951,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3534,7 +3970,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3549,7 +3987,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3566,7 +4006,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3581,7 +4023,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3602,7 +4046,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3617,7 +4063,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3634,7 +4082,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3649,7 +4099,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3666,7 +4118,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3681,7 +4135,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3698,7 +4154,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3713,7 +4171,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3730,7 +4190,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3745,7 +4207,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3762,7 +4226,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3777,7 +4243,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3794,7 +4262,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3809,7 +4279,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3826,7 +4298,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3841,7 +4315,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3858,7 +4334,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3873,7 +4351,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3890,7 +4370,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3905,7 +4387,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3926,7 +4410,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3941,7 +4427,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3962,7 +4450,9 @@
             @"{
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -3977,7 +4467,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -3998,7 +4490,9 @@
             @"{
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4013,7 +4507,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4034,7 +4530,9 @@
             @"{
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4049,7 +4547,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4070,7 +4570,9 @@
             @"{
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4085,7 +4587,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4106,7 +4610,9 @@
             @"{
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4121,7 +4627,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4142,7 +4650,9 @@
             @"{
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4157,7 +4667,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4178,7 +4690,9 @@
             @"{
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4193,7 +4707,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4214,7 +4730,9 @@
             @"{
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4229,7 +4747,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4250,7 +4770,9 @@
             @"{
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4265,7 +4787,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4286,7 +4810,9 @@
             @"{
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4301,7 +4827,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4322,7 +4850,9 @@
             @"{
                 ""prod"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4337,7 +4867,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4354,7 +4886,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4369,7 +4903,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4386,7 +4922,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4401,7 +4939,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4418,7 +4958,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4433,7 +4975,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4450,7 +4994,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4465,7 +5011,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4482,7 +5030,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4497,7 +5047,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4514,7 +5066,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4529,7 +5083,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4546,7 +5102,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4561,7 +5119,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4578,7 +5138,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4593,7 +5155,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4610,7 +5174,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4625,7 +5191,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4642,7 +5210,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4657,7 +5227,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4678,7 +5250,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4693,7 +5267,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4710,7 +5286,9 @@
                 ],
                 ""a"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4725,7 +5303,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4742,7 +5322,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4757,7 +5339,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4774,7 +5358,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4789,7 +5375,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4806,7 +5394,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4821,7 +5411,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4838,7 +5430,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4853,7 +5447,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4870,7 +5466,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4885,7 +5483,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4902,7 +5502,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4917,7 +5519,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4934,7 +5538,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4949,7 +5555,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4966,7 +5574,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -4981,7 +5591,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -4998,7 +5610,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5013,7 +5627,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5034,7 +5650,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5049,7 +5667,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5066,7 +5686,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5081,7 +5703,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5098,7 +5722,9 @@
                 ],
                 ""cr"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5113,7 +5739,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5130,7 +5758,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5145,7 +5775,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5162,7 +5794,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5177,7 +5811,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5194,7 +5830,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5209,7 +5847,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5226,7 +5866,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5241,7 +5883,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5258,7 +5902,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5273,7 +5919,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5290,7 +5938,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5305,7 +5955,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5322,7 +5974,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5337,7 +5991,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5354,7 +6010,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5369,7 +6027,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5390,7 +6050,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5405,7 +6067,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5422,7 +6086,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5437,7 +6103,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5454,7 +6122,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5469,7 +6139,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5486,7 +6158,9 @@
                 ],
                 ""cos &"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5501,7 +6175,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5518,7 +6194,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5533,7 +6211,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5550,7 +6230,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5565,7 +6247,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5582,7 +6266,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5597,7 +6283,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5614,7 +6302,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5629,7 +6319,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5646,7 +6338,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5661,7 +6355,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5678,7 +6374,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5693,7 +6391,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5710,7 +6410,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5725,7 +6427,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5746,7 +6450,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5761,7 +6467,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5778,7 +6486,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5793,7 +6503,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5810,7 +6522,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5825,7 +6539,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5842,7 +6558,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5857,7 +6575,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5874,7 +6594,9 @@
                 ],
                 ""dir"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5889,7 +6611,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5906,7 +6630,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5921,7 +6647,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5938,7 +6666,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5953,7 +6683,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -5970,7 +6702,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -5985,7 +6719,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6002,7 +6738,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6017,7 +6755,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6034,7 +6774,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6049,7 +6791,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6066,7 +6810,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6081,7 +6827,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6102,7 +6850,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6117,7 +6867,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6134,7 +6886,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6149,7 +6903,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6166,7 +6922,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6181,7 +6939,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6198,7 +6958,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6213,7 +6975,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6230,7 +6994,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6245,7 +7011,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6262,7 +7030,9 @@
                 ],
                 ""writ"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6277,7 +7047,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6294,7 +7066,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6309,7 +7083,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6326,7 +7102,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6341,7 +7119,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6358,7 +7138,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6373,7 +7155,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6390,7 +7174,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6405,7 +7191,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6422,7 +7210,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6437,7 +7227,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6458,7 +7250,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6473,7 +7267,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6490,7 +7286,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6505,7 +7303,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6522,7 +7322,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6537,7 +7339,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6554,7 +7358,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6569,7 +7375,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6586,7 +7394,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6601,7 +7411,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6618,7 +7430,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6633,7 +7447,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6650,7 +7466,9 @@
                 ],
                 ""so"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6665,7 +7483,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6682,7 +7502,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6697,7 +7519,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6714,7 +7538,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6729,7 +7555,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6746,7 +7574,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6761,7 +7591,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6778,7 +7610,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6793,7 +7627,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6814,7 +7650,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6829,7 +7667,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6846,7 +7686,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6861,7 +7703,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6878,7 +7722,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6893,7 +7739,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6910,7 +7758,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6925,7 +7775,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6942,7 +7794,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6957,7 +7811,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -6974,7 +7830,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -6989,7 +7847,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7006,7 +7866,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7021,7 +7883,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7038,7 +7902,9 @@
                 ],
                 ""cam"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7053,7 +7919,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7070,7 +7938,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7085,7 +7955,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7102,7 +7974,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7117,7 +7991,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7134,7 +8010,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7149,7 +8027,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7170,7 +8050,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7185,7 +8067,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7202,7 +8086,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7217,7 +8103,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7234,7 +8122,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7249,7 +8139,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7266,7 +8158,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7281,7 +8175,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7298,7 +8194,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7313,7 +8211,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7330,7 +8230,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7345,7 +8247,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7362,7 +8266,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7377,7 +8283,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7394,7 +8302,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7409,7 +8319,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7426,7 +8338,9 @@
                 ],
                 ""light"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7441,7 +8355,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7458,7 +8374,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7473,7 +8391,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7490,7 +8410,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7505,7 +8427,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7526,7 +8450,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7541,7 +8467,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7558,7 +8486,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7573,7 +8503,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7590,7 +8522,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7605,7 +8539,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7622,7 +8558,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7637,7 +8575,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7654,7 +8594,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7669,7 +8611,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7686,7 +8630,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7701,7 +8647,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7718,7 +8666,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7733,7 +8683,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7750,7 +8702,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7765,7 +8719,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7782,7 +8738,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7797,7 +8755,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7814,7 +8774,9 @@
                 ],
                 ""vfx"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7829,7 +8791,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7846,7 +8810,9 @@
                 ],
                 ""editing"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7861,7 +8827,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7882,7 +8850,9 @@
             @"{
                 ""production"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7897,7 +8867,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7914,7 +8886,9 @@
                 ],
                 ""art"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7929,7 +8903,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7946,7 +8922,9 @@
                 ],
                 ""crew"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7961,7 +8939,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -7978,7 +8958,9 @@
                 ],
                 ""costume & make-up"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -7993,7 +8975,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8010,7 +8994,9 @@
                 ],
                 ""directing"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8025,7 +9011,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8042,7 +9030,9 @@
                 ],
                 ""writing"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8057,7 +9047,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8074,7 +9066,9 @@
                 ],
                 ""sound"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8089,7 +9083,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8106,7 +9102,9 @@
                 ],
                 ""camera"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8121,7 +9119,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8138,7 +9138,9 @@
                 ],
                 ""lighting"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8153,7 +9155,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8170,7 +9174,9 @@
                 ],
                 ""visual effects"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8185,7 +9191,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8202,7 +9210,9 @@
                 ],
                 ""edit"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8217,7 +9227,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8238,7 +9250,9 @@
             @"{
                 ""prod"": [
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8253,7 +9267,9 @@
                     }
                   },
                   {
-                    ""job"": ""Producer"",
+                    ""jobs"": [
+                      ""Producer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8270,7 +9286,9 @@
                 ],
                 ""a"": [
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8285,7 +9303,9 @@
                     }
                   },
                   {
-                    ""job"": ""Artist"",
+                    ""jobs"": [
+                      ""Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8302,7 +9322,9 @@
                 ],
                 ""cr"": [
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8317,7 +9339,9 @@
                     }
                   },
                   {
-                    ""job"": ""Crew Member"",
+                    ""jobs"": [
+                      ""Crew Member""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8334,7 +9358,9 @@
                 ],
                 ""cos &"": [
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8349,7 +9375,9 @@
                     }
                   },
                   {
-                    ""job"": ""Make-Up Artist"",
+                    ""jobs"": [
+                      ""Make-Up Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8366,7 +9394,9 @@
                 ],
                 ""dir"": [
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8381,7 +9411,9 @@
                     }
                   },
                   {
-                    ""job"": ""Director"",
+                    ""jobs"": [
+                      ""Director""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8398,7 +9430,9 @@
                 ],
                 ""writ"": [
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8413,7 +9447,9 @@
                     }
                   },
                   {
-                    ""job"": ""Writer"",
+                    ""jobs"": [
+                      ""Writer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8430,7 +9466,9 @@
                 ],
                 ""so"": [
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8445,7 +9483,9 @@
                     }
                   },
                   {
-                    ""job"": ""Sound Designer"",
+                    ""jobs"": [
+                      ""Sound Designer""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8462,7 +9502,9 @@
                 ],
                 ""cam"": [
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8477,7 +9519,9 @@
                     }
                   },
                   {
-                    ""job"": ""Camera"",
+                    ""jobs"": [
+                      ""Camera""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8494,7 +9538,9 @@
                 ],
                 ""light"": [
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8509,7 +9555,9 @@
                     }
                   },
                   {
-                    ""job"": ""Light Technician"",
+                    ""jobs"": [
+                      ""Light Technician""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8526,7 +9574,9 @@
                 ],
                 ""vfx"": [
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8541,7 +9591,9 @@
                     }
                   },
                   {
-                    ""job"": ""VFX Artist"",
+                    ""jobs"": [
+                      ""VFX Artist""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,
@@ -8558,7 +9610,9 @@
                 ],
                 ""edit"": [
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""Game of Thrones"",
                       ""year"": 2011,
@@ -8573,7 +9627,9 @@
                     }
                   },
                   {
-                    ""job"": ""Editor"",
+                    ""jobs"": [
+                      ""Editor""
+                    ],
                     ""show"": {
                       ""title"": ""The Flash"",
                       ""year"": 2014,

@@ -56,7 +56,6 @@
             traktCommentPostResponse.User.Ids.Should().NotBeNull();
             traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
             traktCommentPostResponse.Sharing.Should().NotBeNull();
-            traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
             traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
             traktCommentPostResponse.Sharing.Google.Should().BeTrue();
             traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -87,7 +86,6 @@
                   }
                 },
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,

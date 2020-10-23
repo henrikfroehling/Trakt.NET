@@ -4,7 +4,9 @@
     {
         private const string JSON_COMPLETE =
             @"{
-                ""character"": ""Joe Brody"",
+                ""characters"": [
+                    ""Joe Brody""
+                  ],
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
                   ""year"": 2015,
@@ -33,7 +35,9 @@
 
         private const string JSON_INCOMPLETE_2 =
             @"{
-                ""character"": ""Joe Brody""
+                ""characters"": [
+                    ""Joe Brody""
+                  ]
               }";
 
         private const string JSON_NOT_VALID_1 =
@@ -53,7 +57,9 @@
 
         private const string JSON_NOT_VALID_2 =
             @"{
-                ""character"": ""Joe Brody"",
+                ""characters"": [
+                    ""Joe Brody""
+                  ],
                 ""mov"": {
                   ""title"": ""Star Wars: The Force Awakens"",
                   ""year"": 2015,

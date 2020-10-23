@@ -9,6 +9,7 @@
     using Objects.Get.Users.Lists;
     using Requests.Handler;
     using Requests.Parameters;
+    using Requests.Parameters.Filter;
     using Requests.Shows;
     using Requests.Shows.OAuth;
     using Responses;
@@ -404,6 +405,7 @@
         /// <param name="includingHiddenSeasons">Determines, if the returned collection progress should contain hidden seasons.</param>
         /// <param name="includingSpecialSeasons">Determines, if the returned collection progress should contain special seasons.</param>
         /// <param name="countSpecialSeasons">Determins, if special seasons should be counted in the statistics of the returned collection progress.</param>
+        /// <param name="lastActivity">Determines the last activity type of the collection progress.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -414,6 +416,7 @@
         public Task<TraktResponse<ITraktShowCollectionProgress>> GetShowCollectionProgressAsync(string showIdOrSlug, bool? includingHiddenSeasons = null,
                                                                                                 bool? includingSpecialSeasons = null,
                                                                                                 bool? countSpecialSeasons = null,
+                                                                                                TraktLastActivity lastActivity = null,
                                                                                                 CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -423,7 +426,8 @@
                 Id = showIdOrSlug,
                 Hidden = includingHiddenSeasons,
                 Specials = includingSpecialSeasons,
-                CountSpecials = countSpecialSeasons
+                CountSpecials = countSpecialSeasons,
+                LastActivity = lastActivity
             },
             cancellationToken);
         }
@@ -439,6 +443,7 @@
         /// <param name="includingHiddenSeasons">Determines, if the returned watched progress should contain hidden seasons.</param>
         /// <param name="includingSpecialSeasons">Determines, if the returned watched progress should contain special seasons.</param>
         /// <param name="countSpecialSeasons">Determins, if special seasons should be counted in the statistics of the returned watched progress.</param>
+        /// <param name="lastActivity">Determines the last activity type of the watched progress.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -449,6 +454,7 @@
         public Task<TraktResponse<ITraktShowWatchedProgress>> GetShowWatchedProgressAsync(string showIdOrSlug, bool? includingHiddenSeasons = null,
                                                                                           bool? includingSpecialSeasons = null,
                                                                                           bool? countSpecialSeasons = null,
+                                                                                          TraktLastActivity lastActivity = null,
                                                                                           CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -458,7 +464,8 @@
                 Id = showIdOrSlug,
                 Hidden = includingHiddenSeasons,
                 Specials = includingSpecialSeasons,
-                CountSpecials = countSpecialSeasons
+                CountSpecials = countSpecialSeasons,
+                LastActivity = lastActivity
             },
             cancellationToken);
         }
@@ -553,7 +560,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktTrendingShow>> GetTrendingShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                  TraktShowFilter filter = null,
+                                                                                  ITraktShowFilter filter = null,
                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default)
         {
@@ -595,7 +602,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktShow>> GetPopularShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                         TraktShowFilter filter = null,
+                                                                         ITraktShowFilter filter = null,
                                                                          TraktPagedParameters pagedParameters = null,
                                                                          CancellationToken cancellationToken = default)
         {
@@ -639,7 +646,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostPlayedShowsAsync(TraktTimePeriod period = null,
                                                                                    TraktExtendedInfo extendedInfo = null,
-                                                                                   TraktShowFilter filter = null,
+                                                                                   ITraktShowFilter filter = null,
                                                                                    TraktPagedParameters pagedParameters = null,
                                                                                    CancellationToken cancellationToken = default)
         {
@@ -684,7 +691,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostWatchedShowsAsync(TraktTimePeriod period = null,
                                                                                     TraktExtendedInfo extendedInfo = null,
-                                                                                    TraktShowFilter filter = null,
+                                                                                    ITraktShowFilter filter = null,
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default)
         {
@@ -729,7 +736,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostPWCShow>> GetMostCollectedShowsAsync(TraktTimePeriod period = null,
                                                                                       TraktExtendedInfo extendedInfo = null,
-                                                                                      TraktShowFilter filter = null,
+                                                                                      ITraktShowFilter filter = null,
                                                                                       TraktPagedParameters pagedParameters = null,
                                                                                       CancellationToken cancellationToken = default)
         {
@@ -772,7 +779,7 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktMostAnticipatedShow>> GetMostAnticipatedShowsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                                                TraktShowFilter filter = null,
+                                                                                                ITraktShowFilter filter = null,
                                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                                 CancellationToken cancellationToken = default)
         {

@@ -9,6 +9,7 @@
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Calendars.OAuth;
     using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Parameters.Filter;
     using Xunit;
 
     [Category("Requests.Calendars.OAuth.Shows")]
@@ -43,7 +44,7 @@
             private static readonly DateTime _startDate = DateTime.Now.AddDays(-7);
             private const int _days = 14;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
-            private static readonly TraktMovieFilter _filter = new TraktMovieFilter().WithYears(2010, 2017);
+            private static readonly ITraktCalendarFilter _filter = TraktFilterDirectory.CalendarFilter.WithYears(2010, 2017).Build();
 
             private static readonly CalendarUserShowsRequest _request1 = new CalendarUserShowsRequest();
 

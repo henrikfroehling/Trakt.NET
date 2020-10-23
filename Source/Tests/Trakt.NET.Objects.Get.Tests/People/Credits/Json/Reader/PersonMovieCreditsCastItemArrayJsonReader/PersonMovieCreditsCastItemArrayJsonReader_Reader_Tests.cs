@@ -2,11 +2,14 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.People.Credits.Json.Reader;
+    using TraktNet.Objects.Get.People.Credits;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.People.Credits.JsonReader")]
@@ -15,7 +18,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCastItemArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
         {
-            var traktJsonReader = new PersonMovieCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCastItem>();
 
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
@@ -28,7 +31,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var traktJsonReader = new PersonMovieCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCastItem>();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -39,7 +42,7 @@
                 var items = movieCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().Be("Joe Brody");
+                items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 items[0].Movie.Should().NotBeNull();
                 items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 items[0].Movie.Year.Should().Be(2015);
@@ -50,7 +53,7 @@
                 items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Sam Flynn");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Sam Flynn");
                 items[1].Movie.Should().NotBeNull();
                 items[1].Movie.Title.Should().Be("TRON: Legacy");
                 items[1].Movie.Year.Should().Be(2010);
@@ -65,7 +68,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var traktJsonReader = new PersonMovieCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCastItem>();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -76,7 +79,7 @@
                 var items = movieCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().BeNull();
+                items[0].Characters.Should().BeNull();
                 items[0].Movie.Should().NotBeNull();
                 items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 items[0].Movie.Year.Should().Be(2015);
@@ -87,7 +90,7 @@
                 items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Sam Flynn");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Sam Flynn");
                 items[1].Movie.Should().NotBeNull();
                 items[1].Movie.Title.Should().Be("TRON: Legacy");
                 items[1].Movie.Year.Should().Be(2010);
@@ -102,7 +105,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var traktJsonReader = new PersonMovieCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCastItem>();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -113,7 +116,7 @@
                 var items = movieCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().Be("Joe Brody");
+                items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 items[0].Movie.Should().NotBeNull();
                 items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 items[0].Movie.Year.Should().Be(2015);
@@ -124,7 +127,7 @@
                 items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Sam Flynn");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Sam Flynn");
                 items[1].Movie.Should().BeNull();
             }
         }
@@ -132,7 +135,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var traktJsonReader = new PersonMovieCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCastItem>();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -143,7 +146,7 @@
                 var items = movieCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().BeNull();
+                items[0].Characters.Should().BeNull();
                 items[0].Movie.Should().NotBeNull();
                 items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 items[0].Movie.Year.Should().Be(2015);
@@ -154,7 +157,7 @@
                 items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Sam Flynn");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Sam Flynn");
                 items[1].Movie.Should().NotBeNull();
                 items[1].Movie.Title.Should().Be("TRON: Legacy");
                 items[1].Movie.Year.Should().Be(2010);
@@ -169,7 +172,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var traktJsonReader = new PersonMovieCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCastItem>();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -180,7 +183,7 @@
                 var items = movieCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().Be("Joe Brody");
+                items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 items[0].Movie.Should().NotBeNull();
                 items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 items[0].Movie.Year.Should().Be(2015);
@@ -191,7 +194,7 @@
                 items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Sam Flynn");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Sam Flynn");
                 items[1].Movie.Should().BeNull();
             }
         }
@@ -199,7 +202,7 @@
         [Fact]
         public async Task Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
-            var traktJsonReader = new PersonMovieCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCastItem>();
 
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
@@ -210,7 +213,7 @@
                 var items = movieCreditsCastItems.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().BeNull();
+                items[0].Characters.Should().BeNull();
                 items[0].Movie.Should().NotBeNull();
                 items[0].Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 items[0].Movie.Year.Should().Be(2015);
@@ -221,24 +224,23 @@
                 items[0].Movie.Ids.Tmdb.Should().Be(140607U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Sam Flynn");
+                items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Sam Flynn");
                 items[1].Movie.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var traktJsonReader = new PersonMovieCreditsCastItemArrayJsonReader();
-
-            var movieCreditsCastItems = await traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            movieCreditsCastItems.Should().BeNull();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCastItem>();
+            Func<Task<IEnumerable<ITraktPersonMovieCreditsCastItem>>> movieCreditsCastItems = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            movieCreditsCastItems.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var traktJsonReader = new PersonMovieCreditsCastItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCastItem>();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

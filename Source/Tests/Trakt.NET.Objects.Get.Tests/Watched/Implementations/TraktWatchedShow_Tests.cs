@@ -20,6 +20,8 @@
 
             watchedShow.Plays.Should().NotHaveValue();
             watchedShow.LastWatchedAt.Should().NotHaveValue();
+            watchedShow.LastUpdatedAt.Should().NotHaveValue();
+            watchedShow.ResetAt.Should().NotHaveValue();
             watchedShow.Show.Should().BeNull();
             watchedShow.WatchedSeasons.Should().BeNull();
 
@@ -55,6 +57,8 @@
             watchedShow.Should().NotBeNull();
             watchedShow.Plays.Should().Be(20);
             watchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+            watchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+            watchedShow.ResetAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
             watchedShow.Show.Should().NotBeNull();
             watchedShow.Show.Title.Should().Be("Game of Thrones");
@@ -165,6 +169,8 @@
             watchedShow.Should().NotBeNull();
             watchedShow.Plays.Should().Be(20);
             watchedShow.LastWatchedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+            watchedShow.LastUpdatedAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
+            watchedShow.ResetAt.Should().Be(DateTime.Parse("2014-07-14T01:00:00.000Z").ToUniversalTime());
 
             watchedShow.Show.Should().NotBeNull();
             watchedShow.Show.Title.Should().Be("Game of Thrones");
@@ -276,6 +282,8 @@
             @"{
                 ""plays"": 20,
                 ""last_watched_at"": ""2014-07-14T01:00:00.000Z"",
+                ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
+                ""reset_at"": ""2014-07-14T01:00:00.000Z"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
@@ -326,6 +334,8 @@
             @"{
                 ""plays"": 20,
                 ""last_watched_at"": ""2014-07-14T01:00:00.000Z"",
+                ""last_updated_at"": ""2014-07-14T01:00:00.000Z"",
+                ""reset_at"": ""2014-07-14T01:00:00.000Z"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,

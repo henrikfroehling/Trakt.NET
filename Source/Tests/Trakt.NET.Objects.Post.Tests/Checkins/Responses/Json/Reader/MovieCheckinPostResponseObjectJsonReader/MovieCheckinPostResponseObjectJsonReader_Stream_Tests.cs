@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Checkins.Responses;
     using TraktNet.Objects.Post.Checkins.Responses.Json.Reader;
     using Xunit;
 
@@ -25,7 +26,6 @@
                 checkinMovieResponse.Id.Should().Be(3373536620UL);
                 checkinMovieResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinMovieResponse.Sharing.Should().NotBeNull();
-                checkinMovieResponse.Sharing.Facebook.Should().BeTrue();
                 checkinMovieResponse.Sharing.Twitter.Should().BeTrue();
                 checkinMovieResponse.Sharing.Google.Should().BeTrue();
                 checkinMovieResponse.Sharing.Tumblr.Should().BeTrue();
@@ -55,7 +55,6 @@
                 checkinMovieResponse.Id.Should().Be(0UL);
                 checkinMovieResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinMovieResponse.Sharing.Should().NotBeNull();
-                checkinMovieResponse.Sharing.Facebook.Should().BeTrue();
                 checkinMovieResponse.Sharing.Twitter.Should().BeTrue();
                 checkinMovieResponse.Sharing.Google.Should().BeTrue();
                 checkinMovieResponse.Sharing.Tumblr.Should().BeTrue();
@@ -85,7 +84,6 @@
                 checkinMovieResponse.Id.Should().Be(3373536620UL);
                 checkinMovieResponse.WatchedAt.Should().BeNull();
                 checkinMovieResponse.Sharing.Should().NotBeNull();
-                checkinMovieResponse.Sharing.Facebook.Should().BeTrue();
                 checkinMovieResponse.Sharing.Twitter.Should().BeTrue();
                 checkinMovieResponse.Sharing.Google.Should().BeTrue();
                 checkinMovieResponse.Sharing.Tumblr.Should().BeTrue();
@@ -139,7 +137,6 @@
                 checkinMovieResponse.Id.Should().Be(3373536620UL);
                 checkinMovieResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinMovieResponse.Sharing.Should().NotBeNull();
-                checkinMovieResponse.Sharing.Facebook.Should().BeTrue();
                 checkinMovieResponse.Sharing.Twitter.Should().BeTrue();
                 checkinMovieResponse.Sharing.Google.Should().BeTrue();
                 checkinMovieResponse.Sharing.Tumblr.Should().BeTrue();
@@ -196,7 +193,6 @@
                 checkinMovieResponse.Id.Should().Be(0UL);
                 checkinMovieResponse.WatchedAt.Should().BeNull();
                 checkinMovieResponse.Sharing.Should().NotBeNull();
-                checkinMovieResponse.Sharing.Facebook.Should().BeTrue();
                 checkinMovieResponse.Sharing.Twitter.Should().BeTrue();
                 checkinMovieResponse.Sharing.Google.Should().BeTrue();
                 checkinMovieResponse.Sharing.Tumblr.Should().BeTrue();
@@ -243,7 +239,6 @@
                 checkinMovieResponse.Id.Should().Be(0UL);
                 checkinMovieResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinMovieResponse.Sharing.Should().NotBeNull();
-                checkinMovieResponse.Sharing.Facebook.Should().BeTrue();
                 checkinMovieResponse.Sharing.Twitter.Should().BeTrue();
                 checkinMovieResponse.Sharing.Google.Should().BeTrue();
                 checkinMovieResponse.Sharing.Tumblr.Should().BeTrue();
@@ -273,7 +268,6 @@
                 checkinMovieResponse.Id.Should().Be(3373536620UL);
                 checkinMovieResponse.WatchedAt.Should().BeNull();
                 checkinMovieResponse.Sharing.Should().NotBeNull();
-                checkinMovieResponse.Sharing.Facebook.Should().BeTrue();
                 checkinMovieResponse.Sharing.Twitter.Should().BeTrue();
                 checkinMovieResponse.Sharing.Google.Should().BeTrue();
                 checkinMovieResponse.Sharing.Tumblr.Should().BeTrue();
@@ -327,7 +321,6 @@
                 checkinMovieResponse.Id.Should().Be(3373536620UL);
                 checkinMovieResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
                 checkinMovieResponse.Sharing.Should().NotBeNull();
-                checkinMovieResponse.Sharing.Facebook.Should().BeTrue();
                 checkinMovieResponse.Sharing.Twitter.Should().BeTrue();
                 checkinMovieResponse.Sharing.Google.Should().BeTrue();
                 checkinMovieResponse.Sharing.Tumblr.Should().BeTrue();
@@ -355,12 +348,11 @@
         }
 
         [Fact]
-        public async Task Test_MovieCheckinPostResponseObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_MovieCheckinPostResponseObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new MovieCheckinPostResponseObjectJsonReader();
-
-            var checkinMovieResponse = await jsonReader.ReadObjectAsync(default(Stream));
-            checkinMovieResponse.Should().BeNull();
+            Func<Task<ITraktMovieCheckinPostResponse>> checkinMovieResponse = () => jsonReader.ReadObjectAsync(default(Stream));
+            checkinMovieResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

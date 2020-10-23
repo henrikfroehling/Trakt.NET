@@ -14,8 +14,14 @@
 
             if (!string.IsNullOrEmpty(obj.Slug))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_IDS_PROPERTY_NAME_SLUG, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SLUG, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Slug, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (!string.IsNullOrEmpty(obj.UUID))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_UUID, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.UUID, cancellationToken).ConfigureAwait(false);
             }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);

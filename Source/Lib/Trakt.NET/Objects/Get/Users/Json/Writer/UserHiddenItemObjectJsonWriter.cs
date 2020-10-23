@@ -18,34 +18,34 @@
 
             if (obj.HiddenAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_HIDDEN_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_HIDDEN_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.HiddenAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Type != null)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_TYPE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TYPE, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Type.ObjectName, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Movie != null)
             {
                 var movieObjectJsonWriter = new MovieObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);
                 await movieObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Movie, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Show != null)
             {
                 var showObjectJsonWriter = new ShowObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOW, cancellationToken).ConfigureAwait(false);
                 await showObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Show, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Season != null)
             {
                 var seasonObjectJsonWriter = new SeasonObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_HIDDEN_ITEM_PROPERTY_NAME_SEASON, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASON, cancellationToken).ConfigureAwait(false);
                 await seasonObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Season, cancellationToken).ConfigureAwait(false);
             }
 

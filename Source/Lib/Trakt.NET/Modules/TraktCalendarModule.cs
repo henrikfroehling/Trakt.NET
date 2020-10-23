@@ -6,6 +6,7 @@
     using Requests.Calendars.OAuth;
     using Requests.Handler;
     using Requests.Parameters;
+    using Requests.Parameters.Filter;
     using Responses;
     using System;
     using System.Threading;
@@ -46,7 +47,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetUserShowsAsync(DateTime? startDate = null, int? days = null,
                                                                              TraktExtendedInfo extendedInfo = null,
-                                                                             TraktCalendarFilter filter = null,
+                                                                             ITraktCalendarFilter filter = null,
                                                                              CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -84,7 +85,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetUserNewShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                 TraktExtendedInfo extendedInfo = null,
-                                                                                TraktCalendarFilter filter = null,
+                                                                                ITraktCalendarFilter filter = null,
                                                                                 CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -122,7 +123,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetUserSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
                                                                                        TraktExtendedInfo extendedInfo = null,
-                                                                                       TraktCalendarFilter filter = null,
+                                                                                       ITraktCalendarFilter filter = null,
                                                                                        CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -160,7 +161,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarMovie>> GetUserMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                TraktExtendedInfo extendedInfo = null,
-                                                                               TraktCalendarFilter filter = null,
+                                                                               ITraktCalendarFilter filter = null,
                                                                                CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -198,7 +199,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarMovie>> GetUserDVDMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                   TraktExtendedInfo extendedInfo = null,
-                                                                                  TraktCalendarFilter filter = null,
+                                                                                  ITraktCalendarFilter filter = null,
                                                                                   CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -236,7 +237,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetAllShowsAsync(DateTime? startDate = null, int? days = null,
                                                                             TraktExtendedInfo extendedInfo = null,
-                                                                            TraktCalendarFilter filter = null,
+                                                                            ITraktCalendarFilter filter = null,
                                                                             CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -274,7 +275,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetAllNewShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                TraktExtendedInfo extendedInfo = null,
-                                                                               TraktCalendarFilter filter = null,
+                                                                               ITraktCalendarFilter filter = null,
                                                                                CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -312,7 +313,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetAllSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
                                                                                       TraktExtendedInfo extendedInfo = null,
-                                                                                      TraktCalendarFilter filter = null,
+                                                                                      ITraktCalendarFilter filter = null,
                                                                                       CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -350,7 +351,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarMovie>> GetAllMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                               TraktExtendedInfo extendedInfo = null,
-                                                                              TraktCalendarFilter filter = null,
+                                                                              ITraktCalendarFilter filter = null,
                                                                               CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -388,7 +389,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarMovie>> GetAllDVDMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                  TraktExtendedInfo extendedInfo = null,
-                                                                                 TraktCalendarFilter filter = null,
+                                                                                 ITraktCalendarFilter filter = null,
                                                                                  CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);

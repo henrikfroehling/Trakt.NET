@@ -9,12 +9,11 @@
     {
         public override async Task<ITraktCertifications> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktCertifications));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var certificationsArrayReader = new CertificationArrayJsonReader();
+                var certificationsArrayReader = new ArrayJsonReader<ITraktCertification>();
                 ITraktCertifications traktCertifications = new TraktCertifications();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -23,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CERTIFICATIONS_PROPERTY_NAME_US:
+                        case JsonProperties.PROPERTY_NAME_US:
                             traktCertifications.US = await certificationsArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

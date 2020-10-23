@@ -15,25 +15,25 @@
 
             if (obj.RatedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_SHOWS_LAST_ACTIVITIES_PROPERTY_NAME_RATED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RATED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.RatedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.WatchlistedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_SHOWS_LAST_ACTIVITIES_PROPERTY_NAME_WATCHLISTED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_WATCHLISTED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.WatchlistedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.CommentedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_SHOWS_LAST_ACTIVITIES_PROPERTY_NAME_COMMENTED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COMMENTED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.CommentedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.HiddenAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_SHOWS_LAST_ACTIVITIES_PROPERTY_NAME_HIDDEN_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_HIDDEN_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.HiddenAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 

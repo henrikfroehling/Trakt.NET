@@ -13,19 +13,19 @@
         {
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
-            await jsonWriter.WritePropertyNameAsync(JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_ID, cancellationToken).ConfigureAwait(false);
+            await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_ID, cancellationToken).ConfigureAwait(false);
             await jsonWriter.WriteValueAsync(obj.Id, cancellationToken).ConfigureAwait(false);
 
             if (obj.WatchedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_WATCHED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_WATCHED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.WatchedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Sharing != null)
             {
                 var sharingObjectJsonWriter = new SharingObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_SHARING, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHARING, cancellationToken).ConfigureAwait(false);
                 await sharingObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Sharing, cancellationToken).ConfigureAwait(false);
             }
 

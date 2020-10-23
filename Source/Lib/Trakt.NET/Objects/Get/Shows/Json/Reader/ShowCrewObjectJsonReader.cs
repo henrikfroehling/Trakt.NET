@@ -9,12 +9,11 @@
     {
         public override async Task<ITraktShowCrew> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktShowCrew));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var showCrewMembersReader = new ShowCrewMemberArrayJsonReader();
+                var showCrewMembersReader = new ArrayJsonReader<ITraktShowCrewMember>();
                 ITraktShowCrew traktCrew = new TraktShowCrew();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -23,37 +22,37 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CREW_PROPERTY_NAME_PRODUCTION:
+                        case JsonProperties.PROPERTY_NAME_PRODUCTION:
                             traktCrew.Production = await showCrewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_ART:
+                        case JsonProperties.PROPERTY_NAME_ART:
                             traktCrew.Art = await showCrewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_CREW:
+                        case JsonProperties.PROPERTY_NAME_CREW:
                             traktCrew.Crew = await showCrewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_COSTUME_AND_MAKE_UP:
+                        case JsonProperties.PROPERTY_NAME_COSTUME_AND_MAKE_UP:
                             traktCrew.CostumeAndMakeup = await showCrewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_DIRECTING:
+                        case JsonProperties.PROPERTY_NAME_DIRECTING:
                             traktCrew.Directing = await showCrewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_WRITING:
+                        case JsonProperties.PROPERTY_NAME_WRITING:
                             traktCrew.Writing = await showCrewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_SOUND:
+                        case JsonProperties.PROPERTY_NAME_SOUND:
                             traktCrew.Sound = await showCrewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_CAMERA:
+                        case JsonProperties.PROPERTY_NAME_CAMERA:
                             traktCrew.Camera = await showCrewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_LIGHTING:
+                        case JsonProperties.PROPERTY_NAME_LIGHTING:
                             traktCrew.Lighting = await showCrewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_VISUAL_EFFECTS:
+                        case JsonProperties.PROPERTY_NAME_VISUAL_EFFECTS:
                             traktCrew.VisualEffects = await showCrewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CREW_PROPERTY_NAME_EDITING:
+                        case JsonProperties.PROPERTY_NAME_EDITING:
                             traktCrew.Editing = await showCrewMembersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

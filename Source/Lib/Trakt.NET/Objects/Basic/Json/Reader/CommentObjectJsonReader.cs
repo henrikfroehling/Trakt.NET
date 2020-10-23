@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktComment> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktComment));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.COMMENT_PROPERTY_NAME_ID:
+                        case JsonProperties.PROPERTY_NAME_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -33,7 +32,7 @@
 
                                 break;
                             }
-                        case JsonProperties.COMMENT_PROPERTY_NAME_PARENT_ID:
+                        case JsonProperties.PROPERTY_NAME_PARENT_ID:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -42,7 +41,7 @@
 
                                 break;
                             }
-                        case JsonProperties.COMMENT_PROPERTY_NAME_CREATED_AT:
+                        case JsonProperties.PROPERTY_NAME_CREATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -51,7 +50,7 @@
 
                                 break;
                             }
-                        case JsonProperties.COMMENT_PROPERTY_NAME_UPDATED_AT:
+                        case JsonProperties.PROPERTY_NAME_UPDATED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -60,22 +59,22 @@
 
                                 break;
                             }
-                        case JsonProperties.COMMENT_PROPERTY_NAME_COMMENT:
+                        case JsonProperties.PROPERTY_NAME_COMMENT:
                             traktComment.Comment = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.COMMENT_PROPERTY_NAME_SPOILER:
+                        case JsonProperties.PROPERTY_NAME_SPOILER:
                             traktComment.Spoiler = (bool)await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.COMMENT_PROPERTY_NAME_REVIEW:
+                        case JsonProperties.PROPERTY_NAME_REVIEW:
                             traktComment.Review = (bool)await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.COMMENT_PROPERTY_NAME_REPLIES:
+                        case JsonProperties.PROPERTY_NAME_REPLIES:
                             traktComment.Replies = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.COMMENT_PROPERTY_NAME_LIKES:
+                        case JsonProperties.PROPERTY_NAME_LIKES:
                             traktComment.Likes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.COMMENT_PROPERTY_NAME_USER_RATING:
+                        case JsonProperties.PROPERTY_NAME_USER_RATING:
                             {
                                 var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
 
@@ -84,7 +83,7 @@
 
                                 break;
                             }
-                        case JsonProperties.COMMENT_PROPERTY_NAME_USER:
+                        case JsonProperties.PROPERTY_NAME_USER:
                             traktComment.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

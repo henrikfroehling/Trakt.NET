@@ -46,7 +46,9 @@
             @"{
                 ""cast"": [
                   {
-                    ""character"": ""Li (voice)"",
+                    ""characters"": [
+                      ""Li (voice)""
+                    ],
                     ""movie"": {
                       ""title"": ""Kung Fu Panda 3"",
                       ""year"": 2016,
@@ -59,7 +61,9 @@
                     }
                   },
                   {
-                    ""character"": ""Joe Brody"",
+                    ""characters"": [
+                      ""Joe Brody""
+                    ],
                     ""movie"": {
                       ""title"": ""Godzilla"",
                       ""year"": 2014,
@@ -75,7 +79,9 @@
                 ""crew"": {
                   ""directing"": [
                     {
-                      ""job"": ""Director"",
+                      ""jobs"": [
+                        ""Director""
+                      ],
                       ""movie"": {
                         ""title"": ""Godzilla"",
                         ""year"": 2014,
@@ -90,7 +96,9 @@
                   ],
                   ""writing"": [
                     {
-                      ""job"": ""Screenplay"",
+                      ""jobs"": [
+                        ""Screenplay""
+                      ],
                       ""movie"": {
                         ""title"": ""Godzilla"",
                         ""year"": 2014,
@@ -105,7 +113,9 @@
                   ],
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""movie"": {
                         ""title"": ""Godzilla"",
                         ""year"": 2014,
@@ -125,7 +135,9 @@
             @"{
                 ""cast"": [
                   {
-                    ""character"": ""Walter White"",
+                    ""characters"": [
+                      ""Walter White""
+                    ],
                     ""show"": {
                       ""title"": ""Breaking Bad"",
                       ""year"": 2008,
@@ -140,7 +152,9 @@
                     }
                   },
                   {
-                    ""character"": ""Hal"",
+                    ""characters"": [
+                      ""Hal""
+                    ],
                     ""show"": {
                       ""title"": ""Malcolm in the Middle"",
                       ""year"": 2000,
@@ -158,7 +172,9 @@
                 ""crew"": {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
+                      ""jobs"": [
+                        ""Producer""
+                      ],
                       ""show"": {
                         ""title"": ""Breaking Bad"",
                         ""year"": 2008,

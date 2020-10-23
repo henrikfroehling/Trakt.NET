@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktImage> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktImage));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,7 +21,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.IMAGE_PROPERTY_NAME_FULL:
+                        case JsonProperties.PROPERTY_NAME_FULL:
                             traktImage.Full = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

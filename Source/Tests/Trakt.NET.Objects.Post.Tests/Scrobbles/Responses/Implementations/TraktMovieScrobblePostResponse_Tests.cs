@@ -34,7 +34,6 @@
             movieScrobbleResponse.Action.Should().Be(TraktScrobbleActionType.Stop);
             movieScrobbleResponse.Progress.Should().Be(85.9f);
             movieScrobbleResponse.Sharing.Should().NotBeNull();
-            movieScrobbleResponse.Sharing.Facebook.Should().BeTrue();
             movieScrobbleResponse.Sharing.Twitter.Should().BeTrue();
             movieScrobbleResponse.Sharing.Google.Should().BeTrue();
             movieScrobbleResponse.Sharing.Tumblr.Should().BeTrue();
@@ -56,7 +55,6 @@
                 ""action"": ""scrobble"",
                 ""progress"": 85.9,
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,

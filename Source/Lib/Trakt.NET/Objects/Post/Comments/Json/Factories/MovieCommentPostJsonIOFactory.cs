@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktMovieCommentPost> CreateObjectReader() => new MovieCommentPostObjectJsonReader();
 
-        public IArrayJsonReader<ITraktMovieCommentPost> CreateArrayReader() => new MovieCommentPostArrayJsonReader();
-
         public IObjectJsonWriter<ITraktMovieCommentPost> CreateObjectWriter() => new MovieCommentPostObjectJsonWriter();
     }
 }

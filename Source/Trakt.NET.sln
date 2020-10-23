@@ -1,3 +1,4 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28729.10
@@ -21,12 +22,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		..\.gitattributes = ..\.gitattributes
 		..\.gitignore = ..\.gitignore
 		..\AUTHORS.md = ..\AUTHORS.md
+		..\.github\ISSUE_TEMPLATE\bug_report.md = ..\.github\ISSUE_TEMPLATE\bug_report.md
 		..\Changelog.md = ..\Changelog.md
 		..\CODE_OF_CONDUCT.md = ..\CODE_OF_CONDUCT.md
+		..\.github\CODEOWNERS = ..\.github\CODEOWNERS
 		..\coding_style.md = ..\coding_style.md
 		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
-		..\.github\ISSUE_TEMPLATE\Custom.md = ..\.github\ISSUE_TEMPLATE\Custom.md
+		..\.github\ISSUE_TEMPLATE\feature_request.md = ..\.github\ISSUE_TEMPLATE\feature_request.md
 		..\LICENSE.md = ..\LICENSE.md
+		Lib\Trakt.NET\nuget.config = Lib\Trakt.NET\nuget.config
 		..\PublishRelease.txt = ..\PublishRelease.txt
 		..\README.md = ..\README.md
 		Lib\Trakt.NET\Trakt.NET.nuspec = Lib\Trakt.NET\Trakt.NET.nuspec

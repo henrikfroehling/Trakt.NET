@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktCastMember> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktCastMember));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,13 +23,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CAST_MEMBER_PROPERTY_NAME_CHARACTER:
-                            traktCastMember.Character = await jsonReader.ReadAsStringAsync(cancellationToken);
-                            break;
-                        case JsonProperties.CAST_MEMBER_PROPERTY_NAME_CHARACTERS:
+                        case JsonProperties.PROPERTY_NAME_CHARACTERS:
                             traktCastMember.Characters = await JsonReaderHelper.ReadStringArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.CAST_MEMBER_PROPERTY_NAME_PERSON:
+                        case JsonProperties.PROPERTY_NAME_PERSON:
                             traktCastMember.Person = await personReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

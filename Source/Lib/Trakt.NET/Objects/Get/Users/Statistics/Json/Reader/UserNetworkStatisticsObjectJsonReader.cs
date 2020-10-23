@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktUserNetworkStatistics> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserNetworkStatistics));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,13 +21,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_NETWORK_STATISTICS_PROPERTY_NAME_FRIENDS:
+                        case JsonProperties.PROPERTY_NAME_FRIENDS:
                             userNetworkStatistics.Friends = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.USER_NETWORK_STATISTICS_PROPERTY_NAME_FOLLOWERS:
+                        case JsonProperties.PROPERTY_NAME_FOLLOWERS:
                             userNetworkStatistics.Followers = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.USER_NETWORK_STATISTICS_PROPERTY_NAME_FOLLOWING:
+                        case JsonProperties.PROPERTY_NAME_FOLLOWING:
                             userNetworkStatistics.Following = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:

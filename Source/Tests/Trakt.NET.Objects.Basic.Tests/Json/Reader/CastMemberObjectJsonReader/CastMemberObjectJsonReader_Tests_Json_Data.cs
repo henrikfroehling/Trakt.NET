@@ -4,7 +4,6 @@
     {
         private const string JSON_COMPLETE =
             @"{
-                ""character"": ""Joe Brody"",
                 ""characters"": [
                   ""Joe Brody""
                 ],
@@ -36,7 +35,6 @@
 
         private const string JSON_INCOMPLETE_2 =
             @"{
-                ""character"": ""Joe Brody"",
                 ""characters"": [
                   ""Joe Brody""
                 ],
@@ -62,7 +60,6 @@
 
         private const string JSON_NOT_VALID_2 =
             @"{
-                ""character"": ""Joe Brody"",
                 ""characters"": [
                   ""Joe Brody""
                 ],

@@ -22,7 +22,7 @@
         public void Test_UserMovieRecommendationsRequest_Has_Valid_UriTemplate()
         {
             var request = new UserMovieRecommendationsRequest();
-            request.UriTemplate.Should().Be("recommendations/movies{?extended,limit}");
+            request.UriTemplate.Should().Be("recommendations/movies{?extended,limit,ignore_collected}");
         }
 
         [Fact]
@@ -54,6 +54,19 @@
                                                        {
                                                            ["extended"] = extendedInfo.ToString(),
                                                            ["limit"] = limit.ToString()
+                                                       });
+
+            // with extended info and limit and ignore_collected
+            bool ignoreCollected = true;
+            requestMock = new UserMovieRecommendationsRequest { ExtendedInfo = extendedInfo, Limit = limit, IgnoreCollected = ignoreCollected };
+
+            requestMock.GetUriPathParameters().Should().NotBeNull()
+                                                       .And.HaveCount(3)
+                                                       .And.Contain(new Dictionary<string, object>
+                                                       {
+                                                           ["extended"] = extendedInfo.ToString(),
+                                                           ["limit"] = limit.ToString(),
+                                                           ["ignore_collected"] = ignoreCollected.ToString().ToLower()
                                                        });
         }
     }

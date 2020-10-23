@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktTrendingMovie> CreateObjectReader() => new TrendingMovieObjectJsonReader();
 
-        public IArrayJsonReader<ITraktTrendingMovie> CreateArrayReader() => new TrendingMovieArrayJsonReader();
-
         public IObjectJsonWriter<ITraktTrendingMovie> CreateObjectWriter() => new TrendingMovieObjectJsonWriter();
     }
 }

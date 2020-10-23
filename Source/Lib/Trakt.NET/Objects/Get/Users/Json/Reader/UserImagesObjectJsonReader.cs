@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktUserImages> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserImages));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_IMAGES_PROPERTY_NAME_AVATAR:
+                        case JsonProperties.PROPERTY_NAME_AVATAR:
                             traktUserImage.Avatar = await imageReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

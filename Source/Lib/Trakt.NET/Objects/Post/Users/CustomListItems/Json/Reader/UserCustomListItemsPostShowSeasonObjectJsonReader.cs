@@ -10,12 +10,11 @@
     {
         public override async Task<ITraktUserCustomListItemsPostShowSeason> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserCustomListItemsPostShowSeason));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var episodeArrayJsonReader = new UserCustomListItemsPostShowEpisodeArrayJsonReader();
+                var episodeArrayJsonReader = new ArrayJsonReader<ITraktUserCustomListItemsPostShowEpisode>();
                 ITraktUserCustomListItemsPostShowSeason customListItemsPostShowSeason = new TraktUserCustomListItemsPostShowSeason();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -24,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_SHOW_SEASON_PROPERTY_NAME_NUMBER:
+                        case JsonProperties.PROPERTY_NAME_NUMBER:
                             {
                                 Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -33,7 +32,7 @@
 
                                 break;
                             }
-                        case JsonProperties.USER_CUSTOM_LIST_ITEMS_POST_SHOW_SEASON_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             customListItemsPostShowSeason.Episodes = await episodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

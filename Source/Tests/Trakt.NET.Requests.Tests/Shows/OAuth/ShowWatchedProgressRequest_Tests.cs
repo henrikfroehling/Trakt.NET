@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Enums;
     using TraktNet.Requests.Shows.OAuth;
     using Xunit;
 
@@ -14,7 +15,7 @@
         public void Test_ShowWatchedProgressRequest_Has_Valid_UriTemplate()
         {
             var request = new ShowWatchedProgressRequest();
-            request.UriTemplate.Should().Be("shows/{id}/progress/watched{?hidden,specials,count_specials}");
+            request.UriTemplate.Should().Be("shows/{id}/progress/watched{?hidden,specials,count_specials,last_activity}");
         }
 
         [Theory, ClassData(typeof(ShowWatchedProgressRequest_TestData))]
@@ -33,6 +34,7 @@
             private const bool _hidden = true;
             private const bool _specials = true;
             private const bool _countSpecials = true;
+            private static readonly TraktLastActivity _lastActivity = TraktLastActivity.Collected;
 
             private static readonly ShowWatchedProgressRequest _request1 = new ShowWatchedProgressRequest
             {
@@ -60,21 +62,20 @@
             private static readonly ShowWatchedProgressRequest _request5 = new ShowWatchedProgressRequest
             {
                 Id = _id,
-                Hidden = _hidden,
-                Specials = _specials
+                LastActivity = _lastActivity
             };
 
             private static readonly ShowWatchedProgressRequest _request6 = new ShowWatchedProgressRequest
             {
                 Id = _id,
                 Hidden = _hidden,
-                CountSpecials = _countSpecials
+                Specials = _specials
             };
 
             private static readonly ShowWatchedProgressRequest _request7 = new ShowWatchedProgressRequest
             {
                 Id = _id,
-                Specials = _specials,
+                Hidden = _hidden,
                 CountSpecials = _countSpecials
             };
 
@@ -82,8 +83,45 @@
             {
                 Id = _id,
                 Hidden = _hidden,
+                LastActivity = _lastActivity
+            };
+
+            private static readonly ShowWatchedProgressRequest _request9 = new ShowWatchedProgressRequest
+            {
+                Id = _id,
                 Specials = _specials,
                 CountSpecials = _countSpecials
+            };
+
+            private static readonly ShowWatchedProgressRequest _request10 = new ShowWatchedProgressRequest
+            {
+                Id = _id,
+                Specials = _specials,
+                LastActivity = _lastActivity
+            };
+
+            private static readonly ShowWatchedProgressRequest _request11 = new ShowWatchedProgressRequest
+            {
+                Id = _id,
+                CountSpecials = _countSpecials,
+                LastActivity = _lastActivity
+            };
+
+            private static readonly ShowWatchedProgressRequest _request12 = new ShowWatchedProgressRequest
+            {
+                Id = _id,
+                Hidden = _hidden,
+                Specials = _specials,
+                CountSpecials = _countSpecials
+            };
+
+            private static readonly ShowWatchedProgressRequest _request13 = new ShowWatchedProgressRequest
+            {
+                Id = _id,
+                Hidden = _hidden,
+                Specials = _specials,
+                CountSpecials = _countSpecials,
+                LastActivity = _lastActivity
             };
 
             private static readonly List<object[]> _data = new List<object[]>();
@@ -98,6 +136,7 @@
                 var strHidden = _hidden.ToString().ToLower();
                 var strSpecials = _specials.ToString().ToLower();
                 var strCountSpecials = _countSpecials.ToString().ToLower();
+                var strLastActivity = _lastActivity.UriName;
 
                 _data.Add(new object[] { _request1.GetUriPathParameters(), new Dictionary<string, object>
                     {
@@ -125,21 +164,20 @@
                 _data.Add(new object[] { _request5.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["hidden"] = strHidden,
-                        ["specials"] = strSpecials
+                        ["last_activity"] = strLastActivity
                     }});
 
                 _data.Add(new object[] { _request6.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["hidden"] = strHidden,
-                        ["count_specials"] = strCountSpecials
+                        ["specials"] = strSpecials
                     }});
 
                 _data.Add(new object[] { _request7.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["specials"] = strSpecials,
+                        ["hidden"] = strHidden,
                         ["count_specials"] = strCountSpecials
                     }});
 
@@ -147,8 +185,45 @@
                     {
                         ["id"] = _id,
                         ["hidden"] = strHidden,
+                        ["last_activity"] = strLastActivity
+                    }});
+
+                _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
                         ["specials"] = strSpecials,
                         ["count_specials"] = strCountSpecials
+                    }});
+
+                _data.Add(new object[] { _request10.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["specials"] = strSpecials,
+                        ["last_activity"] = strLastActivity
+                    }});
+
+                _data.Add(new object[] { _request11.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["count_specials"] = strCountSpecials,
+                        ["last_activity"] = strLastActivity
+                    }});
+
+                _data.Add(new object[] { _request12.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["hidden"] = strHidden,
+                        ["specials"] = strSpecials,
+                        ["count_specials"] = strCountSpecials
+                    }});
+
+                _data.Add(new object[] { _request13.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["hidden"] = strHidden,
+                        ["specials"] = strSpecials,
+                        ["count_specials"] = strCountSpecials,
+                        ["last_activity"] = strLastActivity
                     }});
             }
 

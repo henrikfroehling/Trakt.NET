@@ -2,6 +2,7 @@
 {
     internal static class Constants
     {
+#pragma warning disable S1075
         internal const string API_URL = "https://api.trakt.tv/";
         internal const string API_STAGING_URL = "https://api-staging.trakt.tv/";
 
@@ -22,5 +23,6 @@
         internal const string MEDIA_TYPE_URL_ENCODED = "application/x-www-form-urlencoded";
 
         internal const string DEFAULT_REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob";
+#pragma warning restore S1075
     }
 }

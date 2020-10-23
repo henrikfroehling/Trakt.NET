@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktUserIds> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserIds));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,8 +21,11 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_IDS_PROPERTY_NAME_SLUG:
+                        case JsonProperties.PROPERTY_NAME_SLUG:
                             traktUserIds.Slug = jsonReader.ReadAsString();
+                            break;
+                        case JsonProperties.PROPERTY_NAME_UUID:
+                            traktUserIds.UUID = jsonReader.ReadAsString();
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

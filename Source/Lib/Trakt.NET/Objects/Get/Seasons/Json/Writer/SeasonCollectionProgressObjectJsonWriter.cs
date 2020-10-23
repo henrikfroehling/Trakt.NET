@@ -15,26 +15,26 @@
 
             if (obj.Number.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SEASON_COLLECTION_PROGRESS_PROPERTY_NAME_NUMBER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NUMBER, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Number, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Aired.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SEASON_COLLECTION_PROGRESS_PROPERTY_NAME_AIRED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_AIRED, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Aired, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Completed.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SEASON_COLLECTION_PROGRESS_PROPERTY_NAME_COMPLETED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COMPLETED, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Completed, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Episodes != null)
             {
                 var episodeCollectionProgressArrayJsonWriter = new ArrayJsonWriter<ITraktEpisodeCollectionProgress>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SEASON_COLLECTION_PROGRESS_PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
                 await episodeCollectionProgressArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Episodes, cancellationToken).ConfigureAwait(false);
             }
 

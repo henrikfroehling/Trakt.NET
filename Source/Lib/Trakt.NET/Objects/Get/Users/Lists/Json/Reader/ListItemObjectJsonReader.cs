@@ -15,8 +15,7 @@
     {
         public override async Task<ITraktListItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktListItem));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -34,10 +33,19 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_RANK:
+                        case JsonProperties.PROPERTY_NAME_ID:
+                            {
+                                var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktListItem.Id = value.Second;
+
+                                break;
+                            }
+                        case JsonProperties.PROPERTY_NAME_RANK:
                             traktListItem.Rank = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_LISTED_AT:
+                        case JsonProperties.PROPERTY_NAME_LISTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -46,22 +54,22 @@
 
                                 break;
                             }
-                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_TYPE:
+                        case JsonProperties.PROPERTY_NAME_TYPE:
                             traktListItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktListItemType>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_MOVIE:
+                        case JsonProperties.PROPERTY_NAME_MOVIE:
                             traktListItem.Movie = await movieReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktListItem.Show = await showReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_SEASON:
+                        case JsonProperties.PROPERTY_NAME_SEASON:
                             traktListItem.Season = await seasonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             traktListItem.Episode = await episodeReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.LIST_ITEM_PROPERTY_NAME_PERSON:
+                        case JsonProperties.PROPERTY_NAME_PERSON:
                             traktListItem.Person = await personReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

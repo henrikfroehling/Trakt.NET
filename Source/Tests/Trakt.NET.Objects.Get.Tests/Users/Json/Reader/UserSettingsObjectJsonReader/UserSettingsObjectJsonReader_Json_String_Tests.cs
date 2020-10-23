@@ -4,6 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
@@ -43,7 +44,6 @@
             userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
             userSettings.Connections.Should().NotBeNull();
-            userSettings.Connections.Facebook.Should().BeTrue();
             userSettings.Connections.Twitter.Should().BeTrue();
             userSettings.Connections.Google.Should().BeTrue();
             userSettings.Connections.Tumblr.Should().BeTrue();
@@ -73,7 +73,6 @@
             userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
             userSettings.Connections.Should().NotBeNull();
-            userSettings.Connections.Facebook.Should().BeTrue();
             userSettings.Connections.Twitter.Should().BeTrue();
             userSettings.Connections.Google.Should().BeTrue();
             userSettings.Connections.Tumblr.Should().BeTrue();
@@ -114,7 +113,6 @@
             userSettings.Account.Should().BeNull();
 
             userSettings.Connections.Should().NotBeNull();
-            userSettings.Connections.Facebook.Should().BeTrue();
             userSettings.Connections.Twitter.Should().BeTrue();
             userSettings.Connections.Google.Should().BeTrue();
             userSettings.Connections.Tumblr.Should().BeTrue();
@@ -198,7 +196,6 @@
             userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
             userSettings.Connections.Should().NotBeNull();
-            userSettings.Connections.Facebook.Should().BeTrue();
             userSettings.Connections.Twitter.Should().BeTrue();
             userSettings.Connections.Google.Should().BeTrue();
             userSettings.Connections.Tumblr.Should().BeTrue();
@@ -273,7 +270,6 @@
             userSettings.Account.Should().BeNull();
 
             userSettings.Connections.Should().NotBeNull();
-            userSettings.Connections.Facebook.Should().BeTrue();
             userSettings.Connections.Twitter.Should().BeTrue();
             userSettings.Connections.Google.Should().BeTrue();
             userSettings.Connections.Tumblr.Should().BeTrue();
@@ -319,7 +315,6 @@
             userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
             userSettings.Connections.Should().NotBeNull();
-            userSettings.Connections.Facebook.Should().BeTrue();
             userSettings.Connections.Twitter.Should().BeTrue();
             userSettings.Connections.Google.Should().BeTrue();
             userSettings.Connections.Tumblr.Should().BeTrue();
@@ -360,7 +355,6 @@
             userSettings.Account.Should().BeNull();
 
             userSettings.Connections.Should().NotBeNull();
-            userSettings.Connections.Facebook.Should().BeTrue();
             userSettings.Connections.Twitter.Should().BeTrue();
             userSettings.Connections.Google.Should().BeTrue();
             userSettings.Connections.Tumblr.Should().BeTrue();
@@ -444,7 +438,6 @@
             userSettings.Account.Token.Should().Be("60fa34c4f5e7f093ecc5a2d16d691e24");
 
             userSettings.Connections.Should().NotBeNull();
-            userSettings.Connections.Facebook.Should().BeTrue();
             userSettings.Connections.Twitter.Should().BeTrue();
             userSettings.Connections.Google.Should().BeTrue();
             userSettings.Connections.Tumblr.Should().BeTrue();
@@ -469,12 +462,11 @@
         }
 
         [Fact]
-        public async Task Test_UserSettingsObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_UserSettingsObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new UserSettingsObjectJsonReader();
-
-            var userSettings = await jsonReader.ReadObjectAsync(default(string));
-            userSettings.Should().BeNull();
+            Func<Task<ITraktUserSettings>> userSettings = () => jsonReader.ReadObjectAsync(default(string));
+            userSettings.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

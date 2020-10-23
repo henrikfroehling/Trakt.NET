@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
@@ -26,6 +27,7 @@
                 traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
                 traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
                 traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
                 traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
@@ -44,6 +46,7 @@
                 traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
                 traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
                 traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
                 traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
@@ -62,6 +65,7 @@
                 traktMetadata.MediaResolution.Should().BeNull();
                 traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
                 traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
                 traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
@@ -80,6 +84,7 @@
                 traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
                 traktMetadata.Audio.Should().BeNull();
                 traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
                 traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
@@ -98,6 +103,7 @@
                 traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
                 traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
                 traktMetadata.AudioChannels.Should().BeNull();
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
                 traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
@@ -116,7 +122,8 @@
                 traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
                 traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
                 traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
-                traktMetadata.ThreeDimensional.Should().BeNull();
+                traktMetadata.HDR.Should().BeNull();
+                traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
 
@@ -131,9 +138,10 @@
 
                 traktMetadata.Should().NotBeNull();
                 traktMetadata.MediaType.Should().Be(TraktMediaType.Digital);
-                traktMetadata.MediaResolution.Should().BeNull();
-                traktMetadata.Audio.Should().BeNull();
-                traktMetadata.AudioChannels.Should().BeNull();
+                traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+                traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
+                traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
                 traktMetadata.ThreeDimensional.Should().BeNull();
             }
         }
@@ -148,10 +156,11 @@
                 var traktMetadata = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktMetadata.Should().NotBeNull();
-                traktMetadata.MediaType.Should().BeNull();
-                traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+                traktMetadata.MediaType.Should().Be(TraktMediaType.Digital);
+                traktMetadata.MediaResolution.Should().BeNull();
                 traktMetadata.Audio.Should().BeNull();
                 traktMetadata.AudioChannels.Should().BeNull();
+                traktMetadata.HDR.Should().BeNull();
                 traktMetadata.ThreeDimensional.Should().BeNull();
             }
         }
@@ -167,9 +176,10 @@
 
                 traktMetadata.Should().NotBeNull();
                 traktMetadata.MediaType.Should().BeNull();
-                traktMetadata.MediaResolution.Should().BeNull();
-                traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
+                traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+                traktMetadata.Audio.Should().BeNull();
                 traktMetadata.AudioChannels.Should().BeNull();
+                traktMetadata.HDR.Should().BeNull();
                 traktMetadata.ThreeDimensional.Should().BeNull();
             }
         }
@@ -186,8 +196,9 @@
                 traktMetadata.Should().NotBeNull();
                 traktMetadata.MediaType.Should().BeNull();
                 traktMetadata.MediaResolution.Should().BeNull();
-                traktMetadata.Audio.Should().BeNull();
-                traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
+                traktMetadata.AudioChannels.Should().BeNull();
+                traktMetadata.HDR.Should().BeNull();
                 traktMetadata.ThreeDimensional.Should().BeNull();
             }
         }
@@ -205,7 +216,46 @@
                 traktMetadata.MediaType.Should().BeNull();
                 traktMetadata.MediaResolution.Should().BeNull();
                 traktMetadata.Audio.Should().BeNull();
+                traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                traktMetadata.HDR.Should().BeNull();
+                traktMetadata.ThreeDimensional.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public async Task Test_MetadataObjectJsonReader_ReadObject_From_Stream_Incomplete_11()
+        {
+            var traktJsonReader = new MetadataObjectJsonReader();
+
+            using (var stream = JSON_INCOMPLETE_11.ToStream())
+            {
+                var traktMetadata = await traktJsonReader.ReadObjectAsync(stream);
+
+                traktMetadata.Should().NotBeNull();
+                traktMetadata.MediaType.Should().BeNull();
+                traktMetadata.MediaResolution.Should().BeNull();
+                traktMetadata.Audio.Should().BeNull();
                 traktMetadata.AudioChannels.Should().BeNull();
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
+                traktMetadata.ThreeDimensional.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public async Task Test_MetadataObjectJsonReader_ReadObject_From_Stream_Incomplete_12()
+        {
+            var traktJsonReader = new MetadataObjectJsonReader();
+
+            using (var stream = JSON_INCOMPLETE_12.ToStream())
+            {
+                var traktMetadata = await traktJsonReader.ReadObjectAsync(stream);
+
+                traktMetadata.Should().NotBeNull();
+                traktMetadata.MediaType.Should().BeNull();
+                traktMetadata.MediaResolution.Should().BeNull();
+                traktMetadata.Audio.Should().BeNull();
+                traktMetadata.AudioChannels.Should().BeNull();
+                traktMetadata.HDR.Should().BeNull();
                 traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
@@ -224,6 +274,7 @@
                 traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
                 traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
                 traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
                 traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
@@ -242,6 +293,7 @@
                 traktMetadata.MediaResolution.Should().BeNull();
                 traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
                 traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
                 traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
@@ -260,6 +312,7 @@
                 traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
                 traktMetadata.Audio.Should().BeNull();
                 traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
                 traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
@@ -278,6 +331,7 @@
                 traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
                 traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
                 traktMetadata.AudioChannels.Should().BeNull();
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
                 traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
@@ -296,7 +350,8 @@
                 traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
                 traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
                 traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
-                traktMetadata.ThreeDimensional.Should().BeNull();
+                traktMetadata.HDR.Should().BeNull();
+                traktMetadata.ThreeDimensional.Should().BeTrue();
             }
         }
 
@@ -310,21 +365,40 @@
                 var traktMetadata = await traktJsonReader.ReadObjectAsync(stream);
 
                 traktMetadata.Should().NotBeNull();
-                traktMetadata.MediaType.Should().BeNull();
-                traktMetadata.MediaResolution.Should().BeNull();
-                traktMetadata.Audio.Should().BeNull();
-                traktMetadata.AudioChannels.Should().BeNull();
+                traktMetadata.MediaType.Should().Be(TraktMediaType.Digital);
+                traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
+                traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
+                traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+                traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
                 traktMetadata.ThreeDimensional.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_MetadataObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_MetadataObjectJsonReader_ReadObject_From_Stream_Not_Valid_7()
         {
             var traktJsonReader = new MetadataObjectJsonReader();
 
-            var traktMetadata = await traktJsonReader.ReadObjectAsync(default(Stream));
-            traktMetadata.Should().BeNull();
+            using (var stream = JSON_NOT_VALID_7.ToStream())
+            {
+                var traktMetadata = await traktJsonReader.ReadObjectAsync(stream);
+
+                traktMetadata.Should().NotBeNull();
+                traktMetadata.MediaType.Should().BeNull();
+                traktMetadata.MediaResolution.Should().BeNull();
+                traktMetadata.Audio.Should().BeNull();
+                traktMetadata.AudioChannels.Should().BeNull();
+                traktMetadata.HDR.Should().BeNull();
+                traktMetadata.ThreeDimensional.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public void Test_MetadataObjectJsonReader_ReadObject_From_Stream_Null()
+        {
+            var traktJsonReader = new MetadataObjectJsonReader();
+            Func<Task<ITraktMetadata>> traktMetadata = () => traktJsonReader.ReadObjectAsync(default(Stream));
+            traktMetadata.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

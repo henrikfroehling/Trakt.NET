@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -8,7 +9,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -17,7 +18,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -29,7 +30,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -39,7 +40,6 @@
                 ITraktSharing[] sharings = traktSharings.ToArray();
 
                 sharings[0].Should().NotBeNull();
-                sharings[0].Facebook.Should().BeTrue();
                 sharings[0].Twitter.Should().BeTrue();
                 sharings[0].Google.Should().BeTrue();
                 sharings[0].Tumblr.Should().BeTrue();
@@ -47,7 +47,6 @@
                 sharings[0].Slack.Should().BeTrue();
 
                 sharings[1].Should().NotBeNull();
-                sharings[1].Facebook.Should().BeTrue();
                 sharings[1].Twitter.Should().BeTrue();
                 sharings[1].Google.Should().BeTrue();
                 sharings[1].Tumblr.Should().BeTrue();
@@ -59,7 +58,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Incomplete_1()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -69,7 +68,6 @@
                 ITraktSharing[] sharings = traktSharings.ToArray();
 
                 sharings[0].Should().NotBeNull();
-                sharings[0].Facebook.Should().BeTrue();
                 sharings[0].Twitter.Should().BeTrue();
                 sharings[0].Google.Should().BeTrue();
                 sharings[0].Tumblr.Should().BeTrue();
@@ -77,8 +75,7 @@
                 sharings[0].Slack.Should().BeTrue();
 
                 sharings[1].Should().NotBeNull();
-                sharings[1].Facebook.Should().BeNull();
-                sharings[1].Twitter.Should().BeTrue();
+                sharings[1].Twitter.Should().BeNull();
                 sharings[1].Google.Should().BeTrue();
                 sharings[1].Tumblr.Should().BeTrue();
                 sharings[1].Medium.Should().BeTrue();
@@ -89,7 +86,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Incomplete_2()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -99,15 +96,13 @@
                 ITraktSharing[] sharings = traktSharings.ToArray();
 
                 sharings[0].Should().NotBeNull();
-                sharings[0].Facebook.Should().BeNull();
-                sharings[0].Twitter.Should().BeTrue();
+                sharings[0].Twitter.Should().BeNull();
                 sharings[0].Google.Should().BeTrue();
                 sharings[0].Tumblr.Should().BeTrue();
                 sharings[0].Medium.Should().BeTrue();
                 sharings[0].Slack.Should().BeTrue();
 
                 sharings[1].Should().NotBeNull();
-                sharings[1].Facebook.Should().BeTrue();
                 sharings[1].Twitter.Should().BeTrue();
                 sharings[1].Google.Should().BeTrue();
                 sharings[1].Tumblr.Should().BeTrue();
@@ -119,7 +114,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Not_Valid_1()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -129,7 +124,6 @@
                 ITraktSharing[] sharings = traktSharings.ToArray();
 
                 sharings[0].Should().NotBeNull();
-                sharings[0].Facebook.Should().BeNull();
                 sharings[0].Twitter.Should().BeTrue();
                 sharings[0].Google.Should().BeTrue();
                 sharings[0].Tumblr.Should().BeTrue();
@@ -137,8 +131,7 @@
                 sharings[0].Slack.Should().BeTrue();
 
                 sharings[1].Should().NotBeNull();
-                sharings[1].Facebook.Should().BeTrue();
-                sharings[1].Twitter.Should().BeTrue();
+                sharings[1].Twitter.Should().BeNull();
                 sharings[1].Google.Should().BeTrue();
                 sharings[1].Tumblr.Should().BeTrue();
                 sharings[1].Medium.Should().BeTrue();
@@ -149,7 +142,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Not_Valid_2()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -159,15 +152,13 @@
                 ITraktSharing[] sharings = traktSharings.ToArray();
 
                 sharings[0].Should().NotBeNull();
-                sharings[0].Facebook.Should().BeTrue();
-                sharings[0].Twitter.Should().BeTrue();
+                sharings[0].Twitter.Should().BeNull();
                 sharings[0].Google.Should().BeTrue();
                 sharings[0].Tumblr.Should().BeTrue();
                 sharings[0].Medium.Should().BeTrue();
                 sharings[0].Slack.Should().BeTrue();
 
                 sharings[1].Should().NotBeNull();
-                sharings[1].Facebook.Should().BeNull();
                 sharings[1].Twitter.Should().BeTrue();
                 sharings[1].Google.Should().BeTrue();
                 sharings[1].Tumblr.Should().BeTrue();
@@ -179,7 +170,7 @@
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Not_Valid_3()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -189,16 +180,14 @@
                 ITraktSharing[] sharings = traktSharings.ToArray();
 
                 sharings[0].Should().NotBeNull();
-                sharings[0].Facebook.Should().BeNull();
-                sharings[0].Twitter.Should().BeTrue();
+                sharings[0].Twitter.Should().BeNull();
                 sharings[0].Google.Should().BeTrue();
                 sharings[0].Tumblr.Should().BeTrue();
                 sharings[0].Medium.Should().BeTrue();
                 sharings[0].Slack.Should().BeTrue();
 
                 sharings[1].Should().NotBeNull();
-                sharings[1].Facebook.Should().BeNull();
-                sharings[1].Twitter.Should().BeTrue();
+                sharings[1].Twitter.Should().BeNull();
                 sharings[1].Google.Should().BeTrue();
                 sharings[1].Tumblr.Should().BeTrue();
                 sharings[1].Medium.Should().BeTrue();
@@ -207,17 +196,17 @@
         }
 
         [Fact]
-        public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Null()
+        public void Test_SharingArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var jsonReader = new SharingArrayJsonReader();
-            IEnumerable<ITraktSharing> traktSharings = await jsonReader.ReadArrayAsync(default(Stream));
-            traktSharings.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
+            Func<Task<IEnumerable<ITraktSharing>>> traktSharings = () => jsonReader.ReadArrayAsync(default(Stream));
+            traktSharings.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var jsonReader = new SharingArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktSharing>();
 
             using (var stream = string.Empty.ToStream())
             {

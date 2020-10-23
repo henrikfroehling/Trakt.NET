@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Users.Json.Reader
 {
+    using Enums;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -9,8 +10,7 @@
     {
         public override async Task<ITraktAccountSettings> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktAccountSettings));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,17 +22,20 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TIMEZONE_ID:
+                        case JsonProperties.PROPERTY_NAME_TIMEZONE:
                             traktAccountSettings.TimeZoneId = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TIME_24HR:
+                        case JsonProperties.PROPERTY_NAME_TIME_24HR:
                             traktAccountSettings.Time24Hr = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_COVER_IMAGE:
+                        case JsonProperties.PROPERTY_NAME_COVER_IMAGE:
                             traktAccountSettings.CoverImage = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.ACCOUNT_SETTINGS_PROPERTY_NAME_TOKEN:
+                        case JsonProperties.PROPERTY_NAME_TOKEN:
                             traktAccountSettings.Token = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_DATE_FORMAT:
+                            traktAccountSettings.DateFormat = await JsonReaderHelper.ReadEnumerationValueAsync<TraktDateFormat>(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

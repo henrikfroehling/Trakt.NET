@@ -1,10 +1,12 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Movies.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Movies.Json.Reader;
     using Xunit;
 
@@ -306,12 +308,11 @@
         }
 
         [Fact]
-        public async Task Test_MostPWCMovieObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_MostPWCMovieObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new MostPWCMovieObjectJsonReader();
-
-            var traktMostPWCMovie = await traktJsonReader.ReadObjectAsync(default(Stream));
-            traktMostPWCMovie.Should().BeNull();
+            Func<Task<ITraktMostPWCMovie>> traktMostPWCMovie = () => traktJsonReader.ReadObjectAsync(default(Stream));
+            traktMostPWCMovie.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

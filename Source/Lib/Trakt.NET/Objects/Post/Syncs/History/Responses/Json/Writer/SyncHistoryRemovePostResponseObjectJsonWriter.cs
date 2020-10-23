@@ -15,14 +15,14 @@
             if (obj.Deleted != null)
             {
                 var syncHistoryRemovePostResponseGroupObjectJsonWriter = new SyncHistoryRemovePostResponseGroupObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_DELETED, cancellationToken).ConfigureAwait(false);
                 await syncHistoryRemovePostResponseGroupObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Deleted, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.NotFound != null)
             {
                 var syncHistoryRemovePostResponseNotFoundGroupObjectJsonWriter = new SyncHistoryRemovePostResponseNotFoundGroupObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SYNC_HISTORY_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NOT_FOUND, cancellationToken).ConfigureAwait(false);
                 await syncHistoryRemovePostResponseNotFoundGroupObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.NotFound, cancellationToken).ConfigureAwait(false);
             }
 

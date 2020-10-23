@@ -8,6 +8,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Ratings;
+    using TraktNet.Requests.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
@@ -19,13 +20,17 @@
         [Fact]
         public async Task Test_TraktSyncModule_GetRatings()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, RATINGS_JSON);
-            TraktListResponse<ITraktRatingsItem> response = await client.Sync.GetRatingsAsync();
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
+            TraktPagedResponse<ITraktRatingsItem> response = await client.Sync.GetRatingsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -33,15 +38,19 @@
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -51,15 +60,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -69,15 +82,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -87,15 +104,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -105,15 +126,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -123,15 +148,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -141,15 +170,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -159,15 +192,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -177,15 +214,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -195,15 +236,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -213,15 +258,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -231,15 +280,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -249,15 +302,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -267,15 +324,19 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -285,30 +346,38 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
         public async Task Test_TraktSyncModule_GetRatings_With_RatingsFilter()
         {
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, RATINGS_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(null, ratingsFilter);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -316,15 +385,85 @@
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_Page()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}?page={PAGE}",
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, null, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_Limit()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}?limit={LIMIT}",
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, null, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Type_And_Page_And_Limit()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}?page={PAGE}&limit={LIMIT}",
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, null, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -332,15 +471,85 @@
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
                 $"{GET_RATINGS_URI}?extended={EXTENDED_INFO}",
-                RATINGS_JSON);
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
+            TraktPagedResponse<ITraktRatingsItem> response =
                 await client.Sync.GetRatingsAsync(null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Page()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}?page={PAGE}",
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(null, null, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Limit()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}?limit={LIMIT}",
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(null, null, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetRatings_With_Page_And_Limit()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_RATINGS_URI}?page={PAGE}&limit={LIMIT}",
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(null, null, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
@@ -349,144 +558,54 @@
             var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
             TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}?extended={EXTENDED_INFO}",
-                RATINGS_JSON);
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}/{BuildRatingsFilterString(ratingsFilter)}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
 
-            TraktListResponse<ITraktRatingsItem> response =
-                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter, EXTENDED_INFO);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Sync.GetRatingsAsync(RATINGS_ITEM_TYPE, ratingsFilter, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_NotFoundException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
+        [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktSyncModule_GetRatings_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.NotFound);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktNotFoundException>();
-        }
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, statusCode);
 
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_AuthorizationException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.Unauthorized);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktAuthorizationException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.BadRequest);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.Forbidden);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.MethodNotAllowed);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.Conflict);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.InternalServerError);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, HttpStatusCode.BadGateway);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)412);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)422);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)429);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)503);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)504);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)520);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)521);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktSyncModule_GetRatings_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_RATINGS_URI, (HttpStatusCode)522);
-            Func<Task<TraktListResponse<ITraktRatingsItem>>> act = () => client.Sync.GetRatingsAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+            try
+            {
+                await client.Sync.GetRatingsAsync();
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
     }
 }

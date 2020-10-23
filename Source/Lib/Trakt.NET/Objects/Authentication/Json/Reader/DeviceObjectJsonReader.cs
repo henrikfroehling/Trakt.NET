@@ -22,16 +22,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.DEVICE_PROPERTY_NAME_DEVICE_CODE:
+                        case JsonProperties.PROPERTY_NAME_DEVICE_CODE:
                             traktAuthorization.DeviceCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.DEVICE_PROPERTY_NAME_USER_CODE:
+                        case JsonProperties.PROPERTY_NAME_USER_CODE:
                             traktAuthorization.UserCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.DEVICE_PROPERTY_NAME_VERIFICATION_URL:
+                        case JsonProperties.PROPERTY_NAME_VERIFICATION_URL:
                             traktAuthorization.VerificationUrl = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.DEVICE_PROPERTY_NAME_EXPIRES_IN:
+                        case JsonProperties.PROPERTY_NAME_EXPIRES_IN:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -40,7 +40,7 @@
 
                                 break;
                             }
-                        case JsonProperties.DEVICE_PROPERTY_NAME_INTERVAL:
+                        case JsonProperties.PROPERTY_NAME_INTERVAL:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 

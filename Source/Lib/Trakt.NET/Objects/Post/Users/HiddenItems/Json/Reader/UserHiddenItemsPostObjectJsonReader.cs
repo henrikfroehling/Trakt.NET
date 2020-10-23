@@ -9,14 +9,13 @@
     {
         public override async Task<ITraktUserHiddenItemsPost> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserHiddenItemsPost));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieArrayJsonReader = new UserHiddenItemsPostMovieArrayJsonReader();
-                var showArrayJsonReader = new UserHiddenItemsPostShowArrayJsonReader();
-                var seasonArrayJsonReader = new UserHiddenItemsPostSeasonArrayJsonReader();
+                var movieArrayJsonReader = new ArrayJsonReader<ITraktUserHiddenItemsPostMovie>();
+                var showArrayJsonReader = new ArrayJsonReader<ITraktUserHiddenItemsPostShow>();
+                var seasonArrayJsonReader = new ArrayJsonReader<ITraktUserHiddenItemsPostSeason>();
                 ITraktUserHiddenItemsPost hiddenItemsPost = new TraktUserHiddenItemsPost();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -25,13 +24,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             hiddenItemsPost.Movies = await movieArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             hiddenItemsPost.Shows = await showArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_HIDDEN_ITEMS_POST_PROPERTY_NAME_SEASONS:
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
                             hiddenItemsPost.Seasons = await seasonArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

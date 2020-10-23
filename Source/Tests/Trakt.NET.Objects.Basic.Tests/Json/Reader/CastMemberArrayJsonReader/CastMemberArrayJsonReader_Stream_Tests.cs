@@ -1,12 +1,14 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -15,7 +17,7 @@
         [Fact]
         public async Task Test_CastMemberArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var jsonReader = new CastMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCastMember>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -27,7 +29,7 @@
         [Fact]
         public async Task Test_CastMemberArrayJsonReader_ReadObject_From_Stream_Complete()
         {
-            var jsonReader = new CastMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCastMember>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -37,7 +39,6 @@
                 var items = traktCastMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().Be("Joe Brody");
                 items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -49,7 +50,6 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Jules Winfield");
                 items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Jules Winfield");
                 items[1].Person.Should().NotBeNull();
                 items[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -65,7 +65,7 @@
         [Fact]
         public async Task Test_CastMemberArrayJsonReader_ReadObject_From_Stream_Incomplete_1()
         {
-            var jsonReader = new CastMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCastMember>();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -75,7 +75,6 @@
                 var items = traktCastMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().BeNull();
                 items[0].Characters.Should().BeNull();
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -87,7 +86,6 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Jules Winfield");
                 items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Jules Winfield");
                 items[1].Person.Should().NotBeNull();
                 items[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -103,7 +101,7 @@
         [Fact]
         public async Task Test_CastMemberArrayJsonReader_ReadObject_From_Stream_Incomplete_2()
         {
-            var jsonReader = new CastMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCastMember>();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -113,7 +111,6 @@
                 var items = traktCastMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().Be("Joe Brody");
                 items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -125,7 +122,6 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Jules Winfield");
                 items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Jules Winfield");
                 items[1].Person.Should().BeNull();
             }
@@ -134,7 +130,7 @@
         [Fact]
         public async Task Test_CastMemberArrayJsonReader_ReadObject_From_Stream_Not_Valid_1()
         {
-            var jsonReader = new CastMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCastMember>();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -144,7 +140,6 @@
                 var items = traktCastMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().BeNull();
                 items[0].Characters.Should().BeNull();
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -156,7 +151,6 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Jules Winfield");
                 items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Jules Winfield");
                 items[1].Person.Should().NotBeNull();
                 items[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -172,7 +166,7 @@
         [Fact]
         public async Task Test_CastMemberArrayJsonReader_ReadObject_From_Stream_Not_Valid_2()
         {
-            var jsonReader = new CastMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCastMember>();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -182,7 +176,6 @@
                 var items = traktCastMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().Be("Joe Brody");
                 items[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -194,7 +187,6 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Jules Winfield");
                 items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Jules Winfield");
                 items[1].Person.Should().BeNull();
             }
@@ -203,7 +195,7 @@
         [Fact]
         public async Task Test_CastMemberArrayJsonReader_ReadObject_From_Stream_Not_Valid_3()
         {
-            var jsonReader = new CastMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCastMember>();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -213,7 +205,6 @@
                 var items = traktCastMembers.ToArray();
 
                 items[0].Should().NotBeNull();
-                items[0].Character.Should().BeNull();
                 items[0].Characters.Should().BeNull();
                 items[0].Person.Should().NotBeNull();
                 items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -225,25 +216,23 @@
                 items[0].Person.Ids.TvRage.Should().Be(1797U);
 
                 items[1].Should().NotBeNull();
-                items[1].Character.Should().Be("Jules Winfield");
                 items[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Jules Winfield");
                 items[1].Person.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CastMemberArrayJsonReader_ReadObject_From_Stream_Null()
+        public void Test_CastMemberArrayJsonReader_ReadObject_From_Stream_Null()
         {
-            var jsonReader = new CastMemberArrayJsonReader();
-
-            var traktCastMembers = await jsonReader.ReadArrayAsync(default(Stream));
-            traktCastMembers.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktCastMember>();
+            Func<Task<IEnumerable<ITraktCastMember>>> traktCastMembers = () => jsonReader.ReadArrayAsync(default(Stream));
+            traktCastMembers.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_CastMemberArrayJsonReader_ReadObject_From_Stream_Empty()
         {
-            var jsonReader = new CastMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCastMember>();
 
             using (var stream = string.Empty.ToStream())
             {

@@ -11,18 +11,18 @@
         {
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
-            await jsonWriter.WritePropertyNameAsync(JsonProperties.SCROBBLE_POST_PROPERTY_NAME_PROGRESS, cancellationToken).ConfigureAwait(false);
+            await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_PROGRESS, cancellationToken).ConfigureAwait(false);
             await jsonWriter.WriteValueAsync(obj.Progress, cancellationToken).ConfigureAwait(false);
 
             if (!string.IsNullOrEmpty(obj.AppVersion))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SCROBBLE_POST_PROPERTY_NAME_APP_VERSION, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_APP_VERSION, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.AppVersion, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.AppDate))
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.SCROBBLE_POST_PROPERTY_NAME_APP_DATE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_APP_DATE, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.AppDate, cancellationToken).ConfigureAwait(false);
             }
 

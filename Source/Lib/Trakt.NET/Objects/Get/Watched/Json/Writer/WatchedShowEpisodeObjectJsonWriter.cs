@@ -15,19 +15,19 @@
 
             if (obj.Number.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.WATCHED_SHOW_EPISODE_PROPERTY_NAME_NUMBER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NUMBER, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Number, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Plays.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.WATCHED_SHOW_EPISODE_PROPERTY_NAME_PLAYS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_PLAYS, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Plays, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.LastWatchedAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.WATCHED_SHOW_EPISODE_PROPERTY_NAME_LAST_WATCHED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LAST_WATCHED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.LastWatchedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 

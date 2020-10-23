@@ -19,6 +19,7 @@
     public partial class CollectionShowArrayJsonWriter_Tests
     {
         private readonly DateTime LAST_COLLECTED_AT = DateTime.UtcNow;
+        private readonly DateTime LAST_UPDATED_AT = DateTime.UtcNow;
         private readonly DateTime COLLECTED_AT = DateTime.UtcNow;
 
         [Fact]
@@ -52,6 +53,7 @@
                 new TraktCollectionShow
                 {
                     LastCollectedAt = LAST_COLLECTED_AT,
+                    LastUpdatedAt = LAST_UPDATED_AT,
                     Show = new TraktShow
                     {
                         Title = "Game of Thrones",
@@ -144,6 +146,7 @@
                 var traktJsonWriter = new ArrayJsonWriter<ITraktCollectionShow>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktCollectionShows);
                 stringWriter.ToString().Should().Be($"[{{\"last_collected_at\":\"{LAST_COLLECTED_AT.ToTraktLongDateTimeString()}\"," +
+                                                    $"\"last_updated_at\":\"{LAST_UPDATED_AT.ToTraktLongDateTimeString()}\"," +
                                                     @"""show"":{""title"":""Game of Thrones"",""year"":2011," +
                                                     @"""ids"":{""trakt"":1390,""slug"":""game-of-thrones""," +
                                                     @"""tvdb"":121361,""imdb"":""tt0944947""," +
@@ -175,6 +178,7 @@
                 new TraktCollectionShow
                 {
                     LastCollectedAt = LAST_COLLECTED_AT,
+                    LastUpdatedAt = LAST_UPDATED_AT,
                     Show = new TraktShow
                     {
                         Title = "Game of Thrones",
@@ -262,6 +266,7 @@
                 new TraktCollectionShow
                 {
                     LastCollectedAt = LAST_COLLECTED_AT,
+                    LastUpdatedAt = LAST_UPDATED_AT,
                     Show = new TraktShow
                     {
                         Title = "Game of Thrones",
@@ -354,6 +359,7 @@
                 var traktJsonWriter = new ArrayJsonWriter<ITraktCollectionShow>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktCollectionShows);
                 stringWriter.ToString().Should().Be($"[{{\"last_collected_at\":\"{LAST_COLLECTED_AT.ToTraktLongDateTimeString()}\"," +
+                                                    $"\"last_updated_at\":\"{LAST_UPDATED_AT.ToTraktLongDateTimeString()}\"," +
                                                     @"""show"":{""title"":""Game of Thrones"",""year"":2011," +
                                                     @"""ids"":{""trakt"":1390,""slug"":""game-of-thrones""," +
                                                     @"""tvdb"":121361,""imdb"":""tt0944947""," +
@@ -375,6 +381,7 @@
                                                     @"""metadata"":{""media_type"":""digital"",""resolution"":""hd_720p""," +
                                                     @"""audio"":""aac"",""audio_channels"":""5.1"",""3d"":true}}]}]}," +
                                                     $"{{\"last_collected_at\":\"{LAST_COLLECTED_AT.ToTraktLongDateTimeString()}\"," +
+                                                    $"\"last_updated_at\":\"{LAST_UPDATED_AT.ToTraktLongDateTimeString()}\"," +
                                                     @"""show"":{""title"":""Game of Thrones"",""year"":2011," +
                                                     @"""ids"":{""trakt"":1390,""slug"":""game-of-thrones""," +
                                                     @"""tvdb"":121361,""imdb"":""tt0944947""," +

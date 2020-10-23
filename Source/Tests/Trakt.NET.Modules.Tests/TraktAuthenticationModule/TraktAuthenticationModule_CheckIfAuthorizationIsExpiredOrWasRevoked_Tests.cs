@@ -219,259 +219,67 @@
             clientAccessToken.IsExpired.Should().BeFalse();
         }
 
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_NotFoundException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.NotFound);
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, statusCode);
             client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktNotFoundException>();
+
+            try
+            {
+                await client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_BadRequestException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.BadRequest);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktBadRequestException>();
-        }
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, statusCode);
 
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.Forbidden);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.MethodNotAllowed);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.Conflict);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.InternalServerError);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.BadGateway);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)412);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)422);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)429);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)503);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)504);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)520);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)521);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)522);
-            client.Authorization = MockAuthorization;
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_NotFoundException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.NotFound);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.BadRequest);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.Forbidden);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.MethodNotAllowed);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.Conflict);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.InternalServerError);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, HttpStatusCode.BadGateway);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)412);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)422);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)429);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)503);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)504);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)520);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)521);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECK_ACCESS_TOKEN_URI, (HttpStatusCode)522);
-            Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
-            act.Should().Throw<TraktServerUnavailableException>();
+            try
+            {
+                await client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(MockAuthorization);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
         [Fact]

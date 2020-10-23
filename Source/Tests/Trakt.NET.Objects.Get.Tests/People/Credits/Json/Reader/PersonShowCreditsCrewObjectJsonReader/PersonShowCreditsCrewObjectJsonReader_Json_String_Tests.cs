@@ -1,9 +1,11 @@
 ﻿namespace TraktNet.Objects.Get.Tests.People.Credits.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.People.Credits;
     using TraktNet.Objects.Get.People.Credits.Json.Reader;
     using Xunit;
 
@@ -23,7 +25,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -36,7 +38,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -52,7 +54,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -65,7 +67,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -81,7 +83,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -94,7 +96,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -110,7 +112,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -123,7 +125,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -139,7 +141,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -152,7 +154,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -168,7 +170,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -181,7 +183,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -197,7 +199,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -210,7 +212,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -226,7 +228,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -239,7 +241,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -255,7 +257,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -268,7 +270,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -284,7 +286,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -297,7 +299,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -313,7 +315,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -326,7 +328,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -354,7 +356,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -367,7 +369,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -383,7 +385,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -396,7 +398,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -412,7 +414,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -425,7 +427,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -441,7 +443,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -454,7 +456,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -470,7 +472,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -483,7 +485,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -499,7 +501,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -512,7 +514,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -528,7 +530,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -541,7 +543,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -557,7 +559,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -570,7 +572,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -586,7 +588,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -599,7 +601,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -615,7 +617,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -628,7 +630,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -654,7 +656,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -667,7 +669,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -685,7 +687,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -698,7 +700,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -714,7 +716,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -727,7 +729,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -743,7 +745,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -756,7 +758,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -772,7 +774,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -785,7 +787,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -801,7 +803,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -814,7 +816,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -830,7 +832,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -843,7 +845,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -859,7 +861,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -872,7 +874,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -888,7 +890,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -901,7 +903,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -917,7 +919,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -930,7 +932,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -956,7 +958,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -969,7 +971,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -985,7 +987,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -998,7 +1000,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -1016,7 +1018,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -1029,7 +1031,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -1045,7 +1047,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -1058,7 +1060,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -1074,7 +1076,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -1087,7 +1089,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -1103,7 +1105,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -1116,7 +1118,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -1132,7 +1134,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -1145,7 +1147,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -1161,7 +1163,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -1174,7 +1176,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -1190,7 +1192,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -1203,7 +1205,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -1219,7 +1221,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -1232,7 +1234,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -1258,7 +1260,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -1271,7 +1273,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -1287,7 +1289,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -1300,7 +1302,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -1316,7 +1318,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -1329,7 +1331,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -1347,7 +1349,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -1360,7 +1362,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -1376,7 +1378,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -1389,7 +1391,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -1405,7 +1407,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -1418,7 +1420,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -1434,7 +1436,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -1447,7 +1449,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -1463,7 +1465,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -1476,7 +1478,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -1492,7 +1494,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -1505,7 +1507,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -1521,7 +1523,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -1534,7 +1536,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -1560,7 +1562,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -1573,7 +1575,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -1589,7 +1591,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -1602,7 +1604,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -1618,7 +1620,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -1631,7 +1633,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -1647,7 +1649,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -1660,7 +1662,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -1678,7 +1680,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -1691,7 +1693,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -1707,7 +1709,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -1720,7 +1722,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -1736,7 +1738,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -1749,7 +1751,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -1765,7 +1767,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -1778,7 +1780,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -1794,7 +1796,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -1807,7 +1809,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -1823,7 +1825,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -1836,7 +1838,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -1862,7 +1864,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -1875,7 +1877,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -1891,7 +1893,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -1904,7 +1906,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -1920,7 +1922,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -1933,7 +1935,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -1949,7 +1951,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -1962,7 +1964,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -1978,7 +1980,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -1991,7 +1993,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -2009,7 +2011,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -2022,7 +2024,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -2038,7 +2040,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -2051,7 +2053,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -2067,7 +2069,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -2080,7 +2082,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -2096,7 +2098,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -2109,7 +2111,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -2125,7 +2127,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -2138,7 +2140,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -2164,7 +2166,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -2177,7 +2179,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -2193,7 +2195,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -2206,7 +2208,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -2222,7 +2224,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -2235,7 +2237,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -2251,7 +2253,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -2264,7 +2266,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -2280,7 +2282,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -2293,7 +2295,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -2309,7 +2311,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -2322,7 +2324,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -2340,7 +2342,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -2353,7 +2355,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -2369,7 +2371,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -2382,7 +2384,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -2398,7 +2400,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -2411,7 +2413,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -2427,7 +2429,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -2440,7 +2442,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -2466,7 +2468,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -2479,7 +2481,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -2495,7 +2497,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -2508,7 +2510,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -2524,7 +2526,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -2537,7 +2539,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -2553,7 +2555,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -2566,7 +2568,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -2582,7 +2584,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -2595,7 +2597,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -2611,7 +2613,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -2624,7 +2626,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -2640,7 +2642,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -2653,7 +2655,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -2671,7 +2673,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -2684,7 +2686,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -2700,7 +2702,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -2713,7 +2715,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -2729,7 +2731,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -2742,7 +2744,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -2768,7 +2770,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -2781,7 +2783,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -2797,7 +2799,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -2810,7 +2812,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -2826,7 +2828,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -2839,7 +2841,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -2855,7 +2857,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -2868,7 +2870,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -2884,7 +2886,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -2897,7 +2899,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -2913,7 +2915,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -2926,7 +2928,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -2942,7 +2944,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -2955,7 +2957,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -2971,7 +2973,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -2984,7 +2986,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -3002,7 +3004,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -3015,7 +3017,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -3031,7 +3033,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -3044,7 +3046,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -3070,7 +3072,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -3083,7 +3085,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -3099,7 +3101,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -3112,7 +3114,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -3128,7 +3130,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -3141,7 +3143,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -3157,7 +3159,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -3170,7 +3172,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -3186,7 +3188,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -3199,7 +3201,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -3215,7 +3217,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -3228,7 +3230,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -3244,7 +3246,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -3257,7 +3259,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -3273,7 +3275,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -3286,7 +3288,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -3302,7 +3304,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -3315,7 +3317,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -3333,7 +3335,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -3346,7 +3348,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -3372,7 +3374,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -3385,7 +3387,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -3401,7 +3403,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -3414,7 +3416,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -3430,7 +3432,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -3443,7 +3445,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -3459,7 +3461,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -3472,7 +3474,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -3488,7 +3490,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -3501,7 +3503,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -3517,7 +3519,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -3530,7 +3532,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -3546,7 +3548,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -3559,7 +3561,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -3575,7 +3577,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -3588,7 +3590,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -3604,7 +3606,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -3617,7 +3619,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -3633,7 +3635,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -3646,7 +3648,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -3674,7 +3676,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -3687,7 +3689,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -3726,7 +3728,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -3739,7 +3741,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -3778,7 +3780,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -3791,7 +3793,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -3830,7 +3832,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -3843,7 +3845,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -3882,7 +3884,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -3895,7 +3897,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -3934,7 +3936,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -3947,7 +3949,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -3986,7 +3988,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -3999,7 +4001,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -4038,7 +4040,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -4051,7 +4053,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -4090,7 +4092,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -4103,7 +4105,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -4142,7 +4144,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -4155,7 +4157,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -4194,7 +4196,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -4207,7 +4209,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -4235,7 +4237,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -4248,7 +4250,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -4264,7 +4266,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -4277,7 +4279,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -4293,7 +4295,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -4306,7 +4308,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -4322,7 +4324,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -4335,7 +4337,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -4351,7 +4353,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -4364,7 +4366,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -4380,7 +4382,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -4393,7 +4395,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -4409,7 +4411,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -4422,7 +4424,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -4438,7 +4440,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -4451,7 +4453,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -4467,7 +4469,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -4480,7 +4482,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -4496,7 +4498,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -4509,7 +4511,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -4535,7 +4537,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -4548,7 +4550,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -4566,7 +4568,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -4579,7 +4581,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -4595,7 +4597,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -4608,7 +4610,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -4624,7 +4626,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -4637,7 +4639,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -4653,7 +4655,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -4666,7 +4668,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -4682,7 +4684,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -4695,7 +4697,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -4711,7 +4713,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -4724,7 +4726,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -4740,7 +4742,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -4753,7 +4755,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -4769,7 +4771,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -4782,7 +4784,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -4798,7 +4800,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -4811,7 +4813,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -4837,7 +4839,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -4850,7 +4852,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -4866,7 +4868,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -4879,7 +4881,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -4897,7 +4899,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -4910,7 +4912,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -4926,7 +4928,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -4939,7 +4941,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -4955,7 +4957,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -4968,7 +4970,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -4984,7 +4986,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -4997,7 +4999,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -5013,7 +5015,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -5026,7 +5028,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -5042,7 +5044,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -5055,7 +5057,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -5071,7 +5073,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -5084,7 +5086,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -5100,7 +5102,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -5113,7 +5115,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -5139,7 +5141,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -5152,7 +5154,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -5168,7 +5170,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -5181,7 +5183,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -5197,7 +5199,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -5210,7 +5212,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -5228,7 +5230,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -5241,7 +5243,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -5257,7 +5259,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -5270,7 +5272,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -5286,7 +5288,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -5299,7 +5301,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -5315,7 +5317,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -5328,7 +5330,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -5344,7 +5346,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -5357,7 +5359,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -5373,7 +5375,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -5386,7 +5388,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -5402,7 +5404,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -5415,7 +5417,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -5441,7 +5443,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -5454,7 +5456,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -5470,7 +5472,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -5483,7 +5485,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -5499,7 +5501,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -5512,7 +5514,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -5528,7 +5530,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -5541,7 +5543,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -5559,7 +5561,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -5572,7 +5574,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -5588,7 +5590,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -5601,7 +5603,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -5617,7 +5619,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -5630,7 +5632,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -5646,7 +5648,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -5659,7 +5661,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -5675,7 +5677,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -5688,7 +5690,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -5704,7 +5706,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -5717,7 +5719,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -5743,7 +5745,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -5756,7 +5758,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -5772,7 +5774,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -5785,7 +5787,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -5801,7 +5803,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -5814,7 +5816,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -5830,7 +5832,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -5843,7 +5845,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -5859,7 +5861,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -5872,7 +5874,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -5890,7 +5892,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -5903,7 +5905,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -5919,7 +5921,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -5932,7 +5934,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -5948,7 +5950,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -5961,7 +5963,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -5977,7 +5979,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -5990,7 +5992,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -6006,7 +6008,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -6019,7 +6021,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -6045,7 +6047,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -6058,7 +6060,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -6074,7 +6076,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -6087,7 +6089,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -6103,7 +6105,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -6116,7 +6118,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -6132,7 +6134,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -6145,7 +6147,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -6161,7 +6163,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -6174,7 +6176,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -6190,7 +6192,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -6203,7 +6205,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -6221,7 +6223,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -6234,7 +6236,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -6250,7 +6252,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -6263,7 +6265,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -6279,7 +6281,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -6292,7 +6294,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -6308,7 +6310,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -6321,7 +6323,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -6347,7 +6349,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -6360,7 +6362,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -6376,7 +6378,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -6389,7 +6391,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -6405,7 +6407,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -6418,7 +6420,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -6434,7 +6436,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -6447,7 +6449,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -6463,7 +6465,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -6476,7 +6478,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -6492,7 +6494,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -6505,7 +6507,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -6521,7 +6523,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -6534,7 +6536,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -6552,7 +6554,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -6565,7 +6567,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -6581,7 +6583,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -6594,7 +6596,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -6610,7 +6612,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -6623,7 +6625,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -6649,7 +6651,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -6662,7 +6664,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -6678,7 +6680,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -6691,7 +6693,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -6707,7 +6709,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -6720,7 +6722,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -6736,7 +6738,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -6749,7 +6751,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -6765,7 +6767,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -6778,7 +6780,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -6794,7 +6796,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -6807,7 +6809,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -6823,7 +6825,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -6836,7 +6838,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -6852,7 +6854,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -6865,7 +6867,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -6883,7 +6885,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -6896,7 +6898,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -6912,7 +6914,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -6925,7 +6927,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -6951,7 +6953,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -6964,7 +6966,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -6980,7 +6982,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -6993,7 +6995,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -7009,7 +7011,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -7022,7 +7024,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -7038,7 +7040,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -7051,7 +7053,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -7067,7 +7069,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -7080,7 +7082,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -7096,7 +7098,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -7109,7 +7111,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -7125,7 +7127,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -7138,7 +7140,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -7154,7 +7156,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -7167,7 +7169,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -7183,7 +7185,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -7196,7 +7198,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -7214,7 +7216,7 @@
             var editingCrew = showCreditsCrew.Editing.ToArray();
 
             editingCrew[0].Should().NotBeNull();
-            editingCrew[0].Job.Should().Be("Editor");
+            editingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[0].Show.Should().NotBeNull();
             editingCrew[0].Show.Title.Should().Be("Game of Thrones");
             editingCrew[0].Show.Year.Should().Be(2011);
@@ -7227,7 +7229,7 @@
             editingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             editingCrew[1].Should().NotBeNull();
-            editingCrew[1].Job.Should().Be("Editor");
+            editingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Editor");
             editingCrew[1].Show.Should().NotBeNull();
             editingCrew[1].Show.Title.Should().Be("The Flash");
             editingCrew[1].Show.Year.Should().Be(2014);
@@ -7253,7 +7255,7 @@
             var productionCrew = showCreditsCrew.Production.ToArray();
 
             productionCrew[0].Should().NotBeNull();
-            productionCrew[0].Job.Should().Be("Producer");
+            productionCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[0].Show.Should().NotBeNull();
             productionCrew[0].Show.Title.Should().Be("Game of Thrones");
             productionCrew[0].Show.Year.Should().Be(2011);
@@ -7266,7 +7268,7 @@
             productionCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             productionCrew[1].Should().NotBeNull();
-            productionCrew[1].Job.Should().Be("Producer");
+            productionCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             productionCrew[1].Show.Should().NotBeNull();
             productionCrew[1].Show.Title.Should().Be("The Flash");
             productionCrew[1].Show.Year.Should().Be(2014);
@@ -7282,7 +7284,7 @@
             var artCrew = showCreditsCrew.Art.ToArray();
 
             artCrew[0].Should().NotBeNull();
-            artCrew[0].Job.Should().Be("Artist");
+            artCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[0].Show.Should().NotBeNull();
             artCrew[0].Show.Title.Should().Be("Game of Thrones");
             artCrew[0].Show.Year.Should().Be(2011);
@@ -7295,7 +7297,7 @@
             artCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             artCrew[1].Should().NotBeNull();
-            artCrew[1].Job.Should().Be("Artist");
+            artCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Artist");
             artCrew[1].Show.Should().NotBeNull();
             artCrew[1].Show.Title.Should().Be("The Flash");
             artCrew[1].Show.Year.Should().Be(2014);
@@ -7311,7 +7313,7 @@
             var crew = showCreditsCrew.Crew.ToArray();
 
             crew[0].Should().NotBeNull();
-            crew[0].Job.Should().Be("Crew Member");
+            crew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[0].Show.Should().NotBeNull();
             crew[0].Show.Title.Should().Be("Game of Thrones");
             crew[0].Show.Year.Should().Be(2011);
@@ -7324,7 +7326,7 @@
             crew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             crew[1].Should().NotBeNull();
-            crew[1].Job.Should().Be("Crew Member");
+            crew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Crew Member");
             crew[1].Show.Should().NotBeNull();
             crew[1].Show.Title.Should().Be("The Flash");
             crew[1].Show.Year.Should().Be(2014);
@@ -7340,7 +7342,7 @@
             var costumeAndMakeupCrew = showCreditsCrew.CostumeAndMakeup.ToArray();
 
             costumeAndMakeupCrew[0].Should().NotBeNull();
-            costumeAndMakeupCrew[0].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[0].Show.Should().NotBeNull();
             costumeAndMakeupCrew[0].Show.Title.Should().Be("Game of Thrones");
             costumeAndMakeupCrew[0].Show.Year.Should().Be(2011);
@@ -7353,7 +7355,7 @@
             costumeAndMakeupCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             costumeAndMakeupCrew[1].Should().NotBeNull();
-            costumeAndMakeupCrew[1].Job.Should().Be("Make-Up Artist");
+            costumeAndMakeupCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Make-Up Artist");
             costumeAndMakeupCrew[1].Show.Should().NotBeNull();
             costumeAndMakeupCrew[1].Show.Title.Should().Be("The Flash");
             costumeAndMakeupCrew[1].Show.Year.Should().Be(2014);
@@ -7369,7 +7371,7 @@
             var directingCrew = showCreditsCrew.Directing.ToArray();
 
             directingCrew[0].Should().NotBeNull();
-            directingCrew[0].Job.Should().Be("Director");
+            directingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[0].Show.Should().NotBeNull();
             directingCrew[0].Show.Title.Should().Be("Game of Thrones");
             directingCrew[0].Show.Year.Should().Be(2011);
@@ -7382,7 +7384,7 @@
             directingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             directingCrew[1].Should().NotBeNull();
-            directingCrew[1].Job.Should().Be("Director");
+            directingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             directingCrew[1].Show.Should().NotBeNull();
             directingCrew[1].Show.Title.Should().Be("The Flash");
             directingCrew[1].Show.Year.Should().Be(2014);
@@ -7398,7 +7400,7 @@
             var writingCrew = showCreditsCrew.Writing.ToArray();
 
             writingCrew[0].Should().NotBeNull();
-            writingCrew[0].Job.Should().Be("Writer");
+            writingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[0].Show.Should().NotBeNull();
             writingCrew[0].Show.Title.Should().Be("Game of Thrones");
             writingCrew[0].Show.Year.Should().Be(2011);
@@ -7411,7 +7413,7 @@
             writingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             writingCrew[1].Should().NotBeNull();
-            writingCrew[1].Job.Should().Be("Writer");
+            writingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Writer");
             writingCrew[1].Show.Should().NotBeNull();
             writingCrew[1].Show.Title.Should().Be("The Flash");
             writingCrew[1].Show.Year.Should().Be(2014);
@@ -7427,7 +7429,7 @@
             var soundCrew = showCreditsCrew.Sound.ToArray();
 
             soundCrew[0].Should().NotBeNull();
-            soundCrew[0].Job.Should().Be("Sound Designer");
+            soundCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[0].Show.Should().NotBeNull();
             soundCrew[0].Show.Title.Should().Be("Game of Thrones");
             soundCrew[0].Show.Year.Should().Be(2011);
@@ -7440,7 +7442,7 @@
             soundCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             soundCrew[1].Should().NotBeNull();
-            soundCrew[1].Job.Should().Be("Sound Designer");
+            soundCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Sound Designer");
             soundCrew[1].Show.Should().NotBeNull();
             soundCrew[1].Show.Title.Should().Be("The Flash");
             soundCrew[1].Show.Year.Should().Be(2014);
@@ -7456,7 +7458,7 @@
             var cameraCrew = showCreditsCrew.Camera.ToArray();
 
             cameraCrew[0].Should().NotBeNull();
-            cameraCrew[0].Job.Should().Be("Camera");
+            cameraCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[0].Show.Should().NotBeNull();
             cameraCrew[0].Show.Title.Should().Be("Game of Thrones");
             cameraCrew[0].Show.Year.Should().Be(2011);
@@ -7469,7 +7471,7 @@
             cameraCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             cameraCrew[1].Should().NotBeNull();
-            cameraCrew[1].Job.Should().Be("Camera");
+            cameraCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Camera");
             cameraCrew[1].Show.Should().NotBeNull();
             cameraCrew[1].Show.Title.Should().Be("The Flash");
             cameraCrew[1].Show.Year.Should().Be(2014);
@@ -7485,7 +7487,7 @@
             var lightingCrew = showCreditsCrew.Lighting.ToArray();
 
             lightingCrew[0].Should().NotBeNull();
-            lightingCrew[0].Job.Should().Be("Light Technician");
+            lightingCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[0].Show.Should().NotBeNull();
             lightingCrew[0].Show.Title.Should().Be("Game of Thrones");
             lightingCrew[0].Show.Year.Should().Be(2011);
@@ -7498,7 +7500,7 @@
             lightingCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             lightingCrew[1].Should().NotBeNull();
-            lightingCrew[1].Job.Should().Be("Light Technician");
+            lightingCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Light Technician");
             lightingCrew[1].Show.Should().NotBeNull();
             lightingCrew[1].Show.Title.Should().Be("The Flash");
             lightingCrew[1].Show.Year.Should().Be(2014);
@@ -7514,7 +7516,7 @@
             var vfxCrew = showCreditsCrew.VisualEffects.ToArray();
 
             vfxCrew[0].Should().NotBeNull();
-            vfxCrew[0].Job.Should().Be("VFX Artist");
+            vfxCrew[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[0].Show.Should().NotBeNull();
             vfxCrew[0].Show.Title.Should().Be("Game of Thrones");
             vfxCrew[0].Show.Year.Should().Be(2011);
@@ -7527,7 +7529,7 @@
             vfxCrew[0].Show.Ids.TvRage.Should().Be(24493U);
 
             vfxCrew[1].Should().NotBeNull();
-            vfxCrew[1].Job.Should().Be("VFX Artist");
+            vfxCrew[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("VFX Artist");
             vfxCrew[1].Show.Should().NotBeNull();
             vfxCrew[1].Show.Title.Should().Be("The Flash");
             vfxCrew[1].Show.Year.Should().Be(2014);
@@ -7565,12 +7567,11 @@
         }
 
         [Fact]
-        public async Task Test_PersonShowCreditsCrewObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_PersonShowCreditsCrewObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new PersonShowCreditsCrewObjectJsonReader();
-
-            var showCreditsCrew = await jsonReader.ReadObjectAsync(default(string));
-            showCreditsCrew.Should().BeNull();
+            Func<Task<ITraktPersonShowCreditsCrew>> showCreditsCrew = () => jsonReader.ReadObjectAsync(default(string));
+            showCreditsCrew.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

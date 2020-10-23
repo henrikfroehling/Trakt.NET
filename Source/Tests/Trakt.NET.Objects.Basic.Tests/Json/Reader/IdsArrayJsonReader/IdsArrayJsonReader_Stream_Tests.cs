@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -8,7 +9,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -17,7 +18,7 @@
         [Fact]
         public async Task Test_IdsArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var jsonReader = new IdsArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktIds>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -29,7 +30,7 @@
         [Fact]
         public async Task Test_IdsArrayJsonReader_ReadArray_From_Stream_Complete()
         {
-            var jsonReader = new IdsArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktIds>();
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
@@ -59,7 +60,7 @@
         [Fact]
         public async Task Test_IdsArrayJsonReader_ReadArray_From_Stream_Incomplete_1()
         {
-            var jsonReader = new IdsArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktIds>();
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
@@ -89,7 +90,7 @@
         [Fact]
         public async Task Test_IdsArrayJsonReader_ReadArray_From_Stream_Incomplete_2()
         {
-            var jsonReader = new IdsArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktIds>();
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
@@ -119,7 +120,7 @@
         [Fact]
         public async Task Test_IdsArrayJsonReader_ReadArray_From_Stream_Not_Valid_1()
         {
-            var jsonReader = new IdsArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktIds>();
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
@@ -149,7 +150,7 @@
         [Fact]
         public async Task Test_IdsArrayJsonReader_ReadArray_From_Stream_Not_Valid_2()
         {
-            var jsonReader = new IdsArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktIds>();
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
@@ -179,7 +180,7 @@
         [Fact]
         public async Task Test_IdsArrayJsonReader_ReadArray_From_Stream_Not_Valid_3()
         {
-            var jsonReader = new IdsArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktIds>();
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
@@ -207,17 +208,17 @@
         }
 
         [Fact]
-        public async Task Test_IdsArrayJsonReader_ReadArray_From_Stream_Null()
+        public void Test_IdsArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var jsonReader = new IdsArrayJsonReader();
-            IEnumerable<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(default(Stream));
-            multipleTraktIds.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktIds>();
+            Func<Task<IEnumerable<ITraktIds>>> multipleTraktIds = () => jsonReader.ReadArrayAsync(default(Stream));
+            multipleTraktIds.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_IdsArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var jsonReader = new IdsArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktIds>();
 
             using (var stream = string.Empty.ToStream())
             {

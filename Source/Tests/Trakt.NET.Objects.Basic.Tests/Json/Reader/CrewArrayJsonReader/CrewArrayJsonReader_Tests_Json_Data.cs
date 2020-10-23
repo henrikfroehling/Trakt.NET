@@ -9,7 +9,6 @@
                 {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -29,7 +28,6 @@
                 {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -53,7 +51,6 @@
                 {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -73,7 +70,6 @@
                 {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ]
@@ -87,7 +83,6 @@
                 {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ]
@@ -97,7 +92,6 @@
                 {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -141,7 +135,6 @@
                 {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],
@@ -165,7 +158,6 @@
                 {
                   ""production"": [
                     {
-                      ""job"": ""Producer"",
                       ""jobs"": [
                         ""Producer""
                       ],

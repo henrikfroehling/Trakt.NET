@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktSyncCommentsLastActivities> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncCommentsLastActivities));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,7 +21,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_COMMENTS_LAST_ACTIVITIES_PROPERTY_NAME_LIKED_AT:
+                        case JsonProperties.PROPERTY_NAME_LIKED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 

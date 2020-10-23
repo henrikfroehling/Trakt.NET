@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktSyncHistoryPostResponse> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncHistoryPostResponse));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -25,10 +24,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_HISTORY_POST_RESPONSE_PROPERTY_NAME_ADDED:
+                        case JsonProperties.PROPERTY_NAME_ADDED:
                             syncHistoryPostResponse.Added = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_HISTORY_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.PROPERTY_NAME_NOT_FOUND:
                             syncHistoryPostResponse.NotFound = await notFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

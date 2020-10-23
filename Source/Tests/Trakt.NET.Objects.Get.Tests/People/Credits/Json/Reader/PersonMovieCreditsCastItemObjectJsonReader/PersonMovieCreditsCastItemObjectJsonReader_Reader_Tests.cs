@@ -2,9 +2,11 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.People.Credits;
     using TraktNet.Objects.Get.People.Credits.Json.Reader;
     using Xunit;
 
@@ -22,7 +24,7 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().Be("Joe Brody");
+                movieCreditsCastItem.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 movieCreditsCastItem.Movie.Should().NotBeNull();
                 movieCreditsCastItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 movieCreditsCastItem.Movie.Year.Should().Be(2015);
@@ -45,7 +47,7 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().BeNull();
+                movieCreditsCastItem.Characters.Should().BeNull();
                 movieCreditsCastItem.Movie.Should().NotBeNull();
                 movieCreditsCastItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 movieCreditsCastItem.Movie.Year.Should().Be(2015);
@@ -68,7 +70,7 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().Be("Joe Brody");
+                movieCreditsCastItem.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 movieCreditsCastItem.Movie.Should().BeNull();
             }
         }
@@ -84,7 +86,7 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().BeNull();
+                movieCreditsCastItem.Characters.Should().BeNull();
                 movieCreditsCastItem.Movie.Should().NotBeNull();
                 movieCreditsCastItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
                 movieCreditsCastItem.Movie.Year.Should().Be(2015);
@@ -107,7 +109,7 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().Be("Joe Brody");
+                movieCreditsCastItem.Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Joe Brody");
                 movieCreditsCastItem.Movie.Should().BeNull();
             }
         }
@@ -123,18 +125,17 @@
                 var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 movieCreditsCastItem.Should().NotBeNull();
-                movieCreditsCastItem.Character.Should().BeNull();
+                movieCreditsCastItem.Characters.Should().BeNull();
                 movieCreditsCastItem.Movie.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
-
-            var movieCreditsCastItem = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            movieCreditsCastItem.Should().BeNull();
+            Func<Task<ITraktPersonMovieCreditsCastItem>> movieCreditsCastItem = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            movieCreditsCastItem.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

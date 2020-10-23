@@ -1,12 +1,13 @@
 ﻿namespace TraktNet.Objects.Authentication.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Authentication;
-    using TraktNet.Objects.Authentication.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Authentication.JsonReader")]
@@ -15,7 +16,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
             IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktDevices.Should().NotBeNull().And.BeEmpty();
         }
@@ -23,7 +24,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
             IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(JSON_COMPLETE);
 
             traktDevices.Should().NotBeNull();
@@ -47,7 +48,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
             IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
             traktDevices.Should().NotBeNull();
@@ -71,7 +72,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
             IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
             traktDevices.Should().NotBeNull();
@@ -95,7 +96,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
             IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             traktDevices.Should().NotBeNull();
@@ -119,7 +120,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
             IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
             traktDevices.Should().NotBeNull();
@@ -141,17 +142,17 @@
         }
 
         [Fact]
-        public async Task Test_DeviceArrayJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_DeviceArrayJsonReader_ReadObject_From_Json_String_Null()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
-            IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(default(string));
-            traktDevices.Should().BeNull();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
+            Func<Task<IEnumerable<ITraktDevice>>> traktDevices = () => objectJsonReader.ReadArrayAsync(default(string));
+            traktDevices.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
             IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(string.Empty);
             traktDevices.Should().BeNull();
         }

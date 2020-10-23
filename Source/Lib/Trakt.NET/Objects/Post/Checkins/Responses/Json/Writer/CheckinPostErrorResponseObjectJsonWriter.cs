@@ -15,7 +15,7 @@
 
             if (obj.ExpiresAt.HasValue)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.CHECKIN_POST_ERROR_RESPONSE_PROPERTY_NAME_EXPIRES_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EXPIRES_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.ExpiresAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 

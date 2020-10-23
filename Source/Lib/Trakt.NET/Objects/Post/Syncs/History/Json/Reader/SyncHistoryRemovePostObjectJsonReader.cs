@@ -9,14 +9,13 @@
     {
         public override async Task<ITraktSyncHistoryRemovePost> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncHistoryRemovePost));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieArrayJsonReader = new SyncHistoryPostMovieArrayJsonReader();
-                var showArrayJsonReader = new SyncHistoryPostShowArrayJsonReader();
-                var episodeArrayJsonReader = new SyncHistoryPostEpisodeArrayJsonReader();
+                var movieArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryPostMovie>();
+                var showArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryPostShow>();
+                var episodeArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryPostEpisode>();
                 ITraktSyncHistoryRemovePost syncHistoryRemovePost = new TraktSyncHistoryRemovePost();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -25,16 +24,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_HISTORY_POST_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             syncHistoryRemovePost.Movies = await movieArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_HISTORY_POST_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             syncHistoryRemovePost.Shows = await showArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_HISTORY_POST_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             syncHistoryRemovePost.Episodes = await episodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_HISTORY_REMOVE_POST_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             syncHistoryRemovePost.HistoryIds = await JsonReaderHelper.ReadUnsignedLongArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

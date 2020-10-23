@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktUserCustomListPost> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserCustomListPost));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -23,25 +22,25 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_CUSTOM_LIST_POST_PROPERTY_NAME_NAME:
+                        case JsonProperties.PROPERTY_NAME_NAME:
                             userCustomListPost.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.USER_CUSTOM_LIST_POST_PROPERTY_NAME_DESCRIPTION:
+                        case JsonProperties.PROPERTY_NAME_DESCRIPTION:
                             userCustomListPost.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.USER_CUSTOM_LIST_POST_PROPERTY_NAME_PRIVACY:
+                        case JsonProperties.PROPERTY_NAME_PRIVACY:
                             userCustomListPost.Privacy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktAccessScope>(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.USER_CUSTOM_LIST_POST_PROPERTY_NAME_DISPLAY_NUMBERS:
+                        case JsonProperties.PROPERTY_NAME_DISPLAY_NUMBERS:
                             userCustomListPost.DisplayNumbers = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.USER_CUSTOM_LIST_POST_PROPERTY_NAME_ALLOW_COMMENTS:
+                        case JsonProperties.PROPERTY_NAME_ALLOW_COMMENTS:
                             userCustomListPost.AllowComments = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.USER_CUSTOM_LIST_POST_PROPERTY_NAME_SORT_BY:
+                        case JsonProperties.PROPERTY_NAME_SORT_BY:
                             userCustomListPost.SortBy = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.USER_CUSTOM_LIST_POST_PROPERTY_NAME_SORT_HOW:
+                        case JsonProperties.PROPERTY_NAME_SORT_HOW:
                             userCustomListPost.SortHow = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

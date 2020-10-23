@@ -9,14 +9,13 @@
     {
         public override async Task<ITraktSyncRatingsPost> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncRatingsPost));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieArrayJsonReader = new SyncRatingsPostMovieArrayJsonReader();
-                var showArrayJsonReader = new SyncRatingsPostShowArrayJsonReader();
-                var episodeArrayJsonReader = new SyncRatingsPostEpisodeArrayJsonReader();
+                var movieArrayJsonReader = new ArrayJsonReader<ITraktSyncRatingsPostMovie>();
+                var showArrayJsonReader = new ArrayJsonReader<ITraktSyncRatingsPostShow>();
+                var episodeArrayJsonReader = new ArrayJsonReader<ITraktSyncRatingsPostEpisode>();
                 ITraktSyncRatingsPost syncRatingsPost = new TraktSyncRatingsPost();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -25,13 +24,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_RATINGS_POST_PROPERTY_NAME_MOVIES:
+                        case JsonProperties.PROPERTY_NAME_MOVIES:
                             syncRatingsPost.Movies = await movieArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_RATINGS_POST_PROPERTY_NAME_SHOWS:
+                        case JsonProperties.PROPERTY_NAME_SHOWS:
                             syncRatingsPost.Shows = await showArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_RATINGS_POST_PROPERTY_NAME_EPISODES:
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
                             syncRatingsPost.Episodes = await episodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:

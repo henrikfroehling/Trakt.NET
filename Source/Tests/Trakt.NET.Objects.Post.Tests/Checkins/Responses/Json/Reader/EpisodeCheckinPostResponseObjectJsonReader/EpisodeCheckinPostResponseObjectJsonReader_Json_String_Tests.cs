@@ -4,6 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Checkins.Responses;
     using TraktNet.Objects.Post.Checkins.Responses.Json.Reader;
     using Xunit;
 
@@ -21,7 +22,6 @@
             checkinEpisodeResponse.Id.Should().Be(3373536620UL);
             checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             checkinEpisodeResponse.Sharing.Should().NotBeNull();
-            checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -60,7 +60,6 @@
             checkinEpisodeResponse.Id.Should().Be(0UL);
             checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             checkinEpisodeResponse.Sharing.Should().NotBeNull();
-            checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -99,7 +98,6 @@
             checkinEpisodeResponse.Id.Should().Be(3373536620UL);
             checkinEpisodeResponse.WatchedAt.Should().BeNull();
             checkinEpisodeResponse.Sharing.Should().NotBeNull();
-            checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -171,7 +169,6 @@
             checkinEpisodeResponse.Id.Should().Be(3373536620UL);
             checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             checkinEpisodeResponse.Sharing.Should().NotBeNull();
-            checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -201,7 +198,6 @@
             checkinEpisodeResponse.Id.Should().Be(3373536620UL);
             checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             checkinEpisodeResponse.Sharing.Should().NotBeNull();
-            checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -261,7 +257,6 @@
             checkinEpisodeResponse.Id.Should().Be(0UL);
             checkinEpisodeResponse.WatchedAt.Should().BeNull();
             checkinEpisodeResponse.Sharing.Should().NotBeNull();
-            checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -330,7 +325,6 @@
             checkinEpisodeResponse.Id.Should().Be(0UL);
             checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             checkinEpisodeResponse.Sharing.Should().NotBeNull();
-            checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -369,7 +363,6 @@
             checkinEpisodeResponse.Id.Should().Be(3373536620UL);
             checkinEpisodeResponse.WatchedAt.Should().BeNull();
             checkinEpisodeResponse.Sharing.Should().NotBeNull();
-            checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -441,7 +434,6 @@
             checkinEpisodeResponse.Id.Should().Be(3373536620UL);
             checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             checkinEpisodeResponse.Sharing.Should().NotBeNull();
-            checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -471,7 +463,6 @@
             checkinEpisodeResponse.Id.Should().Be(3373536620UL);
             checkinEpisodeResponse.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             checkinEpisodeResponse.Sharing.Should().NotBeNull();
-            checkinEpisodeResponse.Sharing.Facebook.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Twitter.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Google.Should().BeTrue();
             checkinEpisodeResponse.Sharing.Tumblr.Should().BeTrue();
@@ -506,12 +497,11 @@
         }
 
         [Fact]
-        public async Task Test_EpisodeCheckinPostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_EpisodeCheckinPostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new EpisodeCheckinPostResponseObjectJsonReader();
-
-            var checkinEpisodeResponse = await jsonReader.ReadObjectAsync(default(string));
-            checkinEpisodeResponse.Should().BeNull();
+            Func<Task<ITraktEpisodeCheckinPostResponse>> checkinEpisodeResponse = () => jsonReader.ReadObjectAsync(default(string));
+            checkinEpisodeResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

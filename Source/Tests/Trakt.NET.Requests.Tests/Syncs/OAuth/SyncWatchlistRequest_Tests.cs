@@ -16,7 +16,7 @@
         public void Test_SyncWatchlistRequest_Has_Valid_UriTemplate()
         {
             var request = new SyncWatchlistRequest();
-            request.UriTemplate.Should().Be("sync/watchlist{/type}{?extended,page,limit}");
+            request.UriTemplate.Should().Be("sync/watchlist{/type}{/sort}{?extended,page,limit}");
         }
 
         [Theory, ClassData(typeof(SyncWatchlistRequest_TestData))]
@@ -32,6 +32,7 @@
         public class SyncWatchlistRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktSyncItemType _type = TraktSyncItemType.Episode;
+            private static readonly TraktWatchlistSortOrder _sort = TraktWatchlistSortOrder.Rank;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 4;
             private const int _limit = 20;
@@ -45,72 +46,160 @@
 
             private static readonly SyncWatchlistRequest _request3 = new SyncWatchlistRequest
             {
-                ExtendedInfo = _extendedInfo
+                Sort = _sort
             };
 
             private static readonly SyncWatchlistRequest _request4 = new SyncWatchlistRequest
             {
-                Page = _page
+                ExtendedInfo = _extendedInfo
             };
 
             private static readonly SyncWatchlistRequest _request5 = new SyncWatchlistRequest
             {
-                Limit = _limit
+                Page = _page
             };
 
             private static readonly SyncWatchlistRequest _request6 = new SyncWatchlistRequest
             {
-                Type = _type,
-                ExtendedInfo = _extendedInfo
+                Limit = _limit
             };
 
             private static readonly SyncWatchlistRequest _request7 = new SyncWatchlistRequest
             {
                 Type = _type,
-                Page = _page
+                Sort = _sort
             };
 
             private static readonly SyncWatchlistRequest _request8 = new SyncWatchlistRequest
             {
                 Type = _type,
-                Limit = _limit
+                ExtendedInfo = _extendedInfo
             };
 
             private static readonly SyncWatchlistRequest _request9 = new SyncWatchlistRequest
             {
                 Type = _type,
-                Page = _page,
-                Limit = _limit
+                Page = _page
             };
 
             private static readonly SyncWatchlistRequest _request10 = new SyncWatchlistRequest
             {
-                ExtendedInfo = _extendedInfo,
-                Page = _page
+                Type = _type,
+                Limit = _limit
             };
 
             private static readonly SyncWatchlistRequest _request11 = new SyncWatchlistRequest
             {
-                ExtendedInfo = _extendedInfo,
-                Limit = _limit
+                Type = _type,
+                Limit = _limit,
+                Page = _page
             };
 
             private static readonly SyncWatchlistRequest _request12 = new SyncWatchlistRequest
             {
-                ExtendedInfo = _extendedInfo,
-                Page = _page,
-                Limit = _limit
+                Type = _type,
+                Sort = _sort,
+                Page = _page
             };
 
             private static readonly SyncWatchlistRequest _request13 = new SyncWatchlistRequest
             {
-                Page = _page,
+                Type = _type,
+                Sort = _sort,
                 Limit = _limit
             };
 
             private static readonly SyncWatchlistRequest _request14 = new SyncWatchlistRequest
             {
                 Type = _type,
+                Sort = _sort,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly SyncWatchlistRequest _request15 = new SyncWatchlistRequest
+            {
+                Type = _type,
+                ExtendedInfo = _extendedInfo,
+                Page = _page
+            };
+
+            private static readonly SyncWatchlistRequest _request16 = new SyncWatchlistRequest
+            {
+                Type = _type,
+                ExtendedInfo = _extendedInfo,
+                Limit = _limit
+            };
+
+            private static readonly SyncWatchlistRequest _request17 = new SyncWatchlistRequest
+            {
+                Type = _type,
+                ExtendedInfo = _extendedInfo,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly SyncWatchlistRequest _request18 = new SyncWatchlistRequest
+            {
+                Sort = _sort,
+                ExtendedInfo = _extendedInfo
+            };
+
+            private static readonly SyncWatchlistRequest _request19 = new SyncWatchlistRequest
+            {
+                Sort = _sort,
+                Page = _page
+            };
+
+            private static readonly SyncWatchlistRequest _request20 = new SyncWatchlistRequest
+            {
+                Sort = _sort,
+                Limit = _limit
+            };
+
+            private static readonly SyncWatchlistRequest _request21 = new SyncWatchlistRequest
+            {
+                Sort = _sort,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly SyncWatchlistRequest _request22 = new SyncWatchlistRequest
+            {
+                Sort = _sort,
+                ExtendedInfo = _extendedInfo,
+                Page = _page
+            };
+
+            private static readonly SyncWatchlistRequest _request23 = new SyncWatchlistRequest
+            {
+                Sort = _sort,
+                ExtendedInfo = _extendedInfo,
+                Limit = _limit
+            };
+
+            private static readonly SyncWatchlistRequest _request24 = new SyncWatchlistRequest
+            {
+                Sort = _sort,
+                ExtendedInfo = _extendedInfo,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly SyncWatchlistRequest _request25 = new SyncWatchlistRequest
+            {
+                ExtendedInfo = _extendedInfo,
+                Page = _page
+            };
+
+            private static readonly SyncWatchlistRequest _request26 = new SyncWatchlistRequest
+            {
+                ExtendedInfo = _extendedInfo,
+                Limit = _limit
+            };
+
+            private static readonly SyncWatchlistRequest _request27 = new SyncWatchlistRequest
+            {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
@@ -126,6 +215,7 @@
             private void SetupPathParamters()
             {
                 var strType = _type.UriName;
+                var strSort = _sort.UriName;
                 var strExtendedInfo = _extendedInfo.ToString();
                 var strPage = _page.ToString();
                 var strLimit = _limit.ToString();
@@ -137,74 +227,152 @@
                         ["type"] = strType
                     }});
 
-                _data.Add(new object[] { _request3.GetUriPathParameters(), new Dictionary<string, object>
-                    {
-                        ["extended"] = strExtendedInfo
-                    }});
+                _data.Add(new object[] { _request3.GetUriPathParameters(), new Dictionary<string, object>() });
 
                 _data.Add(new object[] { _request4.GetUriPathParameters(), new Dictionary<string, object>
                     {
-                        ["page"] = strPage
+                        ["extended"] = strExtendedInfo
                     }});
 
                 _data.Add(new object[] { _request5.GetUriPathParameters(), new Dictionary<string, object>
                     {
-                        ["limit"] = strLimit
+                        ["page"] = strPage
                     }});
 
                 _data.Add(new object[] { _request6.GetUriPathParameters(), new Dictionary<string, object>
                     {
-                        ["type"] = strType,
-                        ["extended"] = strExtendedInfo
+                        ["limit"] = strLimit
                     }});
 
                 _data.Add(new object[] { _request7.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["type"] = strType,
-                        ["page"] = strPage
+                        ["sort"] = strSort
                     }});
 
                 _data.Add(new object[] { _request8.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["type"] = strType,
-                        ["limit"] = strLimit
+                        ["extended"] = strExtendedInfo
                     }});
 
                 _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["type"] = strType,
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request10.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["type"] = strType,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request11.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["type"] = strType,
                         ["page"] = strPage,
                         ["limit"] = strLimit
                     }});
 
-                _data.Add(new object[] { _request10.GetUriPathParameters(), new Dictionary<string, object>
-                    {
-                        ["extended"] = strExtendedInfo,
-                        ["page"] = strPage
-                    }});
-
-                _data.Add(new object[] { _request11.GetUriPathParameters(), new Dictionary<string, object>
-                    {
-                        ["extended"] = strExtendedInfo,
-                        ["limit"] = strLimit
-                    }});
-
                 _data.Add(new object[] { _request12.GetUriPathParameters(), new Dictionary<string, object>
                     {
-                        ["extended"] = strExtendedInfo,
-                        ["page"] = strPage,
-                        ["limit"] = strLimit
+                        ["type"] = strType,
+                        ["sort"] = strSort,
+                        ["page"] = strPage
                     }});
 
                 _data.Add(new object[] { _request13.GetUriPathParameters(), new Dictionary<string, object>
                     {
-                        ["page"] = strPage,
+                        ["type"] = strType,
+                        ["sort"] = strSort,
                         ["limit"] = strLimit
                     }});
 
                 _data.Add(new object[] { _request14.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["type"] = strType,
+                        ["sort"] = strSort,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request15.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["type"] = strType,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request16.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["type"] = strType,
+                        ["extended"] = strExtendedInfo,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request17.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["type"] = strType,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request18.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["extended"] = strExtendedInfo
+                    }});
+
+                _data.Add(new object[] { _request19.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request20.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request21.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request22.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request23.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["extended"] = strExtendedInfo,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request24.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request25.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request26.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["extended"] = strExtendedInfo,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request27.GetUriPathParameters(), new Dictionary<string, object>
+                    {
                         ["extended"] = strExtendedInfo,
                         ["page"] = strPage,
                         ["limit"] = strLimit

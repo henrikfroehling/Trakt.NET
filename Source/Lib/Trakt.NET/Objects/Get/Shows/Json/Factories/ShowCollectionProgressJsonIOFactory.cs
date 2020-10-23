@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktShowCollectionProgress> CreateObjectReader() => new ShowCollectionProgressObjectJsonReader();
 
-        public IArrayJsonReader<ITraktShowCollectionProgress> CreateArrayReader() => new ShowCollectionProgressArrayJsonReader();
-
         public IObjectJsonWriter<ITraktShowCollectionProgress> CreateObjectWriter() => new ShowCollectionProgressObjectJsonWriter();
     }
 }

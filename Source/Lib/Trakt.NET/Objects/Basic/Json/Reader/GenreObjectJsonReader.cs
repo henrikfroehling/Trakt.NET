@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktGenre> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktGenre));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,10 +21,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.GENRE_PROPERTY_NAME_NAME:
+                        case JsonProperties.PROPERTY_NAME_NAME:
                             traktGenre.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.GENRE_PROPERTY_NAME_SLUG:
+                        case JsonProperties.PROPERTY_NAME_SLUG:
                             traktGenre.Slug = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

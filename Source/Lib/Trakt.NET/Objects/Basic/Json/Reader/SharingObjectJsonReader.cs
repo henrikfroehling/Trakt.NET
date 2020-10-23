@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktSharing> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSharing));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,22 +21,19 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SHARING_PROPERTY_NAME_FACEBOOK:
-                            traktSharing.Facebook = await jsonReader.ReadAsBooleanAsync(cancellationToken);
-                            break;
-                        case JsonProperties.SHARING_PROPERTY_NAME_TWITTER:
+                        case JsonProperties.PROPERTY_NAME_TWITTER:
                             traktSharing.Twitter = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHARING_PROPERTY_NAME_GOOGLE:
+                        case JsonProperties.PROPERTY_NAME_GOOGLE:
                             traktSharing.Google = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHARING_PROPERTY_NAME_TUMBLR:
+                        case JsonProperties.PROPERTY_NAME_TUMBLR:
                             traktSharing.Tumblr = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHARING_PROPERTY_NAME_MEDIUM:
+                        case JsonProperties.PROPERTY_NAME_MEDIUM:
                             traktSharing.Medium = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHARING_PROPERTY_NAME_SLACK:
+                        case JsonProperties.PROPERTY_NAME_SLACK:
                             traktSharing.Slack = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         default:

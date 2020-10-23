@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktWatchedMovie> CreateObjectReader() => new WatchedMovieObjectJsonReader();
 
-        public IArrayJsonReader<ITraktWatchedMovie> CreateArrayReader() => new WatchedMovieArrayJsonReader();
-
         public IObjectJsonWriter<ITraktWatchedMovie> CreateObjectWriter() => new WatchedMovieObjectJsonWriter();
     }
 }

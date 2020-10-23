@@ -1,10 +1,12 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -13,7 +15,7 @@
         [Fact]
         public async Task Test_NetworkArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new NetworkArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktNetwork>();
 
             var traktNetworks = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktNetworks.Should().NotBeNull().And.BeEmpty();
@@ -22,7 +24,7 @@
         [Fact]
         public async Task Test_NetworkArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new NetworkArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktNetwork>();
 
             var traktNetworks = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
@@ -39,7 +41,7 @@
         [Fact]
         public async Task Test_NetworkArrayJsonReader_ReadArray_From_Json_String_Not_Valid()
         {
-            var jsonReader = new NetworkArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktNetwork>();
 
             var traktNetworks = await jsonReader.ReadArrayAsync(JSON_NOT_VALID);
 
@@ -54,18 +56,17 @@
         }
 
         [Fact]
-        public async Task Test_NetworkArrayJsonReader_ReadArray_From_Json_String_Null()
+        public void Test_NetworkArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new NetworkArrayJsonReader();
-
-            var traktNetworks = await jsonReader.ReadArrayAsync(default(string));
-            traktNetworks.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktNetwork>();
+            Func<Task<IEnumerable<ITraktNetwork>>> traktNetworks = () => jsonReader.ReadArrayAsync(default(string));
+            traktNetworks.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_NetworkArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new NetworkArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktNetwork>();
 
             var traktNetworks = await jsonReader.ReadArrayAsync(string.Empty);
             traktNetworks.Should().BeNull();

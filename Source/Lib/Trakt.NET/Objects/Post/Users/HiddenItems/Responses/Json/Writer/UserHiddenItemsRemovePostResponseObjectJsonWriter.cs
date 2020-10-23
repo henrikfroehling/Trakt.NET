@@ -15,14 +15,14 @@
             if (obj.Deleted != null)
             {
                 var userHiddenItemsPostResponseGroupObjectJsonWriter = new UserHiddenItemsPostResponseGroupObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_HIDDEN_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_DELETED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_DELETED, cancellationToken).ConfigureAwait(false);
                 await userHiddenItemsPostResponseGroupObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Deleted, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.NotFound != null)
             {
                 var userHiddenItemsPostResponseNotFoundGroupObjectJsonWriter = new UserHiddenItemsPostResponseNotFoundGroupObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_HIDDEN_ITEMS_REMOVE_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND, cancellationToken);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NOT_FOUND, cancellationToken);
                 await userHiddenItemsPostResponseNotFoundGroupObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.NotFound, cancellationToken).ConfigureAwait(false);
             }
 

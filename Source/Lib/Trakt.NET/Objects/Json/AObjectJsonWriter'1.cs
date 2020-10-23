@@ -11,29 +11,32 @@
     {
         public virtual Task<string> WriteObjectAsync(TObjectType obj, CancellationToken cancellationToken = default)
         {
-            using (var writer = new StringWriter())
-            {
-                return WriteObjectAsync(writer, obj, cancellationToken);
-            }
+            using var writer = new StringWriter();
+            return WriteObjectAsync(writer, obj, cancellationToken);
         }
 
         public virtual async Task<string> WriteObjectAsync(StringWriter writer, TObjectType obj, CancellationToken cancellationToken = default)
         {
-            if (EqualityComparer<TObjectType>.Default.Equals(obj, default))
-                throw new ArgumentNullException(nameof(obj));
-
-            if (writer == null)
-                throw new ArgumentNullException(nameof(writer));
-
+            CheckObject(obj);
+            CheckStringWriter(writer);
             using (var jsonWriter = new JsonTextWriter(writer))
-            {
-                await WriteObjectAsync(jsonWriter, obj, cancellationToken).ConfigureAwait(false);
-            }
-
+            await WriteObjectAsync(jsonWriter, obj, cancellationToken).ConfigureAwait(false);
             return writer.ToString();
         }
 
         public abstract Task WriteObjectAsync(JsonTextWriter jsonWriter, TObjectType obj, CancellationToken cancellationToken = default);
+
+        protected void CheckObject(TObjectType obj)
+        {
+            if (EqualityComparer<TObjectType>.Default.Equals(obj, default))
+                throw new ArgumentNullException(nameof(obj));
+        }
+
+        protected void CheckStringWriter(StringWriter writer)
+        {
+            if (writer == null)
+                throw new ArgumentNullException(nameof(writer));
+        }
 
         protected void CheckJsonTextWriter(JsonTextWriter jsonWriter)
         {

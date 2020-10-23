@@ -1,12 +1,13 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -15,7 +16,7 @@
         [Fact]
         public async Task Test_ImageArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new ImageArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktImage>();
             IEnumerable<ITraktImage> traktImages = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktImages.Should().NotBeNull().And.BeEmpty();
         }
@@ -23,7 +24,7 @@
         [Fact]
         public async Task Test_ImageArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
-            var jsonReader = new ImageArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktImage>();
             IEnumerable<ITraktImage> traktImages = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
             traktImages.Should().NotBeNull();
@@ -39,7 +40,7 @@
         [Fact]
         public async Task Test_ImageArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new ImageArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktImage>();
             IEnumerable<ITraktImage> traktImages = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
             traktImages.Should().NotBeNull();
@@ -55,7 +56,7 @@
         [Fact]
         public async Task Test_ImageArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new ImageArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktImage>();
             IEnumerable<ITraktImage> traktImages = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
             traktImages.Should().NotBeNull();
@@ -71,7 +72,7 @@
         [Fact]
         public async Task Test_ImageArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new ImageArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktImage>();
             IEnumerable<ITraktImage> traktImages = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             traktImages.Should().NotBeNull();
@@ -87,7 +88,7 @@
         [Fact]
         public async Task Test_ImageArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new ImageArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktImage>();
             IEnumerable<ITraktImage> traktImages = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
             traktImages.Should().NotBeNull();
@@ -103,7 +104,7 @@
         [Fact]
         public async Task Test_ImageArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new ImageArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktImage>();
             IEnumerable<ITraktImage> traktImages = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
             traktImages.Should().NotBeNull();
@@ -117,17 +118,17 @@
         }
 
         [Fact]
-        public async Task Test_ImageArrayJsonReader_ReadArray_From_Json_String_Null()
+        public void Test_ImageArrayJsonReader_ReadArray_From_Json_String_Null()
         {
-            var jsonReader = new ImageArrayJsonReader();
-            IEnumerable<ITraktImage> traktImages = await jsonReader.ReadArrayAsync(default(string));
-            traktImages.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktImage>();
+            Func<Task<IEnumerable<ITraktImage>>> traktImages = () => jsonReader.ReadArrayAsync(default(string));
+            traktImages.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_ImageArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
-            var jsonReader = new ImageArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktImage>();
             IEnumerable<ITraktImage> traktImages = await jsonReader.ReadArrayAsync(string.Empty);
             traktImages.Should().BeNull();
         }

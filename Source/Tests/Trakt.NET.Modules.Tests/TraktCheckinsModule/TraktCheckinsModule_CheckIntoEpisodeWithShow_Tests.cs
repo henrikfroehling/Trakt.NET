@@ -45,7 +45,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -98,7 +97,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -152,7 +150,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -206,7 +203,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -260,7 +256,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -315,7 +310,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -370,7 +364,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -423,7 +416,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -477,7 +469,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -531,7 +522,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -586,7 +576,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -641,7 +630,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -694,7 +682,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -748,7 +735,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -803,7 +789,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -858,7 +843,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -911,7 +895,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -966,7 +949,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -1021,7 +1003,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -1074,7 +1055,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -1129,7 +1109,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -1183,7 +1162,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -1242,7 +1220,6 @@
             responseValue.Id.Should().Be(3373536620);
             responseValue.WatchedAt.Should().Be(DateTime.Parse("2014-08-06T06:54:36.859Z").ToUniversalTime());
             responseValue.Sharing.Should().NotBeNull();
-            responseValue.Sharing.Facebook.Should().BeTrue();
             responseValue.Sharing.Twitter.Should().BeTrue();
             responseValue.Sharing.Tumblr.Should().BeFalse();
             responseValue.Episode.Should().NotBeNull();
@@ -1267,132 +1244,36 @@
             responseValue.Show.Ids.TvRage.Should().Be(18164U);
         }
 
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_NotFoundException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
+        [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktCheckinException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.NotFound);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktNotFoundException>();
-        }
+            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, statusCode);
 
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_AuthorizationException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.Unauthorized);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktAuthorizationException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.BadRequest);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.Forbidden);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.MethodNotAllowed);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.Conflict);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktCheckinException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.InternalServerError);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, HttpStatusCode.BadGateway);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)412);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)422);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)429);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)503);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)504);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)520);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)521);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktCheckinsModule_CheckIntoEpisodeWithShow_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, (HttpStatusCode)522);
-            Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
-            act.Should().Throw<TraktServerUnavailableException>();
+            try
+            {
+                await client.Checkins.CheckIntoEpisodeWithShowAsync(Episode, Show);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
         [Fact]

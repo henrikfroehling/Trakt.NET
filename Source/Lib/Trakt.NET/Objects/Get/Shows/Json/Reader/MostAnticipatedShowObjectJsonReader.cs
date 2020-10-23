@@ -2,7 +2,6 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
-    using Shows;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -10,8 +9,7 @@
     {
         public override async Task<ITraktMostAnticipatedShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktMostAnticipatedShow));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,10 +22,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.MOST_ANTICIPATED_SHOW_PROPERTY_NAME_LIST_COUNT:
+                        case JsonProperties.PROPERTY_NAME_LIST_COUNT:
                             traktMostAnticipatedShow.ListCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.MOST_ANTICIPATED_SHOW_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             traktMostAnticipatedShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktSyncWatchlistPostResponse> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncWatchlistPostResponse));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -25,13 +24,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_WATCHLIST_POST_RESPONSE_PROPERTY_NAME_ADDED:
+                        case JsonProperties.PROPERTY_NAME_ADDED:
                             syncWatchlistPostResponse.Added = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_WATCHLIST_POST_RESPONSE_PROPERTY_NAME_EXISTING:
+                        case JsonProperties.PROPERTY_NAME_EXISTING:
                             syncWatchlistPostResponse.Existing = await groupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.SYNC_WATCHLIST_POST_RESPONSE_PROPERTY_NAME_NOT_FOUND:
+                        case JsonProperties.PROPERTY_NAME_NOT_FOUND:
                             syncWatchlistPostResponse.NotFound = await notFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

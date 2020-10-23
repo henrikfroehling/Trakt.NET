@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Objects.Get.Collections;
     using TraktNet.Objects.Get.Collections.Json.Reader;
     using Xunit;
 
@@ -20,6 +21,7 @@
 
             traktCollectionMovie.Should().NotBeNull();
             traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
             traktCollectionMovie.Movie.Should().NotBeNull();
             traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -47,6 +49,7 @@
 
             traktCollectionMovie.Should().NotBeNull();
             traktCollectionMovie.CollectedAt.Should().BeNull();
+            traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
             traktCollectionMovie.Movie.Should().NotBeNull();
             traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -74,8 +77,16 @@
 
             traktCollectionMovie.Should().NotBeNull();
             traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktCollectionMovie.UpdatedAt.Should().BeNull();
 
-            traktCollectionMovie.Movie.Should().BeNull();
+            traktCollectionMovie.Movie.Should().NotBeNull();
+            traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktCollectionMovie.Movie.Year.Should().Be(2015);
+            traktCollectionMovie.Movie.Ids.Should().NotBeNull();
+            traktCollectionMovie.Movie.Ids.Trakt.Should().Be(94024U);
+            traktCollectionMovie.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktCollectionMovie.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktCollectionMovie.Movie.Ids.Tmdb.Should().Be(140607U);
 
             traktCollectionMovie.Metadata.Should().NotBeNull();
             traktCollectionMovie.Metadata.MediaType.Should().Be(TraktMediaType.Bluray);
@@ -94,17 +105,16 @@
 
             traktCollectionMovie.Should().NotBeNull();
             traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
-            traktCollectionMovie.Movie.Should().NotBeNull();
-            traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
-            traktCollectionMovie.Movie.Year.Should().Be(2015);
-            traktCollectionMovie.Movie.Ids.Should().NotBeNull();
-            traktCollectionMovie.Movie.Ids.Trakt.Should().Be(94024U);
-            traktCollectionMovie.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
-            traktCollectionMovie.Movie.Ids.Imdb.Should().Be("tt2488496");
-            traktCollectionMovie.Movie.Ids.Tmdb.Should().Be(140607U);
+            traktCollectionMovie.Movie.Should().BeNull();
 
-            traktCollectionMovie.Metadata.Should().BeNull();
+            traktCollectionMovie.Metadata.Should().NotBeNull();
+            traktCollectionMovie.Metadata.MediaType.Should().Be(TraktMediaType.Bluray);
+            traktCollectionMovie.Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_1080p);
+            traktCollectionMovie.Metadata.Audio.Should().Be(TraktMediaAudio.DTS);
+            traktCollectionMovie.Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_6_1);
+            traktCollectionMovie.Metadata.ThreeDimensional.Should().BeFalse();
         }
 
         [Fact]
@@ -116,8 +126,17 @@
 
             traktCollectionMovie.Should().NotBeNull();
             traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
-            traktCollectionMovie.Movie.Should().BeNull();
+            traktCollectionMovie.Movie.Should().NotBeNull();
+            traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktCollectionMovie.Movie.Year.Should().Be(2015);
+            traktCollectionMovie.Movie.Ids.Should().NotBeNull();
+            traktCollectionMovie.Movie.Ids.Trakt.Should().Be(94024U);
+            traktCollectionMovie.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktCollectionMovie.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktCollectionMovie.Movie.Ids.Tmdb.Should().Be(140607U);
+
             traktCollectionMovie.Metadata.Should().BeNull();
         }
 
@@ -129,17 +148,9 @@
             var traktCollectionMovie = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_5);
 
             traktCollectionMovie.Should().NotBeNull();
-            traktCollectionMovie.CollectedAt.Should().BeNull();
-
-            traktCollectionMovie.Movie.Should().NotBeNull();
-            traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
-            traktCollectionMovie.Movie.Year.Should().Be(2015);
-            traktCollectionMovie.Movie.Ids.Should().NotBeNull();
-            traktCollectionMovie.Movie.Ids.Trakt.Should().Be(94024U);
-            traktCollectionMovie.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
-            traktCollectionMovie.Movie.Ids.Imdb.Should().Be("tt2488496");
-            traktCollectionMovie.Movie.Ids.Tmdb.Should().Be(140607U);
-
+            traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktCollectionMovie.UpdatedAt.Should().BeNull();
+            traktCollectionMovie.Movie.Should().BeNull();
             traktCollectionMovie.Metadata.Should().BeNull();
         }
 
@@ -152,6 +163,44 @@
 
             traktCollectionMovie.Should().NotBeNull();
             traktCollectionMovie.CollectedAt.Should().BeNull();
+            traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktCollectionMovie.Movie.Should().BeNull();
+            traktCollectionMovie.Metadata.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_CollectionMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_7()
+        {
+            var jsonReader = new CollectionMovieObjectJsonReader();
+
+            var traktCollectionMovie = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_7);
+
+            traktCollectionMovie.Should().NotBeNull();
+            traktCollectionMovie.CollectedAt.Should().BeNull();
+            traktCollectionMovie.UpdatedAt.Should().BeNull();
+
+            traktCollectionMovie.Movie.Should().NotBeNull();
+            traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktCollectionMovie.Movie.Year.Should().Be(2015);
+            traktCollectionMovie.Movie.Ids.Should().NotBeNull();
+            traktCollectionMovie.Movie.Ids.Trakt.Should().Be(94024U);
+            traktCollectionMovie.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktCollectionMovie.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktCollectionMovie.Movie.Ids.Tmdb.Should().Be(140607U);
+
+            traktCollectionMovie.Metadata.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_CollectionMovieObjectJsonReader_ReadObject_From_Json_String_Incomplete_8()
+        {
+            var jsonReader = new CollectionMovieObjectJsonReader();
+
+            var traktCollectionMovie = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_8);
+
+            traktCollectionMovie.Should().NotBeNull();
+            traktCollectionMovie.CollectedAt.Should().BeNull();
+            traktCollectionMovie.UpdatedAt.Should().BeNull();
             traktCollectionMovie.Movie.Should().BeNull();
 
             traktCollectionMovie.Metadata.Should().NotBeNull();
@@ -171,6 +220,7 @@
 
             traktCollectionMovie.Should().NotBeNull();
             traktCollectionMovie.CollectedAt.Should().BeNull();
+            traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
             traktCollectionMovie.Movie.Should().NotBeNull();
             traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -198,8 +248,16 @@
 
             traktCollectionMovie.Should().NotBeNull();
             traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktCollectionMovie.UpdatedAt.Should().BeNull();
 
-            traktCollectionMovie.Movie.Should().BeNull();
+            traktCollectionMovie.Movie.Should().NotBeNull();
+            traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktCollectionMovie.Movie.Year.Should().Be(2015);
+            traktCollectionMovie.Movie.Ids.Should().NotBeNull();
+            traktCollectionMovie.Movie.Ids.Trakt.Should().Be(94024U);
+            traktCollectionMovie.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktCollectionMovie.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktCollectionMovie.Movie.Ids.Tmdb.Should().Be(140607U);
 
             traktCollectionMovie.Metadata.Should().NotBeNull();
             traktCollectionMovie.Metadata.MediaType.Should().Be(TraktMediaType.Bluray);
@@ -218,6 +276,28 @@
 
             traktCollectionMovie.Should().NotBeNull();
             traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+
+            traktCollectionMovie.Movie.Should().BeNull();
+
+            traktCollectionMovie.Metadata.Should().NotBeNull();
+            traktCollectionMovie.Metadata.MediaType.Should().Be(TraktMediaType.Bluray);
+            traktCollectionMovie.Metadata.MediaResolution.Should().Be(TraktMediaResolution.HD_1080p);
+            traktCollectionMovie.Metadata.Audio.Should().Be(TraktMediaAudio.DTS);
+            traktCollectionMovie.Metadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_6_1);
+            traktCollectionMovie.Metadata.ThreeDimensional.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_CollectionMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_4()
+        {
+            var jsonReader = new CollectionMovieObjectJsonReader();
+
+            var traktCollectionMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_4);
+
+            traktCollectionMovie.Should().NotBeNull();
+            traktCollectionMovie.CollectedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktCollectionMovie.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
 
             traktCollectionMovie.Movie.Should().NotBeNull();
             traktCollectionMovie.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -232,25 +312,25 @@
         }
 
         [Fact]
-        public async Task Test_CollectionMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_4()
+        public async Task Test_CollectionMovieObjectJsonReader_ReadObject_From_Json_String_Not_Valid_5()
         {
             var jsonReader = new CollectionMovieObjectJsonReader();
 
-            var traktCollectionMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_4);
+            var traktCollectionMovie = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_5);
 
             traktCollectionMovie.Should().NotBeNull();
             traktCollectionMovie.CollectedAt.Should().BeNull();
+            traktCollectionMovie.UpdatedAt.Should().BeNull();
             traktCollectionMovie.Movie.Should().BeNull();
             traktCollectionMovie.Metadata.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_CollectionMovieObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_CollectionMovieObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new CollectionMovieObjectJsonReader();
-
-            var traktCollectionMovie = await jsonReader.ReadObjectAsync(default(string));
-            traktCollectionMovie.Should().BeNull();
+            Func<Task<ITraktCollectionMovie>> traktCollectionMovie = () => jsonReader.ReadObjectAsync(default(string));
+            traktCollectionMovie.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

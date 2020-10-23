@@ -9,9 +9,6 @@
         public IObjectJsonReader<ITraktSyncRatingsRemovePostResponse> CreateObjectReader()
             => new SyncRatingsRemovePostResponseObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncRatingsRemovePostResponse> CreateArrayReader()
-            => new SyncRatingsRemovePostResponseArrayJsonReader();
-
         public IObjectJsonWriter<ITraktSyncRatingsRemovePostResponse> CreateObjectWriter()
             => new SyncRatingsRemovePostResponseObjectJsonWriter();
     }

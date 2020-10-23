@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Get.Collections
 {
     using Basic;
+    using Enums;
     using Movies;
     using System;
     using System.Collections.Generic;
@@ -10,6 +11,9 @@
     {
         /// <summary>Gets or sets the UTC datetime, when the movie was collected.</summary>
         public DateTime? CollectedAt { get; set; }
+
+        /// <summary>Gets or sets the UTC datetime, when the movie was updated.</summary>
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Gets or sets the collected Trakt movie. See also <seealso cref="ITraktMovie" />.
@@ -160,7 +164,7 @@
         }
 
         /// <summary>Gets or sets the UTC datetime when the movie was last updated.</summary>
-        public DateTime? UpdatedAt
+        public DateTime? MovieUpdatedAt
         {
             get { return Movie?.UpdatedAt; }
 
@@ -240,6 +244,18 @@
             {
                 if (Movie != null)
                     Movie.CommentCount = value;
+            }
+        }
+
+        /// <summary>Gets or sets the movie's current status. See also <seealso cref="TraktMovieStatus" />.<para>Nullable</para></summary>
+        public TraktMovieStatus Status
+        {
+            get { return Movie?.Status; }
+
+            set
+            {
+                if (Movie != null)
+                    Movie.Status = value;
             }
         }
     }

@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktCommentLike> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktCommentLike));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,7 +23,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.COMMENT_LIKE_PROPERTY_NAME_LIKED_AT:
+                        case JsonProperties.PROPERTY_NAME_LIKED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken).ConfigureAwait(false);
 
@@ -33,7 +32,7 @@
 
                                 break;
                             }
-                        case JsonProperties.COMMENT_LIKE_PROPERTY_NAME_USER:
+                        case JsonProperties.PROPERTY_NAME_USER:
                             traktCommentLike.User = await userObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;
                         default:

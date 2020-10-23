@@ -1,11 +1,14 @@
 ﻿namespace TraktNet.Objects.Get.Tests.History.Json.Reader
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.History.Json.Reader;
+    using TraktNet.Objects.Get.History;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Get.History.JsonReader")]
@@ -14,7 +17,7 @@
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_ReadArray_From_Stream_Empty_Array()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
@@ -24,17 +27,17 @@
         }
 
         [Fact]
-        public async Task Test_HistoryItemArrayJsonReader_ReadArray_From_Stream_Null()
+        public void Test_HistoryItemArrayJsonReader_ReadArray_From_Stream_Null()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
-            var traktHistoryItems = await traktJsonReader.ReadArrayAsync(default(Stream));
-            traktHistoryItems.Should().BeNull();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
+            Func<Task<IEnumerable<ITraktHistoryItem>>> traktHistoryItems = () => traktJsonReader.ReadArrayAsync(default(Stream));
+            traktHistoryItems.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_HistoryItemArrayJsonReader_ReadArray_From_Stream_Empty()
         {
-            var traktJsonReader = new HistoryItemArrayJsonReader();
+            var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
 
             using (var stream = string.Empty.ToStream())
             {

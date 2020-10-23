@@ -1,10 +1,12 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Responses.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Responses;
     using TraktNet.Objects.Post.Responses.Json.Reader;
     using Xunit;
 
@@ -44,12 +46,11 @@
         }
 
         [Fact]
-        public async Task Test_PostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_PostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new PostResponseNotFoundMovieObjectJsonReader();
-
-            var postResponseNotFoundMovie = await jsonReader.ReadObjectAsync(default(Stream));
-            postResponseNotFoundMovie.Should().BeNull();
+            Func<Task<ITraktPostResponseNotFoundMovie>> postResponseNotFoundMovie = () => jsonReader.ReadObjectAsync(default(Stream));
+            postResponseNotFoundMovie.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

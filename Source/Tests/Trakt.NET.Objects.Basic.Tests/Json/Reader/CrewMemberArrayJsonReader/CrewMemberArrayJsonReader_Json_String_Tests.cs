@@ -1,10 +1,12 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Basic.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Basic.JsonReader")]
@@ -13,7 +15,7 @@
         [Fact]
         public async Task Test_CrewMemberArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
-            var jsonReader = new CrewMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrewMember>();
 
             var traktCrewMembers = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktCrewMembers.Should().NotBeNull().And.BeEmpty();
@@ -22,7 +24,7 @@
         [Fact]
         public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_Json_String_Complete()
         {
-            var jsonReader = new CrewMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrewMember>();
 
             var traktCrewMembers = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
@@ -30,7 +32,6 @@
             var items = traktCrewMembers.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
             items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Person.Should().NotBeNull();
             items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -42,7 +43,6 @@
             items[0].Person.Ids.TvRage.Should().Be(1797U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Director");
             items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[1].Person.Should().NotBeNull();
             items[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -57,7 +57,7 @@
         [Fact]
         public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_Json_String_Incomplete_1()
         {
-            var jsonReader = new CrewMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrewMember>();
 
             var traktCrewMembers = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
@@ -65,7 +65,6 @@
             var items = traktCrewMembers.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
             items[0].Jobs.Should().BeNull();
             items[0].Person.Should().NotBeNull();
             items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -77,7 +76,6 @@
             items[0].Person.Ids.TvRage.Should().Be(1797U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Director");
             items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[1].Person.Should().NotBeNull();
             items[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -92,7 +90,7 @@
         [Fact]
         public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_Json_String_Incomplete_2()
         {
-            var jsonReader = new CrewMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrewMember>();
 
             var traktCrewMembers = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
@@ -100,7 +98,6 @@
             var items = traktCrewMembers.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
             items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Person.Should().NotBeNull();
             items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -112,7 +109,6 @@
             items[0].Person.Ids.TvRage.Should().Be(1797U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Director");
             items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[1].Person.Should().BeNull();
         }
@@ -120,7 +116,7 @@
         [Fact]
         public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_Json_String_Not_Valid_1()
         {
-            var jsonReader = new CrewMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrewMember>();
 
             var traktCrewMembers = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
@@ -128,7 +124,6 @@
             var items = traktCrewMembers.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
             items[0].Jobs.Should().BeNull();
             items[0].Person.Should().NotBeNull();
             items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -140,7 +135,6 @@
             items[0].Person.Ids.TvRage.Should().Be(1797U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Director");
             items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[1].Person.Should().NotBeNull();
             items[1].Person.Name.Should().Be("Samuel L.Jackson");
@@ -155,7 +149,7 @@
         [Fact]
         public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_Json_String_Not_Valid_2()
         {
-            var jsonReader = new CrewMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrewMember>();
 
             var traktCrewMembers = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
@@ -163,7 +157,6 @@
             var items = traktCrewMembers.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().Be("Director");
             items[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[0].Person.Should().NotBeNull();
             items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -175,7 +168,6 @@
             items[0].Person.Ids.TvRage.Should().Be(1797U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Director");
             items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[1].Person.Should().BeNull();
         }
@@ -183,7 +175,7 @@
         [Fact]
         public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_Json_String_Not_Valid_3()
         {
-            var jsonReader = new CrewMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrewMember>();
 
             var traktCrewMembers = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
@@ -191,7 +183,6 @@
             var items = traktCrewMembers.ToArray();
 
             items[0].Should().NotBeNull();
-            items[0].Job.Should().BeNull();
             items[0].Jobs.Should().BeNull();
             items[0].Person.Should().NotBeNull();
             items[0].Person.Name.Should().Be("Bryan Cranston");
@@ -203,24 +194,22 @@
             items[0].Person.Ids.TvRage.Should().Be(1797U);
 
             items[1].Should().NotBeNull();
-            items[1].Job.Should().Be("Director");
             items[1].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             items[1].Person.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_CrewMemberArrayJsonReader_ReadObject_From_Json_String_Null()
         {
-            var jsonReader = new CrewMemberArrayJsonReader();
-
-            var traktCrewMembers = await jsonReader.ReadArrayAsync(default(string));
-            traktCrewMembers.Should().BeNull();
+            var jsonReader = new ArrayJsonReader<ITraktCrewMember>();
+            Func<Task<IEnumerable<ITraktCrewMember>>> traktCrewMembers = () => jsonReader.ReadArrayAsync(default(string));
+            traktCrewMembers.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_Json_String_Empty()
         {
-            var jsonReader = new CrewMemberArrayJsonReader();
+            var jsonReader = new ArrayJsonReader<ITraktCrewMember>();
 
             var traktCrewMembers = await jsonReader.ReadArrayAsync(string.Empty);
             traktCrewMembers.Should().BeNull();

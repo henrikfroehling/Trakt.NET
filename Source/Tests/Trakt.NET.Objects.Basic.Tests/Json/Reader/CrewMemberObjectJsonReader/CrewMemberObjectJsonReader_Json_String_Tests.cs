@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic.Json.Reader;
@@ -17,7 +18,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().Be("Director");
             traktCrewMember.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             traktCrewMember.Person.Should().NotBeNull();
             traktCrewMember.Person.Name.Should().Be("Bryan Cranston");
@@ -37,7 +37,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().BeNull();
             traktCrewMember.Jobs.Should().BeNull();
             traktCrewMember.Person.Should().NotBeNull();
             traktCrewMember.Person.Name.Should().Be("Bryan Cranston");
@@ -57,7 +56,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().Be("Director");
             traktCrewMember.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             traktCrewMember.Person.Should().BeNull();
         }
@@ -70,7 +68,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().BeNull();
             traktCrewMember.Jobs.Should().BeNull();
             traktCrewMember.Person.Should().NotBeNull();
             traktCrewMember.Person.Name.Should().Be("Bryan Cranston");
@@ -90,7 +87,6 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().Be("Director");
             traktCrewMember.Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Director");
             traktCrewMember.Person.Should().BeNull();
         }
@@ -103,18 +99,16 @@
             var traktCrewMember = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
 
             traktCrewMember.Should().NotBeNull();
-            traktCrewMember.Job.Should().BeNull();
             traktCrewMember.Jobs.Should().BeNull();
             traktCrewMember.Person.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_CrewMemberObjectJsonReader_ReadObject_From_Json_String_Null()
+        public void Test_CrewMemberObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new CrewMemberObjectJsonReader();
-
-            var traktCrewMember = await jsonReader.ReadObjectAsync(default(string));
-            traktCrewMember.Should().BeNull();
+            Func<Task<ITraktCrewMember>> traktCrewMember = () => jsonReader.ReadObjectAsync(default(string));
+            traktCrewMember.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

@@ -3,6 +3,7 @@
     using System;
     using TraktNet.Enums;
     using TraktNet.Requests.Parameters;
+    using TraktNet.Requests.Parameters.Filter;
 
     public partial class TraktShowsModule_Tests
     {
@@ -23,29 +24,32 @@
         private readonly TraktListType LIST_ITEM_TYPE = TraktListType.Official;
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private const string LANGUAGE_CODE = "en";
+        private readonly TraktLastActivity LAST_ACTIVITY = TraktLastActivity.Collected;
 
         private string ProgressHidden { get; }
         private string ProgressSpecials { get; }
         private string ProgressCountSpecials { get; }
+        private string LastActivity { get; }
 
         public TraktShowsModule_Tests()
         {
             ProgressHidden = PROGRESS_HIDDEN.ToString().ToLower();
             ProgressSpecials = PROGRESS_SPECIALS.ToString().ToLower();
             ProgressCountSpecials = PROGRESS_COUNT_SPECIALS.ToString().ToLower();
+            LastActivity = LAST_ACTIVITY.UriName.ToLower();
         }
 
-        private readonly TraktShowFilter FILTER = new TraktShowFilter()
+        private readonly ITraktShowFilter FILTER = TraktFilterDirectory.ShowFilter
                 .WithCertifications("TV-MA")
+                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction)
                 .WithQuery("most anticipated show")
-                .WithStartYear(2016)
+                .WithYear(2016)
                 .WithGenres("drama", "fantasy")
                 .WithLanguages("en", "de")
                 .WithCountries("us")
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95)
-                .WithNetworks("HBO", "Showtime")
-                .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction);
+                .Build();
 
         private const string MOST_ANTICIPATED_SHOWS_JSON =
             @"[

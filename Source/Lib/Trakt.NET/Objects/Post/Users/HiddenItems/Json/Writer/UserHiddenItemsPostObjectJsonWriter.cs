@@ -15,21 +15,21 @@
             if (obj.Movies != null)
             {
                 var hiddenItemsPostMovieArrayJsonWriter = new ArrayJsonWriter<ITraktUserHiddenItemsPostMovie>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_HIDDEN_ITEMS_POST_PROPERTY_NAME_MOVIES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIES, cancellationToken).ConfigureAwait(false);
                 await hiddenItemsPostMovieArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Movies, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Shows != null)
             {
                 var hiddenItemsPostShowArrayJsonWriter = new ArrayJsonWriter<ITraktUserHiddenItemsPostShow>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_HIDDEN_ITEMS_POST_PROPERTY_NAME_SHOWS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOWS, cancellationToken).ConfigureAwait(false);
                 await hiddenItemsPostShowArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Shows, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Seasons != null)
             {
                 var hiddenItemsPostSeasonArrayJsonWriter = new ArrayJsonWriter<ITraktUserHiddenItemsPostSeason>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.USER_HIDDEN_ITEMS_POST_PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
                 await hiddenItemsPostSeasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
             }
 

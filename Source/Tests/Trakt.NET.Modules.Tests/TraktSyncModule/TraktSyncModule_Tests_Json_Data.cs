@@ -21,7 +21,9 @@
         private const string WATCHLIST_SORT_BY = "rank";
         private const string WATCHLIST_SORT_HOW = "asc";
         private readonly TraktSyncItemType WATCHLIST_ITEM_TYPE = TraktSyncItemType.Episode;
+        private readonly TraktWatchlistSortOrder WATCHLIST_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const uint PLAYBACK_ID = 13U;
+        private const int RATINGS_ITEM_COUNT = 5;
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 

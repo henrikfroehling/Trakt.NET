@@ -1011,132 +1011,36 @@
             responseValue.User.Should().NotBeNull();
         }
 
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_NotFoundException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktListNotFoundException))]
+        [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktUsersModule_UpdateCustomList_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, HttpStatusCode.NotFound);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktListNotFoundException>();
-        }
+            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, statusCode);
 
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_AuthorizationException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, HttpStatusCode.Unauthorized);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktAuthorizationException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, HttpStatusCode.BadRequest);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, HttpStatusCode.Forbidden);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, HttpStatusCode.MethodNotAllowed);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, HttpStatusCode.Conflict);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, HttpStatusCode.InternalServerError);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, HttpStatusCode.BadGateway);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, (HttpStatusCode)412);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, (HttpStatusCode)422);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, (HttpStatusCode)429);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, (HttpStatusCode)503);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, (HttpStatusCode)504);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, (HttpStatusCode)520);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, (HttpStatusCode)521);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktUsersModule_UpdateCustomList_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, (HttpStatusCode)522);
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<TraktServerUnavailableException>();
+            try
+            {
+                await client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
         [Fact]

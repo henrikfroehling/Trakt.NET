@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktCertifications> CreateObjectReader() => new CertificationsObjectJsonReader();
 
-        public IArrayJsonReader<ITraktCertifications> CreateArrayReader() => new CertificationsArrayJsonReader();
-
         public IObjectJsonWriter<ITraktCertifications> CreateObjectWriter() => new CertificationsObjectJsonWriter();
     }
 }

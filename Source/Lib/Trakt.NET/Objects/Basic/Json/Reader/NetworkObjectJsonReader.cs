@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktNetwork> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktNetwork));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,7 +21,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.NETWORK_PROPERTY_NAME_NAME:
+                        case JsonProperties.PROPERTY_NAME_NAME:
                             traktNetwork.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

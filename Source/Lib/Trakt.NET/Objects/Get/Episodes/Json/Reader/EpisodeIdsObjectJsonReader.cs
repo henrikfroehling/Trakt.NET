@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktEpisodeIds> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktEpisodeIds));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,7 +21,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.EPISODE_IDS_PROPERTY_NAME_TRAKT:
+                        case JsonProperties.PROPERTY_NAME_TRAKT:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -31,7 +30,7 @@
 
                                 break;
                             }
-                        case JsonProperties.EPISODE_IDS_PROPERTY_NAME_TVDB:
+                        case JsonProperties.PROPERTY_NAME_TVDB:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -40,10 +39,10 @@
 
                                 break;
                             }
-                        case JsonProperties.EPISODE_IDS_PROPERTY_NAME_IMDB:
+                        case JsonProperties.PROPERTY_NAME_IMDB:
                             traktEpisodeIds.Imdb = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_IDS_PROPERTY_NAME_TMDB:
+                        case JsonProperties.PROPERTY_NAME_TMDB:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 
@@ -52,7 +51,7 @@
 
                                 break;
                             }
-                        case JsonProperties.EPISODE_IDS_PROPERTY_NAME_TVRAGE:
+                        case JsonProperties.PROPERTY_NAME_TVRAGE:
                             {
                                 var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
 

@@ -12,8 +12,7 @@
     {
         public override async Task<ITraktSyncRatingsPostEpisode> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncRatingsPostEpisode));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -26,7 +25,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_RATINGS_POST_EPISODE_PROPERTY_NAME_RATED_AT:
+                        case JsonProperties.PROPERTY_NAME_RATED_AT:
                             {
                                 Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -35,10 +34,10 @@
 
                                 break;
                             }
-                        case JsonProperties.SYNC_RATINGS_POST_EPISODE_PROPERTY_NAME_RATING:
+                        case JsonProperties.PROPERTY_NAME_RATING:
                             syncRatingsPostEpisode.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_RATINGS_POST_EPISODE_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             syncRatingsPostEpisode.Ids = await episodeIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

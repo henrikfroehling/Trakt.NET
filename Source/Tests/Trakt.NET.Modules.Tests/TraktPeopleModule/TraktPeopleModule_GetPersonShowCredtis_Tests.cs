@@ -33,7 +33,7 @@
 
             ITraktPersonShowCreditsCastItem[] cast = responseValue.Cast.ToArray();
 
-            cast[0].Character.Should().Be("Walter White");
+            cast[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Walter White");
             cast[0].Show.Should().NotBeNull();
             cast[0].Show.Title.Should().Be("Breaking Bad");
             cast[0].Show.Year.Should().Be(2008);
@@ -45,7 +45,7 @@
             cast[0].Show.Ids.Tmdb.Should().Be(1396U);
             cast[0].Show.Ids.TvRage.Should().Be(18164U);
 
-            cast[1].Character.Should().Be("Hal");
+            cast[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Hal");
             cast[1].Show.Should().NotBeNull();
             cast[1].Show.Title.Should().Be("Malcolm in the Middle");
             cast[1].Show.Year.Should().Be(2000);
@@ -69,7 +69,7 @@
 
             ITraktPersonShowCreditsCrewItem[] production = responseValue.Crew.Production.ToArray();
 
-            production[0].Job.Should().Be("Producer");
+            production[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             production[0].Show.Should().NotBeNull();
             production[0].Show.Title.Should().Be("Breaking Bad");
             production[0].Show.Year.Should().Be(2008);
@@ -102,7 +102,7 @@
 
             ITraktPersonShowCreditsCastItem[] cast = responseValue.Cast.ToArray();
 
-            cast[0].Character.Should().Be("Walter White");
+            cast[0].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Walter White");
             cast[0].Show.Should().NotBeNull();
             cast[0].Show.Title.Should().Be("Breaking Bad");
             cast[0].Show.Year.Should().Be(2008);
@@ -114,7 +114,7 @@
             cast[0].Show.Ids.Tmdb.Should().Be(1396U);
             cast[0].Show.Ids.TvRage.Should().Be(18164U);
 
-            cast[1].Character.Should().Be("Hal");
+            cast[1].Characters.Should().NotBeNull().And.HaveCount(1).And.Contain("Hal");
             cast[1].Show.Should().NotBeNull();
             cast[1].Show.Title.Should().Be("Malcolm in the Middle");
             cast[1].Show.Year.Should().Be(2000);
@@ -138,7 +138,7 @@
 
             ITraktPersonShowCreditsCrewItem[] production = responseValue.Crew.Production.ToArray();
 
-            production[0].Job.Should().Be("Producer");
+            production[0].Jobs.Should().NotBeNull().And.HaveCount(1).And.Contain("Producer");
             production[0].Show.Should().NotBeNull();
             production[0].Show.Title.Should().Be("Breaking Bad");
             production[0].Show.Year.Should().Be(2008);
@@ -155,132 +155,36 @@
             responseValue.Crew.Writing.Should().BeNull();
         }
 
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_NotFoundException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktPersonNotFoundException))]
+        [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktPeopleModule_GetPersonShowCredits_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, HttpStatusCode.NotFound);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktPersonNotFoundException>();
-        }
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, statusCode);
 
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_AuthorizationException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, HttpStatusCode.Unauthorized);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktAuthorizationException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, HttpStatusCode.BadRequest);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktBadRequestException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, HttpStatusCode.Forbidden);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktForbiddenException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, HttpStatusCode.MethodNotAllowed);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktMethodNotFoundException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, HttpStatusCode.Conflict);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktConflictException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, HttpStatusCode.InternalServerError);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, HttpStatusCode.BadGateway);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, (HttpStatusCode)412);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, (HttpStatusCode)422);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktValidationException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, (HttpStatusCode)429);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, (HttpStatusCode)503);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, (HttpStatusCode)504);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, (HttpStatusCode)520);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, (HttpStatusCode)521);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public void Test_TraktPeopleModule_GetPersonShowCredits_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, (HttpStatusCode)522);
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(PERSON_ID);
-            act.Should().Throw<TraktServerUnavailableException>();
+            try
+            {
+                await client.People.GetPersonShowCreditsAsync(PERSON_ID);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
         [Fact]

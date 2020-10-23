@@ -9,12 +9,11 @@
     {
         public override async Task<ITraktPersonShowCredits> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktPersonShowCredits));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var showCreditsCastReader = new PersonShowCreditsCastItemArrayJsonReader();
+                var showCreditsCastReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
                 var showCreditsCrewReader = new PersonShowCreditsCrewObjectJsonReader();
 
                 ITraktPersonShowCredits showCredits = new TraktPersonShowCredits();
@@ -25,10 +24,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PERSON_SHOW_CREDITS_PROPERTY_NAME_CAST:
+                        case JsonProperties.PROPERTY_NAME_CAST:
                             showCredits.Cast = await showCreditsCastReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.PERSON_SHOW_CREDITS_PROPERTY_NAME_CREW:
+                        case JsonProperties.PROPERTY_NAME_CREW:
                             showCredits.Crew = await showCreditsCrewReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -10,8 +10,7 @@
     {
         public override async Task<ITraktSyncWatchlistPostMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktSyncWatchlistPostMovie));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -24,13 +23,13 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SYNC_WATCHLIST_POST_MOVIE_PROPERTY_NAME_TITLE:
+                        case JsonProperties.PROPERTY_NAME_TITLE:
                             syncWatchlistPostMovie.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_WATCHLIST_POST_MOVIE_PROPERTY_NAME_YEAR:
+                        case JsonProperties.PROPERTY_NAME_YEAR:
                             syncWatchlistPostMovie.Year = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.SYNC_WATCHLIST_POST_MOVIE_PROPERTY_NAME_IDS:
+                        case JsonProperties.PROPERTY_NAME_IDS:
                             syncWatchlistPostMovie.Ids = await movieIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktShowAlias> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktShowAlias));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -22,10 +21,10 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.SHOW_ALIAS_PROPERTY_NAME_TITLE:
+                        case JsonProperties.PROPERTY_NAME_TITLE:
                             traktShowAlias.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
-                        case JsonProperties.SHOW_ALIAS_PROPERTY_NAME_COUNTRY:
+                        case JsonProperties.PROPERTY_NAME_COUNTRY:
                             traktShowAlias.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:

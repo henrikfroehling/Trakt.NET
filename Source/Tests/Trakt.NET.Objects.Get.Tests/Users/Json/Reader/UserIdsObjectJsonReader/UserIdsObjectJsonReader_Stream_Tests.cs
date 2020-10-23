@@ -1,10 +1,12 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Users.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
@@ -22,6 +24,7 @@
 
                 userIds.Should().NotBeNull();
                 userIds.Slug.Should().Be("sean");
+                userIds.UUID.Should().Be("b6589fc6ab0dc82cf12099d1c2d40ab994e8410c");
             }
         }
 
@@ -36,16 +39,16 @@
 
                 userIds.Should().NotBeNull();
                 userIds.Slug.Should().BeNull();
+                userIds.UUID.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_UserIdsObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_UserIdsObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new UserIdsObjectJsonReader();
-
-            var userIds = await jsonReader.ReadObjectAsync(default(Stream));
-            userIds.Should().BeNull();
+            Func<Task<ITraktUserIds>> userIds = () => jsonReader.ReadObjectAsync(default(Stream));
+            userIds.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

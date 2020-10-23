@@ -20,6 +20,7 @@
             traktMetadata.MediaResolution.Should().BeNull();
             traktMetadata.Audio.Should().BeNull();
             traktMetadata.AudioChannels.Should().BeNull();
+            traktMetadata.HDR.Should().BeNull();
             traktMetadata.ThreeDimensional.Should().BeNull();
         }
 
@@ -34,6 +35,7 @@
             traktMetadata.MediaResolution.Should().Be(TraktMediaResolution.HD_720p);
             traktMetadata.Audio.Should().Be(TraktMediaAudio.AAC);
             traktMetadata.AudioChannels.Should().Be(TraktMediaAudioChannel.Channels_5_1);
+            traktMetadata.HDR.Should().Be(TraktMediaHDR.DolbyVision);
             traktMetadata.ThreeDimensional.Should().BeTrue();
         }
 
@@ -43,6 +45,7 @@
                 ""resolution"": ""hd_720p"",
                 ""audio"": ""aac"",
                 ""audio_channels"": ""5.1"",
+                ""hdr"": ""dolby_vision"",
                 ""3d"": true
               }";
     }

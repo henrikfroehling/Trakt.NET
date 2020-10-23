@@ -2,13 +2,14 @@
 {
     using FluentAssertions;
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Authentication;
-    using TraktNet.Objects.Authentication.Json.Reader;
+    using TraktNet.Objects.Json;
     using Xunit;
 
     [Category("Objects.Authentication.JsonReader")]
@@ -17,7 +18,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadArray_From_JsonReader_Empty_Array()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
 
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
@@ -30,7 +31,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
 
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
@@ -59,7 +60,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -88,7 +89,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
 
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -117,7 +118,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
 
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
@@ -146,7 +147,7 @@
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
 
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
@@ -173,17 +174,17 @@
         }
 
         [Fact]
-        public async Task Test_DeviceArrayJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_DeviceArrayJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
-            IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktDevices.Should().BeNull();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
+            Func<Task<IEnumerable<ITraktDevice>>> traktDevices = () =>objectJsonReader.ReadArrayAsync(default(JsonTextReader));
+            traktDevices.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var objectJsonReader = new DeviceArrayJsonReader();
+            var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
 
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))

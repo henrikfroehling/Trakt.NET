@@ -1,10 +1,12 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Syncs.Playback.Json.Reader
 {
     using FluentAssertions;
+    using System;
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Get.Syncs.Playback;
     using TraktNet.Objects.Get.Syncs.Playback.Json.Reader;
     using Xunit;
 
@@ -12,12 +14,11 @@
     public partial class SyncPlaybackProgressItemObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_SyncPlaybackProgressItemObjectJsonReader_ReadObject_From_Stream_Null()
+        public void Test_SyncPlaybackProgressItemObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new SyncPlaybackProgressItemObjectJsonReader();
-
-            var traktPlaybackProgressItem = await jsonReader.ReadObjectAsync(default(Stream));
-            traktPlaybackProgressItem.Should().BeNull();
+            Func<Task<ITraktSyncPlaybackProgressItem>> traktPlaybackProgressItem = () => jsonReader.ReadObjectAsync(default(Stream));
+            traktPlaybackProgressItem.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

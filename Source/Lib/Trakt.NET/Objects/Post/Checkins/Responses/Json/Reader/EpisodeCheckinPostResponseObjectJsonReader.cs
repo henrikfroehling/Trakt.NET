@@ -12,8 +12,7 @@
     {
         public override async Task<ITraktEpisodeCheckinPostResponse> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktEpisodeCheckinPostResponse));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -28,16 +27,16 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_ID:
+                        case JsonProperties.PROPERTY_NAME_ID:
                             {
-                                var value = await JsonReaderHelper.ReadUnsignedLongIntegerAsync(jsonReader, cancellationToken);
+                                var value = await JsonReaderHelper.ReadUnsignedLongValueAsync(jsonReader, cancellationToken);
 
                                 if (value.First)
                                     checkinEpisodeResponse.Id = value.Second;
 
                                 break;
                             }
-                        case JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_WATCHED_AT:
+                        case JsonProperties.PROPERTY_NAME_WATCHED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -46,13 +45,13 @@
 
                                 break;
                             }
-                        case JsonProperties.CHECKIN_POST_RESPONSE_PROPERTY_NAME_SHARING:
+                        case JsonProperties.PROPERTY_NAME_SHARING:
                             checkinEpisodeResponse.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_EPISODE:
+                        case JsonProperties.PROPERTY_NAME_EPISODE:
                             checkinEpisodeResponse.Episode = await episodeReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
-                        case JsonProperties.EPISODE_CHECKIN_POST_RESPONSE_PROPERTY_NAME_SHOW:
+                        case JsonProperties.PROPERTY_NAME_SHOW:
                             checkinEpisodeResponse.Show = await showReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

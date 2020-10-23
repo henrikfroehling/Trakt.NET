@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Modules.Tests.TraktUsersModule
 {
     using System;
+    using System.Collections.Generic;
     using TraktNet.Enums;
     using TraktNet.Requests.Parameters;
 
@@ -24,6 +25,7 @@
         private readonly TraktCommentType COMMENT_TYPE = TraktCommentType.Shout;
         private readonly TraktObjectType OBJECT_TYPE = TraktObjectType.Episode;
         private const uint PAGE = 2;
+        private const int LIMIT = 4;
         private const uint COMMENTS_LIMIT = 6;
         private readonly TraktHiddenItemsSection HIDDEN_ITEMS_SECTION = TraktHiddenItemsSection.Calendar;
         private const int HIDDEN_ITEMS_COUNT = 3;
@@ -46,11 +48,19 @@
         private const string SORT_BY = "rank";
         private const string SORT_HOW = "asc";
         private readonly TraktSyncItemType WATCHLIST_ITEM_TYPE = TraktSyncItemType.Movie;
+        private readonly TraktWatchlistSortOrder WATCHLIST_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const uint WATCHLIST_LIMIT = 4;
         private const string NEW_DESCRIPTION = "new list description";
         private readonly TraktAccessScope NEW_PRIVACY = TraktAccessScope.Private;
         private const bool NEW_DISPLAY_NUMBERS = false;
         private const bool NEW_ALLOW_COMMENTS = false;
+        private readonly IEnumerable<uint> REORDERED_CUSTOM_LISTS = new List<uint> { 823, 224, 88768, 356456, 245, 2, 890 };
+        private readonly IEnumerable<uint> REORDERED_CUSTOM_LIST_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
+        private const int RATINGS_ITEM_COUNT = 5;
+        private readonly TraktRecommendationObjectType RECOMMENDATION_TYPE = TraktRecommendationObjectType.Movie;
+        private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
+        private const int RECOMMENDATIONS_ITEM_COUNT = 2;
+        private const int RECOMMENDATIONS_LIMIT = 6;
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 
@@ -954,7 +964,6 @@
                   ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042""
                 },
                 ""connections"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": false,
@@ -1383,6 +1392,59 @@
                   ""shows"": [],
                   ""seasons"": []
                 }
+              }";
+
+        private const string CUSTOM_LISTS_REORDER_POST_RESPONSE_JSON =
+            @"{
+                ""updated"": 6,
+                ""skipped_ids"": [
+                  2
+                ]
+              }";
+
+        private const string USER_RECOMMENDATIONS_JSON =
+            @"[
+                {
+                  ""rank"": 1,
+                  ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""type"": ""movie"",
+                  ""notes"": ""Daft Punk really knocks it out of the park on the soundtrack."",
+                  ""movie"": {
+                    ""title"": ""TRON: Legacy"",
+                    ""year"": 2010,
+                    ""ids"": {
+                      ""trakt"": 1,
+                      ""slug"": ""tron-legacy-2010"",
+                      ""imdb"": ""tt1104001"",
+                      ""tmdb"": 20526
+                    }
+                  }
+                },
+                {
+                  ""rank"": 1,
+                  ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""type"": ""show"",
+                  ""notes"": ""Atmospheric for days."",
+                  ""show"": {
+                    ""title"": ""The Walking Dead"",
+                    ""year"": 2010,
+                    ""ids"": {
+                      ""trakt"": 2,
+                      ""slug"": ""the-walking-dead"",
+                      ""tvdb"": 153021,
+                      ""imdb"": ""tt1520211"",
+                      ""tmdb"": 1402
+                    }
+                  }
+                }
+              ]";
+
+        private const string CUSTOM_LIST_ITEMS_REORDER_POST_RESPONSE_JSON =
+            @"{
+                ""updated"": 6,
+                ""skipped_ids"": [
+                  12
+                ]
               }";
     }
 }

@@ -8,8 +8,6 @@
     {
         public IObjectJsonReader<ITraktSyncCollectionPost> CreateObjectReader() => new SyncCollectionPostObjectJsonReader();
 
-        public IArrayJsonReader<ITraktSyncCollectionPost> CreateArrayReader() => new SyncCollectionPostArrayJsonReader();
-
         public IObjectJsonWriter<ITraktSyncCollectionPost> CreateObjectWriter() => new SyncCollectionPostObjectJsonWriter();
     }
 }

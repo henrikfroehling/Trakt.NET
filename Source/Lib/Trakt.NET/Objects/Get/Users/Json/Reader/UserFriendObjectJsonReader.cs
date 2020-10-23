@@ -9,8 +9,7 @@
     {
         public override async Task<ITraktUserFriend> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (jsonReader == null)
-                return await Task.FromResult(default(ITraktUserFriend));
+            CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
@@ -23,7 +22,7 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.USER_FRIEND_PROPERTY_NAME_FRIENDS_AT:
+                        case JsonProperties.PROPERTY_NAME_FRIENDS_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
@@ -32,7 +31,7 @@
 
                                 break;
                             }
-                        case JsonProperties.USER_FRIEND_PROPERTY_NAME_USER:
+                        case JsonProperties.PROPERTY_NAME_USER:
                             traktUserFriend.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:

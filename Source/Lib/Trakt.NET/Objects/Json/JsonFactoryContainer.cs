@@ -97,13 +97,6 @@
             return factory.CreateObjectReader();
         }
 
-        public static IArrayJsonReader<TReturnType> CreateArrayReader<TReturnType>()
-        {
-            var factory = GetJsonIOFactory<TReturnType>();
-            Debug.Assert(factory != null, $"factory for {nameof(TReturnType)} should not be null");
-            return factory.CreateArrayReader();
-        }
-
         public static IObjectJsonWriter<TObjectType> CreateObjectWriter<TObjectType>()
         {
             var factory = GetJsonIOFactory<TObjectType>();
@@ -135,12 +128,14 @@
             s_jsonIOFactories.Add(typeof(ITraktComment), new CommentJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCommentItem), new CommentItemJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCommentLike), new CommentLikeJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktCountry), new CountryJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCrew), new CrewJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCrewMember), new CrewMemberJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktError), new ErrorJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktGenre), new GenreJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktIds), new IdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktImage), new ImageJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktLanguage), new LanguageJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMetadata), new MetadataJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktNetwork), new NetworkJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktRating), new RatingJsonIOFactory());
@@ -368,6 +363,7 @@
             s_jsonIOFactories.Add(typeof(ITraktUserWatchingItem), new UserWatchingItemJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktAccountSettings), new AccountSettingsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSharingText), new SharingTextJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktRecommendation), new RecommendationJsonIOFactory());
 
             // user list objects
             s_jsonIOFactories.Add(typeof(ITraktList), new ListJsonIOFactory());
@@ -376,8 +372,10 @@
 
             // user post objects
             s_jsonIOFactories.Add(typeof(ITraktUserCustomListPost), new UserCustomListPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserCustomListsReorderPost), new UserCustomListsReorderPostJsonIOFactory());
 
             // user response post objects
+            s_jsonIOFactories.Add(typeof(ITraktUserCustomListsReorderPostResponse), new UserCustomListsReorderPostResponseJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserFollowUserPostResponse), new UserFollowUserPostResponseJsonIOFactory());
 
             // user statistic objects

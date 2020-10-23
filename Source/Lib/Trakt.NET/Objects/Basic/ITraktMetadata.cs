@@ -17,6 +17,8 @@
         /// <summary>Gets or sets the media audio channels. See also <seealso cref="TraktMediaAudioChannel" />.<para>Nullable</para></summary>
         TraktMediaAudioChannel AudioChannels { get; set; }
 
+        TraktMediaHDR HDR { get; set; }
+
         /// <summary>Gets or sets, whether the media is in 3D.</summary>
         bool? ThreeDimensional { get; set; }
     }

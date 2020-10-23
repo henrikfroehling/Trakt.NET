@@ -47,7 +47,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Production Member",
                             Jobs = new List<string>
                             {
                                 "Production Member"
@@ -70,7 +69,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Art Member",
                             Jobs = new List<string>
                             {
                                 "Art Member"
@@ -93,7 +91,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Crew Member",
                             Jobs = new List<string>
                             {
                                 "Crew Member"
@@ -116,7 +113,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "CostumeAndMakeup Member",
                             Jobs = new List<string>
                             {
                                 "CostumeAndMakeup Member"
@@ -139,7 +135,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Directing Member",
                             Jobs = new List<string>
                             {
                                 "Directing Member"
@@ -162,7 +157,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Writing Member",
                             Jobs = new List<string>
                             {
                                 "Writing Member"
@@ -185,7 +179,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Sound Member",
                             Jobs = new List<string>
                             {
                                 "Sound Member"
@@ -208,7 +201,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Camera Member",
                             Jobs = new List<string>
                             {
                                 "Camera Member"
@@ -231,7 +223,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Lighting Member",
                             Jobs = new List<string>
                             {
                                 "Lighting Member"
@@ -254,7 +245,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "VisualEffects Member",
                             Jobs = new List<string>
                             {
                                 "VisualEffects Member"
@@ -277,7 +267,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Editing Member",
                             Jobs = new List<string>
                             {
                                 "Editing Member"
@@ -303,47 +292,47 @@
             {
                 var traktJsonWriter = new ArrayJsonWriter<ITraktCrew>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktCrews);
-                json.Should().Be(@"[{""production"":[{""job"":""Production Member"",""jobs"":[""Production Member""]," +
+                json.Should().Be(@"[{""production"":[{""jobs"":[""Production Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""art"":[{""job"":""Art Member"",""jobs"":[""Art Member""]," +
+                                 @"""art"":[{""jobs"":[""Art Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""crew"":[{""job"":""Crew Member"",""jobs"":[""Crew Member""]," +
+                                 @"""crew"":[{""jobs"":[""Crew Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""costume & make-up"":[{""job"":""CostumeAndMakeup Member"",""jobs"":[""CostumeAndMakeup Member""]," +
+                                 @"""costume & make-up"":[{""jobs"":[""CostumeAndMakeup Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""directing"":[{""job"":""Directing Member"",""jobs"":[""Directing Member""]," +
+                                 @"""directing"":[{""jobs"":[""Directing Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""writing"":[{""job"":""Writing Member"",""jobs"":[""Writing Member""]," +
+                                 @"""writing"":[{""jobs"":[""Writing Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""sound"":[{""job"":""Sound Member"",""jobs"":[""Sound Member""]," +
+                                 @"""sound"":[{""jobs"":[""Sound Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""camera"":[{""job"":""Camera Member"",""jobs"":[""Camera Member""]," +
+                                 @"""camera"":[{""jobs"":[""Camera Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""lighting"":[{""job"":""Lighting Member"",""jobs"":[""Lighting Member""]," +
+                                 @"""lighting"":[{""jobs"":[""Lighting Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""visual effects"":[{""job"":""VisualEffects Member"",""jobs"":[""VisualEffects Member""]," +
+                                 @"""visual effects"":[{""jobs"":[""VisualEffects Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""editing"":[{""job"":""Editing Member"",""jobs"":[""Editing Member""]," +
+                                 @"""editing"":[{""jobs"":[""Editing Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}]");
@@ -361,7 +350,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Production Member",
                             Jobs = new List<string>
                             {
                                 "Production Member"
@@ -384,7 +372,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Art Member",
                             Jobs = new List<string>
                             {
                                 "Art Member"
@@ -407,7 +394,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Crew Member",
                             Jobs = new List<string>
                             {
                                 "Crew Member"
@@ -430,7 +416,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "CostumeAndMakeup Member",
                             Jobs = new List<string>
                             {
                                 "CostumeAndMakeup Member"
@@ -453,7 +438,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Directing Member",
                             Jobs = new List<string>
                             {
                                 "Directing Member"
@@ -476,7 +460,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Writing Member",
                             Jobs = new List<string>
                             {
                                 "Writing Member"
@@ -499,7 +482,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Sound Member",
                             Jobs = new List<string>
                             {
                                 "Sound Member"
@@ -522,7 +504,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Camera Member",
                             Jobs = new List<string>
                             {
                                 "Camera Member"
@@ -545,7 +526,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Lighting Member",
                             Jobs = new List<string>
                             {
                                 "Lighting Member"
@@ -568,7 +548,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "VisualEffects Member",
                             Jobs = new List<string>
                             {
                                 "VisualEffects Member"
@@ -591,7 +570,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Editing Member",
                             Jobs = new List<string>
                             {
                                 "Editing Member"
@@ -617,7 +595,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Production Member",
                             Jobs = new List<string>
                             {
                                 "Production Member"
@@ -640,7 +617,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Art Member",
                             Jobs = new List<string>
                             {
                                 "Art Member"
@@ -663,7 +639,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Crew Member",
                             Jobs = new List<string>
                             {
                                 "Crew Member"
@@ -686,7 +661,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "CostumeAndMakeup Member",
                             Jobs = new List<string>
                             {
                                 "CostumeAndMakeup Member"
@@ -709,7 +683,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Directing Member",
                             Jobs = new List<string>
                             {
                                 "Directing Member"
@@ -732,7 +705,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Writing Member",
                             Jobs = new List<string>
                             {
                                 "Writing Member"
@@ -755,7 +727,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Sound Member",
                             Jobs = new List<string>
                             {
                                 "Sound Member"
@@ -778,7 +749,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Camera Member",
                             Jobs = new List<string>
                             {
                                 "Camera Member"
@@ -801,7 +771,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Lighting Member",
                             Jobs = new List<string>
                             {
                                 "Lighting Member"
@@ -824,7 +793,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "VisualEffects Member",
                             Jobs = new List<string>
                             {
                                 "VisualEffects Member"
@@ -847,7 +815,6 @@
                     {
                         new TraktCrewMember
                         {
-                            Job = "Editing Member",
                             Jobs = new List<string>
                             {
                                 "Editing Member"
@@ -873,91 +840,91 @@
             {
                 var traktJsonWriter = new ArrayJsonWriter<ITraktCrew>();
                 string json = await traktJsonWriter.WriteArrayAsync(stringWriter, traktCrews);
-                json.Should().Be(@"[{""production"":[{""job"":""Production Member"",""jobs"":[""Production Member""]," +
+                json.Should().Be(@"[{""production"":[{""jobs"":[""Production Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""art"":[{""job"":""Art Member"",""jobs"":[""Art Member""]," +
+                                 @"""art"":[{""jobs"":[""Art Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""crew"":[{""job"":""Crew Member"",""jobs"":[""Crew Member""]," +
+                                 @"""crew"":[{""jobs"":[""Crew Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""costume & make-up"":[{""job"":""CostumeAndMakeup Member"",""jobs"":[""CostumeAndMakeup Member""]," +
+                                 @"""costume & make-up"":[{""jobs"":[""CostumeAndMakeup Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""directing"":[{""job"":""Directing Member"",""jobs"":[""Directing Member""]," +
+                                 @"""directing"":[{""jobs"":[""Directing Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""writing"":[{""job"":""Writing Member"",""jobs"":[""Writing Member""]," +
+                                 @"""writing"":[{""jobs"":[""Writing Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""sound"":[{""job"":""Sound Member"",""jobs"":[""Sound Member""]," +
+                                 @"""sound"":[{""jobs"":[""Sound Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""camera"":[{""job"":""Camera Member"",""jobs"":[""Camera Member""]," +
+                                 @"""camera"":[{""jobs"":[""Camera Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""lighting"":[{""job"":""Lighting Member"",""jobs"":[""Lighting Member""]," +
+                                 @"""lighting"":[{""jobs"":[""Lighting Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""visual effects"":[{""job"":""VisualEffects Member"",""jobs"":[""VisualEffects Member""]," +
+                                 @"""visual effects"":[{""jobs"":[""VisualEffects Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""editing"":[{""job"":""Editing Member"",""jobs"":[""Editing Member""]," +
+                                 @"""editing"":[{""jobs"":[""Editing Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}," +
-                                 @"{""production"":[{""job"":""Production Member"",""jobs"":[""Production Member""]," +
+                                 @"{""production"":[{""jobs"":[""Production Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""art"":[{""job"":""Art Member"",""jobs"":[""Art Member""]," +
+                                 @"""art"":[{""jobs"":[""Art Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""crew"":[{""job"":""Crew Member"",""jobs"":[""Crew Member""]," +
+                                 @"""crew"":[{""jobs"":[""Crew Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""costume & make-up"":[{""job"":""CostumeAndMakeup Member"",""jobs"":[""CostumeAndMakeup Member""]," +
+                                 @"""costume & make-up"":[{""jobs"":[""CostumeAndMakeup Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""directing"":[{""job"":""Directing Member"",""jobs"":[""Directing Member""]," +
+                                 @"""directing"":[{""jobs"":[""Directing Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""writing"":[{""job"":""Writing Member"",""jobs"":[""Writing Member""]," +
+                                 @"""writing"":[{""jobs"":[""Writing Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""sound"":[{""job"":""Sound Member"",""jobs"":[""Sound Member""]," +
+                                 @"""sound"":[{""jobs"":[""Sound Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""camera"":[{""job"":""Camera Member"",""jobs"":[""Camera Member""]," +
+                                 @"""camera"":[{""jobs"":[""Camera Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""lighting"":[{""job"":""Lighting Member"",""jobs"":[""Lighting Member""]," +
+                                 @"""lighting"":[{""jobs"":[""Lighting Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""visual effects"":[{""job"":""VisualEffects Member"",""jobs"":[""VisualEffects Member""]," +
+                                 @"""visual effects"":[{""jobs"":[""VisualEffects Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]," +
-                                 @"""editing"":[{""job"":""Editing Member"",""jobs"":[""Editing Member""]," +
+                                 @"""editing"":[{""jobs"":[""Editing Member""]," +
                                  @"""person"":{""name"":""Bryan Cranston""," +
                                  @"""ids"":{""trakt"":297737,""slug"":""bryan-cranston""," +
                                  @"""imdb"":""nm0186505"",""tmdb"":17419,""tvrage"":1797}}}]}]");

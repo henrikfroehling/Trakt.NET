@@ -6,6 +6,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Comments.Responses;
     using TraktNet.Objects.Post.Comments.Responses.Json.Reader;
     using Xunit;
 
@@ -42,7 +43,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -81,7 +81,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -120,7 +119,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -159,7 +157,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -198,7 +195,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -237,7 +233,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -276,7 +271,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -315,7 +309,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -354,7 +347,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -393,7 +385,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -432,7 +423,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -464,7 +454,6 @@
                 traktCommentPostResponse.UserRating.Should().Be(7.3f);
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -822,7 +811,6 @@
                 traktCommentPostResponse.UserRating.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -861,7 +849,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -900,7 +887,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -939,7 +925,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -978,7 +963,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -1017,7 +1001,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -1056,7 +1039,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -1095,7 +1077,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -1134,7 +1115,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -1173,7 +1153,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -1212,7 +1191,6 @@
                 traktCommentPostResponse.User.Ids.Should().NotBeNull();
                 traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -1244,7 +1222,6 @@
                 traktCommentPostResponse.UserRating.Should().Be(7.3f);
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Facebook.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Google.Should().BeTrue();
                 traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
@@ -1313,12 +1290,11 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public void Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new CommentPostResponseObjectJsonReader();
-
-            var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktCommentPostResponse.Should().BeNull();
+            Func<Task<ITraktCommentPostResponse>> traktCommentPostResponse = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
+            traktCommentPostResponse.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]

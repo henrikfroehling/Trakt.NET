@@ -12,6 +12,8 @@
     using Objects.Get.Users.Statistics;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
+    using Objects.Post;
+    using Objects.Post.Builder;
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
@@ -142,9 +144,9 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/users/add-hidden-items/add-hidden-items">"Trakt API Doc - Users: Add Hidden Items"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktUserHiddenItemsPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktUserHiddenItemsPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktUserHiddenItemsPost" />.
-        /// See also <seealso cref="TraktUserHiddenItemsPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewUserHiddenItemsPost()" />.
         /// </para>
         /// </summary>
         /// <param name="hiddenItemsPost">An <see cref="ITraktUserHiddenItemsPost" /> instance containing all shows, seasons and movies, which should be added.</param>
@@ -178,9 +180,9 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/users/remove-hidden-items/remove-hidden-items">"Trakt API Doc - Users: Remove Hidden Items"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktUserHiddenItemsPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktUserHiddenItemsPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktUserHiddenItemsPost" />.
-        /// See also <seealso cref="TraktUserHiddenItemsPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewUserHiddenItemsPost()" />.
         /// </para>
         /// </summary>
         /// <param name="hiddenItemsPost">An <see cref="ITraktUserHiddenItemsPost" /> instance containing all shows, seasons and movies, which should be removed.</param>
@@ -373,7 +375,7 @@
         public Task<TraktPagedResponse<ITraktUserComment>> GetCommentsAsync(string usernameOrSlug,
                                                                             TraktCommentType commentType = null,
                                                                             TraktObjectType objectType = null,
-                                                                            bool? includeReplies = null,
+                                                                            TraktIncludeReplies? includeReplies = null,
                                                                             TraktExtendedInfo extendedInfo = null,
                                                                             TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default)
@@ -652,6 +654,75 @@
         }
 
         /// <summary>
+        /// Reorders an user's custom lists.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/lists/reorder-a-user's-lists">"Trakt API Doc - Users: Reorder Lists"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the custom lists should be reordered.</param>
+        /// <param name="reorderedListsRank">A collection of list ids. Represents the new order of an user's custom lists.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktUserCustomListsReorderPostResponse" /> instance containing information about the successfully updated custom lists order.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedListsRank"/> is null.</exception>
+        public Task<TraktResponse<ITraktUserCustomListsReorderPostResponse>> ReorderCustomListsAsync(string usernameOrSlug, IEnumerable<uint> reorderedListsRank,
+                                                                                                     CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListsReorderRequest
+            {
+                Username = usernameOrSlug,
+                RequestBody = new TraktUserCustomListsReorderPost
+                {
+                    Rank = reorderedListsRank
+                }
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Reorders an user's custom list items.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/reorder-list-items/reorder-items-on-a-list">"Trakt API Doc - Users: Reorder List Items"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the custom list items should be reordered.</param>
+        /// <param name="listIdOrSlug">The id or slug of the list, for which the items should be reordered.</param>
+        /// <param name="reorderedListItemsRank">A collection of list item ids. Represents the new order of an user's custom list items.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktUserCustomListsReorderPostResponse" /> instance containing information about the successfully updated custom list items order.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedListItemsRank"/> is null.</exception>
+        public Task<TraktResponse<ITraktUserCustomListsReorderPostResponse>> ReorderCustomListItemsAsync(string usernameOrSlug, string listIdOrSlug,
+                                                                                                         IEnumerable<uint> reorderedListItemsRank,
+                                                                                                         CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListItemsReorderRequest
+            {
+                Username = usernameOrSlug,
+                Id = listIdOrSlug,
+                RequestBody = new TraktUserCustomListsReorderPost
+                {
+                    Rank = reorderedListItemsRank
+                }
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Deletes an user's custom list.
         /// <para>OAuth authorization required.</para>
         /// <para>
@@ -689,9 +760,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/list-items/add-items-to-custom-list">"Trakt API Doc - Users: List Items"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktUserCustomListItemsPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktUserCustomListItemsPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktUserCustomListItemsPost" />.
-        /// See also <seealso cref="TraktUserCustomListItemsPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewUserCustomListItemsPost()" />.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be added to a custom list.</param>
@@ -732,9 +803,9 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/remove-list-items/remove-items-from-custom-list">"Trakt API Doc - Users: Remove List Items"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="TraktUserCustomListItemsPostBuilder" /> to create an instance
+        /// It is recommended to use the <see cref="ITraktUserCustomListItemsPostBuilder" /> to create an instance
         /// of the required <see cref="ITraktUserCustomListItemsPost" />.
-        /// See also <seealso cref="TraktUserCustomListItemsPost.Builder()" />.
+        /// See also <seealso cref="TraktPost.NewUserCustomListItemsPost()" />.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be removed from a custom list.</param>
@@ -1132,6 +1203,50 @@
         }
 
         /// <summary>
+        /// Gets an user's personal recommendations for movies and / or shows.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/personal-recommendations/get-personal-recommendations">"Trakt API Doc - Users: Personal Recommendations"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the recommendations should be queried.</param>
+        /// <param name="recommendationObjectType">Determines, which type of recommendation items should be queried. See also <seealso cref="TraktRecommendationObjectType" />.</param>
+        /// <param name="sortOrder">
+        /// The recommendations sort order. See also <seealso cref="TraktWatchlistSortOrder" />.
+        /// Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
+        /// Will be ignored, if the given <paramref name="recommendationObjectType" /> is null or unspecified.
+        /// </param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the recommendation items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktRecommendation" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        public Task<TraktPagedResponse<ITraktRecommendation>> GetPersonalRecommendationsAsync(string usernameOrSlug, TraktRecommendationObjectType recommendationObjectType = null,
+                                                                                              TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null,
+                                                                                              TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new UserPersonalRecommendationsRequest
+            {
+                Username = usernameOrSlug,
+                Type = recommendationObjectType,
+                Sort = sortOrder,
+                ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets an user's ratings for movies, shows, seasons and / or episodes.
         /// <para>OAuth authorization optional.</para>
         /// <para>
@@ -1149,6 +1264,7 @@
         /// The extended info, which determines how much data about the rating items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -1156,18 +1272,21 @@
         /// <returns>A list of <see cref="ITraktRatingsItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        public Task<TraktListResponse<ITraktRatingsItem>> GetRatingsAsync(string usernameOrSlug, TraktRatingsItemType ratingsItemType = null,
-                                                                          int[] ratingsFilter = null, TraktExtendedInfo extendedInfo = null,
-                                                                          CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktRatingsItem>> GetRatingsAsync(string usernameOrSlug, TraktRatingsItemType ratingsItemType = null,
+                                                                           int[] ratingsFilter = null, TraktExtendedInfo extendedInfo = null,
+                                                                           TraktPagedParameters pagedParameters = null,
+                                                                           CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new UserRatingsRequest
+            return requestHandler.ExecutePagedRequestAsync(new UserRatingsRequest
             {
                 Username = usernameOrSlug,
                 Type = ratingsItemType,
                 RatingFilter = ratingsFilter,
-                ExtendedInfo = extendedInfo
+                ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             },
             cancellationToken);
         }
@@ -1181,6 +1300,7 @@
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the watchlist items should be queried.</param>
         /// <param name="watchlistItemType">Determines, which type of items in the watchlist should be queried. See also <seealso cref="TraktSyncItemType" />.</param>
+        /// <param name="sortOrder">Determines the sort order of the returned watchlist items. See also <seealso cref="TraktWatchlistSortOrder" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the watchlist items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
@@ -1200,6 +1320,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         public Task<TraktPagedResponse<ITraktWatchlistItem>> GetWatchlistAsync(string usernameOrSlug, TraktSyncItemType watchlistItemType = null,
+                                                                               TraktWatchlistSortOrder sortOrder = null,
                                                                                TraktExtendedInfo extendedInfo = null,
                                                                                TraktPagedParameters pagedParameters = null,
                                                                                CancellationToken cancellationToken = default)
@@ -1210,6 +1331,7 @@
             {
                 Username = usernameOrSlug,
                 Type = watchlistItemType,
+                Sort = sortOrder,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit

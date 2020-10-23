@@ -5,6 +5,7 @@
     using Objects.Basic;
     using Requests.Handler;
     using Requests.Parameters;
+    using Requests.Parameters.Filter;
     using Requests.Search;
     using Responses;
     using System;
@@ -36,7 +37,7 @@
         /// </param>
         /// <param name="searchQuery">The query, for which will be searched.</param>
         /// <param name="searchFields">Determines the text fields, which will be searched. See also <seealso cref="TraktSearchField" />.</param>
-        /// <param name="filter">Optional filter for genres, year, runtimes, ratings, etc. See also <seealso cref="TraktSearchFilter" />.</param>
+        /// <param name="filter">Optional filter for genres, year, runtimes, ratings, etc. See also <seealso cref="ITraktSearchFilter" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the movies, shows, episodes, people and / or lists should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
@@ -60,7 +61,7 @@
         /// </exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given searchResultType is null</exception>
         public Task<TraktPagedResponse<ITraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, string searchQuery,
-                                                                                     TraktSearchField searchFields = null, TraktSearchFilter filter = null,
+                                                                                     TraktSearchField searchFields = null, ITraktSearchFilter filter = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
                                                                                      TraktPagedParameters pagedParameters = null,
                                                                                      CancellationToken cancellationToken = default)

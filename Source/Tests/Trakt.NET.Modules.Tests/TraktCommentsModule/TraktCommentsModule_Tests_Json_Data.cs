@@ -27,7 +27,6 @@
 
         private readonly ITraktSharing SHARING = new TraktSharing
         {
-            Facebook = true,
             Google = false,
             Twitter = true
         };
@@ -226,7 +225,6 @@
                   ""vip_ep"": false
                 },
                 ""sharing"": {
-                  ""facebook"": true,
                   ""twitter"": true,
                   ""tumblr"": false,
                   ""medium"": true
