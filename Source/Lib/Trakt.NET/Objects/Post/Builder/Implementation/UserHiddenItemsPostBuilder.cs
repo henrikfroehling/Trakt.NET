@@ -6,6 +6,7 @@
     using Get.Shows;
     using Helper;
     using Post.Users.HiddenItems;
+    using System;
     using System.Collections.Generic;
 
     internal class UserHiddenItemsPostBuilder : ITraktUserHiddenItemsPostBuilder
@@ -25,42 +26,63 @@
 
         public ITraktUserHiddenItemsPostBuilder WithMovie(ITraktMovie movie)
         {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
             _movies.Add(movie);
             return this;
         }
 
         public ITraktUserHiddenItemsPostBuilder WithMovies(IEnumerable<ITraktMovie> movies)
         {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
             _movies.AddRange(movies);
             return this;
         }
 
         public ITraktUserHiddenItemsPostBuilder WithShow(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _shows.Add(show);
             return this;
         }
 
         public ITraktUserHiddenItemsPostBuilder WithShows(IEnumerable<ITraktShow> shows)
         {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
             _shows.AddRange(shows);
             return this;
         }
 
         public ITraktPostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost> AddShowAndSeasons(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _showsWithSeasons.SetCurrentShow(show);
             return _showsWithSeasons;
         }
 
         public ITraktUserHiddenItemsPostBuilder WithSeason(ITraktSeason season)
         {
+            if (season == null)
+                throw new ArgumentNullException(nameof(season));
+
             _seasons.Add(season);
             return this;
         }
 
         public ITraktUserHiddenItemsPostBuilder WithSeasons(IEnumerable<ITraktSeason> seasons)
         {
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
             _seasons.AddRange(seasons);
             return this;
         }

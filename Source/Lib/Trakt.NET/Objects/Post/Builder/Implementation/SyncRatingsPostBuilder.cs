@@ -39,78 +39,117 @@
 
         public ITraktSyncRatingsPostBuilder WithMovie(ITraktMovie movie)
         {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
             _movies.Add(movie);
             return this;
         }
 
         public ITraktSyncRatingsPostBuilder WithMovies(IEnumerable<ITraktMovie> movies)
         {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
             _movies.AddRange(movies);
             return this;
         }
 
         public ITraktPostBuilderMovieAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedMovie(ITraktMovie movie)
         {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
             _ratedMovies.SetCurrentMovie(movie);
             return _ratedMovies;
         }
 
         public ITraktSyncRatingsPostBuilder WithShow(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _shows.Add(show);
             return this;
         }
 
         public ITraktSyncRatingsPostBuilder WithShows(IEnumerable<ITraktShow> shows)
         {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
             _shows.AddRange(shows);
             return this;
         }
 
         public ITraktPostBuilderShowAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedShow(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _ratedShows.SetCurrentShow(show);
             return _ratedShows;
         }
 
         public ITraktPostBuilderShowAddedRatingWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedShowAndSeasons(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _ratedShowsWithSeasons.SetCurrentShow(show);
             return _ratedShowsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> AddRatedShowAndSeasonsCollection(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _ratedShowsWithSeasonsCollection.SetCurrentShow(show);
             return _ratedShowsWithSeasonsCollection;
         }
 
         public ITraktPostBuilderShowAddedSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddShowAndSeasons(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _showsWithSeasons.SetCurrentShow(show);
             return _showsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> AddShowAndSeasonsCollection(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _showsWithSeasonsCollection.SetCurrentShow(show);
             return _showsWithSeasonsCollection;
         }
 
         public ITraktSyncRatingsPostBuilder WithEpisode(ITraktEpisode episode)
         {
+            if (episode == null)
+                throw new ArgumentNullException(nameof(episode));
+
             _episodes.Add(episode);
             return this;
         }
 
         public ITraktSyncRatingsPostBuilder WithEpisodes(IEnumerable<ITraktEpisode> episodes)
         {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
             _episodes.AddRange(episodes);
             return this;
         }
 
         public ITraktPostBuilderEpisodeAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedEpisode(ITraktEpisode episode)
         {
+            if (episode == null)
+                throw new ArgumentNullException(nameof(episode));
+
             _ratedEpisodes.SetCurrentEpisode(episode);
             return _ratedEpisodes;
         }

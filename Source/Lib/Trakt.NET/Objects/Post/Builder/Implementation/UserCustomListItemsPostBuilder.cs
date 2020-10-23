@@ -6,6 +6,7 @@
     using Get.Shows;
     using Helper;
     using Post.Users.CustomListItems;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -28,48 +29,72 @@
 
         public ITraktUserCustomListItemsPostBuilder WithMovie(ITraktMovie movie)
         {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
             _movies.Add(movie);
             return this;
         }
 
         public ITraktUserCustomListItemsPostBuilder WithMovies(IEnumerable<ITraktMovie> movies)
         {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
             _movies.AddRange(movies);
             return this;
         }
 
         public ITraktUserCustomListItemsPostBuilder WithShow(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _shows.Add(show);
             return this;
         }
 
         public ITraktUserCustomListItemsPostBuilder WithShows(IEnumerable<ITraktShow> shows)
         {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
             _shows.AddRange(shows);
             return this;
         }
 
         public ITraktPostBuilderShowAddedSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost> AddShowAndSeasons(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _showsWithSeasons.SetCurrentShow(show);
             return _showsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons> AddShowAndSeasonsCollection(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _showsWithSeasonsCollection.SetCurrentShow(show);
             return _showsWithSeasonsCollection;
         }
 
         public ITraktUserCustomListItemsPostBuilder WithPerson(ITraktPerson person)
         {
+            if (person == null)
+                throw new ArgumentNullException(nameof(person));
+
             _persons.Add(person);
             return this;
         }
 
         public ITraktUserCustomListItemsPostBuilder WithPersons(IEnumerable<ITraktPerson> persons)
         {
+            if (persons == null)
+                throw new ArgumentNullException(nameof(persons));
+
             _persons.AddRange(persons);
             return this;
         }

@@ -58,18 +58,27 @@
 
         public ITraktSyncCollectionPostBuilder WithMovie(ITraktMovie movie)
         {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
             _movies.Add(movie);
             return this;
         }
 
         public ITraktSyncCollectionPostBuilder WithMovies(IEnumerable<ITraktMovie> movies)
         {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
             _movies.AddRange(movies);
             return this;
         }
 
         public ITraktSyncCollectionPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, ITraktMetadata>> movies)
         {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
             foreach (var tuple in movies)
             {
                 _moviesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
@@ -84,6 +93,9 @@
 
         public ITraktSyncCollectionPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, ITraktMetadata, DateTime?>> movies)
         {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
             foreach (var tuple in movies)
             {
                 _moviesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
@@ -99,6 +111,9 @@
 
         public ITraktSyncCollectionPostBuilder WithCollectedMovies(IEnumerable<Tuple<ITraktMovie, DateTime?>> movies)
         {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
             foreach (var tuple in movies)
             {
                 _moviesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
@@ -113,30 +128,45 @@
 
         public ITraktPostBuilderMovieAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedMovie(ITraktMovie movie)
         {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
             _collectedMovies.SetCurrentMovie(movie);
             return _collectedMovies;
         }
 
         public ITraktPostBuilderMovieAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddMovieAndMetadata(ITraktMovie movie)
         {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
             _moviesAndMetadata.SetCurrentMovie(movie);
             return _moviesAndMetadata;
         }
 
         public ITraktSyncCollectionPostBuilder WithShow(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _shows.Add(show);
             return this;
         }
 
         public ITraktSyncCollectionPostBuilder WithShows(IEnumerable<ITraktShow> shows)
         {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
             _shows.AddRange(shows);
             return this;
         }
 
         public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata>> shows)
         {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
             foreach (var tuple in shows)
             {
                 _showsWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktShow>
@@ -151,6 +181,9 @@
 
         public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?>> shows)
         {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
             foreach (var tuple in shows)
             {
                 _showsWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktShow>
@@ -166,6 +199,9 @@
 
         public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, PostSeasons>> shows)
         {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
             foreach (var tuple in shows)
             {
                 _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
@@ -181,6 +217,9 @@
 
         public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?, PostSeasons>> shows)
         {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
             foreach (var tuple in shows)
             {
                 _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
@@ -197,6 +236,9 @@
 
         public ITraktSyncCollectionPostBuilder WithCollectedShows(IEnumerable<Tuple<ITraktShow, DateTime?>> shows)
         {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
             foreach (var tuple in shows)
             {
                 _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
@@ -211,6 +253,9 @@
 
         public ITraktSyncCollectionPostBuilder WithCollectedShows(IEnumerable<Tuple<ITraktShow, DateTime?, PostSeasons>> shows)
         {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
             foreach (var tuple in shows)
             {
                 _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
@@ -226,66 +271,99 @@
 
         public ITraktPostBuilderShowAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedShow(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _collectedShows.SetCurrentShow(show);
             return _collectedShows;
         }
 
         public ITraktPostBuilderShowAddedCollectedAtWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedShowAndSeasons(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _collectedShowsWithSeasons.SetCurrentShow(show);
             return _collectedShowsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedCollectedAtWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> AddCollectedShowAndSeasonsCollection(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _collectedShowsWithSeasonsCollection.SetCurrentShow(show);
             return _collectedShowsWithSeasonsCollection;
         }
 
         public ITraktPostBuilderShowAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddShowAndMetadata(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _showsAndMetadata.SetCurrentShow(show);
             return _showsAndMetadata;
         }
 
         public ITraktPostBuilderShowAddedMetadataWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddShowAndMetadataAndSeasons(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _showsAndMetadataWithSeasons.SetCurrentShow(show);
             return _showsAndMetadataWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedMetadataWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> AddShowAndMetadataAndSeasonsCollection(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _showsAndMetadataWithSeasonsCollection.SetCurrentShow(show);
             return _showsAndMetadataWithSeasonsCollection;
         }
 
         public ITraktPostBuilderShowAddedSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddShowAndSeasons(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _showsWithSeasons.SetCurrentShow(show);
             return _showsWithSeasons;
         }
 
         public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> AddShowAndSeasonsCollection(ITraktShow show)
         {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
             _showsWithSeasonsCollection.SetCurrentShow(show);
             return _showsWithSeasonsCollection;
         }
 
         public ITraktSyncCollectionPostBuilder WithEpisode(ITraktEpisode episode)
         {
+            if (episode == null)
+                throw new ArgumentNullException(nameof(episode));
+
             _episodes.Add(episode);
             return this;
         }
 
         public ITraktSyncCollectionPostBuilder WithEpisodes(IEnumerable<ITraktEpisode> episodes)
         {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
             _episodes.AddRange(episodes);
             return this;
         }
 
         public ITraktSyncCollectionPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, ITraktMetadata>> episodes)
         {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
             foreach (var tuple in episodes)
             {
                 _episodesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
@@ -300,6 +378,9 @@
 
         public ITraktSyncCollectionPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, ITraktMetadata, DateTime?>> episodes)
         {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
             foreach (var tuple in episodes)
             {
                 _episodesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
@@ -315,6 +396,9 @@
 
         public ITraktSyncCollectionPostBuilder WithCollectedEpisodes(IEnumerable<Tuple<ITraktEpisode, DateTime?>> episodes)
         {
+            if (episodes == null)
+                throw new ArgumentNullException(nameof(episodes));
+
             foreach (var tuple in episodes)
             {
                 _episodesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
@@ -329,12 +413,18 @@
 
         public ITraktPostBuilderEpisodeAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedEpisode(ITraktEpisode episode)
         {
+            if (episode == null)
+                throw new ArgumentNullException(nameof(episode));
+
             _collectedEpisodes.SetCurrentEpisode(episode);
             return _collectedEpisodes;
         }
 
         public ITraktPostBuilderEpisodeAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddEpisodeAndMetadata(ITraktEpisode episode)
         {
+            if (episode == null)
+                throw new ArgumentNullException(nameof(episode));
+
             _episodesAndMetadata.SetCurrentEpisode(episode);
             return _episodesAndMetadata;
         }
