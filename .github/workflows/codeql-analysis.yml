@@ -10,8 +10,6 @@ jobs:
   analyze:
     name: Analyze
     runs-on: windows-latest
-    env:
-      Project_Name: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
 
     strategy:
       fail-fast: false
@@ -35,12 +33,12 @@ jobs:
         languages: ${{ matrix.language }}
 
     - name: Restore packages
-      run: dotnet restore $env:Project_Name
+      run: dotnet restore
       env:
         Configuration: ${{ matrix.configuration }}
 
     - name: Build solution
-      run: dotnet build --configuration $env:Configuration --no-restore /m /p:BuildInParallel=true $env:Project_Name
+      run: dotnet build --configuration $env:Configuration --no-restore /m /p:BuildInParallel=true
       env:
         Configuration: ${{ matrix.configuration }}
 
