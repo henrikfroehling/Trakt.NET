@@ -39,7 +39,7 @@ Contributing Guidelines
 ### **General Requirements**
 - Do not make big surprise pull requests with a lot of changes and without an associating issue.
   - First, please open an issue to open a discussion, whether your changes do make an actual improvement.
-- Pull requests that do not merge easily with the tip of the develop-branch will be declined. The author will be asked to merge with the tip of the targeted branch and update the pull request.
+- Pull requests that do not merge easily with the tip of the targeted branch will be declined. The author will be asked to merge with the tip of the targeted branch and update the pull request.
 - Submissions must follow the rules stated in the [Coding Guidelines](https://github.com/henrikfroehling/Trakt.NET/blob/develop/coding_style.md).
 - New features must have accompanying tests with "good" code coverage.
 - Changes to existing functionality needs to be checked that it does not break any existing unit tests.
