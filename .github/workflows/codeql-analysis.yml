@@ -40,7 +40,7 @@ jobs:
         Configuration: ${{ matrix.configuration }}
 
     - name: Build solution
-      run: dotnet build --configuration $env:Configuration --no-restore /m /p:BuildInParallel=true
+      run: dotnet build $env:Solution_Name --configuration $env:Configuration --no-restore /m /p:BuildInParallel=true
       env:
         Configuration: ${{ matrix.configuration }}
 
