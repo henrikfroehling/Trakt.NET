@@ -1,23 +1,17 @@
-# For most projects, this workflow file will not need changing; you simply need
-# to commit it to your repository.
-#
-# You may wish to alter this file to override the set of languages analyzed,
-# or to provide custom queries or build logic.
 name: "CodeQL Analyzation"
 
 on:
   push:
     branches: [develop, main, release-*]
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [develop, release-*]
 
 jobs:
   analyze:
     name: Analyze
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
-      Solution_Name: 'Source/Trakt.NET.sln'
+      Project_Name: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
 
     strategy:
       fail-fast: false
@@ -41,12 +35,12 @@ jobs:
         languages: ${{ matrix.language }}
 
     - name: Restore packages
-      run: dotnet restore $env:Solution_Name
+      run: dotnet restore $env:Project_Name
       env:
         Configuration: ${{ matrix.configuration }}
 
     - name: Build solution
-      run: dotnet build $env:Solution_Name --configuration $env:Configuration --no-restore /m /p:BuildInParallel=true
+      run: dotnet build $env:Project_Name --configuration $env:Configuration --no-restore /m /p:BuildInParallel=true
       env:
         Configuration: ${{ matrix.configuration }}
 
