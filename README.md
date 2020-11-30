@@ -52,8 +52,6 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 | Branch | Status | Description |
 |---|---|---|
 | [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. |
-| [release 1.0.0](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.0.0) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Release-1.0.0)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=6) | This branch tracks the current development of release 1.0.0. |
-| [release 1.1.0](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.1.0) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Release-1.1.0)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=13) | This branch tracks the current development of the next upcoming release. |
 
 ### Getting Started
 
