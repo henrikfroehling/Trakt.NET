@@ -35,24 +35,6 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 - Windows >= 8.0
 - Windows Phone >= 8.1
 
-### Chat Room
-
-**Do you have a question or suggestion?**
-
-[![Gitter](https://badges.gitter.im/Trakt-NET/Lobby.svg)](https://gitter.im/Trakt-NET/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-**[Or do you want to report a bug?](https://github.com/henrikfroehling/Trakt.NET/issues)**
-
-### Contributions are welcome
-
-- [How to contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
-
-### Build Status
-
-| Branch | Status | Description |
-|---|---|---|
-| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. |
-
 ### Getting Started
 
 Install the latest release by running the following NuGet command
@@ -193,6 +175,25 @@ if (theMartian)
     Console.WriteLine(show.Overview);
 }
 ```
+
+---
+### Chat Room
+
+**Do you have a question or suggestion?**
+
+[![Gitter](https://badges.gitter.im/Trakt-NET/Lobby.svg)](https://gitter.im/Trakt-NET/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+**[Or do you want to report a bug?](https://github.com/henrikfroehling/Trakt.NET/issues)**
+
+### Contributions are welcome
+
+- [How to contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
+
+### Build Status
+
+| Branch | Status | Description |
+|---|---|---|
+| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. |
 
 ---
 ### License
