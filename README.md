@@ -131,7 +131,11 @@ if (trendingShowsTop10)
     }
 }
 ```
+![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/trakt_trending_shows.png)
 
+Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))
+
+---
 **Get the top 10 trending movies including full information**
 
 ```csharp
@@ -149,7 +153,11 @@ if (trendingMoviesTop10)
     }
 }
 ```
+![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/trakt_trending_movies.png)
 
+Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))
+
+---
 **Get the show 'Game of Thrones'**
 
 ```csharp
