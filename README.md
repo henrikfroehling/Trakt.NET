@@ -1,4 +1,5 @@
 ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/trending_movies_shows.gif)
+*<sup>Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))</sup>*
 
 [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET)
 [![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET&hashtags=Trakt,Nuget,CSharp)
@@ -133,8 +134,8 @@ if (trendingShowsTop10)
     }
 }
 ```
-Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console)):
 ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/trakt_trending_shows.png)
+*<sup>Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))</sup>*
 
 ---
 **Get the top 10 trending movies including full information**
@@ -154,8 +155,8 @@ if (trendingMoviesTop10)
     }
 }
 ```
-Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console)):
 ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/trakt_trending_movies.png)
+*<sup>Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))</sup>*
 
 ---
 **Get the show 'Game of Thrones'**
