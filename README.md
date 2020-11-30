@@ -15,12 +15,12 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 ### Features
 
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/full-support.png) Full Trakt.tv API Coverage
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/authentication.png) Authentication Support (OAuth 2.0 and Device)
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/async.png) Completely asynchronous
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/environments.png) API Environments (Production and Sandbox)
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/serialization.png) Serialization Service
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/language-service.png) Language Service
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/full-support.png) Full Trakt.tv API Coverage
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/authentication.png) Authentication Support (OAuth 2.0 and Device)
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/async.png) Completely asynchronous
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/environments.png) API Environments (Production and Sandbox)
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/serialization.png) Serialization Service
+- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/language-service.png) Language Service
 
 ### Supported Platforms
 
@@ -131,9 +131,8 @@ if (trendingShowsTop10)
     }
 }
 ```
-![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/trakt_trending_shows.png)
-
-Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))
+Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console)):
+![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/trakt_trending_shows.png)
 
 ---
 **Get the top 10 trending movies including full information**
@@ -153,9 +152,8 @@ if (trendingMoviesTop10)
     }
 }
 ```
-![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/trakt_trending_movies.png)
-
-Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))
+Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console)):
+![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/trakt_trending_movies.png)
 
 ---
 **Get the show 'Game of Thrones'**
