@@ -1,3 +1,5 @@
+![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/trending_movies_shows.gif)
+
 [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET)
 [![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET&hashtags=Trakt,Nuget,CSharp)
 [![Twitter Follow](https://img.shields.io/twitter/follow/henrikfroehling?style=social)](https://twitter.com/henrikfroehling)
