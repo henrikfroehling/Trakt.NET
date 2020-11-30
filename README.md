@@ -26,6 +26,7 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 - .Net Core >= 1.0
 - .Net Framework >= 4.5
+- .NET >= 5
 - Mono >= 4.6
 - Xamarin.iOS >= 10.0
 - Xamarin.Mac >= 3.0
