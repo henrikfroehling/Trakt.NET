@@ -16,6 +16,24 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=henrikfroehling_Trakt.NET&metric=alert_status)](https://sonarcloud.io/dashboard?id=henrikfroehling_Trakt.NET)
 
+### Installation
+
+Install the latest release by running the following NuGet command
+
+```ps
+PM> Install-Package Trakt.NET
+```
+
+or with the [NuGet Package Management](https://docs.nuget.org/consume/package-manager-dialog) in Visual Studio and search for "trakt".
+
+Each release will also be published in [Releases](https://github.com/henrikfroehling/Trakt.NET/releases).
+
+You can also use one of the following NuGet Package Sources, to always get the latest build package.
+
+| NuGet-Feed | Package Source Address | Description |
+|---|---|---|
+| MyGet | https://www.myget.org/F/trakt-net/api/v3/index.json | All CI/CD build packages. |
+
 ### Features
 
 - ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/full-support.png) Full Trakt.tv API Coverage
@@ -37,24 +55,6 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 - Windows UWP >= 10.0
 - Windows >= 8.0
 - Windows Phone >= 8.1
-
-### Getting Started
-
-Install the latest release by running the following NuGet command
-
-```ps
-PM> Install-Package Trakt.NET
-```
-
-or with the [NuGet Package Management](https://docs.nuget.org/consume/package-manager-dialog) in Visual Studio and search for "trakt".
-
-Each release will also be published in [Releases](https://github.com/henrikfroehling/Trakt.NET/releases).
-
-You can also use one of the following NuGet Package Sources, to always get the latest build package.
-
-| NuGet-Feed | Package Source Address | Description |
-|---|---|---|
-| MyGet | https://www.myget.org/F/trakt-net/api/v3/index.json | All CI/CD build packages. |
 
 ### Basic Usage
 
