@@ -47,6 +47,7 @@
                 IsAuthorizationRevoke = isAuthorizationRevoke
             };
 
+            ResponseHeaderParser.ParsePagedResponseHeaderValues(errorParameters.Headers, responseMessage.Headers);
             await HandleErrorsAsync(errorParameters, cancellationToken).ConfigureAwait(false);
         }
 
