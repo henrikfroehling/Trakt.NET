@@ -90,6 +90,9 @@
                 case (HttpStatusCode)422:
                     HandleValidationError(errorParameters);
                     break;
+                case (HttpStatusCode)423:
+                    HandleLockedUserAccountError(errorParameters);
+                    break;
                 case (HttpStatusCode)429:
                     HandleRateLimitError(errorParameters);
                     break;
@@ -415,6 +418,17 @@
             };
         }
 
+        private static void HandleLockedUserAccountError(ResponseErrorParameters errorParameters)
+        {
+            throw new TraktLockedUserAccountException
+            {
+                RequestUrl = errorParameters.Url,
+                RequestBody = errorParameters.RequestBody,
+                Response = errorParameters.ResponseBody,
+                ServerReasonPhrase = errorParameters.ServerReasonPhrase
+            };
+        }
+
         private static void HandleRateLimitError(ResponseErrorParameters errorParameters)
         {
             string requestUrl = errorParameters.Url;
@@ -509,7 +523,7 @@
                 };
             }
 
-            ITraktError error = null;
+            ITraktError error;
 
             try
             {
