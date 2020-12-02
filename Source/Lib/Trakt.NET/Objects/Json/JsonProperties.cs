@@ -97,6 +97,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_LIGHTING = "lighting";
         internal const string PROPERTY_NAME_LIKED_AT = "liked_at";
         internal const string PROPERTY_NAME_LIKES = "likes";
+        internal const string PROPERTY_NAME_LIMIT = "limit";
         internal const string PROPERTY_NAME_LIST = "list";
         internal const string PROPERTY_NAME_LIST_COUNT = "list_count";
         internal const string PROPERTY_NAME_LISTED_AT = "listed_at";
@@ -121,6 +122,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_PARENT_ID = "parent_id";
         internal const string PROPERTY_NAME_PAUSED_AT = "paused_at";
         internal const string PROPERTY_NAME_PEOPLE = "people";
+        internal const string PROPERTY_NAME_PERIOD = "period";
         internal const string PROPERTY_NAME_PERSON = "person";
         internal const string PROPERTY_NAME_PLAY_COUNT = "play_count";
         internal const string PROPERTY_NAME_PLAYS = "plays";
@@ -136,6 +138,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_RELEASE_DATE = "release_date";
         internal const string PROPERTY_NAME_RELEASE_TYPE = "release_type";
         internal const string PROPERTY_NAME_RELEASED = "released";
+        internal const string PROPERTY_NAME_REMAINING = "remaining";
         internal const string PROPERTY_NAME_REPLIES = "replies";
         internal const string PROPERTY_NAME_REQUESTED_AT = "requested_at";
         internal const string PROPERTY_NAME_RESET_AT = "reset_at";
@@ -178,6 +181,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_TVRAGE = "tvrage";
         internal const string PROPERTY_NAME_TWITTER = "twitter";
         internal const string PROPERTY_NAME_TYPE = "type";
+        internal const string PROPERTY_NAME_UNTIL = "until";
         internal const string PROPERTY_NAME_UPDATED = "updated";
         internal const string PROPERTY_NAME_UPDATED_AT = "updated_at";
         internal const string PROPERTY_NAME_US = "us";
