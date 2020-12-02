@@ -106,7 +106,7 @@
                 string strRetryAfter = values.First();
 
                 if (int.TryParse(strRetryAfter, out int retryAfter))
-                headerResults.RetryAfter = retryAfter;
+                    headerResults.RetryAfter = retryAfter;
             }
         }
 
