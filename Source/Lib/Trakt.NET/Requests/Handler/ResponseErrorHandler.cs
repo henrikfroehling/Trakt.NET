@@ -450,12 +450,15 @@
                 };
             }
 
-            ITraktRateLimitInfo rateLimitInfo;
+            ITraktRateLimitInfo rateLimitInfo = null;
 
             try
             {
-                IObjectJsonReader<ITraktRateLimitInfo> rateLimitInfoReader = JsonFactoryContainer.CreateObjectReader<ITraktRateLimitInfo>();
-                rateLimitInfo = await rateLimitInfoReader.ReadObjectAsync(errorParameters.Headers.RateLimit, cancellationToken).ConfigureAwait(false);
+                if (!string.IsNullOrEmpty(errorParameters.Headers.RateLimit))
+                {
+                    IObjectJsonReader<ITraktRateLimitInfo> rateLimitInfoReader = JsonFactoryContainer.CreateObjectReader<ITraktRateLimitInfo>();
+                    rateLimitInfo = await rateLimitInfoReader.ReadObjectAsync(errorParameters.Headers.RateLimit, cancellationToken).ConfigureAwait(false);
+                }
             }
             catch (Exception ex)
             {
