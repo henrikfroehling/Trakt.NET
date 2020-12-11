@@ -18,6 +18,9 @@
         /// <summary>The status for a show, which has ended.</summary>
         public static TraktShowStatus Ended { get; } = new TraktShowStatus(8, "ended", "ended", "Ended");
 
+        /// <summary>The status for a show, which is upcoming.</summary>
+        public static TraktShowStatus Upcoming { get; } = new TraktShowStatus(16, "upcoming", "upcoming", "Upcoming");
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktShowStatus" /> class.<para />
         /// The initialized <see cref="TraktShowStatus" /> is invalid.
