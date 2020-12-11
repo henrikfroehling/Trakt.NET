@@ -10,7 +10,6 @@
     using TraktNet.Objects.Get.Episodes;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Builder;
     using TraktNet.Objects.Post.Syncs.Collection;
     using Xunit;
 
