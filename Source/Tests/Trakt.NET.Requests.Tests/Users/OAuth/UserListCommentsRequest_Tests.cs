@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Requests.Tests.Users
+﻿namespace TraktNet.Requests.Tests.Users.OAuth
 {
     using FluentAssertions;
     using System;
@@ -7,17 +7,17 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Requests.Base;
-    using TraktNet.Requests.Users;
+    using TraktNet.Requests.Users.OAuth;
     using Xunit;
 
     [Category("Requests.Users")]
     public class UserListCommentsRequest_Tests
     {
         [Fact]
-        public void Test_UserListCommentsRequest_Has_AuthorizationRequirement_Not_Required()
+        public void Test_UserListCommentsRequest_Has_AuthorizationRequirement_Optional()
         {
             var request = new UserListCommentsRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]
