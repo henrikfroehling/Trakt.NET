@@ -50,7 +50,8 @@
                     CollectedEpisodes = 4,
                     Comments = 5,
                     Lists = 6,
-                    Votes = 7
+                    Votes = 7,
+                    Recommended = 8
                 }
             };
 
@@ -60,7 +61,7 @@
                 var traktJsonWriter = new ArrayJsonWriter<ITraktStatistics>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktStatistics);
                 stringWriter.ToString().Should().Be(@"[{""watchers"":1,""plays"":2,""collectors"":3," +
-                                                    @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7}]");
+                                                    @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7,""recommended"":8}]");
             }
         }
 
@@ -77,7 +78,8 @@
                     CollectedEpisodes = 4,
                     Comments = 5,
                     Lists = 6,
-                    Votes = 7
+                    Votes = 7,
+                    Recommended = 8
                 },
                 new TraktStatistics
                 {
@@ -87,7 +89,8 @@
                     CollectedEpisodes = 4,
                     Comments = 5,
                     Lists = 6,
-                    Votes = 7
+                    Votes = 7,
+                    Recommended = 8
                 }
             };
 
@@ -97,9 +100,9 @@
                 var traktJsonWriter = new ArrayJsonWriter<ITraktStatistics>();
                 await traktJsonWriter.WriteArrayAsync(jsonWriter, traktStatistics);
                 stringWriter.ToString().Should().Be(@"[{""watchers"":1,""plays"":2,""collectors"":3," +
-                                                    @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7}," +
+                                                    @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7,""recommended"":8}," +
                                                     @"{""watchers"":1,""plays"":2,""collectors"":3," +
-                                                    @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7}]");
+                                                    @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7,""recommended"":8}]");
             }
         }
     }

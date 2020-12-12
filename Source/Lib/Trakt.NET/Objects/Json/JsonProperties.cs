@@ -134,6 +134,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_RATED_AT = "rated_at";
         internal const string PROPERTY_NAME_RATING = "rating";
         internal const string PROPERTY_NAME_RATINGS = "ratings";
+        internal const string PROPERTY_NAME_RECOMMENDED = "recommended";
         internal const string PROPERTY_NAME_REFRESH_TOKEN = "refresh_token";
         internal const string PROPERTY_NAME_RELEASE_DATE = "release_date";
         internal const string PROPERTY_NAME_RELEASE_TYPE = "release_type";

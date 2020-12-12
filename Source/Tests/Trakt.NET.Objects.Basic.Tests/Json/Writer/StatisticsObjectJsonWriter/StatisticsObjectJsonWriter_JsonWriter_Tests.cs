@@ -142,6 +142,23 @@
         }
 
         [Fact]
+        public async Task Test_StatisticsObjectJsonWriter_WriteObject_JsonWriter_Only_Recommended_Property()
+        {
+            ITraktStatistics traktStatistics = new TraktStatistics
+            {
+                Recommended = 8
+            };
+
+            using (var stringWriter = new StringWriter())
+            using (var jsonWriter = new JsonTextWriter(stringWriter))
+            {
+                var traktJsonWriter = new StatisticsObjectJsonWriter();
+                await traktJsonWriter.WriteObjectAsync(jsonWriter, traktStatistics);
+                stringWriter.ToString().Should().Be(@"{""recommended"":8}");
+            }
+        }
+
+        [Fact]
         public async Task Test_StatisticsObjectJsonWriter_WriteObject_JsonWriter_Complete()
         {
             ITraktStatistics traktStatistics = new TraktStatistics
@@ -152,7 +169,8 @@
                 CollectedEpisodes = 4,
                 Comments = 5,
                 Lists = 6,
-                Votes = 7
+                Votes = 7,
+                Recommended = 8
             };
 
             using (var stringWriter = new StringWriter())
@@ -161,7 +179,7 @@
                 var traktJsonWriter = new StatisticsObjectJsonWriter();
                 await traktJsonWriter.WriteObjectAsync(jsonWriter, traktStatistics);
                 stringWriter.ToString().Should().Be(@"{""watchers"":1,""plays"":2,""collectors"":3," +
-                                                    @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7}");
+                                                    @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7,""recommended"":8}");
             }
         }
     }
