@@ -21,7 +21,6 @@
     using Objects.Post.Users.Responses;
     using Requests.Handler;
     using Requests.Parameters;
-    using Requests.Users;
     using Requests.Users.OAuth;
     using Responses;
     using System;
@@ -840,7 +839,7 @@
 
         /// <summary>
         /// Gets top level comments for an user's custom list.
-        /// <para>OAuth authorization not required.</para>
+        /// <para>OAuth authorization optional.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/list-comments/get-all-list-comments">"Trakt API Doc - Users: List Comments"</a> for more information.
         /// </para>

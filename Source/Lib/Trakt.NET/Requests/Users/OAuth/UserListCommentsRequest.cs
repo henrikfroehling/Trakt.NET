@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Requests.Users
+﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Base;
     using Enums;
@@ -20,7 +20,7 @@
 
         public uint? Limit { get; set; }
 
-        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.NotRequired;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Optional;
 
         public RequestObjectType RequestObjectType => RequestObjectType.Lists;
 
