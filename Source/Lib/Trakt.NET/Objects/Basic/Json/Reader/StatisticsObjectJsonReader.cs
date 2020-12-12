@@ -42,6 +42,9 @@
                         case JsonProperties.PROPERTY_NAME_VOTES:
                             traktStatistics.Votes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_RECOMMENDED:
+                            traktStatistics.Recommended = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

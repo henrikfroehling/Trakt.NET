@@ -22,6 +22,7 @@
             traktStatistics.Comments.Should().BeNull();
             traktStatistics.Lists.Should().BeNull();
             traktStatistics.Votes.Should().BeNull();
+            traktStatistics.Recommended.Should().BeNull();
         }
 
         [Fact]
@@ -38,6 +39,7 @@
             traktStatistics.Comments.Should().Be(96);
             traktStatistics.Lists.Should().Be(49468);
             traktStatistics.Votes.Should().Be(9274);
+            traktStatistics.Recommended.Should().Be(54321);
         }
 
         private const string JSON =
@@ -48,7 +50,8 @@
                 ""collected_episodes"": 1310350,
                 ""comments"": 96,
                 ""lists"": 49468,
-                ""votes"": 9274
+                ""votes"": 9274,
+                ""recommended"": 54321
               }";
     }
 }

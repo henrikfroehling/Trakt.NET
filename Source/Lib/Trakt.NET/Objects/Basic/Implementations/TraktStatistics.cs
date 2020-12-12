@@ -23,5 +23,8 @@
 
         /// <summary>Gets or sets the number of votes.</summary>
         public int? Votes { get; set; }
+
+        /// <summary>Gets or sets the number of recommendations.</summary>
+        public int? Recommended { get; set; }
     }
 }
