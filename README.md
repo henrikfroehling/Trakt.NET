@@ -190,7 +190,7 @@ if (theMartian)
 
 **Do you have a question or suggestion?**
 
-[![Gitter](https://badges.gitter.im/Trakt-NET/Lobby.svg)](https://gitter.im/Trakt-NET/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[Discussions](https://github.com/henrikfroehling/Trakt.NET/discussions)
 
 **[Or do you want to report a bug?](https://github.com/henrikfroehling/Trakt.NET/issues)**
 
