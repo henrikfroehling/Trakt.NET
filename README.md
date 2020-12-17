@@ -187,11 +187,12 @@ if (theMartian)
 
 ---
 ### Discussions and Issues
-**Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)**
-**Or do you want to report a bug? [Create an issue](https://github.com/henrikfroehling/Trakt.NET/issues)**
+Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
+
+Or do you want to report a bug? [Create an issue](https://github.com/henrikfroehling/Trakt.NET/issues)
 
 ### Contributions are welcome
-**Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)**
+Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
 
 ### Build Status
 
