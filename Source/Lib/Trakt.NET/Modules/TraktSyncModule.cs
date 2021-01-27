@@ -67,22 +67,24 @@
         /// </para>
         /// </summary>
         /// <param name="objectType">Determines, which type of items should be queried. By default, all types will be returned. See also <seealso cref="TraktSyncType" />.</param>
-        /// <param name="limit">Determines, how many progress items should be queried. By default, all items will be returned</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>A list of <see cref="ITraktSyncPlaybackProgressItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktListResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, uint? limit = null,
-                                                                                                CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null,
+                                                                                                 TraktPagedParameters pagedParameters = null,
+                                                                                                 CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new SyncPlaybackProgressRequest
+            return requestHandler.ExecutePagedRequestAsync(new SyncPlaybackProgressRequest
             {
                 Type = objectType,
-                Limit = limit
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             },
             cancellationToken);
         }

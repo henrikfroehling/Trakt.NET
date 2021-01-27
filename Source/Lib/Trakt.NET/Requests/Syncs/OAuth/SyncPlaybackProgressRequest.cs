@@ -3,14 +3,17 @@
     using Enums;
     using Objects.Get.Syncs.Playback;
     using System.Collections.Generic;
+    using Interfaces;
 
-    internal sealed class SyncPlaybackProgressRequest : ASyncGetRequest<ITraktSyncPlaybackProgressItem>
+    internal sealed class SyncPlaybackProgressRequest : ASyncGetRequest<ITraktSyncPlaybackProgressItem>, ISupportsPagination
     {
         internal TraktSyncType Type { get; set; }
 
-        internal uint? Limit { get; set; }
+        public uint? Page { get; set; }
 
-        public override string UriTemplate => "sync/playback{/type}{?limit}";
+        public uint? Limit { get; set; }
+
+        public override string UriTemplate => "sync/playback{/type}{?page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
@@ -18,6 +21,9 @@
 
             if (Type != null && Type != TraktSyncType.Unspecified)
                 uriParams.Add("type", Type.UriName);
+
+            if (Page.HasValue)
+                uriParams.Add("page", Page.Value.ToString());
 
             if (Limit.HasValue)
                 uriParams.Add("limit", Limit.Value.ToString());
