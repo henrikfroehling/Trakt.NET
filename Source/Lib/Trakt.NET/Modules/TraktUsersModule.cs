@@ -90,6 +90,35 @@
         }
 
         /// <summary>
+        /// Gets the user's pending following requests.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/following-requests/get-pending-following-requests">"Trakt API Doc - Users: Following Requests"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the following request users should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktUserFollowRequest" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        public Task<TraktListResponse<ITraktUserFollowRequest>> GetPendingFollowingRequestsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                                 CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteListRequestAsync(new UserPendingFollowingRequestsRequest
+            {
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets the user's hidden items, like movies, shows and / or seasons.
         /// <para>OAuth authorization required.</para>
         /// <para>
