@@ -36,25 +36,28 @@ You can also use one of the following NuGet Package Sources, to always get the l
 
 ### Features
 
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/full-support.png) Full Trakt.tv API Coverage
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/authentication.png) Authentication Support (OAuth 2.0 and Device)
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/async.png) Completely asynchronous
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/environments.png) API Environments (Production and Sandbox)
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/serialization.png) Serialization Service
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/language-service.png) Language Service
+Full Trakt.tv API Coverage // Authentication Support (OAuth 2.0 and Device) // Completely asynchronous // API Environments (Production and Sandbox) // Serialization Service // Language Service
 
 ### Supported Platforms
 
-- .Net Core >= 1.0
-- .Net Framework >= 4.5
-- .NET >= 5
-- Mono >= 4.6
-- Xamarin.iOS >= 10.0
-- Xamarin.Mac >= 3.0
-- Xamarin.Android >= 7.0
-- Windows UWP >= 10.0
-- Windows >= 8.0
-- Windows Phone >= 8.1
+.Net Core >= 1.0 // .Net Framework >= 4.5 // .NET >= 5 // Mono >= 4.6 // Xamarin.iOS >= 10.0 // Xamarin.Mac >= 3.0 // Xamarin.Android >= 7.0 // Windows UWP >= 10.0 // Windows >= 8.0 // Windows Phone >= 8.1
+
+---
+### Discussions and Issues
+Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
+
+Or do you want to report a bug? [Create an issue](https://github.com/henrikfroehling/Trakt.NET/issues/new/choose)
+
+### Contributions are welcome
+Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
+
+### Build Status
+
+| Branch | Status | Description |
+|---|---|---|
+| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. |
+
+---
 
 ### Basic Usage
 
@@ -184,21 +187,6 @@ if (theMartian)
     Console.WriteLine(show.Overview);
 }
 ```
-
----
-### Discussions and Issues
-Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
-
-Or do you want to report a bug? [Create an issue](https://github.com/henrikfroehling/Trakt.NET/issues/new/choose)
-
-### Contributions are welcome
-Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
-
-### Build Status
-
-| Branch | Status | Description |
-|---|---|---|
-| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. |
 
 ---
 ### License
