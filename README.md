@@ -51,6 +51,8 @@ Or do you want to report a bug? [Create an issue](https://github.com/henrikfroeh
 ### Contributions are welcome
 Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
 
+### [Documentation](https://github.com/henrikfroehling/Trakt.NET/wiki)
+
 ### Build Status
 
 | Branch | Status | Description |
