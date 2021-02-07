@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Base;
+    using Extensions;
     using Interfaces;
     using Objects.Get.Users.Lists;
     using System;
@@ -39,10 +40,10 @@
 
         public override void Validate()
         {
-            if (string.IsNullOrWhiteSpace(Username))
+            if (string.IsNullOrEmpty(Username) || Username.ContainsSpace())
                 throw new ArgumentException("username not valid", nameof(Username));
 
-            if (string.IsNullOrWhiteSpace(ListId))
+            if (string.IsNullOrEmpty(ListId) || ListId.ContainsSpace())
                 throw new ArgumentException("list id not valid", nameof(ListId));
         }
     }
