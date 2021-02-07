@@ -370,6 +370,7 @@
             s_jsonIOFactories.Add(typeof(ITraktList), new ListJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktListIds), new ListIdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktListItem), new ListItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktListLike), new ListLikeJsonIOFactory());
 
             // user post objects
             s_jsonIOFactories.Add(typeof(ITraktUserCustomListPost), new UserCustomListPostJsonIOFactory());
