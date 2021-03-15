@@ -352,19 +352,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public void Test_TraktCalendarModule_GetAllMovies_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_ALL_MOVIES_URI,
-                                                           CALENDAR_ALL_MOVIES_JSON,
-                                                           startDate: START_DATE, endDate: END_DATE);
-
-            Func<Task<TraktListResponse<ITraktCalendarMovie>>> act = () => client.Calendar.GetAllMoviesAsync(null, 0);
-            act.Should().Throw<ArgumentOutOfRangeException>();
-
-            act = () => client.Calendar.GetAllMoviesAsync(null, 32);
-            act.Should().Throw<ArgumentOutOfRangeException>();
-        }
     }
 }
