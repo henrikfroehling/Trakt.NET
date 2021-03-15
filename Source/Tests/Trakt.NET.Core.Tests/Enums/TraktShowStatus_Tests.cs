@@ -14,10 +14,11 @@
         {
             var allValues = TraktEnumeration.GetAll<TraktShowStatus>();
 
-            allValues.Should().NotBeNull().And.HaveCount(6);
+            allValues.Should().NotBeNull().And.HaveCount(7);
             allValues.Should().Contain(new List<TraktShowStatus>() { TraktShowStatus.Unspecified, TraktShowStatus.ReturningSeries,
                                                                      TraktShowStatus.InProduction, TraktShowStatus.Canceled,
-                                                                     TraktShowStatus.Ended, TraktShowStatus.Upcoming });
+                                                                     TraktShowStatus.Ended, TraktShowStatus.Upcoming,
+                                                                     TraktShowStatus.Planned });
         }
     }
 }
