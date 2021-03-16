@@ -1,6 +1,20 @@
 Changelog
 =============
 
+Version 1.1.1
+===
+
+#### 1.1.1
+(2021-03-16)
+
+Fixed:
+
+- GetShowAsync returns Status null when status is 'upcoming' ([Issue 208](https://github.com/henrikfroehling/Trakt.NET/issues/208))
+- GetShowAsync returns Status null when status is 'planned' ([Issue 221](https://github.com/henrikfroehling/Trakt.NET/issues/221))
+- Calendar methods do not accept a value greater than 31 for days ([Issue 220](https://github.com/henrikfroehling/Trakt.NET/issues/220))
+
+---------
+
 Version 1.1.0
 ===
 
