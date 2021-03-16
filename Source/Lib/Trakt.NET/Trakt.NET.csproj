@@ -5,12 +5,12 @@
     <RootNamespace>TraktNet</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Authors>Henrik Fröhling</Authors>
     <Company>Henrik Fröhling</Company>
     <PackageLicenseUrl>https://github.com/henrikfroehling/Trakt.NET/blob/develop/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/henrikfroehling/Trakt.NET</PackageProjectUrl>
-    <Copyright>Copyright © 2016 - 2020 Henrik Fröhling et al.</Copyright>
+    <Copyright>Copyright © 2016 - 2021 Henrik Fröhling et al.</Copyright>
     <Description>.NET wrapper library for the Trakt.tv API.
 
 Features
@@ -22,7 +22,7 @@ Features
 - Language Service</Description>
     <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
     <PackageTags>trakt rest api</PackageTags>
-    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#110</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#111</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
