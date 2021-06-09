@@ -7,6 +7,7 @@
     using Objects.Get.Ratings;
     using Objects.Get.Syncs.Activities;
     using Objects.Get.Syncs.Playback;
+    using Objects.Get.Users;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
     using Objects.Post;
@@ -57,6 +58,47 @@
         {
             var requestHandler = new RequestHandler(Client);
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncLastActivitiesRequest(), cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets an user's personal recommendations for movies and / or shows.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/get-personal-recommendations/get-personal-recommendations">"Trakt API Doc - Sync: Personal Recommendations"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="recommendationObjectType">Determines, which type of recommendation items should be queried. See also <seealso cref="TraktRecommendationObjectType" />.</param>
+        /// <param name="sortOrder">
+        /// The recommendations sort order. See also <seealso cref="TraktWatchlistSortOrder" />.
+        /// Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
+        /// Will be ignored, if the given <paramref name="recommendationObjectType" /> is null or unspecified.
+        /// </param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the recommendation items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktRecommendation" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        public Task<TraktPagedResponse<ITraktRecommendation>> GetPersonalRecommendationsAsync(TraktRecommendationObjectType recommendationObjectType = null,
+                                                                                              TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null,
+                                                                                              TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new SyncPersonalRecommendationsRequest
+            {
+                Type = recommendationObjectType,
+                Sort = sortOrder,
+                ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
         }
 
         /// <summary>
