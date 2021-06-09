@@ -54,6 +54,12 @@
                 await jsonWriter.WriteValueAsync(obj.Votes, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Recommended.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RECOMMENDED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Recommended, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

@@ -61,6 +61,8 @@
         private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const int RECOMMENDATIONS_ITEM_COUNT = 2;
         private const int RECOMMENDATIONS_LIMIT = 6;
+        private const int LIST_LIKES_LIMIT = 3;
+        private const int LIST_LIKES_ITEM_COUNT = 2;
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 
@@ -1446,5 +1448,35 @@
                   12
                 ]
               }";
+
+        private const string LIST_LIKES_JSON =
+            @"[
+                {
+                  ""liked_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""user"": {
+                    ""username"": ""justin"",
+                    ""private"": false,
+                    ""name"": ""Justin Nemeth"",
+                    ""vip"": true,
+                    ""vip_ep"": true,
+                    ""ids"": {
+                      ""slug"": ""justin""
+                    }
+                  }
+                },
+                {
+                  ""liked_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""user"": {
+                    ""username"": ""justin"",
+                    ""private"": false,
+                    ""name"": ""Justin Nemeth"",
+                    ""vip"": true,
+                    ""vip_ep"": true,
+                    ""ids"": {
+                      ""slug"": ""justin""
+                    }
+                  }
+                }
+              ]";
     }
 }

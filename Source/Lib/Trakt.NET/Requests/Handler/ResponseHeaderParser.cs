@@ -22,6 +22,8 @@
         private const string HEADER_ITEM_TYPE = "X-Item-Type";
         private const string HEADER_APPLIED_SORT_BY = "X-Applied-Sort-By";
         private const string HEADER_APPLIED_SORT_HOW = "X-Applied-Sort-How";
+        private const string HEADER_RATE_LIMIT = "X-RateLimit";
+        private const string HEADER_RETRY_AFTER = "Retry-After";
 
         internal static void ParseResponseHeaderValues(ITraktResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
         {
@@ -95,6 +97,17 @@
 
             if (responseHeaders.TryGetValues(HEADER_ITEM_TYPE, out values))
                 headerResults.ItemType = values.First();
+
+            if (responseHeaders.TryGetValues(HEADER_RATE_LIMIT, out values))
+                headerResults.RateLimit = values.First();
+
+            if (responseHeaders.TryGetValues(HEADER_RETRY_AFTER, out values))
+            {
+                string strRetryAfter = values.First();
+
+                if (int.TryParse(strRetryAfter, out int retryAfter))
+                    headerResults.RetryAfter = retryAfter;
+            }
         }
 
         internal static void ParsePagedResponseHeaderValues(ITraktPagedResponseHeaders headerResults, HttpResponseHeaders responseHeaders)

@@ -7,7 +7,6 @@
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Builder;
     using TraktNet.Objects.Post.Users.CustomListItems;
     using Xunit;
 

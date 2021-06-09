@@ -13,7 +13,6 @@
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
     using Objects.Post;
-    using Objects.Post.Builder;
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
@@ -22,7 +21,6 @@
     using Objects.Post.Users.Responses;
     using Requests.Handler;
     using Requests.Parameters;
-    using Requests.Users;
     using Requests.Users.OAuth;
     using Responses;
     using System;
@@ -85,6 +83,35 @@
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteListRequestAsync(new UserFollowRequestsRequest
+            {
+                ExtendedInfo = extendedInfo
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets the user's pending following requests.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/following-requests/get-pending-following-requests">"Trakt API Doc - Users: Following Requests"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the following request users should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktUserFollowRequest" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        public Task<TraktListResponse<ITraktUserFollowRequest>> GetPendingFollowingRequestsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                                 CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteListRequestAsync(new UserPendingFollowingRequestsRequest
             {
                 ExtendedInfo = extendedInfo
             },
@@ -841,7 +868,7 @@
 
         /// <summary>
         /// Gets top level comments for an user's custom list.
-        /// <para>OAuth authorization not required.</para>
+        /// <para>OAuth authorization optional.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/list-comments/get-all-list-comments">"Trakt API Doc - Users: List Comments"</a> for more information.
         /// </para>
@@ -878,6 +905,48 @@
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
                 SortOrder = commentSortOrder,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets all likes for an user's custom list.
+        /// <para>OAuth authorization optional.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/list-likes/get-all-users-who-liked-a-list">"Trakt API Doc - Users: List Likes"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the list likes should be queried.</param>
+        /// <param name="listIdOrSlug">The id or slug of the list, for which the likes should be queried.</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktListLike}"/> instance containing the queried list likes and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktListLike" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown, if the given username or slug is null, empty or contains spaces.
+        /// Thrown, if the given list id is null, empty or contains spaces.
+        /// </exception>
+        public Task<TraktPagedResponse<ITraktListLike>> GetListLikesAsync(string usernameOrSlug, string listIdOrSlug,
+                                                                          TraktPagedParameters pagedParameters = null,
+                                                                          CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new UserListLikesRequest
+            {
+                Username = usernameOrSlug,
+                ListId = listIdOrSlug,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             },

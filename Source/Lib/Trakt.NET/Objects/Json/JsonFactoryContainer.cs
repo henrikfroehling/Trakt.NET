@@ -138,6 +138,7 @@
             s_jsonIOFactories.Add(typeof(ITraktLanguage), new LanguageJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMetadata), new MetadataJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktNetwork), new NetworkJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktRateLimitInfo), new RateLimitInfoJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktRating), new RatingJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSearchResult), new SearchResultJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSharing), new SharingJsonIOFactory());
@@ -369,6 +370,7 @@
             s_jsonIOFactories.Add(typeof(ITraktList), new ListJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktListIds), new ListIdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktListItem), new ListItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktListLike), new ListLikeJsonIOFactory());
 
             // user post objects
             s_jsonIOFactories.Add(typeof(ITraktUserCustomListPost), new UserCustomListPostJsonIOFactory());

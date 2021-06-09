@@ -14,8 +14,9 @@
         {
             var allValues = TraktEnumeration.GetAll<TraktLastActivity>();
 
-            allValues.Should().NotBeNull().And.HaveCount(2);
-            allValues.Should().Contain(new List<TraktLastActivity>() { TraktLastActivity.Unspecified, TraktLastActivity.Collected });
+            allValues.Should().NotBeNull().And.HaveCount(4);
+            allValues.Should().Contain(new List<TraktLastActivity>() { TraktLastActivity.Unspecified, TraktLastActivity.Collected,
+                                                                       TraktLastActivity.Aired, TraktLastActivity.Watched });
         }
     }
 }

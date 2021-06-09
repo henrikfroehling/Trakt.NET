@@ -1,7 +1,5 @@
 ﻿namespace TraktNet.Objects.Post
 {
-    using Builder;
-
     public sealed class TraktPost
     {
         private TraktPost()

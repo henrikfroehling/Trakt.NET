@@ -47,6 +47,7 @@
                 IsAuthorizationRevoke = isAuthorizationRevoke
             };
 
+            ResponseHeaderParser.ParsePagedResponseHeaderValues(errorParameters.Headers, responseMessage.Headers);
             await HandleErrorsAsync(errorParameters, cancellationToken).ConfigureAwait(false);
         }
 
@@ -90,8 +91,11 @@
                 case (HttpStatusCode)422:
                     HandleValidationError(errorParameters);
                     break;
+                case (HttpStatusCode)423:
+                    HandleLockedUserAccountError(errorParameters);
+                    break;
                 case (HttpStatusCode)429:
-                    HandleRateLimitError(errorParameters);
+                    await HandleRateLimitErrorAsync(errorParameters, cancellationToken).ConfigureAwait(false);
                     break;
                 case (HttpStatusCode)503:
                 case (HttpStatusCode)504:
@@ -415,7 +419,18 @@
             };
         }
 
-        private static void HandleRateLimitError(ResponseErrorParameters errorParameters)
+        private static void HandleLockedUserAccountError(ResponseErrorParameters errorParameters)
+        {
+            throw new TraktLockedUserAccountException
+            {
+                RequestUrl = errorParameters.Url,
+                RequestBody = errorParameters.RequestBody,
+                Response = errorParameters.ResponseBody,
+                ServerReasonPhrase = errorParameters.ServerReasonPhrase
+            };
+        }
+
+        private static async Task HandleRateLimitErrorAsync(ResponseErrorParameters errorParameters, CancellationToken cancellationToken = default)
         {
             string requestUrl = errorParameters.Url;
             string requestBody = errorParameters.RequestBody;
@@ -435,12 +450,29 @@
                 };
             }
 
+            ITraktRateLimitInfo rateLimitInfo = null;
+
+            try
+            {
+                if (!string.IsNullOrEmpty(errorParameters.Headers.RateLimit))
+                {
+                    IObjectJsonReader<ITraktRateLimitInfo> rateLimitInfoReader = JsonFactoryContainer.CreateObjectReader<ITraktRateLimitInfo>();
+                    rateLimitInfo = await rateLimitInfoReader.ReadObjectAsync(errorParameters.Headers.RateLimit, cancellationToken).ConfigureAwait(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new TraktException("json convert exception", ex);
+            }
+
             throw new TraktRateLimitException
             {
                 RequestUrl = requestUrl,
                 RequestBody = requestBody,
                 Response = responseBody,
-                ServerReasonPhrase = reasonPhrase
+                ServerReasonPhrase = reasonPhrase,
+                RateLimitInfo = rateLimitInfo,
+                RetryAfter = errorParameters.Headers.RetryAfter
             };
         }
 
@@ -509,7 +541,7 @@
                 };
             }
 
-            ITraktError error = null;
+            ITraktError error;
 
             try
             {
