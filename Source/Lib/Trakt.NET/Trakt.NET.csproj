@@ -23,7 +23,7 @@ Features
     <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
     <PackageTags>trakt rest api</PackageTags>
     <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#111</PackageReleaseNotes>
-    <PackageLicenseExpression>https://github.com/henrikfroehling/Trakt.NET/blob/develop/LICENSE.md</PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -42,6 +42,13 @@ Features
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
