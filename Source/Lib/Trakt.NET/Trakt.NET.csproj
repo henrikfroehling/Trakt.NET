@@ -9,7 +9,6 @@
     <VersionSuffix></VersionSuffix>
     <Authors>Henrik Fröhling</Authors>
     <Company>Henrik Fröhling</Company>
-    <PackageLicenseUrl>https://github.com/henrikfroehling/Trakt.NET/blob/develop/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/henrikfroehling/Trakt.NET</PackageProjectUrl>
     <Copyright>Copyright © 2016 - 2021 Henrik Fröhling et al.</Copyright>
     <Description>.NET wrapper library for the Trakt.tv API.
