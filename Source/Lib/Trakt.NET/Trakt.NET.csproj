@@ -5,7 +5,8 @@
     <RootNamespace>TraktNet</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.1.1</Version>
+    <VersionPrefix>1.1.1</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
     <Authors>Henrik Fröhling</Authors>
     <Company>Henrik Fröhling</Company>
     <PackageLicenseUrl>https://github.com/henrikfroehling/Trakt.NET/blob/develop/LICENSE.md</PackageLicenseUrl>
