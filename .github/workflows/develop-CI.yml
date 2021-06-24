@@ -1,0 +1,40 @@
+name: Develop CI
+
+on:
+  push:
+    branches: 
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+env:
+  BUILD_TYPE: Release
+  SOLUTION_NAME: 'Source/Trakt.NET.sln'
+  NUSPEC_FILE: 'Source/Lib/Trakt.NET/Trakt.NET.nuspec'
+  BUILD_DIRECTORY: 'Build\Lib\Release\netstandard1.1'
+  PACKAGE_VERSION_SUFFIX: '-developer-preview'
+
+jobs:
+  develop-ci:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Nuget
+        uses: nuget/setup-nuget@v1
+        with:
+          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+          nuget-version: '5.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.SOLUTION_NAME }}
+      - name: Build solution
+        run: dotnet build ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --no-restore /m /p:BuildInParallel=true
+      - name: Run tests
+        run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity normal --no-build /p:Exclude="[xunit*]*"
+      - name: Nuget pack
+        run: nuget pack ${{ env.NUSPEC_FILE }} -OutputDirectory ${{ env.BUILD_DIRECTORY }} -BasePath ${{ env.BUILD_DIRECTORY }} -Properties Configuration=${{ env.BUILD_TYPE }};versionSuffix=${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }} -Verbosity Detailed
