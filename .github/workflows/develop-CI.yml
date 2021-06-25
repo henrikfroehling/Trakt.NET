@@ -36,3 +36,12 @@ jobs:
       - name: Rename artifacts
         shell: pwsh
         run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml'} | Rename-Item -NewName {'Trakt.NET.' + '${{ env.PACKAGE_VERSION_SUFFIX }}' + '.' + '${{ github.run_number }}' + $_.Extension}
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: develop-ci-${{github.run_number}}-${{github.run_id}}-${{github.sha}}
+          path: |
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.dll
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.pdb
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.xml
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.nupkg
