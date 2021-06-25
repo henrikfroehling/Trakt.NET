@@ -39,7 +39,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: develop-ci-${{github.run_number}}-${{github.run_id}}-${{github.sha}}
+          name: develop-ci-${{github.run_number}}-${{github.sha}}
           path: |
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.dll
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.pdb
