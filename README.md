@@ -14,7 +14,6 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 [![NuGet Package](https://img.shields.io/badge/NuGet-v1.1.1-green.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.1.1)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=henrikfroehling_Trakt.NET&metric=alert_status)](https://sonarcloud.io/dashboard?id=henrikfroehling_Trakt.NET)
 
 ### Installation
 
@@ -51,7 +50,7 @@ Do want to contribute? [See how you can contribute](https://github.com/henrikfro
 
 | Branch | Status | Description | Packages |
 |---|---|---|---|
-| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. | https://github.com/henrikfroehling/Trakt.NET/packages |
+| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![develop-CI](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml/badge.svg?branch=develop)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml) | This branch tracks the current and possibly unstable development. | https://github.com/henrikfroehling/Trakt.NET/packages |
 
 ---
 
