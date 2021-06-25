@@ -28,12 +28,6 @@ or with the [NuGet Package Management](https://docs.nuget.org/consume/package-ma
 
 Each release will also be published in [Releases](https://github.com/henrikfroehling/Trakt.NET/releases).
 
-You can also use one of the following NuGet Package Sources, to always get the latest build package.
-
-| NuGet-Feed | Package Source Address | Description |
-|---|---|---|
-| MyGet | https://www.myget.org/F/trakt-net/api/v3/index.json | All CI/CD build packages. |
-
 ### Features
 
 Full Trakt.tv API Coverage // Authentication Support (OAuth 2.0 and Device) // Completely asynchronous // API Environments (Production and Sandbox) // Serialization Service // Language Service
@@ -55,9 +49,9 @@ Do want to contribute? [See how you can contribute](https://github.com/henrikfro
 
 ### Build Status
 
-| Branch | Status | Description |
-|---|---|---|
-| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. |
+| Branch | Status | Description | Packages |
+|---|---|---|---|
+| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. | https://github.com/henrikfroehling/Trakt.NET/packages |
 
 ---
 
