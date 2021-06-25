@@ -1,0 +1,50 @@
+name: Develop CI
+
+on:
+  push:
+    branches: 
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+env:
+  BUILD_TYPE: Release
+  SOLUTION_NAME: 'Source\Trakt.NET.sln'
+  PROJECT_NAME: 'Source\Lib\Trakt.NET\Trakt.NET.csproj'
+  BUILD_DIRECTORY: 'Build\Lib\Release\netstandard1.1'
+  PACKAGE_VERSION_SUFFIX: 'developer-preview'
+
+jobs:
+  develop-ci:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.SOLUTION_NAME }}
+      - name: Build solution
+        run: dotnet build ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --no-restore /m /p:BuildInParallel=true
+      - name: Run tests
+        run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity normal --no-build --no-restore /p:Exclude="[xunit*]*"
+      - name: Nuget pack
+        run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity detailed --output ${{ env.BUILD_DIRECTORY }} --version-suffix "${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }}" --no-build --no-restore
+      - name: Rename artifacts
+        shell: pwsh
+        run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml'} | Rename-Item -NewName {'Trakt.NET.' + '${{ env.PACKAGE_VERSION_SUFFIX }}' + '.' + '${{ github.run_number }}' + $_.Extension}
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: develop-ci-${{github.run_number}}-${{github.sha}}
+          path: |
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.dll
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.pdb
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.xml
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.nupkg
+      - run: dotnet nuget add source --username henrikfroehling --password ${{ secrets.PAT_GITHUB }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/henrikfroehling/index.json"
+      - name: Push package
+        run: dotnet nuget push "${{ env.BUILD_DIRECTORY }}\Trakt.NET.*.nupkg" --api-key ${{ secrets.PAT_GITHUB }} --source "github"
