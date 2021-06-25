@@ -33,3 +33,6 @@ jobs:
         run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity normal --no-build --no-restore /p:Exclude="[xunit*]*"
       - name: Nuget pack
         run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity detailed --output ${{ env.BUILD_DIRECTORY }} --version-suffix "${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }}" --no-build --no-restore
+      - name: Rename artifacts
+        shell: pwsh
+        run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml'} | Rename-Item -NewName {'Trakt.NET.' + ${{ env.PACKAGE_VERSION_SUFFIX }} + '.' + ${{ github.run_number }} + $_.Extension}
