@@ -32,7 +32,7 @@ jobs:
       - name: Run tests
         run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity normal --no-build --no-restore /p:Exclude="[xunit*]*"
       - name: Nuget pack
-        run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity detailed --output ${{ env.BUILD_DIRECTORY }} --version-suffix "${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }}" --no-build --no-restore
+        run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity detailed --output ${{ env.BUILD_DIRECTORY }} --version-suffix "${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }}" -p:PackageID="Trakt.NET-${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }}" --no-build --no-restore
       - name: Rename artifacts
         shell: pwsh
         run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml'} | Rename-Item -NewName {'Trakt.NET.' + '${{ env.PACKAGE_VERSION_SUFFIX }}' + '.' + '${{ github.run_number }}' + $_.Extension}
@@ -45,6 +45,7 @@ jobs:
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.pdb
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.xml
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.nupkg
-      - run: dotnet nuget add source --username henrikfroehling --password ${{ secrets.PAT_GITHUB }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/henrikfroehling/index.json"
+      - name: Add GitHub packages source
+        run: dotnet nuget add source --username henrikfroehling --password ${{ secrets.PAT_GITHUB }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/henrikfroehling/index.json"
       - name: Push package
         run: dotnet nuget push "${{ env.BUILD_DIRECTORY }}\Trakt.NET.*.nupkg" --api-key ${{ secrets.PAT_GITHUB }} --source "github"
