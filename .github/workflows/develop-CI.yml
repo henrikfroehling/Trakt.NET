@@ -47,5 +47,4 @@ jobs:
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.nupkg
       - run: dotnet nuget add source --username henrikfroehling --password ${{ secrets.PAT_GITHUB }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/henrikfroehling/index.json"
       - name: Push package
-        shell: pwsh
-        run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.nupkg'} | dotnet nuget push %{ $_.FullName } --api-key ${{ secrets.PAT_GITHUB }} --source "github"
+        run: dotnet nuget push "${{ env.BUILD_DIRECTORY }}\Trakt.NET.*.nupkg" --api-key ${{ secrets.PAT_GITHUB }} --source "github"
