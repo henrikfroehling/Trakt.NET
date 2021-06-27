@@ -14,6 +14,7 @@ env:
   PROJECT_NAME: 'Source\Lib\Trakt.NET\Trakt.NET.csproj'
   BUILD_DIRECTORY: 'Build\Lib\Release\netstandard1.1'
   PACKAGE_VERSION_SUFFIX: 'developer-preview'
+  VERSION_NUMBER: ''
 
 jobs:
   develop-ci:
@@ -32,18 +33,22 @@ jobs:
         run: dotnet build ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --no-restore /m /p:BuildInParallel=true
       - name: Run tests
         run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity normal --no-build --no-restore
-      - name: Nuget pack
-        run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity detailed --output ${{ env.BUILD_DIRECTORY }} --version-suffix "${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }}" -p:PackageID="Trakt.NET-${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }}" --no-build --no-restore
-      - name: Rename package
+      - name: Get version number
         shell: pwsh
-        run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.nupkg'} | Rename-Item -NewName {'Trakt.NET-' + '${{ env.PACKAGE_VERSION_SUFFIX }}' + '.' + '${{ github.run_number }}' + $_.Extension}
+        run: |
+          [xml]$csprojcontents = Get-Content -Path ${{ env.PROJECT_NAME }}
+          $versionNumber = "$($csprojcontents.Project.PropertyGroup.VersionPrefix)".Trim()
+          Write-Host "Found version:" $versionNumber
+          echo "VERSION_NUMBER=$versionNumber" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
+      - name: Nuget pack
+        run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity detailed --output ${{ env.BUILD_DIRECTORY }} --version-suffix "${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }}" -p:PackageID="Trakt.NET.${{ env.VERSION_NUMBER }}-${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }}" --no-build --no-restore
       - name: Rename artifacts
         shell: pwsh
-        run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml'} | Rename-Item -NewName {'Trakt.NET-' + '${{ env.PACKAGE_VERSION_SUFFIX }}' + '.' + '${{ github.run_number }}' + $_.Extension}
+        run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg'} | Rename-Item -NewName {'Trakt.NET.' + '${{ env.VERSION_NUMBER }}' + '-' + '${{ env.PACKAGE_VERSION_SUFFIX }}' + '.' + '${{ github.run_number }}' + $_.Extension}
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: develop-ci-${{ env.PACKAGE_VERSION_SUFFIX }}-${{github.run_number}}-${{github.sha}}
+          name: develop-ci-${{ env.PACKAGE_VERSION_SUFFIX }}.${{ env.VERSION_NUMBER }}-${{github.run_number}}-${{github.sha}}
           path: |
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.dll
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.pdb
