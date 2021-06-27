@@ -9,7 +9,7 @@ assignees: henrikfroehling
 
 **GitHub Issues are only used for bug reports and feature requests.**
 
-**If you have a support question, please ask in the official Gitter Chat:** https://gitter.im/Trakt-NET/Lobby
+**If you have a support question, please ask in the Discussions:** https://github.com/henrikfroehling/Trakt.NET/discussions
 
 **Please follow these guidelines when creating a new issue:**
 
