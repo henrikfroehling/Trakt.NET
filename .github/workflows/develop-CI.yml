@@ -57,4 +57,4 @@ jobs:
       - name: Add GitHub packages source
         run: dotnet nuget add source --username henrikfroehling --password ${{ secrets.PAT_GITHUB }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/henrikfroehling/index.json"
       - name: Push package
-        run: dotnet nuget push "${{ env.BUILD_DIRECTORY }}\Trakt.NET-*.nupkg" --api-key ${{ secrets.PAT_GITHUB }} --source "github"
+        run: dotnet nuget push "${{ env.BUILD_DIRECTORY }}\Trakt.NET*.nupkg" --api-key ${{ secrets.PAT_GITHUB }} --source "github"
