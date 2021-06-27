@@ -44,6 +44,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Objects.Get.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Objects.Post.Tests", "Tests\Trakt.NET.Objects.Post.Tests\Trakt.NET.Objects.Post.Tests.csproj", "{8FD76CA1-F7B4-445D-A3C4-DC1BAF59A490}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{A7FA937C-9CD0-4601-A2FA-CBA2FDC1DA77}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\codeql-analysis.yml = ..\.github\workflows\codeql-analysis.yml
+		..\.github\workflows\release-CI.yml = ..\.github\workflows\release-CI.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -176,6 +182,7 @@ Global
 		{3CE5281A-739A-41A5-ACC0-74059B7535B7} = {40C02336-96D7-4D92-9CBA-79570413DBA4}
 		{854680C9-3FD2-4D79-A19A-313786436118} = {40C02336-96D7-4D92-9CBA-79570413DBA4}
 		{8FD76CA1-F7B4-445D-A3C4-DC1BAF59A490} = {40C02336-96D7-4D92-9CBA-79570413DBA4}
+		{A7FA937C-9CD0-4601-A2FA-CBA2FDC1DA77} = {E4690B7D-5380-4003-99C3-2091827DB262}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7025A39E-11A6-4587-98F7-E887B941D5A0}

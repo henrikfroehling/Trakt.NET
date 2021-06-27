@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <Copyright>Copyright © 2017 - 2020 Henrik Fröhling et al.</Copyright>
         <ApplicationIcon />
         <OutputType>Library</OutputType>
@@ -20,7 +20,7 @@
 
     <ItemGroup>
         <PackageReference Include="FluentAssertions" Version="5.10.3" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
         <PackageReference Include="RichardSzalay.MockHttp" Version="6.0.0" />
         <PackageReference Include="xunit" Version="2.4.1" />
     </ItemGroup>
