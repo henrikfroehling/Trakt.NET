@@ -44,7 +44,7 @@ jobs:
         run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity detailed --output ${{ env.BUILD_DIRECTORY }} --version-suffix "${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }}" -p:PackageID="Trakt.NET.${{ env.VERSION_NUMBER }}-${{ env.PACKAGE_VERSION_SUFFIX }}.${{ github.run_number }}" --no-build --no-restore
       - name: Rename artifacts
         shell: pwsh
-        run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg'} | Rename-Item -NewName {'Trakt.NET.' + '${{ env.VERSION_NUMBER }}' + '-' + '${{ env.PACKAGE_VERSION_SUFFIX }}' + '.' + '${{ github.run_number }}' + $_.Extension}
+        run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg|.snupkg'} | Rename-Item -NewName {'Trakt.NET.' + '${{ env.VERSION_NUMBER }}' + '-' + '${{ env.PACKAGE_VERSION_SUFFIX }}' + '.' + '${{ github.run_number }}' + $_.Extension}
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -54,6 +54,7 @@ jobs:
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.pdb
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.xml
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.nupkg
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.snupkg
       - name: Add GitHub packages source
         run: dotnet nuget add source --username henrikfroehling --password ${{ secrets.PAT_GITHUB }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/henrikfroehling/index.json"
       - name: Push package
