@@ -1,0 +1,46 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: [bug, library]
+assignees:
+  - henrikfroehling
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report.
+        If you have a any questions, please feel free to ask in the discussions: https://github.com/henrikfroehling/Trakt.NET/discussions
+  - type: textarea
+    id: description
+    attributes:
+      label: Failure description?
+      description: Please specify a detailed description of the issue.
+      placeholder: Detailed description of the issue.
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of Trakt.NET are you using?
+      options:
+        - 1.1.1 (Latest)
+        - 1.1.0
+        - 1.0.2
+        - 1.0.1
+        - 1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: stacktrace
+    attributes:
+      label: Relevant Stacktrace
+      description: Please copy and paste a stacktrace, if available.
+  - type: checkboxes
+    id: coc
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
