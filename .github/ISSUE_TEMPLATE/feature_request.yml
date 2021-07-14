@@ -9,7 +9,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this feature request.
-        If you have a any questions, please feel free to ask in the discussions: https://github.com/henrikfroehling/Trakt.NET/discussions
+        If you have any questions, please feel free to ask in the discussions: https://github.com/henrikfroehling/Trakt.NET/discussions
   - type: textarea
     id: description
     attributes:
