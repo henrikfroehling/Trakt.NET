@@ -1,3 +1,6 @@
+**Notice:** _This project is still in development, but development frequency is very low currently due to limited time and because I'm working on other projects which have a higher priority._
+
+
 ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/trending_movies_shows.gif)
 *<sup>Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))</sup>*
 
