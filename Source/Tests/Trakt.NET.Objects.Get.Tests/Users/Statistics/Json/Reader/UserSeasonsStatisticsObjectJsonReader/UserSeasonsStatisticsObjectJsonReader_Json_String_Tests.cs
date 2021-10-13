@@ -84,11 +84,11 @@
         }
 
         [Fact]
-        public void Test_UserSeasonsStatisticsObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_UserSeasonsStatisticsObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new UserSeasonsStatisticsObjectJsonReader();
             Func<Task<ITraktUserSeasonsStatistics>> userSeasonsStatistics = () => jsonReader.ReadObjectAsync(default(string));
-            userSeasonsStatistics.Should().Throw<ArgumentNullException>();
+            await userSeasonsStatistics.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

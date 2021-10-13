@@ -105,11 +105,11 @@
         }
 
         [Fact]
-        public void Test_MostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_MostAnticipatedMovieObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new MostAnticipatedMovieObjectJsonReader();
             Func<Task<ITraktMostAnticipatedMovie>> traktMostAnticipatedMovie = () => jsonReader.ReadObjectAsync(default(string));
-            traktMostAnticipatedMovie.Should().Throw<ArgumentNullException>();
+            await traktMostAnticipatedMovie.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

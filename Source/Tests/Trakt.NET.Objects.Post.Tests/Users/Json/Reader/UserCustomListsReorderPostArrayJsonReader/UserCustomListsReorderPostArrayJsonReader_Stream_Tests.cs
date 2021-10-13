@@ -154,11 +154,11 @@
         }
 
         [Fact]
-        public void Test_UserCustomListsReorderPostArrayJsonReader_ReadArray_From_Stream_Null()
+        public async Task Test_UserCustomListsReorderPostArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktUserCustomListsReorderPost>();
             Func<Task<IEnumerable<ITraktUserCustomListsReorderPost>>> traktUserCustomListsReorderPosts = () => traktJsonReader.ReadArrayAsync(default(Stream));
-            traktUserCustomListsReorderPosts.Should().Throw<ArgumentNullException>();
+            await traktUserCustomListsReorderPosts.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

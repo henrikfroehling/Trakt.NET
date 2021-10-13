@@ -90,25 +90,25 @@
             TraktClient client = TestUtility.GetOAuthMockClient(REORDER_CUSTOM_LIST_ITEMS_URI, postJson, CUSTOM_LIST_ITEMS_REORDER_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktUserCustomListsReorderPostResponse>>> act = () => client.Users.ReorderCustomListItemsAsync(null, LIST_ID, REORDERED_CUSTOM_LIST_ITEMS);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.ReorderCustomListItemsAsync(string.Empty, LIST_ID, REORDERED_CUSTOM_LIST_ITEMS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.ReorderCustomListItemsAsync("user name", LIST_ID, REORDERED_CUSTOM_LIST_ITEMS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.ReorderCustomListItemsAsync("username", null, REORDERED_CUSTOM_LIST_ITEMS);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.ReorderCustomListItemsAsync("username", string.Empty, REORDERED_CUSTOM_LIST_ITEMS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.ReorderCustomListItemsAsync("username", "list id", REORDERED_CUSTOM_LIST_ITEMS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.ReorderCustomListItemsAsync(USERNAME, LIST_ID, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
         }
     }
 }

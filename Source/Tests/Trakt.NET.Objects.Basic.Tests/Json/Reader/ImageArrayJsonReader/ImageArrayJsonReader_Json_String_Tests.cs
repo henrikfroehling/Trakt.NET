@@ -118,11 +118,11 @@
         }
 
         [Fact]
-        public void Test_ImageArrayJsonReader_ReadArray_From_Json_String_Null()
+        public async Task Test_ImageArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktImage>();
             Func<Task<IEnumerable<ITraktImage>>> traktImages = () => jsonReader.ReadArrayAsync(default(string));
-            traktImages.Should().Throw<ArgumentNullException>();
+            await traktImages.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

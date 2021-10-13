@@ -709,11 +709,11 @@
         }
 
         [Fact]
-        public void Test_PersonObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_PersonObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new PersonObjectJsonReader();
             Func<Task<ITraktPerson>> traktPerson = () => traktJsonReader.ReadObjectAsync(default(Stream));
-            traktPerson.Should().Throw<ArgumentNullException>();
+            await traktPerson.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

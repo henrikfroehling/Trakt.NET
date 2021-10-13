@@ -71,18 +71,18 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_FollowUser_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_FollowUser_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(FOLLOW_USER_URI, FOLLOW_USER_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktUserFollowUserPostResponse>>> act = () => client.Users.FollowUserAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.FollowUserAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.FollowUserAsync("user name");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

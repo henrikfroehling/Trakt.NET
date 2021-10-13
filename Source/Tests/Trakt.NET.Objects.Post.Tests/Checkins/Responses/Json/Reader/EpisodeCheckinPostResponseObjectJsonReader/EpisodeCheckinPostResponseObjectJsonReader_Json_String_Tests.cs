@@ -497,11 +497,11 @@
         }
 
         [Fact]
-        public void Test_EpisodeCheckinPostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_EpisodeCheckinPostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new EpisodeCheckinPostResponseObjectJsonReader();
             Func<Task<ITraktEpisodeCheckinPostResponse>> checkinEpisodeResponse = () => jsonReader.ReadObjectAsync(default(string));
-            checkinEpisodeResponse.Should().Throw<ArgumentNullException>();
+            await checkinEpisodeResponse.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

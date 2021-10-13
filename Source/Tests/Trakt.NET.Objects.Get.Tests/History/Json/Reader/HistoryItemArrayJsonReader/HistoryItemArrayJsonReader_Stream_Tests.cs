@@ -27,11 +27,11 @@
         }
 
         [Fact]
-        public void Test_HistoryItemArrayJsonReader_ReadArray_From_Stream_Null()
+        public async Task Test_HistoryItemArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktHistoryItem>();
             Func<Task<IEnumerable<ITraktHistoryItem>>> traktHistoryItems = () => traktJsonReader.ReadArrayAsync(default(Stream));
-            traktHistoryItems.Should().Throw<ArgumentNullException>();
+            await traktHistoryItems.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

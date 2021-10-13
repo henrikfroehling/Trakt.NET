@@ -110,11 +110,11 @@
         }
 
         [Fact]
-        public void Test_ShowAliasObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_ShowAliasObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new ShowAliasObjectJsonReader();
             Func<Task<ITraktShowAlias>> traktShowAlias = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktShowAlias.Should().Throw<ArgumentNullException>();
+            await traktShowAlias.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

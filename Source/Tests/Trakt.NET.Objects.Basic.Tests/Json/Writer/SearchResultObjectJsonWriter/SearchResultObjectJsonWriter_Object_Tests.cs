@@ -20,11 +20,11 @@
     public partial class SearchResultObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_SearchResultObjectJsonWriter_WriteObject_Object_Exceptions()
+        public async Task Test_SearchResultObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new SearchResultObjectJsonWriter();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

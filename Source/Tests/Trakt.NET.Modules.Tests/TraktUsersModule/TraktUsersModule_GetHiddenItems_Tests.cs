@@ -350,17 +350,17 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetHiddenItems_With_Type_And_Page_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetHiddenItems_With_Type_And_Page_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
                 GetHiddenItemsUri,
                 HIDDEN_ITEMS_JSON, 1, 10, 1, HIDDEN_ITEMS_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetHiddenItemsAsync(TraktHiddenItemsSection.Unspecified);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -14,11 +14,11 @@
     public partial class RatingsItemObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_RatingsItemObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_RatingsItemObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new RatingsItemObjectJsonReader();
             Func<Task<ITraktRatingsItem>> traktRatingItem = () => jsonReader.ReadObjectAsync(default(Stream));
-            traktRatingItem.Should().Throw<ArgumentNullException>();
+            await traktRatingItem.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

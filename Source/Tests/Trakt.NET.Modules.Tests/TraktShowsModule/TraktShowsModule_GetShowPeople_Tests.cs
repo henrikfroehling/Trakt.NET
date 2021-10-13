@@ -108,18 +108,18 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowPeople_ArgumentExceptions()
+        public async Task Test_TraktShowsModule_GetShowPeople_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, SHOW_PEOPLE_JSON);
 
             Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowPeopleAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowPeopleAsync("show id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

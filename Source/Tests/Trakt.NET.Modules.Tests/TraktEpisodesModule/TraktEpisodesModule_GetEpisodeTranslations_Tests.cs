@@ -61,27 +61,27 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeTranslations_ArgumentExceptions()
+        public async Task Test_TraktEpisodesModule_GetEpisodeTranslations_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, EPISODE_TRANSLATIONS_JSON);
 
             Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(null, SEASON_NR, EPISODE_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetEpisodeTranslationsAsync(string.Empty, SEASON_NR, EPISODE_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetEpisodeTranslationsAsync("show id", SEASON_NR, EPISODE_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, 0);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, "e");
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             act = () => client.Episodes.GetEpisodeTranslationsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, "eng");
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

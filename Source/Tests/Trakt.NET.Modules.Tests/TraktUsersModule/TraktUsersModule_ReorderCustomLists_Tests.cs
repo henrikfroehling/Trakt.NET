@@ -90,16 +90,16 @@
             TraktClient client = TestUtility.GetOAuthMockClient(REORDER_CUSTOM_LISTS_URI, postJson, CUSTOM_LISTS_REORDER_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktUserCustomListsReorderPostResponse>>> act = () => client.Users.ReorderCustomListsAsync(null, REORDERED_CUSTOM_LISTS);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.ReorderCustomListsAsync(string.Empty, REORDERED_CUSTOM_LISTS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.ReorderCustomListsAsync("user name", REORDERED_CUSTOM_LISTS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.ReorderCustomListsAsync(USERNAME, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
         }
     }
 }

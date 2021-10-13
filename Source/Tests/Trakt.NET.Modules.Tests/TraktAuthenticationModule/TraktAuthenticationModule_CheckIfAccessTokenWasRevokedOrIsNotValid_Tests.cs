@@ -63,18 +63,18 @@
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAccessTokenWasRevokedOrIsNotValid_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_CheckIfAccessTokenWasRevokedOrIsNotValid_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
 
             Func<Task<bool>> act = () => client.Authentication.CheckIfAccessTokenWasRevokedOrIsNotValidAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.CheckIfAccessTokenWasRevokedOrIsNotValidAsync("access token");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

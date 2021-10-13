@@ -34,11 +34,11 @@
         }
 
         [Fact]
-        public void Test_SyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_SyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new SyncCommentsLastActivitiesObjectJsonReader();
             Func<Task<ITraktSyncCommentsLastActivities>> commentsLastActivities = () => jsonReader.ReadObjectAsync(default(string));
-            commentsLastActivities.Should().Throw<ArgumentNullException>();
+            await commentsLastActivities.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

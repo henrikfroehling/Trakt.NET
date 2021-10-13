@@ -105,18 +105,18 @@
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMoviePeople_ArgumentExceptions()
+        public async Task Test_TraktMoviesModule_GetMoviePeople_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_PEOPLE_URI, MOVIE_PEOPLE_JSON);
 
             Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Movies.GetMoviePeopleAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMoviePeopleAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMoviePeopleAsync("movie id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -16,12 +16,12 @@
     public partial class SeasonCollectionProgressObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_SeasonCollectionProgressObjectJsonWriter_WriteObject_StringWriter_Exceptions()
+        public async Task Test_SeasonCollectionProgressObjectJsonWriter_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new SeasonCollectionProgressObjectJsonWriter();
             ITraktSeasonCollectionProgress traktSeasonCollectionProgress = new TraktSeasonCollectionProgress();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktSeasonCollectionProgress);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

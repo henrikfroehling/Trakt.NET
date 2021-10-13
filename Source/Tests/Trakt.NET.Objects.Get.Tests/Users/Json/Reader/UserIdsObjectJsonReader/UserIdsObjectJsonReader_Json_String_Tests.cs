@@ -36,11 +36,11 @@
         }
 
         [Fact]
-        public void Test_UserIdsObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_UserIdsObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new UserIdsObjectJsonReader();
             Func<Task<ITraktUserIds>> userIds = () => jsonReader.ReadObjectAsync(default(string));
-            userIds.Should().Throw<ArgumentNullException>();
+            await userIds.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

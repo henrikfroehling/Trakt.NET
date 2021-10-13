@@ -90,18 +90,18 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetFollowing_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetFollowing_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_FOLLOWING_URI, FOLLOWERS_JSON);
 
             Func<Task<TraktListResponse<ITraktUserFollower>>> act = () => client.Users.GetFollowingAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetFollowingAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetFollowingAsync("user name");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

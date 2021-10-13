@@ -190,11 +190,11 @@
         }
 
         [Fact]
-        public void Test_SyncListsLastActivitiesObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_SyncListsLastActivitiesObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new SyncListsLastActivitiesObjectJsonReader();
             Func<Task<ITraktSyncListsLastActivities>> listsLastActivities = () => jsonReader.ReadObjectAsync(default(Stream));
-            listsLastActivities.Should().Throw<ArgumentNullException>();
+            await listsLastActivities.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -166,11 +166,11 @@
         }
 
         [Fact]
-        public void Test_UserFollowUserPostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_UserFollowUserPostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new UserFollowUserPostResponseObjectJsonReader();
             Func<Task<ITraktUserFollowUserPostResponse>> userFollowUserPostResponse = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            userFollowUserPostResponse.Should().Throw<ArgumentNullException>();
+            await userFollowUserPostResponse.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

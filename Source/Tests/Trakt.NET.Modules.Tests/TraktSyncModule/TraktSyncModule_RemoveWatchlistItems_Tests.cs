@@ -99,10 +99,10 @@
             TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, postJson, WATCHLIST_REMOVE_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.RemoveWatchlistItemsAsync(new TraktSyncWatchlistPost());
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             ITraktSyncWatchlistPost watchlistRemovePost = new TraktSyncWatchlistPost
             {
@@ -112,7 +112,7 @@
             };
 
             act = () => client.Sync.RemoveWatchlistItemsAsync(watchlistRemovePost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

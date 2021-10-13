@@ -167,11 +167,11 @@
         }
 
         [Fact]
-        public void Test_CountryArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public async Task Test_CountryArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktCountry>();
             Func<Task<IEnumerable<ITraktCountry>>> traktCountries = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktCountries.Should().Throw<ArgumentNullException>();
+            await traktCountries.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

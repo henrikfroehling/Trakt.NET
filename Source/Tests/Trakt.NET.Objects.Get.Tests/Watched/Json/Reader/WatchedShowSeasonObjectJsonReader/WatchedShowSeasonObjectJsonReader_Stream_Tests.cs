@@ -135,11 +135,11 @@
         }
 
         [Fact]
-        public void Test_WatchedShowSeasonObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_WatchedShowSeasonObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new WatchedShowSeasonObjectJsonReader();
             Func<Task<ITraktWatchedShowSeason>> traktWatchedShowSeason = () => jsonReader.ReadObjectAsync(default(Stream));
-            traktWatchedShowSeason.Should().Throw<ArgumentNullException>();
+            await traktWatchedShowSeason.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

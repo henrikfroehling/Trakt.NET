@@ -12,11 +12,11 @@
     public partial class HistoryItemObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_HistoryItemObjectJsonWriter_WriteObject_Object_Exceptions()
+        public async Task Test_HistoryItemObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new HistoryItemObjectJsonWriter();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktHistoryItem));
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
     }
 }

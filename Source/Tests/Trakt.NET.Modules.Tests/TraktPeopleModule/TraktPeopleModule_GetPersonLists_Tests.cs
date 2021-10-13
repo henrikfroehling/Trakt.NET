@@ -293,19 +293,19 @@
         }
 
         [Fact]
-        public void Test_TraktPeopleModule_GetPersonLists_ArgumentsExceptions()
+        public async Task Test_TraktPeopleModule_GetPersonLists_ArgumentsExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_PERSON_LISTS_URI,
                                                            PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.People.GetPersonListsAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.People.GetPersonListsAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.People.GetPersonListsAsync("person id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

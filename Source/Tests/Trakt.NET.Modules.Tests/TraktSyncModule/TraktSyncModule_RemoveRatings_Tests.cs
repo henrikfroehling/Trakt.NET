@@ -99,10 +99,10 @@
             TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_RATINGS_URI, postJson, RATINGS_REMOVE_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>>> act = () => client.Sync.RemoveRatingsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.RemoveRatingsAsync(new TraktSyncRatingsPost());
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             ITraktSyncRatingsPost ratingsRemovePost = new TraktSyncRatingsPost
             {
@@ -112,7 +112,7 @@
             };
 
             act = () => client.Sync.RemoveRatingsAsync(ratingsRemovePost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

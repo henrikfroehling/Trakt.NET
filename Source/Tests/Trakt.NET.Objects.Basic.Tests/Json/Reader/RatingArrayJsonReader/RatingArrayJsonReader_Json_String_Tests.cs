@@ -322,11 +322,11 @@
         }
 
         [Fact]
-        public void Test_RatingArrayJsonReader_ReadArray_From_Json_String_Null()
+        public async Task Test_RatingArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktRating>();
             Func<Task<IEnumerable<ITraktRating>>> traktRatings = () => jsonReader.ReadArrayAsync(default(string));
-            traktRatings.Should().Throw<ArgumentNullException>();
+            await traktRatings.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

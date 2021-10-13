@@ -106,28 +106,28 @@
                                                                 CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktUserCustomListItemsRemovePostResponse>>> act = () => client.Users.RemoveCustomListItemsAsync(null, LIST_ID, RemoveCustomListItemsPost);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.RemoveCustomListItemsAsync(string.Empty, LIST_ID, RemoveCustomListItemsPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.RemoveCustomListItemsAsync("user name", LIST_ID, RemoveCustomListItemsPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, null, RemoveCustomListItemsPost);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, string.Empty, RemoveCustomListItemsPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, "list id", RemoveCustomListItemsPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, new TraktUserCustomListItemsPost());
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             ITraktUserCustomListItemsPost customListItems = new TraktUserCustomListItemsPost
             {
@@ -137,7 +137,7 @@
             };
 
             act = () => client.Users.RemoveCustomListItemsAsync(USERNAME, LIST_ID, customListItems);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

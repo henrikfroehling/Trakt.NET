@@ -13,12 +13,12 @@
     public partial class DeviceArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_DeviceArrayJsonWriter_WriteArray_Object_Exceptions()
+        public async Task Test_DeviceArrayJsonWriter_WriteArray_Object_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktDevice>();
             IEnumerable<ITraktDevice> traktDevices = new List<TraktDevice>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktDevice>));
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

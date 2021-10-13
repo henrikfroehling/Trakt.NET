@@ -14,11 +14,11 @@
     public partial class RecommendationObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_RecommendationObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_RecommendationObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new RecommendationObjectJsonReader();
             Func<Task<ITraktRecommendation>> traktRecommendation = () => jsonReader.ReadObjectAsync(default(Stream));
-            traktRecommendation.Should().Throw<ArgumentNullException>();
+            await traktRecommendation.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

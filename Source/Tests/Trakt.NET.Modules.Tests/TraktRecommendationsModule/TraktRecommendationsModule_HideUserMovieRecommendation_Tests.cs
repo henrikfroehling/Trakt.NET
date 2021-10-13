@@ -58,18 +58,18 @@
         }
 
         [Fact]
-        public void Test_TraktRecommendationsModule_HideMovieRecommendation_ArgumentExceptions()
+        public async Task Test_TraktRecommendationsModule_HideMovieRecommendation_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(HIDE_MOVIE_RECOMMENDATION_URI, HttpStatusCode.NoContent);
 
             Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideMovieRecommendationAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Recommendations.HideMovieRecommendationAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Recommendations.HideMovieRecommendationAsync("movie id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

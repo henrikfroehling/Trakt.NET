@@ -497,11 +497,11 @@
         }
 
         [Fact]
-        public void Test_SyncMoviesLastActivitiesObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_SyncMoviesLastActivitiesObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new SyncMoviesLastActivitiesObjectJsonReader();
             Func<Task<ITraktSyncMoviesLastActivities>> moviesLastActivities = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            moviesLastActivities.Should().Throw<ArgumentNullException>();
+            await moviesLastActivities.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

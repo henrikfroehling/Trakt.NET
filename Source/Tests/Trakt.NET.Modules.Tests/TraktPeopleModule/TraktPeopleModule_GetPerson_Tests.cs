@@ -101,39 +101,39 @@
         }
 
         [Fact]
-        public void Test_TraktPeopleModule_GetPerson_ArgumentExceptions()
+        public async Task Test_TraktPeopleModule_GetPerson_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_PERSON_URI, PERSON_MINIMAL_JSON);
 
             Func<Task<TraktResponse<ITraktPerson>>> act = () => client.People.GetPersonAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.People.GetPersonAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.People.GetPersonAsync("person id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
-        public void Test_TraktPeopleModule_GetMultiplePersons_ArgumentExceptions()
+        public async Task Test_TraktPeopleModule_GetMultiplePersons_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_PERSON_URI, PERSON_MINIMAL_JSON);
 
             Func<Task<IEnumerable<TraktResponse<ITraktPerson>>>> act = () => client.People.GetMultiplePersonsAsync(null);
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             act = () => client.People.GetMultiplePersonsAsync(new TraktMultipleObjectsQueryParams());
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             act = () => client.People.GetMultiplePersonsAsync(new TraktMultipleObjectsQueryParams { { null } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.People.GetMultiplePersonsAsync(new TraktMultipleObjectsQueryParams { { string.Empty } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.People.GetMultiplePersonsAsync(new TraktMultipleObjectsQueryParams { { "person id" } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

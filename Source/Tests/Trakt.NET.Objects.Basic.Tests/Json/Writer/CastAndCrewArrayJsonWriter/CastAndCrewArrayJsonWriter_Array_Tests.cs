@@ -14,11 +14,11 @@
     public partial class CastAndCrewArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_CastAndCrewArrayJsonWriter_WriteArray_Array_Exceptions()
+        public async Task Test_CastAndCrewArrayJsonWriter_WriteArray_Array_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCastAndCrew>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

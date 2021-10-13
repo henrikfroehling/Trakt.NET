@@ -196,11 +196,11 @@
         }
 
         [Fact]
-        public void Test_SharingArrayJsonReader_ReadArray_From_Stream_Null()
+        public async Task Test_SharingArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktSharing>();
             Func<Task<IEnumerable<ITraktSharing>>> traktSharings = () => jsonReader.ReadArrayAsync(default(Stream));
-            traktSharings.Should().Throw<ArgumentNullException>();
+            await traktSharings.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

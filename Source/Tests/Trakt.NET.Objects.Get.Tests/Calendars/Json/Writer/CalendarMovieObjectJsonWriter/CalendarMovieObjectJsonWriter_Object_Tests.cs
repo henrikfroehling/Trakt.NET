@@ -15,11 +15,11 @@
     public partial class CalendarMovieObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_CalendarMovieObjectJsonWriter_WriteObject_Object_Exceptions()
+        public async Task Test_CalendarMovieObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new CalendarMovieObjectJsonWriter();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

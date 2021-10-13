@@ -16,12 +16,12 @@
     public partial class CrewMemberArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_CrewMemberArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
+        public async Task Test_CrewMemberArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCrewMember>();
             IEnumerable<ITraktCrewMember> traktCrewMembers = new List<TraktCrewMember>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktCrewMembers);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -959,11 +959,11 @@
         }
 
         [Fact]
-        public void Test_WatchedShowObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_WatchedShowObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new WatchedShowObjectJsonReader();
             Func<Task<ITraktWatchedShow>> traktWatchedShow = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktWatchedShow.Should().Throw<ArgumentNullException>();
+            await traktWatchedShow.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

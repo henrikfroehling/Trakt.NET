@@ -15,12 +15,12 @@
     public partial class NetworkArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_NetworkArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
+        public async Task Test_NetworkArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktNetwork>();
             IEnumerable<ITraktNetwork> traktNetworks = new List<TraktNetwork>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktNetworks);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

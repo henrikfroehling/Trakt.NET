@@ -337,11 +337,11 @@
         }
 
         [Fact]
-        public void Test_UserCustomListItemsPostResponseGroupObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_UserCustomListItemsPostResponseGroupObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new UserCustomListItemsPostResponseGroupObjectJsonReader();
             Func<Task<ITraktUserCustomListItemsPostResponseGroup>> customListItemsPostResponseGroup = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            customListItemsPostResponseGroup.Should().Throw<ArgumentNullException>();
+            await customListItemsPostResponseGroup.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

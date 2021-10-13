@@ -316,11 +316,11 @@
         }
 
         [Fact]
-        public void Test_WatchedMovieObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_WatchedMovieObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new WatchedMovieObjectJsonReader();
             Func<Task<ITraktWatchedMovie>> traktWatchedMovie = () => jsonReader.ReadObjectAsync(default(Stream));
-            traktWatchedMovie.Should().Throw<ArgumentNullException>();
+            await traktWatchedMovie.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

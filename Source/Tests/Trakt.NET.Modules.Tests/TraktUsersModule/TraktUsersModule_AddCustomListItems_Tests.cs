@@ -113,28 +113,28 @@
 
             Func<Task<TraktResponse<ITraktUserCustomListItemsPostResponse>>> act =
                 () => client.Users.AddCustomListItemsAsync(null, LIST_ID, AddCustomListItemsPost);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.AddCustomListItemsAsync(string.Empty, LIST_ID, AddCustomListItemsPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.AddCustomListItemsAsync("user name", LIST_ID, AddCustomListItemsPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.AddCustomListItemsAsync(USERNAME, null, AddCustomListItemsPost);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.AddCustomListItemsAsync(USERNAME, string.Empty, AddCustomListItemsPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.AddCustomListItemsAsync(USERNAME, "list id", AddCustomListItemsPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, new TraktUserCustomListItemsPost());
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             ITraktUserCustomListItemsPost customListItems = new TraktUserCustomListItemsPost
             {
@@ -144,7 +144,7 @@
             };
 
             act = () => client.Users.AddCustomListItemsAsync(USERNAME, LIST_ID, customListItems);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

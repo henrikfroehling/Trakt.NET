@@ -14,11 +14,11 @@
     public partial class UserLikeItemObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_UserLikeItemObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_UserLikeItemObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new UserLikeItemObjectJsonReader();
             Func<Task<ITraktUserLikeItem>> traktUserLikeItem = () => jsonReader.ReadObjectAsync(default(Stream));
-            traktUserLikeItem.Should().Throw<ArgumentNullException>();
+            await traktUserLikeItem.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

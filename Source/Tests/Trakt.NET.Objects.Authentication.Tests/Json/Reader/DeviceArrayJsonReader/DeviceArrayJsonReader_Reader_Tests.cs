@@ -174,11 +174,11 @@
         }
 
         [Fact]
-        public void Test_DeviceArrayJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_DeviceArrayJsonReader_ReadObject_From_JsonReader_Null()
         {
             var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
             Func<Task<IEnumerable<ITraktDevice>>> traktDevices = () =>objectJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktDevices.Should().Throw<ArgumentNullException>();
+            await traktDevices.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

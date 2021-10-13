@@ -920,11 +920,11 @@
         }
 
         [Fact]
-        public void Test_UserObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_UserObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new UserObjectJsonReader();
             Func<Task<ITraktUser>> user = () => jsonReader.ReadObjectAsync(default(string));
-            user.Should().Throw<ArgumentNullException>();
+            await user.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

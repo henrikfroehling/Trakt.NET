@@ -46,11 +46,11 @@
         }
 
         [Fact]
-        public void Test_PostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_PostResponseNotFoundMovieObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new PostResponseNotFoundMovieObjectJsonReader();
             Func<Task<ITraktPostResponseNotFoundMovie>> postResponseNotFoundMovie = () => jsonReader.ReadObjectAsync(default(Stream));
-            postResponseNotFoundMovie.Should().Throw<ArgumentNullException>();
+            await postResponseNotFoundMovie.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

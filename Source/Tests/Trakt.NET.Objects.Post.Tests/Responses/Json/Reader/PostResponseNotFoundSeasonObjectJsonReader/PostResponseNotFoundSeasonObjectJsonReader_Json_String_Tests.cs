@@ -38,11 +38,11 @@
         }
 
         [Fact]
-        public void Test_PostResponseNotFoundSeasonObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_PostResponseNotFoundSeasonObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new PostResponseNotFoundSeasonObjectJsonReader();
             Func<Task<ITraktPostResponseNotFoundSeason>> postResponseNotFoundSeason = () => jsonReader.ReadObjectAsync(default(string));
-            postResponseNotFoundSeason.Should().Throw<ArgumentNullException>();
+            await postResponseNotFoundSeason.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

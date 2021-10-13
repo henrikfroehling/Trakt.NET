@@ -223,11 +223,11 @@
         }
 
         [Fact]
-        public void Test_CommentLikeArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktCommentLike>();
             Func<Task<IEnumerable<ITraktCommentLike>>> traktCommentLikes = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktCommentLikes.Should().Throw<ArgumentNullException>();
+            await traktCommentLikes.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -21,12 +21,12 @@
     public partial class SearchResultObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_SearchResultObjectJsonWriter_WriteObject_StringWriter_Exceptions()
+        public async Task Test_SearchResultObjectJsonWriter_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new SearchResultObjectJsonWriter();
             ITraktSearchResult traktSearchResult = new TraktSearchResult();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktSearchResult);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -155,11 +155,11 @@
         }
 
         [Fact]
-        public void Test_UserNetworkStatisticsObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_UserNetworkStatisticsObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new UserNetworkStatisticsObjectJsonReader();
             Func<Task<ITraktUserNetworkStatistics>> userNetworkStatistics = () => jsonReader.ReadObjectAsync(default(string));
-            userNetworkStatistics.Should().Throw<ArgumentNullException>();
+            await userNetworkStatistics.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

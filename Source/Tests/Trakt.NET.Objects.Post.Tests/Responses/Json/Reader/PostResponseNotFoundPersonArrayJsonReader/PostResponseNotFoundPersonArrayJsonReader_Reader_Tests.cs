@@ -86,11 +86,11 @@
         }
 
         [Fact]
-        public void Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public async Task Test_PostResponseNotFoundPersonArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundPerson>();
             Func<Task<IEnumerable<ITraktPostResponseNotFoundPerson>>> notFoundPersons = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            notFoundPersons.Should().Throw<ArgumentNullException>();
+            await notFoundPersons.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

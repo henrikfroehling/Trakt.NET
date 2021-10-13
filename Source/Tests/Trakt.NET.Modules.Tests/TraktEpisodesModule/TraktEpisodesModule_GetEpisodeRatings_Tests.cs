@@ -75,21 +75,21 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisodeRatings_ArgumentExceptions()
+        public async Task Test_TraktEpisodesModule_GetEpisodeRatings_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_EPISODE_RATINGS_URI, EPISODE_RATINGS_JSON);
 
             Func<Task<TraktResponse<ITraktRating>>> act = () => client.Episodes.GetEpisodeRatingsAsync(null, SEASON_NR, EPISODE_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetEpisodeRatingsAsync(string.Empty, SEASON_NR, EPISODE_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetEpisodeRatingsAsync("show id", SEASON_NR, EPISODE_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetEpisodeRatingsAsync(SHOW_ID, SEASON_NR, 0);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

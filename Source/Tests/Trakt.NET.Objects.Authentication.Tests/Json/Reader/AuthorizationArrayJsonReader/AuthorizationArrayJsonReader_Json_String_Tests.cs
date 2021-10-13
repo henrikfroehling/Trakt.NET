@@ -183,11 +183,11 @@
         }
 
         [Fact]
-        public void Test_AuthorizationArrayJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_AuthorizationArrayJsonReader_ReadObject_From_Json_String_Null()
         {
             var objectJsonReader = new AuthorizationArrayJsonReader();
             Func<Task<IEnumerable<ITraktAuthorization>>> traktAuthorizations = () => objectJsonReader.ReadArrayAsync(default(string));
-            traktAuthorizations.Should().Throw<ArgumentNullException>();
+            await traktAuthorizations.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

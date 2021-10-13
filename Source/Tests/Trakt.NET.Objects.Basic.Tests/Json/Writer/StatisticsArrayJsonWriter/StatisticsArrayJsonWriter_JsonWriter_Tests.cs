@@ -15,12 +15,12 @@
     public partial class StatisticsArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_StatisticsArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
+        public async Task Test_StatisticsArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktStatistics>();
             IEnumerable<ITraktStatistics> traktStatistics = new List<TraktStatistics>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktStatistics);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

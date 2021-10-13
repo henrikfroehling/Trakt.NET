@@ -370,11 +370,11 @@
         }
 
         [Fact]
-        public void Test_CollectionMovieObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_CollectionMovieObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new CollectionMovieObjectJsonReader();
             Func<Task<ITraktCollectionMovie>> traktCollectionMovie = () => jsonReader.ReadObjectAsync(default(Stream));
-            traktCollectionMovie.Should().Throw<ArgumentNullException>();
+            await traktCollectionMovie.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

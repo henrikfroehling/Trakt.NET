@@ -252,11 +252,11 @@
         }
 
         [Fact]
-        public void Test_CertificationsArrayJsonReader_ReadArray_From_Stream_Null()
+        public async Task Test_CertificationsArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertifications>();
             Func<Task<IEnumerable<ITraktCertifications>>> multipleTraktCertifications = () => jsonReader.ReadArrayAsync(default(Stream));
-            multipleTraktCertifications.Should().Throw<ArgumentNullException>();
+            await multipleTraktCertifications.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

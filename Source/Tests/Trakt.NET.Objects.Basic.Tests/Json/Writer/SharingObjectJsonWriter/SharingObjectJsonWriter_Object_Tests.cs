@@ -12,11 +12,11 @@
     public partial class SharingObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_SharingObjectJsonWriter_WriteObject_Object_Exceptions()
+        public async Task Test_SharingObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new SharingObjectJsonWriter();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

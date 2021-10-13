@@ -357,17 +357,17 @@
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktEpisodeScrobblePostResponse>>> act = () => client.Scrobble.StartEpisodeAsync(null, START_PROGRESS);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             episode.Ids = null;
 
             act = () => client.Scrobble.StartEpisodeAsync(episode, START_PROGRESS);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = () => client.Scrobble.StartEpisodeAsync(episode, START_PROGRESS);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             episode.Ids = new TraktEpisodeIds
             {
@@ -379,63 +379,63 @@
             };
 
             act = () => client.Scrobble.StartEpisodeAsync(episode, -0.0001f);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             act = () => client.Scrobble.StartEpisodeAsync(episode, 100.0001f);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.SeasonNumber = -1;
 
             act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             episode.Ids = null;
             episode.SeasonNumber = 0;
             episode.Number = 0;
 
             act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
             episode.Number = 0;
 
             act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             episode.Ids = null;
             episode.Number = 1;
             show.Title = string.Empty;
 
             act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, START_PROGRESS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             episode.Ids = null;
             show.Title = "Breaking Bad";
 
             act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, -0.0001f);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, 100.0001f);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             episode.Ids = new TraktEpisodeIds();
 
             act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, -0.0001f);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             act = () => client.Scrobble.StartEpisodeWithShowAsync(episode, show, 100.0001f);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

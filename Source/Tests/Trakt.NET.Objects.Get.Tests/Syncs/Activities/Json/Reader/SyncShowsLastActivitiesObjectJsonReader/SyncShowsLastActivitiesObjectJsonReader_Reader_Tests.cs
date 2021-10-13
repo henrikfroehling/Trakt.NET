@@ -266,11 +266,11 @@
         }
 
         [Fact]
-        public void Test_SyncShowsLastActivitiesObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_SyncShowsLastActivitiesObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new SyncShowsLastActivitiesObjectJsonReader();
             Func<Task<ITraktSyncShowsLastActivities>> showsLastActivities = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            showsLastActivities.Should().Throw<ArgumentNullException>();
+            await showsLastActivities.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

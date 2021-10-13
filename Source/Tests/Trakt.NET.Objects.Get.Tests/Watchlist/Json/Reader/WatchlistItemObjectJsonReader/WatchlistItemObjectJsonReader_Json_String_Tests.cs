@@ -12,11 +12,11 @@
     public partial class WatchlistItemObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_WatchlistItemObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_WatchlistItemObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new WatchlistItemObjectJsonReader();
             Func<Task<ITraktWatchlistItem>> traktWatchlistItem = () => jsonReader.ReadObjectAsync(default(string));
-            traktWatchlistItem.Should().Throw<ArgumentNullException>();
+            await traktWatchlistItem.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

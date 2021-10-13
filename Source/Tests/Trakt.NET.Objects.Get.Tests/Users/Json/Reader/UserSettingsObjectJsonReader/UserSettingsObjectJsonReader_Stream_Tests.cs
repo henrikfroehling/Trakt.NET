@@ -506,11 +506,11 @@
         }
 
         [Fact]
-        public void Test_UserSettingsObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_UserSettingsObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new UserSettingsObjectJsonReader();
             Func<Task<ITraktUserSettings>> userSettings = () => jsonReader.ReadObjectAsync(default(Stream));
-            userSettings.Should().Throw<ArgumentNullException>();
+            await userSettings.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

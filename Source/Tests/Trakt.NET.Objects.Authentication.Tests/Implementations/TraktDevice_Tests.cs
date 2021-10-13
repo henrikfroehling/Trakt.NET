@@ -24,7 +24,7 @@
             traktDevice.IntervalInMilliseconds.Should().Be(0U);
             traktDevice.IsValid.Should().BeFalse();
             traktDevice.IsExpiredUnused.Should().BeTrue();
-            traktDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
+            traktDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromMilliseconds(1000));
         }
 
         [Fact]
@@ -42,7 +42,7 @@
             traktDevice.IntervalInMilliseconds.Should().Be(5000U);
             traktDevice.IsValid.Should().BeTrue();
             traktDevice.IsExpiredUnused.Should().BeFalse();
-            traktDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1000);
+            traktDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromMilliseconds(1000));
         }
 
         [Fact]

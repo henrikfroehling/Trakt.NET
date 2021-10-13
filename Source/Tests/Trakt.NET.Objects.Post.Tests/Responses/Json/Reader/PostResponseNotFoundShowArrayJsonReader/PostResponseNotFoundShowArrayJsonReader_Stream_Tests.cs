@@ -86,11 +86,11 @@
         }
 
         [Fact]
-        public void Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_Stream_Null()
+        public async Task Test_PostResponseNotFoundShowArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundShow>();
             Func<Task<IEnumerable<ITraktPostResponseNotFoundShow>>> traktShowCollectionProgress = () => jsonReader.ReadArrayAsync(default(Stream));
-            traktShowCollectionProgress.Should().Throw<ArgumentNullException>();
+            await traktShowCollectionProgress.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

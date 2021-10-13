@@ -155,11 +155,11 @@
         }
 
         [Fact]
-        public void Test_ShowAirsObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ShowAirsObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new ShowAirsObjectJsonReader();
             Func<Task<ITraktShowAirs>> traktShowAirs = () => jsonReader.ReadObjectAsync(default(string));
-            traktShowAirs.Should().Throw<ArgumentNullException>();
+            await traktShowAirs.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

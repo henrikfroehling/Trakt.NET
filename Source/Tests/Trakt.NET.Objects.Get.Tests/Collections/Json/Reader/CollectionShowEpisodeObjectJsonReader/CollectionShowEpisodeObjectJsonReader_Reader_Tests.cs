@@ -232,11 +232,11 @@
         }
 
         [Fact]
-        public void Test_CollectionShowEpisodeObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_CollectionShowEpisodeObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new CollectionShowEpisodeObjectJsonReader();
             Func<Task<ITraktCollectionShowEpisode>> traktCollectionShowEpisode = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktCollectionShowEpisode.Should().Throw<ArgumentNullException>();
+            await traktCollectionShowEpisode.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

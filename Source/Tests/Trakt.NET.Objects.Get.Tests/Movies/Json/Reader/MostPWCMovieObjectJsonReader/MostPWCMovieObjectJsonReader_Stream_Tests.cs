@@ -308,11 +308,11 @@
         }
 
         [Fact]
-        public void Test_MostPWCMovieObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_MostPWCMovieObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new MostPWCMovieObjectJsonReader();
             Func<Task<ITraktMostPWCMovie>> traktMostPWCMovie = () => traktJsonReader.ReadObjectAsync(default(Stream));
-            traktMostPWCMovie.Should().Throw<ArgumentNullException>();
+            await traktMostPWCMovie.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

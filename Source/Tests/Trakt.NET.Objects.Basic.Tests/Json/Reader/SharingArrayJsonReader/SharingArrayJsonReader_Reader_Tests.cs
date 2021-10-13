@@ -203,11 +203,11 @@
         }
 
         [Fact]
-        public void Test_SharingArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public async Task Test_SharingArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktSharing>();
             Func<Task<IEnumerable<ITraktSharing>>> traktSharings = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktSharings.Should().Throw<ArgumentNullException>();
+            await traktSharings.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

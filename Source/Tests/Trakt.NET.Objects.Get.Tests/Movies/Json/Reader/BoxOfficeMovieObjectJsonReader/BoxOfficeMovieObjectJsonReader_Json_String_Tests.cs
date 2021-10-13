@@ -105,11 +105,11 @@
         }
 
         [Fact]
-        public void Test_BoxOfficeMovieObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_BoxOfficeMovieObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new BoxOfficeMovieObjectJsonReader();
             Func<Task<ITraktBoxOfficeMovie>> traktBoxOfficeMovie = () => jsonReader.ReadObjectAsync(default(string));
-            traktBoxOfficeMovie.Should().Throw<ArgumentNullException>();
+            await traktBoxOfficeMovie.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

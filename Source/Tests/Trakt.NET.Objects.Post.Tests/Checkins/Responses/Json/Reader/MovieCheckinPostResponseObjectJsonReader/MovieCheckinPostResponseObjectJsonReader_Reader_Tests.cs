@@ -362,11 +362,11 @@
         }
 
         [Fact]
-        public void Test_MovieCheckinPostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_MovieCheckinPostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new MovieCheckinPostResponseObjectJsonReader();
             Func<Task<ITraktMovieCheckinPostResponse>> checkinMovieResponse = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            checkinMovieResponse.Should().Throw<ArgumentNullException>();
+            await checkinMovieResponse.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

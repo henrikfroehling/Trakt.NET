@@ -410,11 +410,11 @@
         }
 
         [Fact]
-        public void Test_MostPWCShowObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_MostPWCShowObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new MostPWCShowObjectJsonReader();
             Func<Task<ITraktMostPWCShow>> traktMostPWCShow = () => traktJsonReader.ReadObjectAsync(default(Stream));
-            traktMostPWCShow.Should().Throw<ArgumentNullException>();
+            await traktMostPWCShow.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -14,11 +14,11 @@
     public partial class UserCommentObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_UserCommentObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_UserCommentObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new UserCommentObjectJsonReader();
             Func<Task<ITraktUserComment>> traktUserComment = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktUserComment.Should().Throw<ArgumentNullException>();
+            await traktUserComment.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

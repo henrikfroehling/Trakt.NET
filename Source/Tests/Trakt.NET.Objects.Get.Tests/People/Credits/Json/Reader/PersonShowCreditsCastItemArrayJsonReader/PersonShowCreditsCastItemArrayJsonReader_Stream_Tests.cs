@@ -241,11 +241,11 @@
         }
 
         [Fact]
-        public void Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_PersonShowCreditsCastItemArrayJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCastItem>();
             Func<Task<IEnumerable<ITraktPersonShowCreditsCastItem>>> showCreditsCastItems = () => traktJsonReader.ReadArrayAsync(default(Stream));
-            showCreditsCastItems.Should().Throw<ArgumentNullException>();
+            await showCreditsCastItems.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

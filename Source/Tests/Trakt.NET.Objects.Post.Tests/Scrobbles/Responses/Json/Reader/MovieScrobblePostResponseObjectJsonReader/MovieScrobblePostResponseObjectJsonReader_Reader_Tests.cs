@@ -458,11 +458,11 @@
         }
 
         [Fact]
-        public void Test_MovieScrobblePostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_MovieScrobblePostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new MovieScrobblePostResponseObjectJsonReader();
             Func<Task<ITraktMovieScrobblePostResponse>> movieScrobbleResponse = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            movieScrobbleResponse.Should().Throw<ArgumentNullException>();
+            await movieScrobbleResponse.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

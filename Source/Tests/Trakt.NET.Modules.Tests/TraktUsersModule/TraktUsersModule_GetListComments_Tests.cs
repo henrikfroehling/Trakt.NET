@@ -241,29 +241,29 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetListComments_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetListComments_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(
                 GET_LIST_COMMENTS_URI,
                 LIST_COMMENTS_JSON, 1, 10, 1, LIST_COMMENTS_ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Users.GetListCommentsAsync(null, LIST_ID);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetListCommentsAsync(string.Empty, LIST_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetListCommentsAsync("user name", LIST_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetListCommentsAsync(USERNAME, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetListCommentsAsync(USERNAME, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetListCommentsAsync(USERNAME, "list id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

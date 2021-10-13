@@ -22,12 +22,12 @@
     public partial class CommentItemArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_CommentItemArrayJsonWriter_WriteArray_StringWriter_Exceptions()
+        public async Task Test_CommentItemArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCommentItem>();
             IEnumerable<ITraktCommentItem> traktCommentItems = new List<TraktCommentItem>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktCommentItems);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

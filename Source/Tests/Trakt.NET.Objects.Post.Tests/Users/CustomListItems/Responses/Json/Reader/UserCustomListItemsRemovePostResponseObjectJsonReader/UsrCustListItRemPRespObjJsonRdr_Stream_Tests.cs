@@ -451,11 +451,11 @@
         }
 
         [Fact]
-        public void Test_UserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_UserCustomListItemsRemovePostResponseObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new UserCustomListItemsRemovePostResponseObjectJsonReader();
             Func<Task<ITraktUserCustomListItemsRemovePostResponse>> customListItemsRemovePostResponse = () => jsonReader.ReadObjectAsync(default(Stream));
-            customListItemsRemovePostResponse.Should().Throw<ArgumentNullException>();
+            await customListItemsRemovePostResponse.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -142,11 +142,11 @@
         }
 
         [Fact]
-        public void Test_GenreArrayJsonReader_ReadArray_From_Json_String_Null()
+        public async Task Test_GenreArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktGenre>();
             Func<Task<IEnumerable<ITraktGenre>>> traktGenres = () => jsonReader.ReadArrayAsync(default(string));
-            traktGenres.Should().Throw<ArgumentNullException>();
+            await traktGenres.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]
