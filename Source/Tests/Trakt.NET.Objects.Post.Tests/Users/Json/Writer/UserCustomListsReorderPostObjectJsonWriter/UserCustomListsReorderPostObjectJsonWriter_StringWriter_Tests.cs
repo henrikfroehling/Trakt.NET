@@ -14,12 +14,12 @@
     public partial class UserCustomListsReorderPostObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_UserCustomListsReorderPostObjectJsonWriter_WriteObject_StringWriter_Exceptions()
+        public async Task Test_UserCustomListsReorderPostObjectJsonWriter_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new UserCustomListsReorderPostObjectJsonWriter();
             ITraktUserCustomListsReorderPost traktUserCustomListsReorderPost = new TraktUserCustomListsReorderPost();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktUserCustomListsReorderPost);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

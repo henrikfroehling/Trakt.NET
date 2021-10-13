@@ -137,11 +137,11 @@
         }
 
         [Fact]
-        public void Test_RecentlyUpdatedShowObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_RecentlyUpdatedShowObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new RecentlyUpdatedShowObjectJsonReader();
             Func<Task<ITraktRecentlyUpdatedShow>> traktRecentlyUpdatedShow = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktRecentlyUpdatedShow.Should().Throw<ArgumentNullException>();
+            await traktRecentlyUpdatedShow.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

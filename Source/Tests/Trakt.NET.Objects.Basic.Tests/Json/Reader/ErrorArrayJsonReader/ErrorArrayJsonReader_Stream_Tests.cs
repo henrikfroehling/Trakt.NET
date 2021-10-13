@@ -160,11 +160,11 @@
         }
 
         [Fact]
-        public void Test_ErrorArrayJsonReader_ReadArray_From_Stream_Null()
+        public async Task Test_ErrorArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktError>();
             Func<Task<IEnumerable<ITraktError>>> traktErrors = () => jsonReader.ReadArrayAsync(default(Stream));
-            traktErrors.Should().Throw<ArgumentNullException>();
+            await traktErrors.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

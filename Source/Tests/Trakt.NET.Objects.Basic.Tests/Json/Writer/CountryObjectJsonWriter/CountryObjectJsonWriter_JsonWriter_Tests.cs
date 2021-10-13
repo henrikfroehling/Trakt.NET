@@ -14,12 +14,12 @@
     public partial class CountryObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_CountryObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
+        public async Task Test_CountryObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new CountryObjectJsonWriter();
             ITraktCountry traktCountry = new TraktCountry();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktCountry);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

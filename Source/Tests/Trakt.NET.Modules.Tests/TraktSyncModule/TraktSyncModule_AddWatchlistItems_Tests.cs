@@ -105,10 +105,10 @@
             TraktClient client = TestUtility.GetOAuthMockClient(ADD_WATCHLIST_ITEMS_URI, postJson, WATCHLIST_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktSyncWatchlistPostResponse>>> act = () => client.Sync.AddWatchlistItemsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.AddWatchlistItemsAsync(new TraktSyncWatchlistPost());
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             ITraktSyncWatchlistPost watchlistPost = new TraktSyncWatchlistPost
             {
@@ -118,7 +118,7 @@
             };
 
             act = () => client.Sync.AddWatchlistItemsAsync(watchlistPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

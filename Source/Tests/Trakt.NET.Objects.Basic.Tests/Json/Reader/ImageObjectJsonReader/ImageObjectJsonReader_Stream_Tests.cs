@@ -41,11 +41,11 @@
         }
 
         [Fact]
-        public void Test_ImageObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_ImageObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new ImageObjectJsonReader();
             Func<Task<ITraktImage>> traktImage = () => traktJsonReader.ReadObjectAsync(default(Stream));
-            traktImage.Should().Throw<ArgumentNullException>();
+            await traktImage.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

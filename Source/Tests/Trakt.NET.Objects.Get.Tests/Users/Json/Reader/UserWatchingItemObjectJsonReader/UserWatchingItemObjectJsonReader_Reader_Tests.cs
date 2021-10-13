@@ -14,11 +14,11 @@
     public partial class UserWatchingItemObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_UserWatchingItemObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_UserWatchingItemObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new UserWatchingItemObjectJsonReader();
             Func<Task<ITraktUserWatchingItem>> traktUserWatchingItem = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktUserWatchingItem.Should().Throw<ArgumentNullException>();
+            await traktUserWatchingItem.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

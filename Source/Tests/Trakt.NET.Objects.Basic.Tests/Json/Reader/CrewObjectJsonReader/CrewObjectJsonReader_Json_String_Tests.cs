@@ -6598,11 +6598,11 @@
         }
 
         [Fact]
-        public void Test_CrewObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_CrewObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new CrewObjectJsonReader();
             Func<Task<ITraktCrew>> traktCrew = () => jsonReader.ReadObjectAsync(default(string));
-            traktCrew.Should().Throw<ArgumentNullException>();
+            await traktCrew.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

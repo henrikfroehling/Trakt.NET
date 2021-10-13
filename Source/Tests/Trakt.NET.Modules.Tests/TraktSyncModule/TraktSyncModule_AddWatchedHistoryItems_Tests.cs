@@ -99,10 +99,10 @@
             TraktClient client = TestUtility.GetOAuthMockClient(ADD_WATCHED_HISTORY_ITEMS_URI, postJson, HISTORY_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktSyncHistoryPostResponse>>> act = () => client.Sync.AddWatchedHistoryItemsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.AddWatchedHistoryItemsAsync(new TraktSyncHistoryPost());
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             ITraktSyncHistoryPost collectionPost = new TraktSyncHistoryPost
             {
@@ -112,7 +112,7 @@
             };
 
             act = () => client.Sync.AddWatchedHistoryItemsAsync(collectionPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

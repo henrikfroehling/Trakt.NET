@@ -39,7 +39,7 @@
             responseDevice.VerificationUrl.Should().Be(MockDevice.VerificationUrl);
             responseDevice.ExpiresInSeconds.Should().Be(MockDevice.ExpiresInSeconds);
             responseDevice.IntervalInSeconds.Should().Be(MockDevice.IntervalInSeconds);
-            responseDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseDevice.IsExpiredUnused.Should().BeFalse();
             responseDevice.IsValid.Should().BeTrue();
 
@@ -57,152 +57,152 @@
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_AuthenticationDeviceException()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_AuthenticationDeviceException()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, HttpStatusCode.NotFound);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktAuthenticationDeviceException>();
+            await act.Should().ThrowAsync<TraktAuthenticationDeviceException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_AuthorizationException()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_AuthorizationException()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, HttpStatusCode.Unauthorized);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktAuthorizationException>();
+            await act.Should().ThrowAsync<TraktAuthorizationException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_BadRequestException()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_BadRequestException()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, HttpStatusCode.BadRequest);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktBadRequestException>();
+            await act.Should().ThrowAsync<TraktBadRequestException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_ForbiddenException()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_ForbiddenException()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, HttpStatusCode.Forbidden);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktForbiddenException>();
+            await act.Should().ThrowAsync<TraktForbiddenException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_MethodNotFoundException()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_MethodNotFoundException()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, HttpStatusCode.MethodNotAllowed);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktMethodNotFoundException>();
+            await act.Should().ThrowAsync<TraktMethodNotFoundException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_ConflictException()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_ConflictException()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, HttpStatusCode.Conflict);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktConflictException>();
+            await act.Should().ThrowAsync<TraktConflictException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerException()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerException()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, HttpStatusCode.InternalServerError);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerException>();
+            await act.Should().ThrowAsync<TraktServerException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_BadGatewayException()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_BadGatewayException()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, HttpStatusCode.BadGateway);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktBadGatewayException>();
+            await act.Should().ThrowAsync<TraktBadGatewayException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_PreconditionFailedException()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_PreconditionFailedException()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, (HttpStatusCode)412);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktPreconditionFailedException>();
+            await act.Should().ThrowAsync<TraktPreconditionFailedException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_ValidationException()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_ValidationException()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, (HttpStatusCode)422);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktValidationException>();
+            await act.Should().ThrowAsync<TraktValidationException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_RateLimitException()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_RateLimitException()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, (HttpStatusCode)429);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktRateLimitException>();
+            await act.Should().ThrowAsync<TraktRateLimitException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerUnavailableException_503()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerUnavailableException_503()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, (HttpStatusCode)503);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+            await act.Should().ThrowAsync<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerUnavailableException_504()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerUnavailableException_504()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, (HttpStatusCode)504);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+            await act.Should().ThrowAsync<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerUnavailableException_520()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerUnavailableException_520()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, (HttpStatusCode)520);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+            await act.Should().ThrowAsync<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerUnavailableException_521()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerUnavailableException_521()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, (HttpStatusCode)521);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+            await act.Should().ThrowAsync<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerUnavailableException_522()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_Throws_ServerUnavailableException_522()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_DEVICE_URI, (HttpStatusCode)522);
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<TraktServerUnavailableException>();
+            await act.Should().ThrowAsync<TraktServerUnavailableException>();
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
 
             client.ClientId = null;
 
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = string.Empty;
 
             act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = "client id";
 
             act = () => client.Authentication.GenerateDeviceAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
@@ -228,7 +228,7 @@
             responseDevice.VerificationUrl.Should().Be(MockDevice.VerificationUrl);
             responseDevice.ExpiresInSeconds.Should().Be(MockDevice.ExpiresInSeconds);
             responseDevice.IntervalInSeconds.Should().Be(MockDevice.IntervalInSeconds);
-            responseDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseDevice.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseDevice.IsExpiredUnused.Should().BeFalse();
             responseDevice.IsValid.Should().BeTrue();
 
@@ -278,18 +278,18 @@
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GenerateDevice_With_ClientId_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_GenerateDevice_With_ClientId_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
 
             Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GenerateDeviceAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GenerateDeviceAsync("client id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -304,11 +304,11 @@
         }
 
         [Fact]
-        public void Test_MovieCheckinPostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_MovieCheckinPostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new MovieCheckinPostResponseObjectJsonReader();
             Func<Task<ITraktMovieCheckinPostResponse>> checkinMovieResponse = () => jsonReader.ReadObjectAsync(default(string));
-            checkinMovieResponse.Should().Throw<ArgumentNullException>();
+            await checkinMovieResponse.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

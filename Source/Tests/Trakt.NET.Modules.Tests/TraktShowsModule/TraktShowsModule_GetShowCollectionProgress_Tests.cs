@@ -844,20 +844,20 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowCollectionProgress_ArgumentExceptions()
+        public async Task Test_TraktShowsModule_GetShowCollectionProgress_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
                 GET_SHOW_COLLECTION_PROGRESS_URI,
                 SHOW_COLLECTION_PROGRESS_JSON);
 
             Func<Task<TraktResponse<ITraktShowCollectionProgress>>> act = () => client.Shows.GetShowCollectionProgressAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowCollectionProgressAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowCollectionProgressAsync("show id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -33,11 +33,11 @@
         }
 
         [Fact]
-        public void Test_NetworkObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_NetworkObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new NetworkObjectJsonReader();
             Func<Task<ITraktNetwork>> traktNetwork = () => jsonReader.ReadObjectAsync(default(string));
-            traktNetwork.Should().Throw<ArgumentNullException>();
+            await traktNetwork.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

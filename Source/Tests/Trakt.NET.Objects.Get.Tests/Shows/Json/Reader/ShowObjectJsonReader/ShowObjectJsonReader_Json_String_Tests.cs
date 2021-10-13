@@ -4128,11 +4128,11 @@
         }
 
         [Fact]
-        public void Test_ShowObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ShowObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new ShowObjectJsonReader();
             Func<Task<ITraktShow>> traktShow = () => jsonReader.ReadObjectAsync(default(string));
-            traktShow.Should().Throw<ArgumentNullException>();
+            await traktShow.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

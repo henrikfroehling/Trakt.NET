@@ -18,12 +18,12 @@
     public partial class CalendarShowObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_CalendarShowObjectJsonWriter_WriteObject_StringWriter_Exceptions()
+        public async Task Test_CalendarShowObjectJsonWriter_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new CalendarShowObjectJsonWriter();
             ITraktCalendarShow traktCalendarShow = new TraktCalendarShow();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktCalendarShow);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

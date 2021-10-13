@@ -230,11 +230,11 @@
         }
 
         [Fact]
-        public void Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_PersonMovieCreditsCastItemArrayJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktPersonMovieCreditsCastItem>();
             Func<Task<IEnumerable<ITraktPersonMovieCreditsCastItem>>> movieCreditsCastItems = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            movieCreditsCastItems.Should().Throw<ArgumentNullException>();
+            await movieCreditsCastItems.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

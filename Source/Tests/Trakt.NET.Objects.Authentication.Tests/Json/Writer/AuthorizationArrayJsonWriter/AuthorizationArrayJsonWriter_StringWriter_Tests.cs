@@ -15,12 +15,12 @@
     public partial class AuthorizationArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_AuthorizationArrayJsonWriter_WriteArray_StringWriter_Exceptions()
+        public async Task Test_AuthorizationArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
             var traktJsonWriter = new AuthorizationArrayJsonWriter();
             IEnumerable<ITraktAuthorization> traktAuthorizations = new List<TraktAuthorization>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktAuthorizations);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

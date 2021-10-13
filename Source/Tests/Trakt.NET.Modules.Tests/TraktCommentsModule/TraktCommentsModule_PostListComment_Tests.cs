@@ -250,17 +250,17 @@
             TraktClient client = TestUtility.GetOAuthMockClient(POST_LIST_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostListCommentAsync(null, COMMENT_TEXT);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             list.Ids = null;
 
             act = () => client.Comments.PostListCommentAsync(list, COMMENT_TEXT);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             list.Ids = new TraktListIds();
 
             act = () => client.Comments.PostListCommentAsync(list, COMMENT_TEXT);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             list.Ids = new TraktListIds
             {
@@ -269,15 +269,15 @@
             };
 
             act = () => client.Comments.PostListCommentAsync(list, null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Comments.PostListCommentAsync(list, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             const string comment = "one two three four";
 
             act = () => client.Comments.PostListCommentAsync(list, comment);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

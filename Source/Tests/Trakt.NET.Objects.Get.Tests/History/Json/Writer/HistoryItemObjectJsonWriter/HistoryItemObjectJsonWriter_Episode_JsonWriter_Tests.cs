@@ -20,12 +20,12 @@
         private static readonly DateTime WATCHED_AT = DateTime.UtcNow;
 
         [Fact]
-        public void Test_HistoryItemObjectJsonWriter_Episode_WriteObject_JsonWriter_Exceptions()
+        public async Task Test_HistoryItemObjectJsonWriter_Episode_WriteObject_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new HistoryItemObjectJsonWriter();
             ITraktHistoryItem traktHistoryItem = new TraktHistoryItem();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktHistoryItem);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

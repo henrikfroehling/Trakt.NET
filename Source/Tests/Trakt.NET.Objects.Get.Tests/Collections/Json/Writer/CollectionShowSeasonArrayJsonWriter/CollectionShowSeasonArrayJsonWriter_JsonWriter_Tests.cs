@@ -20,12 +20,12 @@
         private readonly DateTime COLLECTED_AT = DateTime.UtcNow;
 
         [Fact]
-        public void Test_CollectionShowSeasonArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
+        public async Task Test_CollectionShowSeasonArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCollectionShowSeason>();
             IEnumerable<ITraktCollectionShowSeason> traktCollectionShowSeasons = new List<TraktCollectionShowSeason>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktCollectionShowSeasons);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

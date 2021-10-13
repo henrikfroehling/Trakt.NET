@@ -17,12 +17,12 @@
     public partial class CollectionMovieObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_CollectionMovieObjectJsonWriter_WriteObject_StringWriter_Exceptions()
+        public async Task Test_CollectionMovieObjectJsonWriter_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new CollectionMovieObjectJsonWriter();
             ITraktCollectionMovie traktCollectionMovie = new TraktCollectionMovie();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktCollectionMovie);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

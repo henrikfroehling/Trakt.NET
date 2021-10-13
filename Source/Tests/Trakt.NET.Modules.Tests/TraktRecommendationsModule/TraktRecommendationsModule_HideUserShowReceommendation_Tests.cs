@@ -58,18 +58,18 @@
         }
 
         [Fact]
-        public void Test_TraktRecommendationsModule_HideShowRecommendation_ArgumentExceptions()
+        public async Task Test_TraktRecommendationsModule_HideShowRecommendation_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.NoContent);
 
             Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Recommendations.HideShowRecommendationAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Recommendations.HideShowRecommendationAsync("show id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

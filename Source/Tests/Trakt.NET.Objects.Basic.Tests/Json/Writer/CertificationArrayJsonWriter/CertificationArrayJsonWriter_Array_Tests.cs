@@ -13,11 +13,11 @@
     public partial class CertificationArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_CertificationArrayJsonWriter_WriteArray_Array_Exceptions()
+        public async Task Test_CertificationArrayJsonWriter_WriteArray_Array_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCertification>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

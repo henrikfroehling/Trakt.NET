@@ -19,12 +19,12 @@
         private static readonly DateTime UPDATED_AT = DateTime.UtcNow;
 
         [Fact]
-        public void Test_EpisodeObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
+        public async Task Test_EpisodeObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new EpisodeObjectJsonWriter();
             ITraktEpisode traktEpisode = new TraktEpisode();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktEpisode);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -462,11 +462,11 @@
         }
 
         [Fact]
-        public void Test_UserSettingsObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_UserSettingsObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new UserSettingsObjectJsonReader();
             Func<Task<ITraktUserSettings>> userSettings = () => jsonReader.ReadObjectAsync(default(string));
-            userSettings.Should().Throw<ArgumentNullException>();
+            await userSettings.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

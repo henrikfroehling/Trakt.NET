@@ -315,11 +315,11 @@
         }
 
         [Fact]
-        public void Test_CalendarShowObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_CalendarShowObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new CalendarShowObjectJsonReader();
             Func<Task<ITraktCalendarShow>> traktCalendarShow = () => jsonReader.ReadObjectAsync(default(Stream));
-            traktCalendarShow.Should().Throw<ArgumentNullException>();
+            await traktCalendarShow.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

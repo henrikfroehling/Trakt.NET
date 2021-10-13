@@ -15,12 +15,12 @@
     public partial class CommentObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_CommentObjectJsonWriter_WriteObject_StringWriter_Exceptions()
+        public async Task Test_CommentObjectJsonWriter_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new CommentObjectJsonWriter();
             ITraktComment traktComment = new TraktComment();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktComment);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

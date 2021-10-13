@@ -544,11 +544,11 @@
         }
 
         [Fact]
-        public void Test_AuthorizationObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_AuthorizationObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var objectJsonReader = new AuthorizationObjectJsonReader();
             Func<Task<ITraktAuthorization>> traktAuthorization = () => objectJsonReader.ReadObjectAsync(default(Stream));
-            traktAuthorization.Should().Throw<ArgumentNullException>();
+            await traktAuthorization.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

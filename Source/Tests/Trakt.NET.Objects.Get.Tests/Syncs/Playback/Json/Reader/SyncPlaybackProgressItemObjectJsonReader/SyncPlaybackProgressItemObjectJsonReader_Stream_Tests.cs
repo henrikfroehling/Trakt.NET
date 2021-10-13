@@ -14,11 +14,11 @@
     public partial class SyncPlaybackProgressItemObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_SyncPlaybackProgressItemObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_SyncPlaybackProgressItemObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new SyncPlaybackProgressItemObjectJsonReader();
             Func<Task<ITraktSyncPlaybackProgressItem>> traktPlaybackProgressItem = () => jsonReader.ReadObjectAsync(default(Stream));
-            traktPlaybackProgressItem.Should().Throw<ArgumentNullException>();
+            await traktPlaybackProgressItem.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

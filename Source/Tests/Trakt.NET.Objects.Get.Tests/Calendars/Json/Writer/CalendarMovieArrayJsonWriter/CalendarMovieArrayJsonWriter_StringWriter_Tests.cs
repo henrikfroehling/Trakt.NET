@@ -16,12 +16,12 @@
     public partial class CalendarMovieArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_CalendarMovieArrayJsonWriter_WriteArray_StringWriter_Exceptions()
+        public async Task Test_CalendarMovieArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCalendarMovie>();
             IEnumerable<ITraktCalendarMovie> traktCalendarMovie = new List<TraktCalendarMovie>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktCalendarMovie);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

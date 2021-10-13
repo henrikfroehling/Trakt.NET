@@ -75,18 +75,18 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowRatings_ArgumentExceptions()
+        public async Task Test_TraktShowsModule_GetShowRatings_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_RATINGS_URI, SHOW_RATINGS_JSON);
 
             Func<Task<TraktResponse<ITraktRating>>> act = () => client.Shows.GetShowRatingsAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowRatingsAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowRatingsAsync("show id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

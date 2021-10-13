@@ -130,11 +130,11 @@
         }
 
         [Fact]
-        public void Test_LanguageArrayJsonReader_ReadArray_From_Json_String_Null()
+        public async Task Test_LanguageArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktLanguage>();
             Func<Task<IEnumerable<ITraktLanguage>>> traktLanguages = () => jsonReader.ReadArrayAsync(default(string));
-            traktLanguages.Should().Throw<ArgumentNullException>();
+            await traktLanguages.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

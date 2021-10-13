@@ -35,11 +35,11 @@
         }
 
         [Fact]
-        public void Test_UserImagesObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_UserImagesObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new UserImagesObjectJsonReader();
             Func<Task<ITraktUserImages>> userImages = () => jsonReader.ReadObjectAsync(default(string));
-            userImages.Should().Throw<ArgumentNullException>();
+            await userImages.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

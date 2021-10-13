@@ -215,11 +215,11 @@
         }
 
         [Fact]
-        public void Test_IdsArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public async Task Test_IdsArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktIds>();
             Func<Task<IEnumerable<ITraktIds>>> multipleTraktIds = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            multipleTraktIds.Should().Throw<ArgumentNullException>();
+            await multipleTraktIds.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

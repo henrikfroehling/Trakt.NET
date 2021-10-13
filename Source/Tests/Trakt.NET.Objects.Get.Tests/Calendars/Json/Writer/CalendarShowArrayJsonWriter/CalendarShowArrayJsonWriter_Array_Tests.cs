@@ -17,11 +17,11 @@
     public partial class CalendarShowArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_CalendarShowArrayJsonWriter_WriteArray_Array_Exceptions()
+        public async Task Test_CalendarShowArrayJsonWriter_WriteArray_Array_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCalendarShow>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

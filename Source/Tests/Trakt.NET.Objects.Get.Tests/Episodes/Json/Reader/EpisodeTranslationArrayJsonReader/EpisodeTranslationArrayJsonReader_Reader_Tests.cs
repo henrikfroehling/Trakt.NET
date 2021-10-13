@@ -326,11 +326,11 @@
         }
 
         [Fact]
-        public void Test_EpisodeTranslationArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public async Task Test_EpisodeTranslationArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktEpisodeTranslation>();
             Func<Task<IEnumerable<ITraktEpisodeTranslation>>> traktEpisodeTranslations = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktEpisodeTranslations.Should().Throw<ArgumentNullException>();
+            await traktEpisodeTranslations.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

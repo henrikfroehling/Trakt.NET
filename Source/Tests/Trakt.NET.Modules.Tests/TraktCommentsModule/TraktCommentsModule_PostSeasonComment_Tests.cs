@@ -251,17 +251,17 @@
             TraktClient client = TestUtility.GetOAuthMockClient(POST_SEASON_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostSeasonCommentAsync(null, COMMENT_TEXT);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             season.Ids = null;
 
             act = () => client.Comments.PostSeasonCommentAsync(season, COMMENT_TEXT);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             season.Ids = new TraktSeasonIds();
 
             act = () => client.Comments.PostSeasonCommentAsync(season, COMMENT_TEXT);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             season.Ids = new TraktSeasonIds
             {
@@ -271,15 +271,15 @@
             };
 
             act = () => client.Comments.PostSeasonCommentAsync(season, null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Comments.PostSeasonCommentAsync(season, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             const string comment = "one two three four";
 
             act = () => client.Comments.PostSeasonCommentAsync(season, comment);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

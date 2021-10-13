@@ -13,11 +13,11 @@
     public partial class SearchResultObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_SearchResultObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_SearchResultObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new SearchResultObjectJsonReader();
             Func<Task<ITraktSearchResult>> traktSearchResultItem = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktSearchResultItem.Should().Throw<ArgumentNullException>();
+            await traktSearchResultItem.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -22,12 +22,12 @@
         private readonly DateTime FIRST_AIRED = DateTime.UtcNow;
 
         [Fact]
-        public void Test_CalendarShowArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
+        public async Task Test_CalendarShowArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCalendarShow>();
             IEnumerable<ITraktCalendarShow> traktCalendarShow = new List<TraktCalendarShow>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktCalendarShow);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

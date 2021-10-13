@@ -19,12 +19,12 @@
         private readonly DateTime LIKED_AT = DateTime.UtcNow;
 
         [Fact]
-        public void Test_CommentLikeArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
+        public async Task Test_CommentLikeArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCommentLike>();
             IEnumerable<ITraktCommentLike> traktCommentLikes = new List<TraktCommentLike>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktCommentLikes);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -18,12 +18,12 @@
     public partial class RecommendationArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_RecommendationArrayJsonWriter_WriteArray_StringWriter_Exceptions()
+        public async Task Test_RecommendationArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktRecommendation>();
             IEnumerable<ITraktRecommendation> traktRecommendations = new List<TraktRecommendation>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktRecommendations);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -84,11 +84,11 @@
         }
 
         [Fact]
-        public void Test_MovieAliasObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_MovieAliasObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new MovieAliasObjectJsonReader();
             Func<Task<ITraktMovieAlias>> traktMovieAlias = () => jsonReader.ReadObjectAsync(default(string));
-            traktMovieAlias.Should().Throw<ArgumentNullException>();
+            await traktMovieAlias.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -1057,31 +1057,31 @@
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, postJson, LIST_JSON);
 
             Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdateCustomListAsync(null, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.UpdateCustomListAsync(string.Empty, LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.UpdateCustomListAsync("user name", LIST_ID, NEW_LIST_NAME);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.UpdateCustomListAsync(USERNAME, null, NEW_LIST_NAME);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.UpdateCustomListAsync(USERNAME, string.Empty, NEW_LIST_NAME);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.UpdateCustomListAsync(USERNAME, "list id", NEW_LIST_NAME);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             string description = string.Empty;
 
@@ -1096,10 +1096,10 @@
             client = TestUtility.GetOAuthMockClient(UPDATE_CUSTOM_LIST_URI, postJson, LIST_JSON);
 
             act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, null, description);
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             act = () => client.Users.UpdateCustomListAsync(USERNAME, LIST_ID, null, null, TraktAccessScope.Unspecified);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

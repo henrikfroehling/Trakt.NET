@@ -222,19 +222,19 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowComments_ArgumentExceptions()
+        public async Task Test_TraktShowsModule_GetShowComments_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_COMMENTS_URI,
                 SHOW_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Shows.GetShowCommentsAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowCommentsAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowCommentsAsync("show id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

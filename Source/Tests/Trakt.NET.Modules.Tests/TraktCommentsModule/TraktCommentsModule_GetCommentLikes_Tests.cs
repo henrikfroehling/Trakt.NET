@@ -181,13 +181,13 @@
         }
 
         [Fact]
-        public void Test_TraktCommentsModule_GetCommentLikes_ArgumentExceptions()
+        public async Task Test_TraktCommentsModule_GetCommentLikes_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_COMMENT_LIKES_URI,
                                                            COMMENT_LIKES_JSON, 1, 10, ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktCommentLike>>> act = () => client.Comments.GetCommentLikesAsync(0);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

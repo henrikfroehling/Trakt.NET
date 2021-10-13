@@ -14,12 +14,12 @@
     public partial class EpisodeIdsObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_EpisodeIdsObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
+        public async Task Test_EpisodeIdsObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new EpisodeIdsObjectJsonWriter();
             ITraktEpisodeIds traktEpisodeIds = new TraktEpisodeIds();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktEpisodeIds);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

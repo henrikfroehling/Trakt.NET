@@ -14,11 +14,11 @@
     public partial class EpisodeCollectionProgressArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_EpisodeCollectionProgressArrayJsonWriter_WriteArray_Array_Exceptions()
+        public async Task Test_EpisodeCollectionProgressArrayJsonWriter_WriteArray_Array_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktEpisodeCollectionProgress>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(IEnumerable<ITraktEpisodeCollectionProgress>));
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -21,12 +21,12 @@
         private readonly DateTime COLLECTED_AT = DateTime.UtcNow;
 
         [Fact]
-        public void Test_CollectionMovieArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
+        public async Task Test_CollectionMovieArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCollectionMovie>();
             IEnumerable<ITraktCollectionMovie> traktCollectionMovies = new List<TraktCollectionMovie>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktCollectionMovies);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

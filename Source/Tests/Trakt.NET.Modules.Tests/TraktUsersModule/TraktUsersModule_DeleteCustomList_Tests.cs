@@ -58,27 +58,27 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_DeleteCustomList_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_DeleteCustomList_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(DELETE_CUSTOM_LIST_URI, HttpStatusCode.NoContent);
 
             Func<Task<TraktNoContentResponse>> act = () => client.Users.DeleteCustomListAsync(null, LIST_ID);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.DeleteCustomListAsync(string.Empty, LIST_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.DeleteCustomListAsync("user name", LIST_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.DeleteCustomListAsync(USERNAME, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.DeleteCustomListAsync(USERNAME, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.DeleteCustomListAsync(USERNAME, "list id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

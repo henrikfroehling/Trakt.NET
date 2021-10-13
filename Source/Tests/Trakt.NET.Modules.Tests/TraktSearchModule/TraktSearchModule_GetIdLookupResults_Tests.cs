@@ -398,25 +398,25 @@
         }
 
         [Fact]
-        public void Test_TraktSearchModule_GetIdLookupResults_ArgumentExceptions()
+        public async Task Test_TraktSearchModule_GetIdLookupResults_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GetIdLookupUri, SEARCH_ID_LOOKUP_RESULTS_JSON,
                                                            1, 10, 1, ID_LOOKUP_ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktSearchResult>>> act = () => client.Search.GetIdLookupResultsAsync(default, LOOKUP_ID);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Search.GetIdLookupResultsAsync(TraktSearchIdType.Unspecified, LOOKUP_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, "lookup id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

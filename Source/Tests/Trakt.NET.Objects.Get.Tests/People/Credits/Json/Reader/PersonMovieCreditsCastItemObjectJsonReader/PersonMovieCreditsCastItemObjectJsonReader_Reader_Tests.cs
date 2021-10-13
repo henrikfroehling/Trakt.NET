@@ -131,11 +131,11 @@
         }
 
         [Fact]
-        public void Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_PersonMovieCreditsCastItemObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new PersonMovieCreditsCastItemObjectJsonReader();
             Func<Task<ITraktPersonMovieCreditsCastItem>> movieCreditsCastItem = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            movieCreditsCastItem.Should().Throw<ArgumentNullException>();
+            await movieCreditsCastItem.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

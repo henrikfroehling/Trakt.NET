@@ -125,11 +125,11 @@
         }
 
         [Fact]
-        public void Test_CalendarMovieObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_CalendarMovieObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new CalendarMovieObjectJsonReader();
             Func<Task<ITraktCalendarMovie>> traktCalendarMovie = () => jsonReader.ReadObjectAsync(default(Stream));
-            traktCalendarMovie.Should().Throw<ArgumentNullException>();
+            await traktCalendarMovie.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

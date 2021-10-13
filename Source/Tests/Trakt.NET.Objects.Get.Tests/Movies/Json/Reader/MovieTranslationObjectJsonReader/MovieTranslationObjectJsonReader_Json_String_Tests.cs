@@ -208,11 +208,11 @@
         }
 
         [Fact]
-        public void Test_MovieTranslationObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_MovieTranslationObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new MovieTranslationObjectJsonReader();
             Func<Task<ITraktMovieTranslation>> traktMovieTranslation = () => jsonReader.ReadObjectAsync(default(string));
-            traktMovieTranslation.Should().Throw<ArgumentNullException>();
+            await traktMovieTranslation.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

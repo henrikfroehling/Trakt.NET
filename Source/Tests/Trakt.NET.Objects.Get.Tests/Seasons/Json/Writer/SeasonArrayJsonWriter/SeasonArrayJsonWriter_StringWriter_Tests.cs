@@ -16,12 +16,12 @@
     public partial class SeasonArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_SeasonArrayJsonWriter_WriteArray_StringWriter_Exceptions()
+        public async Task Test_SeasonArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktSeason>();
             IEnumerable<ITraktSeason> traktSeasons = new List<TraktSeason>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktSeasons);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

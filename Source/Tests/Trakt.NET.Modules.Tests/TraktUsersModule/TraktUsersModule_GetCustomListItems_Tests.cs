@@ -142,27 +142,27 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCustomListItems_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetCustomListItems_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_ITEMS_URI, LIST_ITEMS_JSON);
 
             Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetCustomListItemsAsync(null, LIST_ID);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetCustomListItemsAsync(string.Empty, LIST_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetCustomListItemsAsync("user name", LIST_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetCustomListItemsAsync(USERNAME, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetCustomListItemsAsync(USERNAME, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetCustomListItemsAsync(USERNAME, "list id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

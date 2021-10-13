@@ -13,12 +13,12 @@
     public partial class StatisticsObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_StatisticsObjectJsonWriter_WriteObject_StringWriter_Exceptions()
+        public async Task Test_StatisticsObjectJsonWriter_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new StatisticsObjectJsonWriter();
             ITraktStatistics traktStatistics = new TraktStatistics();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktStatistics);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

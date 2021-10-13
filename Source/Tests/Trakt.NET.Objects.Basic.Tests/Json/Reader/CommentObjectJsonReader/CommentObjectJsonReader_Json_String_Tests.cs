@@ -900,11 +900,11 @@
         }
 
         [Fact]
-        public void Test_CommentObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_CommentObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new CommentObjectJsonReader();
             Func<Task<ITraktComment>> traktComment = () => jsonReader.ReadObjectAsync(default(string));
-            traktComment.Should().Throw<ArgumentNullException>();
+            await traktComment.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

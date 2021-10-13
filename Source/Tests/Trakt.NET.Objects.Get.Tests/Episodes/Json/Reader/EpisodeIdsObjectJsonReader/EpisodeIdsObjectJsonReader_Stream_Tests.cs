@@ -320,11 +320,11 @@
         }
 
         [Fact]
-        public void Test_EpisodeIdsObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_EpisodeIdsObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new EpisodeIdsObjectJsonReader();
             Func<Task<ITraktEpisodeIds>> traktEpisodeIds = () => traktJsonReader.ReadObjectAsync(default(Stream));
-            traktEpisodeIds.Should().Throw<ArgumentNullException>();
+            await traktEpisodeIds.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -14,11 +14,11 @@
     public partial class HistoryItemObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_HistoryItemObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_HistoryItemObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new HistoryItemObjectJsonReader();
             Func<Task<ITraktHistoryItem>> traktHistoryItem = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktHistoryItem.Should().Throw<ArgumentNullException>();
+            await traktHistoryItem.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

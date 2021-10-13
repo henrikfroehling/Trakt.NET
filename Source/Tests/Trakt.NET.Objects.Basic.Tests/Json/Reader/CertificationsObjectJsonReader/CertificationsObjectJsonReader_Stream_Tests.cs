@@ -55,11 +55,11 @@
         }
 
         [Fact]
-        public void Test_CertificationsObjectStream_ReadObject_From_Stream_Null()
+        public async Task Test_CertificationsObjectStream_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new CertificationsObjectJsonReader();
             Func<Task<ITraktCertifications>> traktCertifications = () => traktJsonReader.ReadObjectAsync(default(Stream));
-            traktCertifications.Should().Throw<ArgumentNullException>();
+            await traktCertifications.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

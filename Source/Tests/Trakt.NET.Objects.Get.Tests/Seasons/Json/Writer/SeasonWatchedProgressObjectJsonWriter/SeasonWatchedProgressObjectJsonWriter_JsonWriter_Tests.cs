@@ -19,12 +19,12 @@
         private static readonly DateTime LAST_WATCHED_AT = DateTime.UtcNow;
 
         [Fact]
-        public void Test_SeasonWatchedProgressObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
+        public async Task Test_SeasonWatchedProgressObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new SeasonWatchedProgressObjectJsonWriter();
             ITraktSeasonWatchedProgress traktSeasonWatchedProgress = new TraktSeasonWatchedProgress();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktSeasonWatchedProgress);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -254,39 +254,39 @@
             TraktClient client = TestUtility.GetOAuthMockClient(POST_MOVIE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostMovieCommentAsync(null, COMMENT_TEXT);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             movie.Title = string.Empty;
 
             act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             movie.Title = "Guardians of the Galaxy";
             movie.Year = 0;
 
             act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             movie.Year = 123;
 
             act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             movie.Year = 12345;
 
             act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             movie.Year = 2014;
             movie.Ids = null;
 
             act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             movie.Ids = new TraktMovieIds();
 
             act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             movie.Ids = new TraktMovieIds
             {
@@ -297,15 +297,15 @@
             };
 
             act = () => client.Comments.PostMovieCommentAsync(movie, null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Comments.PostMovieCommentAsync(movie, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             const string comment = "one two three four";
 
             act = () => client.Comments.PostMovieCommentAsync(movie, comment);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

@@ -111,10 +111,10 @@
             TraktClient client = TestUtility.GetOAuthMockClient(ADD_COLLECTION_ITEMS_URI, postJson, COLLECTION_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktSyncCollectionPostResponse>>> act = () => client.Sync.AddCollectionItemsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.AddCollectionItemsAsync(new TraktSyncCollectionPost());
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             ITraktSyncCollectionPost collectionPost = new TraktSyncCollectionPost
             {
@@ -124,7 +124,7 @@
             };
 
             act = () => client.Sync.AddCollectionItemsAsync(collectionPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

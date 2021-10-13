@@ -222,11 +222,11 @@
         }
 
         [Fact]
-        public void Test_CastAndCrewArrayJsonReader_ReadArray_From_Stream_Null()
+        public async Task Test_CastAndCrewArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCastAndCrew>();
             Func<Task<IEnumerable<ITraktCastAndCrew>>> traktCastAndCrews = () =>jsonReader.ReadArrayAsync(default(Stream));
-            traktCastAndCrews.Should().Throw<ArgumentNullException>();
+            await traktCastAndCrews.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

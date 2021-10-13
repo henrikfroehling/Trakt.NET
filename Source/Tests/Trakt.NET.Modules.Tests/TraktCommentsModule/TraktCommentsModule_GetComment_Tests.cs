@@ -75,27 +75,27 @@
         }
 
         [Fact]
-        public void Test_TraktCommentsModule_GetComment_ArgumentExceptions()
+        public async Task Test_TraktCommentsModule_GetComment_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_COMMENT_URI, COMMENT_JSON);
 
             Func<Task<TraktResponse<ITraktComment>>> act = () => client.Comments.GetCommentAsync(0);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
-        public void Test_TraktCommentsModule_GetMutlipleComments_ArgumentExceptions()
+        public async Task Test_TraktCommentsModule_GetMutlipleComments_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_COMMENT_URI, COMMENT_JSON);
 
             Func<Task<IEnumerable<TraktResponse<ITraktComment>>>> act = () => client.Comments.GetMutlipleCommentsAsync(new uint[] { 0 });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Comments.GetMutlipleCommentsAsync(new uint[] { });
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             act = () => client.Comments.GetMutlipleCommentsAsync(null);
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
         }
     }
 }

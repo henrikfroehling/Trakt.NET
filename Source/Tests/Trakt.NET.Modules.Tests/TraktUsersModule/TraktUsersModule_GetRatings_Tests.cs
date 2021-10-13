@@ -629,18 +629,18 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetRatings_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetRatings_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_RATINGS_URI, RATINGS_JSON);
 
             Func<Task<TraktPagedResponse<ITraktRatingsItem>>> act = () => client.Users.GetRatingsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetRatingsAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetRatingsAsync("user name");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

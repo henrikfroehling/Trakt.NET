@@ -42,11 +42,11 @@
         }
 
         [Fact]
-        public void Test_SyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_SyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new SyncCommentsLastActivitiesObjectJsonReader();
             Func<Task<ITraktSyncCommentsLastActivities>> commentsLastActivities = () => traktJsonReader.ReadObjectAsync(default(Stream));
-            commentsLastActivities.Should().Throw<ArgumentNullException>();
+            await commentsLastActivities.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -116,57 +116,57 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCustomList_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetCustomList_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_URI, LIST_JSON);
 
             Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.GetCustomListAsync(null, LIST_ID);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetCustomListAsync(string.Empty, LIST_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetCustomListAsync("user name", LIST_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetCustomListAsync(USERNAME, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetCustomListAsync(USERNAME, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetCustomListAsync(USERNAME, "list id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetMultipleCustomLists_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetMultipleCustomLists_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LIST_URI, LIST_JSON);
 
             Func<Task<IEnumerable<TraktResponse<ITraktList>>>> act = () => client.Users.GetMultipleCustomListsAsync(null);
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             act = () => client.Users.GetMultipleCustomListsAsync(new TraktMultipleUserListsQueryParams());
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             act = () => client.Users.GetMultipleCustomListsAsync(new TraktMultipleUserListsQueryParams { { null, LIST_ID } });
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetMultipleCustomListsAsync(new TraktMultipleUserListsQueryParams { { string.Empty, LIST_ID } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetMultipleCustomListsAsync(new TraktMultipleUserListsQueryParams { { "user name", LIST_ID } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetMultipleCustomListsAsync(new TraktMultipleUserListsQueryParams { { USERNAME, null } });
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetMultipleCustomListsAsync(new TraktMultipleUserListsQueryParams { { USERNAME, string.Empty } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetMultipleCustomListsAsync(new TraktMultipleUserListsQueryParams { { USERNAME, "list id" } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

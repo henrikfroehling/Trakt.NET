@@ -287,11 +287,11 @@
         }
 
         [Fact]
-        public void Test_UserFollowRequestObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_UserFollowRequestObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new UserFollowRequestObjectJsonReader();
             Func<Task<ITraktUserFollowRequest>> userFollowRequest = () => jsonReader.ReadObjectAsync(default(Stream));
-            userFollowRequest.Should().Throw<ArgumentNullException>();
+            await userFollowRequest.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

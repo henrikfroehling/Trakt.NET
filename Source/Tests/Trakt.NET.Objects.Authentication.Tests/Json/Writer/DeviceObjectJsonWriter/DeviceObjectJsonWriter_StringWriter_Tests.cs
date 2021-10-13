@@ -13,12 +13,12 @@
     public partial class DeviceObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_DeviceObjectJsonWriter_WriteObject_StringWriter_Exceptions()
+        public async Task Test_DeviceObjectJsonWriter_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new DeviceObjectJsonWriter();
             ITraktDevice traktDevice = new TraktDevice();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktDevice);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

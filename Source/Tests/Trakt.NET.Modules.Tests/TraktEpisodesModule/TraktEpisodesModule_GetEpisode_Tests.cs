@@ -113,45 +113,45 @@
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetEpisode_ArgumentExceptions()
+        public async Task Test_TraktEpisodesModule_GetEpisode_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_EPISODE_URI, EPISODE_SUMMARY_FULL_JSON);
 
             Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Episodes.GetEpisodeAsync(null, SEASON_NR, EPISODE_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetEpisodeAsync(string.Empty, SEASON_NR, EPISODE_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetEpisodeAsync("show id", SEASON_NR, EPISODE_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetEpisodeAsync(SHOW_ID, SEASON_NR, 0);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
 
         [Fact]
-        public void Test_TraktEpisodesModule_GetMultipleEpisodes_ArgumentExceptions()
+        public async Task Test_TraktEpisodesModule_GetMultipleEpisodes_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_EPISODE_URI, EPISODE_SUMMARY_FULL_JSON);
 
             Func<Task<IEnumerable<TraktResponse<ITraktEpisode>>>> act = () => client.Episodes.GetMultipleEpisodesAsync(null);
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             act = () => client.Episodes.GetMultipleEpisodesAsync(new TraktMultipleEpisodesQueryParams());
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             act = () => client.Episodes.GetMultipleEpisodesAsync(new TraktMultipleEpisodesQueryParams { { null, SEASON_NR, EPISODE_NR } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetMultipleEpisodesAsync(new TraktMultipleEpisodesQueryParams { { string.Empty, SEASON_NR, EPISODE_NR } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetMultipleEpisodesAsync(new TraktMultipleEpisodesQueryParams { { "show id", SEASON_NR, EPISODE_NR } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Episodes.GetMultipleEpisodesAsync(new TraktMultipleEpisodesQueryParams { { SHOW_ID, SEASON_NR, 0 } });
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

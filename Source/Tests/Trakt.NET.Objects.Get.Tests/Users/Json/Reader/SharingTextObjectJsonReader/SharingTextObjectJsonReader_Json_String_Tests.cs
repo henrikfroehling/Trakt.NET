@@ -84,11 +84,11 @@
         }
 
         [Fact]
-        public void Test_SharingTextObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_SharingTextObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new SharingTextObjectJsonReader();
             Func<Task<ITraktSharingText>> userSharingText = () => jsonReader.ReadObjectAsync(default(string));
-            userSharingText.Should().Throw<ArgumentNullException>();
+            await userSharingText.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

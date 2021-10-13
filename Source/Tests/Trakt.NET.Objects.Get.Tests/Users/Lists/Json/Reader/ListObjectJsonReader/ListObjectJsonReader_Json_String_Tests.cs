@@ -1382,11 +1382,11 @@
         }
 
         [Fact]
-        public void Test_ListObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new ListObjectJsonReader();
             Func<Task<ITraktList>> traktList = () => jsonReader.ReadObjectAsync(default(string));
-            traktList.Should().Throw<ArgumentNullException>();
+            await traktList.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]
