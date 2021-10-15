@@ -24,6 +24,7 @@
         private const string HEADER_APPLIED_SORT_HOW = "X-Applied-Sort-How";
         private const string HEADER_RATE_LIMIT = "X-RateLimit";
         private const string HEADER_RETRY_AFTER = "Retry-After";
+        private const string HEADER_UPGRADE_URL = "X-Upgrade-URL";
 
         internal static void ParseResponseHeaderValues(ITraktResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
         {
@@ -108,6 +109,9 @@
                 if (int.TryParse(strRetryAfter, out int retryAfter))
                     headerResults.RetryAfter = retryAfter;
             }
+
+            if (responseHeaders.TryGetValues(HEADER_UPGRADE_URL, out values))
+                headerResults.UpgradeURL = values.First();
         }
 
         internal static void ParsePagedResponseHeaderValues(ITraktPagedResponseHeaders headerResults, HttpResponseHeaders responseHeaders)

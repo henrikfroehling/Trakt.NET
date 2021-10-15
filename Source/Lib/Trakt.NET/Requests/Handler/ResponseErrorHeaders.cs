@@ -36,5 +36,7 @@
         public string RateLimit { get; set; }
 
         public int? RetryAfter { get; set; }
+
+        public string UpgradeURL { get; set; }
     }
 }
