@@ -45,5 +45,8 @@
 
         /// <summary>Gets the value of the set "Retry-After" response header. Might not be set.</summary>
         int? RetryAfter { get; set; }
+
+        /// <summary>The web URL where the user can sign up for Trakt VIP.</summary>
+        string UpgradeURL { get; set; }
     }
 }
