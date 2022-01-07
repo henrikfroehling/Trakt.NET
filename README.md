@@ -16,7 +16,35 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 [![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-green)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
 [![NuGet Package](https://img.shields.io/badge/NuGet-v1.1.1-green.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.1.1)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
+
+[![Development CI-Build](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml)
+[![Release CI-Build](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/release-CI.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/release-CI.yml)
+[![Code Scan](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/code-scan.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/code-scan.yml)
+[![Static Analysis](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/sonarcloud.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=henrikfroehling_Trakt.NET&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=henrikfroehling_Trakt.NET)
+
+### Features
+
+Full Trakt.tv API Coverage // Authentication Support (OAuth 2.0 and Device) // Completely asynchronous // API Environments (Production and Sandbox) // Serialization Service // Language Service
+
+### Supported Platforms
+
+.Net Core >= 1.0 // .Net Framework >= 4.5 // .NET >= 5 // Mono >= 4.6 // Xamarin.iOS >= 10.0 // Xamarin.Mac >= 3.0 // Xamarin.Android >= 7.0 // Windows UWP >= 10.0 // Windows >= 8.0 // Windows Phone >= 8.1
+
+---
+
+### Discussions and Issues
+Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
+
+Or do you want to report a bug? [Create an issue](https://github.com/henrikfroehling/Trakt.NET/issues/new/choose)
+
+### Contributions are welcome
+Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
+
+### [Documentation](https://github.com/henrikfroehling/Trakt.NET/wiki)
+
+---
 
 ### Installation
 
@@ -30,32 +58,7 @@ or with the [NuGet Package Management](https://docs.nuget.org/consume/package-ma
 
 Each release will also be published in [Releases](https://github.com/henrikfroehling/Trakt.NET/releases).
 
-### Features
-
-Full Trakt.tv API Coverage // Authentication Support (OAuth 2.0 and Device) // Completely asynchronous // API Environments (Production and Sandbox) // Serialization Service // Language Service
-
-### Supported Platforms
-
-.Net Core >= 1.0 // .Net Framework >= 4.5 // .NET >= 5 // Mono >= 4.6 // Xamarin.iOS >= 10.0 // Xamarin.Mac >= 3.0 // Xamarin.Android >= 7.0 // Windows UWP >= 10.0 // Windows >= 8.0 // Windows Phone >= 8.1
-
----
-### Discussions and Issues
-Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
-
-Or do you want to report a bug? [Create an issue](https://github.com/henrikfroehling/Trakt.NET/issues/new/choose)
-
-### Contributions are welcome
-Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
-
-### [Documentation](https://github.com/henrikfroehling/Trakt.NET/wiki)
-
-### Build Status
-
-| Branch | Status | Description | Packages |
-|---|---|---|---|
-| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![develop-CI](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml/badge.svg?branch=develop)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml) | This branch tracks the current and possibly unstable development. | https://github.com/henrikfroehling/Trakt.NET/packages |
-
----
+You can also get the latest built packages here: https://github.com/henrikfroehling/Trakt.NET/packages
 
 ### Basic Usage
 
