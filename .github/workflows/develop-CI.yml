@@ -1,12 +1,30 @@
-name: develop-CI
+name: "develop CI-Build"
 
 on:
   push:
-    branches: 
-      - develop
+    branches: [develop]
+    paths-ignore:
+      - 'Postman/**'
+      - 'AUTHORS.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'Changelog.md'
+      - 'LICENSE.md'
+      - 'PublishRelease.txt'
+      - 'README.md'
+      - 'coding_style.md'
   pull_request:
-    branches:
-      - develop
+    branches: [develop]
+    paths-ignore:
+      - 'Postman/**'
+      - 'AUTHORS.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'Changelog.md'
+      - 'LICENSE.md'
+      - 'PublishRelease.txt'
+      - 'README.md'
+      - 'coding_style.md'
 
 env:
   BUILD_TYPE: Release
@@ -18,6 +36,7 @@ env:
 
 jobs:
   develop-ci:
+    name: "CI-Build"
     runs-on: windows-latest
     environment: Development
     steps:
