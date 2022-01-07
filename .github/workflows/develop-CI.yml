@@ -1,4 +1,4 @@
-name: "develop CI-Build"
+name: "Development CI-Build"
 
 on:
   push:
