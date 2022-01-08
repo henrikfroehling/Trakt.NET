@@ -44,6 +44,9 @@
         /// <summary>Gets or sets the UTC datetime when the season was first aired.</summary>
         public DateTime? FirstAired { get; set; }
 
+        /// <summary>Gets or sets the UTC datetime when the season was last updated.</summary>
+        public DateTime? UpdatedAt { get; set; }
+
         /// <summary>Gets or sets the network on which the season airs.</summary>
         public string Network { get; set; }
 

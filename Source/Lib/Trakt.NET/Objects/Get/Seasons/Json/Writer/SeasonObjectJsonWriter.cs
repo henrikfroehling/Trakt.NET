@@ -69,6 +69,12 @@
                 await jsonWriter.WriteValueAsync(obj.FirstAired.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.UpdatedAt.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_UPDATED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.UpdatedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+            }
+
             if (!string.IsNullOrEmpty(obj.Network))
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NETWORK, cancellationToken).ConfigureAwait(false);
