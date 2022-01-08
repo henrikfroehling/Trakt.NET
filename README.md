@@ -58,7 +58,9 @@ Each release will also be published in [Releases](https://github.com/henrikfroeh
 
 You can also get the latest built packages here: https://github.com/henrikfroehling/Trakt.NET/packages
 
-### Basic Usage
+---
+<details>
+<summary>Basic Usage</summary>
 
 **Create a new [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) Client**
 
@@ -186,6 +188,7 @@ if (theMartian)
     Console.WriteLine(show.Overview);
 }
 ```
+</details>
 
 ---
 ### License
