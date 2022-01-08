@@ -37,7 +37,7 @@ env:
 
 jobs:
   develop-ci:
-    name: "CI-Build"
+    name: "Development CI-Build"
     runs-on: windows-latest
     environment: Development
     steps:
