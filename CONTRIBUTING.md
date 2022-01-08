@@ -26,6 +26,8 @@ Contributing Guidelines
 ### **Which branch should I target?**
 By default you should target the branch `develop`. If you're working on an issue, usually the issue would have a label "target-branch", which states the branch to target for that specific issue.
 
+Please **DO NOT** target the `main` branch.
+
 ---
 
 ### **General Requirements**
