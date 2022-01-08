@@ -37,7 +37,7 @@ env:
 
 jobs:
   release-ci:
-    name: "CI-Build"
+    name: "Release CI-Build"
     runs-on: windows-latest
     environment: Release-Previews
     steps:
