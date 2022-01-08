@@ -191,6 +191,13 @@ if (theMartian)
 </details>
 
 ---
+<details>
+<summary>Examples</summary>
+    
+Examples can be found here: https://github.com/henrikfroehling/Trakt.NET-Examples
+</details>
+
+---
 ### License
 
 ```text
