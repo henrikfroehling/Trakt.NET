@@ -94,6 +94,9 @@
                 case (HttpStatusCode)423:
                     HandleLockedUserAccountError(errorParameters);
                     break;
+                case (HttpStatusCode)426:
+                    HandleFailedVIPValidationError(errorParameters);
+                    break;
                 case (HttpStatusCode)429:
                     await HandleRateLimitErrorAsync(errorParameters, cancellationToken).ConfigureAwait(false);
                     break;
@@ -427,6 +430,18 @@
                 RequestBody = errorParameters.RequestBody,
                 Response = errorParameters.ResponseBody,
                 ServerReasonPhrase = errorParameters.ServerReasonPhrase
+            };
+        }
+
+        private static void HandleFailedVIPValidationError(ResponseErrorParameters errorParameters)
+        {
+            throw new TraktFailedVIPValidationException
+            {
+                RequestUrl = errorParameters.Url,
+                RequestBody = errorParameters.RequestBody,
+                Response = errorParameters.ResponseBody,
+                ServerReasonPhrase = errorParameters.ServerReasonPhrase,
+                UpgradeURL = !string.IsNullOrEmpty(errorParameters.Headers.UpgradeURL) ? errorParameters.Headers.UpgradeURL : ""
             };
         }
 

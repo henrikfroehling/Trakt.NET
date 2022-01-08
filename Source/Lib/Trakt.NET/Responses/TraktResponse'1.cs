@@ -56,6 +56,9 @@
         /// <summary>Gets the value of the set "Retry-After" response header. Might not be set.</summary>
         public int? RetryAfter { get; set; }
 
+        /// <summary>The web URL where the user can sign up for Trakt VIP.</summary>
+        public string UpgradeURL { get; set; }
+
         /// <summary>
         /// Compares this instance with another <see cref="TraktResponse{TResponseContentType}" /> instance.
         /// </summary>

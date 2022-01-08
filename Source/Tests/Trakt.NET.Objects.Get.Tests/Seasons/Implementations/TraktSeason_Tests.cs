@@ -26,6 +26,7 @@
             season.AiredEpisodesCount.Should().NotHaveValue();
             season.Overview.Should().BeNullOrEmpty();
             season.FirstAired.Should().NotHaveValue();
+            season.UpdatedAt.Should().NotHaveValue();
             season.Network.Should().BeNull();
             season.Episodes.Should().BeNull();
         }
@@ -50,6 +51,7 @@
             season.AiredEpisodesCount.Should().NotHaveValue();
             season.Overview.Should().BeNullOrEmpty();
             season.FirstAired.Should().NotHaveValue();
+            season.UpdatedAt.Should().NotHaveValue();
             season.Network.Should().BeNull();
             season.Episodes.Should().BeNull();
         }
@@ -74,6 +76,7 @@
             season.AiredEpisodesCount.Should().Be(23);
             season.Overview.Should().Be("Text text text");
             season.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+            season.UpdatedAt.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
             season.Network.Should().Be("The CW");
             season.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -147,6 +150,7 @@
                 ""aired_episodes"": 23,
                 ""overview"": ""Text text text"",
                 ""first_aired"": ""2014-10-08T00:00:00.000Z"",
+                ""updated_at"": ""2014-10-08T00:00:00.000Z"",
                 ""network"": ""The CW"",
                 ""episodes"": [
                   {

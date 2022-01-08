@@ -146,6 +146,19 @@
         }
 
         [Fact]
+        public async Task Test_SeasonObjectJsonWriter_WriteObject_Object_Only_UpdatedAt_Property()
+        {
+            ITraktSeason traktSeason = new TraktSeason
+            {
+                UpdatedAt = UPDATED_AT
+            };
+
+            var traktJsonWriter = new SeasonObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktSeason);
+            json.Should().Be($"{{\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"}}");
+        }
+
+        [Fact]
         public async Task Test_SeasonObjectJsonWriter_WriteObject_Object_Only_Network_Property()
         {
             ITraktSeason traktSeason = new TraktSeason
@@ -294,6 +307,7 @@
                 AiredEpisodesCount = 12,
                 Overview = "Season 1 Overview",
                 FirstAired = FIRST_AIRED,
+                UpdatedAt = UPDATED_AT,
                 Network = "Season 1 Network",
                 Episodes = new List<ITraktEpisode>
                 {
@@ -389,6 +403,7 @@
                              @"""rating"":8.7654,""votes"":9765,""episode_count"":24,""aired_episodes"":12," +
                              @"""overview"":""Season 1 Overview""," +
                              $"\"first_aired\":\"{FIRST_AIRED.ToTraktLongDateTimeString()}\"," +
+                             $"\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"," +
                              @"""network"":""Season 1 Network""," +
                              @"""episodes"":[" +
                              @"{""season"":1,""number"":1,""title"":""title 1""," +

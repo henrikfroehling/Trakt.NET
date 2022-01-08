@@ -18,23 +18,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Tests.Utility", "Tests\Trakt.NET.Tests.Utility\Trakt.NET.Tests.Utility.csproj", "{3AD110F4-2E28-4269-9449-2A45804523B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{E4690B7D-5380-4003-99C3-2091827DB262}"
-	ProjectSection(SolutionItems) = preProject
-		..\.gitattributes = ..\.gitattributes
-		..\.gitignore = ..\.gitignore
-		..\AUTHORS.md = ..\AUTHORS.md
-		..\.github\ISSUE_TEMPLATE\bug_report.md = ..\.github\ISSUE_TEMPLATE\bug_report.md
-		..\Changelog.md = ..\Changelog.md
-		..\CODE_OF_CONDUCT.md = ..\CODE_OF_CONDUCT.md
-		..\.github\CODEOWNERS = ..\.github\CODEOWNERS
-		..\coding_style.md = ..\coding_style.md
-		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
-		..\.github\ISSUE_TEMPLATE\feature_request.md = ..\.github\ISSUE_TEMPLATE\feature_request.md
-		..\LICENSE.md = ..\LICENSE.md
-		Lib\Trakt.NET\nuget.config = Lib\Trakt.NET\nuget.config
-		..\PublishRelease.txt = ..\PublishRelease.txt
-		..\README.md = ..\README.md
-		Lib\Trakt.NET\Trakt.NET.nuspec = Lib\Trakt.NET\Trakt.NET.nuspec
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Objects.Authentication.Tests", "Tests\Trakt.NET.Objects.Authentication.Tests\Trakt.NET.Objects.Authentication.Tests.csproj", "{59375446-3279-4E4E-91D1-BAFA481D3CD5}"
 EndProject
@@ -46,9 +29,49 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Objects.Post.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{A7FA937C-9CD0-4601-A2FA-CBA2FDC1DA77}"
 	ProjectSection(SolutionItems) = preProject
-		..\.github\workflows\codeql-analysis.yml = ..\.github\workflows\codeql-analysis.yml
+		..\.github\workflows\code-scan.yml = ..\.github\workflows\code-scan.yml
 		..\.github\workflows\develop-CI.yml = ..\.github\workflows\develop-CI.yml
 		..\.github\workflows\release-CI.yml = ..\.github\workflows\release-CI.yml
+		..\.github\workflows\sonarcloud.yml = ..\.github\workflows\sonarcloud.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{E8878124-ADAC-493E-9ECC-8BF405D431AB}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\ISSUE_TEMPLATE\bug_report.md = ..\.github\ISSUE_TEMPLATE\bug_report.md
+		..\.github\ISSUE_TEMPLATE\feature_request.md = ..\.github\ISSUE_TEMPLATE\feature_request.md
+		..\.github\PULL_REQUEST_TEMPLATE.md = ..\.github\PULL_REQUEST_TEMPLATE.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Git", "Git", "{695F47B0-A80E-4846-AF96-5573F48093E1}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Releases", "Releases", "{8315C2AB-046F-4BE5-B417-E4CB97AA6A34}"
+	ProjectSection(SolutionItems) = preProject
+		..\Changelog.md = ..\Changelog.md
+		..\PublishRelease.txt = ..\PublishRelease.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contributing", "Contributing", "{EDB5D86C-D40A-4481-AE9E-97C456190749}"
+	ProjectSection(SolutionItems) = preProject
+		..\CODE_OF_CONDUCT.md = ..\CODE_OF_CONDUCT.md
+		..\coding_style.md = ..\coding_style.md
+		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{0FF4F70A-6728-44DD-AEC5-12C5A89E86AC}"
+	ProjectSection(SolutionItems) = preProject
+		Lib\Trakt.NET\Trakt.NET.nuspec = Lib\Trakt.NET\Trakt.NET.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Information", "Information", "{02EDFC5A-10AE-4653-AF73-F0C2E30CFFB3}"
+	ProjectSection(SolutionItems) = preProject
+		..\AUTHORS.md = ..\AUTHORS.md
+		..\.github\CODEOWNERS = ..\.github\CODEOWNERS
+		..\LICENSE.md = ..\LICENSE.md
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Global
@@ -184,6 +207,12 @@ Global
 		{854680C9-3FD2-4D79-A19A-313786436118} = {40C02336-96D7-4D92-9CBA-79570413DBA4}
 		{8FD76CA1-F7B4-445D-A3C4-DC1BAF59A490} = {40C02336-96D7-4D92-9CBA-79570413DBA4}
 		{A7FA937C-9CD0-4601-A2FA-CBA2FDC1DA77} = {E4690B7D-5380-4003-99C3-2091827DB262}
+		{E8878124-ADAC-493E-9ECC-8BF405D431AB} = {E4690B7D-5380-4003-99C3-2091827DB262}
+		{695F47B0-A80E-4846-AF96-5573F48093E1} = {E4690B7D-5380-4003-99C3-2091827DB262}
+		{8315C2AB-046F-4BE5-B417-E4CB97AA6A34} = {E4690B7D-5380-4003-99C3-2091827DB262}
+		{EDB5D86C-D40A-4481-AE9E-97C456190749} = {E4690B7D-5380-4003-99C3-2091827DB262}
+		{0FF4F70A-6728-44DD-AEC5-12C5A89E86AC} = {E4690B7D-5380-4003-99C3-2091827DB262}
+		{02EDFC5A-10AE-4653-AF73-F0C2E30CFFB3} = {E4690B7D-5380-4003-99C3-2091827DB262}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7025A39E-11A6-4587-98F7-E887B941D5A0}
