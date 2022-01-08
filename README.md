@@ -1,3 +1,6 @@
+![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/trending_movies_shows.gif)
+*<sup>Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))</sup>*
+
 [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET)
 [![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET&hashtags=Trakt,Nuget,CSharp)
 [![Twitter Follow](https://img.shields.io/twitter/follow/henrikfroehling?style=social)](https://twitter.com/henrikfroehling)
@@ -7,44 +10,30 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
 
-[![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-green)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
-[![NuGet Package](https://img.shields.io/badge/NuGet-v1.1.0-green.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.1.0)
+[![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-blue.svg?style=flat)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
+[![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.1.1-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.1.1)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=henrikfroehling_Trakt.NET&metric=alert_status)](https://sonarcloud.io/dashboard?id=henrikfroehling_Trakt.NET)
+[![PRs Welcome](https://img.shields.io/badge/Pull%20Requests-Welcome-blue.svg?style=flat)](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
+
+[![Development CI-Build](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml)
+[![Release CI-Build](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/release-CI.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/release-CI.yml)
+
+[![Code Scan](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/code-scan.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/code-scan.yml)
+[![Static Analysis](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/sonarcloud.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=henrikfroehling_Trakt.NET&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=henrikfroehling_Trakt.NET)
 
 ### Features
 
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/full-support.png) Full Trakt.tv API Coverage
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/authentication.png) Authentication Support (OAuth 2.0 and Device)
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/async.png) Completely asynchronous
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/environments.png) API Environments (Production and Sandbox)
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/serialization.png) Serialization Service
-- ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/dev/.github/language-service.png) Language Service
-
-### Supported Platforms
-
-- .Net Core >= 1.0
-- .Net Framework >= 4.5
-- Mono >= 4.6
-- Xamarin.iOS >= 10.0
-- Xamarin.Mac >= 3.0
-- Xamarin.Android >= 7.0
-- Windows UWP >= 10.0
-- Windows >= 8.0
-- Windows Phone >= 8.1
-
-### Chat Room
-
-**Do you have a question or suggestion?**
-
-[![Gitter](https://badges.gitter.im/Trakt-NET/Lobby.svg)](https://gitter.im/Trakt-NET/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+Full Trakt.tv API Coverage || Authentication Support (OAuth 2.0 and Device) || Completely asynchronous || API Environments (Production and Sandbox) || Serialization Service || Language Service
 
 **[Or do you want to report a bug?](https://github.com/henrikfroehling/Trakt.NET/issues)**
 
-### Contributions are welcome
+.Net Core >= 1.0 || .Net Framework >= 4.5 || .NET >= 5 || Mono >= 4.6 || Xamarin.iOS >= 10.0 || Xamarin.Mac >= 3.0 || Xamarin.Android >= 7.0 || Windows UWP >= 10.0 || Windows >= 8.0 || Windows Phone >= 8.1
 
-- [How to contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
+---
+
+### Discussions and Issues
+Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
 
 ### Build Status
 
@@ -56,6 +45,10 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 ### Getting Started
 
+---
+
+### Installation
+
 Install the latest release by running the following NuGet command
 
 ```ps
@@ -66,11 +59,7 @@ or with the [NuGet Package Management](https://docs.nuget.org/consume/package-ma
 
 Each release will also be published in [Releases](https://github.com/henrikfroehling/Trakt.NET/releases).
 
-You can also use one of the following NuGet Package Sources, to always get the latest build package.
-
-| NuGet-Feed | Package Source Address | Description |
-|---|---|---|
-| MyGet | https://www.myget.org/F/trakt-net/api/v3/index.json | All CI/CD build packages. |
+You can also get the latest built packages here: https://github.com/henrikfroehling/Trakt.NET/packages
 
 ### Basic Usage
 
@@ -201,7 +190,7 @@ if (theMartian)
 ```text
 The MIT License (MIT)
 
-Copyright © 2016 - 2020 Henrik Fröhling et al.
+Copyright © 2016 - 2022 Henrik Fröhling et al.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

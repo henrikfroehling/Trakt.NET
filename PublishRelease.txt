@@ -4,6 +4,7 @@ Steps needed to do for a new release
 2. Update release notes link in Source\Lib\Trakt.NET\Trakt.NET.nuspec
 3. Update version number in assembly
 4. Update version number in NuGet readme badge
-5. Update changelog
-6. Build release
-7. Test release
+5. Update version number in issue template for bug reports
+6. Update changelog
+7. Build release
+8. Test release

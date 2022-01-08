@@ -3,7 +3,7 @@ Contributing Guidelines
 
 ### **First off, thank you for considering contributing to** [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET)**.**
 
-[Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) is an open source project and there are many ways to contribute, from writing new examples or improving existing ones, improving the documentation, submitting bug reports and feature requests or writing code which can be incorporated into [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET).
+[Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) is an open source project and there are many ways to contribute, from improving the documentation, submitting bug reports and feature requests or writing new feature implementations which can be incorporated into [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET).
 
 **Please do not use the issue tracker for support questions.** If you have questions regarding on how to use the library, there is a [chat room on Gitter](https://gitter.im/Trakt-NET/Lobby) for that.
 
@@ -16,7 +16,6 @@ Contributing Guidelines
 2. Do the changes in your fork
    - Create a branch for the change with a descriptive name.
 3. If you like your change, send a pull request
-   - Be sure you have followed the [FAQ](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md#faq)
    - Be sure you have followed the [General Requirements](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md#general-requirements)
 
 ---
@@ -26,20 +25,17 @@ Contributing Guidelines
 
 ---
 
-### **FAQ**
-1. **Q: Which branch should I target?**
+### **Which branch should I target?**
+By default you should target the branch `develop`. If you're working on an issue, usually the issue would have a label "target-branch", which states the branch to target for that specific issue.
 
-   _A: By default you should target the branch `develop`. If you're working on an issue, usually the issue would have a label "target-branch", which states the branch to target for that specific issue._
-2. **Q: How do I trigger a CI-Build for my pull request?**
-
-   _A: To trigger a CI-Build for you Pull Request branch, you should name your branch in the following pattern: `issue/{target-branch-name}/{your-branch-name}`, e.g. `issue/develop/your-branch-name`._
+Please **DO NOT** target the `main` branch.
 
 ---
 
 ### **General Requirements**
 - Do not make big surprise pull requests with a lot of changes and without an associating issue.
-  - First, please open an issue to open a discussion, whether your changes do make an actual improvement.
-- Pull requests that do not merge easily with the tip of the develop-branch will be declined. The author will be asked to merge with the tip of the targeted branch and update the pull request.
+  - First, please open a discussion, whether your changes do make an actual improvement.
+- Pull requests that do not merge easily with the tip of the targeted branch will be needed to merge with the tip of the targeted branch to update the pull request.
 - Submissions must follow the rules stated in the [Coding Guidelines](https://github.com/henrikfroehling/Trakt.NET/blob/develop/coding_style.md).
 - New features must have accompanying tests with "good" code coverage.
 - Changes to existing functionality needs to be checked that it does not break any existing unit tests.
