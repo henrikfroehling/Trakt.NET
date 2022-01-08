@@ -57,6 +57,15 @@
 
                                 break;
                             }
+                        case JsonProperties.PROPERTY_NAME_UPDATED_AT:
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktSeason.UpdatedAt = value.Second;
+
+                                break;
+                            }
                         case JsonProperties.PROPERTY_NAME_NETWORK:
                             traktSeason.Network = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
