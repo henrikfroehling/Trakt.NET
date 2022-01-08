@@ -26,7 +26,7 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 Full Trakt.tv API Coverage || Authentication Support (OAuth 2.0 and Device) || Completely asynchronous || API Environments (Production and Sandbox) || Serialization Service || Language Service
 
-**[Or do you want to report a bug?](https://github.com/henrikfroehling/Trakt.NET/issues)**
+### Supported Platforms
 
 .Net Core >= 1.0 || .Net Framework >= 4.5 || .NET >= 5 || Mono >= 4.6 || Xamarin.iOS >= 10.0 || Xamarin.Mac >= 3.0 || Xamarin.Android >= 7.0 || Windows UWP >= 10.0 || Windows >= 8.0 || Windows Phone >= 8.1
 
@@ -35,15 +35,12 @@ Full Trakt.tv API Coverage || Authentication Support (OAuth 2.0 and Device) || C
 ### Discussions and Issues
 Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
 
-### Build Status
+Or do you want to report a bug? [Create an issue](https://github.com/henrikfroehling/Trakt.NET/issues/new/choose)
 
-| Branch | Status | Description |
-|---|---|---|
-| [develop](https://github.com/henrikfroehling/Trakt.NET/tree/develop) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Developer-Preview)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=5) | This branch tracks the current and possibly unstable development. |
-| [release 1.0.0](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.0.0) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Release-1.0.0)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=6) | This branch tracks the current development of release 1.0.0. |
-| [release 1.1.0](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.1.0) | [![Build status](https://dev.azure.com/henrikfroehling/Trakt.NET/_apis/build/status/Trakt.NET-CI-Release-1.1.0)](https://dev.azure.com/henrikfroehling/Trakt.NET/_build/latest?definitionId=13) | This branch tracks the current development of the next upcoming release. |
+### Contributions are welcome
+Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
 
-### Getting Started
+### [Documentation](https://github.com/henrikfroehling/Trakt.NET/wiki)
 
 ---
 
@@ -141,7 +138,10 @@ if (trendingShowsTop10)
     }
 }
 ```
+![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/trakt_trending_shows.png)
+*<sup>Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))</sup>*
 
+---
 **Get the top 10 trending movies including full information**
 
 ```csharp
@@ -159,7 +159,10 @@ if (trendingMoviesTop10)
     }
 }
 ```
+![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/trakt_trending_movies.png)
+*<sup>Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))</sup>*
 
+---
 **Get the show 'Game of Thrones'**
 
 ```csharp
