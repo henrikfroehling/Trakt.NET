@@ -1,6 +1,7 @@
 name: "Development CI-Build"
 
 on:
+  workflow_dispatch:
   push:
     branches: [develop]
     paths-ignore:
