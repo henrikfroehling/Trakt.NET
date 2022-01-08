@@ -10,10 +10,10 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
 
-[![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-green)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
-[![NuGet Package](https://img.shields.io/badge/NuGet-v1.1.1-green.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.1.1)
+[![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-success.svg?style=flat)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
+[![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.1.1-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.1.1)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
+[![PRs Welcome](https://img.shields.io/badge/Pull%20Requests-Welcome-success.svg?style=flat)](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
 
 [![Development CI-Build](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml)
 [![Release CI-Build](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/release-CI.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/release-CI.yml)
