@@ -109,6 +109,8 @@
         /// </para>
         /// </summary>
         /// <param name="objectType">Determines, which type of items should be queried. By default, all types will be returned. See also <seealso cref="TraktSyncType" />.</param>
+        /// <param name="startAt">Determines an optional start date and time for a range of the returned playback progress.</param>
+        /// <param name="endAt">Determines an optional end date and time for a range of the returned playback progress.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -117,6 +119,8 @@
         /// <returns>A list of <see cref="ITraktSyncPlaybackProgressItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null,
+                                                                                                 DateTime? startAt = null,
+                                                                                                 DateTime? endAt = null,
                                                                                                  TraktPagedParameters pagedParameters = null,
                                                                                                  CancellationToken cancellationToken = default)
         {
@@ -125,6 +129,8 @@
             return requestHandler.ExecutePagedRequestAsync(new SyncPlaybackProgressRequest
             {
                 Type = objectType,
+                StartAt = startAt,
+                EndAt = endAt,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             },
