@@ -1,9 +1,11 @@
 ﻿namespace TraktNet.Requests.Tests.Syncs.OAuth
 {
     using FluentAssertions;
+    using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Extensions;
     using TraktNet.Requests.Syncs.OAuth;
     using Xunit;
 
@@ -14,7 +16,7 @@
         public void Test_SyncPlaybackProgressRequest_Has_Valid_UriTemplate()
         {
             var request = new SyncPlaybackProgressRequest();
-            request.UriTemplate.Should().Be("sync/playback{/type}{?page,limit}");
+            request.UriTemplate.Should().Be("sync/playback{/type}{?start_at,end_at,page,limit}");
         }
 
         [Fact]
@@ -34,6 +36,28 @@
                                                    .And.Contain(new Dictionary<string, object>
                                                    {
                                                        ["type"] = type.UriName
+                                                   });
+
+            // with start at date and time
+            var startAt = DateTime.UtcNow;
+            request = new SyncPlaybackProgressRequest { StartAt = startAt };
+
+            request.GetUriPathParameters().Should().NotBeNull()
+                                                   .And.HaveCount(1)
+                                                   .And.Contain(new Dictionary<string, object>
+                                                   {
+                                                       ["start_at"] = startAt.ToTraktLongDateTimeString()
+                                                   });
+
+            // with end at date and time
+            var endAt = DateTime.UtcNow;
+            request = new SyncPlaybackProgressRequest { EndAt = endAt };
+
+            request.GetUriPathParameters().Should().NotBeNull()
+                                                   .And.HaveCount(1)
+                                                   .And.Contain(new Dictionary<string, object>
+                                                   {
+                                                       ["end_at"] = endAt.ToTraktLongDateTimeString()
                                                    });
 
             // with page
