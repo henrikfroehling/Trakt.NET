@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>TraktNet</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -10,7 +10,7 @@
     <Authors>Henrik Fröhling</Authors>
     <Company>Henrik Fröhling</Company>
     <PackageProjectUrl>https://github.com/henrikfroehling/Trakt.NET</PackageProjectUrl>
-    <Copyright>Copyright © 2016 - 2021 Henrik Fröhling et al.</Copyright>
+    <Copyright>Copyright © 2016 - 2022 Henrik Fröhling et al.</Copyright>
     <Description>.NET wrapper library for the Trakt.tv API.
 
 Features
@@ -28,14 +28,14 @@ Features
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\..\..\Build\Lib\Debug\</OutputPath>
-    <DocumentationFile>..\..\..\Build\Lib\Debug\netstandard1.1\Trakt.NET.xml</DocumentationFile>
+    <DocumentationFile>..\..\..\Build\Lib\Debug\netstandard2.0\Trakt.NET.xml</DocumentationFile>
     <LangVersion>latest</LangVersion>
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\..\Build\Lib\Release\</OutputPath>
-    <DocumentationFile>..\..\..\Build\Lib\Release\netstandard1.1\Trakt.NET.xml</DocumentationFile>
+    <DocumentationFile>..\..\..\Build\Lib\Release\netstandard2.0\Trakt.NET.xml</DocumentationFile>
     <LangVersion>latest</LangVersion>
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>

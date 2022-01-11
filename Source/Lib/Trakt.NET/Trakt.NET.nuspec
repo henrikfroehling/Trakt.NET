@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Trakt.NET</id>
-        <version>1.1.0$versionSuffix$</version>
+        <version>1.2.0$versionSuffix$</version>
         <title>Trakt.NET</title>
         <authors>Henrik Fröhling</authors>
         <owners>henrikfroehling</owners>
@@ -21,16 +21,16 @@ Features
         </description>
         <summary>.NET wrapper library for the Trakt.tv API.</summary>
         <releaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#110</releaseNotes>
-        <copyright>Copyright (c) 2016 - 2020 Henrik Fröhling et al.</copyright>
+        <copyright>Copyright (c) 2016 - 2022 Henrik Fröhling et al.</copyright>
         <language>en-US</language>
         <tags>trakt rest api</tags>
         <dependencies>
-            <dependency id="Newtonsoft.Json" version="12.0.3" />
+            <dependency id="Newtonsoft.Json" version="13.0.1" />
         </dependencies>
     </metadata>
     <files>
-        <file src="Trakt.NET.dll" target="lib\netstandard1.1\Trakt.NET.dll" />
-        <file src="Trakt.NET.pdb" target="lib\netstandard1.1\Trakt.NET.pdb" />
-        <file src="Trakt.NET.xml" target="lib\netstandard1.1\Trakt.NET.xml" />
+        <file src="Trakt.NET.dll" target="lib\netstandard2.0\Trakt.NET.dll" />
+        <file src="Trakt.NET.pdb" target="lib\netstandard2.0\Trakt.NET.pdb" />
+        <file src="Trakt.NET.xml" target="lib\netstandard2.0\Trakt.NET.xml" />
     </files>
 </package>
