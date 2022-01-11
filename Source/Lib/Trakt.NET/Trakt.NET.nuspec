@@ -29,8 +29,8 @@ Features
         </dependencies>
     </metadata>
     <files>
-        <file src="Trakt.NET.dll" target="lib\netstandard1.1\Trakt.NET.dll" />
-        <file src="Trakt.NET.pdb" target="lib\netstandard1.1\Trakt.NET.pdb" />
-        <file src="Trakt.NET.xml" target="lib\netstandard1.1\Trakt.NET.xml" />
+        <file src="Trakt.NET.dll" target="lib\netstandard2.0\Trakt.NET.dll" />
+        <file src="Trakt.NET.pdb" target="lib\netstandard2.0\Trakt.NET.pdb" />
+        <file src="Trakt.NET.xml" target="lib\netstandard2.0\Trakt.NET.xml" />
     </files>
 </package>
