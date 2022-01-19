@@ -64,6 +64,8 @@
     using Post.Syncs.Ratings.Json.Factories;
     using Post.Syncs.Ratings.Responses;
     using Post.Syncs.Ratings.Responses.Json.Factories;
+    using Post.Syncs.Recommendations;
+    using Post.Syncs.Recommendations.Json.Factories;
     using Post.Syncs.Responses;
     using Post.Syncs.Responses.Json.Factories;
     using Post.Syncs.Watchlist;
@@ -304,6 +306,11 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundSeason), new SyncRatingsPostResponseNotFoundSeasonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundShow), new SyncRatingsPostResponseNotFoundShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsRemovePostResponse), new SyncRatingsRemovePostResponseJsonIOFactory());
+
+            // sync recommendations post objects
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPost), new SyncRecommendationsPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostMovie), new SyncRecommendationsPostMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostShow), new SyncRecommendationsPostShowJsonIOFactory());
 
             // sync playback objects
             s_jsonIOFactories.Add(typeof(ITraktSyncPlaybackProgressItem), new SyncPlaybackProgressItemJsonIOFactory());
