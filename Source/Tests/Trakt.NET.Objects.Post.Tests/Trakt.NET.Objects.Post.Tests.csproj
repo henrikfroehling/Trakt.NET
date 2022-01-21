@@ -35,4 +35,11 @@
     <ProjectReference Include="..\Trakt.NET.Tests.Utility\Trakt.NET.Tests.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Syncs\Recommendations\Json\Writer\SyncRecommendationsPostShowObjectJsonWriter\" />
+    <Folder Include="Syncs\Recommendations\Json\Writer\SyncRecommendationsPostObjectJsonWriter\" />
+    <Folder Include="Syncs\Recommendations\Json\Writer\SyncRecommendationsPostMovieObjectJsonWriter\" />
+    <Folder Include="Syncs\Recommendations\Responses\Json\Writer\" />
+  </ItemGroup>
+
 </Project>

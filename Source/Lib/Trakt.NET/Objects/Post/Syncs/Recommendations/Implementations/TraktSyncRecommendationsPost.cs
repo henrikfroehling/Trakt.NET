@@ -32,13 +32,13 @@
         {
             foreach (ITraktSyncRecommendationsPostMovie postMovie in Movies)
             {
-                if (postMovie.Notes.Length > 255)
+                if (postMovie.Notes?.Length > 255)
                     throw new ArgumentOutOfRangeException($"Movies[{Movies.ToList().IndexOf(postMovie)}].Notes", "notes cannot be longer than 255 characters");
             }
 
             foreach (ITraktSyncRecommendationsPostShow postShow in Shows)
             {
-                if (postShow.Notes.Length > 255)
+                if (postShow.Notes?.Length > 255)
                     throw new ArgumentOutOfRangeException($"Shows[{Shows.ToList().IndexOf(postShow)}].Notes", "notes cannot be longer than 255 characters");
             }
         }
