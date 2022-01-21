@@ -1,7 +1,9 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Recommendations
 {
     using Objects.Json;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -28,7 +30,17 @@
 
         public void Validate()
         {
-            // TODO
+            foreach (ITraktSyncRecommendationsPostMovie postMovie in Movies)
+            {
+                if (postMovie.Notes.Length > 255)
+                    throw new ArgumentOutOfRangeException($"Movies[{Movies.ToList().IndexOf(postMovie)}].Notes", "notes cannot be longer than 255 characters");
+            }
+
+            foreach (ITraktSyncRecommendationsPostShow postShow in Shows)
+            {
+                if (postShow.Notes.Length > 255)
+                    throw new ArgumentOutOfRangeException($"Shows[{Shows.ToList().IndexOf(postShow)}].Notes", "notes cannot be longer than 255 characters");
+            }
         }
     }
 }

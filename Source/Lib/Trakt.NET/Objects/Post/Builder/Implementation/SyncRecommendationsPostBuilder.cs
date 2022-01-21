@@ -5,6 +5,7 @@
     using Post.Syncs.Recommendations;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     internal sealed class SyncRecommendationsPostBuilder : ITraktSyncRecommendationsPostBuilder
     {
@@ -38,6 +39,9 @@
             if (notes == null)
                 throw new ArgumentNullException(nameof(notes));
 
+            if (notes.Length > 255)
+                throw new ArgumentOutOfRangeException(nameof(notes), "notes cannot be longer than 255 characters");
+
             _moviesWithNotes.Add(new PostBuilderObjectWithNotes<ITraktMovie>
             {
                 Object = movie,
@@ -63,6 +67,9 @@
 
             foreach (Tuple<ITraktMovie, string> tuple in movies)
             {
+                if (tuple.Item2.Length > 255)
+                    throw new ArgumentOutOfRangeException($"movies[{movies.ToList().IndexOf(tuple)}].Notes", "notes cannot be longer than 255 characters");
+
                 _moviesWithNotes.Add(new PostBuilderObjectWithNotes<ITraktMovie>
                 {
                     Object = tuple.Item1,
@@ -90,6 +97,9 @@
             if (notes == null)
                 throw new ArgumentNullException(nameof(notes));
 
+            if (notes.Length > 255)
+                throw new ArgumentOutOfRangeException(nameof(notes), "notes cannot be longer than 255 characters");
+
             _showsWithNotes.Add(new PostBuilderObjectWithNotes<ITraktShow>
             {
                 Object = show,
@@ -115,6 +125,9 @@
 
             foreach (Tuple<ITraktShow, string> tuple in shows)
             {
+                if (tuple.Item2.Length > 255)
+                    throw new ArgumentOutOfRangeException($"movies[{shows.ToList().IndexOf(tuple)}].Notes", "notes cannot be longer than 255 characters");
+
                 _showsWithNotes.Add(new PostBuilderObjectWithNotes<ITraktShow>
                 {
                     Object = tuple.Item1,
