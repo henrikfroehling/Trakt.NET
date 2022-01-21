@@ -1,7 +1,5 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Recommendations.Responses.Json.Writer
 {
-    using Get.Movies;
-    using Get.Shows;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -16,16 +14,16 @@
 
             if (obj.Movies != null)
             {
-                var movieIdsArrayJsonWriter = new ArrayJsonWriter<ITraktMovieIds>();
+                var moviesArrayJsonWriter = new ArrayJsonWriter<ITraktSyncRecommendationsPostMovie>();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIES, cancellationToken).ConfigureAwait(false);
-                await movieIdsArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Movies, cancellationToken).ConfigureAwait(false);
+                await moviesArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Movies, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Shows != null)
             {
-                var showIdsArrayJsonWriter = new ArrayJsonWriter<ITraktShowIds>();
+                var showsArrayJsonWriter = new ArrayJsonWriter<ITraktSyncRecommendationsPostShow>();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHOWS, cancellationToken).ConfigureAwait(false);
-                await showIdsArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Shows, cancellationToken).ConfigureAwait(false);
+                await showsArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Shows, cancellationToken).ConfigureAwait(false);
             }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);

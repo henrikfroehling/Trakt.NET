@@ -1,7 +1,5 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Recommendations.Responses.Json.Reader
 {
-    using Get.Movies;
-    using Get.Shows;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -15,8 +13,8 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var postResponseMoviesIdsReader = new ArrayJsonReader<ITraktMovieIds>();
-                var postResponseShowsIdsReader = new ArrayJsonReader<ITraktShowIds>();
+                var postResponseMoviesReader = new ArrayJsonReader<ITraktSyncRecommendationsPostMovie>();
+                var postResponseShowsReader = new ArrayJsonReader<ITraktSyncRecommendationsPostShow>();
                 ITraktSyncRecommendationsPostResponseNotFoundGroup traktSyncRecommendationsPostResponseNotFoundGroup = new TraktSyncRecommendationsPostResponseNotFoundGroup();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -26,10 +24,10 @@
                     switch (propertyName)
                     {
                         case JsonProperties.PROPERTY_NAME_MOVIES:
-                            traktSyncRecommendationsPostResponseNotFoundGroup.Movies = await postResponseMoviesIdsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            traktSyncRecommendationsPostResponseNotFoundGroup.Movies = await postResponseMoviesReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SHOWS:
-                            traktSyncRecommendationsPostResponseNotFoundGroup.Shows = await postResponseShowsIdsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            traktSyncRecommendationsPostResponseNotFoundGroup.Shows = await postResponseShowsReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
