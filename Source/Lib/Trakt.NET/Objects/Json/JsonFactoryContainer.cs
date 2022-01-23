@@ -52,6 +52,8 @@
     using Post.Scrobbles.Json.Factories;
     using Post.Scrobbles.Responses;
     using Post.Scrobbles.Responses.Json.Factories;
+    using Post.Shows;
+    using Post.Shows.Json.Factories;
     using Post.Syncs.Collection;
     using Post.Syncs.Collection.Json.Factories;
     using Post.Syncs.Collection.Responses;
@@ -264,6 +266,9 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncMoviesLastActivities), new SyncMoviesLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncSeasonsLastActivities), new SyncSeasonsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncShowsLastActivities), new SyncShowsLastActivitiesJsonIOFactory());
+
+            // show post objects
+            s_jsonIOFactories.Add(typeof(ITraktShowResetWatchedProgressPost), new ShowResetWatchedProgressPostJsonIOFactory());
 
             // sync collection post objects
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPost), new SyncCollectionPostJsonIOFactory());
