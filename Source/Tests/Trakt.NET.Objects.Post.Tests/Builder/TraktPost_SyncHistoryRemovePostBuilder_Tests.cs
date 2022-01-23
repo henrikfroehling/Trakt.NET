@@ -19,8 +19,8 @@
         [Fact]
         public void Test_TraktPost_Get_SyncHistoryRemovePostBuilder()
         {
-            ITraktSyncHistoryRemovePostBuilder syncCollectionPostBuilder = TraktPost.NewSyncHistoryRemovePost();
-            syncCollectionPostBuilder.Should().NotBeNull();
+            ITraktSyncHistoryRemovePostBuilder syncHistoryRemovePostBuilder = TraktPost.NewSyncHistoryRemovePost();
+            syncHistoryRemovePostBuilder.Should().NotBeNull();
         }
 
         [Fact]

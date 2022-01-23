@@ -16,8 +16,8 @@
         [Fact]
         public void Test_TraktPost_Get_UserHiddenItemsPostBuilder()
         {
-            ITraktUserHiddenItemsPostBuilder syncCollectionPostBuilder = TraktPost.NewUserHiddenItemsPost();
-            syncCollectionPostBuilder.Should().NotBeNull();
+            ITraktUserHiddenItemsPostBuilder syncHiddenItemsPostBuilder = TraktPost.NewUserHiddenItemsPost();
+            syncHiddenItemsPostBuilder.Should().NotBeNull();
         }
 
         [Fact]

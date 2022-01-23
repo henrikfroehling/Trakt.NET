@@ -14,6 +14,8 @@
 
         public static ITraktSyncRatingsPostBuilder NewSyncRatingsPost() => new SyncRatingsPostBuilder();
 
+        public static ITraktSyncRecommendationsPostBuilder NewSyncRecommendationsPost() => new SyncRecommendationsPostBuilder();
+
         public static ITraktSyncWatchlistPostBuilder NewSyncWatchlistPost() => new SyncWatchlistPostBuilder();
 
         public static ITraktUserCustomListItemsPostBuilder NewUserCustomListItemsPost() => new UserCustomListItemsPostBuilder();

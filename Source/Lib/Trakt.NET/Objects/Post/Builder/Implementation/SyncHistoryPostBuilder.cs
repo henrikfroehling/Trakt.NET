@@ -10,7 +10,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class SyncHistoryPostBuilder : ITraktSyncHistoryPostBuilder
+    internal sealed class SyncHistoryPostBuilder : ITraktSyncHistoryPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;

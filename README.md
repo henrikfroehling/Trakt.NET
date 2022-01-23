@@ -29,7 +29,7 @@ Full Trakt.tv API Coverage || Authentication Support (OAuth 2.0 and Device) || C
 
 ### Supported Platforms
 
-.Net Core >= 1.0 || .Net Framework >= 4.5 || .NET >= 5 || Mono >= 4.6 || Xamarin.iOS >= 10.0 || Xamarin.Mac >= 3.0 || Xamarin.Android >= 7.0 || Windows UWP >= 10.0 || Windows >= 8.0 || Windows Phone >= 8.1
+.Net Core >= 2.0 || .Net Framework >= 4.6.1 || .NET >= 5 || Mono >= 5.4 || Xamarin.iOS >= 10.14 || Xamarin.Mac >= 3.8 || Xamarin.Android >= 8.0 || Windows UWP >= 10.0.16299
 
 ---
 

@@ -25,6 +25,8 @@
         private const uint PLAYBACK_ID = 13U;
         private const int RATINGS_ITEM_COUNT = 5;
         private const int PLAYBACK_PROGRESS_ITEM_COUNT = 4;
+        private readonly DateTime PLAYBACK_PROGRESS_START_AT = DateTime.UtcNow;
+        private readonly DateTime PLAYBACK_PROGRESS_END_AT = DateTime.UtcNow;
         private readonly TraktRecommendationObjectType RECOMMENDATION_TYPE = TraktRecommendationObjectType.Movie;
         private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const int RECOMMENDATIONS_ITEM_COUNT = 2;
@@ -80,6 +82,34 @@
                   ""shows"": [ ],
                   ""seasons"": [ ],
                   ""episodes"": [ ]
+                }
+              }";
+
+        private const string RECOMMENDATIONS_POST_RESPONSE_JSON =
+            @"{
+                ""added"": {
+                  ""movies"": 1,
+                  ""shows"": 2
+                },
+                ""existing"": {
+                  ""movies"": 3,
+                  ""shows"": 4
+                },
+                ""not_found"": {
+                  ""movies"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000111""
+                      }
+                    }
+                  ],
+                  ""shows"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000222""
+                      }
+                    }
+                  ]
                 }
               }";
 

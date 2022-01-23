@@ -7,6 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
+    using TraktNet.Extensions;
     using TraktNet.Objects.Get.Syncs.Playback;
     using TraktNet.Requests.Parameters;
     using TraktNet.Responses;
@@ -55,6 +56,44 @@
         }
 
         [Fact]
+        public async Task Test_TraktSyncModule_GetPlaybackProgress_With_StartAt()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_PLAYBACK_PROGRESS_URI}/{PLAYBACK_PROGRESS_TYPE.UriName}?start_at={PLAYBACK_PROGRESS_START_AT.ToTraktLongDateTimeString()}",
+                PLAYBACK_PROGRESS_JSON, 1, 10, 1, PLAYBACK_PROGRESS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktSyncPlaybackProgressItem> response = await client.Sync.GetPlaybackProgressAsync(PLAYBACK_PROGRESS_TYPE, PLAYBACK_PROGRESS_START_AT);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.ItemCount.Should().HaveValue().And.Be(PLAYBACK_PROGRESS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetPlaybackProgress_With_EndAtAt()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_PLAYBACK_PROGRESS_URI}/{PLAYBACK_PROGRESS_TYPE.UriName}?end_at={PLAYBACK_PROGRESS_END_AT.ToTraktLongDateTimeString()}",
+                PLAYBACK_PROGRESS_JSON, 1, 10, 1, PLAYBACK_PROGRESS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktSyncPlaybackProgressItem> response = await client.Sync.GetPlaybackProgressAsync(PLAYBACK_PROGRESS_TYPE, null, PLAYBACK_PROGRESS_END_AT);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+            response.ItemCount.Should().HaveValue().And.Be(PLAYBACK_PROGRESS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktSyncModule_GetPlaybackProgress_With_Page()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
@@ -63,7 +102,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktSyncPlaybackProgressItem> response = await client.Sync.GetPlaybackProgressAsync(null, pagedParameters);
+            TraktPagedResponse<ITraktSyncPlaybackProgressItem> response = await client.Sync.GetPlaybackProgressAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -84,7 +123,7 @@
 
             var pagedParameters = new TraktPagedParameters(null, PLAYBACK_PROGRESS_LIMIT);
 
-            TraktPagedResponse<ITraktSyncPlaybackProgressItem> response = await client.Sync.GetPlaybackProgressAsync(null, pagedParameters);
+            TraktPagedResponse<ITraktSyncPlaybackProgressItem> response = await client.Sync.GetPlaybackProgressAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -105,7 +144,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE, PLAYBACK_PROGRESS_LIMIT);
 
-            TraktPagedResponse<ITraktSyncPlaybackProgressItem> response = await client.Sync.GetPlaybackProgressAsync(null, pagedParameters);
+            TraktPagedResponse<ITraktSyncPlaybackProgressItem> response = await client.Sync.GetPlaybackProgressAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -121,12 +160,15 @@
         public async Task Test_TraktSyncModule_GetPlaybackProgress_Complete()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_PLAYBACK_PROGRESS_URI}/{PLAYBACK_PROGRESS_TYPE.UriName}?page={PAGE}&limit={PLAYBACK_PROGRESS_LIMIT}",
+                $"{GET_PLAYBACK_PROGRESS_URI}/{PLAYBACK_PROGRESS_TYPE.UriName}" +
+                $"?start_at={PLAYBACK_PROGRESS_START_AT.ToTraktLongDateTimeString()}&end_at={PLAYBACK_PROGRESS_END_AT.ToTraktLongDateTimeString()}" +
+                $"&page={PAGE}&limit={PLAYBACK_PROGRESS_LIMIT}",
                 PLAYBACK_PROGRESS_JSON, 1, 10, 1, PLAYBACK_PROGRESS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, PLAYBACK_PROGRESS_LIMIT);
 
-            TraktPagedResponse<ITraktSyncPlaybackProgressItem> response = await client.Sync.GetPlaybackProgressAsync(PLAYBACK_PROGRESS_TYPE, pagedParameters);
+            TraktPagedResponse<ITraktSyncPlaybackProgressItem> response =
+                await client.Sync.GetPlaybackProgressAsync(PLAYBACK_PROGRESS_TYPE, PLAYBACK_PROGRESS_START_AT, PLAYBACK_PROGRESS_END_AT, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();

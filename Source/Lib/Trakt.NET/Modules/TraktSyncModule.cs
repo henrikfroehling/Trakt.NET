@@ -17,6 +17,8 @@
     using Objects.Post.Syncs.History.Responses;
     using Objects.Post.Syncs.Ratings;
     using Objects.Post.Syncs.Ratings.Responses;
+    using Objects.Post.Syncs.Recommendations;
+    using Objects.Post.Syncs.Recommendations.Responses;
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
     using Requests.Handler;
@@ -109,6 +111,8 @@
         /// </para>
         /// </summary>
         /// <param name="objectType">Determines, which type of items should be queried. By default, all types will be returned. See also <seealso cref="TraktSyncType" />.</param>
+        /// <param name="startAt">Determines an optional start date and time for a range of the returned playback progress.</param>
+        /// <param name="endAt">Determines an optional end date and time for a range of the returned playback progress.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -117,6 +121,8 @@
         /// <returns>A list of <see cref="ITraktSyncPlaybackProgressItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null,
+                                                                                                 DateTime? startAt = null,
+                                                                                                 DateTime? endAt = null,
                                                                                                  TraktPagedParameters pagedParameters = null,
                                                                                                  CancellationToken cancellationToken = default)
         {
@@ -125,6 +131,8 @@
             return requestHandler.ExecutePagedRequestAsync(new SyncPlaybackProgressRequest
             {
                 Type = objectType,
+                StartAt = startAt,
+                EndAt = endAt,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             },
@@ -567,6 +575,42 @@
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncRatingsRemoveRequest
             {
                 RequestBody = ratingsRemovePost
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Adds items to the user's personal recommendations. Accepts movies and shows.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/get-personal-recommendations/add-items-to-personal-recommendations">"Trakt API Doc - Sync: Add to Personal Recommendations"</a> for more information.
+        /// </para>
+        /// <para>
+        /// It is recommended to use the <see cref="ITraktSyncRecommendationsPostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncRecommendationsPost" />.
+        /// See also <seealso cref="TraktPost.NewSyncRecommendationsPost()" />.
+        /// </para>
+        /// </summary>
+        /// <param name="recommendationsPost">An <see cref="ITraktSyncRecommendationsPost" /> instance containing all movies and shows, which should be added.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktSyncRecommendationsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the given ratings post is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given ratings post is empty.</exception>
+        public Task<TraktResponse<ITraktSyncRecommendationsPostResponse>> AddPersonalRecommendationsAsync(ITraktSyncRecommendationsPost recommendationsPost,
+                                                                                                          CancellationToken cancellationToken = default)
+        {
+            if (recommendationsPost == null)
+                throw new ArgumentNullException(nameof(recommendationsPost), "recommendations post must not be null");
+
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendationsAddRequest
+            {
+                RequestBody = recommendationsPost
             },
             cancellationToken);
         }
