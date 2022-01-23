@@ -85,6 +85,34 @@
                 }
               }";
 
+        private const string RECOMMENDATIONS_POST_RESPONSE_JSON =
+            @"{
+                ""added"": {
+                  ""movies"": 1,
+                  ""shows"": 2
+                },
+                ""existing"": {
+                  ""movies"": 3,
+                  ""shows"": 4
+                },
+                ""not_found"": {
+                  ""movies"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000111""
+                      }
+                    }
+                  ],
+                  ""shows"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000222""
+                      }
+                    }
+                  ]
+                }
+              }";
+
         private const string HISTORY_POST_RESPONSE_JSON =
             @"{
                 ""added"": {
