@@ -4,6 +4,7 @@
     using TraktNet.Enums;
     using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Parameters.Filter;
+    using TraktNet.Objects.Post.Shows;
 
     public partial class TraktShowsModule_Tests
     {
@@ -25,11 +26,15 @@
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private const string LANGUAGE_CODE = "en";
         private readonly TraktLastActivity LAST_ACTIVITY = TraktLastActivity.Collected;
+        private readonly DateTime RESET_WATCHED_PROGRESS_AT = DateTime.UtcNow;
 
         private string ProgressHidden { get; }
         private string ProgressSpecials { get; }
         private string ProgressCountSpecials { get; }
         private string LastActivity { get; }
+
+        private ITraktShowResetWatchedProgressPost ResetWatchedProgressPostEmpty { get; }
+        private ITraktShowResetWatchedProgressPost ResetWatchedProgressPost { get; }
 
         public TraktShowsModule_Tests()
         {
@@ -37,7 +42,16 @@
             ProgressSpecials = PROGRESS_SPECIALS.ToString().ToLower();
             ProgressCountSpecials = PROGRESS_COUNT_SPECIALS.ToString().ToLower();
             LastActivity = LAST_ACTIVITY.UriName.ToLower();
+            ResetWatchedProgressPostEmpty = SetupEmptyShowResetWatchedProgressPost();
+            ResetWatchedProgressPost = SetupShowResetWatchedProgressPost();
         }
+
+        private ITraktShowResetWatchedProgressPost SetupShowResetWatchedProgressPost() => new TraktShowResetWatchedProgressPost
+        {
+            ResetAt = RESET_WATCHED_PROGRESS_AT
+        };
+
+        private ITraktShowResetWatchedProgressPost SetupEmptyShowResetWatchedProgressPost() => new TraktShowResetWatchedProgressPost();
 
         private readonly ITraktShowFilter FILTER = TraktFilterDirectory.ShowFilter
                 .WithCertifications("TV-MA")
@@ -50,6 +64,11 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95)
                 .Build();
+
+        private const string RESET_WATCHED_PROGRESS_POST_RESPONSE_JSON =
+            @"{
+                ""reset_at"": ""2022-01-23T21:12:25.000Z""
+              }";
 
         private const string MOST_ANTICIPATED_SHOWS_JSON =
             @"[

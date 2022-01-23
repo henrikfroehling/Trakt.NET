@@ -7,6 +7,7 @@
     using Objects.Get.Shows;
     using Objects.Get.Users;
     using Objects.Get.Users.Lists;
+    using Objects.Post.Shows;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.Parameters.Filter;
@@ -466,6 +467,39 @@
                 Specials = includingSpecialSeasons,
                 CountSpecials = countSpecialSeasons,
                 LastActivity = lastActivity
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Resets the watched progress for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/shows/watched-progress/reset-show-progress">"Trakt API Doc - Shows: Reset Watched Progress"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="resetAt">An optional reset_at UTC date to have it calculate progress from that specific date onwards.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktShowResetWatchedProgressPost" /> instance, containing an optional reset_at UTC date to have it
+        /// calculate progress from that specific date onwards.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        public Task<TraktResponse<ITraktShowResetWatchedProgressPost>> ResetShowWatchedProgressAsync(string showIdOrSlug, DateTime? resetAt = null,
+                                                                                                     CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new ShowResetWatchedProgressRequest
+            {
+                Id = showIdOrSlug,
+                RequestBody = new TraktShowResetWatchedProgressPost
+                {
+                    ResetAt = resetAt
+                }
             },
             cancellationToken);
         }
