@@ -14,6 +14,7 @@ on:
       - 'PublishRelease.txt'
       - 'README.md'
       - 'coding_style.md'
+      - 'docs/**'
   pull_request:
     branches: [develop]
     paths-ignore:
@@ -26,6 +27,7 @@ on:
       - 'PublishRelease.txt'
       - 'README.md'
       - 'coding_style.md'
+      - 'docs/**'
 
 env:
   BUILD_TYPE: Release
