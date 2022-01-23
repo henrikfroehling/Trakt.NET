@@ -16,8 +16,8 @@
         [Fact]
         public void Test_TraktPost_Get_SyncWatchlistPostBuilder()
         {
-            ITraktSyncWatchlistPostBuilder syncCollectionPostBuilder = TraktPost.NewSyncWatchlistPost();
-            syncCollectionPostBuilder.Should().NotBeNull();
+            ITraktSyncWatchlistPostBuilder syncWatchlistPostBuilder = TraktPost.NewSyncWatchlistPost();
+            syncWatchlistPostBuilder.Should().NotBeNull();
         }
 
         [Fact]

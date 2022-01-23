@@ -8,12 +8,14 @@
     using TraktNet.Objects.Post.Syncs.Collection;
     using TraktNet.Objects.Post.Syncs.History;
     using TraktNet.Objects.Post.Syncs.Ratings;
+    using TraktNet.Objects.Post.Syncs.Recommendations;
     using TraktNet.Objects.Post.Syncs.Watchlist;
 
     public partial class TraktSyncModule_Tests
     {
         private ITraktSyncCollectionPost AddCollectionItemsPost { get; }
         private ITraktSyncRatingsPost AddRatingsPost { get; }
+        private ITraktSyncRecommendationsPost AddRecommendationsPost { get; }
         private ITraktSyncHistoryPost AddHistoryPost { get; }
         private ITraktSyncWatchlistPost AddWatchlistPost { get; }
         private ITraktSyncCollectionPost RemoveCollectionItemsPost { get; }
@@ -25,6 +27,7 @@
         {
             AddCollectionItemsPost = SetupAddCollectionItemsPost();
             AddRatingsPost = SetupAddRatingsPost();
+            AddRecommendationsPost = SetupAddRecommendationsPost();
             AddHistoryPost = SetupAddHistoryPost();
             AddWatchlistPost = SetupAddWatchlistPost();
             RemoveCollectionItemsPost = SetupRemoveCollectionItemsPost();
@@ -262,6 +265,66 @@
                             Imdb = "tt007404",
                             Tmdb = 422183,
                             TvRage = 12345
+                        }
+                    }
+                }
+            };
+        }
+
+        private ITraktSyncRecommendationsPost SetupAddRecommendationsPost()
+        {
+            return new TraktSyncRecommendationsPost
+            {
+                Movies = new List<ITraktSyncRecommendationsPostMovie>
+                {
+                    new TraktSyncRecommendationsPostMovie
+                    {
+                        Title = "Batman Begins",
+                        Year = 2005,
+                        Ids = new TraktMovieIds
+                        {
+                            Trakt = 1,
+                            Slug = "batman-begins-2005",
+                            Imdb = "tt0372784",
+                            Tmdb = 272
+                        },
+                        Notes = "One of Chritian Bale's most iconic roles."
+                    },
+                    new TraktSyncRecommendationsPostMovie
+                    {
+                        Ids = new TraktMovieIds
+                        {
+                            Imdb = "tt0000111"
+                        }
+                    }
+                },
+                Shows = new List<ITraktSyncRecommendationsPostShow>
+                {
+                    new TraktSyncRecommendationsPostShow
+                    {
+                        Title = "Breaking Bad",
+                        Year = 2008,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 1,
+                            Slug = "breaking-bad",
+                            Tvdb = 81189,
+                            Imdb = "tt0903747",
+                            Tmdb = 1396
+                        },
+                        Notes = "I AM THE DANGER!"
+                    },
+                    new TraktSyncRecommendationsPostShow
+                    {
+                        Title = "The Walking Dead",
+                        Year = 2010,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 2,
+                            Slug = "the-walking-dead",
+                            Tvdb = 153021,
+                            Imdb = "tt1520211",
+                            Tmdb = 1402
                         }
                     }
                 }

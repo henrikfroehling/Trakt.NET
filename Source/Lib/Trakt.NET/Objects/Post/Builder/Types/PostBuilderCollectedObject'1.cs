@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class PostBuilderCollectedObject<TObject>
+    internal class PostBuilderCollectedObject<TObject>
     {
         public TObject Object { get; set; }
 

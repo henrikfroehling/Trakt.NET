@@ -16,8 +16,8 @@
         [Fact]
         public void Test_TraktPost_Get_UserCustomListItemsPostBuilder()
         {
-            ITraktUserCustomListItemsPostBuilder syncCollectionPostBuilder = TraktPost.NewUserCustomListItemsPost();
-            syncCollectionPostBuilder.Should().NotBeNull();
+            ITraktUserCustomListItemsPostBuilder syncCustomListItemsPostBuilder = TraktPost.NewUserCustomListItemsPost();
+            syncCustomListItemsPostBuilder.Should().NotBeNull();
         }
 
         [Fact]

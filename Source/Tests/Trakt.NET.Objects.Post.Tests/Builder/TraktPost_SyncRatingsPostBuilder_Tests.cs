@@ -20,8 +20,8 @@
         [Fact]
         public void Test_TraktPost_Get_SyncRatingsPostBuilder()
         {
-            ITraktSyncRatingsPostBuilder syncCollectionPostBuilder = TraktPost.NewSyncRatingsPost();
-            syncCollectionPostBuilder.Should().NotBeNull();
+            ITraktSyncRatingsPostBuilder syncRatingsPostBuilder = TraktPost.NewSyncRatingsPost();
+            syncRatingsPostBuilder.Should().NotBeNull();
         }
 
         [Fact]
