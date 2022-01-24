@@ -14,6 +14,7 @@ on:
       - 'PublishRelease.txt'
       - 'README.md'
       - 'coding_style.md'
+      - 'docs/**'
   pull_request:
     branches: [release*]
     paths-ignore:
@@ -26,13 +27,14 @@ on:
       - 'PublishRelease.txt'
       - 'README.md'
       - 'coding_style.md'
+      - 'docs/**'
 
 env:
   BUILD_TYPE: Release
   SOLUTION_NAME: 'Source\Trakt.NET.sln'
   PROJECT_NAME: 'Source\Lib\Trakt.NET\Trakt.NET.csproj'
-  BUILD_DIRECTORY: 'Build\Lib\Release\netstandard1.1'
-  PACKAGE_VERSION_SUFFIX: 'preview'
+  BUILD_DIRECTORY: 'Build\Lib\Release\netstandard2.0'
+  PACKAGE_VERSION_SUFFIX: 'release.preview'
   VERSION_NUMBER: ''
 
 jobs:
