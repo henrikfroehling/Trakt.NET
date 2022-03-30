@@ -238,7 +238,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncWatchlistPostBuilder_AddShowAndSeasons()
+        public void Test_TraktPost_SyncWatchlistPostBuilder_WithShowAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -256,7 +256,7 @@
             };
 
             ITraktSyncWatchlistPost syncWatchlistPost = TraktPost.NewSyncWatchlistPost()
-                .AddShowAndSeasons(show).WithSeasons(1, 2, 3)
+                .WithShowAndSeasons(show).WithSeasons(1, 2, 3)
                 .Build();
 
             syncWatchlistPost.Should().NotBeNull();
@@ -290,7 +290,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncWatchlistPostBuilder_AddShowAndSeasonsCollection()
+        public void Test_TraktPost_SyncWatchlistPostBuilder_WithShowAndSeasonsCollection()
         {
             ITraktShow show = new TraktShow
             {
@@ -314,7 +314,7 @@
             };
 
             ITraktSyncWatchlistPost syncWatchlistPost = TraktPost.NewSyncWatchlistPost()
-                .AddShowAndSeasonsCollection(show).WithSeasons(seasons)
+                .WithShowAndSeasonsCollection(show).WithSeasons(seasons)
                 .Build();
 
             syncWatchlistPost.Should().NotBeNull();

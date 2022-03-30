@@ -9,7 +9,7 @@
     internal class PostBuilderEpisodeAddedMetadata<TPostBuilderAddEpisode, TPostObject>
         : ITraktPostBuilderEpisodeAddedMetadata<TPostBuilderAddEpisode, TPostObject>,
           IPostBuilderEpisodeAddedMetadataDetail
-          where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithMetadata<TPostBuilderAddEpisode, TPostObject>
+          where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderEpisodeWithMetadata<TPostBuilderAddEpisode, TPostObject>
     {
         private readonly TPostBuilderAddEpisode _postBuilder;
         private ITraktEpisode _currentEpisode;

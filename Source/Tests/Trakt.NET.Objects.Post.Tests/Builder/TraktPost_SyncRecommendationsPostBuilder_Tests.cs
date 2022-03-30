@@ -68,7 +68,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddMovieWithNotes()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithMovieWithNotes()
         {
             ITraktMovie movie = new TraktMovie
             {
@@ -84,7 +84,7 @@
             };
 
             ITraktSyncRecommendationsPost syncRecommendationsPost = TraktPost.NewSyncRecommendationsPost()
-                .AddMovieWithNotes(movie, TEST_NOTES)
+                .WithMovieWithNotes(movie, TEST_NOTES)
                 .Build();
 
             syncRecommendationsPost.Should().NotBeNull();
@@ -274,7 +274,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddShowWithNotes()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShowWithNotes()
         {
             ITraktShow show = new TraktShow
             {
@@ -292,7 +292,7 @@
             };
 
             ITraktSyncRecommendationsPost syncRecommendationsPost = TraktPost.NewSyncRecommendationsPost()
-                .AddShowWithNotes(show, TEST_NOTES)
+                .WithShowWithNotes(show, TEST_NOTES)
                 .Build();
 
             syncRecommendationsPost.Should().NotBeNull();

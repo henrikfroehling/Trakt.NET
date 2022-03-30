@@ -9,7 +9,7 @@
     internal class PostBuilderMovieAddedMetadata<TPostBuilderAddMovie, TPostObject>
         : ITraktPostBuilderMovieAddedMetadata<TPostBuilderAddMovie, TPostObject>,
           IPostBuilderMovieAddedMetadataDetail
-          where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithMetadata<TPostBuilderAddMovie, TPostObject>
+          where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderMovieWithMetadata<TPostBuilderAddMovie, TPostObject>
     {
         private readonly TPostBuilderAddMovie _postBuilder;
         private ITraktMovie _currentMovie;

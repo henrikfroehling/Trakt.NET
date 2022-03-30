@@ -9,7 +9,7 @@
     internal class PostBuilderShowAddedMetadata<TPostBuilderAddShow, TPostObject>
         : ITraktPostBuilderShowAddedMetadata<TPostBuilderAddShow, TPostObject>,
           IPostBuilderShowAddedMetadataDetail
-          where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithMetadata<TPostBuilderAddShow, TPostObject>
+          where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderShowWithMetadata<TPostBuilderAddShow, TPostObject>
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;

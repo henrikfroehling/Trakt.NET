@@ -8,7 +8,7 @@
     internal class PostBuilderMovieAddedRating<TPostBuilderAddMovie, TPostObject>
         : ITraktPostBuilderMovieAddedRating<TPostBuilderAddMovie, TPostObject>,
           IPostBuilderMovieAddedRatingDetail
-          where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithRating<TPostBuilderAddMovie, TPostObject>
+          where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderMovieWithRating<TPostBuilderAddMovie, TPostObject>
     {
         private readonly TPostBuilderAddMovie _postBuilder;
         private ITraktMovie _currentMovie;

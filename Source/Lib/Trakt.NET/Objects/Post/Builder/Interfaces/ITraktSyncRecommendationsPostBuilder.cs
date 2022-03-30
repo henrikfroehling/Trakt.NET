@@ -7,11 +7,11 @@
         : ITraktPostBuilder<ITraktSyncRecommendationsPost>,
           ITraktPostBuilderWithMovie<ITraktSyncRecommendationsPostBuilder, ITraktSyncRecommendationsPost>,
           ITraktPostBuilderWithMovies<ITraktSyncRecommendationsPostBuilder, ITraktSyncRecommendationsPost>,
-          ITraktPostBuilderAddMovieWithNotes<ITraktSyncRecommendationsPostBuilder, ITraktSyncRecommendationsPost>,
+          ITraktPostBuilderMovieWithNotes<ITraktSyncRecommendationsPostBuilder, ITraktSyncRecommendationsPost>,
           ITraktPostBuilderWithMoviesWithNotes<ITraktSyncRecommendationsPostBuilder, ITraktSyncRecommendationsPost>,
           ITraktPostBuilderWithShow<ITraktSyncRecommendationsPostBuilder, ITraktSyncRecommendationsPost>,
           ITraktPostBuilderWithShows<ITraktSyncRecommendationsPostBuilder, ITraktSyncRecommendationsPost>,
-          ITraktPostBuilderAddShowWithNotes<ITraktSyncRecommendationsPostBuilder, ITraktSyncRecommendationsPost>,
+          ITraktPostBuilderShowWithNotes<ITraktSyncRecommendationsPostBuilder, ITraktSyncRecommendationsPost>,
           ITraktPostBuilderWithShowsWithNotes<ITraktSyncRecommendationsPostBuilder, ITraktSyncRecommendationsPost>
     {
     }

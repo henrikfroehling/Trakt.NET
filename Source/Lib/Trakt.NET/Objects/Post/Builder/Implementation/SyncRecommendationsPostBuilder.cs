@@ -31,7 +31,7 @@
             return this;
         }
 
-        public ITraktSyncRecommendationsPostBuilder AddMovieWithNotes(ITraktMovie movie, string notes)
+        public ITraktSyncRecommendationsPostBuilder WithMovieWithNotes(ITraktMovie movie, string notes)
         {
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
@@ -89,7 +89,7 @@
             return this;
         }
 
-        public ITraktSyncRecommendationsPostBuilder AddShowWithNotes(ITraktShow show, string notes)
+        public ITraktSyncRecommendationsPostBuilder WithShowWithNotes(ITraktShow show, string notes)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));

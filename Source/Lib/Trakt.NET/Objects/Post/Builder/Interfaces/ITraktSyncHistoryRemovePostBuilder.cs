@@ -7,20 +7,20 @@
         : ITraktPostBuilder<ITraktSyncHistoryRemovePost>,
           ITraktPostBuilderWithMovie<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
           ITraktPostBuilderWithMovies<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
-          ITraktPostBuilderAddMovieWithWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
+          ITraktPostBuilderMovieWithWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
           ITraktPostBuilderWithShow<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
           ITraktPostBuilderWithShows<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
-          ITraktPostBuilderAddShowWithSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
-          ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons>,
-          ITraktPostBuilderAddShowWithWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
-          ITraktPostBuilderAddShowWithWatchedAtWithSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
-          ITraktPostBuilderAddShowWithWatchedAtWithSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons>,
+          ITraktPostBuilderShowWithSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
+          ITraktPostBuilderShowWithSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons>,
+          ITraktPostBuilderShowWithWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
+          ITraktPostBuilderShowWithWatchedAtWithSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
+          ITraktPostBuilderShowWithWatchedAtWithSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons>,
           ITraktPostBuilderWithEpisode<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
           ITraktPostBuilderWithEpisodes<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
-          ITraktPostBuilderAddEpisodeWithWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>
+          ITraktPostBuilderEpisodeWithWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>
     {
-        ITraktSyncHistoryRemovePostBuilder AddHistoryIds(ulong[] historyIds);
+        ITraktSyncHistoryRemovePostBuilder WithHistoryIds(ulong[] historyIds);
 
-        ITraktSyncHistoryRemovePostBuilder AddHistoryIds(ulong historyId, params ulong[] historyIds);
+        ITraktSyncHistoryRemovePostBuilder WithHistoryIds(ulong historyId, params ulong[] historyIds);
     }
 }
