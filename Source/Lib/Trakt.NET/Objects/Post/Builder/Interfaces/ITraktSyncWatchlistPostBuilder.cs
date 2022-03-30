@@ -9,8 +9,8 @@
           ITraktPostBuilderWithMovies<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
           ITraktPostBuilderWithShow<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
           ITraktPostBuilderWithShows<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
-          ITraktPostBuilderAddShowWithSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
-          ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons>,
+          ITraktPostBuilderShowWithSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
+          ITraktPostBuilderShowWithSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons>,
           ITraktPostBuilderWithEpisode<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
           ITraktPostBuilderWithEpisodes<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>
     {

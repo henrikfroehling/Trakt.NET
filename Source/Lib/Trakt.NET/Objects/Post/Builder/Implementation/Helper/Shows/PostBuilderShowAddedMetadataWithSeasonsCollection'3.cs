@@ -10,7 +10,7 @@
         : ITraktPostBuilderShowAddedMetadataWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>,
           IPostBuilderShowAddedMetadataWithSeasonsCollectionDetail<TSeasonCollection>
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>,
-                                      ITraktPostBuilderAddShowWithMetadataWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
+                                      ITraktPostBuilderShowWithMetadataWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;

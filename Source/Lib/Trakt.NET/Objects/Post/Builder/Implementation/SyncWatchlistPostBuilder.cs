@@ -63,7 +63,7 @@
             return this;
         }
 
-        public ITraktPostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> AddShowAndSeasons(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> WithShowAndSeasons(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -72,7 +72,7 @@
             return _showsWithSeasons;
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> AddShowAndSeasonsCollection(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> WithShowAndSeasonsCollection(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));

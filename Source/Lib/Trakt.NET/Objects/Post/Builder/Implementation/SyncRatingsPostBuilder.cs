@@ -55,7 +55,7 @@
             return this;
         }
 
-        public ITraktPostBuilderMovieAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedMovie(ITraktMovie movie)
+        public ITraktPostBuilderMovieAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> WithRatedMovie(ITraktMovie movie)
         {
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
@@ -82,7 +82,7 @@
             return this;
         }
 
-        public ITraktPostBuilderShowAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedShow(ITraktShow show)
+        public ITraktPostBuilderShowAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> WithRatedShow(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -91,7 +91,7 @@
             return _ratedShows;
         }
 
-        public ITraktPostBuilderShowAddedRatingWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedShowAndSeasons(ITraktShow show)
+        public ITraktPostBuilderShowAddedRatingWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> WithRatedShowAndSeasons(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -100,7 +100,7 @@
             return _ratedShowsWithSeasons;
         }
 
-        public ITraktPostBuilderShowAddedRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> AddRatedShowAndSeasonsCollection(ITraktShow show)
+        public ITraktPostBuilderShowAddedRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> WithRatedShowAndSeasonsCollection(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -109,7 +109,7 @@
             return _ratedShowsWithSeasonsCollection;
         }
 
-        public ITraktPostBuilderShowAddedSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddShowAndSeasons(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> WithShowAndSeasons(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -118,7 +118,7 @@
             return _showsWithSeasons;
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> AddShowAndSeasonsCollection(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons> WithShowAndSeasonsCollection(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -145,7 +145,7 @@
             return this;
         }
 
-        public ITraktPostBuilderEpisodeAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> AddRatedEpisode(ITraktEpisode episode)
+        public ITraktPostBuilderEpisodeAddedRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost> WithRatedEpisode(ITraktEpisode episode)
         {
             if (episode == null)
                 throw new ArgumentNullException(nameof(episode));

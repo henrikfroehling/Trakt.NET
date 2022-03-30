@@ -126,7 +126,7 @@
             return this;
         }
 
-        public ITraktPostBuilderMovieAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedMovie(ITraktMovie movie)
+        public ITraktPostBuilderMovieAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithCollectedMovie(ITraktMovie movie)
         {
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
@@ -135,7 +135,7 @@
             return _collectedMovies;
         }
 
-        public ITraktPostBuilderMovieAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddMovieAndMetadata(ITraktMovie movie)
+        public ITraktPostBuilderMovieAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithMovieAndMetadata(ITraktMovie movie)
         {
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
@@ -269,7 +269,7 @@
             return this;
         }
 
-        public ITraktPostBuilderShowAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedShow(ITraktShow show)
+        public ITraktPostBuilderShowAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithCollectedShow(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -278,7 +278,7 @@
             return _collectedShows;
         }
 
-        public ITraktPostBuilderShowAddedCollectedAtWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedShowAndSeasons(ITraktShow show)
+        public ITraktPostBuilderShowAddedCollectedAtWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithCollectedShowAndSeasons(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -287,7 +287,7 @@
             return _collectedShowsWithSeasons;
         }
 
-        public ITraktPostBuilderShowAddedCollectedAtWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> AddCollectedShowAndSeasonsCollection(ITraktShow show)
+        public ITraktPostBuilderShowAddedCollectedAtWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> WithCollectedShowAndSeasonsCollection(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -296,7 +296,7 @@
             return _collectedShowsWithSeasonsCollection;
         }
 
-        public ITraktPostBuilderShowAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddShowAndMetadata(ITraktShow show)
+        public ITraktPostBuilderShowAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithShowAndMetadata(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -305,7 +305,7 @@
             return _showsAndMetadata;
         }
 
-        public ITraktPostBuilderShowAddedMetadataWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddShowAndMetadataAndSeasons(ITraktShow show)
+        public ITraktPostBuilderShowAddedMetadataWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithShowAndMetadataAndSeasons(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -314,7 +314,7 @@
             return _showsAndMetadataWithSeasons;
         }
 
-        public ITraktPostBuilderShowAddedMetadataWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> AddShowAndMetadataAndSeasonsCollection(ITraktShow show)
+        public ITraktPostBuilderShowAddedMetadataWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> WithShowAndMetadataAndSeasonsCollection(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -323,7 +323,7 @@
             return _showsAndMetadataWithSeasonsCollection;
         }
 
-        public ITraktPostBuilderShowAddedSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddShowAndSeasons(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithShowAndSeasons(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -332,7 +332,7 @@
             return _showsWithSeasons;
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> AddShowAndSeasonsCollection(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> WithShowAndSeasonsCollection(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -411,7 +411,7 @@
             return this;
         }
 
-        public ITraktPostBuilderEpisodeAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddCollectedEpisode(ITraktEpisode episode)
+        public ITraktPostBuilderEpisodeAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithCollectedEpisode(ITraktEpisode episode)
         {
             if (episode == null)
                 throw new ArgumentNullException(nameof(episode));
@@ -420,7 +420,7 @@
             return _collectedEpisodes;
         }
 
-        public ITraktPostBuilderEpisodeAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> AddEpisodeAndMetadata(ITraktEpisode episode)
+        public ITraktPostBuilderEpisodeAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithEpisodeAndMetadata(ITraktEpisode episode)
         {
             if (episode == null)
                 throw new ArgumentNullException(nameof(episode));

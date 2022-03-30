@@ -57,7 +57,7 @@
             return this;
         }
 
-        public ITraktPostBuilderMovieAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> AddWatchedMovie(ITraktMovie movie)
+        public ITraktPostBuilderMovieAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> WithWatchedMovie(ITraktMovie movie)
         {
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
@@ -84,7 +84,7 @@
             return this;
         }
 
-        public ITraktPostBuilderShowAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> AddWatchedShow(ITraktShow show)
+        public ITraktPostBuilderShowAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> WithWatchedShow(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -93,7 +93,7 @@
             return _watchedShows;
         }
 
-        public ITraktPostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> AddWatchedShowAndSeasons(ITraktShow show)
+        public ITraktPostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> WithWatchedShowAndSeasons(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -102,7 +102,7 @@
             return _watchedShowsWithSeasons;
         }
 
-        public ITraktPostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> AddWatchedShowAndSeasonsCollection(ITraktShow show)
+        public ITraktPostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> WithWatchedShowAndSeasonsCollection(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -111,7 +111,7 @@
             return _watchedShowsWithSeasonsCollection;
         }
 
-        public ITraktPostBuilderShowAddedSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> AddShowAndSeasons(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> WithShowAndSeasons(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -120,7 +120,7 @@
             return _showsWithSeasons;
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> AddShowAndSeasonsCollection(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> WithShowAndSeasonsCollection(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -147,7 +147,7 @@
             return this;
         }
 
-        public ITraktPostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> AddWatchedEpisode(ITraktEpisode episode)
+        public ITraktPostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> WithWatchedEpisode(ITraktEpisode episode)
         {
             if (episode == null)
                 throw new ArgumentNullException(nameof(episode));
@@ -156,7 +156,7 @@
             return _watchedEpisodes;
         }
         
-        public ITraktSyncHistoryRemovePostBuilder AddHistoryIds(ulong[] historyIds)
+        public ITraktSyncHistoryRemovePostBuilder WithHistoryIds(ulong[] historyIds)
         {
             if (historyIds == null)
                 throw new ArgumentNullException(nameof(historyIds));
@@ -165,7 +165,7 @@
             return this;
         }
 
-        public ITraktSyncHistoryRemovePostBuilder AddHistoryIds(ulong historyId, params ulong[] historyIds)
+        public ITraktSyncHistoryRemovePostBuilder WithHistoryIds(ulong historyId, params ulong[] historyIds)
         {
             if (historyIds == null)
                 throw new ArgumentNullException(nameof(historyIds));

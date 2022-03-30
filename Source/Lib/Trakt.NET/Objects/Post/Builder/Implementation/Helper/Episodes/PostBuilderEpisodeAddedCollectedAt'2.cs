@@ -8,7 +8,7 @@
     internal class PostBuilderEpisodeAddedCollectedAt<TPostBuilderAddEpisode, TPostObject>
         : ITraktPostBuilderEpisodeAddedCollectedAt<TPostBuilderAddEpisode, TPostObject>,
           IPostBuilderEpisodeAddedCollectedAtDetail
-          where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithCollectedAt<TPostBuilderAddEpisode, TPostObject>
+          where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderEpisodeWithCollectedAt<TPostBuilderAddEpisode, TPostObject>
     {
         private readonly TPostBuilderAddEpisode _postBuilder;
         private ITraktEpisode _currentEpisode;
