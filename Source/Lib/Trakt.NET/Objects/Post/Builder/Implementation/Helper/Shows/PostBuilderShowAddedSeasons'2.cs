@@ -8,7 +8,7 @@
     internal class PostBuilderShowAddedSeasons<TPostBuilderAddShow, TPostObject>
         : ITraktPostBuilderShowAddedSeasons<TPostBuilderAddShow, TPostObject>,
           IPostBuilderShowAddedSeasonsDetail
-          where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithSeasons<TPostBuilderAddShow, TPostObject>
+          where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderShowWithSeasons<TPostBuilderAddShow, TPostObject>
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;

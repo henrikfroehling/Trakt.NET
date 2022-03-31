@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post
 {
-    using Basic;
+    using Objects.Basic;
     using System;
 
     internal class PostBuilderObjectWithMetadata<TObject>

@@ -238,7 +238,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_UserHiddenItemsPostBuilder_AddShowAndSeasons()
+        public void Test_TraktPost_UserHiddenItemsPostBuilder_WithShowAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -256,7 +256,7 @@
             };
 
             ITraktUserHiddenItemsPost userHiddenItemsPost = TraktPost.NewUserHiddenItemsPost()
-                .AddShowAndSeasons(show).WithSeasons(1, 2, 3)
+                .WithShowAndSeasons(show).WithSeasons(1, 2, 3)
                 .Build();
 
             userHiddenItemsPost.Should().NotBeNull();

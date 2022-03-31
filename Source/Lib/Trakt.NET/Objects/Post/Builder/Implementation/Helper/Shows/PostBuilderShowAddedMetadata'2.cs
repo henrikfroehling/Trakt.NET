@@ -1,15 +1,15 @@
 ﻿namespace TraktNet.Objects.Post.Helper
 {
-    using Basic;
     using Capabilities;
     using Get.Shows;
+    using Objects.Basic;
     using System;
     using System.Collections.Generic;
 
     internal class PostBuilderShowAddedMetadata<TPostBuilderAddShow, TPostObject>
         : ITraktPostBuilderShowAddedMetadata<TPostBuilderAddShow, TPostObject>,
           IPostBuilderShowAddedMetadataDetail
-          where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithMetadata<TPostBuilderAddShow, TPostObject>
+          where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderShowWithMetadata<TPostBuilderAddShow, TPostObject>
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;

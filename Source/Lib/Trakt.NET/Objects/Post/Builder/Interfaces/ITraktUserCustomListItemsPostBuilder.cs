@@ -11,8 +11,8 @@
           ITraktPostBuilderWithPersons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
           ITraktPostBuilderWithShow<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
           ITraktPostBuilderWithShows<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
-          ITraktPostBuilderAddShowWithSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
-          ITraktPostBuilderAddShowWithSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons>
+          ITraktPostBuilderShowWithSeasons<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost>,
+          ITraktPostBuilderShowWithSeasonsCollection<ITraktUserCustomListItemsPostBuilder, ITraktUserCustomListItemsPost, PostSeasons>
     {
     }
 }

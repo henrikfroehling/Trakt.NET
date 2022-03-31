@@ -421,7 +421,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddCollectedMovie()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithCollectedMovie()
         {
             ITraktMovie movie = new TraktMovie
             {
@@ -437,7 +437,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddCollectedMovie(movie).CollectedAt(COLLECTED_AT)
+                .WithCollectedMovie(movie).CollectedAt(COLLECTED_AT)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -464,7 +464,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddMovieAndMetadata()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithMovieAndMetadata()
         {
             ITraktMovie movie = new TraktMovie
             {
@@ -490,7 +490,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddMovieAndMetadata(movie).WithMetadata(metadata)
+                .WithMovieAndMetadata(movie).WithMetadata(metadata)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -517,7 +517,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddMovieAndMetadata_With_CollectedAt()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithMovieAndMetadata_With_CollectedAt()
         {
             ITraktMovie movie = new TraktMovie
             {
@@ -543,7 +543,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddMovieAndMetadata(movie).WithMetadata(metadata, COLLECTED_AT)
+                .WithMovieAndMetadata(movie).WithMetadata(metadata, COLLECTED_AT)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -1406,7 +1406,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddCollectedShow()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithCollectedShow()
         {
             ITraktShow show = new TraktShow
             {
@@ -1424,7 +1424,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddCollectedShow(show).CollectedAt(COLLECTED_AT)
+                .WithCollectedShow(show).CollectedAt(COLLECTED_AT)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -1454,7 +1454,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddCollectedShowAndSeasons()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithCollectedShowAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -1472,7 +1472,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddCollectedShowAndSeasons(show).CollectedAt(COLLECTED_AT, 1, 2, 3)
+                .WithCollectedShowAndSeasons(show).CollectedAt(COLLECTED_AT, 1, 2, 3)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -1513,7 +1513,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddCollectedShowAndSeasonsCollection()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithCollectedShowAndSeasonsCollection()
         {
             ITraktShow show = new TraktShow
             {
@@ -1537,7 +1537,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddCollectedShowAndSeasonsCollection(show).CollectedAt(COLLECTED_AT, seasons)
+                .WithCollectedShowAndSeasonsCollection(show).CollectedAt(COLLECTED_AT, seasons)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -1580,7 +1580,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddShowAndMetadata()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndMetadata()
         {
             ITraktShow show = new TraktShow
             {
@@ -1608,7 +1608,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddShowAndMetadata(show).WithMetadata(metadata)
+                .WithShowAndMetadata(show).WithMetadata(metadata)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -1638,7 +1638,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddShowAndMetadata_With_CollectedAt()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndMetadata_With_CollectedAt()
         {
             ITraktShow show = new TraktShow
             {
@@ -1666,7 +1666,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddShowAndMetadata(show).WithMetadata(metadata, COLLECTED_AT)
+                .WithShowAndMetadata(show).WithMetadata(metadata, COLLECTED_AT)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -1696,7 +1696,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddShowAndMetadataAndSeasons()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndMetadataAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -1724,7 +1724,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddShowAndMetadataAndSeasons(show).WithMetadata(metadata, 1, 2, 3)
+                .WithShowAndMetadataAndSeasons(show).WithMetadata(metadata, 1, 2, 3)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -1765,7 +1765,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddShowAndMetadataAndSeasons_With_CollectedAt()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndMetadataAndSeasons_With_CollectedAt()
         {
             ITraktShow show = new TraktShow
             {
@@ -1793,7 +1793,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddShowAndMetadataAndSeasons(show).WithMetadata(metadata, COLLECTED_AT, 1, 2, 3)
+                .WithShowAndMetadataAndSeasons(show).WithMetadata(metadata, COLLECTED_AT, 1, 2, 3)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -1834,7 +1834,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddShowAndMetadataAndSeasonsCollection()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndMetadataAndSeasonsCollection()
         {
             ITraktShow show = new TraktShow
             {
@@ -1868,7 +1868,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddShowAndMetadataAndSeasonsCollection(show).WithMetadata(metadata, seasons)
+                .WithShowAndMetadataAndSeasonsCollection(show).WithMetadata(metadata, seasons)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -1911,7 +1911,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddShowAndMetadataAndSeasonsCollection_With_CollectedAt()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndMetadataAndSeasonsCollection_With_CollectedAt()
         {
             ITraktShow show = new TraktShow
             {
@@ -1945,7 +1945,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddShowAndMetadataAndSeasonsCollection(show).WithMetadata(metadata, COLLECTED_AT, seasons)
+                .WithShowAndMetadataAndSeasonsCollection(show).WithMetadata(metadata, COLLECTED_AT, seasons)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -1988,7 +1988,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddShowAndSeasons()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -2006,7 +2006,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddShowAndSeasons(show).WithSeasons(1, 2, 3)
+                .WithShowAndSeasons(show).WithSeasons(1, 2, 3)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -2047,7 +2047,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddShowAndSeasonsCollection()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndSeasonsCollection()
         {
             ITraktShow show = new TraktShow
             {
@@ -2071,7 +2071,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddShowAndSeasonsCollection(show).WithSeasons(seasons)
+                .WithShowAndSeasonsCollection(show).WithSeasons(seasons)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -2481,7 +2481,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddCollectedEpisode()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithCollectedEpisode()
         {
             ITraktEpisode episode = new TraktEpisode
             {
@@ -2496,7 +2496,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddCollectedEpisode(episode).CollectedAt(COLLECTED_AT)
+                .WithCollectedEpisode(episode).CollectedAt(COLLECTED_AT)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -2522,7 +2522,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddEpisodeAndMetadata()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeAndMetadata()
         {
             ITraktEpisode episode = new TraktEpisode
             {
@@ -2547,7 +2547,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddEpisodeAndMetadata(episode).WithMetadata(metadata)
+                .WithEpisodeAndMetadata(episode).WithMetadata(metadata)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -2573,7 +2573,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_AddEpisodeAndMetadata_With_CollectedAt()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeAndMetadata_With_CollectedAt()
         {
             ITraktEpisode episode = new TraktEpisode
             {
@@ -2598,7 +2598,7 @@
             };
 
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .AddEpisodeAndMetadata(episode).WithMetadata(metadata, COLLECTED_AT)
+                .WithEpisodeAndMetadata(episode).WithMetadata(metadata, COLLECTED_AT)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();

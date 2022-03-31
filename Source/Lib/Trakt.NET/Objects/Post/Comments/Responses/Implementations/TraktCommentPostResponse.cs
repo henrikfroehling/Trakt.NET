@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Comments.Responses
 {
-    using Basic;
+    using Objects.Basic;
 
     /// <summary>Represents a comment post response.</summary>
     public class TraktCommentPostResponse : TraktComment, ITraktCommentPostResponse

@@ -8,7 +8,7 @@
     internal class PostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>
         : ITraktPostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>,
           IPostBuilderMovieAddedCollectedAtDetail
-          where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithCollectedAt<TPostBuilderAddMovie, TPostObject>
+          where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderMovieWithCollectedAt<TPostBuilderAddMovie, TPostObject>
     {
         private readonly TPostBuilderAddMovie _postBuilder;
         private ITraktMovie _currentMovie;

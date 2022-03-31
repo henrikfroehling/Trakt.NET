@@ -33,7 +33,7 @@ env:
   BUILD_TYPE: Release
   SOLUTION_NAME: 'Source\Trakt.NET.sln'
   PROJECT_NAME: 'Source\Lib\Trakt.NET\Trakt.NET.csproj'
-  BUILD_DIRECTORY: 'Build\Lib\Release\netstandard1.1'
+  BUILD_DIRECTORY: 'Build\Lib\Release\netstandard2.0'
   PACKAGE_VERSION_SUFFIX: 'release.preview'
   VERSION_NUMBER: ''
 

@@ -38,6 +38,10 @@
     using Get.Watched.Json.Factories;
     using Get.Watchlist;
     using Get.Watchlist.Json.Factories;
+    using Post.Basic;
+    using Post.Basic.Json.Factories;
+    using Post.Basic.Responses;
+    using Post.Basic.Responses.Json.Factories;
     using Post.Checkins;
     using Post.Checkins.Json.Factories;
     using Post.Checkins.Responses;
@@ -149,6 +153,12 @@
             s_jsonIOFactories.Add(typeof(ITraktSearchResult), new SearchResultJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSharing), new SharingJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktStatistics), new StatisticsJsonIOFactory());
+
+            // basic post objects
+            s_jsonIOFactories.Add(typeof(ITraktListItemsReorderPost), new ListItemsReorderPostJsonIOFactory());
+
+            // user response post objects
+            s_jsonIOFactories.Add(typeof(ITraktListItemsReorderPostResponse), new ListItemsReorderPostResponseJsonIOFactory());
 
             // calendar objects
             s_jsonIOFactories.Add(typeof(ITraktCalendarMovie), new CalendarMovieJsonIOFactory());
@@ -393,10 +403,8 @@
 
             // user post objects
             s_jsonIOFactories.Add(typeof(ITraktUserCustomListPost), new UserCustomListPostJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListsReorderPost), new UserCustomListsReorderPostJsonIOFactory());
 
             // user response post objects
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListsReorderPostResponse), new UserCustomListsReorderPostResponseJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserFollowUserPostResponse), new UserFollowUserPostResponseJsonIOFactory());
 
             // user statistic objects
