@@ -11,6 +11,8 @@
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
     using Objects.Post;
+    using Objects.Post.Basic;
+    using Objects.Post.Basic.Responses;
     using Objects.Post.Syncs.Collection;
     using Objects.Post.Syncs.Collection.Responses;
     using Objects.Post.Syncs.History;
@@ -656,6 +658,36 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Reorders an user's watchlist.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-watchlist/reorder-watchlist-items">"Trakt API Doc - Sync: Reorder Watchlist"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="reorderedWatchlistItemRanks">A collection of list ids. Represents the new order of an user's watchlist.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated watchlist order.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedWatchlistItemRanks"/> is null.</exception>
+        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderWatchlistItemsAsync(IEnumerable<uint> reorderedWatchlistItemRanks,
+                                                                                                  CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistItemsReorderRequest
+            {
+                RequestBody = new TraktListItemsReorderPost
+                {
+                    Rank = reorderedWatchlistItemRanks
+                }
             },
             cancellationToken);
         }

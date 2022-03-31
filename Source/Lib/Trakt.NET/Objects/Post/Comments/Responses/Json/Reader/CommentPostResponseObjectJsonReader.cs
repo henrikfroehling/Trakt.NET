@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Comments.Responses.Json.Reader
 {
-    using Basic.Json.Reader;
     using Get.Users.Json.Reader;
     using Newtonsoft.Json;
+    using Objects.Basic.Json.Reader;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;

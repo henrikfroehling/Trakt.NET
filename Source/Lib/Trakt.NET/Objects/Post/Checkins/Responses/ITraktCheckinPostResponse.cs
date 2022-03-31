@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Checkins.Responses
 {
-    using Basic;
+    using Objects.Basic;
     using System;
 
     public interface ITraktCheckinPostResponse

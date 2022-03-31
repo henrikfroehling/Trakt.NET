@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Collection
 {
-    using Basic;
     using Get.Movies;
+    using Objects.Basic;
     using System;
 
     /// <summary>

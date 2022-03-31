@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Checkins
 {
-    using Basic;
+    using Objects.Basic;
     using System.Threading;
     using System.Threading.Tasks;
 

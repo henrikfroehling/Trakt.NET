@@ -13,6 +13,8 @@
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
     using Objects.Post;
+    using Objects.Post.Basic;
+    using Objects.Post.Basic.Responses;
     using Objects.Post.Users;
     using Objects.Post.Users.CustomListItems;
     using Objects.Post.Users.CustomListItems.Responses;
@@ -693,19 +695,19 @@
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
-        /// <returns>An <see cref="ITraktUserCustomListsReorderPostResponse" /> instance containing information about the successfully updated custom lists order.</returns>
+        /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated custom lists order.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedListsRank"/> is null.</exception>
-        public Task<TraktResponse<ITraktUserCustomListsReorderPostResponse>> ReorderCustomListsAsync(string usernameOrSlug, IEnumerable<uint> reorderedListsRank,
-                                                                                                     CancellationToken cancellationToken = default)
+        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderCustomListsAsync(string usernameOrSlug, IEnumerable<uint> reorderedListsRank,
+                                                                                               CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserCustomListsReorderRequest
             {
                 Username = usernameOrSlug,
-                RequestBody = new TraktUserCustomListsReorderPost
+                RequestBody = new TraktListItemsReorderPost
                 {
                     Rank = reorderedListsRank
                 }
@@ -727,13 +729,13 @@
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
-        /// <returns>An <see cref="ITraktUserCustomListsReorderPostResponse" /> instance containing information about the successfully updated custom list items order.</returns>
+        /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated custom list items order.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedListItemsRank"/> is null.</exception>
-        public Task<TraktResponse<ITraktUserCustomListsReorderPostResponse>> ReorderCustomListItemsAsync(string usernameOrSlug, string listIdOrSlug,
-                                                                                                         IEnumerable<uint> reorderedListItemsRank,
-                                                                                                         CancellationToken cancellationToken = default)
+        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderCustomListItemsAsync(string usernameOrSlug, string listIdOrSlug,
+                                                                                                   IEnumerable<uint> reorderedListItemsRank,
+                                                                                                   CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -741,7 +743,7 @@
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
-                RequestBody = new TraktUserCustomListsReorderPost
+                RequestBody = new TraktListItemsReorderPost
                 {
                     Rank = reorderedListItemsRank
                 }

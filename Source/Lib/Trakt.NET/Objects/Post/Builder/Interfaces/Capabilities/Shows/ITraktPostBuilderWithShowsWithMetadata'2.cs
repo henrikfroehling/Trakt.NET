@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Capabilities
 {
-    using Basic;
     using Get.Shows;
+    using Objects.Basic;
     using System;
     using System.Collections.Generic;
 

@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Capabilities
 {
-    using Basic;
+    using Objects.Basic;
     using System;
 
     public interface ITraktPostBuilderEpisodeAddedMetadata<TPostBuilderAddEpisode, out TPostObject>
