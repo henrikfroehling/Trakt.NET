@@ -12,7 +12,5 @@ namespace TraktNet.Requests.Syncs.OAuth
         public override string UriTemplate => "sync/watchlist/reorder";
 
         public override IDictionary<string, object> GetUriPathParameters() => new Dictionary<string, object>();
-
-        public override void Validate() => base.Validate();
     }
 }
