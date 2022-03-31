@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Capabilities
 {
-    using Basic;
+    using Objects.Basic;
     using System;
 
     public interface ITraktPostBuilderShowAddedMetadataWithSeasons<TPostBuilderAddShow, out TPostObject>

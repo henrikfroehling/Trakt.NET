@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Comments
 {
-    using Basic;
+    using Objects.Basic;
     using Requests.Interfaces;
 
     public interface ITraktCommentPost : IRequestBody

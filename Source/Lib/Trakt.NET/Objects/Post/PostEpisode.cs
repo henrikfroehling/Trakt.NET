@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post
 {
-    using Basic;
+    using Objects.Basic;
     using System;
 
     /// <summary>Contains an episode number, optional metadata about the episode and an optional datetime.</summary>

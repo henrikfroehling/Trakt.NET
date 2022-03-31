@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Helper
 {
-    using Basic;
     using Capabilities;
     using Get.Shows;
+    using Objects.Basic;
     using System;
     using System.Collections.Generic;
 

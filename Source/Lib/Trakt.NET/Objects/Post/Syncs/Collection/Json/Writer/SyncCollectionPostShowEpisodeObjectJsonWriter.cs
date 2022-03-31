@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Collection.Json.Writer
 {
-    using Basic.Json.Writer;
     using Extensions;
     using Newtonsoft.Json;
+    using Objects.Basic.Json.Writer;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;

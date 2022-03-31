@@ -1,11 +1,11 @@
 ﻿namespace TraktNet.Objects.Post
 {
-    using Basic;
     using Capabilities;
     using Get.Episodes;
     using Get.Movies;
     using Get.Shows;
     using Helper;
+    using Objects.Basic;
     using Post.Syncs.Collection;
     using System;
     using System.Collections.Generic;

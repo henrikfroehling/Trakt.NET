@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Comments
 {
-    using Basic;
+    using Objects.Basic;
     using System.Threading;
     using System.Threading.Tasks;
 
