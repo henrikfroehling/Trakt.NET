@@ -20,10 +20,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_GetLikes()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(
-                GET_LIKES_URI,
-                LIKES_JSON, 1, 10, 1, LIKES_ITEM_COUNT);
-
+            TraktClient client = TestUtility.GetMockClient(GET_LIKES_URI, LIKES_JSON, 1, 10, 1, LIKES_ITEM_COUNT);
             TraktPagedResponse<ITraktUserLikeItem> response = await client.Users.GetLikesAsync();
 
             response.Should().NotBeNull();
@@ -39,10 +36,9 @@
         [Fact]
         public async Task Test_TraktUsersModule_GetLikes_With_Type()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_LIKES_URI}/{LIKE_TYPE.UriName}",
-                LIKES_JSON, 1, 10, 1, LIKES_ITEM_COUNT);
-
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_LIKES_URI}/{LIKE_TYPE.UriName}", LIKES_JSON, 1, 10, 1, LIKES_ITEM_COUNT);
+            
             TraktPagedResponse<ITraktUserLikeItem> response = await client.Users.GetLikesAsync(LIKE_TYPE);
 
             response.Should().NotBeNull();
@@ -58,14 +54,11 @@
         [Fact]
         public async Task Test_TraktUsersModule_GetLikes_With_Type_And_Page()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_LIKES_URI}/{LIKE_TYPE.UriName}?page={PAGE}",
-                LIKES_JSON, PAGE, 10, 1, LIKES_ITEM_COUNT);
-
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_LIKES_URI}/{LIKE_TYPE.UriName}?page={PAGE}", LIKES_JSON, PAGE, 10, 1, LIKES_ITEM_COUNT);
+            
             var pagedParameters = new TraktPagedParameters(PAGE);
-
-            TraktPagedResponse<ITraktUserLikeItem> response =
-                await client.Users.GetLikesAsync(LIKE_TYPE, pagedParameters);
+            TraktPagedResponse<ITraktUserLikeItem> response = await client.Users.GetLikesAsync(LIKE_TYPE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -80,14 +73,11 @@
         [Fact]
         public async Task Test_TraktUsersModule_GetLikes_With_Type_And_Limit()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_LIKES_URI}/{LIKE_TYPE.UriName}?limit={LIKES_LIMIT}",
-                LIKES_JSON, 1, LIKES_LIMIT, 1, LIKES_ITEM_COUNT);
-
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_LIKES_URI}/{LIKE_TYPE.UriName}?limit={LIKES_LIMIT}", LIKES_JSON, 1, LIKES_LIMIT, 1, LIKES_ITEM_COUNT);
+            
             var pagedParameters = new TraktPagedParameters(null, LIKES_LIMIT);
-
-            TraktPagedResponse<ITraktUserLikeItem> response =
-                await client.Users.GetLikesAsync(LIKE_TYPE, pagedParameters);
+            TraktPagedResponse<ITraktUserLikeItem> response = await client.Users.GetLikesAsync(LIKE_TYPE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -102,14 +92,11 @@
         [Fact]
         public async Task Test_TraktUsersModule_GetLikes_With_Page()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_LIKES_URI}?page={PAGE}",
-                LIKES_JSON, PAGE, 10, 1, LIKES_ITEM_COUNT);
-
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_LIKES_URI}?page={PAGE}", LIKES_JSON, PAGE, 10, 1, LIKES_ITEM_COUNT);
+            
             var pagedParameters = new TraktPagedParameters(PAGE);
-
-            TraktPagedResponse<ITraktUserLikeItem> response =
-                await client.Users.GetLikesAsync(null, pagedParameters);
+            TraktPagedResponse<ITraktUserLikeItem> response = await client.Users.GetLikesAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -124,14 +111,11 @@
         [Fact]
         public async Task Test_TraktUsersModule_GetLikes_With_Limit()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_LIKES_URI}?limit={LIKES_LIMIT}",
-                LIKES_JSON, 1, LIKES_LIMIT, 1, LIKES_ITEM_COUNT);
-
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_LIKES_URI}?limit={LIKES_LIMIT}", LIKES_JSON, 1, LIKES_LIMIT, 1, LIKES_ITEM_COUNT);
+            
             var pagedParameters = new TraktPagedParameters(null, LIKES_LIMIT);
-
-            TraktPagedResponse<ITraktUserLikeItem> response =
-                await client.Users.GetLikesAsync(null, pagedParameters);
+            TraktPagedResponse<ITraktUserLikeItem> response = await client.Users.GetLikesAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -146,14 +130,11 @@
         [Fact]
         public async Task Test_TraktUsersModule_GetLikes_With_Page_And_Limit()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_LIKES_URI}?page={PAGE}&limit={LIKES_LIMIT}",
-                LIKES_JSON, PAGE, LIKES_LIMIT, 1, LIKES_ITEM_COUNT);
-
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_LIKES_URI}?page={PAGE}&limit={LIKES_LIMIT}", LIKES_JSON, PAGE, LIKES_LIMIT, 1, LIKES_ITEM_COUNT);
+            
             var pagedParameters = new TraktPagedParameters(PAGE, LIKES_LIMIT);
-
-            TraktPagedResponse<ITraktUserLikeItem> response =
-                await client.Users.GetLikesAsync(null, pagedParameters);
+            TraktPagedResponse<ITraktUserLikeItem> response = await client.Users.GetLikesAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -168,14 +149,12 @@
         [Fact]
         public async Task Test_TraktUsersModule_GetLikes_Complete()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(
+            TraktClient client = TestUtility.GetMockClient(
                 $"{GET_LIKES_URI}/{LIKE_TYPE.UriName}?page={PAGE}&limit={LIKES_LIMIT}",
                 LIKES_JSON, PAGE, LIKES_LIMIT, 1, LIKES_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIKES_LIMIT);
-
-            TraktPagedResponse<ITraktUserLikeItem> response =
-                await client.Users.GetLikesAsync(LIKE_TYPE, pagedParameters);
+            TraktPagedResponse<ITraktUserLikeItem> response = await client.Users.GetLikesAsync(LIKE_TYPE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -206,7 +185,7 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktUsersModule_GetLikes_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_LIKES_URI, statusCode);
+            TraktClient client = TestUtility.GetMockClient(GET_LIKES_URI, statusCode);
 
             try
             {
