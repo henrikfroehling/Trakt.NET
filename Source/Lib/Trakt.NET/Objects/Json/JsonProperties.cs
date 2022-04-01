@@ -25,6 +25,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_BIOGRAPHY = "biography";
         internal const string PROPERTY_NAME_BIRTHDAY = "birthday";
         internal const string PROPERTY_NAME_BIRTHPLACE = "birthplace";
+        internal const string PROPERTY_NAME_BLOCKED_AT = "blocked_at";
         internal const string PROPERTY_NAME_CAMERA = "camera";
         internal const string PROPERTY_NAME_CAST = "cast";
         internal const string PROPERTY_NAME_CERTIFICATION = "certification";
@@ -69,6 +70,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_FOLLOWED_AT = "followed_at";
         internal const string PROPERTY_NAME_FOLLOWERS = "followers";
         internal const string PROPERTY_NAME_FOLLOWING = "following";
+        internal const string PROPERTY_NAME_FOLLOWING_AT = "following_at";
         internal const string PROPERTY_NAME_FRIENDS = "friends";
         internal const string PROPERTY_NAME_FRIENDS_AT = "friends_at";
         internal const string PROPERTY_NAME_FULL = "full";
@@ -121,6 +123,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_OVERVIEW = "overview";
         internal const string PROPERTY_NAME_PARENT_ID = "parent_id";
         internal const string PROPERTY_NAME_PAUSED_AT = "paused_at";
+        internal const string PROPERTY_NAME_PENDING_AT = "pending_at";
         internal const string PROPERTY_NAME_PEOPLE = "people";
         internal const string PROPERTY_NAME_PERIOD = "period";
         internal const string PROPERTY_NAME_PERSON = "person";
@@ -134,6 +137,8 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_RATED_AT = "rated_at";
         internal const string PROPERTY_NAME_RATING = "rating";
         internal const string PROPERTY_NAME_RATINGS = "ratings";
+        internal const string PROPERTY_NAME_RECOMMENDATIONS = "recommendations";
+        internal const string PROPERTY_NAME_RECOMMENDATIONS_AT = "recommendations_at";
         internal const string PROPERTY_NAME_RECOMMENDED = "recommended";
         internal const string PROPERTY_NAME_REFRESH_TOKEN = "refresh_token";
         internal const string PROPERTY_NAME_RELEASE_DATE = "release_date";
@@ -152,6 +157,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_SEASON = "season";
         internal const string PROPERTY_NAME_SEASONS = "seasons";
         internal const string PROPERTY_NAME_SERIES_REGULAR = "series_regular";
+        internal const string PROPERTY_NAME_SETTINGS_AT = "settings_at";
         internal const string PROPERTY_NAME_SHARING = "sharing";
         internal const string PROPERTY_NAME_SHARING_TEXT = "sharing_text";
         internal const string PROPERTY_NAME_SHOW = "show";
@@ -203,6 +209,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_WATCHER_COUNT = "watcher_count";
         internal const string PROPERTY_NAME_WATCHERS = "watchers";
         internal const string PROPERTY_NAME_WATCHING = "watching";
+        internal const string PROPERTY_NAME_WATCHLIST = "watchlist";
         internal const string PROPERTY_NAME_WATCHLISTED_AT = "watchlisted_at";
         internal const string PROPERTY_NAME_WRITING = "writing";
         internal const string PROPERTY_NAME_YEAR = "year";

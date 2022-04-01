@@ -20,6 +20,7 @@
             moviesLastActivities.CollectedAt.Should().BeNull();
             moviesLastActivities.RatedAt.Should().BeNull();
             moviesLastActivities.WatchlistedAt.Should().BeNull();
+            moviesLastActivities.RecommendationsAt.Should().BeNull();
             moviesLastActivities.CommentedAt.Should().BeNull();
             moviesLastActivities.PausedAt.Should().BeNull();
             moviesLastActivities.HiddenAt.Should().BeNull();
@@ -36,6 +37,7 @@
             moviesLastActivities.CollectedAt.Should().Be(DateTime.Parse("2014-11-19T22:02:41.308Z").ToUniversalTime());
             moviesLastActivities.RatedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.310Z").ToUniversalTime());
             moviesLastActivities.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.321Z").ToUniversalTime());
+            moviesLastActivities.RecommendationsAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.325Z").ToUniversalTime());
             moviesLastActivities.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.325Z").ToUniversalTime());
             moviesLastActivities.PausedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
             moviesLastActivities.HiddenAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
@@ -47,6 +49,7 @@
                 ""collected_at"": ""2014-11-19T22:02:41.308Z"",
                 ""rated_at"": ""2014-11-20T06:51:30.310Z"",
                 ""watchlisted_at"": ""2014-11-20T06:51:30.321Z"",
+                ""recommendations_at"": ""2014-11-20T06:51:30.325Z"",
                 ""commented_at"": ""2014-11-20T06:51:30.325Z"",
                 ""paused_at"": ""2014-11-20T06:51:30.250Z"",
                 ""hidden_at"": ""2014-11-20T06:51:30.250Z""

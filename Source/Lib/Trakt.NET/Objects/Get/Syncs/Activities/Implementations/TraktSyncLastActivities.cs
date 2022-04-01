@@ -49,5 +49,26 @@
         /// <para>Nullable</para>
         /// </summary>
         public ITraktSyncListsLastActivities Lists { get; set; }
+
+        /// <summary>
+        /// Gets or sets a collection of UTC datetimes of last activities for watchlists.
+        /// See also <seealso cref="ITraktSyncWatchlistLastActivities" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        public ITraktSyncWatchlistLastActivities Watchlist { get; set; }
+
+        /// <summary>
+        /// Gets or sets a collection of UTC datetimes of last activities for recommendations.
+        /// See also <seealso cref="ITraktSyncRecommendationsLastActivities" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        public ITraktSyncRecommendationsLastActivities Recommendations { get; set; }
+
+        /// <summary>
+        /// Gets or sets a collection of UTC datetimes of last activities for an account.
+        /// See also <seealso cref="ITraktSyncAccountLastActivities" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        public ITraktSyncAccountLastActivities Account { get; set; }
     }
 }

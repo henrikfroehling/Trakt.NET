@@ -17,6 +17,9 @@
         /// <summary>Gets or sets the UTC datetime, when a movie was lastly added to the watchlist.</summary>
         DateTime? WatchlistedAt { get; set; }
 
+        /// <summary>Gets or sets the UTC datetime, when a movie was lastly recommended.</summary>
+        DateTime? RecommendationsAt { get; set; }
+
         /// <summary>Gets or sets the UTC datetime, when a movie was lastly commented.</summary>
         DateTime? CommentedAt { get; set; }
 
