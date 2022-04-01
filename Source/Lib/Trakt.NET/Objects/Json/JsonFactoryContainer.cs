@@ -269,13 +269,16 @@
             s_jsonIOFactories.Add(typeof(ITraktTrendingShow), new TrendingShowJsonIOFactory());
 
             // sync activities objects
-            s_jsonIOFactories.Add(typeof(ITraktSyncLastActivities), new SyncLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncAccountLastActivities), new SyncAccountLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCommentsLastActivities), new SyncCommentsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncEpisodesLastActivities), new SyncEpisodesLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncLastActivities), new SyncLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncListsLastActivities), new SyncListsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncMoviesLastActivities), new SyncMoviesLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsLastActivities), new SyncRecommendationsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncSeasonsLastActivities), new SyncSeasonsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncShowsLastActivities), new SyncShowsLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistLastActivities), new SyncWatchlistLastActivitiesJsonIOFactory());
 
             // show post objects
             s_jsonIOFactories.Add(typeof(ITraktShowResetWatchedProgressPost), new ShowResetWatchedProgressPostJsonIOFactory());

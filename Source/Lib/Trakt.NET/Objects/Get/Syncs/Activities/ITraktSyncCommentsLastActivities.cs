@@ -7,5 +7,8 @@
     {
         /// <summary>Gets or sets the UTC datetime, when a comment was lastly liked.</summary>
         DateTime? LikedAt { get; set; }
+
+        /// <summary>Gets or sets the UTC datetime, when a comment was lastly blocked.</summary>
+        DateTime? BlockedAt { get; set; }
     }
 }

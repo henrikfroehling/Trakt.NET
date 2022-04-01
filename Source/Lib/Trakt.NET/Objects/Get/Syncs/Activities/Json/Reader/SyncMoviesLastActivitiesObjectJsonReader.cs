@@ -57,6 +57,15 @@
 
                                 break;
                             }
+                        case JsonProperties.PROPERTY_NAME_RECOMMENDATIONS_AT:
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    moviesLastActivities.RecommendationsAt = value.Second;
+
+                                break;
+                            }
                         case JsonProperties.PROPERTY_NAME_COMMENTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
