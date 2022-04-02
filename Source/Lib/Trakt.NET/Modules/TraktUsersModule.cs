@@ -240,7 +240,7 @@
 
         /// <summary>
         /// Gets the items (movies, shows, seasons, episodes, persons, comments, lists) the user likes.
-        /// <para>OAuth authorization required.</para>
+        /// <para>OAuth authorization optional.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/likes/get-likes">"Trakt API Doc - Users: Likes"</a> for more information.
         /// </para>

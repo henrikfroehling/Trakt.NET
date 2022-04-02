@@ -23,14 +23,14 @@ namespace TraktNet.Modules.Tests.TraktSyncModule
         {
             ITraktListItemsReorderPost watchlistItemsReorderPost = new TraktListItemsReorderPost
             {
-                Rank = REORDERED_WATCHLIST_ITEMS
+                Rank = REORDERED_ITEMS
             };
 
             string postJson = await TestUtility.SerializeObject(watchlistItemsReorderPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TraktClient client = TestUtility.GetOAuthMockClient(REORDER_WATCHLIST_ITEMS_URI, postJson, WATCHLIST_ITEMS_REORDER_POST_RESPONSE_JSON);
-            TraktResponse<ITraktListItemsReorderPostResponse> response = await client.Sync.ReorderWatchlistItemsAsync(REORDERED_WATCHLIST_ITEMS);
+            TraktClient client = TestUtility.GetOAuthMockClient(REORDER_WATCHLIST_ITEMS_URI, postJson, ITEMS_REORDER_POST_RESPONSE_JSON);
+            TraktResponse<ITraktListItemsReorderPostResponse> response = await client.Sync.ReorderWatchlistItemsAsync(REORDERED_ITEMS);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -67,7 +67,7 @@ namespace TraktNet.Modules.Tests.TraktSyncModule
 
             try
             {
-                await client.Sync.ReorderWatchlistItemsAsync(REORDERED_WATCHLIST_ITEMS);
+                await client.Sync.ReorderWatchlistItemsAsync(REORDERED_ITEMS);
                 Assert.False(true);
             }
             catch (Exception exception)
@@ -81,13 +81,13 @@ namespace TraktNet.Modules.Tests.TraktSyncModule
         {
             ITraktListItemsReorderPost watchlistItemsReorderPost = new TraktListItemsReorderPost
             {
-                Rank = REORDERED_WATCHLIST_ITEMS
+                Rank = REORDERED_ITEMS
             };
 
             string postJson = await TestUtility.SerializeObject(watchlistItemsReorderPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TraktClient client = TestUtility.GetOAuthMockClient(REORDER_WATCHLIST_ITEMS_URI, postJson, WATCHLIST_ITEMS_REORDER_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(REORDER_WATCHLIST_ITEMS_URI, postJson, ITEMS_REORDER_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktListItemsReorderPostResponse>>> act = () => client.Sync.ReorderWatchlistItemsAsync(null);
             await act.Should().ThrowAsync<ArgumentNullException>();

@@ -24,6 +24,7 @@
 
                 commentsLastActivities.Should().NotBeNull();
                 commentsLastActivities.LikedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+                commentsLastActivities.BlockedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             }
         }
 
@@ -38,6 +39,7 @@
 
                 commentsLastActivities.Should().NotBeNull();
                 commentsLastActivities.LikedAt.Should().BeNull();
+                commentsLastActivities.BlockedAt.Should().BeNull();
             }
         }
 
