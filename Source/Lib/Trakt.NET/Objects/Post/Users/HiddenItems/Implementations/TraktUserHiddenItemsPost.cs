@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Users.HiddenItems
 {
+    using Get.Users;
     using Objects.Json;
     using System.Collections.Generic;
     using System.Threading;
@@ -28,6 +29,9 @@
         /// <para>Each <see cref="ITraktUserHiddenItemsPostSeason" /> must have at least a valid Trakt id and a name.</para>
         /// </summary>
         public IEnumerable<ITraktUserHiddenItemsPostSeason> Seasons { get; set; }
+
+        /// <summary>An optional list of <see cref="ITraktUser" />s.</summary>
+        public IEnumerable<ITraktUser> Users { get; set; }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {

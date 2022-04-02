@@ -193,6 +193,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_UPDATED_AT = "updated_at";
         internal const string PROPERTY_NAME_US = "us";
         internal const string PROPERTY_NAME_USER = "user";
+        internal const string PROPERTY_NAME_USERS = "users";
         internal const string PROPERTY_NAME_USER_CODE = "user_code";
         internal const string PROPERTY_NAME_USER_RATING = "user_rating";
         internal const string PROPERTY_NAME_USERNAME = "username";
