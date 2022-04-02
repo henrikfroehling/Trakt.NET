@@ -505,6 +505,32 @@
         }
 
         /// <summary>
+        /// Undo the reset and have watched progress use all watched history for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization required.</para>
+        /// <para>VIP only.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/shows/reset-watched-progress/undo-reset-show-progress">"Trakt API Doc - Shows: Reset Watched Progress"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        public Task<TraktNoContentResponse> UndoResetShowWatchedProgressAsync(string showIdOrSlug, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteNoContentRequestAsync(new ShowUndoResetWatchedProgressRequest
+            {
+                Id = showIdOrSlug
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets the next scheduled to air <see cref="ITraktEpisode" /> for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
