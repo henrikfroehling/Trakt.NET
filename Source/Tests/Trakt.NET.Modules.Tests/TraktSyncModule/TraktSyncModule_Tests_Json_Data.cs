@@ -32,11 +32,11 @@
         private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const int RECOMMENDATIONS_ITEM_COUNT = 2;
         private const int RECOMMENDATIONS_LIMIT = 6;
-        private readonly IEnumerable<uint> REORDERED_WATCHLIST_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
+        private readonly IEnumerable<uint> REORDERED_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 
-        private const string WATCHLIST_ITEMS_REORDER_POST_RESPONSE_JSON =
+        private const string ITEMS_REORDER_POST_RESPONSE_JSON =
             @"{
                 ""updated"": 6,
                 ""skipped_ids"": [
