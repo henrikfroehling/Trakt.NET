@@ -16,21 +16,21 @@ namespace TraktNet.Modules.Tests.TraktSyncModule
     [Category("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
-        private const string REORDER_WATCHLIST_ITEMS_URI = "sync/watchlist/reorder";
+        private const string REORDER_RECOMMENDED_ITEMS_URI = "sync/recommendations/reorder";
 
         [Fact]
-        public async Task Test_TraktSyncModule_ReorderWatchlistItems()
+        public async Task Test_TraktSyncModule_ReorderRecommendedItems()
         {
-            ITraktListItemsReorderPost watchlistItemsReorderPost = new TraktListItemsReorderPost
+            ITraktListItemsReorderPost recommendedItemsReorderPost = new TraktListItemsReorderPost
             {
                 Rank = REORDERED_ITEMS
             };
 
-            string postJson = await TestUtility.SerializeObject(watchlistItemsReorderPost);
+            string postJson = await TestUtility.SerializeObject(recommendedItemsReorderPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TraktClient client = TestUtility.GetOAuthMockClient(REORDER_WATCHLIST_ITEMS_URI, postJson, ITEMS_REORDER_POST_RESPONSE_JSON);
-            TraktResponse<ITraktListItemsReorderPostResponse> response = await client.Sync.ReorderWatchlistItemsAsync(REORDERED_ITEMS);
+            TraktClient client = TestUtility.GetOAuthMockClient(REORDER_RECOMMENDED_ITEMS_URI, postJson, ITEMS_REORDER_POST_RESPONSE_JSON);
+            TraktResponse<ITraktListItemsReorderPostResponse> response = await client.Sync.ReorderRecommendedItemsAsync(REORDERED_ITEMS);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -61,13 +61,13 @@ namespace TraktNet.Modules.Tests.TraktSyncModule
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktSyncModule_ReorderWatchlistItems_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktSyncModule_ReorderRecommendedItems_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(REORDER_WATCHLIST_ITEMS_URI, statusCode);
+            TraktClient client = TestUtility.GetOAuthMockClient(REORDER_RECOMMENDED_ITEMS_URI, statusCode);
 
             try
             {
-                await client.Sync.ReorderWatchlistItemsAsync(REORDERED_ITEMS);
+                await client.Sync.ReorderRecommendedItemsAsync(REORDERED_ITEMS);
                 Assert.False(true);
             }
             catch (Exception exception)
@@ -77,19 +77,19 @@ namespace TraktNet.Modules.Tests.TraktSyncModule
         }
 
         [Fact]
-        public async Task Test_TraktSyncModule_ReorderWatchlistItems_ArgumentExceptions()
+        public async Task Test_TraktSyncModule_ReorderRecommendedItems_ArgumentExceptions()
         {
-            ITraktListItemsReorderPost watchlistItemsReorderPost = new TraktListItemsReorderPost
+            ITraktListItemsReorderPost recommendedItemsReorderPost = new TraktListItemsReorderPost
             {
                 Rank = REORDERED_ITEMS
             };
 
-            string postJson = await TestUtility.SerializeObject(watchlistItemsReorderPost);
+            string postJson = await TestUtility.SerializeObject(recommendedItemsReorderPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TraktClient client = TestUtility.GetOAuthMockClient(REORDER_WATCHLIST_ITEMS_URI, postJson, ITEMS_REORDER_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(REORDER_RECOMMENDED_ITEMS_URI, postJson, ITEMS_REORDER_POST_RESPONSE_JSON);
 
-            Func<Task<TraktResponse<ITraktListItemsReorderPostResponse>>> act = () => client.Sync.ReorderWatchlistItemsAsync(null);
+            Func<Task<TraktResponse<ITraktListItemsReorderPostResponse>>> act = () => client.Sync.ReorderRecommendedItemsAsync(null);
             await act.Should().ThrowAsync<ArgumentNullException>();
         }
     }

@@ -106,6 +106,36 @@
         }
 
         /// <summary>
+        /// Reorder all items on a user's personal recommendations.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-personal-recommendations/reorder-personally-recommended-items">"Trakt API Doc - Sync: Reorder Personal Recommendations"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="reorderedRecommendedItemRanks">A collection of list ids. Represents the new order of an user's personal recommendations.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated personal recommendations order.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedRecommendedItemRanks"/> is null.</exception>
+        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderRecommendedItemsAsync(IEnumerable<uint> reorderedRecommendedItemRanks,
+                                                                                                    CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendedItemsReorderRequest
+            {
+                RequestBody = new TraktListItemsReorderPost
+                {
+                    Rank = reorderedRecommendedItemRanks
+                }
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets the user's saved playback progress of scrobbles that are paused.
         /// <para>OAuth authorization required.</para>
         /// <para>
