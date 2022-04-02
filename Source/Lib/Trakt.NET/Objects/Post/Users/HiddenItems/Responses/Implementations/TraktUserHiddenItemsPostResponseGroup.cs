@@ -11,5 +11,8 @@
 
         /// <summary>Gets or sets the number of seasons.</summary>
         public int? Seasons { get; set; }
+
+        /// <summary>Gets or sets the number of users.</summary>
+        public int? Users { get; set; }
     }
 }

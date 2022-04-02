@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Users.HiddenItems.Responses.Json.Writer
 {
+    using Get.Users;
     using Newtonsoft.Json;
     using Objects.Json;
     using Post.Responses;
@@ -32,6 +33,13 @@
                 var notFoundSeasonArrayJsonWriter = new ArrayJsonWriter<ITraktPostResponseNotFoundSeason>();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
                 await notFoundSeasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Users != null)
+            {
+                var notFoundUserArrayJsonWriter = new ArrayJsonWriter<ITraktUser>();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_USERS, cancellationToken).ConfigureAwait(false);
+                await notFoundUserArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Users, cancellationToken).ConfigureAwait(false);
             }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);

@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Users.HiddenItems.Responses
 {
+    using Get.Users;
     using Post.Responses;
     using System.Collections.Generic;
 
@@ -23,5 +24,11 @@
         /// <para>Nullable</para>
         /// </summary>
         public IEnumerable<ITraktPostResponseNotFoundSeason> Seasons { get; set; }
+
+        /// <summary>
+        /// A list of <see cref="ITraktUser" />s, containing users, which were not found.
+        /// <para>Nullable</para>
+        /// </summary>
+        public IEnumerable<ITraktUser> Users { get; set; }
     }
 }
