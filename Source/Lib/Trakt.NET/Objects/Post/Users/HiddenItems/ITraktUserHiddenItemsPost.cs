@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Users.HiddenItems
 {
+    using Get.Users;
     using Requests.Interfaces;
     using System.Collections.Generic;
 
@@ -26,5 +27,8 @@
         /// <para>Each <see cref="ITraktUserHiddenItemsPostSeason" /> must have at least a valid Trakt id and a name.</para>
         /// </summary>
         IEnumerable<ITraktUserHiddenItemsPostSeason> Seasons { get; set; }
+
+        /// <summary>An optional list of <see cref="ITraktUser" />s.</summary>
+        IEnumerable<ITraktUser> Users { get; set; }
     }
 }

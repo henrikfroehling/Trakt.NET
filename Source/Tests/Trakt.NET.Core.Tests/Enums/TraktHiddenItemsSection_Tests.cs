@@ -14,13 +14,14 @@
         {
             var allValues = TraktEnumeration.GetAll<TraktHiddenItemsSection>();
 
-            allValues.Should().NotBeNull().And.HaveCount(6);
+            allValues.Should().NotBeNull().And.HaveCount(7);
             allValues.Should().Contain(new List<TraktHiddenItemsSection>() { TraktHiddenItemsSection.Unspecified,
                                                                              TraktHiddenItemsSection.Calendar,
                                                                              TraktHiddenItemsSection.ProgressWatched,
                                                                              TraktHiddenItemsSection.ProgressCollected,
                                                                              TraktHiddenItemsSection.Recommendations,
-                                                                             TraktHiddenItemsSection.ProgressWatchedReset });
+                                                                             TraktHiddenItemsSection.ProgressWatchedReset,
+                                                                             TraktHiddenItemsSection.Comments });
         }
     }
 }

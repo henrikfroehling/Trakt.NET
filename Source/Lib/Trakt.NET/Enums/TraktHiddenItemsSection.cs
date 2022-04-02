@@ -21,6 +21,9 @@
         /// <summary>The section for watched reset progress.</summary>
         public static TraktHiddenItemsSection ProgressWatchedReset { get; } = new TraktHiddenItemsSection(16, "progress_watched_reset", "progress_watched_reset", "Progress Watched Reset");
 
+        /// <summary>The section for watched reset progress.</summary>
+        public static TraktHiddenItemsSection Comments { get; } = new TraktHiddenItemsSection(32, "comments", "comments", "Comments");
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktHiddenItemsSection" /> class.<para />
         /// The initialized <see cref="TraktHiddenItemsSection" /> is invalid.
