@@ -630,8 +630,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktSyncRecommendationsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given ratings post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given ratings post is empty.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the given recommendations post is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given recommendations post is empty.</exception>
         public Task<TraktResponse<ITraktSyncRecommendationsPostResponse>> AddPersonalRecommendationsAsync(ITraktSyncRecommendationsPost recommendationsPost,
                                                                                                           CancellationToken cancellationToken = default)
         {
@@ -641,6 +641,42 @@
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendationsAddRequest
+            {
+                RequestBody = recommendationsPost
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Remove items from the user's personal recommendations. Accepts movies and shows.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/remove-from-personal-recommendations/remove-items-from-personal-recommendations">"Trakt API Doc - Sync: Remove from Personal Recommendations"</a> for more information.
+        /// </para>
+        /// <para>
+        /// It is recommended to use the <see cref="ITraktSyncRecommendationsPostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncRecommendationsPost" />.
+        /// See also <seealso cref="TraktPost.NewSyncRecommendationsPost()" />.
+        /// </para>
+        /// </summary>
+        /// <param name="recommendationsPost">An <see cref="ITraktSyncRecommendationsPost" /> instance containing all movies and shows, which should be removed.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktSyncRecommendationsRemovePostResponse" /> instance, which contains information about which items were removed and not found.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the given recommendations post is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given recommendations post is empty.</exception>
+        public Task<TraktResponse<ITraktSyncRecommendationsRemovePostResponse>> RemovePersonalRecommendationsAsync(ITraktSyncRecommendationsPost recommendationsPost,
+                                                                                                                   CancellationToken cancellationToken = default)
+        {
+            if (recommendationsPost == null)
+                throw new ArgumentNullException(nameof(recommendationsPost), "recommendations post must not be null");
+
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendationsRemoveRequest
             {
                 RequestBody = recommendationsPost
             },

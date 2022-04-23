@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Modules.Tests.TraktShowsModule
+﻿namespace TraktNet.Modules.Tests.TraktSeasonsModule
 {
     using FluentAssertions;
     using System;
@@ -7,41 +7,41 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Shows;
+    using TraktNet.Objects.Get.Seasons;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Shows")]
-    public partial class TraktShowsModule_Tests
+    [Category("Modules.Seasons")]
+    public partial class TraktSeasonsModule_Tests
     {
-        private readonly string GET_SHOW_TRANSLATIONS_URI = $"shows/{SHOW_ID}/translations";
+        private readonly string GET_SEASON_TRANSLATIONS_URI = $"shows/{SHOW_ID}/seasons/{SEASON_NR}/translations";
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowTranslations()
+        public async Task Test_TraktSeasonsModule_GetSeasonTranslations()
         {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, SHOW_TRANSLATIONS_JSON);
-            TraktListResponse<ITraktShowTranslation> response = await client.Shows.GetShowTranslationsAsync(SHOW_ID);
+            TraktClient client = TestUtility.GetMockClient(GET_SEASON_TRANSLATIONS_URI, SEASON_TRANSLATIONS_JSON);
+            TraktListResponse<ITraktSeasonTranslation> response = await client.Seasons.GetSeasonTranslationsAsync(SHOW_ID, SEASON_NR);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowTranslations_With_LanguageCode()
+        public async Task Test_TraktSeasonsModule_GetSeasonTranslations_With_LanguageCode()
         {
-            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_TRANSLATIONS_URI}/{LANGUAGE_CODE}", SHOW_TRANSLATIONS_JSON);
-            TraktListResponse<ITraktShowTranslation> response = await client.Shows.GetShowTranslationsAsync(SHOW_ID, LANGUAGE_CODE);
+            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_TRANSLATIONS_URI}/{LANGUAGE_CODE}", SEASON_TRANSLATIONS_JSON);
+            TraktListResponse<ITraktSeasonTranslation> response = await client.Seasons.GetSeasonTranslationsAsync(SHOW_ID, SEASON_NR, LANGUAGE_CODE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
         [Theory]
-        [InlineData(HttpStatusCode.NotFound, typeof(TraktShowNotFoundException))]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktSeasonNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
         [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
         [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
@@ -57,13 +57,13 @@
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktShowsModule_GetShowTranslations_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktSeasonsModule_GetSeasonTranslations_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, statusCode);
+            TraktClient client = TestUtility.GetMockClient(GET_SEASON_TRANSLATIONS_URI, statusCode);
 
             try
             {
-                await client.Shows.GetShowTranslationsAsync(SHOW_ID);
+                await client.Seasons.GetSeasonTranslationsAsync(SHOW_ID, SEASON_NR);
                 Assert.False(true);
             }
             catch (Exception exception)
@@ -73,38 +73,38 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowTranslations_ArgumentExceptions()
+        public async Task Test_TraktSeasonsModule_GetSeasonTranslations_ArgumentExceptions()
         {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, SHOW_TRANSLATIONS_JSON);
+            TraktClient client = TestUtility.GetMockClient(GET_SEASON_TRANSLATIONS_URI, SEASON_TRANSLATIONS_JSON);
 
-            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(null);
+            Func<Task<TraktListResponse<ITraktSeasonTranslation>>> act = () => client.Seasons.GetSeasonTranslationsAsync(null, SEASON_NR);
             await act.Should().ThrowAsync<ArgumentException>();
 
-            act = () => client.Shows.GetShowTranslationsAsync(string.Empty);
+            act = () => client.Seasons.GetSeasonTranslationsAsync(string.Empty, SEASON_NR);
             await act.Should().ThrowAsync<ArgumentException>();
 
-            act = () => client.Shows.GetShowTranslationsAsync("show id");
+            act = () => client.Seasons.GetSeasonTranslationsAsync("show id", SEASON_NR);
             await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowTranslations_With_LanguageCode_ArgumentExceptions()
+        public async Task Test_TraktSeasonsModule_GetSeasonTranslations_With_LanguageCode_ArgumentExceptions()
         {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, SHOW_TRANSLATIONS_JSON);
+            TraktClient client = TestUtility.GetMockClient(GET_SEASON_TRANSLATIONS_URI, SEASON_TRANSLATIONS_JSON);
 
-            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(null);
+            Func<Task<TraktListResponse<ITraktSeasonTranslation>>> act = () => client.Seasons.GetSeasonTranslationsAsync(null, SEASON_NR);
             await act.Should().ThrowAsync<ArgumentException>();
 
-            act = () => client.Shows.GetShowTranslationsAsync(string.Empty);
+            act = () => client.Seasons.GetSeasonTranslationsAsync(string.Empty, SEASON_NR);
             await act.Should().ThrowAsync<ArgumentException>();
 
-            act = () => client.Shows.GetShowTranslationsAsync("show id");
+            act = () => client.Seasons.GetSeasonTranslationsAsync("show id", SEASON_NR);
             await act.Should().ThrowAsync<ArgumentException>();
 
-            act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID, "eng");
+            act = () => client.Seasons.GetSeasonTranslationsAsync(SHOW_ID, SEASON_NR, "eng");
             await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
-            act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID, "e");
+            act = () => client.Seasons.GetSeasonTranslationsAsync(SHOW_ID, SEASON_NR, "e");
             await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }

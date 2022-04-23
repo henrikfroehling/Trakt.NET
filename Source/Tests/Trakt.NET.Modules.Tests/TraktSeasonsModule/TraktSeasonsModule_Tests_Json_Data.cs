@@ -16,6 +16,26 @@
         private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
+        private const string LANGUAGE_CODE = "en";
+
+        private const string SEASON_TRANSLATIONS_JSON =
+            @"[
+                {
+                  ""title"": ""시즌 1"",
+                  ""overview"": ""웨스테로스 북부 지방 윈터펠을 다스리는 에다드 스타크. 스타크 가문은 '겨울이 오고 있다'를 가언으"",
+                  ""language"": ""ko""
+                },
+                {
+                  ""title"": ""Seizoen 1"",
+                  ""overview"": ""Het eerste seizoen van de epische fantasy tv- drama-serie Game of Thrones ging in premi"",
+                  ""language"": ""nl""
+                },
+                {
+                  ""title"": ""Sesong 1"",
+                  ""overview"": ""Sesong 1 av Game of Thrones hadde premiere 17 Mai, 2011."",
+                  ""language"": ""no""
+                }
+              ]";
 
         private const string SEASONS_ALL_FULL_JSON =
             @"[

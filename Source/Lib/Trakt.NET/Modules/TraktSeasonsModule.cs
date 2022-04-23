@@ -338,6 +338,38 @@
         }
 
         /// <summary>
+        /// Gets the translations for a <see cref="ITraktSeason" /> in a show with the given Trakt-Show-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/seasons/translations/get-all-season-translations">"Trakt API Doc - Seasons: Translations"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="seasonNumber">The number of the season, for which the translations should be queried.</param>
+        /// <param name="languageCode">An optional two letter language code to query a specific translation language.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktSeasonTranslation" /> instances, each containing a title, overview and language code.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given languageCode is shorter or longer than two characters.</exception>
+        public Task<TraktListResponse<ITraktSeasonTranslation>> GetSeasonTranslationsAsync(string showIdOrSlug, uint seasonNumber, string languageCode = null,
+                                                                                           CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteListRequestAsync(new SeasonTranslationsRequest
+            {
+                Id = showIdOrSlug,
+                SeasonNumber = seasonNumber,
+                LanguageCode = languageCode
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets all watching users of a <see cref="ITraktSeason" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
