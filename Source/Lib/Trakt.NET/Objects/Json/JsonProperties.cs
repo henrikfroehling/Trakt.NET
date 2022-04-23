@@ -66,6 +66,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_EXISTING = "existing";
         internal const string PROPERTY_NAME_EXPIRES_AT = "expires_at";
         internal const string PROPERTY_NAME_EXPIRES_IN = "expires_in";
+        internal const string PROPERTY_NAME_FACEBOOK = "facebook";
         internal const string PROPERTY_NAME_FIRST_AIRED = "first_aired";
         internal const string PROPERTY_NAME_FOLLOWED_AT = "followed_at";
         internal const string PROPERTY_NAME_FOLLOWERS = "followers";
@@ -87,10 +88,12 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_IGNORE_EXPIRATION = "ignore_expiration";
         internal const string PROPERTY_NAME_IMAGES = "images";
         internal const string PROPERTY_NAME_IMDB = "imdb";
+        internal const string PROPERTY_NAME_INSTAGRAM = "instagram";
         internal const string PROPERTY_NAME_INTERVAL = "interval";
         internal const string PROPERTY_NAME_ITEM_COUNT = "item_count";
         internal const string PROPERTY_NAME_JOBS = "jobs";
         internal const string PROPERTY_NAME_JOINED_AT = "joined_at";
+        internal const string PROPERTY_NAME_KNOWN_FOR_DEPARTMENT = "known_for_department";
         internal const string PROPERTY_NAME_LANGUAGE = "language";
         internal const string PROPERTY_NAME_LAST_COLLECTED_AT = "last_collected_at";
         internal const string PROPERTY_NAME_LAST_EPISODE = "last_episode";
@@ -165,6 +168,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_SKIPPED_IDS = "skipped_ids";
         internal const string PROPERTY_NAME_SLACK = "slack";
         internal const string PROPERTY_NAME_SLUG = "slug";
+        internal const string PROPERTY_NAME_SOCIAL_IDS = "social_ids";
         internal const string PROPERTY_NAME_SORT_BY = "sort_by";
         internal const string PROPERTY_NAME_SORT_HOW = "sort_how";
         internal const string PROPERTY_NAME_SOUND = "sound";
@@ -212,6 +216,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_WATCHING = "watching";
         internal const string PROPERTY_NAME_WATCHLIST = "watchlist";
         internal const string PROPERTY_NAME_WATCHLISTED_AT = "watchlisted_at";
+        internal const string PROPERTY_NAME_WIKIPEDIA = "wikipedia";
         internal const string PROPERTY_NAME_WRITING = "writing";
         internal const string PROPERTY_NAME_YEAR = "year";
     }
