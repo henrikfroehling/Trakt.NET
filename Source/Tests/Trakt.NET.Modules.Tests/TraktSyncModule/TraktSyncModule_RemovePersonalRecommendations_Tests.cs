@@ -16,31 +16,27 @@
     [Category("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
-        private const string ADD_RECOMMENDATIONS_URI = "sync/recommendations";
+        private const string REMOVE_RECOMMENDATIONS_URI = "sync/recommendations/remove";
 
         [Fact]
-        public async Task Test_TraktSyncModule_AddPersonalRecommendations()
+        public async Task Test_TraktSyncModule_RemovePersonalRecommendations()
         {
             string postJson = await TestUtility.SerializeObject(RecommendationsPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TraktClient client = TestUtility.GetOAuthMockClient(ADD_RECOMMENDATIONS_URI, postJson, RECOMMENDATIONS_POST_RESPONSE_JSON);
-            TraktResponse<ITraktSyncRecommendationsPostResponse> response = await client.Sync.AddPersonalRecommendationsAsync(RecommendationsPost);
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_RECOMMENDATIONS_URI, postJson, RECOMMENDATIONS_REMOVE_POST_RESPONSE_JSON);
+            TraktResponse<ITraktSyncRecommendationsRemovePostResponse> response = await client.Sync.RemovePersonalRecommendationsAsync(RecommendationsPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            ITraktSyncRecommendationsPostResponse responseValue = response.Value;
+            ITraktSyncRecommendationsRemovePostResponse responseValue = response.Value;
 
-            responseValue.Added.Should().NotBeNull();
-            responseValue.Added.Movies.Should().Be(1);
-            responseValue.Added.Shows.Should().Be(2);
-
-            responseValue.Existing.Should().NotBeNull();
-            responseValue.Existing.Movies.Should().Be(3);
-            responseValue.Existing.Shows.Should().Be(4);
+            responseValue.Deleted.Should().NotBeNull();
+            responseValue.Deleted.Movies.Should().Be(1);
+            responseValue.Deleted.Shows.Should().Be(2);
 
             responseValue.NotFound.Should().NotBeNull();
 
@@ -85,13 +81,13 @@
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktSyncModule_AddPersonalRecommendations_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktSyncModule_RemovePersonalRecommendations_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(ADD_RECOMMENDATIONS_URI, statusCode);
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_RECOMMENDATIONS_URI, statusCode);
 
             try
             {
-                await client.Sync.AddPersonalRecommendationsAsync(RecommendationsPost);
+                await client.Sync.RemovePersonalRecommendationsAsync(RecommendationsPost);
                 Assert.False(true);
             }
             catch (Exception exception)
@@ -101,14 +97,14 @@
         }
 
         [Fact]
-        public async Task Test_TraktSyncModule_AddPersonalRecommendations_ArgumentExceptions()
+        public async Task Test_TraktSyncModule_RemovePersonalRecommendations_ArgumentExceptions()
         {
             string postJson = await TestUtility.SerializeObject(RecommendationsPost);
             postJson.Should().NotBeNullOrEmpty();
 
-            TraktClient client = TestUtility.GetOAuthMockClient(ADD_RECOMMENDATIONS_URI, postJson, RECOMMENDATIONS_POST_RESPONSE_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_RECOMMENDATIONS_URI, postJson, RECOMMENDATIONS_REMOVE_POST_RESPONSE_JSON);
 
-            Func<Task<TraktResponse<ITraktSyncRecommendationsPostResponse>>> act = () => client.Sync.AddPersonalRecommendationsAsync(null);
+            Func<Task<TraktResponse<ITraktSyncRecommendationsRemovePostResponse>>> act = () => client.Sync.RemovePersonalRecommendationsAsync(null);
             await act.Should().ThrowAsync<ArgumentNullException>();
         }
     }

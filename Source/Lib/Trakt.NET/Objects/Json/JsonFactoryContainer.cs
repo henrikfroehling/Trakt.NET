@@ -335,6 +335,7 @@
 
             // sync recommendations post response objects
             s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostResponse), new SyncRecommendationsPostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsRemovePostResponse), new SyncRecommendationsRemovePostResponseJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostResponseGroup), new SyncRecommendationsPostResponseGroupJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostResponseNotFoundGroup), new SyncRecommendationsPostResponseNotFoundGroupJsonIOFactory());
 
