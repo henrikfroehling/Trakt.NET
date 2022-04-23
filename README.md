@@ -10,8 +10,9 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
 
-[![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-blue.svg?style=flat)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
 [![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.2.0-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.2.0)
+
+[![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-blue.svg?style=flat)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/Pull%20Requests-Welcome-blue.svg?style=flat)](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
 
@@ -40,7 +41,7 @@ Or do you want to report a bug? [Create an issue](https://github.com/henrikfroeh
 ### Contributions are welcome
 Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
 
-### [Documentation](https://github.com/henrikfroehling/Trakt.NET/wiki)
+### [Documentation](https://github.com/henrikfroehling/Trakt.NET/tree/develop/docs/Library_API_Documentation#library-api-documentation)
 
 ---
 
@@ -56,7 +57,15 @@ or with the [NuGet Package Management](https://docs.nuget.org/consume/package-ma
 
 Each release will also be published in [Releases](https://github.com/henrikfroehling/Trakt.NET/releases).
 
+---
+### Packages
+
 You can also get the latest built packages here: https://github.com/henrikfroehling/Trakt.NET/packages
+
+There are three types of packages:
+- with suffix `release.preview.{latest-build-number}`: Latest package preview of the next upcoming planned version.
+- with suffix `developer.preview.{latest-build-number}`: Latest package with the latest library changes. These might not be stable.
+- without suffix: Actual released version packages.
 
 ---
 <details>
