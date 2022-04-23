@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28729.10
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32317.152
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{F07A6116-671E-4E48-85EB-8AF50F3157F5}"
 EndProject
@@ -30,7 +30,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{A7FA937C-9CD0-4601-A2FA-CBA2FDC1DA77}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\workflows\code-scan.yml = ..\.github\workflows\code-scan.yml
+		..\.github\workflows\deployment.yml = ..\.github\workflows\deployment.yml
 		..\.github\workflows\develop-CI.yml = ..\.github\workflows\develop-CI.yml
+		..\.github\workflows\main-CI.yml = ..\.github\workflows\main-CI.yml
 		..\.github\workflows\release-CI.yml = ..\.github\workflows\release-CI.yml
 		..\.github\workflows\sonarcloud.yml = ..\.github\workflows\sonarcloud.yml
 	EndProjectSection
@@ -59,11 +61,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contributing", "Contributin
 		..\CODE_OF_CONDUCT.md = ..\CODE_OF_CONDUCT.md
 		..\coding_style.md = ..\coding_style.md
 		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{0FF4F70A-6728-44DD-AEC5-12C5A89E86AC}"
-	ProjectSection(SolutionItems) = preProject
-		Lib\Trakt.NET\Trakt.NET.nuspec = Lib\Trakt.NET\Trakt.NET.nuspec
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Information", "Information", "{02EDFC5A-10AE-4653-AF73-F0C2E30CFFB3}"
@@ -211,7 +208,6 @@ Global
 		{695F47B0-A80E-4846-AF96-5573F48093E1} = {E4690B7D-5380-4003-99C3-2091827DB262}
 		{8315C2AB-046F-4BE5-B417-E4CB97AA6A34} = {E4690B7D-5380-4003-99C3-2091827DB262}
 		{EDB5D86C-D40A-4481-AE9E-97C456190749} = {E4690B7D-5380-4003-99C3-2091827DB262}
-		{0FF4F70A-6728-44DD-AEC5-12C5A89E86AC} = {E4690B7D-5380-4003-99C3-2091827DB262}
 		{02EDFC5A-10AE-4653-AF73-F0C2E30CFFB3} = {E4690B7D-5380-4003-99C3-2091827DB262}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

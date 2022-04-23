@@ -1,0 +1,81 @@
+name: "Main CI-Build"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'Postman/**'
+      - 'AUTHORS.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'Changelog.md'
+      - 'LICENSE.md'
+      - 'PublishRelease.txt'
+      - 'README.md'
+      - 'coding_style.md'
+      - 'docs/**'
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - 'Postman/**'
+      - 'AUTHORS.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'Changelog.md'
+      - 'LICENSE.md'
+      - 'PublishRelease.txt'
+      - 'README.md'
+      - 'coding_style.md'
+      - 'docs/**'
+
+env:
+  BUILD_TYPE: Release
+  SOLUTION_NAME: 'Source\Trakt.NET.sln'
+  PROJECT_NAME: 'Source\Lib\Trakt.NET\Trakt.NET.csproj'
+  BUILD_DIRECTORY: 'Build\Lib\Release\netstandard2.0'
+  VERSION_NUMBER: ''
+
+jobs:
+  main-ci:
+    name: "Main CI-Build"
+    runs-on: windows-latest
+    environment: Production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.SOLUTION_NAME }}
+      - name: Build solution
+        run: dotnet build ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --no-restore /m /p:BuildInParallel=true
+      - name: Run tests
+        run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity normal --no-build --no-restore
+      - name: Get version number
+        shell: pwsh
+        run: |
+          [xml]$csprojcontents = Get-Content -Path ${{ env.PROJECT_NAME }}
+          $versionNumber = "$($csprojcontents.Project.PropertyGroup.VersionPrefix)".Trim()
+          Write-Host "Found version:" $versionNumber
+          echo "VERSION_NUMBER=$versionNumber" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
+      - name: Nuget pack
+        run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity detailed --output ${{ env.BUILD_DIRECTORY }} --version-suffix "${{ github.run_number }}" -p:PackageID="Trakt.NET.${{ env.VERSION_NUMBER }}.${{ github.run_number }}" --no-build --no-restore
+      - name: Rename artifacts
+        shell: pwsh
+        run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg'} | Rename-Item -NewName {'Trakt.NET.' + '${{ env.VERSION_NUMBER }}' + '.' + '${{ github.run_number }}' + $_.Extension}
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: main-ci-${{ env.PACKAGE_VERSION_SUFFIX }}.${{ env.VERSION_NUMBER }}-${{github.run_number}}-${{github.sha}}
+          path: |
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.dll
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.pdb
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.xml
+            ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.nupkg
+      - name: Add GitHub packages source
+        run: dotnet nuget add source --username henrikfroehling --password ${{ secrets.PAT_GITHUB }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/henrikfroehling/index.json"
+      - name: Push package
+        run: dotnet nuget push "${{ env.BUILD_DIRECTORY }}\Trakt.NET*.nupkg" --api-key ${{ secrets.PAT_GITHUB }} --source "github"
