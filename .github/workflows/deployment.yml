@@ -3,7 +3,8 @@ name: "Deployment"
 on:
   workflow_dispatch:
   push:
-    tags: [v*]
+    tags:
+      - v*
 
 env:
   BUILD_TYPE: Release
