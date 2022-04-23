@@ -1,6 +1,73 @@
 Changelog
 =============
 
+Version 1.2.0
+===
+
+#### 1.2.0
+(2022-04-24)
+
+Breaking Change:
+
+- Update target framework to .NET Standard 2.0 ([Issue 247](https://github.com/henrikfroehling/Trakt.NET/issues/247))
+
+Added:
+
+- Add support for getting rate limit details ([Issue 193](https://github.com/henrikfroehling/Trakt.NET/issues/193))
+- Add values "aired" and "watched" in `TraktLastActivity` enumeration ([Issue 198](https://github.com/henrikfroehling/Trakt.NET/issues/198))
+- Add support for "users/requests/following" GET request ([Issue 199](https://github.com/henrikfroehling/Trakt.NET/issues/199))
+- Add property for "recommended" counts in `ITraktStatistics` ([Issue 200](https://github.com/henrikfroehling/Trakt.NET/issues/200))
+- Add support for "users/{id}/lists/{list_id}/likes" GET request ([Issue 201](https://github.com/henrikfroehling/Trakt.NET/issues/201))
+- Add support for optional pagination in "sync/playback" GET request ([Issue 202](https://github.com/henrikfroehling/Trakt.NET/issues/202))
+- Add support for date filtering in "sync/playback" GET request ([Issue 203](https://github.com/henrikfroehling/Trakt.NET/issues/203))
+- Add support for "sync/recommendations" GET request ([Issue 204](https://github.com/henrikfroehling/Trakt.NET/issues/204))
+- Add support for "sync/recommendations" POST request ([Issue 205](https://github.com/henrikfroehling/Trakt.NET/issues/205))
+- Add support for "sync/recommendations/remove" POST request ([Issue 206](https://github.com/henrikfroehling/Trakt.NET/issues/206))
+- Add support for "sync/recommendations/reorder" POST request ([Issue 232](https://github.com/henrikfroehling/Trakt.NET/issues/232))
+- Add support for VIP only methods ([Issue 236](https://github.com/henrikfroehling/Trakt.NET/issues/236))
+- Add support for "shows/{id}/progress/watched/reset" POST request ([Issue 237](https://github.com/henrikfroehling/Trakt.NET/issues/237))
+- Add support for "shows/{id}/progress/watched/reset" DELETE request ([Issue 238](https://github.com/henrikfroehling/Trakt.NET/issues/238))
+- Add support for "sync/watchlist/reorder" POST request ([Issue 239](https://github.com/henrikfroehling/Trakt.NET/issues/239))
+- Add property "updated_at" in `ITraktSeason` ([Issue 242](https://github.com/henrikfroehling/Trakt.NET/issues/242))
+- Update `ITraktSyncLastActivities` and add missing properties ([Issue 257](https://github.com/henrikfroehling/Trakt.NET/issues/257))
+- Add support for comments (blocked users) in "users/hidden/{section}" and "users/hidden/{section}/remove" POST requests ([Issue 258](https://github.com/henrikfroehling/Trakt.NET/issues/258))
+- Add values "continuing" and "pilot" in `TraktShowStatus` enumeration ([Issue 264](https://github.com/henrikfroehling/Trakt.NET/issues/264))
+- Add support for "shows/{id}/seasons/{season}/translations/{language}" GET request ([Issue 265](https://github.com/henrikfroehling/Trakt.NET/issues/265))
+- Add missing properties in `ITraktPerson` ([Issue 266](https://github.com/henrikfroehling/Trakt.NET/issues/266))
+
+Fixed:
+
+- `GetShowAsync` returns Status null when status is 'upcoming' ([Issue 208](https://github.com/henrikfroehling/Trakt.NET/issues/208))
+- Calendar methods do not accept a value greater than 31 for days ([Issue 220](https://github.com/henrikfroehling/Trakt.NET/issues/220))
+- `GetShowAsync` returns Status null when status is 'planned' ([Issue 221](https://github.com/henrikfroehling/Trakt.NET/issues/221))
+
+Improved:
+
+- Handle HTTP Status Code 423 for locked user accounts ([Issue 194](https://github.com/henrikfroehling/Trakt.NET/issues/194))
+- Post Builder interfaces and implementations are not in the same namespace ([Issue 207](https://github.com/henrikfroehling/Trakt.NET/issues/207))
+
+Changed:
+
+- OAuth authorization for "users/{id}/lists/{list_id}/comments" should be optional ([Issue 197](https://github.com/henrikfroehling/Trakt.NET/issues/197))
+- Rename methods in post builder ([Issue 251](https://github.com/henrikfroehling/Trakt.NET/issues/251))
+- Change OAuth requirement to optional for "users/{id}/likes/{type}" GET request ([Issue 256](https://github.com/henrikfroehling/Trakt.NET/issues/256))
+
+---------
+
+Version 1.1.1
+===
+
+#### 1.1.1
+(2021-03-16)
+
+Fixed:
+
+- GetShowAsync returns Status null when status is 'upcoming' ([Issue 208](https://github.com/henrikfroehling/Trakt.NET/issues/208))
+- GetShowAsync returns Status null when status is 'planned' ([Issue 221](https://github.com/henrikfroehling/Trakt.NET/issues/221))
+- Calendar methods do not accept a value greater than 31 for days ([Issue 220](https://github.com/henrikfroehling/Trakt.NET/issues/220))
+
+---------
+
 Version 1.1.0
 ===
 

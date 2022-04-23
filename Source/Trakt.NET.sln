@@ -30,7 +30,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{A7FA937C-9CD0-4601-A2FA-CBA2FDC1DA77}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\workflows\code-scan.yml = ..\.github\workflows\code-scan.yml
+		..\.github\workflows\deployment.yml = ..\.github\workflows\deployment.yml
 		..\.github\workflows\develop-CI.yml = ..\.github\workflows\develop-CI.yml
+		..\.github\workflows\main-CI.yml = ..\.github\workflows\main-CI.yml
 		..\.github\workflows\release-CI.yml = ..\.github\workflows\release-CI.yml
 		..\.github\workflows\sonarcloud.yml = ..\.github\workflows\sonarcloud.yml
 	EndProjectSection

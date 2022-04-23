@@ -1,26 +1,47 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: bug, library
-assignees: henrikfroehling
-
----
-
-**GitHub Issues are only used for bug reports and feature requests.**
-
-**If you have a support question, please ask in the official Gitter Chat:** https://gitter.im/Trakt-NET/Lobby
-
-**Please follow these guidelines when creating a new issue:**
-
-**--- Please use this template, and delete everything above this line before submitting your issue ---**
-
-**Describe the bug**
-- Use a **descriptive title** that identifies the issue to be addressed.
-- Specify a **detailed description** of the issue.
-- Specify the **version of Trakt.NET**, in which the bug occurs.
-- Specify the platform only, if the bug is related to a specific platform.
-- Describe the **expected and actual behavior**.
-- Specify any relevant **exception messages** and **stack traces**.
-- Describe the steps on how to reproduce the bug.
-- Subscribe for notifications for the created issue in case there are any follow up questions.
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: [bug, library]
+assignees:
+  - henrikfroehling
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report.
+        If you have any questions, please feel free to ask in the discussions: https://github.com/henrikfroehling/Trakt.NET/discussions
+  - type: textarea
+    id: description
+    attributes:
+      label: Failure description?
+      description: Please specify a detailed description of the issue.
+      placeholder: Detailed description of the issue.
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of Trakt.NET are you using?
+      options:
+        - 1.2.0 (Latest)
+        - 1.1.1
+        - 1.1.0
+        - 1.0.2
+        - 1.0.1
+        - 1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: stacktrace
+    attributes:
+      label: Relevant Stacktrace
+      description: Please copy and paste a stacktrace, if available.
+  - type: checkboxes
+    id: coc
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
