@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Modules.Tests.TraktSyncModule
 {
     using System;
+    using System.Collections.Generic;
     using TraktNet.Enums;
     using TraktNet.Requests.Parameters;
 
@@ -24,8 +25,24 @@
         private readonly TraktWatchlistSortOrder WATCHLIST_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const uint PLAYBACK_ID = 13U;
         private const int RATINGS_ITEM_COUNT = 5;
+        private const int PLAYBACK_PROGRESS_ITEM_COUNT = 4;
+        private readonly DateTime PLAYBACK_PROGRESS_START_AT = DateTime.UtcNow;
+        private readonly DateTime PLAYBACK_PROGRESS_END_AT = DateTime.UtcNow;
+        private readonly TraktRecommendationObjectType RECOMMENDATION_TYPE = TraktRecommendationObjectType.Movie;
+        private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
+        private const int RECOMMENDATIONS_ITEM_COUNT = 2;
+        private const int RECOMMENDATIONS_LIMIT = 6;
+        private readonly IEnumerable<uint> REORDERED_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
+
+        private const string ITEMS_REORDER_POST_RESPONSE_JSON =
+            @"{
+                ""updated"": 6,
+                ""skipped_ids"": [
+                  12
+                ]
+              }";
 
         private const string COLLECTION_POST_RESPONSE_JSON =
             @"{
@@ -75,6 +92,58 @@
                   ""shows"": [ ],
                   ""seasons"": [ ],
                   ""episodes"": [ ]
+                }
+              }";
+
+        private const string RECOMMENDATIONS_POST_RESPONSE_JSON =
+            @"{
+                ""added"": {
+                  ""movies"": 1,
+                  ""shows"": 2
+                },
+                ""existing"": {
+                  ""movies"": 3,
+                  ""shows"": 4
+                },
+                ""not_found"": {
+                  ""movies"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000111""
+                      }
+                    }
+                  ],
+                  ""shows"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000222""
+                      }
+                    }
+                  ]
+                }
+              }";
+
+        private const string RECOMMENDATIONS_REMOVE_POST_RESPONSE_JSON =
+            @"{
+                ""deleted"": {
+                  ""movies"": 1,
+                  ""shows"": 2
+                },
+                ""not_found"": {
+                  ""movies"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000111""
+                      }
+                    }
+                  ],
+                  ""shows"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000222""
+                      }
+                    }
+                  ]
                 }
               }";
 
@@ -816,5 +885,42 @@
                   ""episodes"": [ ]
                 }
               }";
+
+        private const string RECOMMENDATIONS_JSON =
+            @"[
+                {
+                  ""rank"": 1,
+                  ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""type"": ""movie"",
+                  ""notes"": ""Daft Punk really knocks it out of the park on the soundtrack."",
+                  ""movie"": {
+                    ""title"": ""TRON: Legacy"",
+                    ""year"": 2010,
+                    ""ids"": {
+                      ""trakt"": 1,
+                      ""slug"": ""tron-legacy-2010"",
+                      ""imdb"": ""tt1104001"",
+                      ""tmdb"": 20526
+                    }
+                  }
+                },
+                {
+                  ""rank"": 1,
+                  ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""type"": ""show"",
+                  ""notes"": ""Atmospheric for days."",
+                  ""show"": {
+                    ""title"": ""The Walking Dead"",
+                    ""year"": 2010,
+                    ""ids"": {
+                      ""trakt"": 2,
+                      ""slug"": ""the-walking-dead"",
+                      ""tvdb"": 153021,
+                      ""imdb"": ""tt1520211"",
+                      ""tmdb"": 1402
+                    }
+                  }
+                }
+              ]";
     }
 }

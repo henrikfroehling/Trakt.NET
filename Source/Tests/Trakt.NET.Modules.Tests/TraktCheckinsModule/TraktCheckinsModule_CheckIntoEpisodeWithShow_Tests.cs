@@ -1302,27 +1302,27 @@
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, EPISODE_CHECKIN_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(null, show);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(episode, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             episode.Number = -1;
 
             act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             episode.Number = 1;
             episode.SeasonNumber = -1;
 
             act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             episode.SeasonNumber = 1;
             show.Title = string.Empty;
 
             act = () => client.Checkins.CheckIntoEpisodeWithShowAsync(episode, show);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

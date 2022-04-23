@@ -522,19 +522,19 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetPersonalRecommendations_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetPersonalRecommendations_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
                 GET_PERSONAL_RECOMMENDATIONS_URI, USER_RECOMMENDATIONS_JSON, 1, 10, 1, RECOMMENDATIONS_ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktRecommendation>>> act = () => client.Users.GetPersonalRecommendationsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetPersonalRecommendationsAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetPersonalRecommendationsAsync("user name");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

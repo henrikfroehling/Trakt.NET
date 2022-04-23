@@ -7,16 +7,20 @@
     using Objects.Get.Ratings;
     using Objects.Get.Syncs.Activities;
     using Objects.Get.Syncs.Playback;
+    using Objects.Get.Users;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
     using Objects.Post;
-    using Objects.Post.Builder;
+    using Objects.Post.Basic;
+    using Objects.Post.Basic.Responses;
     using Objects.Post.Syncs.Collection;
     using Objects.Post.Syncs.Collection.Responses;
     using Objects.Post.Syncs.History;
     using Objects.Post.Syncs.History.Responses;
     using Objects.Post.Syncs.Ratings;
     using Objects.Post.Syncs.Ratings.Responses;
+    using Objects.Post.Syncs.Recommendations;
+    using Objects.Post.Syncs.Recommendations.Responses;
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
     using Requests.Handler;
@@ -61,6 +65,77 @@
         }
 
         /// <summary>
+        /// Gets an user's personal recommendations for movies and / or shows.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/get-personal-recommendations/get-personal-recommendations">"Trakt API Doc - Sync: Personal Recommendations"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="recommendationObjectType">Determines, which type of recommendation items should be queried. See also <seealso cref="TraktRecommendationObjectType" />.</param>
+        /// <param name="sortOrder">
+        /// The recommendations sort order. See also <seealso cref="TraktWatchlistSortOrder" />.
+        /// Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
+        /// Will be ignored, if the given <paramref name="recommendationObjectType" /> is null or unspecified.
+        /// </param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the recommendation items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktRecommendation" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        public Task<TraktPagedResponse<ITraktRecommendation>> GetPersonalRecommendationsAsync(TraktRecommendationObjectType recommendationObjectType = null,
+                                                                                              TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null,
+                                                                                              TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new SyncPersonalRecommendationsRequest
+            {
+                Type = recommendationObjectType,
+                Sort = sortOrder,
+                ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Reorder all items on a user's personal recommendations.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-personal-recommendations/reorder-personally-recommended-items">"Trakt API Doc - Sync: Reorder Personal Recommendations"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="reorderedRecommendedItemRanks">A collection of list ids. Represents the new order of an user's personal recommendations.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated personal recommendations order.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedRecommendedItemRanks"/> is null.</exception>
+        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderRecommendedItemsAsync(IEnumerable<uint> reorderedRecommendedItemRanks,
+                                                                                                    CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendedItemsReorderRequest
+            {
+                RequestBody = new TraktListItemsReorderPost
+                {
+                    Rank = reorderedRecommendedItemRanks
+                }
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets the user's saved playback progress of scrobbles that are paused.
         /// <para>OAuth authorization required.</para>
         /// <para>
@@ -68,22 +143,30 @@
         /// </para>
         /// </summary>
         /// <param name="objectType">Determines, which type of items should be queried. By default, all types will be returned. See also <seealso cref="TraktSyncType" />.</param>
-        /// <param name="limit">Determines, how many progress items should be queried. By default, all items will be returned</param>
+        /// <param name="startAt">Determines an optional start date and time for a range of the returned playback progress.</param>
+        /// <param name="endAt">Determines an optional end date and time for a range of the returned playback progress.</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>A list of <see cref="ITraktSyncPlaybackProgressItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktListResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null, uint? limit = null,
-                                                                                                CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktSyncPlaybackProgressItem>> GetPlaybackProgressAsync(TraktSyncType objectType = null,
+                                                                                                 DateTime? startAt = null,
+                                                                                                 DateTime? endAt = null,
+                                                                                                 TraktPagedParameters pagedParameters = null,
+                                                                                                 CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteListRequestAsync(new SyncPlaybackProgressRequest
+            return requestHandler.ExecutePagedRequestAsync(new SyncPlaybackProgressRequest
             {
                 Type = objectType,
-                Limit = limit
+                StartAt = startAt,
+                EndAt = endAt,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             },
             cancellationToken);
         }
@@ -529,6 +612,78 @@
         }
 
         /// <summary>
+        /// Adds items to the user's personal recommendations. Accepts movies and shows.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/get-personal-recommendations/add-items-to-personal-recommendations">"Trakt API Doc - Sync: Add to Personal Recommendations"</a> for more information.
+        /// </para>
+        /// <para>
+        /// It is recommended to use the <see cref="ITraktSyncRecommendationsPostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncRecommendationsPost" />.
+        /// See also <seealso cref="TraktPost.NewSyncRecommendationsPost()" />.
+        /// </para>
+        /// </summary>
+        /// <param name="recommendationsPost">An <see cref="ITraktSyncRecommendationsPost" /> instance containing all movies and shows, which should be added.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktSyncRecommendationsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the given recommendations post is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given recommendations post is empty.</exception>
+        public Task<TraktResponse<ITraktSyncRecommendationsPostResponse>> AddPersonalRecommendationsAsync(ITraktSyncRecommendationsPost recommendationsPost,
+                                                                                                          CancellationToken cancellationToken = default)
+        {
+            if (recommendationsPost == null)
+                throw new ArgumentNullException(nameof(recommendationsPost), "recommendations post must not be null");
+
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendationsAddRequest
+            {
+                RequestBody = recommendationsPost
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Remove items from the user's personal recommendations. Accepts movies and shows.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/remove-from-personal-recommendations/remove-items-from-personal-recommendations">"Trakt API Doc - Sync: Remove from Personal Recommendations"</a> for more information.
+        /// </para>
+        /// <para>
+        /// It is recommended to use the <see cref="ITraktSyncRecommendationsPostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncRecommendationsPost" />.
+        /// See also <seealso cref="TraktPost.NewSyncRecommendationsPost()" />.
+        /// </para>
+        /// </summary>
+        /// <param name="recommendationsPost">An <see cref="ITraktSyncRecommendationsPost" /> instance containing all movies and shows, which should be removed.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktSyncRecommendationsRemovePostResponse" /> instance, which contains information about which items were removed and not found.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the given recommendations post is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given recommendations post is empty.</exception>
+        public Task<TraktResponse<ITraktSyncRecommendationsRemovePostResponse>> RemovePersonalRecommendationsAsync(ITraktSyncRecommendationsPost recommendationsPost,
+                                                                                                                   CancellationToken cancellationToken = default)
+        {
+            if (recommendationsPost == null)
+                throw new ArgumentNullException(nameof(recommendationsPost), "recommendations post must not be null");
+
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendationsRemoveRequest
+            {
+                RequestBody = recommendationsPost
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets the user's watchlist containing movies, shows, seasons and / or episodes.
         /// <para>OAuth authorization required.</para>
         /// <para>
@@ -569,6 +724,36 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Reorders an user's watchlist.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-watchlist/reorder-watchlist-items">"Trakt API Doc - Sync: Reorder Watchlist"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="reorderedWatchlistItemRanks">A collection of list ids. Represents the new order of an user's watchlist.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated watchlist order.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedWatchlistItemRanks"/> is null.</exception>
+        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderWatchlistItemsAsync(IEnumerable<uint> reorderedWatchlistItemRanks,
+                                                                                                  CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistItemsReorderRequest
+            {
+                RequestBody = new TraktListItemsReorderPost
+                {
+                    Rank = reorderedWatchlistItemRanks
+                }
             },
             cancellationToken);
         }

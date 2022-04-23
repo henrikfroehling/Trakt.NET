@@ -222,20 +222,20 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowRelatedShows_ArgumentExceptions()
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(
                 GET_SHOW_RELATED_SHOWS_URI,
                 SHOW_RELATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetShowRelatedShowsAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowRelatedShowsAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowRelatedShowsAsync("show id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

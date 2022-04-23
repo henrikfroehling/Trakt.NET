@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder
+﻿namespace TraktNet.Objects.Post
 {
     public interface ITraktPostBuilder<out TPostObject>
     {

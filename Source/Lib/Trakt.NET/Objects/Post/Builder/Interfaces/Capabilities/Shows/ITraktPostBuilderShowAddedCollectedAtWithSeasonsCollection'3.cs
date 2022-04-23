@@ -1,9 +1,9 @@
-﻿namespace TraktNet.Objects.Post.Builder.Capabilities
+﻿namespace TraktNet.Objects.Post.Capabilities
 {
     using System;
 
     public interface ITraktPostBuilderShowAddedCollectedAtWithSeasonsCollection<TPostBuilderAddShow, out TPostObject, in TSeasonCollection>
-        where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithCollectedAtWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
+        where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderShowWithCollectedAtWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
     {
         TPostBuilderAddShow CollectedAt(DateTime collectedAt, TSeasonCollection seasons);
     }

@@ -19,6 +19,12 @@
                 await jsonWriter.WriteValueAsync(obj.LikedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.BlockedAt.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_BLOCKED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.BlockedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

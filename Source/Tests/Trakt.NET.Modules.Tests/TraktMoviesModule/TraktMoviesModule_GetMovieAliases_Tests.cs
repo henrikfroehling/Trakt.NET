@@ -61,18 +61,18 @@
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieAliases_ArgumentExceptions()
+        public async Task Test_TraktMoviesModule_GetMovieAliases_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_ALIASES_URI, MOVIE_ALIASES_JSON);
 
             Func<Task<TraktListResponse<ITraktMovieAlias>>> act = () => client.Movies.GetMovieAliasesAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMovieAliasesAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMovieAliasesAsync("movie id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

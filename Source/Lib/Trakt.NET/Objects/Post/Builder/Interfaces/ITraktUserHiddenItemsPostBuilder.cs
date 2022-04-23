@@ -1,7 +1,9 @@
-﻿namespace TraktNet.Objects.Post.Builder
+﻿namespace TraktNet.Objects.Post
 {
     using Capabilities;
+    using Get.Users;
     using Post.Users.HiddenItems;
+    using System.Collections.Generic;
 
     public interface ITraktUserHiddenItemsPostBuilder
         : ITraktPostBuilder<ITraktUserHiddenItemsPost>,
@@ -9,9 +11,12 @@
           ITraktPostBuilderWithMovies<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>,
           ITraktPostBuilderWithShow<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>,
           ITraktPostBuilderWithShows<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>,
-          ITraktPostBuilderAddShowWithSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>,
+          ITraktPostBuilderShowWithSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>,
           ITraktPostBuilderWithSeason<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>,
           ITraktPostBuilderWithSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>
     {
+        ITraktUserHiddenItemsPostBuilder WithUser(ITraktUser user);
+
+        ITraktUserHiddenItemsPostBuilder WithUsers(IEnumerable<ITraktUser> users);
     }
 }

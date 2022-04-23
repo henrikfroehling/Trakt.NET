@@ -107,18 +107,18 @@
         }
 
         [Fact]
-        public void Test_TraktShowsModule_GetShowLastEpisode_ArgumentExceptions()
+        public async Task Test_TraktShowsModule_GetShowLastEpisode_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_LAST_EPISODE_URI, SHOW_EPISODE_JSON);
 
             Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowLastEpisodeAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowLastEpisodeAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Shows.GetShowLastEpisodeAsync("show id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -30,6 +30,12 @@
                 await jsonWriter.WriteValueAsync(obj.Seasons, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Users.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_USERS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Users, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

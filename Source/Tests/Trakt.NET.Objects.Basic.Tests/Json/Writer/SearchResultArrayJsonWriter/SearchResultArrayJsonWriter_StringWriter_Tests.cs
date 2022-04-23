@@ -22,12 +22,12 @@
     public partial class SearchResultArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_SearchResultArrayJsonWriter_WriteArray_StringWriter_Exceptions()
+        public async Task Test_SearchResultArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktSearchResult>();
             IEnumerable<ITraktSearchResult> traktSearchResults = new List<TraktSearchResult>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktSearchResults);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

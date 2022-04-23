@@ -20,6 +20,7 @@
 
             commentsLastActivities.Should().NotBeNull();
             commentsLastActivities.LikedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            commentsLastActivities.BlockedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -31,14 +32,15 @@
 
             commentsLastActivities.Should().NotBeNull();
             commentsLastActivities.LikedAt.Should().BeNull();
+            commentsLastActivities.BlockedAt.Should().BeNull();
         }
 
         [Fact]
-        public void Test_SyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_SyncCommentsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new SyncCommentsLastActivitiesObjectJsonReader();
             Func<Task<ITraktSyncCommentsLastActivities>> commentsLastActivities = () => jsonReader.ReadObjectAsync(default(string));
-            commentsLastActivities.Should().Throw<ArgumentNullException>();
+            await commentsLastActivities.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

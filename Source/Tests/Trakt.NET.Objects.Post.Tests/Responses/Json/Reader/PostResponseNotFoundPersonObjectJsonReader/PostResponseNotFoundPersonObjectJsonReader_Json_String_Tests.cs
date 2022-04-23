@@ -39,11 +39,11 @@
         }
 
         [Fact]
-        public void Test_PostResponseNotFoundPersonObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_PostResponseNotFoundPersonObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new PostResponseNotFoundPersonObjectJsonReader();
             Func<Task<ITraktPostResponseNotFoundPerson>> postResponseNotFoundPerson = () => jsonReader.ReadObjectAsync(default(string));
-            postResponseNotFoundPerson.Should().Throw<ArgumentNullException>();
+            await postResponseNotFoundPerson.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

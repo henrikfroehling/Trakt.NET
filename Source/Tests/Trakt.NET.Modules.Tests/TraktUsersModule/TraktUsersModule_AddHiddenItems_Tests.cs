@@ -97,13 +97,13 @@
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, postJson, HIDDEN_ITEMS_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, TraktHiddenItemsSection.Unspecified);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.AddHiddenItemsAsync(null, HIDDEN_ITEMS_SECTION);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
         }
     }
 }

@@ -108,39 +108,39 @@
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovie_ArgumentExceptions()
+        public async Task Test_TraktMoviesModule_GetMovie_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_URI, MOVIE_JSON);
 
             Func<Task<TraktResponse<ITraktMovie>>> act = () => client.Movies.GetMovieAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMovieAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMovieAsync("movie id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMultipleMovies_ArgumentExceptions()
+        public async Task Test_TraktMoviesModule_GetMultipleMovies_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_URI, MOVIE_JSON);
 
             Func<Task<IEnumerable<TraktResponse<ITraktMovie>>>> act = () => client.Movies.GetMultipleMoviesAsync(null);
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             act = () => client.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams());
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             act = () => client.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams { { null } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams { { string.Empty } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMultipleMoviesAsync(new TraktMultipleObjectsQueryParams { { "movie id" } });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

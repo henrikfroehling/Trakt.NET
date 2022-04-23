@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder.Helper
+﻿namespace TraktNet.Objects.Post.Helper
 {
     using Capabilities;
     using Get.Shows;
@@ -8,7 +8,7 @@
     internal class PostBuilderShowAddedRating<TPostBuilderAddShow, TPostObject>
         : ITraktPostBuilderShowAddedRating<TPostBuilderAddShow, TPostObject>,
           IPostBuilderShowAddedRatingDetail
-          where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithRating<TPostBuilderAddShow, TPostObject>
+          where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderShowWithRating<TPostBuilderAddShow, TPostObject>
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;

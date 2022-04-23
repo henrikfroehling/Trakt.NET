@@ -15,12 +15,12 @@
     public partial class MetadataObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_MetadataObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
+        public async Task Test_MetadataObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new MetadataObjectJsonWriter();
             ITraktMetadata traktMetadata = new TraktMetadata();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktMetadata);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

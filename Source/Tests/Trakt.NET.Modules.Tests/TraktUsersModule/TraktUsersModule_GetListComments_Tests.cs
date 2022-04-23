@@ -37,6 +37,26 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetListComments_With_OAuth_Enforced()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                GET_LIST_COMMENTS_URI,
+                LIST_COMMENTS_JSON, 1, 10, 1, LIST_COMMENTS_ITEM_COUNT);
+
+            client.Configuration.ForceAuthorization = true;
+            TraktPagedResponse<ITraktComment> response = await client.Users.GetListCommentsAsync(USERNAME, LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetListComments_With_SortOrder()
         {
             TraktClient client = TestUtility.GetMockClient(
@@ -221,29 +241,29 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetListComments_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetListComments_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(
                 GET_LIST_COMMENTS_URI,
                 LIST_COMMENTS_JSON, 1, 10, 1, LIST_COMMENTS_ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Users.GetListCommentsAsync(null, LIST_ID);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetListCommentsAsync(string.Empty, LIST_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetListCommentsAsync("user name", LIST_ID);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetListCommentsAsync(USERNAME, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetListCommentsAsync(USERNAME, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetListCommentsAsync(USERNAME, "list id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

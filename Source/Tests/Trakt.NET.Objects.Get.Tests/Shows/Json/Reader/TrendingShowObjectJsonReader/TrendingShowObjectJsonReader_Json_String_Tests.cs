@@ -111,11 +111,11 @@
         }
 
         [Fact]
-        public void Test_TrendingShowObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_TrendingShowObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new TrendingShowObjectJsonReader();
             Func<Task<ITraktTrendingShow>> traktTrendingShow = () => jsonReader.ReadObjectAsync(default(string));
-            traktTrendingShow.Should().Throw<ArgumentNullException>();
+            await traktTrendingShow.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

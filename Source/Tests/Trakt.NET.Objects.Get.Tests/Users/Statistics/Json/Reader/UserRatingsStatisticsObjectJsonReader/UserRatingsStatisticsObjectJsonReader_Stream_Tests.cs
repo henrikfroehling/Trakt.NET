@@ -150,11 +150,11 @@
         }
 
         [Fact]
-        public void Test_UserRatingsStatisticsObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_UserRatingsStatisticsObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new UserRatingsStatisticsObjectJsonReader();
             Func<Task<ITraktUserRatingsStatistics>> userRatingsStatistics = () => jsonReader.ReadObjectAsync(default(Stream));
-            userRatingsStatistics.Should().Throw<ArgumentNullException>();
+            await userRatingsStatistics.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

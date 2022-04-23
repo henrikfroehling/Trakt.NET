@@ -154,7 +154,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(1800));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAccessToken = client.Authorization;
@@ -204,7 +204,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 1800 * 1000);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(1800));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAccessToken = client.Authorization;
@@ -283,12 +283,12 @@
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_CheckIfAuthorizationIsExpiredOrWasRevoked_With_Authorization_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
 
             Func<Task<Pair<bool, TraktResponse<ITraktAuthorization>>>> act = () => client.Authentication.CheckIfAuthorizationIsExpiredOrWasRevokedAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
         }
     }
 }

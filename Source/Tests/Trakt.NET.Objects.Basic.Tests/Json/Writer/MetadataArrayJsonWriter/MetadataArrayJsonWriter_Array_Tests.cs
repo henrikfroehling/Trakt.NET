@@ -14,11 +14,11 @@
     public partial class MetadataArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_MetadataArrayJsonWriter_WriteArray_Array_Exceptions()
+        public async Task Test_MetadataArrayJsonWriter_WriteArray_Array_Exceptions()
         {
             ArrayJsonWriter<ITraktMetadata> traktJsonWriter = new ArrayJsonWriter<ITraktMetadata>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

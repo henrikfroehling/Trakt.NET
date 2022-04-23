@@ -13,12 +13,12 @@
     public partial class ImageObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_ImageObjectJsonWriter_WriteObject_StringWriter_Exceptions()
+        public async Task Test_ImageObjectJsonWriter_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new ImageObjectJsonWriter();
             ITraktImage traktImage = new TraktImage();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktImage);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

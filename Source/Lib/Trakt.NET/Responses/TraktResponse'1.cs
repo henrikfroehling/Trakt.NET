@@ -50,6 +50,15 @@
         /// <summary>Gets the value of the set "item-type" response header. Might not be set.</summary>
         public string ItemType { get; set; }
 
+        /// <summary>Gets the value of the set "RateLimit" response header. Might not be set.</summary>
+        public string RateLimit { get; set; }
+
+        /// <summary>Gets the value of the set "Retry-After" response header. Might not be set.</summary>
+        public int? RetryAfter { get; set; }
+
+        /// <summary>The web URL where the user can sign up for Trakt VIP.</summary>
+        public string UpgradeURL { get; set; }
+
         /// <summary>
         /// Compares this instance with another <see cref="TraktResponse{TResponseContentType}" /> instance.
         /// </summary>
@@ -69,7 +78,11 @@
                 && other.TrendingUserCount == TrendingUserCount
                 && other.Page == Page
                 && other.Limit == Limit
-                && other.IsPrivateUser == IsPrivateUser;
+                && other.IsPrivateUser == IsPrivateUser
+                && other.ItemId == ItemId
+                && other.ItemType == ItemType
+                && other.RateLimit == RateLimit
+                && other.RetryAfter == RetryAfter;
         }
 
         /// <summary>Enables implicit conversion to <typeparamref name="TResponseContentType" /> for this type.</summary>

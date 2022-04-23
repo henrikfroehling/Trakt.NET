@@ -104,11 +104,11 @@
         }
 
         [Fact]
-        public void Test_CastMemberObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_CastMemberObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new CastMemberObjectJsonReader();
             Func<Task<ITraktCastMember>> traktCastMember = () => jsonReader.ReadObjectAsync(default(string));
-            traktCastMember.Should().Throw<ArgumentNullException>();
+            await traktCastMember.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

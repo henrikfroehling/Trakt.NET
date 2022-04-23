@@ -30,6 +30,15 @@
 
                                 break;
                             }
+                        case JsonProperties.PROPERTY_NAME_BLOCKED_AT:
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    commentsLastActivities.BlockedAt = value.Second;
+
+                                break;
+                            }
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

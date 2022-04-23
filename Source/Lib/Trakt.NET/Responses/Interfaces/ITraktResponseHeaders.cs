@@ -39,5 +39,14 @@
 
         /// <summary>Gets the value of the set "item-type" response header. Might not be set.</summary>
         string ItemType { get; set; }
+
+        /// <summary>Gets the value of the set "RateLimit" response header. Might not be set.</summary>
+        string RateLimit { get; set; }
+
+        /// <summary>Gets the value of the set "Retry-After" response header. Might not be set.</summary>
+        int? RetryAfter { get; set; }
+
+        /// <summary>The web URL where the user can sign up for Trakt VIP.</summary>
+        string UpgradeURL { get; set; }
     }
 }

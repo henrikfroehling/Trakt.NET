@@ -249,8 +249,8 @@ namespace TraktNet.Requests.Handler
             {
                 var list = value as IList;
 
-                if (list == null && value is IEnumerable<string>)
-                    list = ((IEnumerable<string>)value).ToList();
+                if (list == null && value is IEnumerable<string> values)
+                    list = values.ToList();
 
                 if (list != null)
                 {

@@ -102,10 +102,10 @@
             TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHED_HISTORY_ITEMS_URI, postJson, HISTORY_REMOVE_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>>> act = () => client.Sync.RemoveWatchedHistoryItemsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.RemoveWatchedHistoryItemsAsync(new TraktSyncHistoryRemovePost());
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             ITraktSyncHistoryRemovePost collectionPost = new TraktSyncHistoryRemovePost
             {
@@ -115,7 +115,7 @@
             };
 
             act = () => client.Sync.RemoveWatchedHistoryItemsAsync(collectionPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

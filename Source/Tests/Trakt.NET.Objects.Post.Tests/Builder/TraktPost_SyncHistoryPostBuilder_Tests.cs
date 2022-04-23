@@ -8,7 +8,6 @@
     using TraktNet.Objects.Get.Episodes;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Builder;
     using TraktNet.Objects.Post.Syncs.History;
     using Xunit;
 
@@ -134,7 +133,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncHistoryPostBuilder_AddWatchedMovie()
+        public void Test_TraktPost_SyncHistoryPostBuilder_WithWatchedMovie()
         {
             ITraktMovie movie = new TraktMovie
             {
@@ -150,7 +149,7 @@
             };
 
             ITraktSyncHistoryPost syncHistoryPost = TraktPost.NewSyncHistoryPost()
-                .AddWatchedMovie(movie).WatchedAt(WATCHED_AT)
+                .WithWatchedMovie(movie).WatchedAt(WATCHED_AT)
                 .Build();
 
             syncHistoryPost.Should().NotBeNull();
@@ -285,7 +284,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncHistoryPostBuilder_AddWatchedShow()
+        public void Test_TraktPost_SyncHistoryPostBuilder_WithWatchedShow()
         {
             ITraktShow show = new TraktShow
             {
@@ -303,7 +302,7 @@
             };
 
             ITraktSyncHistoryPost syncHistoryPost = TraktPost.NewSyncHistoryPost()
-                .AddWatchedShow(show).WatchedAt(WATCHED_AT)
+                .WithWatchedShow(show).WatchedAt(WATCHED_AT)
                 .Build();
 
             syncHistoryPost.Should().NotBeNull();
@@ -327,7 +326,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncHistoryPostBuilder_AddWatchedShowAndSeasons()
+        public void Test_TraktPost_SyncHistoryPostBuilder_WithWatchedShowAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -345,7 +344,7 @@
             };
 
             ITraktSyncHistoryPost syncHistoryPost = TraktPost.NewSyncHistoryPost()
-                .AddWatchedShowAndSeasons(show).WatchedAt(WATCHED_AT, 1, 2, 3)
+                .WithWatchedShowAndSeasons(show).WatchedAt(WATCHED_AT, 1, 2, 3)
                 .Build();
 
             syncHistoryPost.Should().NotBeNull();
@@ -380,7 +379,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncHistoryPostBuilder_AddWatchedShowAndSeasonsCollection()
+        public void Test_TraktPost_SyncHistoryPostBuilder_WithWatchedShowAndSeasonsCollection()
         {
             ITraktShow show = new TraktShow
             {
@@ -404,7 +403,7 @@
             };
 
             ITraktSyncHistoryPost syncHistoryPost = TraktPost.NewSyncHistoryPost()
-                .AddWatchedShowAndSeasonsCollection(show).WatchedAt(WATCHED_AT, seasons)
+                .WithWatchedShowAndSeasonsCollection(show).WatchedAt(WATCHED_AT, seasons)
                 .Build();
 
             syncHistoryPost.Should().NotBeNull();
@@ -441,7 +440,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncHistoryPostBuilder_AddShowAndSeasons()
+        public void Test_TraktPost_SyncHistoryPostBuilder_WithShowAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -459,7 +458,7 @@
             };
 
             ITraktSyncHistoryPost syncHistoryPost = TraktPost.NewSyncHistoryPost()
-                .AddShowAndSeasons(show).WithSeasons(1, 2, 3)
+                .WithShowAndSeasons(show).WithSeasons(1, 2, 3)
                 .Build();
 
             syncHistoryPost.Should().NotBeNull();
@@ -494,7 +493,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncHistoryPostBuilder_AddShowAndSeasonsCollection()
+        public void Test_TraktPost_SyncHistoryPostBuilder_WithShowAndSeasonsCollection()
         {
             ITraktShow show = new TraktShow
             {
@@ -518,7 +517,7 @@
             };
 
             ITraktSyncHistoryPost syncHistoryPost = TraktPost.NewSyncHistoryPost()
-                .AddShowAndSeasonsCollection(show).WithSeasons(seasons)
+                .WithShowAndSeasonsCollection(show).WithSeasons(seasons)
                 .Build();
 
             syncHistoryPost.Should().NotBeNull();
@@ -648,7 +647,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncHistoryPostBuilder_AddWatchedEpisode()
+        public void Test_TraktPost_SyncHistoryPostBuilder_WithWatchedEpisode()
         {
             ITraktEpisode episode = new TraktEpisode
             {
@@ -663,7 +662,7 @@
             };
 
             ITraktSyncHistoryPost syncHistoryPost = TraktPost.NewSyncHistoryPost()
-                .AddWatchedEpisode(episode).WatchedAt(WATCHED_AT)
+                .WithWatchedEpisode(episode).WatchedAt(WATCHED_AT)
                 .Build();
 
             syncHistoryPost.Should().NotBeNull();

@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Collection
 {
-    using Basic;
+    using Objects.Basic;
     using System;
 
     /// <summary>A Trakt collection post episode, containing the required episode number.</summary>

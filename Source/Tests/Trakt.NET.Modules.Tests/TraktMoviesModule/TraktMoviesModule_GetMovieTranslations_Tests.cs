@@ -61,18 +61,18 @@
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieTranslations_ArgumentExceptions()
+        public async Task Test_TraktMoviesModule_GetMovieTranslations_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_TRANSLATIONS_URI, MOVIE_TRANSLATIONS_JSON);
 
             Func<Task<TraktListResponse<ITraktMovieTranslation>>> act = () => client.Movies.GetMovieTranslationsAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMovieTranslationsAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMovieTranslationsAsync("movie id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
@@ -88,24 +88,24 @@
         }
 
         [Fact]
-        public void Test_TraktMoviesModule_GetMovieTranslations_Single_ArgumentExceptions()
+        public async Task Test_TraktMoviesModule_GetMovieTranslations_Single_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_TRANSLATIONS_URI}/{LANGUAGE_CODE}", MOVIE_TRANSLATIONS_JSON);
 
             Func<Task<TraktListResponse<ITraktMovieTranslation>>> act = () => client.Movies.GetMovieTranslationsAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMovieTranslationsAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMovieTranslationsAsync("movie id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Movies.GetMovieTranslationsAsync(MOVIE_ID, "eng");
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             act = () => client.Movies.GetMovieTranslationsAsync(MOVIE_ID, "e");
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

@@ -756,19 +756,19 @@
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_CUSTOM_LIST_URI, postJson, LIST_JSON);
 
             Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.CreateCustomListAsync(null, LIST_NAME);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.CreateCustomListAsync(string.Empty, LIST_NAME);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.CreateCustomListAsync("user name", LIST_NAME);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.CreateCustomListAsync(USERNAME, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.CreateCustomListAsync(USERNAME, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

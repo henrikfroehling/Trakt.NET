@@ -58,12 +58,12 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_DenyFollowRequest_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_DenyFollowRequest_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.NoContent);
 
             Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(0);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

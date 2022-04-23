@@ -320,11 +320,11 @@
         }
 
         [Fact]
-        public void Test_DeviceObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_DeviceObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var objectJsonReader = new DeviceObjectJsonReader();
             Func<Task<ITraktDevice>> traktDevice = () => objectJsonReader.ReadObjectAsync(default(Stream));
-            traktDevice.Should().Throw<ArgumentNullException>();
+            await traktDevice.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

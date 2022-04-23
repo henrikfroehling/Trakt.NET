@@ -1,9 +1,9 @@
-﻿namespace TraktNet.Objects.Post.Builder.Capabilities
+﻿namespace TraktNet.Objects.Post.Capabilities
 {
     using System;
 
     public interface ITraktPostBuilderEpisodeAddedRating<TPostBuilderAddEpisode, out TPostObject>
-        where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithRating<TPostBuilderAddEpisode, TPostObject>
+        where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderEpisodeWithRating<TPostBuilderAddEpisode, TPostObject>
     {
         TPostBuilderAddEpisode WithRating(int rating);
 

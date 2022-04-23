@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder
+﻿namespace TraktNet.Objects.Post
 {
     using Capabilities;
     using Get.Episodes;
@@ -10,7 +10,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class SyncWatchlistPostBuilder : ITraktSyncWatchlistPostBuilder
+    internal sealed class SyncWatchlistPostBuilder : ITraktSyncWatchlistPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;
@@ -63,7 +63,7 @@
             return this;
         }
 
-        public ITraktPostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> AddShowAndSeasons(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> WithShowAndSeasons(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -72,7 +72,7 @@
             return _showsWithSeasons;
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> AddShowAndSeasonsCollection(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> WithShowAndSeasonsCollection(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));

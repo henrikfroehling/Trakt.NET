@@ -19,12 +19,12 @@
         private readonly DateTime CREATED_UPDATED_AT = DateTime.UtcNow;
 
         [Fact]
-        public void Test_CommentArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
+        public async Task Test_CommentArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktComment>();
             IEnumerable<ITraktComment> traktComments = new List<TraktComment>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktComments);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

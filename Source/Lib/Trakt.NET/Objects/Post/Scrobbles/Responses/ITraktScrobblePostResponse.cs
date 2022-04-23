@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Scrobbles.Responses
 {
-    using Basic;
+    using Objects.Basic;
     using Enums;
 
     public interface ITraktScrobblePostResponse

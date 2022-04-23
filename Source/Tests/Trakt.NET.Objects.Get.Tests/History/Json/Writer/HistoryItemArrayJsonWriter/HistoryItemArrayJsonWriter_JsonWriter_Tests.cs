@@ -15,12 +15,12 @@
     public partial class HistoryItemArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_HistoryItemArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
+        public async Task Test_HistoryItemArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktHistoryItem>();
             IEnumerable<ITraktHistoryItem> traktHistoryItems = new List<TraktHistoryItem>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktHistoryItems);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

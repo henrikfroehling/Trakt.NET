@@ -14,6 +14,7 @@
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var idsObjectReader = new PersonIdsObjectJsonReader();
+                var socialIdsObjectReader = new PersonSocialIdsObjectJsonReader();
                 ITraktPerson traktPerson = new TraktPerson();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -54,6 +55,15 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_HOMEPAGE:
                             traktPerson.Homepage = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_GENDER:
+                            traktPerson.Gender = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_KNOWN_FOR_DEPARTMENT:
+                            traktPerson.KnownForDepartment = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_SOCIAL_IDS:
+                            traktPerson.SocialIds = await socialIdsObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

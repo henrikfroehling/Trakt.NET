@@ -1252,11 +1252,11 @@
         }
 
         [Fact]
-        public void Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new CommentPostResponseObjectJsonReader();
             Func<Task<ITraktCommentPostResponse>> traktCommentPostResponse = () => jsonReader.ReadObjectAsync(default(Stream));
-            traktCommentPostResponse.Should().Throw<ArgumentNullException>();
+            await traktCommentPostResponse.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

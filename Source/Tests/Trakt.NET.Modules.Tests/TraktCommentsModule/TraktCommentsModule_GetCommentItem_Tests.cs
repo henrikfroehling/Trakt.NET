@@ -110,12 +110,12 @@
         }
 
         [Fact]
-        public void Test_TraktCommentsModule_GetCommentItem_ArgumentExceptions()
+        public async Task Test_TraktCommentsModule_GetCommentItem_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_COMMENT_ITEM_URI, COMMENT_JSON);
 
             Func<Task<TraktResponse<ITraktCommentItem>>> act = () => client.Comments.GetCommentItemAsync(0);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

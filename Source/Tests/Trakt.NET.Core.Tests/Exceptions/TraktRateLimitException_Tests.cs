@@ -15,7 +15,7 @@
             var exception = new TraktRateLimitException();
 
             exception.Message.Should().Be("Slow Down - your app is polling too quickly");
-            exception.StatusCode.Should().Be(default(HttpStatusCode));
+            exception.StatusCode.Should().Be((HttpStatusCode)429);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();
@@ -29,7 +29,7 @@
             var exception = new TraktRateLimitException(message);
 
             exception.Message.Should().Be(message);
-            exception.StatusCode.Should().Be(default(HttpStatusCode));
+            exception.StatusCode.Should().Be((HttpStatusCode)429);
             exception.RequestUrl.Should().BeNullOrEmpty();
             exception.RequestBody.Should().BeNullOrEmpty();
             exception.Response.Should().BeNullOrEmpty();

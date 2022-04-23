@@ -83,11 +83,11 @@
         }
 
         [Fact]
-        public void Test_ErrorObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ErrorObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new ErrorObjectJsonReader();
             Func<Task<ITraktError>> traktError = () => jsonReader.ReadObjectAsync(default(string));
-            traktError.Should().Throw<ArgumentNullException>();
+            await traktError.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

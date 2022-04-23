@@ -237,7 +237,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().BeInRange(createdAtUtcNowTimestamp - 2, createdAtUtcNowTimestamp + 2);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeTrue();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();
@@ -259,7 +259,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().BeInRange(createdAtUtcNowTimestamp - 2, createdAtUtcNowTimestamp + 2);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeTrue();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();
@@ -281,7 +281,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().BeInRange(createdAtUtcNowTimestamp - 2, createdAtUtcNowTimestamp + 2);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeFalse();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();
@@ -303,7 +303,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().BeInRange(createdAtUtcNowTimestamp - 2, createdAtUtcNowTimestamp + 2);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeFalse();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();
@@ -322,7 +322,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().Be(s_createdAtTimestamp);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeTrue();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();
@@ -341,7 +341,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().Be(s_createdAtTimestamp);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeTrue();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();
@@ -360,7 +360,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().Be(s_createdAtTimestamp);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeFalse();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();
@@ -379,7 +379,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().Be(s_createdAtTimestamp);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeFalse();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();
@@ -401,7 +401,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().BeInRange(createdAtUtcNowTimestamp - 2, createdAtUtcNowTimestamp + 2);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeTrue();
             traktAuthorization.IsExpired.Should().BeTrue();
             traktAuthorization.IsValid.Should().BeFalse();
@@ -418,7 +418,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().BeInRange(createdAtUtcNowTimestamp - 2, createdAtUtcNowTimestamp + 2);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeTrue();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();
@@ -436,7 +436,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().BeInRange(createdAtUtcNowTimestamp - 2, createdAtUtcNowTimestamp + 2);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeFalse();
             traktAuthorization.IsExpired.Should().BeTrue();
             traktAuthorization.IsValid.Should().BeFalse();
@@ -453,7 +453,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().BeInRange(createdAtUtcNowTimestamp - 2, createdAtUtcNowTimestamp + 2);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(createdAtUtcNow, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeFalse();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();
@@ -471,7 +471,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().Be(s_createdAtTimestamp);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeTrue();
             traktAuthorization.IsExpired.Should().BeTrue();
             traktAuthorization.IsValid.Should().BeFalse();
@@ -488,7 +488,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().Be(s_createdAtTimestamp);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeTrue();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();
@@ -505,7 +505,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().Be(s_createdAtTimestamp);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeFalse();
             traktAuthorization.IsExpired.Should().BeTrue();
             traktAuthorization.IsValid.Should().BeFalse();
@@ -522,7 +522,7 @@
             traktAuthorization.TokenType.Should().Be(TraktAccessTokenType.Bearer);
             traktAuthorization.ExpiresInSeconds.Should().Be(EXPIRES_IN_SECONDS);
             traktAuthorization.CreatedAtTimestamp.Should().Be(s_createdAtTimestamp);
-            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, 1000);
+            traktAuthorization.CreatedAt.Should().BeCloseTo(s_createdAt, TimeSpan.FromMilliseconds(1000));
             traktAuthorization.IgnoreExpiration.Should().BeFalse();
             traktAuthorization.IsExpired.Should().BeFalse();
             traktAuthorization.IsValid.Should().BeTrue();

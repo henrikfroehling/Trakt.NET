@@ -131,11 +131,11 @@
         }
 
         [Fact]
-        public void Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_RecentlyUpdatedMovieObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new RecentlyUpdatedMovieObjectJsonReader();
             Func<Task<ITraktRecentlyUpdatedMovie>> traktRecentlyUpdatedMovie = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            traktRecentlyUpdatedMovie.Should().Throw<ArgumentNullException>();
+            await traktRecentlyUpdatedMovie.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

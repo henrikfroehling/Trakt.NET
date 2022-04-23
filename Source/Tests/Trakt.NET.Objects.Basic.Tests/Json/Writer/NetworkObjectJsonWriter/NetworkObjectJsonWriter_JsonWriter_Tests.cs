@@ -14,12 +14,12 @@
     public partial class NetworkObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_NetworkObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
+        public async Task Test_NetworkObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new NetworkObjectJsonWriter();
             ITraktNetwork traktNetwork = new TraktNetwork();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktNetwork);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

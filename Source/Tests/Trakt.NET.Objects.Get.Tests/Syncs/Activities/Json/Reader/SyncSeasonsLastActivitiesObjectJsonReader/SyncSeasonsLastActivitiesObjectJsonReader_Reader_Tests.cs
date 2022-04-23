@@ -266,11 +266,11 @@
         }
 
         [Fact]
-        public void Test_SyncSeasonsLastActivitiesObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_SyncSeasonsLastActivitiesObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new SyncSeasonsLastActivitiesObjectJsonReader();
             Func<Task<ITraktSyncSeasonsLastActivities>> seasonsLastActivities = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            seasonsLastActivities.Should().Throw<ArgumentNullException>();
+            await seasonsLastActivities.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

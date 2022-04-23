@@ -1157,11 +1157,11 @@
         }
 
         [Fact]
-        public void Test_PersonShowCreditsObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_PersonShowCreditsObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new PersonShowCreditsObjectJsonReader();
             Func<Task<ITraktPersonShowCredits>> showCredits = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            showCredits.Should().Throw<ArgumentNullException>();
+            await showCredits.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

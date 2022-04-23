@@ -190,11 +190,11 @@
         }
 
         [Fact]
-        public void Test_StatisticsArrayJsonReader_ReadArray_From_Json_String_Null()
+        public async Task Test_StatisticsArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktStatistics>();
             Func<Task<IEnumerable<ITraktStatistics>>> traktStatisticss = () => jsonReader.ReadArrayAsync(default(string));
-            traktStatisticss.Should().Throw<ArgumentNullException>();
+            await traktStatisticss.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

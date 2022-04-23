@@ -1,10 +1,13 @@
 ﻿namespace TraktNet.Requests.Handler
 {
     using Base;
+    using Responses.Interfaces;
     using System.Net;
 
     internal sealed class ResponseErrorParameters
     {
+        internal ResponseErrorParameters() => Headers = new ResponseErrorHeaders();
+
         public string Url { get; set; }
 
         public string RequestBody { get; set; }
@@ -32,5 +35,7 @@
         public bool IsAuthorizationRequest { get; set; }
 
         public bool IsAuthorizationRevoke { get; set; }
+
+        public ITraktPagedResponseHeaders Headers { get; set; }
     }
 }

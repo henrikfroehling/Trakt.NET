@@ -14,11 +14,11 @@
     public partial class CastAndCrewObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_CastAndCrewObjectJsonWriter_WriteObject_Object_Exceptions()
+        public async Task Test_CastAndCrewObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new CastAndCrewObjectJsonWriter();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -19,6 +19,9 @@
                 var episodesLastActivitiesReader = new SyncEpisodesLastActivitiesObjectJsonReader();
                 var commentsLastActivitiesReader = new SyncCommentsLastActivitiesObjectJsonReader();
                 var listsLastActivitiesReader = new SyncListsLastActivitiesObjectJsonReader();
+                var accountLastActivitiesReader = new SyncAccountLastActivitiesObjectJsonReader();
+                var recommendationsLastActivitiesReader = new SyncRecommendationsLastActivitiesObjectJsonReader();
+                var watchlistLastActivitiesReader = new SyncWatchlistLastActivitiesObjectJsonReader();
 
                 ITraktSyncLastActivities moviesLastActivities = new TraktSyncLastActivities();
 
@@ -54,6 +57,15 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_LISTS:
                             moviesLastActivities.Lists = await listsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_WATCHLIST:
+                            moviesLastActivities.Watchlist = await watchlistLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_RECOMMENDATIONS:
+                            moviesLastActivities.Recommendations = await recommendationsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_ACCOUNT:
+                            moviesLastActivities.Account = await accountLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

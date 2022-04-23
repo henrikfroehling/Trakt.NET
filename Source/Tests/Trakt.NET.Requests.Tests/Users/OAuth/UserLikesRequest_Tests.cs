@@ -13,10 +13,10 @@
     public class UserLikesRequest_Tests
     {
         [Fact]
-        public void Test_UserLikesRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserLikesRequest_Has_AuthorizationRequirement_Optional()
         {
             var request = new UserLikesRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
         }
 
         [Fact]

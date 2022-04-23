@@ -90,18 +90,18 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCollectionShows_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetCollectionShows_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_COLLECTION_SHOWS_URI, COLLECTION_SHOWS_JSON);
 
             Func<Task<TraktListResponse<ITraktCollectionShow>>> act = () => client.Users.GetCollectionShowsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetCollectionShowsAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetCollectionShowsAsync("user name");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

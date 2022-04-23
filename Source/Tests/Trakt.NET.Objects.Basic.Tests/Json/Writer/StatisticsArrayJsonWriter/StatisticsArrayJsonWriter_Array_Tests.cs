@@ -13,11 +13,11 @@
     public partial class StatisticsArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_StatisticsArrayJsonWriter_WriteArray_Array_Exceptions()
+        public async Task Test_StatisticsArrayJsonWriter_WriteArray_Array_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktStatistics>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]
@@ -42,14 +42,15 @@
                     CollectedEpisodes = 4,
                     Comments = 5,
                     Lists = 6,
-                    Votes = 7
+                    Votes = 7,
+                    Recommended = 8
                 }
             };
 
             var traktJsonWriter = new ArrayJsonWriter<ITraktStatistics>();
             string json = await traktJsonWriter.WriteArrayAsync(traktStatistics);
             json.Should().Be(@"[{""watchers"":1,""plays"":2,""collectors"":3," +
-                             @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7}]");
+                             @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7,""recommended"":8}]");
         }
 
         [Fact]
@@ -65,7 +66,8 @@
                     CollectedEpisodes = 4,
                     Comments = 5,
                     Lists = 6,
-                    Votes = 7
+                    Votes = 7,
+                    Recommended = 8
                 },
                 new TraktStatistics
                 {
@@ -75,16 +77,17 @@
                     CollectedEpisodes = 4,
                     Comments = 5,
                     Lists = 6,
-                    Votes = 7
+                    Votes = 7,
+                    Recommended = 8
                 }
             };
 
             var traktJsonWriter = new ArrayJsonWriter<ITraktStatistics>();
             string json = await traktJsonWriter.WriteArrayAsync(traktStatistics);
             json.Should().Be(@"[{""watchers"":1,""plays"":2,""collectors"":3," +
-                             @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7}," +
+                             @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7,""recommended"":8}," +
                              @"{""watchers"":1,""plays"":2,""collectors"":3," +
-                             @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7}]");
+                             @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7,""recommended"":8}]");
         }
     }
 }

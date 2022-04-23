@@ -19,12 +19,12 @@
         private readonly DateTime LISTED_AT = DateTime.UtcNow;
 
         [Fact]
-        public void Test_RecommendationObjectJsonWriter_Movie_WriteObject_JsonWriter_Exceptions()
+        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new RecommendationObjectJsonWriter();
             ITraktRecommendation traktRecommendation = new TraktRecommendation();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktRecommendation);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

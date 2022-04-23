@@ -17,6 +17,7 @@
             var commentsLastActivities = new TraktSyncCommentsLastActivities();
 
             commentsLastActivities.LikedAt.Should().BeNull();
+            commentsLastActivities.BlockedAt.Should().BeNull();
         }
 
         [Fact]
@@ -27,11 +28,13 @@
 
             commentsLastActivities.Should().NotBeNull();
             commentsLastActivities.LikedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            commentsLastActivities.BlockedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
         }
 
         private const string JSON =
             @"{
-                ""liked_at"": ""2014-09-01T09:10:11.000Z""
+                ""liked_at"": ""2014-09-01T09:10:11.000Z"",
+                ""blocked_at"": ""2014-09-01T09:10:11.000Z""
               }";
     }
 }

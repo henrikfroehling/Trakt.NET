@@ -7,7 +7,7 @@
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Builder;
+    using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Post.Users.HiddenItems;
     using Xunit;
 
@@ -17,8 +17,8 @@
         [Fact]
         public void Test_TraktPost_Get_UserHiddenItemsPostBuilder()
         {
-            ITraktUserHiddenItemsPostBuilder syncCollectionPostBuilder = TraktPost.NewUserHiddenItemsPost();
-            syncCollectionPostBuilder.Should().NotBeNull();
+            ITraktUserHiddenItemsPostBuilder syncHiddenItemsPostBuilder = TraktPost.NewUserHiddenItemsPost();
+            syncHiddenItemsPostBuilder.Should().NotBeNull();
         }
 
         [Fact]
@@ -29,6 +29,7 @@
             userHiddenItemsPost.Movies.Should().NotBeNull().And.BeEmpty();
             userHiddenItemsPost.Shows.Should().NotBeNull().And.BeEmpty();
             userHiddenItemsPost.Seasons.Should().NotBeNull().And.BeEmpty();
+            userHiddenItemsPost.Users.Should().NotBeNull().And.BeEmpty();
         }
 
         [Fact]
@@ -239,7 +240,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_UserHiddenItemsPostBuilder_AddShowAndSeasons()
+        public void Test_TraktPost_UserHiddenItemsPostBuilder_WithShowAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -257,7 +258,7 @@
             };
 
             ITraktUserHiddenItemsPost userHiddenItemsPost = TraktPost.NewUserHiddenItemsPost()
-                .AddShowAndSeasons(show).WithSeasons(1, 2, 3)
+                .WithShowAndSeasons(show).WithSeasons(1, 2, 3)
                 .Build();
 
             userHiddenItemsPost.Should().NotBeNull();
@@ -367,6 +368,88 @@
 
             userHiddenItemsPost.Movies.Should().NotBeNull().And.BeEmpty();
             userHiddenItemsPost.Shows.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [Fact]
+        public void Test_TraktPost_UserHiddenItemsPostBuilder_WithUser()
+        {
+            ITraktUser user = new TraktUser
+            {
+                Username = "username1",
+                Name = "User Name 1",
+                Ids = new TraktUserIds
+                {
+                    Slug = "username1"
+                }
+            };
+
+            ITraktUserHiddenItemsPost userHiddenItemsPost = TraktPost.NewUserHiddenItemsPost()
+                .WithUser(user)
+                .Build();
+
+            userHiddenItemsPost.Should().NotBeNull();
+            userHiddenItemsPost.Users.Should().NotBeNull().And.HaveCount(1);
+
+            ITraktUser postUser = userHiddenItemsPost.Users.ToArray()[0];
+            postUser.Username.Should().Be("username1");
+            postUser.Name.Should().Be("User Name 1");
+            postUser.Ids.Should().NotBeNull();
+            postUser.Ids.Slug.Should().Be("username1");
+
+            userHiddenItemsPost.Movies.Should().NotBeNull().And.BeEmpty();
+            userHiddenItemsPost.Shows.Should().NotBeNull().And.BeEmpty();
+            userHiddenItemsPost.Seasons.Should().NotBeNull().And.BeEmpty();
+        }
+
+        [Fact]
+        public void Test_TraktPost_UserHiddenItemsPostBuilder_WithUsers()
+        {
+            var users = new List<ITraktUser>
+            {
+                new TraktUser
+                {
+                    Username = "username1",
+                    Name = "User Name 1",
+                    Ids = new TraktUserIds
+                    {
+                        Slug = "username1"
+                    }
+                },
+                new TraktUser
+                {
+                    Username = "username2",
+                    Name = "User Name 2",
+                    Ids = new TraktUserIds
+                    {
+                        Slug = "username2"
+                    }
+                }
+            };
+
+            ITraktUserHiddenItemsPost userHiddenItemsPost = TraktPost.NewUserHiddenItemsPost()
+                .WithUsers(users)
+                .Build();
+
+            userHiddenItemsPost.Should().NotBeNull();
+            userHiddenItemsPost.Users.Should().NotBeNull().And.HaveCount(2);
+
+            ITraktUser[] postUsers = userHiddenItemsPost.Users.ToArray();
+
+            postUsers[0].Ids.Should().NotBeNull();
+            postUsers[0].Username.Should().Be("username1");
+            postUsers[0].Name.Should().Be("User Name 1");
+            postUsers[0].Ids.Should().NotBeNull();
+            postUsers[0].Ids.Slug.Should().Be("username1");
+
+            postUsers[1].Ids.Should().NotBeNull();
+            postUsers[1].Username.Should().Be("username2");
+            postUsers[1].Name.Should().Be("User Name 2");
+            postUsers[1].Ids.Should().NotBeNull();
+            postUsers[1].Ids.Slug.Should().Be("username2");
+
+            userHiddenItemsPost.Movies.Should().NotBeNull().And.BeEmpty();
+            userHiddenItemsPost.Shows.Should().NotBeNull().And.BeEmpty();
+            userHiddenItemsPost.Seasons.Should().NotBeNull().And.BeEmpty();
         }
     }
 }

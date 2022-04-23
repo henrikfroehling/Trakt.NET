@@ -56,6 +56,25 @@
                 await jsonWriter.WriteValueAsync(obj.Homepage, cancellationToken).ConfigureAwait(false);
             }
 
+            if (!string.IsNullOrEmpty(obj.Gender))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_GENDER, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Gender, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (!string.IsNullOrEmpty(obj.KnownForDepartment))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_KNOWN_FOR_DEPARTMENT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.KnownForDepartment, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.SocialIds != null)
+            {
+                var personSocialIdsObjectJsonWriter = new PersonSocialIdsObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SOCIAL_IDS, cancellationToken).ConfigureAwait(false);
+                await personSocialIdsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.SocialIds, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

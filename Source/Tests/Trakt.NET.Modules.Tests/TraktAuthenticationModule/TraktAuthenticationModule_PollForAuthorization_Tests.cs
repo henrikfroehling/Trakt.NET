@@ -39,7 +39,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -85,7 +85,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -133,13 +133,13 @@
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_PollForAuthorization_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
             client.Authentication.Device = null;
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.Device = new TraktDevice
             {
@@ -147,7 +147,7 @@
             };
 
             act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.Device = new TraktDevice
             {
@@ -156,7 +156,7 @@
             };
 
             act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.Device = new TraktDevice
             {
@@ -165,7 +165,7 @@
             };
 
             act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
             client.Authentication.Device = new TraktDevice
@@ -174,39 +174,39 @@
             };
 
             act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.Device = MockDevice;
             client.ClientId = null;
 
             act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = string.Empty;
 
             act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = "client id";
 
             act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = TraktClientId;
             client.ClientSecret = null;
 
             act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = string.Empty;
 
             act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = "client secret";
 
             act = () => client.Authentication.PollForAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
@@ -231,7 +231,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -276,7 +276,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -323,12 +323,12 @@
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_With_Device_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(
                 new TraktDevice
@@ -336,7 +336,7 @@
                     DeviceCode = string.Empty,
                     ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
                 });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(
                 new TraktDevice
@@ -344,7 +344,7 @@
                     DeviceCode = "mock device code",
                     ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
                 });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
             act = () => client.Authentication.PollForAuthorizationAsync(
@@ -352,38 +352,38 @@
                 {
                     DeviceCode = MOCK_DEVICE_CODE
                 });
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = null;
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = string.Empty;
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = "client id";
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = TraktClientId;
             client.ClientSecret = null;
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = string.Empty;
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = "client secret";
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
@@ -408,7 +408,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -452,7 +452,7 @@
             responseAuthorization.TokenType.Should().Be(MockAuthorization.TokenType);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -498,12 +498,12 @@
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_With_Device_And_ClientId_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_And_ClientId_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(null, TraktClientId);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(
                 new TraktDevice
@@ -512,7 +512,7 @@
                     ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
                 },
                 TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(
                 new TraktDevice
@@ -521,7 +521,7 @@
                     ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
                 },
                 TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
             act = () => client.Authentication.PollForAuthorizationAsync(
@@ -530,31 +530,31 @@
                     DeviceCode = MOCK_DEVICE_CODE
                 },
                 TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, "client id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = null;
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = string.Empty;
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = "client secret";
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
@@ -579,7 +579,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -624,7 +624,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -671,12 +671,12 @@
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_PollForAuthorization_With_Device_And_ClientId_And_ClientSecret_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_And_ClientId_And_ClientSecret_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(null, TraktClientId, TraktClientSecret);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(
                 new TraktDevice
@@ -685,7 +685,7 @@
                     ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
                 },
                 TraktClientId, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(
                 new TraktDevice
@@ -694,7 +694,7 @@
                     ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
                 },
                 TraktClientId, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
             act = () => client.Authentication.PollForAuthorizationAsync(
@@ -703,25 +703,25 @@
                     DeviceCode = MOCK_DEVICE_CODE
                 },
                 TraktClientId, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, null, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, string.Empty, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, "client id", TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, "client secret");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

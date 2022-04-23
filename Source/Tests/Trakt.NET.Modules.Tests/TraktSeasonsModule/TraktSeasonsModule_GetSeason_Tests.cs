@@ -133,66 +133,66 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonsModule_GetSeason_ArgumentExceptions()
+        public async Task Test_TraktSeasonsModule_GetSeason_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_SEASON_URI, SEASON_EPISODES_JSON);
 
             Func<Task<TraktListResponse<ITraktEpisode>>> act = () => client.Seasons.GetSeasonAsync(null, SEASON_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Seasons.GetSeasonAsync(string.Empty, SEASON_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Seasons.GetSeasonAsync("show id", SEASON_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Seasons.GetSeasonAsync(SHOW_ID, SEASON_NR, null, "eng");
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             act = () => client.Seasons.GetSeasonAsync(SHOW_ID, SEASON_NR, null, "e");
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             act = () => client.Seasons.GetSeasonAsync(SHOW_ID, SEASON_NR, null, "all");
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
         }
 
         [Fact]
-        public void Test_TraktSeasonsModule_GetMultipleSeasons_ArgumentExceptions()
+        public async Task Test_TraktSeasonsModule_GetMultipleSeasons_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_SEASON_URI, SEASON_EPISODES_JSON);
 
             Func<Task<IEnumerable<TraktListResponse<ITraktEpisode>>>> act = () => client.Seasons.GetMultipleSeasonsAsync(null);
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             var queryParams = new TraktMultipleSeasonsQueryParams();
             act = () => client.Seasons.GetMultipleSeasonsAsync(queryParams);
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
 
             queryParams = new TraktMultipleSeasonsQueryParams { { null, SEASON_NR } };
             act = () => client.Seasons.GetMultipleSeasonsAsync(queryParams);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             queryParams = new TraktMultipleSeasonsQueryParams { { string.Empty, SEASON_NR } };
             act = () => client.Seasons.GetMultipleSeasonsAsync(queryParams);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             queryParams = new TraktMultipleSeasonsQueryParams { { "show id", SEASON_NR } };
             act = () => client.Seasons.GetMultipleSeasonsAsync(queryParams);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             queryParams = new TraktMultipleSeasonsQueryParams { { SHOW_ID, SEASON_NR, "eng" } };
             act = () => client.Seasons.GetMultipleSeasonsAsync(queryParams);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             queryParams = new TraktMultipleSeasonsQueryParams { { SHOW_ID, SEASON_NR, "e" } };
             act = () => client.Seasons.GetMultipleSeasonsAsync(queryParams);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             client = TestUtility.GetMockClient($"{GET_SEASON_URI}?translations=all", SEASON_EPISODES_JSON);
 
             queryParams = new TraktMultipleSeasonsQueryParams { { SHOW_ID, SEASON_NR, "all" } };
             act = () => client.Seasons.GetMultipleSeasonsAsync(queryParams);
-            act.Should().NotThrow();
+            await act.Should().NotThrowAsync();
         }
     }
 }

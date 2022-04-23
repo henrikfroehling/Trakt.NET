@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder.Helper
+﻿namespace TraktNet.Objects.Post.Helper
 {
     using Capabilities;
     using Get.Shows;
@@ -9,7 +9,7 @@
         : ITraktPostBuilderShowAddedRatingWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>,
           IPostBuilderShowAddedRatingWithSeasonsCollectionDetail<TSeasonCollection>
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>,
-                                      ITraktPostBuilderAddShowWithRatingWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
+                                      ITraktPostBuilderShowWithRatingWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;

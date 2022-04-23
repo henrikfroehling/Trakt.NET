@@ -7,7 +7,6 @@
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Builder;
     using TraktNet.Objects.Post.Users.CustomListItems;
     using Xunit;
 
@@ -17,8 +16,8 @@
         [Fact]
         public void Test_TraktPost_Get_UserCustomListItemsPostBuilder()
         {
-            ITraktUserCustomListItemsPostBuilder syncCollectionPostBuilder = TraktPost.NewUserCustomListItemsPost();
-            syncCollectionPostBuilder.Should().NotBeNull();
+            ITraktUserCustomListItemsPostBuilder syncCustomListItemsPostBuilder = TraktPost.NewUserCustomListItemsPost();
+            syncCustomListItemsPostBuilder.Should().NotBeNull();
         }
 
         [Fact]
@@ -215,7 +214,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_UserCustomListItemsPostBuilder_AddShowAndSeasons()
+        public void Test_TraktPost_UserCustomListItemsPostBuilder_WithShowAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -231,7 +230,7 @@
             };
 
             ITraktUserCustomListItemsPost userCustomListItemsPost = TraktPost.NewUserCustomListItemsPost()
-                .AddShowAndSeasons(show).WithSeasons(1, 2, 3)
+                .WithShowAndSeasons(show).WithSeasons(1, 2, 3)
                 .Build();
 
             userCustomListItemsPost.Should().NotBeNull();
@@ -263,7 +262,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_UserCustomListItemsPostBuilder_AddShowAndSeasonsCollection()
+        public void Test_TraktPost_UserCustomListItemsPostBuilder_WithShowAndSeasonsCollection()
         {
             ITraktShow show = new TraktShow
             {
@@ -285,7 +284,7 @@
             };
 
             ITraktUserCustomListItemsPost userCustomListItemsPost = TraktPost.NewUserCustomListItemsPost()
-                .AddShowAndSeasonsCollection(show).WithSeasons(seasons)
+                .WithShowAndSeasonsCollection(show).WithSeasons(seasons)
                 .Build();
 
             userCustomListItemsPost.Should().NotBeNull();

@@ -1,10 +1,10 @@
-﻿namespace TraktNet.Objects.Post.Builder.Capabilities
+﻿namespace TraktNet.Objects.Post.Capabilities
 {
-    using Basic;
+    using Objects.Basic;
     using System;
 
     public interface ITraktPostBuilderMovieAddedMetadata<TPostBuilderAddMovie, out TPostObject>
-        where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithMetadata<TPostBuilderAddMovie, TPostObject>
+        where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderMovieWithMetadata<TPostBuilderAddMovie, TPostObject>
     {
         TPostBuilderAddMovie WithMetadata(ITraktMetadata metadata);
 

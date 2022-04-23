@@ -1044,11 +1044,11 @@
         }
 
         [Fact]
-        public void Test_CollectionShowArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public async Task Test_CollectionShowArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktCollectionShow>();
             Func<Task<IEnumerable<ITraktCollectionShow>>> traktCollectionShows = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktCollectionShows.Should().Throw<ArgumentNullException>();
+            await traktCollectionShows.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

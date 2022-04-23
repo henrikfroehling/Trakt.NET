@@ -8,8 +8,8 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Post.Users;
-    using TraktNet.Objects.Post.Users.Responses;
+    using TraktNet.Objects.Post.Basic;
+    using TraktNet.Objects.Post.Basic.Responses;
     using TraktNet.Responses;
     using Xunit;
 
@@ -21,7 +21,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_ReorderCustomLists()
         {
-            ITraktUserCustomListsReorderPost customListsReorderPost = new TraktUserCustomListsReorderPost
+            ITraktListItemsReorderPost customListsReorderPost = new TraktListItemsReorderPost
             {
                 Rank = REORDERED_CUSTOM_LISTS
             };
@@ -30,14 +30,14 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(REORDER_CUSTOM_LISTS_URI, postJson, CUSTOM_LISTS_REORDER_POST_RESPONSE_JSON);
-            TraktResponse<ITraktUserCustomListsReorderPostResponse> response = await client.Users.ReorderCustomListsAsync(USERNAME, REORDERED_CUSTOM_LISTS);
+            TraktResponse<ITraktListItemsReorderPostResponse> response = await client.Users.ReorderCustomListsAsync(USERNAME, REORDERED_CUSTOM_LISTS);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
 
-            ITraktUserCustomListsReorderPostResponse responseValue = response.Value;
+            ITraktListItemsReorderPostResponse responseValue = response.Value;
 
             responseValue.Updated.Should().Be(6);
             responseValue.SkippedIds.Should().NotBeNull().And.HaveCount(1);
@@ -79,7 +79,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_ReorderCustomLists_ArgumentExceptions()
         {
-            ITraktUserCustomListsReorderPost customListsReorderPost = new TraktUserCustomListsReorderPost
+            ITraktListItemsReorderPost customListsReorderPost = new TraktListItemsReorderPost
             {
                 Rank = REORDERED_CUSTOM_LISTS
             };
@@ -89,17 +89,17 @@
 
             TraktClient client = TestUtility.GetOAuthMockClient(REORDER_CUSTOM_LISTS_URI, postJson, CUSTOM_LISTS_REORDER_POST_RESPONSE_JSON);
 
-            Func<Task<TraktResponse<ITraktUserCustomListsReorderPostResponse>>> act = () => client.Users.ReorderCustomListsAsync(null, REORDERED_CUSTOM_LISTS);
-            act.Should().Throw<ArgumentNullException>();
+            Func<Task<TraktResponse<ITraktListItemsReorderPostResponse>>> act = () => client.Users.ReorderCustomListsAsync(null, REORDERED_CUSTOM_LISTS);
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.ReorderCustomListsAsync(string.Empty, REORDERED_CUSTOM_LISTS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.ReorderCustomListsAsync("user name", REORDERED_CUSTOM_LISTS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.ReorderCustomListsAsync(USERNAME, null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
         }
     }
 }

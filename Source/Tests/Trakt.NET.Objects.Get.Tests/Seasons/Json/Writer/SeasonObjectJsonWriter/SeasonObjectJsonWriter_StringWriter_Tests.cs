@@ -16,12 +16,12 @@
     public partial class SeasonObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_SeasonObjectJsonWriter_WriteObject_StringWriter_Exceptions()
+        public async Task Test_SeasonObjectJsonWriter_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new SeasonObjectJsonWriter();
             ITraktSeason traktSeason = new TraktSeason();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktSeason);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]
@@ -171,6 +171,22 @@
                 var traktJsonWriter = new SeasonObjectJsonWriter();
                 string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktSeason);
                 json.Should().Be($"{{\"first_aired\":\"{FIRST_AIRED.ToTraktLongDateTimeString()}\"}}");
+            }
+        }
+
+        [Fact]
+        public async Task Test_SeasonObjectJsonWriter_WriteObject_StringWriter_Only_UpdatedAt_Property()
+        {
+            ITraktSeason traktSeason = new TraktSeason
+            {
+                UpdatedAt = UPDATED_AT
+            };
+
+            using (var stringWriter = new StringWriter())
+            {
+                var traktJsonWriter = new SeasonObjectJsonWriter();
+                string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktSeason);
+                json.Should().Be($"{{\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"}}");
             }
         }
 
@@ -329,6 +345,7 @@
                 AiredEpisodesCount = 12,
                 Overview = "Season 1 Overview",
                 FirstAired = FIRST_AIRED,
+                UpdatedAt = UPDATED_AT,
                 Network = "Season 1 Network",
                 Episodes = new List<ITraktEpisode>
                 {
@@ -426,6 +443,7 @@
                                  @"""rating"":8.7654,""votes"":9765,""episode_count"":24,""aired_episodes"":12," +
                                  @"""overview"":""Season 1 Overview""," +
                                  $"\"first_aired\":\"{FIRST_AIRED.ToTraktLongDateTimeString()}\"," +
+                                 $"\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"," +
                                  @"""network"":""Season 1 Network""," +
                                  @"""episodes"":[" +
                                  @"{""season"":1,""number"":1,""title"":""title 1""," +

@@ -21,12 +21,12 @@
         private readonly DateTime RELEASED = new DateTime(2015, 12, 18);
 
         [Fact]
-        public void Test_CalendarMovieArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
+        public async Task Test_CalendarMovieArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCalendarMovie>();
             IEnumerable<ITraktCalendarMovie> traktCalendarMovie = new List<TraktCalendarMovie>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktCalendarMovie);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

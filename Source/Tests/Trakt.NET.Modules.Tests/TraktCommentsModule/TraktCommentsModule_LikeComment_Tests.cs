@@ -56,12 +56,12 @@
         }
 
         [Fact]
-        public void Test_TraktCommentsModule_LikeComment_ArgumentExceptions()
+        public async Task Test_TraktCommentsModule_LikeComment_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(LIKE_COMMENT_URI, HttpStatusCode.NoContent);
 
             Func<Task<TraktNoContentResponse>> act = () => client.Comments.LikeCommentAsync(0);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

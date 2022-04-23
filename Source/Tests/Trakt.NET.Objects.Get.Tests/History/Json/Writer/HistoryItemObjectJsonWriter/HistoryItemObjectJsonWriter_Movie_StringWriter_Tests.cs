@@ -16,12 +16,12 @@
     public partial class HistoryItemObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_HistoryItemObjectJsonWriter_Movie_WriteObject_StringWriter_Exceptions()
+        public async Task Test_HistoryItemObjectJsonWriter_Movie_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new HistoryItemObjectJsonWriter();
             ITraktHistoryItem traktHistoryItem = new TraktHistoryItem();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktHistoryItem);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

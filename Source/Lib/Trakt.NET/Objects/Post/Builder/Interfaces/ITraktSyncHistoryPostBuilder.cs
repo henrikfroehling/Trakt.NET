@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder
+﻿namespace TraktNet.Objects.Post
 {
     using Capabilities;
     using Post.Syncs.History;
@@ -7,17 +7,17 @@
         : ITraktPostBuilder<ITraktSyncHistoryPost>,
           ITraktPostBuilderWithMovie<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
           ITraktPostBuilderWithMovies<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
-          ITraktPostBuilderAddMovieWithWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
+          ITraktPostBuilderMovieWithWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
           ITraktPostBuilderWithShow<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
           ITraktPostBuilderWithShows<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
-          ITraktPostBuilderAddShowWithSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
-          ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons>,
-          ITraktPostBuilderAddShowWithWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
-          ITraktPostBuilderAddShowWithWatchedAtWithSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
-          ITraktPostBuilderAddShowWithWatchedAtWithSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons>,
+          ITraktPostBuilderShowWithSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
+          ITraktPostBuilderShowWithSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons>,
+          ITraktPostBuilderShowWithWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
+          ITraktPostBuilderShowWithWatchedAtWithSeasons<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
+          ITraktPostBuilderShowWithWatchedAtWithSeasonsCollection<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost, PostHistorySeasons>,
           ITraktPostBuilderWithEpisode<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
           ITraktPostBuilderWithEpisodes<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>,
-          ITraktPostBuilderAddEpisodeWithWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>
+          ITraktPostBuilderEpisodeWithWatchedAt<ITraktSyncHistoryPostBuilder, ITraktSyncHistoryPost>
     {
     }
 }

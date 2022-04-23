@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Users.HiddenItems.Responses.Json.Reader
 {
+    using Get.Users;
     using Newtonsoft.Json;
     using Objects.Json;
     using Post.Responses;
@@ -17,6 +18,7 @@
                 var notFoundMoviesReader = new ArrayJsonReader<ITraktPostResponseNotFoundMovie>();
                 var notFoundShowsReader = new ArrayJsonReader<ITraktPostResponseNotFoundShow>();
                 var notFoundSeasonsReader = new ArrayJsonReader<ITraktPostResponseNotFoundSeason>();
+                var notFoundUsersReader = new ArrayJsonReader<ITraktUser>();
                 ITraktUserHiddenItemsPostResponseNotFoundGroup hiddenItemsPostResponseNotFoundGroup = new TraktUserHiddenItemsPostResponseNotFoundGroup();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -33,6 +35,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_SEASONS:
                             hiddenItemsPostResponseNotFoundGroup.Seasons = await notFoundSeasonsReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_USERS:
+                            hiddenItemsPostResponseNotFoundGroup.Users = await notFoundUsersReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

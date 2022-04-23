@@ -190,20 +190,20 @@
         }
 
         [Fact]
-        public void Test_TraktSerializationService_SerializeAsync_ITraktAuthorization_ArgumentExceptions()
+        public async Task Test_TraktSerializationService_SerializeAsync_ITraktAuthorization_ArgumentExceptions()
         {
             Func<Task<string>> act = () => TraktSerializationService.SerializeAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktSerializationService_DeserializeAsync_ITraktAuthorization_ArgumentExceptions()
+        public async Task Test_TraktSerializationService_DeserializeAsync_ITraktAuthorization_ArgumentExceptions()
         {
             Func<Task<ITraktAuthorization>> act = () => TraktSerializationService.DeserializeAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => TraktSerializationService.DeserializeAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

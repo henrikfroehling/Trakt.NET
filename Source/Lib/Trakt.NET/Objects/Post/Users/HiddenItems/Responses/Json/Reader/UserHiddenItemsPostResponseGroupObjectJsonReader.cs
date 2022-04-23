@@ -30,6 +30,9 @@
                         case JsonProperties.PROPERTY_NAME_SEASONS:
                             hiddenItemsPostResponseGroup.Seasons = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_USERS:
+                            hiddenItemsPostResponseGroup.Users = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

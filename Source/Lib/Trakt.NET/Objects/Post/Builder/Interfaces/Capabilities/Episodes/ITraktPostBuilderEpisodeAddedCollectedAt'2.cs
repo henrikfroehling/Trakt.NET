@@ -1,9 +1,9 @@
-﻿namespace TraktNet.Objects.Post.Builder.Capabilities
+﻿namespace TraktNet.Objects.Post.Capabilities
 {
     using System;
 
     public interface ITraktPostBuilderEpisodeAddedCollectedAt<TPostBuilderAddEpisode, out TPostObject>
-        where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithCollectedAt<TPostBuilderAddEpisode, TPostObject>
+        where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderEpisodeWithCollectedAt<TPostBuilderAddEpisode, TPostObject>
     {
         TPostBuilderAddEpisode CollectedAt(DateTime collectedAt);
     }

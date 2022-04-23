@@ -394,11 +394,11 @@
         }
 
         [Fact]
-        public void Test_MetadataObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_MetadataObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new MetadataObjectJsonReader();
             Func<Task<ITraktMetadata>> traktMetadata = () => traktJsonReader.ReadObjectAsync(default(Stream));
-            traktMetadata.Should().Throw<ArgumentNullException>();
+            await traktMetadata.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

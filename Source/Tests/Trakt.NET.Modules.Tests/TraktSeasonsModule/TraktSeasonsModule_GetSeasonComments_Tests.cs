@@ -198,18 +198,18 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonsModule_GetSeasonComments_ArgumentExceptions()
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_SEASON_COMMENTS_URI, SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Seasons.GetSeasonCommentsAsync(null, SEASON_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Seasons.GetSeasonCommentsAsync(string.Empty, SEASON_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Seasons.GetSeasonCommentsAsync("show id", SEASON_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

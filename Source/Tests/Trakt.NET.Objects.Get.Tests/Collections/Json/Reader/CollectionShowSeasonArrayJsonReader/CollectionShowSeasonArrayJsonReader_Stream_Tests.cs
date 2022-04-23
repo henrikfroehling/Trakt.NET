@@ -353,11 +353,11 @@
         }
 
         [Fact]
-        public void Test_CollectionShowSeasonArrayJsonReader_ReadArray_From_Stream_Null()
+        public async Task Test_CollectionShowSeasonArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCollectionShowSeason>();
             Func<Task<IEnumerable<ITraktCollectionShowSeason>>> traktEpisodeCollectionProgress = () => jsonReader.ReadArrayAsync(default(Stream));
-            traktEpisodeCollectionProgress.Should().Throw<ArgumentNullException>();
+            await traktEpisodeCollectionProgress.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

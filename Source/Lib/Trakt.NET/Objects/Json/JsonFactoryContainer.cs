@@ -38,6 +38,10 @@
     using Get.Watched.Json.Factories;
     using Get.Watchlist;
     using Get.Watchlist.Json.Factories;
+    using Post.Basic;
+    using Post.Basic.Json.Factories;
+    using Post.Basic.Responses;
+    using Post.Basic.Responses.Json.Factories;
     using Post.Checkins;
     using Post.Checkins.Json.Factories;
     using Post.Checkins.Responses;
@@ -52,6 +56,8 @@
     using Post.Scrobbles.Json.Factories;
     using Post.Scrobbles.Responses;
     using Post.Scrobbles.Responses.Json.Factories;
+    using Post.Shows;
+    using Post.Shows.Json.Factories;
     using Post.Syncs.Collection;
     using Post.Syncs.Collection.Json.Factories;
     using Post.Syncs.Collection.Responses;
@@ -64,6 +70,10 @@
     using Post.Syncs.Ratings.Json.Factories;
     using Post.Syncs.Ratings.Responses;
     using Post.Syncs.Ratings.Responses.Json.Factories;
+    using Post.Syncs.Recommendations;
+    using Post.Syncs.Recommendations.Json.Factories;
+    using Post.Syncs.Recommendations.Responses;
+    using Post.Syncs.Recommendations.Responses.Json.Factories;
     using Post.Syncs.Responses;
     using Post.Syncs.Responses.Json.Factories;
     using Post.Syncs.Watchlist;
@@ -138,10 +148,17 @@
             s_jsonIOFactories.Add(typeof(ITraktLanguage), new LanguageJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMetadata), new MetadataJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktNetwork), new NetworkJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktRateLimitInfo), new RateLimitInfoJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktRating), new RatingJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSearchResult), new SearchResultJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSharing), new SharingJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktStatistics), new StatisticsJsonIOFactory());
+
+            // basic post objects
+            s_jsonIOFactories.Add(typeof(ITraktListItemsReorderPost), new ListItemsReorderPostJsonIOFactory());
+
+            // user response post objects
+            s_jsonIOFactories.Add(typeof(ITraktListItemsReorderPostResponse), new ListItemsReorderPostResponseJsonIOFactory());
 
             // calendar objects
             s_jsonIOFactories.Add(typeof(ITraktCalendarMovie), new CalendarMovieJsonIOFactory());
@@ -199,6 +216,7 @@
             // people objects
             s_jsonIOFactories.Add(typeof(ITraktPerson), new PersonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktPersonIds), new PersonIdsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPersonSocialIds), new PersonSocialIdsJsonIOFactory());
 
             // people credit objects
             s_jsonIOFactories.Add(typeof(ITraktPersonMovieCredits), new PersonMovieCreditsJsonIOFactory());
@@ -224,6 +242,7 @@
             s_jsonIOFactories.Add(typeof(ITraktSeason), new SeasonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSeasonIds), new SeasonIdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSeasonCollectionProgress), new SeasonCollectionProgressJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSeasonTranslation), new SeasonTranslationJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSeasonWatchedProgress), new SeasonWatchedProgressJsonIOFactory());
 
             // scrobble post objects
@@ -252,13 +271,19 @@
             s_jsonIOFactories.Add(typeof(ITraktTrendingShow), new TrendingShowJsonIOFactory());
 
             // sync activities objects
-            s_jsonIOFactories.Add(typeof(ITraktSyncLastActivities), new SyncLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncAccountLastActivities), new SyncAccountLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCommentsLastActivities), new SyncCommentsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncEpisodesLastActivities), new SyncEpisodesLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncLastActivities), new SyncLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncListsLastActivities), new SyncListsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncMoviesLastActivities), new SyncMoviesLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsLastActivities), new SyncRecommendationsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncSeasonsLastActivities), new SyncSeasonsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncShowsLastActivities), new SyncShowsLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistLastActivities), new SyncWatchlistLastActivitiesJsonIOFactory());
+
+            // show post objects
+            s_jsonIOFactories.Add(typeof(ITraktShowResetWatchedProgressPost), new ShowResetWatchedProgressPostJsonIOFactory());
 
             // sync collection post objects
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPost), new SyncCollectionPostJsonIOFactory());
@@ -303,6 +328,17 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundSeason), new SyncRatingsPostResponseNotFoundSeasonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostResponseNotFoundShow), new SyncRatingsPostResponseNotFoundShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsRemovePostResponse), new SyncRatingsRemovePostResponseJsonIOFactory());
+
+            // sync recommendations post objects
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPost), new SyncRecommendationsPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostMovie), new SyncRecommendationsPostMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostShow), new SyncRecommendationsPostShowJsonIOFactory());
+
+            // sync recommendations post response objects
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostResponse), new SyncRecommendationsPostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsRemovePostResponse), new SyncRecommendationsRemovePostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostResponseGroup), new SyncRecommendationsPostResponseGroupJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostResponseNotFoundGroup), new SyncRecommendationsPostResponseNotFoundGroupJsonIOFactory());
 
             // sync playback objects
             s_jsonIOFactories.Add(typeof(ITraktSyncPlaybackProgressItem), new SyncPlaybackProgressItemJsonIOFactory());
@@ -369,13 +405,12 @@
             s_jsonIOFactories.Add(typeof(ITraktList), new ListJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktListIds), new ListIdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktListItem), new ListItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktListLike), new ListLikeJsonIOFactory());
 
             // user post objects
             s_jsonIOFactories.Add(typeof(ITraktUserCustomListPost), new UserCustomListPostJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListsReorderPost), new UserCustomListsReorderPostJsonIOFactory());
 
             // user response post objects
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListsReorderPostResponse), new UserCustomListsReorderPostResponseJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserFollowUserPostResponse), new UserFollowUserPostResponseJsonIOFactory());
 
             // user statistic objects

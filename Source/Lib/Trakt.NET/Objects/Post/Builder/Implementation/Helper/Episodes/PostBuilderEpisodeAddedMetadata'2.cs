@@ -1,15 +1,15 @@
-﻿namespace TraktNet.Objects.Post.Builder.Helper
+﻿namespace TraktNet.Objects.Post.Helper
 {
-    using Basic;
     using Capabilities;
     using Get.Episodes;
+    using Objects.Basic;
     using System;
     using System.Collections.Generic;
 
     internal class PostBuilderEpisodeAddedMetadata<TPostBuilderAddEpisode, TPostObject>
         : ITraktPostBuilderEpisodeAddedMetadata<TPostBuilderAddEpisode, TPostObject>,
           IPostBuilderEpisodeAddedMetadataDetail
-          where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithMetadata<TPostBuilderAddEpisode, TPostObject>
+          where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderEpisodeWithMetadata<TPostBuilderAddEpisode, TPostObject>
     {
         private readonly TPostBuilderAddEpisode _postBuilder;
         private ITraktEpisode _currentEpisode;

@@ -24,6 +24,9 @@
             person.Age.Should().Be(0);
             person.Birthplace.Should().BeNullOrEmpty();
             person.Homepage.Should().BeNullOrEmpty();
+            person.Gender.Should().BeNullOrEmpty();
+            person.KnownForDepartment.Should().BeNullOrEmpty();
+            person.SocialIds.Should().BeNull();
         }
 
         [Fact]
@@ -46,6 +49,9 @@
             person.Age.Should().Be(0);
             person.Birthplace.Should().BeNullOrEmpty();
             person.Homepage.Should().BeNullOrEmpty();
+            person.Gender.Should().BeNullOrEmpty();
+            person.KnownForDepartment.Should().BeNullOrEmpty();
+            person.SocialIds.Should().BeNull();
         }
 
         [Fact]
@@ -68,6 +74,13 @@
             person.Age.Should().Be(60);
             person.Birthplace.Should().Be("San Fernando Valley, California, USA");
             person.Homepage.Should().Be("http://www.bryancranston.com/");
+            person.Gender.Should().Be("male");
+            person.KnownForDepartment.Should().Be("acting");
+            person.SocialIds.Should().NotBeNull();
+            person.SocialIds.Twitter.Should().Be("BryanCranston");
+            person.SocialIds.Facebook.Should().Be("thebryancranston");
+            person.SocialIds.Instagram.Should().Be("bryancranston");
+            person.SocialIds.Wikipedia.Should().Be("Bryan_Cranston");
         }
 
         private const string MINIMAL_JSON =
@@ -96,7 +109,15 @@
                 ""birthday"": ""1956-03-07"",
                 ""death"": ""2016-04-06"",
                 ""birthplace"": ""San Fernando Valley, California, USA"",
-                ""homepage"": ""http://www.bryancranston.com/""
+                ""homepage"": ""http://www.bryancranston.com/"",
+                ""gender"": ""male"",
+                ""known_for_department"": ""acting"",
+                ""social_ids"": {
+                  ""twitter"": ""BryanCranston"",
+                  ""facebook"": ""thebryancranston"",
+                  ""instagram"": ""bryancranston"",
+                  ""wikipedia"": ""Bryan_Cranston""
+                }
               }";
     }
 }

@@ -13,12 +13,12 @@
     public partial class StatisticsObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_StatisticsObjectJsonWriter_WriteObject_StringWriter_Exceptions()
+        public async Task Test_StatisticsObjectJsonWriter_WriteObject_StringWriter_Exceptions()
         {
             var traktJsonWriter = new StatisticsObjectJsonWriter();
             ITraktStatistics traktStatistics = new TraktStatistics();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(StringWriter), traktStatistics);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]
@@ -134,6 +134,22 @@
         }
 
         [Fact]
+        public async Task Test_StatisticsObjectJsonWriter_WriteObject_StringWriter_Only_Recommended_Property()
+        {
+            ITraktStatistics traktStatistics = new TraktStatistics
+            {
+                Recommended = 8
+            };
+
+            using (var stringWriter = new StringWriter())
+            {
+                var traktJsonWriter = new StatisticsObjectJsonWriter();
+                string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktStatistics);
+                json.Should().Be(@"{""recommended"":8}");
+            }
+        }
+
+        [Fact]
         public async Task Test_StatisticsObjectJsonWriter_WriteObject_StringWriter_Complete()
         {
             ITraktStatistics traktStatistics = new TraktStatistics
@@ -144,7 +160,8 @@
                 CollectedEpisodes = 4,
                 Comments = 5,
                 Lists = 6,
-                Votes = 7
+                Votes = 7,
+                Recommended = 8
             };
 
             using (var stringWriter = new StringWriter())
@@ -152,7 +169,7 @@
                 var traktJsonWriter = new StatisticsObjectJsonWriter();
                 string json = await traktJsonWriter.WriteObjectAsync(stringWriter, traktStatistics);
                 json.Should().Be(@"{""watchers"":1,""plays"":2,""collectors"":3," +
-                                 @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7}");
+                                 @"""collected_episodes"":4,""comments"":5,""lists"":6,""votes"":7,""recommended"":8}");
             }
         }
     }

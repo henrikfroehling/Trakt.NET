@@ -14,12 +14,12 @@
     public partial class CertificationsArrayJsonWriter_Tests
     {
         [Fact]
-        public void Test_CertificationsArrayJsonWriter_WriteArray_StringWriter_Exceptions()
+        public async Task Test_CertificationsArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCertifications>();
             IEnumerable<ITraktCertifications> traktCertifications = new List<TraktCertifications>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktCertifications);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

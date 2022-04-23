@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder.Helper
+﻿namespace TraktNet.Objects.Post.Helper
 {
     using Capabilities;
     using Get.Movies;
@@ -8,7 +8,7 @@
     internal class PostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>
         : ITraktPostBuilderMovieAddedCollectedAt<TPostBuilderAddMovie, TPostObject>,
           IPostBuilderMovieAddedCollectedAtDetail
-          where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddMovieWithCollectedAt<TPostBuilderAddMovie, TPostObject>
+          where TPostBuilderAddMovie : ITraktPostBuilder<TPostObject>, ITraktPostBuilderMovieWithCollectedAt<TPostBuilderAddMovie, TPostObject>
     {
         private readonly TPostBuilderAddMovie _postBuilder;
         private ITraktMovie _currentMovie;

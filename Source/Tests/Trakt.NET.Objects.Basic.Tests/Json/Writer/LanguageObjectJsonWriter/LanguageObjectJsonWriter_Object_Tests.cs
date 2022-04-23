@@ -12,11 +12,11 @@
     public partial class LanguageObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_LanguageObjectJsonWriter_WriteObject_Object_Exceptions()
+        public async Task Test_LanguageObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new LanguageObjectJsonWriter();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

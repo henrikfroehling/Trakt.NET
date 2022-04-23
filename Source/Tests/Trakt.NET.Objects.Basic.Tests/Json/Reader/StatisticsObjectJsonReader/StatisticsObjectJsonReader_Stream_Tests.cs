@@ -473,11 +473,11 @@
         }
 
         [Fact]
-        public void Test_StatisticsObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_StatisticsObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new StatisticsObjectJsonReader();
             Func<Task<ITraktStatistics>> traktStatistics = () => traktJsonReader.ReadObjectAsync(default(Stream));
-            traktStatistics.Should().Throw<ArgumentNullException>();
+            await traktStatistics.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

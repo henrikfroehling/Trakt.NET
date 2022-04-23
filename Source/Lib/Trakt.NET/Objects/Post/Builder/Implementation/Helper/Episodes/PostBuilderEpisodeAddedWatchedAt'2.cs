@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder.Helper
+﻿namespace TraktNet.Objects.Post.Helper
 {
     using Capabilities;
     using Get.Episodes;
@@ -8,7 +8,7 @@
     internal class PostBuilderEpisodeAddedWatchedAt<TPostBuilderAddEpisode, TPostObject>
         : ITraktPostBuilderEpisodeAddedWatchedAt<TPostBuilderAddEpisode, TPostObject>,
           IPostBuilderEpisodeAddedWatchedAtDetail
-          where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithWatchedAt<TPostBuilderAddEpisode, TPostObject>
+          where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderEpisodeWithWatchedAt<TPostBuilderAddEpisode, TPostObject>
     {
         private readonly TPostBuilderAddEpisode _postBuilder;
         private ITraktEpisode _currentEpisode;

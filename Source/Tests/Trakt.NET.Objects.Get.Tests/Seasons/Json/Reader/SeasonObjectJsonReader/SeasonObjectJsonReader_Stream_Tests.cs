@@ -37,6 +37,7 @@
                 traktSeason.AiredEpisodesCount.Should().NotHaveValue();
                 traktSeason.Overview.Should().BeNullOrEmpty();
                 traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -61,6 +62,7 @@
                 traktSeason.AiredEpisodesCount.Should().NotHaveValue();
                 traktSeason.Overview.Should().BeNullOrEmpty();
                 traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -89,6 +91,7 @@
                 traktSeason.AiredEpisodesCount.Should().NotHaveValue();
                 traktSeason.Overview.Should().BeNullOrEmpty();
                 traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -117,6 +120,7 @@
                 traktSeason.AiredEpisodesCount.Should().NotHaveValue();
                 traktSeason.Overview.Should().BeNullOrEmpty();
                 traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -141,6 +145,7 @@
                 traktSeason.AiredEpisodesCount.Should().NotHaveValue();
                 traktSeason.Overview.Should().BeNullOrEmpty();
                 traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -165,6 +170,7 @@
                 traktSeason.AiredEpisodesCount.Should().NotHaveValue();
                 traktSeason.Overview.Should().BeNullOrEmpty();
                 traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -193,6 +199,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -263,6 +270,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -333,6 +341,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -399,6 +408,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -469,6 +479,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -539,6 +550,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -609,6 +621,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -679,6 +692,7 @@
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -749,6 +763,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().BeNull();
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -818,7 +833,8 @@
                 traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -889,6 +905,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -959,6 +976,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
             }
         }
@@ -981,7 +999,8 @@
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -1005,7 +1024,8 @@
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -1033,7 +1053,8 @@
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -1057,7 +1078,8 @@
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -1081,7 +1103,8 @@
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -1105,7 +1128,8 @@
                 traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -1129,7 +1153,8 @@
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -1153,7 +1178,8 @@
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().Be("Text text text");
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -1178,6 +1204,7 @@
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -1201,7 +1228,8 @@
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -1225,7 +1253,8 @@
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1296,6 +1325,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1366,6 +1396,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1432,6 +1463,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1502,6 +1534,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1572,6 +1605,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1642,6 +1676,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1712,6 +1747,7 @@
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1782,6 +1818,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().BeNull();
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1851,7 +1888,8 @@
                 traktSeason.TotalEpisodesCount.Should().Be(23);
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1922,6 +1960,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().NotBeNull().And.HaveCount(2);
 
@@ -1992,6 +2031,7 @@
                 traktSeason.AiredEpisodesCount.Should().Be(23);
                 traktSeason.Overview.Should().Be("Text text text");
                 traktSeason.FirstAired.Should().Be(DateTime.Parse("2014-10-08T00:00:00.000Z").ToUniversalTime());
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().Be("The CW");
                 traktSeason.Episodes.Should().BeNull();
             }
@@ -2015,18 +2055,19 @@
                 traktSeason.TotalEpisodesCount.Should().BeNull();
                 traktSeason.AiredEpisodesCount.Should().BeNull();
                 traktSeason.Overview.Should().BeNull();
-                traktSeason.FirstAired.Should().BeNull();
+                traktSeason.FirstAired.Should().NotHaveValue();
+                traktSeason.UpdatedAt.Should().NotHaveValue();
                 traktSeason.Network.Should().BeNull();
                 traktSeason.Episodes.Should().BeNull();
             }
         }
 
         [Fact]
-        public void Test_SeasonObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_SeasonObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new SeasonObjectJsonReader();
             Func<Task<ITraktSeason>> traktSeason = () => jsonReader.ReadObjectAsync(default(Stream));
-            traktSeason.Should().Throw<ArgumentNullException>();
+            await traktSeason.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

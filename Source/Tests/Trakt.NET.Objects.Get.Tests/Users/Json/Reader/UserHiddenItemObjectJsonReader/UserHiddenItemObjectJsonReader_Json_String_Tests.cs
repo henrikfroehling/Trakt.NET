@@ -12,11 +12,11 @@
     public partial class UserHiddenItemObjectJsonReader_Tests
     {
         [Fact]
-        public void Test_UserHiddenItemObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_UserHiddenItemObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new UserHiddenItemObjectJsonReader();
             Func<Task<ITraktUserHiddenItem>> traktUserHiddenItem = () => jsonReader.ReadObjectAsync(default(string));
-            traktUserHiddenItem.Should().Throw<ArgumentNullException>();
+            await traktUserHiddenItem.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -42,11 +42,11 @@
         }
 
         [Fact]
-        public void Test_CheckinPostErrorResponseObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_CheckinPostErrorResponseObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new CheckinPostErrorResponseObjectJsonReader();
             Func<Task<ITraktCheckinPostErrorResponse>> checkinErrorResponse = () => jsonReader.ReadObjectAsync(default(Stream));
-            checkinErrorResponse.Should().Throw<ArgumentNullException>();
+            await checkinErrorResponse.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

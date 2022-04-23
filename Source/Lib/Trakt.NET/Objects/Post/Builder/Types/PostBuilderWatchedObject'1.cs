@@ -1,8 +1,8 @@
-﻿namespace TraktNet.Objects.Post.Builder
+﻿namespace TraktNet.Objects.Post
 {
     using System;
 
-    public class PostBuilderWatchedObject<TObject>
+    internal class PostBuilderWatchedObject<TObject>
     {
         public TObject Object { get; set; }
 

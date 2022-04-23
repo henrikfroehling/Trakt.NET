@@ -70,11 +70,11 @@
         }
 
         [Fact]
-        public void Test_NetworkArrayJsonReader_ReadArray_From_JsonReader_Null()
+        public async Task Test_NetworkArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktNetwork>();
             Func<Task<IEnumerable<ITraktNetwork>>> traktNetworks = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
-            traktNetworks.Should().Throw<ArgumentNullException>();
+            await traktNetworks.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

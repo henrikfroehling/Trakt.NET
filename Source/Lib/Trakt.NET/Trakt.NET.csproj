@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>TraktNet</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.1.1</Version>
+    <VersionPrefix>1.2.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
     <Authors>Henrik Fröhling</Authors>
     <Company>Henrik Fröhling</Company>
-    <PackageLicenseUrl>https://github.com/henrikfroehling/Trakt.NET/blob/develop/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/henrikfroehling/Trakt.NET</PackageProjectUrl>
-    <Copyright>Copyright © 2016 - 2021 Henrik Fröhling et al.</Copyright>
+    <Copyright>Copyright © 2016 - 2022 Henrik Fröhling et al.</Copyright>
     <Description>.NET wrapper library for the Trakt.tv API.
 
 Features
@@ -22,25 +22,33 @@ Features
 - Language Service</Description>
     <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
     <PackageTags>trakt rest api</PackageTags>
-    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#111</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#120</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\..\..\Build\Lib\Debug\</OutputPath>
-    <DocumentationFile>..\..\..\Build\Lib\Debug\netstandard1.1\Trakt.NET.xml</DocumentationFile>
+    <DocumentationFile>..\..\..\Build\Lib\Debug\netstandard2.0\Trakt.NET.xml</DocumentationFile>
     <LangVersion>latest</LangVersion>
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>..\..\..\Build\Lib\Release\</OutputPath>
-    <DocumentationFile>..\..\..\Build\Lib\Release\netstandard1.1\Trakt.NET.xml</DocumentationFile>
+    <DocumentationFile>..\..\..\Build\Lib\Release\netstandard2.0\Trakt.NET.xml</DocumentationFile>
     <LangVersion>latest</LangVersion>
     <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

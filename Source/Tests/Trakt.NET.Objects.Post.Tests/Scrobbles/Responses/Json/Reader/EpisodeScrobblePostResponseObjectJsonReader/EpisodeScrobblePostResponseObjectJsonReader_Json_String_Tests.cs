@@ -609,11 +609,11 @@
         }
 
         [Fact]
-        public void Test_EpisodeScrobblePostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_EpisodeScrobblePostResponseObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new EpisodeScrobblePostResponseObjectJsonReader();
             Func<Task<ITraktEpisodeScrobblePostResponse>> episodeScrobbleResponse = () => jsonReader.ReadObjectAsync(default(string));
-            episodeScrobbleResponse.Should().Throw<ArgumentNullException>();
+            await episodeScrobbleResponse.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

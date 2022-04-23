@@ -71,18 +71,18 @@
         }
 
         [Fact]
-        public void Test_TraktSeasonsModule_GetSeasonStatistics_ArgumentExceptions()
+        public async Task Test_TraktSeasonsModule_GetSeasonStatistics_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_SEASON_STATISTICS_URI, SEASON_STATISTICS_JSON);
 
             Func<Task<TraktResponse<ITraktStatistics>>> act = () => client.Seasons.GetSeasonStatisticsAsync(null, SEASON_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Seasons.GetSeasonStatisticsAsync(string.Empty, SEASON_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Seasons.GetSeasonStatisticsAsync("show id", SEASON_NR);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder
+﻿namespace TraktNet.Objects.Post
 {
     using Capabilities;
     using Post.Syncs.Ratings;
@@ -7,17 +7,17 @@
         : ITraktPostBuilder<ITraktSyncRatingsPost>,
           ITraktPostBuilderWithMovie<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
           ITraktPostBuilderWithMovies<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
-          ITraktPostBuilderAddMovieWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
+          ITraktPostBuilderMovieWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
           ITraktPostBuilderWithShow<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
           ITraktPostBuilderWithShows<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
-          ITraktPostBuilderAddShowWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
-          ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>,
-          ITraktPostBuilderAddShowWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
-          ITraktPostBuilderAddShowWithRatingWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
-          ITraktPostBuilderAddShowWithRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>,
+          ITraktPostBuilderShowWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
+          ITraktPostBuilderShowWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>,
+          ITraktPostBuilderShowWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
+          ITraktPostBuilderShowWithRatingWithSeasons<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
+          ITraktPostBuilderShowWithRatingWithSeasonsCollection<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost, PostRatingsSeasons>,
           ITraktPostBuilderWithEpisode<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
           ITraktPostBuilderWithEpisodes<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>,
-          ITraktPostBuilderAddEpisodeWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>
+          ITraktPostBuilderEpisodeWithRating<ITraktSyncRatingsPostBuilder, ITraktSyncRatingsPost>
     {
     }
 }

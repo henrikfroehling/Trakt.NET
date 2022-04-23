@@ -25,6 +25,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_BIOGRAPHY = "biography";
         internal const string PROPERTY_NAME_BIRTHDAY = "birthday";
         internal const string PROPERTY_NAME_BIRTHPLACE = "birthplace";
+        internal const string PROPERTY_NAME_BLOCKED_AT = "blocked_at";
         internal const string PROPERTY_NAME_CAMERA = "camera";
         internal const string PROPERTY_NAME_CAST = "cast";
         internal const string PROPERTY_NAME_CERTIFICATION = "certification";
@@ -65,10 +66,12 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_EXISTING = "existing";
         internal const string PROPERTY_NAME_EXPIRES_AT = "expires_at";
         internal const string PROPERTY_NAME_EXPIRES_IN = "expires_in";
+        internal const string PROPERTY_NAME_FACEBOOK = "facebook";
         internal const string PROPERTY_NAME_FIRST_AIRED = "first_aired";
         internal const string PROPERTY_NAME_FOLLOWED_AT = "followed_at";
         internal const string PROPERTY_NAME_FOLLOWERS = "followers";
         internal const string PROPERTY_NAME_FOLLOWING = "following";
+        internal const string PROPERTY_NAME_FOLLOWING_AT = "following_at";
         internal const string PROPERTY_NAME_FRIENDS = "friends";
         internal const string PROPERTY_NAME_FRIENDS_AT = "friends_at";
         internal const string PROPERTY_NAME_FULL = "full";
@@ -85,10 +88,12 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_IGNORE_EXPIRATION = "ignore_expiration";
         internal const string PROPERTY_NAME_IMAGES = "images";
         internal const string PROPERTY_NAME_IMDB = "imdb";
+        internal const string PROPERTY_NAME_INSTAGRAM = "instagram";
         internal const string PROPERTY_NAME_INTERVAL = "interval";
         internal const string PROPERTY_NAME_ITEM_COUNT = "item_count";
         internal const string PROPERTY_NAME_JOBS = "jobs";
         internal const string PROPERTY_NAME_JOINED_AT = "joined_at";
+        internal const string PROPERTY_NAME_KNOWN_FOR_DEPARTMENT = "known_for_department";
         internal const string PROPERTY_NAME_LANGUAGE = "language";
         internal const string PROPERTY_NAME_LAST_COLLECTED_AT = "last_collected_at";
         internal const string PROPERTY_NAME_LAST_EPISODE = "last_episode";
@@ -97,6 +102,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_LIGHTING = "lighting";
         internal const string PROPERTY_NAME_LIKED_AT = "liked_at";
         internal const string PROPERTY_NAME_LIKES = "likes";
+        internal const string PROPERTY_NAME_LIMIT = "limit";
         internal const string PROPERTY_NAME_LIST = "list";
         internal const string PROPERTY_NAME_LIST_COUNT = "list_count";
         internal const string PROPERTY_NAME_LISTED_AT = "listed_at";
@@ -120,7 +126,9 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_OVERVIEW = "overview";
         internal const string PROPERTY_NAME_PARENT_ID = "parent_id";
         internal const string PROPERTY_NAME_PAUSED_AT = "paused_at";
+        internal const string PROPERTY_NAME_PENDING_AT = "pending_at";
         internal const string PROPERTY_NAME_PEOPLE = "people";
+        internal const string PROPERTY_NAME_PERIOD = "period";
         internal const string PROPERTY_NAME_PERSON = "person";
         internal const string PROPERTY_NAME_PLAY_COUNT = "play_count";
         internal const string PROPERTY_NAME_PLAYS = "plays";
@@ -132,10 +140,14 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_RATED_AT = "rated_at";
         internal const string PROPERTY_NAME_RATING = "rating";
         internal const string PROPERTY_NAME_RATINGS = "ratings";
+        internal const string PROPERTY_NAME_RECOMMENDATIONS = "recommendations";
+        internal const string PROPERTY_NAME_RECOMMENDATIONS_AT = "recommendations_at";
+        internal const string PROPERTY_NAME_RECOMMENDED = "recommended";
         internal const string PROPERTY_NAME_REFRESH_TOKEN = "refresh_token";
         internal const string PROPERTY_NAME_RELEASE_DATE = "release_date";
         internal const string PROPERTY_NAME_RELEASE_TYPE = "release_type";
         internal const string PROPERTY_NAME_RELEASED = "released";
+        internal const string PROPERTY_NAME_REMAINING = "remaining";
         internal const string PROPERTY_NAME_REPLIES = "replies";
         internal const string PROPERTY_NAME_REQUESTED_AT = "requested_at";
         internal const string PROPERTY_NAME_RESET_AT = "reset_at";
@@ -148,6 +160,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_SEASON = "season";
         internal const string PROPERTY_NAME_SEASONS = "seasons";
         internal const string PROPERTY_NAME_SERIES_REGULAR = "series_regular";
+        internal const string PROPERTY_NAME_SETTINGS_AT = "settings_at";
         internal const string PROPERTY_NAME_SHARING = "sharing";
         internal const string PROPERTY_NAME_SHARING_TEXT = "sharing_text";
         internal const string PROPERTY_NAME_SHOW = "show";
@@ -155,6 +168,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_SKIPPED_IDS = "skipped_ids";
         internal const string PROPERTY_NAME_SLACK = "slack";
         internal const string PROPERTY_NAME_SLUG = "slug";
+        internal const string PROPERTY_NAME_SOCIAL_IDS = "social_ids";
         internal const string PROPERTY_NAME_SORT_BY = "sort_by";
         internal const string PROPERTY_NAME_SORT_HOW = "sort_how";
         internal const string PROPERTY_NAME_SOUND = "sound";
@@ -178,10 +192,12 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_TVRAGE = "tvrage";
         internal const string PROPERTY_NAME_TWITTER = "twitter";
         internal const string PROPERTY_NAME_TYPE = "type";
+        internal const string PROPERTY_NAME_UNTIL = "until";
         internal const string PROPERTY_NAME_UPDATED = "updated";
         internal const string PROPERTY_NAME_UPDATED_AT = "updated_at";
         internal const string PROPERTY_NAME_US = "us";
         internal const string PROPERTY_NAME_USER = "user";
+        internal const string PROPERTY_NAME_USERS = "users";
         internal const string PROPERTY_NAME_USER_CODE = "user_code";
         internal const string PROPERTY_NAME_USER_RATING = "user_rating";
         internal const string PROPERTY_NAME_USERNAME = "username";
@@ -198,7 +214,9 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_WATCHER_COUNT = "watcher_count";
         internal const string PROPERTY_NAME_WATCHERS = "watchers";
         internal const string PROPERTY_NAME_WATCHING = "watching";
+        internal const string PROPERTY_NAME_WATCHLIST = "watchlist";
         internal const string PROPERTY_NAME_WATCHLISTED_AT = "watchlisted_at";
+        internal const string PROPERTY_NAME_WIKIPEDIA = "wikipedia";
         internal const string PROPERTY_NAME_WRITING = "writing";
         internal const string PROPERTY_NAME_YEAR = "year";
     }

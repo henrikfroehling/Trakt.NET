@@ -1,7 +1,5 @@
 ﻿namespace TraktNet.Objects.Post
 {
-    using Builder;
-
     public sealed class TraktPost
     {
         private TraktPost()
@@ -15,6 +13,8 @@
         public static ITraktSyncHistoryRemovePostBuilder NewSyncHistoryRemovePost() => new SyncHistoryRemovePostBuilder();
 
         public static ITraktSyncRatingsPostBuilder NewSyncRatingsPost() => new SyncRatingsPostBuilder();
+
+        public static ITraktSyncRecommendationsPostBuilder NewSyncRecommendationsPost() => new SyncRecommendationsPostBuilder();
 
         public static ITraktSyncWatchlistPostBuilder NewSyncWatchlistPost() => new SyncWatchlistPostBuilder();
 

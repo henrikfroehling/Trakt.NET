@@ -99,10 +99,10 @@
             TraktClient client = TestUtility.GetOAuthMockClient(ADD_RATINGS_URI, postJson, RATINGS_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktSyncRatingsPostResponse>>> act =() => client.Sync.AddRatingsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.AddRatingsAsync(new TraktSyncRatingsPost());
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             ITraktSyncRatingsPost ratingsPost = new TraktSyncRatingsPost
             {
@@ -112,7 +112,7 @@
             };
 
             act = () => client.Sync.AddRatingsAsync(ratingsPost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

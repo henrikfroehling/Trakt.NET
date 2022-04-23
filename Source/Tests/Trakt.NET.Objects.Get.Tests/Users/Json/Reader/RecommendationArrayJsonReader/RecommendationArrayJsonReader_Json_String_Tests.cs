@@ -275,11 +275,11 @@
         }
 
         [Fact]
-        public void Test_RecommendationArrayJsonReader_ReadArray_From_Json_String_Null()
+        public async Task Test_RecommendationArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktRecommendation>();
             Func<Task<IEnumerable<ITraktRecommendation>>> traktRecommendations = () => jsonReader.ReadArrayAsync(default(string));
-            traktRecommendations.Should().Throw<ArgumentNullException>();
+            await traktRecommendations.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

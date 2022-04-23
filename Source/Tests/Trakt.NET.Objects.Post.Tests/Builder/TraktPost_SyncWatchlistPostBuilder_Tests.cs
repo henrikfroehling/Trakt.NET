@@ -7,7 +7,6 @@
     using TraktNet.Objects.Get.Episodes;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Builder;
     using TraktNet.Objects.Post.Syncs.Watchlist;
     using Xunit;
 
@@ -17,8 +16,8 @@
         [Fact]
         public void Test_TraktPost_Get_SyncWatchlistPostBuilder()
         {
-            ITraktSyncWatchlistPostBuilder syncCollectionPostBuilder = TraktPost.NewSyncWatchlistPost();
-            syncCollectionPostBuilder.Should().NotBeNull();
+            ITraktSyncWatchlistPostBuilder syncWatchlistPostBuilder = TraktPost.NewSyncWatchlistPost();
+            syncWatchlistPostBuilder.Should().NotBeNull();
         }
 
         [Fact]
@@ -239,7 +238,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncWatchlistPostBuilder_AddShowAndSeasons()
+        public void Test_TraktPost_SyncWatchlistPostBuilder_WithShowAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -257,7 +256,7 @@
             };
 
             ITraktSyncWatchlistPost syncWatchlistPost = TraktPost.NewSyncWatchlistPost()
-                .AddShowAndSeasons(show).WithSeasons(1, 2, 3)
+                .WithShowAndSeasons(show).WithSeasons(1, 2, 3)
                 .Build();
 
             syncWatchlistPost.Should().NotBeNull();
@@ -291,7 +290,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncWatchlistPostBuilder_AddShowAndSeasonsCollection()
+        public void Test_TraktPost_SyncWatchlistPostBuilder_WithShowAndSeasonsCollection()
         {
             ITraktShow show = new TraktShow
             {
@@ -315,7 +314,7 @@
             };
 
             ITraktSyncWatchlistPost syncWatchlistPost = TraktPost.NewSyncWatchlistPost()
-                .AddShowAndSeasonsCollection(show).WithSeasons(seasons)
+                .WithShowAndSeasonsCollection(show).WithSeasons(seasons)
                 .Build();
 
             syncWatchlistPost.Should().NotBeNull();

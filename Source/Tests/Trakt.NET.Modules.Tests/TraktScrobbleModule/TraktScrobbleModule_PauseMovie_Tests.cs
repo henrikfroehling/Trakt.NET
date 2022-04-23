@@ -280,17 +280,17 @@
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_PAUSE_URI, postJson, MOVIE_PAUSE_SCROBBLE_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.PauseMovieAsync(null, PAUSE_PROGRESS);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             movie.Ids = null;
 
             act = () => client.Scrobble.PauseMovieAsync(movie, PAUSE_PROGRESS);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             movie.Ids = new TraktMovieIds();
 
             act = () => client.Scrobble.PauseMovieAsync(movie, PAUSE_PROGRESS);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             movie.Ids = new TraktMovieIds
             {
@@ -301,10 +301,10 @@
             };
 
             act = () => client.Scrobble.PauseMovieAsync(movie, -0.0001f);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
 
             act = () => client.Scrobble.PauseMovieAsync(movie, 100.0001f);
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

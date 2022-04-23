@@ -13,11 +13,11 @@
     public partial class AuthorizationObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_AuthorizationObjectJsonWriter_WriteObject_Object_Exceptions()
+        public async Task Test_AuthorizationObjectJsonWriter_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new AuthorizationObjectJsonWriter();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default(ITraktAuthorization));
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

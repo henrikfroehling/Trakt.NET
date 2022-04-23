@@ -39,7 +39,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -96,75 +96,75 @@
             client.Authentication.OAuthAuthorizationCode = MOCK_AUTH_CODE;
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationErrorMessage);
+            await act.Should().ThrowAsync<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationErrorMessage);
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GetAuthorization_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_GetAuthorization_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
             client.Authentication.OAuthAuthorizationCode = null;
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.OAuthAuthorizationCode = string.Empty;
 
             act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.OAuthAuthorizationCode = "mock auth code";
 
             act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.OAuthAuthorizationCode = MOCK_AUTH_CODE;
             client.ClientId = null;
 
             act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = string.Empty;
 
             act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = "client id";
 
             act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = TraktClientId;
             client.ClientSecret = null;
 
             act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = string.Empty;
 
             act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = "client secret";
 
             act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = TraktClientSecret;
             client.Authentication.RedirectUri = null;
 
             act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.RedirectUri = string.Empty;
 
             act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.RedirectUri = "redirect uri";
 
             act = () => client.Authentication.GetAuthorizationAsync();
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
@@ -188,7 +188,7 @@
             responseAuthorization.TokenType.Should().Be(MockAuthorization.TokenType);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -242,69 +242,69 @@
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_AUTHORIZATION_URI, MockAuthorizationPostContent, errorJson, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE);
-            act.Should().Throw<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationErrorMessage);
+            await act.Should().ThrowAsync<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationErrorMessage);
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GetAuthorization_With_Code_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_GetAuthorization_With_Code_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.GetAuthorizationAsync(null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync("mock auth code");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = null;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = string.Empty;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = "client id";
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientId = TraktClientId;
             client.ClientSecret = null;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = string.Empty;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = "client secret";
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = TraktClientSecret;
             client.Authentication.RedirectUri = null;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.RedirectUri = string.Empty;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.RedirectUri = "redirect uri";
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
@@ -329,7 +329,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -384,62 +384,62 @@
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_AUTHORIZATION_URI, MockAuthorizationPostContent, errorJson, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId);
-            act.Should().Throw<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationErrorMessage);
+            await act.Should().ThrowAsync<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationErrorMessage);
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GetAuthorization_With_Code_And_ClientId_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_GetAuthorization_With_Code_And_ClientId_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.GetAuthorizationAsync(null, TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(string.Empty, TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync("mock auth code", TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, "client id");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = null;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = string.Empty;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = "client secret";
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.ClientSecret = TraktClientSecret;
             client.Authentication.RedirectUri = null;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.RedirectUri = string.Empty;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.RedirectUri = "redirect uri";
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
@@ -463,7 +463,7 @@
             responseAuthorization.TokenType.Should().Be(MockAuthorization.TokenType);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -517,55 +517,55 @@
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_AUTHORIZATION_URI, MockAuthorizationPostContent, errorJson, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, TraktClientSecret);
-            act.Should().Throw<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationErrorMessage);
+            await act.Should().ThrowAsync<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationErrorMessage);
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GetAuthorization_With_Code_And_ClientId_And_ClientSecret_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_GetAuthorization_With_Code_And_ClientId_And_ClientSecret_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.GetAuthorizationAsync(null, TraktClientId, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(string.Empty, TraktClientId, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync("mock auth code", TraktClientId, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, null, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, string.Empty, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, "client id", TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, "client secret");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.RedirectUri = null;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.RedirectUri = string.Empty;
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             client.Authentication.RedirectUri = "redirect uri";
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, TraktClientSecret);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
@@ -590,7 +590,7 @@
             responseAuthorization.ExpiresInSeconds.Should().Be(MockAuthorization.ExpiresInSeconds);
             responseAuthorization.RefreshToken.Should().Be(MockAuthorization.RefreshToken);
             responseAuthorization.Scope.Should().Be(MockAuthorization.Scope);
-            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, CLOSE_TO_PRECISION);
+            responseAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(3600));
             responseAuthorization.IsExpired.Should().BeFalse();
 
             ITraktAuthorization clientAuthorization = client.Authorization;
@@ -645,49 +645,49 @@
             TraktClient client = TestUtility.GetAuthenticationMockClient(GET_AUTHORIZATION_URI, MockAuthorizationPostContent, errorJson, HttpStatusCode.Unauthorized);
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationErrorMessage);
+            await act.Should().ThrowAsync<TraktAuthenticationOAuthException>().WithMessage(MockAuthorizationErrorMessage);
         }
 
         [Fact]
-        public void Test_TraktAuthenticationModule_GetAuthorization_With_Code_And_ClientId_And_ClientSecret_And_RedirectUri_ArgumentExceptions()
+        public async Task Test_TraktAuthenticationModule_GetAuthorization_With_Code_And_ClientId_And_ClientSecret_And_RedirectUri_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetAuthenticationMockClient();
 
             Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.GetAuthorizationAsync(null, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(string.Empty, TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync("mock auth code", TraktClientId, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, null, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, string.Empty, TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, "client id", TraktClientSecret, TraktRedirectUri);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, null, TraktRedirectUri);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, string.Empty, TraktRedirectUri);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, "client secret", TraktRedirectUri);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, TraktClientSecret, null);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, TraktClientSecret, string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Authentication.GetAuthorizationAsync(MOCK_AUTH_CODE, TraktClientId, TraktClientSecret, "redirect uri");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

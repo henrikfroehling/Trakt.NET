@@ -1,8 +1,8 @@
-﻿namespace TraktNet.Objects.Post.Builder.Helper
+﻿namespace TraktNet.Objects.Post.Helper
 {
-    using Basic;
     using Capabilities;
     using Get.Shows;
+    using Objects.Basic;
     using System;
     using System.Collections.Generic;
 
@@ -10,7 +10,7 @@
         : ITraktPostBuilderShowAddedMetadataWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>,
           IPostBuilderShowAddedMetadataWithSeasonsCollectionDetail<TSeasonCollection>
           where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>,
-                                      ITraktPostBuilderAddShowWithMetadataWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
+                                      ITraktPostBuilderShowWithMetadataWithSeasonsCollection<TPostBuilderAddShow, TPostObject, TSeasonCollection>
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;

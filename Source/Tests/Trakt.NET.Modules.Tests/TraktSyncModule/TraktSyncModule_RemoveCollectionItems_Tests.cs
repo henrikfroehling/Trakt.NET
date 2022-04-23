@@ -99,10 +99,10 @@
             TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_COLLECTION_ITEMS_URI, postJson, COLLECTION_REMOVE_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>>> act = () => client.Sync.RemoveCollectionItemsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.RemoveCollectionItemsAsync(new TraktSyncCollectionPost());
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             ITraktSyncCollectionPost collectionRemovePost = new TraktSyncCollectionPost
             {
@@ -112,7 +112,7 @@
             };
 
             act = () => client.Sync.RemoveCollectionItemsAsync(collectionRemovePost);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

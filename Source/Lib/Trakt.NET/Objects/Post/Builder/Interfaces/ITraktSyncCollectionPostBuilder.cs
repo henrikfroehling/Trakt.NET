@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder
+﻿namespace TraktNet.Objects.Post
 {
     using Capabilities;
     using Post.Syncs.Collection;
@@ -8,24 +8,24 @@
           ITraktPostBuilderWithMovie<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
           ITraktPostBuilderWithMovies<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
           ITraktPostBuilderWithMoviesWithMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
-          ITraktPostBuilderAddMovieWithCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
-          ITraktPostBuilderAddMovieWithMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
+          ITraktPostBuilderMovieWithCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
+          ITraktPostBuilderMovieWithMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
           ITraktPostBuilderWithShow<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
           ITraktPostBuilderWithShows<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
           ITraktPostBuilderWithShowsWithMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
-          ITraktPostBuilderAddShowWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
-          ITraktPostBuilderAddShowWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>,
-          ITraktPostBuilderAddShowWithCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
-          ITraktPostBuilderAddShowWithCollectedAtWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
-          ITraktPostBuilderAddShowWithCollectedAtWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>,
-          ITraktPostBuilderAddShowWithMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
-          ITraktPostBuilderAddShowWithMetadataWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
-          ITraktPostBuilderAddShowWithMetadataWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>,
+          ITraktPostBuilderShowWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
+          ITraktPostBuilderShowWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>,
+          ITraktPostBuilderShowWithCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
+          ITraktPostBuilderShowWithCollectedAtWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
+          ITraktPostBuilderShowWithCollectedAtWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>,
+          ITraktPostBuilderShowWithMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
+          ITraktPostBuilderShowWithMetadataWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
+          ITraktPostBuilderShowWithMetadataWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>,
           ITraktPostBuilderWithEpisode<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
           ITraktPostBuilderWithEpisodes<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
           ITraktPostBuilderWithEpisodesWithMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
-          ITraktPostBuilderAddEpisodeWithCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
-          ITraktPostBuilderAddEpisodeWithMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>
+          ITraktPostBuilderEpisodeWithCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>,
+          ITraktPostBuilderEpisodeWithMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>
     {
     }
 }

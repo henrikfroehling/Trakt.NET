@@ -8,7 +8,6 @@
     using TraktNet.Objects.Get.Episodes;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Builder;
     using TraktNet.Objects.Post.Syncs.Ratings;
     using Xunit;
 
@@ -21,8 +20,8 @@
         [Fact]
         public void Test_TraktPost_Get_SyncRatingsPostBuilder()
         {
-            ITraktSyncRatingsPostBuilder syncCollectionPostBuilder = TraktPost.NewSyncRatingsPost();
-            syncCollectionPostBuilder.Should().NotBeNull();
+            ITraktSyncRatingsPostBuilder syncRatingsPostBuilder = TraktPost.NewSyncRatingsPost();
+            syncRatingsPostBuilder.Should().NotBeNull();
         }
 
         [Fact]
@@ -138,7 +137,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddRatedMovie()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithRatedMovie()
         {
             ITraktMovie movie = new TraktMovie
             {
@@ -154,7 +153,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddRatedMovie(movie).WithRating(RATING)
+                .WithRatedMovie(movie).WithRating(RATING)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();
@@ -176,7 +175,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddRatedMovie_And_RatedAt()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithRatedMovie_And_RatedAt()
         {
             ITraktMovie movie = new TraktMovie
             {
@@ -192,7 +191,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddRatedMovie(movie).WithRating(RATING, RATED_AT)
+                .WithRatedMovie(movie).WithRating(RATING, RATED_AT)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();
@@ -330,7 +329,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddRatedShow()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithRatedShow()
         {
             ITraktShow show = new TraktShow
             {
@@ -348,7 +347,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddRatedShow(show).WithRating(RATING)
+                .WithRatedShow(show).WithRating(RATING)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();
@@ -373,7 +372,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddRatedShow_And_RatedAt()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithRatedShow_And_RatedAt()
         {
             ITraktShow show = new TraktShow
             {
@@ -391,7 +390,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddRatedShow(show).WithRating(RATING, RATED_AT)
+                .WithRatedShow(show).WithRating(RATING, RATED_AT)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();
@@ -416,7 +415,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddRatedShowAndSeasons()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithRatedShowAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -434,7 +433,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddRatedShowAndSeasons(show).WithRating(RATING, 1, 2, 3)
+                .WithRatedShowAndSeasons(show).WithRating(RATING, 1, 2, 3)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();
@@ -470,7 +469,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddRatedShowAndSeasons_And_RatedAt()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithRatedShowAndSeasons_And_RatedAt()
         {
             ITraktShow show = new TraktShow
             {
@@ -488,7 +487,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddRatedShowAndSeasons(show).WithRating(RATING, RATED_AT, 1, 2, 3)
+                .WithRatedShowAndSeasons(show).WithRating(RATING, RATED_AT, 1, 2, 3)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();
@@ -524,7 +523,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddRatedShowAndSeasonsCollection()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithRatedShowAndSeasonsCollection()
         {
             ITraktShow show = new TraktShow
             {
@@ -548,7 +547,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddRatedShowAndSeasonsCollection(show).WithRating(RATING, seasons)
+                .WithRatedShowAndSeasonsCollection(show).WithRating(RATING, seasons)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();
@@ -586,7 +585,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddRatedShowAndSeasonsCollection_And_RatedAt()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithRatedShowAndSeasonsCollection_And_RatedAt()
         {
             ITraktShow show = new TraktShow
             {
@@ -610,7 +609,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddRatedShowAndSeasonsCollection(show).WithRating(RATING, RATED_AT, seasons)
+                .WithRatedShowAndSeasonsCollection(show).WithRating(RATING, RATED_AT, seasons)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();
@@ -648,7 +647,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddShowAndSeasons()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShowAndSeasons()
         {
             ITraktShow show = new TraktShow
             {
@@ -666,7 +665,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddShowAndSeasons(show).WithSeasons(1, 2, 3)
+                .WithShowAndSeasons(show).WithSeasons(1, 2, 3)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();
@@ -702,7 +701,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddShowAndSeasonsCollection()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShowAndSeasonsCollection()
         {
             ITraktShow show = new TraktShow
             {
@@ -726,7 +725,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddShowAndSeasonsCollection(show).WithSeasons(seasons)
+                .WithShowAndSeasonsCollection(show).WithSeasons(seasons)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();
@@ -860,7 +859,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddRatedEpisode()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithRatedEpisode()
         {
             ITraktEpisode episode = new TraktEpisode
             {
@@ -875,7 +874,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddRatedEpisode(episode).WithRating(RATING)
+                .WithRatedEpisode(episode).WithRating(RATING)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();
@@ -896,7 +895,7 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_AddRatedEpisode_And_RatedAt()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithRatedEpisode_And_RatedAt()
         {
             ITraktEpisode episode = new TraktEpisode
             {
@@ -911,7 +910,7 @@
             };
 
             ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost()
-                .AddRatedEpisode(episode).WithRating(RATING, RATED_AT)
+                .WithRatedEpisode(episode).WithRating(RATING, RATED_AT)
                 .Build();
 
             syncRatingsPost.Should().NotBeNull();

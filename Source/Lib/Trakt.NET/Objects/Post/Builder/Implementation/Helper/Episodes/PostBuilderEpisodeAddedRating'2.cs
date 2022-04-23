@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder.Helper
+﻿namespace TraktNet.Objects.Post.Helper
 {
     using Capabilities;
     using Get.Episodes;
@@ -8,7 +8,7 @@
     internal class PostBuilderEpisodeAddedRating<TPostBuilderAddEpisode, TPostObject>
         : ITraktPostBuilderEpisodeAddedRating<TPostBuilderAddEpisode, TPostObject>,
           IPostBuilderEpisodeAddedRatingDetail
-          where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddEpisodeWithRating<TPostBuilderAddEpisode, TPostObject>
+          where TPostBuilderAddEpisode : ITraktPostBuilder<TPostObject>, ITraktPostBuilderEpisodeWithRating<TPostBuilderAddEpisode, TPostObject>
     {
         private readonly TPostBuilderAddEpisode _postBuilder;
         private ITraktEpisode _currentEpisode;

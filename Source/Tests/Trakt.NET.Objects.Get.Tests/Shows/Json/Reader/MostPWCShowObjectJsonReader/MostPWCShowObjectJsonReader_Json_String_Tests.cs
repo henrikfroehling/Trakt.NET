@@ -357,11 +357,11 @@
         }
 
         [Fact]
-        public void Test_MostPWCShowObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_MostPWCShowObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new MostPWCShowObjectJsonReader();
             Func<Task<ITraktMostPWCShow>> traktMostPWCShow = () => jsonReader.ReadObjectAsync(default(string));
-            traktMostPWCShow.Should().Throw<ArgumentNullException>();
+            await traktMostPWCShow.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -17,12 +17,12 @@
     public partial class RecommendationObjectJsonWriter_Tests
     {
         [Fact]
-        public void Test_RecommendationObjectJsonWriter_Show_WriteObject_JsonWriter_Exceptions()
+        public async Task Test_RecommendationObjectJsonWriter_Show_WriteObject_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new RecommendationObjectJsonWriter();
             ITraktRecommendation traktRecommendation = new TraktRecommendation();
             Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktRecommendation);
-            action.Should().Throw<ArgumentNullException>();
+            await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

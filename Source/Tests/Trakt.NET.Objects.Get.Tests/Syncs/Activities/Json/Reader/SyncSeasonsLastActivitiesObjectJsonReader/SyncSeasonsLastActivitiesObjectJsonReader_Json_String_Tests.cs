@@ -208,11 +208,11 @@
         }
 
         [Fact]
-        public void Test_SyncSeasonsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_SyncSeasonsLastActivitiesObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new SyncSeasonsLastActivitiesObjectJsonReader();
             Func<Task<ITraktSyncSeasonsLastActivities>> seasonsLastActivities = () => jsonReader.ReadObjectAsync(default(string));
-            seasonsLastActivities.Should().Throw<ArgumentNullException>();
+            await seasonsLastActivities.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

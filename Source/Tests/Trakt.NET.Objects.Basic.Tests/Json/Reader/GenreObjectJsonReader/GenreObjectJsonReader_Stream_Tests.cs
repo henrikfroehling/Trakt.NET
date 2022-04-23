@@ -109,11 +109,11 @@
         }
 
         [Fact]
-        public void Test_GenreObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_GenreObjectJsonReader_ReadObject_From_Stream_Null()
         {
             var traktJsonReader = new GenreObjectJsonReader();
             Func<Task<ITraktGenre>> traktGenre = () => traktJsonReader.ReadObjectAsync(default(Stream));
-            traktGenre.Should().Throw<ArgumentNullException>();
+            await traktGenre.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

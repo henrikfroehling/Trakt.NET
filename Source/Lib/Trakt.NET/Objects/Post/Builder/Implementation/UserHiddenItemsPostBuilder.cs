@@ -1,20 +1,22 @@
-﻿namespace TraktNet.Objects.Post.Builder
+﻿namespace TraktNet.Objects.Post
 {
     using Capabilities;
     using Get.Movies;
     using Get.Seasons;
     using Get.Shows;
+    using Get.Users;
     using Helper;
     using Post.Users.HiddenItems;
     using System;
     using System.Collections.Generic;
 
-    internal class UserHiddenItemsPostBuilder : ITraktUserHiddenItemsPostBuilder
+    internal sealed class UserHiddenItemsPostBuilder : ITraktUserHiddenItemsPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
         private readonly List<ITraktShow> _shows;
         private readonly List<ITraktSeason> _seasons;
         private readonly PostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost> _showsWithSeasons;
+        private readonly List<ITraktUser> _users;
 
         internal UserHiddenItemsPostBuilder()
         {
@@ -22,6 +24,7 @@
             _shows = new List<ITraktShow>();
             _seasons = new List<ITraktSeason>();
             _showsWithSeasons = new PostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>(this);
+            _users = new List<ITraktUser>();
         }
 
         public ITraktUserHiddenItemsPostBuilder WithMovie(ITraktMovie movie)
@@ -60,7 +63,7 @@
             return this;
         }
 
-        public ITraktPostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost> AddShowAndSeasons(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasons<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost> WithShowAndSeasons(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -86,6 +89,24 @@
             _seasons.AddRange(seasons);
             return this;
         }
+        
+        public ITraktUserHiddenItemsPostBuilder WithUser(ITraktUser user)
+        {
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
+
+            _users.Add(user);
+            return this;
+        }
+
+        public ITraktUserHiddenItemsPostBuilder WithUsers(IEnumerable<ITraktUser> users)
+        {
+            if (users == null)
+                throw new ArgumentNullException(nameof(users));
+
+            _users.AddRange(users);
+            return this;
+        }
 
         public ITraktUserHiddenItemsPost Build()
         {
@@ -93,6 +114,7 @@
             AddMovies(userHiddenItemsPost);
             AddShows(userHiddenItemsPost);
             AddSeasons(userHiddenItemsPost);
+            userHiddenItemsPost.Users = _users;
             return userHiddenItemsPost;
         }
 

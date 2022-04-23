@@ -268,11 +268,11 @@
         }
 
         [Fact]
-        public void Test_AccountSettingsObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_AccountSettingsObjectJsonReader_ReadObject_From_Json_String_Null()
         {
             var jsonReader = new AccountSettingsObjectJsonReader();
             Func<Task<ITraktAccountSettings>> userAccountSettings = () => jsonReader.ReadObjectAsync(default(string));
-            userAccountSettings.Should().Throw<ArgumentNullException>();
+            await userAccountSettings.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

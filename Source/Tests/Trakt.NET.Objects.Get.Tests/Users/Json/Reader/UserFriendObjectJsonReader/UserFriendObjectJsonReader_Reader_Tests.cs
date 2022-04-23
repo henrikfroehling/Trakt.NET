@@ -160,11 +160,11 @@
         }
 
         [Fact]
-        public void Test_UserFriendObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_UserFriendObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new UserFriendObjectJsonReader();
             Func<Task<ITraktUserFriend>> userFriend = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
-            userFriend.Should().Throw<ArgumentNullException>();
+            await userFriend.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]

@@ -75,18 +75,18 @@
         }
 
         [Fact]
-        public void Test_TraktUsersModule_GetCustomLists_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetCustomLists_ArgumentExceptions()
         {
             TraktClient client = TestUtility.GetMockClient(GET_CUSTOM_LISTS_URI, CUSTOM_LISTS_JSON);
 
             Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetCustomListsAsync(null);
-            act.Should().Throw<ArgumentNullException>();
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.GetCustomListsAsync(string.Empty);
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.GetCustomListsAsync("user name");
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post.Builder.Helper
+﻿namespace TraktNet.Objects.Post.Helper
 {
     using Capabilities;
     using Get.Shows;
@@ -8,7 +8,7 @@
     internal class PostBuilderShowAddedCollectedAt<TPostBuilderAddShow, TPostObject>
         : ITraktPostBuilderShowAddedCollectedAt<TPostBuilderAddShow, TPostObject>,
           IPostBuilderShowAddedCollectedAtDetail
-          where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderAddShowWithCollectedAt<TPostBuilderAddShow, TPostObject>
+          where TPostBuilderAddShow : ITraktPostBuilder<TPostObject>, ITraktPostBuilderShowWithCollectedAt<TPostBuilderAddShow, TPostObject>
     {
         private readonly TPostBuilderAddShow _postBuilder;
         private ITraktShow _currentShow;
