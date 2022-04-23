@@ -43,7 +43,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: Trakt.NET.${{ env.VERSION_NUMBER }}
+          name: Trakt.NET.${{ env.VERSION_NUMBER }}-${{github.sha}}
           path: |
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.dll
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.pdb
