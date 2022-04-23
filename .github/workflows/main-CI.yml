@@ -62,14 +62,14 @@ jobs:
           Write-Host "Found version:" $versionNumber
           echo "VERSION_NUMBER=$versionNumber" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
       - name: Nuget pack
-        run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity detailed --output ${{ env.BUILD_DIRECTORY }} --version-suffix "${{ github.run_number }}" -p:PackageID="Trakt.NET.${{ env.VERSION_NUMBER }}.${{ github.run_number }}" --no-build --no-restore
+        run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity detailed --output ${{ env.BUILD_DIRECTORY }} --version-suffix "${{ github.run_number }}" -p:PackageID="Trakt.NET" --no-build --no-restore
       - name: Rename artifacts
         shell: pwsh
         run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg'} | Rename-Item -NewName {'Trakt.NET.' + '${{ env.VERSION_NUMBER }}' + '.' + '${{ github.run_number }}' + $_.Extension}
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: main-ci-${{ env.PACKAGE_VERSION_SUFFIX }}.${{ env.VERSION_NUMBER }}-${{github.run_number}}-${{github.sha}}
+          name: main-ci-${{ env.VERSION_NUMBER }}-${{github.run_number}}-${{github.sha}}
           path: |
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.dll
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.pdb
