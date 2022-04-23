@@ -216,6 +216,7 @@
             // people objects
             s_jsonIOFactories.Add(typeof(ITraktPerson), new PersonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktPersonIds), new PersonIdsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPersonSocialIds), new PersonSocialIdsJsonIOFactory());
 
             // people credit objects
             s_jsonIOFactories.Add(typeof(ITraktPersonMovieCredits), new PersonMovieCreditsJsonIOFactory());
