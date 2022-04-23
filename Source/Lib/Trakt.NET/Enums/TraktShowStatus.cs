@@ -24,6 +24,12 @@
         /// <summary>The status for a show, which is planned.</summary>
         public static TraktShowStatus Planned { get; } = new TraktShowStatus(32, "planned", "planned", "Planned");
 
+        /// <summary>The status for a show, which is upcoming.</summary>
+        public static TraktShowStatus Continuing { get; } = new TraktShowStatus(64, "continuing", "continuing", "Continuing");
+
+        /// <summary>The status for a show, which is planned.</summary>
+        public static TraktShowStatus Pilot { get; } = new TraktShowStatus(128, "pilot", "pilot", "Pilot");
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktShowStatus" /> class.<para />
         /// The initialized <see cref="TraktShowStatus" /> is invalid.
