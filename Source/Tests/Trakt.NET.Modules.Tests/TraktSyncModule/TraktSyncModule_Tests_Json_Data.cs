@@ -123,6 +123,30 @@
                 }
               }";
 
+        private const string RECOMMENDATIONS_REMOVE_POST_RESPONSE_JSON =
+            @"{
+                ""deleted"": {
+                  ""movies"": 1,
+                  ""shows"": 2
+                },
+                ""not_found"": {
+                  ""movies"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000111""
+                      }
+                    }
+                  ],
+                  ""shows"": [
+                    {
+                      ""ids"": {
+                        ""imdb"": ""tt0000222""
+                      }
+                    }
+                  ]
+                }
+              }";
+
         private const string HISTORY_POST_RESPONSE_JSON =
             @"{
                 ""added"": {

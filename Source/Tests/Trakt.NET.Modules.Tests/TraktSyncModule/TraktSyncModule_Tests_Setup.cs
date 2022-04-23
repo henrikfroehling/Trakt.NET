@@ -15,7 +15,7 @@
     {
         private ITraktSyncCollectionPost AddCollectionItemsPost { get; }
         private ITraktSyncRatingsPost AddRatingsPost { get; }
-        private ITraktSyncRecommendationsPost AddRecommendationsPost { get; }
+        private ITraktSyncRecommendationsPost RecommendationsPost { get; }
         private ITraktSyncHistoryPost AddHistoryPost { get; }
         private ITraktSyncWatchlistPost AddWatchlistPost { get; }
         private ITraktSyncCollectionPost RemoveCollectionItemsPost { get; }
@@ -27,7 +27,7 @@
         {
             AddCollectionItemsPost = SetupAddCollectionItemsPost();
             AddRatingsPost = SetupAddRatingsPost();
-            AddRecommendationsPost = SetupAddRecommendationsPost();
+            RecommendationsPost = SetupAddRecommendationsPost();
             AddHistoryPost = SetupAddHistoryPost();
             AddWatchlistPost = SetupAddWatchlistPost();
             RemoveCollectionItemsPost = SetupRemoveCollectionItemsPost();
