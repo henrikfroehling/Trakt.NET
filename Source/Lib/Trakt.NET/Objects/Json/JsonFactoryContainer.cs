@@ -242,6 +242,7 @@
             s_jsonIOFactories.Add(typeof(ITraktSeason), new SeasonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSeasonIds), new SeasonIdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSeasonCollectionProgress), new SeasonCollectionProgressJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSeasonTranslation), new SeasonTranslationJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSeasonWatchedProgress), new SeasonWatchedProgressJsonIOFactory());
 
             // scrobble post objects
