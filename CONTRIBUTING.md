@@ -41,4 +41,4 @@ Please **DO NOT** target the `main` branch.
 ---
 
 ### **Cross-platform compatibility**
-- [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) is built against .NET Standard 1.1
+- [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) is built against .NET Standard 2.0
