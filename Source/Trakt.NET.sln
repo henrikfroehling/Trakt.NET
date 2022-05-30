@@ -39,8 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{E8878124-ADAC-493E-9ECC-8BF405D431AB}"
 	ProjectSection(SolutionItems) = preProject
-		..\.github\ISSUE_TEMPLATE\bug_report.md = ..\.github\ISSUE_TEMPLATE\bug_report.md
-		..\.github\ISSUE_TEMPLATE\feature_request.md = ..\.github\ISSUE_TEMPLATE\feature_request.md
+		..\.github\ISSUE_TEMPLATE\bug_report.yml = ..\.github\ISSUE_TEMPLATE\bug_report.yml
+		..\.github\ISSUE_TEMPLATE\feature_request.yml = ..\.github\ISSUE_TEMPLATE\feature_request.yml
 		..\.github\PULL_REQUEST_TEMPLATE.md = ..\.github\PULL_REQUEST_TEMPLATE.md
 	EndProjectSection
 EndProject
