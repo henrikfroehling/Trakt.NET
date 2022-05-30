@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Copyright>Copyright © Henrik Fröhling 2020</Copyright>
     <Authors>Henrik Fröhling</Authors>
   </PropertyGroup>
