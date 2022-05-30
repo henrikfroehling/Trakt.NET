@@ -6,8 +6,8 @@
 
     internal static class Configuration
     {
-        private const string CLIENT_ID = "FAKE_CLIENT_ID";
-        private const string CLIENT_SECRET = "FAKE_CLIENT_SECRET";
+        private const string CLIENT_ID = "ENTER_CLIENT_ID_HERE";
+        private const string CLIENT_SECRET = "ENTER_CLIENT_SECRET_HERE";
 
         private static void Main()
         {

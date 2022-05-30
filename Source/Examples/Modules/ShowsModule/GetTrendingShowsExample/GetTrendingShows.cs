@@ -74,7 +74,9 @@ namespace GetTrendingShows
             int rank = 1;
 
             foreach (ITraktTrendingShow show in trendingShows)
-                table.AddRow($"{rank++}", $"{show.Watchers}", show.Title, show.Overview.Substring(0, 20) +  "...", show.Network, $"{show.Year}", $"{show.Votes}", $"{show.Rating}");
+                _ = table.AddRow($"{rank++}", $"{show.Watchers}", show.Title,
+                    string.Concat(show.Overview.AsSpan(0, 20), "..."),
+                    show.Network, $"{show.Year}", $"{show.Votes}", $"{show.Rating}");
         }
     }
 }
