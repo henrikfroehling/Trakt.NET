@@ -68,6 +68,11 @@ There are three types of packages:
 - without suffix: Actual released version packages.
 
 ---
+### Examples
+    
+Examples can be found here: https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples
+
+---
 <details>
 <summary>Basic Usage</summary>
 
@@ -197,13 +202,6 @@ if (theMartian)
     Console.WriteLine(show.Overview);
 }
 ```
-</details>
-
----
-<details>
-<summary>Examples</summary>
-    
-Examples can be found here: https://github.com/henrikfroehling/Trakt.NET-Examples
 </details>
 
 ---
