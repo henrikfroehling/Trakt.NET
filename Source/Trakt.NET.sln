@@ -97,6 +97,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetSingleShowExample", "Exa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetTrendingShowsExample", "Examples\Modules\ShowsModule\GetTrendingShowsExample\GetTrendingShowsExample.csproj", "{CD5A1ACB-79BE-45BC-8758-C5409B7D077A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DocFX", "DocFX", "{0FD91F32-9AD2-4B65-A667-D00522610019}"
+	ProjectSection(SolutionItems) = preProject
+		DocFX\.gitignore = DocFX\.gitignore
+		DocFX\docfx.json = DocFX\docfx.json
+		DocFX\filterConfig.yml = DocFX\filterConfig.yml
+		DocFX\index.md = DocFX\index.md
+		DocFX\toc.yml = DocFX\toc.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{D53642DB-B120-4605-B845-73B50AEE1825}"
+	ProjectSection(SolutionItems) = preProject
+		DocFX\Documentation\index.md = DocFX\Documentation\index.md
+		DocFX\Documentation\toc.yml = DocFX\Documentation\toc.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -331,6 +346,8 @@ Global
 		{276D1CE3-272B-4522-B664-9441A8DBE519} = {2038C1AB-C305-460C-BE92-3F34826AB630}
 		{3A69773E-2A08-4C37-88AC-E09B06F1FCF1} = {2038C1AB-C305-460C-BE92-3F34826AB630}
 		{CD5A1ACB-79BE-45BC-8758-C5409B7D077A} = {2038C1AB-C305-460C-BE92-3F34826AB630}
+		{0FD91F32-9AD2-4B65-A667-D00522610019} = {E4690B7D-5380-4003-99C3-2091827DB262}
+		{D53642DB-B120-4605-B845-73B50AEE1825} = {0FD91F32-9AD2-4B65-A667-D00522610019}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7025A39E-11A6-4587-98F7-E887B941D5A0}

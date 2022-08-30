@@ -1,0 +1,15 @@
+apiRules:
+- exclude:
+    uidRegex: ^TraktNet\.Requests\..*$
+- include:
+    uidRegex: ^TraktNet\.Requests\.Handler\.IHttpClientProvider$
+    type: Type
+- include:
+    uidRegex: ^TraktNet\.Requests\.Handler\.HttpClientProvider$
+    type: Type
+- exclude:
+    uidRegex: ^TraktNet\.Core\..$
+    type: Type
+- include:
+    uidRegex: ^TraktNet\.Core\.TraktConfiguration$
+    type: Type
