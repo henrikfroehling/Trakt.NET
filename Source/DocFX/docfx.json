@@ -8,40 +8,61 @@
           "src": "../Lib"
         }
       ],
-      "dest": "obj/api",
-      "filter": "filterConfig.yml"
+      "dest": "temp/api",
+      "filter": "filterConfig.yml",
+      "properties": {
+        "TargetFramework": "netstandard2.0"
+      }
     }
   ],
   "build": {
     "content": [
       {
-        "files": [
-          "**/*.yml",
-          "**/*.md"
-        ],
-        "src": "obj/api"
+        "files": [ "**/*.yml" ],
+        "src": "temp/api",
+        "dest": "api",
+        "exclude": [ "filterConfig.yml" ]
       },
       {
         "files": [
-          "Documentation/toc.yml",
-          "Documentation/*.md",
-          "toc.yml",
-          "*.md"
-        ]
+          "gettingstarted/**/*.{md,yml}",
+          "apispec/**/*.{md,yml}",
+          "*.{md,yml}"
+        ],
+        "exclude": [ "filterConfig.yml" ]
+      },
+      {
+        "files": "Changelog.md",
+        "src": "../.."
       }
     ],
     "resource": [
       {
-        "files": [ "Documentation/images/**" ]
+        "files": [ "images/**" ]
       }
     ],
+    "overwrite": "apispec/*.md",
+    "dest": "../../docs/_site",
     "globalMetadata": {
       "_appTitle": "Trakt.NET",
-      "_appFooter": "The MIT License (MIT) | Copyright © 2016 - 2022 Henrik Fröhling et al.",
-      "_enableSearch": true
+      "_appFooter": "<span>The MIT License (MIT)<br />Copyright © 2016 - 2022 Henrik Fröhling et al.</span>",
+      "_enableSearch": true,
+      "_gitContribute": {
+        "branch": "develop"
+      }
     },
+    "template": [
+      "default"
+    ],
+    "fileMetadataFiles": [],
     "markdownEngineName": "markdig",
-    "dest": "../../docs/_site",
-    "xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ]
+    "noLangKeyword": false,
+    "keepFileLink": false,
+    "cleanupCacheHistory": false,
+    "disableGitFeatures": false,
+    "postProcessors": [ "ExtractSearchIndex" ],
+    "xrefService": [
+      "https://xref.docs.microsoft.com/query?uid={uid}"
+    ]
   }
 }

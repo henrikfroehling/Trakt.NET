@@ -1,6 +1,10 @@
+###############
+#    folder   #
+###############
 /**/DROP/
 /**/TEMP/
 /**/packages/
 /**/bin/
 /**/obj/
-reference
+api
+_site

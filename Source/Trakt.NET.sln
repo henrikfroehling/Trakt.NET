@@ -52,8 +52,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Git", "Git", "{695F47B0-A80
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Releases", "Releases", "{8315C2AB-046F-4BE5-B417-E4CB97AA6A34}"
 	ProjectSection(SolutionItems) = preProject
-		..\Changelog.md = ..\Changelog.md
 		..\PublishRelease.txt = ..\PublishRelease.txt
+		..\ReleaseNotes.md = ..\ReleaseNotes.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contributing", "Contributing", "{EDB5D86C-D40A-4481-AE9E-97C456190749}"
@@ -106,10 +106,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DocFX", "DocFX", "{0FD91F32
 		DocFX\toc.yml = DocFX\toc.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{D53642DB-B120-4605-B845-73B50AEE1825}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apispec", "apispec", "{D53642DB-B120-4605-B845-73B50AEE1825}"
 	ProjectSection(SolutionItems) = preProject
-		DocFX\Documentation\index.md = DocFX\Documentation\index.md
-		DocFX\Documentation\toc.yml = DocFX\Documentation\toc.yml
+		DocFX\apispec\index.md = DocFX\apispec\index.md
+		DocFX\apispec\toc.yml = DocFX\apispec\toc.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gettingstarted", "gettingstarted", "{BCE9BF9F-C89C-4E30-8DE6-E7C4D1293DF3}"
+	ProjectSection(SolutionItems) = preProject
+		DocFX\gettingstarted\index.md = DocFX\gettingstarted\index.md
+		DocFX\gettingstarted\toc.yml = DocFX\gettingstarted\toc.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "custom_template", "custom_template", "{E8E8F524-8784-4570-B353-AF91362673F6}"
+	ProjectSection(SolutionItems) = preProject
+		DocFX\custom_template\conceptual.html.primary.tmpl = DocFX\custom_template\conceptual.html.primary.tmpl
 	EndProjectSection
 EndProject
 Global
@@ -348,6 +359,8 @@ Global
 		{CD5A1ACB-79BE-45BC-8758-C5409B7D077A} = {2038C1AB-C305-460C-BE92-3F34826AB630}
 		{0FD91F32-9AD2-4B65-A667-D00522610019} = {E4690B7D-5380-4003-99C3-2091827DB262}
 		{D53642DB-B120-4605-B845-73B50AEE1825} = {0FD91F32-9AD2-4B65-A667-D00522610019}
+		{BCE9BF9F-C89C-4E30-8DE6-E7C4D1293DF3} = {0FD91F32-9AD2-4B65-A667-D00522610019}
+		{E8E8F524-8784-4570-B353-AF91362673F6} = {0FD91F32-9AD2-4B65-A667-D00522610019}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7025A39E-11A6-4587-98F7-E887B941D5A0}
