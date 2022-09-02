@@ -10,7 +10,7 @@
     using TraktNet.Enums;
     using TraktNet.Exceptions;
     using TraktNet.Modules;
-    using TraktNet.Objects.Get.Users.Lists;
+    using TraktNet.Objects.Get.Lists;
     using TraktNet.Responses;
     using Xunit;
 

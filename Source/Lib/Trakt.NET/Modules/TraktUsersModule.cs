@@ -5,10 +5,10 @@
     using Objects.Basic;
     using Objects.Get.Collections;
     using Objects.Get.History;
+    using Objects.Get.Lists;
     using Objects.Get.People;
     using Objects.Get.Ratings;
     using Objects.Get.Users;
-    using Objects.Get.Users.Lists;
     using Objects.Get.Users.Statistics;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;

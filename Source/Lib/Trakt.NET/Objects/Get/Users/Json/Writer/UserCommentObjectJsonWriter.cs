@@ -2,6 +2,7 @@
 {
     using Basic.Json.Writer;
     using Episodes.Json.Writer;
+    using Lists.Json.Writer;
     using Movies.Json.Writer;
     using Newtonsoft.Json;
     using Objects.Json;
@@ -9,7 +10,6 @@
     using Shows.Json.Writer;
     using System.Threading;
     using System.Threading.Tasks;
-    using Users.Lists.Json.Writer;
 
     internal class UserCommentObjectJsonWriter : AObjectJsonWriter<ITraktUserComment>
     {

@@ -7,7 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Users.Lists;
+    using TraktNet.Objects.Get.Lists;
     using TraktNet.Requests.Parameters;
     using TraktNet.Responses;
     using Xunit;

@@ -12,6 +12,8 @@
     using Get.Episodes.Json.Factories;
     using Get.History;
     using Get.History.Json.Factories;
+    using Get.Lists;
+    using Get.Lists.Json.Factories;
     using Get.Movies;
     using Get.Movies.Json.Factories;
     using Get.People;
@@ -30,8 +32,6 @@
     using Get.Syncs.Playback.Json.Factories;
     using Get.Users;
     using Get.Users.Json.Factories;
-    using Get.Users.Lists;
-    using Get.Users.Lists.Json.Factories;
     using Get.Users.Statistics;
     using Get.Users.Statistics.Json.Factories;
     using Get.Watched;

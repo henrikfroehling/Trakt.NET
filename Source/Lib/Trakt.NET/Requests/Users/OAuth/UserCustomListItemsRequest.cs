@@ -4,7 +4,7 @@
     using Enums;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Users.Lists;
+    using Objects.Get.Lists;
     using System;
     using System.Collections.Generic;
 
