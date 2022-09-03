@@ -6,15 +6,15 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class UserCustomListPostObjectJsonReader : AObjectJsonReader<ITraktUserCustomListPost>
+    internal class UserCustomListPostObjectJsonReader : AObjectJsonReader<ITraktUserPersonalListPost>
     {
-        public override async Task<ITraktUserCustomListPost> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<ITraktUserPersonalListPost> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                ITraktUserCustomListPost userCustomListPost = new TraktUserCustomListPost();
+                ITraktUserPersonalListPost userCustomListPost = new TraktUserCustomListPost();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -52,7 +52,7 @@
                 return userCustomListPost;
             }
 
-            return await Task.FromResult(default(ITraktUserCustomListPost));
+            return await Task.FromResult(default(ITraktUserPersonalListPost));
         }
     }
 }

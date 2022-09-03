@@ -4,10 +4,10 @@
     using Reader;
     using Writer;
 
-    internal class UserCustomListPostJsonIOFactory : IJsonIOFactory<ITraktUserCustomListPost>
+    internal class UserCustomListPostJsonIOFactory : IJsonIOFactory<ITraktUserPersonalListPost>
     {
-        public IObjectJsonReader<ITraktUserCustomListPost> CreateObjectReader() => new UserCustomListPostObjectJsonReader();
+        public IObjectJsonReader<ITraktUserPersonalListPost> CreateObjectReader() => new UserCustomListPostObjectJsonReader();
 
-        public IObjectJsonWriter<ITraktUserCustomListPost> CreateObjectWriter() => new UserCustomListPostObjectJsonWriter();
+        public IObjectJsonWriter<ITraktUserPersonalListPost> CreateObjectWriter() => new UserCustomListPostObjectJsonWriter();
     }
 }

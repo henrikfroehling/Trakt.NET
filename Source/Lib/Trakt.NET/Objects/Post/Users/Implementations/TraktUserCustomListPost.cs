@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
 
     /// <summary>An episode custom list post.</summary>
-    public class TraktUserCustomListPost : ITraktUserCustomListPost
+    public class TraktUserCustomListPost : ITraktUserPersonalListPost
     {
         /// <summary>Gets or sets the required name of the custom list.</summary>
         public string Name { get; set; }
@@ -35,7 +35,7 @@
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {
-            IObjectJsonWriter<ITraktUserCustomListPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktUserCustomListPost>();
+            IObjectJsonWriter<ITraktUserPersonalListPost> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktUserPersonalListPost>();
             return objectJsonWriter.WriteObjectAsync(this, cancellationToken);
         }
 
