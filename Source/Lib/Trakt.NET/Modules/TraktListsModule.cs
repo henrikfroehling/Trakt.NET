@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Modules
 {
     using Exceptions;
-    using Objects.Get.Users.Lists;
+    using Objects.Get.Lists;
     using Requests.Handler;
     using Requests.Lists;
     using Requests.Parameters;

@@ -4,9 +4,9 @@
     using Exceptions;
     using Objects.Basic;
     using Objects.Get.Episodes;
+    using Objects.Get.Lists;
     using Objects.Get.Shows;
     using Objects.Get.Users;
-    using Objects.Get.Users.Lists;
     using Objects.Post.Shows;
     using Requests.Handler;
     using Requests.Parameters;

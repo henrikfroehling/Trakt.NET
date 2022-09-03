@@ -1,10 +1,10 @@
 ﻿namespace TraktNet.Objects.Basic.Json.Writer
 {
     using Get.Episodes.Json.Writer;
+    using Get.Lists.Json.Writer;
     using Get.Movies.Json.Writer;
     using Get.People.Json.Writer;
     using Get.Shows.Json.Writer;
-    using Get.Users.Lists.Json.Writer;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;

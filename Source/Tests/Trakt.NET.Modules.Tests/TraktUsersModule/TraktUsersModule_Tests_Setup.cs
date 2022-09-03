@@ -7,13 +7,13 @@
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Users.CustomListItems;
+    using TraktNet.Objects.Post.Users.PersonalListItems;
     using TraktNet.Objects.Post.Users.HiddenItems;
 
     public partial class TraktUsersModule_Tests
     {
-        private ITraktUserCustomListItemsPost AddCustomListItemsPost { get; }
-        private ITraktUserCustomListItemsPost RemoveCustomListItemsPost { get; }
+        private ITraktUserPersonalListItemsPost AddPersonalListItemsPost { get; }
+        private ITraktUserPersonalListItemsPost RemovePersonalListItemsPost { get; }
         private string GetHiddenItemsUri { get; }
         private string HistoryStartAt { get; }
         private string HistoryEndAt { get; }
@@ -27,8 +27,8 @@
 
         public TraktUsersModule_Tests()
         {
-            AddCustomListItemsPost = SetupAddCustomListItemsPost();
-            RemoveCustomListItemsPost = SetupRemoveCustomListItemsPost();
+            AddPersonalListItemsPost = SetupAddPersonalListItemsPost();
+            RemovePersonalListItemsPost = SetupRemovePersonalListItemsPost();
             GetHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}";
             HistoryStartAt = START_AT.ToTraktLongDateTimeString();
             HistoryEndAt = END_AT.ToTraktLongDateTimeString();
@@ -40,52 +40,52 @@
             HiddenItemsPost = SetupHiddenItemsPost();
         }
 
-        private ITraktUserCustomListItemsPost SetupAddCustomListItemsPost()
+        private ITraktUserPersonalListItemsPost SetupAddPersonalListItemsPost()
         {
-            return new TraktUserCustomListItemsPost
+            return new TraktUserPersonalListItemsPost
             {
-                Movies = new List<ITraktUserCustomListItemsPostMovie>()
+                Movies = new List<ITraktUserPersonalListItemsPostMovie>()
                 {
-                    new TraktUserCustomListItemsPostMovie
+                    new TraktUserPersonalListItemsPostMovie
                     {
                         Ids = new TraktMovieIds { Trakt = 1 },
                     },
-                    new TraktUserCustomListItemsPostMovie
+                    new TraktUserPersonalListItemsPostMovie
                     {
                         Ids = new TraktMovieIds { Imdb = "tt0000111" }
                     }
                 },
-                Shows = new List<ITraktUserCustomListItemsPostShow>()
+                Shows = new List<ITraktUserPersonalListItemsPostShow>()
                 {
-                    new TraktUserCustomListItemsPostShow
+                    new TraktUserPersonalListItemsPostShow
                     {
                         Ids = new TraktShowIds { Trakt = 1 }
                     },
-                    new TraktUserCustomListItemsPostShow
+                    new TraktUserPersonalListItemsPostShow
                     {
-                        Seasons = new List<ITraktUserCustomListItemsPostShowSeason>()
+                        Seasons = new List<ITraktUserPersonalListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsPostShowSeason
+                            new TraktUserPersonalListItemsPostShowSeason
                             {
                                 Number = 1
                             }
                         },
                         Ids = new TraktShowIds { Trakt = 2 }
                     },
-                    new TraktUserCustomListItemsPostShow
+                    new TraktUserPersonalListItemsPostShow
                     {
-                        Seasons = new List<ITraktUserCustomListItemsPostShowSeason>()
+                        Seasons = new List<ITraktUserPersonalListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsPostShowSeason
+                            new TraktUserPersonalListItemsPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<ITraktUserCustomListItemsPostShowEpisode>()
+                                Episodes = new List<ITraktUserPersonalListItemsPostShowEpisode>()
                                 {
-                                    new TraktUserCustomListItemsPostShowEpisode
+                                    new TraktUserPersonalListItemsPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktUserCustomListItemsPostShowEpisode
+                                    new TraktUserPersonalListItemsPostShowEpisode
                                     {
                                         Number = 2
                                     }
@@ -113,52 +113,52 @@
             };
         }
 
-        private ITraktUserCustomListItemsPost SetupRemoveCustomListItemsPost()
+        private ITraktUserPersonalListItemsPost SetupRemovePersonalListItemsPost()
         {
-            return new TraktUserCustomListItemsPost
+            return new TraktUserPersonalListItemsPost
             {
-                Movies = new List<ITraktUserCustomListItemsPostMovie>()
+                Movies = new List<ITraktUserPersonalListItemsPostMovie>()
                 {
-                    new TraktUserCustomListItemsPostMovie
+                    new TraktUserPersonalListItemsPostMovie
                     {
                         Ids = new TraktMovieIds { Trakt = 1 },
                     },
-                    new TraktUserCustomListItemsPostMovie
+                    new TraktUserPersonalListItemsPostMovie
                     {
                         Ids = new TraktMovieIds { Imdb = "tt0000111" }
                     }
                 },
-                Shows = new List<ITraktUserCustomListItemsPostShow>()
+                Shows = new List<ITraktUserPersonalListItemsPostShow>()
                 {
-                    new TraktUserCustomListItemsPostShow
+                    new TraktUserPersonalListItemsPostShow
                     {
                         Ids = new TraktShowIds { Trakt = 1 }
                     },
-                    new TraktUserCustomListItemsPostShow
+                    new TraktUserPersonalListItemsPostShow
                     {
-                        Seasons = new List<ITraktUserCustomListItemsPostShowSeason>()
+                        Seasons = new List<ITraktUserPersonalListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsPostShowSeason
+                            new TraktUserPersonalListItemsPostShowSeason
                             {
                                 Number = 1
                             }
                         },
                         Ids = new TraktShowIds { Trakt = 2 }
                     },
-                    new TraktUserCustomListItemsPostShow
+                    new TraktUserPersonalListItemsPostShow
                     {
-                        Seasons = new List<ITraktUserCustomListItemsPostShowSeason>()
+                        Seasons = new List<ITraktUserPersonalListItemsPostShowSeason>()
                         {
-                            new TraktUserCustomListItemsPostShowSeason
+                            new TraktUserPersonalListItemsPostShowSeason
                             {
                                 Number = 1,
-                                Episodes = new List<ITraktUserCustomListItemsPostShowEpisode>()
+                                Episodes = new List<ITraktUserPersonalListItemsPostShowEpisode>()
                                 {
-                                    new TraktUserCustomListItemsPostShowEpisode
+                                    new TraktUserPersonalListItemsPostShowEpisode
                                     {
                                         Number = 1
                                     },
-                                    new TraktUserCustomListItemsPostShowEpisode
+                                    new TraktUserPersonalListItemsPostShowEpisode
                                     {
                                         Number = 2
                                     }
