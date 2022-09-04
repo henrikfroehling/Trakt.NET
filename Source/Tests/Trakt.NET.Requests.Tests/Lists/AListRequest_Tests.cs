@@ -26,25 +26,33 @@
         [Fact]
         public void Test_AistRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new ListRequestMock { Id = 1 };
+            var request = new ListRequestMock { Id = "123" };
 
             request.GetUriPathParameters().Should().NotBeNull()
                                                    .And.HaveCount(1)
                                                    .And.Contain(new Dictionary<string, object>
                                                    {
-                                                       ["id"] = "1"
+                                                       ["id"] = "123"
                                                    });
         }
 
         [Fact]
         public void Test_AListRequest_Validate_Throws_Exceptions()
         {
-            var requestMock = new ListRequestMock { Id = -1 };
+            // id is null
+            var requestMock = new ListRequestMock();
 
             Action act = () => requestMock.Validate();
+            act.Should().Throw<ArgumentNullException>();
+
+            // empty id
+            requestMock = new ListRequestMock { Id = string.Empty };
+
+            act = () => requestMock.Validate();
             act.Should().Throw<ArgumentException>();
 
-            requestMock = new ListRequestMock { Id = 0 };
+            // id with spaces
+            requestMock = new ListRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
             act.Should().Throw<ArgumentException>();

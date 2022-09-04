@@ -95,7 +95,7 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list/get-list">"Trakt API Doc - Lists: Get List"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="listId">The list's Trakt-Id.</param>
+        /// <param name="listIdOrSlug">The list's Trakt-Id or -Slug. See also <seealso cref="ITraktListIds" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -103,13 +103,13 @@
         /// <returns>An <see cref="ITraktList" /> instance with the queried list's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given listId is less or equal to 0.</exception>
-        public Task<TraktResponse<ITraktList>> GetListAsync(int listId, CancellationToken cancellationToken = default)
+        public Task<TraktResponse<ITraktList>> GetListAsync(string listIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SingleListRequest
             {
-                Id = listId
+                Id = listIdOrSlug
             },
             cancellationToken);
         }

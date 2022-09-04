@@ -5,38 +5,34 @@
         private const uint PAGE = 2;
         private const uint LIMIT = 4;
         private const int ITEM_COUNT = 2;
-        private const int SINGLE_LIST_ID = 55;
+        private const string SINGLE_LIST_ID = "55";
 
         private const string SINGLE_LIST_JSON =
             @"{
-                ""like_count"": 1004,
-                ""comment_count"": 71,
-                ""list"": {
-                  ""name"": ""Best Mindfucks"",
-                  ""description"": ""What’s a mindfuck? A movie that plays with your mind, confuses you, and leads you on. It’s not just a movie with a twist ending. Mindfucks are borderline-incoherent, dreamlike, and surreal."",
-                  ""privacy"": ""public"",
-                  ""display_numbers"": false,
-                  ""allow_comments"": true,
-                  ""sort_by"": ""rank"",
-                  ""sort_how"": ""asc"",
-                  ""created_at"": ""2012-06-30T23:29:30.000Z"",
-                  ""updated_at"": ""2018-05-28T10:01:41.000Z"",
-                  ""item_count"": 116,
-                  ""comment_count"": 71,
-                  ""likes"": 1004,
+                ""name"": ""Star Wars in machete order"",
+                ""description"": ""Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI."",
+                ""privacy"": ""public"",
+                ""display_numbers"": true,
+                ""allow_comments"": false,
+                ""sort_by"": ""rank"",
+                ""sort_how"": ""asc"",
+                ""created_at"": ""2014-10-11T17:00:54.000Z"",
+                ""updated_at"": ""2014-11-09T17:00:54.000Z"",
+                ""item_count"": 5,
+                ""comment_count"": 1,
+                ""likes"": 2,
+                ""ids"": {
+                  ""trakt"": 55,
+                  ""slug"": ""star-wars-in-machete-order""
+                },
+                ""user"": {
+                  ""username"": ""sean"",
+                  ""private"": false,
+                  ""name"": ""Sean Rudford"",
+                  ""vip"": true,
+                  ""vip_ep"": false,
                   ""ids"": {
-                    ""trakt"": 800238,
-                    ""slug"": ""best-mindfucks""
-                  },
-                  ""user"": {
-                    ""username"": ""BenFranklin"",
-                    ""private"": false,
-                    ""name"": ""Ben"",
-                    ""vip"": true,
-                    ""vip_ep"": false,
-                    ""ids"": {
-                      ""slug"": ""benfranklin""
-                    }
+                    ""slug"": ""sean""
                   }
                 }
               }";
