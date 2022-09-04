@@ -119,7 +119,7 @@
         /// <summary>
         /// Gets the items on a single list.
         /// <para>
-        /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list-likes/get-items-on-a-list">"Trakt API Doc - Lists: List Items"</a> for more information.
+        /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list-items/get-items-on-a-list">"Trakt API Doc - Lists: List Items"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="listIdOrSlug">The id or slug of the list, for which the items should be queried.</param>
