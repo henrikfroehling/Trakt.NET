@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Enums;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Lists;
     using TraktNet.Responses;
@@ -14,19 +15,48 @@
     [Category("Modules.Lists")]
     public partial class TraktListsModule_Tests
     {
-        private readonly string GET_LIST_URI = $"lists/{SINGLE_LIST_ID}";
+        private readonly string GET_LIST_URI = $"lists/{LIST_ID}";
 
         [Fact]
         public async Task Test_TraktListsModule_GetList()
         {
             TraktClient client = TestUtility.GetMockClient(GET_LIST_URI, SINGLE_LIST_JSON);
 
-            TraktResponse<ITraktList> response = await client.Lists.GetListAsync(SINGLE_LIST_ID);
+            TraktResponse<ITraktList> response = await client.Lists.GetListAsync(LIST_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull();
+
+            ITraktList responseValue = response.Value;
+
+            responseValue.Should().NotBeNull();
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be("rank");
+            responseValue.SortHow.Should().Be("asc");
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+
+            responseValue.User.Should().NotBeNull();
+            responseValue.User.Username.Should().Be("sean");
+            responseValue.User.IsPrivate.Should().BeFalse();
+            responseValue.User.Name.Should().Be("Sean Rudford");
+            responseValue.User.IsVIP.Should().BeTrue();
+            responseValue.User.IsVIP_EP.Should().BeFalse();
+            responseValue.User.Ids.Should().NotBeNull();
+            responseValue.User.Ids.Slug.Should().Be("sean");
         }
 
         [Theory]
@@ -52,7 +82,7 @@
 
             try
             {
-                await client.Lists.GetListAsync(SINGLE_LIST_ID);
+                await client.Lists.GetListAsync(LIST_ID);
                 Assert.False(true);
             }
             catch (Exception exception)
@@ -66,10 +96,13 @@
         {
             TraktClient client = TestUtility.GetMockClient(GET_LIST_URI, SINGLE_LIST_JSON);
 
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Lists.GetListAsync(-1);
+            Func<Task<TraktResponse<ITraktList>>> act = () => client.Lists.GetListAsync(null);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Lists.GetListAsync(string.Empty);
             await act.Should().ThrowAsync<ArgumentException>();
 
-            act = () => client.Lists.GetListAsync(0);
+            act = () => client.Lists.GetListAsync("movie id");
             await act.Should().ThrowAsync<ArgumentException>();
         }
     }

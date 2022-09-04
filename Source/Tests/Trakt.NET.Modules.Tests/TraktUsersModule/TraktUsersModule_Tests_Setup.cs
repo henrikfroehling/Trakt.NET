@@ -1,14 +1,13 @@
 ﻿namespace TraktNet.Modules.Tests.TraktUsersModule
 {
     using System.Collections.Generic;
-    using TraktNet.Enums;
     using TraktNet.Extensions;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Users.PersonalListItems;
     using TraktNet.Objects.Post.Users.HiddenItems;
+    using TraktNet.Objects.Post.Users.PersonalListItems;
 
     public partial class TraktUsersModule_Tests
     {
@@ -17,10 +16,7 @@
         private string GetHiddenItemsUri { get; }
         private string HistoryStartAt { get; }
         private string HistoryEndAt { get; }
-        private TraktListItemType MulitpleListItemTypes { get; }
         private string[] MulitpleListItemTypesUriNames { get; }
-        private string MulitpleListItemTypesEncoded { get; }
-        private string GetMulitpleListItemTypes { get; }
         private string AddHiddenItemsUri { get; }
         private string RemoveHiddenItemsUri { get; }
         private ITraktUserHiddenItemsPost HiddenItemsPost { get; }
@@ -32,9 +28,7 @@
             GetHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}";
             HistoryStartAt = START_AT.ToTraktLongDateTimeString();
             HistoryEndAt = END_AT.ToTraktLongDateTimeString();
-            MulitpleListItemTypes = LIST_ITEM_TYPE_MOVIE | LIST_ITEM_TYPE_SHOW;
             MulitpleListItemTypesUriNames = new string[] { LIST_ITEM_TYPE_MOVIE.UriName, LIST_ITEM_TYPE_SHOW.UriName };
-            MulitpleListItemTypesEncoded = string.Join(ENCODED_COMMA, MulitpleListItemTypesUriNames);
             AddHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}";
             RemoveHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}/remove";
             HiddenItemsPost = SetupHiddenItemsPost();
