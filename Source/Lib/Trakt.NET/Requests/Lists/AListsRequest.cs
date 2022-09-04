@@ -2,7 +2,7 @@
 {
     using Base;
     using Interfaces;
-    using Objects.Get.Users.Lists;
+    using Objects.Get.Lists;
     using System.Collections.Generic;
 
     internal abstract class AListsRequest : AGetRequest<ITraktList>, ISupportsPagination

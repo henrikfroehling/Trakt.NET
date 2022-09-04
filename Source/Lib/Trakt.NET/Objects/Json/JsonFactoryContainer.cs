@@ -12,6 +12,8 @@
     using Get.Episodes.Json.Factories;
     using Get.History;
     using Get.History.Json.Factories;
+    using Get.Lists;
+    using Get.Lists.Json.Factories;
     using Get.Movies;
     using Get.Movies.Json.Factories;
     using Get.People;
@@ -30,8 +32,6 @@
     using Get.Syncs.Playback.Json.Factories;
     using Get.Users;
     using Get.Users.Json.Factories;
-    using Get.Users.Lists;
-    using Get.Users.Lists.Json.Factories;
     using Get.Users.Statistics;
     using Get.Users.Statistics.Json.Factories;
     using Get.Watched;
@@ -81,15 +81,15 @@
     using Post.Syncs.Watchlist.Responses;
     using Post.Syncs.Watchlist.Responses.Json.Factories;
     using Post.Users;
-    using Post.Users.CustomListItems;
-    using Post.Users.CustomListItems.Json.Factories;
-    using Post.Users.CustomListItems.Responses;
-    using Post.Users.CustomListItems.Responses.Json.Factories;
     using Post.Users.HiddenItems;
     using Post.Users.HiddenItems.Json.Factories;
     using Post.Users.HiddenItems.Responses;
     using Post.Users.HiddenItems.Responses.Json.Factories;
     using Post.Users.Json.Factories;
+    using Post.Users.PersonalListItems;
+    using Post.Users.PersonalListItems.Json.Factories;
+    using Post.Users.PersonalListItems.Responses;
+    using Post.Users.PersonalListItems.Responses.Json.Factories;
     using Post.Users.Responses;
     using Post.Users.Responses.Json.Factories;
     using System;
@@ -359,18 +359,18 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistPostResponse), new SyncWatchlistPostResponseJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistRemovePostResponse), new SyncWatchlistRemovePostResponseJsonIOFactory());
 
-            // user custom list items post objects
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPost), new UserCustomListItemsPostJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostMovie), new UserCustomListItemsPostMovieJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostShow), new UserCustomListItemsPostShowJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostShowEpisode), new UserCustomListItemsPostShowEpisodeJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostShowSeason), new UserCustomListItemsPostShowSeasonJsonIOFactory());
+            // user personal list items post objects
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPost), new UserPersonalListItemsPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostMovie), new UserPersonalListItemsPostMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShow), new UserPersonalListItemsPostShowJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShowEpisode), new UserPersonalListItemsPostShowEpisodeJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShowSeason), new UserPersonalListItemsPostShowSeasonJsonIOFactory());
 
-            // user custom list items post response objects
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostResponse), new UserCustomListItemsPostResponseJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostResponseGroup), new UserCustomListItemsPostResponseGroupJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsPostResponseNotFoundGroup), new UserCustomListItemsPostResponseNotFoundGroupJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListItemsRemovePostResponse), new UserCustomListItemsRemovePostResponseJsonIOFactory());
+            // user personal list items post response objects
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponse), new UserPersonalListItemsPostResponseJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponseGroup), new UserPersonalListItemsPostResponseGroupJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponseNotFoundGroup), new UserPersonalListItemsPostResponseNotFoundGroupJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsRemovePostResponse), new UserPersonalListItemsRemovePostResponseJsonIOFactory());
 
             // user hidden items post objects
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPost), new UserHiddenItemsPostJsonIOFactory());
@@ -408,7 +408,7 @@
             s_jsonIOFactories.Add(typeof(ITraktListLike), new ListLikeJsonIOFactory());
 
             // user post objects
-            s_jsonIOFactories.Add(typeof(ITraktUserCustomListPost), new UserCustomListPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListPost), new UserCustomListPostJsonIOFactory());
 
             // user response post objects
             s_jsonIOFactories.Add(typeof(ITraktUserFollowUserPostResponse), new UserFollowUserPostResponseJsonIOFactory());

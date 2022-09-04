@@ -2,10 +2,10 @@
 {
     using Enums;
     using Get.Episodes;
+    using Get.Lists;
     using Get.Movies;
     using Get.People;
     using Get.Shows;
-    using Get.Users.Lists;
 
     /// <summary>A Trakt search result.</summary>
     public class TraktSearchResult : ITraktSearchResult

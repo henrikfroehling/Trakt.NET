@@ -2,10 +2,10 @@
 {
     using Enums;
     using Get.Episodes;
+    using Get.Lists;
     using Get.Movies;
     using Get.Seasons;
     using Get.Shows;
-    using Get.Users.Lists;
 
     /// <summary>Represents a Trakt comment object item.</summary>
     public interface ITraktCommentItem

@@ -3,9 +3,9 @@
     using Enums;
     using Exceptions;
     using Objects.Basic;
+    using Objects.Get.Lists;
     using Objects.Get.Movies;
     using Objects.Get.Users;
-    using Objects.Get.Users.Lists;
     using Requests.Handler;
     using Requests.Movies;
     using Requests.Parameters;

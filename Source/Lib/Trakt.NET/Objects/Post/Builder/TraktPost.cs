@@ -18,7 +18,7 @@
 
         public static ITraktSyncWatchlistPostBuilder NewSyncWatchlistPost() => new SyncWatchlistPostBuilder();
 
-        public static ITraktUserCustomListItemsPostBuilder NewUserCustomListItemsPost() => new UserCustomListItemsPostBuilder();
+        public static ITraktUserPersonalListItemsPostBuilder NewUserPersonalListItemsPost() => new UserPersonalListItemsPostBuilder();
 
         public static ITraktUserHiddenItemsPostBuilder NewUserHiddenItemsPost() => new UserHiddenItemsPostBuilder();
     }

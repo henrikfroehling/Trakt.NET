@@ -2,9 +2,9 @@
 {
     using Enums;
     using Exceptions;
+    using Objects.Get.Lists;
     using Objects.Get.People;
     using Objects.Get.People.Credits;
-    using Objects.Get.Users.Lists;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.People;
