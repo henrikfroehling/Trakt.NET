@@ -105,7 +105,7 @@
                 var idRequest = _request as IHasId<int>;
 
                 requestMessage.ObjectId = idRequest?.Id.ToString();
-                requestMessage.RequestObjectType = idRequest.RequestObjectType;
+                requestMessage.RequestObjectType = idRequest?.RequestObjectType;
             }
 
             IDictionary<string, object> requestUriParameters = _request.GetUriPathParameters();
