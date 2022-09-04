@@ -62,22 +62,6 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_GetPersonalListItems_MultipleTypes()
-        {
-            TraktClient client = TestUtility.GetMockClient(
-                $"{GET_PERSONAL_LIST_ITEMS_URI}/{MulitpleListItemTypesEncoded}",
-                LIST_ITEMS_JSON);
-
-            TraktPagedResponse<ITraktListItem> response =
-                await client.Users.GetPersonalListItemsAsync(USERNAME, LIST_ID, MulitpleListItemTypes);
-
-            response.Should().NotBeNull();
-            response.IsSuccess.Should().BeTrue();
-            response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(5);
-        }
-
-        [Fact]
         public async Task Test_TraktUsersModule_GetPersonalListItems_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient(
