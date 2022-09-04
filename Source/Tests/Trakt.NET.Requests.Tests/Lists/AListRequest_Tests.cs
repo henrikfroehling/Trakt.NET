@@ -24,16 +24,23 @@
         }
 
         [Fact]
+        public void Test_AListRequest_Returns_Valid_RequestObjectType()
+        {
+            var requestMock = new ListRequestMock();
+            requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
+        }
+
+        [Fact]
         public void Test_AistRequest_Returns_Valid_UriPathParameters()
         {
-            var request = new ListRequestMock { Id = "123" };
+            var requestMock = new ListRequestMock { Id = "123" };
 
-            request.GetUriPathParameters().Should().NotBeNull()
-                                                   .And.HaveCount(1)
-                                                   .And.Contain(new Dictionary<string, object>
-                                                   {
-                                                       ["id"] = "123"
-                                                   });
+            requestMock.GetUriPathParameters().Should().NotBeNull()
+                                                       .And.HaveCount(1)
+                                                       .And.Contain(new Dictionary<string, object>
+                                                       {
+                                                           ["id"] = "123"
+                                                       });
         }
 
         [Fact]

@@ -9,6 +9,7 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Enums;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to lists.
@@ -92,7 +93,7 @@
         /// Gets a <see cref="ITraktList" /> with the given Trakt-Id.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list/get-list">"Trakt API Doc - Lists: Get List"</a> for more information.
+        /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list/get-list">"Trakt API Doc - Lists: List"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="listIdOrSlug">The list's Trakt-Id or -Slug. See also <seealso cref="ITraktListIds" />.</param>
@@ -102,7 +103,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktList" /> instance with the queried list's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given listId is less or equal to 0.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given listId is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given listId is empty or contains spaces.</exception>
         public Task<TraktResponse<ITraktList>> GetListAsync(string listIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -110,6 +112,44 @@
             return requestHandler.ExecuteSingleItemRequestAsync(new SingleListRequest
             {
                 Id = listIdOrSlug
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets the items on a single list.
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list-likes/get-items-on-a-list">"Trakt API Doc - Lists: List Items"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="listIdOrSlug">The id or slug of the list, for which the items should be queried.</param>
+        /// <param name="listItemType">Determines, which type of list items should be queried. See also <seealso cref="TraktListItemType" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the list items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktListItem" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given listIdOrSlug is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given listIdOrSlug is empty or contains spaces.</exception>
+        public Task<TraktPagedResponse<ITraktListItem>> GetListItemsAsync(string listIdOrSlug, TraktListItemType listItemType = null,
+                                                                          TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null,
+                                                                          CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new ListItemsRequest
+            {
+                Id = listIdOrSlug,
+                Type = listItemType,
+                ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
             },
             cancellationToken);
         }

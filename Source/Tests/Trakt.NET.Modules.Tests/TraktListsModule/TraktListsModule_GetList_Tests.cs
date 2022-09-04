@@ -15,14 +15,14 @@
     [Category("Modules.Lists")]
     public partial class TraktListsModule_Tests
     {
-        private readonly string GET_LIST_URI = $"lists/{SINGLE_LIST_ID}";
+        private readonly string GET_LIST_URI = $"lists/{LIST_ID}";
 
         [Fact]
         public async Task Test_TraktListsModule_GetList()
         {
             TraktClient client = TestUtility.GetMockClient(GET_LIST_URI, SINGLE_LIST_JSON);
 
-            TraktResponse<ITraktList> response = await client.Lists.GetListAsync(SINGLE_LIST_ID);
+            TraktResponse<ITraktList> response = await client.Lists.GetListAsync(LIST_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -82,7 +82,7 @@
 
             try
             {
-                await client.Lists.GetListAsync(SINGLE_LIST_ID);
+                await client.Lists.GetListAsync(LIST_ID);
                 Assert.False(true);
             }
             catch (Exception exception)
