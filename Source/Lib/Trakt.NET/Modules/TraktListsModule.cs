@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Modules
 {
+    using Enums;
     using Exceptions;
     using Objects.Get.Lists;
     using Requests.Handler;
@@ -9,7 +10,6 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using TraktNet.Enums;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to lists.
@@ -117,7 +117,7 @@
         }
 
         /// <summary>
-        /// Gets the items on a single list.
+        /// Gets the items on a list.
         /// <para>
         /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list-items/get-items-on-a-list">"Trakt API Doc - Lists: List Items"</a> for more information.
         /// </para>
@@ -148,6 +148,36 @@
                 Id = listIdOrSlug,
                 Type = listItemType,
                 ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets the users who liked a list.
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list-likes/get-all-users-who-liked-a-list">"Trakt API Doc - Lists: List Likes"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="listIdOrSlug">The id or slug of the list, for which the likes should be queried.</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktListLike" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given listIdOrSlug is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given listIdOrSlug is empty or contains spaces.</exception>
+        public Task<TraktPagedResponse<ITraktListLike>> GetListLikesAsync(string listIdOrSlug, TraktPagedParameters pagedParameters = null,
+                                                                          CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new ListLikesRequest
+            {
+                Id = listIdOrSlug,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             },

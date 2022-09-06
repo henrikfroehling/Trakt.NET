@@ -14,13 +14,13 @@
     [Category("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
-        private readonly string GET_PERSONAL_LISTS_URI = $"users/{USERNAME}/lists";
+        private readonly string GET_LISTS_COLLABORATIONS_URI = $"users/{USERNAME}/lists/collaborations";
 
         [Fact]
-        public async Task Test_TraktUsersModule_GetPersonalLists()
+        public async Task Test_TraktUsersModule_GetListCollaborations()
         {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LISTS_URI, LISTS_JSON);
-            TraktListResponse<ITraktList> response = await client.Users.GetPersonalListsAsync(USERNAME);
+            TraktClient client = TestUtility.GetMockClient(GET_LISTS_COLLABORATIONS_URI, LISTS_JSON);
+            TraktListResponse<ITraktList> response = await client.Users.GetListCollaborationsAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -29,12 +29,12 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_GetPersonalLists_With_OAuth_Enfored()
+        public async Task Test_TraktUsersModule_GetListCollaborations_With_OAuth_Enfored()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_PERSONAL_LISTS_URI, LISTS_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_LISTS_COLLABORATIONS_URI, LISTS_JSON);
             client.Configuration.ForceAuthorization = true;
 
-            TraktListResponse<ITraktList> response = await client.Users.GetPersonalListsAsync(USERNAME);
+            TraktListResponse<ITraktList> response = await client.Users.GetListCollaborationsAsync(USERNAME);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -59,13 +59,13 @@
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktUsersModule_GetPersonalLists_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktUsersModule_GetListCollaborations_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LISTS_URI, statusCode);
+            TraktClient client = TestUtility.GetMockClient(GET_LISTS_COLLABORATIONS_URI, statusCode);
 
             try
             {
-                await client.Users.GetPersonalListsAsync(USERNAME);
+                await client.Users.GetListCollaborationsAsync(USERNAME);
                 Assert.False(true);
             }
             catch (Exception exception)
@@ -75,17 +75,17 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_GetPersonalLists_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_GetListCollaborations_ArgumentExceptions()
         {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LISTS_URI, LISTS_JSON);
+            TraktClient client = TestUtility.GetMockClient(GET_LISTS_COLLABORATIONS_URI, LISTS_JSON);
 
-            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetPersonalListsAsync(null);
+            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetListCollaborationsAsync(null);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
-            act = () => client.Users.GetPersonalListsAsync(string.Empty);
+            act = () => client.Users.GetListCollaborationsAsync(string.Empty);
             await act.Should().ThrowAsync<ArgumentException>();
 
-            act = () => client.Users.GetPersonalListsAsync("user name");
+            act = () => client.Users.GetListCollaborationsAsync("user name");
             await act.Should().ThrowAsync<ArgumentException>();
         }
     }

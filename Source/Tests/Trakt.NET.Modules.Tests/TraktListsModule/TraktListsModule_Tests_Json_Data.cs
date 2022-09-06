@@ -12,6 +12,7 @@
         private readonly TraktListItemType LIST_ITEM_TYPE = TraktListItemType.Movie;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
         private const int LIST_ITEM_COUNT = 5;
+        private const int LIST_LIKES_COUNT = 2;
 
         private const string SINGLE_LIST_JSON =
             @"{
@@ -143,6 +144,36 @@
                       ""imdb"": ""nm1330560"",
                       ""tmdb"": 9828,
                       ""tvrage"": null
+                    }
+                  }
+                }
+              ]";
+
+        private const string LIST_LIKES_JSON =
+            @"[
+                {
+                  ""liked_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""user"": {
+                    ""username"": ""justin"",
+                    ""private"": false,
+                    ""name"": ""Justin Nemeth"",
+                    ""vip"": true,
+                    ""vip_ep"": true,
+                    ""ids"": {
+                      ""slug"": ""justin""
+                    }
+                  }
+                },
+                {
+                  ""liked_at"": ""2014-09-01T09:10:11.000Z"",
+                  ""user"": {
+                    ""username"": ""justin"",
+                    ""private"": false,
+                    ""name"": ""Justin Nemeth"",
+                    ""vip"": true,
+                    ""vip_ep"": true,
+                    ""ids"": {
+                      ""slug"": ""justin""
                     }
                   }
                 }
