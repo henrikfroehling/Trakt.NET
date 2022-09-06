@@ -1018,6 +1018,32 @@ namespace TraktNet.Modules
         }
 
         /// <summary>
+        /// Gets all lists a user can collaborate on.
+        /// <para>OAuth authorization optional.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/collaborations/get-all-lists-a-user-can-collaborate-on">"Trakt API Doc - Users: Collaborations"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which lists on which the user can collaborate on should be queried.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktList" /> instances.</returns>
+        /// <exception cref="ArgumentNullException">Thrown, if the given usernameOrSlug is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given usernameOrSlug is empty or contains spaces.</exception>
+        public Task<TraktListResponse<ITraktList>> GetListCollaborationsAsync(string usernameOrSlug, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteListRequestAsync(new UserListCollaborationsRequest
+            {
+                Username = usernameOrSlug
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets an user's followers.
         /// <para>OAuth authorization optional.</para>
         /// <para>
