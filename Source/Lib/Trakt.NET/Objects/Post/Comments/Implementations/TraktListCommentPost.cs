@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Comments
 {
-    using Get.Users.Lists;
+    using Get.Lists;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;

@@ -593,7 +593,7 @@
                 }
               ]";
 
-        private const string CUSTOM_LISTS_JSON =
+        private const string LISTS_JSON =
             @"[
                 {
                   ""name"": ""Star Wars in machete order"",

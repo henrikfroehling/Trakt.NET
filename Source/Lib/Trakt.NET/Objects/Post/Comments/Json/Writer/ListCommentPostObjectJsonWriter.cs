@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Comments.Json.Writer
 {
-    using Get.Users.Lists.Json.Writer;
+    using Get.Lists.Json.Writer;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;

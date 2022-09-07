@@ -10,11 +10,11 @@
     using TraktNet.Objects.Basic;
     using TraktNet.Objects.Basic.Json.Writer;
     using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Lists;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Get.Users;
-    using TraktNet.Objects.Get.Users.Lists;
     using Xunit;
 
     [Category("Objects.Basic.JsonWriter")]

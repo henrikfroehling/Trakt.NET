@@ -7,7 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Users.Lists;
+    using TraktNet.Objects.Get.Lists;
     using TraktNet.Objects.Post.Comments;
     using TraktNet.Objects.Post.Comments.Responses;
     using TraktNet.Responses;
