@@ -13,6 +13,9 @@
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
         private const int LIST_ITEM_COUNT = 5;
         private const int LIST_LIKES_COUNT = 2;
+        private const int LIST_COMMENTS_ITEM_COUNT = 2;
+        private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
+        private const uint LIST_COMMENTS_LIMIT = 4;
 
         private const string SINGLE_LIST_JSON =
             @"{
@@ -243,6 +246,48 @@
                         ""slug"": ""geekritique""
                       }
                     }
+                  }
+                }
+              ]";
+
+        private const string LIST_COMMENTS_JSON =
+            @"[
+                {
+                  ""id"": 8,
+                  ""parent_id"": 0,
+                  ""created_at"": ""2011-03-25T22:35:17.000Z"",
+                  ""updated_at"": ""2011-03-25T22:35:17.000Z"",
+                  ""comment"": ""Great episode!"",
+                  ""spoiler"": false,
+                  ""review"": false,
+                  ""replies"": 1,
+                  ""likes"": 0,
+                  ""user_rating"": 8,
+                  ""user"": {
+                    ""username"": ""sean"",
+                    ""private"": false,
+                    ""name"": ""Sean Rudford"",
+                    ""vip"": true,
+                    ""vip_ep"": false
+                  }
+                },
+                {
+                  ""id"": 9,
+                  ""parent_id"": 0,
+                  ""created_at"": ""2011-03-25T22:35:17.000Z"",
+                  ""updated_at"": ""2011-03-25T22:35:17.000Z"",
+                  ""comment"": ""Great episode!"",
+                  ""spoiler"": false,
+                  ""review"": false,
+                  ""replies"": 1,
+                  ""likes"": 0,
+                  ""user_rating"": 8,
+                  ""user"": {
+                    ""username"": ""sean"",
+                    ""private"": false,
+                    ""name"": ""Sean Rudford"",
+                    ""vip"": true,
+                    ""vip_ep"": false
                   }
                 }
               ]";
