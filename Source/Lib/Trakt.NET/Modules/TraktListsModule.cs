@@ -10,6 +10,7 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Objects.Basic;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to lists.
@@ -178,6 +179,45 @@
             return requestHandler.ExecutePagedRequestAsync(new ListLikesRequest
             {
                 Id = listIdOrSlug,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets top level comments for a list.
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list-comments/get-all-list-comments">"Trakt API Doc - Lists: List Comments"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="listIdOrSlug">The id or slug of the list, for which the comments should be queried.</param>
+        /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried list comments and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktComment" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given listIdOrSlug is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given listIdOrSlug is empty or contains spaces.</exception>
+        public Task<TraktPagedResponse<ITraktComment>> GetListCommentsAsync(string listIdOrSlug, TraktCommentSortOrder commentSortOrder = null,
+                                                                            TraktPagedParameters pagedParameters = null,
+                                                                            CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new ListCommentsRequest
+            {
+                Id = listIdOrSlug,
+                SortOrder = commentSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             },
