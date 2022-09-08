@@ -769,7 +769,7 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{int}"/> instance containing the queried updated movie ids and which also
+        /// An <see cref="TraktPagedResponse{ListItem}"/> instance containing the queried updated movie ids and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
         /// See also <seealso cref="TraktPagedResponse{ListItem}" />.

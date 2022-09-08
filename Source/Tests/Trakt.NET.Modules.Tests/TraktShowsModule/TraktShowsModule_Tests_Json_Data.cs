@@ -27,6 +27,7 @@
         private const string LANGUAGE_CODE = "en";
         private readonly TraktLastActivity LAST_ACTIVITY = TraktLastActivity.Collected;
         private readonly DateTime RESET_WATCHED_PROGRESS_AT = DateTime.UtcNow;
+        private const int UPDATED_IDS_COUNT = 4;
 
         private string ProgressHidden { get; }
         private string ProgressSpecials { get; }
@@ -64,6 +65,14 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95)
                 .Build();
+
+        private const string RECENTLY_UPDATED_SHOW_IDS_JSON =
+            @"[
+                1,
+                20,
+                34,
+                50
+              ]";
 
         private const string RESET_WATCHED_PROGRESS_POST_RESPONSE_JSON =
             @"{
