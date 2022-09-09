@@ -395,6 +395,7 @@
             s_jsonIOFactories.Add(typeof(ITraktUserIds), new UserIdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserImages), new UserImagesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserLikeItem), new UserLikeItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserSavedFilter), new UserSavedFilterJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserSettings), new UserSettingsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserWatchingItem), new UserWatchingItemJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktAccountSettings), new AccountSettingsJsonIOFactory());
