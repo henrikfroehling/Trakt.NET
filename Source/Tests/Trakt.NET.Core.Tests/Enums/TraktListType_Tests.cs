@@ -14,10 +14,10 @@
         {
             var allValues = TraktEnumeration.GetAll<TraktListType>();
 
-            allValues.Should().NotBeNull().And.HaveCount(5);
+            allValues.Should().NotBeNull().And.HaveCount(6);
             allValues.Should().Contain(new List<TraktListType>() { TraktListType.Unspecified, TraktListType.Personal,
                                                                    TraktListType.Official, TraktListType.Watchlist,
-                                                                   TraktListType.All });
+                                                                   TraktListType.Recommendations, TraktListType.All });
         }
     }
 }
