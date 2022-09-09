@@ -125,6 +125,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_NUMBER_ABSOLUTE = "number_abs";
         internal const string PROPERTY_NAME_OVERVIEW = "overview";
         internal const string PROPERTY_NAME_PARENT_ID = "parent_id";
+        internal const string PROPERTY_NAME_PATH = "path";
         internal const string PROPERTY_NAME_PAUSED_AT = "paused_at";
         internal const string PROPERTY_NAME_PENDING_AT = "pending_at";
         internal const string PROPERTY_NAME_PEOPLE = "people";
@@ -136,6 +137,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_PRIVATE = "private";
         internal const string PROPERTY_NAME_PRODUCTION = "production";
         internal const string PROPERTY_NAME_PROGRESS = "progress";
+        internal const string PROPERTY_NAME_QUERY = "query";
         internal const string PROPERTY_NAME_RANK = "rank";
         internal const string PROPERTY_NAME_RATED_AT = "rated_at";
         internal const string PROPERTY_NAME_RATING = "rating";
@@ -157,6 +159,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_RUNTIME = "runtime";
         internal const string PROPERTY_NAME_SCOPE = "scope";
         internal const string PROPERTY_NAME_SCORE = "score";
+        internal const string PROPERTY_NAME_SECTION = "section";
         internal const string PROPERTY_NAME_SEASON = "season";
         internal const string PROPERTY_NAME_SEASONS = "seasons";
         internal const string PROPERTY_NAME_SERIES_REGULAR = "series_regular";

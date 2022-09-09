@@ -167,6 +167,43 @@ namespace TraktNet.Modules
         }
 
         /// <summary>
+        /// Gets the saved filters a user has created.
+        /// <para>OAuth authorization required.</para>
+        /// <para>VIP Only.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/saved-filters/get-saved-filters">"Trakt API Doc - Users: Saved Filters"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="section">Determines, from which section the saved filters should be queried. See also <seealso cref="TraktFilterSection" />.</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktUserSavedFilter}"/> instance containing the queried saved filters and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktUserSavedFilter" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        public Task<TraktPagedResponse<ITraktUserSavedFilter>> GetSavedFiltersAsync(TraktFilterSection section = null,
+                                                                                    TraktPagedParameters pagedParameters = null,
+                                                                                    CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new UserSavedFiltersRequest
+            {
+                Section = section,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Adds items to an user's hidden list. Accepts shows, seasons and movies.
         /// <para>OAuth authorization required.</para>
         /// <para>

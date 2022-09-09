@@ -21,6 +21,7 @@
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
         private readonly DateTime TODAY = DateTime.UtcNow;
+        private const int UPDATED_IDS_COUNT = 4;
 
         private readonly ITraktMovieFilter FILTER = TraktFilterDirectory.MovieFilter
             .WithCertifications("TV-MA")
@@ -1138,6 +1139,14 @@
                     }
                   }
                 }
+              ]";
+
+        private const string RECENTLY_UPDATED_MOVIE_IDS_JSON =
+            @"[
+                1,
+                20,
+                34,
+                50
               ]";
 
         private const string TRENDING_MOVIES_JSON =
