@@ -63,6 +63,9 @@
         private const int RECOMMENDATIONS_LIMIT = 6;
         private const int LIST_LIKES_LIMIT = 3;
         private const int LIST_LIKES_ITEM_COUNT = 2;
+        private readonly TraktFilterSection FILTER_SECTION = TraktFilterSection.Movies;
+        private const int SAVED_FILTERS_COUNT = 2;
+        private const int SAVED_FILTERS_LIMIT = 4;
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 
@@ -704,6 +707,26 @@
                     ""vip"": true,
                     ""vip_ep"": false
                   }
+                }
+              ]";
+
+        private const string SAVED_FILTERS_JSON =
+            @"[
+                {
+                  ""id"": 1,
+                  ""section"": ""movies"",
+                  ""name"": ""Movies: IMDB + TMDB ratings"",
+                  ""path"": ""/movies/recommended/weekly"",
+                  ""query"": ""imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0"",
+                  ""updated_at"": ""2022-06-15T11:15:06.000Z""
+                },
+                {
+                  ""id"": 2,
+                  ""section"": ""shows"",
+                  ""name"": ""Shows: US + Disney+"",
+                  ""path"": ""/shows/popular"",
+                  ""query"": ""watchnow=disney_plus&countries=us"",
+                  ""updated_at"": ""2022-06-15T12:15:06.000Z""
                 }
               ]";
 

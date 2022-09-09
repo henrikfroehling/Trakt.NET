@@ -15,8 +15,11 @@
         /// <summary>The list type for watchlists.</summary>
         public static TraktListType Watchlist { get; } = new TraktListType(4, "watchlists", "watchlists", "Watchlists");
 
-        /// <summary>The list type for personal, official lists and watchlists together.</summary>
-        public static TraktListType All { get; } = new TraktListType(8, "all ", "all ", "All");
+        /// <summary>The list type for recommendations.</summary>
+        public static TraktListType Recommendations { get; } = new TraktListType(8, "recommendations", "recommendations", "Recommendations");
+
+        /// <summary>The list type for personal, official lists, watchlists and recommendations together.</summary>
+        public static TraktListType All { get; } = new TraktListType(16, "all ", "all ", "All");
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktListType" /> class.<para />
