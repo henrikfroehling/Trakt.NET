@@ -17,5 +17,11 @@
 
         /// <summary>Gets or sets, whether Slack connection is enabled.</summary>
         bool? Slack { get; set; }
+
+        /// <summary>Gets or sets, whether Facebook connection is enabled.</summary>
+        bool? Facebook { get; set; }
+
+        /// <summary>Gets or sets, whether Apple connection is enabled.</summary>
+        bool? Apple { get; set; }
     }
 }

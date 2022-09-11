@@ -42,6 +42,18 @@
                 await jsonWriter.WriteValueAsync(obj.Slack, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Facebook.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_FACEBOOK, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Facebook, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Apple.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_APPLE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Apple, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

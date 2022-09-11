@@ -98,6 +98,36 @@
         }
 
         [Fact]
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Only_Facebook_Property()
+        {
+            ITraktConnections traktConnections = new TraktConnections
+            {
+                Facebook = true
+            };
+
+            using var stringWriter = new StringWriter();
+            using var jsonWriter = new JsonTextWriter(stringWriter);
+            var traktJsonWriter = new ConnectionsObjectJsonWriter();
+            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
+            stringWriter.ToString().Should().Be(@"{""facebook"":true}");
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Only_Apple_Property()
+        {
+            ITraktConnections traktConnections = new TraktConnections
+            {
+                Apple = true
+            };
+
+            using var stringWriter = new StringWriter();
+            using var jsonWriter = new JsonTextWriter(stringWriter);
+            var traktJsonWriter = new ConnectionsObjectJsonWriter();
+            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
+            stringWriter.ToString().Should().Be(@"{""apple"":true}");
+        }
+
+        [Fact]
         public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Complete()
         {
             ITraktConnections traktConnections = new TraktConnections
@@ -106,7 +136,9 @@
                 Google = true,
                 Tumblr = true,
                 Medium = true,
-                Slack = true
+                Slack = true,
+                Facebook = true,
+                Apple = true
             };
 
             using var stringWriter = new StringWriter();
@@ -114,7 +146,8 @@
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
             await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
             stringWriter.ToString().Should().Be(@"{""twitter"":true,""google"":true," +
-                                                @"""tumblr"":true,""medium"":true,""slack"":true}");
+                                                @"""tumblr"":true,""medium"":true,""slack"":true," +
+                                                @"""facebook"":true,""apple"":true}");
         }
     }
 }

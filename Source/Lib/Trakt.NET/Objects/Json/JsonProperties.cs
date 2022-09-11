@@ -16,6 +16,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_ALLOW_COMMENTS = "allow_comments";
         internal const string PROPERTY_NAME_APP_DATE = "app_date";
         internal const string PROPERTY_NAME_APP_VERSION = "app_version";
+        internal const string PROPERTY_NAME_APPLE = "apple";
         internal const string PROPERTY_NAME_APPROVED_AT = "approved_at";
         internal const string PROPERTY_NAME_ART = "art";
         internal const string PROPERTY_NAME_AUDIO = "audio";
