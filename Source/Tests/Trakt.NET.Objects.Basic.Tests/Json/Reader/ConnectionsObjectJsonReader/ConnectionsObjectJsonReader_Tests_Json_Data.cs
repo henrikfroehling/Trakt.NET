@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Reader
 {
-    public partial class SharingObjectJsonReader_Tests
+    public partial class ConnectionsObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{

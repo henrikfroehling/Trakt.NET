@@ -5,15 +5,15 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class SharingObjectJsonReader : AObjectJsonReader<ITraktSharing>
+    internal class ConnectionsObjectJsonReader : AObjectJsonReader<ITraktConnections>
     {
-        public override async Task<ITraktSharing> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<ITraktConnections> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                ITraktSharing traktSharing = new TraktSharing();
+                ITraktConnections traktSharing = new TraktConnections();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -45,7 +45,7 @@
                 return traktSharing;
             }
 
-            return await Task.FromResult(default(ITraktSharing));
+            return await Task.FromResult(default(ITraktConnections));
         }
     }
 }

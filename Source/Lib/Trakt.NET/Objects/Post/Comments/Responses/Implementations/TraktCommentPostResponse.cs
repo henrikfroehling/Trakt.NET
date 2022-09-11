@@ -7,9 +7,9 @@
     {
         /// <summary>
         /// Gets or sets the sharing options of the comment post response.
-        /// See also <seealso cref="ITraktSharing" />.
+        /// See also <seealso cref="ITraktConnections" />.
         /// <para>Nullable</para>
         /// </summary>
-        public ITraktSharing Sharing { get; set; }
+        public ITraktConnections Sharing { get; set; }
     }
 }

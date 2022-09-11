@@ -5,9 +5,9 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class SharingObjectJsonWriter : AObjectJsonWriter<ITraktSharing>
+    internal class ConnectionsObjectJsonWriter : AObjectJsonWriter<ITraktConnections>
     {
-        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktSharing obj, CancellationToken cancellationToken = default)
+        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktConnections obj, CancellationToken cancellationToken = default)
         {
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);

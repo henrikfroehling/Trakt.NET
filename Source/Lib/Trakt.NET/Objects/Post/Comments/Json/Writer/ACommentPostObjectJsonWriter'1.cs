@@ -27,7 +27,7 @@
 
             if (obj.Sharing != null)
             {
-                var sharingObjectJsonWriter = new SharingObjectJsonWriter();
+                var sharingObjectJsonWriter = new ConnectionsObjectJsonWriter();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHARING, cancellationToken).ConfigureAwait(false);
                 await sharingObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Sharing, cancellationToken).ConfigureAwait(false);
             }

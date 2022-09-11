@@ -25,7 +25,7 @@
         private readonly TraktCommentType COMMENT_TYPE = TraktCommentType.Shout;
         private readonly TraktObjectType OBJECT_TYPE = TraktObjectType.Episode;
 
-        private readonly ITraktSharing SHARING = new TraktSharing
+        private readonly ITraktConnections SHARING = new TraktConnections
         {
             Google = false,
             Twitter = true

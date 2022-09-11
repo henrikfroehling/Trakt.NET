@@ -15,7 +15,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var sharingReader = new SharingObjectJsonReader();
+                var sharingReader = new ConnectionsObjectJsonReader();
                 var seasonReader = new SeasonObjectJsonReader();
                 ITraktSeasonCommentPost seasonCommentPost = new TraktSeasonCommentPost();
 
