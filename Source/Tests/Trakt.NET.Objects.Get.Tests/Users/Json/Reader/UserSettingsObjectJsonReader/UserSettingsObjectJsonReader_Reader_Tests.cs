@@ -59,6 +59,7 @@
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
             userSettings.SharingText.Watched.Should().Be("I just watched [item]");
+            userSettings.SharingText.Rated.Should().Be("[item] [stars]");
 
             userSettings.Limits.Should().NotBeNull();
             userSettings.Limits.List.Should().NotBeNull();
@@ -100,6 +101,7 @@
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
             userSettings.SharingText.Watched.Should().Be("I just watched [item]");
+            userSettings.SharingText.Rated.Should().Be("[item] [stars]");
 
             userSettings.Limits.Should().NotBeNull();
             userSettings.Limits.List.Should().NotBeNull();
@@ -151,6 +153,7 @@
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
             userSettings.SharingText.Watched.Should().Be("I just watched [item]");
+            userSettings.SharingText.Rated.Should().Be("[item] [stars]");
 
             userSettings.Limits.Should().NotBeNull();
             userSettings.Limits.List.Should().NotBeNull();
@@ -202,6 +205,7 @@
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
             userSettings.SharingText.Watched.Should().Be("I just watched [item]");
+            userSettings.SharingText.Rated.Should().Be("[item] [stars]");
 
             userSettings.Limits.Should().NotBeNull();
             userSettings.Limits.List.Should().NotBeNull();
@@ -312,6 +316,7 @@
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
             userSettings.SharingText.Watched.Should().Be("I just watched [item]");
+            userSettings.SharingText.Rated.Should().Be("[item] [stars]");
 
             userSettings.Limits.Should().BeNull();
         }
@@ -348,6 +353,7 @@
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
             userSettings.SharingText.Watched.Should().Be("I just watched [item]");
+            userSettings.SharingText.Rated.Should().Be("[item] [stars]");
 
             userSettings.Limits.Should().NotBeNull();
             userSettings.Limits.List.Should().NotBeNull();
@@ -399,6 +405,7 @@
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
             userSettings.SharingText.Watched.Should().Be("I just watched [item]");
+            userSettings.SharingText.Rated.Should().Be("[item] [stars]");
 
             userSettings.Limits.Should().NotBeNull();
             userSettings.Limits.List.Should().NotBeNull();
@@ -450,6 +457,7 @@
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
             userSettings.SharingText.Watched.Should().Be("I just watched [item]");
+            userSettings.SharingText.Rated.Should().Be("[item] [stars]");
 
             userSettings.Limits.Should().NotBeNull();
             userSettings.Limits.List.Should().NotBeNull();
@@ -558,6 +566,7 @@
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
             userSettings.SharingText.Watched.Should().Be("I just watched [item]");
+            userSettings.SharingText.Rated.Should().Be("[item] [stars]");
 
             userSettings.Limits.Should().BeNull();
         }

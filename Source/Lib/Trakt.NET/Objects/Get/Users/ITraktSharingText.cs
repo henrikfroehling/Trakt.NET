@@ -8,5 +8,8 @@
 
         /// <summary>Gets or sets the user's sharing text for watched items.<para>Nullable</para></summary>
         string Watched { get; set; }
+
+        /// <summary>Gets or sets the user's sharing text for rated items.<para>Nullable</para></summary>
+        string Rated { get; set; }
     }
 }
