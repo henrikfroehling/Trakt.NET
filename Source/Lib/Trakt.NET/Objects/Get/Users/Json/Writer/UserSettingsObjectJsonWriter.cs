@@ -41,6 +41,13 @@
                 await sharingTextObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.SharingText, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Limits != null)
+            {
+                var limitsObjectJsonWriter = new UserLimitsObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LIMITS, cancellationToken).ConfigureAwait(false);
+                await limitsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Limits, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

@@ -386,6 +386,9 @@
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsRemovePostResponse), new UserHiddenItemsRemovePostResponseJsonIOFactory());
 
             // user objects
+            s_jsonIOFactories.Add(typeof(ITraktAccountSettings), new AccountSettingsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktRecommendation), new RecommendationJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSharingText), new SharingTextJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUser), new UserJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserComment), new UserCommentJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserFollower), new UserFollowerJsonIOFactory());
@@ -395,12 +398,13 @@
             s_jsonIOFactories.Add(typeof(ITraktUserIds), new UserIdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserImages), new UserImagesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserLikeItem), new UserLikeItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserLimits), new UserLimitsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserListLimits), new UserListLimitsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserRecommendationsLimits), new UserRecommendationsLimitsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserSavedFilter), new UserSavedFilterJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserSettings), new UserSettingsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserWatchingItem), new UserWatchingItemJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktAccountSettings), new AccountSettingsJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktSharingText), new SharingTextJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktRecommendation), new RecommendationJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserWatchlistLimits), new UserWatchlistLimitsJsonIOFactory());
 
             // user list objects
             s_jsonIOFactories.Add(typeof(ITraktList), new ListJsonIOFactory());

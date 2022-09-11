@@ -18,6 +18,7 @@
                 var accountSettingsReader = new AccountSettingsObjectJsonReader();
                 var sharingReader = new SharingObjectJsonReader();
                 var sharingTextReader = new SharingTextObjectJsonReader();
+                var limitsReader = new UserLimitsObjectJsonReader();
 
                 ITraktUserSettings traktUserSettings = new TraktUserSettings();
 
@@ -38,6 +39,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_SHARING_TEXT:
                             traktUserSettings.SharingText = await sharingTextReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_LIMITS:
+                            traktUserSettings.Limits = await limitsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

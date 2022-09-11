@@ -44,6 +44,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_COMPLETED = "completed";
         internal const string PROPERTY_NAME_CONNECTIONS = "connections";
         internal const string PROPERTY_NAME_COSTUME_AND_MAKE_UP = "costume & make-up";
+        internal const string PROPERTY_NAME_COUNT = "count";
         internal const string PROPERTY_NAME_COUNTRY = "country";
         internal const string PROPERTY_NAME_COVER_IMAGE = "cover_image";
         internal const string PROPERTY_NAME_CREATED_AT = "created_at";
@@ -103,6 +104,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_LIKED_AT = "liked_at";
         internal const string PROPERTY_NAME_LIKES = "likes";
         internal const string PROPERTY_NAME_LIMIT = "limit";
+        internal const string PROPERTY_NAME_LIMITS = "limits";
         internal const string PROPERTY_NAME_LIST = "list";
         internal const string PROPERTY_NAME_LIST_COUNT = "list_count";
         internal const string PROPERTY_NAME_LISTED_AT = "listed_at";
