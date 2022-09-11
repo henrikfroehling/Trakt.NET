@@ -142,6 +142,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_PROGRESS = "progress";
         internal const string PROPERTY_NAME_QUERY = "query";
         internal const string PROPERTY_NAME_RANK = "rank";
+        internal const string PROPERTY_NAME_RATED = "rated";
         internal const string PROPERTY_NAME_RATED_AT = "rated_at";
         internal const string PROPERTY_NAME_RATING = "rating";
         internal const string PROPERTY_NAME_RATINGS = "ratings";

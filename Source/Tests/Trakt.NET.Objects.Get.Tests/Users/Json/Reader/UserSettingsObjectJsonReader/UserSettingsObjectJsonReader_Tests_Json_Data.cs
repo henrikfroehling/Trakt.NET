@@ -40,7 +40,8 @@
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 },
                 ""limits"": {
                     ""list"": {
@@ -74,7 +75,8 @@
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 },
                 ""limits"": {
                     ""list"": {
@@ -121,7 +123,8 @@
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 },
                 ""limits"": {
                     ""list"": {
@@ -168,7 +171,8 @@
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 },
                 ""limits"": {
                     ""list"": {
@@ -272,7 +276,8 @@
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 }
               }";
 
@@ -314,7 +319,8 @@
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 },
                 ""limits"": {
                     ""list"": {
@@ -368,7 +374,8 @@
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 },
                 ""limits"": {
                     ""list"": {
@@ -422,7 +429,8 @@
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 },
                 ""limits"": {
                     ""list"": {
@@ -476,7 +484,8 @@
                 },
                 ""share"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 },
                 ""limits"": {
                     ""list"": {
@@ -530,7 +539,8 @@
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 },
                 ""lim"": {
                     ""list"": {
@@ -585,7 +595,8 @@
                 },
                 ""share"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 },
                 ""lim"": {
                     ""list"": {

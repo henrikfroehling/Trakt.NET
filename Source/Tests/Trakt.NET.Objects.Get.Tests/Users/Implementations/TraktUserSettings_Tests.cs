@@ -66,6 +66,7 @@
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
             userSettings.SharingText.Watched.Should().Be("I just watched [item]");
+            userSettings.SharingText.Rated.Should().Be("[item] [stars]");
 
             userSettings.Limits.Should().NotBeNull();
             userSettings.Limits.List.Should().NotBeNull();
@@ -115,7 +116,8 @@
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
-                  ""watched"": ""I just watched [item]""
+                  ""watched"": ""I just watched [item]"",
+                  ""rated"": ""[item] [stars]""
                 },
                 ""limits"": {
                     ""list"": {
