@@ -22,11 +22,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeTrue();
             traktConnections.Google.Should().BeTrue();
             traktConnections.Tumblr.Should().BeTrue();
             traktConnections.Medium.Should().BeTrue();
             traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -39,11 +42,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeNull();
             traktConnections.Google.Should().BeTrue();
             traktConnections.Tumblr.Should().BeTrue();
             traktConnections.Medium.Should().BeTrue();
             traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -56,11 +62,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeTrue();
             traktConnections.Google.Should().BeNull();
             traktConnections.Tumblr.Should().BeTrue();
             traktConnections.Medium.Should().BeTrue();
             traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -73,11 +82,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeTrue();
             traktConnections.Google.Should().BeTrue();
             traktConnections.Tumblr.Should().BeNull();
             traktConnections.Medium.Should().BeTrue();
             traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -90,11 +102,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeTrue();
             traktConnections.Google.Should().BeTrue();
             traktConnections.Tumblr.Should().BeTrue();
             traktConnections.Medium.Should().BeNull();
             traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -107,11 +122,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeTrue();
             traktConnections.Google.Should().BeTrue();
             traktConnections.Tumblr.Should().BeTrue();
             traktConnections.Medium.Should().BeTrue();
             traktConnections.Slack.Should().BeNull();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -124,11 +142,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeTrue();
-            traktConnections.Google.Should().BeNull();
-            traktConnections.Tumblr.Should().BeNull();
-            traktConnections.Medium.Should().BeNull();
-            traktConnections.Slack.Should().BeNull();
+            traktConnections.Google.Should().BeTrue();
+            traktConnections.Tumblr.Should().BeTrue();
+            traktConnections.Medium.Should().BeTrue();
+            traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeNull();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -141,62 +162,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
-            traktConnections.Twitter.Should().BeNull();
+
+            traktConnections.Twitter.Should().BeTrue();
             traktConnections.Google.Should().BeTrue();
-            traktConnections.Tumblr.Should().BeNull();
-            traktConnections.Medium.Should().BeNull();
-            traktConnections.Slack.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Incomplete_8()
-        {
-            var traktJsonReader = new ConnectionsObjectJsonReader();
-
-            using var reader = new StringReader(JSON_INCOMPLETE_8);
-            using var jsonReader = new JsonTextReader(reader);
-            var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
-
-            traktConnections.Should().NotBeNull();
-            traktConnections.Twitter.Should().BeNull();
-            traktConnections.Google.Should().BeNull();
             traktConnections.Tumblr.Should().BeTrue();
-            traktConnections.Medium.Should().BeNull();
-            traktConnections.Slack.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Incomplete_9()
-        {
-            var traktJsonReader = new ConnectionsObjectJsonReader();
-
-            using var reader = new StringReader(JSON_INCOMPLETE_9);
-            using var jsonReader = new JsonTextReader(reader);
-            var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
-
-            traktConnections.Should().NotBeNull();
-            traktConnections.Twitter.Should().BeNull();
-            traktConnections.Google.Should().BeNull();
-            traktConnections.Tumblr.Should().BeNull();
             traktConnections.Medium.Should().BeTrue();
-            traktConnections.Slack.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Incomplete_10()
-        {
-            var traktJsonReader = new ConnectionsObjectJsonReader();
-
-            using var reader = new StringReader(JSON_INCOMPLETE_10);
-            using var jsonReader = new JsonTextReader(reader);
-            var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
-
-            traktConnections.Should().NotBeNull();
-            traktConnections.Twitter.Should().BeNull();
-            traktConnections.Google.Should().BeNull();
-            traktConnections.Tumblr.Should().BeNull();
-            traktConnections.Medium.Should().BeNull();
             traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeNull();
         }
 
         [Fact]
@@ -209,11 +182,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeNull();
             traktConnections.Google.Should().BeTrue();
             traktConnections.Tumblr.Should().BeTrue();
             traktConnections.Medium.Should().BeTrue();
             traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -226,11 +202,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeTrue();
             traktConnections.Google.Should().BeNull();
             traktConnections.Tumblr.Should().BeTrue();
             traktConnections.Medium.Should().BeTrue();
             traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -243,11 +222,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeTrue();
             traktConnections.Google.Should().BeTrue();
             traktConnections.Tumblr.Should().BeNull();
             traktConnections.Medium.Should().BeTrue();
             traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -260,11 +242,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeTrue();
             traktConnections.Google.Should().BeTrue();
             traktConnections.Tumblr.Should().BeTrue();
             traktConnections.Medium.Should().BeNull();
             traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -277,11 +262,14 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeTrue();
             traktConnections.Google.Should().BeTrue();
             traktConnections.Tumblr.Should().BeTrue();
             traktConnections.Medium.Should().BeTrue();
             traktConnections.Slack.Should().BeNull();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         [Fact]
@@ -294,11 +282,54 @@
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktConnections.Should().NotBeNull();
+
+            traktConnections.Twitter.Should().BeTrue();
+            traktConnections.Google.Should().BeTrue();
+            traktConnections.Tumblr.Should().BeTrue();
+            traktConnections.Medium.Should().BeTrue();
+            traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeNull();
+            traktConnections.Apple.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_7()
+        {
+            var traktJsonReader = new ConnectionsObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID_7);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktConnections.Should().NotBeNull();
+
+            traktConnections.Twitter.Should().BeTrue();
+            traktConnections.Google.Should().BeTrue();
+            traktConnections.Tumblr.Should().BeTrue();
+            traktConnections.Medium.Should().BeTrue();
+            traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_8()
+        {
+            var traktJsonReader = new ConnectionsObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID_8);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktConnections.Should().NotBeNull();
+
             traktConnections.Twitter.Should().BeNull();
             traktConnections.Google.Should().BeNull();
             traktConnections.Tumblr.Should().BeNull();
             traktConnections.Medium.Should().BeNull();
             traktConnections.Slack.Should().BeNull();
+            traktConnections.Facebook.Should().BeNull();
+            traktConnections.Apple.Should().BeNull();
         }
 
         [Fact]

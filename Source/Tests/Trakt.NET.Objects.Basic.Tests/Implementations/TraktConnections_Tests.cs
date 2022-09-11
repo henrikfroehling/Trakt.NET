@@ -20,6 +20,8 @@
             traktConnections.Tumblr.Should().BeNull();
             traktConnections.Medium.Should().BeNull();
             traktConnections.Slack.Should().BeNull();
+            traktConnections.Facebook.Should().BeNull();
+            traktConnections.Apple.Should().BeNull();
         }
 
         [Fact]
@@ -34,6 +36,8 @@
             traktConnections.Tumblr.Should().BeTrue();
             traktConnections.Medium.Should().BeTrue();
             traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
         }
 
         private const string JSON =
@@ -42,7 +46,9 @@
                 ""google"": true,
                 ""tumblr"": true,
                 ""medium"": true,
-                ""slack"": true
+                ""slack"": true,
+                ""facebook"": true,
+                ""apple"": true
               }";
     }
 }

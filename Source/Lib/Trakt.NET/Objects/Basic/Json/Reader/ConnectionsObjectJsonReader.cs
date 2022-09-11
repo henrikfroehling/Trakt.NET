@@ -36,6 +36,12 @@
                         case JsonProperties.PROPERTY_NAME_SLACK:
                             traktSharing.Slack = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_FACEBOOK:
+                            traktSharing.Facebook = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_APPLE:
+                            traktSharing.Apple = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
