@@ -326,7 +326,7 @@
         /// <param name="movie">The <see cref="ITraktMovie" />, for which the comment should be posted.</param>
         /// <param name="comment">The comment's content for the given movie. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <param name="sharing"><see cref="ITraktConnections" /> instance, containing sharing information for the comment.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -344,7 +344,7 @@
         /// Thrown, if the given comment's word count is below five.
         /// </exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostMovieCommentAsync(ITraktMovie movie, string comment,
-                                                                                    bool? containsSpoiler = null, ITraktSharing sharing = null,
+                                                                                    bool? containsSpoiler = null, ITraktConnections sharing = null,
                                                                                     CancellationToken cancellationToken = default)
         {
             ValidateMovie(movie);
@@ -380,7 +380,7 @@
         /// <param name="show">The <see cref="ITraktShow" />, for which the comment should be posted.</param>
         /// <param name="comment">The comment's content for the given show. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <param name="sharing"><see cref="ITraktConnections" /> instance, containing sharing information for the comment.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -395,7 +395,7 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given show is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostShowCommentAsync(ITraktShow show, string comment,
-                                                                                   bool? containsSpoiler = null, ITraktSharing sharing = null,
+                                                                                   bool? containsSpoiler = null, ITraktConnections sharing = null,
                                                                                    CancellationToken cancellationToken = default)
         {
             ValidateShow(show);
@@ -430,7 +430,7 @@
         /// <param name="season">The <see cref="ITraktSeason" />, for which the comment should be posted.</param>
         /// <param name="comment">The comment's content for the given season. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <param name="sharing"><see cref="ITraktConnections" /> instance, containing sharing information for the comment.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -444,7 +444,7 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given season is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostSeasonCommentAsync(ITraktSeason season, string comment,
-                                                                                     bool? containsSpoiler = null, ITraktSharing sharing = null,
+                                                                                     bool? containsSpoiler = null, ITraktConnections sharing = null,
                                                                                      CancellationToken cancellationToken = default)
         {
             ValidateSeason(season);
@@ -478,7 +478,7 @@
         /// <param name="episode">The <see cref="ITraktEpisode" />, for which the comment should be posted.</param>
         /// <param name="comment">The comment's content for the given episode. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <param name="sharing"><see cref="ITraktConnections" /> instance, containing sharing information for the comment.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -492,7 +492,7 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostEpisodeCommentAsync(ITraktEpisode episode, string comment,
-                                                                                      bool? containsSpoiler = null, ITraktSharing sharing = null,
+                                                                                      bool? containsSpoiler = null, ITraktConnections sharing = null,
                                                                                       CancellationToken cancellationToken = default)
         {
             ValidateEpisode(episode);
@@ -526,7 +526,7 @@
         /// <param name="list">The <see cref="ITraktList" />, for which the comment should be posted.</param>
         /// <param name="comment">The comment's content for the given list. Should be at least five words long.</param>
         /// <param name="containsSpoiler">Determines, if the <paramref name="comment" /> contains any spoilers.</param>
-        /// <param name="sharing"><see cref="ITraktSharing" /> instance, containing sharing information for the comment.</param>
+        /// <param name="sharing"><see cref="ITraktConnections" /> instance, containing sharing information for the comment.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -540,7 +540,7 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given list is null or its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostListCommentAsync(ITraktList list, string comment,
-                                                                                   bool? containsSpoiler = null, ITraktSharing sharing = null,
+                                                                                   bool? containsSpoiler = null, ITraktConnections sharing = null,
                                                                                    CancellationToken cancellationToken = default)
         {
             ValidateList(list);

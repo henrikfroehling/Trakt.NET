@@ -15,7 +15,7 @@
         private const string FOURSQUARE_VENUE_ID = "venue id";
         private const string FOURSQUARE_VENUE_NAME = "venue name";
 
-        private readonly ITraktSharing SHARING = new TraktSharing
+        private readonly ITraktConnections SHARING = new TraktConnections
         {
             Google = false,
             Twitter = true

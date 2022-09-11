@@ -21,10 +21,10 @@
 
         /// <summary>
         /// Gets or sets the social media connection settings.
-        /// See also <seealso cref="ITraktSharing" />.
+        /// See also <seealso cref="ITraktConnections" />.
         /// <para>Nullable</para>
         /// </summary>
-        public ITraktSharing Connections { get; set; }
+        public ITraktConnections Connections { get; set; }
 
         /// <summary>
         /// Gets or sets the social media sharing text settings.

@@ -16,7 +16,7 @@
             {
                 var userReader = new UserObjectJsonReader();
                 var accountSettingsReader = new AccountSettingsObjectJsonReader();
-                var sharingReader = new SharingObjectJsonReader();
+                var connectionsReader = new ConnectionsObjectJsonReader();
                 var sharingTextReader = new SharingTextObjectJsonReader();
                 var limitsReader = new UserLimitsObjectJsonReader();
 
@@ -35,7 +35,7 @@
                             traktUserSettings.Account = await accountSettingsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_CONNECTIONS:
-                            traktUserSettings.Connections = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            traktUserSettings.Connections = await connectionsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SHARING_TEXT:
                             traktUserSettings.SharingText = await sharingTextReader.ReadObjectAsync(jsonReader, cancellationToken);

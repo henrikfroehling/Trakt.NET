@@ -1,21 +1,21 @@
 ﻿namespace TraktNet.Objects.Basic
 {
     /// <summary>Represents Trakt connection options.</summary>
-    public class TraktSharing : ITraktSharing
+    public interface ITraktConnections
     {
         /// <summary>Gets or sets, whether Twitter connection is enabled.</summary>
-        public bool? Twitter { get; set; }
+        bool? Twitter { get; set; }
 
         /// <summary>Gets or sets, whether Google connection is enabled.</summary>
-        public bool? Google { get; set; }
+        bool? Google { get; set; }
 
         /// <summary>Gets or sets, whether Tumblr connection is enabled.</summary>
-        public bool? Tumblr { get; set; }
+        bool? Tumblr { get; set; }
 
         /// <summary>Gets or sets, whether Medium connection is enabled.</summary>
-        public bool? Medium { get; set; }
+        bool? Medium { get; set; }
 
         /// <summary>Gets or sets, whether Slack connection is enabled.</summary>
-        public bool? Slack { get; set; }
+        bool? Slack { get; set; }
     }
 }

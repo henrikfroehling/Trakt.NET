@@ -138,6 +138,7 @@
             s_jsonIOFactories.Add(typeof(ITraktComment), new CommentJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCommentItem), new CommentItemJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCommentLike), new CommentLikeJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktConnections), new ConnectionsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCountry), new CountryJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCrew), new CrewJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktCrewMember), new CrewMemberJsonIOFactory());
@@ -151,7 +152,6 @@
             s_jsonIOFactories.Add(typeof(ITraktRateLimitInfo), new RateLimitInfoJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktRating), new RatingJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSearchResult), new SearchResultJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktSharing), new SharingJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktStatistics), new StatisticsJsonIOFactory());
 
             // basic post objects
