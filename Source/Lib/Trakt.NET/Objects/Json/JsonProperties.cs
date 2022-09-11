@@ -213,7 +213,10 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_VENUE_NAME = "venue_name";
         internal const string PROPERTY_NAME_VERIFICATION_URL = "verification_url";
         internal const string PROPERTY_NAME_VIP = "vip";
+        internal const string PROPERTY_NAME_VIP_COVER_IMAGE = "vip_cover_image";
         internal const string PROPERTY_NAME_VIP_EP = "vip_ep";
+        internal const string PROPERTY_NAME_VIP_OG = "vip_og";
+        internal const string PROPERTY_NAME_VIP_YEARS = "vip_years";
         internal const string PROPERTY_NAME_VISUAL_EFFECTS = "visual effects";
         internal const string PROPERTY_NAME_VOTES = "votes";
         internal const string PROPERTY_NAME_WATCHED = "watched";

@@ -33,6 +33,7 @@
             userSettings.User.IsVIP_EP.Should().BeTrue();
             userSettings.User.Ids.Should().NotBeNull();
             userSettings.User.Ids.Slug.Should().Be("sean");
+            userSettings.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
             userSettings.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             userSettings.User.Location.Should().Be("SF");
             userSettings.User.About.Should().Be("I have all your cassette tapes.");
@@ -41,6 +42,9 @@
             userSettings.User.Images.Should().NotBeNull();
             userSettings.User.Images.Avatar.Should().NotBeNull();
             userSettings.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            userSettings.User.IsVIP_OG.Should().BeTrue();
+            userSettings.User.VIP_Years.Should().Be(5);
+            userSettings.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
 
             userSettings.Account.Should().NotBeNull();
             userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
@@ -55,6 +59,8 @@
             userSettings.Connections.Tumblr.Should().BeTrue();
             userSettings.Connections.Medium.Should().BeTrue();
             userSettings.Connections.Slack.Should().BeTrue();
+            userSettings.Connections.Facebook.Should().BeTrue();
+            userSettings.Connections.Apple.Should().BeTrue();
 
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
@@ -97,6 +103,8 @@
             userSettings.Connections.Tumblr.Should().BeTrue();
             userSettings.Connections.Medium.Should().BeTrue();
             userSettings.Connections.Slack.Should().BeTrue();
+            userSettings.Connections.Facebook.Should().BeTrue();
+            userSettings.Connections.Apple.Should().BeTrue();
 
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
@@ -132,6 +140,7 @@
             userSettings.User.IsVIP_EP.Should().BeTrue();
             userSettings.User.Ids.Should().NotBeNull();
             userSettings.User.Ids.Slug.Should().Be("sean");
+            userSettings.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
             userSettings.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             userSettings.User.Location.Should().Be("SF");
             userSettings.User.About.Should().Be("I have all your cassette tapes.");
@@ -140,6 +149,9 @@
             userSettings.User.Images.Should().NotBeNull();
             userSettings.User.Images.Avatar.Should().NotBeNull();
             userSettings.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            userSettings.User.IsVIP_OG.Should().BeTrue();
+            userSettings.User.VIP_Years.Should().Be(5);
+            userSettings.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
 
             userSettings.Account.Should().BeNull();
 
@@ -149,6 +161,8 @@
             userSettings.Connections.Tumblr.Should().BeTrue();
             userSettings.Connections.Medium.Should().BeTrue();
             userSettings.Connections.Slack.Should().BeTrue();
+            userSettings.Connections.Facebook.Should().BeTrue();
+            userSettings.Connections.Apple.Should().BeTrue();
 
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
@@ -184,6 +198,7 @@
             userSettings.User.IsVIP_EP.Should().BeTrue();
             userSettings.User.Ids.Should().NotBeNull();
             userSettings.User.Ids.Slug.Should().Be("sean");
+            userSettings.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
             userSettings.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             userSettings.User.Location.Should().Be("SF");
             userSettings.User.About.Should().Be("I have all your cassette tapes.");
@@ -192,6 +207,9 @@
             userSettings.User.Images.Should().NotBeNull();
             userSettings.User.Images.Avatar.Should().NotBeNull();
             userSettings.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            userSettings.User.IsVIP_OG.Should().BeTrue();
+            userSettings.User.VIP_Years.Should().Be(5);
+            userSettings.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
 
             userSettings.Account.Should().NotBeNull();
             userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
@@ -236,6 +254,7 @@
             userSettings.User.IsVIP_EP.Should().BeTrue();
             userSettings.User.Ids.Should().NotBeNull();
             userSettings.User.Ids.Slug.Should().Be("sean");
+            userSettings.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
             userSettings.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             userSettings.User.Location.Should().Be("SF");
             userSettings.User.About.Should().Be("I have all your cassette tapes.");
@@ -244,6 +263,9 @@
             userSettings.User.Images.Should().NotBeNull();
             userSettings.User.Images.Avatar.Should().NotBeNull();
             userSettings.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            userSettings.User.IsVIP_OG.Should().BeTrue();
+            userSettings.User.VIP_Years.Should().Be(5);
+            userSettings.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
 
             userSettings.Account.Should().NotBeNull();
             userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
@@ -258,6 +280,8 @@
             userSettings.Connections.Tumblr.Should().BeTrue();
             userSettings.Connections.Medium.Should().BeTrue();
             userSettings.Connections.Slack.Should().BeTrue();
+            userSettings.Connections.Facebook.Should().BeTrue();
+            userSettings.Connections.Apple.Should().BeTrue();
 
             userSettings.SharingText.Should().BeNull();
 
@@ -290,6 +314,7 @@
             userSettings.User.IsVIP_EP.Should().BeTrue();
             userSettings.User.Ids.Should().NotBeNull();
             userSettings.User.Ids.Slug.Should().Be("sean");
+            userSettings.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
             userSettings.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             userSettings.User.Location.Should().Be("SF");
             userSettings.User.About.Should().Be("I have all your cassette tapes.");
@@ -298,6 +323,9 @@
             userSettings.User.Images.Should().NotBeNull();
             userSettings.User.Images.Avatar.Should().NotBeNull();
             userSettings.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            userSettings.User.IsVIP_OG.Should().BeTrue();
+            userSettings.User.VIP_Years.Should().Be(5);
+            userSettings.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
 
             userSettings.Account.Should().NotBeNull();
             userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
@@ -312,6 +340,8 @@
             userSettings.Connections.Tumblr.Should().BeTrue();
             userSettings.Connections.Medium.Should().BeTrue();
             userSettings.Connections.Slack.Should().BeTrue();
+            userSettings.Connections.Facebook.Should().BeTrue();
+            userSettings.Connections.Apple.Should().BeTrue();
 
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
@@ -334,8 +364,6 @@
 
             userSettings.User.Should().BeNull();
 
-            userSettings.User.Should().BeNull();
-
             userSettings.Account.Should().NotBeNull();
             userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
             userSettings.Account.DateFormat.Should().Be(TraktDateFormat.DayMonthYear);
@@ -349,6 +377,8 @@
             userSettings.Connections.Tumblr.Should().BeTrue();
             userSettings.Connections.Medium.Should().BeTrue();
             userSettings.Connections.Slack.Should().BeTrue();
+            userSettings.Connections.Facebook.Should().BeTrue();
+            userSettings.Connections.Apple.Should().BeTrue();
 
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
@@ -384,6 +414,7 @@
             userSettings.User.IsVIP_EP.Should().BeTrue();
             userSettings.User.Ids.Should().NotBeNull();
             userSettings.User.Ids.Slug.Should().Be("sean");
+            userSettings.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
             userSettings.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             userSettings.User.Location.Should().Be("SF");
             userSettings.User.About.Should().Be("I have all your cassette tapes.");
@@ -392,6 +423,9 @@
             userSettings.User.Images.Should().NotBeNull();
             userSettings.User.Images.Avatar.Should().NotBeNull();
             userSettings.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            userSettings.User.IsVIP_OG.Should().BeTrue();
+            userSettings.User.VIP_Years.Should().Be(5);
+            userSettings.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
 
             userSettings.Account.Should().BeNull();
 
@@ -401,6 +435,8 @@
             userSettings.Connections.Tumblr.Should().BeTrue();
             userSettings.Connections.Medium.Should().BeTrue();
             userSettings.Connections.Slack.Should().BeTrue();
+            userSettings.Connections.Facebook.Should().BeTrue();
+            userSettings.Connections.Apple.Should().BeTrue();
 
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");
@@ -436,6 +472,7 @@
             userSettings.User.IsVIP_EP.Should().BeTrue();
             userSettings.User.Ids.Should().NotBeNull();
             userSettings.User.Ids.Slug.Should().Be("sean");
+            userSettings.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
             userSettings.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             userSettings.User.Location.Should().Be("SF");
             userSettings.User.About.Should().Be("I have all your cassette tapes.");
@@ -444,6 +481,9 @@
             userSettings.User.Images.Should().NotBeNull();
             userSettings.User.Images.Avatar.Should().NotBeNull();
             userSettings.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            userSettings.User.IsVIP_OG.Should().BeTrue();
+            userSettings.User.VIP_Years.Should().Be(5);
+            userSettings.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
 
             userSettings.Account.Should().NotBeNull();
             userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
@@ -488,6 +528,7 @@
             userSettings.User.IsVIP_EP.Should().BeTrue();
             userSettings.User.Ids.Should().NotBeNull();
             userSettings.User.Ids.Slug.Should().Be("sean");
+            userSettings.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
             userSettings.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             userSettings.User.Location.Should().Be("SF");
             userSettings.User.About.Should().Be("I have all your cassette tapes.");
@@ -496,6 +537,9 @@
             userSettings.User.Images.Should().NotBeNull();
             userSettings.User.Images.Avatar.Should().NotBeNull();
             userSettings.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            userSettings.User.IsVIP_OG.Should().BeTrue();
+            userSettings.User.VIP_Years.Should().Be(5);
+            userSettings.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
 
             userSettings.Account.Should().NotBeNull();
             userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
@@ -510,6 +554,8 @@
             userSettings.Connections.Tumblr.Should().BeTrue();
             userSettings.Connections.Medium.Should().BeTrue();
             userSettings.Connections.Slack.Should().BeTrue();
+            userSettings.Connections.Facebook.Should().BeTrue();
+            userSettings.Connections.Apple.Should().BeTrue();
 
             userSettings.SharingText.Should().BeNull();
 
@@ -540,6 +586,7 @@
             userSettings.User.IsVIP_EP.Should().BeTrue();
             userSettings.User.Ids.Should().NotBeNull();
             userSettings.User.Ids.Slug.Should().Be("sean");
+            userSettings.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
             userSettings.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             userSettings.User.Location.Should().Be("SF");
             userSettings.User.About.Should().Be("I have all your cassette tapes.");
@@ -548,6 +595,9 @@
             userSettings.User.Images.Should().NotBeNull();
             userSettings.User.Images.Avatar.Should().NotBeNull();
             userSettings.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            userSettings.User.IsVIP_OG.Should().BeTrue();
+            userSettings.User.VIP_Years.Should().Be(5);
+            userSettings.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
 
             userSettings.Account.Should().NotBeNull();
             userSettings.Account.TimeZoneId.Should().Be("America/Los_Angeles");
@@ -562,6 +612,8 @@
             userSettings.Connections.Tumblr.Should().BeTrue();
             userSettings.Connections.Medium.Should().BeTrue();
             userSettings.Connections.Slack.Should().BeTrue();
+            userSettings.Connections.Facebook.Should().BeTrue();
+            userSettings.Connections.Apple.Should().BeTrue();
 
             userSettings.SharingText.Should().NotBeNull();
             userSettings.SharingText.Watching.Should().Be("I'm watching [item]");

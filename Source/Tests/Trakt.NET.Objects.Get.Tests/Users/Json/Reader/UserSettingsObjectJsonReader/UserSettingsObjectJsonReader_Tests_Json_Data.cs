@@ -11,7 +11,8 @@
                   ""vip"": true,
                   ""vip_ep"": true,
                   ""ids"": {
-                    ""slug"": ""sean""
+                    ""slug"": ""sean"",
+                    ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                   },
                   ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                   ""location"": ""SF"",
@@ -22,7 +23,10 @@
                     ""avatar"": {
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
-                  }
+                  },
+                  ""vip_og"": true,
+                  ""vip_years"": 5,
+                  ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
@@ -36,7 +40,9 @@
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
-                  ""slack"": true
+                  ""slack"": true,
+                  ""facebook"": true,
+                  ""apple"": true
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
@@ -71,7 +77,9 @@
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
-                  ""slack"": true
+                  ""slack"": true,
+                  ""facebook"": true,
+                  ""apple"": true
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
@@ -101,7 +109,8 @@
                   ""vip"": true,
                   ""vip_ep"": true,
                   ""ids"": {
-                    ""slug"": ""sean""
+                    ""slug"": ""sean"",
+                    ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                   },
                   ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                   ""location"": ""SF"",
@@ -112,14 +121,19 @@
                     ""avatar"": {
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
-                  }
+                  },
+                  ""vip_og"": true,
+                  ""vip_years"": 5,
+                  ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                 },
                 ""connections"": {
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
-                  ""slack"": true
+                  ""slack"": true,
+                  ""facebook"": true,
+                  ""apple"": true
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
@@ -149,7 +163,8 @@
                   ""vip"": true,
                   ""vip_ep"": true,
                   ""ids"": {
-                    ""slug"": ""sean""
+                    ""slug"": ""sean"",
+                    ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                   },
                   ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                   ""location"": ""SF"",
@@ -160,7 +175,10 @@
                     ""avatar"": {
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
-                  }
+                  },
+                  ""vip_og"": true,
+                  ""vip_years"": 5,
+                  ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
@@ -197,7 +215,8 @@
                   ""vip"": true,
                   ""vip_ep"": true,
                   ""ids"": {
-                    ""slug"": ""sean""
+                    ""slug"": ""sean"",
+                    ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                   },
                   ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                   ""location"": ""SF"",
@@ -208,7 +227,10 @@
                     ""avatar"": {
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
-                  }
+                  },
+                  ""vip_og"": true,
+                  ""vip_years"": 5,
+                  ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
@@ -222,7 +244,9 @@
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
-                  ""slack"": true
+                  ""slack"": true,
+                  ""facebook"": true,
+                  ""apple"": true
                 },
                 ""limits"": {
                     ""list"": {
@@ -247,7 +271,8 @@
                   ""vip"": true,
                   ""vip_ep"": true,
                   ""ids"": {
-                    ""slug"": ""sean""
+                    ""slug"": ""sean"",
+                    ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                   },
                   ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                   ""location"": ""SF"",
@@ -258,7 +283,10 @@
                     ""avatar"": {
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
-                  }
+                  },
+                  ""vip_og"": true,
+                  ""vip_years"": 5,
+                  ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
@@ -272,7 +300,9 @@
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
-                  ""slack"": true
+                  ""slack"": true,
+                  ""facebook"": true,
+                  ""apple"": true
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
@@ -290,7 +320,8 @@
                   ""vip"": true,
                   ""vip_ep"": true,
                   ""ids"": {
-                    ""slug"": ""sean""
+                    ""slug"": ""sean"",
+                    ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                   },
                   ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                   ""location"": ""SF"",
@@ -301,7 +332,10 @@
                     ""avatar"": {
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
-                  }
+                  },
+                  ""vip_og"": true,
+                  ""vip_years"": 5,
+                  ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
@@ -315,7 +349,9 @@
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
-                  ""slack"": true
+                  ""slack"": true,
+                  ""facebook"": true,
+                  ""apple"": true
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
@@ -345,7 +381,8 @@
                   ""vip"": true,
                   ""vip_ep"": true,
                   ""ids"": {
-                    ""slug"": ""sean""
+                    ""slug"": ""sean"",
+                    ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                   },
                   ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                   ""location"": ""SF"",
@@ -356,7 +393,10 @@
                     ""avatar"": {
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
-                  }
+                  },
+                  ""vip_og"": true,
+                  ""vip_years"": 5,
+                  ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                 },
                 ""acc"": {
                   ""timezone"": ""America/Los_Angeles"",
@@ -370,7 +410,9 @@
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
-                  ""slack"": true
+                  ""slack"": true,
+                  ""facebook"": true,
+                  ""apple"": true
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
@@ -400,7 +442,8 @@
                   ""vip"": true,
                   ""vip_ep"": true,
                   ""ids"": {
-                    ""slug"": ""sean""
+                    ""slug"": ""sean"",
+                    ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                   },
                   ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                   ""location"": ""SF"",
@@ -411,7 +454,10 @@
                     ""avatar"": {
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
-                  }
+                  },
+                  ""vip_og"": true,
+                  ""vip_years"": 5,
+                  ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
@@ -425,7 +471,9 @@
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
-                  ""slack"": true
+                  ""slack"": true,
+                  ""facebook"": true,
+                  ""apple"": true
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
@@ -455,7 +503,8 @@
                   ""vip"": true,
                   ""vip_ep"": true,
                   ""ids"": {
-                    ""slug"": ""sean""
+                    ""slug"": ""sean"",
+                    ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                   },
                   ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                   ""location"": ""SF"",
@@ -466,7 +515,10 @@
                     ""avatar"": {
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
-                  }
+                  },
+                  ""vip_og"": true,
+                  ""vip_years"": 5,
+                  ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
@@ -480,7 +532,9 @@
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
-                  ""slack"": true
+                  ""slack"": true,
+                  ""facebook"": true,
+                  ""apple"": true
                 },
                 ""share"": {
                   ""watching"": ""I'm watching [item]"",
@@ -510,7 +564,8 @@
                   ""vip"": true,
                   ""vip_ep"": true,
                   ""ids"": {
-                    ""slug"": ""sean""
+                    ""slug"": ""sean"",
+                    ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                   },
                   ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                   ""location"": ""SF"",
@@ -521,7 +576,10 @@
                     ""avatar"": {
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
-                  }
+                  },
+                  ""vip_og"": true,
+                  ""vip_years"": 5,
+                  ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
@@ -535,7 +593,9 @@
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
-                  ""slack"": true
+                  ""slack"": true,
+                  ""facebook"": true,
+                  ""apple"": true
                 },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
@@ -566,7 +626,8 @@
                   ""vip"": true,
                   ""vip_ep"": true,
                   ""ids"": {
-                    ""slug"": ""sean""
+                    ""slug"": ""sean"",
+                    ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                   },
                   ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                   ""location"": ""SF"",
@@ -577,7 +638,10 @@
                     ""avatar"": {
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
-                  }
+                  },
+                  ""vip_og"": true,
+                  ""vip_years"": 5,
+                  ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                 },
                 ""acc"": {
                   ""timezone"": ""America/Los_Angeles"",
@@ -591,7 +655,9 @@
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
-                  ""slack"": true
+                  ""slack"": true,
+                  ""facebook"": true,
+                  ""apple"": true
                 },
                 ""share"": {
                   ""watching"": ""I'm watching [item]"",

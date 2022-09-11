@@ -87,6 +87,24 @@
                 await userImagesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Images, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.IsVIP_OG.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_VIP_OG, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.IsVIP_OG, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.VIP_Years.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_VIP_YEARS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.VIP_Years, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (!string.IsNullOrEmpty(obj.VIP_CoverImage))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_VIP_COVER_IMAGE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.VIP_CoverImage, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }
