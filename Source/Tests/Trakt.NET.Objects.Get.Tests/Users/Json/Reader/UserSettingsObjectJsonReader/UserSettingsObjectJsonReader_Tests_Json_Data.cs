@@ -26,6 +26,7 @@
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
+                  ""date_format"": ""dmy"",
                   ""time_24hr"": true,
                   ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
@@ -40,6 +41,18 @@
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
                   ""watched"": ""I just watched [item]""
+                },
+                ""limits"": {
+                    ""list"": {
+                        ""count"": 9999,
+                        ""item_count"": 10000
+                    },
+                    ""watchlist"": {
+                        ""item_count"": 10000
+                    },
+                    ""recommendations"": {
+                        ""item_count"": 50
+                    }
                 }
               }";
 
@@ -47,6 +60,7 @@
             @"{
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
+                  ""date_format"": ""dmy"",
                   ""time_24hr"": true,
                   ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
@@ -61,6 +75,18 @@
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
                   ""watched"": ""I just watched [item]""
+                },
+                ""limits"": {
+                    ""list"": {
+                        ""count"": 9999,
+                        ""item_count"": 10000
+                    },
+                    ""watchlist"": {
+                        ""item_count"": 10000
+                    },
+                    ""recommendations"": {
+                        ""item_count"": 50
+                    }
                 }
               }";
 
@@ -96,6 +122,18 @@
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
                   ""watched"": ""I just watched [item]""
+                },
+                ""limits"": {
+                    ""list"": {
+                        ""count"": 9999,
+                        ""item_count"": 10000
+                    },
+                    ""watchlist"": {
+                        ""item_count"": 10000
+                    },
+                    ""recommendations"": {
+                        ""item_count"": 50
+                    }
                 }
               }";
 
@@ -123,6 +161,7 @@
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
+                  ""date_format"": ""dmy"",
                   ""time_24hr"": true,
                   ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
@@ -130,6 +169,18 @@
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
                   ""watched"": ""I just watched [item]""
+                },
+                ""limits"": {
+                    ""list"": {
+                        ""count"": 9999,
+                        ""item_count"": 10000
+                    },
+                    ""watchlist"": {
+                        ""item_count"": 10000
+                    },
+                    ""recommendations"": {
+                        ""item_count"": 50
+                    }
                 }
               }";
 
@@ -157,6 +208,7 @@
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
+                  ""date_format"": ""dmy"",
                   ""time_24hr"": true,
                   ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
@@ -167,6 +219,18 @@
                   ""tumblr"": true,
                   ""medium"": true,
                   ""slack"": true
+                },
+                ""limits"": {
+                    ""list"": {
+                        ""count"": 9999,
+                        ""item_count"": 10000
+                    },
+                    ""watchlist"": {
+                        ""item_count"": 10000
+                    },
+                    ""recommendations"": {
+                        ""item_count"": 50
+                    }
                 }
               }";
 
@@ -191,32 +255,21 @@
                       ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                     }
                   }
-                }
-              }";
-
-        private const string JSON_INCOMPLETE_6 =
-            @"{
+                },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
+                  ""date_format"": ""dmy"",
                   ""time_24hr"": true,
                   ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
-                }
-              }";
-
-        private const string JSON_INCOMPLETE_7 =
-            @"{
+                },
                 ""connections"": {
                   ""twitter"": true,
                   ""google"": true,
                   ""tumblr"": true,
                   ""medium"": true,
                   ""slack"": true
-                }
-              }";
-
-        private const string JSON_INCOMPLETE_8 =
-            @"{
+                },
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
                   ""watched"": ""I just watched [item]""
@@ -247,6 +300,7 @@
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
+                  ""date_format"": ""dmy"",
                   ""time_24hr"": true,
                   ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
@@ -261,6 +315,18 @@
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
                   ""watched"": ""I just watched [item]""
+                },
+                ""limits"": {
+                    ""list"": {
+                        ""count"": 9999,
+                        ""item_count"": 10000
+                    },
+                    ""watchlist"": {
+                        ""item_count"": 10000
+                    },
+                    ""recommendations"": {
+                        ""item_count"": 50
+                    }
                 }
               }";
 
@@ -288,6 +354,7 @@
                 },
                 ""acc"": {
                   ""timezone"": ""America/Los_Angeles"",
+                  ""date_format"": ""dmy"",
                   ""time_24hr"": true,
                   ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
@@ -302,6 +369,18 @@
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
                   ""watched"": ""I just watched [item]""
+                },
+                ""limits"": {
+                    ""list"": {
+                        ""count"": 9999,
+                        ""item_count"": 10000
+                    },
+                    ""watchlist"": {
+                        ""item_count"": 10000
+                    },
+                    ""recommendations"": {
+                        ""item_count"": 50
+                    }
                 }
               }";
 
@@ -329,6 +408,7 @@
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
+                  ""date_format"": ""dmy"",
                   ""time_24hr"": true,
                   ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
@@ -343,6 +423,18 @@
                 ""sharing_text"": {
                   ""watching"": ""I'm watching [item]"",
                   ""watched"": ""I just watched [item]""
+                },
+                ""limits"": {
+                    ""list"": {
+                        ""count"": 9999,
+                        ""item_count"": 10000
+                    },
+                    ""watchlist"": {
+                        ""item_count"": 10000
+                    },
+                    ""recommendations"": {
+                        ""item_count"": 50
+                    }
                 }
               }";
 
@@ -370,6 +462,7 @@
                 },
                 ""account"": {
                   ""timezone"": ""America/Los_Angeles"",
+                  ""date_format"": ""dmy"",
                   ""time_24hr"": true,
                   ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
@@ -384,10 +477,77 @@
                 ""share"": {
                   ""watching"": ""I'm watching [item]"",
                   ""watched"": ""I just watched [item]""
+                },
+                ""limits"": {
+                    ""list"": {
+                        ""count"": 9999,
+                        ""item_count"": 10000
+                    },
+                    ""watchlist"": {
+                        ""item_count"": 10000
+                    },
+                    ""recommendations"": {
+                        ""item_count"": 50
+                    }
                 }
               }";
 
         private const string JSON_NOT_VALID_5 =
+            @"{
+                ""user"": {
+                  ""username"": ""sean"",
+                  ""private"": false,
+                  ""name"": ""Sean Rudford"",
+                  ""vip"": true,
+                  ""vip_ep"": true,
+                  ""ids"": {
+                    ""slug"": ""sean""
+                  },
+                  ""joined_at"": ""2010-09-25T17:49:25.000Z"",
+                  ""location"": ""SF"",
+                  ""about"": ""I have all your cassette tapes."",
+                  ""gender"": ""male"",
+                  ""age"": 35,
+                  ""images"": {
+                    ""avatar"": {
+                      ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
+                    }
+                  }
+                },
+                ""account"": {
+                  ""timezone"": ""America/Los_Angeles"",
+                  ""date_format"": ""dmy"",
+                  ""time_24hr"": true,
+                  ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
+                  ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
+                },
+                ""connections"": {
+                  ""twitter"": true,
+                  ""google"": true,
+                  ""tumblr"": true,
+                  ""medium"": true,
+                  ""slack"": true
+                },
+                ""sharing_text"": {
+                  ""watching"": ""I'm watching [item]"",
+                  ""watched"": ""I just watched [item]""
+                },
+                ""lim"": {
+                    ""list"": {
+                        ""count"": 9999,
+                        ""item_count"": 10000
+                    },
+                    ""watchlist"": {
+                        ""item_count"": 10000
+                    },
+                    ""recommendations"": {
+                        ""item_count"": 50
+                    }
+                }
+              }";
+
+
+        private const string JSON_NOT_VALID_6 =
             @"{
                 ""usr"": {
                   ""username"": ""sean"",
@@ -411,6 +571,7 @@
                 },
                 ""acc"": {
                   ""timezone"": ""America/Los_Angeles"",
+                  ""date_format"": ""dmy"",
                   ""time_24hr"": true,
                   ""cover_image"": ""https://walter.trakt.us/images/movies/000/001/545/fanarts/original/0abb604492.jpg?1406095042"",
                   ""token"": ""60fa34c4f5e7f093ecc5a2d16d691e24""
@@ -425,6 +586,18 @@
                 ""share"": {
                   ""watching"": ""I'm watching [item]"",
                   ""watched"": ""I just watched [item]""
+                },
+                ""lim"": {
+                    ""list"": {
+                        ""count"": 9999,
+                        ""item_count"": 10000
+                    },
+                    ""watchlist"": {
+                        ""item_count"": 10000
+                    },
+                    ""recommendations"": {
+                        ""item_count"": 50
+                    }
                 }
               }";
     }

@@ -32,5 +32,12 @@
         /// <para>Nullable</para>
         /// </summary>
         public ITraktSharingText SharingText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user's limits.
+        /// See also <seealso cref="ITraktUserLimits" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        public ITraktUserLimits Limits { get; set; }
     }
 }
