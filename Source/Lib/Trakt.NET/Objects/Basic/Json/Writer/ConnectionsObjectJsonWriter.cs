@@ -5,9 +5,9 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class SharingObjectJsonWriter : AObjectJsonWriter<ITraktSharing>
+    internal class ConnectionsObjectJsonWriter : AObjectJsonWriter<ITraktConnections>
     {
-        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktSharing obj, CancellationToken cancellationToken = default)
+        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktConnections obj, CancellationToken cancellationToken = default)
         {
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
@@ -40,6 +40,18 @@
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SLACK, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Slack, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Facebook.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_FACEBOOK, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Facebook, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Apple.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_APPLE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Apple, cancellationToken).ConfigureAwait(false);
             }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);

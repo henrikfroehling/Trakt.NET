@@ -17,6 +17,7 @@
 
             sharingText.Watching.Should().BeNull();
             sharingText.Watched.Should().BeNull();
+            sharingText.Rated.Should().BeNull();
         }
 
         [Fact]
@@ -28,12 +29,14 @@
             sharingText.Should().NotBeNull();
             sharingText.Watching.Should().Be("I'm watching [item]");
             sharingText.Watched.Should().Be("I just watched [item]");
+            sharingText.Rated.Should().Be("[item] [stars]");
         }
 
         private const string JSON =
             @"{
                 ""watching"": ""I'm watching [item]"",
-                ""watched"": ""I just watched [item]""
+                ""watched"": ""I just watched [item]"",
+                ""rated"": ""[item] [stars]""
               }";
     }
 }

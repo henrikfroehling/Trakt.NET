@@ -24,6 +24,12 @@
                 await jsonWriter.WriteValueAsync(obj.Watched, cancellationToken).ConfigureAwait(false);
             }
 
+            if (!string.IsNullOrEmpty(obj.Rated))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RATED, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Rated, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

@@ -54,7 +54,7 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if its ids are null.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid.</exception>
         public Task<TraktResponse<ITraktMovieCheckinPostResponse>> CheckIntoMovieAsync(ITraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
-                                                                                       string message = null, ITraktSharing sharing = null,
+                                                                                       string message = null, ITraktConnections sharing = null,
                                                                                        string foursquareVenueID = null, string foursquareVenueName = null,
                                                                                        CancellationToken cancellationToken = default)
         {
@@ -105,7 +105,7 @@
         /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if its ids are null.</exception>
         public Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeAsync(ITraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
-                                                                                           string message = null, ITraktSharing sharing = null,
+                                                                                           string message = null, ITraktConnections sharing = null,
                                                                                            string foursquareVenueID = null, string foursquareVenueName = null,
                                                                                            CancellationToken cancellationToken = default)
         {
@@ -160,7 +160,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given episode's season number or the given episode's number is below zero.</exception>
         public Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeWithShowAsync(ITraktEpisode episode, ITraktShow show,
                                                                                                    string appVersion = null, DateTime? appBuildDate = null,
-                                                                                                   string message = null, ITraktSharing sharing = null,
+                                                                                                   string message = null, ITraktConnections sharing = null,
                                                                                                    string foursquareVenueID = null, string foursquareVenueName = null,
                                                                                                    CancellationToken cancellationToken = default)
         {
@@ -215,7 +215,7 @@
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given episode's season number or the given episode's number is below zero.</exception>
         public Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeWithShowAsync(int absoluteEpisodeNumber, ITraktShow show,
                                                                                                    string appVersion = null, DateTime? appBuildDate = null,
-                                                                                                   string message = null, ITraktSharing sharing = null,
+                                                                                                   string message = null, ITraktConnections sharing = null,
                                                                                                    string foursquareVenueID = null, string foursquareVenueName = null,
                                                                                                    CancellationToken cancellationToken = default)
         {

@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic
 {
     /// <summary>Represents Trakt connection options.</summary>
-    public interface ITraktSharing
+    public interface ITraktConnections
     {
         /// <summary>Gets or sets, whether Twitter connection is enabled.</summary>
         bool? Twitter { get; set; }
@@ -17,5 +17,11 @@
 
         /// <summary>Gets or sets, whether Slack connection is enabled.</summary>
         bool? Slack { get; set; }
+
+        /// <summary>Gets or sets, whether Facebook connection is enabled.</summary>
+        bool? Facebook { get; set; }
+
+        /// <summary>Gets or sets, whether Apple connection is enabled.</summary>
+        bool? Apple { get; set; }
     }
 }

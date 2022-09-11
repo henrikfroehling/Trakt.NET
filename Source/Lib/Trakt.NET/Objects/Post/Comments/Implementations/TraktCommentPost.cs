@@ -14,10 +14,10 @@
 
         /// <summary>
         /// Gets or sets the sharing options for the comment post.
-        /// See also <seealso cref="ITraktSharing" />.
+        /// See also <seealso cref="ITraktConnections" />.
         /// <para>Nullable</para>
         /// </summary>
-        public ITraktSharing Sharing { get; set; }
+        public ITraktConnections Sharing { get; set; }
 
         public abstract Task<string> ToJson(CancellationToken cancellationToken = default);
 
