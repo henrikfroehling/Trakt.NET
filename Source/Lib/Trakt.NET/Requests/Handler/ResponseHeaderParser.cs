@@ -25,6 +25,8 @@
         private const string HEADER_RATE_LIMIT = "X-RateLimit";
         private const string HEADER_RETRY_AFTER = "Retry-After";
         private const string HEADER_UPGRADE_URL = "X-Upgrade-URL";
+        private const string HEADER_VIP_USER = "X-VIP-User";
+        private const string HEADER_ACCOUNT_LIMIT = "X-Account-Limit";
 
         internal static void ParseResponseHeaderValues(ITraktResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
         {
@@ -112,6 +114,22 @@
 
             if (responseHeaders.TryGetValues(HEADER_UPGRADE_URL, out values))
                 headerResults.UpgradeURL = values.First();
+
+            if (responseHeaders.TryGetValues(HEADER_VIP_USER, out values))
+            {
+                string strVIPUser = values.First();
+
+                if (bool.TryParse(strVIPUser, out bool isVIPUser))
+                    headerResults.IsVIPUser = isVIPUser;
+            }
+
+            if (responseHeaders.TryGetValues(HEADER_ACCOUNT_LIMIT, out values))
+            {
+                string strAccountLimit = values.First();
+
+                if (int.TryParse(strAccountLimit, out int accountLimit))
+                    headerResults.AccountLimit = accountLimit;
+            }
         }
 
         internal static void ParsePagedResponseHeaderValues(ITraktPagedResponseHeaders headerResults, HttpResponseHeaders responseHeaders)

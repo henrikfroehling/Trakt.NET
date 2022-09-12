@@ -88,6 +88,9 @@
                 case (HttpStatusCode)418:
                     HandleDeniedError(errorParameters);
                     break;
+                case (HttpStatusCode)420:
+                    HandleAccountLimitError(errorParameters);
+                    break;
                 case (HttpStatusCode)422:
                     HandleValidationError(errorParameters);
                     break;
@@ -409,6 +412,20 @@
                     ServerReasonPhrase = errorParameters.ServerReasonPhrase
                 };
             }
+        }
+
+        private static void HandleAccountLimitError(ResponseErrorParameters errorParameters)
+        {
+            throw new TraktUserAccountLimitException
+            {
+                RequestUrl = errorParameters.Url,
+                RequestBody = errorParameters.RequestBody,
+                Response = errorParameters.ResponseBody,
+                ServerReasonPhrase = errorParameters.ServerReasonPhrase,
+                UpgradeURL = !string.IsNullOrEmpty(errorParameters.Headers.UpgradeURL) ? errorParameters.Headers.UpgradeURL : "",
+                IsVIPUser = errorParameters.Headers.IsVIPUser ?? false,
+                AccountLimit = errorParameters.Headers.AccountLimit ?? null
+            };
         }
 
         private static void HandleValidationError(ResponseErrorParameters errorParameters)
