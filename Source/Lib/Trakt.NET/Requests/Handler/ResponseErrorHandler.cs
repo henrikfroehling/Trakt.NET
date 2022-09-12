@@ -424,7 +424,7 @@
                 ServerReasonPhrase = errorParameters.ServerReasonPhrase,
                 UpgradeURL = !string.IsNullOrEmpty(errorParameters.Headers.UpgradeURL) ? errorParameters.Headers.UpgradeURL : "",
                 IsVIPUser = errorParameters.Headers.IsVIPUser ?? false,
-                AccountLimit = errorParameters.Headers.AccountLimit ?? null
+                AccountLimit = errorParameters.Headers.AccountLimit
             };
         }
 
