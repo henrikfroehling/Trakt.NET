@@ -1,7 +1,7 @@
-﻿using System.Net;
-
-namespace TraktNet.Exceptions
+﻿namespace TraktNet.Exceptions
 {
+    using System.Net;
+
     /// <summary>Exception, that will be thrown, if the authorized user does not have VIP support.</summary>
     public class TraktFailedVIPValidationException : TraktException
     {

@@ -38,5 +38,9 @@
         public int? RetryAfter { get; set; }
 
         public string UpgradeURL { get; set; }
+
+        public bool? IsVIPUser { get; set; }
+
+        public int? AccountLimit { get; set; }
     }
 }
