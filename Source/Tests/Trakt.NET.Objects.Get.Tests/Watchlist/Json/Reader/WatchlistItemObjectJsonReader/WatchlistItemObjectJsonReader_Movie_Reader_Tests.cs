@@ -7,38 +7,39 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Objects.Get.Watchlist;
     using TraktNet.Objects.Get.Watchlist.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Watchlist.JsonReader")]
-    public partial class WatchlistItemObjectJsonReader_Tests
+    public partial class WatchlistItemObjectJsonReader_Movie_Tests
     {
         [Fact]
         public async Task Test_WatchlistItemObjectJsonReader_Movie_ReadObject_From_JsonReader_Complete()
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_MOVIE_JSON_COMPLETE))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_MOVIE_JSON_COMPLETE);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktWatchlistItem.Should().NotBeNull();
-                traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
-                traktWatchlistItem.Movie.Should().NotBeNull();
-                traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
-                traktWatchlistItem.Movie.Year.Should().Be(2015);
-                traktWatchlistItem.Movie.Ids.Should().NotBeNull();
-                traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
-                traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
-                traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
-                traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().Be(101U);
+            traktWatchlistItem.Rank.Should().Be(1);
+            traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
+            traktWatchlistItem.Movie.Should().NotBeNull();
+            traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktWatchlistItem.Movie.Year.Should().Be(2015);
+            traktWatchlistItem.Movie.Ids.Should().NotBeNull();
+            traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
+            traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
 
-                traktWatchlistItem.Show.Should().BeNull();
-                traktWatchlistItem.Season.Should().BeNull();
-                traktWatchlistItem.Episode.Should().BeNull();
-            }
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
         }
 
         [Fact]
@@ -46,27 +47,27 @@
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_MOVIE_JSON_INCOMPLETE_1))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_MOVIE_JSON_INCOMPLETE_1);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktWatchlistItem.Should().NotBeNull();
-                traktWatchlistItem.ListedAt.Should().BeNull();
-                traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
-                traktWatchlistItem.Movie.Should().NotBeNull();
-                traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
-                traktWatchlistItem.Movie.Year.Should().Be(2015);
-                traktWatchlistItem.Movie.Ids.Should().NotBeNull();
-                traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
-                traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
-                traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
-                traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().BeNull();
+            traktWatchlistItem.Rank.Should().Be(1);
+            traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
+            traktWatchlistItem.Movie.Should().NotBeNull();
+            traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktWatchlistItem.Movie.Year.Should().Be(2015);
+            traktWatchlistItem.Movie.Ids.Should().NotBeNull();
+            traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
+            traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
 
-                traktWatchlistItem.Show.Should().BeNull();
-                traktWatchlistItem.Season.Should().BeNull();
-                traktWatchlistItem.Episode.Should().BeNull();
-            }
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
         }
 
         [Fact]
@@ -74,27 +75,27 @@
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_MOVIE_JSON_INCOMPLETE_2))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_MOVIE_JSON_INCOMPLETE_2);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktWatchlistItem.Should().NotBeNull();
-                traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchlistItem.Type.Should().BeNull();
-                traktWatchlistItem.Movie.Should().NotBeNull();
-                traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
-                traktWatchlistItem.Movie.Year.Should().Be(2015);
-                traktWatchlistItem.Movie.Ids.Should().NotBeNull();
-                traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
-                traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
-                traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
-                traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().Be(101U);
+            traktWatchlistItem.Rank.Should().BeNull();
+            traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
+            traktWatchlistItem.Movie.Should().NotBeNull();
+            traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktWatchlistItem.Movie.Year.Should().Be(2015);
+            traktWatchlistItem.Movie.Ids.Should().NotBeNull();
+            traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
+            traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
 
-                traktWatchlistItem.Show.Should().BeNull();
-                traktWatchlistItem.Season.Should().BeNull();
-                traktWatchlistItem.Episode.Should().BeNull();
-            }
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
         }
 
         [Fact]
@@ -102,20 +103,27 @@
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_MOVIE_JSON_INCOMPLETE_3))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_MOVIE_JSON_INCOMPLETE_3);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktWatchlistItem.Should().NotBeNull();
-                traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
-                traktWatchlistItem.Movie.Should().BeNull();
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().Be(101U);
+            traktWatchlistItem.Rank.Should().Be(1);
+            traktWatchlistItem.ListedAt.Should().BeNull();
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
+            traktWatchlistItem.Movie.Should().NotBeNull();
+            traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktWatchlistItem.Movie.Year.Should().Be(2015);
+            traktWatchlistItem.Movie.Ids.Should().NotBeNull();
+            traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
+            traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
 
-                traktWatchlistItem.Show.Should().BeNull();
-                traktWatchlistItem.Season.Should().BeNull();
-                traktWatchlistItem.Episode.Should().BeNull();
-            }
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
         }
 
         [Fact]
@@ -123,20 +131,27 @@
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_MOVIE_JSON_INCOMPLETE_4))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_MOVIE_JSON_INCOMPLETE_4);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktWatchlistItem.Should().NotBeNull();
-                traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchlistItem.Type.Should().BeNull();
-                traktWatchlistItem.Movie.Should().BeNull();
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().Be(101U);
+            traktWatchlistItem.Rank.Should().Be(1);
+            traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Type.Should().BeNull();
+            traktWatchlistItem.Movie.Should().NotBeNull();
+            traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktWatchlistItem.Movie.Year.Should().Be(2015);
+            traktWatchlistItem.Movie.Ids.Should().NotBeNull();
+            traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
+            traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
 
-                traktWatchlistItem.Show.Should().BeNull();
-                traktWatchlistItem.Season.Should().BeNull();
-                traktWatchlistItem.Episode.Should().BeNull();
-            }
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
         }
 
         [Fact]
@@ -144,48 +159,20 @@
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_MOVIE_JSON_INCOMPLETE_5))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_MOVIE_JSON_INCOMPLETE_5);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktWatchlistItem.Should().NotBeNull();
-                traktWatchlistItem.ListedAt.Should().BeNull();
-                traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
-                traktWatchlistItem.Movie.Should().BeNull();
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().Be(101U);
+            traktWatchlistItem.Rank.Should().Be(1);
+            traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
+            traktWatchlistItem.Movie.Should().BeNull();
 
-                traktWatchlistItem.Show.Should().BeNull();
-                traktWatchlistItem.Season.Should().BeNull();
-                traktWatchlistItem.Episode.Should().BeNull();
-            }
-        }
-
-        [Fact]
-        public async Task Test_WatchlistItemObjectJsonReader_Movie_ReadObject_From_JsonReader_Incomplete_6()
-        {
-            var traktJsonReader = new WatchlistItemObjectJsonReader();
-
-            using (var reader = new StringReader(TYPE_MOVIE_JSON_INCOMPLETE_6))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
-
-                traktWatchlistItem.Should().NotBeNull();
-                traktWatchlistItem.ListedAt.Should().BeNull();
-                traktWatchlistItem.Type.Should().BeNull();
-                traktWatchlistItem.Movie.Should().NotBeNull();
-                traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
-                traktWatchlistItem.Movie.Year.Should().Be(2015);
-                traktWatchlistItem.Movie.Ids.Should().NotBeNull();
-                traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
-                traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
-                traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
-                traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
-
-                traktWatchlistItem.Show.Should().BeNull();
-                traktWatchlistItem.Season.Should().BeNull();
-                traktWatchlistItem.Episode.Should().BeNull();
-            }
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
         }
 
         [Fact]
@@ -193,27 +180,27 @@
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_MOVIE_JSON_NOT_VALID_1))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_MOVIE_JSON_NOT_VALID_1);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktWatchlistItem.Should().NotBeNull();
-                traktWatchlistItem.ListedAt.Should().BeNull();
-                traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
-                traktWatchlistItem.Movie.Should().NotBeNull();
-                traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
-                traktWatchlistItem.Movie.Year.Should().Be(2015);
-                traktWatchlistItem.Movie.Ids.Should().NotBeNull();
-                traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
-                traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
-                traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
-                traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().BeNull();
+            traktWatchlistItem.Rank.Should().Be(1);
+            traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
+            traktWatchlistItem.Movie.Should().NotBeNull();
+            traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktWatchlistItem.Movie.Year.Should().Be(2015);
+            traktWatchlistItem.Movie.Ids.Should().NotBeNull();
+            traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
+            traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
 
-                traktWatchlistItem.Show.Should().BeNull();
-                traktWatchlistItem.Season.Should().BeNull();
-                traktWatchlistItem.Episode.Should().BeNull();
-            }
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
         }
 
         [Fact]
@@ -221,27 +208,27 @@
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_MOVIE_JSON_NOT_VALID_2))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_MOVIE_JSON_NOT_VALID_2);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktWatchlistItem.Should().NotBeNull();
-                traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchlistItem.Type.Should().BeNull();
-                traktWatchlistItem.Movie.Should().NotBeNull();
-                traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
-                traktWatchlistItem.Movie.Year.Should().Be(2015);
-                traktWatchlistItem.Movie.Ids.Should().NotBeNull();
-                traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
-                traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
-                traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
-                traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().Be(101U);
+            traktWatchlistItem.Rank.Should().BeNull();
+            traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
+            traktWatchlistItem.Movie.Should().NotBeNull();
+            traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktWatchlistItem.Movie.Year.Should().Be(2015);
+            traktWatchlistItem.Movie.Ids.Should().NotBeNull();
+            traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
+            traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
 
-                traktWatchlistItem.Show.Should().BeNull();
-                traktWatchlistItem.Season.Should().BeNull();
-                traktWatchlistItem.Episode.Should().BeNull();
-            }
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
         }
 
         [Fact]
@@ -249,20 +236,27 @@
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_MOVIE_JSON_NOT_VALID_3))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_MOVIE_JSON_NOT_VALID_3);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktWatchlistItem.Should().NotBeNull();
-                traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
-                traktWatchlistItem.Movie.Should().BeNull();
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().Be(101U);
+            traktWatchlistItem.Rank.Should().Be(1);
+            traktWatchlistItem.ListedAt.Should().BeNull();
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
+            traktWatchlistItem.Movie.Should().NotBeNull();
+            traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktWatchlistItem.Movie.Year.Should().Be(2015);
+            traktWatchlistItem.Movie.Ids.Should().NotBeNull();
+            traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
+            traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
 
-                traktWatchlistItem.Show.Should().BeNull();
-                traktWatchlistItem.Season.Should().BeNull();
-                traktWatchlistItem.Episode.Should().BeNull();
-            }
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
         }
 
         [Fact]
@@ -270,19 +264,69 @@
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_MOVIE_JSON_NOT_VALID_4))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_MOVIE_JSON_NOT_VALID_4);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktWatchlistItem.Should().NotBeNull();
-                traktWatchlistItem.ListedAt.Should().BeNull();
-                traktWatchlistItem.Type.Should().BeNull();
-                traktWatchlistItem.Movie.Should().BeNull();
-                traktWatchlistItem.Show.Should().BeNull();
-                traktWatchlistItem.Season.Should().BeNull();
-                traktWatchlistItem.Episode.Should().BeNull();
-            }
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().Be(101U);
+            traktWatchlistItem.Rank.Should().Be(1);
+            traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Type.Should().BeNull();
+            traktWatchlistItem.Movie.Should().NotBeNull();
+            traktWatchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
+            traktWatchlistItem.Movie.Year.Should().Be(2015);
+            traktWatchlistItem.Movie.Ids.Should().NotBeNull();
+            traktWatchlistItem.Movie.Ids.Trakt.Should().Be(94024U);
+            traktWatchlistItem.Movie.Ids.Slug.Should().Be("star-wars-the-force-awakens-2015");
+            traktWatchlistItem.Movie.Ids.Imdb.Should().Be("tt2488496");
+            traktWatchlistItem.Movie.Ids.Tmdb.Should().Be(140607U);
+
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_WatchlistItemObjectJsonReader_Movie_ReadObject_From_JsonReader_Not_Valid_5()
+        {
+            var traktJsonReader = new WatchlistItemObjectJsonReader();
+
+            using var reader = new StringReader(TYPE_MOVIE_JSON_NOT_VALID_5);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().Be(101U);
+            traktWatchlistItem.Rank.Should().Be(1);
+            traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
+            traktWatchlistItem.Movie.Should().BeNull();
+
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_WatchlistItemObjectJsonReader_Movie_ReadObject_From_JsonReader_Not_Valid_6()
+        {
+            var traktJsonReader = new WatchlistItemObjectJsonReader();
+
+            using var reader = new StringReader(TYPE_MOVIE_JSON_NOT_VALID_6);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().BeNull();
+            traktWatchlistItem.Rank.Should().BeNull();
+            traktWatchlistItem.ListedAt.Should().BeNull();
+            traktWatchlistItem.Type.Should().BeNull();
+            traktWatchlistItem.Movie.Should().BeNull();
+
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
         }
     }
 }
