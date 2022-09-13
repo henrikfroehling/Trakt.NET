@@ -37,7 +37,7 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Movie);
             listItem.Movie.Should().NotBeNull();
@@ -75,7 +75,7 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Show);
             listItem.Movie.Should().BeNull();
@@ -120,7 +120,7 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Season);
             listItem.Movie.Should().BeNull();
@@ -151,7 +151,7 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Episode);
             listItem.Movie.Should().BeNull();
@@ -214,7 +214,7 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Person);
             listItem.Movie.Should().BeNull();
@@ -245,7 +245,7 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Movie);
             listItem.Movie.Should().NotBeNull();
@@ -283,7 +283,7 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Show);
             listItem.Movie.Should().BeNull();
@@ -331,7 +331,7 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Season);
             listItem.Movie.Should().BeNull();
@@ -405,7 +405,7 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Episode);
             listItem.Movie.Should().BeNull();
@@ -484,7 +484,7 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             listItem.Type.Should().Be(TraktListItemType.Person);
             listItem.Movie.Should().BeNull();
@@ -510,7 +510,7 @@
         private const string TYPE_MOVIE_MINIMAL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""movie"",
                 ""movie"": {
@@ -528,7 +528,7 @@
         private const string TYPE_SHOW_MINIMAL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""show"",
                 ""show"": {
@@ -548,7 +548,7 @@
         private const string TYPE_SEASON_MINIMAL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""season"",
                 ""season"": {
@@ -565,7 +565,7 @@
         private const string TYPE_EPISODE_MINIMAL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""episode"",
                 ""episode"": {
@@ -597,7 +597,7 @@
         private const string TYPE_PERSON_MINIMAL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""person"",
                 ""person"": {
@@ -615,7 +615,7 @@
         private const string TYPE_MOVIE_FULL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""movie"",
                 ""movie"": {
@@ -656,7 +656,7 @@
         private const string TYPE_SHOW_FULL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""show"",
                 ""show"": {
@@ -708,7 +708,7 @@
         private const string TYPE_SEASON_FULL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""season"",
                 ""season"": {
@@ -757,7 +757,7 @@
         private const string TYPE_EPISODE_FULL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""episode"",
                 ""episode"": {
@@ -844,7 +844,7 @@
         private const string TYPE_PERSON_FULL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""person"",
                 ""person"": {

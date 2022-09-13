@@ -48,5 +48,11 @@
 
         /// <summary>The web URL where the user can sign up for Trakt VIP.</summary>
         string UpgradeURL { get; set; }
+
+        /// <summary>Determines whether the user is a VIP user.</summary>
+        bool? IsVIPUser { get; set; }
+
+        /// <summary>The user's account limit.</summary>
+        int? AccountLimit { get; set; }
     }
 }
