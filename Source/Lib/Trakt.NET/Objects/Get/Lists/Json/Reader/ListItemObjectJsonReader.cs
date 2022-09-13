@@ -43,7 +43,7 @@
                                 break;
                             }
                         case JsonProperties.PROPERTY_NAME_RANK:
-                            traktListItem.Rank = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            traktListItem.Rank = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_LISTED_AT:
                             {

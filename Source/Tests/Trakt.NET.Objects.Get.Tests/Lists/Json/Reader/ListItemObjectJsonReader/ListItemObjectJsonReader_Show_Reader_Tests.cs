@@ -7,43 +7,42 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Objects.Get.Lists;
     using TraktNet.Objects.Get.Lists.Json.Reader;
     using Xunit;
 
     [Category("Objects.Get.Lists.JsonReader")]
-    public partial class ListItemObjectJsonReader_Tests
+    public partial class ListItemObjectJsonReader_Show_Tests
     {
         [Fact]
         public async Task Test_ListItemObjectJsonReader_Show_ReadObject_From_JsonReader_Complete()
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_SHOW_JSON_COMPLETE))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_SHOW_JSON_COMPLETE);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktListItem.Should().NotBeNull();
-                traktListItem.Id.Should().Be(101U);
-                traktListItem.Rank.Should().Be("1");
-                traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktListItem.Type.Should().Be(TraktListItemType.Show);
-                traktListItem.Show.Should().NotBeNull();
-                traktListItem.Show.Title.Should().Be("Game of Thrones");
-                traktListItem.Show.Year.Should().Be(2011);
-                traktListItem.Show.Ids.Should().NotBeNull();
-                traktListItem.Show.Ids.Trakt.Should().Be(1390U);
-                traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
-                traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
-                traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
-                traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
-                traktListItem.Show.Ids.TvRage.Should().Be(24493U);
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
+            traktListItem.Rank.Should().Be(1);
+            traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Type.Should().Be(TraktListItemType.Show);
+            traktListItem.Show.Should().NotBeNull();
+            traktListItem.Show.Title.Should().Be("Game of Thrones");
+            traktListItem.Show.Year.Should().Be(2011);
+            traktListItem.Show.Ids.Should().NotBeNull();
+            traktListItem.Show.Ids.Trakt.Should().Be(1390U);
+            traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
+            traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
+            traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
+            traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
+            traktListItem.Show.Ids.TvRage.Should().Be(24493U);
 
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
         }
 
         [Fact]
@@ -51,31 +50,30 @@
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_1))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_1);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().BeNull();
-                traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktListItem.Type.Should().Be(TraktListItemType.Show);
-                traktListItem.Show.Should().NotBeNull();
-                traktListItem.Show.Title.Should().Be("Game of Thrones");
-                traktListItem.Show.Year.Should().Be(2011);
-                traktListItem.Show.Ids.Should().NotBeNull();
-                traktListItem.Show.Ids.Trakt.Should().Be(1390U);
-                traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
-                traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
-                traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
-                traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
-                traktListItem.Show.Ids.TvRage.Should().Be(24493U);
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().BeNull();
+            traktListItem.Rank.Should().Be(1);
+            traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Type.Should().Be(TraktListItemType.Show);
+            traktListItem.Show.Should().NotBeNull();
+            traktListItem.Show.Title.Should().Be("Game of Thrones");
+            traktListItem.Show.Year.Should().Be(2011);
+            traktListItem.Show.Ids.Should().NotBeNull();
+            traktListItem.Show.Ids.Trakt.Should().Be(1390U);
+            traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
+            traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
+            traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
+            traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
+            traktListItem.Show.Ids.TvRage.Should().Be(24493U);
 
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
         }
 
         [Fact]
@@ -83,31 +81,30 @@
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_2))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_2);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().Be("1");
-                traktListItem.ListedAt.Should().BeNull();
-                traktListItem.Type.Should().Be(TraktListItemType.Show);
-                traktListItem.Show.Should().NotBeNull();
-                traktListItem.Show.Title.Should().Be("Game of Thrones");
-                traktListItem.Show.Year.Should().Be(2011);
-                traktListItem.Show.Ids.Should().NotBeNull();
-                traktListItem.Show.Ids.Trakt.Should().Be(1390U);
-                traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
-                traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
-                traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
-                traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
-                traktListItem.Show.Ids.TvRage.Should().Be(24493U);
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
+            traktListItem.Rank.Should().BeNull();
+            traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Type.Should().Be(TraktListItemType.Show);
+            traktListItem.Show.Should().NotBeNull();
+            traktListItem.Show.Title.Should().Be("Game of Thrones");
+            traktListItem.Show.Year.Should().Be(2011);
+            traktListItem.Show.Ids.Should().NotBeNull();
+            traktListItem.Show.Ids.Trakt.Should().Be(1390U);
+            traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
+            traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
+            traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
+            traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
+            traktListItem.Show.Ids.TvRage.Should().Be(24493U);
 
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
         }
 
         [Fact]
@@ -115,31 +112,30 @@
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_3))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_3);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().Be("1");
-                traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktListItem.Type.Should().BeNull();
-                traktListItem.Show.Should().NotBeNull();
-                traktListItem.Show.Title.Should().Be("Game of Thrones");
-                traktListItem.Show.Year.Should().Be(2011);
-                traktListItem.Show.Ids.Should().NotBeNull();
-                traktListItem.Show.Ids.Trakt.Should().Be(1390U);
-                traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
-                traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
-                traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
-                traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
-                traktListItem.Show.Ids.TvRage.Should().Be(24493U);
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
+            traktListItem.Rank.Should().Be(1);
+            traktListItem.ListedAt.Should().BeNull();
+            traktListItem.Type.Should().Be(TraktListItemType.Show);
+            traktListItem.Show.Should().NotBeNull();
+            traktListItem.Show.Title.Should().Be("Game of Thrones");
+            traktListItem.Show.Year.Should().Be(2011);
+            traktListItem.Show.Ids.Should().NotBeNull();
+            traktListItem.Show.Ids.Trakt.Should().Be(1390U);
+            traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
+            traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
+            traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
+            traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
+            traktListItem.Show.Ids.TvRage.Should().Be(24493U);
 
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
         }
 
         [Fact]
@@ -147,22 +143,30 @@
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_4))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_4);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().Be("1");
-                traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktListItem.Type.Should().Be(TraktListItemType.Show);
-                traktListItem.Show.Should().BeNull();
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
+            traktListItem.Rank.Should().Be(1);
+            traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Type.Should().BeNull();
+            traktListItem.Show.Should().NotBeNull();
+            traktListItem.Show.Title.Should().Be("Game of Thrones");
+            traktListItem.Show.Year.Should().Be(2011);
+            traktListItem.Show.Ids.Should().NotBeNull();
+            traktListItem.Show.Ids.Trakt.Should().Be(1390U);
+            traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
+            traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
+            traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
+            traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
+            traktListItem.Show.Ids.TvRage.Should().Be(24493U);
 
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
         }
 
         [Fact]
@@ -170,100 +174,21 @@
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_5))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_5);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().Be("1");
-                traktListItem.ListedAt.Should().BeNull();
-                traktListItem.Type.Should().BeNull();
-                traktListItem.Show.Should().BeNull();
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
+            traktListItem.Rank.Should().Be(1);
+            traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Type.Should().Be(TraktListItemType.Show);
+            traktListItem.Show.Should().BeNull();
 
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
-        }
-
-        [Fact]
-        public async Task Test_ListItemObjectJsonReader_Show_ReadObject_From_JsonReader_Incomplete_6()
-        {
-            var traktJsonReader = new ListItemObjectJsonReader();
-
-            using (var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_6))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
-
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().BeNull();
-                traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktListItem.Type.Should().BeNull();
-                traktListItem.Show.Should().BeNull();
-
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
-        }
-
-        [Fact]
-        public async Task Test_ListItemObjectJsonReader_Show_ReadObject_From_JsonReader_Incomplete_7()
-        {
-            var traktJsonReader = new ListItemObjectJsonReader();
-
-            using (var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_7))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
-
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().BeNull();
-                traktListItem.ListedAt.Should().BeNull();
-                traktListItem.Type.Should().Be(TraktListItemType.Show);
-                traktListItem.Show.Should().BeNull();
-
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
-        }
-
-        [Fact]
-        public async Task Test_ListItemObjectJsonReader_Show_ReadObject_From_JsonReader_Incomplete_8()
-        {
-            var traktJsonReader = new ListItemObjectJsonReader();
-
-            using (var reader = new StringReader(TYPE_SHOW_JSON_INCOMPLETE_8))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
-
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().BeNull();
-                traktListItem.ListedAt.Should().BeNull();
-                traktListItem.Type.Should().BeNull();
-                traktListItem.Show.Should().NotBeNull();
-                traktListItem.Show.Title.Should().Be("Game of Thrones");
-                traktListItem.Show.Year.Should().Be(2011);
-                traktListItem.Show.Ids.Should().NotBeNull();
-                traktListItem.Show.Ids.Trakt.Should().Be(1390U);
-                traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
-                traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
-                traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
-                traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
-                traktListItem.Show.Ids.TvRage.Should().Be(24493U);
-
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
         }
 
         [Fact]
@@ -271,31 +196,30 @@
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_SHOW_JSON_NOT_VALID_1))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_SHOW_JSON_NOT_VALID_1);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().BeNull();
-                traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktListItem.Type.Should().Be(TraktListItemType.Show);
-                traktListItem.Show.Should().NotBeNull();
-                traktListItem.Show.Title.Should().Be("Game of Thrones");
-                traktListItem.Show.Year.Should().Be(2011);
-                traktListItem.Show.Ids.Should().NotBeNull();
-                traktListItem.Show.Ids.Trakt.Should().Be(1390U);
-                traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
-                traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
-                traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
-                traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
-                traktListItem.Show.Ids.TvRage.Should().Be(24493U);
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().BeNull();
+            traktListItem.Rank.Should().Be(1);
+            traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Type.Should().Be(TraktListItemType.Show);
+            traktListItem.Show.Should().NotBeNull();
+            traktListItem.Show.Title.Should().Be("Game of Thrones");
+            traktListItem.Show.Year.Should().Be(2011);
+            traktListItem.Show.Ids.Should().NotBeNull();
+            traktListItem.Show.Ids.Trakt.Should().Be(1390U);
+            traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
+            traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
+            traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
+            traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
+            traktListItem.Show.Ids.TvRage.Should().Be(24493U);
 
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
         }
 
         [Fact]
@@ -303,31 +227,30 @@
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_SHOW_JSON_NOT_VALID_2))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_SHOW_JSON_NOT_VALID_2);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().Be("1");
-                traktListItem.ListedAt.Should().BeNull();
-                traktListItem.Type.Should().Be(TraktListItemType.Show);
-                traktListItem.Show.Should().NotBeNull();
-                traktListItem.Show.Title.Should().Be("Game of Thrones");
-                traktListItem.Show.Year.Should().Be(2011);
-                traktListItem.Show.Ids.Should().NotBeNull();
-                traktListItem.Show.Ids.Trakt.Should().Be(1390U);
-                traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
-                traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
-                traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
-                traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
-                traktListItem.Show.Ids.TvRage.Should().Be(24493U);
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
+            traktListItem.Rank.Should().BeNull();
+            traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Type.Should().Be(TraktListItemType.Show);
+            traktListItem.Show.Should().NotBeNull();
+            traktListItem.Show.Title.Should().Be("Game of Thrones");
+            traktListItem.Show.Year.Should().Be(2011);
+            traktListItem.Show.Ids.Should().NotBeNull();
+            traktListItem.Show.Ids.Trakt.Should().Be(1390U);
+            traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
+            traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
+            traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
+            traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
+            traktListItem.Show.Ids.TvRage.Should().Be(24493U);
 
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
         }
 
         [Fact]
@@ -335,31 +258,30 @@
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_SHOW_JSON_NOT_VALID_3))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_SHOW_JSON_NOT_VALID_3);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().Be("1");
-                traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktListItem.Type.Should().BeNull();
-                traktListItem.Show.Should().NotBeNull();
-                traktListItem.Show.Title.Should().Be("Game of Thrones");
-                traktListItem.Show.Year.Should().Be(2011);
-                traktListItem.Show.Ids.Should().NotBeNull();
-                traktListItem.Show.Ids.Trakt.Should().Be(1390U);
-                traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
-                traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
-                traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
-                traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
-                traktListItem.Show.Ids.TvRage.Should().Be(24493U);
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
+            traktListItem.Rank.Should().Be(1);
+            traktListItem.ListedAt.Should().BeNull();
+            traktListItem.Type.Should().Be(TraktListItemType.Show);
+            traktListItem.Show.Should().NotBeNull();
+            traktListItem.Show.Title.Should().Be("Game of Thrones");
+            traktListItem.Show.Year.Should().Be(2011);
+            traktListItem.Show.Ids.Should().NotBeNull();
+            traktListItem.Show.Ids.Trakt.Should().Be(1390U);
+            traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
+            traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
+            traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
+            traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
+            traktListItem.Show.Ids.TvRage.Should().Be(24493U);
 
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
         }
 
         [Fact]
@@ -367,22 +289,30 @@
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_SHOW_JSON_NOT_VALID_4))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_SHOW_JSON_NOT_VALID_4);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().Be("1");
-                traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-                traktListItem.Type.Should().Be(TraktListItemType.Show);
-                traktListItem.Show.Should().BeNull();
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
+            traktListItem.Rank.Should().Be(1);
+            traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Type.Should().BeNull();
+            traktListItem.Show.Should().NotBeNull();
+            traktListItem.Show.Title.Should().Be("Game of Thrones");
+            traktListItem.Show.Year.Should().Be(2011);
+            traktListItem.Show.Ids.Should().NotBeNull();
+            traktListItem.Show.Ids.Trakt.Should().Be(1390U);
+            traktListItem.Show.Ids.Slug.Should().Be("game-of-thrones");
+            traktListItem.Show.Ids.Tvdb.Should().Be(121361U);
+            traktListItem.Show.Ids.Imdb.Should().Be("tt0944947");
+            traktListItem.Show.Ids.Tmdb.Should().Be(1399U);
+            traktListItem.Show.Ids.TvRage.Should().Be(24493U);
 
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
         }
 
         [Fact]
@@ -390,21 +320,43 @@
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(TYPE_SHOW_JSON_NOT_VALID_5))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(TYPE_SHOW_JSON_NOT_VALID_5);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                traktListItem.Should().NotBeNull();
-                traktListItem.Rank.Should().BeNull();
-                traktListItem.ListedAt.Should().BeNull();
-                traktListItem.Type.Should().BeNull();
-                traktListItem.Show.Should().BeNull();
-                traktListItem.Movie.Should().BeNull();
-                traktListItem.Season.Should().BeNull();
-                traktListItem.Episode.Should().BeNull();
-                traktListItem.Person.Should().BeNull();
-            }
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
+            traktListItem.Rank.Should().Be(1);
+            traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Type.Should().Be(TraktListItemType.Show);
+            traktListItem.Show.Should().BeNull();
+
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_ListItemObjectJsonReader_Show_ReadObject_From_JsonReader_Not_Valid_6()
+        {
+            var traktJsonReader = new ListItemObjectJsonReader();
+
+            using var reader = new StringReader(TYPE_SHOW_JSON_NOT_VALID_6);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().BeNull();
+            traktListItem.Rank.Should().BeNull();
+            traktListItem.ListedAt.Should().BeNull();
+            traktListItem.Type.Should().BeNull();
+            traktListItem.Show.Should().BeNull();
+
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+            traktListItem.Person.Should().BeNull();
         }
     }
 }
