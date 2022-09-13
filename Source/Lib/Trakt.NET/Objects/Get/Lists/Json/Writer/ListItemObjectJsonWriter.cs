@@ -24,7 +24,7 @@
                 await jsonWriter.WriteValueAsync(obj.Id, cancellationToken).ConfigureAwait(false);
             }
 
-            if (!string.IsNullOrEmpty(obj.Rank))
+            if (obj.Rank.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RANK, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Rank, cancellationToken).ConfigureAwait(false);

@@ -26,12 +26,10 @@
         {
             var traktJsonReader = new ListItemObjectJsonReader();
 
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
-                traktListItem.Should().BeNull();
-            }
+            using var reader = new StringReader(string.Empty);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            traktListItem.Should().BeNull();
         }
     }
 }

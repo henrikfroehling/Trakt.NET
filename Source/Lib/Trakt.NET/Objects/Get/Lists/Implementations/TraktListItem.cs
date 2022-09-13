@@ -15,7 +15,7 @@
         public uint? Id { get; set; }
 
         /// <summary>Gets or sets the ranking number of the list item.<para>Nullable</para></summary>
-        public string Rank { get; set; }
+        public int? Rank { get; set; }
 
         /// <summary>Gets or sets the UTC datetime, when the list item was added to a list.</summary>
         public DateTime? ListedAt { get; set; }
