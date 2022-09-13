@@ -26,12 +26,10 @@
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
-                traktWatchlistItem.Should().BeNull();
-            }
+            using var reader = new StringReader(string.Empty);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            traktWatchlistItem.Should().BeNull();
         }
     }
 }
