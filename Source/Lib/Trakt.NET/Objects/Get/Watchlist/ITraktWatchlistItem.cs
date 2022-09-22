@@ -19,6 +19,9 @@
         /// <summary>Gets or sets the UTC datetime, when the movie, show, season and / or episode was listed.</summary>
         DateTime? ListedAt { get; set; }
 
+        /// <summary>Gets or sets the watchlist item notes.</summary>
+        string Notes { get; set; }
+
         /// <summary>
         /// Gets or sets the object type, which this watchlist item contains.
         /// See also <seealso cref="TraktSyncItemType" />.

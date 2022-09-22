@@ -27,6 +27,7 @@
             traktWatchlistItem.Id.Should().Be(101U);
             traktWatchlistItem.Rank.Should().Be(1);
             traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Notes.Should().Be("list item notes");
             traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             traktWatchlistItem.Season.Should().NotBeNull();
             traktWatchlistItem.Season.Number.Should().Be(1);
@@ -54,6 +55,7 @@
             traktWatchlistItem.Id.Should().BeNull();
             traktWatchlistItem.Rank.Should().Be(1);
             traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Notes.Should().Be("list item notes");
             traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             traktWatchlistItem.Season.Should().NotBeNull();
             traktWatchlistItem.Season.Number.Should().Be(1);
@@ -81,6 +83,7 @@
             traktWatchlistItem.Id.Should().Be(101U);
             traktWatchlistItem.Rank.Should().BeNull();
             traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Notes.Should().Be("list item notes");
             traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             traktWatchlistItem.Season.Should().NotBeNull();
             traktWatchlistItem.Season.Number.Should().Be(1);
@@ -108,6 +111,7 @@
             traktWatchlistItem.Id.Should().Be(101U);
             traktWatchlistItem.Rank.Should().Be(1);
             traktWatchlistItem.ListedAt.Should().BeNull();
+            traktWatchlistItem.Notes.Should().Be("list item notes");
             traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             traktWatchlistItem.Season.Should().NotBeNull();
             traktWatchlistItem.Season.Number.Should().Be(1);
@@ -135,7 +139,8 @@
             traktWatchlistItem.Id.Should().Be(101U);
             traktWatchlistItem.Rank.Should().Be(1);
             traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            traktWatchlistItem.Type.Should().BeNull();
+            traktWatchlistItem.Notes.Should().BeNull();
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             traktWatchlistItem.Season.Should().NotBeNull();
             traktWatchlistItem.Season.Number.Should().Be(1);
             traktWatchlistItem.Season.Ids.Should().NotBeNull();
@@ -162,6 +167,35 @@
             traktWatchlistItem.Id.Should().Be(101U);
             traktWatchlistItem.Rank.Should().Be(1);
             traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Notes.Should().Be("list item notes");
+            traktWatchlistItem.Type.Should().BeNull();
+            traktWatchlistItem.Season.Should().NotBeNull();
+            traktWatchlistItem.Season.Number.Should().Be(1);
+            traktWatchlistItem.Season.Ids.Should().NotBeNull();
+            traktWatchlistItem.Season.Ids.Trakt.Should().Be(61430U);
+            traktWatchlistItem.Season.Ids.Tvdb.Should().Be(279121U);
+            traktWatchlistItem.Season.Ids.Tmdb.Should().Be(60523U);
+            traktWatchlistItem.Season.Ids.TvRage.Should().Be(36939U);
+
+            traktWatchlistItem.Movie.Should().BeNull();
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_WatchlistItemObjectJsonReader_Season_ReadObject_From_JsonReader_Incomplete_6()
+        {
+            var traktJsonReader = new WatchlistItemObjectJsonReader();
+
+            using var reader = new StringReader(TYPE_SEASON_JSON_INCOMPLETE_6);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().Be(101U);
+            traktWatchlistItem.Rank.Should().Be(1);
+            traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Notes.Should().Be("list item notes");
             traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             traktWatchlistItem.Season.Should().BeNull();
 
@@ -183,6 +217,7 @@
             traktWatchlistItem.Id.Should().BeNull();
             traktWatchlistItem.Rank.Should().Be(1);
             traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Notes.Should().Be("list item notes");
             traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             traktWatchlistItem.Season.Should().NotBeNull();
             traktWatchlistItem.Season.Number.Should().Be(1);
@@ -210,6 +245,7 @@
             traktWatchlistItem.Id.Should().Be(101U);
             traktWatchlistItem.Rank.Should().BeNull();
             traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Notes.Should().Be("list item notes");
             traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             traktWatchlistItem.Season.Should().NotBeNull();
             traktWatchlistItem.Season.Number.Should().Be(1);
@@ -237,6 +273,7 @@
             traktWatchlistItem.Id.Should().Be(101U);
             traktWatchlistItem.Rank.Should().Be(1);
             traktWatchlistItem.ListedAt.Should().BeNull();
+            traktWatchlistItem.Notes.Should().Be("list item notes");
             traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             traktWatchlistItem.Season.Should().NotBeNull();
             traktWatchlistItem.Season.Number.Should().Be(1);
@@ -264,7 +301,8 @@
             traktWatchlistItem.Id.Should().Be(101U);
             traktWatchlistItem.Rank.Should().Be(1);
             traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            traktWatchlistItem.Type.Should().BeNull();
+            traktWatchlistItem.Notes.Should().BeNull();
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             traktWatchlistItem.Season.Should().NotBeNull();
             traktWatchlistItem.Season.Number.Should().Be(1);
             traktWatchlistItem.Season.Ids.Should().NotBeNull();
@@ -291,8 +329,15 @@
             traktWatchlistItem.Id.Should().Be(101U);
             traktWatchlistItem.Rank.Should().Be(1);
             traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
-            traktWatchlistItem.Season.Should().BeNull();
+            traktWatchlistItem.Notes.Should().Be("list item notes");
+            traktWatchlistItem.Type.Should().BeNull();
+            traktWatchlistItem.Season.Should().NotBeNull();
+            traktWatchlistItem.Season.Number.Should().Be(1);
+            traktWatchlistItem.Season.Ids.Should().NotBeNull();
+            traktWatchlistItem.Season.Ids.Trakt.Should().Be(61430U);
+            traktWatchlistItem.Season.Ids.Tvdb.Should().Be(279121U);
+            traktWatchlistItem.Season.Ids.Tmdb.Should().Be(60523U);
+            traktWatchlistItem.Season.Ids.TvRage.Should().Be(36939U);
 
             traktWatchlistItem.Movie.Should().BeNull();
             traktWatchlistItem.Show.Should().BeNull();
@@ -309,9 +354,32 @@
             ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktWatchlistItem.Should().NotBeNull();
+            traktWatchlistItem.Id.Should().Be(101U);
+            traktWatchlistItem.Rank.Should().Be(1);
+            traktWatchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktWatchlistItem.Notes.Should().Be("list item notes");
+            traktWatchlistItem.Type.Should().Be(TraktSyncItemType.Season);
+            traktWatchlistItem.Season.Should().BeNull();
+
+            traktWatchlistItem.Movie.Should().BeNull();
+            traktWatchlistItem.Show.Should().BeNull();
+            traktWatchlistItem.Episode.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_WatchlistItemObjectJsonReader_Season_ReadObject_From_JsonReader_Not_Valid_7()
+        {
+            var traktJsonReader = new WatchlistItemObjectJsonReader();
+
+            using var reader = new StringReader(TYPE_SEASON_JSON_NOT_VALID_7);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktWatchlistItem traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktWatchlistItem.Should().NotBeNull();
             traktWatchlistItem.Id.Should().BeNull();
             traktWatchlistItem.Rank.Should().BeNull();
             traktWatchlistItem.ListedAt.Should().BeNull();
+            traktWatchlistItem.Notes.Should().BeNull();
             traktWatchlistItem.Type.Should().BeNull();
             traktWatchlistItem.Season.Should().BeNull();
 

@@ -21,6 +21,7 @@
             watchlistItem.Id.Should().BeNull();
             watchlistItem.Rank.Should().BeNull();
             watchlistItem.ListedAt.Should().NotHaveValue();
+            watchlistItem.Notes.Should().BeNull();
             watchlistItem.Type.Should().BeNull();
             watchlistItem.Movie.Should().BeNull();
             watchlistItem.Show.Should().BeNull();
@@ -38,6 +39,7 @@
             watchlistItem.Id.Should().Be(101U);
             watchlistItem.Rank.Should().Be(1);
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            watchlistItem.Notes.Should().Be("list item notes");
             watchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
             watchlistItem.Movie.Should().NotBeNull();
             watchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -75,6 +77,7 @@
             watchlistItem.Id.Should().Be(101U);
             watchlistItem.Rank.Should().Be(1);
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            watchlistItem.Notes.Should().Be("list item notes");
             watchlistItem.Type.Should().Be(TraktSyncItemType.Show);
             watchlistItem.Movie.Should().BeNull();
             watchlistItem.Show.Should().NotBeNull();
@@ -119,6 +122,7 @@
             watchlistItem.Id.Should().Be(101U);
             watchlistItem.Rank.Should().Be(1);
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            watchlistItem.Notes.Should().Be("list item notes");
             watchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             watchlistItem.Movie.Should().BeNull();
             watchlistItem.Show.Should().BeNull();
@@ -149,6 +153,7 @@
             watchlistItem.Id.Should().Be(101U);
             watchlistItem.Rank.Should().Be(1);
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            watchlistItem.Notes.Should().Be("list item notes");
             watchlistItem.Type.Should().Be(TraktSyncItemType.Episode);
             watchlistItem.Movie.Should().BeNull();
             watchlistItem.Show.Should().NotBeNull();
@@ -211,6 +216,7 @@
             watchlistItem.Id.Should().Be(101U);
             watchlistItem.Rank.Should().Be(1);
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            watchlistItem.Notes.Should().Be("list item notes");
             watchlistItem.Type.Should().Be(TraktSyncItemType.Movie);
             watchlistItem.Movie.Should().NotBeNull();
             watchlistItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -248,6 +254,7 @@
             watchlistItem.Id.Should().Be(101U);
             watchlistItem.Rank.Should().Be(1);
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            watchlistItem.Notes.Should().Be("list item notes");
             watchlistItem.Type.Should().Be(TraktSyncItemType.Show);
             watchlistItem.Movie.Should().BeNull();
             watchlistItem.Show.Should().NotBeNull();
@@ -295,6 +302,7 @@
             watchlistItem.Id.Should().Be(101U);
             watchlistItem.Rank.Should().Be(1);
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            watchlistItem.Notes.Should().Be("list item notes");
             watchlistItem.Type.Should().Be(TraktSyncItemType.Season);
             watchlistItem.Movie.Should().BeNull();
             watchlistItem.Show.Should().BeNull();
@@ -368,6 +376,7 @@
             watchlistItem.Id.Should().Be(101U);
             watchlistItem.Rank.Should().Be(1);
             watchlistItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            watchlistItem.Notes.Should().Be("list item notes");
             watchlistItem.Type.Should().Be(TraktSyncItemType.Episode);
             watchlistItem.Movie.Should().BeNull();
             watchlistItem.Show.Should().NotBeNull();
@@ -440,6 +449,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -458,6 +468,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""show"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
@@ -478,6 +489,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""season"",
                 ""season"": {
                   ""number"": 1,
@@ -495,6 +507,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -527,6 +540,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -568,6 +582,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""show"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
@@ -620,6 +635,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""season"",
                 ""season"": {
                   ""number"": 1,
@@ -669,6 +685,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
