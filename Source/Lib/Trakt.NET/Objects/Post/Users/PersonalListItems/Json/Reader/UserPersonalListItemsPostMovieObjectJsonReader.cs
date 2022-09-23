@@ -26,6 +26,9 @@
                         case JsonProperties.PROPERTY_NAME_IDS:
                             customListItemsPostMovie.Ids = await movieIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_NOTES:
+                            customListItemsPostMovie.Notes = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

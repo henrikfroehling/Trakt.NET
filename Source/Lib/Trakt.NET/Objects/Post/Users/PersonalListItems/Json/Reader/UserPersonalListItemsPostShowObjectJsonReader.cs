@@ -30,6 +30,9 @@
                         case JsonProperties.PROPERTY_NAME_SEASONS:
                             customListItemsPostShow.Seasons = await seasonArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_NOTES:
+                            customListItemsPostShow.Notes = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

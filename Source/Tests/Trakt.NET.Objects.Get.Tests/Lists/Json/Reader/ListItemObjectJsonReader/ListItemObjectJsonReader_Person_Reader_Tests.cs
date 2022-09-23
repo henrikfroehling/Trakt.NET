@@ -27,6 +27,7 @@
             traktListItem.Id.Should().Be(101U);
             traktListItem.Rank.Should().Be(1);
             traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Notes.Should().Be("list item notes");
             traktListItem.Type.Should().Be(TraktListItemType.Person);
             traktListItem.Person.Should().NotBeNull();
             traktListItem.Person.Name.Should().Be("Bryan Cranston");
@@ -56,6 +57,7 @@
             traktListItem.Id.Should().BeNull();
             traktListItem.Rank.Should().Be(1);
             traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Notes.Should().Be("list item notes");
             traktListItem.Type.Should().Be(TraktListItemType.Person);
             traktListItem.Person.Should().NotBeNull();
             traktListItem.Person.Name.Should().Be("Bryan Cranston");
@@ -85,6 +87,7 @@
             traktListItem.Id.Should().Be(101U);
             traktListItem.Rank.Should().BeNull();
             traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Notes.Should().Be("list item notes");
             traktListItem.Type.Should().Be(TraktListItemType.Person);
             traktListItem.Person.Should().NotBeNull();
             traktListItem.Person.Name.Should().Be("Bryan Cranston");
@@ -114,6 +117,7 @@
             traktListItem.Id.Should().Be(101U);
             traktListItem.Rank.Should().Be(1);
             traktListItem.ListedAt.Should().BeNull();
+            traktListItem.Notes.Should().Be("list item notes");
             traktListItem.Type.Should().Be(TraktListItemType.Person);
             traktListItem.Person.Should().NotBeNull();
             traktListItem.Person.Name.Should().Be("Bryan Cranston");
@@ -143,7 +147,8 @@
             traktListItem.Id.Should().Be(101U);
             traktListItem.Rank.Should().Be(1);
             traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            traktListItem.Type.Should().BeNull();
+            traktListItem.Notes.Should().BeNull();
+            traktListItem.Type.Should().Be(TraktListItemType.Person);
             traktListItem.Person.Should().NotBeNull();
             traktListItem.Person.Name.Should().Be("Bryan Cranston");
             traktListItem.Person.Ids.Should().NotBeNull();
@@ -172,6 +177,37 @@
             traktListItem.Id.Should().Be(101U);
             traktListItem.Rank.Should().Be(1);
             traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Notes.Should().Be("list item notes");
+            traktListItem.Type.Should().BeNull();
+            traktListItem.Person.Should().NotBeNull();
+            traktListItem.Person.Name.Should().Be("Bryan Cranston");
+            traktListItem.Person.Ids.Should().NotBeNull();
+            traktListItem.Person.Ids.Trakt.Should().Be(297737U);
+            traktListItem.Person.Ids.Slug.Should().Be("bryan-cranston");
+            traktListItem.Person.Ids.Imdb.Should().Be("nm0186505");
+            traktListItem.Person.Ids.Tmdb.Should().Be(17419U);
+            traktListItem.Person.Ids.TvRage.Should().Be(1797U);
+
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Show.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_ListItemObjectJsonReader_Person_ReadObject_From_JsonReader_Incomplete_6()
+        {
+            var traktJsonReader = new ListItemObjectJsonReader();
+
+            using var reader = new StringReader(TYPE_PERSON_JSON_INCOMPLETE_6);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
+            traktListItem.Rank.Should().Be(1);
+            traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Notes.Should().Be("list item notes");
             traktListItem.Type.Should().Be(TraktListItemType.Person);
             traktListItem.Person.Should().BeNull();
 
@@ -194,6 +230,7 @@
             traktListItem.Id.Should().BeNull();
             traktListItem.Rank.Should().Be(1);
             traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Notes.Should().Be("list item notes");
             traktListItem.Type.Should().Be(TraktListItemType.Person);
             traktListItem.Person.Should().NotBeNull();
             traktListItem.Person.Name.Should().Be("Bryan Cranston");
@@ -223,6 +260,7 @@
             traktListItem.Id.Should().Be(101U);
             traktListItem.Rank.Should().BeNull();
             traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Notes.Should().Be("list item notes");
             traktListItem.Type.Should().Be(TraktListItemType.Person);
             traktListItem.Person.Should().NotBeNull();
             traktListItem.Person.Name.Should().Be("Bryan Cranston");
@@ -252,6 +290,7 @@
             traktListItem.Id.Should().Be(101U);
             traktListItem.Rank.Should().Be(1);
             traktListItem.ListedAt.Should().BeNull();
+            traktListItem.Notes.Should().Be("list item notes");
             traktListItem.Type.Should().Be(TraktListItemType.Person);
             traktListItem.Person.Should().NotBeNull();
             traktListItem.Person.Name.Should().Be("Bryan Cranston");
@@ -281,7 +320,8 @@
             traktListItem.Id.Should().Be(101U);
             traktListItem.Rank.Should().Be(1);
             traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            traktListItem.Type.Should().BeNull();
+            traktListItem.Notes.Should().BeNull();
+            traktListItem.Type.Should().Be(TraktListItemType.Person);
             traktListItem.Person.Should().NotBeNull();
             traktListItem.Person.Name.Should().Be("Bryan Cranston");
             traktListItem.Person.Ids.Should().NotBeNull();
@@ -310,8 +350,16 @@
             traktListItem.Id.Should().Be(101U);
             traktListItem.Rank.Should().Be(1);
             traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            traktListItem.Type.Should().Be(TraktListItemType.Person);
-            traktListItem.Person.Should().BeNull();
+            traktListItem.Notes.Should().Be("list item notes");
+            traktListItem.Type.Should().BeNull();
+            traktListItem.Person.Should().NotBeNull();
+            traktListItem.Person.Name.Should().Be("Bryan Cranston");
+            traktListItem.Person.Ids.Should().NotBeNull();
+            traktListItem.Person.Ids.Trakt.Should().Be(297737U);
+            traktListItem.Person.Ids.Slug.Should().Be("bryan-cranston");
+            traktListItem.Person.Ids.Imdb.Should().Be("nm0186505");
+            traktListItem.Person.Ids.Tmdb.Should().Be(17419U);
+            traktListItem.Person.Ids.TvRage.Should().Be(1797U);
 
             traktListItem.Movie.Should().BeNull();
             traktListItem.Show.Should().BeNull();
@@ -329,9 +377,33 @@
             ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktListItem.Should().NotBeNull();
+            traktListItem.Id.Should().Be(101U);
+            traktListItem.Rank.Should().Be(1);
+            traktListItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            traktListItem.Notes.Should().Be("list item notes");
+            traktListItem.Type.Should().Be(TraktListItemType.Person);
+            traktListItem.Person.Should().BeNull();
+
+            traktListItem.Movie.Should().BeNull();
+            traktListItem.Show.Should().BeNull();
+            traktListItem.Season.Should().BeNull();
+            traktListItem.Episode.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_ListItemObjectJsonReader_Person_ReadObject_From_JsonReader_Not_Valid_7()
+        {
+            var traktJsonReader = new ListItemObjectJsonReader();
+
+            using var reader = new StringReader(TYPE_PERSON_JSON_NOT_VALID_7);
+            using var jsonReader = new JsonTextReader(reader);
+            ITraktListItem traktListItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktListItem.Should().NotBeNull();
             traktListItem.Id.Should().BeNull();
             traktListItem.Rank.Should().BeNull();
             traktListItem.ListedAt.Should().BeNull();
+            traktListItem.Notes.Should().BeNull();
             traktListItem.Type.Should().BeNull();
             traktListItem.Person.Should().BeNull();
 

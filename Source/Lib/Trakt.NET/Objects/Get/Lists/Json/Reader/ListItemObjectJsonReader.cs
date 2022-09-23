@@ -54,6 +54,9 @@
 
                                 break;
                             }
+                        case JsonProperties.PROPERTY_NAME_NOTES:
+                            traktListItem.Notes = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                            break;
                         case JsonProperties.PROPERTY_NAME_TYPE:
                             traktListItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktListItemType>(jsonReader, cancellationToken);
                             break;

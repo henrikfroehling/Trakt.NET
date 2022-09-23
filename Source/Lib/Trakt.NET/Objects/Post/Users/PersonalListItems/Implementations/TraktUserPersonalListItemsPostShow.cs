@@ -20,5 +20,8 @@
         /// </para>
         /// </summary>
         public IEnumerable<ITraktUserPersonalListItemsPostShowSeason> Seasons { get; set; }
+
+        /// <summary>Gets or sets the show notes.</summary>
+        public string Notes { get; set; }
     }
 }

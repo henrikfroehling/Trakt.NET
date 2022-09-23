@@ -13,5 +13,8 @@
 
         /// <summary>Gets or sets the required movie ids. See also <seealso cref="ITraktMovieIds" />.</summary>
         ITraktMovieIds Ids { get; set; }
+
+        /// <summary>Gets or sets the movie notes.</summary>
+        string Notes { get; set; }
     }
 }
