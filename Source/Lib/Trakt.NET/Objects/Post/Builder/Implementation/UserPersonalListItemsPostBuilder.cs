@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Post
+namespace TraktNet.Objects.Post
 {
     using Capabilities;
     using Get.Movies;
@@ -13,7 +13,9 @@
     internal sealed class UserPersonalListItemsPostBuilder : ITraktUserPersonalListItemsPostBuilder
     {
         private readonly List<ITraktMovie> _movies;
+        private readonly List<PostBuilderObjectWithNotes<ITraktMovie>> _moviesWithNotes;
         private readonly List<ITraktShow> _shows;
+        private readonly List<PostBuilderObjectWithNotes<ITraktShow>> _showsWithNotes;
         private readonly List<ITraktPerson> _persons;
         private readonly PostBuilderShowAddedSeasons<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost> _showsWithSeasons;
         private readonly PostBuilderShowAddedSeasonsCollection<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost, PostSeasons> _showsWithSeasonsCollection;
@@ -21,7 +23,9 @@
         internal UserPersonalListItemsPostBuilder()
         {
             _movies = new List<ITraktMovie>();
+            _moviesWithNotes = new List<PostBuilderObjectWithNotes<ITraktMovie>>();
             _shows = new List<ITraktShow>();
+            _showsWithNotes = new List<PostBuilderObjectWithNotes<ITraktShow>>();
             _persons = new List<ITraktPerson>();
             _showsWithSeasons = new PostBuilderShowAddedSeasons<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost>(this);
             _showsWithSeasonsCollection = new PostBuilderShowAddedSeasonsCollection<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost, PostSeasons>(this);
@@ -36,12 +40,52 @@
             return this;
         }
 
+        public ITraktUserPersonalListItemsPostBuilder WithMovieWithNotes(ITraktMovie movie, string notes)
+        {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
+            if (notes == null)
+                throw new ArgumentNullException(nameof(notes));
+
+            if (notes.Length > 255)
+                throw new ArgumentOutOfRangeException(nameof(notes), "notes cannot be longer than 255 characters");
+
+            _moviesWithNotes.Add(new PostBuilderObjectWithNotes<ITraktMovie>
+            {
+                Object = movie,
+                Notes = notes
+            });
+
+            return this;
+        }
+
         public ITraktUserPersonalListItemsPostBuilder WithMovies(IEnumerable<ITraktMovie> movies)
         {
             if (movies == null)
                 throw new ArgumentNullException(nameof(movies));
 
             _movies.AddRange(movies);
+            return this;
+        }
+
+        public ITraktUserPersonalListItemsPostBuilder WithMoviesWithNotes(IEnumerable<Tuple<ITraktMovie, string>> movies)
+        {
+            if (movies == null)
+                throw new ArgumentNullException(nameof(movies));
+
+            foreach (Tuple<ITraktMovie, string> tuple in movies)
+            {
+                if (tuple.Item2?.Length > 255)
+                    throw new ArgumentOutOfRangeException($"movies[{movies.ToList().IndexOf(tuple)}].Notes", "notes cannot be longer than 255 characters");
+
+                _moviesWithNotes.Add(new PostBuilderObjectWithNotes<ITraktMovie>
+                {
+                    Object = tuple.Item1,
+                    Notes = tuple.Item2
+                });
+            }
+
             return this;
         }
 
@@ -54,12 +98,52 @@
             return this;
         }
 
+        public ITraktUserPersonalListItemsPostBuilder WithShowWithNotes(ITraktShow show, string notes)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (notes == null)
+                throw new ArgumentNullException(nameof(notes));
+
+            if (notes.Length > 255)
+                throw new ArgumentOutOfRangeException(nameof(notes), "notes cannot be longer than 255 characters");
+
+            _showsWithNotes.Add(new PostBuilderObjectWithNotes<ITraktShow>
+            {
+                Object = show,
+                Notes = notes
+            });
+
+            return this;
+        }
+
         public ITraktUserPersonalListItemsPostBuilder WithShows(IEnumerable<ITraktShow> shows)
         {
             if (shows == null)
                 throw new ArgumentNullException(nameof(shows));
 
             _shows.AddRange(shows);
+            return this;
+        }
+
+        public ITraktUserPersonalListItemsPostBuilder WithShowsWithNotes(IEnumerable<Tuple<ITraktShow, string>> shows)
+        {
+            if (shows == null)
+                throw new ArgumentNullException(nameof(shows));
+
+            foreach (Tuple<ITraktShow, string> tuple in shows)
+            {
+                if (tuple.Item2?.Length > 255)
+                    throw new ArgumentOutOfRangeException($"shows[{shows.ToList().IndexOf(tuple)}].Notes", "notes cannot be longer than 255 characters");
+
+                _showsWithNotes.Add(new PostBuilderObjectWithNotes<ITraktShow>
+                {
+                    Object = tuple.Item1,
+                    Notes = tuple.Item2
+                });
+            }
+
             return this;
         }
 
@@ -110,17 +194,18 @@
 
         private void AddMovies(ITraktUserPersonalListItemsPost userPersonalListItemsPost)
         {
-            if (userPersonalListItemsPost.Movies == null)
-                userPersonalListItemsPost.Movies = new List<ITraktUserPersonalListItemsPostMovie>();
+            userPersonalListItemsPost.Movies ??= new List<ITraktUserPersonalListItemsPostMovie>();
 
             foreach (ITraktMovie movie in _movies)
                 (userPersonalListItemsPost.Movies as List<ITraktUserPersonalListItemsPostMovie>).Add(CreateUserPersonalListItemsPostMovie(movie));
+
+            foreach (PostBuilderObjectWithNotes<ITraktMovie> movieWithNotes in _moviesWithNotes)
+                (userPersonalListItemsPost.Movies as List<ITraktUserPersonalListItemsPostMovie>).Add(CreateUserPersonalListItemsPostMovie(movieWithNotes.Object, movieWithNotes.Notes));
         }
 
         private void AddShows(ITraktUserPersonalListItemsPost userPersonalListItemsPost)
         {
-            if (userPersonalListItemsPost.Shows == null)
-                userPersonalListItemsPost.Shows = new List<ITraktUserPersonalListItemsPostShow>();
+            userPersonalListItemsPost.Shows ??= new List<ITraktUserPersonalListItemsPostShow>();
 
             foreach (ITraktShow show in _shows)
                 (userPersonalListItemsPost.Shows as List<ITraktUserPersonalListItemsPostShow>).Add(CreateUserPersonalListItemsPostShow(show));
@@ -130,31 +215,43 @@
 
             foreach (PostBuilderObjectWithSeasons<ITraktShow, PostSeasons> showEntry in _showsWithSeasonsCollection.ShowsWithSeasonsCollection)
                 (userPersonalListItemsPost.Shows as List<ITraktUserPersonalListItemsPostShow>).Add(CreateUserPersonalListItemsPostShowWithSeasonsCollection(showEntry.Object, showEntry.Seasons));
+
+            foreach (PostBuilderObjectWithNotes<ITraktShow> showWithNotes in _showsWithNotes)
+                (userPersonalListItemsPost.Shows as List<ITraktUserPersonalListItemsPostShow>).Add(CreateUserPersonalListItemsPostShow(showWithNotes.Object, showWithNotes.Notes));
         }
 
         private void AddPersons(ITraktUserPersonalListItemsPost userPersonalListItemsPost)
         {
-            if (userPersonalListItemsPost.People == null)
-                userPersonalListItemsPost.People = new List<ITraktPerson>();
+            userPersonalListItemsPost.People ??= new List<ITraktPerson>();
 
             foreach (ITraktPerson episode in _persons)
                 (userPersonalListItemsPost.People as List<ITraktPerson>).Add(CreateUserPersonalListItemsPostPerson(episode));
         }
 
-        private ITraktUserPersonalListItemsPostMovie CreateUserPersonalListItemsPostMovie(ITraktMovie movie)
+        private ITraktUserPersonalListItemsPostMovie CreateUserPersonalListItemsPostMovie(ITraktMovie movie, string notes = null)
         {
-            return new TraktUserPersonalListItemsPostMovie
+            var userPersonalListItemsPostMovie = new TraktUserPersonalListItemsPostMovie
             {
                 Ids = movie.Ids
             };
+
+            if (!string.IsNullOrWhiteSpace(notes))
+                userPersonalListItemsPostMovie.Notes = notes;
+
+            return userPersonalListItemsPostMovie;
         }
 
-        private ITraktUserPersonalListItemsPostShow CreateUserPersonalListItemsPostShow(ITraktShow show)
+        private ITraktUserPersonalListItemsPostShow CreateUserPersonalListItemsPostShow(ITraktShow show, string notes = null)
         {
-            return new TraktUserPersonalListItemsPostShow
+            var userPersonalListItemsPostShow = new TraktUserPersonalListItemsPostShow
             {
                 Ids = show.Ids
             };
+
+            if (!string.IsNullOrWhiteSpace(notes))
+                userPersonalListItemsPostShow.Notes = notes;
+
+            return userPersonalListItemsPostShow;
         }
 
         private ITraktUserPersonalListItemsPostShow CreateUserPersonalListItemsPostShowWithSeasons(ITraktShow show, IEnumerable<int> seasons)

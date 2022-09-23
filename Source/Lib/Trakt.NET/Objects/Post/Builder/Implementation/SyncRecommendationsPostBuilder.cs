@@ -126,7 +126,7 @@
             foreach (Tuple<ITraktShow, string> tuple in shows)
             {
                 if (tuple.Item2?.Length > 255)
-                    throw new ArgumentOutOfRangeException($"movies[{shows.ToList().IndexOf(tuple)}].Notes", "notes cannot be longer than 255 characters");
+                    throw new ArgumentOutOfRangeException($"shows[{shows.ToList().IndexOf(tuple)}].Notes", "notes cannot be longer than 255 characters");
 
                 _showsWithNotes.Add(new PostBuilderObjectWithNotes<ITraktShow>
                 {
