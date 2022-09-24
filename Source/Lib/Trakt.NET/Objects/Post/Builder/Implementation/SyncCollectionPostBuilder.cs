@@ -435,6 +435,7 @@
             AddMovies(syncCollectionPost);
             AddShows(syncCollectionPost);
             AddEpisodes(syncCollectionPost);
+            syncCollectionPost.Validate();
             return syncCollectionPost;
         }
 

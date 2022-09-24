@@ -7,6 +7,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",
@@ -24,6 +25,7 @@
             @"{
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",
@@ -41,6 +43,7 @@
             @"{
                 ""id"": 101,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",
@@ -58,6 +61,7 @@
             @"{
                 ""id"": 101,
                 ""rank"": 1,
+                ""notes"": ""list item notes"",
                 ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",
@@ -76,6 +80,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",
                   ""ids"": {
@@ -93,6 +98,25 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
+                ""person"": {
+                  ""name"": ""Bryan Cranston"",
+                  ""ids"": {
+                    ""trakt"": 297737,
+                    ""slug"": ""bryan-cranston"",
+                    ""imdb"": ""nm0186505"",
+                    ""tmdb"": 17419,
+                    ""tvrage"": 1797
+                  }
+                }
+              }";
+
+        private const string TYPE_PERSON_JSON_INCOMPLETE_6 =
+            @"{
+                ""id"": 101,
+                ""rank"": 1,
+                ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""person""
               }";
 
@@ -101,6 +125,7 @@
                 ""i"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",
@@ -119,6 +144,7 @@
                 ""id"": 101,
                 ""ra"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",
@@ -137,6 +163,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""la"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",
@@ -155,7 +182,8 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
-                ""ty"": ""person"",
+                ""no"": ""list item notes"",
+                ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",
                   ""ids"": {
@@ -173,8 +201,9 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
-                ""type"": ""person"",
-                ""per"": {
+                ""notes"": ""list item notes"",
+                ""ty"": ""person"",
+                ""person"": {
                   ""name"": ""Bryan Cranston"",
                   ""ids"": {
                     ""trakt"": 297737,
@@ -188,9 +217,29 @@
 
         private const string TYPE_PERSON_JSON_NOT_VALID_6 =
             @"{
+                ""id"": 101,
+                ""rank"": 1,
+                ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
+                ""type"": ""person"",
+                ""per"": {
+                  ""name"": ""Bryan Cranston"",
+                  ""ids"": {
+                    ""trakt"": 297737,
+                    ""slug"": ""bryan-cranston"",
+                    ""imdb"": ""nm0186505"",
+                    ""tmdb"": 17419,
+                    ""tvrage"": 1797
+                  }
+                }
+              }";
+
+        private const string TYPE_PERSON_JSON_NOT_VALID_7 =
+            @"{
                 ""i"": 101,
                 ""ra"": 1,
                 ""la"": ""2014-09-01T09:10:11.000Z"",
+                ""no"": ""list item notes"",
                 ""ty"": ""person"",
                 ""per"": {
                   ""name"": ""Bryan Cranston"",

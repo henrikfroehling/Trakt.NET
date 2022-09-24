@@ -26,5 +26,8 @@
         /// </para>
         /// </summary>
         public IEnumerable<ITraktSyncWatchlistPostShowSeason> Seasons { get; set; }
+
+        /// <summary>Gets or sets the show notes.</summary>
+        public string Notes { get; set; }
     }
 }

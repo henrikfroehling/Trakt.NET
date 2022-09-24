@@ -26,6 +26,9 @@
                         case JsonProperties.PROPERTY_NAME_IDS:
                             syncWatchlistPostEpisode.Ids = await episodeIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_NOTES:
+                            syncWatchlistPostEpisode.Notes = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

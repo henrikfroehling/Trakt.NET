@@ -35,6 +35,12 @@
                 await jsonWriter.WriteValueAsync(obj.ListedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
+            if (!string.IsNullOrEmpty(obj.Notes))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NOTES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Notes, cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.Type != null)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MOVIE, cancellationToken).ConfigureAwait(false);

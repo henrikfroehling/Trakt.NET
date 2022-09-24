@@ -21,6 +21,7 @@
             listItem.Id.Should().BeNull();
             listItem.Rank.Should().BeNull();
             listItem.ListedAt.Should().BeNull();
+            listItem.Notes.Should().BeNull();
             listItem.Type.Should().BeNull();
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().BeNull();
@@ -39,6 +40,7 @@
             listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Movie);
             listItem.Movie.Should().NotBeNull();
             listItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -77,6 +79,7 @@
             listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Show);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().NotBeNull();
@@ -122,6 +125,7 @@
             listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Season);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().BeNull();
@@ -153,6 +157,7 @@
             listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Episode);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().NotBeNull();
@@ -216,6 +221,7 @@
             listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Person);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().BeNull();
@@ -247,6 +253,7 @@
             listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Movie);
             listItem.Movie.Should().NotBeNull();
             listItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -285,6 +292,7 @@
             listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Show);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().NotBeNull();
@@ -333,6 +341,7 @@
             listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Season);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().BeNull();
@@ -407,6 +416,7 @@
             listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Episode);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().NotBeNull();
@@ -486,6 +496,7 @@
             listItem.Id.Should().Be(101U);
             listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Person);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().BeNull();
@@ -512,6 +523,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -530,6 +542,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""show"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
@@ -550,6 +563,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""season"",
                 ""season"": {
                   ""number"": 1,
@@ -567,6 +581,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -599,6 +614,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",
@@ -617,6 +633,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -658,6 +675,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""show"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
@@ -710,6 +728,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""season"",
                 ""season"": {
                   ""number"": 1,
@@ -759,6 +778,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -846,6 +866,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",

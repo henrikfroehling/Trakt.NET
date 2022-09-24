@@ -29,7 +29,6 @@
     using Responses;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -490,7 +489,7 @@
         public Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>> RemoveWatchedHistoryItemsAsync(ITraktSyncHistoryRemovePost historyRemovePost,
                                                                                                        CancellationToken cancellationToken = default)
         {
-            ValidateHistoryPost(historyRemovePost);
+            ValidateHistoryRemovePost(historyRemovePost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchedHistoryRemoveRequest
@@ -635,9 +634,7 @@
         public Task<TraktResponse<ITraktSyncRecommendationsPostResponse>> AddPersonalRecommendationsAsync(ITraktSyncRecommendationsPost recommendationsPost,
                                                                                                           CancellationToken cancellationToken = default)
         {
-            if (recommendationsPost == null)
-                throw new ArgumentNullException(nameof(recommendationsPost), "recommendations post must not be null");
-
+            ValidateRecommendationsPost(recommendationsPost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendationsAddRequest
@@ -831,16 +828,7 @@
             if (collectionPost == null)
                 throw new ArgumentNullException(nameof(collectionPost), "collection post must not be null");
 
-            IEnumerable<ITraktSyncCollectionPostMovie> movies = collectionPost.Movies;
-            IEnumerable<ITraktSyncCollectionPostShow> shows = collectionPost.Shows;
-            IEnumerable<ITraktSyncCollectionPostEpisode> episodes = collectionPost.Episodes;
-
-            bool bHasNoMovies = movies == null || !movies.Any();
-            bool bHasNoShows = shows == null || !shows.Any();
-            bool bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no collection items set");
+            collectionPost.Validate();
         }
 
         private void ValidateHistoryPost(ITraktSyncHistoryPost historyPost)
@@ -848,16 +836,15 @@
             if (historyPost == null)
                 throw new ArgumentNullException(nameof(historyPost), "history post must not be null");
 
-            IEnumerable<ITraktSyncHistoryPostMovie> movies = historyPost.Movies;
-            IEnumerable<ITraktSyncHistoryPostShow> shows = historyPost.Shows;
-            IEnumerable<ITraktSyncHistoryPostEpisode> episodes = historyPost.Episodes;
+            historyPost.Validate();
+        }
 
-            bool bHasNoMovies = movies == null || !movies.Any();
-            bool bHasNoShows = shows == null || !shows.Any();
-            bool bHasNoEpisodes = episodes == null || !episodes.Any();
+        private void ValidateHistoryRemovePost(ITraktSyncHistoryRemovePost historyRemovePost)
+        {
+            if (historyRemovePost == null)
+                throw new ArgumentNullException(nameof(historyRemovePost), "history remove post must not be null");
 
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no watched history items set");
+            historyRemovePost.Validate();
         }
 
         private void ValidateRatingsPost(ITraktSyncRatingsPost ratingsPost)
@@ -865,16 +852,7 @@
             if (ratingsPost == null)
                 throw new ArgumentNullException(nameof(ratingsPost), "ratings post must not be null");
 
-            IEnumerable<ITraktSyncRatingsPostMovie> movies = ratingsPost.Movies;
-            IEnumerable<ITraktSyncRatingsPostShow> shows = ratingsPost.Shows;
-            IEnumerable<ITraktSyncRatingsPostEpisode> episodes = ratingsPost.Episodes;
-
-            bool bHasNoMovies = movies == null || !movies.Any();
-            bool bHasNoShows = shows == null || !shows.Any();
-            bool bHasNoEpisodes = episodes == null || !episodes.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no ratings items set");
+            ratingsPost.Validate();
         }
 
         private void ValidateWatchlistPost(ITraktSyncWatchlistPost watchlistPost)
@@ -882,16 +860,15 @@
             if (watchlistPost == null)
                 throw new ArgumentNullException(nameof(watchlistPost), "watchlist post must not be null");
 
-            IEnumerable<ITraktSyncWatchlistPostMovie> movies = watchlistPost.Movies;
-            IEnumerable<ITraktSyncWatchlistPostShow> shows = watchlistPost.Shows;
-            IEnumerable<ITraktSyncWatchlistPostEpisode> episodes = watchlistPost.Episodes;
+            watchlistPost.Validate();
+        }
 
-            bool bHasNoMovies = movies == null || !movies.Any();
-            bool bHasNoShows = shows == null || !shows.Any();
-            bool bHasNoEpisodes = episodes == null || !episodes.Any();
+        private void ValidateRecommendationsPost(ITraktSyncRecommendationsPost recommendationsPost)
+        {
+            if (recommendationsPost == null)
+                throw new ArgumentNullException(nameof(recommendationsPost), "recommendations post must not be null");
 
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
-                throw new ArgumentException("no watchlist items set");
+            recommendationsPost.Validate();
         }
     }
 }

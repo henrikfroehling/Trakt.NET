@@ -7,6 +7,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -38,6 +39,7 @@
             @"{
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -69,6 +71,7 @@
             @"{
                 ""id"": 101,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -100,6 +103,7 @@
             @"{
                 ""id"": 101,
                 ""rank"": 1,
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -132,6 +136,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
                   ""number"": 1,
@@ -163,7 +168,19 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
-                ""type"": ""episode"",
+                ""notes"": ""list item notes"",
+                ""episode"": {
+                  ""season"": 1,
+                  ""number"": 1,
+                  ""title"": ""Winter Is Coming"",
+                  ""ids"": {
+                    ""trakt"": 73640,
+                    ""tvdb"": 3254641,
+                    ""imdb"": ""tt1480055"",
+                    ""tmdb"": 63056,
+                    ""tvrage"": 1065008299
+                  }
+                },
                 ""show"": {
                   ""title"": ""Game of Thrones"",
                   ""year"": 2011,
@@ -183,6 +200,28 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
+                ""type"": ""episode"",
+                ""show"": {
+                  ""title"": ""Game of Thrones"",
+                  ""year"": 2011,
+                  ""ids"": {
+                    ""trakt"": 1390,
+                    ""slug"": ""game-of-thrones"",
+                    ""tvdb"": 121361,
+                    ""imdb"": ""tt0944947"",
+                    ""tmdb"": 1399,
+                    ""tvrage"": 24493
+                  }
+                }
+              }";
+
+        private const string TYPE_EPISODE_JSON_INCOMPLETE_7 =
+            @"{
+                ""id"": 101,
+                ""rank"": 1,
+                ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -203,6 +242,7 @@
                 ""i"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -235,6 +275,7 @@
                 ""id"": 101,
                 ""ra"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -267,6 +308,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""la"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -299,7 +341,8 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
-                ""ty"": ""episode"",
+                ""no"": ""list item notes"",
+                ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
                   ""number"": 1,
@@ -331,8 +374,9 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
-                ""type"": ""episode"",
-                ""ep"": {
+                ""notes"": ""list item notes"",
+                ""ty"": ""episode"",
+                ""episode"": {
                   ""season"": 1,
                   ""number"": 1,
                   ""title"": ""Winter Is Coming"",
@@ -363,6 +407,40 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
+                ""type"": ""episode"",
+                ""ep"": {
+                  ""season"": 1,
+                  ""number"": 1,
+                  ""title"": ""Winter Is Coming"",
+                  ""ids"": {
+                    ""trakt"": 73640,
+                    ""tvdb"": 3254641,
+                    ""imdb"": ""tt1480055"",
+                    ""tmdb"": 63056,
+                    ""tvrage"": 1065008299
+                  }
+                },
+                ""show"": {
+                  ""title"": ""Game of Thrones"",
+                  ""year"": 2011,
+                  ""ids"": {
+                    ""trakt"": 1390,
+                    ""slug"": ""game-of-thrones"",
+                    ""tvdb"": 121361,
+                    ""imdb"": ""tt0944947"",
+                    ""tmdb"": 1399,
+                    ""tvrage"": 24493
+                  }
+                }
+              }";
+
+        private const string TYPE_EPISODE_JSON_NOT_VALID_7 =
+            @"{
+                ""id"": 101,
+                ""rank"": 1,
+                ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -390,11 +468,12 @@
                 }
               }";
 
-        private const string TYPE_EPISODE_JSON_NOT_VALID_7 =
+        private const string TYPE_EPISODE_JSON_NOT_VALID_8 =
             @"{
                 ""i"": 101,
                 ""ra"": 1,
                 ""la"": ""2014-09-01T09:10:11.000Z"",
+                ""no"": ""list item notes"",
                 ""ty"": ""episode"",
                 ""ep"": {
                   ""season"": 1,

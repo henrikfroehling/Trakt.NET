@@ -7,6 +7,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -24,6 +25,7 @@
             @"{
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -41,6 +43,7 @@
             @"{
                 ""id"": 101,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -58,6 +61,7 @@
             @"{
                 ""id"": 101,
                 ""rank"": 1,
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -76,6 +80,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
                   ""year"": 2015,
@@ -93,6 +98,25 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
+                ""movie"": {
+                  ""title"": ""Star Wars: The Force Awakens"",
+                  ""year"": 2015,
+                  ""ids"": {
+                    ""trakt"": 94024,
+                    ""slug"": ""star-wars-the-force-awakens-2015"",
+                    ""imdb"": ""tt2488496"",
+                    ""tmdb"": 140607
+                  }
+                }
+              }";
+
+        private const string TYPE_MOVIE_JSON_INCOMPLETE_6 =
+            @"{
+                ""id"": 101,
+                ""rank"": 1,
+                ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie""
               }";
 
@@ -101,6 +125,7 @@
                 ""i"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -119,6 +144,7 @@
                 ""id"": 101,
                 ""ra"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -137,6 +163,7 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""la"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -155,7 +182,8 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
-                ""ty"": ""movie"",
+                ""no"": ""list item notes"",
+                ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
                   ""year"": 2015,
@@ -173,8 +201,9 @@
                 ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
-                ""type"": ""movie"",
-                ""mov"": {
+                ""notes"": ""list item notes"",
+                ""ty"": ""movie"",
+                ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
                   ""year"": 2015,
                   ""ids"": {
@@ -188,9 +217,29 @@
 
         private const string TYPE_MOVIE_JSON_NOT_VALID_6 =
             @"{
+                ""id"": 101,
+                ""rank"": 1,
+                ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
+                ""type"": ""movie"",
+                ""mov"": {
+                  ""title"": ""Star Wars: The Force Awakens"",
+                  ""year"": 2015,
+                  ""ids"": {
+                    ""trakt"": 94024,
+                    ""slug"": ""star-wars-the-force-awakens-2015"",
+                    ""imdb"": ""tt2488496"",
+                    ""tmdb"": 140607
+                  }
+                }
+              }";
+
+        private const string TYPE_MOVIE_JSON_NOT_VALID_7 =
+            @"{
                 ""i"": 101,
                 ""ra"": 1,
                 ""la"": ""2014-09-01T09:10:11.000Z"",
+                ""no"": ""list item notes"",
                 ""ty"": ""movie"",
                 ""mov"": {
                   ""title"": ""Star Wars: The Force Awakens"",

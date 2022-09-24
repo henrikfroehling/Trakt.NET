@@ -2,7 +2,9 @@
 {
     using Get.Users;
     using Objects.Json;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -41,7 +43,13 @@
 
         public void Validate()
         {
-            // TODO
+            bool bHasNoMovies = Movies == null || !Movies.Any();
+            bool bHasNoShows = Shows == null || !Shows.Any();
+            bool bHasNoPeople = Seasons == null || !Seasons.Any();
+            bool bHasNoUsers = Users == null || !Users.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoPeople && bHasNoUsers)
+                throw new ArgumentException("no hidden items set");
         }
     }
 }

@@ -6,7 +6,6 @@ namespace TraktNet.Modules
     using Objects.Get.Collections;
     using Objects.Get.History;
     using Objects.Get.Lists;
-    using Objects.Get.People;
     using Objects.Get.Ratings;
     using Objects.Get.Users;
     using Objects.Get.Users.Statistics;
@@ -229,6 +228,7 @@ namespace TraktNet.Modules
                                                                                           TraktHiddenItemsSection hiddenItemsSection,
                                                                                           CancellationToken cancellationToken = default)
         {
+            ValidateHiddenItemsPost(hiddenItemsPost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserHiddenItemsAddRequest
@@ -265,6 +265,7 @@ namespace TraktNet.Modules
                                                                                                    TraktHiddenItemsSection hiddenItemsSection,
                                                                                                    CancellationToken cancellationToken = default)
         {
+            ValidateHiddenItemsPost(hiddenItemsPost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserHiddenItemsRemoveRequest
@@ -1595,21 +1596,20 @@ namespace TraktNet.Modules
             cancellationToken);
         }
 
+        private void ValidateHiddenItemsPost(ITraktUserHiddenItemsPost hiddenItemsPost)
+        {
+            if (hiddenItemsPost == null)
+                throw new ArgumentNullException(nameof(hiddenItemsPost), "hidden items post must not be null");
+
+            hiddenItemsPost.Validate();
+        }
+
         private void ValidatePersonalListItemsPost(ITraktUserPersonalListItemsPost personalListItemsPost)
         {
             if (personalListItemsPost == null)
-                throw new ArgumentNullException(nameof(personalListItemsPost), "list items post must not be null");
+                throw new ArgumentNullException(nameof(personalListItemsPost), "personal list items post must not be null");
 
-            IEnumerable<ITraktUserPersonalListItemsPostMovie> movies = personalListItemsPost.Movies;
-            IEnumerable<ITraktUserPersonalListItemsPostShow> shows = personalListItemsPost.Shows;
-            IEnumerable<ITraktPerson> people = personalListItemsPost.People;
-
-            bool bHasNoMovies = movies == null || !movies.Any();
-            bool bHasNoShows = shows == null || !shows.Any();
-            bool bHasNoPeople = people == null || !people.Any();
-
-            if (bHasNoMovies && bHasNoShows && bHasNoPeople)
-                throw new ArgumentException("no items set");
+            personalListItemsPost.Validate();
         }
 
         private void ValidateFollowerRequestId(ulong followerRequestId)
