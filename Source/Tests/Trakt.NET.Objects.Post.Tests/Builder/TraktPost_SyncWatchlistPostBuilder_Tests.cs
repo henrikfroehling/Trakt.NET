@@ -24,11 +24,8 @@
         [Fact]
         public void Test_TraktPost_SyncWatchlistPostBuilder_Empty_Build()
         {
-            ITraktSyncWatchlistPost syncWatchlistPost = TraktPost.NewSyncWatchlistPost().Build();
-            syncWatchlistPost.Should().NotBeNull();
-            syncWatchlistPost.Movies.Should().NotBeNull().And.BeEmpty();
-            syncWatchlistPost.Shows.Should().NotBeNull().And.BeEmpty();
-            syncWatchlistPost.Episodes.Should().NotBeNull().And.BeEmpty();
+            Func<ITraktSyncWatchlistPost> act = () => TraktPost.NewSyncWatchlistPost().Build();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Fact]

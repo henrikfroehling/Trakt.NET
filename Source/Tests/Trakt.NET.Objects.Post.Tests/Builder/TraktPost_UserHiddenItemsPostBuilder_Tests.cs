@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Builder
 {
     using FluentAssertions;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Trakt.NET.Tests.Utility.Traits;
@@ -24,12 +25,8 @@
         [Fact]
         public void Test_TraktPost_UserHiddenItemsPostBuilder_Empty_Build()
         {
-            ITraktUserHiddenItemsPost userHiddenItemsPost = TraktPost.NewUserHiddenItemsPost().Build();
-            userHiddenItemsPost.Should().NotBeNull();
-            userHiddenItemsPost.Movies.Should().NotBeNull().And.BeEmpty();
-            userHiddenItemsPost.Shows.Should().NotBeNull().And.BeEmpty();
-            userHiddenItemsPost.Seasons.Should().NotBeNull().And.BeEmpty();
-            userHiddenItemsPost.Users.Should().NotBeNull().And.BeEmpty();
+            Func<ITraktUserHiddenItemsPost> act = () => TraktPost.NewUserHiddenItemsPost().Build();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Fact]

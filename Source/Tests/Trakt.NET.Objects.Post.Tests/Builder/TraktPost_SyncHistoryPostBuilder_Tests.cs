@@ -26,11 +26,8 @@
         [Fact]
         public void Test_TraktPost_SyncHistoryPostBuilder_Empty_Build()
         {
-            ITraktSyncHistoryPost syncHistoryPost = TraktPost.NewSyncHistoryPost().Build();
-            syncHistoryPost.Should().NotBeNull();
-            syncHistoryPost.Movies.Should().NotBeNull().And.BeEmpty();
-            syncHistoryPost.Shows.Should().NotBeNull().And.BeEmpty();
-            syncHistoryPost.Episodes.Should().NotBeNull().And.BeEmpty();
+            Func<ITraktSyncHistoryPost> act = () => TraktPost.NewSyncHistoryPost().Build();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Fact]

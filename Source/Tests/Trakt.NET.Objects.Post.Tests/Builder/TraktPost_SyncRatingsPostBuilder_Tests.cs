@@ -27,11 +27,8 @@
         [Fact]
         public void Test_TraktPost_SyncRatingsPostBuilder_Empty_Build()
         {
-            ITraktSyncRatingsPost syncRatingsPost = TraktPost.NewSyncRatingsPost().Build();
-            syncRatingsPost.Should().NotBeNull();
-            syncRatingsPost.Movies.Should().NotBeNull().And.BeEmpty();
-            syncRatingsPost.Shows.Should().NotBeNull().And.BeEmpty();
-            syncRatingsPost.Episodes.Should().NotBeNull().And.BeEmpty();
+            Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost().Build();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Fact]
