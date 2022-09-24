@@ -1,17 +1,17 @@
-﻿using System.Net;
-
-namespace TraktNet.Exceptions
+﻿namespace TraktNet.Exceptions
 {
+    using System.Net;
+
     /// <summary>Exception, that will be thrown, if the authorized user does not have VIP support.</summary>
     public class TraktFailedVIPValidationException : TraktException
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TraktRateLimitException" /> class with a default exception message.
+        /// Initializes a new instance of the <see cref="TraktFailedVIPValidationException" /> class with a default exception message.
         /// </summary>
         public TraktFailedVIPValidationException() : this("VIP Only - authorized user does not have VIP support") { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TraktRateLimitException" /> class with a custom message.
+        /// Initializes a new instance of the <see cref="TraktFailedVIPValidationException" /> class with a custom message.
         /// </summary>
         /// <param name="message">A custom exception message.</param>
         public TraktFailedVIPValidationException(string message) : base(message)

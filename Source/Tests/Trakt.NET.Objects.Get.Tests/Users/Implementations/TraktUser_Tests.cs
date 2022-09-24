@@ -28,6 +28,9 @@
             user.Gender.Should().BeNull();
             user.Age.Should().BeNull();
             user.Images.Should().BeNull();
+            user.IsVIP_OG.Should().BeNull();
+            user.VIP_Years.Should().BeNull();
+            user.VIP_CoverImage.Should().BeNull();
         }
 
         [Fact]
@@ -44,12 +47,16 @@
             user.IsVIP_EP.Should().BeTrue();
             user.Ids.Should().NotBeNull();
             user.Ids.Slug.Should().Be("sean");
+            user.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
             user.JoinedAt.Should().BeNull();
             user.Location.Should().BeNull();
             user.About.Should().BeNull();
             user.Gender.Should().BeNull();
             user.Age.Should().BeNull();
             user.Images.Should().BeNull();
+            user.IsVIP_OG.Should().BeNull();
+            user.VIP_Years.Should().BeNull();
+            user.VIP_CoverImage.Should().BeNull();
         }
 
         [Fact]
@@ -66,6 +73,7 @@
             user.IsVIP_EP.Should().BeTrue();
             user.Ids.Should().NotBeNull();
             user.Ids.Slug.Should().Be("sean");
+            user.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
             user.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
             user.Location.Should().Be("SF");
             user.About.Should().Be("I have all your cassette tapes.");
@@ -74,6 +82,9 @@
             user.Images.Should().NotBeNull();
             user.Images.Avatar.Should().NotBeNull();
             user.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            user.IsVIP_OG.Should().BeTrue();
+            user.VIP_Years.Should().Be(5);
+            user.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
         }
 
         private const string MINIMAL_JSON =
@@ -84,7 +95,8 @@
                 ""vip"": true,
                 ""vip_ep"": true,
                 ""ids"": {
-                  ""slug"": ""sean""
+                  ""slug"": ""sean"",
+                  ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                 }
               }";
 
@@ -96,7 +108,8 @@
                 ""vip"": true,
                 ""vip_ep"": true,
                 ""ids"": {
-                  ""slug"": ""sean""
+                  ""slug"": ""sean"",
+                  ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
                 },
                 ""joined_at"": ""2010-09-25T17:49:25.000Z"",
                 ""location"": ""SF"",
@@ -107,7 +120,10 @@
                   ""avatar"": {
                     ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
                   }
-                }
+                },
+                ""vip_og"": true,
+                ""vip_years"": 5,
+                ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
               }";
     }
 }

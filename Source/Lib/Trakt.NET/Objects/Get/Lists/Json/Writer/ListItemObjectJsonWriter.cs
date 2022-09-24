@@ -24,7 +24,7 @@
                 await jsonWriter.WriteValueAsync(obj.Id, cancellationToken).ConfigureAwait(false);
             }
 
-            if (!string.IsNullOrEmpty(obj.Rank))
+            if (obj.Rank.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RANK, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Rank, cancellationToken).ConfigureAwait(false);
@@ -34,6 +34,12 @@
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LISTED_AT, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.ListedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+            }
+
+            if (!string.IsNullOrEmpty(obj.Notes))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NOTES, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Notes, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Type != null)

@@ -26,12 +26,8 @@
         [Fact]
         public void Test_TraktPost_SyncHistoryRemovePostBuilder_Empty_Build()
         {
-            ITraktSyncHistoryRemovePost syncHistoryRemovePost = TraktPost.NewSyncHistoryRemovePost().Build();
-            syncHistoryRemovePost.Should().NotBeNull();
-            syncHistoryRemovePost.Movies.Should().NotBeNull().And.BeEmpty();
-            syncHistoryRemovePost.Shows.Should().NotBeNull().And.BeEmpty();
-            syncHistoryRemovePost.Episodes.Should().NotBeNull().And.BeEmpty();
-            syncHistoryRemovePost.HistoryIds.Should().NotBeNull().And.BeEmpty();
+            Func<ITraktSyncHistoryRemovePost> act = () => TraktPost.NewSyncHistoryRemovePost().Build();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Fact]

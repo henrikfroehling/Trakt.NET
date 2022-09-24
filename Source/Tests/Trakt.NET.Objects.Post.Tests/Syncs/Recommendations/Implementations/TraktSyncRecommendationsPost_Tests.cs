@@ -1,6 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Syncs.Recommendations.Implementations
 {
     using FluentAssertions;
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
@@ -73,6 +75,33 @@
             postShows[1].Ids.Imdb.Should().Be("tt1520211");
             postShows[1].Ids.Tmdb.Should().Be(1402U);
             postShows[1].Notes.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktSyncRecommendationsPost_Validate()
+        {
+            ITraktSyncRecommendationsPost syncRecommendationsPost = new TraktSyncRecommendationsPost();
+            
+            // movies = null, shows = null
+            Action act = () => syncRecommendationsPost.Validate();
+            act.Should().Throw<ArgumentException>();
+
+            // movies = empty, shows = null
+            syncRecommendationsPost.Movies = new List<ITraktSyncRecommendationsPostMovie>();
+            act.Should().Throw<ArgumentException>();
+
+            // movies = empty, shows = empty
+            syncRecommendationsPost.Shows = new List<ITraktSyncRecommendationsPostShow>();
+            act.Should().Throw<ArgumentException>();
+
+            // movies with at least one item, shows = empty
+            (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>).Add(new TraktSyncRecommendationsPostMovie());
+            act.Should().NotThrow();
+
+            // movies = empty, shows with at least one item
+            (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>).Clear();
+            (syncRecommendationsPost.Shows as List<ITraktSyncRecommendationsPostShow>).Add(new TraktSyncRecommendationsPostShow());
+            act.Should().NotThrow();
         }
 
         private const string JSON =

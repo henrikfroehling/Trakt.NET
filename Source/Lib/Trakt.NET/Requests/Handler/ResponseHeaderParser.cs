@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Requests.Handler
 {
+    using Enums;
     using Responses.Interfaces;
     using System;
     using System.Collections.Generic;
@@ -25,6 +26,8 @@
         private const string HEADER_RATE_LIMIT = "X-RateLimit";
         private const string HEADER_RETRY_AFTER = "Retry-After";
         private const string HEADER_UPGRADE_URL = "X-Upgrade-URL";
+        private const string HEADER_VIP_USER = "X-VIP-User";
+        private const string HEADER_ACCOUNT_LIMIT = "X-Account-Limit";
 
         internal static void ParseResponseHeaderValues(ITraktResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
         {
@@ -53,16 +56,16 @@
             }
 
             if (responseHeaders.TryGetValues(HEADER_SORT_BY_KEY, out values))
-                headerResults.SortBy = values.First();
+                headerResults.SortBy = ParseSortBy(values.First());
 
             if (responseHeaders.TryGetValues(HEADER_SORT_HOW_KEY, out values))
-                headerResults.SortHow = values.First();
+                headerResults.SortHow = ParseSortHow(values.First());
 
             if (responseHeaders.TryGetValues(HEADER_APPLIED_SORT_BY, out values))
-                headerResults.AppliedSortBy = values.First();
+                headerResults.AppliedSortBy = ParseSortBy(values.First());
 
             if (responseHeaders.TryGetValues(HEADER_APPLIED_SORT_HOW, out values))
-                headerResults.AppliedSortHow = values.First();
+                headerResults.AppliedSortHow = ParseSortHow(values.First());
 
             if (responseHeaders.TryGetValues(HEADER_PRIVATE_USER_KEY, out values))
             {
@@ -112,6 +115,22 @@
 
             if (responseHeaders.TryGetValues(HEADER_UPGRADE_URL, out values))
                 headerResults.UpgradeURL = values.First();
+
+            if (responseHeaders.TryGetValues(HEADER_VIP_USER, out values))
+            {
+                string strVIPUser = values.First();
+
+                if (bool.TryParse(strVIPUser, out bool isVIPUser))
+                    headerResults.IsVIPUser = isVIPUser;
+            }
+
+            if (responseHeaders.TryGetValues(HEADER_ACCOUNT_LIMIT, out values))
+            {
+                string strAccountLimit = values.First();
+
+                if (int.TryParse(strAccountLimit, out int accountLimit))
+                    headerResults.AccountLimit = accountLimit;
+            }
         }
 
         internal static void ParsePagedResponseHeaderValues(ITraktPagedResponseHeaders headerResults, HttpResponseHeaders responseHeaders)
@@ -133,6 +152,46 @@
                 if (int.TryParse(strItemCount, out int itemCount))
                     headerResults.ItemCount = itemCount;
             }
+        }
+
+        private static TraktSortBy? ParseSortBy(string sortBy)
+        {
+            if (!string.IsNullOrEmpty(sortBy))
+            {
+                return sortBy switch
+                {
+                    "rank" => TraktSortBy.Rank,
+                    "added" => TraktSortBy.Added,
+                    "title" => TraktSortBy.Title,
+                    "released" => TraktSortBy.Released,
+                    "runtime" => TraktSortBy.Runtime,
+                    "popularity" => TraktSortBy.Popularity,
+                    "percentage" => TraktSortBy.Percentage,
+                    "votes" => TraktSortBy.Votes,
+                    "my_rating" => TraktSortBy.MyRating,
+                    "random" => TraktSortBy.Random,
+                    "watched" => TraktSortBy.Watched,
+                    "collected" => TraktSortBy.Collected,
+                    _ => null,
+                };
+            }
+
+            return null;
+        }
+
+        private static TraktSortHow? ParseSortHow(string sortHow)
+        {
+            if (!string.IsNullOrEmpty(sortHow))
+            {
+                return sortHow switch
+                {
+                    "asc" => TraktSortHow.Ascending,
+                    "desc" => TraktSortHow.Descending,
+                    _ => null,
+                };
+            }
+
+            return null;
         }
     }
 }

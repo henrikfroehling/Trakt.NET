@@ -21,6 +21,7 @@
             listItem.Id.Should().BeNull();
             listItem.Rank.Should().BeNull();
             listItem.ListedAt.Should().BeNull();
+            listItem.Notes.Should().BeNull();
             listItem.Type.Should().BeNull();
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().BeNull();
@@ -37,8 +38,9 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Movie);
             listItem.Movie.Should().NotBeNull();
             listItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -75,8 +77,9 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Show);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().NotBeNull();
@@ -120,8 +123,9 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Season);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().BeNull();
@@ -151,8 +155,9 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Episode);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().NotBeNull();
@@ -214,8 +219,9 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Person);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().BeNull();
@@ -245,8 +251,9 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Movie);
             listItem.Movie.Should().NotBeNull();
             listItem.Movie.Title.Should().Be("Star Wars: The Force Awakens");
@@ -283,8 +290,9 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Show);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().NotBeNull();
@@ -331,8 +339,9 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Season);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().BeNull();
@@ -405,8 +414,9 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Episode);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().NotBeNull();
@@ -484,8 +494,9 @@
 
             listItem.Should().NotBeNull();
             listItem.Id.Should().Be(101U);
-            listItem.Rank.Should().Be("1");
+            listItem.Rank.Should().Be(1);
             listItem.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            listItem.Notes.Should().Be("list item notes");
             listItem.Type.Should().Be(TraktListItemType.Person);
             listItem.Movie.Should().BeNull();
             listItem.Show.Should().BeNull();
@@ -510,8 +521,9 @@
         private const string TYPE_MOVIE_MINIMAL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -528,8 +540,9 @@
         private const string TYPE_SHOW_MINIMAL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""show"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
@@ -548,8 +561,9 @@
         private const string TYPE_SEASON_MINIMAL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""season"",
                 ""season"": {
                   ""number"": 1,
@@ -565,8 +579,9 @@
         private const string TYPE_EPISODE_MINIMAL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -597,8 +612,9 @@
         private const string TYPE_PERSON_MINIMAL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",
@@ -615,8 +631,9 @@
         private const string TYPE_MOVIE_FULL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""movie"",
                 ""movie"": {
                   ""title"": ""Star Wars: The Force Awakens"",
@@ -656,8 +673,9 @@
         private const string TYPE_SHOW_FULL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""show"",
                 ""show"": {
                   ""title"": ""Game of Thrones"",
@@ -708,8 +726,9 @@
         private const string TYPE_SEASON_FULL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""season"",
                 ""season"": {
                   ""number"": 1,
@@ -757,8 +776,9 @@
         private const string TYPE_EPISODE_FULL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""episode"",
                 ""episode"": {
                   ""season"": 1,
@@ -844,8 +864,9 @@
         private const string TYPE_PERSON_FULL_JSON =
             @"{
                 ""id"": 101,
-                ""rank"": ""1"",
+                ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
+                ""notes"": ""list item notes"",
                 ""type"": ""person"",
                 ""person"": {
                   ""name"": ""Bryan Cranston"",

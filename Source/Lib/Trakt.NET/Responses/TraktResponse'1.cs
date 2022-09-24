@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Responses
 {
+    using Enums;
     using Interfaces;
     using System;
     using System.Collections.Generic;
@@ -15,16 +16,16 @@
         public TResponseContentType Value { get; set; }
 
         /// <summary>Gets the value of the set "sort-by" response header. Might not be set.</summary>
-        public string SortBy { get; set; }
+        public TraktSortBy? SortBy { get; set; }
 
         /// <summary>Gets the value of the set "sort-how" response header. Might not be set.</summary>
-        public string SortHow { get; set; }
+        public TraktSortHow? SortHow { get; set; }
 
         /// <summary>Gets the value of the set "applied-sort-by" response header. Might not be set.</summary>
-        public string AppliedSortBy { get; set; }
+        public TraktSortBy? AppliedSortBy { get; set; }
 
         /// <summary>Gets the value of the set "applied-sort-how" response header. Might not be set.</summary>
-        public string AppliedSortHow { get; set; }
+        public TraktSortHow? AppliedSortHow { get; set; }
 
         /// <summary>Gets the value of the set "start-date" response header. Might not be set.</summary>
         public DateTime? StartDate { get; set; }
@@ -58,6 +59,12 @@
 
         /// <summary>The web URL where the user can sign up for Trakt VIP.</summary>
         public string UpgradeURL { get; set; }
+
+        /// <summary>Determines whether the user is a VIP user.</summary>
+        public bool? IsVIPUser { get; set; }
+
+        /// <summary>The user's account limit.</summary>
+        public int? AccountLimit { get; set; }
 
         /// <summary>
         /// Compares this instance with another <see cref="TraktResponse{TResponseContentType}" /> instance.

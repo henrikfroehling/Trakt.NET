@@ -16,6 +16,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_ALLOW_COMMENTS = "allow_comments";
         internal const string PROPERTY_NAME_APP_DATE = "app_date";
         internal const string PROPERTY_NAME_APP_VERSION = "app_version";
+        internal const string PROPERTY_NAME_APPLE = "apple";
         internal const string PROPERTY_NAME_APPROVED_AT = "approved_at";
         internal const string PROPERTY_NAME_ART = "art";
         internal const string PROPERTY_NAME_AUDIO = "audio";
@@ -44,6 +45,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_COMPLETED = "completed";
         internal const string PROPERTY_NAME_CONNECTIONS = "connections";
         internal const string PROPERTY_NAME_COSTUME_AND_MAKE_UP = "costume & make-up";
+        internal const string PROPERTY_NAME_COUNT = "count";
         internal const string PROPERTY_NAME_COUNTRY = "country";
         internal const string PROPERTY_NAME_COVER_IMAGE = "cover_image";
         internal const string PROPERTY_NAME_CREATED_AT = "created_at";
@@ -103,6 +105,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_LIKED_AT = "liked_at";
         internal const string PROPERTY_NAME_LIKES = "likes";
         internal const string PROPERTY_NAME_LIMIT = "limit";
+        internal const string PROPERTY_NAME_LIMITS = "limits";
         internal const string PROPERTY_NAME_LIST = "list";
         internal const string PROPERTY_NAME_LIST_COUNT = "list_count";
         internal const string PROPERTY_NAME_LISTED_AT = "listed_at";
@@ -139,6 +142,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_PROGRESS = "progress";
         internal const string PROPERTY_NAME_QUERY = "query";
         internal const string PROPERTY_NAME_RANK = "rank";
+        internal const string PROPERTY_NAME_RATED = "rated";
         internal const string PROPERTY_NAME_RATED_AT = "rated_at";
         internal const string PROPERTY_NAME_RATING = "rating";
         internal const string PROPERTY_NAME_RATINGS = "ratings";
@@ -209,7 +213,10 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_VENUE_NAME = "venue_name";
         internal const string PROPERTY_NAME_VERIFICATION_URL = "verification_url";
         internal const string PROPERTY_NAME_VIP = "vip";
+        internal const string PROPERTY_NAME_VIP_COVER_IMAGE = "vip_cover_image";
         internal const string PROPERTY_NAME_VIP_EP = "vip_ep";
+        internal const string PROPERTY_NAME_VIP_OG = "vip_og";
+        internal const string PROPERTY_NAME_VIP_YEARS = "vip_years";
         internal const string PROPERTY_NAME_VISUAL_EFFECTS = "visual effects";
         internal const string PROPERTY_NAME_VOTES = "votes";
         internal const string PROPERTY_NAME_WATCHED = "watched";

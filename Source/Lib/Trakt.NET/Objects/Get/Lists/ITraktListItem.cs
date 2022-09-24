@@ -15,10 +15,13 @@
         uint? Id { get; set; }
 
         /// <summary>Gets or sets the ranking number of the list item.<para>Nullable</para></summary>
-        string Rank { get; set; }
+        int? Rank { get; set; }
 
         /// <summary>Gets or sets the UTC datetime, when the list item was added to a list.</summary>
         DateTime? ListedAt { get; set; }
+
+        /// <summary>Gets or sets the list item notes.</summary>
+        string Notes { get; set; }
 
         /// <summary>Gets or sets the list item type. See also <seealso cref="TraktListItemType" />.<para>Nullable</para></summary>
         TraktListItemType Type { get; set; }

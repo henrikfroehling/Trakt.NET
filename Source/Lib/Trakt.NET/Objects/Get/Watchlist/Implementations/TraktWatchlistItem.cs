@@ -10,9 +10,18 @@
     /// <summary>A Trakt watchlist item, containing a movie, show, season and / or episode and information about it.</summary>
     public class TraktWatchlistItem : ITraktWatchlistItem
     {
+        /// <summary>Gets or sets the id of the watchlist item.<para>Nullable</para></summary>
+        public uint? Id { get; set; }
+
+        /// <summary>Gets or sets the ranking number of the watchlist item.<para>Nullable</para></summary>
+        public int? Rank { get; set; }
+
         /// <summary>Gets or sets the UTC datetime, when the movie, show, season and / or episode was listed.</summary>
         public DateTime? ListedAt { get; set; }
 
+        /// <summary>Gets or sets the watchlist item notes.</summary>
+        public string Notes { get; set; }
+        
         /// <summary>
         /// Gets or sets the object type, which this watchlist item contains.
         /// See also <seealso cref="TraktSyncItemType" />.

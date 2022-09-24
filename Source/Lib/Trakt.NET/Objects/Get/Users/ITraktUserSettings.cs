@@ -21,10 +21,10 @@
 
         /// <summary>
         /// Gets or sets the social media connection settings.
-        /// See also <seealso cref="ITraktSharing" />.
+        /// See also <seealso cref="ITraktConnections" />.
         /// <para>Nullable</para>
         /// </summary>
-        ITraktSharing Connections { get; set; }
+        ITraktConnections Connections { get; set; }
 
         /// <summary>
         /// Gets or sets the social media sharing text settings.
@@ -32,5 +32,12 @@
         /// <para>Nullable</para>
         /// </summary>
         ITraktSharingText SharingText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user's limits.
+        /// See also <seealso cref="ITraktUserLimits" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        ITraktUserLimits Limits { get; set; }
     }
 }
