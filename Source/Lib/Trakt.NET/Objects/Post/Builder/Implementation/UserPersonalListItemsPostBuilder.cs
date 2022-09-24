@@ -189,6 +189,7 @@ namespace TraktNet.Objects.Post
             AddMovies(userPersonalListItemsPost);
             AddShows(userPersonalListItemsPost);
             AddPersons(userPersonalListItemsPost);
+            userPersonalListItemsPost.Validate();
             return userPersonalListItemsPost;
         }
 

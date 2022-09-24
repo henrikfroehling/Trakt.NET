@@ -182,6 +182,7 @@
             AddShows(syncHistoryRemovePost);
             AddEpisodes(syncHistoryRemovePost);
             syncHistoryRemovePost.HistoryIds = _historyIds;
+            syncHistoryRemovePost.Validate();
             return syncHistoryRemovePost;
         }
 

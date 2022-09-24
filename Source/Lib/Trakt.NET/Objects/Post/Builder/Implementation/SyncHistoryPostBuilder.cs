@@ -160,6 +160,7 @@
             AddMovies(syncHistoryPost);
             AddShows(syncHistoryPost);
             AddEpisodes(syncHistoryPost);
+            syncHistoryPost.Validate();
             return syncHistoryPost;
         }
 

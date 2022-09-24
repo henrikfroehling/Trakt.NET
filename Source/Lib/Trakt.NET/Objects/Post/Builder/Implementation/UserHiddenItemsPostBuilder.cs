@@ -115,6 +115,7 @@
             AddShows(userHiddenItemsPost);
             AddSeasons(userHiddenItemsPost);
             userHiddenItemsPost.Users = _users;
+            userHiddenItemsPost.Validate();
             return userHiddenItemsPost;
         }
 

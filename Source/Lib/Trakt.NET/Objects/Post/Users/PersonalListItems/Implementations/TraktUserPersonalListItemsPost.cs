@@ -2,7 +2,9 @@
 {
     using Get.People;
     using Objects.Json;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -38,7 +40,12 @@
 
         public void Validate()
         {
-            // TODO
+            bool bHasNoMovies = Movies == null || !Movies.Any();
+            bool bHasNoShows = Shows == null || !Shows.Any();
+            bool bHasNoPeople = People == null || !People.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoPeople)
+                throw new ArgumentException("no personal list items set");
         }
     }
 }
