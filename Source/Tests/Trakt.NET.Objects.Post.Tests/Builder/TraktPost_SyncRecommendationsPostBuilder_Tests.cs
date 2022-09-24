@@ -25,10 +25,8 @@
         [Fact]
         public void Test_TraktPost_SyncRecommendationsPostBuilder_Empty_Build()
         {
-            ITraktSyncRecommendationsPost syncRecommendationsPost = TraktPost.NewSyncRecommendationsPost().Build();
-            syncRecommendationsPost.Should().NotBeNull();
-            syncRecommendationsPost.Movies.Should().NotBeNull().And.BeEmpty();
-            syncRecommendationsPost.Shows.Should().NotBeNull().And.BeEmpty();
+            Func<ITraktSyncRecommendationsPost> act = () => TraktPost.NewSyncRecommendationsPost().Build();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Fact]

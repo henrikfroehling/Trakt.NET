@@ -1,7 +1,9 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Collection
 {
     using Objects.Json;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -37,7 +39,12 @@
 
         public void Validate()
         {
-            // TODO
+            bool bHasNoMovies = Movies == null || !Movies.Any();
+            bool bHasNoShows = Shows == null || !Shows.Any();
+            bool bHasNoEpisodes = Episodes == null || !Episodes.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
+                throw new ArgumentException("no collection items set");
         }
     }
 }

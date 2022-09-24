@@ -143,6 +143,7 @@
             ITraktSyncRecommendationsPost syncRecommendationsPost = new TraktSyncRecommendationsPost();
             AddMovies(syncRecommendationsPost);
             AddShows(syncRecommendationsPost);
+            syncRecommendationsPost.Validate();
             return syncRecommendationsPost;
         }
 

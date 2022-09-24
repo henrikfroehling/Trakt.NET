@@ -24,11 +24,8 @@
         [Fact]
         public void Test_TraktPost_UserPersonalListItemsPostBuilder_Empty_Build()
         {
-            ITraktUserPersonalListItemsPost userPersonalListItemsPost = TraktPost.NewUserPersonalListItemsPost().Build();
-            userPersonalListItemsPost.Should().NotBeNull();
-            userPersonalListItemsPost.Movies.Should().NotBeNull().And.BeEmpty();
-            userPersonalListItemsPost.Shows.Should().NotBeNull().And.BeEmpty();
-            userPersonalListItemsPost.People.Should().NotBeNull().And.BeEmpty();
+            Func<ITraktUserPersonalListItemsPost> act = () => TraktPost.NewUserPersonalListItemsPost().Build();
+            act.Should().Throw<ArgumentException>();
         }
 
         [Fact]

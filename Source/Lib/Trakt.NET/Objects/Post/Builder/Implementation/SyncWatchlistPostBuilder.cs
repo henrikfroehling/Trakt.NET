@@ -231,6 +231,7 @@
             AddMovies(syncWatchlistPost);
             AddShows(syncWatchlistPost);
             AddEpisodes(syncWatchlistPost);
+            syncWatchlistPost.Validate();
             return syncWatchlistPost;
         }
 

@@ -30,6 +30,12 @@
 
         public void Validate()
         {
+            bool bHasNoMovies = Movies == null || !Movies.Any();
+            bool bHasNoShows = Shows == null || !Shows.Any();
+
+            if (bHasNoMovies && bHasNoShows)
+                throw new ArgumentException("no recommendations items set");
+
             foreach (ITraktSyncRecommendationsPostMovie postMovie in Movies)
             {
                 if (postMovie.Notes?.Length > 255)

@@ -160,6 +160,7 @@
             AddMovies(syncRatingsPost);
             AddShows(syncRatingsPost);
             AddEpisodes(syncRatingsPost);
+            syncRatingsPost.Validate();
             return syncRatingsPost;
         }
 
