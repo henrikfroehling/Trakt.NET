@@ -1,59 +1,88 @@
 ﻿namespace TraktNet.Objects.Post
 {
-    using Capabilities;
-    using Get.Episodes;
-    using Get.Movies;
-    using Get.Shows;
-    using Helper;
-    using Objects.Basic;
-    using Post.Syncs.Collection;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using TraktNet.Objects.Basic;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Get.Seasons;
+    using TraktNet.Objects.Get.Shows;
+    using TraktNet.Objects.Post.Syncs.Collection;
 
     internal sealed class SyncCollectionPostBuilder : ITraktSyncCollectionPostBuilder
     {
-        private readonly List<ITraktMovie> _movies;
-        private readonly List<PostBuilderObjectWithMetadata<ITraktMovie>> _moviesWithMetadata;
-        private readonly List<ITraktShow> _shows;
-        private readonly List<PostBuilderObjectWithMetadata<ITraktShow>> _showsWithMetadata;
-        private readonly List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>> _showsWithMetadataAndSeasonsCollection;
-        private readonly List<ITraktEpisode> _episodes;
-        private readonly List<PostBuilderObjectWithMetadata<ITraktEpisode>> _episodesWithMetadata;
-        private readonly PostBuilderMovieAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _collectedMovies;
-        private readonly PostBuilderMovieAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _moviesAndMetadata;
-        private readonly PostBuilderShowAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _collectedShows;
-        private readonly PostBuilderShowAddedCollectedAtWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _collectedShowsWithSeasons;
-        private readonly PostBuilderShowAddedCollectedAtWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> _collectedShowsWithSeasonsCollection;
-        private readonly PostBuilderShowAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _showsAndMetadata;
-        private readonly PostBuilderShowAddedMetadataWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _showsAndMetadataWithSeasons;
-        private readonly PostBuilderShowAddedMetadataWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> _showsAndMetadataWithSeasonsCollection;
-        private readonly PostBuilderShowAddedSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _showsWithSeasons;
-        private readonly PostBuilderShowAddedSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> _showsWithSeasonsCollection;
-        private readonly PostBuilderEpisodeAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _collectedEpisodes;
-        private readonly PostBuilderEpisodeAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> _episodesAndMetadata;
+        private readonly Lazy<List<ITraktMovie>> _movies;
+        private readonly Lazy<List<ITraktMovieIds>> _movieIds;
+        private readonly Lazy<List<CollectedEntry<ITraktMovie>>> _moviesCollectedAt;
+        private readonly Lazy<List<CollectedEntry<ITraktMovieIds>>> _movieIdsCollectedAt;
+        private readonly Lazy<List<EntryWithMetadata<ITraktMovie>>> _moviesWithMetadata;
+        private readonly Lazy<List<EntryWithMetadata<ITraktMovieIds>>> _movieIdsWithMetadata;
+        private readonly Lazy<List<CollectedEntryWithMetadata<ITraktMovie>>> _moviesWithMetadataCollected;
+        private readonly Lazy<List<CollectedEntryWithMetadata<ITraktMovieIds>>> _movieIdsWithMetadataCollectedAt;
+        private readonly Lazy<List<ITraktShow>> _shows;
+        private readonly Lazy<List<ITraktShowIds>> _showIds;
+        private readonly Lazy<List<CollectedEntry<ITraktShow>>> _showsCollectedAt;
+        private readonly Lazy<List<CollectedEntry<ITraktShowIds>>> _showIdsCollectedAt;
+        private readonly Lazy<List<EntryWithMetadata<ITraktShow>>> _showsWithMetadata;
+        private readonly Lazy<List<EntryWithMetadata<ITraktShowIds>>> _showIdsWithMetadata;
+        private readonly Lazy<List<CollectedEntryWithMetadata<ITraktShow>>> _showsWithMetadataCollected;
+        private readonly Lazy<List<CollectedEntryWithMetadata<ITraktShowIds>>> _showIdsWithMetadataCollectedAt;
+        private readonly Lazy<List<CollectionShowAndSeasons<ITraktShow>>> _showsAndSeasons;
+        private readonly Lazy<List<CollectionShowAndSeasons<ITraktShowIds>>> _showIdsAndSeasons;
+        private readonly Lazy<List<ITraktSeason>> _seasons;
+        private readonly Lazy<List<ITraktSeasonIds>> _seasonIds;
+        private readonly Lazy<List<CollectedEntry<ITraktSeason>>> _seasonsCollectedAt;
+        private readonly Lazy<List<CollectedEntry<ITraktSeasonIds>>> _seasonIdsCollectedAt;
+        private readonly Lazy<List<EntryWithMetadata<ITraktSeason>>> _seasonsWithMetadata;
+        private readonly Lazy<List<EntryWithMetadata<ITraktSeasonIds>>> _seasonIdsWithMetadata;
+        private readonly Lazy<List<CollectedEntryWithMetadata<ITraktSeason>>> _seasonsWithMetadataCollected;
+        private readonly Lazy<List<CollectedEntryWithMetadata<ITraktSeasonIds>>> _seasonIdsWithMetadataCollectedAt;
+        private readonly Lazy<List<ITraktEpisode>> _episodes;
+        private readonly Lazy<List<ITraktEpisodeIds>> _episodeIds;
+        private readonly Lazy<List<CollectedEntry<ITraktEpisode>>> _episodesCollectedAt;
+        private readonly Lazy<List<CollectedEntry<ITraktEpisodeIds>>> _episodeIdsCollectedAt;
+        private readonly Lazy<List<EntryWithMetadata<ITraktEpisode>>> _episodesWithMetadata;
+        private readonly Lazy<List<EntryWithMetadata<ITraktEpisodeIds>>> _episodeIdsWithMetadata;
+        private readonly Lazy<List<CollectedEntryWithMetadata<ITraktEpisode>>> _episodesWithMetadataCollected;
+        private readonly Lazy<List<CollectedEntryWithMetadata<ITraktEpisodeIds>>> _episodeIdsWithMetadataCollectedAt;
 
         internal SyncCollectionPostBuilder()
         {
-            _movies = new List<ITraktMovie>();
-            _moviesWithMetadata = new List<PostBuilderObjectWithMetadata<ITraktMovie>>();
-            _shows = new List<ITraktShow>();
-            _showsWithMetadata = new List<PostBuilderObjectWithMetadata<ITraktShow>>();
-            _showsWithMetadataAndSeasonsCollection = new List<PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>>();
-            _episodes = new List<ITraktEpisode>();
-            _episodesWithMetadata = new List<PostBuilderObjectWithMetadata<ITraktEpisode>>();
-            _collectedMovies = new PostBuilderMovieAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
-            _moviesAndMetadata = new PostBuilderMovieAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
-            _collectedShows = new PostBuilderShowAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
-            _collectedShowsWithSeasons = new PostBuilderShowAddedCollectedAtWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
-            _collectedShowsWithSeasonsCollection = new PostBuilderShowAddedCollectedAtWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>(this);
-            _showsAndMetadata = new PostBuilderShowAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
-            _showsAndMetadataWithSeasons = new PostBuilderShowAddedMetadataWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
-            _showsAndMetadataWithSeasonsCollection = new PostBuilderShowAddedMetadataWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>(this);
-            _showsWithSeasons = new PostBuilderShowAddedSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
-            _showsWithSeasonsCollection = new PostBuilderShowAddedSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons>(this);
-            _collectedEpisodes = new PostBuilderEpisodeAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
-            _episodesAndMetadata = new PostBuilderEpisodeAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost>(this);
+            _movies = new Lazy<List<ITraktMovie>>(() => new List<ITraktMovie>());
+            _movieIds = new Lazy<List<ITraktMovieIds>>();
+            _moviesCollectedAt = new Lazy<List<CollectedEntry<ITraktMovie>>>();
+            _movieIdsCollectedAt = new Lazy<List<CollectedEntry<ITraktMovieIds>>>();
+            _moviesWithMetadata = new Lazy<List<EntryWithMetadata<ITraktMovie>>>();
+            _movieIdsWithMetadata = new Lazy<List<EntryWithMetadata<ITraktMovieIds>>>();
+            _moviesWithMetadataCollected = new Lazy<List<CollectedEntryWithMetadata<ITraktMovie>>>();
+            _movieIdsWithMetadataCollectedAt = new Lazy<List<CollectedEntryWithMetadata<ITraktMovieIds>>>();
+            _shows = new Lazy<List<ITraktShow>>();
+            _showIds = new Lazy<List<ITraktShowIds>>();
+            _showsCollectedAt = new Lazy<List<CollectedEntry<ITraktShow>>>();
+            _showIdsCollectedAt = new Lazy<List<CollectedEntry<ITraktShowIds>>>();
+            _showsWithMetadata = new Lazy<List<EntryWithMetadata<ITraktShow>>>();
+            _showIdsWithMetadata = new Lazy<List<EntryWithMetadata<ITraktShowIds>>>();
+            _showsWithMetadataCollected = new Lazy<List<CollectedEntryWithMetadata<ITraktShow>>>();
+            _showIdsWithMetadataCollectedAt = new Lazy<List<CollectedEntryWithMetadata<ITraktShowIds>>>();
+            _showsAndSeasons = new Lazy<List<CollectionShowAndSeasons<ITraktShow>>>();
+            _showIdsAndSeasons = new Lazy<List<CollectionShowAndSeasons<ITraktShowIds>>>();
+            _seasons = new Lazy<List<ITraktSeason>>();
+            _seasonIds = new Lazy<List<ITraktSeasonIds>>();
+            _seasonsCollectedAt = new Lazy<List<CollectedEntry<ITraktSeason>>>();
+            _seasonIdsCollectedAt = new Lazy<List<CollectedEntry<ITraktSeasonIds>>>();
+            _seasonsWithMetadata = new Lazy<List<EntryWithMetadata<ITraktSeason>>>();
+            _seasonIdsWithMetadata = new Lazy<List<EntryWithMetadata<ITraktSeasonIds>>>();
+            _seasonsWithMetadataCollected = new Lazy<List<CollectedEntryWithMetadata<ITraktSeason>>>();
+            _seasonIdsWithMetadataCollectedAt = new Lazy<List<CollectedEntryWithMetadata<ITraktSeasonIds>>>();
+            _episodes = new Lazy<List<ITraktEpisode>>();
+            _episodeIds = new Lazy<List<ITraktEpisodeIds>>();
+            _episodesCollectedAt = new Lazy<List<CollectedEntry<ITraktEpisode>>>();
+            _episodeIdsCollectedAt = new Lazy<List<CollectedEntry<ITraktEpisodeIds>>>();
+            _episodesWithMetadata = new Lazy<List<EntryWithMetadata<ITraktEpisode>>>();
+            _episodeIdsWithMetadata = new Lazy<List<EntryWithMetadata<ITraktEpisodeIds>>>();
+            _episodesWithMetadataCollected = new Lazy<List<CollectedEntryWithMetadata<ITraktEpisode>>>();
+            _episodeIdsWithMetadataCollectedAt = new Lazy<List<CollectedEntryWithMetadata<ITraktEpisodeIds>>>();
         }
 
         public ITraktSyncCollectionPostBuilder WithMovie(ITraktMovie movie)
@@ -61,7 +90,130 @@
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
 
-            _movies.Add(movie);
+            _movies.Value.Add(movie);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovie(ITraktMovieIds movieIds)
+        {
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            _movieIds.Value.Add(movieIds);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieCollectedAt(ITraktMovie movie, DateTime collectedAt)
+        {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
+            return WithMovieCollectedAt(new CollectedEntry<ITraktMovie>(movie, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieCollectedAt(CollectedEntry<ITraktMovie> movieCollectedAt)
+        {
+            if (movieCollectedAt == null)
+                throw new ArgumentNullException(nameof(movieCollectedAt));
+
+            _moviesCollectedAt.Value.Add(movieCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieCollectedAt(ITraktMovieIds movieIds, DateTime collectedAt)
+        {
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            return WithMovieCollectedAt(new CollectedEntry<ITraktMovieIds>(movieIds, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieCollectedAt(CollectedEntry<ITraktMovieIds> movieIdsCollectedAt)
+        {
+            if (movieIdsCollectedAt == null)
+                throw new ArgumentNullException(nameof(movieIdsCollectedAt));
+
+            _movieIdsCollectedAt.Value.Add(movieIdsCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadata(ITraktMovie movie, ITraktMetadata metadata)
+        {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithMovieWithMetadata(new EntryWithMetadata<ITraktMovie>(movie, metadata));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadata(EntryWithMetadata<ITraktMovie> movieWithMetadata)
+        {
+            if (movieWithMetadata == null)
+                throw new ArgumentNullException(nameof(movieWithMetadata));
+
+            _moviesWithMetadata.Value.Add(movieWithMetadata);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadata(ITraktMovieIds movieIds, ITraktMetadata metadata)
+        {
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithMovieWithMetadata(new EntryWithMetadata<ITraktMovieIds>(movieIds, metadata));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadata(EntryWithMetadata<ITraktMovieIds> movieIdsWithMetadata)
+        {
+            if (movieIdsWithMetadata == null)
+                throw new ArgumentNullException(nameof(movieIdsWithMetadata));
+
+            _movieIdsWithMetadata.Value.Add(movieIdsWithMetadata);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataAndCollectedAt(ITraktMovie movie, ITraktMetadata metadata, DateTime collectedAt)
+        {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithMovieWithMetadataAndCollectedAt(new CollectedEntryWithMetadata<ITraktMovie>(movie, metadata, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataAndCollectedAt(CollectedEntryWithMetadata<ITraktMovie> movieWithMetadataCollectedAt)
+        {
+            if (movieWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(movieWithMetadataCollectedAt));
+
+            _moviesWithMetadataCollected.Value.Add(movieWithMetadataCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataAndCollectedAt(ITraktMovieIds movieIds, ITraktMetadata metadata, DateTime collectedAt)
+        {
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithMovieWithMetadataAndCollectedAt(new CollectedEntryWithMetadata<ITraktMovieIds>(movieIds, metadata, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataAndCollectedAt(CollectedEntryWithMetadata<ITraktMovieIds> movieIdsWithMetadataCollectedAt)
+        {
+            if (movieIdsWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(movieIdsWithMetadataCollectedAt));
+
+            _movieIdsWithMetadataCollectedAt.Value.Add(movieIdsWithMetadataCollectedAt);
             return this;
         }
 
@@ -70,78 +222,111 @@
             if (movies == null)
                 throw new ArgumentNullException(nameof(movies));
 
-            _movies.AddRange(movies);
+            foreach (ITraktMovie movie in movies)
+            {
+                if (movie != null)
+                    _movies.Value.Add(movie);
+            }
+            
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, ITraktMetadata>> movies)
+        public ITraktSyncCollectionPostBuilder WithMovies(IEnumerable<ITraktMovieIds> movieIds)
         {
-            if (movies == null)
-                throw new ArgumentNullException(nameof(movies));
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
 
-            foreach (var tuple in movies)
+            foreach (ITraktMovieIds movieId in movieIds)
             {
-                _moviesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
-                {
-                    Object = tuple.Item1,
-                    Metadata = tuple.Item2
-                });
+                if (movieId != null)
+                    _movieIds.Value.Add(movieId);
             }
 
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithMoviesAndMetadata(IEnumerable<Tuple<ITraktMovie, ITraktMetadata, DateTime?>> movies)
+        public ITraktSyncCollectionPostBuilder WithMoviesCollectedAt(IEnumerable<CollectedEntry<ITraktMovie>> moviesCollectedAt)
         {
-            if (movies == null)
-                throw new ArgumentNullException(nameof(movies));
+            if (moviesCollectedAt == null)
+                throw new ArgumentNullException(nameof(moviesCollectedAt));
 
-            foreach (var tuple in movies)
+            foreach (CollectedEntry<ITraktMovie> movieCollectedAt in moviesCollectedAt)
             {
-                _moviesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
-                {
-                    Object = tuple.Item1,
-                    Metadata = tuple.Item2,
-                    CollectedAt = tuple.Item3
-                });
+                if (movieCollectedAt != null)
+                    _moviesCollectedAt.Value.Add(movieCollectedAt);
             }
 
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithCollectedMovies(IEnumerable<Tuple<ITraktMovie, DateTime?>> movies)
+        public ITraktSyncCollectionPostBuilder WithMoviesCollectedAt(IEnumerable<CollectedEntry<ITraktMovieIds>> movieIdsCollectedAt)
         {
-            if (movies == null)
-                throw new ArgumentNullException(nameof(movies));
+            if (movieIdsCollectedAt == null)
+                throw new ArgumentNullException(nameof(movieIdsCollectedAt));
 
-            foreach (var tuple in movies)
+            foreach (CollectedEntry<ITraktMovieIds> movieIdCollectedAt in movieIdsCollectedAt)
             {
-                _moviesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktMovie>
-                {
-                    Object = tuple.Item1,
-                    CollectedAt = tuple.Item2
-                });
+                if (movieIdCollectedAt != null)
+                    _movieIdsCollectedAt.Value.Add(movieIdCollectedAt);
             }
 
             return this;
         }
 
-        public ITraktPostBuilderMovieAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithCollectedMovie(ITraktMovie movie)
+        public ITraktSyncCollectionPostBuilder WithMoviesWithMetadata(IEnumerable<EntryWithMetadata<ITraktMovie>> moviesWithMetadata)
         {
-            if (movie == null)
-                throw new ArgumentNullException(nameof(movie));
+            if (moviesWithMetadata == null)
+                throw new ArgumentNullException(nameof(moviesWithMetadata));
 
-            _collectedMovies.SetCurrentMovie(movie);
-            return _collectedMovies;
+            foreach (EntryWithMetadata<ITraktMovie> movieWithMetadata in moviesWithMetadata)
+            {
+                if (movieWithMetadata != null)
+                    _moviesWithMetadata.Value.Add(movieWithMetadata);
+            }
+
+            return this;
         }
 
-        public ITraktPostBuilderMovieAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithMovieAndMetadata(ITraktMovie movie)
+        public ITraktSyncCollectionPostBuilder WithMoviesWithMetadata(IEnumerable<EntryWithMetadata<ITraktMovieIds>> movieIdsWithMetadata)
         {
-            if (movie == null)
-                throw new ArgumentNullException(nameof(movie));
+            if (movieIdsWithMetadata == null)
+                throw new ArgumentNullException(nameof(movieIdsWithMetadata));
 
-            _moviesAndMetadata.SetCurrentMovie(movie);
-            return _moviesAndMetadata;
+            foreach (EntryWithMetadata<ITraktMovieIds> movieIdWithMetadata in movieIdsWithMetadata)
+            {
+                if (movieIdWithMetadata != null)
+                    _movieIdsWithMetadata.Value.Add(movieIdWithMetadata);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMoviesWithMetadataCollectedAt(IEnumerable<CollectedEntryWithMetadata<ITraktMovie>> moviesWithMetadataCollectedAt)
+        {
+            if (moviesWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(moviesWithMetadataCollectedAt));
+
+            foreach (CollectedEntryWithMetadata<ITraktMovie> movieWithMetadataCollectedAt in moviesWithMetadataCollectedAt)
+            {
+                if (movieWithMetadataCollectedAt != null)
+                    _moviesWithMetadataCollected.Value.Add(movieWithMetadataCollectedAt);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithMoviesWithMetadataCollectedAt(IEnumerable<CollectedEntryWithMetadata<ITraktMovieIds>> movieIdsWithMetadataCollectedAt)
+        {
+            if (movieIdsWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(movieIdsWithMetadataCollectedAt));
+
+            foreach (CollectedEntryWithMetadata<ITraktMovieIds> movieIdWithMetadataCollectedAt in movieIdsWithMetadataCollectedAt)
+            {
+                if (movieIdWithMetadataCollectedAt != null)
+                    _movieIdsWithMetadataCollectedAt.Value.Add(movieIdWithMetadataCollectedAt);
+            }
+
+            return this;
         }
 
         public ITraktSyncCollectionPostBuilder WithShow(ITraktShow show)
@@ -149,7 +334,130 @@
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
 
-            _shows.Add(show);
+            _shows.Value.Add(show);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShow(ITraktShowIds showIds)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            _showIds.Value.Add(showIds);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowCollectedAt(ITraktShow show, DateTime collectedAt)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return WithShowCollectedAt(new CollectedEntry<ITraktShow>(show, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowCollectedAt(CollectedEntry<ITraktShow> showCollectedAt)
+        {
+            if (showCollectedAt == null)
+                throw new ArgumentNullException(nameof(showCollectedAt));
+
+            _showsCollectedAt.Value.Add(showCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowCollectedAt(ITraktShowIds showIds, DateTime collectedAt)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            return WithShowCollectedAt(new CollectedEntry<ITraktShowIds>(showIds, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowCollectedAt(CollectedEntry<ITraktShowIds> showIdsCollectedAt)
+        {
+            if (showIdsCollectedAt == null)
+                throw new ArgumentNullException(nameof(showIdsCollectedAt));
+
+            _showIdsCollectedAt.Value.Add(showIdsCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadata(ITraktShow show, ITraktMetadata metadata)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithShowWithMetadata(new EntryWithMetadata<ITraktShow>(show, metadata));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadata(EntryWithMetadata<ITraktShow> showWithMetadata)
+        {
+            if (showWithMetadata == null)
+                throw new ArgumentNullException(nameof(showWithMetadata));
+
+            _showsWithMetadata.Value.Add(showWithMetadata);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadata(ITraktShowIds showIds, ITraktMetadata metadata)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithShowWithMetadata(new EntryWithMetadata<ITraktShowIds>(showIds, metadata));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadata(EntryWithMetadata<ITraktShowIds> showIdsWithMetadata)
+        {
+            if (showIdsWithMetadata == null)
+                throw new ArgumentNullException(nameof(showIdsWithMetadata));
+
+            _showIdsWithMetadata.Value.Add(showIdsWithMetadata);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadataAndCollectedAt(ITraktShow show, ITraktMetadata metadata, DateTime collectedAt)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithShowWithMetadataAndCollectedAt(new CollectedEntryWithMetadata<ITraktShow>(show, metadata, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadataAndCollectedAt(CollectedEntryWithMetadata<ITraktShow> showWithMetadataCollectedAt)
+        {
+            if (showWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(showWithMetadataCollectedAt));
+
+            _showsWithMetadataCollected.Value.Add(showWithMetadataCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadataAndCollectedAt(ITraktShowIds showIds, ITraktMetadata metadata, DateTime collectedAt)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithShowWithMetadataAndCollectedAt(new CollectedEntryWithMetadata<ITraktShowIds>(showIds, metadata, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadataAndCollectedAt(CollectedEntryWithMetadata<ITraktShowIds> showIdsWithMetadataCollectedAt)
+        {
+            if (showIdsWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(showIdsWithMetadataCollectedAt));
+
+            _showIdsWithMetadataCollectedAt.Value.Add(showIdsWithMetadataCollectedAt);
             return this;
         }
 
@@ -158,187 +466,423 @@
             if (shows == null)
                 throw new ArgumentNullException(nameof(shows));
 
-            _shows.AddRange(shows);
-            return this;
-        }
-
-        public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata>> shows)
-        {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
-
-            foreach (var tuple in shows)
+            foreach (ITraktShow show in shows)
             {
-                _showsWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktShow>
-                {
-                    Object = tuple.Item1,
-                    Metadata = tuple.Item2
-                });
+                if (show != null)
+                    _shows.Value.Add(show);
             }
 
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?>> shows)
+        public ITraktSyncCollectionPostBuilder WithShows(IEnumerable<ITraktShowIds> showIds)
         {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
 
-            foreach (var tuple in shows)
+            foreach (ITraktShowIds showId in showIds)
             {
-                _showsWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktShow>
-                {
-                    Object = tuple.Item1,
-                    Metadata = tuple.Item2,
-                    CollectedAt = tuple.Item3
-                });
+                if (showId != null)
+                    _showIds.Value.Add(showId);
             }
 
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, PostSeasons>> shows)
+        public ITraktSyncCollectionPostBuilder WithShowsCollectedAt(IEnumerable<CollectedEntry<ITraktShow>> showsCollectedAt)
         {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
+            if (showsCollectedAt == null)
+                throw new ArgumentNullException(nameof(showsCollectedAt));
 
-            foreach (var tuple in shows)
+            foreach (CollectedEntry<ITraktShow> showCollectedAt in showsCollectedAt)
             {
-                _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
-                {
-                    Object = tuple.Item1,
-                    Metadata = tuple.Item2,
-                    Seasons = tuple.Item3
-                });
+                if (showCollectedAt != null)
+                    _showsCollectedAt.Value.Add(showCollectedAt);
             }
 
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithShowsAndMetadata(IEnumerable<Tuple<ITraktShow, ITraktMetadata, DateTime?, PostSeasons>> shows)
+        public ITraktSyncCollectionPostBuilder WithShowsCollectedAt(IEnumerable<CollectedEntry<ITraktShowIds>> showIdsCollectedAt)
         {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
+            if (showIdsCollectedAt == null)
+                throw new ArgumentNullException(nameof(showIdsCollectedAt));
 
-            foreach (var tuple in shows)
+            foreach (CollectedEntry<ITraktShowIds> showIdCollectedAt in showIdsCollectedAt)
             {
-                _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
-                {
-                    Object = tuple.Item1,
-                    Metadata = tuple.Item2,
-                    CollectedAt = tuple.Item3,
-                    Seasons = tuple.Item4
-                });
+                if (showIdCollectedAt != null)
+                    _showIdsCollectedAt.Value.Add(showIdCollectedAt);
             }
 
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithCollectedShows(IEnumerable<Tuple<ITraktShow, DateTime?>> shows)
+        public ITraktSyncCollectionPostBuilder WithShowsWithMetadata(IEnumerable<EntryWithMetadata<ITraktShow>> showsWithMetadata)
         {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
+            if (showsWithMetadata == null)
+                throw new ArgumentNullException(nameof(showsWithMetadata));
 
-            foreach (var tuple in shows)
+            foreach (EntryWithMetadata<ITraktShow> showWithMetadata in showsWithMetadata)
             {
-                _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
-                {
-                    Object = tuple.Item1,
-                    CollectedAt = tuple.Item2
-                });
+                if (showWithMetadata != null)
+                    _showsWithMetadata.Value.Add(showWithMetadata);
             }
 
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithCollectedShows(IEnumerable<Tuple<ITraktShow, DateTime?, PostSeasons>> shows)
+        public ITraktSyncCollectionPostBuilder WithShowsWithMetadata(IEnumerable<EntryWithMetadata<ITraktShowIds>> showIdsWithMetadata)
         {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
+            if (showIdsWithMetadata == null)
+                throw new ArgumentNullException(nameof(showIdsWithMetadata));
 
-            foreach (var tuple in shows)
+            foreach (EntryWithMetadata<ITraktShowIds> showIdWithMetadata in showIdsWithMetadata)
             {
-                _showsWithMetadataAndSeasonsCollection.Add(new PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons>
-                {
-                    Object = tuple.Item1,
-                    CollectedAt = tuple.Item2,
-                    Seasons = tuple.Item3
-                });
+                if (showIdWithMetadata != null)
+                    _showIdsWithMetadata.Value.Add(showIdWithMetadata);
             }
 
             return this;
         }
 
-        public ITraktPostBuilderShowAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithCollectedShow(ITraktShow show)
+        public ITraktSyncCollectionPostBuilder WithShowsWithMetadataAndCollectedAt(IEnumerable<CollectedEntryWithMetadata<ITraktShow>> showsWithMetadataCollectedAt)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showsWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(showsWithMetadataCollectedAt));
 
-            _collectedShows.SetCurrentShow(show);
-            return _collectedShows;
+            foreach (CollectedEntryWithMetadata<ITraktShow> showWithMetadataCollectedAt in showsWithMetadataCollectedAt)
+            {
+                if (showWithMetadataCollectedAt != null)
+                    _showsWithMetadataCollected.Value.Add(showWithMetadataCollectedAt);
+            }
+
+            return this;
         }
 
-        public ITraktPostBuilderShowAddedCollectedAtWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithCollectedShowAndSeasons(ITraktShow show)
+        public ITraktSyncCollectionPostBuilder WithShowsWithMetadataAndCollectedAt(IEnumerable<CollectedEntryWithMetadata<ITraktShowIds>> showIdsWithMetadataCollectedAt)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showIdsWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(showIdsWithMetadataCollectedAt));
 
-            _collectedShowsWithSeasons.SetCurrentShow(show);
-            return _collectedShowsWithSeasons;
+            foreach (CollectedEntryWithMetadata<ITraktShowIds> showIdWithMetadataCollectedAt in showIdsWithMetadataCollectedAt)
+            {
+                if (showIdWithMetadataCollectedAt != null)
+                    _showIdsWithMetadataCollectedAt.Value.Add(showIdWithMetadataCollectedAt);
+            }
+
+            return this;
         }
 
-        public ITraktPostBuilderShowAddedCollectedAtWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> WithCollectedShowAndSeasonsCollection(ITraktShow show)
+        public ITraktSyncCollectionPostBuilder WithShowAndSeasons(ITraktShow show, PostCollectionSeasons seasons)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
 
-            _collectedShowsWithSeasonsCollection.SetCurrentShow(show);
-            return _collectedShowsWithSeasonsCollection;
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new CollectionShowAndSeasons<ITraktShow>(show, seasons));
         }
 
-        public ITraktPostBuilderShowAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithShowAndMetadata(ITraktShow show)
+        public ITraktSyncCollectionPostBuilder WithShowAndSeasons(CollectionShowAndSeasons<ITraktShow> showAndSeasons)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showAndSeasons == null)
+                throw new ArgumentNullException(nameof(showAndSeasons));
 
-            _showsAndMetadata.SetCurrentShow(show);
-            return _showsAndMetadata;
+            _showsAndSeasons.Value.Add(showAndSeasons);
+            return this;
         }
 
-        public ITraktPostBuilderShowAddedMetadataWithSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithShowAndMetadataAndSeasons(ITraktShow show)
+        public ITraktSyncCollectionPostBuilder WithShowAndSeasons(ITraktShowIds showIds, PostCollectionSeasons seasons)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
 
-            _showsAndMetadataWithSeasons.SetCurrentShow(show);
-            return _showsAndMetadataWithSeasons;
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new CollectionShowAndSeasons<ITraktShowIds>(showIds, seasons));
         }
 
-        public ITraktPostBuilderShowAddedMetadataWithSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> WithShowAndMetadataAndSeasonsCollection(ITraktShow show)
+        public ITraktSyncCollectionPostBuilder WithShowAndSeasons(CollectionShowAndSeasons<ITraktShowIds> showIdsAndSeasons)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showIdsAndSeasons == null)
+                throw new ArgumentNullException(nameof(showIdsAndSeasons));
 
-            _showsAndMetadataWithSeasonsCollection.SetCurrentShow(show);
-            return _showsAndMetadataWithSeasonsCollection;
+            _showIdsAndSeasons.Value.Add(showIdsAndSeasons);
+            return this;
         }
 
-        public ITraktPostBuilderShowAddedSeasons<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithShowAndSeasons(ITraktShow show)
+        public ITraktSyncCollectionPostBuilder WithShowsAndSeasons(IEnumerable<CollectionShowAndSeasons<ITraktShow>> showsAndSeasons)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showsAndSeasons == null)
+                throw new ArgumentNullException(nameof(showsAndSeasons));
 
-            _showsWithSeasons.SetCurrentShow(show);
-            return _showsWithSeasons;
+            foreach (CollectionShowAndSeasons<ITraktShow> showAndSeasons in showsAndSeasons)
+            {
+                if (showAndSeasons != null)
+                    _showsAndSeasons.Value.Add(showAndSeasons);
+            }
+
+            return this;
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost, PostSeasons> WithShowAndSeasonsCollection(ITraktShow show)
+        public ITraktSyncCollectionPostBuilder WithShowsAndSeasons(IEnumerable<CollectionShowAndSeasons<ITraktShowIds>> showIdsAndSeasons)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showIdsAndSeasons == null)
+                throw new ArgumentNullException(nameof(showIdsAndSeasons));
 
-            _showsWithSeasonsCollection.SetCurrentShow(show);
-            return _showsWithSeasonsCollection;
+            foreach (CollectionShowAndSeasons<ITraktShowIds> showIdAndSeasons in showIdsAndSeasons)
+            {
+                if (showIdAndSeasons != null)
+                    _showIdsAndSeasons.Value.Add(showIdAndSeasons);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeason(ITraktSeason season)
+        {
+            if (season == null)
+                throw new ArgumentNullException(nameof(season));
+
+            _seasons.Value.Add(season);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeason(ITraktSeasonIds seasonIds)
+        {
+            if (seasonIds == null)
+                throw new ArgumentNullException(nameof(seasonIds));
+
+            _seasonIds.Value.Add(seasonIds);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonCollectedAt(ITraktSeason season, DateTime collectedAt)
+        {
+            if (season == null)
+                throw new ArgumentNullException(nameof(season));
+
+            return WithSeasonCollectedAt(new CollectedEntry<ITraktSeason>(season, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonCollectedAt(CollectedEntry<ITraktSeason> seasonCollectedAt)
+        {
+            if (seasonCollectedAt == null)
+                throw new ArgumentNullException(nameof(seasonCollectedAt));
+
+            _seasonsCollectedAt.Value.Add(seasonCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonCollectedAt(ITraktSeasonIds seasonIds, DateTime collectedAt)
+        {
+            if (seasonIds == null)
+                throw new ArgumentNullException(nameof(seasonIds));
+
+            return WithSeasonCollectedAt(new CollectedEntry<ITraktSeasonIds>(seasonIds, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonCollectedAt(CollectedEntry<ITraktSeasonIds> seasonIdsCollectedAt)
+        {
+            if (seasonIdsCollectedAt == null)
+                throw new ArgumentNullException(nameof(seasonIdsCollectedAt));
+
+            _seasonIdsCollectedAt.Value.Add(seasonIdsCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadata(ITraktSeason season, ITraktMetadata metadata)
+        {
+            if (season == null)
+                throw new ArgumentNullException(nameof(season));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithSeasonWithMetadata(new EntryWithMetadata<ITraktSeason>(season, metadata));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadata(EntryWithMetadata<ITraktSeason> seasonWithMetadata)
+        {
+            if (seasonWithMetadata == null)
+                throw new ArgumentNullException(nameof(seasonWithMetadata));
+
+            _seasonsWithMetadata.Value.Add(seasonWithMetadata);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadata(ITraktSeasonIds seasonIds, ITraktMetadata metadata)
+        {
+            if (seasonIds == null)
+                throw new ArgumentNullException(nameof(seasonIds));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithSeasonWithMetadata(new EntryWithMetadata<ITraktSeasonIds>(seasonIds, metadata));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadata(EntryWithMetadata<ITraktSeasonIds> seasonIdsWithMetadata)
+        {
+            if (seasonIdsWithMetadata == null)
+                throw new ArgumentNullException(nameof(seasonIdsWithMetadata));
+
+            _seasonIdsWithMetadata.Value.Add(seasonIdsWithMetadata);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataAndCollectedAt(ITraktSeason season, ITraktMetadata metadata, DateTime collectedAt)
+        {
+            if (season == null)
+                throw new ArgumentNullException(nameof(season));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithSeasonWithMetadataAndCollectedAt(new CollectedEntryWithMetadata<ITraktSeason>(season, metadata, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataAndCollectedAt(CollectedEntryWithMetadata<ITraktSeason> seasonWithMetadataCollectedAt)
+        {
+            if (seasonWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(seasonWithMetadataCollectedAt));
+
+            _seasonsWithMetadataCollected.Value.Add(seasonWithMetadataCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataAndCollectedAt(ITraktSeasonIds seasonIds, ITraktMetadata metadata, DateTime collectedAt)
+        {
+            if (seasonIds == null)
+                throw new ArgumentNullException(nameof(seasonIds));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithSeasonWithMetadataAndCollectedAt(new CollectedEntryWithMetadata<ITraktSeasonIds>(seasonIds, metadata, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataAndCollectedAt(CollectedEntryWithMetadata<ITraktSeasonIds> seasonIdsWithMetadataCollectedAt)
+        {
+            if (seasonIdsWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(seasonIdsWithMetadataCollectedAt));
+
+            _seasonIdsWithMetadataCollectedAt.Value.Add(seasonIdsWithMetadataCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasons(IEnumerable<ITraktSeason> seasons)
+        {
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            foreach (ITraktSeason season in seasons)
+            {
+                if (season != null)
+                    _seasons.Value.Add(season);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasons(IEnumerable<ITraktSeasonIds> seasonIds)
+        {
+            if (seasonIds == null)
+                throw new ArgumentNullException(nameof(seasonIds));
+
+            foreach (ITraktSeasonIds seasonId in seasonIds)
+            {
+                if (seasonId != null)
+                    _seasonIds.Value.Add(seasonId);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonsCollectedAt(IEnumerable<CollectedEntry<ITraktSeason>> seasonsCollectedAt)
+        {
+            if (seasonsCollectedAt == null)
+                throw new ArgumentNullException(nameof(seasonsCollectedAt));
+
+            foreach (CollectedEntry<ITraktSeason> seasonCollectedAt in seasonsCollectedAt)
+            {
+                if (seasonCollectedAt != null)
+                    _seasonsCollectedAt.Value.Add(seasonCollectedAt);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonsCollectedAt(IEnumerable<CollectedEntry<ITraktSeasonIds>> seasonIdsCollectedAt)
+        {
+            if (seasonIdsCollectedAt == null)
+                throw new ArgumentNullException(nameof(seasonIdsCollectedAt));
+
+            foreach (CollectedEntry<ITraktSeasonIds> seasonIdCollectedAt in seasonIdsCollectedAt)
+            {
+                if (seasonIdCollectedAt != null)
+                    _seasonIdsCollectedAt.Value.Add(seasonIdCollectedAt);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonsWithMetadata(IEnumerable<EntryWithMetadata<ITraktSeason>> seasonsWithMetadata)
+        {
+            if (seasonsWithMetadata == null)
+                throw new ArgumentNullException(nameof(seasonsWithMetadata));
+
+            foreach (EntryWithMetadata<ITraktSeason> seasonWithMetadata in seasonsWithMetadata)
+            {
+                if (seasonWithMetadata != null)
+                    _seasonsWithMetadata.Value.Add(seasonWithMetadata);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonsWithMetadata(IEnumerable<EntryWithMetadata<ITraktSeasonIds>> seasonIdsWithMetadata)
+        {
+            if (seasonIdsWithMetadata == null)
+                throw new ArgumentNullException(nameof(seasonIdsWithMetadata));
+
+            foreach (EntryWithMetadata<ITraktSeasonIds> seasonIdWithMetadata in seasonIdsWithMetadata)
+            {
+                if (seasonIdWithMetadata != null)
+                    _seasonIdsWithMetadata.Value.Add(seasonIdWithMetadata);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonsWithMetadataAndCollectedAt(IEnumerable<CollectedEntryWithMetadata<ITraktSeason>> seasonsWithMetadataCollectedAt)
+        {
+            if (seasonsWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(seasonsWithMetadataCollectedAt));
+
+            foreach (CollectedEntryWithMetadata<ITraktSeason> seasonWithMetadataCollectedAt in seasonsWithMetadataCollectedAt)
+            {
+                if (seasonWithMetadataCollectedAt != null)
+                    _seasonsWithMetadataCollected.Value.Add(seasonWithMetadataCollectedAt);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithSeasonsWithMetadataAndCollectedAt(IEnumerable<CollectedEntryWithMetadata<ITraktSeasonIds>> seasonIdsWithMetadataCollectedAt)
+        {
+            if (seasonIdsWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(seasonIdsWithMetadataCollectedAt));
+
+            foreach (CollectedEntryWithMetadata<ITraktSeasonIds> seasonIdWithMetadataCollectedAt in seasonIdsWithMetadataCollectedAt)
+            {
+                if (seasonIdWithMetadataCollectedAt != null)
+                    _seasonIdsWithMetadataCollectedAt.Value.Add(seasonIdWithMetadataCollectedAt);
+            }
+
+            return this;
         }
 
         public ITraktSyncCollectionPostBuilder WithEpisode(ITraktEpisode episode)
@@ -346,7 +890,130 @@
             if (episode == null)
                 throw new ArgumentNullException(nameof(episode));
 
-            _episodes.Add(episode);
+            _episodes.Value.Add(episode);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisode(ITraktEpisodeIds episodeIds)
+        {
+            if (episodeIds == null)
+                throw new ArgumentNullException(nameof(episodeIds));
+
+            _episodeIds.Value.Add(episodeIds);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeCollectedAt(ITraktEpisode episode, DateTime collectedAt)
+        {
+            if (episode == null)
+                throw new ArgumentNullException(nameof(episode));
+
+            return WithEpisodeCollectedAt(new CollectedEntry<ITraktEpisode>(episode, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeCollectedAt(CollectedEntry<ITraktEpisode> episodeCollectedAt)
+        {
+            if (episodeCollectedAt == null)
+                throw new ArgumentNullException(nameof(episodeCollectedAt));
+
+            _episodesCollectedAt.Value.Add(episodeCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeCollectedAt(ITraktEpisodeIds episodeIds, DateTime collectedAt)
+        {
+            if (episodeIds == null)
+                throw new ArgumentNullException(nameof(episodeIds));
+
+            return WithEpisodeCollectedAt(new CollectedEntry<ITraktEpisodeIds>(episodeIds, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeCollectedAt(CollectedEntry<ITraktEpisodeIds> episodeIdsCollectedAt)
+        {
+            if (episodeIdsCollectedAt == null)
+                throw new ArgumentNullException(nameof(episodeIdsCollectedAt));
+
+            _episodeIdsCollectedAt.Value.Add(episodeIdsCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadata(ITraktEpisode episode, ITraktMetadata metadata)
+        {
+            if (episode == null)
+                throw new ArgumentNullException(nameof(episode));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithEpisodeWithMetadata(new EntryWithMetadata<ITraktEpisode>(episode, metadata));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadata(EntryWithMetadata<ITraktEpisode> episodeWithMetadata)
+        {
+            if (episodeWithMetadata == null)
+                throw new ArgumentNullException(nameof(episodeWithMetadata));
+
+            _episodesWithMetadata.Value.Add(episodeWithMetadata);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadata(ITraktEpisodeIds episodeIds, ITraktMetadata metadata)
+        {
+            if (episodeIds == null)
+                throw new ArgumentNullException(nameof(episodeIds));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithEpisodeWithMetadata(new EntryWithMetadata<ITraktEpisodeIds>(episodeIds, metadata));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadata(EntryWithMetadata<ITraktEpisodeIds> episodeIdsWithMetadata)
+        {
+            if (episodeIdsWithMetadata == null)
+                throw new ArgumentNullException(nameof(episodeIdsWithMetadata));
+
+            _episodeIdsWithMetadata.Value.Add(episodeIdsWithMetadata);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataAndCollectedAt(ITraktEpisode episode, ITraktMetadata metadata, DateTime collectedAt)
+        {
+            if (episode == null)
+                throw new ArgumentNullException(nameof(episode));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithEpisodeWithMetadataAndCollectedAt(new CollectedEntryWithMetadata<ITraktEpisode>(episode, metadata, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataAndCollectedAt(CollectedEntryWithMetadata<ITraktEpisode> episodeWithMetadataCollectedAt)
+        {
+            if (episodeWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(episodeWithMetadataCollectedAt));
+
+            _episodesWithMetadataCollected.Value.Add(episodeWithMetadataCollectedAt);
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataAndCollectedAt(ITraktEpisodeIds episodeIds, ITraktMetadata metadata, DateTime collectedAt)
+        {
+            if (episodeIds == null)
+                throw new ArgumentNullException(nameof(episodeIds));
+
+            if (metadata == null)
+                throw new ArgumentNullException(nameof(metadata));
+
+            return WithEpisodeWithMetadataAndCollectedAt(new CollectedEntryWithMetadata<ITraktEpisodeIds>(episodeIds, metadata, collectedAt));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataAndCollectedAt(CollectedEntryWithMetadata<ITraktEpisodeIds> episodeIdsWithMetadataCollectedAt)
+        {
+            if (episodeIdsWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(episodeIdsWithMetadataCollectedAt));
+
+            _episodeIdsWithMetadataCollectedAt.Value.Add(episodeIdsWithMetadataCollectedAt);
             return this;
         }
 
@@ -355,78 +1022,111 @@
             if (episodes == null)
                 throw new ArgumentNullException(nameof(episodes));
 
-            _episodes.AddRange(episodes);
-            return this;
-        }
-
-        public ITraktSyncCollectionPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, ITraktMetadata>> episodes)
-        {
-            if (episodes == null)
-                throw new ArgumentNullException(nameof(episodes));
-
-            foreach (var tuple in episodes)
+            foreach (ITraktEpisode episode in episodes)
             {
-                _episodesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
-                {
-                    Object = tuple.Item1,
-                    Metadata = tuple.Item2
-                });
+                if (episode != null)
+                    _episodes.Value.Add(episode);
             }
 
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithEpisodesAndMetadata(IEnumerable<Tuple<ITraktEpisode, ITraktMetadata, DateTime?>> episodes)
+        public ITraktSyncCollectionPostBuilder WithEpisodes(IEnumerable<ITraktEpisodeIds> episodeIds)
         {
-            if (episodes == null)
-                throw new ArgumentNullException(nameof(episodes));
+            if (episodeIds == null)
+                throw new ArgumentNullException(nameof(episodeIds));
 
-            foreach (var tuple in episodes)
+            foreach (ITraktEpisodeIds episodeId in episodeIds)
             {
-                _episodesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
-                {
-                    Object = tuple.Item1,
-                    Metadata = tuple.Item2,
-                    CollectedAt = tuple.Item3
-                });
+                if (episodeId != null)
+                    _episodeIds.Value.Add(episodeId);
             }
 
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithCollectedEpisodes(IEnumerable<Tuple<ITraktEpisode, DateTime?>> episodes)
+        public ITraktSyncCollectionPostBuilder WithEpisodesCollectedAt(IEnumerable<CollectedEntry<ITraktEpisode>> episodesCollectedAt)
         {
-            if (episodes == null)
-                throw new ArgumentNullException(nameof(episodes));
+            if (episodesCollectedAt == null)
+                throw new ArgumentNullException(nameof(episodesCollectedAt));
 
-            foreach (var tuple in episodes)
+            foreach (CollectedEntry<ITraktEpisode> episodeCollectedAt in episodesCollectedAt)
             {
-                _episodesWithMetadata.Add(new PostBuilderObjectWithMetadata<ITraktEpisode>
-                {
-                    Object = tuple.Item1,
-                    CollectedAt = tuple.Item2
-                });
+                if (episodeCollectedAt != null)
+                    _episodesCollectedAt.Value.Add(episodeCollectedAt);
             }
 
             return this;
         }
 
-        public ITraktPostBuilderEpisodeAddedCollectedAt<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithCollectedEpisode(ITraktEpisode episode)
+        public ITraktSyncCollectionPostBuilder WithEpisodesCollectedAt(IEnumerable<CollectedEntry<ITraktEpisodeIds>> episodeIdsCollectedAt)
         {
-            if (episode == null)
-                throw new ArgumentNullException(nameof(episode));
+            if (episodeIdsCollectedAt == null)
+                throw new ArgumentNullException(nameof(episodeIdsCollectedAt));
 
-            _collectedEpisodes.SetCurrentEpisode(episode);
-            return _collectedEpisodes;
+            foreach (CollectedEntry<ITraktEpisodeIds> episodeIdCollectedAt in episodeIdsCollectedAt)
+            {
+                if (episodeIdCollectedAt != null)
+                    _episodeIdsCollectedAt.Value.Add(episodeIdCollectedAt);
+            }
+
+            return this;
         }
 
-        public ITraktPostBuilderEpisodeAddedMetadata<ITraktSyncCollectionPostBuilder, ITraktSyncCollectionPost> WithEpisodeAndMetadata(ITraktEpisode episode)
+        public ITraktSyncCollectionPostBuilder WithEpisodesWithMetadata(IEnumerable<EntryWithMetadata<ITraktEpisode>> episodesWithMetadata)
         {
-            if (episode == null)
-                throw new ArgumentNullException(nameof(episode));
+            if (episodesWithMetadata == null)
+                throw new ArgumentNullException(nameof(episodesWithMetadata));
 
-            _episodesAndMetadata.SetCurrentEpisode(episode);
-            return _episodesAndMetadata;
+            foreach (EntryWithMetadata<ITraktEpisode> episodeWithMetadata in episodesWithMetadata)
+            {
+                if (episodeWithMetadata != null)
+                    _episodesWithMetadata.Value.Add(episodeWithMetadata);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodesWithMetadata(IEnumerable<EntryWithMetadata<ITraktEpisodeIds>> episodeIdsWithMetadata)
+        {
+            if (episodeIdsWithMetadata == null)
+                throw new ArgumentNullException(nameof(episodeIdsWithMetadata));
+
+            foreach (EntryWithMetadata<ITraktEpisodeIds> episodeIdWithMetadata in episodeIdsWithMetadata)
+            {
+                if (episodeIdWithMetadata != null)
+                    _episodeIdsWithMetadata.Value.Add(episodeIdWithMetadata);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodesWithMetadataAndCollectedAt(IEnumerable<CollectedEntryWithMetadata<ITraktEpisode>> episodesWithMetadataCollectedAt)
+        {
+            if (episodesWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(episodesWithMetadataCollectedAt));
+
+            foreach (CollectedEntryWithMetadata<ITraktEpisode> episodeWithMetadataCollected in episodesWithMetadataCollectedAt)
+            {
+                if (episodeWithMetadataCollected != null)
+                    _episodesWithMetadataCollected.Value.Add(episodeWithMetadataCollected);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncCollectionPostBuilder WithEpisodesWithMetadataAndCollectedAt(IEnumerable<CollectedEntryWithMetadata<ITraktEpisodeIds>> episodeIdsWithMetadataCollectedAt)
+        {
+            if (episodeIdsWithMetadataCollectedAt == null)
+                throw new ArgumentNullException(nameof(episodeIdsWithMetadataCollectedAt));
+
+            foreach (CollectedEntryWithMetadata<ITraktEpisodeIds> episodeIdWithMetadataCollectedAt in episodeIdsWithMetadataCollectedAt)
+            {
+                if (episodeIdWithMetadataCollectedAt != null)
+                    _episodeIdsWithMetadataCollectedAt.Value.Add(episodeIdWithMetadataCollectedAt);
+            }
+
+            return this;
         }
 
         public ITraktSyncCollectionPost Build()
@@ -434,89 +1134,332 @@
             ITraktSyncCollectionPost syncCollectionPost = new TraktSyncCollectionPost();
             AddMovies(syncCollectionPost);
             AddShows(syncCollectionPost);
+            AddSeasons(syncCollectionPost);
             AddEpisodes(syncCollectionPost);
-            syncCollectionPost.Validate();
             return syncCollectionPost;
         }
 
         private void AddMovies(ITraktSyncCollectionPost syncCollectionPost)
         {
-            if (syncCollectionPost.Movies == null)
-                syncCollectionPost.Movies = new List<ITraktSyncCollectionPostMovie>();
+            if (!_movies.IsValueCreated && !_movieIds.IsValueCreated && !_moviesCollectedAt.IsValueCreated
+               && !_movieIdsCollectedAt.IsValueCreated && !_moviesWithMetadata.IsValueCreated && !_movieIdsWithMetadata.IsValueCreated
+               && !_moviesWithMetadataCollected.IsValueCreated && !_movieIdsWithMetadataCollectedAt.IsValueCreated)
+            {
+                return;
+            }
 
-            foreach (ITraktMovie movie in _movies)
-                (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>).Add(CreateSyncCollectionPostMovie(movie));
+            syncCollectionPost.Movies ??= new List<ITraktSyncCollectionPostMovie>();
 
-            foreach (PostBuilderObjectWithMetadata<ITraktMovie> movieEntry in _moviesWithMetadata)
-                (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>).Add(CreateSyncCollectionPostMovie(movieEntry.Object, movieEntry.Metadata, movieEntry.CollectedAt));
+            if (_movies.IsValueCreated && _movies.Value.Count > 0)
+            {
+                foreach (ITraktMovie movie in _movies.Value)
+                {
+                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
+                        .Add(CreateCollectionPostMovie(movie));
+                }
+            }
 
-            foreach (PostBuilderCollectedObject<ITraktMovie> movieEntry in _collectedMovies.CollectedMovies)
-                (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>).Add(CreateSyncCollectionPostMovie(movieEntry.Object, null, movieEntry.CollectedAt));
+            if (_movieIds.IsValueCreated && _movieIds.Value.Count > 0)
+            {
+                foreach (ITraktMovieIds movieIds in _movieIds.Value)
+                {
+                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
+                        .Add(CreateCollectionPostMovie(movieIds));
+                }
+            }
 
-            foreach (PostBuilderObjectWithMetadata<ITraktMovie> movieEntry in _moviesAndMetadata.MoviesAndMetadata)
-                (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>).Add(CreateSyncCollectionPostMovie(movieEntry.Object, movieEntry.Metadata, movieEntry.CollectedAt));
+            if (_moviesCollectedAt.IsValueCreated && _moviesCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntry<ITraktMovie> movieCollectedAt in _moviesCollectedAt.Value)
+                {
+                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
+                        .Add(CreateCollectionPostMovie(movieCollectedAt.Object, null, movieCollectedAt.CollectedAt));
+                }
+            }
+
+            if (_movieIdsCollectedAt.IsValueCreated && _movieIdsCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntry<ITraktMovieIds> movieIdCollectedAt in _movieIdsCollectedAt.Value)
+                {
+                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
+                        .Add(CreateCollectionPostMovie(movieIdCollectedAt.Object, null, movieIdCollectedAt.CollectedAt));
+                }
+            }
+
+            if (_moviesWithMetadata.IsValueCreated && _moviesWithMetadata.Value.Count > 0)
+            {
+                foreach (EntryWithMetadata<ITraktMovie> movieWithMetadata in _moviesWithMetadata.Value)
+                {
+                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
+                        .Add(CreateCollectionPostMovie(movieWithMetadata.Object, movieWithMetadata.Metadata));
+                }
+            }
+
+            if (_movieIdsWithMetadata.IsValueCreated && _movieIdsWithMetadata.Value.Count > 0)
+            {
+                foreach (EntryWithMetadata<ITraktMovieIds> movieIdWithMetadata in _movieIdsWithMetadata.Value)
+                {
+                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
+                        .Add(CreateCollectionPostMovie(movieIdWithMetadata.Object, movieIdWithMetadata.Metadata));
+                }
+            }
+
+            if (_moviesWithMetadataCollected.IsValueCreated && _moviesWithMetadataCollected.Value.Count > 0)
+            {
+                foreach (CollectedEntryWithMetadata<ITraktMovie> movieWithMetadataCollectedAt in _moviesWithMetadataCollected.Value)
+                {
+                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
+                        .Add(CreateCollectionPostMovie(movieWithMetadataCollectedAt.Object, movieWithMetadataCollectedAt.Metadata, movieWithMetadataCollectedAt.CollectedAt));
+                }
+            }
+
+            if (_movieIdsWithMetadataCollectedAt.IsValueCreated && _movieIdsWithMetadataCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntryWithMetadata<ITraktMovieIds> movieIdWithMetadataCollectedAt in _movieIdsWithMetadataCollectedAt.Value)
+                {
+                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
+                        .Add(CreateCollectionPostMovie(movieIdWithMetadataCollectedAt.Object, movieIdWithMetadataCollectedAt.Metadata, movieIdWithMetadataCollectedAt.CollectedAt));
+                }
+            }
         }
 
         private void AddShows(ITraktSyncCollectionPost syncCollectionPost)
         {
-            if (syncCollectionPost.Shows == null)
-                syncCollectionPost.Shows = new List<ITraktSyncCollectionPostShow>();
+            if (!_shows.IsValueCreated && !_showIds.IsValueCreated && !_showsCollectedAt.IsValueCreated
+               && !_showIdsCollectedAt.IsValueCreated && !_showsWithMetadata.IsValueCreated && !_showIdsWithMetadata.IsValueCreated
+               && !_showsWithMetadataCollected.IsValueCreated && !_showIdsWithMetadataCollectedAt.IsValueCreated
+               && !_showsAndSeasons.IsValueCreated && !_showIdsAndSeasons.IsValueCreated)
+            {
+                return;
+            }
 
-            foreach (ITraktShow show in _shows)
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(CreateSyncCollectionPostShow(show));
+            syncCollectionPost.Shows ??= new List<ITraktSyncCollectionPostShow>();
 
-            foreach (PostBuilderObjectWithMetadata<ITraktShow> showEntry in _showsWithMetadata)
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(CreateSyncCollectionPostShow(showEntry.Object, showEntry.Metadata, showEntry.CollectedAt));
+            if (_shows.IsValueCreated && _shows.Value.Count > 0)
+            {
+                foreach (ITraktShow show in _shows.Value)
+                {
+                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
+                        .Add(CreateCollectionPostShow(show));
+                }
+            }
 
-            foreach (PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons> showEntry in _showsWithMetadataAndSeasonsCollection)
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(CreateSyncCollectionPostShowWithSeasonsCollection(showEntry.Object, showEntry.Metadata, showEntry.CollectedAt, showEntry.Seasons));
+            if (_showIds.IsValueCreated && _showIds.Value.Count > 0)
+            {
+                foreach (ITraktShowIds showIds in _showIds.Value)
+                {
+                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
+                        .Add(CreateCollectionPostShow(showIds));
+                }
+            }
 
-            foreach (PostBuilderCollectedObject<ITraktShow> showEntry in _collectedShows.CollectedShows)
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(CreateSyncCollectionPostShow(showEntry.Object, null, showEntry.CollectedAt));
+            if (_showsCollectedAt.IsValueCreated && _showsCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntry<ITraktShow> showCollectedAt in _showsCollectedAt.Value)
+                {
+                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
+                        .Add(CreateCollectionPostShow(showCollectedAt.Object, null, showCollectedAt.CollectedAt));
+                }
+            }
 
-            foreach (PostBuilderCollectedObjectWithSeasons<ITraktShow, IEnumerable<int>> showEntry in _collectedShowsWithSeasons.CollectedShowsWithSeasons)
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(CreateSyncCollectionPostShowWithSeasons(showEntry.Object, null, showEntry.CollectedAt, showEntry.Seasons));
+            if (_showIdsCollectedAt.IsValueCreated && _showIdsCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntry<ITraktShowIds> showIdCollectedAt in _showIdsCollectedAt.Value)
+                {
+                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
+                        .Add(CreateCollectionPostShow(showIdCollectedAt.Object, null, showIdCollectedAt.CollectedAt));
+                }
+            }
 
-            foreach (PostBuilderCollectedObjectWithSeasons<ITraktShow, PostSeasons> showEntry in _collectedShowsWithSeasonsCollection.CollectedShowsWithSeasonsCollection)
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(CreateSyncCollectionPostShowWithSeasonsCollection(showEntry.Object, null, showEntry.CollectedAt, showEntry.Seasons));
+            if (_showsWithMetadata.IsValueCreated && _showsWithMetadata.Value.Count > 0)
+            {
+                foreach (EntryWithMetadata<ITraktShow> showWithMetadata in _showsWithMetadata.Value)
+                {
+                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
+                        .Add(CreateCollectionPostShow(showWithMetadata.Object, showWithMetadata.Metadata));
+                }
+            }
 
-            foreach (PostBuilderObjectWithMetadata<ITraktShow> showEntry in _showsAndMetadata.ShowsAndMetadata)
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(CreateSyncCollectionPostShow(showEntry.Object, showEntry.Metadata, showEntry.CollectedAt));
+            if (_showIdsWithMetadata.IsValueCreated && _showIdsWithMetadata.Value.Count > 0)
+            {
+                foreach (EntryWithMetadata<ITraktShowIds> showIdWithMetadata in _showIdsWithMetadata.Value)
+                {
+                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
+                        .Add(CreateCollectionPostShow(showIdWithMetadata.Object, showIdWithMetadata.Metadata));
+                }
+            }
 
-            foreach (PostBuilderObjectWithMetadataAndSeasons<ITraktShow, IEnumerable<int>> showEntry in _showsAndMetadataWithSeasons.ShowsAndMetadataWithSeasons)
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(CreateSyncCollectionPostShowWithSeasons(showEntry.Object, showEntry.Metadata, showEntry.CollectedAt, showEntry.Seasons));
+            if (_showsWithMetadataCollected.IsValueCreated && _showsWithMetadataCollected.Value.Count > 0)
+            {
+                foreach (CollectedEntryWithMetadata<ITraktShow> showWithMetadataCollectedAt in _showsWithMetadataCollected.Value)
+                {
+                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
+                        .Add(CreateCollectionPostShow(showWithMetadataCollectedAt.Object, showWithMetadataCollectedAt.Metadata, showWithMetadataCollectedAt.CollectedAt));
+                }
+            }
 
-            foreach (PostBuilderObjectWithMetadataAndSeasons<ITraktShow, PostSeasons> showEntry in _showsAndMetadataWithSeasonsCollection.ShowsAndMetadataWithSeasonsCollection)
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(CreateSyncCollectionPostShowWithSeasonsCollection(showEntry.Object, showEntry.Metadata, showEntry.CollectedAt, showEntry.Seasons));
+            if (_showIdsWithMetadataCollectedAt.IsValueCreated && _showIdsWithMetadataCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntryWithMetadata<ITraktShowIds> showIdWithMetadataCollectedAt in _showIdsWithMetadataCollectedAt.Value)
+                {
+                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
+                        .Add(CreateCollectionPostShow(showIdWithMetadataCollectedAt.Object, showIdWithMetadataCollectedAt.Metadata, showIdWithMetadataCollectedAt.CollectedAt));
+                }
+            }
 
-            foreach (PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>> showEntry in _showsWithSeasons.ShowsWithSeasons)
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(CreateSyncCollectionPostShowWithSeasons(showEntry.Object, null, null, showEntry.Seasons));
+            // TODO shows and seasons
 
-            foreach (PostBuilderObjectWithSeasons<ITraktShow, PostSeasons> showEntry in _showsWithSeasonsCollection.ShowsWithSeasonsCollection)
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(CreateSyncCollectionPostShowWithSeasonsCollection(showEntry.Object, null, null, showEntry.Seasons));
+            if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Count > 0)
+            {
+                foreach (CollectionShowAndSeasons<ITraktShow> showAndSeasons in _showsAndSeasons.Value)
+                {
+                    ITraktSyncCollectionPostShow syncCollectionPostShow = CreateCollectionPostShow(showAndSeasons.Object);
+
+                    if (showAndSeasons.Seasons.Count() > 0)
+                    {
+                        foreach (PostCollectionSeason season in showAndSeasons.Seasons)
+                        {
+                            ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
+
+                            if (season.Episodes != null && season.Episodes.Count() > 0)
+                            {
+                                foreach (PostCollectionEpisode episode in season.Episodes)
+                                {
+                                    (syncCollectionPostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
+                                        .Add(CreateCollectionPostShowEpisode(episode));
+                                }
+                            }
+
+                            (syncCollectionPostShow.Seasons as List<ITraktSyncCollectionPostShowSeason>).Add(syncCollectionPostShowSeason);
+                        }
+                    }
+
+                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(syncCollectionPostShow);
+                }
+            }
+
+            if (_showIdsAndSeasons.IsValueCreated && _showIdsAndSeasons.Value.Count > 0)
+            {
+                foreach (CollectionShowAndSeasons<ITraktShow> showAndSeasons in _showsAndSeasons.Value)
+                {
+                    ITraktSyncCollectionPostShow syncCollectionPostShow = CreateCollectionPostShow(showAndSeasons.Object);
+
+                    if (showAndSeasons.Seasons.Count() > 0)
+                    {
+                        foreach (PostCollectionSeason season in showAndSeasons.Seasons)
+                        {
+                            ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
+
+                            if (season.Episodes != null && season.Episodes.Count() > 0)
+                            {
+                                foreach (PostCollectionEpisode episode in season.Episodes)
+                                {
+                                    (syncCollectionPostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
+                                        .Add(CreateCollectionPostShowEpisode(episode));
+                                }
+                            }
+
+                            (syncCollectionPostShow.Seasons as List<ITraktSyncCollectionPostShowSeason>).Add(syncCollectionPostShowSeason);
+                        }
+                    }
+
+                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(syncCollectionPostShow);
+                }
+            }
+        }
+
+        private void AddSeasons(ITraktSyncCollectionPost syncCollectionPost)
+        {
+            // TODO
         }
 
         private void AddEpisodes(ITraktSyncCollectionPost syncCollectionPost)
         {
-            if (syncCollectionPost.Episodes == null)
-                syncCollectionPost.Episodes = new List<ITraktSyncCollectionPostEpisode>();
+            if (!_episodes.IsValueCreated && !_episodeIds.IsValueCreated && !_episodesCollectedAt.IsValueCreated
+               && !_episodeIdsCollectedAt.IsValueCreated && !_episodesWithMetadata.IsValueCreated && !_episodeIdsWithMetadata.IsValueCreated
+               && !_episodesWithMetadataCollected.IsValueCreated && !_episodeIdsWithMetadataCollectedAt.IsValueCreated)
+            {
+                return;
+            }
 
-            foreach (ITraktEpisode episode in _episodes)
-                (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>).Add(CreateSyncCollectionPostEpisode(episode));
+            syncCollectionPost.Episodes ??= new List<ITraktSyncCollectionPostEpisode>();
 
-            foreach (PostBuilderObjectWithMetadata<ITraktEpisode> episodeEntry in _episodesWithMetadata)
-                (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>).Add(CreateSyncCollectionPostEpisode(episodeEntry.Object, episodeEntry.Metadata, episodeEntry.CollectedAt));
+            if (_episodes.IsValueCreated && _episodes.Value.Count > 0)
+            {
+                foreach (ITraktEpisode episode in _episodes.Value)
+                {
+                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
+                        .Add(CreateCollectionPostEpisode(episode));
+                }
+            }
 
-            foreach (PostBuilderCollectedObject<ITraktEpisode> episodeEntry in _collectedEpisodes.CollectedEpisodes)
-                (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>).Add(CreateSyncCollectionPostEpisode(episodeEntry.Object, null, episodeEntry.CollectedAt));
+            if (_episodeIds.IsValueCreated && _episodeIds.Value.Count > 0)
+            {
+                foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
+                {
+                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
+                        .Add(CreateCollectionPostEpisode(episodeIds));
+                }
+            }
 
-            foreach (PostBuilderObjectWithMetadata<ITraktEpisode> episodeEntry in _episodesAndMetadata.EpisodesAndMetadata)
-                (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>).Add(CreateSyncCollectionPostEpisode(episodeEntry.Object, episodeEntry.Metadata, episodeEntry.CollectedAt));
+            if (_episodesCollectedAt.IsValueCreated && _episodesCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntry<ITraktEpisode> episodeCollectedAt in _episodesCollectedAt.Value)
+                {
+                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
+                        .Add(CreateCollectionPostEpisode(episodeCollectedAt.Object, null, episodeCollectedAt.CollectedAt));
+                }
+            }
+
+            if (_episodeIdsCollectedAt.IsValueCreated && _episodeIdsCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntry<ITraktEpisodeIds> episodeIdCollectedAt in _episodeIdsCollectedAt.Value)
+                {
+                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
+                        .Add(CreateCollectionPostEpisode(episodeIdCollectedAt.Object, null, episodeIdCollectedAt.CollectedAt));
+                }
+            }
+
+            if (_episodesWithMetadata.IsValueCreated && _episodesWithMetadata.Value.Count > 0)
+            {
+                foreach (EntryWithMetadata<ITraktEpisode> episodeWithMetadata in _episodesWithMetadata.Value)
+                {
+                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
+                        .Add(CreateCollectionPostEpisode(episodeWithMetadata.Object, episodeWithMetadata.Metadata));
+                }
+            }
+
+            if (_episodeIdsWithMetadata.IsValueCreated && _episodeIdsWithMetadata.Value.Count > 0)
+            {
+                foreach (EntryWithMetadata<ITraktEpisodeIds> episodeIdWithMetadata in _episodeIdsWithMetadata.Value)
+                {
+                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
+                        .Add(CreateCollectionPostEpisode(episodeIdWithMetadata.Object, episodeIdWithMetadata.Metadata));
+                }
+            }
+
+            if (_episodesWithMetadataCollected.IsValueCreated && _episodesWithMetadataCollected.Value.Count > 0)
+            {
+                foreach (CollectedEntryWithMetadata<ITraktEpisode> episodeWithMetadataCollectedAt in _episodesWithMetadataCollected.Value)
+                {
+                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
+                        .Add(CreateCollectionPostEpisode(episodeWithMetadataCollectedAt.Object, episodeWithMetadataCollectedAt.Metadata, episodeWithMetadataCollectedAt.CollectedAt));
+                }
+            }
+
+            if (_episodeIdsWithMetadataCollectedAt.IsValueCreated && _episodeIdsWithMetadataCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntryWithMetadata<ITraktEpisodeIds> episodeIdWithMetadataCollectedAt in _episodeIdsWithMetadataCollectedAt.Value)
+                {
+                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
+                        .Add(CreateCollectionPostEpisode(episodeIdWithMetadataCollectedAt.Object, episodeIdWithMetadataCollectedAt.Metadata, episodeIdWithMetadataCollectedAt.CollectedAt));
+                }
+            }
         }
 
-        private ITraktSyncCollectionPostMovie CreateSyncCollectionPostMovie(ITraktMovie movie, ITraktMetadata metadata = null, DateTime? collectedAt = null)
+        private static ITraktSyncCollectionPostMovie CreateCollectionPostMovie(ITraktMovie movie, ITraktMetadata metadata = null, DateTime? collectedAt = null)
         {
-            var syncCollectionPostMovie = new TraktSyncCollectionPostMovie
+            ITraktSyncCollectionPostMovie syncCollectionPostMovie = new TraktSyncCollectionPostMovie
             {
                 Ids = movie.Ids,
                 Title = movie.Title,
@@ -530,14 +1473,33 @@
             };
 
             if (collectedAt.HasValue)
-                syncCollectionPostMovie.CollectedAt = collectedAt.Value.ToUniversalTime();
+                syncCollectionPostMovie.CollectedAt = collectedAt.Value;
 
             return syncCollectionPostMovie;
         }
 
-        private ITraktSyncCollectionPostShow CreateSyncCollectionPostShow(ITraktShow show, ITraktMetadata metadata = null, DateTime? collectedAt = null)
+        private static ITraktSyncCollectionPostMovie CreateCollectionPostMovie(ITraktMovieIds movieIds, ITraktMetadata metadata = null, DateTime? collectedAt = null)
         {
-            var syncCollectionPostShow = new TraktSyncCollectionPostShow
+            ITraktSyncCollectionPostMovie syncCollectionPostMovie = new TraktSyncCollectionPostMovie
+            {
+                Ids = movieIds,
+                MediaType = metadata?.MediaType,
+                MediaResolution = metadata?.MediaResolution,
+                Audio = metadata?.Audio,
+                AudioChannels = metadata?.AudioChannels,
+                ThreeDimensional = metadata?.ThreeDimensional,
+                HDR = metadata?.HDR
+            };
+
+            if (collectedAt.HasValue)
+                syncCollectionPostMovie.CollectedAt = collectedAt.Value;
+
+            return syncCollectionPostMovie;
+        }
+
+        private static ITraktSyncCollectionPostShow CreateCollectionPostShow(ITraktShow show, ITraktMetadata metadata = null, DateTime? collectedAt = null)
+        {
+            ITraktSyncCollectionPostShow syncCollectionPostShow = new TraktSyncCollectionPostShow
             {
                 Ids = show.Ids,
                 Title = show.Title,
@@ -551,88 +1513,65 @@
             };
 
             if (collectedAt.HasValue)
-                syncCollectionPostShow.CollectedAt = collectedAt.Value.ToUniversalTime();
+                syncCollectionPostShow.CollectedAt = collectedAt.Value;
 
             return syncCollectionPostShow;
         }
 
-        private ITraktSyncCollectionPostShow CreateSyncCollectionPostShowWithSeasons(ITraktShow show, ITraktMetadata metadata = null, DateTime? collectedAt = null, IEnumerable<int> seasons = null)
+        private static ITraktSyncCollectionPostShow CreateCollectionPostShow(ITraktShowIds showIds, ITraktMetadata metadata = null, DateTime? collectedAt = null)
         {
-            var syncCollectionPostShow = CreateSyncCollectionPostShow(show, metadata, collectedAt);
-
-            if (seasons != null)
-                syncCollectionPostShow.Seasons = CreateSyncCollectionPostShowSeasons(seasons);
-
-            return syncCollectionPostShow;
-        }
-
-        private ITraktSyncCollectionPostShow CreateSyncCollectionPostShowWithSeasonsCollection(ITraktShow show, ITraktMetadata metadata = null, DateTime? collectedAt = null, PostSeasons seasons = null)
-        {
-            var syncCollectionPostShow = CreateSyncCollectionPostShow(show, metadata, collectedAt);
-
-            if (seasons != null)
-                syncCollectionPostShow.Seasons = CreateSyncCollectionPostShowSeasons(seasons);
-            
-            return syncCollectionPostShow;
-        }
-
-        private IEnumerable<ITraktSyncCollectionPostShowSeason> CreateSyncCollectionPostShowSeasons(IEnumerable<int> seasons)
-        {
-            var syncCollectionPostShowSeasons = new List<ITraktSyncCollectionPostShowSeason>();
-
-            foreach (int season in seasons)
+            ITraktSyncCollectionPostShow syncCollectionPostShow = new TraktSyncCollectionPostShow
             {
-                syncCollectionPostShowSeasons.Add(new TraktSyncCollectionPostShowSeason
-                {
-                    Number = season
-                });
-            }
+                Ids = showIds,
+                MediaType = metadata?.MediaType,
+                MediaResolution = metadata?.MediaResolution,
+                Audio = metadata?.Audio,
+                AudioChannels = metadata?.AudioChannels,
+                ThreeDimensional = metadata?.ThreeDimensional,
+                HDR = metadata?.HDR
+            };
 
-            return syncCollectionPostShowSeasons;
+            if (collectedAt.HasValue)
+                syncCollectionPostShow.CollectedAt = collectedAt.Value;
+
+            return syncCollectionPostShow;
         }
 
-        private IEnumerable<ITraktSyncCollectionPostShowSeason> CreateSyncCollectionPostShowSeasons(PostSeasons seasons)
+        private static ITraktSyncCollectionPostShowSeason CreateCollectionPostShowSeason(PostCollectionSeason season)
         {
-            var syncCollectionPostShowSeasons = new List<ITraktSyncCollectionPostShowSeason>();
-
-            foreach (PostSeason season in seasons)
+            ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = new TraktSyncCollectionPostShowSeason
             {
-                var syncCollectionPostShowSeason = new TraktSyncCollectionPostShowSeason
-                {
-                    Number = season.Number
-                };
+                Number = season.Number
+                // TODO Metadata
+            };
 
-                if (season.Episodes?.Count() > 0)
-                {
-                    var syncCollectionPostShowEpisodes = new List<ITraktSyncCollectionPostShowEpisode>();
+            // TODO CollectedAt
 
-                    foreach (PostEpisode episode in season.Episodes)
-                    {
-                        syncCollectionPostShowEpisodes.Add(new TraktSyncCollectionPostShowEpisode
-                        {
-                            Number = episode.Number,
-                            MediaType = episode.Metadata?.MediaType,
-                            MediaResolution = episode.Metadata?.MediaResolution,
-                            Audio = episode.Metadata?.Audio,
-                            AudioChannels = episode.Metadata?.AudioChannels,
-                            ThreeDimensional = episode.Metadata?.ThreeDimensional,
-                            HDR = episode.Metadata?.HDR,
-                            CollectedAt = episode.At
-                        });
-                    }
-
-                    syncCollectionPostShowSeason.Episodes = syncCollectionPostShowEpisodes;
-                }
-
-                syncCollectionPostShowSeasons.Add(syncCollectionPostShowSeason);
-            }
-
-            return syncCollectionPostShowSeasons;
+            return syncCollectionPostShowSeason;
         }
 
-        private ITraktSyncCollectionPostEpisode CreateSyncCollectionPostEpisode(ITraktEpisode episode, ITraktMetadata metadata = null, DateTime? collectedAt = null)
+        private static ITraktSyncCollectionPostShowEpisode CreateCollectionPostShowEpisode(PostCollectionEpisode episode)
         {
-            var syncCollectionPostEpisode = new TraktSyncCollectionPostEpisode
+            var syncCollectionPostShowEpisode = new TraktSyncCollectionPostShowEpisode
+            {
+                Number = episode.Number,
+                MediaType = episode.Metadata?.MediaType,
+                MediaResolution = episode.Metadata?.MediaResolution,
+                Audio = episode.Metadata?.Audio,
+                AudioChannels = episode.Metadata?.AudioChannels,
+                ThreeDimensional = episode.Metadata?.ThreeDimensional,
+                HDR = episode.Metadata?.HDR
+            };
+
+            if (episode.CollectedAt.HasValue)
+                syncCollectionPostShowEpisode.CollectedAt = episode.CollectedAt.Value;
+
+            return syncCollectionPostShowEpisode;
+        }
+
+        private static ITraktSyncCollectionPostEpisode CreateCollectionPostEpisode(ITraktEpisode episode, ITraktMetadata metadata = null, DateTime? collectedAt = null)
+        {
+            ITraktSyncCollectionPostEpisode syncCollectionPostEpisode = new TraktSyncCollectionPostEpisode
             {
                 Ids = episode.Ids,
                 MediaType = metadata?.MediaType,
@@ -644,7 +1583,26 @@
             };
 
             if (collectedAt.HasValue)
-                syncCollectionPostEpisode.CollectedAt = collectedAt.Value.ToUniversalTime();
+                syncCollectionPostEpisode.CollectedAt = collectedAt.Value;
+
+            return syncCollectionPostEpisode;
+        }
+
+        private static ITraktSyncCollectionPostEpisode CreateCollectionPostEpisode(ITraktEpisodeIds episodeIds, ITraktMetadata metadata = null, DateTime? collectedAt = null)
+        {
+            ITraktSyncCollectionPostEpisode syncCollectionPostEpisode = new TraktSyncCollectionPostEpisode
+            {
+                Ids = episodeIds,
+                MediaType = metadata?.MediaType,
+                MediaResolution = metadata?.MediaResolution,
+                Audio = metadata?.Audio,
+                AudioChannels = metadata?.AudioChannels,
+                ThreeDimensional = metadata?.ThreeDimensional,
+                HDR = metadata?.HDR
+            };
+
+            if (collectedAt.HasValue)
+                syncCollectionPostEpisode.CollectedAt = collectedAt.Value;
 
             return syncCollectionPostEpisode;
         }

@@ -6,6 +6,8 @@
         {
         }
 
+        /// <summary>Creates a new <see cref="ITraktSyncCollectionPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktSyncCollectionPostBuilder"/> instance.</returns>
         public static ITraktSyncCollectionPostBuilder NewSyncCollectionPost() => new SyncCollectionPostBuilder();
 
         public static ITraktSyncHistoryPostBuilder NewSyncHistoryPost() => new SyncHistoryPostBuilder();
