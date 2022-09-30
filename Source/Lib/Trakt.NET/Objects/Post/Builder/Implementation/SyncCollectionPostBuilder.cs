@@ -1136,6 +1136,7 @@
             AddShows(syncCollectionPost);
             AddSeasons(syncCollectionPost);
             AddEpisodes(syncCollectionPost);
+            syncCollectionPost.Validate();
             return syncCollectionPost;
         }
 
@@ -1570,12 +1571,16 @@
 
                 if (showAndSeasons.Seasons.Any())
                 {
+                    syncCollectionPostShow.Seasons = new List<ITraktSyncCollectionPostShowSeason>();
+
                     foreach (PostCollectionSeason season in showAndSeasons.Seasons)
                     {
                         ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
 
                         if (season.Episodes != null && season.Episodes.Any())
                         {
+                            syncCollectionPostShowSeason.Episodes = new List<ITraktSyncCollectionPostShowEpisode>();
+
                             foreach (PostCollectionEpisode episode in season.Episodes)
                             {
                                 (syncCollectionPostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
@@ -1599,12 +1604,16 @@
 
                 if (showIdAndSeasons.Seasons.Any())
                 {
+                    syncCollectionPostShow.Seasons = new List<ITraktSyncCollectionPostShowSeason>();
+
                     foreach (PostCollectionSeason season in showIdAndSeasons.Seasons)
                     {
                         ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
 
                         if (season.Episodes != null && season.Episodes.Any())
                         {
+                            syncCollectionPostShowSeason.Episodes = new List<ITraktSyncCollectionPostShowEpisode>();
+
                             foreach (PostCollectionEpisode episode in season.Episodes)
                             {
                                 (syncCollectionPostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
