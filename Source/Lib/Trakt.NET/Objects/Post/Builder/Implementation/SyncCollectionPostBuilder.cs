@@ -1568,13 +1568,13 @@
             {
                 ITraktSyncCollectionPostShow syncCollectionPostShow = CreateCollectionPostShow(showAndSeasons.Object);
 
-                if (showAndSeasons.Seasons.Count() > 0)
+                if (showAndSeasons.Seasons.Any())
                 {
                     foreach (PostCollectionSeason season in showAndSeasons.Seasons)
                     {
                         ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
 
-                        if (season.Episodes != null && season.Episodes.Count() > 0)
+                        if (season.Episodes != null && season.Episodes.Any())
                         {
                             foreach (PostCollectionEpisode episode in season.Episodes)
                             {
@@ -1597,13 +1597,13 @@
             {
                 ITraktSyncCollectionPostShow syncCollectionPostShow = CreateCollectionPostShow(showIdAndSeasons.Object);
 
-                if (showIdAndSeasons.Seasons.Count() > 0)
+                if (showIdAndSeasons.Seasons.Any())
                 {
                     foreach (PostCollectionSeason season in showIdAndSeasons.Seasons)
                     {
                         ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
 
-                        if (season.Episodes != null && season.Episodes.Count() > 0)
+                        if (season.Episodes != null && season.Episodes.Any())
                         {
                             foreach (PostCollectionEpisode episode in season.Episodes)
                             {

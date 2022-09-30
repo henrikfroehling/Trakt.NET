@@ -19,7 +19,7 @@
     {
         public DateTime CollectedAt { get; }
 
-        public CollectedEntry(T obj, DateTime collectedAt) : base(obj)
+        protected CollectedEntry(T obj, DateTime collectedAt) : base(obj)
             => CollectedAt = collectedAt.ToUniversalTime();
     }
 
@@ -83,7 +83,7 @@
     {
         public ITraktMetadata Metadata { get; }
 
-        public EntryWithMetadata(T obj, ITraktMetadata metadata) : base(obj)
+        protected EntryWithMetadata(T obj, ITraktMetadata metadata) : base(obj)
             => Metadata = metadata ?? throw new ArgumentNullException(nameof(metadata));
     }
 
@@ -147,7 +147,7 @@
     {
         public DateTime CollectedAt { get; }
 
-        public CollectedEntryWithMetadata(T obj, ITraktMetadata metadata, DateTime collectedAt)
+        protected CollectedEntryWithMetadata(T obj, ITraktMetadata metadata, DateTime collectedAt)
             : base(obj, metadata)
             => CollectedAt = collectedAt.ToUniversalTime();
     }
@@ -214,7 +214,7 @@
 
         public PostCollectionSeasons Seasons { get; }
 
-        public CollectionAndSeasons(T obj, PostCollectionSeasons seasons)
+        protected CollectionAndSeasons(T obj, PostCollectionSeasons seasons)
         {
             Object = obj ?? throw new ArgumentNullException(nameof(obj));
             Seasons = seasons ?? throw new ArgumentNullException(nameof(seasons));
