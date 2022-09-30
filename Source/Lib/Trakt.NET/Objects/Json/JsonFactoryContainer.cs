@@ -289,6 +289,7 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPost), new SyncCollectionPostJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostEpisode), new SyncCollectionPostEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostMovie), new SyncCollectionPostMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostSeason), new SyncCollectionPostSeasonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostShow), new SyncCollectionPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostShowEpisode), new SyncCollectionPostShowEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostShowSeason), new SyncCollectionPostShowSeasonJsonIOFactory());

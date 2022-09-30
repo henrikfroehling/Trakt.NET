@@ -1317,7 +1317,86 @@
 
         private void AddSeasons(ITraktSyncCollectionPost syncCollectionPost)
         {
-            // TODO
+            if (!_seasons.IsValueCreated && !_seasonIds.IsValueCreated && !_seasonsCollectedAt.IsValueCreated
+               && !_seasonIdsCollectedAt.IsValueCreated && !_seasonsWithMetadata.IsValueCreated && !_seasonIdsWithMetadata.IsValueCreated
+               && !_seasonsWithMetadataCollected.IsValueCreated && !_seasonIdsWithMetadataCollectedAt.IsValueCreated)
+            {
+                return;
+            }
+
+            syncCollectionPost.Seasons ??= new List<ITraktSyncCollectionPostSeason>();
+
+            if (_seasons.IsValueCreated && _seasons.Value.Count > 0)
+            {
+                foreach (ITraktSeason season in _seasons.Value)
+                {
+                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
+                        .Add(CreateCollectionPostSeason(season));
+                }
+            }
+
+            if (_seasonIds.IsValueCreated && _seasonIds.Value.Count > 0)
+            {
+                foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
+                {
+                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
+                        .Add(CreateCollectionPostSeason(seasonIds));
+                }
+            }
+
+            if (_seasonsCollectedAt.IsValueCreated && _seasonsCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntry<ITraktSeason> seasonCollectedAt in _seasonsCollectedAt.Value)
+                {
+                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
+                        .Add(CreateCollectionPostSeason(seasonCollectedAt.Object, null, seasonCollectedAt.CollectedAt));
+                }
+            }
+
+            if (_seasonIdsCollectedAt.IsValueCreated && _seasonIdsCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntry<ITraktSeasonIds> seasonIdCollectedAt in _seasonIdsCollectedAt.Value)
+                {
+                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
+                        .Add(CreateCollectionPostSeason(seasonIdCollectedAt.Object, null, seasonIdCollectedAt.CollectedAt));
+                }
+            }
+
+            if (_seasonsWithMetadata.IsValueCreated && _seasonsWithMetadata.Value.Count > 0)
+            {
+                foreach (EntryWithMetadata<ITraktSeason> seasonWithMetadata in _seasonsWithMetadata.Value)
+                {
+                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
+                        .Add(CreateCollectionPostSeason(seasonWithMetadata.Object, seasonWithMetadata.Metadata));
+                }
+            }
+
+            if (_seasonIdsWithMetadata.IsValueCreated && _seasonIdsWithMetadata.Value.Count > 0)
+            {
+                foreach (EntryWithMetadata<ITraktSeasonIds> seasonIdWithMetadata in _seasonIdsWithMetadata.Value)
+                {
+                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
+                        .Add(CreateCollectionPostSeason(seasonIdWithMetadata.Object, seasonIdWithMetadata.Metadata));
+                }
+            }
+
+            if (_seasonsWithMetadataCollected.IsValueCreated && _seasonsWithMetadataCollected.Value.Count > 0)
+            {
+                foreach (CollectedEntryWithMetadata<ITraktSeason> seasonWithMetadataCollectedAt in _seasonsWithMetadataCollected.Value)
+                {
+                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
+                        .Add(CreateCollectionPostSeason(seasonWithMetadataCollectedAt.Object, seasonWithMetadataCollectedAt.Metadata, seasonWithMetadataCollectedAt.CollectedAt));
+                }
+            }
+
+            if (_seasonIdsWithMetadataCollectedAt.IsValueCreated && _seasonIdsWithMetadataCollectedAt.Value.Count > 0)
+            {
+                foreach (CollectedEntryWithMetadata<ITraktSeasonIds> seasonIdWithMetadataCollectedAt in _seasonIdsWithMetadataCollectedAt.Value)
+                {
+                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
+                        .Add(CreateCollectionPostSeason(seasonIdWithMetadataCollectedAt.Object, seasonIdWithMetadataCollectedAt.Metadata, seasonIdWithMetadataCollectedAt.CollectedAt));
+                }
+            }
         }
 
         private void AddEpisodes(ITraktSyncCollectionPost syncCollectionPost)
@@ -1556,6 +1635,44 @@
                 syncCollectionPostShowEpisode.CollectedAt = episode.CollectedAt.Value;
 
             return syncCollectionPostShowEpisode;
+        }
+
+        private static ITraktSyncCollectionPostSeason CreateCollectionPostSeason(ITraktSeason season, ITraktMetadata metadata = null, DateTime? collectedAt = null)
+        {
+            ITraktSyncCollectionPostSeason syncCollectionPostSeason = new TraktSyncCollectionPostSeason
+            {
+                Ids = season.Ids,
+                MediaType = metadata?.MediaType,
+                MediaResolution = metadata?.MediaResolution,
+                Audio = metadata?.Audio,
+                AudioChannels = metadata?.AudioChannels,
+                ThreeDimensional = metadata?.ThreeDimensional,
+                HDR = metadata?.HDR
+            };
+
+            if (collectedAt.HasValue)
+                syncCollectionPostSeason.CollectedAt = collectedAt.Value;
+
+            return syncCollectionPostSeason;
+        }
+
+        private static ITraktSyncCollectionPostSeason CreateCollectionPostSeason(ITraktSeasonIds seasonIds, ITraktMetadata metadata = null, DateTime? collectedAt = null)
+        {
+            ITraktSyncCollectionPostSeason syncCollectionPostSeason = new TraktSyncCollectionPostSeason
+            {
+                Ids = seasonIds,
+                MediaType = metadata?.MediaType,
+                MediaResolution = metadata?.MediaResolution,
+                Audio = metadata?.Audio,
+                AudioChannels = metadata?.AudioChannels,
+                ThreeDimensional = metadata?.ThreeDimensional,
+                HDR = metadata?.HDR
+            };
+
+            if (collectedAt.HasValue)
+                syncCollectionPostSeason.CollectedAt = collectedAt.Value;
+
+            return syncCollectionPostSeason;
         }
 
         private static ITraktSyncCollectionPostEpisode CreateCollectionPostEpisode(ITraktEpisode episode, ITraktMetadata metadata = null, DateTime? collectedAt = null)
