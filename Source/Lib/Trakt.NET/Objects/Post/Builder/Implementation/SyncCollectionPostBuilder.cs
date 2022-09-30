@@ -177,7 +177,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataAndCollectedAt(ITraktMovie movie, ITraktMetadata metadata, DateTime collectedAt)
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataCollectedAt(ITraktMovie movie, ITraktMetadata metadata, DateTime collectedAt)
         {
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
@@ -185,10 +185,10 @@
             if (metadata == null)
                 throw new ArgumentNullException(nameof(metadata));
 
-            return WithMovieWithMetadataAndCollectedAt(new CollectedMovieWithMetadata(movie, metadata, collectedAt));
+            return WithMovieWithMetadataCollectedAt(new CollectedMovieWithMetadata(movie, metadata, collectedAt));
         }
 
-        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataAndCollectedAt(CollectedMovieWithMetadata movieWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataCollectedAt(CollectedMovieWithMetadata movieWithMetadataCollectedAt)
         {
             if (movieWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(movieWithMetadataCollectedAt));
@@ -197,7 +197,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataAndCollectedAt(ITraktMovieIds movieIds, ITraktMetadata metadata, DateTime collectedAt)
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataCollectedAt(ITraktMovieIds movieIds, ITraktMetadata metadata, DateTime collectedAt)
         {
             if (movieIds == null)
                 throw new ArgumentNullException(nameof(movieIds));
@@ -205,10 +205,10 @@
             if (metadata == null)
                 throw new ArgumentNullException(nameof(metadata));
 
-            return WithMovieWithMetadataAndCollectedAt(new CollectedMovieIdsWithMetadata(movieIds, metadata, collectedAt));
+            return WithMovieWithMetadataCollectedAt(new CollectedMovieIdsWithMetadata(movieIds, metadata, collectedAt));
         }
 
-        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataAndCollectedAt(CollectedMovieIdsWithMetadata movieIdsWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithMovieWithMetadataCollectedAt(CollectedMovieIdsWithMetadata movieIdsWithMetadataCollectedAt)
         {
             if (movieIdsWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(movieIdsWithMetadataCollectedAt));
@@ -421,7 +421,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithShowWithMetadataAndCollectedAt(ITraktShow show, ITraktMetadata metadata, DateTime collectedAt)
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadataCollectedAt(ITraktShow show, ITraktMetadata metadata, DateTime collectedAt)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -429,10 +429,10 @@
             if (metadata == null)
                 throw new ArgumentNullException(nameof(metadata));
 
-            return WithShowWithMetadataAndCollectedAt(new CollectedShowWithMetadata(show, metadata, collectedAt));
+            return WithShowWithMetadataCollectedAt(new CollectedShowWithMetadata(show, metadata, collectedAt));
         }
 
-        public ITraktSyncCollectionPostBuilder WithShowWithMetadataAndCollectedAt(CollectedShowWithMetadata showWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadataCollectedAt(CollectedShowWithMetadata showWithMetadataCollectedAt)
         {
             if (showWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(showWithMetadataCollectedAt));
@@ -441,7 +441,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithShowWithMetadataAndCollectedAt(ITraktShowIds showIds, ITraktMetadata metadata, DateTime collectedAt)
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadataCollectedAt(ITraktShowIds showIds, ITraktMetadata metadata, DateTime collectedAt)
         {
             if (showIds == null)
                 throw new ArgumentNullException(nameof(showIds));
@@ -449,10 +449,10 @@
             if (metadata == null)
                 throw new ArgumentNullException(nameof(metadata));
 
-            return WithShowWithMetadataAndCollectedAt(new CollectedShowIdsWithMetadata(showIds, metadata, collectedAt));
+            return WithShowWithMetadataCollectedAt(new CollectedShowIdsWithMetadata(showIds, metadata, collectedAt));
         }
 
-        public ITraktSyncCollectionPostBuilder WithShowWithMetadataAndCollectedAt(CollectedShowIdsWithMetadata showIdsWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithShowWithMetadataCollectedAt(CollectedShowIdsWithMetadata showIdsWithMetadataCollectedAt)
         {
             if (showIdsWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(showIdsWithMetadataCollectedAt));
@@ -545,7 +545,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithShowsWithMetadataAndCollectedAt(IEnumerable<CollectedShowWithMetadata> showsWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithShowsWithMetadataCollectedAt(IEnumerable<CollectedShowWithMetadata> showsWithMetadataCollectedAt)
         {
             if (showsWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(showsWithMetadataCollectedAt));
@@ -559,7 +559,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithShowsWithMetadataAndCollectedAt(IEnumerable<CollectedShowIdsWithMetadata> showIdsWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithShowsWithMetadataCollectedAt(IEnumerable<CollectedShowIdsWithMetadata> showIdsWithMetadataCollectedAt)
         {
             if (showIdsWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(showIdsWithMetadataCollectedAt));
@@ -733,7 +733,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataAndCollectedAt(ITraktSeason season, ITraktMetadata metadata, DateTime collectedAt)
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataCollectedAt(ITraktSeason season, ITraktMetadata metadata, DateTime collectedAt)
         {
             if (season == null)
                 throw new ArgumentNullException(nameof(season));
@@ -741,10 +741,10 @@
             if (metadata == null)
                 throw new ArgumentNullException(nameof(metadata));
 
-            return WithSeasonWithMetadataAndCollectedAt(new CollectedSeasonWithMetadata(season, metadata, collectedAt));
+            return WithSeasonWithMetadataCollectedAt(new CollectedSeasonWithMetadata(season, metadata, collectedAt));
         }
 
-        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataAndCollectedAt(CollectedSeasonWithMetadata seasonWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataCollectedAt(CollectedSeasonWithMetadata seasonWithMetadataCollectedAt)
         {
             if (seasonWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(seasonWithMetadataCollectedAt));
@@ -753,7 +753,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataAndCollectedAt(ITraktSeasonIds seasonIds, ITraktMetadata metadata, DateTime collectedAt)
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataCollectedAt(ITraktSeasonIds seasonIds, ITraktMetadata metadata, DateTime collectedAt)
         {
             if (seasonIds == null)
                 throw new ArgumentNullException(nameof(seasonIds));
@@ -761,10 +761,10 @@
             if (metadata == null)
                 throw new ArgumentNullException(nameof(metadata));
 
-            return WithSeasonWithMetadataAndCollectedAt(new CollectedSeasonIdsWithMetadata(seasonIds, metadata, collectedAt));
+            return WithSeasonWithMetadataCollectedAt(new CollectedSeasonIdsWithMetadata(seasonIds, metadata, collectedAt));
         }
 
-        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataAndCollectedAt(CollectedSeasonIdsWithMetadata seasonIdsWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithSeasonWithMetadataCollectedAt(CollectedSeasonIdsWithMetadata seasonIdsWithMetadataCollectedAt)
         {
             if (seasonIdsWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(seasonIdsWithMetadataCollectedAt));
@@ -857,7 +857,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithSeasonsWithMetadataAndCollectedAt(IEnumerable<CollectedSeasonWithMetadata> seasonsWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithSeasonsWithMetadataCollectedAt(IEnumerable<CollectedSeasonWithMetadata> seasonsWithMetadataCollectedAt)
         {
             if (seasonsWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(seasonsWithMetadataCollectedAt));
@@ -871,7 +871,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithSeasonsWithMetadataAndCollectedAt(IEnumerable<CollectedSeasonIdsWithMetadata> seasonIdsWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithSeasonsWithMetadataCollectedAt(IEnumerable<CollectedSeasonIdsWithMetadata> seasonIdsWithMetadataCollectedAt)
         {
             if (seasonIdsWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(seasonIdsWithMetadataCollectedAt));
@@ -977,7 +977,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataAndCollectedAt(ITraktEpisode episode, ITraktMetadata metadata, DateTime collectedAt)
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataCollectedAt(ITraktEpisode episode, ITraktMetadata metadata, DateTime collectedAt)
         {
             if (episode == null)
                 throw new ArgumentNullException(nameof(episode));
@@ -985,10 +985,10 @@
             if (metadata == null)
                 throw new ArgumentNullException(nameof(metadata));
 
-            return WithEpisodeWithMetadataAndCollectedAt(new CollectedEpisodeWithMetadata(episode, metadata, collectedAt));
+            return WithEpisodeWithMetadataCollectedAt(new CollectedEpisodeWithMetadata(episode, metadata, collectedAt));
         }
 
-        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataAndCollectedAt(CollectedEpisodeWithMetadata episodeWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataCollectedAt(CollectedEpisodeWithMetadata episodeWithMetadataCollectedAt)
         {
             if (episodeWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(episodeWithMetadataCollectedAt));
@@ -997,7 +997,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataAndCollectedAt(ITraktEpisodeIds episodeIds, ITraktMetadata metadata, DateTime collectedAt)
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataCollectedAt(ITraktEpisodeIds episodeIds, ITraktMetadata metadata, DateTime collectedAt)
         {
             if (episodeIds == null)
                 throw new ArgumentNullException(nameof(episodeIds));
@@ -1005,10 +1005,10 @@
             if (metadata == null)
                 throw new ArgumentNullException(nameof(metadata));
 
-            return WithEpisodeWithMetadataAndCollectedAt(new CollectedEpisodeIdsWithMetadata(episodeIds, metadata, collectedAt));
+            return WithEpisodeWithMetadataCollectedAt(new CollectedEpisodeIdsWithMetadata(episodeIds, metadata, collectedAt));
         }
 
-        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataAndCollectedAt(CollectedEpisodeIdsWithMetadata episodeIdsWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithEpisodeWithMetadataCollectedAt(CollectedEpisodeIdsWithMetadata episodeIdsWithMetadataCollectedAt)
         {
             if (episodeIdsWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(episodeIdsWithMetadataCollectedAt));
@@ -1101,7 +1101,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithEpisodesWithMetadataAndCollectedAt(IEnumerable<CollectedEpisodeWithMetadata> episodesWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithEpisodesWithMetadataCollectedAt(IEnumerable<CollectedEpisodeWithMetadata> episodesWithMetadataCollectedAt)
         {
             if (episodesWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(episodesWithMetadataCollectedAt));
@@ -1115,7 +1115,7 @@
             return this;
         }
 
-        public ITraktSyncCollectionPostBuilder WithEpisodesWithMetadataAndCollectedAt(IEnumerable<CollectedEpisodeIdsWithMetadata> episodeIdsWithMetadataCollectedAt)
+        public ITraktSyncCollectionPostBuilder WithEpisodesWithMetadataCollectedAt(IEnumerable<CollectedEpisodeIdsWithMetadata> episodeIdsWithMetadataCollectedAt)
         {
             if (episodeIdsWithMetadataCollectedAt == null)
                 throw new ArgumentNullException(nameof(episodeIdsWithMetadataCollectedAt));
