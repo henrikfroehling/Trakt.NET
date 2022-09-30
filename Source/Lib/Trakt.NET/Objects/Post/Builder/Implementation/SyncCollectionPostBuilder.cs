@@ -1151,7 +1151,7 @@
 
             syncCollectionPost.Movies ??= new List<ITraktSyncCollectionPostMovie>();
 
-            if (_movies.IsValueCreated && _movies.Value.Count > 0)
+            if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
                 {
@@ -1160,7 +1160,7 @@
                 }
             }
 
-            if (_movieIds.IsValueCreated && _movieIds.Value.Count > 0)
+            if (_movieIds.IsValueCreated && _movieIds.Value.Any())
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
                 {
@@ -1169,7 +1169,7 @@
                 }
             }
 
-            if (_moviesCollectedAt.IsValueCreated && _moviesCollectedAt.Value.Count > 0)
+            if (_moviesCollectedAt.IsValueCreated && _moviesCollectedAt.Value.Any())
             {
                 foreach (CollectedEntry<ITraktMovie> movieCollectedAt in _moviesCollectedAt.Value)
                 {
@@ -1178,7 +1178,7 @@
                 }
             }
 
-            if (_movieIdsCollectedAt.IsValueCreated && _movieIdsCollectedAt.Value.Count > 0)
+            if (_movieIdsCollectedAt.IsValueCreated && _movieIdsCollectedAt.Value.Any())
             {
                 foreach (CollectedEntry<ITraktMovieIds> movieIdCollectedAt in _movieIdsCollectedAt.Value)
                 {
@@ -1187,7 +1187,7 @@
                 }
             }
 
-            if (_moviesWithMetadata.IsValueCreated && _moviesWithMetadata.Value.Count > 0)
+            if (_moviesWithMetadata.IsValueCreated && _moviesWithMetadata.Value.Any())
             {
                 foreach (EntryWithMetadata<ITraktMovie> movieWithMetadata in _moviesWithMetadata.Value)
                 {
@@ -1196,7 +1196,7 @@
                 }
             }
 
-            if (_movieIdsWithMetadata.IsValueCreated && _movieIdsWithMetadata.Value.Count > 0)
+            if (_movieIdsWithMetadata.IsValueCreated && _movieIdsWithMetadata.Value.Any())
             {
                 foreach (EntryWithMetadata<ITraktMovieIds> movieIdWithMetadata in _movieIdsWithMetadata.Value)
                 {
@@ -1205,7 +1205,7 @@
                 }
             }
 
-            if (_moviesWithMetadataCollected.IsValueCreated && _moviesWithMetadataCollected.Value.Count > 0)
+            if (_moviesWithMetadataCollected.IsValueCreated && _moviesWithMetadataCollected.Value.Any())
             {
                 foreach (CollectedEntryWithMetadata<ITraktMovie> movieWithMetadataCollectedAt in _moviesWithMetadataCollected.Value)
                 {
@@ -1214,7 +1214,7 @@
                 }
             }
 
-            if (_movieIdsWithMetadataCollectedAt.IsValueCreated && _movieIdsWithMetadataCollectedAt.Value.Count > 0)
+            if (_movieIdsWithMetadataCollectedAt.IsValueCreated && _movieIdsWithMetadataCollectedAt.Value.Any())
             {
                 foreach (CollectedEntryWithMetadata<ITraktMovieIds> movieIdWithMetadataCollectedAt in _movieIdsWithMetadataCollectedAt.Value)
                 {
@@ -1236,7 +1236,7 @@
 
             syncCollectionPost.Shows ??= new List<ITraktSyncCollectionPostShow>();
 
-            if (_shows.IsValueCreated && _shows.Value.Count > 0)
+            if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
                 {
@@ -1245,7 +1245,7 @@
                 }
             }
 
-            if (_showIds.IsValueCreated && _showIds.Value.Count > 0)
+            if (_showIds.IsValueCreated && _showIds.Value.Any())
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
                 {
@@ -1254,7 +1254,7 @@
                 }
             }
 
-            if (_showsCollectedAt.IsValueCreated && _showsCollectedAt.Value.Count > 0)
+            if (_showsCollectedAt.IsValueCreated && _showsCollectedAt.Value.Any())
             {
                 foreach (CollectedEntry<ITraktShow> showCollectedAt in _showsCollectedAt.Value)
                 {
@@ -1263,7 +1263,7 @@
                 }
             }
 
-            if (_showIdsCollectedAt.IsValueCreated && _showIdsCollectedAt.Value.Count > 0)
+            if (_showIdsCollectedAt.IsValueCreated && _showIdsCollectedAt.Value.Any())
             {
                 foreach (CollectedEntry<ITraktShowIds> showIdCollectedAt in _showIdsCollectedAt.Value)
                 {
@@ -1272,7 +1272,7 @@
                 }
             }
 
-            if (_showsWithMetadata.IsValueCreated && _showsWithMetadata.Value.Count > 0)
+            if (_showsWithMetadata.IsValueCreated && _showsWithMetadata.Value.Any())
             {
                 foreach (EntryWithMetadata<ITraktShow> showWithMetadata in _showsWithMetadata.Value)
                 {
@@ -1281,7 +1281,7 @@
                 }
             }
 
-            if (_showIdsWithMetadata.IsValueCreated && _showIdsWithMetadata.Value.Count > 0)
+            if (_showIdsWithMetadata.IsValueCreated && _showIdsWithMetadata.Value.Any())
             {
                 foreach (EntryWithMetadata<ITraktShowIds> showIdWithMetadata in _showIdsWithMetadata.Value)
                 {
@@ -1290,7 +1290,7 @@
                 }
             }
 
-            if (_showsWithMetadataCollected.IsValueCreated && _showsWithMetadataCollected.Value.Count > 0)
+            if (_showsWithMetadataCollected.IsValueCreated && _showsWithMetadataCollected.Value.Any())
             {
                 foreach (CollectedEntryWithMetadata<ITraktShow> showWithMetadataCollectedAt in _showsWithMetadataCollected.Value)
                 {
@@ -1299,7 +1299,7 @@
                 }
             }
 
-            if (_showIdsWithMetadataCollectedAt.IsValueCreated && _showIdsWithMetadataCollectedAt.Value.Count > 0)
+            if (_showIdsWithMetadataCollectedAt.IsValueCreated && _showIdsWithMetadataCollectedAt.Value.Any())
             {
                 foreach (CollectedEntryWithMetadata<ITraktShowIds> showIdWithMetadataCollectedAt in _showIdsWithMetadataCollectedAt.Value)
                 {
@@ -1308,10 +1308,10 @@
                 }
             }
 
-            if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Count > 0)
+            if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Any())
                 CreateCollectionPostShowAndSeasons(syncCollectionPost, _showsAndSeasons.Value);
 
-            if (_showIdsAndSeasons.IsValueCreated && _showIdsAndSeasons.Value.Count > 0)
+            if (_showIdsAndSeasons.IsValueCreated && _showIdsAndSeasons.Value.Any())
                 CreateCollectionPostShowAndSeasons(syncCollectionPost, _showIdsAndSeasons.Value);
         }
 
@@ -1326,7 +1326,7 @@
 
             syncCollectionPost.Seasons ??= new List<ITraktSyncCollectionPostSeason>();
 
-            if (_seasons.IsValueCreated && _seasons.Value.Count > 0)
+            if (_seasons.IsValueCreated && _seasons.Value.Any())
             {
                 foreach (ITraktSeason season in _seasons.Value)
                 {
@@ -1335,7 +1335,7 @@
                 }
             }
 
-            if (_seasonIds.IsValueCreated && _seasonIds.Value.Count > 0)
+            if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
             {
                 foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
                 {
@@ -1344,7 +1344,7 @@
                 }
             }
 
-            if (_seasonsCollectedAt.IsValueCreated && _seasonsCollectedAt.Value.Count > 0)
+            if (_seasonsCollectedAt.IsValueCreated && _seasonsCollectedAt.Value.Any())
             {
                 foreach (CollectedEntry<ITraktSeason> seasonCollectedAt in _seasonsCollectedAt.Value)
                 {
@@ -1353,7 +1353,7 @@
                 }
             }
 
-            if (_seasonIdsCollectedAt.IsValueCreated && _seasonIdsCollectedAt.Value.Count > 0)
+            if (_seasonIdsCollectedAt.IsValueCreated && _seasonIdsCollectedAt.Value.Any())
             {
                 foreach (CollectedEntry<ITraktSeasonIds> seasonIdCollectedAt in _seasonIdsCollectedAt.Value)
                 {
@@ -1362,7 +1362,7 @@
                 }
             }
 
-            if (_seasonsWithMetadata.IsValueCreated && _seasonsWithMetadata.Value.Count > 0)
+            if (_seasonsWithMetadata.IsValueCreated && _seasonsWithMetadata.Value.Any())
             {
                 foreach (EntryWithMetadata<ITraktSeason> seasonWithMetadata in _seasonsWithMetadata.Value)
                 {
@@ -1371,7 +1371,7 @@
                 }
             }
 
-            if (_seasonIdsWithMetadata.IsValueCreated && _seasonIdsWithMetadata.Value.Count > 0)
+            if (_seasonIdsWithMetadata.IsValueCreated && _seasonIdsWithMetadata.Value.Any())
             {
                 foreach (EntryWithMetadata<ITraktSeasonIds> seasonIdWithMetadata in _seasonIdsWithMetadata.Value)
                 {
@@ -1380,7 +1380,7 @@
                 }
             }
 
-            if (_seasonsWithMetadataCollected.IsValueCreated && _seasonsWithMetadataCollected.Value.Count > 0)
+            if (_seasonsWithMetadataCollected.IsValueCreated && _seasonsWithMetadataCollected.Value.Any())
             {
                 foreach (CollectedEntryWithMetadata<ITraktSeason> seasonWithMetadataCollectedAt in _seasonsWithMetadataCollected.Value)
                 {
@@ -1389,7 +1389,7 @@
                 }
             }
 
-            if (_seasonIdsWithMetadataCollectedAt.IsValueCreated && _seasonIdsWithMetadataCollectedAt.Value.Count > 0)
+            if (_seasonIdsWithMetadataCollectedAt.IsValueCreated && _seasonIdsWithMetadataCollectedAt.Value.Any())
             {
                 foreach (CollectedEntryWithMetadata<ITraktSeasonIds> seasonIdWithMetadataCollectedAt in _seasonIdsWithMetadataCollectedAt.Value)
                 {
@@ -1410,7 +1410,7 @@
 
             syncCollectionPost.Episodes ??= new List<ITraktSyncCollectionPostEpisode>();
 
-            if (_episodes.IsValueCreated && _episodes.Value.Count > 0)
+            if (_episodes.IsValueCreated && _episodes.Value.Any())
             {
                 foreach (ITraktEpisode episode in _episodes.Value)
                 {
@@ -1419,7 +1419,7 @@
                 }
             }
 
-            if (_episodeIds.IsValueCreated && _episodeIds.Value.Count > 0)
+            if (_episodeIds.IsValueCreated && _episodeIds.Value.Any())
             {
                 foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
                 {
@@ -1428,7 +1428,7 @@
                 }
             }
 
-            if (_episodesCollectedAt.IsValueCreated && _episodesCollectedAt.Value.Count > 0)
+            if (_episodesCollectedAt.IsValueCreated && _episodesCollectedAt.Value.Any())
             {
                 foreach (CollectedEntry<ITraktEpisode> episodeCollectedAt in _episodesCollectedAt.Value)
                 {
@@ -1437,7 +1437,7 @@
                 }
             }
 
-            if (_episodeIdsCollectedAt.IsValueCreated && _episodeIdsCollectedAt.Value.Count > 0)
+            if (_episodeIdsCollectedAt.IsValueCreated && _episodeIdsCollectedAt.Value.Any())
             {
                 foreach (CollectedEntry<ITraktEpisodeIds> episodeIdCollectedAt in _episodeIdsCollectedAt.Value)
                 {
@@ -1446,7 +1446,7 @@
                 }
             }
 
-            if (_episodesWithMetadata.IsValueCreated && _episodesWithMetadata.Value.Count > 0)
+            if (_episodesWithMetadata.IsValueCreated && _episodesWithMetadata.Value.Any())
             {
                 foreach (EntryWithMetadata<ITraktEpisode> episodeWithMetadata in _episodesWithMetadata.Value)
                 {
@@ -1455,7 +1455,7 @@
                 }
             }
 
-            if (_episodeIdsWithMetadata.IsValueCreated && _episodeIdsWithMetadata.Value.Count > 0)
+            if (_episodeIdsWithMetadata.IsValueCreated && _episodeIdsWithMetadata.Value.Any())
             {
                 foreach (EntryWithMetadata<ITraktEpisodeIds> episodeIdWithMetadata in _episodeIdsWithMetadata.Value)
                 {
@@ -1464,7 +1464,7 @@
                 }
             }
 
-            if (_episodesWithMetadataCollected.IsValueCreated && _episodesWithMetadataCollected.Value.Count > 0)
+            if (_episodesWithMetadataCollected.IsValueCreated && _episodesWithMetadataCollected.Value.Any())
             {
                 foreach (CollectedEntryWithMetadata<ITraktEpisode> episodeWithMetadataCollectedAt in _episodesWithMetadataCollected.Value)
                 {
@@ -1473,7 +1473,7 @@
                 }
             }
 
-            if (_episodeIdsWithMetadataCollectedAt.IsValueCreated && _episodeIdsWithMetadataCollectedAt.Value.Count > 0)
+            if (_episodeIdsWithMetadataCollectedAt.IsValueCreated && _episodeIdsWithMetadataCollectedAt.Value.Any())
             {
                 foreach (CollectedEntryWithMetadata<ITraktEpisodeIds> episodeIdWithMetadataCollectedAt in _episodeIdsWithMetadataCollectedAt.Value)
                 {

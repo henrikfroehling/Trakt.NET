@@ -7,7 +7,7 @@
     {
         public T Object { get; }
 
-        public CollectionEntry(T obj)
+        protected CollectionEntry(T obj)
             => Object = obj ?? throw new ArgumentNullException(nameof(obj));
     }
 
