@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using TraktNet.Objects.Basic;
     using TraktNet.Objects.Get.Episodes;
@@ -1307,65 +1308,11 @@
                 }
             }
 
-            // TODO shows and seasons
-
             if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Count > 0)
-            {
-                foreach (CollectionShowAndSeasons<ITraktShow> showAndSeasons in _showsAndSeasons.Value)
-                {
-                    ITraktSyncCollectionPostShow syncCollectionPostShow = CreateCollectionPostShow(showAndSeasons.Object);
-
-                    if (showAndSeasons.Seasons.Count() > 0)
-                    {
-                        foreach (PostCollectionSeason season in showAndSeasons.Seasons)
-                        {
-                            ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
-
-                            if (season.Episodes != null && season.Episodes.Count() > 0)
-                            {
-                                foreach (PostCollectionEpisode episode in season.Episodes)
-                                {
-                                    (syncCollectionPostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
-                                        .Add(CreateCollectionPostShowEpisode(episode));
-                                }
-                            }
-
-                            (syncCollectionPostShow.Seasons as List<ITraktSyncCollectionPostShowSeason>).Add(syncCollectionPostShowSeason);
-                        }
-                    }
-
-                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(syncCollectionPostShow);
-                }
-            }
+                CreateCollectionPostShowAndSeasons(syncCollectionPost, _showsAndSeasons.Value);
 
             if (_showIdsAndSeasons.IsValueCreated && _showIdsAndSeasons.Value.Count > 0)
-            {
-                foreach (CollectionShowAndSeasons<ITraktShow> showAndSeasons in _showsAndSeasons.Value)
-                {
-                    ITraktSyncCollectionPostShow syncCollectionPostShow = CreateCollectionPostShow(showAndSeasons.Object);
-
-                    if (showAndSeasons.Seasons.Count() > 0)
-                    {
-                        foreach (PostCollectionSeason season in showAndSeasons.Seasons)
-                        {
-                            ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
-
-                            if (season.Episodes != null && season.Episodes.Count() > 0)
-                            {
-                                foreach (PostCollectionEpisode episode in season.Episodes)
-                                {
-                                    (syncCollectionPostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
-                                        .Add(CreateCollectionPostShowEpisode(episode));
-                                }
-                            }
-
-                            (syncCollectionPostShow.Seasons as List<ITraktSyncCollectionPostShowSeason>).Add(syncCollectionPostShowSeason);
-                        }
-                    }
-
-                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(syncCollectionPostShow);
-                }
-            }
+                CreateCollectionPostShowAndSeasons(syncCollectionPost, _showIdsAndSeasons.Value);
         }
 
         private void AddSeasons(ITraktSyncCollectionPost syncCollectionPost)
@@ -1537,15 +1484,57 @@
             return syncCollectionPostShow;
         }
 
+        private static void CreateCollectionPostShowAndSeasons<T>(ITraktSyncCollectionPost syncCollectionPost, List<CollectionShowAndSeasons<T>> showsAndSeasons)
+        {
+            foreach (CollectionShowAndSeasons<T> showAndSeasons in showsAndSeasons)
+            {
+                ITraktSyncCollectionPostShow syncCollectionPostShow;
+
+                if (typeof(T) == typeof(ITraktShow))
+                    syncCollectionPostShow = CreateCollectionPostShow(showAndSeasons.Object as ITraktShow);
+                else
+                    syncCollectionPostShow = CreateCollectionPostShow(showAndSeasons.Object as ITraktShowIds);
+
+                Debug.Assert(syncCollectionPost != null);
+
+                if (showAndSeasons.Seasons.Count() > 0)
+                {
+                    foreach (PostCollectionSeason season in showAndSeasons.Seasons)
+                    {
+                        ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
+
+                        if (season.Episodes != null && season.Episodes.Count() > 0)
+                        {
+                            foreach (PostCollectionEpisode episode in season.Episodes)
+                            {
+                                (syncCollectionPostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
+                                    .Add(CreateCollectionPostShowEpisode(episode));
+                            }
+                        }
+
+                        (syncCollectionPostShow.Seasons as List<ITraktSyncCollectionPostShowSeason>).Add(syncCollectionPostShowSeason);
+                    }
+                }
+
+                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(syncCollectionPostShow);
+            }
+        }
+
         private static ITraktSyncCollectionPostShowSeason CreateCollectionPostShowSeason(PostCollectionSeason season)
         {
             ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = new TraktSyncCollectionPostShowSeason
             {
-                Number = season.Number
-                // TODO Metadata
+                Number = season.Number,
+                MediaType = season.Metadata?.MediaType,
+                MediaResolution = season.Metadata?.MediaResolution,
+                Audio = season.Metadata?.Audio,
+                AudioChannels = season.Metadata?.AudioChannels,
+                ThreeDimensional = season.Metadata?.ThreeDimensional,
+                HDR = season.Metadata?.HDR
             };
 
-            // TODO CollectedAt
+            if (season.CollectedAt.HasValue)
+                syncCollectionPostShowSeason.CollectedAt = season.CollectedAt.Value;
 
             return syncCollectionPostShowSeason;
         }
