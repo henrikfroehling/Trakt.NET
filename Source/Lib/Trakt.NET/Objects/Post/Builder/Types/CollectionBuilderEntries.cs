@@ -40,7 +40,7 @@
         /// <summary>Initializes a new instance of the <see cref="CollectedMovieIds" /> class.</summary>
         /// <param name="movieIds">A collected <see cref="ITraktMovieIds"/>.</param>
         /// <param name="collectedAt">The UTC datetime when the <paramref name="movieIds"/> was collected.</param>
-        public CollectedMovieIds(ITraktMovieIds movieIds, DateTime collectedAt) 
+        public CollectedMovieIds(ITraktMovieIds movieIds, DateTime collectedAt)
             : base(movieIds, collectedAt) 
         { }
     }
@@ -51,7 +51,7 @@
         /// <summary>Initializes a new instance of the <see cref="CollectedShow" /> class.</summary>
         /// <param name="show">A collected <see cref="ITraktShow"/>.</param>
         /// <param name="collectedAt">The UTC datetime when the <paramref name="show"/> was collected.</param>
-        public CollectedShow(ITraktShow show, DateTime collectedAt) 
+        public CollectedShow(ITraktShow show, DateTime collectedAt)
             : base(show, collectedAt) 
         { }
     }
@@ -62,7 +62,7 @@
         /// <summary>Initializes a new instance of the <see cref="CollectedShowIds" /> class.</summary>
         /// <param name="showIds">A collected <see cref="ITraktShowIds"/>.</param>
         /// <param name="collectedAt">The UTC datetime when the <paramref name="showIds"/> was collected.</param>
-        public CollectedShowIds(ITraktShowIds showIds, DateTime collectedAt) 
+        public CollectedShowIds(ITraktShowIds showIds, DateTime collectedAt)
             : base(showIds, collectedAt) 
         { }
     }
@@ -73,7 +73,7 @@
         /// <summary>Initializes a new instance of the <see cref="CollectedSeason" /> class.</summary>
         /// <param name="season">A collected <see cref="ITraktSeason"/>.</param>
         /// <param name="collectedAt">The UTC datetime when the <paramref name="season"/> was collected.</param>
-        public CollectedSeason(ITraktSeason season, DateTime collectedAt) 
+        public CollectedSeason(ITraktSeason season, DateTime collectedAt)
             : base(season, collectedAt) 
         { }
     }
@@ -84,7 +84,7 @@
         /// <summary>Initializes a new instance of the <see cref="CollectedSeasonIds" /> class.</summary>
         /// <param name="seasonIds">A collected <see cref="ITraktSeasonIds"/>.</param>
         /// <param name="collectedAt">The UTC datetime when the <paramref name="seasonIds"/> was collected.</param>
-        public CollectedSeasonIds(ITraktSeasonIds seasonIds, DateTime collectedAt) 
+        public CollectedSeasonIds(ITraktSeasonIds seasonIds, DateTime collectedAt)
             : base(seasonIds, collectedAt) 
         { }
     }
@@ -95,7 +95,7 @@
         /// <summary>Initializes a new instance of the <see cref="CollectedEpisode" /> class.</summary>
         /// <param name="episode">A collected <see cref="ITraktEpisode"/>.</param>
         /// <param name="collectedAt">The UTC datetime when the <paramref name="episode"/> was collected.</param>
-        public CollectedEpisode(ITraktEpisode episode, DateTime collectedAt) 
+        public CollectedEpisode(ITraktEpisode episode, DateTime collectedAt)
             : base(episode, collectedAt) 
         { }
     }
@@ -106,7 +106,7 @@
         /// <summary>Initializes a new instance of the <see cref="CollectedEpisodeIds" /> class.</summary>
         /// <param name="episodeIds">A collected <see cref="ITraktEpisodeIds"/>.</param>
         /// <param name="collectedAt">The UTC datetime when the <paramref name="episodeIds"/> was collected.</param>
-        public CollectedEpisodeIds(ITraktEpisodeIds episodeIds, DateTime collectedAt) 
+        public CollectedEpisodeIds(ITraktEpisodeIds episodeIds, DateTime collectedAt)
             : base(episodeIds, collectedAt) 
         { }
     }
@@ -125,7 +125,7 @@
         /// <summary>Initializes a new instance of the <see cref="MovieWithMetadata" /> class.</summary>
         /// <param name="movie">A <see cref="ITraktMovie"/>.</param>
         /// <param name="metadata">The <see cref="ITraktMetadata"/> for the <paramref name="movie"/>.</param>
-        public MovieWithMetadata(ITraktMovie movie, ITraktMetadata metadata) 
+        public MovieWithMetadata(ITraktMovie movie, ITraktMetadata metadata)
             : base(movie, metadata) 
         { }
     }
@@ -136,7 +136,7 @@
         /// <summary>Initializes a new instance of the <see cref="MovieIdsWithMetadata" /> class.</summary>
         /// <param name="movieIds">A <see cref="ITraktMovieIds"/>.</param>
         /// <param name="metadata">The <see cref="ITraktMetadata"/> for the <paramref name="movieIds"/>.</param>
-        public MovieIdsWithMetadata(ITraktMovieIds movieIds, ITraktMetadata metadata) 
+        public MovieIdsWithMetadata(ITraktMovieIds movieIds, ITraktMetadata metadata)
             : base(movieIds, metadata) 
         { }
     }
@@ -147,7 +147,7 @@
         /// <summary>Initializes a new instance of the <see cref="ShowWithMetadata" /> class.</summary>
         /// <param name="show">A <see cref="ITraktShow"/>.</param>
         /// <param name="metadata">The <see cref="ITraktMetadata"/> for the <paramref name="show"/>.</param>
-        public ShowWithMetadata(ITraktShow show, ITraktMetadata metadata) 
+        public ShowWithMetadata(ITraktShow show, ITraktMetadata metadata)
             : base(show, metadata) 
         { }
     }
@@ -158,7 +158,7 @@
         /// <summary>Initializes a new instance of the <see cref="ShowIdsWithMetadata" /> class.</summary>
         /// <param name="showIds">A <see cref="ITraktShowIds"/>.</param>
         /// <param name="metadata">The <see cref="ITraktMetadata"/> for the <paramref name="showIds"/>.</param>
-        public ShowIdsWithMetadata(ITraktShowIds showIds, ITraktMetadata metadata) 
+        public ShowIdsWithMetadata(ITraktShowIds showIds, ITraktMetadata metadata)
             : base(showIds, metadata)
         { }
     }
@@ -169,7 +169,7 @@
         /// <summary>Initializes a new instance of the <see cref="SeasonWithMetadata" /> class.</summary>
         /// <param name="season">A <see cref="ITraktSeason"/>.</param>
         /// <param name="metadata">The <see cref="ITraktMetadata"/> for the <paramref name="season"/>.</param>
-        public SeasonWithMetadata(ITraktSeason season, ITraktMetadata metadata) 
+        public SeasonWithMetadata(ITraktSeason season, ITraktMetadata metadata)
             : base(season, metadata) 
         { }
     }
@@ -180,7 +180,7 @@
         /// <summary>Initializes a new instance of the <see cref="SeasonIdsWithMetadata" /> class.</summary>
         /// <param name="seasonIds">A <see cref="ITraktSeasonIds"/>.</param>
         /// <param name="metadata">The <see cref="ITraktMetadata"/> for the <paramref name="seasonIds"/>.</param>
-        public SeasonIdsWithMetadata(ITraktSeasonIds seasonIds, ITraktMetadata metadata) 
+        public SeasonIdsWithMetadata(ITraktSeasonIds seasonIds, ITraktMetadata metadata)
             : base(seasonIds, metadata) 
         { }
     }
@@ -191,7 +191,7 @@
         /// <summary>Initializes a new instance of the <see cref="EpisodeWithMetadata" /> class.</summary>
         /// <param name="episode">A <see cref="ITraktEpisode"/>.</param>
         /// <param name="metadata">The <see cref="ITraktMetadata"/> for the <paramref name="episode"/>.</param>
-        public EpisodeWithMetadata(ITraktEpisode episode, ITraktMetadata metadata) 
+        public EpisodeWithMetadata(ITraktEpisode episode, ITraktMetadata metadata)
             : base(episode, metadata) 
         { }
     }

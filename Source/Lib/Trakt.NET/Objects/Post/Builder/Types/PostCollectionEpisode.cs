@@ -24,7 +24,7 @@
         /// <param name="collectedAt">The UTC datetime, when this episode was collected.</param>
         public PostCollectionEpisode(int number, DateTime collectedAt)
             : this(number)
-            => CollectedAt = collectedAt;
+            => CollectedAt = collectedAt.ToUniversalTime();
 
         /// <summary>Initializes a new instance of the <see cref="PostCollectionEpisode" /> class.</summary>
         /// <param name="number">The number of this episode.</param>
@@ -39,6 +39,6 @@
         /// <param name="collectedAt">The UTC datetime, when this episode was collected.</param>
         public PostCollectionEpisode(int number, ITraktMetadata metadata, DateTime collectedAt)
             : this(number, metadata)
-            => CollectedAt = collectedAt;
+            => CollectedAt = collectedAt.ToUniversalTime();
     }
 }

@@ -13,15 +13,18 @@
         private readonly List<PostHistoryEpisode> _episodes;
 
         /// <summary>Initializes a new instance of the <see cref="PostHistoryEpisodes" /> class.</summary>
-        public PostHistoryEpisodes()
-        {
-            _episodes = new List<PostHistoryEpisode>();
-        }
+        public PostHistoryEpisodes() => _episodes = new List<PostHistoryEpisode>();
+
+        /// <summary>Adds the given episode number to the list.</summary>
+        /// <param name="episode">The episode number, which will be added to the list.</param>
+        public void Add(int episode)
+            => Add(new PostHistoryEpisode(episode));
 
         /// <summary>Adds the given episode number to the list.</summary>
         /// <param name="episode">The episode number, which will be added to the list.</param>
         /// <param name="watchedAt">An UTC datetime, when the episode was watched.</param>
-        public void Add(int episode, DateTime? watchedAt = null) => Add(new PostHistoryEpisode(episode, watchedAt));
+        public void Add(int episode, DateTime watchedAt)
+            => Add(new PostHistoryEpisode(episode, watchedAt));
 
         /// <summary>Adds the given episode numbers to the list.</summary>
         /// <param name="episode">An episode number. See also <see cref="PostHistoryEpisode" />.</param>

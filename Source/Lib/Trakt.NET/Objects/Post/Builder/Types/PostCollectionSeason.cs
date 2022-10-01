@@ -37,7 +37,7 @@
         /// <param name="collectedAt">An UTC datetime, when this season was collected.</param>
         public PostCollectionSeason(int number, DateTime collectedAt)
             : this(number)
-            => CollectedAt = collectedAt;
+            => CollectedAt = collectedAt.ToUniversalTime();
 
         /// <summary>Initializes a new instance of the <see cref="PostCollectionSeason" /> class.</summary>
         /// <param name="number">The number of this season.</param>
@@ -68,7 +68,7 @@
         /// <param name="collectedAt">An UTC datetime, when this season was collected.</param>
         public PostCollectionSeason(int number, ITraktMetadata metadata, DateTime collectedAt)
             : this(number, metadata)
-            => CollectedAt = collectedAt;
+            => CollectedAt = collectedAt.ToUniversalTime();
 
         /// <summary>Initializes a new instance of the <see cref="PostCollectionSeason" /> class.</summary>
         /// <param name="number">The number of this season.</param>
