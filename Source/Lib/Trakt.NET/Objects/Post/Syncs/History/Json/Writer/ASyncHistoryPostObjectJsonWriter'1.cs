@@ -31,6 +31,13 @@
                 await syncHistoryPostShowArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Shows, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Seasons != null)
+            {
+                var syncHistoryPostSeasonArrayJsonWriter = new ArrayJsonWriter<ITraktSyncHistoryPostSeason>();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
+                await syncHistoryPostSeasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.Episodes != null)
             {
                 var syncHistoryPostEpisodeArrayJsonWriter = new ArrayJsonWriter<ITraktSyncHistoryPostEpisode>();

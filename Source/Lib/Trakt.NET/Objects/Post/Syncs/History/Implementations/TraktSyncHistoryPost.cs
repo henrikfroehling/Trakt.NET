@@ -26,6 +26,12 @@
         public IEnumerable<ITraktSyncHistoryPostShow> Shows { get; set; }
 
         /// <summary>
+        /// An optional list of <see cref="ITraktSyncHistoryPostSeason" />s.
+        /// <para>Each <see cref="ITraktSyncHistoryPostSeason" /> must have at least a valid Trakt id.</para>
+        /// </summary>
+        public IEnumerable<ITraktSyncHistoryPostSeason> Seasons { get; set; }
+
+        /// <summary>
         /// An optional list of <see cref="ITraktSyncHistoryPostEpisode" />s.
         /// <para>Each <see cref="ITraktSyncHistoryPostEpisode" /> must have at least a valid Trakt id.</para>
         /// </summary>
@@ -41,9 +47,10 @@
         {
             bool bHasNoMovies = Movies == null || !Movies.Any();
             bool bHasNoShows = Shows == null || !Shows.Any();
+            bool bHasNoSeasons = Seasons == null || !Seasons.Any();
             bool bHasNoEpisodes = Episodes == null || !Episodes.Any();
 
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
+            if (bHasNoMovies && bHasNoShows && bHasNoSeasons && bHasNoEpisodes)
                 throw new ArgumentException("no watched history items set");
         }
     }

@@ -653,7 +653,11 @@
                 }
             }
 
-            // TODO show and seasons
+            if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Any())
+                CreateHistoryPostShowAndSeasons(syncHistoryPost, _showsAndSeasons.Value);
+
+            if (_showIdsAndSeasons.IsValueCreated && _showIdsAndSeasons.Value.Any())
+                CreateHistoryPostShowIdsAndSeasons(syncHistoryPost, _showIdsAndSeasons.Value);
         }
 
         private void AddSeasons(ITraktSyncHistoryPost syncHistoryPost)
@@ -661,7 +665,43 @@
             if (!_seasons.IsValueCreated && !_seasonIds.IsValueCreated && !_seasonsWatchedAt.IsValueCreated && !_seasonIdsWatchedAt.IsValueCreated)
                 return;
 
-            // TODO
+            syncHistoryPost.Seasons ??= new List<ITraktSyncHistoryPostSeason>();
+
+            if (_seasons.IsValueCreated && _seasons.Value.Any())
+            {
+                foreach (ITraktSeason season in _seasons.Value)
+                {
+                    (syncHistoryPost.Seasons as List<ITraktSyncHistoryPostSeason>)
+                        .Add(CreateHistoryPostSeason(season));
+                }
+            }
+
+            if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
+            {
+                foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
+                {
+                    (syncHistoryPost.Seasons as List<ITraktSyncHistoryPostSeason>)
+                        .Add(CreateHistoryPostSeason(seasonIds));
+                }
+            }
+
+            if (_seasonsWatchedAt.IsValueCreated && _seasonsWatchedAt.Value.Any())
+            {
+                foreach (WatchedSeason seasonWatchedAt in _seasonsWatchedAt.Value)
+                {
+                    (syncHistoryPost.Seasons as List<ITraktSyncHistoryPostSeason>)
+                        .Add(CreateHistoryPostSeason(seasonWatchedAt.Object, seasonWatchedAt.WatchedAt));
+                }
+            }
+
+            if (_seasonIdsWatchedAt.IsValueCreated && _seasonIdsWatchedAt.Value.Any())
+            {
+                foreach (WatchedSeasonIds seasonIdWatchedAt in _seasonIdsWatchedAt.Value)
+                {
+                    (syncHistoryPost.Seasons as List<ITraktSyncHistoryPostSeason>)
+                        .Add(CreateHistoryPostSeason(seasonIdWatchedAt.Object, seasonIdWatchedAt.WatchedAt));
+                }
+            }
         }
 
         private void AddEpisodes(ITraktSyncHistoryPost syncHistoryPost)
@@ -763,6 +803,124 @@
                 syncHistoryPostShow.WatchedAt = watchedAt.Value;
 
             return syncHistoryPostShow;
+        }
+
+        private static void CreateHistoryPostShowAndSeasons(ITraktSyncHistoryPost syncHistoryPost, List<WatchedShowAndSeasons> showsAndSeasons)
+        {
+            foreach (WatchedShowAndSeasons showAndSeasons in showsAndSeasons)
+            {
+                ITraktSyncHistoryPostShow syncHistoryPostShow = CreateHistoryPostShow(showAndSeasons.Object);
+
+                if (showAndSeasons.Seasons.Any())
+                {
+                    syncHistoryPostShow.Seasons = new List<ITraktSyncHistoryPostShowSeason>();
+
+                    foreach (PostHistorySeason season in showAndSeasons.Seasons)
+                    {
+                        ITraktSyncHistoryPostShowSeason syncHistoryPostShowSeason = CreateHistoryPostShowSeason(season);
+
+                        if (season.Episodes != null && season.Episodes.Any())
+                        {
+                            syncHistoryPostShowSeason.Episodes = new List<ITraktSyncHistoryPostShowEpisode>();
+
+                            foreach (PostHistoryEpisode episode in season.Episodes)
+                            {
+                                (syncHistoryPostShowSeason.Episodes as List<ITraktSyncHistoryPostShowEpisode>)
+                                    .Add(CreateHistoryPostShowEpisode(episode));
+                            }
+                        }
+
+                        (syncHistoryPostShow.Seasons as List<ITraktSyncHistoryPostShowSeason>).Add(syncHistoryPostShowSeason);
+                    }
+                }
+
+                (syncHistoryPost.Shows as List<ITraktSyncHistoryPostShow>).Add(syncHistoryPostShow);
+            }
+        }
+
+        private static void CreateHistoryPostShowIdsAndSeasons(ITraktSyncHistoryPost syncHistoryPost, List<WatchedShowIdsAndSeasons> showIdsAndSeasons)
+        {
+            foreach (WatchedShowIdsAndSeasons showIdAndSeasons in showIdsAndSeasons)
+            {
+                ITraktSyncHistoryPostShow syncHistoryPostShow = CreateHistoryPostShow(showIdAndSeasons.Object);
+
+                if (showIdAndSeasons.Seasons.Any())
+                {
+                    syncHistoryPostShow.Seasons = new List<ITraktSyncHistoryPostShowSeason>();
+
+                    foreach (PostHistorySeason season in showIdAndSeasons.Seasons)
+                    {
+                        ITraktSyncHistoryPostShowSeason syncHistoryPostShowSeason = CreateHistoryPostShowSeason(season);
+
+                        if (season.Episodes != null && season.Episodes.Any())
+                        {
+                            syncHistoryPostShowSeason.Episodes = new List<ITraktSyncHistoryPostShowEpisode>();
+
+                            foreach (PostHistoryEpisode episode in season.Episodes)
+                            {
+                                (syncHistoryPostShowSeason.Episodes as List<ITraktSyncHistoryPostShowEpisode>)
+                                    .Add(CreateHistoryPostShowEpisode(episode));
+                            }
+                        }
+
+                        (syncHistoryPostShow.Seasons as List<ITraktSyncHistoryPostShowSeason>).Add(syncHistoryPostShowSeason);
+                    }
+                }
+
+                (syncHistoryPost.Shows as List<ITraktSyncHistoryPostShow>).Add(syncHistoryPostShow);
+            }
+        }
+
+        private static ITraktSyncHistoryPostShowSeason CreateHistoryPostShowSeason(PostHistorySeason season)
+        {
+            ITraktSyncHistoryPostShowSeason syncHistoryPostShowSeason = new TraktSyncHistoryPostShowSeason
+            {
+                Number = season.Number
+            };
+
+            if (season.WatchedAt.HasValue)
+                syncHistoryPostShowSeason.WatchedAt = season.WatchedAt.Value;
+
+            return syncHistoryPostShowSeason;
+        }
+
+        private static ITraktSyncHistoryPostShowEpisode CreateHistoryPostShowEpisode(PostHistoryEpisode episode)
+        {
+            var syncHistoryPostShowEpisode = new TraktSyncHistoryPostShowEpisode
+            {
+                Number = episode.Number
+            };
+
+            if (episode.WatchedAt.HasValue)
+                syncHistoryPostShowEpisode.WatchedAt = episode.WatchedAt.Value;
+
+            return syncHistoryPostShowEpisode;
+        }
+
+        private static ITraktSyncHistoryPostSeason CreateHistoryPostSeason(ITraktSeason season, DateTime? watchedAt = null)
+        {
+            ITraktSyncHistoryPostSeason syncHistoryPostSeason = new TraktSyncHistoryPostSeason
+            {
+                Ids = season.Ids
+            };
+
+            if (watchedAt.HasValue)
+                syncHistoryPostSeason.WatchedAt = watchedAt.Value;
+
+            return syncHistoryPostSeason;
+        }
+
+        private static ITraktSyncHistoryPostSeason CreateHistoryPostSeason(ITraktSeasonIds seasonIds, DateTime? watchedAt = null)
+        {
+            ITraktSyncHistoryPostSeason syncHistoryPostSeason = new TraktSyncHistoryPostSeason
+            {
+                Ids = seasonIds
+            };
+
+            if (watchedAt.HasValue)
+                syncHistoryPostSeason.WatchedAt = watchedAt.Value;
+
+            return syncHistoryPostSeason;
         }
 
         private static ITraktSyncHistoryPostEpisode CreateHistoryPostEpisode(ITraktEpisode episode, DateTime? watchedAt = null)
