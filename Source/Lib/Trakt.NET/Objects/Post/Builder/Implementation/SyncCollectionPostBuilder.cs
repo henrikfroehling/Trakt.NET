@@ -49,7 +49,7 @@
         
         internal SyncCollectionPostBuilder()
         {
-            _movies = new Lazy<List<ITraktMovie>>(() => new List<ITraktMovie>());
+            _movies = new Lazy<List<ITraktMovie>>();
             _movieIds = new Lazy<List<ITraktMovieIds>>();
             _moviesCollectedAt = new Lazy<List<CollectedMovie>>();
             _movieIdsCollectedAt = new Lazy<List<CollectedMovieIds>>();

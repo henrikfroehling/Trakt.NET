@@ -1,42 +1,41 @@
 ﻿namespace TraktNet.Objects.Post
 {
-    using Capabilities;
-    using Get.Episodes;
-    using Get.Movies;
-    using Get.Shows;
-    using Helper;
-    using Post.Syncs.History;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Get.Seasons;
+    using TraktNet.Objects.Get.Shows;
+    using TraktNet.Objects.Post.Syncs.History;
 
     internal sealed class SyncHistoryRemovePostBuilder : ITraktSyncHistoryRemovePostBuilder
     {
-        private readonly List<ITraktMovie> _movies;
-        private readonly List<ITraktShow> _shows;
-        private readonly List<ITraktEpisode> _episodes;
-        private readonly List<ulong> _historyIds;
-        private readonly PostBuilderMovieAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedMovies;
-        private readonly PostBuilderShowAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedShows;
-        private readonly PostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedShowsWithSeasons;
-        private readonly PostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> _watchedShowsWithSeasonsCollection;
-        private readonly PostBuilderShowAddedSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _showsWithSeasons;
-        private readonly PostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> _showsWithSeasonsCollection;
-        private readonly PostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> _watchedEpisodes;
+        private readonly Lazy<List<ITraktMovie>> _movies;
+        private readonly Lazy<List<ITraktMovieIds>> _movieIds;
+        private readonly Lazy<List<ITraktShow>> _shows;
+        private readonly Lazy<List<ITraktShowIds>> _showIds;
+        private readonly Lazy<List<ShowAndSeasons>> _showsAndSeasons;
+        private readonly Lazy<List<ShowIdsAndSeasons>> _showIdsAndSeasons;
+        private readonly Lazy<List<ITraktSeason>> _seasons;
+        private readonly Lazy<List<ITraktSeasonIds>> _seasonIds;
+        private readonly Lazy<List<ITraktEpisode>> _episodes;
+        private readonly Lazy<List<ITraktEpisodeIds>> _episodeIds;
+        private readonly Lazy<List<ulong>> _historyIds;
 
         internal SyncHistoryRemovePostBuilder()
         {
-            _movies = new List<ITraktMovie>();
-            _shows = new List<ITraktShow>();
-            _episodes = new List<ITraktEpisode>();
-            _historyIds = new List<ulong>();
-            _watchedMovies = new PostBuilderMovieAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>(this);
-            _watchedShows = new PostBuilderShowAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>(this);
-            _watchedShowsWithSeasons = new PostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>(this);
-            _watchedShowsWithSeasonsCollection = new PostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons>(this);
-            _showsWithSeasons = new PostBuilderShowAddedSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>(this);
-            _showsWithSeasonsCollection = new PostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons>(this);
-            _watchedEpisodes = new PostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>(this);
+            _movies = new Lazy<List<ITraktMovie>>();
+            _movieIds = new Lazy<List<ITraktMovieIds>>();
+            _shows = new Lazy<List<ITraktShow>>();
+            _showIds = new Lazy<List<ITraktShowIds>>();
+            _showsAndSeasons = new Lazy<List<ShowAndSeasons>>();
+            _showIdsAndSeasons = new Lazy<List<ShowIdsAndSeasons>>();
+            _seasons = new Lazy<List<ITraktSeason>>();
+            _seasonIds = new Lazy<List<ITraktSeasonIds>>();
+            _episodes = new Lazy<List<ITraktEpisode>>();
+            _episodeIds = new Lazy<List<ITraktEpisodeIds>>();
+            _historyIds = new Lazy<List<ulong>>();
         }
 
         public ITraktSyncHistoryRemovePostBuilder WithMovie(ITraktMovie movie)
@@ -44,7 +43,16 @@
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
 
-            _movies.Add(movie);
+            _movies.Value.Add(movie);
+            return this;
+        }
+
+        public ITraktSyncHistoryRemovePostBuilder WithMovie(ITraktMovieIds movieIds)
+        {
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            _movieIds.Value.Add(movieIds);
             return this;
         }
 
@@ -53,17 +61,27 @@
             if (movies == null)
                 throw new ArgumentNullException(nameof(movies));
 
-            _movies.AddRange(movies);
+            foreach (ITraktMovie movie in movies)
+            {
+                if (movie != null)
+                    _movies.Value.Add(movie);
+            }
+
             return this;
         }
 
-        public ITraktPostBuilderMovieAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> WithWatchedMovie(ITraktMovie movie)
+        public ITraktSyncHistoryRemovePostBuilder WithMovies(IEnumerable<ITraktMovieIds> movieIds)
         {
-            if (movie == null)
-                throw new ArgumentNullException(nameof(movie));
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
 
-            _watchedMovies.SetCurrentMovie(movie);
-            return _watchedMovies;
+            foreach (ITraktMovieIds movieId in movieIds)
+            {
+                if (movieId != null)
+                    _movieIds.Value.Add(movieId);
+            }
+
+            return this;
         }
 
         public ITraktSyncHistoryRemovePostBuilder WithShow(ITraktShow show)
@@ -71,7 +89,16 @@
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
 
-            _shows.Add(show);
+            _shows.Value.Add(show);
+            return this;
+        }
+
+        public ITraktSyncHistoryRemovePostBuilder WithShow(ITraktShowIds showIds)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            _showIds.Value.Add(showIds);
             return this;
         }
 
@@ -80,53 +107,141 @@
             if (shows == null)
                 throw new ArgumentNullException(nameof(shows));
 
-            _shows.AddRange(shows);
+            foreach (ITraktShow show in shows)
+            {
+                if (show != null)
+                    _shows.Value.Add(show);
+            }
+
             return this;
         }
 
-        public ITraktPostBuilderShowAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> WithWatchedShow(ITraktShow show)
+        public ITraktSyncHistoryRemovePostBuilder WithShows(IEnumerable<ITraktShowIds> showIds)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
 
-            _watchedShows.SetCurrentShow(show);
-            return _watchedShows;
+            foreach (ITraktShowIds showId in showIds)
+            {
+                if (showId != null)
+                    _showIds.Value.Add(showId);
+            }
+
+            return this;
         }
 
-        public ITraktPostBuilderShowAddedWatchedAtWithSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> WithWatchedShowAndSeasons(ITraktShow show)
+        public ITraktSyncHistoryRemovePostBuilder WithShowAndSeasons(ITraktShow show, PostSeasons seasons)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
 
-            _watchedShowsWithSeasons.SetCurrentShow(show);
-            return _watchedShowsWithSeasons;
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowAndSeasons(show, seasons));
         }
 
-        public ITraktPostBuilderShowAddedWatchedAtWithSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> WithWatchedShowAndSeasonsCollection(ITraktShow show)
+        public ITraktSyncHistoryRemovePostBuilder WithShowAndSeasons(ShowAndSeasons showAndSeasons)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showAndSeasons == null)
+                throw new ArgumentNullException(nameof(showAndSeasons));
 
-            _watchedShowsWithSeasonsCollection.SetCurrentShow(show);
-            return _watchedShowsWithSeasonsCollection;
+            _showsAndSeasons.Value.Add(showAndSeasons);
+            return this;
         }
 
-        public ITraktPostBuilderShowAddedSeasons<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> WithShowAndSeasons(ITraktShow show)
+        public ITraktSyncHistoryRemovePostBuilder WithShowAndSeasons(ITraktShowIds showIds, PostSeasons seasons)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
 
-            _showsWithSeasons.SetCurrentShow(show);
-            return _showsWithSeasons;
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, seasons));
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost, PostHistorySeasons> WithShowAndSeasonsCollection(ITraktShow show)
+        public ITraktSyncHistoryRemovePostBuilder WithShowAndSeasons(ShowIdsAndSeasons showIdsAndSeasons)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showIdsAndSeasons == null)
+                throw new ArgumentNullException(nameof(showIdsAndSeasons));
 
-            _showsWithSeasonsCollection.SetCurrentShow(show);
-            return _showsWithSeasonsCollection;
+            _showIdsAndSeasons.Value.Add(showIdsAndSeasons);
+            return this;
+        }
+
+        public ITraktSyncHistoryRemovePostBuilder WithShowsAndSeasons(IEnumerable<ShowAndSeasons> showsAndSeasons)
+        {
+            if (showsAndSeasons == null)
+                throw new ArgumentNullException(nameof(showsAndSeasons));
+
+            foreach (ShowAndSeasons showAndSeasons in showsAndSeasons)
+            {
+                if (showAndSeasons != null)
+                    _showsAndSeasons.Value.Add(showAndSeasons);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncHistoryRemovePostBuilder WithShowsAndSeasons(IEnumerable<ShowIdsAndSeasons> showIdsAndSeasons)
+        {
+            if (showIdsAndSeasons == null)
+                throw new ArgumentNullException(nameof(showIdsAndSeasons));
+
+            foreach (ShowIdsAndSeasons showIdAndSeasons in showIdsAndSeasons)
+            {
+                if (showIdAndSeasons != null)
+                    _showIdsAndSeasons.Value.Add(showIdAndSeasons);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncHistoryRemovePostBuilder WithSeason(ITraktSeason season)
+        {
+            if (season == null)
+                throw new ArgumentNullException(nameof(season));
+
+            _seasons.Value.Add(season);
+            return this;
+        }
+
+        public ITraktSyncHistoryRemovePostBuilder WithSeason(ITraktSeasonIds seasonIds)
+        {
+            if (seasonIds == null)
+                throw new ArgumentNullException(nameof(seasonIds));
+
+            _seasonIds.Value.Add(seasonIds);
+            return this;
+        }
+
+        public ITraktSyncHistoryRemovePostBuilder WithSeasons(IEnumerable<ITraktSeason> seasons)
+        {
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            foreach (ITraktSeason season in seasons)
+            {
+                if (season != null)
+                    _seasons.Value.Add(season);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncHistoryRemovePostBuilder WithSeasons(IEnumerable<ITraktSeasonIds> seasonIds)
+        {
+            if (seasonIds == null)
+                throw new ArgumentNullException(nameof(seasonIds));
+
+            foreach (ITraktSeasonIds seasonId in seasonIds)
+            {
+                if (seasonId != null)
+                    _seasonIds.Value.Add(seasonId);
+            }
+
+            return this;
         }
 
         public ITraktSyncHistoryRemovePostBuilder WithEpisode(ITraktEpisode episode)
@@ -134,7 +249,16 @@
             if (episode == null)
                 throw new ArgumentNullException(nameof(episode));
 
-            _episodes.Add(episode);
+            _episodes.Value.Add(episode);
+            return this;
+        }
+
+        public ITraktSyncHistoryRemovePostBuilder WithEpisode(ITraktEpisodeIds episodeIds)
+        {
+            if (episodeIds == null)
+                throw new ArgumentNullException(nameof(episodeIds));
+
+            _episodeIds.Value.Add(episodeIds);
             return this;
         }
 
@@ -143,35 +267,51 @@
             if (episodes == null)
                 throw new ArgumentNullException(nameof(episodes));
 
-            _episodes.AddRange(episodes);
+            foreach (ITraktEpisode episode in episodes)
+            {
+                if (episode != null)
+                    _episodes.Value.Add(episode);
+            }
+
             return this;
         }
 
-        public ITraktPostBuilderEpisodeAddedWatchedAt<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost> WithWatchedEpisode(ITraktEpisode episode)
+        public ITraktSyncHistoryRemovePostBuilder WithEpisodes(IEnumerable<ITraktEpisodeIds> episodeIds)
         {
-            if (episode == null)
-                throw new ArgumentNullException(nameof(episode));
+            if (episodeIds == null)
+                throw new ArgumentNullException(nameof(episodeIds));
 
-            _watchedEpisodes.SetCurrentEpisode(episode);
-            return _watchedEpisodes;
+            foreach (ITraktEpisodeIds episodeId in episodeIds)
+            {
+                if (episodeId != null)
+                    _episodeIds.Value.Add(episodeId);
+            }
+
+            return this;
         }
-        
-        public ITraktSyncHistoryRemovePostBuilder WithHistoryIds(ulong[] historyIds)
+
+        public ITraktSyncHistoryRemovePostBuilder WithHistoryId(ulong historyId)
+        {
+            _historyIds.Value.Add(historyId);
+            return this;
+        }
+
+        public ITraktSyncHistoryRemovePostBuilder WithHistoryIds(IEnumerable<ulong> historyIds)
         {
             if (historyIds == null)
                 throw new ArgumentNullException(nameof(historyIds));
 
-            _historyIds.AddRange(historyIds);
+            _historyIds.Value.AddRange(historyIds);
             return this;
         }
 
         public ITraktSyncHistoryRemovePostBuilder WithHistoryIds(ulong historyId, params ulong[] historyIds)
         {
-            if (historyIds == null)
-                throw new ArgumentNullException(nameof(historyIds));
+            _historyIds.Value.Add(historyId);
 
-            _historyIds.Add(historyId);
-            _historyIds.AddRange(historyIds);
+            if (historyIds?.Length > 0)
+                _historyIds.Value.AddRange(historyIds);
+
             return this;
         }
 
@@ -180,176 +320,233 @@
             ITraktSyncHistoryRemovePost syncHistoryRemovePost = new TraktSyncHistoryRemovePost();
             AddMovies(syncHistoryRemovePost);
             AddShows(syncHistoryRemovePost);
+            AddSeasons(syncHistoryRemovePost);
             AddEpisodes(syncHistoryRemovePost);
-            syncHistoryRemovePost.HistoryIds = _historyIds;
+            AddHistoryIds(syncHistoryRemovePost);
             syncHistoryRemovePost.Validate();
             return syncHistoryRemovePost;
         }
 
         private void AddMovies(ITraktSyncHistoryRemovePost syncHistoryRemovePost)
         {
-            if (syncHistoryRemovePost.Movies == null)
-                syncHistoryRemovePost.Movies = new List<ITraktSyncHistoryPostMovie>();
+            if (!_movies.IsValueCreated && !_movieIds.IsValueCreated)
+                return;
 
-            foreach (ITraktMovie movie in _movies)
-                (syncHistoryRemovePost.Movies as List<ITraktSyncHistoryPostMovie>).Add(CreateSyncHistoryPostMovie(movie));
+            syncHistoryRemovePost.Movies ??= new List<ITraktSyncHistoryPostMovie>();
 
-            foreach (PostBuilderWatchedObject<ITraktMovie> movieEntry in _watchedMovies.WatchedMovies)
-                (syncHistoryRemovePost.Movies as List<ITraktSyncHistoryPostMovie>).Add(CreateSyncHistoryPostMovie(movieEntry.Object, movieEntry.WatchedAt));
+            if (_movies.IsValueCreated && _movies.Value.Any())
+            {
+                foreach (ITraktMovie movie in _movies.Value)
+                {
+                    (syncHistoryRemovePost.Movies as List<ITraktSyncHistoryPostMovie>)
+                        .Add(CreateHistoryPostMovie(movie));
+                }
+            }
+
+            if (_movieIds.IsValueCreated && _movieIds.Value.Any())
+            {
+                foreach (ITraktMovieIds movieIds in _movieIds.Value)
+                {
+                    (syncHistoryRemovePost.Movies as List<ITraktSyncHistoryPostMovie>)
+                        .Add(CreateHistoryPostMovie(movieIds));
+                }
+            }
         }
 
         private void AddShows(ITraktSyncHistoryRemovePost syncHistoryRemovePost)
         {
-            if (syncHistoryRemovePost.Shows == null)
-                syncHistoryRemovePost.Shows = new List<ITraktSyncHistoryPostShow>();
+            if (!_shows.IsValueCreated && !_showIds.IsValueCreated && !_showsAndSeasons.IsValueCreated && !_showIdsAndSeasons.IsValueCreated)
+                return;
 
-            foreach (ITraktShow show in _shows)
-                (syncHistoryRemovePost.Shows as List<ITraktSyncHistoryPostShow>).Add(CreateSyncHistoryPostShow(show));
+            syncHistoryRemovePost.Shows ??= new List<ITraktSyncHistoryPostShow>();
 
-            foreach (PostBuilderWatchedObject<ITraktShow> showEntry in _watchedShows.WatchedShows)
-                (syncHistoryRemovePost.Shows as List<ITraktSyncHistoryPostShow>).Add(CreateSyncHistoryPostShow(showEntry.Object, showEntry.WatchedAt));
+            if (_shows.IsValueCreated && _shows.Value.Any())
+            {
+                foreach (ITraktShow show in _shows.Value)
+                {
+                    (syncHistoryRemovePost.Shows as List<ITraktSyncHistoryPostShow>)
+                        .Add(CreateHistoryPostShow(show));
+                }
+            }
 
-            foreach (PostBuilderWatchedObjectWithSeasons<ITraktShow, IEnumerable<int>> showEntry in _watchedShowsWithSeasons.WatchedShowsWithSeasons)
-                (syncHistoryRemovePost.Shows as List<ITraktSyncHistoryPostShow>).Add(CreateSyncHistoryPostShowWithSeasons(showEntry.Object, showEntry.WatchedAt, showEntry.Seasons));
+            if (_showIds.IsValueCreated && _showIds.Value.Any())
+            {
+                foreach (ITraktShowIds showIds in _showIds.Value)
+                {
+                    (syncHistoryRemovePost.Shows as List<ITraktSyncHistoryPostShow>)
+                        .Add(CreateHistoryPostShow(showIds));
+                }
+            }
 
-            foreach (PostBuilderWatchedObjectWithSeasons<ITraktShow, PostHistorySeasons> showEntry in _watchedShowsWithSeasonsCollection.WatchedShowsWithSeasonsCollection)
-                (syncHistoryRemovePost.Shows as List<ITraktSyncHistoryPostShow>).Add(CreateSyncHistoryPostShowWithSeasonsCollection(showEntry.Object, showEntry.WatchedAt, showEntry.Seasons));
+            if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Any())
+                CreateHistoryPostShowAndSeasons(syncHistoryRemovePost, _showsAndSeasons.Value);
 
-            foreach (PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>> showEntry in _showsWithSeasons.ShowsWithSeasons)
-                (syncHistoryRemovePost.Shows as List<ITraktSyncHistoryPostShow>).Add(CreateSyncHistoryPostShowWithSeasons(showEntry.Object, null, showEntry.Seasons));
+            if (_showIdsAndSeasons.IsValueCreated && _showIdsAndSeasons.Value.Any())
+                CreateHistoryPostShowIdsAndSeasons(syncHistoryRemovePost, _showIdsAndSeasons.Value);
+        }
 
-            foreach (PostBuilderObjectWithSeasons<ITraktShow, PostHistorySeasons> showEntry in _showsWithSeasonsCollection.ShowsWithSeasonsCollection)
-                (syncHistoryRemovePost.Shows as List<ITraktSyncHistoryPostShow>).Add(CreateSyncHistoryPostShowWithSeasonsCollection(showEntry.Object, null, showEntry.Seasons));
+        private void AddSeasons(ITraktSyncHistoryRemovePost syncHistoryRemovePost)
+        {
+            if (!_seasons.IsValueCreated && !_seasonIds.IsValueCreated)
+                return;
+
+            syncHistoryRemovePost.Seasons ??= new List<ITraktSyncHistoryPostSeason>();
+
+            if (_seasons.IsValueCreated && _seasons.Value.Any())
+            {
+                foreach (ITraktSeason season in _seasons.Value)
+                {
+                    (syncHistoryRemovePost.Seasons as List<ITraktSyncHistoryPostSeason>)
+                        .Add(CreateHistoryPostSeason(season));
+                }
+            }
+
+            if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
+            {
+                foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
+                {
+                    (syncHistoryRemovePost.Seasons as List<ITraktSyncHistoryPostSeason>)
+                        .Add(CreateHistoryPostSeason(seasonIds));
+                }
+            }
         }
 
         private void AddEpisodes(ITraktSyncHistoryRemovePost syncHistoryRemovePost)
         {
-            if (syncHistoryRemovePost.Episodes == null)
-                syncHistoryRemovePost.Episodes = new List<ITraktSyncHistoryPostEpisode>();
+            if (!_episodes.IsValueCreated && !_episodeIds.IsValueCreated)
+                return;
 
-            foreach (ITraktEpisode episode in _episodes)
-                (syncHistoryRemovePost.Episodes as List<ITraktSyncHistoryPostEpisode>).Add(CreateSyncHistoryPostEpisode(episode));
+            syncHistoryRemovePost.Episodes ??= new List<ITraktSyncHistoryPostEpisode>();
 
-            foreach (PostBuilderWatchedObject<ITraktEpisode> episodeEntry in _watchedEpisodes.WatchedEpisodes)
-                (syncHistoryRemovePost.Episodes as List<ITraktSyncHistoryPostEpisode>).Add(CreateSyncHistoryPostEpisode(episodeEntry.Object, episodeEntry.WatchedAt));
+            if (_episodes.IsValueCreated && _episodes.Value.Any())
+            {
+                foreach (ITraktEpisode episode in _episodes.Value)
+                {
+                    (syncHistoryRemovePost.Episodes as List<ITraktSyncHistoryPostEpisode>)
+                        .Add(CreateHistoryPostEpisode(episode));
+                }
+            }
+
+            if (_episodeIds.IsValueCreated && _episodeIds.Value.Any())
+            {
+                foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
+                {
+                    (syncHistoryRemovePost.Episodes as List<ITraktSyncHistoryPostEpisode>)
+                        .Add(CreateHistoryPostEpisode(episodeIds));
+                }
+            }
         }
 
-        private ITraktSyncHistoryPostMovie CreateSyncHistoryPostMovie(ITraktMovie movie, DateTime? watchedAt = null)
+        private void AddHistoryIds(ITraktSyncHistoryRemovePost syncHistoryRemovePost)
         {
-            var syncHistoryPostMovie = new TraktSyncHistoryPostMovie
+            if (_historyIds.IsValueCreated && _historyIds.Value.Any())
+                syncHistoryRemovePost.HistoryIds = _historyIds.Value;
+        }
+
+        private static ITraktSyncHistoryPostMovie CreateHistoryPostMovie(ITraktMovie movie)
+            => new TraktSyncHistoryPostMovie
             {
                 Ids = movie.Ids,
                 Title = movie.Title,
                 Year = movie.Year
             };
 
-            if (watchedAt.HasValue)
-                syncHistoryPostMovie.WatchedAt = watchedAt.Value.ToUniversalTime();
+        private static ITraktSyncHistoryPostMovie CreateHistoryPostMovie(ITraktMovieIds movieIds)
+            => new TraktSyncHistoryPostMovie { Ids = movieIds };
 
-            return syncHistoryPostMovie;
-        }
-
-        private ITraktSyncHistoryPostShow CreateSyncHistoryPostShow(ITraktShow show, DateTime? watchedAt = null)
-        {
-            var syncHistoryPostShow = new TraktSyncHistoryPostShow
+        private static ITraktSyncHistoryPostShow CreateHistoryPostShow(ITraktShow show)
+            => new TraktSyncHistoryPostShow
             {
                 Ids = show.Ids,
                 Title = show.Title,
                 Year = show.Year
             };
 
-            if (watchedAt.HasValue)
-                syncHistoryPostShow.WatchedAt = watchedAt.Value.ToUniversalTime();
+        private static ITraktSyncHistoryPostShow CreateHistoryPostShow(ITraktShowIds showIds)
+            => new TraktSyncHistoryPostShow { Ids = showIds };
 
-            return syncHistoryPostShow;
-        }
-
-        private ITraktSyncHistoryPostShow CreateSyncHistoryPostShowWithSeasons(ITraktShow show, DateTime? watchedAt = null, IEnumerable<int> seasons = null)
+        private static void CreateHistoryPostShowAndSeasons(ITraktSyncHistoryRemovePost syncHistoryRemovePost, List<ShowAndSeasons> showsAndSeasons)
         {
-            var syncHistoryPostShow = CreateSyncHistoryPostShow(show, watchedAt);
-
-            if (seasons != null)
-                syncHistoryPostShow.Seasons = CreateSyncHistoryPostShowSeasons(seasons);
-
-            return syncHistoryPostShow;
-        }
-
-        private ITraktSyncHistoryPostShow CreateSyncHistoryPostShowWithSeasonsCollection(ITraktShow show, DateTime? watchedAt = null, PostHistorySeasons seasons = null)
-        {
-            var syncHistoryPostShow = CreateSyncHistoryPostShow(show, watchedAt);
-
-            if (seasons != null)
-                syncHistoryPostShow.Seasons = CreateSyncHistoryPostShowSeasons(seasons);
-
-            return syncHistoryPostShow;
-        }
-
-        private IEnumerable<ITraktSyncHistoryPostShowSeason> CreateSyncHistoryPostShowSeasons(IEnumerable<int> seasons)
-        {
-            var syncHistoryPostShowSeasons = new List<ITraktSyncHistoryPostShowSeason>();
-
-            foreach (int season in seasons)
+            foreach (ShowAndSeasons showAndSeasons in showsAndSeasons)
             {
-                syncHistoryPostShowSeasons.Add(new TraktSyncHistoryPostShowSeason
+                ITraktSyncHistoryPostShow syncHistoryRemovePostShow = CreateHistoryPostShow(showAndSeasons.Object);
+
+                if (showAndSeasons.Seasons.Any())
                 {
-                    Number = season
-                });
-            }
+                    syncHistoryRemovePostShow.Seasons = new List<ITraktSyncHistoryPostShowSeason>();
 
-            return syncHistoryPostShowSeasons;
-        }
-
-        private IEnumerable<ITraktSyncHistoryPostShowSeason> CreateSyncHistoryPostShowSeasons(PostHistorySeasons seasons)
-        {
-            var syncHistoryPostShowSeasons = new List<ITraktSyncHistoryPostShowSeason>();
-
-            foreach (PostHistorySeason season in seasons)
-            {
-                var syncHistoryPostShowSeason = new TraktSyncHistoryPostShowSeason
-                {
-                    Number = season.Number
-                };
-
-                if (season.WatchedAt.HasValue)
-                    syncHistoryPostShowSeason.WatchedAt = season.WatchedAt.Value.ToUniversalTime();
-
-                if (season.Episodes?.Count() > 0)
-                {
-                    var syncHistoryPostShowEpisodes = new List<ITraktSyncHistoryPostShowEpisode>();
-
-                    foreach (PostHistoryEpisode episode in season.Episodes)
+                    foreach (PostSeason season in showAndSeasons.Seasons)
                     {
-                        var syncHistoryPostShowEpisode = new TraktSyncHistoryPostShowEpisode
+                        ITraktSyncHistoryPostShowSeason syncHistoryRemovePostShowSeason = CreateHistoryPostShowSeason(season);
+
+                        if (season.Episodes != null && season.Episodes.Any())
                         {
-                            Number = episode.Number
-                        };
+                            syncHistoryRemovePostShowSeason.Episodes = new List<ITraktSyncHistoryPostShowEpisode>();
 
-                        if (episode.WatchedAt.HasValue)
-                            syncHistoryPostShowEpisode.WatchedAt = episode.WatchedAt.Value.ToUniversalTime();
+                            foreach (PostEpisode episode in season.Episodes)
+                            {
+                                (syncHistoryRemovePostShowSeason.Episodes as List<ITraktSyncHistoryPostShowEpisode>)
+                                    .Add(CreateHistoryPostShowEpisode(episode));
+                            }
+                        }
 
-                        syncHistoryPostShowEpisodes.Add(syncHistoryPostShowEpisode);
+                        (syncHistoryRemovePostShow.Seasons as List<ITraktSyncHistoryPostShowSeason>).Add(syncHistoryRemovePostShowSeason);
                     }
-
-                    syncHistoryPostShowSeason.Episodes = syncHistoryPostShowEpisodes;
                 }
 
-                syncHistoryPostShowSeasons.Add(syncHistoryPostShowSeason);
+                (syncHistoryRemovePost.Shows as List<ITraktSyncHistoryPostShow>).Add(syncHistoryRemovePostShow);
             }
-
-            return syncHistoryPostShowSeasons;
         }
 
-        private ITraktSyncHistoryPostEpisode CreateSyncHistoryPostEpisode(ITraktEpisode episode, DateTime? watchedAt = null)
+        private static void CreateHistoryPostShowIdsAndSeasons(ITraktSyncHistoryRemovePost syncHistoryRemovePost, List<ShowIdsAndSeasons> showIdsAndSeasons)
         {
-            var syncHistoryPostEpisode = new TraktSyncHistoryPostEpisode
+            foreach (ShowIdsAndSeasons showIdAndSeasons in showIdsAndSeasons)
             {
-                Ids = episode.Ids
-            };
+                ITraktSyncHistoryPostShow syncHistoryRemovePostShow = CreateHistoryPostShow(showIdAndSeasons.Object);
 
-            if (watchedAt.HasValue)
-                syncHistoryPostEpisode.WatchedAt = watchedAt.Value.ToUniversalTime();
+                if (showIdAndSeasons.Seasons.Any())
+                {
+                    syncHistoryRemovePostShow.Seasons = new List<ITraktSyncHistoryPostShowSeason>();
 
-            return syncHistoryPostEpisode;
+                    foreach (PostSeason season in showIdAndSeasons.Seasons)
+                    {
+                        ITraktSyncHistoryPostShowSeason syncHistoryRemovePostShowSeason = CreateHistoryPostShowSeason(season);
+
+                        if (season.Episodes != null && season.Episodes.Any())
+                        {
+                            syncHistoryRemovePostShowSeason.Episodes = new List<ITraktSyncHistoryPostShowEpisode>();
+
+                            foreach (PostEpisode episode in season.Episodes)
+                            {
+                                (syncHistoryRemovePostShowSeason.Episodes as List<ITraktSyncHistoryPostShowEpisode>)
+                                    .Add(CreateHistoryPostShowEpisode(episode));
+                            }
+                        }
+
+                        (syncHistoryRemovePostShow.Seasons as List<ITraktSyncHistoryPostShowSeason>).Add(syncHistoryRemovePostShowSeason);
+                    }
+                }
+
+                (syncHistoryRemovePost.Shows as List<ITraktSyncHistoryPostShow>).Add(syncHistoryRemovePostShow);
+            }
         }
+
+        private static ITraktSyncHistoryPostShowSeason CreateHistoryPostShowSeason(PostSeason season)
+            => new TraktSyncHistoryPostShowSeason { Number = season.Number };
+
+        private static ITraktSyncHistoryPostShowEpisode CreateHistoryPostShowEpisode(PostEpisode episode)
+            => new TraktSyncHistoryPostShowEpisode { Number = episode.Number };
+
+        private static ITraktSyncHistoryPostSeason CreateHistoryPostSeason(ITraktSeason season)
+            => new TraktSyncHistoryPostSeason { Ids = season.Ids };
+
+        private static ITraktSyncHistoryPostSeason CreateHistoryPostSeason(ITraktSeasonIds seasonIds)
+            => new TraktSyncHistoryPostSeason { Ids = seasonIds };
+
+        private static ITraktSyncHistoryPostEpisode CreateHistoryPostEpisode(ITraktEpisode episode)
+            => new TraktSyncHistoryPostEpisode { Ids = episode.Ids };
+
+        private static ITraktSyncHistoryPostEpisode CreateHistoryPostEpisode(ITraktEpisodeIds episodeIds)
+            => new TraktSyncHistoryPostEpisode { Ids = episodeIds };
     }
 }

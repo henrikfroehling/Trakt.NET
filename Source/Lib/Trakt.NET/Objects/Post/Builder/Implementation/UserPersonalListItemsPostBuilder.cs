@@ -18,7 +18,7 @@ namespace TraktNet.Objects.Post
         private readonly List<PostBuilderObjectWithNotes<ITraktShow>> _showsWithNotes;
         private readonly List<ITraktPerson> _persons;
         private readonly PostBuilderShowAddedSeasons<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost> _showsWithSeasons;
-        private readonly PostBuilderShowAddedSeasonsCollection<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost, PostSeasons> _showsWithSeasonsCollection;
+        private readonly PostBuilderShowAddedSeasonsCollection<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost, PostSeasonsOld> _showsWithSeasonsCollection;
 
         internal UserPersonalListItemsPostBuilder()
         {
@@ -28,7 +28,7 @@ namespace TraktNet.Objects.Post
             _showsWithNotes = new List<PostBuilderObjectWithNotes<ITraktShow>>();
             _persons = new List<ITraktPerson>();
             _showsWithSeasons = new PostBuilderShowAddedSeasons<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost>(this);
-            _showsWithSeasonsCollection = new PostBuilderShowAddedSeasonsCollection<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost, PostSeasons>(this);
+            _showsWithSeasonsCollection = new PostBuilderShowAddedSeasonsCollection<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost, PostSeasonsOld>(this);
         }
 
         public ITraktUserPersonalListItemsPostBuilder WithMovie(ITraktMovie movie)
@@ -156,7 +156,7 @@ namespace TraktNet.Objects.Post
             return _showsWithSeasons;
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost, PostSeasons> WithShowAndSeasonsCollection(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost, PostSeasonsOld> WithShowAndSeasonsCollection(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -214,7 +214,7 @@ namespace TraktNet.Objects.Post
             foreach (PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>> showEntry in _showsWithSeasons.ShowsWithSeasons)
                 (userPersonalListItemsPost.Shows as List<ITraktUserPersonalListItemsPostShow>).Add(CreateUserPersonalListItemsPostShowWithSeasons(showEntry.Object, showEntry.Seasons));
 
-            foreach (PostBuilderObjectWithSeasons<ITraktShow, PostSeasons> showEntry in _showsWithSeasonsCollection.ShowsWithSeasonsCollection)
+            foreach (PostBuilderObjectWithSeasons<ITraktShow, PostSeasonsOld> showEntry in _showsWithSeasonsCollection.ShowsWithSeasonsCollection)
                 (userPersonalListItemsPost.Shows as List<ITraktUserPersonalListItemsPostShow>).Add(CreateUserPersonalListItemsPostShowWithSeasonsCollection(showEntry.Object, showEntry.Seasons));
 
             foreach (PostBuilderObjectWithNotes<ITraktShow> showWithNotes in _showsWithNotes)
@@ -265,7 +265,7 @@ namespace TraktNet.Objects.Post
             return userPersonalListItemsPostShow;
         }
 
-        private ITraktUserPersonalListItemsPostShow CreateUserPersonalListItemsPostShowWithSeasonsCollection(ITraktShow show, PostSeasons seasons)
+        private ITraktUserPersonalListItemsPostShow CreateUserPersonalListItemsPostShowWithSeasonsCollection(ITraktShow show, PostSeasonsOld seasons)
         {
             var userPersonalListItemsPostShow = CreateUserPersonalListItemsPostShow(show);
 
@@ -290,11 +290,11 @@ namespace TraktNet.Objects.Post
             return userPersonalListItemsPostShowSeasons;
         }
 
-        private IEnumerable<ITraktUserPersonalListItemsPostShowSeason> CreateUserPersonalListItemsPostShowSeasons(PostSeasons seasons)
+        private IEnumerable<ITraktUserPersonalListItemsPostShowSeason> CreateUserPersonalListItemsPostShowSeasons(PostSeasonsOld seasons)
         {
             var userPersonalListItemsPostShowSeasons = new List<ITraktUserPersonalListItemsPostShowSeason>();
 
-            foreach (PostSeason season in seasons)
+            foreach (PostSeasonOld season in seasons)
             {
                 var userPersonalListItemsPostShowSeason = new TraktUserPersonalListItemsPostShowSeason
                 {
@@ -305,7 +305,7 @@ namespace TraktNet.Objects.Post
                 {
                     var userPersonalListItemsPostShowEpisodes = new List<ITraktUserPersonalListItemsPostShowEpisode>();
 
-                    foreach (PostEpisode episode in season.Episodes)
+                    foreach (PostEpisodeOld episode in season.Episodes)
                     {
                         userPersonalListItemsPostShowEpisodes.Add(new TraktUserPersonalListItemsPostShowEpisode
                         {

@@ -14,7 +14,7 @@
           ITraktPostBuilderWithShow<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost>,
           ITraktPostBuilderWithShows<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost>,
           ITraktPostBuilderShowWithSeasons<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost>,
-          ITraktPostBuilderShowWithSeasonsCollection<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost, PostSeasons>,
+          ITraktPostBuilderShowWithSeasonsCollection<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost, PostSeasonsOld>,
           ITraktPostBuilderShowWithNotes<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost>,
           ITraktPostBuilderWithShowsWithNotes<ITraktUserPersonalListItemsPostBuilder, ITraktUserPersonalListItemsPost>
     {

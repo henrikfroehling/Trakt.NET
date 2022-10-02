@@ -479,10 +479,10 @@
                 }
             };
 
-            var seasons = new PostSeasons
+            var seasons = new PostSeasonsOld
             {
                 1,
-                { 2, new PostEpisodes { 1, 2 } }
+                { 2, new PostEpisodesOld { 1, 2 } }
             };
 
             ITraktUserPersonalListItemsPost userPersonalListItemsPost = TraktPost.NewUserPersonalListItemsPost()

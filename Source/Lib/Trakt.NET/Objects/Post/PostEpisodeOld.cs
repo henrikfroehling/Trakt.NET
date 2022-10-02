@@ -4,25 +4,25 @@
     using System;
 
     /// <summary>Contains an episode number, optional metadata about the episode and an optional datetime.</summary>
-    public sealed class PostEpisode
+    public sealed class PostEpisodeOld
     {
-        /// <summary>Initializes a new instance of the <see cref="PostEpisode" /> class.</summary>
-        public PostEpisode() : this(-1) { }
+        /// <summary>Initializes a new instance of the <see cref="PostEpisodeOld" /> class.</summary>
+        public PostEpisodeOld() : this(-1) { }
 
-        /// <summary>Initializes a new instance of the <see cref="PostEpisode" /> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="PostEpisodeOld" /> class.</summary>
         /// <param name="number">The number of this episode.</param>
-        public PostEpisode(int number) : this(number, null) { }
+        public PostEpisodeOld(int number) : this(number, null) { }
 
-        /// <summary>Initializes a new instance of the <see cref="PostEpisode" /> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="PostEpisodeOld" /> class.</summary>
         /// <param name="number">The number of this episode.</param>
         /// <param name="metadata">Metadata about the episode.</param>
-        public PostEpisode(int number, ITraktMetadata metadata) : this(number, metadata, null) { }
+        public PostEpisodeOld(int number, ITraktMetadata metadata) : this(number, metadata, null) { }
 
-        /// <summary>Initializes a new instance of the <see cref="PostEpisode" /> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="PostEpisodeOld" /> class.</summary>
         /// <param name="number">The number of this episode.</param>
         /// <param name="metadata">Metadata about the episode.</param>
         /// <param name="at">An UTC datetime.</param>
-        public PostEpisode(int number, ITraktMetadata metadata, DateTime? at)
+        public PostEpisodeOld(int number, ITraktMetadata metadata, DateTime? at)
         {
             Number = number;
             Metadata = metadata;

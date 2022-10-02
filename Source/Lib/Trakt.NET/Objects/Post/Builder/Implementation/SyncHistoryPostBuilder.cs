@@ -32,7 +32,7 @@
 
         internal SyncHistoryPostBuilder()
         {
-            _movies = new Lazy<List<ITraktMovie>>(() => new List<ITraktMovie>());
+            _movies = new Lazy<List<ITraktMovie>>();
             _movieIds = new Lazy<List<ITraktMovieIds>>();
             _moviesWatchedAt = new Lazy<List<WatchedMovie>>();
             _movieIdsWatchedAt = new Lazy<List<WatchedMovieIds>>();

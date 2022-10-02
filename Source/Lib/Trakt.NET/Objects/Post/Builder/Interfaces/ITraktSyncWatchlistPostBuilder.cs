@@ -12,7 +12,7 @@
           ITraktPostBuilderWithShow<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
           ITraktPostBuilderWithShows<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
           ITraktPostBuilderShowWithSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
-          ITraktPostBuilderShowWithSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons>,
+          ITraktPostBuilderShowWithSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasonsOld>,
           ITraktPostBuilderShowWithNotes<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
           ITraktPostBuilderWithShowsWithNotes<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,
           ITraktPostBuilderWithEpisode<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>,

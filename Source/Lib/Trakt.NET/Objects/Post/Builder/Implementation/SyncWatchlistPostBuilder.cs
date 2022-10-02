@@ -19,7 +19,7 @@
         private readonly List<ITraktEpisode> _episodes;
         private readonly List<PostBuilderObjectWithNotes<ITraktEpisode>> _episodesWithNotes;
         private readonly PostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> _showsWithSeasons;
-        private readonly PostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> _showsWithSeasonsCollection;
+        private readonly PostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasonsOld> _showsWithSeasonsCollection;
 
         internal SyncWatchlistPostBuilder()
         {
@@ -30,7 +30,7 @@
             _episodes = new List<ITraktEpisode>();
             _episodesWithNotes = new List<PostBuilderObjectWithNotes<ITraktEpisode>>();
             _showsWithSeasons = new PostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>(this);
-            _showsWithSeasonsCollection = new PostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons>(this);
+            _showsWithSeasonsCollection = new PostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasonsOld>(this);
         }
 
         public ITraktSyncWatchlistPostBuilder WithMovie(ITraktMovie movie)
@@ -158,7 +158,7 @@
             return _showsWithSeasons;
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasons> WithShowAndSeasonsCollection(ITraktShow show)
+        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasonsOld> WithShowAndSeasonsCollection(ITraktShow show)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
@@ -256,7 +256,7 @@
             foreach (PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>> showEntry in _showsWithSeasons.ShowsWithSeasons)
                 (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>).Add(CreateSyncWatchlistPostShowWithSeasons(showEntry.Object, showEntry.Seasons));
 
-            foreach (PostBuilderObjectWithSeasons<ITraktShow, PostSeasons> showEntry in _showsWithSeasonsCollection.ShowsWithSeasonsCollection)
+            foreach (PostBuilderObjectWithSeasons<ITraktShow, PostSeasonsOld> showEntry in _showsWithSeasonsCollection.ShowsWithSeasonsCollection)
                 (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>).Add(CreateSyncWatchlistPostShowWithSeasonsCollection(showEntry.Object, showEntry.Seasons));
 
             foreach (PostBuilderObjectWithNotes<ITraktShow> showWithNotes in _showsWithNotes)
@@ -314,7 +314,7 @@
             return syncWatchlistPostShow;
         }
 
-        private ITraktSyncWatchlistPostShow CreateSyncWatchlistPostShowWithSeasonsCollection(ITraktShow show, PostSeasons seasons)
+        private ITraktSyncWatchlistPostShow CreateSyncWatchlistPostShowWithSeasonsCollection(ITraktShow show, PostSeasonsOld seasons)
         {
             var syncWatchlistPostShow = CreateSyncWatchlistPostShow(show);
 
@@ -339,11 +339,11 @@
             return syncWatchlistPostShowSeasons;
         }
 
-        private IEnumerable<ITraktSyncWatchlistPostShowSeason> CreateSyncWatchlistPostShowSeasons(PostSeasons seasons)
+        private IEnumerable<ITraktSyncWatchlistPostShowSeason> CreateSyncWatchlistPostShowSeasons(PostSeasonsOld seasons)
         {
             var syncWatchlistPostShowSeasons = new List<ITraktSyncWatchlistPostShowSeason>();
 
-            foreach (PostSeason season in seasons)
+            foreach (PostSeasonOld season in seasons)
             {
                 var syncWatchlistPostShowSeason = new TraktSyncWatchlistPostShowSeason
                 {
@@ -354,7 +354,7 @@
                 {
                     var syncWatchlistPostShowEpisodes = new List<ITraktSyncWatchlistPostShowEpisode>();
 
-                    foreach (PostEpisode episode in season.Episodes)
+                    foreach (PostEpisodeOld episode in season.Episodes)
                     {
                         syncWatchlistPostShowEpisodes.Add(new TraktSyncWatchlistPostShowEpisode
                         {

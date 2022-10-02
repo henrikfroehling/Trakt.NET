@@ -8,14 +8,14 @@
     /// </summary>
     public sealed class PostHistorySeason
     {
-        /// <summary>Gets or sets the number of this season.</summary>
-        public int Number { get; set; }
+        /// <summary>Gets the number of this season.</summary>
+        public int Number { get; }
 
-        /// <summary>Gets or sets the optional UTC datetime, when this season was watched.</summary>
-        public DateTime? WatchedAt { get; set; }
+        /// <summary>Gets the optional UTC datetime, when this season was watched.</summary>
+        public DateTime? WatchedAt { get; }
 
-        /// <summary>Gets or sets a list of episode numbers. See also <see cref="PostHistoryEpisodes" />.</summary>
-        public PostHistoryEpisodes Episodes { get; set; }
+        /// <summary>Gets a list of episode numbers. See also <see cref="PostHistoryEpisodes" />.</summary>
+        public PostHistoryEpisodes Episodes { get; }
 
         /// <summary>Initializes a new instance of the <see cref="PostHistorySeason" /> class.</summary>
         /// <param name="number">The number of this season.</param>
