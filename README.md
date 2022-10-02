@@ -58,16 +58,6 @@ or with the [NuGet Package Management](https://docs.nuget.org/consume/package-ma
 Each release will also be published in [Releases](https://github.com/henrikfroehling/Trakt.NET/releases).
 
 ---
-### Packages
-
-You can also get the latest built packages here: https://github.com/henrikfroehling/Trakt.NET/packages
-
-There are three types of packages:
-- with suffix `release.preview.{latest-build-number}`: Latest package preview of the next upcoming planned version.
-- with suffix `developer.preview.{latest-build-number}`: Latest package with the latest library changes. These might not be stable.
-- without suffix: Actual released version packages.
-
----
 ### Examples
     
 Examples can be found here: https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples
