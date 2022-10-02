@@ -17,13 +17,13 @@
             ITraktShow show = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowAndSeasons(show, SHOW_SEASONS_1)
+                .WithShowAndSeasons(show, TraktPost_Tests_Common_Data.COLLECTION_SHOW_SEASONS_1)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowAndSeasons(SHOW_1, null)
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_1, null)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -35,13 +35,13 @@
             ITraktShowIds showIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowAndSeasons(showIds, SHOW_SEASONS_1)
+                .WithShowAndSeasons(showIds, TraktPost_Tests_Common_Data.COLLECTION_SHOW_SEASONS_1)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowAndSeasons(SHOW_IDS_1, null)
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_IDS_1, null)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();

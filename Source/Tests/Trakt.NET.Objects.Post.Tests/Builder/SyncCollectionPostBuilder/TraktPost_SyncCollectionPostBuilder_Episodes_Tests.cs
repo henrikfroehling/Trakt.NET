@@ -14,7 +14,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisode_ITraktEpisode()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisode(EPISODE_1)
+                .WithEpisode(TraktPost_Tests_Common_Data.EPISODE_1)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -22,11 +22,11 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_1.Ids.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_1.Ids.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_1.Ids.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_1.Ids.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_1.Ids.Tmdb);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tmdb);
             postEpisode.CollectedAt.Should().BeNull();
             postEpisode.Audio.Should().BeNull();
             postEpisode.AudioChannels.Should().BeNull();
@@ -44,7 +44,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisode_ITraktEpisodeIds()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisode(EPISODE_IDS_1)
+                .WithEpisode(TraktPost_Tests_Common_Data.EPISODE_IDS_1)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -52,11 +52,11 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_IDS_1.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_IDS_1.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_IDS_1.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_IDS_1.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_IDS_1.Tmdb);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
             postEpisode.CollectedAt.Should().BeNull();
             postEpisode.Audio.Should().BeNull();
             postEpisode.AudioChannels.Should().BeNull();
@@ -74,7 +74,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeCollectedAt_ITraktEpisode()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeCollectedAt(EPISODE_1, COLLECTED_AT)
+                .WithEpisodeCollectedAt(TraktPost_Tests_Common_Data.EPISODE_1, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -82,12 +82,12 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_1.Ids.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_1.Ids.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_1.Ids.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_1.Ids.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_1.Ids.Tmdb);
-            postEpisode.CollectedAt.Should().Be(COLLECTED_AT);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tmdb);
+            postEpisode.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
             postEpisode.Audio.Should().BeNull();
             postEpisode.AudioChannels.Should().BeNull();
             postEpisode.MediaType.Should().BeNull();
@@ -104,7 +104,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeCollectedAt_ITraktEpisodeIds()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeCollectedAt(EPISODE_IDS_1, COLLECTED_AT)
+                .WithEpisodeCollectedAt(TraktPost_Tests_Common_Data.EPISODE_IDS_1, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -112,12 +112,12 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_IDS_1.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_IDS_1.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_IDS_1.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_IDS_1.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_IDS_1.Tmdb);
-            postEpisode.CollectedAt.Should().Be(COLLECTED_AT);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
+            postEpisode.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
             postEpisode.Audio.Should().BeNull();
             postEpisode.AudioChannels.Should().BeNull();
             postEpisode.MediaType.Should().BeNull();
@@ -134,7 +134,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeCollectedAt_CollectedEpisode()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeCollectedAt(new CollectedEpisode(EPISODE_1, COLLECTED_AT))
+                .WithEpisodeCollectedAt(new CollectedEpisode(TraktPost_Tests_Common_Data.EPISODE_1, TraktPost_Tests_Common_Data.COLLECTED_AT))
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -142,12 +142,12 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_1.Ids.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_1.Ids.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_1.Ids.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_1.Ids.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_1.Ids.Tmdb);
-            postEpisode.CollectedAt.Should().Be(COLLECTED_AT);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tmdb);
+            postEpisode.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
             postEpisode.Audio.Should().BeNull();
             postEpisode.AudioChannels.Should().BeNull();
             postEpisode.MediaType.Should().BeNull();
@@ -164,7 +164,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeCollectedAt_CollectedEpisodeIds()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeCollectedAt(new CollectedEpisodeIds(EPISODE_IDS_1, COLLECTED_AT))
+                .WithEpisodeCollectedAt(new CollectedEpisodeIds(TraktPost_Tests_Common_Data.EPISODE_IDS_1, TraktPost_Tests_Common_Data.COLLECTED_AT))
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -172,12 +172,12 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_IDS_1.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_IDS_1.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_IDS_1.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_IDS_1.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_IDS_1.Tmdb);
-            postEpisode.CollectedAt.Should().Be(COLLECTED_AT);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
+            postEpisode.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
             postEpisode.Audio.Should().BeNull();
             postEpisode.AudioChannels.Should().BeNull();
             postEpisode.MediaType.Should().BeNull();
@@ -194,7 +194,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeWithMetadata_ITraktEpisode()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadata(EPISODE_1, METADATA)
+                .WithEpisodeWithMetadata(TraktPost_Tests_Common_Data.EPISODE_1, TraktPost_Tests_Common_Data.METADATA)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -202,18 +202,18 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_1.Ids.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_1.Ids.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_1.Ids.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_1.Ids.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_1.Ids.Tmdb);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tmdb);
             postEpisode.CollectedAt.Should().BeNull();
-            postEpisode.Audio.Should().Be(METADATA.Audio);
-            postEpisode.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode.HDR.Should().Be(METADATA.HDR);
-            postEpisode.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();
@@ -224,7 +224,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeWithMetadata_ITraktEpisodeIds()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadata(EPISODE_IDS_1, METADATA)
+                .WithEpisodeWithMetadata(TraktPost_Tests_Common_Data.EPISODE_IDS_1, TraktPost_Tests_Common_Data.METADATA)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -232,18 +232,18 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_IDS_1.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_IDS_1.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_IDS_1.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_IDS_1.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_IDS_1.Tmdb);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
             postEpisode.CollectedAt.Should().BeNull();
-            postEpisode.Audio.Should().Be(METADATA.Audio);
-            postEpisode.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode.HDR.Should().Be(METADATA.HDR);
-            postEpisode.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();
@@ -254,7 +254,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeWithMetadata_EpisodeWithMetadata()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadata(new EpisodeWithMetadata(EPISODE_1, METADATA))
+                .WithEpisodeWithMetadata(new EpisodeWithMetadata(TraktPost_Tests_Common_Data.EPISODE_1, TraktPost_Tests_Common_Data.METADATA))
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -262,18 +262,18 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_1.Ids.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_1.Ids.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_1.Ids.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_1.Ids.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_1.Ids.Tmdb);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tmdb);
             postEpisode.CollectedAt.Should().BeNull();
-            postEpisode.Audio.Should().Be(METADATA.Audio);
-            postEpisode.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode.HDR.Should().Be(METADATA.HDR);
-            postEpisode.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();
@@ -284,7 +284,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeWithMetadata_EpisodeIdsWithMetadata()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadata(new EpisodeIdsWithMetadata(EPISODE_IDS_1, METADATA))
+                .WithEpisodeWithMetadata(new EpisodeIdsWithMetadata(TraktPost_Tests_Common_Data.EPISODE_IDS_1, TraktPost_Tests_Common_Data.METADATA))
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -292,18 +292,18 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_IDS_1.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_IDS_1.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_IDS_1.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_IDS_1.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_IDS_1.Tmdb);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
             postEpisode.CollectedAt.Should().BeNull();
-            postEpisode.Audio.Should().Be(METADATA.Audio);
-            postEpisode.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode.HDR.Should().Be(METADATA.HDR);
-            postEpisode.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();
@@ -314,7 +314,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeWithMetadataAndCollectedAt_ITraktEpisode()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadataCollectedAt(EPISODE_1, METADATA, COLLECTED_AT)
+                .WithEpisodeWithMetadataCollectedAt(TraktPost_Tests_Common_Data.EPISODE_1, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -322,18 +322,18 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_1.Ids.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_1.Ids.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_1.Ids.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_1.Ids.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_1.Ids.Tmdb);
-            postEpisode.CollectedAt.Should().Be(COLLECTED_AT);
-            postEpisode.Audio.Should().Be(METADATA.Audio);
-            postEpisode.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode.HDR.Should().Be(METADATA.HDR);
-            postEpisode.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tmdb);
+            postEpisode.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
+            postEpisode.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();
@@ -344,7 +344,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeWithMetadataAndCollectedAt_ITraktEpisodeIds()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadataCollectedAt(EPISODE_IDS_1, METADATA, COLLECTED_AT)
+                .WithEpisodeWithMetadataCollectedAt(TraktPost_Tests_Common_Data.EPISODE_IDS_1, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -352,18 +352,18 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_IDS_1.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_IDS_1.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_IDS_1.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_IDS_1.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_IDS_1.Tmdb);
-            postEpisode.CollectedAt.Should().Be(COLLECTED_AT);
-            postEpisode.Audio.Should().Be(METADATA.Audio);
-            postEpisode.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode.HDR.Should().Be(METADATA.HDR);
-            postEpisode.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
+            postEpisode.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
+            postEpisode.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();
@@ -374,7 +374,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeWithMetadataAndCollectedAt_CollectedEpisodeWithMetadata()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadataCollectedAt(new CollectedEpisodeWithMetadata(EPISODE_1, METADATA, COLLECTED_AT))
+                .WithEpisodeWithMetadataCollectedAt(new CollectedEpisodeWithMetadata(TraktPost_Tests_Common_Data.EPISODE_1, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT))
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -382,18 +382,18 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_1.Ids.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_1.Ids.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_1.Ids.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_1.Ids.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_1.Ids.Tmdb);
-            postEpisode.CollectedAt.Should().Be(COLLECTED_AT);
-            postEpisode.Audio.Should().Be(METADATA.Audio);
-            postEpisode.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode.HDR.Should().Be(METADATA.HDR);
-            postEpisode.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tmdb);
+            postEpisode.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
+            postEpisode.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();
@@ -404,7 +404,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodeWithMetadataAndCollectedAt_CollectedEpisodeIdsWithMetadata()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadataCollectedAt(new CollectedEpisodeIdsWithMetadata(EPISODE_IDS_1, METADATA, COLLECTED_AT))
+                .WithEpisodeWithMetadataCollectedAt(new CollectedEpisodeIdsWithMetadata(TraktPost_Tests_Common_Data.EPISODE_IDS_1, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT))
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -412,18 +412,18 @@
 
             ITraktSyncCollectionPostEpisode postEpisode = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode.Ids.Should().NotBeNull();
-            postEpisode.Ids.Trakt.Should().Be(EPISODE_IDS_1.Trakt);
-            postEpisode.Ids.Imdb.Should().Be(EPISODE_IDS_1.Imdb);
-            postEpisode.Ids.Tvdb.Should().Be(EPISODE_IDS_1.Tvdb);
-            postEpisode.Ids.TvRage.Should().Be(EPISODE_IDS_1.TvRage);
-            postEpisode.Ids.Tmdb.Should().Be(EPISODE_IDS_1.Tmdb);
-            postEpisode.CollectedAt.Should().Be(COLLECTED_AT);
-            postEpisode.Audio.Should().Be(METADATA.Audio);
-            postEpisode.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode.HDR.Should().Be(METADATA.HDR);
-            postEpisode.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            postEpisode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            postEpisode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            postEpisode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            postEpisode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
+            postEpisode.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
+            postEpisode.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();
@@ -434,7 +434,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodes_ITraktEpisode()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodes(EPISODES)
+                .WithEpisodes(TraktPost_Tests_Common_Data.EPISODES)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -442,11 +442,11 @@
 
             ITraktSyncCollectionPostEpisode postEpisode1 = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode1.Ids.Should().NotBeNull();
-            postEpisode1.Ids.Trakt.Should().Be(EPISODE_1.Ids.Trakt);
-            postEpisode1.Ids.Imdb.Should().Be(EPISODE_1.Ids.Imdb);
-            postEpisode1.Ids.Tvdb.Should().Be(EPISODE_1.Ids.Tvdb);
-            postEpisode1.Ids.TvRage.Should().Be(EPISODE_1.Ids.TvRage);
-            postEpisode1.Ids.Tmdb.Should().Be(EPISODE_1.Ids.Tmdb);
+            postEpisode1.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Trakt);
+            postEpisode1.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Imdb);
+            postEpisode1.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tvdb);
+            postEpisode1.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.TvRage);
+            postEpisode1.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tmdb);
             postEpisode1.CollectedAt.Should().BeNull();
             postEpisode1.Audio.Should().BeNull();
             postEpisode1.AudioChannels.Should().BeNull();
@@ -457,11 +457,11 @@
 
             ITraktSyncCollectionPostEpisode postEpisode2 = syncCollectionPost.Episodes.ToArray()[1];
             postEpisode2.Ids.Should().NotBeNull();
-            postEpisode2.Ids.Trakt.Should().Be(EPISODE_2.Ids.Trakt);
-            postEpisode2.Ids.Imdb.Should().Be(EPISODE_2.Ids.Imdb);
-            postEpisode2.Ids.Tvdb.Should().Be(EPISODE_2.Ids.Tvdb);
-            postEpisode2.Ids.TvRage.Should().Be(EPISODE_2.Ids.TvRage);
-            postEpisode2.Ids.Tmdb.Should().Be(EPISODE_2.Ids.Tmdb);
+            postEpisode2.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Trakt);
+            postEpisode2.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Imdb);
+            postEpisode2.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Tvdb);
+            postEpisode2.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.TvRage);
+            postEpisode2.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Tmdb);
             postEpisode2.CollectedAt.Should().BeNull();
             postEpisode2.Audio.Should().BeNull();
             postEpisode2.AudioChannels.Should().BeNull();
@@ -479,7 +479,7 @@
         public void Test_TraktPost_SyncCollectionPostBuilder_WithEpisodes_ITraktEpisodeIds()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
-                .WithEpisodes(EPISODE_IDS)
+                .WithEpisodes(TraktPost_Tests_Common_Data.EPISODE_IDS)
                 .Build();
 
             syncCollectionPost.Should().NotBeNull();
@@ -487,11 +487,11 @@
 
             ITraktSyncCollectionPostEpisode postEpisode1 = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode1.Ids.Should().NotBeNull();
-            postEpisode1.Ids.Trakt.Should().Be(EPISODE_IDS_1.Trakt);
-            postEpisode1.Ids.Imdb.Should().Be(EPISODE_IDS_1.Imdb);
-            postEpisode1.Ids.Tvdb.Should().Be(EPISODE_IDS_1.Tvdb);
-            postEpisode1.Ids.TvRage.Should().Be(EPISODE_IDS_1.TvRage);
-            postEpisode1.Ids.Tmdb.Should().Be(EPISODE_IDS_1.Tmdb);
+            postEpisode1.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            postEpisode1.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            postEpisode1.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            postEpisode1.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            postEpisode1.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
             postEpisode1.CollectedAt.Should().BeNull();
             postEpisode1.Audio.Should().BeNull();
             postEpisode1.AudioChannels.Should().BeNull();
@@ -502,11 +502,11 @@
 
             ITraktSyncCollectionPostEpisode postEpisode2 = syncCollectionPost.Episodes.ToArray()[1];
             postEpisode2.Ids.Should().NotBeNull();
-            postEpisode2.Ids.Trakt.Should().Be(EPISODE_IDS_2.Trakt);
-            postEpisode2.Ids.Imdb.Should().Be(EPISODE_IDS_2.Imdb);
-            postEpisode2.Ids.Tvdb.Should().Be(EPISODE_IDS_2.Tvdb);
-            postEpisode2.Ids.TvRage.Should().Be(EPISODE_IDS_2.TvRage);
-            postEpisode2.Ids.Tmdb.Should().Be(EPISODE_IDS_2.Tmdb);
+            postEpisode2.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Trakt);
+            postEpisode2.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Imdb);
+            postEpisode2.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Tvdb);
+            postEpisode2.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.TvRage);
+            postEpisode2.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Tmdb);
             postEpisode2.CollectedAt.Should().BeNull();
             postEpisode2.Audio.Should().BeNull();
             postEpisode2.AudioChannels.Should().BeNull();
@@ -526,8 +526,8 @@
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
                 .WithEpisodesCollectedAt(new List<CollectedEpisode>
                 {
-                    new CollectedEpisode(EPISODE_1, COLLECTED_AT),
-                    new CollectedEpisode(EPISODE_2, COLLECTED_AT)
+                    new CollectedEpisode(TraktPost_Tests_Common_Data.EPISODE_1, TraktPost_Tests_Common_Data.COLLECTED_AT),
+                    new CollectedEpisode(TraktPost_Tests_Common_Data.EPISODE_2, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 })
                 .Build();
 
@@ -536,12 +536,12 @@
 
             ITraktSyncCollectionPostEpisode postEpisode1 = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode1.Ids.Should().NotBeNull();
-            postEpisode1.Ids.Trakt.Should().Be(EPISODE_1.Ids.Trakt);
-            postEpisode1.Ids.Imdb.Should().Be(EPISODE_1.Ids.Imdb);
-            postEpisode1.Ids.Tvdb.Should().Be(EPISODE_1.Ids.Tvdb);
-            postEpisode1.Ids.TvRage.Should().Be(EPISODE_1.Ids.TvRage);
-            postEpisode1.Ids.Tmdb.Should().Be(EPISODE_1.Ids.Tmdb);
-            postEpisode1.CollectedAt.Should().Be(COLLECTED_AT);
+            postEpisode1.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Trakt);
+            postEpisode1.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Imdb);
+            postEpisode1.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tvdb);
+            postEpisode1.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.TvRage);
+            postEpisode1.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tmdb);
+            postEpisode1.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
             postEpisode1.Audio.Should().BeNull();
             postEpisode1.AudioChannels.Should().BeNull();
             postEpisode1.MediaType.Should().BeNull();
@@ -551,12 +551,12 @@
 
             ITraktSyncCollectionPostEpisode postEpisode2 = syncCollectionPost.Episodes.ToArray()[1];
             postEpisode2.Ids.Should().NotBeNull();
-            postEpisode2.Ids.Trakt.Should().Be(EPISODE_2.Ids.Trakt);
-            postEpisode2.Ids.Imdb.Should().Be(EPISODE_2.Ids.Imdb);
-            postEpisode2.Ids.Tvdb.Should().Be(EPISODE_2.Ids.Tvdb);
-            postEpisode2.Ids.TvRage.Should().Be(EPISODE_2.Ids.TvRage);
-            postEpisode2.Ids.Tmdb.Should().Be(EPISODE_2.Ids.Tmdb);
-            postEpisode2.CollectedAt.Should().Be(COLLECTED_AT);
+            postEpisode2.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Trakt);
+            postEpisode2.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Imdb);
+            postEpisode2.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Tvdb);
+            postEpisode2.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.TvRage);
+            postEpisode2.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Tmdb);
+            postEpisode2.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
             postEpisode2.Audio.Should().BeNull();
             postEpisode2.AudioChannels.Should().BeNull();
             postEpisode2.MediaType.Should().BeNull();
@@ -575,8 +575,8 @@
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
                 .WithEpisodesCollectedAt(new List<CollectedEpisodeIds>
                 {
-                    new CollectedEpisodeIds(EPISODE_IDS_1, COLLECTED_AT),
-                    new CollectedEpisodeIds(EPISODE_IDS_2, COLLECTED_AT)
+                    new CollectedEpisodeIds(TraktPost_Tests_Common_Data.EPISODE_IDS_1, TraktPost_Tests_Common_Data.COLLECTED_AT),
+                    new CollectedEpisodeIds(TraktPost_Tests_Common_Data.EPISODE_IDS_2, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 })
                 .Build();
 
@@ -585,12 +585,12 @@
 
             ITraktSyncCollectionPostEpisode postEpisode1 = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode1.Ids.Should().NotBeNull();
-            postEpisode1.Ids.Trakt.Should().Be(EPISODE_IDS_1.Trakt);
-            postEpisode1.Ids.Imdb.Should().Be(EPISODE_IDS_1.Imdb);
-            postEpisode1.Ids.Tvdb.Should().Be(EPISODE_IDS_1.Tvdb);
-            postEpisode1.Ids.TvRage.Should().Be(EPISODE_IDS_1.TvRage);
-            postEpisode1.Ids.Tmdb.Should().Be(EPISODE_IDS_1.Tmdb);
-            postEpisode1.CollectedAt.Should().Be(COLLECTED_AT);
+            postEpisode1.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            postEpisode1.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            postEpisode1.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            postEpisode1.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            postEpisode1.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
+            postEpisode1.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
             postEpisode1.Audio.Should().BeNull();
             postEpisode1.AudioChannels.Should().BeNull();
             postEpisode1.MediaType.Should().BeNull();
@@ -600,12 +600,12 @@
 
             ITraktSyncCollectionPostEpisode postEpisode2 = syncCollectionPost.Episodes.ToArray()[1];
             postEpisode2.Ids.Should().NotBeNull();
-            postEpisode2.Ids.Trakt.Should().Be(EPISODE_IDS_2.Trakt);
-            postEpisode2.Ids.Imdb.Should().Be(EPISODE_IDS_2.Imdb);
-            postEpisode2.Ids.Tvdb.Should().Be(EPISODE_IDS_2.Tvdb);
-            postEpisode2.Ids.TvRage.Should().Be(EPISODE_IDS_2.TvRage);
-            postEpisode2.Ids.Tmdb.Should().Be(EPISODE_IDS_2.Tmdb);
-            postEpisode2.CollectedAt.Should().Be(COLLECTED_AT);
+            postEpisode2.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Trakt);
+            postEpisode2.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Imdb);
+            postEpisode2.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Tvdb);
+            postEpisode2.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.TvRage);
+            postEpisode2.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Tmdb);
+            postEpisode2.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
             postEpisode2.Audio.Should().BeNull();
             postEpisode2.AudioChannels.Should().BeNull();
             postEpisode2.MediaType.Should().BeNull();
@@ -624,8 +624,8 @@
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
                 .WithEpisodesWithMetadata(new List<EpisodeWithMetadata>
                 {
-                    new EpisodeWithMetadata(EPISODE_1, METADATA),
-                    new EpisodeWithMetadata(EPISODE_2, METADATA)
+                    new EpisodeWithMetadata(TraktPost_Tests_Common_Data.EPISODE_1, TraktPost_Tests_Common_Data.METADATA),
+                    new EpisodeWithMetadata(TraktPost_Tests_Common_Data.EPISODE_2, TraktPost_Tests_Common_Data.METADATA)
                 })
                 .Build();
 
@@ -634,33 +634,33 @@
 
             ITraktSyncCollectionPostEpisode postEpisode1 = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode1.Ids.Should().NotBeNull();
-            postEpisode1.Ids.Trakt.Should().Be(EPISODE_1.Ids.Trakt);
-            postEpisode1.Ids.Imdb.Should().Be(EPISODE_1.Ids.Imdb);
-            postEpisode1.Ids.Tvdb.Should().Be(EPISODE_1.Ids.Tvdb);
-            postEpisode1.Ids.TvRage.Should().Be(EPISODE_1.Ids.TvRage);
-            postEpisode1.Ids.Tmdb.Should().Be(EPISODE_1.Ids.Tmdb);
+            postEpisode1.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Trakt);
+            postEpisode1.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Imdb);
+            postEpisode1.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tvdb);
+            postEpisode1.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.TvRage);
+            postEpisode1.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tmdb);
             postEpisode1.CollectedAt.Should().BeNull();
-            postEpisode1.Audio.Should().Be(METADATA.Audio);
-            postEpisode1.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode1.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode1.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode1.HDR.Should().Be(METADATA.HDR);
-            postEpisode1.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode1.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode1.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode1.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode1.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode1.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode1.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             ITraktSyncCollectionPostEpisode postEpisode2 = syncCollectionPost.Episodes.ToArray()[1];
             postEpisode2.Ids.Should().NotBeNull();
-            postEpisode2.Ids.Trakt.Should().Be(EPISODE_2.Ids.Trakt);
-            postEpisode2.Ids.Imdb.Should().Be(EPISODE_2.Ids.Imdb);
-            postEpisode2.Ids.Tvdb.Should().Be(EPISODE_2.Ids.Tvdb);
-            postEpisode2.Ids.TvRage.Should().Be(EPISODE_2.Ids.TvRage);
-            postEpisode2.Ids.Tmdb.Should().Be(EPISODE_2.Ids.Tmdb);
+            postEpisode2.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Trakt);
+            postEpisode2.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Imdb);
+            postEpisode2.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Tvdb);
+            postEpisode2.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.TvRage);
+            postEpisode2.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Tmdb);
             postEpisode2.CollectedAt.Should().BeNull();
-            postEpisode2.Audio.Should().Be(METADATA.Audio);
-            postEpisode2.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode2.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode2.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode2.HDR.Should().Be(METADATA.HDR);
-            postEpisode2.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode2.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode2.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode2.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode2.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode2.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode2.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();
@@ -673,8 +673,8 @@
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
                 .WithEpisodesWithMetadata(new List<EpisodeIdsWithMetadata>
                 {
-                    new EpisodeIdsWithMetadata(EPISODE_IDS_1, METADATA),
-                    new EpisodeIdsWithMetadata(EPISODE_IDS_2, METADATA)
+                    new EpisodeIdsWithMetadata(TraktPost_Tests_Common_Data.EPISODE_IDS_1, TraktPost_Tests_Common_Data.METADATA),
+                    new EpisodeIdsWithMetadata(TraktPost_Tests_Common_Data.EPISODE_IDS_2, TraktPost_Tests_Common_Data.METADATA)
                 })
                 .Build();
 
@@ -683,33 +683,33 @@
 
             ITraktSyncCollectionPostEpisode postEpisode1 = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode1.Ids.Should().NotBeNull();
-            postEpisode1.Ids.Trakt.Should().Be(EPISODE_IDS_1.Trakt);
-            postEpisode1.Ids.Imdb.Should().Be(EPISODE_IDS_1.Imdb);
-            postEpisode1.Ids.Tvdb.Should().Be(EPISODE_IDS_1.Tvdb);
-            postEpisode1.Ids.TvRage.Should().Be(EPISODE_IDS_1.TvRage);
-            postEpisode1.Ids.Tmdb.Should().Be(EPISODE_IDS_1.Tmdb);
+            postEpisode1.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            postEpisode1.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            postEpisode1.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            postEpisode1.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            postEpisode1.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
             postEpisode1.CollectedAt.Should().BeNull();
-            postEpisode1.Audio.Should().Be(METADATA.Audio);
-            postEpisode1.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode1.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode1.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode1.HDR.Should().Be(METADATA.HDR);
-            postEpisode1.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode1.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode1.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode1.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode1.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode1.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode1.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             ITraktSyncCollectionPostEpisode postEpisode2 = syncCollectionPost.Episodes.ToArray()[1];
             postEpisode2.Ids.Should().NotBeNull();
-            postEpisode2.Ids.Trakt.Should().Be(EPISODE_IDS_2.Trakt);
-            postEpisode2.Ids.Imdb.Should().Be(EPISODE_IDS_2.Imdb);
-            postEpisode2.Ids.Tvdb.Should().Be(EPISODE_IDS_2.Tvdb);
-            postEpisode2.Ids.TvRage.Should().Be(EPISODE_IDS_2.TvRage);
-            postEpisode2.Ids.Tmdb.Should().Be(EPISODE_IDS_2.Tmdb);
+            postEpisode2.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Trakt);
+            postEpisode2.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Imdb);
+            postEpisode2.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Tvdb);
+            postEpisode2.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.TvRage);
+            postEpisode2.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Tmdb);
             postEpisode2.CollectedAt.Should().BeNull();
-            postEpisode2.Audio.Should().Be(METADATA.Audio);
-            postEpisode2.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode2.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode2.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode2.HDR.Should().Be(METADATA.HDR);
-            postEpisode2.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode2.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode2.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode2.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode2.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode2.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode2.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();
@@ -722,8 +722,8 @@
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
                 .WithEpisodesWithMetadataCollectedAt(new List<CollectedEpisodeWithMetadata>
                 {
-                    new CollectedEpisodeWithMetadata(EPISODE_1, METADATA, COLLECTED_AT),
-                    new CollectedEpisodeWithMetadata(EPISODE_2, METADATA, COLLECTED_AT)
+                    new CollectedEpisodeWithMetadata(TraktPost_Tests_Common_Data.EPISODE_1, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT),
+                    new CollectedEpisodeWithMetadata(TraktPost_Tests_Common_Data.EPISODE_2, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 })
                 .Build();
 
@@ -732,33 +732,33 @@
 
             ITraktSyncCollectionPostEpisode postEpisode1 = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode1.Ids.Should().NotBeNull();
-            postEpisode1.Ids.Trakt.Should().Be(EPISODE_1.Ids.Trakt);
-            postEpisode1.Ids.Imdb.Should().Be(EPISODE_1.Ids.Imdb);
-            postEpisode1.Ids.Tvdb.Should().Be(EPISODE_1.Ids.Tvdb);
-            postEpisode1.Ids.TvRage.Should().Be(EPISODE_1.Ids.TvRage);
-            postEpisode1.Ids.Tmdb.Should().Be(EPISODE_1.Ids.Tmdb);
-            postEpisode1.CollectedAt.Should().Be(COLLECTED_AT);
-            postEpisode1.Audio.Should().Be(METADATA.Audio);
-            postEpisode1.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode1.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode1.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode1.HDR.Should().Be(METADATA.HDR);
-            postEpisode1.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode1.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Trakt);
+            postEpisode1.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Imdb);
+            postEpisode1.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tvdb);
+            postEpisode1.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.TvRage);
+            postEpisode1.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_1.Ids.Tmdb);
+            postEpisode1.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
+            postEpisode1.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode1.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode1.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode1.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode1.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode1.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             ITraktSyncCollectionPostEpisode postEpisode2 = syncCollectionPost.Episodes.ToArray()[1];
             postEpisode2.Ids.Should().NotBeNull();
-            postEpisode2.Ids.Trakt.Should().Be(EPISODE_2.Ids.Trakt);
-            postEpisode2.Ids.Imdb.Should().Be(EPISODE_2.Ids.Imdb);
-            postEpisode2.Ids.Tvdb.Should().Be(EPISODE_2.Ids.Tvdb);
-            postEpisode2.Ids.TvRage.Should().Be(EPISODE_2.Ids.TvRage);
-            postEpisode2.Ids.Tmdb.Should().Be(EPISODE_2.Ids.Tmdb);
-            postEpisode2.CollectedAt.Should().Be(COLLECTED_AT);
-            postEpisode2.Audio.Should().Be(METADATA.Audio);
-            postEpisode2.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode2.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode2.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode2.HDR.Should().Be(METADATA.HDR);
-            postEpisode2.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode2.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Trakt);
+            postEpisode2.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Imdb);
+            postEpisode2.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Tvdb);
+            postEpisode2.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.TvRage);
+            postEpisode2.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_2.Ids.Tmdb);
+            postEpisode2.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
+            postEpisode2.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode2.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode2.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode2.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode2.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode2.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();
@@ -771,8 +771,8 @@
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
                 .WithEpisodesWithMetadataCollectedAt(new List<CollectedEpisodeIdsWithMetadata>
                 {
-                    new CollectedEpisodeIdsWithMetadata(EPISODE_IDS_1, METADATA, COLLECTED_AT),
-                    new CollectedEpisodeIdsWithMetadata(EPISODE_IDS_2, METADATA, COLLECTED_AT)
+                    new CollectedEpisodeIdsWithMetadata(TraktPost_Tests_Common_Data.EPISODE_IDS_1, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT),
+                    new CollectedEpisodeIdsWithMetadata(TraktPost_Tests_Common_Data.EPISODE_IDS_2, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 })
                 .Build();
 
@@ -781,33 +781,33 @@
 
             ITraktSyncCollectionPostEpisode postEpisode1 = syncCollectionPost.Episodes.ToArray()[0];
             postEpisode1.Ids.Should().NotBeNull();
-            postEpisode1.Ids.Trakt.Should().Be(EPISODE_IDS_1.Trakt);
-            postEpisode1.Ids.Imdb.Should().Be(EPISODE_IDS_1.Imdb);
-            postEpisode1.Ids.Tvdb.Should().Be(EPISODE_IDS_1.Tvdb);
-            postEpisode1.Ids.TvRage.Should().Be(EPISODE_IDS_1.TvRage);
-            postEpisode1.Ids.Tmdb.Should().Be(EPISODE_IDS_1.Tmdb);
-            postEpisode1.CollectedAt.Should().Be(COLLECTED_AT);
-            postEpisode1.Audio.Should().Be(METADATA.Audio);
-            postEpisode1.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode1.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode1.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode1.HDR.Should().Be(METADATA.HDR);
-            postEpisode1.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode1.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            postEpisode1.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            postEpisode1.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            postEpisode1.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            postEpisode1.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
+            postEpisode1.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
+            postEpisode1.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode1.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode1.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode1.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode1.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode1.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             ITraktSyncCollectionPostEpisode postEpisode2 = syncCollectionPost.Episodes.ToArray()[1];
             postEpisode2.Ids.Should().NotBeNull();
-            postEpisode2.Ids.Trakt.Should().Be(EPISODE_IDS_2.Trakt);
-            postEpisode2.Ids.Imdb.Should().Be(EPISODE_IDS_2.Imdb);
-            postEpisode2.Ids.Tvdb.Should().Be(EPISODE_IDS_2.Tvdb);
-            postEpisode2.Ids.TvRage.Should().Be(EPISODE_IDS_2.TvRage);
-            postEpisode2.Ids.Tmdb.Should().Be(EPISODE_IDS_2.Tmdb);
-            postEpisode2.CollectedAt.Should().Be(COLLECTED_AT);
-            postEpisode2.Audio.Should().Be(METADATA.Audio);
-            postEpisode2.AudioChannels.Should().Be(METADATA.AudioChannels);
-            postEpisode2.MediaType.Should().Be(METADATA.MediaType);
-            postEpisode2.MediaResolution.Should().Be(METADATA.MediaResolution);
-            postEpisode2.HDR.Should().Be(METADATA.HDR);
-            postEpisode2.ThreeDimensional.Should().Be(METADATA.ThreeDimensional);
+            postEpisode2.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Trakt);
+            postEpisode2.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Imdb);
+            postEpisode2.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Tvdb);
+            postEpisode2.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.TvRage);
+            postEpisode2.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_2.Tmdb);
+            postEpisode2.CollectedAt.Should().Be(TraktPost_Tests_Common_Data.COLLECTED_AT);
+            postEpisode2.Audio.Should().Be(TraktPost_Tests_Common_Data.METADATA.Audio);
+            postEpisode2.AudioChannels.Should().Be(TraktPost_Tests_Common_Data.METADATA.AudioChannels);
+            postEpisode2.MediaType.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaType);
+            postEpisode2.MediaResolution.Should().Be(TraktPost_Tests_Common_Data.METADATA.MediaResolution);
+            postEpisode2.HDR.Should().Be(TraktPost_Tests_Common_Data.METADATA.HDR);
+            postEpisode2.ThreeDimensional.Should().Be(TraktPost_Tests_Common_Data.METADATA.ThreeDimensional);
 
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Shows.Should().BeNull();

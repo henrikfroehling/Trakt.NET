@@ -41,7 +41,7 @@
             ITraktShow show = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowCollectedAt(show, COLLECTED_AT)
+                .WithShowCollectedAt(show, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -53,7 +53,7 @@
             ITraktShowIds showIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowCollectedAt(showIds, COLLECTED_AT)
+                .WithShowCollectedAt(showIds, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -89,13 +89,13 @@
             ITraktShow show = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowWithMetadata(show, METADATA)
+                .WithShowWithMetadata(show, TraktPost_Tests_Common_Data.METADATA)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowWithMetadata(SHOW_1, null)
+                .WithShowWithMetadata(TraktPost_Tests_Common_Data.SHOW_1, null)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -107,13 +107,13 @@
             ITraktShowIds showIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowWithMetadata(showIds, METADATA)
+                .WithShowWithMetadata(showIds, TraktPost_Tests_Common_Data.METADATA)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowWithMetadata(SHOW_1, null)
+                .WithShowWithMetadata(TraktPost_Tests_Common_Data.SHOW_1, null)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -149,13 +149,13 @@
             ITraktShow show = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowWithMetadataCollectedAt(show, METADATA, COLLECTED_AT)
+                .WithShowWithMetadataCollectedAt(show, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowWithMetadataCollectedAt(SHOW_1, null, COLLECTED_AT)
+                .WithShowWithMetadataCollectedAt(TraktPost_Tests_Common_Data.SHOW_1, null, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -167,13 +167,13 @@
             ITraktShowIds showIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowWithMetadataCollectedAt(showIds, METADATA, COLLECTED_AT)
+                .WithShowWithMetadataCollectedAt(showIds, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithShowWithMetadataCollectedAt(SHOW_1, null, COLLECTED_AT)
+                .WithShowWithMetadataCollectedAt(TraktPost_Tests_Common_Data.SHOW_1, null, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();

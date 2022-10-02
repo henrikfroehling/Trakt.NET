@@ -10,6 +10,8 @@
         /// <returns>An <see cref="ITraktSyncCollectionPostBuilder"/> instance.</returns>
         public static ITraktSyncCollectionPostBuilder NewSyncCollectionPost() => new SyncCollectionPostBuilder();
 
+        /// <summary>Creates a new <see cref="ITraktSyncHistoryPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktSyncHistoryPostBuilder"/> instance.</returns>
         public static ITraktSyncHistoryPostBuilder NewSyncHistoryPost() => new SyncHistoryPostBuilder();
 
         public static ITraktSyncHistoryRemovePostBuilder NewSyncHistoryRemovePost() => new SyncHistoryRemovePostBuilder();

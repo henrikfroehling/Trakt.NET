@@ -41,7 +41,7 @@
             ITraktSeason season = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithSeasonCollectedAt(season, COLLECTED_AT)
+                .WithSeasonCollectedAt(season, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -53,7 +53,7 @@
             ITraktSeasonIds seasonIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithSeasonCollectedAt(seasonIds, COLLECTED_AT)
+                .WithSeasonCollectedAt(seasonIds, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -89,13 +89,13 @@
             ITraktSeason season = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithSeasonWithMetadata(season, METADATA)
+                .WithSeasonWithMetadata(season, TraktPost_Tests_Common_Data.METADATA)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithSeasonWithMetadata(SEASON_1, null)
+                .WithSeasonWithMetadata(TraktPost_Tests_Common_Data.SEASON_1, null)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -107,13 +107,13 @@
             ITraktSeasonIds seasonIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithSeasonWithMetadata(seasonIds, METADATA)
+                .WithSeasonWithMetadata(seasonIds, TraktPost_Tests_Common_Data.METADATA)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithSeasonWithMetadata(SEASON_1, null)
+                .WithSeasonWithMetadata(TraktPost_Tests_Common_Data.SEASON_1, null)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -149,13 +149,13 @@
             ITraktSeason season = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithSeasonWithMetadataCollectedAt(season, METADATA, COLLECTED_AT)
+                .WithSeasonWithMetadataCollectedAt(season, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithSeasonWithMetadataCollectedAt(SEASON_1, null, COLLECTED_AT)
+                .WithSeasonWithMetadataCollectedAt(TraktPost_Tests_Common_Data.SEASON_1, null, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -167,13 +167,13 @@
             ITraktSeasonIds seasonIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithSeasonWithMetadataCollectedAt(seasonIds, METADATA, COLLECTED_AT)
+                .WithSeasonWithMetadataCollectedAt(seasonIds, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithSeasonWithMetadataCollectedAt(SEASON_1, null, COLLECTED_AT)
+                .WithSeasonWithMetadataCollectedAt(TraktPost_Tests_Common_Data.SEASON_1, null, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();

@@ -41,7 +41,7 @@
             ITraktEpisode episode = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithEpisodeCollectedAt(episode, COLLECTED_AT)
+                .WithEpisodeCollectedAt(episode, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -53,7 +53,7 @@
             ITraktEpisodeIds episodeIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithEpisodeCollectedAt(episodeIds, COLLECTED_AT)
+                .WithEpisodeCollectedAt(episodeIds, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -89,13 +89,13 @@
             ITraktEpisode episode = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadata(episode, METADATA)
+                .WithEpisodeWithMetadata(episode, TraktPost_Tests_Common_Data.METADATA)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadata(EPISODE_1, null)
+                .WithEpisodeWithMetadata(TraktPost_Tests_Common_Data.EPISODE_1, null)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -107,13 +107,13 @@
             ITraktEpisodeIds episodeIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadata(episodeIds, METADATA)
+                .WithEpisodeWithMetadata(episodeIds, TraktPost_Tests_Common_Data.METADATA)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadata(EPISODE_1, null)
+                .WithEpisodeWithMetadata(TraktPost_Tests_Common_Data.EPISODE_1, null)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -149,13 +149,13 @@
             ITraktEpisode episode = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadataCollectedAt(episode, METADATA, COLLECTED_AT)
+                .WithEpisodeWithMetadataCollectedAt(episode, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadataCollectedAt(EPISODE_1, null, COLLECTED_AT)
+                .WithEpisodeWithMetadataCollectedAt(TraktPost_Tests_Common_Data.EPISODE_1, null, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -167,13 +167,13 @@
             ITraktEpisodeIds episodeIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadataCollectedAt(episodeIds, METADATA, COLLECTED_AT)
+                .WithEpisodeWithMetadataCollectedAt(episodeIds, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithEpisodeWithMetadataCollectedAt(EPISODE_1, null, COLLECTED_AT)
+                .WithEpisodeWithMetadataCollectedAt(TraktPost_Tests_Common_Data.EPISODE_1, null, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();

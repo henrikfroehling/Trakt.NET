@@ -1,20 +1,20 @@
-﻿using TraktNet.Objects.Get.Episodes;
+﻿using System;
+using System.Collections.Generic;
+using TraktNet.Enums;
+using TraktNet.Objects.Basic;
+using TraktNet.Objects.Get.Episodes;
+using TraktNet.Objects.Get.Movies;
+using TraktNet.Objects.Get.Seasons;
+using TraktNet.Objects.Get.Shows;
 
 namespace TraktNet.Objects.Post.Tests.Builder
 {
-    using System;
-    using System.Collections.Generic;
-    using TraktNet.Enums;
-    using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.Seasons;
-    using TraktNet.Objects.Get.Shows;
-
-    public partial class TraktPost_SyncCollectionPostBuilder_Tests
+    internal static class TraktPost_Tests_Common_Data
     {
-        private readonly DateTime COLLECTED_AT = DateTime.UtcNow;
+        internal static readonly DateTime COLLECTED_AT = DateTime.UtcNow;
+        internal static readonly DateTime WATCHED_AT = DateTime.UtcNow;
 
-        private readonly ITraktMetadata METADATA = new TraktMetadata
+        internal static readonly ITraktMetadata METADATA = new TraktMetadata
         {
             Audio = TraktMediaAudio.DolbyAtmos,
             AudioChannels = TraktMediaAudioChannel.Channels_7_1,
@@ -24,7 +24,7 @@ namespace TraktNet.Objects.Post.Tests.Builder
             ThreeDimensional = true
         };
 
-        private readonly ITraktMovie MOVIE_1 = new TraktMovie
+        internal static readonly ITraktMovie MOVIE_1 = new TraktMovie
         {
             Title = "movie title 1",
             Year = 2022,
@@ -37,7 +37,7 @@ namespace TraktNet.Objects.Post.Tests.Builder
             }
         };
 
-        private readonly ITraktMovie MOVIE_2 = new TraktMovie
+        internal static readonly ITraktMovie MOVIE_2 = new TraktMovie
         {
             Title = "movie title 2",
             Year = 2022,
@@ -50,9 +50,9 @@ namespace TraktNet.Objects.Post.Tests.Builder
             }
         };
 
-        private readonly List<ITraktMovie> MOVIES;
+        internal static readonly List<ITraktMovie> MOVIES;
 
-        private readonly ITraktMovieIds MOVIE_IDS_1 = new TraktMovieIds
+        internal static readonly ITraktMovieIds MOVIE_IDS_1 = new TraktMovieIds
         {
             Trakt = 1,
             Slug = "movie-title-1",
@@ -60,7 +60,7 @@ namespace TraktNet.Objects.Post.Tests.Builder
             Tmdb = 1
         };
 
-        private readonly ITraktMovieIds MOVIE_IDS_2 = new TraktMovieIds
+        internal static readonly ITraktMovieIds MOVIE_IDS_2 = new TraktMovieIds
         {
             Trakt = 2,
             Slug = "movie-title-2",
@@ -68,9 +68,9 @@ namespace TraktNet.Objects.Post.Tests.Builder
             Tmdb = 2
         };
 
-        private readonly List<ITraktMovieIds> MOVIE_IDS;
+        internal static readonly List<ITraktMovieIds> MOVIE_IDS;
 
-        private readonly ITraktShow SHOW_1 = new TraktShow
+        internal static readonly ITraktShow SHOW_1 = new TraktShow
         {
             Title = "show title 1",
             Year = 2022,
@@ -85,7 +85,7 @@ namespace TraktNet.Objects.Post.Tests.Builder
             }
         };
 
-        private readonly ITraktShow SHOW_2 = new TraktShow
+        internal static readonly ITraktShow SHOW_2 = new TraktShow
         {
             Title = "show title 2",
             Year = 2022,
@@ -100,9 +100,9 @@ namespace TraktNet.Objects.Post.Tests.Builder
             }
         };
 
-        private readonly List<ITraktShow> SHOWS;
+        internal static readonly List<ITraktShow> SHOWS;
 
-        private readonly ITraktShowIds SHOW_IDS_1 = new TraktShowIds
+        internal static readonly ITraktShowIds SHOW_IDS_1 = new TraktShowIds
         {
             Trakt = 1,
             Slug = "show-title-1",
@@ -112,7 +112,7 @@ namespace TraktNet.Objects.Post.Tests.Builder
             TvRage = 1
         };
 
-        private readonly ITraktShowIds SHOW_IDS_2 = new TraktShowIds
+        internal static readonly ITraktShowIds SHOW_IDS_2 = new TraktShowIds
         {
             Trakt = 2,
             Slug = "show-title-2",
@@ -122,15 +122,17 @@ namespace TraktNet.Objects.Post.Tests.Builder
             TvRage = 2
         };
 
-        private readonly List<ITraktShowIds> SHOW_IDS;
+        internal static readonly List<ITraktShowIds> SHOW_IDS;
 
-        private readonly PostCollectionSeasons SHOW_SEASONS_1;
+        internal static readonly PostCollectionSeasons COLLECTION_SHOW_SEASONS_1;
 
-        private readonly PostCollectionSeasons SHOW_SEASONS_2;
+        internal static readonly PostCollectionSeasons COLLECTION_SHOW_SEASONS_2;
 
-        private readonly List<PostCollectionSeasons> SHOW_SEASONS;
+        internal static readonly PostHistorySeasons HISTORY_SHOW_SEASONS_1;
 
-        private readonly ITraktSeason SEASON_1 = new TraktSeason
+        internal static readonly PostHistorySeasons HISTORY_SHOW_SEASONS_2;
+
+        internal static readonly ITraktSeason SEASON_1 = new TraktSeason
         {
             Ids = new TraktSeasonIds
             {
@@ -141,7 +143,7 @@ namespace TraktNet.Objects.Post.Tests.Builder
             }
         };
 
-        private readonly ITraktSeason SEASON_2 = new TraktSeason
+        internal static readonly ITraktSeason SEASON_2 = new TraktSeason
         {
             Ids = new TraktSeasonIds
             {
@@ -152,9 +154,9 @@ namespace TraktNet.Objects.Post.Tests.Builder
             }
         };
 
-        private readonly List<ITraktSeason> SEASONS;
+        internal static readonly List<ITraktSeason> SEASONS;
 
-        private readonly ITraktSeasonIds SEASON_IDS_1 = new TraktSeasonIds
+        internal static readonly ITraktSeasonIds SEASON_IDS_1 = new TraktSeasonIds
         {
             Trakt = 1,
             Tmdb = 1,
@@ -162,7 +164,7 @@ namespace TraktNet.Objects.Post.Tests.Builder
             TvRage = 1
         };
 
-        private readonly ITraktSeasonIds SEASON_IDS_2 = new TraktSeasonIds
+        internal static readonly ITraktSeasonIds SEASON_IDS_2 = new TraktSeasonIds
         {
             Trakt = 2,
             Tmdb = 2,
@@ -170,9 +172,9 @@ namespace TraktNet.Objects.Post.Tests.Builder
             TvRage = 2
         };
 
-        private readonly List<ITraktSeasonIds> SEASON_IDS;
+        internal static readonly List<ITraktSeasonIds> SEASON_IDS;
 
-        private readonly ITraktEpisode EPISODE_1 = new TraktEpisode
+        internal static readonly ITraktEpisode EPISODE_1 = new TraktEpisode
         {
             Ids = new TraktEpisodeIds
             {
@@ -184,7 +186,7 @@ namespace TraktNet.Objects.Post.Tests.Builder
             }
         };
 
-        private readonly ITraktEpisode EPISODE_2 = new TraktEpisode
+        internal static readonly ITraktEpisode EPISODE_2 = new TraktEpisode
         {
             Ids = new TraktEpisodeIds
             {
@@ -196,9 +198,9 @@ namespace TraktNet.Objects.Post.Tests.Builder
             }
         };
 
-        private readonly List<ITraktEpisode> EPISODES;
+        internal static readonly List<ITraktEpisode> EPISODES;
 
-        private readonly ITraktEpisodeIds EPISODE_IDS_1 = new TraktEpisodeIds
+        internal static readonly ITraktEpisodeIds EPISODE_IDS_1 = new TraktEpisodeIds
         {
             Trakt = 1,
             Imdb = "ttepisode1title",
@@ -207,7 +209,7 @@ namespace TraktNet.Objects.Post.Tests.Builder
             TvRage = 1
         };
 
-        private readonly ITraktEpisodeIds EPISODE_IDS_2 = new TraktEpisodeIds
+        internal static readonly ITraktEpisodeIds EPISODE_IDS_2 = new TraktEpisodeIds
         {
             Trakt = 2,
             Imdb = "ttepisode2title",
@@ -216,9 +218,9 @@ namespace TraktNet.Objects.Post.Tests.Builder
             TvRage = 2
         };
 
-        private readonly List<ITraktEpisodeIds> EPISODE_IDS;
+        internal static readonly List<ITraktEpisodeIds> EPISODE_IDS;
 
-        public TraktPost_SyncCollectionPostBuilder_Tests()
+        static TraktPost_Tests_Common_Data()
         {
             MOVIES = new List<ITraktMovie>
             {
@@ -268,7 +270,7 @@ namespace TraktNet.Objects.Post.Tests.Builder
                 EPISODE_IDS_2
             };
 
-            SHOW_SEASONS_1 = new PostCollectionSeasons
+            COLLECTION_SHOW_SEASONS_1 = new PostCollectionSeasons
             {
                 { 1 },
                 { 2, METADATA },
@@ -308,7 +310,7 @@ namespace TraktNet.Objects.Post.Tests.Builder
                 }
             };
 
-            SHOW_SEASONS_2 = new PostCollectionSeasons
+            COLLECTION_SHOW_SEASONS_2 = new PostCollectionSeasons
             {
                 { 1 },
                 { 2 },
@@ -338,10 +340,39 @@ namespace TraktNet.Objects.Post.Tests.Builder
                 }
             };
 
-            SHOW_SEASONS = new List<PostCollectionSeasons>
+            HISTORY_SHOW_SEASONS_1 = new PostHistorySeasons
             {
-                SHOW_SEASONS_1,
-                SHOW_SEASONS_2
+                { 1 },
+                { 2, WATCHED_AT },
+                { 3, new PostHistoryEpisodes
+                    {
+                        { 1 },
+                        { 2, WATCHED_AT }
+                    }
+                },
+                { 4, WATCHED_AT, new PostHistoryEpisodes
+                    {
+                        { 1 },
+                        { 2, WATCHED_AT }
+                    }
+                }
+            };
+
+            HISTORY_SHOW_SEASONS_2 = new PostHistorySeasons
+            {
+                { 1 },
+                { 2 },
+                { 3, new PostHistoryEpisodes
+                    {
+                        { 1 },
+                        { 2 }
+                    }
+                },
+                { 4, new PostHistoryEpisodes
+                    {
+                        { 1 }
+                    }
+                }
             };
         }
     }

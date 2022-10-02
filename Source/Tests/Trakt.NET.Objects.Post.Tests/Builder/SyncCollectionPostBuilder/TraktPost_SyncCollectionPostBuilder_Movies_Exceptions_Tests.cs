@@ -41,7 +41,7 @@
             ITraktMovie movie = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithMovieCollectedAt(movie, COLLECTED_AT)
+                .WithMovieCollectedAt(movie, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -53,7 +53,7 @@
             ITraktMovieIds movieIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithMovieCollectedAt(movieIds, COLLECTED_AT)
+                .WithMovieCollectedAt(movieIds, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -89,13 +89,13 @@
             ITraktMovie movie = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithMovieWithMetadata(movie, METADATA)
+                .WithMovieWithMetadata(movie, TraktPost_Tests_Common_Data.METADATA)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithMovieWithMetadata(MOVIE_1, null)
+                .WithMovieWithMetadata(TraktPost_Tests_Common_Data.MOVIE_1, null)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -107,13 +107,13 @@
             ITraktMovieIds movieIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithMovieWithMetadata(movieIds, METADATA)
+                .WithMovieWithMetadata(movieIds, TraktPost_Tests_Common_Data.METADATA)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithMovieWithMetadata(MOVIE_1, null)
+                .WithMovieWithMetadata(TraktPost_Tests_Common_Data.MOVIE_1, null)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -149,13 +149,13 @@
             ITraktMovie movie = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithMovieWithMetadataCollectedAt(movie, METADATA, COLLECTED_AT)
+                .WithMovieWithMetadataCollectedAt(movie, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithMovieWithMetadataCollectedAt(MOVIE_1, null, COLLECTED_AT)
+                .WithMovieWithMetadataCollectedAt(TraktPost_Tests_Common_Data.MOVIE_1, null, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -167,13 +167,13 @@
             ITraktMovieIds movieIds = null;
 
             Func<ITraktSyncCollectionPost> act = () => TraktPost.NewSyncCollectionPost()
-                .WithMovieWithMetadataCollectedAt(movieIds, METADATA, COLLECTED_AT)
+                .WithMovieWithMetadataCollectedAt(movieIds, TraktPost_Tests_Common_Data.METADATA, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncCollectionPost()
-                .WithMovieWithMetadataCollectedAt(MOVIE_1, null, COLLECTED_AT)
+                .WithMovieWithMetadataCollectedAt(TraktPost_Tests_Common_Data.MOVIE_1, null, TraktPost_Tests_Common_Data.COLLECTED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
