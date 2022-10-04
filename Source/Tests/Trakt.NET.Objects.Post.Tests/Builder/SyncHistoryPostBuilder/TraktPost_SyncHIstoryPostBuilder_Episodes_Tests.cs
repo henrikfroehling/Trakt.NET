@@ -293,6 +293,5 @@
             syncHistoryPost.Shows.Should().BeNull();
             syncHistoryPost.Seasons.Should().BeNull();
         }
-
     }
 }

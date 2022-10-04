@@ -132,6 +132,10 @@ namespace TraktNet.Objects.Post.Tests.Builder
 
         internal static readonly PostHistorySeasons HISTORY_SHOW_SEASONS_2;
 
+        internal static readonly PostSeasons SHOW_SEASONS_1;
+
+        internal static readonly PostSeasons SHOW_SEASONS_2;
+
         internal static readonly ITraktSeason SEASON_1 = new TraktSeason
         {
             Ids = new TraktSeasonIds
@@ -369,6 +373,26 @@ namespace TraktNet.Objects.Post.Tests.Builder
                     }
                 },
                 { 4, new PostHistoryEpisodes
+                    {
+                        { 1 }
+                    }
+                }
+            };
+
+            SHOW_SEASONS_1 = new PostSeasons
+            {
+                { 1 },
+                { 2, new PostEpisodes
+                    {
+                        { 1 }
+                    }
+                }
+            };
+
+            SHOW_SEASONS_2 = new PostSeasons
+            {
+                { 1 },
+                { 2, new PostEpisodes
                     {
                         { 1 }
                     }
