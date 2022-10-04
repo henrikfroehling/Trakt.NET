@@ -14,6 +14,8 @@
         /// <returns>An <see cref="ITraktSyncHistoryPostBuilder"/> instance.</returns>
         public static ITraktSyncHistoryPostBuilder NewSyncHistoryPost() => new SyncHistoryPostBuilder();
 
+        /// <summary>Creates a new <see cref="ITraktSyncHistoryRemovePostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktSyncHistoryRemovePostBuilder"/> instance.</returns>
         public static ITraktSyncHistoryRemovePostBuilder NewSyncHistoryRemovePost() => new SyncHistoryRemovePostBuilder();
 
         public static ITraktSyncRatingsPostBuilder NewSyncRatingsPost() => new SyncRatingsPostBuilder();

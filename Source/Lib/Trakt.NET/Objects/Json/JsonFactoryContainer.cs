@@ -98,7 +98,7 @@
 
     internal static class JsonFactoryContainer
     {
-        private static readonly Dictionary<Type, object> s_jsonIOFactories = new Dictionary<Type, object>();
+        private static readonly Dictionary<Type, object> s_jsonIOFactories = new();
 
         public static IObjectJsonReader<TReturnType> CreateObjectReader<TReturnType>()
         {
@@ -307,6 +307,12 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncHistoryPostShowEpisode), new SyncHistoryPostShowEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncHistoryPostShowSeason), new SyncHistoryPostShowSeasonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePost), new SyncHistoryRemovePostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostEpisode), new SyncHistoryRemovePostEpisodeJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostMovie), new SyncHistoryRemovePostMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostSeason), new SyncHistoryRemovePostSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostShow), new SyncHistoryRemovePostShowJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostShowEpisode), new SyncHistoryRemovePostShowEpisodeJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostShowSeason), new SyncHistoryRemovePostShowSeasonJsonIOFactory());
 
             // sync history post response objects
             s_jsonIOFactories.Add(typeof(ITraktSyncHistoryPostResponse), new SyncHistoryPostResponseJsonIOFactory());
