@@ -16,15 +16,15 @@
         public PostHistoryEpisodes() => _episodes = new List<PostHistoryEpisode>();
 
         /// <summary>Adds the given episode number to the list.</summary>
-        /// <param name="episode">The episode number, which will be added to the list.</param>
-        public void Add(int episode)
-            => Add(new PostHistoryEpisode(episode));
+        /// <param name="episodeNumber">The episode number, which will be added to the list.</param>
+        public void Add(int episodeNumber)
+            => Add(new PostHistoryEpisode(episodeNumber));
 
         /// <summary>Adds the given episode number to the list.</summary>
-        /// <param name="episode">The episode number, which will be added to the list.</param>
+        /// <param name="episodeNumber">The episode number, which will be added to the list.</param>
         /// <param name="watchedAt">An UTC datetime, when the episode was watched.</param>
-        public void Add(int episode, DateTime watchedAt)
-            => Add(new PostHistoryEpisode(episode, watchedAt));
+        public void Add(int episodeNumber, DateTime watchedAt)
+            => Add(new PostHistoryEpisode(episodeNumber, watchedAt));
 
         /// <summary>Adds the given episode numbers to the list.</summary>
         /// <param name="episode">An episode number. See also <see cref="PostHistoryEpisode" />.</param>

@@ -16,28 +16,28 @@
         public PostHistorySeasons() => _seasons = new List<PostHistorySeason>();
 
         /// <summary>Adds a season number to the collection.</summary>
-        /// <param name="season">The season number, which will be added.</param>
-        public void Add(int season)
-            => Add(new PostHistorySeason(season));
+        /// <param name="seasonNumber">The season number, which will be added.</param>
+        public void Add(int seasonNumber)
+            => Add(new PostHistorySeason(seasonNumber));
 
         /// <summary>Adds a season number to the collection.</summary>
-        /// <param name="season">The season number, which will be added.</param>
+        /// <param name="seasonNumber">The season number, which will be added.</param>
         /// <param name="episodes">A list of episode numbers. See also <see cref="PostHistoryEpisodes" />.</param>
-        public void Add(int season, PostHistoryEpisodes episodes)
-            => Add(new PostHistorySeason(season, episodes));
+        public void Add(int seasonNumber, PostHistoryEpisodes episodes)
+            => Add(new PostHistorySeason(seasonNumber, episodes));
 
         /// <summary>Adds a season number to the collection.</summary>
-        /// <param name="season">The season number, which will be added.</param>
+        /// <param name="seasonNumber">The season number, which will be added.</param>
         /// <param name="watchedAt">An UTC datetime, when the season was watched.</param>
-        public void Add(int season, DateTime watchedAt)
-            => Add(new PostHistorySeason(season, watchedAt));
+        public void Add(int seasonNumber, DateTime watchedAt)
+            => Add(new PostHistorySeason(seasonNumber, watchedAt));
 
         /// <summary>Adds a season number to the collection.</summary>
-        /// <param name="season">The season number, which will be added.</param>
+        /// <param name="seasonNumber">The season number, which will be added.</param>
         /// <param name="watchedAt">An UTC datetime, when the season was watched.</param>
         /// <param name="episodes">A list of episode numbers. See also <see cref="PostHistoryEpisodes" />.</param>
-        public void Add(int season, DateTime watchedAt, PostHistoryEpisodes episodes)
-            => Add(new PostHistorySeason(season, watchedAt, episodes));
+        public void Add(int seasonNumber, DateTime watchedAt, PostHistoryEpisodes episodes)
+            => Add(new PostHistorySeason(seasonNumber, watchedAt, episodes));
 
         /// <summary>Adds the given season numbers to the list.</summary>
         /// <param name="season">An season number. See also <see cref="PostHistorySeason" />.</param>

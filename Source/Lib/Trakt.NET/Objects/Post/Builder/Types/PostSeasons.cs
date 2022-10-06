@@ -12,15 +12,15 @@
         public PostSeasons() => _seasons = new List<PostSeason>();
 
         /// <summary>Adds a season number to the collection.</summary>
-        /// <param name="season">The season number, which will be added.</param>
-        public void Add(int season)
-            => Add(new PostSeason(season));
+        /// <param name="seasonNumber">The season number, which will be added.</param>
+        public void Add(int seasonNumber)
+            => Add(new PostSeason(seasonNumber));
 
         /// <summary>Adds a season number and a list of episode numbers to the collection.</summary>
-        /// <param name="season">The season number, which will be added.</param>
+        /// <param name="seasonNumber">The season number, which will be added.</param>
         /// <param name="episodes">A list of episode numbers. See also <see cref="PostEpisodes" />.</param>
-        public void Add(int season, PostEpisodes episodes)
-            => Add(new PostSeason(season, episodes));
+        public void Add(int seasonNumber, PostEpisodes episodes)
+            => Add(new PostSeason(seasonNumber, episodes));
 
         /// <summary>Adds the given season numbers to the list.</summary>
         /// <param name="season">An season number, which will be added to the list.</param>

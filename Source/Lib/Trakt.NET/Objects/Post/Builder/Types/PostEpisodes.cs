@@ -12,9 +12,9 @@
         public PostEpisodes() => _episodes = new List<PostEpisode>();
 
         /// <summary>Adds the given episode number to the list.</summary>
-        /// <param name="episode">The episode number, which will be added to the list.</param>
-        public void Add(int episode)
-            => Add(new PostEpisode(episode));
+        /// <param name="episodeNumber">The episode number, which will be added to the list.</param>
+        public void Add(int episodeNumber)
+            => Add(new PostEpisode(episodeNumber));
 
         /// <summary>Adds the given episode numbers to the list.</summary>
         /// <param name="episode">An episode number, which will be added to the list.</param>
