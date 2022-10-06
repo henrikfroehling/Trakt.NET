@@ -1,24 +1,24 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Ratings.Json.Writer
 {
     using Extensions;
-    using Get.Episodes.Json.Writer;
+    using Get.Seasons.Json.Writer;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class SyncRatingsPostEpisodeObjectJsonWriter : AObjectJsonWriter<ITraktSyncRatingsPostEpisode>
+    internal class SyncRatingsPostSeasonObjectJsonWriter : AObjectJsonWriter<ITraktSyncRatingsPostSeason>
     {
-        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktSyncRatingsPostEpisode obj, CancellationToken cancellationToken = default)
+        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktSyncRatingsPostSeason obj, CancellationToken cancellationToken = default)
         {
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (obj.Ids != null)
             {
-                var episodeIdsObjectJsonWriter = new EpisodeIdsObjectJsonWriter();
+                var seasonIdsObjectJsonWriter = new SeasonIdsObjectJsonWriter();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
-                await episodeIdsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Ids, cancellationToken).ConfigureAwait(false);
+                await seasonIdsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Ids, cancellationToken).ConfigureAwait(false);
             }
 
             await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RATING, cancellationToken).ConfigureAwait(false);

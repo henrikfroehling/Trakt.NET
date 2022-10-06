@@ -735,9 +735,43 @@
                 return;
             }
 
-            //syncRatingsPost.Seasons ??= new List<ITraktSyncRatingsPostSeason>();
+            syncRatingsPost.Seasons ??= new List<ITraktSyncRatingsPostSeason>();
 
-            // TODO
+            if (_seasonsWithRating.IsValueCreated && _seasonsWithRating.Value.Any())
+            {
+                foreach (RatingsSeason ratingsSeason in _seasonsWithRating.Value)
+                {
+                    (syncRatingsPost.Seasons as List<ITraktSyncRatingsPostSeason>)
+                        .Add(CreateRatingsPostSeason(ratingsSeason.Object, ratingsSeason.Rating));
+                }
+            }
+
+            if (_seasonIdsWithRating.IsValueCreated && _seasonIdsWithRating.Value.Any())
+            {
+                foreach (RatingsSeasonIds ratingsSeasonIds in _seasonIdsWithRating.Value)
+                {
+                    (syncRatingsPost.Seasons as List<ITraktSyncRatingsPostSeason>)
+                        .Add(CreateRatingsPostSeason(ratingsSeasonIds.Object, ratingsSeasonIds.Rating));
+                }
+            }
+
+            if (_seasonsWithRatingRatedAt.IsValueCreated && _seasonsWithRatingRatedAt.Value.Any())
+            {
+                foreach (RatingsSeasonRatedAt ratingsSeasonatedAt in _seasonsWithRatingRatedAt.Value)
+                {
+                    (syncRatingsPost.Seasons as List<ITraktSyncRatingsPostSeason>)
+                        .Add(CreateRatingsPostSeason(ratingsSeasonatedAt.Object, ratingsSeasonatedAt.Rating, ratingsSeasonatedAt.RatedAt));
+                }
+            }
+
+            if (_seasonIdsWithRatingRatedAt.IsValueCreated && _seasonIdsWithRatingRatedAt.Value.Any())
+            {
+                foreach (RatingsSeasonIdsRatedAt ratingsSeasonIdsRatedAt in _seasonIdsWithRatingRatedAt.Value)
+                {
+                    (syncRatingsPost.Seasons as List<ITraktSyncRatingsPostSeason>)
+                        .Add(CreateRatingsPostSeason(ratingsSeasonIdsRatedAt.Object, ratingsSeasonIdsRatedAt.Rating, ratingsSeasonIdsRatedAt.RatedAt));
+                }
+            }
         }
 
         private void AddEpisodes(ITraktSyncRatingsPost syncRatingsPost)
@@ -943,6 +977,34 @@
                 syncRatingsPostShowEpisode.RatedAt = episode.RatedAt.Value;
 
             return syncRatingsPostShowEpisode;
+        }
+
+        private static ITraktSyncRatingsPostSeason CreateRatingsPostSeason(ITraktSeason season, TraktPostRating rating, DateTime? ratedAt = null)
+        {
+            ITraktSyncRatingsPostSeason syncRatingsPostSeason = new TraktSyncRatingsPostSeason
+            {
+                Ids = season.Ids,
+                Rating = (int)rating
+            };
+
+            if (ratedAt.HasValue)
+                syncRatingsPostSeason.RatedAt = ratedAt.Value;
+
+            return syncRatingsPostSeason;
+        }
+
+        private static ITraktSyncRatingsPostSeason CreateRatingsPostSeason(ITraktSeasonIds seasonIds, TraktPostRating rating, DateTime? ratedAt = null)
+        {
+            ITraktSyncRatingsPostSeason syncRatingsPostSeason = new TraktSyncRatingsPostSeason
+            {
+                Ids = seasonIds,
+                Rating = (int)rating
+            };
+
+            if (ratedAt.HasValue)
+                syncRatingsPostSeason.RatedAt = ratedAt.Value;
+
+            return syncRatingsPostSeason;
         }
 
         private static ITraktSyncRatingsPostEpisode CreateRatingsPostEpisode(ITraktEpisode episode, TraktPostRating rating, DateTime? ratedAt = null)

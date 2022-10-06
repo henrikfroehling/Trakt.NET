@@ -26,6 +26,12 @@
         public IEnumerable<ITraktSyncRatingsPostShow> Shows { get; set; }
 
         /// <summary>
+        /// An optional list of <see cref="ITraktSyncRatingsPostSeason" />s.
+        /// <para>Each <see cref="ITraktSyncRatingsPostSeason" /> must have at least a valid Trakt id.</para>
+        /// </summary>
+        public IEnumerable<ITraktSyncRatingsPostSeason> Seasons { get; set; }
+
+        /// <summary>
         /// An optional list of <see cref="ITraktSyncRatingsPostEpisode" />s.
         /// <para>Each <see cref="ITraktSyncRatingsPostEpisode" /> must have at least a valid Trakt id.</para>
         /// </summary>
@@ -41,9 +47,10 @@
         {
             bool bHasNoMovies = Movies == null || !Movies.Any();
             bool bHasNoShows = Shows == null || !Shows.Any();
+            bool bHasNoSeasons = Seasons == null || !Seasons.Any();
             bool bHasNoEpisodes = Episodes == null || !Episodes.Any();
 
-            if (bHasNoMovies && bHasNoShows && bHasNoEpisodes)
+            if (bHasNoMovies && bHasNoShows && bHasNoSeasons && bHasNoEpisodes)
                 throw new ArgumentException("no ratings items set");
         }
     }

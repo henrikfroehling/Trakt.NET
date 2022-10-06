@@ -320,10 +320,11 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseGroup), new SyncHistoryRemovePostResponseGroupJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseNotFoundGroup), new SyncHistoryRemovePostResponseNotFoundGroupJsonIOFactory());
 
-            // sync rating post objects
+            // sync ratings post objects
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPost), new SyncRatingsPostJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostEpisode), new SyncRatingsPostEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostMovie), new SyncRatingsPostMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostSeason), new SyncRatingsPostSeasonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostShow), new SyncRatingsPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostShowEpisode), new SyncRatingsPostShowEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostShowSeason), new SyncRatingsPostShowSeasonJsonIOFactory());

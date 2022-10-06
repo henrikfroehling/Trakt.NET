@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Ratings.Json.Reader
 {
-    using Get.Movies.Json.Reader;
+    using Get.Seasons.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
     using System;
@@ -8,16 +8,16 @@
     using System.Threading.Tasks;
     using Utils;
 
-    internal class SyncRatingsPostMovieObjectJsonReader : AObjectJsonReader<ITraktSyncRatingsPostMovie>
+    internal class SyncRatingsPostSeasonObjectJsonReader : AObjectJsonReader<ITraktSyncRatingsPostSeason>
     {
-        public override async Task<ITraktSyncRatingsPostMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<ITraktSyncRatingsPostSeason> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieIdsObjectJsonReader = new MovieIdsObjectJsonReader();
-                ITraktSyncRatingsPostMovie syncRatingsPostMovie = new TraktSyncRatingsPostMovie();
+                var seasonIdsObjectJsonReader = new SeasonIdsObjectJsonReader();
+                ITraktSyncRatingsPostSeason syncRatingsPostSeason = new TraktSyncRatingsPostSeason();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -25,21 +25,15 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PROPERTY_NAME_TITLE:
-                            syncRatingsPostMovie.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
-                            break;
-                        case JsonProperties.PROPERTY_NAME_YEAR:
-                            syncRatingsPostMovie.Year = await jsonReader.ReadAsInt32Async(cancellationToken);
-                            break;
                         case JsonProperties.PROPERTY_NAME_IDS:
-                            syncRatingsPostMovie.Ids = await movieIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            syncRatingsPostSeason.Ids = await seasonIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_RATING:
                             {
                                 Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 
                                 if (value.First)
-                                    syncRatingsPostMovie.Rating = value.Second;
+                                    syncRatingsPostSeason.Rating = value.Second;
 
                                 break;
                             }
@@ -48,7 +42,7 @@
                                 Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
                                 if (value.First)
-                                    syncRatingsPostMovie.RatedAt = value.Second;
+                                    syncRatingsPostSeason.RatedAt = value.Second;
 
                                 break;
                             }
@@ -58,10 +52,10 @@
                     }
                 }
 
-                return syncRatingsPostMovie;
+                return syncRatingsPostSeason;
             }
 
-            return await Task.FromResult(default(ITraktSyncRatingsPostMovie));
+            return await Task.FromResult(default(ITraktSyncRatingsPostSeason));
         }
     }
 }
