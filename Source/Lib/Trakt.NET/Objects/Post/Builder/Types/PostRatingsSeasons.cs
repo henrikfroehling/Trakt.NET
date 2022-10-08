@@ -23,10 +23,9 @@
 
         /// <summary>Adds a season number to the collection.</summary>
         /// <param name="seasonNumber">The season number, which will be added.</param>
-        /// <param name="rating">A rating for the season number.</param>
         /// <param name="episodes">A list of episode numbers. See also <see cref="PostRatingsEpisodes" />.</param>
-        public void Add(int seasonNumber, TraktPostRating rating, PostRatingsEpisodes episodes)
-            => Add(new PostRatingsSeason(seasonNumber, rating, episodes));
+        public void Add(int seasonNumber, PostRatingsEpisodes episodes)
+            => Add(new PostRatingsSeason(seasonNumber, episodes));
 
         /// <summary>Adds a season number to the collection.</summary>
         /// <param name="seasonNumber">The season number, which will be added.</param>
@@ -34,14 +33,6 @@
         /// <param name="ratedAt">An UTC datetime, when the season was rated.</param>
         public void Add(int seasonNumber, TraktPostRating rating, DateTime ratedAt)
             => Add(new PostRatingsSeason(seasonNumber, rating, ratedAt));
-
-        /// <summary>Adds a season number to the collection.</summary>
-        /// <param name="seasonNumber">The season number, which will be added.</param>
-        /// <param name="rating">A rating for the season number.</param>
-        /// <param name="ratedAt">An UTC datetime, when the season was rated.</param>
-        /// <param name="episodes">A list of episode numbers. See also <see cref="PostRatingsEpisodes" />.</param>
-        public void Add(int seasonNumber, TraktPostRating rating, DateTime ratedAt, PostRatingsEpisodes episodes)
-            => Add(new PostRatingsSeason(seasonNumber, rating, ratedAt, episodes));
 
         /// <summary>Adds the given season numbers to the list.</summary>
         /// <param name="season">An season number. See also <see cref="PostRatingsSeason" />.</param>

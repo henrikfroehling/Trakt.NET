@@ -955,9 +955,11 @@
         {
             ITraktSyncRatingsPostShowSeason syncRatingsPostShowSeason = new TraktSyncRatingsPostShowSeason
             {
-                Number = season.Number,
-                Rating = (int)season.Rating
+                Number = season.Number
             };
+
+            if (season.Rating.HasValue)
+                syncRatingsPostShowSeason.Rating = (int?)season.Rating.Value;
 
             if (season.RatedAt.HasValue)
                 syncRatingsPostShowSeason.RatedAt = season.RatedAt.Value;

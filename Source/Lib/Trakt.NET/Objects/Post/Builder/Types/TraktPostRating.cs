@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post
 {
+    /// <summary>Represents a rating from 1 to 10.</summary>
     public enum TraktPostRating
     {
         Rating_1 = 1,

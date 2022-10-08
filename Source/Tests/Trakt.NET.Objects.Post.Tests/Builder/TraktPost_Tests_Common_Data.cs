@@ -13,6 +13,8 @@ namespace TraktNet.Objects.Post.Tests.Builder
     {
         internal static readonly DateTime COLLECTED_AT = DateTime.UtcNow;
         internal static readonly DateTime WATCHED_AT = DateTime.UtcNow;
+        internal static readonly DateTime RATED_AT = DateTime.UtcNow;
+        internal static readonly TraktPostRating RATING = TraktPostRating.Rating_5;
 
         internal static readonly ITraktMetadata METADATA = new TraktMetadata
         {
@@ -135,6 +137,10 @@ namespace TraktNet.Objects.Post.Tests.Builder
         internal static readonly PostSeasons SHOW_SEASONS_1;
 
         internal static readonly PostSeasons SHOW_SEASONS_2;
+
+        internal static readonly PostRatingsSeasons RATINGS_SHOW_SEASONS_1;
+
+        internal static readonly PostRatingsSeasons RATINGS_SHOW_SEASONS_2;
 
         internal static readonly ITraktSeason SEASON_1 = new TraktSeason
         {
@@ -395,6 +401,35 @@ namespace TraktNet.Objects.Post.Tests.Builder
                 { 2, new PostEpisodes
                     {
                         { 1 }
+                    }
+                }
+            };
+
+            RATINGS_SHOW_SEASONS_1 = new PostRatingsSeasons
+            {
+                { 1, RATING },
+                { 2, new PostRatingsEpisodes
+                    {
+                        { 1, RATING },
+                        { 2, RATING, RATED_AT }
+                    }
+                },
+                { 3, RATING, RATED_AT },
+                { 4, new PostRatingsEpisodes
+                    {
+                        { 1, RATING },
+                        { 2, RATING, RATED_AT }
+                    }
+                }
+            };
+
+            RATINGS_SHOW_SEASONS_2 = new PostRatingsSeasons
+            {
+                { 1, RATING },
+                { 2, new PostRatingsEpisodes
+                    {
+                        { 1, RATING },
+                        { 2, RATING, RATED_AT }
                     }
                 }
             };

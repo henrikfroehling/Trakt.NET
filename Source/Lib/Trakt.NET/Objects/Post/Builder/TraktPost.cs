@@ -18,6 +18,8 @@
         /// <returns>An <see cref="ITraktSyncHistoryRemovePostBuilder"/> instance.</returns>
         public static ITraktSyncHistoryRemovePostBuilder NewSyncHistoryRemovePost() => new SyncHistoryRemovePostBuilder();
 
+        /// <summary>Creates a new <see cref="ITraktSyncRatingsPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktSyncRatingsPostBuilder"/> instance.</returns>
         public static ITraktSyncRatingsPostBuilder NewSyncRatingsPost() => new SyncRatingsPostBuilder();
 
         public static ITraktSyncRecommendationsPostBuilder NewSyncRecommendationsPost() => new SyncRecommendationsPostBuilder();

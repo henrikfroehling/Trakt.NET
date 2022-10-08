@@ -13,7 +13,7 @@
         public int Number { get; set; }
 
         /// <summary>Gets or sets the rating for the season.</summary>
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
 
         /// <summary>Gets or sets the optional UTC datetime, when the Trakt season was rated.</summary>
         public DateTime? RatedAt { get; set; }

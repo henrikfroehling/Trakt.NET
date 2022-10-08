@@ -34,14 +34,8 @@
                                 break;
                             }
                         case JsonProperties.PROPERTY_NAME_RATING:
-                            {
-                                Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
-
-                                if (value.First)
-                                    syncRatingsPostShow.Rating = value.Second;
-
-                                break;
-                            }
+                            syncRatingsPostShow.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            break;
                         case JsonProperties.PROPERTY_NAME_RATED_AT:
                             {
                                 Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);

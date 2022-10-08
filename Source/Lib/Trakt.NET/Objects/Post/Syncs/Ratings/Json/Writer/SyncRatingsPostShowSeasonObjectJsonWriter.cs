@@ -16,8 +16,11 @@
             await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NUMBER, cancellationToken).ConfigureAwait(false);
             await jsonWriter.WriteValueAsync(obj.Number, cancellationToken).ConfigureAwait(false);
 
-            await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RATING, cancellationToken).ConfigureAwait(false);
-            await jsonWriter.WriteValueAsync(obj.Rating, cancellationToken).ConfigureAwait(false);
+            if (obj.Rating.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RATING, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Rating, cancellationToken).ConfigureAwait(false);
+            }
 
             if (obj.RatedAt.HasValue)
             {
