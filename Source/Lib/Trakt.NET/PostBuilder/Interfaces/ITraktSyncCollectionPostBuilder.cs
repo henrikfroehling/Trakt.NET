@@ -7,7 +7,6 @@
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post;
     using TraktNet.Objects.Post.Syncs.Collection;
 
     /// <summary>

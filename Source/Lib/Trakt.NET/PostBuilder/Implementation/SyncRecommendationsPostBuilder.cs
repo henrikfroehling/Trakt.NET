@@ -9,17 +9,25 @@
 
     internal sealed class SyncRecommendationsPostBuilder : ITraktSyncRecommendationsPostBuilder
     {
-        private readonly List<ITraktMovie> _movies;
-        private readonly List<PostBuilderObjectWithNotes<ITraktMovie>> _moviesWithNotes;
-        private readonly List<ITraktShow> _shows;
-        private readonly List<PostBuilderObjectWithNotes<ITraktShow>> _showsWithNotes;
+        private readonly Lazy<List<ITraktMovie>> _movies;
+        private readonly Lazy<List<ITraktMovieIds>> _movieIds;
+        private readonly Lazy<List<MovieWithNotes>> _moviesWithNotes;
+        private readonly Lazy<List<MovieIdsWithNotes>> _movieIdsWithNotes;
+        private readonly Lazy<List<ITraktShow>> _shows;
+        private readonly Lazy<List<ITraktShowIds>> _showIds;
+        private readonly Lazy<List<ShowWithNotes>> _showsWithNotes;
+        private readonly Lazy<List<ShowIdsWithNotes>> _showIdsWithNotes;
 
         internal SyncRecommendationsPostBuilder()
         {
-            _movies = new List<ITraktMovie>();
-            _moviesWithNotes = new List<PostBuilderObjectWithNotes<ITraktMovie>>();
-            _shows = new List<ITraktShow>();
-            _showsWithNotes = new List<PostBuilderObjectWithNotes<ITraktShow>>();
+            _movies = new Lazy<List<ITraktMovie>>();
+            _movieIds = new Lazy<List<ITraktMovieIds>>();
+            _moviesWithNotes = new Lazy<List<MovieWithNotes>>();
+            _movieIdsWithNotes = new Lazy<List<MovieIdsWithNotes>>();
+            _shows = new Lazy<List<ITraktShow>>();
+            _showIds = new Lazy<List<ITraktShowIds>>();
+            _showsWithNotes = new Lazy<List<ShowWithNotes>>();
+            _showIdsWithNotes = new Lazy<List<ShowIdsWithNotes>>();
         }
 
         public ITraktSyncRecommendationsPostBuilder WithMovie(ITraktMovie movie)
@@ -27,7 +35,16 @@
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
 
-            _movies.Add(movie);
+            _movies.Value.Add(movie);
+            return this;
+        }
+
+        public ITraktSyncRecommendationsPostBuilder WithMovie(ITraktMovieIds movieIds)
+        {
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            _movieIds.Value.Add(movieIds);
             return this;
         }
 
@@ -36,18 +53,36 @@
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
 
-            if (notes == null)
-                throw new ArgumentNullException(nameof(notes));
+            CheckNotes(notes);
+            return WithMovieWithNotes(new MovieWithNotes(movie, notes));
+        }
 
-            if (notes.Length > 255)
-                throw new ArgumentOutOfRangeException(nameof(notes), "notes cannot be longer than 255 characters");
+        public ITraktSyncRecommendationsPostBuilder WithMovieWithNotes(MovieWithNotes movieWithNotes)
+        {
+            if (movieWithNotes == null)
+                throw new ArgumentNullException(nameof(movieWithNotes));
 
-            _moviesWithNotes.Add(new PostBuilderObjectWithNotes<ITraktMovie>
-            {
-                Object = movie,
-                Notes = notes
-            });
+            CheckNotes(movieWithNotes.Notes);
+            _moviesWithNotes.Value.Add(movieWithNotes);
+            return this;
+        }
 
+        public ITraktSyncRecommendationsPostBuilder WithMovieWithNotes(ITraktMovieIds movieIds, string notes)
+        {
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            CheckNotes(notes);
+            return WithMovieWithNotes(new MovieIdsWithNotes(movieIds, notes));
+        }
+
+        public ITraktSyncRecommendationsPostBuilder WithMovieWithNotes(MovieIdsWithNotes movieIdsWithNotes)
+        {
+            if (movieIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(movieIdsWithNotes));
+
+            CheckNotes(movieIdsWithNotes.Notes);
+            _movieIdsWithNotes.Value.Add(movieIdsWithNotes);
             return this;
         }
 
@@ -56,25 +91,58 @@
             if (movies == null)
                 throw new ArgumentNullException(nameof(movies));
 
-            _movies.AddRange(movies);
+            foreach (ITraktMovie movie in movies)
+            {
+                if (movie != null)
+                    _movies.Value.Add(movie);
+            }
+            
             return this;
         }
 
-        public ITraktSyncRecommendationsPostBuilder WithMoviesWithNotes(IEnumerable<Tuple<ITraktMovie, string>> movies)
+        public ITraktSyncRecommendationsPostBuilder WithMovies(IEnumerable<ITraktMovieIds> movieIds)
         {
-            if (movies == null)
-                throw new ArgumentNullException(nameof(movies));
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
 
-            foreach (Tuple<ITraktMovie, string> tuple in movies)
+            foreach (ITraktMovieIds movieId in movieIds)
             {
-                if (tuple.Item2?.Length > 255)
-                    throw new ArgumentOutOfRangeException($"movies[{movies.ToList().IndexOf(tuple)}].Notes", "notes cannot be longer than 255 characters");
+                if (movieId != null)
+                    _movieIds.Value.Add(movieId);
+            }
 
-                _moviesWithNotes.Add(new PostBuilderObjectWithNotes<ITraktMovie>
+            return this;
+        }
+
+        public ITraktSyncRecommendationsPostBuilder WithMoviesWithNotes(IEnumerable<MovieWithNotes> moviesWithNotes)
+        {
+            if (moviesWithNotes == null)
+                throw new ArgumentNullException(nameof(moviesWithNotes));
+
+            foreach (MovieWithNotes movieWithNotes in moviesWithNotes)
+            {
+                if (movieWithNotes != null)
                 {
-                    Object = tuple.Item1,
-                    Notes = tuple.Item2
-                });
+                    CheckNotes(movieWithNotes.Notes);
+                    _moviesWithNotes.Value.Add(movieWithNotes);
+                }
+            }
+
+            return this;
+        }
+
+        public ITraktSyncRecommendationsPostBuilder WithMoviesWithNotes(IEnumerable<MovieIdsWithNotes> movieIdsWithNotes)
+        {
+            if (movieIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(movieIdsWithNotes));
+
+            foreach (MovieIdsWithNotes movieIdWithNotes in movieIdsWithNotes)
+            {
+                if (movieIdWithNotes != null)
+                {
+                    CheckNotes(movieIdWithNotes.Notes);
+                    _movieIdsWithNotes.Value.Add(movieIdWithNotes);
+                }
             }
 
             return this;
@@ -85,7 +153,16 @@
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
 
-            _shows.Add(show);
+            _shows.Value.Add(show);
+            return this;
+        }
+
+        public ITraktSyncRecommendationsPostBuilder WithShow(ITraktShowIds showIds)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            _showIds.Value.Add(showIds);
             return this;
         }
 
@@ -94,18 +171,36 @@
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
 
-            if (notes == null)
-                throw new ArgumentNullException(nameof(notes));
+            CheckNotes(notes);
+            return WithShowWithNotes(new ShowWithNotes(show, notes));
+        }
 
-            if (notes.Length > 255)
-                throw new ArgumentOutOfRangeException(nameof(notes), "notes cannot be longer than 255 characters");
+        public ITraktSyncRecommendationsPostBuilder WithShowWithNotes(ShowWithNotes showWithNotes)
+        {
+            if (showWithNotes == null)
+                throw new ArgumentNullException(nameof(showWithNotes));
 
-            _showsWithNotes.Add(new PostBuilderObjectWithNotes<ITraktShow>
-            {
-                Object = show,
-                Notes = notes
-            });
+            CheckNotes(showWithNotes.Notes);
+            _showsWithNotes.Value.Add(showWithNotes);
+            return this;
+        }
 
+        public ITraktSyncRecommendationsPostBuilder WithShowWithNotes(ITraktShowIds showIds, string notes)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            CheckNotes(notes);
+            return WithShowWithNotes(new ShowIdsWithNotes(showIds, notes));
+        }
+
+        public ITraktSyncRecommendationsPostBuilder WithShowWithNotes(ShowIdsWithNotes showIdsWithNotes)
+        {
+            if (showIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(showIdsWithNotes));
+
+            CheckNotes(showIdsWithNotes.Notes);
+            _showIdsWithNotes.Value.Add(showIdsWithNotes);
             return this;
         }
 
@@ -114,25 +209,58 @@
             if (shows == null)
                 throw new ArgumentNullException(nameof(shows));
 
-            _shows.AddRange(shows);
+            foreach (ITraktShow show in shows)
+            {
+                if (show != null)
+                    _shows.Value.Add(show);
+            }
+
             return this;
         }
 
-        public ITraktSyncRecommendationsPostBuilder WithShowsWithNotes(IEnumerable<Tuple<ITraktShow, string>> shows)
+        public ITraktSyncRecommendationsPostBuilder WithShows(IEnumerable<ITraktShowIds> showIds)
         {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
 
-            foreach (Tuple<ITraktShow, string> tuple in shows)
+            foreach (ITraktShowIds showId in showIds)
             {
-                if (tuple.Item2?.Length > 255)
-                    throw new ArgumentOutOfRangeException($"shows[{shows.ToList().IndexOf(tuple)}].Notes", "notes cannot be longer than 255 characters");
+                if (showId != null)
+                    _showIds.Value.Add(showId);
+            }
 
-                _showsWithNotes.Add(new PostBuilderObjectWithNotes<ITraktShow>
+            return this;
+        }
+
+        public ITraktSyncRecommendationsPostBuilder WithShowsWithNotes(IEnumerable<ShowWithNotes> showsWithNotes)
+        {
+            if (showsWithNotes == null)
+                throw new ArgumentNullException(nameof(showsWithNotes));
+
+            foreach (ShowWithNotes showWithNotes in showsWithNotes)
+            {
+                if (showWithNotes != null)
                 {
-                    Object = tuple.Item1,
-                    Notes = tuple.Item2
-                });
+                    CheckNotes(showWithNotes.Notes);
+                    _showsWithNotes.Value.Add(showWithNotes);
+                }
+            }
+
+            return this;
+        }
+
+        public ITraktSyncRecommendationsPostBuilder WithShowsWithNotes(IEnumerable<ShowIdsWithNotes> showIdsWithNotes)
+        {
+            if (showIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(showIdsWithNotes));
+
+            foreach (ShowIdsWithNotes showIdWithNotes in showIdsWithNotes)
+            {
+                if (showIdWithNotes != null)
+                {
+                    CheckNotes(showIdWithNotes.Notes);
+                    _showIdsWithNotes.Value.Add(showIdWithNotes);
+                }
             }
 
             return this;
@@ -149,56 +277,161 @@
 
         private void AddMovies(ITraktSyncRecommendationsPost syncRecommendationsPost)
         {
-            if (syncRecommendationsPost.Movies == null)
-                syncRecommendationsPost.Movies = new List<ITraktSyncRecommendationsPostMovie>();
+            if (!_movies.IsValueCreated && !_movieIds.IsValueCreated
+                && !_moviesWithNotes.IsValueCreated && !_movieIdsWithNotes.IsValueCreated)
+            {
+                return;
+            }
 
-            foreach (ITraktMovie movie in _movies)
-                (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>).Add(CreateSyncRecommendationsPostMovie(movie));
+            syncRecommendationsPost.Movies ??= new List<ITraktSyncRecommendationsPostMovie>();
 
-            foreach (PostBuilderObjectWithNotes<ITraktMovie> movieWithNotes in _moviesWithNotes)
-                (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>).Add(CreateSyncRecommendationsPostMovie(movieWithNotes.Object, movieWithNotes.Notes));
+            if (_movies.IsValueCreated && _movies.Value.Any())
+            {
+                foreach (ITraktMovie movie in _movies.Value)
+                {
+                    (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>)
+                        .Add(CreateRecommendationsPostMovie(movie));
+                }
+            }
+
+            if (_movieIds.IsValueCreated && _movieIds.Value.Any())
+            {
+                foreach (ITraktMovieIds movieIds in _movieIds.Value)
+                {
+                    (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>)
+                        .Add(CreateRecommendationsPostMovie(movieIds));
+                }
+            }
+
+            if (_moviesWithNotes.IsValueCreated && _moviesWithNotes.Value.Any())
+            {
+                foreach (MovieWithNotes movieWithNotes in _moviesWithNotes.Value)
+                {
+                    (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>)
+                        .Add(CreateRecommendationsPostMovie(movieWithNotes.Object, movieWithNotes.Notes));
+                }
+            }
+
+            if (_movieIdsWithNotes.IsValueCreated && _movieIdsWithNotes.Value.Any())
+            {
+                foreach (MovieIdsWithNotes movieIdsWithNotes in _movieIdsWithNotes.Value)
+                {
+                    (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>)
+                        .Add(CreateRecommendationsPostMovie(movieIdsWithNotes.Object, movieIdsWithNotes.Notes));
+                }
+            }
         }
 
         private void AddShows(ITraktSyncRecommendationsPost syncRecommendationsPost)
         {
-            if (syncRecommendationsPost.Shows == null)
-                syncRecommendationsPost.Shows = new List<ITraktSyncRecommendationsPostShow>();
+            if (!_shows.IsValueCreated && !_showIds.IsValueCreated
+                && !_showsWithNotes.IsValueCreated && !_showIdsWithNotes.IsValueCreated)
+            {
+                return;
+            }
 
-            foreach (ITraktShow show in _shows)
-                (syncRecommendationsPost.Shows as List<ITraktSyncRecommendationsPostShow>).Add(CreateSyncRecommendationsPostShow(show));
+            syncRecommendationsPost.Shows ??= new List<ITraktSyncRecommendationsPostShow>();
 
-            foreach (PostBuilderObjectWithNotes<ITraktShow> showWithNotes in _showsWithNotes)
-                (syncRecommendationsPost.Shows as List<ITraktSyncRecommendationsPostShow>).Add(CreateSyncRecommendationsPostShow(showWithNotes.Object, showWithNotes.Notes));
+            if (_shows.IsValueCreated && _shows.Value.Any())
+            {
+                foreach (ITraktShow show in _shows.Value)
+                {
+                    (syncRecommendationsPost.Shows as List<ITraktSyncRecommendationsPostShow>)
+                        .Add(CreateRecommendationsPostShow(show));
+                }
+            }
+
+            if (_showIds.IsValueCreated && _showIds.Value.Any())
+            {
+                foreach (ITraktShowIds showIds in _showIds.Value)
+                {
+                    (syncRecommendationsPost.Shows as List<ITraktSyncRecommendationsPostShow>)
+                        .Add(CreateRecommendationsPostShow(showIds));
+                }
+            }
+
+            if (_showsWithNotes.IsValueCreated && _showsWithNotes.Value.Any())
+            {
+                foreach (ShowWithNotes showWithNotes in _showsWithNotes.Value)
+                {
+                    (syncRecommendationsPost.Shows as List<ITraktSyncRecommendationsPostShow>)
+                        .Add(CreateRecommendationsPostShow(showWithNotes.Object, showWithNotes.Notes));
+                }
+            }
+
+            if (_showIdsWithNotes.IsValueCreated && _showIdsWithNotes.Value.Any())
+            {
+                foreach (ShowIdsWithNotes showIdsWithNotes in _showIdsWithNotes.Value)
+                {
+                    (syncRecommendationsPost.Shows as List<ITraktSyncRecommendationsPostShow>)
+                        .Add(CreateRecommendationsPostShow(showIdsWithNotes.Object, showIdsWithNotes.Notes));
+                }
+            }
         }
 
-        private ITraktSyncRecommendationsPostMovie CreateSyncRecommendationsPostMovie(ITraktMovie movie, string notes = null)
+        private static ITraktSyncRecommendationsPostMovie CreateRecommendationsPostMovie(ITraktMovie movie, string notes = null)
         {
-            var syncRecommendationsPostMovie = new TraktSyncRecommendationsPostMovie
+            ITraktSyncRecommendationsPostMovie syncRecommendationsPostMovie = new TraktSyncRecommendationsPostMovie
             {
                 Ids = movie.Ids,
                 Title = movie.Title,
                 Year = movie.Year
             };
 
-            if (!string.IsNullOrWhiteSpace(notes))
+            if (!string.IsNullOrEmpty(notes))
                 syncRecommendationsPostMovie.Notes = notes;
 
             return syncRecommendationsPostMovie;
         }
 
-        private ITraktSyncRecommendationsPostShow CreateSyncRecommendationsPostShow(ITraktShow show, string notes = null)
+        private static ITraktSyncRecommendationsPostMovie CreateRecommendationsPostMovie(ITraktMovieIds movieIds, string notes = null)
         {
-            var syncRecommendationsPostShow = new TraktSyncRecommendationsPostShow
+            ITraktSyncRecommendationsPostMovie syncRecommendationsPostMovie = new TraktSyncRecommendationsPostMovie
+            {
+                Ids = movieIds
+            };
+
+            if (!string.IsNullOrEmpty(notes))
+                syncRecommendationsPostMovie.Notes = notes;
+
+            return syncRecommendationsPostMovie;
+        }
+
+        private static ITraktSyncRecommendationsPostShow CreateRecommendationsPostShow(ITraktShow show, string notes = null)
+        {
+            ITraktSyncRecommendationsPostShow syncRecommendationsPostShow = new TraktSyncRecommendationsPostShow
             {
                 Ids = show.Ids,
                 Title = show.Title,
                 Year = show.Year
             };
 
-            if (!string.IsNullOrWhiteSpace(notes))
+            if (!string.IsNullOrEmpty(notes))
                 syncRecommendationsPostShow.Notes = notes;
 
             return syncRecommendationsPostShow;
+        }
+
+        private static ITraktSyncRecommendationsPostShow CreateRecommendationsPostShow(ITraktShowIds showIds, string notes = null)
+        {
+            ITraktSyncRecommendationsPostShow syncRecommendationsPostShow = new TraktSyncRecommendationsPostShow
+            {
+                Ids = showIds
+            };
+
+            if (!string.IsNullOrEmpty(notes))
+                syncRecommendationsPostShow.Notes = notes;
+
+            return syncRecommendationsPostShow;
+        }
+
+        private static void CheckNotes(string notes)
+        {
+            if (notes == null)
+                throw new ArgumentNullException(nameof(notes));
+
+            if (notes.Length > 255)
+                throw new ArgumentOutOfRangeException(nameof(notes));
         }
     }
 }
