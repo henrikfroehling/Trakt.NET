@@ -10,7 +10,7 @@
     using TraktNet.Objects.Post.Syncs.Recommendations;
     using Xunit;
 
-    [Category("Objects.Post.Builder")]
+    [Category("PostBuilder")]
     public class TraktPost_SyncRecommendationsPostBuilder_Tests
     {
         private const string TEST_NOTES = "test-notes";

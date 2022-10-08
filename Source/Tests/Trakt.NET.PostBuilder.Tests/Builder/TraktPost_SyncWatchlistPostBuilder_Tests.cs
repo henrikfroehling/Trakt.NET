@@ -11,7 +11,7 @@
     using TraktNet.Objects.Post.Syncs.Watchlist;
     using Xunit;
 
-    [Category("Objects.Post.Builder")]
+    [Category("PostBuilder")]
     public class TraktPost_SyncWatchlistPostBuilder_Tests
     {
         [Fact]

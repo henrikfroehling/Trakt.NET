@@ -7,7 +7,7 @@
     using TraktNet.Objects.Post.Syncs.Collection;
     using Xunit;
 
-    [Category("Objects.Post.Builder")]
+    [Category("PostBuilder")]
     public partial class TraktPost_SyncCollectionPostBuilder_Tests
     {
         [Fact]

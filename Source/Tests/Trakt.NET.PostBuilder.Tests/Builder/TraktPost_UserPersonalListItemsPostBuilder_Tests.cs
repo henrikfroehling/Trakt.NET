@@ -11,7 +11,7 @@
     using TraktNet.Objects.Post.Users.PersonalListItems;
     using Xunit;
 
-    [Category("Objects.Post.Builder")]
+    [Category("PostBuilder")]
     public class TraktPost_UserPersonalListItemsPostBuilder_Tests
     {
         [Fact]
