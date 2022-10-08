@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,15 +8,14 @@
     <OutputType>Library</OutputType>
     <StartupObject />
     <LangVersion>latest</LangVersion>
-    <ProjectGuid>{3CE5281A-739A-41A5-ACC0-74059B7535B7}</ProjectGuid>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\..\Build\Tests\Trakt.NET.Objects.Basic.Tests\Debug\</OutputPath>
+    <OutputPath>..\..\..\Build\Tests\Trakt.NET.PostBuilder.Tests\Debug\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\..\Build\Tests\Trakt.NET.Objects.Basic.Tests\Release\</OutputPath>
+    <OutputPath>..\..\..\Build\Tests\Trakt.NET.PostBuilder.Tests\Release\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

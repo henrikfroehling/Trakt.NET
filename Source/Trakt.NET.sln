@@ -97,6 +97,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetSingleShowExample", "Exa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetTrendingShowsExample", "Examples\Modules\ShowsModule\GetTrendingShowsExample\GetTrendingShowsExample.csproj", "{CD5A1ACB-79BE-45BC-8758-C5409B7D077A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.PostBuilder.Tests", "Tests\Trakt.NET.PostBuilder.Tests\Trakt.NET.PostBuilder.Tests.csproj", "{DF5B66BE-56C5-40B1-80E3-928BD97205D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -299,6 +301,18 @@ Global
 		{CD5A1ACB-79BE-45BC-8758-C5409B7D077A}.Release|x64.Build.0 = Release|Any CPU
 		{CD5A1ACB-79BE-45BC-8758-C5409B7D077A}.Release|x86.ActiveCfg = Release|Any CPU
 		{CD5A1ACB-79BE-45BC-8758-C5409B7D077A}.Release|x86.Build.0 = Release|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Debug|x64.Build.0 = Debug|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Debug|x86.Build.0 = Debug|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Release|x64.ActiveCfg = Release|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Release|x64.Build.0 = Release|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Release|x86.ActiveCfg = Release|Any CPU
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -331,6 +345,7 @@ Global
 		{276D1CE3-272B-4522-B664-9441A8DBE519} = {2038C1AB-C305-460C-BE92-3F34826AB630}
 		{3A69773E-2A08-4C37-88AC-E09B06F1FCF1} = {2038C1AB-C305-460C-BE92-3F34826AB630}
 		{CD5A1ACB-79BE-45BC-8758-C5409B7D077A} = {2038C1AB-C305-460C-BE92-3F34826AB630}
+		{DF5B66BE-56C5-40B1-80E3-928BD97205D6} = {40C02336-96D7-4D92-9CBA-79570413DBA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7025A39E-11A6-4587-98F7-E887B941D5A0}
