@@ -16,6 +16,8 @@
         internal static readonly DateTime WATCHED_AT = DateTime.UtcNow;
         internal static readonly DateTime RATED_AT = DateTime.UtcNow;
         internal static readonly TraktPostRating RATING = TraktPostRating.Rating_5;
+        internal static readonly string NOTES = new('n', 255);
+        internal static readonly string NOTES_TOO_LONG = new('n', 256);
 
         internal static readonly ITraktMetadata METADATA = new TraktMetadata
         {
