@@ -5,30 +5,55 @@
     using System.Linq;
     using TraktNet.Objects.Get.Episodes;
     using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Post.Syncs.Watchlist;
 
     internal sealed class SyncWatchlistPostBuilder : ITraktSyncWatchlistPostBuilder
     {
-        private readonly List<ITraktMovie> _movies;
-        private readonly List<PostBuilderObjectWithNotes<ITraktMovie>> _moviesWithNotes;
-        private readonly List<ITraktShow> _shows;
-        private readonly List<PostBuilderObjectWithNotes<ITraktShow>> _showsWithNotes;
-        private readonly List<ITraktEpisode> _episodes;
-        private readonly List<PostBuilderObjectWithNotes<ITraktEpisode>> _episodesWithNotes;
-        private readonly PostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> _showsWithSeasons;
-        private readonly PostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasonsOld> _showsWithSeasonsCollection;
+        private readonly Lazy<List<ITraktMovie>> _movies;
+        private readonly Lazy<List<ITraktMovieIds>> _movieIds;
+        private readonly Lazy<List<MovieWithNotes>> _moviesWithNotes;
+        private readonly Lazy<List<MovieIdsWithNotes>> _movieIdsWithNotes;
+        private readonly Lazy<List<ITraktShow>> _shows;
+        private readonly Lazy<List<ITraktShowIds>> _showIds;
+        private readonly Lazy<List<ShowWithNotes>> _showsWithNotes;
+        private readonly Lazy<List<ShowIdsWithNotes>> _showIdsWithNotes;
+        private readonly Lazy<List<ShowAndSeasons>> _showsAndSeasons;
+        private readonly Lazy<List<ShowIdsAndSeasons>> _showIdsAndSeasons;
+        private readonly Lazy<List<ShowWithNotesAndSeasons>> _showsWithNotesAndSeasons;
+        private readonly Lazy<List<ShowIdsWithNotesAndSeasons>> _showIdsWithNotesAndSeasons;
+        private readonly Lazy<List<ITraktSeason>> _seasons;
+        private readonly Lazy<List<ITraktSeasonIds>> _seasonIds;
+        private readonly Lazy<List<SeasonWithNotes>> _seasonsWithNotes;
+        private readonly Lazy<List<SeasonIdsWithNotes>> _seasonIdsWithNotes;
+        private readonly Lazy<List<ITraktEpisode>> _episodes;
+        private readonly Lazy<List<ITraktEpisodeIds>> _episodeIds;
+        private readonly Lazy<List<EpisodeWithNotes>> _episodesWithNotes;
+        private readonly Lazy<List<EpisodeIdsWithNotes>> _episodeIdsWithNotes;
 
         internal SyncWatchlistPostBuilder()
         {
-            _movies = new List<ITraktMovie>();
-            _moviesWithNotes = new List<PostBuilderObjectWithNotes<ITraktMovie>>();
-            _shows = new List<ITraktShow>();
-            _showsWithNotes = new List<PostBuilderObjectWithNotes<ITraktShow>>();
-            _episodes = new List<ITraktEpisode>();
-            _episodesWithNotes = new List<PostBuilderObjectWithNotes<ITraktEpisode>>();
-            _showsWithSeasons = new PostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost>(this);
-            _showsWithSeasonsCollection = new PostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasonsOld>(this);
+            _movies = new Lazy<List<ITraktMovie>>();
+            _movieIds = new Lazy<List<ITraktMovieIds>>();
+            _moviesWithNotes = new Lazy<List<MovieWithNotes>>();
+            _movieIdsWithNotes = new Lazy<List<MovieIdsWithNotes>>();
+            _shows = new Lazy<List<ITraktShow>>();
+            _showIds = new Lazy<List<ITraktShowIds>>();
+            _showsWithNotes = new Lazy<List<ShowWithNotes>>();
+            _showIdsWithNotes = new Lazy<List<ShowIdsWithNotes>>();
+            _showsAndSeasons = new Lazy<List<ShowAndSeasons>>();
+            _showIdsAndSeasons = new Lazy<List<ShowIdsAndSeasons>>();
+            _showsWithNotesAndSeasons = new Lazy<List<ShowWithNotesAndSeasons>>();
+            _showIdsWithNotesAndSeasons = new Lazy<List<ShowIdsWithNotesAndSeasons>>();
+            _seasons = new Lazy<List<ITraktSeason>>();
+            _seasonIds = new Lazy<List<ITraktSeasonIds>>();
+            _seasonsWithNotes = new Lazy<List<SeasonWithNotes>>();
+            _seasonIdsWithNotes = new Lazy<List<SeasonIdsWithNotes>>();
+            _episodes = new Lazy<List<ITraktEpisode>>();
+            _episodeIds = new Lazy<List<ITraktEpisodeIds>>();
+            _episodesWithNotes = new Lazy<List<EpisodeWithNotes>>();
+            _episodeIdsWithNotes = new Lazy<List<EpisodeIdsWithNotes>>();
         }
 
         public ITraktSyncWatchlistPostBuilder WithMovie(ITraktMovie movie)
@@ -36,7 +61,16 @@
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
 
-            _movies.Add(movie);
+            _movies.Value.Add(movie);
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithMovie(ITraktMovieIds movieIds)
+        {
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            _movieIds.Value.Add(movieIds);
             return this;
         }
 
@@ -45,18 +79,36 @@
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
 
-            if (notes == null)
-                throw new ArgumentNullException(nameof(notes));
+            CheckNotes(notes);
+            return WithMovieWithNotes(new MovieWithNotes(movie, notes));
+        }
 
-            if (notes.Length > 255)
-                throw new ArgumentOutOfRangeException(nameof(notes), "notes cannot be longer than 255 characters");
+        public ITraktSyncWatchlistPostBuilder WithMovieWithNotes(MovieWithNotes movieWithNotes)
+        {
+            if (movieWithNotes == null)
+                throw new ArgumentNullException(nameof(movieWithNotes));
 
-            _moviesWithNotes.Add(new PostBuilderObjectWithNotes<ITraktMovie>
-            {
-                Object = movie,
-                Notes = notes
-            });
+            CheckNotes(movieWithNotes.Notes);
+            _moviesWithNotes.Value.Add(movieWithNotes);
+            return this;
+        }
 
+        public ITraktSyncWatchlistPostBuilder WithMovieWithNotes(ITraktMovieIds movieIds, string notes)
+        {
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            CheckNotes(notes);
+            return WithMovieWithNotes(new MovieIdsWithNotes(movieIds, notes));
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithMovieWithNotes(MovieIdsWithNotes movieIdsWithNotes)
+        {
+            if (movieIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(movieIdsWithNotes));
+
+            CheckNotes(movieIdsWithNotes.Notes);
+            _movieIdsWithNotes.Value.Add(movieIdsWithNotes);
             return this;
         }
 
@@ -65,25 +117,58 @@
             if (movies == null)
                 throw new ArgumentNullException(nameof(movies));
 
-            _movies.AddRange(movies);
+            foreach (ITraktMovie movie in movies)
+            {
+                if (movie != null)
+                    _movies.Value.Add(movie);
+            }
+
             return this;
         }
 
-        public ITraktSyncWatchlistPostBuilder WithMoviesWithNotes(IEnumerable<Tuple<ITraktMovie, string>> movies)
+        public ITraktSyncWatchlistPostBuilder WithMovies(IEnumerable<ITraktMovieIds> movieIds)
         {
-            if (movies == null)
-                throw new ArgumentNullException(nameof(movies));
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
 
-            foreach (Tuple<ITraktMovie, string> tuple in movies)
+            foreach (ITraktMovieIds movieId in movieIds)
             {
-                if (tuple.Item2?.Length > 255)
-                    throw new ArgumentOutOfRangeException($"movies[{movies.ToList().IndexOf(tuple)}].Notes", "notes cannot be longer than 255 characters");
+                if (movieId != null)
+                    _movieIds.Value.Add(movieId);
+            }
 
-                _moviesWithNotes.Add(new PostBuilderObjectWithNotes<ITraktMovie>
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithMoviesWithNotes(IEnumerable<MovieWithNotes> moviesWithNotes)
+        {
+            if (moviesWithNotes == null)
+                throw new ArgumentNullException(nameof(moviesWithNotes));
+
+            foreach (MovieWithNotes movieWithNotes in moviesWithNotes)
+            {
+                if (movieWithNotes != null)
                 {
-                    Object = tuple.Item1,
-                    Notes = tuple.Item2
-                });
+                    CheckNotes(movieWithNotes.Notes);
+                    _moviesWithNotes.Value.Add(movieWithNotes);
+                }
+            }
+
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithMoviesWithNotes(IEnumerable<MovieIdsWithNotes> movieIdsWithNotes)
+        {
+            if (movieIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(movieIdsWithNotes));
+
+            foreach (MovieIdsWithNotes movieIdWithNotes in movieIdsWithNotes)
+            {
+                if (movieIdWithNotes != null)
+                {
+                    CheckNotes(movieIdWithNotes.Notes);
+                    _movieIdsWithNotes.Value.Add(movieIdWithNotes);
+                }
             }
 
             return this;
@@ -94,7 +179,16 @@
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
 
-            _shows.Add(show);
+            _shows.Value.Add(show);
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShow(ITraktShowIds showIds)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            _showIds.Value.Add(showIds);
             return this;
         }
 
@@ -103,18 +197,36 @@
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
 
-            if (notes == null)
-                throw new ArgumentNullException(nameof(notes));
+            CheckNotes(notes);
+            return WithShowWithNotes(new ShowWithNotes(show, notes));
+        }
 
-            if (notes.Length > 255)
-                throw new ArgumentOutOfRangeException(nameof(notes), "notes cannot be longer than 255 characters");
+        public ITraktSyncWatchlistPostBuilder WithShowWithNotes(ShowWithNotes showWithNotes)
+        {
+            if (showWithNotes == null)
+                throw new ArgumentNullException(nameof(showWithNotes));
 
-            _showsWithNotes.Add(new PostBuilderObjectWithNotes<ITraktShow>
-            {
-                Object = show,
-                Notes = notes
-            });
+            CheckNotes(showWithNotes.Notes);
+            _showsWithNotes.Value.Add(showWithNotes);
+            return this;
+        }
 
+        public ITraktSyncWatchlistPostBuilder WithShowWithNotes(ITraktShowIds showIds, string notes)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            CheckNotes(notes);
+            return WithShowWithNotes(new ShowIdsWithNotes(showIds, notes));
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowWithNotes(ShowIdsWithNotes showIdsWithNotes)
+        {
+            if (showIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(showIdsWithNotes));
+
+            CheckNotes(showIdsWithNotes.Notes);
+            _showIdsWithNotes.Value.Add(showIdsWithNotes);
             return this;
         }
 
@@ -123,46 +235,301 @@
             if (shows == null)
                 throw new ArgumentNullException(nameof(shows));
 
-            _shows.AddRange(shows);
-            return this;
-        }
-
-        public ITraktSyncWatchlistPostBuilder WithShowsWithNotes(IEnumerable<Tuple<ITraktShow, string>> shows)
-        {
-            if (shows == null)
-                throw new ArgumentNullException(nameof(shows));
-
-            foreach (Tuple<ITraktShow, string> tuple in shows)
+            foreach (ITraktShow show in shows)
             {
-                if (tuple.Item2?.Length > 255)
-                    throw new ArgumentOutOfRangeException($"shows[{shows.ToList().IndexOf(tuple)}].Notes", "notes cannot be longer than 255 characters");
-
-                _showsWithNotes.Add(new PostBuilderObjectWithNotes<ITraktShow>
-                {
-                    Object = tuple.Item1,
-                    Notes = tuple.Item2
-                });
+                if (show != null)
+                    _shows.Value.Add(show);
             }
 
             return this;
         }
 
-        public ITraktPostBuilderShowAddedSeasons<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost> WithShowAndSeasons(ITraktShow show)
+        public ITraktSyncWatchlistPostBuilder WithShows(IEnumerable<ITraktShowIds> showIds)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
 
-            _showsWithSeasons.SetCurrentShow(show);
-            return _showsWithSeasons;
+            foreach (ITraktShowIds showId in showIds)
+            {
+                if (showId != null)
+                    _showIds.Value.Add(showId);
+            }
+
+            return this;
         }
 
-        public ITraktPostBuilderShowAddedSeasonsCollection<ITraktSyncWatchlistPostBuilder, ITraktSyncWatchlistPost, PostSeasonsOld> WithShowAndSeasonsCollection(ITraktShow show)
+        public ITraktSyncWatchlistPostBuilder WithShowsWithNotes(IEnumerable<ShowWithNotes> showsWithNotes)
+        {
+            if (showsWithNotes == null)
+                throw new ArgumentNullException(nameof(showsWithNotes));
+
+            foreach (ShowWithNotes showWithNotes in showsWithNotes)
+            {
+                if (showWithNotes != null)
+                {
+                    CheckNotes(showWithNotes.Notes);
+                    _showsWithNotes.Value.Add(showWithNotes);
+                }
+            }
+
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowsWithNotes(IEnumerable<ShowIdsWithNotes> showIdsWithNotes)
+        {
+            if (showIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(showIdsWithNotes));
+
+            foreach (ShowIdsWithNotes showIdWithNotes in showIdsWithNotes)
+            {
+                if (showIdWithNotes != null)
+                {
+                    CheckNotes(showIdWithNotes.Notes);
+                    _showIdsWithNotes.Value.Add(showIdWithNotes);
+                }
+            }
+
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowAndSeasons(ITraktShow show, PostSeasons seasons)
         {
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
 
-            _showsWithSeasonsCollection.SetCurrentShow(show);
-            return _showsWithSeasonsCollection;
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowAndSeasons(show, seasons));
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowAndSeasons(ShowAndSeasons showAndSeasons)
+        {
+            if (showAndSeasons == null)
+                throw new ArgumentNullException(nameof(showAndSeasons));
+
+            _showsAndSeasons.Value.Add(showAndSeasons);
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowAndSeasons(ITraktShowIds showIds, PostSeasons seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, seasons));
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowAndSeasons(ShowIdsAndSeasons showIdsAndSeasons)
+        {
+            if (showIdsAndSeasons == null)
+                throw new ArgumentNullException(nameof(showIdsAndSeasons));
+
+            _showIdsAndSeasons.Value.Add(showIdsAndSeasons);
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowWithNotesAndSeasons(ShowWithNotesAndSeasons showWithNotesAndSeasons)
+        {
+            if (showWithNotesAndSeasons == null)
+                throw new ArgumentNullException(nameof(showWithNotesAndSeasons));
+
+            CheckNotes(showWithNotesAndSeasons.Object.Notes);
+            _showsWithNotesAndSeasons.Value.Add(showWithNotesAndSeasons);
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowWithNotesAndSeasons(ShowIdsWithNotesAndSeasons showIdsWithNotesAndSeasons)
+        {
+            if (showIdsWithNotesAndSeasons == null)
+                throw new ArgumentNullException(nameof(showIdsWithNotesAndSeasons));
+
+            CheckNotes(showIdsWithNotesAndSeasons.Object.Notes);
+            _showIdsWithNotesAndSeasons.Value.Add(showIdsWithNotesAndSeasons);
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowsAndSeasons(IEnumerable<ShowAndSeasons> showsAndSeasons)
+        {
+            if (showsAndSeasons == null)
+                throw new ArgumentNullException(nameof(showsAndSeasons));
+
+            foreach (ShowAndSeasons showAndSeasons in showsAndSeasons)
+            {
+                if (showAndSeasons != null)
+                    _showsAndSeasons.Value.Add(showAndSeasons);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowsAndSeasons(IEnumerable<ShowIdsAndSeasons> showIdsAndSeasons)
+        {
+            if (showIdsAndSeasons == null)
+                throw new ArgumentNullException(nameof(showIdsAndSeasons));
+
+            foreach (ShowIdsAndSeasons showIdAndSeasons in showIdsAndSeasons)
+            {
+                if (showIdAndSeasons != null)
+                    _showIdsAndSeasons.Value.Add(showIdAndSeasons);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowsWithNotesAndSeasons(IEnumerable<ShowWithNotesAndSeasons> showsWithNotesAndSeasons)
+        {
+            if (showsWithNotesAndSeasons == null)
+                throw new ArgumentNullException(nameof(showsWithNotesAndSeasons));
+
+            foreach (ShowWithNotesAndSeasons showWithNotesAndSeasons in showsWithNotesAndSeasons)
+            {
+                if (showWithNotesAndSeasons != null)
+                {
+                    CheckNotes(showWithNotesAndSeasons.Object.Notes);
+                    _showsWithNotesAndSeasons.Value.Add(showWithNotesAndSeasons);
+                }
+            }
+
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowsWithNotesAndSeasons(IEnumerable<ShowIdsWithNotesAndSeasons> showIdsWithNotesAndSeasons)
+        {
+            if (showIdsWithNotesAndSeasons == null)
+                throw new ArgumentNullException(nameof(showIdsWithNotesAndSeasons));
+
+            foreach (ShowIdsWithNotesAndSeasons showIdWithNotesAndSeasons in showIdsWithNotesAndSeasons)
+            {
+                if (showIdWithNotesAndSeasons != null)
+                {
+                    CheckNotes(showIdWithNotesAndSeasons.Object.Notes);
+                    _showIdsWithNotesAndSeasons.Value.Add(showIdWithNotesAndSeasons);
+                }
+            }
+
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithSeason(ITraktSeason season)
+        {
+            if (season == null)
+                throw new ArgumentNullException(nameof(season));
+
+            _seasons.Value.Add(season);
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithSeason(ITraktSeasonIds seasonIds)
+        {
+            if (seasonIds == null)
+                throw new ArgumentNullException(nameof(seasonIds));
+
+            _seasonIds.Value.Add(seasonIds);
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithSeasonWithNotes(ITraktSeason season, string notes)
+        {
+            if (season == null)
+                throw new ArgumentNullException(nameof(season));
+
+            CheckNotes(notes);
+            return WithSeasonWithNotes(new SeasonWithNotes(season, notes));
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithSeasonWithNotes(SeasonWithNotes seasonWithNotes)
+        {
+            if (seasonWithNotes == null)
+                throw new ArgumentNullException(nameof(seasonWithNotes));
+
+            CheckNotes(seasonWithNotes.Notes);
+            _seasonsWithNotes.Value.Add(seasonWithNotes);
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithSeasonWithNotes(ITraktSeasonIds seasonIds, string notes)
+        {
+            if (seasonIds == null)
+                throw new ArgumentNullException(nameof(seasonIds));
+
+            CheckNotes(notes);
+            return WithSeasonWithNotes(new SeasonIdsWithNotes(seasonIds, notes));
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithSeasonWithNotes(SeasonIdsWithNotes seasonIdsWithNotes)
+        {
+            if (seasonIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(seasonIdsWithNotes));
+
+            CheckNotes(seasonIdsWithNotes.Notes);
+            _seasonIdsWithNotes.Value.Add(seasonIdsWithNotes);
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithSeasons(IEnumerable<ITraktSeason> seasons)
+        {
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            foreach (ITraktSeason season in seasons)
+            {
+                if (season != null)
+                    _seasons.Value.Add(season);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithSeasons(IEnumerable<ITraktSeasonIds> seasonIds)
+        {
+            if (seasonIds == null)
+                throw new ArgumentNullException(nameof(seasonIds));
+
+            foreach (ITraktSeasonIds seasonId in seasonIds)
+            {
+                if (seasonId != null)
+                    _seasonIds.Value.Add(seasonId);
+            }
+
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithSeasonsWithNotes(IEnumerable<SeasonWithNotes> seasonsWithNotes)
+        {
+            if (seasonsWithNotes == null)
+                throw new ArgumentNullException(nameof(seasonsWithNotes));
+
+            foreach (SeasonWithNotes seasonWithNotes in seasonsWithNotes)
+            {
+                if (seasonWithNotes != null)
+                {
+                    CheckNotes(seasonWithNotes.Notes);
+                    _seasonsWithNotes.Value.Add(seasonWithNotes);
+                }
+            }
+
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithSeasonsWithNotes(IEnumerable<SeasonIdsWithNotes> seasonIdsWithNotes)
+        {
+            if (seasonIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(seasonIdsWithNotes));
+
+            foreach (SeasonIdsWithNotes seasonIdWithNotes in seasonIdsWithNotes)
+            {
+                if (seasonIdWithNotes != null)
+                {
+                    CheckNotes(seasonIdWithNotes.Notes);
+                    _seasonIdsWithNotes.Value.Add(seasonIdWithNotes);
+                }
+            }
+
+            return this;
         }
 
         public ITraktSyncWatchlistPostBuilder WithEpisode(ITraktEpisode episode)
@@ -170,7 +537,16 @@
             if (episode == null)
                 throw new ArgumentNullException(nameof(episode));
 
-            _episodes.Add(episode);
+            _episodes.Value.Add(episode);
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithEpisode(ITraktEpisodeIds episodeIds)
+        {
+            if (episodeIds == null)
+                throw new ArgumentNullException(nameof(episodeIds));
+
+            _episodeIds.Value.Add(episodeIds);
             return this;
         }
 
@@ -179,18 +555,36 @@
             if (episode == null)
                 throw new ArgumentNullException(nameof(episode));
 
-            if (notes == null)
-                throw new ArgumentNullException(nameof(notes));
+            CheckNotes(notes);
+            return WithEpisodeWithNotes(new EpisodeWithNotes(episode, notes));
+        }
 
-            if (notes.Length > 255)
-                throw new ArgumentOutOfRangeException(nameof(notes), "notes cannot be longer than 255 characters");
+        public ITraktSyncWatchlistPostBuilder WithEpisodeWithNotes(EpisodeWithNotes episodeWithNotes)
+        {
+            if (episodeWithNotes == null)
+                throw new ArgumentNullException(nameof(episodeWithNotes));
 
-            _episodesWithNotes.Add(new PostBuilderObjectWithNotes<ITraktEpisode>
-            {
-                Object = episode,
-                Notes = notes
-            });
+            CheckNotes(episodeWithNotes.Notes);
+            _episodesWithNotes.Value.Add(episodeWithNotes);
+            return this;
+        }
 
+        public ITraktSyncWatchlistPostBuilder WithEpisodeWithNotes(ITraktEpisodeIds episodeIds, string notes)
+        {
+            if (episodeIds == null)
+                throw new ArgumentNullException(nameof(episodeIds));
+
+            CheckNotes(notes);
+            return WithEpisodeWithNotes(new EpisodeIdsWithNotes(episodeIds, notes));
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithEpisodeWithNotes(EpisodeIdsWithNotes episodeIdsWithNotes)
+        {
+            if (episodeIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(episodeIdsWithNotes));
+
+            CheckNotes(episodeIdsWithNotes.Notes);
+            _episodeIdsWithNotes.Value.Add(episodeIdsWithNotes);
             return this;
         }
 
@@ -199,25 +593,58 @@
             if (episodes == null)
                 throw new ArgumentNullException(nameof(episodes));
 
-            _episodes.AddRange(episodes);
+            foreach (ITraktEpisode episode in episodes)
+            {
+                if (episode != null)
+                    _episodes.Value.Add(episode);
+            }
+
             return this;
         }
 
-        public ITraktSyncWatchlistPostBuilder WithEpisodesWithNotes(IEnumerable<Tuple<ITraktEpisode, string>> episodes)
+        public ITraktSyncWatchlistPostBuilder WithEpisodes(IEnumerable<ITraktEpisodeIds> episodeIds)
         {
-            if (episodes == null)
-                throw new ArgumentNullException(nameof(episodes));
+            if (episodeIds == null)
+                throw new ArgumentNullException(nameof(episodeIds));
 
-            foreach (Tuple<ITraktEpisode, string> tuple in episodes)
+            foreach (ITraktEpisodeIds episodeId in episodeIds)
             {
-                if (tuple.Item2?.Length > 255)
-                    throw new ArgumentOutOfRangeException($"episodes[{episodes.ToList().IndexOf(tuple)}].Notes", "notes cannot be longer than 255 characters");
+                if (episodeId != null)
+                    _episodeIds.Value.Add(episodeId);
+            }
 
-                _episodesWithNotes.Add(new PostBuilderObjectWithNotes<ITraktEpisode>
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithEpisodesWithNotes(IEnumerable<EpisodeWithNotes> episodesWithNotes)
+        {
+            if (episodesWithNotes == null)
+                throw new ArgumentNullException(nameof(episodesWithNotes));
+
+            foreach (EpisodeWithNotes episodeWithNotes in episodesWithNotes)
+            {
+                if (episodeWithNotes != null)
                 {
-                    Object = tuple.Item1,
-                    Notes = tuple.Item2
-                });
+                    CheckNotes(episodeWithNotes.Notes);
+                    _episodesWithNotes.Value.Add(episodeWithNotes);
+                }
+            }
+
+            return this;
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithEpisodesWithNotes(IEnumerable<EpisodeIdsWithNotes> episodeIdsWithNotes)
+        {
+            if (episodeIdsWithNotes == null)
+                throw new ArgumentNullException(nameof(episodeIdsWithNotes));
+
+            foreach (EpisodeIdsWithNotes episodeIdWithNotes in episodeIdsWithNotes)
+            {
+                if (episodeIdWithNotes != null)
+                {
+                    CheckNotes(episodeIdWithNotes.Notes);
+                    _episodeIdsWithNotes.Value.Add(episodeIdWithNotes);
+                }
             }
 
             return this;
@@ -228,6 +655,7 @@
             ITraktSyncWatchlistPost syncWatchlistPost = new TraktSyncWatchlistPost();
             AddMovies(syncWatchlistPost);
             AddShows(syncWatchlistPost);
+            AddSeasons(syncWatchlistPost);
             AddEpisodes(syncWatchlistPost);
             syncWatchlistPost.Validate();
             return syncWatchlistPost;
@@ -235,46 +663,167 @@
 
         private void AddMovies(ITraktSyncWatchlistPost syncWatchlistPost)
         {
+            if (!_movies.IsValueCreated && !_movieIds.IsValueCreated
+                && !_moviesWithNotes.IsValueCreated && !_movieIdsWithNotes.IsValueCreated)
+            {
+                return;
+            }
+
             syncWatchlistPost.Movies ??= new List<ITraktSyncWatchlistPostMovie>();
 
-            foreach (ITraktMovie movie in _movies)
-                (syncWatchlistPost.Movies as List<ITraktSyncWatchlistPostMovie>).Add(CreateSyncWatchlistPostMovie(movie));
+            if (_movies.IsValueCreated && _movies.Value.Any())
+            {
+                foreach (ITraktMovie movie in _movies.Value)
+                {
+                    (syncWatchlistPost.Movies as List<ITraktSyncWatchlistPostMovie>)
+                        .Add(CreateWatchlistPostMovie(movie));
+                }
+            }
 
-            foreach (PostBuilderObjectWithNotes<ITraktMovie> movieWithNotes in _moviesWithNotes)
-                (syncWatchlistPost.Movies as List<ITraktSyncWatchlistPostMovie>).Add(CreateSyncWatchlistPostMovie(movieWithNotes.Object, movieWithNotes.Notes));
+            if (_movieIds.IsValueCreated && _movieIds.Value.Any())
+            {
+                foreach (ITraktMovieIds movieIds in _movieIds.Value)
+                {
+                    (syncWatchlistPost.Movies as List<ITraktSyncWatchlistPostMovie>)
+                        .Add(CreateWatchlistPostMovie(movieIds));
+                }
+            }
+
+            if (_moviesWithNotes.IsValueCreated && _moviesWithNotes.Value.Any())
+            {
+                foreach (MovieWithNotes movieWithNotes in _moviesWithNotes.Value)
+                {
+                    (syncWatchlistPost.Movies as List<ITraktSyncWatchlistPostMovie>)
+                        .Add(CreateWatchlistPostMovie(movieWithNotes.Object, movieWithNotes.Notes));
+                }
+            }
+
+            if (_movieIdsWithNotes.IsValueCreated && _movieIdsWithNotes.Value.Any())
+            {
+                foreach (MovieIdsWithNotes movieIdsWithNotes in _movieIdsWithNotes.Value)
+                {
+                    (syncWatchlistPost.Movies as List<ITraktSyncWatchlistPostMovie>)
+                        .Add(CreateWatchlistPostMovie(movieIdsWithNotes.Object, movieIdsWithNotes.Notes));
+                }
+            }
         }
 
         private void AddShows(ITraktSyncWatchlistPost syncWatchlistPost)
         {
+            if (!_shows.IsValueCreated && !_showIds.IsValueCreated
+                && !_showsWithNotes.IsValueCreated && !_showIdsWithNotes.IsValueCreated
+                && !_showsAndSeasons.IsValueCreated && !_showIdsAndSeasons.IsValueCreated
+                && !_showsWithNotesAndSeasons.IsValueCreated && !_showIdsWithNotesAndSeasons.IsValueCreated)
+            {
+                return;
+            }
+
             syncWatchlistPost.Shows ??= new List<ITraktSyncWatchlistPostShow>();
 
-            foreach (ITraktShow show in _shows)
-                (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>).Add(CreateSyncWatchlistPostShow(show));
+            if (_shows.IsValueCreated && _shows.Value.Any())
+            {
+                foreach (ITraktShow show in _shows.Value)
+                {
+                    (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>)
+                        .Add(CreateWatchlistPostShow(show));
+                }
+            }
 
-            foreach (PostBuilderObjectWithSeasons<ITraktShow, IEnumerable<int>> showEntry in _showsWithSeasons.ShowsWithSeasons)
-                (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>).Add(CreateSyncWatchlistPostShowWithSeasons(showEntry.Object, showEntry.Seasons));
+            if (_showIds.IsValueCreated && _showIds.Value.Any())
+            {
+                foreach (ITraktShowIds showIds in _showIds.Value)
+                {
+                    (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>)
+                        .Add(CreateWatchlistPostShow(showIds));
+                }
+            }
 
-            foreach (PostBuilderObjectWithSeasons<ITraktShow, PostSeasonsOld> showEntry in _showsWithSeasonsCollection.ShowsWithSeasonsCollection)
-                (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>).Add(CreateSyncWatchlistPostShowWithSeasonsCollection(showEntry.Object, showEntry.Seasons));
+            if (_showsWithNotes.IsValueCreated && _showsWithNotes.Value.Any())
+            {
+                foreach (ShowWithNotes showWithNotes in _showsWithNotes.Value)
+                {
+                    (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>)
+                        .Add(CreateWatchlistPostShow(showWithNotes.Object, showWithNotes.Notes));
+                }
+            }
 
-            foreach (PostBuilderObjectWithNotes<ITraktShow> showWithNotes in _showsWithNotes)
-                (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>).Add(CreateSyncWatchlistPostShow(showWithNotes.Object, showWithNotes.Notes));
+            if (_showIdsWithNotes.IsValueCreated && _showIdsWithNotes.Value.Any())
+            {
+                foreach (ShowIdsWithNotes showIdsWithNotes in _showIdsWithNotes.Value)
+                {
+                    (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>)
+                        .Add(CreateWatchlistPostShow(showIdsWithNotes.Object, showIdsWithNotes.Notes));
+                }
+            }
+
+            if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Any())
+                CreateWatchlistPostShowAndSeasons(syncWatchlistPost, _showsAndSeasons.Value);
+
+            if (_showIdsAndSeasons.IsValueCreated && _showIdsAndSeasons.Value.Any())
+                CreateWatchlistPostShowIdsAndSeasons(syncWatchlistPost, _showIdsAndSeasons.Value);
+
+            if (_showsWithNotesAndSeasons.IsValueCreated && _showsWithNotesAndSeasons.Value.Any())
+                CreateWatchlistPostShowAndSeasons(syncWatchlistPost, _showsWithNotesAndSeasons.Value);
+
+            if (_showIdsWithNotesAndSeasons.IsValueCreated && _showIdsWithNotesAndSeasons.Value.Any())
+                CreateWatchlistPostShowIdsAndSeasons(syncWatchlistPost, _showIdsWithNotesAndSeasons.Value);
+        }
+
+        private void AddSeasons(ITraktSyncWatchlistPost syncWatchlistPost)
+        {
+            // TODO
         }
 
         private void AddEpisodes(ITraktSyncWatchlistPost syncWatchlistPost)
         {
+            if (!_episodes.IsValueCreated && !_episodeIds.IsValueCreated
+                && !_episodesWithNotes.IsValueCreated && !_episodeIdsWithNotes.IsValueCreated)
+            {
+                return;
+            }
+
             syncWatchlistPost.Episodes ??= new List<ITraktSyncWatchlistPostEpisode>();
 
-            foreach (ITraktEpisode episode in _episodes)
-                (syncWatchlistPost.Episodes as List<ITraktSyncWatchlistPostEpisode>).Add(CreateSyncWatchlistPostEpisode(episode));
+            if (_episodes.IsValueCreated && _episodes.Value.Any())
+            {
+                foreach (ITraktEpisode episode in _episodes.Value)
+                {
+                    (syncWatchlistPost.Episodes as List<ITraktSyncWatchlistPostEpisode>)
+                        .Add(CreateWatchlistPostEpisode(episode));
+                }
+            }
 
-            foreach (PostBuilderObjectWithNotes<ITraktEpisode> episodeWithNotes in _episodesWithNotes)
-                (syncWatchlistPost.Episodes as List<ITraktSyncWatchlistPostEpisode>).Add(CreateSyncWatchlistPostEpisode(episodeWithNotes.Object, episodeWithNotes.Notes));
+            if (_episodeIds.IsValueCreated && _episodeIds.Value.Any())
+            {
+                foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
+                {
+                    (syncWatchlistPost.Episodes as List<ITraktSyncWatchlistPostEpisode>)
+                        .Add(CreateWatchlistPostEpisode(episodeIds));
+                }
+            }
+
+            if (_episodesWithNotes.IsValueCreated && _episodesWithNotes.Value.Any())
+            {
+                foreach (EpisodeWithNotes episodeWithNotes in _episodesWithNotes.Value)
+                {
+                    (syncWatchlistPost.Episodes as List<ITraktSyncWatchlistPostEpisode>)
+                        .Add(CreateWatchlistPostEpisode(episodeWithNotes.Object, episodeWithNotes.Notes));
+                }
+            }
+
+            if (_episodeIdsWithNotes.IsValueCreated && _episodeIdsWithNotes.Value.Any())
+            {
+                foreach (EpisodeIdsWithNotes episodeIdsWithNotes in _episodeIdsWithNotes.Value)
+                {
+                    (syncWatchlistPost.Episodes as List<ITraktSyncWatchlistPostEpisode>)
+                        .Add(CreateWatchlistPostEpisode(episodeIdsWithNotes.Object, episodeIdsWithNotes.Notes));
+                }
+            }
         }
 
-        private ITraktSyncWatchlistPostMovie CreateSyncWatchlistPostMovie(ITraktMovie movie, string notes = null)
+        private static ITraktSyncWatchlistPostMovie CreateWatchlistPostMovie(ITraktMovie movie, string notes = null)
         {
-            var syncWatchlistPostMovie = new TraktSyncWatchlistPostMovie
+            ITraktSyncWatchlistPostMovie syncWatchlistPostMovie = new TraktSyncWatchlistPostMovie
             {
                 Ids = movie.Ids,
                 Title = movie.Title,
@@ -287,9 +836,22 @@
             return syncWatchlistPostMovie;
         }
 
-        private ITraktSyncWatchlistPostShow CreateSyncWatchlistPostShow(ITraktShow show, string notes = null)
+        private static ITraktSyncWatchlistPostMovie CreateWatchlistPostMovie(ITraktMovieIds movieIds, string notes = null)
         {
-            var syncWatchlistPostShow = new TraktSyncWatchlistPostShow
+            ITraktSyncWatchlistPostMovie syncWatchlistPostMovie = new TraktSyncWatchlistPostMovie
+            {
+                Ids = movieIds
+            };
+
+            if (!string.IsNullOrEmpty(notes))
+                syncWatchlistPostMovie.Notes = notes;
+
+            return syncWatchlistPostMovie;
+        }
+
+        private static ITraktSyncWatchlistPostShow CreateWatchlistPostShow(ITraktShow show, string notes = null)
+        {
+            ITraktSyncWatchlistPostShow syncWatchlistPostShow = new TraktSyncWatchlistPostShow
             {
                 Ids = show.Ids,
                 Title = show.Title,
@@ -302,76 +864,96 @@
             return syncWatchlistPostShow;
         }
 
-        private ITraktSyncWatchlistPostShow CreateSyncWatchlistPostShowWithSeasons(ITraktShow show, IEnumerable<int> seasons)
+        private static ITraktSyncWatchlistPostShow CreateWatchlistPostShow(ITraktShowIds showIds, string notes = null)
         {
-            var syncWatchlistPostShow = CreateSyncWatchlistPostShow(show);
-
-            if (seasons != null)
-                syncWatchlistPostShow.Seasons = CreateSyncWatchlistPostShowSeasons(seasons);
-
-            return syncWatchlistPostShow;
-        }
-
-        private ITraktSyncWatchlistPostShow CreateSyncWatchlistPostShowWithSeasonsCollection(ITraktShow show, PostSeasonsOld seasons)
-        {
-            var syncWatchlistPostShow = CreateSyncWatchlistPostShow(show);
-
-            if (seasons != null)
-                syncWatchlistPostShow.Seasons = CreateSyncWatchlistPostShowSeasons(seasons);
-
-            return syncWatchlistPostShow;
-        }
-
-        private IEnumerable<ITraktSyncWatchlistPostShowSeason> CreateSyncWatchlistPostShowSeasons(IEnumerable<int> seasons)
-        {
-            var syncWatchlistPostShowSeasons = new List<ITraktSyncWatchlistPostShowSeason>();
-
-            foreach (int season in seasons)
+            ITraktSyncWatchlistPostShow syncWatchlistPostShow = new TraktSyncWatchlistPostShow
             {
-                syncWatchlistPostShowSeasons.Add(new TraktSyncWatchlistPostShowSeason
-                {
-                    Number = season
-                });
+                Ids = showIds
+            };
+
+            if (!string.IsNullOrEmpty(notes))
+                syncWatchlistPostShow.Notes = notes;
+
+            return syncWatchlistPostShow;
+        }
+
+        private static void CreateWatchlistPostShowAndSeasons(ITraktSyncWatchlistPost syncWatchlistPost, List<ShowWithNotesAndSeasons> showsWithNotesAndSeasons)
+        {
+            foreach (ShowWithNotesAndSeasons showWithNotesAndSeasons in showsWithNotesAndSeasons)
+            {
+                ITraktSyncWatchlistPostShow syncWatchlistPostShow =
+                    CreateWatchlistPostShow(showWithNotesAndSeasons.Object.Object, showWithNotesAndSeasons.Object.Notes);
+
+                CreateWatchlistPostShowSeasons(syncWatchlistPost, showWithNotesAndSeasons.Seasons, syncWatchlistPostShow);
             }
-
-            return syncWatchlistPostShowSeasons;
         }
 
-        private IEnumerable<ITraktSyncWatchlistPostShowSeason> CreateSyncWatchlistPostShowSeasons(PostSeasonsOld seasons)
+        private static void CreateWatchlistPostShowIdsAndSeasons(ITraktSyncWatchlistPost syncWatchlistPost, List<ShowIdsWithNotesAndSeasons> showIdsWithNotesAndSeasons)
         {
-            var syncWatchlistPostShowSeasons = new List<ITraktSyncWatchlistPostShowSeason>();
-
-            foreach (PostSeasonOld season in seasons)
+            foreach (ShowIdsWithNotesAndSeasons showIdWithNotesAndSeasons in showIdsWithNotesAndSeasons)
             {
-                var syncWatchlistPostShowSeason = new TraktSyncWatchlistPostShowSeason
-                {
-                    Number = season.Number
-                };
+                ITraktSyncWatchlistPostShow syncWatchlistPostShow =
+                    CreateWatchlistPostShow(showIdWithNotesAndSeasons.Object.Object, showIdWithNotesAndSeasons.Object.Notes);
 
-                if (season.Episodes?.Count() > 0)
-                {
-                    var syncWatchlistPostShowEpisodes = new List<ITraktSyncWatchlistPostShowEpisode>();
+                CreateWatchlistPostShowSeasons(syncWatchlistPost, showIdWithNotesAndSeasons.Seasons, syncWatchlistPostShow);
+            }
+        }
 
-                    foreach (PostEpisodeOld episode in season.Episodes)
+        private static void CreateWatchlistPostShowAndSeasons(ITraktSyncWatchlistPost syncWatchlistPost, List<ShowAndSeasons> showsAndSeasons)
+        {
+            foreach (ShowAndSeasons showAndSeasons in showsAndSeasons)
+            {
+                ITraktSyncWatchlistPostShow syncWatchlistPostShow = CreateWatchlistPostShow(showAndSeasons.Object);
+                CreateWatchlistPostShowSeasons(syncWatchlistPost, showAndSeasons.Seasons, syncWatchlistPostShow);
+            }
+        }
+
+        private static void CreateWatchlistPostShowIdsAndSeasons(ITraktSyncWatchlistPost syncWatchlistPost, List<ShowIdsAndSeasons> showIdsAndSeasons)
+        {
+            foreach (ShowIdsAndSeasons showIdAndSeasons in showIdsAndSeasons)
+            {
+                ITraktSyncWatchlistPostShow syncWatchlistPostShow = CreateWatchlistPostShow(showIdAndSeasons.Object);
+                CreateWatchlistPostShowSeasons(syncWatchlistPost, showIdAndSeasons.Seasons, syncWatchlistPostShow);
+            }
+        }
+
+        private static void CreateWatchlistPostShowSeasons(ITraktSyncWatchlistPost syncWatchlistPost, PostSeasons seasons, ITraktSyncWatchlistPostShow syncWatchlistPostShow)
+        {
+            if (seasons.Any())
+            {
+                syncWatchlistPostShow.Seasons = new List<ITraktSyncWatchlistPostShowSeason>();
+
+                foreach (PostSeason season in seasons)
+                {
+                    ITraktSyncWatchlistPostShowSeason syncWatchlistPostShowSeason = CreateWatchlistPostShowSeason(season);
+
+                    if (season.Episodes != null && season.Episodes.Any())
                     {
-                        syncWatchlistPostShowEpisodes.Add(new TraktSyncWatchlistPostShowEpisode
+                        syncWatchlistPostShowSeason.Episodes = new List<ITraktSyncWatchlistPostShowEpisode>();
+
+                        foreach (PostEpisode episode in season.Episodes)
                         {
-                            Number = episode.Number
-                        });
+                            (syncWatchlistPostShowSeason.Episodes as List<ITraktSyncWatchlistPostShowEpisode>)
+                                .Add(CreateWatchlistPostShowEpisode(episode));
+                        }
                     }
 
-                    syncWatchlistPostShowSeason.Episodes = syncWatchlistPostShowEpisodes;
+                    (syncWatchlistPostShow.Seasons as List<ITraktSyncWatchlistPostShowSeason>).Add(syncWatchlistPostShowSeason);
                 }
-
-                syncWatchlistPostShowSeasons.Add(syncWatchlistPostShowSeason);
             }
 
-            return syncWatchlistPostShowSeasons;
+            (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>).Add(syncWatchlistPostShow);
         }
 
-        private ITraktSyncWatchlistPostEpisode CreateSyncWatchlistPostEpisode(ITraktEpisode episode, string notes = null)
+        private static ITraktSyncWatchlistPostShowSeason CreateWatchlistPostShowSeason(PostSeason season)
+            => new TraktSyncWatchlistPostShowSeason { Number = season.Number };
+
+        private static ITraktSyncWatchlistPostShowEpisode CreateWatchlistPostShowEpisode(PostEpisode episode)
+            => new TraktSyncWatchlistPostShowEpisode { Number = episode.Number };
+
+        private static ITraktSyncWatchlistPostEpisode CreateWatchlistPostEpisode(ITraktEpisode episode, string notes = null)
         {
-            var syncWatchlistPostEpisode = new TraktSyncWatchlistPostEpisode
+            ITraktSyncWatchlistPostEpisode syncWatchlistPostEpisode = new TraktSyncWatchlistPostEpisode
             {
                 Ids = episode.Ids
             };
@@ -380,6 +962,28 @@
                 syncWatchlistPostEpisode.Notes = notes;
 
             return syncWatchlistPostEpisode;
+        }
+
+        private static ITraktSyncWatchlistPostEpisode CreateWatchlistPostEpisode(ITraktEpisodeIds episodeIds, string notes = null)
+        {
+            ITraktSyncWatchlistPostEpisode syncWatchlistPostEpisode = new TraktSyncWatchlistPostEpisode
+            {
+                Ids = episodeIds
+            };
+
+            if (!string.IsNullOrEmpty(notes))
+                syncWatchlistPostEpisode.Notes = notes;
+
+            return syncWatchlistPostEpisode;
+        }
+
+        private static void CheckNotes(string notes)
+        {
+            if (notes == null)
+                throw new ArgumentNullException(nameof(notes));
+
+            if (notes.Length > 255)
+                throw new ArgumentOutOfRangeException(nameof(notes));
         }
     }
 }
