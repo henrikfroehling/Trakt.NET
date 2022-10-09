@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Objects.Get.Seasons;
+    using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Post.Syncs.Ratings;
     using Xunit;
 
@@ -12,144 +12,144 @@
     public partial class TraktPost_SyncRatingsPostBuilder_Tests
     {
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeason_ITraktSeason_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShow_ITraktShow_ArgumentExceptions()
         {
-            ITraktSeason episode = null;
+            ITraktShow show = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeason(episode, TraktPost_Tests_Common_Data.RATING)
+                .WithShow(show, TraktPost_Tests_Common_Data.RATING)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeason_ITraktSeasonIds_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShow_ITraktShowIds_ArgumentExceptions()
         {
-            ITraktSeasonIds episodeIds = null;
+            ITraktShowIds showIds = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeason(episodeIds, TraktPost_Tests_Common_Data.RATING)
+                .WithShow(showIds, TraktPost_Tests_Common_Data.RATING)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeason_RatingsSeason_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShow_RatingsShow_ArgumentExceptions()
         {
-            RatingsSeason episode = null;
+            RatingsShow show = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeason(episode)
+                .WithShow(show)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeason_RatingsSeasonIds_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShow_RatingsShowIds_ArgumentExceptions()
         {
-            RatingsSeasonIds episodeIds = null;
+            RatingsShowIds showIds = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeason(episodeIds)
+                .WithShow(showIds)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeasonRatedAt_ITraktSeason_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShowRatedAt_ITraktShow_ArgumentExceptions()
         {
-            ITraktSeason episode = null;
+            ITraktShow show = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeasonRatedAt(episode, TraktPost_Tests_Common_Data.RATING, TraktPost_Tests_Common_Data.RATED_AT)
+                .WithShowRatedAt(show, TraktPost_Tests_Common_Data.RATING, TraktPost_Tests_Common_Data.RATED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeasonRatedAt_ITraktSeasonIds_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShowRatedAt_ITraktShowIds_ArgumentExceptions()
         {
-            ITraktSeasonIds episodeIds = null;
+            ITraktShowIds showIds = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeasonRatedAt(episodeIds, TraktPost_Tests_Common_Data.RATING, TraktPost_Tests_Common_Data.RATED_AT)
+                .WithShowRatedAt(showIds, TraktPost_Tests_Common_Data.RATING, TraktPost_Tests_Common_Data.RATED_AT)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeasonRatedAt_RatingsSeasonRatedAt_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShowRatedAt_RatingsShowRatedAt_ArgumentExceptions()
         {
-            RatingsSeasonRatedAt episode = null;
+            RatingsShowRatedAt show = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeasonRatedAt(episode)
+                .WithShowRatedAt(show)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeasonRatedAt_RatingsSeasonIdsRatedAt_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShowRatedAt_RatingsShowIdsRatedAt_ArgumentExceptions()
         {
-            RatingsSeasonIdsRatedAt episodeIds = null;
+            RatingsShowIdsRatedAt showIds = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeasonRatedAt(episodeIds)
+                .WithShowRatedAt(showIds)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeasons_RatingsSeason_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShows_RatingsShow_ArgumentExceptions()
         {
-            List<RatingsSeason> episodes = null;
+            List<RatingsShow> shows = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeasons(episodes)
+                .WithShows(shows)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeasons_RatingsSeasonIds_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShows_RatingsShowIds_ArgumentExceptions()
         {
-            List<RatingsSeasonIds> episodeIds = null;
+            List<RatingsShowIds> showIds = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeasons(episodeIds)
+                .WithShows(showIds)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeasonsRatedAt_RatingsSeasonRatedAt_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShowsRatedAt_RatingsShowRatedAt_ArgumentExceptions()
         {
-            List<RatingsSeasonRatedAt> episodes = null;
+            List<RatingsShowRatedAt> shows = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeasonsRatedAt(episodes)
+                .WithShowsRatedAt(shows)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsPostBuilder_WithSeasonsRatedAt_RatingsSeasonIdsRatedAt_ArgumentExceptions()
+        public void Test_TraktPost_SyncRatingsPostBuilder_WithShowsRatedAt_RatingsShowIdsRatedAt_ArgumentExceptions()
         {
-            List<RatingsSeasonIdsRatedAt> episodesIds = null;
+            List<RatingsShowIdsRatedAt> showsIds = null;
 
             Func<ITraktSyncRatingsPost> act = () => TraktPost.NewSyncRatingsPost()
-                .WithSeasonsRatedAt(episodesIds)
+                .WithShowsRatedAt(showsIds)
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();

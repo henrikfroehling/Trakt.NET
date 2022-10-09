@@ -21,8 +21,8 @@
             syncHistoryPost.Shows.Should().NotBeNull().And.HaveCount(1);
 
             ITraktSyncHistoryPostShow postShow = syncHistoryPost.Shows.ToArray()[0];
-            postShow.Title = TraktPost_Tests_Common_Data.SHOW_1.Title;
-            postShow.Year = TraktPost_Tests_Common_Data.SHOW_1.Year;
+            postShow.Title.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Title);
+            postShow.Year.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Year);
             postShow.Ids.Should().NotBeNull();
             postShow.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Trakt);
             postShow.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Slug);
@@ -71,8 +71,8 @@
             syncHistoryPost.Shows.Should().NotBeNull().And.HaveCount(1);
 
             ITraktSyncHistoryPostShow postShow = syncHistoryPost.Shows.ToArray()[0];
-            postShow.Title = TraktPost_Tests_Common_Data.SHOW_1.Title;
-            postShow.Year = TraktPost_Tests_Common_Data.SHOW_1.Year;
+            postShow.Title.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Title);
+            postShow.Year.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Year);
             postShow.Ids.Should().NotBeNull();
             postShow.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Trakt);
             postShow.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Slug);
@@ -121,8 +121,8 @@
             syncHistoryPost.Shows.Should().NotBeNull().And.HaveCount(1);
 
             ITraktSyncHistoryPostShow postShow = syncHistoryPost.Shows.ToArray()[0];
-            postShow.Title = TraktPost_Tests_Common_Data.SHOW_1.Title;
-            postShow.Year = TraktPost_Tests_Common_Data.SHOW_1.Year;
+            postShow.Title.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Title);
+            postShow.Year.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Year);
             postShow.Ids.Should().NotBeNull();
             postShow.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Trakt);
             postShow.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Slug);
@@ -171,8 +171,8 @@
             syncHistoryPost.Shows.Should().NotBeNull().And.HaveCount(2);
 
             ITraktSyncHistoryPostShow postShow1 = syncHistoryPost.Shows.ToArray()[0];
-            postShow1.Title = TraktPost_Tests_Common_Data.SHOW_1.Title;
-            postShow1.Year = TraktPost_Tests_Common_Data.SHOW_1.Year;
+            postShow1.Title.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Title);
+            postShow1.Year.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Year);
             postShow1.Ids.Should().NotBeNull();
             postShow1.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Trakt);
             postShow1.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Slug);
@@ -181,8 +181,8 @@
             postShow1.WatchedAt.Should().BeNull();
 
             ITraktSyncHistoryPostShow postShow2 = syncHistoryPost.Shows.ToArray()[1];
-            postShow2.Title = TraktPost_Tests_Common_Data.SHOW_2.Title;
-            postShow2.Year = TraktPost_Tests_Common_Data.SHOW_2.Year;
+            postShow2.Title.Should().Be(TraktPost_Tests_Common_Data.SHOW_2.Title);
+            postShow2.Year.Should().Be(TraktPost_Tests_Common_Data.SHOW_2.Year);
             postShow2.Ids.Should().NotBeNull();
             postShow2.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_2.Ids.Trakt);
             postShow2.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_2.Ids.Slug);
@@ -245,8 +245,8 @@
             syncHistoryPost.Shows.Should().NotBeNull().And.HaveCount(2);
 
             ITraktSyncHistoryPostShow postShow1 = syncHistoryPost.Shows.ToArray()[0];
-            postShow1.Title = TraktPost_Tests_Common_Data.SHOW_1.Title;
-            postShow1.Year = TraktPost_Tests_Common_Data.SHOW_1.Year;
+            postShow1.Title.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Title);
+            postShow1.Year.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Year);
             postShow1.Ids.Should().NotBeNull();
             postShow1.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Trakt);
             postShow1.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Slug);
@@ -255,8 +255,8 @@
             postShow1.WatchedAt.Should().Be(TraktPost_Tests_Common_Data.WATCHED_AT);
 
             ITraktSyncHistoryPostShow postShow2 = syncHistoryPost.Shows.ToArray()[1];
-            postShow2.Title = TraktPost_Tests_Common_Data.SHOW_2.Title;
-            postShow2.Year = TraktPost_Tests_Common_Data.SHOW_2.Year;
+            postShow2.Title.Should().Be(TraktPost_Tests_Common_Data.SHOW_2.Title);
+            postShow2.Year.Should().Be(TraktPost_Tests_Common_Data.SHOW_2.Year);
             postShow2.Ids.Should().NotBeNull();
             postShow2.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_2.Ids.Trakt);
             postShow2.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_2.Ids.Slug);
