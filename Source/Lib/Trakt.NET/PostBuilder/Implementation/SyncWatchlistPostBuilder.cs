@@ -877,6 +877,15 @@
             return syncWatchlistPostShow;
         }
 
+        private static void CreateWatchlistPostShowAndSeasons(ITraktSyncWatchlistPost syncWatchlistPost, List<ShowAndSeasons> showsAndSeasons)
+        {
+            foreach (ShowAndSeasons showAndSeasons in showsAndSeasons)
+            {
+                ITraktSyncWatchlistPostShow syncWatchlistPostShow = CreateWatchlistPostShow(showAndSeasons.Object);
+                CreateWatchlistPostShowSeasons(syncWatchlistPost, showAndSeasons.Seasons, syncWatchlistPostShow);
+            }
+        }
+
         private static void CreateWatchlistPostShowAndSeasons(ITraktSyncWatchlistPost syncWatchlistPost, List<ShowWithNotesAndSeasons> showsWithNotesAndSeasons)
         {
             foreach (ShowWithNotesAndSeasons showWithNotesAndSeasons in showsWithNotesAndSeasons)
@@ -888,6 +897,15 @@
             }
         }
 
+        private static void CreateWatchlistPostShowIdsAndSeasons(ITraktSyncWatchlistPost syncWatchlistPost, List<ShowIdsAndSeasons> showIdsAndSeasons)
+        {
+            foreach (ShowIdsAndSeasons showIdAndSeasons in showIdsAndSeasons)
+            {
+                ITraktSyncWatchlistPostShow syncWatchlistPostShow = CreateWatchlistPostShow(showIdAndSeasons.Object);
+                CreateWatchlistPostShowSeasons(syncWatchlistPost, showIdAndSeasons.Seasons, syncWatchlistPostShow);
+            }
+        }
+
         private static void CreateWatchlistPostShowIdsAndSeasons(ITraktSyncWatchlistPost syncWatchlistPost, List<ShowIdsWithNotesAndSeasons> showIdsWithNotesAndSeasons)
         {
             foreach (ShowIdsWithNotesAndSeasons showIdWithNotesAndSeasons in showIdsWithNotesAndSeasons)
@@ -896,24 +914,6 @@
                     CreateWatchlistPostShow(showIdWithNotesAndSeasons.Object.Object, showIdWithNotesAndSeasons.Object.Notes);
 
                 CreateWatchlistPostShowSeasons(syncWatchlistPost, showIdWithNotesAndSeasons.Seasons, syncWatchlistPostShow);
-            }
-        }
-
-        private static void CreateWatchlistPostShowAndSeasons(ITraktSyncWatchlistPost syncWatchlistPost, List<ShowAndSeasons> showsAndSeasons)
-        {
-            foreach (ShowAndSeasons showAndSeasons in showsAndSeasons)
-            {
-                ITraktSyncWatchlistPostShow syncWatchlistPostShow = CreateWatchlistPostShow(showAndSeasons.Object);
-                CreateWatchlistPostShowSeasons(syncWatchlistPost, showAndSeasons.Seasons, syncWatchlistPostShow);
-            }
-        }
-
-        private static void CreateWatchlistPostShowIdsAndSeasons(ITraktSyncWatchlistPost syncWatchlistPost, List<ShowIdsAndSeasons> showIdsAndSeasons)
-        {
-            foreach (ShowIdsAndSeasons showIdAndSeasons in showIdsAndSeasons)
-            {
-                ITraktSyncWatchlistPostShow syncWatchlistPostShow = CreateWatchlistPostShow(showIdAndSeasons.Object);
-                CreateWatchlistPostShowSeasons(syncWatchlistPost, showIdAndSeasons.Seasons, syncWatchlistPostShow);
             }
         }
 

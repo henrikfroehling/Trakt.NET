@@ -1568,31 +1568,7 @@
             foreach (CollectionShowAndSeasons showAndSeasons in showsAndSeasons)
             {
                 ITraktSyncCollectionPostShow syncCollectionPostShow = CreateCollectionPostShow(showAndSeasons.Object);
-
-                if (showAndSeasons.Seasons.Any())
-                {
-                    syncCollectionPostShow.Seasons = new List<ITraktSyncCollectionPostShowSeason>();
-
-                    foreach (PostCollectionSeason season in showAndSeasons.Seasons)
-                    {
-                        ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
-
-                        if (season.Episodes != null && season.Episodes.Any())
-                        {
-                            syncCollectionPostShowSeason.Episodes = new List<ITraktSyncCollectionPostShowEpisode>();
-
-                            foreach (PostCollectionEpisode episode in season.Episodes)
-                            {
-                                (syncCollectionPostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
-                                    .Add(CreateCollectionPostShowEpisode(episode));
-                            }
-                        }
-
-                        (syncCollectionPostShow.Seasons as List<ITraktSyncCollectionPostShowSeason>).Add(syncCollectionPostShowSeason);
-                    }
-                }
-
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(syncCollectionPostShow);
+                CreateCollectionPostShowSeasons(syncCollectionPost, showAndSeasons.Seasons, syncCollectionPostShow);
             }
         }
 
@@ -1601,32 +1577,36 @@
             foreach (CollectionShowIdsAndSeasons showIdAndSeasons in showIdsAndSeasons)
             {
                 ITraktSyncCollectionPostShow syncCollectionPostShow = CreateCollectionPostShow(showIdAndSeasons.Object);
-
-                if (showIdAndSeasons.Seasons.Any())
-                {
-                    syncCollectionPostShow.Seasons = new List<ITraktSyncCollectionPostShowSeason>();
-
-                    foreach (PostCollectionSeason season in showIdAndSeasons.Seasons)
-                    {
-                        ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
-
-                        if (season.Episodes != null && season.Episodes.Any())
-                        {
-                            syncCollectionPostShowSeason.Episodes = new List<ITraktSyncCollectionPostShowEpisode>();
-
-                            foreach (PostCollectionEpisode episode in season.Episodes)
-                            {
-                                (syncCollectionPostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
-                                    .Add(CreateCollectionPostShowEpisode(episode));
-                            }
-                        }
-
-                        (syncCollectionPostShow.Seasons as List<ITraktSyncCollectionPostShowSeason>).Add(syncCollectionPostShowSeason);
-                    }
-                }
-
-                (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(syncCollectionPostShow);
+                CreateCollectionPostShowSeasons(syncCollectionPost, showIdAndSeasons.Seasons, syncCollectionPostShow);
             }
+        }
+
+        private static void CreateCollectionPostShowSeasons(ITraktSyncCollectionPost syncCollectionPost, PostCollectionSeasons seasons, ITraktSyncCollectionPostShow syncCollectionPostShow)
+        {
+            if (seasons.Any())
+            {
+                syncCollectionPostShow.Seasons = new List<ITraktSyncCollectionPostShowSeason>();
+
+                foreach (PostCollectionSeason season in seasons)
+                {
+                    ITraktSyncCollectionPostShowSeason syncCollectionPostShowSeason = CreateCollectionPostShowSeason(season);
+
+                    if (season.Episodes != null && season.Episodes.Any())
+                    {
+                        syncCollectionPostShowSeason.Episodes = new List<ITraktSyncCollectionPostShowEpisode>();
+
+                        foreach (PostCollectionEpisode episode in season.Episodes)
+                        {
+                            (syncCollectionPostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
+                                .Add(CreateCollectionPostShowEpisode(episode));
+                        }
+                    }
+
+                    (syncCollectionPostShow.Seasons as List<ITraktSyncCollectionPostShowSeason>).Add(syncCollectionPostShowSeason);
+                }
+            }
+
+            (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(syncCollectionPostShow);
         }
 
         private static ITraktSyncCollectionPostShowSeason CreateCollectionPostShowSeason(PostCollectionSeason season)

@@ -890,31 +890,7 @@
             foreach (RatingsShowAndSeasons showAndSeasons in showsAndSeasons)
             {
                 ITraktSyncRatingsPostShow syncRatingsPostShow = CreateRatingsPostShow(showAndSeasons.Object);
-
-                if (showAndSeasons.Seasons.Any())
-                {
-                    syncRatingsPostShow.Seasons = new List<ITraktSyncRatingsPostShowSeason>();
-
-                    foreach (PostRatingsSeason season in showAndSeasons.Seasons)
-                    {
-                        ITraktSyncRatingsPostShowSeason syncRatingsPostShowSeason = CreateRatingsPostShowSeason(season);
-
-                        if (season.Episodes != null && season.Episodes.Any())
-                        {
-                            syncRatingsPostShowSeason.Episodes = new List<ITraktSyncRatingsPostShowEpisode>();
-
-                            foreach (PostRatingsEpisode episode in season.Episodes)
-                            {
-                                (syncRatingsPostShowSeason.Episodes as List<ITraktSyncRatingsPostShowEpisode>)
-                                    .Add(CreateRatingsPostShowEpisode(episode));
-                            }
-                        }
-
-                        (syncRatingsPostShow.Seasons as List<ITraktSyncRatingsPostShowSeason>).Add(syncRatingsPostShowSeason);
-                    }
-                }
-
-                (syncRatingsPost.Shows as List<ITraktSyncRatingsPostShow>).Add(syncRatingsPostShow);
+                CreateRatingsPostShowSeasons(syncRatingsPost, showAndSeasons.Seasons, syncRatingsPostShow);
             }
         }
 
@@ -923,32 +899,36 @@
             foreach (RatingsShowIdsAndSeasons showIdAndSeasons in showIdsAndSeasons)
             {
                 ITraktSyncRatingsPostShow syncRatingsPostShow = CreateRatingsPostShow(showIdAndSeasons.Object);
-
-                if (showIdAndSeasons.Seasons.Any())
-                {
-                    syncRatingsPostShow.Seasons = new List<ITraktSyncRatingsPostShowSeason>();
-
-                    foreach (PostRatingsSeason season in showIdAndSeasons.Seasons)
-                    {
-                        ITraktSyncRatingsPostShowSeason syncRatingsPostShowSeason = CreateRatingsPostShowSeason(season);
-
-                        if (season.Episodes != null && season.Episodes.Any())
-                        {
-                            syncRatingsPostShowSeason.Episodes = new List<ITraktSyncRatingsPostShowEpisode>();
-
-                            foreach (PostRatingsEpisode episode in season.Episodes)
-                            {
-                                (syncRatingsPostShowSeason.Episodes as List<ITraktSyncRatingsPostShowEpisode>)
-                                    .Add(CreateRatingsPostShowEpisode(episode));
-                            }
-                        }
-
-                        (syncRatingsPostShow.Seasons as List<ITraktSyncRatingsPostShowSeason>).Add(syncRatingsPostShowSeason);
-                    }
-                }
-
-                (syncRatingsPost.Shows as List<ITraktSyncRatingsPostShow>).Add(syncRatingsPostShow);
+                CreateRatingsPostShowSeasons(syncRatingsPost, showIdAndSeasons.Seasons, syncRatingsPostShow);
             }
+        }
+
+        private static void CreateRatingsPostShowSeasons(ITraktSyncRatingsPost syncRatingsPost, PostRatingsSeasons seasons, ITraktSyncRatingsPostShow syncRatingsPostShow)
+        {
+            if (seasons.Any())
+            {
+                syncRatingsPostShow.Seasons = new List<ITraktSyncRatingsPostShowSeason>();
+
+                foreach (PostRatingsSeason season in seasons)
+                {
+                    ITraktSyncRatingsPostShowSeason syncRatingsPostShowSeason = CreateRatingsPostShowSeason(season);
+
+                    if (season.Episodes != null && season.Episodes.Any())
+                    {
+                        syncRatingsPostShowSeason.Episodes = new List<ITraktSyncRatingsPostShowEpisode>();
+
+                        foreach (PostRatingsEpisode episode in season.Episodes)
+                        {
+                            (syncRatingsPostShowSeason.Episodes as List<ITraktSyncRatingsPostShowEpisode>)
+                                .Add(CreateRatingsPostShowEpisode(episode));
+                        }
+                    }
+
+                    (syncRatingsPostShow.Seasons as List<ITraktSyncRatingsPostShowSeason>).Add(syncRatingsPostShowSeason);
+                }
+            }
+
+            (syncRatingsPost.Shows as List<ITraktSyncRatingsPostShow>).Add(syncRatingsPostShow);
         }
 
         private static ITraktSyncRatingsPostShowSeason CreateRatingsPostShowSeason(PostRatingsSeason season)
