@@ -26,6 +26,8 @@
         /// <returns>An <see cref="ITraktSyncRecommendationsPostBuilder"/> instance.</returns>
         public static ITraktSyncRecommendationsPostBuilder NewSyncRecommendationsPost() => new SyncRecommendationsPostBuilder();
 
+        /// <summary>Creates a new <see cref="ITraktSyncWatchlistPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktSyncWatchlistPostBuilder"/> instance.</returns>
         public static ITraktSyncWatchlistPostBuilder NewSyncWatchlistPost() => new SyncWatchlistPostBuilder();
 
         public static ITraktUserPersonalListItemsPostBuilder NewUserPersonalListItemsPost() => new UserPersonalListItemsPostBuilder();
