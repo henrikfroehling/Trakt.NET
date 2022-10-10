@@ -15,6 +15,7 @@
             {
                 var movieArrayJsonReader = new ArrayJsonReader<ITraktSyncWatchlistPostMovie>();
                 var showArrayJsonReader = new ArrayJsonReader<ITraktSyncWatchlistPostShow>();
+                var seasonArrayJsonReader = new ArrayJsonReader<ITraktSyncWatchlistPostSeason>();
                 var episodeArrayJsonReader = new ArrayJsonReader<ITraktSyncWatchlistPostEpisode>();
                 ITraktSyncWatchlistPost syncWatchlistPost = new TraktSyncWatchlistPost();
 
@@ -29,6 +30,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_SHOWS:
                             syncWatchlistPost.Shows = await showArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_SEASON:
+                            syncWatchlistPost.Seasons = await seasonArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_EPISODES:
                             syncWatchlistPost.Episodes = await episodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);

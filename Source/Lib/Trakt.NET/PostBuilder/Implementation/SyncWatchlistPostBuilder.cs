@@ -771,7 +771,49 @@
 
         private void AddSeasons(ITraktSyncWatchlistPost syncWatchlistPost)
         {
-            // TODO
+            if (!_seasons.IsValueCreated && !_seasonIds.IsValueCreated
+                && !_seasonsWithNotes.IsValueCreated && !_seasonIdsWithNotes.IsValueCreated)
+            {
+                return;
+            }
+
+            syncWatchlistPost.Seasons ??= new List<ITraktSyncWatchlistPostSeason>();
+
+            if (_seasons.IsValueCreated && _seasons.Value.Any())
+            {
+                foreach (ITraktSeason season in _seasons.Value)
+                {
+                    (syncWatchlistPost.Seasons as List<ITraktSyncWatchlistPostSeason>)
+                        .Add(CreateWatchlistPostSeason(season));
+                }
+            }
+
+            if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
+            {
+                foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
+                {
+                    (syncWatchlistPost.Seasons as List<ITraktSyncWatchlistPostSeason>)
+                        .Add(CreateWatchlistPostSeason(seasonIds));
+                }
+            }
+
+            if (_seasonsWithNotes.IsValueCreated && _seasonsWithNotes.Value.Any())
+            {
+                foreach (SeasonWithNotes seasonWithNotes in _seasonsWithNotes.Value)
+                {
+                    (syncWatchlistPost.Seasons as List<ITraktSyncWatchlistPostSeason>)
+                        .Add(CreateWatchlistPostSeason(seasonWithNotes.Object, seasonWithNotes.Notes));
+                }
+            }
+
+            if (_seasonIdsWithNotes.IsValueCreated && _seasonIdsWithNotes.Value.Any())
+            {
+                foreach (SeasonIdsWithNotes seasonIdsWithNotes in _seasonIdsWithNotes.Value)
+                {
+                    (syncWatchlistPost.Seasons as List<ITraktSyncWatchlistPostSeason>)
+                        .Add(CreateWatchlistPostSeason(seasonIdsWithNotes.Object, seasonIdsWithNotes.Notes));
+                }
+            }
         }
 
         private void AddEpisodes(ITraktSyncWatchlistPost syncWatchlistPost)
@@ -950,6 +992,32 @@
 
         private static ITraktSyncWatchlistPostShowEpisode CreateWatchlistPostShowEpisode(PostEpisode episode)
             => new TraktSyncWatchlistPostShowEpisode { Number = episode.Number };
+
+        private static ITraktSyncWatchlistPostSeason CreateWatchlistPostSeason(ITraktSeason season, string notes = null)
+        {
+            ITraktSyncWatchlistPostSeason syncWatchlistPostSeason = new TraktSyncWatchlistPostSeason
+            {
+                Ids = season.Ids
+            };
+
+            if (!string.IsNullOrEmpty(notes))
+                syncWatchlistPostSeason.Notes = notes;
+
+            return syncWatchlistPostSeason;
+        }
+
+        private static ITraktSyncWatchlistPostSeason CreateWatchlistPostSeason(ITraktSeasonIds seasonIds, string notes = null)
+        {
+            ITraktSyncWatchlistPostSeason syncWatchlistPostSeason = new TraktSyncWatchlistPostSeason
+            {
+                Ids = seasonIds
+            };
+
+            if (!string.IsNullOrEmpty(notes))
+                syncWatchlistPostSeason.Notes = notes;
+
+            return syncWatchlistPostSeason;
+        }
 
         private static ITraktSyncWatchlistPostEpisode CreateWatchlistPostEpisode(ITraktEpisode episode, string notes = null)
         {
