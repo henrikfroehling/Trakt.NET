@@ -418,8 +418,8 @@
         /// </exception>
         ITraktSyncWatchlistPostBuilder WithEpisodesWithNotes(IEnumerable<EpisodeIdsWithNotes> episodeIdsWithNotes);
 
-        /// <summary>Creates a new <see cref="ITraktSyncWatchlistPost" /> instance with the added movies and shows.</summary>
-        /// <returns>A new <see cref="ITraktSyncWatchlistPost" /> instance with the added movies and shows.</returns>
+        /// <summary>Creates a new <see cref="ITraktSyncWatchlistPost" /> instance with the added movies, shows, seasons and episodes.</summary>
+        /// <returns>A new <see cref="ITraktSyncWatchlistPost" /> instance with the added movies, shows, seasons and episodes.</returns>
         ITraktSyncWatchlistPost Build();
     }
 }

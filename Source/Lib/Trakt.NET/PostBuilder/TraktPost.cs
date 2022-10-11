@@ -1,11 +1,7 @@
 ﻿namespace TraktNet.PostBuilder
 {
-    public sealed class TraktPost
+    public static class TraktPost
     {
-        private TraktPost()
-        {
-        }
-
         /// <summary>Creates a new <see cref="ITraktSyncCollectionPostBuilder"/>.</summary>
         /// <returns>An <see cref="ITraktSyncCollectionPostBuilder"/> instance.</returns>
         public static ITraktSyncCollectionPostBuilder NewSyncCollectionPost() => new SyncCollectionPostBuilder();
@@ -30,6 +26,8 @@
         /// <returns>An <see cref="ITraktSyncWatchlistPostBuilder"/> instance.</returns>
         public static ITraktSyncWatchlistPostBuilder NewSyncWatchlistPost() => new SyncWatchlistPostBuilder();
 
+        /// <summary>Creates a new <see cref="ITraktUserPersonalListItemsPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktUserPersonalListItemsPostBuilder"/> instance.</returns>
         public static ITraktUserPersonalListItemsPostBuilder NewUserPersonalListItemsPost() => new UserPersonalListItemsPostBuilder();
 
         public static ITraktUserHiddenItemsPostBuilder NewUserHiddenItemsPost() => new UserHiddenItemsPostBuilder();
