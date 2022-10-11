@@ -8,6 +8,7 @@
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
+    using TraktNet.Objects.Get.Users;
     using TraktNet.PostBuilder;
 
     internal static class TraktPost_Tests_Common_Data
@@ -129,6 +130,10 @@
 
         internal static readonly List<ITraktShowIds> SHOW_IDS;
 
+        internal static readonly List<int> SEASON_NUMBERS_1;
+
+        internal static readonly List<int> SEASON_NUMBERS_2;
+
         internal static readonly PostCollectionSeasons COLLECTION_SHOW_SEASONS_1;
 
         internal static readonly PostCollectionSeasons COLLECTION_SHOW_SEASONS_2;
@@ -233,6 +238,40 @@
 
         internal static readonly List<ITraktEpisodeIds> EPISODE_IDS;
 
+        internal static readonly ITraktUser USER_1 = new TraktUser
+        {
+            Ids = new TraktUserIds
+            {
+                Slug = "user-1",
+                UUID = "user-1-abcdef"
+            }
+        };
+
+        internal static readonly ITraktUser USER_2 = new TraktUser
+        {
+            Ids = new TraktUserIds
+            {
+                Slug = "user-2",
+                UUID = "user-2-abcdef"
+            }
+        };
+
+        internal static readonly List<ITraktUser> USERS;
+
+        internal static readonly ITraktUserIds USER_IDS_1 = new TraktUserIds
+        {
+            Slug = "user-1",
+            UUID = "user-1-abcdef"
+        };
+
+        internal static readonly ITraktUserIds USER_IDS_2 = new TraktUserIds
+        {
+            Slug = "user-2",
+            UUID = "user-2-abcdef"
+        };
+
+        internal static readonly List<ITraktUserIds> USER_IDS;
+
         static TraktPost_Tests_Common_Data()
         {
             MOVIES = new List<ITraktMovie>
@@ -259,6 +298,19 @@
                 SHOW_IDS_2
             };
 
+            SEASON_NUMBERS_1 = new List<int>
+            {
+                1,
+                2,
+                3
+            };
+
+            SEASON_NUMBERS_2 = new List<int>
+            {
+                1,
+                2
+            };
+
             SEASONS = new List<ITraktSeason>
             {
                 SEASON_1,
@@ -281,6 +333,18 @@
             {
                 EPISODE_IDS_1,
                 EPISODE_IDS_2
+            };
+
+            USERS = new List<ITraktUser>
+            {
+                USER_1,
+                USER_2
+            };
+
+            USER_IDS = new List<ITraktUserIds>
+            {
+                USER_IDS_1,
+                USER_IDS_2
             };
 
             COLLECTION_SHOW_SEASONS_1 = new PostCollectionSeasons
