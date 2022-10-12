@@ -16,6 +16,7 @@
                 ITraktSyncCollectionPost traktSyncCollectionPost = new TraktSyncCollectionPost();
                 var syncCollectionPostMovieArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostMovie>();
                 var syncCollectionPostShowArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostShow>();
+                var syncCollectionPostSeasonArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostSeason>();
                 var syncCollectionPostEpisodeArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostEpisode>();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -29,6 +30,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_SHOWS:
                             traktSyncCollectionPost.Shows = await syncCollectionPostShowArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
+                            traktSyncCollectionPost.Seasons = await syncCollectionPostSeasonArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_EPISODES:
                             traktSyncCollectionPost.Episodes = await syncCollectionPostEpisodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);

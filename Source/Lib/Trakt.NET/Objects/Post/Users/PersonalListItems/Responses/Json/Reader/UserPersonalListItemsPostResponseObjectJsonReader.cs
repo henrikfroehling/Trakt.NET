@@ -15,6 +15,7 @@
             {
                 var responseGroupReader = new UserPersonalListItemsPostResponseGroupObjectJsonReader();
                 var responseNotFoundGroupReader = new UserPersonalListItemsPostResponseNotFoundGroupObjectJsonReader();
+                var listDataReader = new UserPersonalListItemsPostResponseListDataObjectJsonReader();
                 ITraktUserPersonalListItemsPostResponse customListItemsPostResponse = new TraktUserPersonalListItemsPostResponse();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -31,6 +32,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_NOT_FOUND:
                             customListItemsPostResponse.NotFound = await responseNotFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_LIST:
+                            customListItemsPostResponse.List = await listDataReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

@@ -109,9 +109,11 @@
 
             ITraktSyncHistoryRemovePost collectionPost = new TraktSyncHistoryRemovePost
             {
-                Movies = new List<ITraktSyncHistoryPostMovie>(),
-                Shows = new List<ITraktSyncHistoryPostShow>(),
-                Episodes = new List<ITraktSyncHistoryPostEpisode>()
+                Movies = new List<ITraktSyncHistoryRemovePostMovie>(),
+                Shows = new List<ITraktSyncHistoryRemovePostShow>(),
+                Seasons = new List<ITraktSyncHistoryPostSeason>(),
+                Episodes = new List<ITraktSyncHistoryRemovePostEpisode>(),
+                HistoryIds = new List<ulong>()
             };
 
             act = () => client.Sync.RemoveWatchedHistoryItemsAsync(collectionPost);

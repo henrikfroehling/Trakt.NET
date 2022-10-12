@@ -1,6 +1,5 @@
 ﻿namespace TraktNet.Objects.Post.Users.PersonalListItems.Json.Writer
 {
-    using Get.People;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -27,9 +26,23 @@
                 await customListItemsPostShowArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Shows, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Seasons != null)
+            {
+                var customListItemsPostSeasonArrayJsonWriter = new ArrayJsonWriter<ITraktUserPersonalListItemsPostSeason>();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
+                await customListItemsPostSeasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Episodes != null)
+            {
+                var customListItemsPostEpisodeArrayJsonWriter = new ArrayJsonWriter<ITraktUserPersonalListItemsPostEpisode>();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
+                await customListItemsPostEpisodeArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Episodes, cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.People != null)
             {
-                var personArrayJsonWriter = new ArrayJsonWriter<ITraktPerson>();
+                var personArrayJsonWriter = new ArrayJsonWriter<ITraktUserPersonalListItemsPostPerson>();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_PEOPLE, cancellationToken).ConfigureAwait(false);
                 await personArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.People, cancellationToken).ConfigureAwait(false);
             }

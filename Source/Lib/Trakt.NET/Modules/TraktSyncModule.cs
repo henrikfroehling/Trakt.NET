@@ -10,7 +10,6 @@
     using Objects.Get.Users;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
-    using Objects.Post;
     using Objects.Post.Basic;
     using Objects.Post.Basic.Responses;
     using Objects.Post.Syncs.Collection;
@@ -23,6 +22,7 @@
     using Objects.Post.Syncs.Recommendations.Responses;
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
+    using PostBuilder;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.Syncs.OAuth;

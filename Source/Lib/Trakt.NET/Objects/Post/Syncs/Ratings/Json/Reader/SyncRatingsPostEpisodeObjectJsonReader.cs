@@ -25,6 +25,18 @@
 
                     switch (propertyName)
                     {
+                        case JsonProperties.PROPERTY_NAME_IDS:
+                            syncRatingsPostEpisode.Ids = await episodeIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_RATING:
+                            {
+                                Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    syncRatingsPostEpisode.Rating = value.Second;
+
+                                break;
+                            }
                         case JsonProperties.PROPERTY_NAME_RATED_AT:
                             {
                                 Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
@@ -34,12 +46,6 @@
 
                                 break;
                             }
-                        case JsonProperties.PROPERTY_NAME_RATING:
-                            syncRatingsPostEpisode.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
-                            break;
-                        case JsonProperties.PROPERTY_NAME_IDS:
-                            syncRatingsPostEpisode.Ids = await episodeIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
-                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

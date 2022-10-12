@@ -11,7 +11,6 @@ namespace TraktNet.Modules
     using Objects.Get.Users.Statistics;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
-    using Objects.Post;
     using Objects.Post.Basic;
     using Objects.Post.Basic.Responses;
     using Objects.Post.Users;
@@ -20,6 +19,7 @@ namespace TraktNet.Modules
     using Objects.Post.Users.PersonalListItems;
     using Objects.Post.Users.PersonalListItems.Responses;
     using Objects.Post.Users.Responses;
+    using PostBuilder;
     using Requests.Handler;
     using Requests.Parameters;
     using Requests.Users.OAuth;

@@ -1,6 +1,5 @@
 ﻿namespace TraktNet.Objects.Post.Users.PersonalListItems
 {
-    using Get.People;
     using Objects.Json;
     using System;
     using System.Collections.Generic;
@@ -27,10 +26,22 @@
         public IEnumerable<ITraktUserPersonalListItemsPostShow> Shows { get; set; }
 
         /// <summary>
-        /// An optional list of <see cref="ITraktPerson" />s.
-        /// <para>Each <see cref="ITraktPerson" /> must have at least a valid Trakt id and a name.</para>
+        /// An optional list of <see cref="ITraktUserPersonalListItemsPostSeason" />s.
+        /// <para>Each <see cref="ITraktUserPersonalListItemsPostSeason" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktPerson> People { get; set; }
+        public IEnumerable<ITraktUserPersonalListItemsPostSeason> Seasons { get; set; }
+
+        /// <summary>
+        /// An optional list of <see cref="ITraktUserPersonalListItemsPostEpisode" />s.
+        /// <para>Each <see cref="ITraktUserPersonalListItemsPostEpisode" /> must have at least a valid Trakt id.</para>
+        /// </summary>
+        public IEnumerable<ITraktUserPersonalListItemsPostEpisode> Episodes { get; set; }
+
+        /// <summary>
+        /// An optional list of <see cref="ITraktUserPersonalListItemsPostPerson" />s.
+        /// <para>Each <see cref="ITraktUserPersonalListItemsPostPerson" /> must have at least a valid Trakt id and a name.</para>
+        /// </summary>
+        public IEnumerable<ITraktUserPersonalListItemsPostPerson> People { get; set; }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {
@@ -42,9 +53,11 @@
         {
             bool bHasNoMovies = Movies == null || !Movies.Any();
             bool bHasNoShows = Shows == null || !Shows.Any();
+            bool bHasNoSeasons = Seasons == null || !Seasons.Any();
+            bool bHasNoEpisodes = Episodes == null || !Episodes.Any();
             bool bHasNoPeople = People == null || !People.Any();
 
-            if (bHasNoMovies && bHasNoShows && bHasNoPeople)
+            if (bHasNoMovies && bHasNoShows && bHasNoSeasons && bHasNoEpisodes && bHasNoPeople)
                 throw new ArgumentException("no personal list items set");
         }
     }

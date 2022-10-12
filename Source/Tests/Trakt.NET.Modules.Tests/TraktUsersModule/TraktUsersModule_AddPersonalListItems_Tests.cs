@@ -9,7 +9,6 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Post.Responses;
     using TraktNet.Objects.Post.Users.PersonalListItems;
     using TraktNet.Objects.Post.Users.PersonalListItems.Responses;
@@ -140,7 +139,7 @@
             {
                 Movies = new List<ITraktUserPersonalListItemsPostMovie>(),
                 Shows = new List<ITraktUserPersonalListItemsPostShow>(),
-                People = new List<ITraktPerson>()
+                People = new List<ITraktUserPersonalListItemsPostPerson>()
             };
 
             act = () => client.Users.AddPersonalListItemsAsync(USERNAME, LIST_ID, customListItems);

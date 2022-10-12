@@ -22,6 +22,12 @@
         IEnumerable<ITraktSyncRatingsPostShow> Shows { get; set; }
 
         /// <summary>
+        /// An optional list of <see cref="ITraktSyncRatingsPostSeason" />s.
+        /// <para>Each <see cref="ITraktSyncRatingsPostSeason" /> must have at least a valid Trakt id.</para>
+        /// </summary>
+        IEnumerable<ITraktSyncRatingsPostSeason> Seasons { get; set; }
+
+        /// <summary>
         /// An optional list of <see cref="ITraktSyncRatingsPostEpisode" />s.
         /// <para>Each <see cref="ITraktSyncRatingsPostEpisode" /> must have at least a valid Trakt id.</para>
         /// </summary>
