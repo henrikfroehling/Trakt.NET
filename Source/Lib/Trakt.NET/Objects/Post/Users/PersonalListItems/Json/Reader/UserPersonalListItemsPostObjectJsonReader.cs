@@ -1,6 +1,5 @@
 ﻿namespace TraktNet.Objects.Post.Users.PersonalListItems.Json.Reader
 {
-    using Get.People;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -16,7 +15,9 @@
             {
                 var movieArrayJsonReader = new ArrayJsonReader<ITraktUserPersonalListItemsPostMovie>();
                 var showArrayJsonReader = new ArrayJsonReader<ITraktUserPersonalListItemsPostShow>();
-                var personArrayJsonReader = new ArrayJsonReader<ITraktPerson>();
+                var seasonArrayJsonReader = new ArrayJsonReader<ITraktUserPersonalListItemsPostSeason>();
+                var episodeArrayJsonReader = new ArrayJsonReader<ITraktUserPersonalListItemsPostEpisode>();
+                var personArrayJsonReader = new ArrayJsonReader<ITraktUserPersonalListItemsPostPerson>();
                 ITraktUserPersonalListItemsPost customListItemsPost = new TraktUserPersonalListItemsPost();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -30,6 +31,12 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_SHOWS:
                             customListItemsPost.Shows = await showArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
+                            customListItemsPost.Seasons = await seasonArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
+                            customListItemsPost.Episodes = await episodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_PEOPLE:
                             customListItemsPost.People = await personArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);

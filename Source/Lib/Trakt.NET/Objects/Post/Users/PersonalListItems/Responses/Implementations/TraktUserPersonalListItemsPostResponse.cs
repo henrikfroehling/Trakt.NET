@@ -23,5 +23,11 @@
         /// <para>Nullable</para>
         /// </summary>
         public ITraktUserPersonalListItemsPostResponseNotFoundGroup NotFound { get; set; }
+
+        /// <summary>
+        /// Information about the updated list.
+        /// <para>Nullable</para>
+        /// </summary>
+        public ITraktUserPersonalListItemsPostResponseListData List { get; set; }
     }
 }

@@ -371,7 +371,10 @@
 
             // user personal list items post objects
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPost), new UserPersonalListItemsPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostEpisode), new UserPersonalListItemsPostEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostMovie), new UserPersonalListItemsPostMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostPerson), new UserPersonalListItemsPostPersonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostSeason), new UserPersonalListItemsPostSeasonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShow), new UserPersonalListItemsPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShowEpisode), new UserPersonalListItemsPostShowEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShowSeason), new UserPersonalListItemsPostShowSeasonJsonIOFactory());
@@ -379,6 +382,7 @@
             // user personal list items post response objects
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponse), new UserPersonalListItemsPostResponseJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponseGroup), new UserPersonalListItemsPostResponseGroupJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponseListData), new UserPersonalListItemsPostResponseListDataJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponseNotFoundGroup), new UserPersonalListItemsPostResponseNotFoundGroupJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsRemovePostResponse), new UserPersonalListItemsRemovePostResponseJsonIOFactory());
 
