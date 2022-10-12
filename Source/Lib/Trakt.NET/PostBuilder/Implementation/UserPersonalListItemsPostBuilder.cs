@@ -88,7 +88,7 @@ namespace TraktNet.PostBuilder
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithMovieWithNotes(new MovieWithNotes(movie, notes));
         }
 
@@ -97,7 +97,7 @@ namespace TraktNet.PostBuilder
             if (movieWithNotes == null)
                 throw new ArgumentNullException(nameof(movieWithNotes));
 
-            CheckNotes(movieWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(movieWithNotes.Notes);
             _moviesWithNotes.Value.Add(movieWithNotes);
             return this;
         }
@@ -107,7 +107,7 @@ namespace TraktNet.PostBuilder
             if (movieIds == null)
                 throw new ArgumentNullException(nameof(movieIds));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithMovieWithNotes(new MovieIdsWithNotes(movieIds, notes));
         }
 
@@ -116,7 +116,7 @@ namespace TraktNet.PostBuilder
             if (movieIdsWithNotes == null)
                 throw new ArgumentNullException(nameof(movieIdsWithNotes));
 
-            CheckNotes(movieIdsWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(movieIdsWithNotes.Notes);
             _movieIdsWithNotes.Value.Add(movieIdsWithNotes);
             return this;
         }
@@ -158,7 +158,7 @@ namespace TraktNet.PostBuilder
             {
                 if (movieWithNotes != null)
                 {
-                    CheckNotes(movieWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(movieWithNotes.Notes);
                     _moviesWithNotes.Value.Add(movieWithNotes);
                 }
             }
@@ -175,7 +175,7 @@ namespace TraktNet.PostBuilder
             {
                 if (movieIdWithNotes != null)
                 {
-                    CheckNotes(movieIdWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(movieIdWithNotes.Notes);
                     _movieIdsWithNotes.Value.Add(movieIdWithNotes);
                 }
             }
@@ -206,7 +206,7 @@ namespace TraktNet.PostBuilder
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithShowWithNotes(new ShowWithNotes(show, notes));
         }
 
@@ -215,7 +215,7 @@ namespace TraktNet.PostBuilder
             if (showWithNotes == null)
                 throw new ArgumentNullException(nameof(showWithNotes));
 
-            CheckNotes(showWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(showWithNotes.Notes);
             _showsWithNotes.Value.Add(showWithNotes);
             return this;
         }
@@ -225,7 +225,7 @@ namespace TraktNet.PostBuilder
             if (showIds == null)
                 throw new ArgumentNullException(nameof(showIds));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithShowWithNotes(new ShowIdsWithNotes(showIds, notes));
         }
 
@@ -234,7 +234,7 @@ namespace TraktNet.PostBuilder
             if (showIdsWithNotes == null)
                 throw new ArgumentNullException(nameof(showIdsWithNotes));
 
-            CheckNotes(showIdsWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(showIdsWithNotes.Notes);
             _showIdsWithNotes.Value.Add(showIdsWithNotes);
             return this;
         }
@@ -276,7 +276,7 @@ namespace TraktNet.PostBuilder
             {
                 if (showWithNotes != null)
                 {
-                    CheckNotes(showWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(showWithNotes.Notes);
                     _showsWithNotes.Value.Add(showWithNotes);
                 }
             }
@@ -293,7 +293,7 @@ namespace TraktNet.PostBuilder
             {
                 if (showIdWithNotes != null)
                 {
-                    CheckNotes(showIdWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(showIdWithNotes.Notes);
                     _showIdsWithNotes.Value.Add(showIdWithNotes);
                 }
             }
@@ -346,7 +346,7 @@ namespace TraktNet.PostBuilder
             if (showWithNotesAndSeasons == null)
                 throw new ArgumentNullException(nameof(showWithNotesAndSeasons));
 
-            CheckNotes(showWithNotesAndSeasons.Object.Notes);
+            PostBuilderUtility.CheckNotes(showWithNotesAndSeasons.Object.Notes);
             _showsWithNotesAndSeasons.Value.Add(showWithNotesAndSeasons);
             return this;
         }
@@ -356,7 +356,7 @@ namespace TraktNet.PostBuilder
             if (showIdsWithNotesAndSeasons == null)
                 throw new ArgumentNullException(nameof(showIdsWithNotesAndSeasons));
 
-            CheckNotes(showIdsWithNotesAndSeasons.Object.Notes);
+            PostBuilderUtility.CheckNotes(showIdsWithNotesAndSeasons.Object.Notes);
             _showIdsWithNotesAndSeasons.Value.Add(showIdsWithNotesAndSeasons);
             return this;
         }
@@ -398,7 +398,7 @@ namespace TraktNet.PostBuilder
             {
                 if (showWithNotesAndSeasons != null)
                 {
-                    CheckNotes(showWithNotesAndSeasons.Object.Notes);
+                    PostBuilderUtility.CheckNotes(showWithNotesAndSeasons.Object.Notes);
                     _showsWithNotesAndSeasons.Value.Add(showWithNotesAndSeasons);
                 }
             }
@@ -415,7 +415,7 @@ namespace TraktNet.PostBuilder
             {
                 if (showIdWithNotesAndSeasons != null)
                 {
-                    CheckNotes(showIdWithNotesAndSeasons.Object.Notes);
+                    PostBuilderUtility.CheckNotes(showIdWithNotesAndSeasons.Object.Notes);
                     _showIdsWithNotesAndSeasons.Value.Add(showIdWithNotesAndSeasons);
                 }
             }
@@ -446,7 +446,7 @@ namespace TraktNet.PostBuilder
             if (season == null)
                 throw new ArgumentNullException(nameof(season));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithSeasonWithNotes(new SeasonWithNotes(season, notes));
         }
 
@@ -455,7 +455,7 @@ namespace TraktNet.PostBuilder
             if (seasonWithNotes == null)
                 throw new ArgumentNullException(nameof(seasonWithNotes));
 
-            CheckNotes(seasonWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(seasonWithNotes.Notes);
             _seasonsWithNotes.Value.Add(seasonWithNotes);
             return this;
         }
@@ -465,7 +465,7 @@ namespace TraktNet.PostBuilder
             if (seasonIds == null)
                 throw new ArgumentNullException(nameof(seasonIds));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithSeasonWithNotes(new SeasonIdsWithNotes(seasonIds, notes));
         }
 
@@ -474,7 +474,7 @@ namespace TraktNet.PostBuilder
             if (seasonIdsWithNotes == null)
                 throw new ArgumentNullException(nameof(seasonIdsWithNotes));
 
-            CheckNotes(seasonIdsWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(seasonIdsWithNotes.Notes);
             _seasonIdsWithNotes.Value.Add(seasonIdsWithNotes);
             return this;
         }
@@ -516,7 +516,7 @@ namespace TraktNet.PostBuilder
             {
                 if (seasonWithNotes != null)
                 {
-                    CheckNotes(seasonWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(seasonWithNotes.Notes);
                     _seasonsWithNotes.Value.Add(seasonWithNotes);
                 }
             }
@@ -533,7 +533,7 @@ namespace TraktNet.PostBuilder
             {
                 if (seasonIdWithNotes != null)
                 {
-                    CheckNotes(seasonIdWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(seasonIdWithNotes.Notes);
                     _seasonIdsWithNotes.Value.Add(seasonIdWithNotes);
                 }
             }
@@ -564,7 +564,7 @@ namespace TraktNet.PostBuilder
             if (episode == null)
                 throw new ArgumentNullException(nameof(episode));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithEpisodeWithNotes(new EpisodeWithNotes(episode, notes));
         }
 
@@ -573,7 +573,7 @@ namespace TraktNet.PostBuilder
             if (episodeWithNotes == null)
                 throw new ArgumentNullException(nameof(episodeWithNotes));
 
-            CheckNotes(episodeWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(episodeWithNotes.Notes);
             _episodesWithNotes.Value.Add(episodeWithNotes);
             return this;
         }
@@ -583,7 +583,7 @@ namespace TraktNet.PostBuilder
             if (episodeIds == null)
                 throw new ArgumentNullException(nameof(episodeIds));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithEpisodeWithNotes(new EpisodeIdsWithNotes(episodeIds, notes));
         }
 
@@ -592,7 +592,7 @@ namespace TraktNet.PostBuilder
             if (episodeIdsWithNotes == null)
                 throw new ArgumentNullException(nameof(episodeIdsWithNotes));
 
-            CheckNotes(episodeIdsWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(episodeIdsWithNotes.Notes);
             _episodeIdsWithNotes.Value.Add(episodeIdsWithNotes);
             return this;
         }
@@ -634,7 +634,7 @@ namespace TraktNet.PostBuilder
             {
                 if (episodeWithNotes != null)
                 {
-                    CheckNotes(episodeWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(episodeWithNotes.Notes);
                     _episodesWithNotes.Value.Add(episodeWithNotes);
                 }
             }
@@ -651,7 +651,7 @@ namespace TraktNet.PostBuilder
             {
                 if (episodeIdWithNotes != null)
                 {
-                    CheckNotes(episodeIdWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(episodeIdWithNotes.Notes);
                     _episodeIdsWithNotes.Value.Add(episodeIdWithNotes);
                 }
             }
@@ -682,7 +682,7 @@ namespace TraktNet.PostBuilder
             if (person == null)
                 throw new ArgumentNullException(nameof(person));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithPersonWithNotes(new PersonWithNotes(person, notes));
         }
 
@@ -691,7 +691,7 @@ namespace TraktNet.PostBuilder
             if (personWithNotes == null)
                 throw new ArgumentNullException(nameof(personWithNotes));
 
-            CheckNotes(personWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(personWithNotes.Notes);
             _personsWithNotes.Value.Add(personWithNotes);
             return this;
         }
@@ -701,7 +701,7 @@ namespace TraktNet.PostBuilder
             if (personIds == null)
                 throw new ArgumentNullException(nameof(personIds));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithPersonWithNotes(new PersonIdsWithNotes(personIds, notes));
         }
 
@@ -710,7 +710,7 @@ namespace TraktNet.PostBuilder
             if (personIdsWithNotes == null)
                 throw new ArgumentNullException(nameof(personIdsWithNotes));
 
-            CheckNotes(personIdsWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(personIdsWithNotes.Notes);
             _personIdsWithNotes.Value.Add(personIdsWithNotes);
             return this;
         }
@@ -752,7 +752,7 @@ namespace TraktNet.PostBuilder
             {
                 if (personWithNotes != null)
                 {
-                    CheckNotes(personWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(personWithNotes.Notes);
                     _personsWithNotes.Value.Add(personWithNotes);
                 }
             }
@@ -769,7 +769,7 @@ namespace TraktNet.PostBuilder
             {
                 if (personIdWithNotes != null)
                 {
-                    CheckNotes(personIdWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(personIdWithNotes.Notes);
                     _personIdsWithNotes.Value.Add(personIdWithNotes);
                 }
             }
@@ -1190,15 +1190,6 @@ namespace TraktNet.PostBuilder
                 userListItemsPostPerson.Notes = notes;
 
             return userListItemsPostPerson;
-        }
-
-        private static void CheckNotes(string notes)
-        {
-            if (notes == null)
-                throw new ArgumentNullException(nameof(notes));
-
-            if (notes.Length > 255)
-                throw new ArgumentOutOfRangeException(nameof(notes));
         }
     }
 }

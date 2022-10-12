@@ -53,7 +53,7 @@
             if (movie == null)
                 throw new ArgumentNullException(nameof(movie));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithMovieWithNotes(new MovieWithNotes(movie, notes));
         }
 
@@ -62,7 +62,7 @@
             if (movieWithNotes == null)
                 throw new ArgumentNullException(nameof(movieWithNotes));
 
-            CheckNotes(movieWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(movieWithNotes.Notes);
             _moviesWithNotes.Value.Add(movieWithNotes);
             return this;
         }
@@ -72,7 +72,7 @@
             if (movieIds == null)
                 throw new ArgumentNullException(nameof(movieIds));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithMovieWithNotes(new MovieIdsWithNotes(movieIds, notes));
         }
 
@@ -81,7 +81,7 @@
             if (movieIdsWithNotes == null)
                 throw new ArgumentNullException(nameof(movieIdsWithNotes));
 
-            CheckNotes(movieIdsWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(movieIdsWithNotes.Notes);
             _movieIdsWithNotes.Value.Add(movieIdsWithNotes);
             return this;
         }
@@ -123,7 +123,7 @@
             {
                 if (movieWithNotes != null)
                 {
-                    CheckNotes(movieWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(movieWithNotes.Notes);
                     _moviesWithNotes.Value.Add(movieWithNotes);
                 }
             }
@@ -140,7 +140,7 @@
             {
                 if (movieIdWithNotes != null)
                 {
-                    CheckNotes(movieIdWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(movieIdWithNotes.Notes);
                     _movieIdsWithNotes.Value.Add(movieIdWithNotes);
                 }
             }
@@ -171,7 +171,7 @@
             if (show == null)
                 throw new ArgumentNullException(nameof(show));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithShowWithNotes(new ShowWithNotes(show, notes));
         }
 
@@ -180,7 +180,7 @@
             if (showWithNotes == null)
                 throw new ArgumentNullException(nameof(showWithNotes));
 
-            CheckNotes(showWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(showWithNotes.Notes);
             _showsWithNotes.Value.Add(showWithNotes);
             return this;
         }
@@ -190,7 +190,7 @@
             if (showIds == null)
                 throw new ArgumentNullException(nameof(showIds));
 
-            CheckNotes(notes);
+            PostBuilderUtility.CheckNotes(notes);
             return WithShowWithNotes(new ShowIdsWithNotes(showIds, notes));
         }
 
@@ -199,7 +199,7 @@
             if (showIdsWithNotes == null)
                 throw new ArgumentNullException(nameof(showIdsWithNotes));
 
-            CheckNotes(showIdsWithNotes.Notes);
+            PostBuilderUtility.CheckNotes(showIdsWithNotes.Notes);
             _showIdsWithNotes.Value.Add(showIdsWithNotes);
             return this;
         }
@@ -241,7 +241,7 @@
             {
                 if (showWithNotes != null)
                 {
-                    CheckNotes(showWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(showWithNotes.Notes);
                     _showsWithNotes.Value.Add(showWithNotes);
                 }
             }
@@ -258,7 +258,7 @@
             {
                 if (showIdWithNotes != null)
                 {
-                    CheckNotes(showIdWithNotes.Notes);
+                    PostBuilderUtility.CheckNotes(showIdWithNotes.Notes);
                     _showIdsWithNotes.Value.Add(showIdWithNotes);
                 }
             }
@@ -423,15 +423,6 @@
                 syncRecommendationsPostShow.Notes = notes;
 
             return syncRecommendationsPostShow;
-        }
-
-        private static void CheckNotes(string notes)
-        {
-            if (notes == null)
-                throw new ArgumentNullException(nameof(notes));
-
-            if (notes.Length > 255)
-                throw new ArgumentOutOfRangeException(nameof(notes));
         }
     }
 }
