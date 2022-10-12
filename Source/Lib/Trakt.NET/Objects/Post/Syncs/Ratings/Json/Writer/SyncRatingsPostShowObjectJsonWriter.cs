@@ -14,18 +14,6 @@
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
-            if (obj.RatedAt.HasValue)
-            {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RATED_AT, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.RatedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
-            }
-
-            if (obj.Rating.HasValue)
-            {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RATING, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.Rating, cancellationToken).ConfigureAwait(false);
-            }
-
             if (!string.IsNullOrEmpty(obj.Title))
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TITLE, cancellationToken).ConfigureAwait(false);
@@ -43,6 +31,18 @@
                 var showIdsObjectJsonWriter = new ShowIdsObjectJsonWriter();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
                 await showIdsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Ids, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Rating.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RATING, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Rating, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.RatedAt.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RATED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.RatedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Seasons != null)

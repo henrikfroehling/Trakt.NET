@@ -26,6 +26,13 @@
                 await syncRatingsPostShowArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Shows, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Seasons != null)
+            {
+                var syncRatingsPostSeasonArrayJsonWriter = new ArrayJsonWriter<ITraktSyncRatingsPostSeason>();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
+                await syncRatingsPostSeasonArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.Episodes != null)
             {
                 var syncRatingsPostEpisodeArrayJsonWriter = new ArrayJsonWriter<ITraktSyncRatingsPostEpisode>();

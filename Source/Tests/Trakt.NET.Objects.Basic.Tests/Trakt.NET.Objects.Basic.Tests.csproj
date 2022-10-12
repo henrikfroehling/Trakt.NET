@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
-    <Copyright>Copyright © 2017 - 2020 Henrik Fröhling et al.</Copyright>
+    <Copyright>Copyright © 2017 - 2022 Henrik Fröhling et al.</Copyright>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />

@@ -25,18 +25,6 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PROPERTY_NAME_RATED_AT:
-                            {
-                                Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
-
-                                if (value.First)
-                                    syncRatingsPostMovie.RatedAt = value.Second;
-
-                                break;
-                            }
-                        case JsonProperties.PROPERTY_NAME_RATING:
-                            syncRatingsPostMovie.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
-                            break;
                         case JsonProperties.PROPERTY_NAME_TITLE:
                             syncRatingsPostMovie.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
@@ -46,6 +34,24 @@
                         case JsonProperties.PROPERTY_NAME_IDS:
                             syncRatingsPostMovie.Ids = await movieIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_RATING:
+                            {
+                                Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    syncRatingsPostMovie.Rating = value.Second;
+
+                                break;
+                            }
+                        case JsonProperties.PROPERTY_NAME_RATED_AT:
+                            {
+                                Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    syncRatingsPostMovie.RatedAt = value.Second;
+
+                                break;
+                            }
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
