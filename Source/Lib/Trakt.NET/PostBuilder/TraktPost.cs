@@ -26,10 +26,12 @@
         /// <returns>An <see cref="ITraktSyncWatchlistPostBuilder"/> instance.</returns>
         public static ITraktSyncWatchlistPostBuilder NewSyncWatchlistPost() => new SyncWatchlistPostBuilder();
 
+        /// <summary>Creates a new <see cref="ITraktUserHiddenItemsPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktUserHiddenItemsPostBuilder"/> instance.</returns>
+        public static ITraktUserHiddenItemsPostBuilder NewUserHiddenItemsPost() => new UserHiddenItemsPostBuilder();
+
         /// <summary>Creates a new <see cref="ITraktUserPersonalListItemsPostBuilder"/>.</summary>
         /// <returns>An <see cref="ITraktUserPersonalListItemsPostBuilder"/> instance.</returns>
         public static ITraktUserPersonalListItemsPostBuilder NewUserPersonalListItemsPost() => new UserPersonalListItemsPostBuilder();
-
-        public static ITraktUserHiddenItemsPostBuilder NewUserHiddenItemsPost() => new UserHiddenItemsPostBuilder();
     }
 }

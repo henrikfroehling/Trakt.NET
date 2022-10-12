@@ -6,6 +6,7 @@
     using TraktNet.Objects.Basic;
     using TraktNet.Objects.Get.Episodes;
     using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Get.Users;
@@ -272,6 +273,52 @@
 
         internal static readonly List<ITraktUserIds> USER_IDS;
 
+        internal static readonly ITraktPerson PERSON_1 = new TraktPerson
+        {
+            Ids = new TraktPersonIds
+            {
+                Trakt = 1,
+                Slug = "person-1",
+                Imdb = "ttperson1title",
+                Tmdb = 1,
+                TvRage = 1
+            }
+        };
+
+        internal static readonly ITraktPerson PERSON_2 = new TraktPerson
+        {
+            Ids = new TraktPersonIds
+            {
+                Trakt = 2,
+                Slug = "person-2",
+                Imdb = "ttperson2title",
+                Tmdb = 2,
+                TvRage = 2
+            }
+        };
+
+        internal static readonly List<ITraktPerson> PERSONS;
+
+        internal static readonly ITraktPersonIds PERSON_IDS_1 = new TraktPersonIds
+        {
+            Trakt = 1,
+            Slug = "person-1",
+            Imdb = "ttperson1title",
+            Tmdb = 1,
+            TvRage = 1
+        };
+
+        internal static readonly ITraktPersonIds PERSON_IDS_2 = new TraktPersonIds
+        {
+            Trakt = 2,
+            Slug = "person-2",
+            Imdb = "ttperson2title",
+            Tmdb = 2,
+            TvRage = 2
+        };
+
+        internal static readonly List<ITraktPersonIds> PERSON_IDS;
+
         static TraktPost_Tests_Common_Data()
         {
             MOVIES = new List<ITraktMovie>
@@ -345,6 +392,18 @@
             {
                 USER_IDS_1,
                 USER_IDS_2
+            };
+
+            PERSONS = new List<ITraktPerson>
+            {
+                PERSON_1,
+                PERSON_2
+            };
+
+            PERSON_IDS = new List<ITraktPersonIds>
+            {
+                PERSON_IDS_1,
+                PERSON_IDS_2
             };
 
             COLLECTION_SHOW_SEASONS_1 = new PostCollectionSeasons
