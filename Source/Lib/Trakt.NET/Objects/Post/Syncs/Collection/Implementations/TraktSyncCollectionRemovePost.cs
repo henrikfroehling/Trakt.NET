@@ -1,0 +1,10 @@
+﻿namespace TraktNet.Objects.Post.Syncs.Collection
+{
+    /// <summary>
+    /// A Trakt collection remove post, containing all movies, shows and / or episodes,
+    /// which should be removed from the user's collection.
+    /// </summary>
+    public class TraktSyncCollectionRemovePost : TraktSyncCollectionPost, ITraktSyncCollectionRemovePost
+    {
+    }
+}

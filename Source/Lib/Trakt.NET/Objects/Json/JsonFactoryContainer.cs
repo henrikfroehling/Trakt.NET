@@ -293,6 +293,7 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostShow), new SyncCollectionPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostShowEpisode), new SyncCollectionPostShowEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostShowSeason), new SyncCollectionPostShowSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncCollectionRemovePost), new SyncCollectionRemovePostJsonIOFactory());
 
             // sync collection post response objects
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostResponse), new SyncCollectionPostResponseJsonIOFactory());
