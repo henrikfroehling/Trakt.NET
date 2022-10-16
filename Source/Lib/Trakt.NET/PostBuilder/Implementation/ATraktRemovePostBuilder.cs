@@ -21,7 +21,7 @@
         protected readonly Lazy<List<ITraktEpisode>> _episodes;
         protected readonly Lazy<List<ITraktEpisodeIds>> _episodeIds;
 
-        internal ATraktRemovePostBuilder()
+        protected ATraktRemovePostBuilder()
         {
             _movies = new Lazy<List<ITraktMovie>>();
             _movieIds = new Lazy<List<ITraktMovieIds>>();
