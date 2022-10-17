@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Ratings.Json.Reader
 {
     using Newtonsoft.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using TraktNet.Objects.Json;
@@ -15,7 +14,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                TSyncRatingsPost syncRatingsPost = Activator.CreateInstance<TSyncRatingsPost>();
+                TSyncRatingsPost syncRatingsPost = CreateInstance();
                 var movieArrayJsonReader = new ArrayJsonReader<ITraktSyncRatingsPostMovie>();
                 var showArrayJsonReader = new ArrayJsonReader<ITraktSyncRatingsPostShow>();
                 var seasonArrayJsonReader = new ArrayJsonReader<ITraktSyncRatingsPostSeason>();
@@ -50,5 +49,7 @@
 
             return await Task.FromResult(default(TSyncRatingsPost));
         }
+
+        protected abstract TSyncRatingsPost CreateInstance();
     }
 }

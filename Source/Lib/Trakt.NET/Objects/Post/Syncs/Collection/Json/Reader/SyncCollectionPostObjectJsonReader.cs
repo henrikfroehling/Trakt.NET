@@ -2,5 +2,6 @@
 {
     internal class SyncCollectionPostObjectJsonReader : ASyncCollectionPostObjectJsonReader<ITraktSyncCollectionPost>
     {
+        protected override ITraktSyncCollectionPost CreateInstance() => new TraktSyncCollectionPost();
     }
 }

@@ -2,5 +2,6 @@
 {
     internal class SyncRatingsRemovePostObjectJsonReader : ASyncRatingsPostObjectJsonReader<ITraktSyncRatingsRemovePost>
     {
+        protected override ITraktSyncRatingsRemovePost CreateInstance() => new TraktSyncRatingsRemovePost();
     }
 }

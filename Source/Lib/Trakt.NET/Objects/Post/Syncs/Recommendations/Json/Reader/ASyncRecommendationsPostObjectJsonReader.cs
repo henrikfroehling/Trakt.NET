@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Recommendations.Json.Reader
 {
     using Newtonsoft.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using TraktNet.Objects.Json;
@@ -15,7 +14,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                TSyncRecommendationsPost syncRecommendationsPost = Activator.CreateInstance<TSyncRecommendationsPost>();
+                TSyncRecommendationsPost syncRecommendationsPost = CreateInstance();
                 var syncRecommendationsPostMovieArrayJsonReader = new ArrayJsonReader<ITraktSyncRecommendationsPostMovie>();
                 var syncRecommendationsPostShowArrayJsonReader = new ArrayJsonReader<ITraktSyncRecommendationsPostShow>();
 
@@ -42,5 +41,7 @@
 
             return await Task.FromResult(default(TSyncRecommendationsPost));
         }
+
+        protected abstract TSyncRecommendationsPost CreateInstance();
     }
 }

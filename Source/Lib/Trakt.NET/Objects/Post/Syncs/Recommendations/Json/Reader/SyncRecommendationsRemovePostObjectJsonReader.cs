@@ -2,5 +2,6 @@
 {
     internal class SyncRecommendationsRemovePostObjectJsonReader : ASyncRecommendationsPostObjectJsonReader<ITraktSyncRecommendationsRemovePost>
     {
+        protected override ITraktSyncRecommendationsRemovePost CreateInstance() => new TraktSyncRecommendationsRemovePost();
     }
 }

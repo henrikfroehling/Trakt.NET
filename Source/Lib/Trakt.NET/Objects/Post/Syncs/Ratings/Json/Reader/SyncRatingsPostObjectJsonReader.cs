@@ -2,5 +2,6 @@
 {
     internal class SyncRatingsPostObjectJsonReader : ASyncRatingsPostObjectJsonReader<ITraktSyncRatingsPost>
     {
+        protected override ITraktSyncRatingsPost CreateInstance() => new TraktSyncRatingsPost();
     }
 }

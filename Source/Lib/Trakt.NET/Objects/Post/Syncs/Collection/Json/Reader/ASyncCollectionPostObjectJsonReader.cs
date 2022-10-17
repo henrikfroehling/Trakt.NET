@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Collection.Json.Reader
 {
     using Newtonsoft.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using TraktNet.Objects.Json;
@@ -15,7 +14,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                TSyncCollectionPost traktSyncCollectionPost = Activator.CreateInstance<TSyncCollectionPost>();
+                TSyncCollectionPost traktSyncCollectionPost = CreateInstance();
                 var syncCollectionPostMovieArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostMovie>();
                 var syncCollectionPostShowArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostShow>();
                 var syncCollectionPostSeasonArrayJsonReader = new ArrayJsonReader<ITraktSyncCollectionPostSeason>();
@@ -50,5 +49,7 @@
 
             return await Task.FromResult(default(TSyncCollectionPost));
         }
+
+        protected abstract TSyncCollectionPost CreateInstance();
     }
 }
