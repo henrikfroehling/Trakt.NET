@@ -22,6 +22,10 @@
         /// <returns>An <see cref="ITraktSyncRatingsPostBuilder"/> instance.</returns>
         public static ITraktSyncRatingsPostBuilder NewSyncRatingsPost() => new SyncRatingsPostBuilder();
 
+        /// <summary>Creates a new <see cref="ITraktSyncRatingsRemovePostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktSyncRatingsRemovePostBuilder"/> instance.</returns>
+        public static ITraktSyncRatingsRemovePostBuilder NewSyncRatingsRemovePost() => new SyncRatingsRemovePostBuilder();
+
         /// <summary>Creates a new <see cref="ITraktSyncRecommendationsPostBuilder"/>.</summary>
         /// <returns>An <see cref="ITraktSyncRecommendationsPostBuilder"/> instance.</returns>
         public static ITraktSyncRecommendationsPostBuilder NewSyncRecommendationsPost() => new SyncRecommendationsPostBuilder();

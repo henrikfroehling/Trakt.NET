@@ -2,7 +2,8 @@
 {
     using TraktNet.Objects.Post.Syncs.Collection;
 
-    public interface ITraktSyncCollectionRemovePostBuilder : ITraktRemovePostBuilder<ITraktSyncCollectionRemovePostBuilder, ITraktSyncCollectionRemovePost>
+    public interface ITraktSyncCollectionRemovePostBuilder
+        : ITraktRemovePostBuilder<ITraktSyncCollectionRemovePostBuilder, ITraktSyncCollectionRemovePost>
     {
     }
 }
