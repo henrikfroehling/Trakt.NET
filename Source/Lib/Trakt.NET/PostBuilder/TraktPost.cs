@@ -30,6 +30,10 @@
         /// <returns>An <see cref="ITraktSyncRecommendationsPostBuilder"/> instance.</returns>
         public static ITraktSyncRecommendationsPostBuilder NewSyncRecommendationsPost() => new SyncRecommendationsPostBuilder();
 
+        /// <summary>Creates a new <see cref="ITraktSyncRecommendationsRemovePostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktSyncRecommendationsRemovePostBuilder"/> instance.</returns>
+        public static ITraktSyncRecommendationsRemovePostBuilder NewSyncRecommendationsRemovePost() => new SyncRecommendationsRemovePostBuilder();
+
         /// <summary>Creates a new <see cref="ITraktSyncWatchlistPostBuilder"/>.</summary>
         /// <returns>An <see cref="ITraktSyncWatchlistPostBuilder"/> instance.</returns>
         public static ITraktSyncWatchlistPostBuilder NewSyncWatchlistPost() => new SyncWatchlistPostBuilder();
