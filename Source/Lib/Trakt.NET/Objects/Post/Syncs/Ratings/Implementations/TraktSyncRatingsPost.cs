@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// A Trakt ratings post, containing all movies, shows and / or episodes,
+    /// A Trakt ratings post, containing all movies, shows, seasons and / or episodes,
     /// which should be added to the user's ratings.
     /// </summary>
     public class TraktSyncRatingsPost : ITraktSyncRatingsPost

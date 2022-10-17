@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// A Trakt history remove post, containing all movies, shows, episodes and / or history ids,
+    /// A Trakt history remove post, containing all movies, shows, seasons, episodes and / or history ids,
     /// which should be removed from the user's history.
     /// </summary>
     public class TraktSyncHistoryRemovePost : ITraktSyncHistoryRemovePost

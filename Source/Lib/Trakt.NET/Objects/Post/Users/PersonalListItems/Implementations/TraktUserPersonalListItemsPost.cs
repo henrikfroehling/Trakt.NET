@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// An user personal list items post, containing all movies, shows, episodes and / or people,
+    /// An user personal list items post, containing all movies, shows, seasons, episodes and / or people,
     /// which should be added to an user's personal list.
     /// </summary>
     public class TraktUserPersonalListItemsPost : ITraktUserPersonalListItemsPost

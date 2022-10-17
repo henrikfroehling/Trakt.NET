@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// An user hidden items post, containing all movies, shows, and / or episodes,
+    /// An user hidden items post, containing all movies, shows, seasons and / or episodes,
     /// which should be added to an user's hidden items list.
     /// </summary>
     public class TraktUserHiddenItemsPost : ITraktUserHiddenItemsPost

@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// A Trakt watchlist post, containing all movies, shows and / or episodes,
+    /// A Trakt watchlist post, containing all movies, shows, seasons and / or episodes,
     /// which should be added to the user's watchlist.
     /// </summary>
     public class TraktSyncWatchlistPost : ITraktSyncWatchlistPost
