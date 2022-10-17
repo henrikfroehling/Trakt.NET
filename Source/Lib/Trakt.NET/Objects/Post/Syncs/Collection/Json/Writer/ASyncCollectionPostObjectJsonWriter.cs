@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using TraktNet.Objects.Json;
 
-    internal class ASyncCollectionPostObjectJsonWriter<TSyncCollectionPost> : AObjectJsonWriter<TSyncCollectionPost>
+    internal abstract class ASyncCollectionPostObjectJsonWriter<TSyncCollectionPost> : AObjectJsonWriter<TSyncCollectionPost>
         where TSyncCollectionPost : ITraktSyncCollectionPost
     {
         public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, TSyncCollectionPost obj, CancellationToken cancellationToken = default)
