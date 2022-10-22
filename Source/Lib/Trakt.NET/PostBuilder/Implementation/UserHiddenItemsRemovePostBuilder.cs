@@ -8,35 +8,35 @@
     using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Post.Users.HiddenItems;
 
-    internal sealed class UserHiddenItemsPostBuilder
-        : AHiddenItemsPostBuilder<ITraktUserHiddenItemsPostBuilder, ITraktUserHiddenItemsPost>,
-          ITraktUserHiddenItemsPostBuilder
+    internal sealed class UserHiddenItemsRemovePostBuilder
+        : AHiddenItemsPostBuilder<ITraktUserHiddenItemsRemovePostBuilder, ITraktUserHiddenItemsRemovePost>,
+          ITraktUserHiddenItemsRemovePostBuilder
     {
-        public override ITraktUserHiddenItemsPost Build()
+        public override ITraktUserHiddenItemsRemovePost Build()
         {
-            ITraktUserHiddenItemsPost userHiddenItemsPost = new TraktUserHiddenItemsPost();
-            AddMovies(userHiddenItemsPost);
-            AddShows(userHiddenItemsPost);
-            AddSeasons(userHiddenItemsPost);
-            AddUsers(userHiddenItemsPost);
-            userHiddenItemsPost.Validate();
-            return userHiddenItemsPost;
+            ITraktUserHiddenItemsRemovePost userHiddenItemsRemovePost = new TraktUserHiddenItemsRemovePost();
+            AddMovies(userHiddenItemsRemovePost);
+            AddShows(userHiddenItemsRemovePost);
+            AddSeasons(userHiddenItemsRemovePost);
+            AddUsers(userHiddenItemsRemovePost);
+            userHiddenItemsRemovePost.Validate();
+            return userHiddenItemsRemovePost;
         }
 
-        protected override ITraktUserHiddenItemsPostBuilder GetBuilder() => this;
+        protected override ITraktUserHiddenItemsRemovePostBuilder GetBuilder() => this;
 
-        private void AddMovies(ITraktUserHiddenItemsPost userHiddenItemsPost)
+        private void AddMovies(ITraktUserHiddenItemsRemovePost userHiddenItemsRemovePost)
         {
             if (!_movies.IsValueCreated && !_movieIds.IsValueCreated)
                 return;
 
-            userHiddenItemsPost.Movies ??= new List<ITraktUserHiddenItemsPostMovie>();
+            userHiddenItemsRemovePost.Movies ??= new List<ITraktUserHiddenItemsPostMovie>();
 
             if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
                 {
-                    (userHiddenItemsPost.Movies as List<ITraktUserHiddenItemsPostMovie>)
+                    (userHiddenItemsRemovePost.Movies as List<ITraktUserHiddenItemsPostMovie>)
                         .Add(CreateHiddenItemsPostMovie(movie));
                 }
             }
@@ -45,13 +45,13 @@
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
                 {
-                    (userHiddenItemsPost.Movies as List<ITraktUserHiddenItemsPostMovie>)
+                    (userHiddenItemsRemovePost.Movies as List<ITraktUserHiddenItemsPostMovie>)
                         .Add(CreateHiddenItemsPostMovie(movieIds));
                 }
             }
         }
 
-        private void AddShows(ITraktUserHiddenItemsPost userHiddenItemsPost)
+        private void AddShows(ITraktUserHiddenItemsRemovePost userHiddenItemsRemovePost)
         {
             if (!_shows.IsValueCreated && !_showIds.IsValueCreated
                 && !_showsWithSeasons.IsValueCreated && !_showIdsWithSeasons.IsValueCreated)
@@ -59,13 +59,13 @@
                 return;
             }
 
-            userHiddenItemsPost.Shows ??= new List<ITraktUserHiddenItemsPostShow>();
+            userHiddenItemsRemovePost.Shows ??= new List<ITraktUserHiddenItemsPostShow>();
 
             if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
                 {
-                    (userHiddenItemsPost.Shows as List<ITraktUserHiddenItemsPostShow>)
+                    (userHiddenItemsRemovePost.Shows as List<ITraktUserHiddenItemsPostShow>)
                         .Add(CreateHiddenItemsPostShow(show));
                 }
             }
@@ -74,30 +74,30 @@
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
                 {
-                    (userHiddenItemsPost.Shows as List<ITraktUserHiddenItemsPostShow>)
+                    (userHiddenItemsRemovePost.Shows as List<ITraktUserHiddenItemsPostShow>)
                         .Add(CreateHiddenItemsPostShow(showIds));
                 }
             }
 
             if (_showsWithSeasons.IsValueCreated && _showsWithSeasons.Value.Any())
-                CreateHiddenItemsPostShowWithSeasons(userHiddenItemsPost, _showsWithSeasons.Value);
+                CreateHiddenItemsPostShowWithSeasons(userHiddenItemsRemovePost, _showsWithSeasons.Value);
 
             if (_showIdsWithSeasons.IsValueCreated && _showIdsWithSeasons.Value.Any())
-                CreateHiddenItemsPostShowWithSeasons(userHiddenItemsPost, _showIdsWithSeasons.Value);
+                CreateHiddenItemsPostShowWithSeasons(userHiddenItemsRemovePost, _showIdsWithSeasons.Value);
         }
 
-        private void AddSeasons(ITraktUserHiddenItemsPost userHiddenItemsPost)
+        private void AddSeasons(ITraktUserHiddenItemsRemovePost userHiddenItemsRemovePost)
         {
             if (!_seasons.IsValueCreated && !_seasonIds.IsValueCreated)
                 return;
 
-            userHiddenItemsPost.Seasons ??= new List<ITraktUserHiddenItemsPostSeason>();
+            userHiddenItemsRemovePost.Seasons ??= new List<ITraktUserHiddenItemsPostSeason>();
 
             if (_seasons.IsValueCreated && _seasons.Value.Any())
             {
                 foreach (ITraktSeason season in _seasons.Value)
                 {
-                    (userHiddenItemsPost.Seasons as List<ITraktUserHiddenItemsPostSeason>)
+                    (userHiddenItemsRemovePost.Seasons as List<ITraktUserHiddenItemsPostSeason>)
                         .Add(CreateHiddenItemsPostSeason(season));
                 }
             }
@@ -106,30 +106,30 @@
             {
                 foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
                 {
-                    (userHiddenItemsPost.Seasons as List<ITraktUserHiddenItemsPostSeason>)
+                    (userHiddenItemsRemovePost.Seasons as List<ITraktUserHiddenItemsPostSeason>)
                         .Add(CreateHiddenItemsPostSeason(seasonIds));
                 }
             }
         }
 
-        private void AddUsers(ITraktUserHiddenItemsPost userHiddenItemsPost)
+        private void AddUsers(ITraktUserHiddenItemsRemovePost userHiddenItemsRemovePost)
         {
             if (!_users.IsValueCreated && !_userIds.IsValueCreated)
                 return;
 
-            userHiddenItemsPost.Users ??= new List<ITraktUser>();
+            userHiddenItemsRemovePost.Users ??= new List<ITraktUser>();
 
             if (_users.IsValueCreated && _users.Value.Any())
             {
                 foreach (ITraktUser user in _users.Value)
-                    (userHiddenItemsPost.Users as List<ITraktUser>).Add(user);
+                    (userHiddenItemsRemovePost.Users as List<ITraktUser>).Add(user);
             }
 
             if (_userIds.IsValueCreated && _userIds.Value.Any())
             {
                 foreach (ITraktUserIds userIds in _userIds.Value)
                 {
-                    (userHiddenItemsPost.Users as List<ITraktUser>)
+                    (userHiddenItemsRemovePost.Users as List<ITraktUser>)
                         .Add(new TraktUser
                         {
                             Ids = userIds
@@ -160,25 +160,25 @@
         private static ITraktUserHiddenItemsPostShow CreateHiddenItemsPostShow(ITraktShowIds showIds)
             => new TraktUserHiddenItemsPostShow { Ids = showIds };
 
-        private static void CreateHiddenItemsPostShowWithSeasons(ITraktUserHiddenItemsPost userHiddenItemsPost, List<HiddenShowWithSeasons> showsWithSeasons)
+        private static void CreateHiddenItemsPostShowWithSeasons(ITraktUserHiddenItemsRemovePost userHiddenItemsRemovePost, List<HiddenShowWithSeasons> showsWithSeasons)
         {
             foreach (HiddenShowWithSeasons showWithSeasons in showsWithSeasons)
             {
                 ITraktUserHiddenItemsPostShow userHiddenItemsPostShow = CreateHiddenItemsPostShow(showWithSeasons.Object);
-                CreateHiddenItemsPostShowSeasons(userHiddenItemsPost, showWithSeasons.Seasons, userHiddenItemsPostShow);
+                CreateHiddenItemsPostShowSeasons(userHiddenItemsRemovePost, showWithSeasons.Seasons, userHiddenItemsPostShow);
             }
         }
 
-        private static void CreateHiddenItemsPostShowWithSeasons(ITraktUserHiddenItemsPost userHiddenItemsPost, List<HiddenShowIdsWithSeasons> showIdsWithSeasons)
+        private static void CreateHiddenItemsPostShowWithSeasons(ITraktUserHiddenItemsRemovePost userHiddenItemsRemovePost, List<HiddenShowIdsWithSeasons> showIdsWithSeasons)
         {
             foreach (HiddenShowIdsWithSeasons showIdWithSeasons in showIdsWithSeasons)
             {
                 ITraktUserHiddenItemsPostShow userHiddenItemsPostShow = CreateHiddenItemsPostShow(showIdWithSeasons.Object);
-                CreateHiddenItemsPostShowSeasons(userHiddenItemsPost, showIdWithSeasons.Seasons, userHiddenItemsPostShow);
+                CreateHiddenItemsPostShowSeasons(userHiddenItemsRemovePost, showIdWithSeasons.Seasons, userHiddenItemsPostShow);
             }
         }
 
-        private static void CreateHiddenItemsPostShowSeasons(ITraktUserHiddenItemsPost userHiddenItemsPost, IEnumerable<int> seasons,
+        private static void CreateHiddenItemsPostShowSeasons(ITraktUserHiddenItemsRemovePost userHiddenItemsRemovePost, IEnumerable<int> seasons,
                                                              ITraktUserHiddenItemsPostShow userHiddenItemsPostShow)
         {
             if (seasons.Any())
@@ -192,7 +192,7 @@
                 }
             }
 
-            (userHiddenItemsPost.Shows as List<ITraktUserHiddenItemsPostShow>).Add(userHiddenItemsPostShow);
+            (userHiddenItemsRemovePost.Shows as List<ITraktUserHiddenItemsPostShow>).Add(userHiddenItemsPostShow);
         }
 
         private static ITraktUserHiddenItemsPostShowSeason CreateHiddenItemsPostShowSeason(int season)

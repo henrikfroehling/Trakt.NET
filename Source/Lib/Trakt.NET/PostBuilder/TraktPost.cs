@@ -46,6 +46,10 @@
         /// <returns>An <see cref="ITraktUserHiddenItemsPostBuilder"/> instance.</returns>
         public static ITraktUserHiddenItemsPostBuilder NewUserHiddenItemsPost() => new UserHiddenItemsPostBuilder();
 
+        /// <summary>Creates a new <see cref="ITraktUserHiddenItemsRemovePostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktUserHiddenItemsRemovePostBuilder"/> instance.</returns>
+        public static ITraktUserHiddenItemsRemovePostBuilder NewUserHiddenItemsRemovePost() => new UserHiddenItemsRemovePostBuilder();
+
         /// <summary>Creates a new <see cref="ITraktUserPersonalListItemsPostBuilder"/>.</summary>
         /// <returns>An <see cref="ITraktUserPersonalListItemsPostBuilder"/> instance.</returns>
         public static ITraktUserPersonalListItemsPostBuilder NewUserPersonalListItemsPost() => new UserPersonalListItemsPostBuilder();

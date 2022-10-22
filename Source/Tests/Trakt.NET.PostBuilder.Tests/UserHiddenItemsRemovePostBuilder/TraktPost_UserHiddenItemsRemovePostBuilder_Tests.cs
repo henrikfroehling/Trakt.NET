@@ -1,0 +1,19 @@
+﻿namespace TraktNet.PostBuilder.Tests
+{
+    using FluentAssertions;
+    using System;
+    using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Users.HiddenItems;
+    using Xunit;
+
+    [Category("PostBuilder")]
+    public partial class TraktPost_UserHiddenItemsRemovePostBuilder_Tests
+    {
+        [Fact]
+        public void Test_TraktPost_UserHiddenItemsRemovePostBuilder_Empty_Build()
+        {
+            Func<ITraktUserHiddenItemsRemovePost> act = () => TraktPost.NewUserHiddenItemsRemovePost().Build();
+            act.Should().Throw<ArgumentException>();
+        }
+    }
+}
