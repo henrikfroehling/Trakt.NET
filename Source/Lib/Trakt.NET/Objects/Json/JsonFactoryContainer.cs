@@ -367,6 +367,7 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistPostShow), new SyncWatchlistPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistPostShowEpisode), new SyncWatchlistPostShowEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistPostShowSeason), new SyncWatchlistPostShowSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistRemovePost), new SyncWatchlistRemovePostJsonIOFactory());
 
             // sync watchlist post response objects
             s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistPostResponse), new SyncWatchlistPostResponseJsonIOFactory());
