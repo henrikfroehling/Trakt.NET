@@ -38,6 +38,10 @@
         /// <returns>An <see cref="ITraktSyncWatchlistPostBuilder"/> instance.</returns>
         public static ITraktSyncWatchlistPostBuilder NewSyncWatchlistPost() => new SyncWatchlistPostBuilder();
 
+        /// <summary>Creates a new <see cref="ITraktSyncWatchlistRemovePostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktSyncWatchlistRemovePostBuilder"/> instance.</returns>
+        public static ITraktSyncWatchlistRemovePostBuilder NewSyncWatchlistRemovePost() => new SyncWatchlistRemovePostBuilder();
+
         /// <summary>Creates a new <see cref="ITraktUserHiddenItemsPostBuilder"/>.</summary>
         /// <returns>An <see cref="ITraktUserHiddenItemsPostBuilder"/> instance.</returns>
         public static ITraktUserHiddenItemsPostBuilder NewUserHiddenItemsPost() => new UserHiddenItemsPostBuilder();
