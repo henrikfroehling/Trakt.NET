@@ -396,6 +396,7 @@
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostSeason), new UserHiddenItemsPostSeasonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostShow), new UserHiddenItemsPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostShowSeason), new UserHiddenItemsPostShowSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsRemovePost), new UserHiddenItemsRemovePostJsonIOFactory());
 
             // user hidden items post response objects
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostResponse), new UserHiddenItemsPostResponseJsonIOFactory());
