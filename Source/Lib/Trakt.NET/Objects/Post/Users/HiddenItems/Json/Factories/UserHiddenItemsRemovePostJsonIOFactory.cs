@@ -9,6 +9,5 @@
         public IObjectJsonReader<ITraktUserHiddenItemsRemovePost> CreateObjectReader() => new UserHiddenItemsRemovePostObjectJsonReader();
 
         public IObjectJsonWriter<ITraktUserHiddenItemsRemovePost> CreateObjectWriter() => new UserHiddenItemsRemovePostObjectJsonWriter();
-    {
     }
 }
