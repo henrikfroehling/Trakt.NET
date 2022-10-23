@@ -382,6 +382,7 @@
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShow), new UserPersonalListItemsPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShowEpisode), new UserPersonalListItemsPostShowEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShowSeason), new UserPersonalListItemsPostShowSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsRemovePost), new UserPersonalListItemsRemovePostJsonIOFactory());
 
             // user personal list items post response objects
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponse), new UserPersonalListItemsPostResponseJsonIOFactory());
