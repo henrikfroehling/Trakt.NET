@@ -53,5 +53,9 @@
         /// <summary>Creates a new <see cref="ITraktUserPersonalListItemsPostBuilder"/>.</summary>
         /// <returns>An <see cref="ITraktUserPersonalListItemsPostBuilder"/> instance.</returns>
         public static ITraktUserPersonalListItemsPostBuilder NewUserPersonalListItemsPost() => new UserPersonalListItemsPostBuilder();
+
+        /// <summary>Creates a new <see cref="ITraktUserPersonalListItemsRemovePostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktUserPersonalListItemsRemovePostBuilder"/> instance.</returns>
+        public static ITraktUserPersonalListItemsRemovePostBuilder NewUserPersonalListItemsRemovePost() => new UserPersonalListItemsRemovePostBuilder();
     }
 }
