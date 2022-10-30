@@ -57,5 +57,25 @@
         /// <summary>Creates a new <see cref="ITraktUserPersonalListItemsRemovePostBuilder"/>.</summary>
         /// <returns>An <see cref="ITraktUserPersonalListItemsRemovePostBuilder"/> instance.</returns>
         public static ITraktUserPersonalListItemsRemovePostBuilder NewUserPersonalListItemsRemovePost() => new UserPersonalListItemsRemovePostBuilder();
+
+        /// <summary>Creates a new <see cref="ITraktMovieCommentPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktMovieCommentPostBuilder"/> instance.</returns>
+        public static ITraktMovieCommentPostBuilder NewMovieCommentPost() => new MovieCommentPostBuilder();
+
+        /// <summary>Creates a new <see cref="ITraktShowCommentPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktShowCommentPostBuilder"/> instance.</returns>
+        public static ITraktShowCommentPostBuilder NewShowCommentPost() => new ShowCommentPostBuilder();
+
+        /// <summary>Creates a new <see cref="ITraktSeasonCommentPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktSeasonCommentPostBuilder"/> instance.</returns>
+        public static ITraktSeasonCommentPostBuilder NewSeasonCommentPost() => new SeasonCommentPostBuilder();
+
+        /// <summary>Creates a new <see cref="ITraktEpisodeCommentPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktEpisodeCommentPostBuilder"/> instance.</returns>
+        public static ITraktEpisodeCommentPostBuilder NewEpisodeCommentPost() => new EpisodeCommentPostBuilder();
+
+        /// <summary>Creates a new <see cref="ITraktListCommentPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktListCommentPostBuilder"/> instance.</returns>
+        public static ITraktListCommentPostBuilder NewListCommentPost() => new ListCommentPostBuilder();
     }
 }

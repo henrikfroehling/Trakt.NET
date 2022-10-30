@@ -7,7 +7,7 @@
     using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
 
-    internal abstract class ATraktRemovePostBuilder<TPostBuilder, TPostObject> : ITraktRemovePostBuilder<TPostBuilder, TPostObject>
+    internal abstract class ARemovePostBuilder<TPostBuilder, TPostObject> : ITraktRemovePostBuilder<TPostBuilder, TPostObject>
         where TPostBuilder : ITraktRemovePostBuilder<TPostBuilder, TPostObject>
     {
         protected readonly Lazy<List<ITraktMovie>> _movies;
@@ -21,7 +21,7 @@
         protected readonly Lazy<List<ITraktEpisode>> _episodes;
         protected readonly Lazy<List<ITraktEpisodeIds>> _episodeIds;
 
-        protected ATraktRemovePostBuilder()
+        protected ARemovePostBuilder()
         {
             _movies = new Lazy<List<ITraktMovie>>();
             _movieIds = new Lazy<List<ITraktMovieIds>>();

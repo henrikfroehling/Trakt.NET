@@ -10,7 +10,7 @@
     using TraktNet.Objects.Post.Syncs.History;
 
     internal sealed class SyncHistoryRemovePostBuilder
-        : ATraktRemovePostBuilder<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
+        : ARemovePostBuilder<ITraktSyncHistoryRemovePostBuilder, ITraktSyncHistoryRemovePost>,
           ITraktSyncHistoryRemovePostBuilder
     {
         private readonly Lazy<List<ulong>> _historyIds;

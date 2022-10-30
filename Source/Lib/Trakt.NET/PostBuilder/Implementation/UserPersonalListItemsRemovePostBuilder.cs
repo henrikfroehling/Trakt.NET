@@ -11,7 +11,7 @@
     using TraktNet.Objects.Post.Users.PersonalListItems;
 
     internal sealed class UserPersonalListItemsRemovePostBuilder
-        : ATraktRemovePostBuilder<ITraktUserPersonalListItemsRemovePostBuilder, ITraktUserPersonalListItemsRemovePost>,
+        : ARemovePostBuilder<ITraktUserPersonalListItemsRemovePostBuilder, ITraktUserPersonalListItemsRemovePost>,
           ITraktUserPersonalListItemsRemovePostBuilder
     {
         private readonly Lazy<List<ITraktPerson>> _persons;

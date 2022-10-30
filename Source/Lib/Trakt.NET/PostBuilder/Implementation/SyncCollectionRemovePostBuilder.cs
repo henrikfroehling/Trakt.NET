@@ -9,7 +9,7 @@
     using TraktNet.Objects.Post.Syncs.Collection;
 
     internal sealed class SyncCollectionRemovePostBuilder
-        : ATraktRemovePostBuilder<ITraktSyncCollectionRemovePostBuilder, ITraktSyncCollectionRemovePost>,
+        : ARemovePostBuilder<ITraktSyncCollectionRemovePostBuilder, ITraktSyncCollectionRemovePost>,
           ITraktSyncCollectionRemovePostBuilder
     {
         public override ITraktSyncCollectionRemovePost Build()

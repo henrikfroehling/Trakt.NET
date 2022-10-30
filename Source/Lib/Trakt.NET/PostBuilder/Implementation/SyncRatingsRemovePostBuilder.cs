@@ -9,7 +9,7 @@
     using TraktNet.Objects.Post.Syncs.Ratings;
 
     internal sealed class SyncRatingsRemovePostBuilder
-        : ATraktRemovePostBuilder<ITraktSyncRatingsRemovePostBuilder, ITraktSyncRatingsRemovePost>,
+        : ARemovePostBuilder<ITraktSyncRatingsRemovePostBuilder, ITraktSyncRatingsRemovePost>,
           ITraktSyncRatingsRemovePostBuilder
     {
         public override ITraktSyncRatingsRemovePost Build()

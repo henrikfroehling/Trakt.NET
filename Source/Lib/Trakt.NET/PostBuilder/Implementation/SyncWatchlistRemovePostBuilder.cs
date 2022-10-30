@@ -9,7 +9,7 @@
     using TraktNet.Objects.Post.Syncs.Watchlist;
 
     internal sealed class SyncWatchlistRemovePostBuilder
-        : ATraktRemovePostBuilder<ITraktSyncWatchlistRemovePostBuilder, ITraktSyncWatchlistRemovePost>,
+        : ARemovePostBuilder<ITraktSyncWatchlistRemovePostBuilder, ITraktSyncWatchlistRemovePost>,
           ITraktSyncWatchlistRemovePostBuilder
     {
         public override ITraktSyncWatchlistRemovePost Build()
