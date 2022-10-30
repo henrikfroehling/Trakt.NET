@@ -27,8 +27,22 @@
             showCommentPost.Comment = "one two three four five";
             act.Should().Throw<ArgumentNullException>();
 
-            // valid
+            // Show Ids = null
             showCommentPost.Show = new TraktShow();
+            act.Should().Throw<ArgumentNullException>();
+
+            // Show IDs have no valid id
+            showCommentPost.Show = new TraktShow
+            {
+                Ids = new TraktShowIds()
+            };
+            act.Should().Throw<ArgumentException>();
+
+            // valid
+            showCommentPost.Show = new TraktShow
+            {
+                Ids = new TraktShowIds { Trakt = 1 }
+            };
             act.Should().NotThrow();
         }
     }

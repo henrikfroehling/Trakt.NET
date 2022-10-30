@@ -10,7 +10,16 @@
 
         public ITraktShowCommentPostBuilder WithShow(ITraktShow show)
         {
-            _show = show ?? throw new ArgumentNullException(nameof(show));
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (show.Ids == null)
+                throw new ArgumentNullException(nameof(show.Ids));
+
+            if (!show.Ids.HasAnyId)
+                throw new ArgumentException("show ids have no valid id", nameof(show.Ids));
+
+            _show = show;
             return this;
         }
 

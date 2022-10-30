@@ -10,7 +10,16 @@
 
         public ITraktEpisodeCommentPostBuilder WithEpisode(ITraktEpisode episode)
         {
-            _episode = episode ?? throw new ArgumentNullException(nameof(episode));
+            if (episode == null)
+                throw new ArgumentNullException(nameof(episode));
+
+            if (episode.Ids == null)
+                throw new ArgumentNullException(nameof(episode.Ids));
+
+            if (!episode.Ids.HasAnyId)
+                throw new ArgumentException("episode ids have no valid id", nameof(episode.Ids));
+
+            _episode = episode;
             return this;
         }
 

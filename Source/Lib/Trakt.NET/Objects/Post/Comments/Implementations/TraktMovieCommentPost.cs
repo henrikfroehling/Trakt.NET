@@ -27,6 +27,12 @@
 
             if (Movie == null)
                 throw new ArgumentNullException(nameof(Movie));
+
+            if (Movie.Ids == null)
+                throw new ArgumentNullException(nameof(Movie), "movie ids must not be null");
+
+            if (!Movie.Ids.HasAnyId)
+                throw new ArgumentException("movie ids have no valid id", nameof(Movie));
         }
     }
 }

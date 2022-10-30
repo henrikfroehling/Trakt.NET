@@ -27,6 +27,12 @@
 
             if (Show == null)
                 throw new ArgumentNullException(nameof(Show));
+
+            if (Show.Ids == null)
+                throw new ArgumentNullException(nameof(Show), "show ids must not be null");
+
+            if (!Show.Ids.HasAnyId)
+                throw new ArgumentException("show ids have no valid id", nameof(Show));
         }
     }
 }

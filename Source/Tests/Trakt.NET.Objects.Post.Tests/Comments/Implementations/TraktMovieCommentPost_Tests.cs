@@ -27,8 +27,22 @@
             movieCommentPost.Comment = "one two three four five";
             act.Should().Throw<ArgumentNullException>();
 
-            // valid
+            // Movie Ids = null
             movieCommentPost.Movie = new TraktMovie();
+            act.Should().Throw<ArgumentNullException>();
+
+            // Movie IDs have no valid id
+            movieCommentPost.Movie = new TraktMovie
+            {
+                Ids = new TraktMovieIds()
+            };
+            act.Should().Throw<ArgumentException>();
+
+            // valid
+            movieCommentPost.Movie = new TraktMovie
+            {
+                Ids = new TraktMovieIds { Trakt = 1 }
+            };
             act.Should().NotThrow();
         }
     }

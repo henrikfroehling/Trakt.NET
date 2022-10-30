@@ -10,7 +10,16 @@
 
         public ITraktListCommentPostBuilder WithList(ITraktList list)
         {
-            _list = list ?? throw new ArgumentNullException(nameof(list));
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+
+            if (list.Ids == null)
+                throw new ArgumentNullException(nameof(list.Ids));
+
+            if (!list.Ids.HasAnyId)
+                throw new ArgumentException("list ids have no valid id", nameof(list.Ids));
+
+            _list = list;
             return this;
         }
 

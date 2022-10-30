@@ -27,6 +27,12 @@
 
             if (Episode == null)
                 throw new ArgumentNullException(nameof(Episode));
+
+            if (Episode.Ids == null)
+                throw new ArgumentNullException(nameof(Episode), "episode ids must not be null");
+
+            if (!Episode.Ids.HasAnyId)
+                throw new ArgumentException("episode ids have no valid id", nameof(Episode));
         }
     }
 }

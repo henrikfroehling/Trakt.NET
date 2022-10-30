@@ -10,7 +10,16 @@
 
         public ITraktMovieCommentPostBuilder WithMovie(ITraktMovie movie)
         {
-            _movie = movie ?? throw new ArgumentNullException(nameof(movie));
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
+            if (movie.Ids == null)
+                throw new ArgumentNullException(nameof(movie.Ids));
+
+            if (!movie.Ids.HasAnyId)
+                throw new ArgumentException("movie ids have no valid id", nameof(movie.Ids));
+
+            _movie = movie;
             return this;
         }
 

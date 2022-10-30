@@ -27,8 +27,22 @@
             seasonCommentPost.Comment = "one two three four five";
             act.Should().Throw<ArgumentNullException>();
 
-            // valid
+            // Season Ids = null
             seasonCommentPost.Season = new TraktSeason();
+            act.Should().Throw<ArgumentNullException>();
+
+            // Season IDs have no valid id
+            seasonCommentPost.Season = new TraktSeason
+            {
+                Ids = new TraktSeasonIds()
+            };
+            act.Should().Throw<ArgumentException>();
+
+            // valid
+            seasonCommentPost.Season = new TraktSeason
+            {
+                Ids = new TraktSeasonIds { Trakt = 1 }
+            };
             act.Should().NotThrow();
         }
     }

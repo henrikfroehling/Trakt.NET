@@ -27,8 +27,22 @@
             listCommentPost.Comment = "one two three four five";
             act.Should().Throw<ArgumentNullException>();
 
-            // valid
+            // List Ids = null
             listCommentPost.List = new TraktList();
+            act.Should().Throw<ArgumentNullException>();
+
+            // List IDs have no valid id
+            listCommentPost.List = new TraktList
+            {
+                Ids = new TraktListIds()
+            };
+            act.Should().Throw<ArgumentException>();
+
+            // valid
+            listCommentPost.List = new TraktList
+            {
+                Ids = new TraktListIds { Trakt = 1 }
+            };
             act.Should().NotThrow();
         }
     }

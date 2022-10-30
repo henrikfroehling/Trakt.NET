@@ -27,8 +27,22 @@
             episodeCommentPost.Comment = "one two three four five";
             act.Should().Throw<ArgumentNullException>();
 
-            // valid
+            // Episode Ids = null
             episodeCommentPost.Episode = new TraktEpisode();
+            act.Should().Throw<ArgumentNullException>();
+
+            // Episode IDs have no valid id
+            episodeCommentPost.Episode = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds()
+            };
+            act.Should().Throw<ArgumentException>();
+
+            // valid
+            episodeCommentPost.Episode = new TraktEpisode
+            {
+                Ids = new TraktEpisodeIds { Trakt = 1 }
+            };
             act.Should().NotThrow();
         }
     }

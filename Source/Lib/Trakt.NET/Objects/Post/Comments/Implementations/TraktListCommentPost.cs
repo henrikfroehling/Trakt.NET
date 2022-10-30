@@ -27,6 +27,12 @@
 
             if (List == null)
                 throw new ArgumentNullException(nameof(List));
+
+            if (List.Ids == null)
+                throw new ArgumentNullException(nameof(List), "list ids must not be null");
+
+            if (!List.Ids.HasAnyId)
+                throw new ArgumentException("list ids have no valid id", nameof(List));
         }
     }
 }

@@ -27,6 +27,12 @@
 
             if (Season == null)
                 throw new ArgumentNullException(nameof(Season));
+
+            if (Season.Ids == null)
+                throw new ArgumentNullException(nameof(Season), "season ids must not be null");
+
+            if (!Season.Ids.HasAnyId)
+                throw new ArgumentException("season ids have no valid id", nameof(Season));
         }
     }
 }
