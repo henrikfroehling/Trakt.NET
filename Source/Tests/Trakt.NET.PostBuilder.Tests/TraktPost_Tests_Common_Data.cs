@@ -5,6 +5,7 @@
     using TraktNet.Enums;
     using TraktNet.Objects.Basic;
     using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Lists;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.Seasons;
@@ -20,6 +21,8 @@
         internal static readonly TraktPostRating RATING = TraktPostRating.Rating_5;
         internal static readonly string NOTES = new('n', 255);
         internal static readonly string NOTES_TOO_LONG = new('n', 256);
+        internal static readonly string INVALID_COMMENT = "one two three four";
+        internal static readonly string VALID_COMMENT = "one two three four five";
 
         internal static readonly ITraktMetadata METADATA = new TraktMetadata
         {
@@ -318,6 +321,26 @@
         };
 
         internal static readonly List<ITraktPersonIds> PERSON_IDS;
+
+        internal static readonly ITraktList LIST = new TraktList
+        {
+            Ids = new TraktListIds
+            {
+                Trakt = 1,
+                Slug = "list-1"
+            }
+        };
+
+        internal static readonly ITraktConnections SHARING = new TraktConnections
+        {
+            Apple = true,
+            Facebook = true,
+            Google = true,
+            Medium = true,
+            Slack = true,
+            Tumblr = true,
+            Twitter = true
+        };
 
         static TraktPost_Tests_Common_Data()
         {

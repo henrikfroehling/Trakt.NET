@@ -28,10 +28,12 @@
             ITraktShowCommentPost showCommentPost = new TraktShowCommentPost
             {
                 Comment = _comment,
-                Spoiler = _hasSpoiler,
                 Sharing = _sharing,
                 Show = _show
             };
+
+            if (_hasSpoiler.HasValue)
+                showCommentPost.Spoiler = _hasSpoiler.Value;
 
             showCommentPost.Validate();
             return showCommentPost;

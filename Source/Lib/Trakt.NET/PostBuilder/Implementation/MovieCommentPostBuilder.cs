@@ -28,10 +28,12 @@
             ITraktMovieCommentPost movieCommentPost = new TraktMovieCommentPost
             {
                 Comment = _comment,
-                Spoiler = _hasSpoiler,
                 Sharing = _sharing,
                 Movie = _movie
             };
+
+            if (_hasSpoiler.HasValue)
+                movieCommentPost.Spoiler = _hasSpoiler.Value;
 
             movieCommentPost.Validate();
             return movieCommentPost;

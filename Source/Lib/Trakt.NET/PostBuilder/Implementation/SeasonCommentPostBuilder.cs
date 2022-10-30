@@ -28,10 +28,12 @@
             ITraktSeasonCommentPost seasonCommentPost = new TraktSeasonCommentPost
             {
                 Comment = _comment,
-                Spoiler = _hasSpoiler,
                 Sharing = _sharing,
                 Season = _season
             };
+
+            if (_hasSpoiler.HasValue)
+                seasonCommentPost.Spoiler = _hasSpoiler.Value;
 
             seasonCommentPost.Validate();
             return seasonCommentPost;

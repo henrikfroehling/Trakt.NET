@@ -10,13 +10,13 @@
         where TPostObject : ITraktCommentPost
     {
         protected string _comment;
-        protected bool _hasSpoiler;
+        protected bool? _hasSpoiler;
         protected ITraktConnections _sharing;
 
         protected ACommentPostBuilder()
         {
-            _comment = string.Empty;
-            _hasSpoiler = false;
+            _comment = null;
+            _hasSpoiler = null;
             _sharing = null;
         }
 

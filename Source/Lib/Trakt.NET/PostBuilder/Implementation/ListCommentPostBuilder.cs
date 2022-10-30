@@ -28,10 +28,12 @@
             ITraktListCommentPost listCommentPost = new TraktListCommentPost
             {
                 Comment = _comment,
-                Spoiler = _hasSpoiler,
                 Sharing = _sharing,
                 List = _list
             };
+
+            if (_hasSpoiler.HasValue)
+                listCommentPost.Spoiler = _hasSpoiler.Value;
 
             listCommentPost.Validate();
             return listCommentPost;

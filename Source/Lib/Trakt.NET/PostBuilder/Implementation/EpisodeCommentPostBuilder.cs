@@ -28,10 +28,12 @@
             ITraktEpisodeCommentPost episodeCommentPost = new TraktEpisodeCommentPost
             {
                 Comment = _comment,
-                Spoiler = _hasSpoiler,
                 Sharing = _sharing,
                 Episode = _episode
             };
+
+            if (_hasSpoiler.HasValue)
+                episodeCommentPost.Spoiler = _hasSpoiler.Value;
 
             episodeCommentPost.Validate();
             return episodeCommentPost;
