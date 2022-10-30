@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Syncs.History;
     using Xunit;
 
@@ -17,23 +18,23 @@
 
             // movies = null, shows = null, seasons = null, episodes = null
             Action act = () => syncHistoryPost.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = null, seasons = null, episodes = null
             syncHistoryPost.Movies = new List<ITraktSyncHistoryPostMovie>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = null, episodes = null
             syncHistoryPost.Shows = new List<ITraktSyncHistoryPostShow>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = null
             syncHistoryPost.Seasons = new List<ITraktSyncHistoryPostSeason>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = empty
             syncHistoryPost.Episodes = new List<ITraktSyncHistoryPostEpisode>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies with at least one item, shows = empty, seasons = empty, episodes = empty
             (syncHistoryPost.Movies as List<ITraktSyncHistoryPostMovie>).Add(new TraktSyncHistoryPostMovie());

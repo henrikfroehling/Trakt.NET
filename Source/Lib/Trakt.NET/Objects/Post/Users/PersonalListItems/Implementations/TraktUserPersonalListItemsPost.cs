@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Users.PersonalListItems
 {
+    using Exceptions;
     using Objects.Json;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -58,7 +58,7 @@
             bool bHasNoPeople = People == null || !People.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoSeasons && bHasNoEpisodes && bHasNoPeople)
-                throw new ArgumentException("no personal list items set");
+                throw new TraktPostValidationException("no personal list items set");
         }
     }
 }

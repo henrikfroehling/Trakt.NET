@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Syncs.Recommendations;
     using Xunit;
 
@@ -17,15 +18,15 @@
 
             // movies = null, shows = null
             Action act = () => syncRecommendationsRemovePost.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = null
             syncRecommendationsRemovePost.Movies = new List<ITraktSyncRecommendationsPostMovie>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty
             syncRecommendationsRemovePost.Shows = new List<ITraktSyncRecommendationsPostShow>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies with at least one item, shows = empty
             (syncRecommendationsRemovePost.Movies as List<ITraktSyncRecommendationsPostMovie>).Add(new TraktSyncRecommendationsPostMovie());

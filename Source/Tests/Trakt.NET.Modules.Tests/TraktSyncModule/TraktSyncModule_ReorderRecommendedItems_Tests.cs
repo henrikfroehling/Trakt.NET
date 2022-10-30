@@ -90,7 +90,7 @@ namespace TraktNet.Modules.Tests.TraktSyncModule
             TraktClient client = TestUtility.GetOAuthMockClient(REORDER_RECOMMENDED_ITEMS_URI, postJson, ITEMS_REORDER_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktListItemsReorderPostResponse>>> act = () => client.Sync.ReorderRecommendedItemsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

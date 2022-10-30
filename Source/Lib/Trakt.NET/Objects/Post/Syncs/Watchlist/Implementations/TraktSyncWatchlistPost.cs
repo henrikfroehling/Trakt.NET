@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Watchlist
 {
+    using Exceptions;
     using Objects.Json;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -51,7 +51,7 @@
             bool bHasNoEpisodes = Episodes == null || !Episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoSeasons && bHasNoEpisodes)
-                throw new ArgumentException("no watchlist items set");
+                throw new TraktPostValidationException("no watchlist items set");
         }
     }
 }

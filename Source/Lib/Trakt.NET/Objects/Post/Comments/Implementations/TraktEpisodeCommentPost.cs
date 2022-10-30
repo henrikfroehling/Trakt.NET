@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Comments
 {
+    using Exceptions;
     using Get.Episodes;
     using Objects.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -26,13 +26,13 @@
             base.Validate();
 
             if (Episode == null)
-                throw new ArgumentNullException(nameof(Episode));
+                throw new TraktPostValidationException(nameof(Episode), "Episode must not be null");
 
             if (Episode.Ids == null)
-                throw new ArgumentNullException(nameof(Episode), "episode ids must not be null");
+                throw new TraktPostValidationException(nameof(Episode.Ids), "episode ids must not be null");
 
             if (!Episode.Ids.HasAnyId)
-                throw new ArgumentException("episode ids have no valid id", nameof(Episode));
+                throw new TraktPostValidationException("episode ids have no valid id", nameof(Episode.Ids));
         }
     }
 }

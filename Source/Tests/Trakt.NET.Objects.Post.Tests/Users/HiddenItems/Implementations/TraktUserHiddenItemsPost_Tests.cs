@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Post.Users.HiddenItems;
     using Xunit;
@@ -18,23 +19,23 @@
 
             // movies = null, shows = null, seasons = null, users = null
             Action act = () => userHiddenItemsPost.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = null, seasons = null, users = null
             userHiddenItemsPost.Movies = new List<ITraktUserHiddenItemsPostMovie>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = null, users = null
             userHiddenItemsPost.Shows = new List<ITraktUserHiddenItemsPostShow>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, users = null
             userHiddenItemsPost.Seasons = new List<ITraktUserHiddenItemsPostSeason>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, users = empty
             userHiddenItemsPost.Users = new List<ITraktUser>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies with at least one item, shows = empty, seasons = empty, users = empty
             (userHiddenItemsPost.Movies as List<ITraktUserHiddenItemsPostMovie>).Add(new TraktUserHiddenItemsPostMovie());

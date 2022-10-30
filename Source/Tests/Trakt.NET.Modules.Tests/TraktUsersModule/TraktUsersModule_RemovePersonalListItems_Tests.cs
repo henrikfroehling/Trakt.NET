@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -126,17 +125,7 @@
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.RemovePersonalListItemsAsync(USERNAME, LIST_ID, new TraktUserPersonalListItemsPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktUserPersonalListItemsPost customListItems = new TraktUserPersonalListItemsPost
-            {
-                Movies = new List<ITraktUserPersonalListItemsPostMovie>(),
-                Shows = new List<ITraktUserPersonalListItemsPostShow>(),
-                People = new List<ITraktUserPersonalListItemsPostPerson>()
-            };
-
-            act = () => client.Users.RemovePersonalListItemsAsync(USERNAME, LIST_ID, customListItems);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

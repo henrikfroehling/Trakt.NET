@@ -105,19 +105,7 @@
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.RemoveWatchedHistoryItemsAsync(new TraktSyncHistoryRemovePost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncHistoryRemovePost collectionPost = new TraktSyncHistoryRemovePost
-            {
-                Movies = new List<ITraktSyncHistoryRemovePostMovie>(),
-                Shows = new List<ITraktSyncHistoryRemovePostShow>(),
-                Seasons = new List<ITraktSyncHistoryPostSeason>(),
-                Episodes = new List<ITraktSyncHistoryRemovePostEpisode>(),
-                HistoryIds = new List<ulong>()
-            };
-
-            act = () => client.Sync.RemoveWatchedHistoryItemsAsync(collectionPost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

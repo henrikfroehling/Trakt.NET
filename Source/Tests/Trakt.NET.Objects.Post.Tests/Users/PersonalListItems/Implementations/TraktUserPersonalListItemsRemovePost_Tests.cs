@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Users.PersonalListItems;
     using Xunit;
 
@@ -17,27 +18,27 @@
 
             // movies = null, shows = null, seasons = null, episodes = null, people = null
             Action act = () => userPersonalListItemsRemovePost.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = null, seasons = null, episodes = null, people = null
             userPersonalListItemsRemovePost.Movies = new List<ITraktUserPersonalListItemsPostMovie>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = null, episodes = null, people = null
             userPersonalListItemsRemovePost.Shows = new List<ITraktUserPersonalListItemsPostShow>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = null, people = null
             userPersonalListItemsRemovePost.Seasons = new List<ITraktUserPersonalListItemsPostSeason>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = empty, people = null
             userPersonalListItemsRemovePost.Episodes = new List<ITraktUserPersonalListItemsPostEpisode>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = empty, people = empty
             userPersonalListItemsRemovePost.People = new List<ITraktUserPersonalListItemsPostPerson>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies with at least one item, shows = empty, seasons = empty, episodes = empty, people = empty
             (userPersonalListItemsRemovePost.Movies as List<ITraktUserPersonalListItemsPostMovie>).Add(new TraktUserPersonalListItemsPostMovie());

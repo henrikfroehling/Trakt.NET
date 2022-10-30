@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Users.PersonalListItems;
     using Xunit;
 
@@ -13,7 +14,7 @@
         public void Test_TraktPost_UserPersonalListItemsRemovePostBuilder_Empty_Build()
         {
             Func<ITraktUserPersonalListItemsRemovePost> act = () => TraktPost.NewUserPersonalListItemsRemovePost().Build();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
         }
     }
 }

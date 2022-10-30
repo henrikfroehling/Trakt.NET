@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -102,17 +101,7 @@
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.RemoveWatchlistItemsAsync(new TraktSyncWatchlistPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncWatchlistPost watchlistRemovePost = new TraktSyncWatchlistPost
-            {
-                Movies = new List<ITraktSyncWatchlistPostMovie>(),
-                Shows = new List<ITraktSyncWatchlistPostShow>(),
-                Episodes = new List<ITraktSyncWatchlistPostEpisode>()
-            };
-
-            act = () => client.Sync.RemoveWatchlistItemsAsync(watchlistRemovePost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

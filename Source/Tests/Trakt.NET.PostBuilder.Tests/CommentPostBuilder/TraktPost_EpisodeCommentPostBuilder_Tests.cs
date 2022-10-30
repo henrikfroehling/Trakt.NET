@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Comments;
     using Xunit;
 
@@ -13,7 +14,7 @@
         public void Test_TraktPost_EpisodeCommentPostBuilder_Empty_Build()
         {
             Func<ITraktEpisodeCommentPost> act = () => TraktPost.NewEpisodeCommentPost().Build();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktPostValidationException>();
         }
 
         [Fact]

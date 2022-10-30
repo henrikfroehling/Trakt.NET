@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Post.Comments;
     using Xunit;
@@ -17,26 +18,26 @@
 
             // Comment = null
             Action act = () => showCommentPost.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // Comment = less than five words
             showCommentPost.Comment = "one two three four";
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // Show = null
             showCommentPost.Comment = "one two three four five";
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // Show Ids = null
             showCommentPost.Show = new TraktShow();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // Show IDs have no valid id
             showCommentPost.Show = new TraktShow
             {
                 Ids = new TraktShowIds()
             };
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // valid
             showCommentPost.Show = new TraktShow

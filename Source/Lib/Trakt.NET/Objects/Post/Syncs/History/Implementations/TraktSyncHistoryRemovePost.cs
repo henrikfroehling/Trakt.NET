@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.History
 {
+    using Exceptions;
     using Objects.Json;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -55,7 +55,7 @@
             bool bHasNoHistoryIds = HistoryIds == null || !HistoryIds.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoSeasons && bHasNoEpisodes && bHasNoHistoryIds)
-                throw new ArgumentException("no history items set");
+                throw new TraktPostValidationException("no history items set");
         }
     }
 }

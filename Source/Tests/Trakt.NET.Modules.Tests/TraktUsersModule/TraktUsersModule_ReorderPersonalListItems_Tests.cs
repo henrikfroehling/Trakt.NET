@@ -108,7 +108,7 @@
             await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Users.ReorderPersonalListItemsAsync(USERNAME, LIST_ID, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

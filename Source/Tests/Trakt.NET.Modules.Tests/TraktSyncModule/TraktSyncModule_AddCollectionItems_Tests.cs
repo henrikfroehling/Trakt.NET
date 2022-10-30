@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -114,17 +113,7 @@
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.AddCollectionItemsAsync(new TraktSyncCollectionPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncCollectionPost collectionPost = new TraktSyncCollectionPost
-            {
-                Movies = new List<ITraktSyncCollectionPostMovie>(),
-                Shows = new List<ITraktSyncCollectionPostShow>(),
-                Episodes = new List<ITraktSyncCollectionPostEpisode>()
-            };
-
-            act = () => client.Sync.AddCollectionItemsAsync(collectionPost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

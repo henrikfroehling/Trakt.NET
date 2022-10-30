@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Comments
 {
+    using Exceptions;
     using Get.Movies;
     using Objects.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -26,13 +26,13 @@
             base.Validate();
 
             if (Movie == null)
-                throw new ArgumentNullException(nameof(Movie));
+                throw new TraktPostValidationException(nameof(Movie), "movie must not be null");
 
             if (Movie.Ids == null)
-                throw new ArgumentNullException(nameof(Movie), "movie ids must not be null");
+                throw new TraktPostValidationException(nameof(Movie.Ids), "movie ids must not be null");
 
             if (!Movie.Ids.HasAnyId)
-                throw new ArgumentException("movie ids have no valid id", nameof(Movie));
+                throw new TraktPostValidationException("movie ids have no valid id", nameof(Movie.Ids));
         }
     }
 }

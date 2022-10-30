@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Users.HiddenItems
 {
+    using Exceptions;
     using Get.Users;
     using Objects.Json;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
@@ -49,7 +49,7 @@
             bool bHasNoUsers = Users == null || !Users.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoPeople && bHasNoUsers)
-                throw new ArgumentException("no hidden items set");
+                throw new TraktPostValidationException("no hidden items set");
         }
     }
 }

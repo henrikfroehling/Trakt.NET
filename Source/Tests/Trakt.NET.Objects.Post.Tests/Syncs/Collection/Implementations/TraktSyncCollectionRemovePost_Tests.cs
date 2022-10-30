@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Syncs.Collection;
     using Xunit;
 
@@ -17,23 +18,23 @@
 
             // movies = null, shows = null, seasons = null, episodes = null
             Action act = () => syncCollectionRemovePost.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = null, seasons = null, episodes = null
             syncCollectionRemovePost.Movies = new List<ITraktSyncCollectionPostMovie>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = null, episodes = null
             syncCollectionRemovePost.Shows = new List<ITraktSyncCollectionPostShow>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = null
             syncCollectionRemovePost.Seasons = new List<ITraktSyncCollectionPostSeason>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = empty
             syncCollectionRemovePost.Episodes = new List<ITraktSyncCollectionPostEpisode>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies with at least one item, shows = empty, seasons = empty, episodes = empty
             (syncCollectionRemovePost.Movies as List<ITraktSyncCollectionPostMovie>).Add(new TraktSyncCollectionPostMovie());

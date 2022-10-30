@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Comments
 {
+    using Exceptions;
     using Get.Lists;
     using Objects.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -26,13 +26,13 @@
             base.Validate();
 
             if (List == null)
-                throw new ArgumentNullException(nameof(List));
+                throw new TraktPostValidationException(nameof(List), "list must not be null");
 
             if (List.Ids == null)
-                throw new ArgumentNullException(nameof(List), "list ids must not be null");
+                throw new TraktPostValidationException(nameof(List.Ids), "list ids must not be null");
 
             if (!List.Ids.HasAnyId)
-                throw new ArgumentException("list ids have no valid id", nameof(List));
+                throw new TraktPostValidationException("list ids have no valid id", nameof(List.Ids));
         }
     }
 }

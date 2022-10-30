@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Comments;
     using Xunit;
 
@@ -16,11 +17,11 @@
 
             // Comment = null
             Action act = () => commentUpdatePost.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // Comment = less than five words
             commentUpdatePost.Comment = "one two three four";
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // valid
             commentUpdatePost.Comment = "one two three four five";

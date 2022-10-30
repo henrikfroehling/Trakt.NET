@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Syncs.Collection;
     using Xunit;
 
@@ -13,7 +14,7 @@
         public void Test_TraktPost_SyncCollectionRemovePostBuilder_Empty_Build()
         {
             Func<ITraktSyncCollectionRemovePost> act = () => TraktPost.NewSyncCollectionRemovePost().Build();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
         }
     }
 }

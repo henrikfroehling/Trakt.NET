@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Lists;
     using TraktNet.Objects.Post.Comments;
     using Xunit;
@@ -17,26 +18,26 @@
 
             // Comment = null
             Action act = () => listCommentPost.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // Comment = less than five words
             listCommentPost.Comment = "one two three four";
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // List = null
             listCommentPost.Comment = "one two three four five";
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // List Ids = null
             listCommentPost.List = new TraktList();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // List IDs have no valid id
             listCommentPost.List = new TraktList
             {
                 Ids = new TraktListIds()
             };
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // valid
             listCommentPost.List = new TraktList
