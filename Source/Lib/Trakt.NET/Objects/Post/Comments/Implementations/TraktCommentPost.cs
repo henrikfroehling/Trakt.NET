@@ -1,6 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Comments
 {
+    using Extensions;
     using Objects.Basic;
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -21,6 +23,13 @@
 
         public abstract Task<string> ToJson(CancellationToken cancellationToken = default);
 
-        public abstract void Validate();
+        public virtual void Validate()
+        {
+            if (Comment == null)
+                throw new ArgumentNullException(nameof(Comment));
+
+            if (Comment.WordCount() < 5)
+                throw new ArgumentOutOfRangeException(nameof(Comment), "comment has too few words - at least five words are required");
+        }
     }
 }

@@ -2,6 +2,7 @@
 {
     using Get.Shows;
     using Objects.Json;
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -22,7 +23,10 @@
 
         public override void Validate()
         {
-            // TODO
+            base.Validate();
+
+            if (Show == null)
+                throw new ArgumentNullException(nameof(Show));
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using Get.Seasons;
     using Objects.Json;
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -22,7 +23,10 @@
 
         public override void Validate()
         {
-            // TODO
+            base.Validate();
+
+            if (Season == null)
+                throw new ArgumentNullException(nameof(Season));
         }
     }
 }

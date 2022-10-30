@@ -2,6 +2,7 @@
 {
     using Get.Episodes;
     using Objects.Json;
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -22,7 +23,10 @@
 
         public override void Validate()
         {
-            // TODO
+            base.Validate();
+
+            if (Episode == null)
+                throw new ArgumentNullException(nameof(Episode));
         }
     }
 }
