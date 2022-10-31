@@ -23,6 +23,11 @@
         internal static readonly string NOTES_TOO_LONG = new('n', 256);
         internal static readonly string INVALID_COMMENT = "one two three four";
         internal static readonly string VALID_COMMENT = "one two three four five";
+        internal static readonly string MESSAGE = "checkin message";
+        internal static readonly string APP_VERSION = "app version";
+        internal static readonly string APP_DATE = "app date";
+        internal static readonly string FOURSQUARE_VENUE_ID = "foursquare venue id";
+        internal static readonly string FOURSQUARE_VENUE_NAME = "foursquare venue name";
 
         internal static readonly ITraktMetadata METADATA = new TraktMetadata
         {
