@@ -28,6 +28,7 @@
         internal static readonly string APP_DATE = "app date";
         internal static readonly string FOURSQUARE_VENUE_ID = "foursquare venue id";
         internal static readonly string FOURSQUARE_VENUE_NAME = "foursquare venue name";
+        internal static readonly float PROGRESS = 0.75f;
 
         internal static readonly ITraktMetadata METADATA = new TraktMetadata
         {
