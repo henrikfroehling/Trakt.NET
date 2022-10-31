@@ -89,7 +89,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_AddHiddenItems_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_AddHiddenItems_Exceptions()
         {
             string postJson = await TestUtility.SerializeObject(HiddenItemsPost);
             postJson.Should().NotBeNullOrEmpty();
@@ -97,10 +97,10 @@
             TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, postJson, HIDDEN_ITEMS_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, TraktHiddenItemsSection.Unspecified);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.AddHiddenItemsAsync(null, HIDDEN_ITEMS_SECTION);
             await act.Should().ThrowAsync<ArgumentNullException>();

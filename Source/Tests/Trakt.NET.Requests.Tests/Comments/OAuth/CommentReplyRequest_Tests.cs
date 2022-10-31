@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Comments;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Comments.OAuth;
@@ -54,25 +55,25 @@
             var request = new CommentReplyRequest { Id = "123" };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id is null
-            request = new CommentReplyRequest { RequestBody = new TraktCommentReplyPost() };
+            request = new CommentReplyRequest { RequestBody = new TraktCommentReplyPost { Comment = "one two three four five" } };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
-            request = new CommentReplyRequest { Id = string.Empty, RequestBody = new TraktCommentReplyPost() };
+            request = new CommentReplyRequest { Id = string.Empty, RequestBody = new TraktCommentReplyPost { Comment = "one two three four five" } };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
-            request = new CommentReplyRequest { Id = "invalid id", RequestBody = new TraktCommentReplyPost() };
+            request = new CommentReplyRequest { Id = "invalid id", RequestBody = new TraktCommentReplyPost { Comment = "one two three four five" } };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

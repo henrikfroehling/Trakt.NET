@@ -4,6 +4,8 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Post.Users.PersonalListItems;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
@@ -49,41 +51,46 @@
         [Fact]
         public void Test_UserPersonalListItemsAddRequest_Validate_Throws_Exceptions()
         {
+            var listItemsPost = new TraktUserPersonalListItemsPost
+            {
+                Movies = new List<ITraktUserPersonalListItemsPostMovie> { new TraktUserPersonalListItemsPostMovie() }
+            };
+
             // username is null
-            var request = new UserPersonalListItemsAddRequest { Id = "123" };
+            var request = new UserPersonalListItemsAddRequest { Id = "123", RequestBody = listItemsPost };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty username
-            request = new UserPersonalListItemsAddRequest { Username = string.Empty, Id = "123" };
+            request = new UserPersonalListItemsAddRequest { Username = string.Empty, Id = "123", RequestBody = listItemsPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
-            request = new UserPersonalListItemsAddRequest { Username = "invalid username", Id = "123" };
+            request = new UserPersonalListItemsAddRequest { Username = "invalid username", Id = "123", RequestBody = listItemsPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id is null
-            request = new UserPersonalListItemsAddRequest { Username = "username" };
+            request = new UserPersonalListItemsAddRequest { Username = "username", RequestBody = listItemsPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
-            request = new UserPersonalListItemsAddRequest { Username = "username", Id = string.Empty };
+            request = new UserPersonalListItemsAddRequest { Username = "username", Id = string.Empty, RequestBody = listItemsPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
-            request = new UserPersonalListItemsAddRequest { Username = "username", Id = "invalid id" };
+            request = new UserPersonalListItemsAddRequest { Username = "username", Id = "invalid id", RequestBody = listItemsPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

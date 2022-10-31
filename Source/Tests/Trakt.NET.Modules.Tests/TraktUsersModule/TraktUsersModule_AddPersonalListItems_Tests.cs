@@ -102,7 +102,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_AddPersonalListItems_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_AddPersonalListItems_Exceptions()
         {
             string postJson = await TestUtility.SerializeObject(AddPersonalListItemsPost);
             postJson.Should().NotBeNullOrEmpty();
@@ -111,22 +111,22 @@
 
             Func<Task<TraktResponse<ITraktUserPersonalListItemsPostResponse>>> act =
                 () => client.Users.AddPersonalListItemsAsync(null, LIST_ID, AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.AddPersonalListItemsAsync(string.Empty, LIST_ID, AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.AddPersonalListItemsAsync("user name", LIST_ID, AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.AddPersonalListItemsAsync(USERNAME, null, AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.AddPersonalListItemsAsync(USERNAME, string.Empty, AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.AddPersonalListItemsAsync(USERNAME, "list id", AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.AddPersonalListItemsAsync(USERNAME, LIST_ID, null);
             await act.Should().ThrowAsync<ArgumentNullException>();

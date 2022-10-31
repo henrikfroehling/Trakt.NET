@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Objects.Post.Users;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
@@ -50,37 +51,37 @@
         public void Test_UserPersonalListUpdateRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new UserPersonalListUpdateRequest { Id = "123" };
+            var request = new UserPersonalListUpdateRequest { Id = "123", RequestBody = new TraktUserCustomListPost() };
 
             Action act = () => request.Validate();
             act.Should().Throw<ArgumentNullException>();
 
             // empty username
-            request = new UserPersonalListUpdateRequest { Username = string.Empty, Id = "123" };
+            request = new UserPersonalListUpdateRequest { Username = string.Empty, Id = "123", RequestBody = new TraktUserCustomListPost() };
 
             act = () => request.Validate();
             act.Should().Throw<ArgumentException>();
 
             // username with spaces
-            request = new UserPersonalListUpdateRequest { Username = "invalid username", Id = "123" };
+            request = new UserPersonalListUpdateRequest { Username = "invalid username", Id = "123", RequestBody = new TraktUserCustomListPost() };
 
             act = () => request.Validate();
             act.Should().Throw<ArgumentException>();
 
             // id is null
-            request = new UserPersonalListUpdateRequest { Username = "username" };
+            request = new UserPersonalListUpdateRequest { Username = "username", RequestBody = new TraktUserCustomListPost() };
 
             act = () => request.Validate();
             act.Should().Throw<ArgumentNullException>();
 
             // empty id
-            request = new UserPersonalListUpdateRequest { Username = "username", Id = string.Empty };
+            request = new UserPersonalListUpdateRequest { Username = "username", Id = string.Empty, RequestBody = new TraktUserCustomListPost() };
 
             act = () => request.Validate();
             act.Should().Throw<ArgumentException>();
 
             // id with spaces
-            request = new UserPersonalListUpdateRequest { Username = "username", Id = "invalid id" };
+            request = new UserPersonalListUpdateRequest { Username = "username", Id = "invalid id", RequestBody = new TraktUserCustomListPost() };
 
             act = () => request.Validate();
             act.Should().Throw<ArgumentException>();

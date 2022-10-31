@@ -4,6 +4,8 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Post.Users.PersonalListItems;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
@@ -49,41 +51,46 @@
         [Fact]
         public void Test_UserPersonalListItemsRemoveRequest_Validate_Throws_Exceptions()
         {
+            var listItemsPost = new TraktUserPersonalListItemsPost
+            {
+                Movies = new List<ITraktUserPersonalListItemsPostMovie> { new TraktUserPersonalListItemsPostMovie() }
+            };
+
             // username is null
-            var request = new UserPersonalListItemsRemoveRequest { Id = "123" };
+            var request = new UserPersonalListItemsRemoveRequest { Id = "123", RequestBody = listItemsPost };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty username
-            request = new UserPersonalListItemsRemoveRequest { Username = string.Empty, Id = "123" };
+            request = new UserPersonalListItemsRemoveRequest { Username = string.Empty, Id = "123", RequestBody = listItemsPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
-            request = new UserPersonalListItemsRemoveRequest { Username = "invalid username", Id = "123" };
+            request = new UserPersonalListItemsRemoveRequest { Username = "invalid username", Id = "123", RequestBody = listItemsPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id is null
-            request = new UserPersonalListItemsRemoveRequest { Username = "username" };
+            request = new UserPersonalListItemsRemoveRequest { Username = "username", RequestBody = listItemsPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
-            request = new UserPersonalListItemsRemoveRequest { Username = "username", Id = string.Empty };
+            request = new UserPersonalListItemsRemoveRequest { Username = "username", Id = string.Empty, RequestBody = listItemsPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
-            request = new UserPersonalListItemsRemoveRequest { Username = "username", Id = "invalid id" };
+            request = new UserPersonalListItemsRemoveRequest { Username = "username", Id = "invalid id", RequestBody = listItemsPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

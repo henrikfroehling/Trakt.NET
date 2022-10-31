@@ -77,7 +77,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_ReorderPersonalListItems_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_ReorderPersonalListItems_Exceptions()
         {
             ITraktListItemsReorderPost personalListItemsReorderPost = new TraktListItemsReorderPost
             {
@@ -90,22 +90,22 @@
             TraktClient client = TestUtility.GetOAuthMockClient(REORDER_PERSONAL_LIST_ITEMS_URI, postJson, CUSTOM_LIST_ITEMS_REORDER_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktListItemsReorderPostResponse>>> act = () => client.Users.ReorderPersonalListItemsAsync(null, LIST_ID, REORDERED_CUSTOM_LIST_ITEMS);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.ReorderPersonalListItemsAsync(string.Empty, LIST_ID, REORDERED_CUSTOM_LIST_ITEMS);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.ReorderPersonalListItemsAsync("user name", LIST_ID, REORDERED_CUSTOM_LIST_ITEMS);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.ReorderPersonalListItemsAsync("username", null, REORDERED_CUSTOM_LIST_ITEMS);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.ReorderPersonalListItemsAsync("username", string.Empty, REORDERED_CUSTOM_LIST_ITEMS);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.ReorderPersonalListItemsAsync("username", "list id", REORDERED_CUSTOM_LIST_ITEMS);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.ReorderPersonalListItemsAsync(USERNAME, LIST_ID, null);
             await act.Should().ThrowAsync<TraktPostValidationException>();

@@ -3,6 +3,7 @@
     using FluentAssertions;
     using System;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Comments;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Comments.OAuth;
@@ -26,12 +27,12 @@
         }
 
         [Fact]
-        public void Test_CommentPostRequest_1_Validate_Throws_ArgumentNullException()
+        public void Test_CommentPostRequest_1_Validate_Throws_TraktRequestValidationException()
         {
             var request = new CommentPostRequest<TraktCommentPost>();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
 
         [Fact]

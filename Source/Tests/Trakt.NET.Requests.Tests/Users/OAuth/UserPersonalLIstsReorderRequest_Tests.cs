@@ -4,6 +4,8 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
+    using TraktNet.Objects.Post.Basic;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
@@ -41,23 +43,28 @@
         [Fact]
         public void Test_UserPersonalListsReorderRequest_Validate_Throws_Exceptions()
         {
+            var itemsReorderPost = new TraktListItemsReorderPost
+            {
+                Rank = new List<uint>()
+            };
+
             // username is null
-            var request = new UserPersonalListsReorderRequest();
+            var request = new UserPersonalListsReorderRequest { RequestBody = itemsReorderPost };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty username
-            request = new UserPersonalListsReorderRequest { Username = string.Empty };
+            request = new UserPersonalListsReorderRequest { Username = string.Empty, RequestBody = itemsReorderPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
-            request = new UserPersonalListsReorderRequest { Username = "invalid username" };
+            request = new UserPersonalListsReorderRequest { Username = "invalid username", RequestBody = itemsReorderPost };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

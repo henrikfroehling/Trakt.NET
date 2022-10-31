@@ -1,10 +1,10 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Objects.Post.Basic;
     using Objects.Post.Basic.Responses;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class UserPersonalListItemsReorderRequest : APostRequest<ITraktListItemsReorderPostResponse, ITraktListItemsReorderPost>
@@ -29,16 +29,16 @@
             base.Validate();
 
             if (Username == null)
-                throw new ArgumentNullException($"{nameof(Username)} must not be null", default(Exception));
+                throw new TraktRequestValidationException(nameof(Username), "username must not be null");
 
             if (Username == string.Empty || Username.ContainsSpace())
-                throw new ArgumentException($"{nameof(Username)} is not valid");
+                throw new TraktRequestValidationException(nameof(Username), "username not valid");
 
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "id not valid");
         }
     }
 }
