@@ -77,5 +77,13 @@
         /// <summary>Creates a new <see cref="ITraktListCommentPostBuilder"/>.</summary>
         /// <returns>An <see cref="ITraktListCommentPostBuilder"/> instance.</returns>
         public static ITraktListCommentPostBuilder NewListCommentPost() => new ListCommentPostBuilder();
+
+        /// <summary>Creates a new <see cref="ITraktMovieCheckinPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktMovieCheckinPostBuilder"/> instance.</returns>
+        public static ITraktMovieCheckinPostBuilder NewMovieCheckinPost() => new MovieCheckinPostBuilder();
+
+        /// <summary>Creates a new <see cref="ITraktEpisodeCheckinPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktEpisodeCheckinPostBuilder"/> instance.</returns>
+        public static ITraktEpisodeCheckinPostBuilder NewEpisodeCheckinPost() => new EpisodeCheckinPostBuilder();
     }
 }
