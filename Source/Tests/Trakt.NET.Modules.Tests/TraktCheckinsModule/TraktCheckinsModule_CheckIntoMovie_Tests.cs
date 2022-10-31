@@ -990,33 +990,17 @@
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktMovieCheckinPostResponse>>> act = () => client.Checkins.CheckIntoMovieAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
 
-            movie.Year = 0;
-
-            act = () => client.Checkins.CheckIntoMovieAsync(movie);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            movie.Year = 123;
-
-            act = () => client.Checkins.CheckIntoMovieAsync(movie);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            movie.Year = 12345;
-
-            act = () => client.Checkins.CheckIntoMovieAsync(movie);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            movie.Year = 2014;
             movie.Ids = null;
 
             act = () => client.Checkins.CheckIntoMovieAsync(movie);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
 
             movie.Ids = new TraktMovieIds();
 
             act = () => client.Checkins.CheckIntoMovieAsync(movie);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

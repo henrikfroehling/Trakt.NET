@@ -54,7 +54,7 @@
                 }
             };
 
-            Show = new TraktShow { Title = "Breaking Bad" };
+            Show = new TraktShow { Title = "Breaking Bad", Ids = new TraktShowIds { Trakt = 1 } };
         }
 
         private const string MOVIE_CHECKIN_POST_RESPONSE_JSON =

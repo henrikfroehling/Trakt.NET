@@ -1042,10 +1042,10 @@
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, EPISODE_CHECKIN_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktEpisodeCheckinPostResponse>>> act = () => client.Checkins.CheckIntoEpisodeAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
 
             act = () => client.Checkins.CheckIntoEpisodeAsync(new TraktEpisode());
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
 
             episode = new TraktEpisode
             {
@@ -1053,7 +1053,7 @@
             };
 
             act = () => client.Checkins.CheckIntoEpisodeAsync(episode);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }
