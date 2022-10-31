@@ -12,7 +12,7 @@
     using TraktNet.Requests.Parameters.Filter;
     using Xunit;
 
-    [Category("Requests.Calendars.Movies")]
+    [TestCategory("Requests.Calendars.Movies")]
     public class CalendarAllMoviesRequest_Tests
     {
         [Fact]

@@ -8,7 +8,7 @@
     using TraktNet.Objects.Get.Ratings.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Ratings.JsonReader")]
+    [TestCategory("Objects.Get.Ratings.JsonReader")]
     public partial class RatingsItemObjectJsonReader_Tests
     {
         [Fact]

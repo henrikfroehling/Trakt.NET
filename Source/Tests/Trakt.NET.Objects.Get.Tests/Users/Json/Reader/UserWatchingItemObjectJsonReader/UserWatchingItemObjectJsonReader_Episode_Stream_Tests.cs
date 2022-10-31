@@ -9,7 +9,7 @@
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Users.JsonReader")]
+    [TestCategory("Objects.Get.Users.JsonReader")]
     public partial class UserWatchingItemObjectJsonReader_Tests
     {
         [Fact]

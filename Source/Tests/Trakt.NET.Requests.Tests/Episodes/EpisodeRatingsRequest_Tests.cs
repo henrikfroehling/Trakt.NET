@@ -7,7 +7,7 @@
     using TraktNet.Requests.Episodes;
     using Xunit;
 
-    [Category("Requests.Episodes")]
+    [TestCategory("Requests.Episodes")]
     public class EpisodeRatingsRequest_Tests
     {
         [Fact]

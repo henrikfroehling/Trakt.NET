@@ -12,7 +12,7 @@
     using TraktNet.Requests.Parameters.Filter;
     using Xunit;
 
-    [Category("Requests.Movies.Lists")]
+    [TestCategory("Requests.Movies.Lists")]
     public class AMoviesMostPWCRequest_1_Tests
     {
         internal class MoviesMostPWCRequestMock : AMoviesMostPWCRequest<int>

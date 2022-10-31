@@ -12,7 +12,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Certifications")]
+    [TestCategory("Modules.Certifications")]
     public partial class TraktCertificationsModule_Tests
     {
         private const string GET_MOVIE_CERTIFICATIONS_URI = "certifications/movies";

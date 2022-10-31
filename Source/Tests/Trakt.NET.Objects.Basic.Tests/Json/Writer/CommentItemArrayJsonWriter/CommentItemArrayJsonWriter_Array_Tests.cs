@@ -17,7 +17,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Basic.JsonWriter")]
+    [TestCategory("Objects.Basic.JsonWriter")]
     public partial class CommentItemArrayJsonWriter_Tests
     {
         [Fact]

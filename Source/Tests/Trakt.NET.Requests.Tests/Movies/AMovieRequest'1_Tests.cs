@@ -8,7 +8,7 @@
     using TraktNet.Requests.Movies;
     using Xunit;
 
-    [Category("Requests.Movies")]
+    [TestCategory("Requests.Movies")]
     public class AMovieRequest_1_Tests
     {
         internal class MovieRequestMock : AMovieRequest<int>

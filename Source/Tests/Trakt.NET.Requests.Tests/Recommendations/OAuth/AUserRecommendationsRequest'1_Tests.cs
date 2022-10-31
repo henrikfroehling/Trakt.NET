@@ -9,7 +9,7 @@
     using TraktNet.Requests.Recommendations.OAuth;
     using Xunit;
 
-    [Category("Requests.Recommendations.OAuth")]
+    [TestCategory("Requests.Recommendations.OAuth")]
     public class AUserRecommendationsRequest_1_Tests
     {
         internal class UserRecommendationsRequestMock : AUserRecommendationsRequest<int>

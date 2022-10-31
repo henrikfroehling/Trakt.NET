@@ -6,11 +6,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Syncs.Recommendations;
     using TraktNet.Objects.Post.Syncs.Recommendations.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.Recommendations.Implementations")]
+    [TestCategory("Objects.Post.Syncs.Recommendations.Implementations")]
     public class TraktSyncRecommendationsPost_Tests
     {
         [Fact]
@@ -84,15 +85,15 @@
             
             // movies = null, shows = null
             Action act = () => syncRecommendationsPost.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = null
             syncRecommendationsPost.Movies = new List<ITraktSyncRecommendationsPostMovie>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty
             syncRecommendationsPost.Shows = new List<ITraktSyncRecommendationsPostShow>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies with at least one item, shows = empty
             (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>).Add(new TraktSyncRecommendationsPostMovie());

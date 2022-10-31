@@ -8,7 +8,7 @@
     using TraktNet.Requests.Episodes;
     using Xunit;
 
-    [Category("Requests.Episodes")]
+    [TestCategory("Requests.Episodes")]
     public class AEpisodeRequest_1_Tests
     {
         internal class TraktEpisodeRequestMock : AEpisodeRequest<int>

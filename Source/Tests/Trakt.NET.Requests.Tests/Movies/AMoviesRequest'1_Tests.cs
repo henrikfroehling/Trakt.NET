@@ -11,7 +11,7 @@
     using TraktNet.Requests.Parameters.Filter;
     using Xunit;
 
-    [Category("Requests.Movies.Lists")]
+    [TestCategory("Requests.Movies.Lists")]
     public class AMoviesRequest_1_Tests
     {
         internal class MoviesRequestMock : AMoviesRequest<int>

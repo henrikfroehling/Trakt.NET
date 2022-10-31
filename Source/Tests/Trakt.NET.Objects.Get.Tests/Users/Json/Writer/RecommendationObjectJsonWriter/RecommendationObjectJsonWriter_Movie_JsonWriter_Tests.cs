@@ -13,7 +13,7 @@
     using TraktNet.Objects.Get.Users.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Get.Users.JsonWriter")]
+    [TestCategory("Objects.Get.Users.JsonWriter")]
     public partial class RecommendationObjectJsonWriter_Tests
     {
         private readonly DateTime LISTED_AT = DateTime.UtcNow;

@@ -1,14 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Users.PersonalListItems
 {
+    using Exceptions;
     using Objects.Json;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
-    /// An user personal list items post, containing all movies, shows, episodes and / or people,
+    /// An user personal list items post, containing all movies, shows, seasons, episodes and / or people,
     /// which should be added to an user's personal list.
     /// </summary>
     public class TraktUserPersonalListItemsPost : ITraktUserPersonalListItemsPost
@@ -58,7 +58,7 @@
             bool bHasNoPeople = People == null || !People.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoSeasons && bHasNoEpisodes && bHasNoPeople)
-                throw new ArgumentException("no personal list items set");
+                throw new TraktPostValidationException("no personal list items set");
         }
     }
 }

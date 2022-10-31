@@ -10,7 +10,7 @@
     using TraktNet.Objects.Get.Calendars.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Calendars.JsonReader")]
+    [TestCategory("Objects.Get.Calendars.JsonReader")]
     public partial class CalendarMovieObjectJsonReader_Tests
     {
         [Fact]

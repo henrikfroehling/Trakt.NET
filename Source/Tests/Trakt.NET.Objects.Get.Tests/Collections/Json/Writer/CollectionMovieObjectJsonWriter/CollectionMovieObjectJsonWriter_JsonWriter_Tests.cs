@@ -14,7 +14,7 @@
     using TraktNet.Objects.Get.Movies;
     using Xunit;
 
-    [Category("Objects.Get.Collections.JsonWriter")]
+    [TestCategory("Objects.Get.Collections.JsonWriter")]
     public partial class CollectionMovieObjectJsonWriter_Tests
     {
         private readonly DateTime COLLECTED_AT = DateTime.UtcNow;

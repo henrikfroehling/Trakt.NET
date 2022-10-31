@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -15,7 +14,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string REMOVE_RATINGS_URI = "sync/ratings/remove";
@@ -102,17 +101,7 @@
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.RemoveRatingsAsync(new TraktSyncRatingsPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncRatingsPost ratingsRemovePost = new TraktSyncRatingsPost
-            {
-                Movies = new List<ITraktSyncRatingsPostMovie>(),
-                Shows = new List<ITraktSyncRatingsPostShow>(),
-                Episodes = new List<ITraktSyncRatingsPostEpisode>()
-            };
-
-            act = () => client.Sync.RemoveRatingsAsync(ratingsRemovePost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

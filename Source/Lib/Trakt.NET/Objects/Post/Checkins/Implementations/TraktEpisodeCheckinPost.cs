@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.Objects.Post.Checkins
 {
+    using Exceptions;
     using Get.Episodes;
     using Get.Shows;
     using Objects.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -32,22 +32,30 @@
         public override void Validate()
         {
             if (Episode == null)
-                throw new ArgumentNullException(nameof(Episode), "episode must not be null");
+                throw new TraktPostValidationException(nameof(Episode), "episode must not be null");
 
-            if (Episode.Number < 1)
-                throw new ArgumentOutOfRangeException(nameof(Episode.Number), "episode number must be at least 1");
+            if (Show == null)
+            {
+                if (Episode.Ids == null)
+                    throw new TraktPostValidationException($"{nameof(Episode)}.Ids", "episode ids must not be null");
 
-            if (Episode.SeasonNumber < 1)
-                throw new ArgumentOutOfRangeException(nameof(Episode.SeasonNumber), "episode season number must be at least 1");
+                if (!Episode.Ids.HasAnyId)
+                    throw new TraktPostValidationException($"{nameof(Episode)}.Ids", "episode ids have no valid id");
+            }
+            else
+            {
+                if (Show.Ids == null)
+                    throw new TraktPostValidationException($"{nameof(Show)}.Ids", "show ids must not be null");
 
-            if (Episode.Ids == null)
-                throw new ArgumentNullException(nameof(Episode.Ids), "episode.Ids must not be null");
+                if (!Show.Ids.HasAnyId)
+                    throw new TraktPostValidationException($"{nameof(Show)}.Ids", "show ids have no valid id");
 
-            if (!Episode.Ids.HasAnyId)
-                throw new ArgumentException("episode.Ids have no valid id", nameof(Episode.Ids));
+                if (Episode.SeasonNumber < 0)
+                    throw new TraktPostValidationException($"{nameof(Episode)}.SeasonNumber", "episode season number must be valid, if episode ids not valid or empty");
 
-            if (Show != null && string.IsNullOrEmpty(Show.Title))
-                throw new ArgumentException("show title not valid", nameof(Show.Title));
+                if (Episode.Number < 1)
+                    throw new TraktPostValidationException($"{nameof(Episode)}.Number", "episode number must be valid, if episode ids not valid or empty");
+            }
         }
     }
 }

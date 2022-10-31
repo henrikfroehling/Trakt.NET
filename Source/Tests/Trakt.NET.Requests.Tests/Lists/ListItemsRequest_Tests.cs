@@ -11,7 +11,7 @@
     using TraktNet.Requests.Parameters;
     using Xunit;
 
-    [Category("Requests.Lists")]
+    [TestCategory("Requests.Lists")]
     public class ListItemsRequest_Tests
     {
         [Fact]

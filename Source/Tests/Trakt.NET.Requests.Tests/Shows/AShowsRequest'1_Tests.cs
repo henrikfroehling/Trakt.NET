@@ -11,7 +11,7 @@
     using TraktNet.Requests.Shows;
     using Xunit;
 
-    [Category("Requests.Shows.Lists")]
+    [TestCategory("Requests.Shows.Lists")]
     public class AShowsRequest_1_Tests
     {
         internal class ShowsRequestMock : AShowsRequest<int>

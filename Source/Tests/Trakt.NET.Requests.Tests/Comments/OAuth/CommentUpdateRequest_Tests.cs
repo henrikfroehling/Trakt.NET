@@ -4,12 +4,13 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Comments;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Comments.OAuth;
     using Xunit;
 
-    [Category("Requests.Comments.OAuth")]
+    [TestCategory("Requests.Comments.OAuth")]
     public class CommentUpdateRequest_Tests
     {
         [Fact]
@@ -54,25 +55,25 @@
             var request = new CommentUpdateRequest { Id = "123" };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id is null
-            request = new CommentUpdateRequest { RequestBody = new TraktCommentUpdatePost() };
+            request = new CommentUpdateRequest { RequestBody = new TraktCommentUpdatePost { Comment = "one two three four five" } };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
-            request = new CommentUpdateRequest { Id = string.Empty, RequestBody = new TraktCommentUpdatePost() };
+            request = new CommentUpdateRequest { Id = string.Empty, RequestBody = new TraktCommentUpdatePost { Comment = "one two three four five" } };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
-            request = new CommentUpdateRequest { Id = "invalid id", RequestBody = new TraktCommentUpdatePost() };
+            request = new CommentUpdateRequest { Id = "invalid id", RequestBody = new TraktCommentUpdatePost { Comment = "one two three four five" } };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

@@ -13,7 +13,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string CREATE_PERSONAL_LIST_URI = $"users/{USERNAME}/lists";
@@ -743,7 +743,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_CreatePersonalList_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_CreatePersonalList_Exceptions()
         {
             ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
             {
@@ -756,13 +756,13 @@
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
 
             Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.CreatePersonalListAsync(null, LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.CreatePersonalListAsync(string.Empty, LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.CreatePersonalListAsync("user name", LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.CreatePersonalListAsync(USERNAME, null);
             await act.Should().ThrowAsync<ArgumentNullException>();

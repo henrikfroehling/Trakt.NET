@@ -7,7 +7,7 @@
     using TraktNet.Objects.Get.Seasons.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Seasons.Implementations")]
+    [TestCategory("Objects.Get.Seasons.Implementations")]
     public class TraktSeasonIds_Tests
     {
         [Fact]

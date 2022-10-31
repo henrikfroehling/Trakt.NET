@@ -12,7 +12,7 @@
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
 
-    [Category("Requests.Users.OAuth")]
+    [TestCategory("Requests.Users.OAuth")]
     public class UserWatchedHistoryRequest_Tests
     {
         [Fact]

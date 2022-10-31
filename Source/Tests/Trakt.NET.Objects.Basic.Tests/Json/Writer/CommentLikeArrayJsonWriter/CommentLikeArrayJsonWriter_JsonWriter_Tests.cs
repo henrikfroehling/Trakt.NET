@@ -13,7 +13,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Basic.JsonWriter")]
+    [TestCategory("Objects.Basic.JsonWriter")]
     public partial class CommentLikeArrayJsonWriter_Tests
     {
         private readonly DateTime LIKED_AT = DateTime.UtcNow;

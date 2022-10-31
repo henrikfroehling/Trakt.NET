@@ -13,7 +13,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Basic.JsonWriter")]
+    [TestCategory("Objects.Basic.JsonWriter")]
     public partial class CommentArrayJsonWriter_Tests
     {
         private readonly DateTime CREATED_UPDATED_AT = DateTime.UtcNow;

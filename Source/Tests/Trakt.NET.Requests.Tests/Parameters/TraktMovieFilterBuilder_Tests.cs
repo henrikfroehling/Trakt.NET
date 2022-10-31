@@ -6,7 +6,7 @@
     using TraktNet.Requests.Parameters.Filter;
     using Xunit;
 
-    [Category("Requests.Parameters")]
+    [TestCategory("Requests.Parameters")]
     public class TraktMovieFilter_Tests
     {
         [Fact]

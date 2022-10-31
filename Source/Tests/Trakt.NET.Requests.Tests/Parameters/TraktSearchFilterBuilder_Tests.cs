@@ -7,7 +7,7 @@
     using TraktNet.Requests.Parameters.Filter;
     using Xunit;
 
-    [Category("Requests.Parameters")]
+    [TestCategory("Requests.Parameters")]
     public class TraktSearchFilter_Tests
     {
         [Fact]

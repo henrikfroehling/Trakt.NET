@@ -8,7 +8,7 @@
     using TraktNet.Requests.Recommendations.OAuth;
     using Xunit;
 
-    [Category("Requests.Recommendations.OAuth")]
+    [TestCategory("Requests.Recommendations.OAuth")]
     public class UserShowRecommendationsRequest_Tests
     {
         [Fact]

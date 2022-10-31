@@ -13,7 +13,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Movies")]
+    [TestCategory("Modules.Movies")]
     public partial class TraktMoviesModule_Tests
     {
         private const string GET_RECENTLY_UPDATED_MOVIES_URI = "movies/updates";

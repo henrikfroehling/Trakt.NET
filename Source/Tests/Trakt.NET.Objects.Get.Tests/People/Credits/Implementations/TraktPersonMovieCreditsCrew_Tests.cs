@@ -8,7 +8,7 @@
     using TraktNet.Objects.Get.People.Credits.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.People.Credits.Implementations")]
+    [TestCategory("Objects.Get.People.Credits.Implementations")]
     public class TraktPersonMovieCreditsCrew_Tests
     {
         [Fact]

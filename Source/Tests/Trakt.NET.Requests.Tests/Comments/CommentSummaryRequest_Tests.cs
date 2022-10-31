@@ -8,7 +8,7 @@
     using TraktNet.Requests.Comments;
     using Xunit;
 
-    [Category("Requests.Comments")]
+    [TestCategory("Requests.Comments")]
     public class CommentSummaryRequest_Tests
     {
         [Fact]

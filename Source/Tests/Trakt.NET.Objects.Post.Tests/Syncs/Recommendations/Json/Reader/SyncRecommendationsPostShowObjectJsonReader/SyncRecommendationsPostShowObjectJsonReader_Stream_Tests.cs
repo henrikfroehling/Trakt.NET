@@ -10,7 +10,7 @@
     using TraktNet.Objects.Post.Syncs.Recommendations.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.Recommendations.JsonReader")]
+    [TestCategory("Objects.Post.Syncs.Recommendations.JsonReader")]
     public partial class SyncRecommendationsPostShowObjectJsonReader_Tests
     {
         [Fact]

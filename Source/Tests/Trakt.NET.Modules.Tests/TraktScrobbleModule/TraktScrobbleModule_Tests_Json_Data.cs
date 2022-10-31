@@ -3,7 +3,6 @@
     using System;
     using TraktNet.Objects.Get.Episodes;
     using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.Shows;
 
     public partial class TraktScrobbleModule_Tests
     {
@@ -17,7 +16,6 @@
         private readonly DateTime APP_BUILD_DATE = DateTime.UtcNow;
 
         private ITraktMovie Movie { get; }
-        private ITraktShow Show { get; }
         private ITraktEpisode Episode { get; }
 
         public TraktScrobbleModule_Tests()
@@ -33,11 +31,6 @@
                     Imdb = "tt2015381",
                     Tmdb = 118340
                 }
-            };
-
-            Show = new TraktShow
-            {
-                Title = "Breaking Bad"
             };
 
             Episode = new TraktEpisode

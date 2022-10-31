@@ -12,7 +12,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.People")]
+    [TestCategory("Modules.People")]
     public partial class TraktPeopleModule_Tests
     {
         private readonly string GET_PERSON_SHOW_CREDITS_URI = $"people/{PERSON_ID}/shows";

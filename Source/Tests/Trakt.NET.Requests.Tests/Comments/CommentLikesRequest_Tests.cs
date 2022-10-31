@@ -10,7 +10,7 @@
     using TraktNet.Requests.Parameters;
     using Xunit;
 
-    [Category("Requests.Comments")]
+    [TestCategory("Requests.Comments")]
     public class CommentLikesRequest_Tests
     {
         [Fact]

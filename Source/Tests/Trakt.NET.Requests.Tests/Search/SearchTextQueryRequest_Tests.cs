@@ -12,7 +12,7 @@
     using TraktNet.Requests.Search;
     using Xunit;
 
-    [Category("Requests.Search")]
+    [TestCategory("Requests.Search")]
     public class SearchTextQueryRequest_Tests
     {
         [Fact]

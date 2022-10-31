@@ -10,7 +10,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Authentication.JsonReader")]
+    [TestCategory("Objects.Authentication.JsonReader")]
     public partial class DeviceArrayJsonReader_Tests
     {
         [Fact]

@@ -10,7 +10,7 @@
     using TraktNet.Objects.Get.People;
     using Xunit;
 
-    [Category("Objects.Basic.JsonWriter")]
+    [TestCategory("Objects.Basic.JsonWriter")]
     public partial class CrewObjectJsonWriter_Tests
     {
         [Fact]

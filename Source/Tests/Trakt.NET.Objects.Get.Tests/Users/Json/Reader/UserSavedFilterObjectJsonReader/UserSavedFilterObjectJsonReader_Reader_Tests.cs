@@ -11,7 +11,7 @@
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Users.JsonReader")]
+    [TestCategory("Objects.Get.Users.JsonReader")]
     public partial class UserSavedFilterObjectJsonReader_Tests
     {
         [Fact]

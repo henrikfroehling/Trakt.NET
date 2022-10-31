@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Checkins.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Checkins.Responses.Implementations")]
+    [TestCategory("Objects.Post.Checkins.Responses.Implementations")]
     public class TraktMovieCheckinPostResponse_Tests
     {
         [Fact]

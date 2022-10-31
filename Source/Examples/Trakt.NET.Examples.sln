@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.32804.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{0E6321B3-59C7-43B8-A2D5-AE28C3E6FA1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{1BCABE48-8107-4BC1-BD5A-D68AD106A3E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{8EBAA529-0B9D-4899-97AB-1CE80C6D822C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serialization", "Serialization", "{089CC16C-479A-4B4F-A0BC-2CDB8204AEBC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraktDeviceAuthenticationExample", "Authentication\TraktDeviceAuthenticationExample\TraktDeviceAuthenticationExample.csproj", "{5B4756C7-1777-4B20-BBEF-AFD50F5820C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraktOAuthAuthenticationExample", "Authentication\TraktOAuthAuthenticationExample\TraktOAuthAuthenticationExample.csproj", "{161B583D-8BFD-4CFA-83CF-08886DA5A2D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraktConfigurationExample", "Configuration\TraktConfigurationExample\TraktConfigurationExample.csproj", "{E29FB1D2-0FC9-404F-B0EF-A4D817071FD3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TraktSerializeAuthorizationExample", "Serialization\TraktSerializeAuthorizationExample\TraktSerializeAuthorizationExample.csproj", "{4C8E1BDA-A2AB-48AC-94B6-D37A53F34814}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShowsModule", "ShowsModule", "{BB2D651C-0ACD-44DC-82A7-1DBCEBFD2613}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetMultipleShowsExample", "Modules\ShowsModule\GetMultipleShowsExample\GetMultipleShowsExample.csproj", "{0E11AC79-4315-4067-9F9C-E605A67E8615}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetSingleShowExample", "Modules\ShowsModule\GetSingleShowExample\GetSingleShowExample.csproj", "{05051597-6F1C-4D58-B84F-2FC26AA06D2D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetTrendingShowsExample", "Modules\ShowsModule\GetTrendingShowsExample\GetTrendingShowsExample.csproj", "{ACFF3E0D-44A4-45A4-8E17-8E5D7172380B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B4756C7-1777-4B20-BBEF-AFD50F5820C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B4756C7-1777-4B20-BBEF-AFD50F5820C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B4756C7-1777-4B20-BBEF-AFD50F5820C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B4756C7-1777-4B20-BBEF-AFD50F5820C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{161B583D-8BFD-4CFA-83CF-08886DA5A2D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{161B583D-8BFD-4CFA-83CF-08886DA5A2D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{161B583D-8BFD-4CFA-83CF-08886DA5A2D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{161B583D-8BFD-4CFA-83CF-08886DA5A2D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E29FB1D2-0FC9-404F-B0EF-A4D817071FD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E29FB1D2-0FC9-404F-B0EF-A4D817071FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E29FB1D2-0FC9-404F-B0EF-A4D817071FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E29FB1D2-0FC9-404F-B0EF-A4D817071FD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C8E1BDA-A2AB-48AC-94B6-D37A53F34814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C8E1BDA-A2AB-48AC-94B6-D37A53F34814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C8E1BDA-A2AB-48AC-94B6-D37A53F34814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C8E1BDA-A2AB-48AC-94B6-D37A53F34814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E11AC79-4315-4067-9F9C-E605A67E8615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E11AC79-4315-4067-9F9C-E605A67E8615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E11AC79-4315-4067-9F9C-E605A67E8615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E11AC79-4315-4067-9F9C-E605A67E8615}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05051597-6F1C-4D58-B84F-2FC26AA06D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05051597-6F1C-4D58-B84F-2FC26AA06D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05051597-6F1C-4D58-B84F-2FC26AA06D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05051597-6F1C-4D58-B84F-2FC26AA06D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACFF3E0D-44A4-45A4-8E17-8E5D7172380B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACFF3E0D-44A4-45A4-8E17-8E5D7172380B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACFF3E0D-44A4-45A4-8E17-8E5D7172380B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACFF3E0D-44A4-45A4-8E17-8E5D7172380B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5B4756C7-1777-4B20-BBEF-AFD50F5820C5} = {0E6321B3-59C7-43B8-A2D5-AE28C3E6FA1B}
+		{161B583D-8BFD-4CFA-83CF-08886DA5A2D2} = {0E6321B3-59C7-43B8-A2D5-AE28C3E6FA1B}
+		{E29FB1D2-0FC9-404F-B0EF-A4D817071FD3} = {1BCABE48-8107-4BC1-BD5A-D68AD106A3E1}
+		{4C8E1BDA-A2AB-48AC-94B6-D37A53F34814} = {089CC16C-479A-4B4F-A0BC-2CDB8204AEBC}
+		{BB2D651C-0ACD-44DC-82A7-1DBCEBFD2613} = {8EBAA529-0B9D-4899-97AB-1CE80C6D822C}
+		{0E11AC79-4315-4067-9F9C-E605A67E8615} = {BB2D651C-0ACD-44DC-82A7-1DBCEBFD2613}
+		{05051597-6F1C-4D58-B84F-2FC26AA06D2D} = {BB2D651C-0ACD-44DC-82A7-1DBCEBFD2613}
+		{ACFF3E0D-44A4-45A4-8E17-8E5D7172380B} = {BB2D651C-0ACD-44DC-82A7-1DBCEBFD2613}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4C72359-33A8-4359-9584-69F20D8DC78D}
+	EndGlobalSection
+EndGlobal

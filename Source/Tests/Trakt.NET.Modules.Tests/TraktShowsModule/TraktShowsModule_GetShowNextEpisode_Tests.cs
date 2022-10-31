@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Shows")]
+    [TestCategory("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
         private readonly string GET_SHOW_NEXT_EPISODE_URI = $"shows/{SHOW_ID}/next_episode";

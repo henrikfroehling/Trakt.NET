@@ -9,7 +9,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Get.History.JsonReader")]
+    [TestCategory("Objects.Get.History.JsonReader")]
     public partial class HistoryItemArrayJsonReader_Tests
     {
         [Fact]

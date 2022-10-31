@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Basic.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Basic.Responses.Implementations")]
+    [TestCategory("Objects.Post.Basic.Responses.Implementations")]
     public class TraktListItemsReorderPostResponse_Tests
     {
         [Fact]

@@ -7,7 +7,7 @@
     using TraktNet.Requests.Syncs.OAuth;
     using Xunit;
 
-    [Category("Requests.Syncs.OAuth")]
+    [TestCategory("Requests.Syncs.OAuth")]
     public class ASyncGetRequest_1_Tests
     {
         internal class SyncGetRequestMock : ASyncGetRequest<int>

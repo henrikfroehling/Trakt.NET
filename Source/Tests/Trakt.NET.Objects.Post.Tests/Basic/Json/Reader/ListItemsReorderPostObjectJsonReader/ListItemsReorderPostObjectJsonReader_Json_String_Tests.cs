@@ -9,7 +9,7 @@
     using TraktNet.Objects.Post.Basic.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Basic.JsonReader")]
+    [TestCategory("Objects.Post.Basic.JsonReader")]
     public partial class ListItemsReorderPostObjectJsonReader_Tests
     {
         [Fact]

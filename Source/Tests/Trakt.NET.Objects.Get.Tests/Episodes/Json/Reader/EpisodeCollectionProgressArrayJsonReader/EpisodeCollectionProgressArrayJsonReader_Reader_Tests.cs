@@ -12,7 +12,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Get.Episodes.JsonReader")]
+    [TestCategory("Objects.Get.Episodes.JsonReader")]
     public partial class EpisodeCollectionProgressArrayJsonReader_Tests
     {
         [Fact]

@@ -1,14 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.History
 {
+    using Exceptions;
     using Objects.Json;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
-    /// A Trakt history remove post, containing all movies, shows, episodes and / or history ids,
+    /// A Trakt history remove post, containing all movies, shows, seasons, episodes and / or history ids,
     /// which should be removed from the user's history.
     /// </summary>
     public class TraktSyncHistoryRemovePost : ITraktSyncHistoryRemovePost
@@ -55,7 +55,7 @@
             bool bHasNoHistoryIds = HistoryIds == null || !HistoryIds.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoSeasons && bHasNoEpisodes && bHasNoHistoryIds)
-                throw new ArgumentException("no history items set");
+                throw new TraktPostValidationException("no history items set");
         }
     }
 }

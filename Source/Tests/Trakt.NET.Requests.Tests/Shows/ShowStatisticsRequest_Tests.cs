@@ -7,7 +7,7 @@
     using TraktNet.Requests.Shows;
     using Xunit;
 
-    [Category("Requests.Shows")]
+    [TestCategory("Requests.Shows")]
     public class ShowStatisticsRequest_Tests
     {
         [Fact]

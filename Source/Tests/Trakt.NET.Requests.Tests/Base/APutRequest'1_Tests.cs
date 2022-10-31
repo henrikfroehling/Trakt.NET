@@ -11,7 +11,7 @@
     using TraktNet.Requests.Interfaces;
     using Xunit;
 
-    [Category("Requests.Base")]
+    [TestCategory("Requests.Base")]
     public class APutRequest_1_Tests
     {
         internal class RequestBodyMock : IRequestBody

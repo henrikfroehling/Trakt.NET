@@ -12,7 +12,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Networks")]
+    [TestCategory("Modules.Networks")]
     public partial class TraktNetworksModule_Tests
     {
         private const string GET_NETWORKS_URI = "networks";

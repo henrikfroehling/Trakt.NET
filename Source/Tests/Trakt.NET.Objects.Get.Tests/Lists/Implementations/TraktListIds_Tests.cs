@@ -7,7 +7,7 @@
     using TraktNet.Objects.Get.Lists.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Lists.Implementations")]
+    [TestCategory("Objects.Get.Lists.Implementations")]
     public class TraktListIds_Tests
     {
         [Fact]

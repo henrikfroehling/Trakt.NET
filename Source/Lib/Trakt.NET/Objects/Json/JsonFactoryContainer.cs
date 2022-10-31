@@ -293,6 +293,7 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostShow), new SyncCollectionPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostShowEpisode), new SyncCollectionPostShowEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostShowSeason), new SyncCollectionPostShowSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncCollectionRemovePost), new SyncCollectionRemovePostJsonIOFactory());
 
             // sync collection post response objects
             s_jsonIOFactories.Add(typeof(ITraktSyncCollectionPostResponse), new SyncCollectionPostResponseJsonIOFactory());
@@ -328,6 +329,7 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostShow), new SyncRatingsPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostShowEpisode), new SyncRatingsPostShowEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostShowSeason), new SyncRatingsPostShowSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRatingsRemovePost), new SyncRatingsRemovePostJsonIOFactory());
 
             // sync rating post response objects
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPostResponse), new SyncRatingsPostResponseJsonIOFactory());
@@ -342,6 +344,7 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPost), new SyncRecommendationsPostJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostMovie), new SyncRecommendationsPostMovieJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostShow), new SyncRecommendationsPostShowJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsRemovePost), new SyncRecommendationsRemovePostJsonIOFactory());
 
             // sync recommendations post response objects
             s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsPostResponse), new SyncRecommendationsPostResponseJsonIOFactory());
@@ -364,6 +367,7 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistPostShow), new SyncWatchlistPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistPostShowEpisode), new SyncWatchlistPostShowEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistPostShowSeason), new SyncWatchlistPostShowSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistRemovePost), new SyncWatchlistRemovePostJsonIOFactory());
 
             // sync watchlist post response objects
             s_jsonIOFactories.Add(typeof(ITraktSyncWatchlistPostResponse), new SyncWatchlistPostResponseJsonIOFactory());
@@ -378,6 +382,7 @@
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShow), new UserPersonalListItemsPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShowEpisode), new UserPersonalListItemsPostShowEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostShowSeason), new UserPersonalListItemsPostShowSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsRemovePost), new UserPersonalListItemsRemovePostJsonIOFactory());
 
             // user personal list items post response objects
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponse), new UserPersonalListItemsPostResponseJsonIOFactory());
@@ -392,6 +397,7 @@
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostSeason), new UserHiddenItemsPostSeasonJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostShow), new UserHiddenItemsPostShowJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostShowSeason), new UserHiddenItemsPostShowSeasonJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsRemovePost), new UserHiddenItemsRemovePostJsonIOFactory());
 
             // user hidden items post response objects
             s_jsonIOFactories.Add(typeof(ITraktUserHiddenItemsPostResponse), new UserHiddenItemsPostResponseJsonIOFactory());

@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Authentication")]
+    [TestCategory("Modules.Authentication")]
     public partial class TraktAuthenticationModule_Tests
     {
         private const string POLL_FOR_AUTHORIZATION_URI = "oauth/device/token";

@@ -4,10 +4,11 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Syncs.Ratings;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.Ratings.Implementations")]
+    [TestCategory("Objects.Post.Syncs.Ratings.Implementations")]
     public class TraktSyncRatingsPost_Tests
     {
         [Fact]
@@ -17,23 +18,23 @@
 
             // movies = null, shows = null, seasons = null, episodes = null
             Action act = () => syncRatingsPost.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = null, seasons = null, episodes = null
             syncRatingsPost.Movies = new List<ITraktSyncRatingsPostMovie>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = null, episodes = null
             syncRatingsPost.Shows = new List<ITraktSyncRatingsPostShow>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = null
             syncRatingsPost.Seasons = new List<ITraktSyncRatingsPostSeason>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = empty
             syncRatingsPost.Episodes = new List<ITraktSyncRatingsPostEpisode>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies with at least one item, shows = empty, seasons = empty, episodes = empty
             (syncRatingsPost.Movies as List<ITraktSyncRatingsPostMovie>).Add(new TraktSyncRatingsPostMovie());

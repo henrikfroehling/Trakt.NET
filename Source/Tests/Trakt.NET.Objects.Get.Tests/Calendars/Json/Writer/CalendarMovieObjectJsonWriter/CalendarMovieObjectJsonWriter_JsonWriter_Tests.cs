@@ -13,7 +13,7 @@
     using TraktNet.Objects.Get.Movies;
     using Xunit;
 
-    [Category("Objects.Get.Calendars.JsonWriter")]
+    [TestCategory("Objects.Get.Calendars.JsonWriter")]
     public partial class CalendarMovieObjectJsonWriter_Tests
     {
         private readonly DateTime UPDATED_AT = DateTime.UtcNow;
