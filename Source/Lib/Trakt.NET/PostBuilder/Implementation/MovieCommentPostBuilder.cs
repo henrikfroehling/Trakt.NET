@@ -14,10 +14,10 @@
                 throw new ArgumentNullException(nameof(movie));
 
             if (movie.Ids == null)
-                throw new ArgumentNullException(nameof(movie.Ids));
+                throw new ArgumentNullException($"{nameof(movie)}.Ids");
 
             if (!movie.Ids.HasAnyId)
-                throw new ArgumentException("movie ids have no valid id", nameof(movie.Ids));
+                throw new ArgumentException("movie ids have no valid id", $"{nameof(movie)}.Ids");
 
             _movie = movie;
             return this;

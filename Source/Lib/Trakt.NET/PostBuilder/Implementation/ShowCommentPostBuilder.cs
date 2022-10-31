@@ -14,10 +14,10 @@
                 throw new ArgumentNullException(nameof(show));
 
             if (show.Ids == null)
-                throw new ArgumentNullException(nameof(show.Ids));
+                throw new ArgumentNullException($"{nameof(show)}.Ids");
 
             if (!show.Ids.HasAnyId)
-                throw new ArgumentException("show ids have no valid id", nameof(show.Ids));
+                throw new ArgumentException("show ids have no valid id", $"{nameof(show)}.Ids");
 
             _show = show;
             return this;

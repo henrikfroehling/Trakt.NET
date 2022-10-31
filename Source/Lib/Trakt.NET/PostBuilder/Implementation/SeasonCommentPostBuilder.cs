@@ -14,10 +14,10 @@
                 throw new ArgumentNullException(nameof(season));
 
             if (season.Ids == null)
-                throw new ArgumentNullException(nameof(season.Ids));
+                throw new ArgumentNullException($"{nameof(season)}.Ids");
 
             if (!season.Ids.HasAnyId)
-                throw new ArgumentException("season ids have no valid id", nameof(season.Ids));
+                throw new ArgumentException("season ids have no valid id", $"{nameof(season)}.Ids");
 
             _season = season;
             return this;

@@ -3,7 +3,7 @@
     using TraktNet.Objects.Basic;
     using TraktNet.Objects.Post.Comments;
 
-    public interface ITraktCommentPostBuilder<TPostBuilder, TPostObject>
+    public interface ITraktCommentPostBuilder<TPostBuilder, out TPostObject>
         where TPostBuilder : ITraktCommentPostBuilder<TPostBuilder, TPostObject>
         where TPostObject : ITraktCommentPost
     {
