@@ -1,14 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.History
 {
+    using Exceptions;
     using Objects.Json;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
-    /// A Trakt history post, containing all movies, shows and / or episodes,
+    /// A Trakt history post, containing all movies, shows, seasons and / or episodes,
     /// which should be added to the user's history.
     /// </summary>
     public class TraktSyncHistoryPost : ITraktSyncHistoryPost
@@ -51,7 +51,7 @@
             bool bHasNoEpisodes = Episodes == null || !Episodes.Any();
 
             if (bHasNoMovies && bHasNoShows && bHasNoSeasons && bHasNoEpisodes)
-                throw new ArgumentException("no watched history items set");
+                throw new TraktPostValidationException("no history items set");
         }
     }
 }

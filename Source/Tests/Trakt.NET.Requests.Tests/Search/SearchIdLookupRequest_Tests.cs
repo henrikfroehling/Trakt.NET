@@ -11,7 +11,7 @@
     using TraktNet.Requests.Search;
     using Xunit;
 
-    [Category("Requests.Search")]
+    [TestCategory("Requests.Search")]
     public class SearchIdLookupRequest_Tests
     {
         [Fact]

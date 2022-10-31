@@ -9,7 +9,7 @@
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Recommendations.Implementations")]
+    [TestCategory("Objects.Get.Recommendations.Implementations")]
     public class TraktRecommendation_Tests
     {
         [Fact]

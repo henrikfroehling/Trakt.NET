@@ -13,7 +13,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string REORDER_PERSONAL_LISTS_URI = $"users/{USERNAME}/lists/reorder";
@@ -77,7 +77,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_ReorderPersonalLists_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_ReorderPersonalLists_Exceptions()
         {
             ITraktListItemsReorderPost personalListsReorderPost = new TraktListItemsReorderPost
             {
@@ -90,16 +90,16 @@
             TraktClient client = TestUtility.GetOAuthMockClient(REORDER_PERSONAL_LISTS_URI, postJson, CUSTOM_LISTS_REORDER_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktListItemsReorderPostResponse>>> act = () => client.Users.ReorderPersonalListsAsync(null, REORDERED_CUSTOM_LISTS);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.ReorderPersonalListsAsync(string.Empty, REORDERED_CUSTOM_LISTS);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.ReorderPersonalListsAsync("user name", REORDERED_CUSTOM_LISTS);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.ReorderPersonalListsAsync(USERNAME, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

@@ -11,7 +11,7 @@
     using TraktNet.Objects.Post.Scrobbles.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Scrobbles.Responses.JsonReader")]
+    [TestCategory("Objects.Post.Scrobbles.Responses.JsonReader")]
     public partial class EpisodeScrobblePostResponseObjectJsonReader_Tests
     {
         [Fact]

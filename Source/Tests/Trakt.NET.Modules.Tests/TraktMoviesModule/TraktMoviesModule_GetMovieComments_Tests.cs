@@ -12,7 +12,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Movies")]
+    [TestCategory("Modules.Movies")]
     public partial class TraktMoviesModule_Tests
     {
         private readonly string GET_MOVIE_COMMENTS_URI = $"movies/{MOVIE_ID}/comments";

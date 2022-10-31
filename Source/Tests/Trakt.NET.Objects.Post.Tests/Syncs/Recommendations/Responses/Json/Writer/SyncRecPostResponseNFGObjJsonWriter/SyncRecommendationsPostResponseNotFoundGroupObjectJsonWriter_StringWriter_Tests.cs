@@ -13,7 +13,7 @@
     using TraktNet.Objects.Post.Syncs.Recommendations.Responses.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.Recommendations.Responses.JsonWriter")]
+    [TestCategory("Objects.Post.Syncs.Recommendations.Responses.JsonWriter")]
     public partial class SyncRecommendationsPostResponseNotFoundGroupObjectJsonWriter_Tests
     {
         [Fact]

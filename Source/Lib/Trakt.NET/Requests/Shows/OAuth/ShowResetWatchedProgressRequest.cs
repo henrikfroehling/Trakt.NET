@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.Requests.Shows.OAuth
 {
+    using Exceptions;
     using Extensions;
     using Objects.Post.Shows;
     using Requests.Base;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class ShowResetWatchedProgressRequest : APostRequest<ITraktShowResetWatchedProgressPost, ITraktShowResetWatchedProgressPost>
@@ -27,10 +27,10 @@
         public override void Validate()
         {
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "show id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("show id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "show id not valid");
 
             base.Validate();
         }

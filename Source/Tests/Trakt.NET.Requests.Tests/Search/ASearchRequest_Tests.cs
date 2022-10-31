@@ -10,7 +10,7 @@
     using TraktNet.Requests.Search;
     using Xunit;
 
-    [Category("Requests.Search")]
+    [TestCategory("Requests.Search")]
     public class ASearchRequest_Tests
     {
         internal class SearchRequestMock : ASearchRequest

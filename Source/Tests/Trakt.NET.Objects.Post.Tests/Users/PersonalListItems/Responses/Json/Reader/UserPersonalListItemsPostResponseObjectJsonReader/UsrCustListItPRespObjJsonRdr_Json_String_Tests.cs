@@ -9,7 +9,7 @@
     using TraktNet.Objects.Post.Users.PersonalListItems.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Users.PersonalListItems.Responses.JsonReader")]
+    [TestCategory("Objects.Post.Users.PersonalListItems.Responses.JsonReader")]
     public partial class UserPersonalListItemsPostResponseObjectJsonReader_Tests
     {
         [Fact]

@@ -5,7 +5,7 @@
     using TraktNet.Objects.Authentication;
     using Xunit;
 
-    [Category("Core")]
+    [TestCategory("Core")]
     public class TraktClient_Tests
     {
         private const string CLIENT_ID = "CLIENT_ID";

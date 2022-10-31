@@ -9,7 +9,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Basic.JsonReader")]
+    [TestCategory("Objects.Basic.JsonReader")]
     public partial class CastMemberArrayJsonReader_Tests
     {
         [Fact]

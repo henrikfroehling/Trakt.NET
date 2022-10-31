@@ -10,7 +10,7 @@
     using TraktNet.Objects.Get.Watchlist.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Watchlist.Implementations")]
+    [TestCategory("Objects.Get.Watchlist.Implementations")]
     public class TraktWatchlistItem_Tests
     {
         [Fact]

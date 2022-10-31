@@ -14,7 +14,7 @@
     using TraktNet.Objects.Get.Shows;
     using Xunit;
 
-    [Category("Objects.Get.History.JsonWriter")]
+    [TestCategory("Objects.Get.History.JsonWriter")]
     public partial class HistoryItemObjectJsonWriter_Tests
     {
         private static readonly DateTime WATCHED_AT = DateTime.UtcNow;

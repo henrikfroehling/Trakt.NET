@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Comments.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Comments.Responses.Implementations")]
+    [TestCategory("Objects.Post.Comments.Responses.Implementations")]
     public class TraktCommentPostResponse_Tests
     {
         [Fact]
@@ -18,7 +18,7 @@
 
             traktCommentPostResponse.Id.Should().Be(0U);
             traktCommentPostResponse.ParentId.Should().BeNull();
-            traktCommentPostResponse.CreatedAt.Should().Be(default(DateTime));
+            traktCommentPostResponse.CreatedAt.Should().Be(default);
             traktCommentPostResponse.UpdatedAt.Should().BeNull();
             traktCommentPostResponse.Comment.Should().BeNull();
             traktCommentPostResponse.Spoiler.Should().BeFalse();
@@ -31,7 +31,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktMovieCheckinPostResponse_From_Json()
+        public async Task Test_TraktMovieCommentPostResponse_From_Json()
         {
             var jsonReader = new CommentPostResponseObjectJsonReader();
             var traktCommentPostResponse = await jsonReader.ReadObjectAsync(JSON) as TraktCommentPostResponse;

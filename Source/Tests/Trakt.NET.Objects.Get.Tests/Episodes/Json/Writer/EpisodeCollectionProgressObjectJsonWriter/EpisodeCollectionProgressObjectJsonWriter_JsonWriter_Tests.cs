@@ -11,7 +11,7 @@
     using TraktNet.Objects.Get.Episodes.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Get.Episodes.JsonWriter")]
+    [TestCategory("Objects.Get.Episodes.JsonWriter")]
     public partial class EpisodeCollectionProgressObjectJsonWriter_Tests
     {
         private static readonly DateTime COLLECTED_AT = DateTime.UtcNow;

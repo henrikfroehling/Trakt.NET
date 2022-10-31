@@ -10,7 +10,7 @@
     using TraktNet.Requests.Seasons;
     using Xunit;
 
-    [Category("Requests.Seasons")]
+    [TestCategory("Requests.Seasons")]
     public class SeasonsAllRequest_Tests
     {
         [Fact]

@@ -9,7 +9,7 @@
     using TraktNet.Objects.Post.Syncs.Recommendations.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.Recommendations.JsonWriter")]
+    [TestCategory("Objects.Post.Syncs.Recommendations.JsonWriter")]
     public partial class SyncRecommendationsPostMovieObjectJsonWriter_Tests
     {
         [Fact]

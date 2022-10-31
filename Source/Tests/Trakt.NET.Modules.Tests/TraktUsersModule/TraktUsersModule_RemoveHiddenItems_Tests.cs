@@ -14,7 +14,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         [Fact]
@@ -89,7 +89,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_RemoveHiddenItems_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_RemoveHiddenItems_Exceptions()
         {
             string postJson = await TestUtility.SerializeObject(HiddenItemsPost);
             postJson.Should().NotBeNullOrEmpty();
@@ -97,10 +97,10 @@
             TraktClient client = TestUtility.GetOAuthMockClient(RemoveHiddenItemsUri, postJson, HIDDEN_ITEMS_REMOVE_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktUserHiddenItemsRemovePostResponse>>> act = () => client.Users.RemoveHiddenItemsAsync(HiddenItemsPost, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.RemoveHiddenItemsAsync(HiddenItemsPost, TraktHiddenItemsSection.Unspecified);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.RemoveHiddenItemsAsync(null, HIDDEN_ITEMS_SECTION);
             await act.Should().ThrowAsync<ArgumentNullException>();

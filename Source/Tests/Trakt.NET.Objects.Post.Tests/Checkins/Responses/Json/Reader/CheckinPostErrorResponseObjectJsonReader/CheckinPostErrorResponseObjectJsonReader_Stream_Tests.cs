@@ -10,7 +10,7 @@
     using TraktNet.Objects.Post.Checkins.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Checkins.Responses.JsonReader")]
+    [TestCategory("Objects.Post.Checkins.Responses.JsonReader")]
     public partial class CheckinPostErrorResponseObjectJsonReader_Tests
     {
         [Fact]

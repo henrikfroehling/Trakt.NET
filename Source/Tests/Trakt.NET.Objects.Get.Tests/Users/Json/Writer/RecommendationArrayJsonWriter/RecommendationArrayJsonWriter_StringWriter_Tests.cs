@@ -14,7 +14,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Get.Users.JsonWriter")]
+    [TestCategory("Objects.Get.Users.JsonWriter")]
     public partial class RecommendationArrayJsonWriter_Tests
     {
         [Fact]

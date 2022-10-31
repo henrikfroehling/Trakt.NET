@@ -8,7 +8,7 @@
     using TraktNet.Requests.Parameters;
     using Xunit;
 
-    [Category("Requests.Movies")]
+    [TestCategory("Requests.Movies")]
     public class MoviePeopleRequest_Tests
     {
         [Fact]

@@ -10,7 +10,7 @@
     using TraktNet.Objects.Get.Ratings.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Ratings.Implementations")]
+    [TestCategory("Objects.Get.Ratings.Implementations")]
     public class TraktRatingsItem_Tests
     {
         [Fact]

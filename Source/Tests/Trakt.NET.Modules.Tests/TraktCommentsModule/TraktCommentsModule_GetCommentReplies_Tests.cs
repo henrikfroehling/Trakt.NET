@@ -12,7 +12,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Comments")]
+    [TestCategory("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
         private readonly string GET_COMMENT_REPLIES_URI = $"comments/{GET_COMMENT_REPLIES_ID}/replies";

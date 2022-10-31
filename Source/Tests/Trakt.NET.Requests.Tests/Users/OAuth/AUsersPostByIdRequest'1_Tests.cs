@@ -6,17 +6,18 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Interfaces;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
 
-    [Category("Requests.Users.OAuth")]
+    [TestCategory("Requests.Users.OAuth")]
     public class AUsersPostByIdRequest_1_Tests
     {
         internal class RequestBodyMock : IRequestBody
         {
-            public Task<string> ToJson(CancellationToken cancellationToken = default(CancellationToken)) => Task.FromResult("");
+            public Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
 
             public void Validate()
             {
@@ -57,19 +58,19 @@
             var requestMock = new UsersPostByIdRequestMock();
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             requestMock = new UsersPostByIdRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             requestMock = new UsersPostByIdRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

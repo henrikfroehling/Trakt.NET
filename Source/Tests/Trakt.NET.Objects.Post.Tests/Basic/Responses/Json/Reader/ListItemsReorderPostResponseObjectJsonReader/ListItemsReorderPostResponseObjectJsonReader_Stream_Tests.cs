@@ -11,7 +11,7 @@
     using TraktNet.Objects.Post.Basic.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Basic.Responses.JsonReader")]
+    [TestCategory("Objects.Post.Basic.Responses.JsonReader")]
     public partial class ListItemsReorderPostResponseObjectJsonReader_Tests
     {
         [Fact]

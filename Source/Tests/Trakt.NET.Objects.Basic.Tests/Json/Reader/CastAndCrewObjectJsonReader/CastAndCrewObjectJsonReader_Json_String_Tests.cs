@@ -8,7 +8,7 @@
     using TraktNet.Objects.Basic.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Basic.JsonReader")]
+    [TestCategory("Objects.Basic.JsonReader")]
     public partial class CastAndCrewObjectJsonReader_Tests
     {
         [Fact]

@@ -4,10 +4,11 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Syncs.History;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.History.Implementations")]
+    [TestCategory("Objects.Post.Syncs.History.Implementations")]
     public class TraktSyncHistoryRemovePost_Tests
     {
         [Fact]
@@ -17,27 +18,27 @@
 
             // movies = null, shows = null, seasons = null, episodes = null, history ids = null
             Action act = () => syncHistoryRemovePost.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = null, seasons = null, episodes = null, history ids = null
             syncHistoryRemovePost.Movies = new List<ITraktSyncHistoryRemovePostMovie>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = null, episodes = null, history ids = null
             syncHistoryRemovePost.Shows = new List<ITraktSyncHistoryRemovePostShow>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = null, history ids = null
             syncHistoryRemovePost.Seasons = new List<ITraktSyncHistoryRemovePostSeason>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = empty, history ids = null
             syncHistoryRemovePost.Episodes = new List<ITraktSyncHistoryRemovePostEpisode>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies = empty, shows = empty, seasons = empty, episodes = empty, history ids = empty
             syncHistoryRemovePost.HistoryIds = new List<ulong>();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktPostValidationException>();
 
             // movies with at least one item, shows = empty, seasons = empty, episodes = empty, history ids = empty
             (syncHistoryRemovePost.Movies as List<ITraktSyncHistoryRemovePostMovie>).Add(new TraktSyncHistoryRemovePostMovie());

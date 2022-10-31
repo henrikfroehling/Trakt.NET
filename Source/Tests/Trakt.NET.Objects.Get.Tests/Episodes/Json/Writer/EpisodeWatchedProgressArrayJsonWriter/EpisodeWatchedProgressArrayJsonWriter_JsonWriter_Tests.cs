@@ -12,7 +12,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Get.Episodes.JsonWriter")]
+    [TestCategory("Objects.Get.Episodes.JsonWriter")]
     public partial class EpisodeWatchedProgressArrayJsonWriter_Tests
     {
         private static readonly DateTime LAST_WATCHED_AT = DateTime.UtcNow;

@@ -1,5 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Comments
 {
+    using Exceptions;
+    using Extensions;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
@@ -21,7 +23,11 @@
 
         public virtual void Validate()
         {
-            // TODO
+            if (Comment == null)
+                throw new TraktPostValidationException(nameof(Comment), "comment must not be null");
+
+            if (Comment.WordCount() < 5)
+                throw new TraktPostValidationException(nameof(Comment), "comment has too few words - at least five words are required");
         }
     }
 }

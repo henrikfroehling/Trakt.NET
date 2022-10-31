@@ -9,7 +9,7 @@
     using TraktNet.Objects.Post.Basic.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Post.Basic.JsonWriter")]
+    [TestCategory("Objects.Post.Basic.JsonWriter")]
     public partial class ListItemsReorderPostObjectJsonWriter_Tests
     {
         [Fact]

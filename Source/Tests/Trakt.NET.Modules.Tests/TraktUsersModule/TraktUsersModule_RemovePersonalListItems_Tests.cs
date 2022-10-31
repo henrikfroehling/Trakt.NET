@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -15,7 +14,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string REMOVE_PERSONAL_LIST_ITEMS_URI = $"users/{USERNAME}/lists/{LIST_ID}/items/remove";
@@ -96,7 +95,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktUsersModule_RemovePersonalListItems_ArgumentExceptions()
+        public async Task Test_TraktUsersModule_RemovePersonalListItems_Exceptions()
         {
             string postJson = await TestUtility.SerializeObject(RemovePersonalListItemsPost);
             postJson.Should().NotBeNullOrEmpty();
@@ -105,38 +104,28 @@
                                                                 CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktUserPersonalListItemsRemovePostResponse>>> act = () => client.Users.RemovePersonalListItemsAsync(null, LIST_ID, RemovePersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.RemovePersonalListItemsAsync(string.Empty, LIST_ID, RemovePersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.RemovePersonalListItemsAsync("user name", LIST_ID, RemovePersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.RemovePersonalListItemsAsync(USERNAME, null, RemovePersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentNullException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.RemovePersonalListItemsAsync(USERNAME, string.Empty, RemovePersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.RemovePersonalListItemsAsync(USERNAME, "list id", RemovePersonalListItemsPost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.RemovePersonalListItemsAsync(USERNAME, LIST_ID, null);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.RemovePersonalListItemsAsync(USERNAME, LIST_ID, new TraktUserPersonalListItemsPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktUserPersonalListItemsPost customListItems = new TraktUserPersonalListItemsPost
-            {
-                Movies = new List<ITraktUserPersonalListItemsPostMovie>(),
-                Shows = new List<ITraktUserPersonalListItemsPostShow>(),
-                People = new List<ITraktUserPersonalListItemsPostPerson>()
-            };
-
-            act = () => client.Users.RemovePersonalListItemsAsync(USERNAME, LIST_ID, customListItems);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

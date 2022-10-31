@@ -7,7 +7,7 @@
     using TraktNet.Objects.Basic.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Basic.Implementations")]
+    [TestCategory("Objects.Basic.Implementations")]
     public class TraktConnections_Tests
     {
         [Fact]

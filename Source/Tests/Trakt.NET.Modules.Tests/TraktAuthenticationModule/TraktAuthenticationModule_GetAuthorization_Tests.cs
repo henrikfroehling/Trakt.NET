@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Authentication")]
+    [TestCategory("Modules.Authentication")]
     public partial class TraktAuthenticationModule_Tests
     {
         private const string GET_AUTHORIZATION_URI = "oauth/token";

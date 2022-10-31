@@ -12,7 +12,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Basic.JsonReader")]
+    [TestCategory("Objects.Basic.JsonReader")]
     public partial class IdsArrayJsonReader_Tests
     {
         [Fact]

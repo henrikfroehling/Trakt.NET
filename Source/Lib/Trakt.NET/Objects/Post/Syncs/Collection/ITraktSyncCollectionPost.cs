@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// A Trakt collection post, containing all movies, shows and / or episodes,
+    /// A Trakt collection post, containing all movies, shows, seasons and / or episodes,
     /// which should be added to the user's collection.
     /// </summary>
     public interface ITraktSyncCollectionPost : IRequestBody

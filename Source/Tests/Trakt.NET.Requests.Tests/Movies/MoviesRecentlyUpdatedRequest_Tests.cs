@@ -11,7 +11,7 @@
     using TraktNet.Requests.Parameters;
     using Xunit;
 
-    [Category("Requests.Movies.Lists")]
+    [TestCategory("Requests.Movies.Lists")]
     public class MoviesRecentlyUpdatedRequest_Tests
     {
         [Fact]

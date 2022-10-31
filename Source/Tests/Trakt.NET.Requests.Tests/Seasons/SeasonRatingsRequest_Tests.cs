@@ -7,7 +7,7 @@
     using TraktNet.Requests.Seasons;
     using Xunit;
 
-    [Category("Requests.Seasons")]
+    [TestCategory("Requests.Seasons")]
     public class SeasonRatingsRequest_Tests
     {
         [Fact]

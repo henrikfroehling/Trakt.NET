@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -15,7 +14,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string ADD_WATCHLIST_ITEMS_URI = "sync/watchlist";
@@ -108,17 +107,7 @@
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Sync.AddWatchlistItemsAsync(new TraktSyncWatchlistPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncWatchlistPost watchlistPost = new TraktSyncWatchlistPost
-            {
-                Movies = new List<ITraktSyncWatchlistPostMovie>(),
-                Shows = new List<ITraktSyncWatchlistPostShow>(),
-                Episodes = new List<ITraktSyncWatchlistPostEpisode>()
-            };
-
-            act = () => client.Sync.AddWatchlistItemsAsync(watchlistPost);
-            await act.Should().ThrowAsync<ArgumentException>();
+            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }
