@@ -11,6 +11,7 @@
         private ITraktShow _show;
         private int _seasonNumber;
         private int _episodeNumber;
+        private bool _useSeasonAndEpisodeNumber;
 
         public ITraktEpisodeCheckinPostBuilder WithEpisode(ITraktEpisode episode)
         {
@@ -29,14 +30,7 @@
 
         public ITraktEpisodeCheckinPostBuilder WithEpisode(ITraktShow show, int seasonNumber, int episodeNumber)
         {
-            if (show == null)
-                throw new ArgumentNullException(nameof(show));
-
-            if (show.Ids == null)
-                throw new ArgumentNullException($"{nameof(show)}.Ids");
-
-            if (!show.Ids.HasAnyId)
-                throw new ArgumentException("show ids have no valid id", $"{nameof(show)}.Ids");
+            CheckShow(show);
 
             if (seasonNumber < 0)
                 throw new ArgumentOutOfRangeException(nameof(seasonNumber), "season number must be at least 0");
@@ -48,6 +42,21 @@
             _show = show;
             _seasonNumber = seasonNumber;
             _episodeNumber = episodeNumber;
+            _useSeasonAndEpisodeNumber = true;
+            return this;
+        }
+
+        public ITraktEpisodeCheckinPostBuilder WithEpisode(ITraktShow show, int absoluteEpisodeNumber)
+        {
+            CheckShow(show);
+
+            if (absoluteEpisodeNumber < 1)
+                throw new ArgumentOutOfRangeException(nameof(absoluteEpisodeNumber), "episode season number must be at least 1");
+
+            _episode = null;
+            _show = show;
+            _episodeNumber = absoluteEpisodeNumber;
+            _useSeasonAndEpisodeNumber = false;
             return this;
         }
 
@@ -66,11 +75,22 @@
             if (_episode == null)
             {
                 episodeCheckinPost.Show = _show;
-                episodeCheckinPost.Episode = new TraktEpisode
+
+                if (_useSeasonAndEpisodeNumber)
                 {
-                    SeasonNumber = _seasonNumber,
-                    Number = _episodeNumber
-                };
+                    episodeCheckinPost.Episode = new TraktEpisode
+                    {
+                        SeasonNumber = _seasonNumber,
+                        Number = _episodeNumber
+                    };
+                }
+                else
+                {
+                    episodeCheckinPost.Episode = new TraktEpisode
+                    {
+                        NumberAbsolute = _episodeNumber
+                    };
+                }
             }
             else
             {
@@ -82,5 +102,17 @@
         }
 
         protected override ITraktEpisodeCheckinPostBuilder GetBuilder() => this;
+
+        private void CheckShow(ITraktShow show)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (show.Ids == null)
+                throw new ArgumentNullException($"{nameof(show)}.Ids");
+
+            if (!show.Ids.HasAnyId)
+                throw new ArgumentException("show ids have no valid id", $"{nameof(show)}.Ids");
+        }
     }
 }

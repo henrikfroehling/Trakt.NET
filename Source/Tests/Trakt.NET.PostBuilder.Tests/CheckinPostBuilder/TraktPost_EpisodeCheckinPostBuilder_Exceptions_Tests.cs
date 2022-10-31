@@ -92,6 +92,46 @@
         }
 
         [Fact]
+        public void Test_TraktPost_EpisodeCheckinPostBuilder_WithEpisode_Show_WithAbsoluteEpisodeNumber_ArgumentNullException()
+        {
+            Func<ITraktEpisodeCheckinPost> act = () => TraktPost.NewEpisodeCheckinPost()
+                .WithEpisode(null, 1)
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void Test_TraktPost_EpisodeCheckinPostBuilder_WithEpisode_ShowIds_WithAbsoluteEpisodeNumber_ArgumentNullException()
+        {
+            Func<ITraktEpisodeCheckinPost> act = () => TraktPost.NewEpisodeCheckinPost()
+                .WithEpisode(new TraktShow(), 1)
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void Test_TraktPost_EpisodeCheckinPostBuilder_WithEpisode_ShowIds_WithAbsoluteEpisodeNumber_ArgumentException()
+        {
+            Func<ITraktEpisodeCheckinPost> act = () => TraktPost.NewEpisodeCheckinPost()
+                .WithEpisode(new TraktShow { Ids = new TraktShowIds() }, 1)
+                .Build();
+
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void Test_TraktPost_EpisodeCheckinPostBuilder_WithEpisode_AbsoluteEpisodeNumber_ArgumentOutOfRangeException()
+        {
+            Func<ITraktEpisodeCheckinPost> act = () => TraktPost.NewEpisodeCheckinPost()
+                .WithEpisode(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, 0)
+                .Build();
+
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
         public void Test_TraktPost_EpisodeCheckinPostBuilder_WithMessage_ArgumentNullException()
         {
             Func<ITraktEpisodeCheckinPost> act = () => TraktPost.NewEpisodeCheckinPost()
