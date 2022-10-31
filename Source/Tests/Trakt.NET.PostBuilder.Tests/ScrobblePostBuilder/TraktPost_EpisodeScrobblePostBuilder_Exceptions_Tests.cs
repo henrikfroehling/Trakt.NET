@@ -92,6 +92,46 @@
         }
 
         [Fact]
+        public void Test_TraktPost_EpisodeScrobblePostBuilder_WithEpisode_Show_WithAbsoluteEpisodeNumber_ArgumentNullException()
+        {
+            Func<ITraktEpisodeScrobblePost> act = () => TraktPost.NewEpisodeScrobblePost()
+                .WithEpisode(null, 1)
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void Test_TraktPost_EpisodeScrobblePostBuilder_WithEpisode_ShowIds_WithAbsoluteEpisodeNumber_ArgumentNullException()
+        {
+            Func<ITraktEpisodeScrobblePost> act = () => TraktPost.NewEpisodeScrobblePost()
+                .WithEpisode(new TraktShow(), 1)
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void Test_TraktPost_EpisodeScrobblePostBuilder_WithEpisode_ShowIds_WithAbsoluteEpisodeNumber_ArgumentException()
+        {
+            Func<ITraktEpisodeScrobblePost> act = () => TraktPost.NewEpisodeScrobblePost()
+                .WithEpisode(new TraktShow { Ids = new TraktShowIds() }, 1)
+                .Build();
+
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
+        public void Test_TraktPost_EpisodeScrobblePostBuilder_WithEpisode_AbsoluteEpisodeNumber_ArgumentOutOfRangeException()
+        {
+            Func<ITraktEpisodeScrobblePost> act = () => TraktPost.NewEpisodeScrobblePost()
+                .WithEpisode(new TraktShow { Ids = new TraktShowIds { Trakt = 1 } }, 0)
+                .Build();
+
+            act.Should().Throw<ArgumentException>();
+        }
+
+        [Fact]
         public void Test_TraktPost_EpisodeScrobblePostBuilder_WithProgress_ArgumentOutOfRangeException()
         {
             Func<ITraktEpisodeScrobblePost> act = () => TraktPost.NewEpisodeScrobblePost()
