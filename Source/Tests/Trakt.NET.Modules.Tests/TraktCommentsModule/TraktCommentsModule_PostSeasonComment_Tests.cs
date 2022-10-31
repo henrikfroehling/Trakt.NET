@@ -7,7 +7,6 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Post.Comments;
     using TraktNet.Objects.Post.Comments.Responses;
     using TraktNet.Responses;
@@ -31,7 +30,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_SEASON_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostSeasonCommentAsync(Season, COMMENT_TEXT);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostSeasonCommentAsync(seasonCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -75,7 +74,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_SEASON_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostSeasonCommentAsync(Season, COMMENT_TEXT, SPOILER);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostSeasonCommentAsync(seasonCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -119,7 +118,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_SEASON_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostSeasonCommentAsync(Season, COMMENT_TEXT, null, SHARING);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostSeasonCommentAsync(seasonCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -164,7 +163,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_SEASON_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostSeasonCommentAsync(Season, COMMENT_TEXT, SPOILER, SHARING);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostSeasonCommentAsync(seasonCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -213,73 +212,23 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktCommentsModule_PostSeasonComment_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            ITraktSeasonCommentPost seasonCommentPost = new TraktSeasonCommentPost
+            {
+                Season = Season,
+                Comment = COMMENT_TEXT
+            };
+
             TraktClient client = TestUtility.GetOAuthMockClient(POST_SEASON_COMMENT_URI, statusCode);
 
             try
             {
-                await client.Comments.PostSeasonCommentAsync(Season, COMMENT_TEXT);
+                await client.Comments.PostSeasonCommentAsync(seasonCommentPost);
                 Assert.False(true);
             }
             catch (Exception exception)
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_PostSeasonComment_ArgumentExceptions()
-        {
-            ITraktSeason season = new TraktSeason
-            {
-                Ids = new TraktSeasonIds
-                {
-                    Trakt = 3950,
-                    Tvdb = 30272,
-                    Tmdb = 3572
-                }
-            };
-
-            ITraktSeasonCommentPost seasonCommentPost = new TraktSeasonCommentPost
-            {
-                Season = season,
-                Comment = COMMENT_TEXT
-            };
-
-            string postJson = await TestUtility.SerializeObject(seasonCommentPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(POST_SEASON_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostSeasonCommentAsync(null, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            season.Ids = null;
-
-            act = () => client.Comments.PostSeasonCommentAsync(season, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            season.Ids = new TraktSeasonIds();
-
-            act = () => client.Comments.PostSeasonCommentAsync(season, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            season.Ids = new TraktSeasonIds
-            {
-                Trakt = 3950,
-                Tvdb = 30272,
-                Tmdb = 3572
-            };
-
-            act = () => client.Comments.PostSeasonCommentAsync(season, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Comments.PostSeasonCommentAsync(season, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            const string comment = "one two three four";
-
-            act = () => client.Comments.PostSeasonCommentAsync(season, comment);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

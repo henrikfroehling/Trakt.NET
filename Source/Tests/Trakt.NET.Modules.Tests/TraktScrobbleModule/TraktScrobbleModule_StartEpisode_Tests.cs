@@ -30,7 +30,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
-            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StartEpisodeAsync(Episode, START_PROGRESS);
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StartEpisodeAsync(episodeStartScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -71,9 +71,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
-                await client.Scrobble.StartEpisodeAsync(Episode, START_PROGRESS, APP_VERSION);
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StartEpisodeAsync(episodeStartScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -114,9 +112,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
-                await client.Scrobble.StartEpisodeAsync(Episode, START_PROGRESS, null, APP_BUILD_DATE);
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StartEpisodeAsync(episodeStartScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -158,9 +154,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
-                await client.Scrobble.StartEpisodeAsync(Episode, START_PROGRESS, APP_VERSION, APP_BUILD_DATE);
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StartEpisodeAsync(episodeStartScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -202,9 +196,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, postJson, EPISODE_START_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
-                await client.Scrobble.StartEpisodeAsync(Episode, START_PROGRESS, APP_VERSION, APP_BUILD_DATE);
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StartEpisodeAsync(episodeStartScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -250,11 +242,17 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktScrobbleModule_StartEpisode_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            ITraktEpisodeScrobblePost episodeStartScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = Episode,
+                Progress = START_PROGRESS
+            };
+
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_START_URI, statusCode);
 
             try
             {
-                await client.Scrobble.StartEpisodeAsync(Episode, START_PROGRESS);
+                await client.Scrobble.StartEpisodeAsync(episodeStartScrobblePost);
                 Assert.False(true);
             }
             catch (Exception exception)

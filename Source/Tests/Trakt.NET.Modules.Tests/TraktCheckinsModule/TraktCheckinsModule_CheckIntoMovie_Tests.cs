@@ -8,7 +8,6 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Extensions;
-    using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Post.Checkins;
     using TraktNet.Objects.Post.Checkins.Responses;
     using TraktNet.Responses;
@@ -29,7 +28,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(Movie);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -66,7 +65,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(Movie, APP_VERSION);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -104,9 +103,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, APP_VERSION, APP_BUILD_DATE);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -144,9 +141,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, APP_VERSION, null, MESSAGE);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -184,9 +179,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, APP_VERSION, null, null, SHARING);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -224,9 +217,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, APP_VERSION, null, null, null, FOURSQUARE_VENUE_ID);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -264,9 +255,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, APP_VERSION, null, null, null, null, FOURSQUARE_VENUE_NAME);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -303,9 +292,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, APP_BUILD_DATE);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -343,9 +330,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, APP_BUILD_DATE, MESSAGE);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -383,9 +368,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, APP_BUILD_DATE, null, SHARING);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -423,9 +406,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, APP_BUILD_DATE, null, null, FOURSQUARE_VENUE_ID);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -463,9 +444,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, APP_BUILD_DATE, null, null, null, FOURSQUARE_VENUE_NAME);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -502,9 +481,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, null, MESSAGE);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -542,9 +519,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, null, MESSAGE, SHARING);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -582,9 +557,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, null, MESSAGE, null, FOURSQUARE_VENUE_ID);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -622,9 +595,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, null, MESSAGE, null, null, FOURSQUARE_VENUE_NAME);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -661,9 +632,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, null, null, SHARING);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -701,9 +670,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, null, null, SHARING, FOURSQUARE_VENUE_ID);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -741,9 +708,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, null, null, SHARING, null, FOURSQUARE_VENUE_NAME);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -780,9 +745,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, null, null, null, FOURSQUARE_VENUE_ID);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -820,10 +783,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, null, null, null,
-                                                          FOURSQUARE_VENUE_ID, FOURSQUARE_VENUE_NAME);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -860,9 +820,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, null, null, null, null, null, FOURSQUARE_VENUE_NAME);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -904,10 +862,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieCheckinPostResponse> response =
-                await client.Checkins.CheckIntoMovieAsync(Movie, APP_VERSION, APP_BUILD_DATE, MESSAGE, SHARING,
-                                                          FOURSQUARE_VENUE_ID, FOURSQUARE_VENUE_NAME);
+            TraktResponse<ITraktMovieCheckinPostResponse> response = await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -950,57 +905,22 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktCheckinsModule_CheckIntoMovie_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            ITraktMovieCheckinPost movieCheckinPost = new TraktMovieCheckinPost
+            {
+                Movie = Movie
+            };
+
             TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, statusCode);
 
             try
             {
-                await client.Checkins.CheckIntoMovieAsync(Movie);
+                await client.Checkins.CheckIntoMovieAsync(movieCheckinPost);
                 Assert.False(true);
             }
             catch (Exception exception)
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktCheckinsModule_CheckIntoMovie_ArgumentExceptions()
-        {
-            ITraktMovie movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            ITraktMovieCheckinPost movieCheckinPost  = new TraktMovieCheckinPost
-            {
-                Movie = movie
-            };
-
-            string postJson = await TestUtility.SerializeObject(movieCheckinPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(CHECKIN_URI, postJson, MOVIE_CHECKIN_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktMovieCheckinPostResponse>>> act = () => client.Checkins.CheckIntoMovieAsync(null);
-            await act.Should().ThrowAsync<TraktPostValidationException>();
-
-            movie.Ids = null;
-
-            act = () => client.Checkins.CheckIntoMovieAsync(movie);
-            await act.Should().ThrowAsync<TraktPostValidationException>();
-
-            movie.Ids = new TraktMovieIds();
-
-            act = () => client.Checkins.CheckIntoMovieAsync(movie);
-            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

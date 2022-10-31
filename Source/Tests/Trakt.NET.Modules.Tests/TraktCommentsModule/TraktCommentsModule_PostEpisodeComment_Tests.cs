@@ -7,7 +7,6 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Episodes;
     using TraktNet.Objects.Post.Comments;
     using TraktNet.Objects.Post.Comments.Responses;
     using TraktNet.Responses;
@@ -31,7 +30,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(episodeCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -75,7 +74,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT, SPOILER);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(episodeCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -119,7 +118,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT, null, SHARING);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(episodeCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -164,7 +163,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT, SPOILER, SHARING);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostEpisodeCommentAsync(episodeCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -213,77 +212,23 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktCommentsModule_PostEpisodeComment_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            ITraktEpisodeCommentPost episodeCommentPost = new TraktEpisodeCommentPost
+            {
+                Episode = Episode,
+                Comment = COMMENT_TEXT
+            };
+
             TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, statusCode);
 
             try
             {
-                await client.Comments.PostEpisodeCommentAsync(Episode, COMMENT_TEXT);
+                await client.Comments.PostEpisodeCommentAsync(episodeCommentPost);
                 Assert.False(true);
             }
             catch (Exception exception)
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_PostEpisodeComment_ArgumentExceptions()
-        {
-            ITraktEpisode episode = new TraktEpisode
-            {
-                Ids = new TraktEpisodeIds
-                {
-                    Trakt = 73482,
-                    Tvdb = 349232,
-                    Imdb = "tt0959621",
-                    Tmdb = 62085,
-                    TvRage = 637041
-                }
-            };
-
-            ITraktEpisodeCommentPost episodeCommentPost = new TraktEpisodeCommentPost
-            {
-                Episode = episode,
-                Comment = COMMENT_TEXT
-            };
-
-            string postJson = await TestUtility.SerializeObject(episodeCommentPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(POST_EPISODE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostEpisodeCommentAsync(null, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            episode.Ids = null;
-
-            act = () => client.Comments.PostEpisodeCommentAsync(episode, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            episode.Ids = new TraktEpisodeIds();
-
-            act = () => client.Comments.PostEpisodeCommentAsync(episode, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            episode.Ids = new TraktEpisodeIds
-            {
-                Trakt = 73482,
-                Tvdb = 349232,
-                Imdb = "tt0959621",
-                Tmdb = 62085,
-                TvRage = 637041
-            };
-
-            act = () => client.Comments.PostEpisodeCommentAsync(episode, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Comments.PostEpisodeCommentAsync(episode, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            const string comment = "one two three four";
-
-            act = () => client.Comments.PostEpisodeCommentAsync(episode, comment);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

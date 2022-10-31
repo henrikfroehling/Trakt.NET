@@ -9,7 +9,6 @@
     using TraktNet.Enums;
     using TraktNet.Exceptions;
     using TraktNet.Extensions;
-    using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Post.Scrobbles;
     using TraktNet.Objects.Post.Scrobbles.Responses;
     using TraktNet.Responses;
@@ -31,7 +30,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, postJson, MOVIE_STOP_SCROBBLE_POST_RESPONSE_JSON);
-            TraktResponse<ITraktMovieScrobblePostResponse> response = await client.Scrobble.StopMovieAsync(Movie, STOP_PROGRESS);
+            TraktResponse<ITraktMovieScrobblePostResponse> response = await client.Scrobble.StopMovieAsync(movieStopScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -70,9 +69,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, postJson, MOVIE_STOP_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieScrobblePostResponse> response =
-                await client.Scrobble.StopMovieAsync(Movie, STOP_PROGRESS, APP_VERSION);
+            TraktResponse<ITraktMovieScrobblePostResponse> response = await client.Scrobble.StopMovieAsync(movieStopScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -111,9 +108,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, postJson, MOVIE_STOP_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieScrobblePostResponse> response =
-                await client.Scrobble.StopMovieAsync(Movie, STOP_PROGRESS, null, APP_BUILD_DATE);
+            TraktResponse<ITraktMovieScrobblePostResponse> response = await client.Scrobble.StopMovieAsync(movieStopScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -153,9 +148,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, postJson, MOVIE_STOP_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieScrobblePostResponse> response =
-                await client.Scrobble.StopMovieAsync(Movie, STOP_PROGRESS, APP_VERSION, APP_BUILD_DATE);
+            TraktResponse<ITraktMovieScrobblePostResponse> response = await client.Scrobble.StopMovieAsync(movieStopScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -195,9 +188,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, postJson, MOVIE_STOP_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktMovieScrobblePostResponse> response =
-                await client.Scrobble.StopMovieAsync(Movie, STOP_PROGRESS, APP_VERSION, APP_BUILD_DATE);
+            TraktResponse<ITraktMovieScrobblePostResponse> response = await client.Scrobble.StopMovieAsync(movieStopScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -241,70 +232,23 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktScrobbleModule_StopMovie_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            ITraktMovieScrobblePost movieStopScrobblePost = new TraktMovieScrobblePost
+            {
+                Movie = Movie,
+                Progress = STOP_PROGRESS
+            };
+
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, statusCode);
 
             try
             {
-                await client.Scrobble.StopMovieAsync(Movie, STOP_PROGRESS);
+                await client.Scrobble.StopMovieAsync(movieStopScrobblePost);
                 Assert.False(true);
             }
             catch (Exception exception)
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktScrobbleModule_StopMovie_ArgumentExceptions()
-        {
-            ITraktMovie movie = new TraktMovie
-            {
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            ITraktMovieScrobblePost movieStopScrobblePost = new TraktMovieScrobblePost
-            {
-                Movie = movie,
-                Progress = STOP_PROGRESS
-            };
-
-            string postJson = await TestUtility.SerializeObject(movieStopScrobblePost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, postJson, MOVIE_STOP_SCROBBLE_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktMovieScrobblePostResponse>>> act = () => client.Scrobble.StopMovieAsync(null, STOP_PROGRESS);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            movie.Ids = null;
-
-            act = () => client.Scrobble.StopMovieAsync(movie, STOP_PROGRESS);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            movie.Ids = new TraktMovieIds();
-
-            act = () => client.Scrobble.StopMovieAsync(movie, STOP_PROGRESS);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            movie.Ids = new TraktMovieIds
-            {
-                Trakt = 28,
-                Slug = "guardians-of-the-galaxy-2014",
-                Imdb = "tt2015381",
-                Tmdb = 118340
-            };
-
-            act = () => client.Scrobble.StopMovieAsync(movie, -0.0001f);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            act = () => client.Scrobble.StopMovieAsync(movie, 100.0001f);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }
