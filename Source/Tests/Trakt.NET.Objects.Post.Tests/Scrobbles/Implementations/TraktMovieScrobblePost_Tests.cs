@@ -2,14 +2,13 @@
 {
     using FluentAssertions;
     using System;
-    using System.ComponentModel;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Post.Scrobbles;
     using Xunit;
 
-    [Category("Objects.Post.Scrobbles.Implementations")]
+    [TestCategory("Objects.Post.Scrobbles.Implementations")]
     public class TraktMovieScrobblePost_Tests
     {
         [Fact]
@@ -32,12 +31,12 @@
             // Movie valid, Progress not valid
             movieScrobblePost.Movie = new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 } };
             movieScrobblePost.Progress = -0.1f;
-            act.Should().NotThrow();
+            act.Should().Throw<TraktPostValidationException>();
 
             // Movie valid, Progress not valid
             movieScrobblePost.Movie = new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 } };
             movieScrobblePost.Progress = 100.1f;
-            act.Should().NotThrow();
+            act.Should().Throw<TraktPostValidationException>();
 
             // valid
             movieScrobblePost.Movie = new TraktMovie { Ids = new TraktMovieIds { Trakt = 1 } };

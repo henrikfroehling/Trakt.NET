@@ -37,7 +37,8 @@
 
             Show = new TraktShow
             {
-                Title = "Breaking Bad"
+                Title = "Breaking Bad",
+                Ids = new TraktShowIds { Trakt = 1 }
             };
 
             Episode = new TraktEpisode

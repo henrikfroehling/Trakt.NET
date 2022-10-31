@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.ComponentModel;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Episodes;
@@ -10,7 +9,7 @@
     using TraktNet.Objects.Post.Scrobbles;
     using Xunit;
 
-    [Category("Objects.Post.Scrobbles.Implementations")]
+    [TestCategory("Objects.Post.Scrobbles.Implementations")]
     public class TraktEpisodeScrobblePost_Tests
     {
         [Fact]
