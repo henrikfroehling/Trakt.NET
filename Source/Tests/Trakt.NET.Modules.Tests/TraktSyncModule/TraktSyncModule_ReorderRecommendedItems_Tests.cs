@@ -13,7 +13,7 @@ namespace TraktNet.Modules.Tests.TraktSyncModule
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string REORDER_RECOMMENDED_ITEMS_URI = "sync/recommendations/reorder";

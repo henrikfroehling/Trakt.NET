@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Checkins;
     using Xunit;
 
-    [Category("PostBuilder")]
+    [TestCategory("PostBuilder")]
     public partial class TraktPost_EpisodeCheckinPostBuilder_Tests
     {
         [Fact]

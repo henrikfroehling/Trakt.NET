@@ -9,7 +9,7 @@
     using TraktNet.Objects.Get.Seasons.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Get.Seasons.JsonWriter")]
+    [TestCategory("Objects.Get.Seasons.JsonWriter")]
     public partial class SeasonIdsObjectJsonWriter_Tests
     {
         [Fact]

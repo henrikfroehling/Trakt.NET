@@ -14,7 +14,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string ADD_COLLECTION_ITEMS_URI = "sync/collection";

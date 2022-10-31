@@ -13,7 +13,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Comments")]
+    [TestCategory("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
         private const string POST_LIST_COMMENT_URI = "comments";

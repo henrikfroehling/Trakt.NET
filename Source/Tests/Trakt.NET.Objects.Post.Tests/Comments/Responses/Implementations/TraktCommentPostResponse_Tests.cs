@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Comments.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Comments.Responses.Implementations")]
+    [TestCategory("Objects.Post.Comments.Responses.Implementations")]
     public class TraktCommentPostResponse_Tests
     {
         [Fact]

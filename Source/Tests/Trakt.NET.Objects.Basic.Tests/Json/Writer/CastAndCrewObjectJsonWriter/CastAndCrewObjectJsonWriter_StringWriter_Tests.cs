@@ -11,7 +11,7 @@
     using TraktNet.Objects.Get.People;
     using Xunit;
 
-    [Category("Objects.Basic.JsonWriter")]
+    [TestCategory("Objects.Basic.JsonWriter")]
     public partial class CastAndCrewObjectJsonWriter_Tests
     {
         [Fact]

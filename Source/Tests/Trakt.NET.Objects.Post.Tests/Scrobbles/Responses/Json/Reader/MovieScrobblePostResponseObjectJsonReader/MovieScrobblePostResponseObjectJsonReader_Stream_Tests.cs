@@ -11,7 +11,7 @@
     using TraktNet.Objects.Post.Scrobbles.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Comments.Responses.JsonReader")]
+    [TestCategory("Objects.Post.Comments.Responses.JsonReader")]
     public partial class MovieScrobblePostResponseObjectJsonReader_Tests
     {
         [Fact]

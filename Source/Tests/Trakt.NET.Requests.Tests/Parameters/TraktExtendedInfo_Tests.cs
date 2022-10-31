@@ -5,7 +5,7 @@
     using TraktNet.Requests.Parameters;
     using Xunit;
 
-    [Category("Requests.Parameters")]
+    [TestCategory("Requests.Parameters")]
     public class TraktExtendedInfo_Tests
     {
         [Fact]

@@ -9,7 +9,7 @@
     using TraktNet.Requests.Lists;
     using Xunit;
 
-    [Category("Requests.Lists")]
+    [TestCategory("Requests.Lists")]
     public class AListsRequest_Tests
     {
         internal class ListsRequestMock : AListsRequest

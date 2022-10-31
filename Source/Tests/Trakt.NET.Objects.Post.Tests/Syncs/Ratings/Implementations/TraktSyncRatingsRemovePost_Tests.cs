@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Syncs.Ratings;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.Ratings.Implementations")]
+    [TestCategory("Objects.Post.Syncs.Ratings.Implementations")]
     public class TraktSyncRatingsRemovePost_Tests
     {
         [Fact]

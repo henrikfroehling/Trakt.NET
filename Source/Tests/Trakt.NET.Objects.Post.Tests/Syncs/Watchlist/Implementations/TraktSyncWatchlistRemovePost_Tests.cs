@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Syncs.Watchlist;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.Watchlist.Implementations")]
+    [TestCategory("Objects.Post.Syncs.Watchlist.Implementations")]
     public class TraktSyncWatchlistRemovePost_Tests
     {
         [Fact]

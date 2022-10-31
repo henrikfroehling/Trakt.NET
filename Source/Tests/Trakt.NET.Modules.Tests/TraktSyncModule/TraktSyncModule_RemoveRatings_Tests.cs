@@ -14,7 +14,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string REMOVE_RATINGS_URI = "sync/ratings/remove";

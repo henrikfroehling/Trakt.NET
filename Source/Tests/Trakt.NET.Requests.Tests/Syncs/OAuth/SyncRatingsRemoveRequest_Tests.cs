@@ -5,7 +5,7 @@
     using TraktNet.Requests.Syncs.OAuth;
     using Xunit;
 
-    [Category("Requests.Syncs.OAuth")]
+    [TestCategory("Requests.Syncs.OAuth")]
     public class SyncRatingsRemoveRequest_Tests
     {
         [Fact]

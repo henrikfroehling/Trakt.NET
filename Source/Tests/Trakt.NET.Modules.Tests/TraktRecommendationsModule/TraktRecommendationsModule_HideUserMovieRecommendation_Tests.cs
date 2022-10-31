@@ -10,7 +10,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Recommendations")]
+    [TestCategory("Modules.Recommendations")]
     public partial class TraktRecommendationsModule_Tests
     {
         private readonly string HIDE_MOVIE_RECOMMENDATION_URI = $"recommendations/movies/{MOVIE_ID}";

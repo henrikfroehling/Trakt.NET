@@ -12,7 +12,7 @@
     using TraktNet.Requests.Interfaces;
     using Xunit;
 
-    [Category("Requests.Base")]
+    [TestCategory("Requests.Base")]
     public class APostRequest_2_Tests
     {
         internal class RequestBodyMock : IRequestBody

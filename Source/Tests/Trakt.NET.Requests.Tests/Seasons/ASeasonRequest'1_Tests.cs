@@ -8,7 +8,7 @@
     using TraktNet.Requests.Seasons;
     using Xunit;
 
-    [Category("Requests.Seasons")]
+    [TestCategory("Requests.Seasons")]
     public class ASeasonRequest_1_Tests
     {
         internal class SeasonRequestMock : ASeasonRequest<int>

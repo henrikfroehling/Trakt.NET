@@ -10,7 +10,7 @@
     using TraktNet.Services;
     using Xunit;
 
-    [Category("Services")]
+    [TestCategory("Services")]
     public partial class TraktSerializationService_Tests
     {
         [Fact]

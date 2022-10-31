@@ -13,7 +13,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Search")]
+    [TestCategory("Modules.Search")]
     public partial class TraktSearchModule_Tests
     {
         [Fact]

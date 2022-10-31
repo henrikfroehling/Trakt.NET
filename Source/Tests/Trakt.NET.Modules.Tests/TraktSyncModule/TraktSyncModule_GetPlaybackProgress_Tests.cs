@@ -13,7 +13,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string GET_PLAYBACK_PROGRESS_URI = "sync/playback";

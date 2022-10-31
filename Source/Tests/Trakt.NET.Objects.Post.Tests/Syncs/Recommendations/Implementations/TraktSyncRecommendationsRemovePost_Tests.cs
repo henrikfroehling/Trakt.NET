@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Syncs.Recommendations;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.Recommendations.Implementations")]
+    [TestCategory("Objects.Post.Syncs.Recommendations.Implementations")]
     public class TraktSyncRecommendationsRemovePost_Tests
     {
         [Fact]

@@ -7,7 +7,7 @@
     using TraktNet.Objects.Post.Comments;
     using Xunit;
 
-    [Category("PostBuilder")]
+    [TestCategory("PostBuilder")]
     public partial class TraktPost_MovieCommentPostBuilder_Tests
     {
         [Fact]

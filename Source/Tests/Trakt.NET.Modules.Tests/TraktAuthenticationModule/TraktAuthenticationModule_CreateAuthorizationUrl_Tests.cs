@@ -7,7 +7,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using Xunit;
 
-    [Category("Modules.Authentication")]
+    [TestCategory("Modules.Authentication")]
     public partial class TraktAuthenticationModule_Tests
     {
         [Fact]

@@ -8,7 +8,7 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Implementations
     using TraktNet.Objects.Get.Syncs.Activities.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Syncs.Activities.Implementations")]
+    [TestCategory("Objects.Get.Syncs.Activities.Implementations")]
     public class TraktSyncAccountLastActivities_Tests
     {
         [Fact]

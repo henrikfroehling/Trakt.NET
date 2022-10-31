@@ -10,7 +10,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string LIKE_LIST_URI = $"users/{USERNAME}/lists/{LIST_ID}/like";

@@ -4,9 +4,9 @@
     using Xunit.Abstractions;
     using Xunit.Sdk;
 
-    public sealed class CategoryDiscoverer : ITraitDiscoverer
+    public sealed class TestCategoryDiscoverer : ITraitDiscoverer
     {
-        internal const string DiscovererTypeName = "TraktNet.Tests" + "." + nameof(Traits) + "." + nameof(CategoryDiscoverer);
+        internal const string DiscovererTypeName = "TraktNet.Tests" + "." + nameof(Traits) + "." + nameof(TestCategoryDiscoverer);
 
         public IEnumerable<KeyValuePair<string, string>> GetTraits(IAttributeInfo traitAttribute)
         {

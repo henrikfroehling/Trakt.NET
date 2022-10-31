@@ -9,7 +9,7 @@
     using TraktNet.Requests.Interfaces;
     using Xunit;
 
-    [Category("Requests.Checkins.OAuth")]
+    [TestCategory("Requests.Checkins.OAuth")]
     public class CheckinRequest_2_Tests
     {
         internal class RequestBodyMock : IRequestBody

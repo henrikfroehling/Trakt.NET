@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Users.PersonalListItems;
     using Xunit;
 
-    [Category("Objects.Post.Users.PersonalListItems.Implementations")]
+    [TestCategory("Objects.Post.Users.PersonalListItems.Implementations")]
     public class TraktUserPersonalListItemsPost_Tests
     {
         [Fact]

@@ -7,7 +7,7 @@
     using TraktNet.Objects.Post.Users.PersonalListItems;
     using Xunit;
 
-    [Category("PostBuilder")]
+    [TestCategory("PostBuilder")]
     public partial class TraktPost_UserPersonalListItemsRemovePostBuilder_Tests
     {
         [Fact]

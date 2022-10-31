@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Syncs.History;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.History.Implementations")]
+    [TestCategory("Objects.Post.Syncs.History.Implementations")]
     public class TraktSyncHistoryRemovePost_Tests
     {
         [Fact]

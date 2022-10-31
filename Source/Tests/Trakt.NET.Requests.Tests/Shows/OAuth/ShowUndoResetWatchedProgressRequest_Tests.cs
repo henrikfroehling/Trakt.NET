@@ -8,7 +8,7 @@ namespace TraktNet.Requests.Tests.Shows
     using TraktNet.Requests.Shows.OAuth;
     using Xunit;
 
-    [Category("Requests.Shows")]
+    [TestCategory("Requests.Shows")]
     public class ShowUndoResetWatchedProgressRequest_Tests
     {
         [Fact]

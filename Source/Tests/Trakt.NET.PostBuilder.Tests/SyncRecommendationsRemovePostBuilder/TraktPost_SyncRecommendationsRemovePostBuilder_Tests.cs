@@ -7,7 +7,7 @@
     using TraktNet.Objects.Post.Syncs.Recommendations;
     using Xunit;
 
-    [Category("PostBuilder")]
+    [TestCategory("PostBuilder")]
     public partial class TraktPost_SyncRecommendationsRemovePostBuilder_Tests
     {
         [Fact]

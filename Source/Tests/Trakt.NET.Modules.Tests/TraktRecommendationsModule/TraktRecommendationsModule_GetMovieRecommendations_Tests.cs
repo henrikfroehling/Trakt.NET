@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Recommendations")]
+    [TestCategory("Modules.Recommendations")]
     public partial class TraktRecommendationsModule_Tests
     {
         private const string GET_MOVIE_RECOMMENDATIONS_URI = "recommendations/movies";

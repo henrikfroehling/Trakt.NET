@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Comments;
     using Xunit;
 
-    [Category("Objects.Post.Comments.Implementations")]
+    [TestCategory("Objects.Post.Comments.Implementations")]
     public class TraktSeasonCommentPost_Tests
     {
         [Fact]

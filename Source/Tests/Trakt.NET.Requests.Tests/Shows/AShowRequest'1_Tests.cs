@@ -8,7 +8,7 @@
     using TraktNet.Requests.Shows;
     using Xunit;
 
-    [Category("Requests.Shows")]
+    [TestCategory("Requests.Shows")]
     public class AShowRequest_1_Tests
     {
         internal class ShowRequestMock : AShowRequest<int>

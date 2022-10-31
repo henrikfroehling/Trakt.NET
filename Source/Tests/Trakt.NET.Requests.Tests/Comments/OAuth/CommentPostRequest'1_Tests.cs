@@ -9,7 +9,7 @@
     using TraktNet.Requests.Comments.OAuth;
     using Xunit;
 
-    [Category("Requests.Comments.OAuth")]
+    [TestCategory("Requests.Comments.OAuth")]
     public class CommentPostRequest_1_Tests
     {
         [Fact]

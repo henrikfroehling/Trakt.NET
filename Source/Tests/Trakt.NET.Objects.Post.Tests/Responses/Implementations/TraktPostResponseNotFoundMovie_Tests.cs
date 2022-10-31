@@ -7,7 +7,7 @@
     using TraktNet.Objects.Post.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Responses.Implementations")]
+    [TestCategory("Objects.Post.Responses.Implementations")]
     public class TraktPostResponseNotFoundMovie_Tests
     {
         [Fact]

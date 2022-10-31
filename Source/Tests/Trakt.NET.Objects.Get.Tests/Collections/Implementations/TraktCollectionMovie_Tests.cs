@@ -9,7 +9,7 @@
     using TraktNet.Objects.Get.Collections.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Collections.Implementations")]
+    [TestCategory("Objects.Get.Collections.Implementations")]
     public class TraktCollectionMovie_Tests
     {
         [Fact]

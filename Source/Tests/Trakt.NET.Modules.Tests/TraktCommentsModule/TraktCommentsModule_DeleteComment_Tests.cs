@@ -10,7 +10,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Comments")]
+    [TestCategory("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
         private readonly string DELETE_COMMENT_URI = $"comments/{COMMENT_ID}";

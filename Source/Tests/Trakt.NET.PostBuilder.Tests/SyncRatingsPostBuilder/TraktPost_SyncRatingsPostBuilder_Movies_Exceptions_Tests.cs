@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Syncs.Ratings;
     using Xunit;
 
-    [Category("PostBuilder")]
+    [TestCategory("PostBuilder")]
     public partial class TraktPost_SyncRatingsPostBuilder_Tests
     {
         [Fact]

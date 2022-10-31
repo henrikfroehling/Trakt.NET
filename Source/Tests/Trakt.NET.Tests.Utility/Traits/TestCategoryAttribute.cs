@@ -3,11 +3,11 @@
     using System;
     using Xunit.Sdk;
 
-    [TraitDiscoverer(CategoryDiscoverer.DiscovererTypeName, "TraktNet.Tests")]
+    [TraitDiscoverer(TestCategoryDiscoverer.DiscovererTypeName, "TraktNet.Tests")]
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
-    public sealed class CategoryAttribute : Attribute, ITraitAttribute
+    public sealed class TestCategoryAttribute : Attribute, ITraitAttribute
     {
-        public CategoryAttribute(string categoryName)
+        public TestCategoryAttribute(string categoryName)
         {
             Name = categoryName;
         }

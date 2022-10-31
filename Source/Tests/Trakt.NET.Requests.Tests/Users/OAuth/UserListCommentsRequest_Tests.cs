@@ -10,7 +10,7 @@
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
 
-    [Category("Requests.Users")]
+    [TestCategory("Requests.Users")]
     public class UserListCommentsRequest_Tests
     {
         [Fact]

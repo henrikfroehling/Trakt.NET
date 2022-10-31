@@ -12,7 +12,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Get.Calendars.JsonReader")]
+    [TestCategory("Objects.Get.Calendars.JsonReader")]
     public partial class CalendarShowArrayJsonReader_Tests
     {
         [Fact]

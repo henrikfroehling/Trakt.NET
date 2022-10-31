@@ -15,7 +15,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Checkins")]
+    [TestCategory("Modules.Checkins")]
     public partial class TraktCheckinsModule_Tests
     {
         [Fact]

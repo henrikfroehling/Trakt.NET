@@ -11,7 +11,7 @@
     using TraktNet.Objects.Post.Shows.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Post.Shows.JsonWriter")]
+    [TestCategory("Objects.Post.Shows.JsonWriter")]
     public partial class ShowResetWatchedProgressPostObjectJsonWriter_Tests
     {
         private readonly DateTime RESET_AT = DateTime.UtcNow;

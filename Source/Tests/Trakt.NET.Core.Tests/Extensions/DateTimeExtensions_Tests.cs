@@ -6,7 +6,7 @@
     using TraktNet.Extensions;
     using Xunit;
 
-    [Category("Extensions")]
+    [TestCategory("Extensions")]
     public class DateTimeExtensions_Tests
     {
         [Fact]

@@ -9,7 +9,7 @@
     using TraktNet.Objects.Post.Users.HiddenItems;
     using Xunit;
 
-    [Category("Objects.Post.Users.HiddenItems.Implementations")]
+    [TestCategory("Objects.Post.Users.HiddenItems.Implementations")]
     public class TraktUserHiddenItemsRemovePost_Tests
     {
         [Fact]

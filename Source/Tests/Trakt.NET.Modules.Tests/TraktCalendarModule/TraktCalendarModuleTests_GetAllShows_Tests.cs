@@ -12,7 +12,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Calendar")]
+    [TestCategory("Modules.Calendar")]
     public partial class TraktCalendarModule_Tests
     {
         private const string GET_ALL_SHOWS_URI = "calendars/all/shows";

@@ -15,7 +15,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string REMOVE_WATCHED_HISTORY_ITEMS_URI = "sync/history/remove";

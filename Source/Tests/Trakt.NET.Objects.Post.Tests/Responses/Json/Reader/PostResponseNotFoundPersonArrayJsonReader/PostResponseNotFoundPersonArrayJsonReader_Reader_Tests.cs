@@ -12,7 +12,7 @@
     using TraktNet.Objects.Post.Responses;
     using Xunit;
 
-    [Category("Objects.Post.Responses.JsonReader")]
+    [TestCategory("Objects.Post.Responses.JsonReader")]
     public partial class PostResponseNotFoundPersonArrayJsonReader_Tests
     {
         [Fact]

@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Syncs.Collection;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.Collection.Implementations")]
+    [TestCategory("Objects.Post.Syncs.Collection.Implementations")]
     public class TraktSyncCollectionPost_Tests
     {
         [Fact]

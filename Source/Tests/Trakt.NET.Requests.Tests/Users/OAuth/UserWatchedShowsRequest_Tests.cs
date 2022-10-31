@@ -9,7 +9,7 @@
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
 
-    [Category("Requests.Users.OAuth")]
+    [TestCategory("Requests.Users.OAuth")]
     public class UserWatchedShowsRequest_Tests
     {
         [Fact]

@@ -12,7 +12,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Lists")]
+    [TestCategory("Modules.Lists")]
     public partial class TraktListsModule_Tests
     {
         private readonly string GET_LIST_LIKES_URI = $"lists/{LIST_ID}/likes";

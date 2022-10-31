@@ -7,7 +7,7 @@
     using TraktNet.Objects.Post.Users.HiddenItems;
     using Xunit;
 
-    [Category("PostBuilder")]
+    [TestCategory("PostBuilder")]
     public partial class TraktPost_UserHiddenItemsPostBuilder_Tests
     {
         [Fact]

@@ -11,7 +11,7 @@
     using TraktNet.Requests.Shows;
     using Xunit;
 
-    [Category("Requests.Shows.Lists")]
+    [TestCategory("Requests.Shows.Lists")]
     public class ShowsRecentlyUpdatedRequest_Tests
     {
         [Fact]

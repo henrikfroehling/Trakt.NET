@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Checkins;
     using Xunit;
 
-    [Category("Objects.Post.Checkins.Implementations")]
+    [TestCategory("Objects.Post.Checkins.Implementations")]
     public class TraktMovieCheckinPost_Tests
     {
         [Fact]

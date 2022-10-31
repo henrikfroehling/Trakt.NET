@@ -6,7 +6,7 @@
     using TraktNet.Requests.Countries;
     using Xunit;
 
-    [Category("Requests.Countries")]
+    [TestCategory("Requests.Countries")]
     public class CountriesMoviesRequest_Tests
     {
         [Fact]

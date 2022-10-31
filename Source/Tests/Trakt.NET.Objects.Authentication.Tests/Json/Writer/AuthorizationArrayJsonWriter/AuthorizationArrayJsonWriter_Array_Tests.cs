@@ -10,7 +10,7 @@
     using TraktNet.Objects.Authentication.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Authentication.JsonWriter")]
+    [TestCategory("Objects.Authentication.JsonWriter")]
     public partial class AuthorizationArrayJsonWriter_Tests
     {
         [Fact]

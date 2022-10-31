@@ -8,7 +8,7 @@
     using TraktNet.Objects.Authentication.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Authentication.Implementations")]
+    [TestCategory("Objects.Authentication.Implementations")]
     public class TraktDevice_Tests
     {
         [Fact]

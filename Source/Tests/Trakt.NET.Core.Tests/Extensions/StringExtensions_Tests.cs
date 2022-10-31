@@ -5,7 +5,7 @@
     using TraktNet.Extensions;
     using Xunit;
 
-    [Category("Extensions")]
+    [TestCategory("Extensions")]
     public class StringExtensions_Tests
     {
         [Fact]

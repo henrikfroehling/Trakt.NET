@@ -13,7 +13,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Seasons")]
+    [TestCategory("Modules.Seasons")]
     public partial class TraktSeasonsModule_Tests
     {
         private readonly string GET_SEASON_URI = $"shows/{SHOW_ID}/seasons/{SEASON_NR}";

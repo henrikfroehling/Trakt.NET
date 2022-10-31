@@ -16,7 +16,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Scrobble")]
+    [TestCategory("Modules.Scrobble")]
     public partial class TraktScrobbleModule_Tests
     {
         [Fact]

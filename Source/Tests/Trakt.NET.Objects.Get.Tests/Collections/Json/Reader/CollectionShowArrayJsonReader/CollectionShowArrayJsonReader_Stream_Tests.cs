@@ -13,7 +13,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Get.Collections.JsonReader")]
+    [TestCategory("Objects.Get.Collections.JsonReader")]
     public partial class CollectionShowArrayJsonReader_Tests
     {
         [Fact]

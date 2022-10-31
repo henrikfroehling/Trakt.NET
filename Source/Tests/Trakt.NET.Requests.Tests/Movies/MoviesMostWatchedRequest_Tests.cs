@@ -10,7 +10,7 @@
     using TraktNet.Requests.Parameters.Filter;
     using Xunit;
 
-    [Category("Requests.Movies.Lists")]
+    [TestCategory("Requests.Movies.Lists")]
     public class MoviesMostWatchedRequest_Tests
     {
         [Fact]

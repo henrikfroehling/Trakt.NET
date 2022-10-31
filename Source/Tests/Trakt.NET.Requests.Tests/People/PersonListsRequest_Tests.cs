@@ -10,7 +10,7 @@
     using TraktNet.Requests.People;
     using Xunit;
 
-    [Category("Requests.People")]
+    [TestCategory("Requests.People")]
     public class PersonListsRequest_Tests
     {
         [Fact]

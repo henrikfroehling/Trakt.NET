@@ -13,7 +13,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Genres")]
+    [TestCategory("Modules.Genres")]
     public partial class TraktGenresModule_Tests
     {
         private const string GENRES_SHOWS_URI = "genres/shows";

@@ -10,7 +10,7 @@
     using TraktNet.Requests.Shows.OAuth;
     using Xunit;
 
-    [Category("Requests.Shows.OAuth")]
+    [TestCategory("Requests.Shows.OAuth")]
     public class AShowProgressRequest_1_Tests
     {
         internal class ShowProgressRequestMock : AShowProgressRequest<int>

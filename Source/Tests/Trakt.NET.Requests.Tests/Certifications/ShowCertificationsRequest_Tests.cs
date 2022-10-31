@@ -5,7 +5,7 @@
     using TraktNet.Requests.Certifications;
     using Xunit;
 
-    [Category("Requests.Certifications")]
+    [TestCategory("Requests.Certifications")]
     public class ShowCertificationsRequest_Tests
     {
         [Fact]
