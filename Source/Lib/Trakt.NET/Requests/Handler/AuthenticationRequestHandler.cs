@@ -32,7 +32,7 @@
         }
 
         internal static IAuthenticationRequestHandler GetInstance(TraktClient client)
-            => s_requestHandler ?? (s_requestHandler = new AuthenticationRequestHandler(client));
+            => s_requestHandler ??= new AuthenticationRequestHandler(client);
 
         public string CreateAuthorizationUrl(string clientId, string redirectUri, string state = null)
         {
@@ -366,8 +366,17 @@
                     IObjectJsonReader<ITraktError> objectJsonReader = JsonFactoryContainer.CreateObjectReader<ITraktError>();
                     ITraktError traktError = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
-                    var errorMessage = traktError != null ? ($"error on {(isRefreshRequest ? "refreshing" : "retrieving")} oauth access token\nerror: {traktError.Error}\ndescription: {traktError.Description}")
-                                                          : "unknown error";
+                    string errorMessage = "unknown error";
+
+                    if (traktError != null)
+                    {
+                        string actionString = "retrieving";
+
+                        if (isRefreshRequest)
+                            actionString = "refreshing";
+
+                        errorMessage = $"error on {actionString} oauth access token\nerror: {traktError.Error}\ndescription: {traktError.Description}";
+                    }
 
                     throw new TraktAuthenticationOAuthException(errorMessage)
                     {

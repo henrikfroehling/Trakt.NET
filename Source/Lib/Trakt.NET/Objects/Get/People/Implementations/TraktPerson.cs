@@ -26,7 +26,21 @@
         public DateTime? Death { get; set; }
 
         /// <summary>Returns the age of the person, if <see cref="Birthday" /> is set, otherwise zero.</summary>
-        public int Age => Birthday.HasValue ? (Death.HasValue ? Birthday.YearsBetween(Death) : Birthday.YearsBetween(DateTime.Now)) : 0;
+        public int Age
+        {
+            get
+            {
+                if (Birthday.HasValue)
+                {
+                    if (Death.HasValue)
+                        return Birthday.YearsBetween(Death);
+
+                    return Birthday.YearsBetween(DateTime.Now);
+                }
+
+                return 0;
+            }
+        }
 
         /// <summary>Gets or sets the birthplace of the person.<para>Nullable</para></summary>
         public string Birthplace { get; set; }
