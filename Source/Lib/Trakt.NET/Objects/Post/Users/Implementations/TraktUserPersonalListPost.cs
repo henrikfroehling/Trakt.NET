@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Users
 {
     using Enums;
+    using Exceptions;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
@@ -41,7 +42,11 @@
 
         public void Validate()
         {
-            // TODO
+            if (Name == null)
+                throw new TraktPostValidationException(nameof(Name), "list name must not be null");
+
+            if (Name.Length == 0)
+                throw new TraktPostValidationException(nameof(Name), "list name must not be empty");
         }
     }
 }

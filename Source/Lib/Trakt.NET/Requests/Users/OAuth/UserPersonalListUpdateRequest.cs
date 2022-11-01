@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Interfaces;
     using Objects.Get.Lists;
@@ -29,7 +30,8 @@
 
         public override void Validate()
         {
-            base.Validate();
+            if (EqualityComparer<ITraktUserPersonalListPost>.Default.Equals(RequestBody, default))
+                throw new TraktRequestValidationException(nameof(RequestBody), "request body must not be null");
 
             if (Username == null)
                 throw new ArgumentNullException(nameof(Username));

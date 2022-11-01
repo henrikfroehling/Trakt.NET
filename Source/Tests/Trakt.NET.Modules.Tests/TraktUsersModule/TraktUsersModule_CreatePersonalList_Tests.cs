@@ -741,34 +741,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_CreatePersonalList_Exceptions()
-        {
-            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
-            {
-                Name = LIST_NAME
-            };
-
-            string postJson = await TestUtility.SerializeObject(createListPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.CreatePersonalListAsync(null, LIST_NAME);
-            await act.Should().ThrowAsync<TraktRequestValidationException>();
-
-            act = () => client.Users.CreatePersonalListAsync(string.Empty, LIST_NAME);
-            await act.Should().ThrowAsync<TraktRequestValidationException>();
-
-            act = () => client.Users.CreatePersonalListAsync("user name", LIST_NAME);
-            await act.Should().ThrowAsync<TraktRequestValidationException>();
-
-            act = () => client.Users.CreatePersonalListAsync(USERNAME, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.CreatePersonalListAsync(USERNAME, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

@@ -621,21 +621,13 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktList" /> instance containing information about the successfully created personal list.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given username or slug is null, empty or contains spaces.
-        /// Thrown, if the given list name is null or empty.
-        /// </exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktList>> CreatePersonalListAsync(string usernameOrSlug, string listName,
                                                                        string listDescription = null, TraktAccessScope privacy = null,
                                                                        bool? displayNumbers = null, bool? allowComments = null,
                                                                        CancellationToken cancellationToken = default)
         {
-            if (listName == null)
-                throw new ArgumentNullException(nameof(listName), "list name must not be null");
-
-            if (listName.Length == 0)
-                throw new ArgumentException("list name must not be empty", nameof(listName));
-
             var requestBody = new TraktUserPersonalListPost
             {
                 Name = listName,
