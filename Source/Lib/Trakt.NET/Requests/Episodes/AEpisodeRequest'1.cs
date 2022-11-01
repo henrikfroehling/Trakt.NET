@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.Requests.Episodes
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Interfaces;
-    using System;
     using System.Collections.Generic;
 
     internal abstract class AEpisodeRequest<TResponseContentType> : AGetRequest<TResponseContentType>, IHasId
@@ -27,13 +27,16 @@
         public override void Validate()
         {
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "show id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("show id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "show id not valid");
 
-            if (EpisodeNumber == 0)
-                throw new ArgumentOutOfRangeException(nameof(EpisodeNumber), "episode number must be a positive integer greater than zero");
+            if (SeasonNumber < 0)
+                throw new TraktRequestValidationException(nameof(SeasonNumber), "season number must be a positive integer greater than or equal to zero");
+
+            if (EpisodeNumber < 1)
+                throw new TraktRequestValidationException(nameof(EpisodeNumber), "episode number must be a positive integer greater than zero");
         }
     }
 }

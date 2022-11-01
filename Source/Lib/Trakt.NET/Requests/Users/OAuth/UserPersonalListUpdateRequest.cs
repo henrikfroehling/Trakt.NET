@@ -6,7 +6,6 @@
     using Interfaces;
     using Objects.Get.Lists;
     using Objects.Post.Users;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class UserPersonalListUpdateRequest : APutRequest<ITraktList, ITraktUserPersonalListPost>, IHasId
@@ -34,16 +33,16 @@
                 throw new TraktRequestValidationException(nameof(RequestBody), "request body must not be null");
 
             if (Username == null)
-                throw new ArgumentNullException(nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username must not be null");
 
             if (Username == string.Empty || Username.ContainsSpace())
-                throw new ArgumentException("username not valid", nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username not valid");
 
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "list id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("list id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "list id not valid");
         }
     }
 }

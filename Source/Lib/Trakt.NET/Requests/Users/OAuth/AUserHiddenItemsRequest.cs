@@ -4,7 +4,6 @@
     using Enums;
     using Exceptions;
     using Objects.Post.Users.HiddenItems;
-    using System;
     using System.Collections.Generic;
 
     internal abstract class AUserHiddenItemsRequest<TResponseContentType> : APostRequest<TResponseContentType, ITraktUserHiddenItemsPost>

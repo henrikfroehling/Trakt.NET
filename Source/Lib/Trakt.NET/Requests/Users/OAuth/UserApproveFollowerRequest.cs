@@ -1,10 +1,10 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Interfaces;
     using Objects.Get.Users;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class UserApproveFollowerRequest : ABodylessPostRequest<ITraktUserFollower>, IHasId
@@ -24,10 +24,10 @@
         public override void Validate()
         {
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "id not valid");
         }
     }
 }

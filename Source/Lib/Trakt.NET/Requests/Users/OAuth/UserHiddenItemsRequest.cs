@@ -2,8 +2,8 @@
 {
     using Base;
     using Enums;
+    using Exceptions;
     using Objects.Get.Users;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class UserHiddenItemsRequest : AUsersPagedGetRequest<ITraktUserHiddenItem>
@@ -33,10 +33,10 @@
             base.Validate();
 
             if (Section == null)
-                throw new ArgumentNullException(nameof(Section));
+                throw new TraktRequestValidationException(nameof(Section), "section type must not be null");
 
             if (Section == TraktHiddenItemsSection.Unspecified)
-                throw new ArgumentException("section type must not be unspecified", nameof(Section));
+                throw new TraktRequestValidationException(nameof(Section), "section type must not be unspecified");
         }
     }
 }

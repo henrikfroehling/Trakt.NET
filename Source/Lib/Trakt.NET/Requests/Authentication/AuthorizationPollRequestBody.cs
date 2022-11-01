@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.Requests.Authentication
 {
+    using Exceptions;
     using Extensions;
     using Interfaces;
     using Objects.Authentication;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -25,22 +25,22 @@
         public void Validate()
         {
             if (Device == null)
-                throw new ArgumentNullException(nameof(Device));
+                throw new TraktRequestValidationException(nameof(Device), "device must not be null");
 
             if (Device.IsExpiredUnused)
-                throw new ArgumentException("device code expired unused", nameof(Device));
+                throw new TraktRequestValidationException(nameof(Device), "device code expired unused");
 
             if (!Device.IsValid)
-                throw new ArgumentException("device not valid", nameof(Device));
+                throw new TraktRequestValidationException(nameof(Device), "device not valid");
 
             if (Device.DeviceCode.ContainsSpace())
-                throw new ArgumentException("device code not valid", nameof(Device.DeviceCode));
+                throw new TraktRequestValidationException(nameof(Device.DeviceCode), "device code not valid");
 
             if (string.IsNullOrEmpty(ClientId) || ClientId.ContainsSpace())
-                throw new ArgumentException("client id not valid", nameof(ClientId));
+                throw new TraktRequestValidationException(nameof(ClientId), "client id not valid");
 
             if (string.IsNullOrEmpty(ClientSecret) || ClientSecret.ContainsSpace())
-                throw new ArgumentException("client secret not valid", nameof(ClientSecret));
+                throw new TraktRequestValidationException(nameof(ClientSecret), "client secret not valid");
         }
     }
 }
