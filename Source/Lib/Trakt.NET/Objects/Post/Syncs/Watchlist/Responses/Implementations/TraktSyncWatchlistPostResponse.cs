@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Watchlist.Responses
 {
+    using Objects.Post.Responses;
     using Syncs.Responses;
 
     /// <summary>
@@ -25,5 +26,11 @@
         /// <para>Nullable</para>
         /// </summary>
         public ITraktSyncPostResponseNotFoundGroup NotFound { get; set; }
+
+        /// <summary>
+        /// Information about the updated list.
+        /// <para>Nullable</para>
+        /// </summary>
+        public ITraktPostResponseListData List { get; set; }
     }
 }

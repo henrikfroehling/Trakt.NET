@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
+    using Objects.Post.Responses.Json.Writer;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -34,9 +35,9 @@
 
             if (obj.List != null)
             {
-                var userCustomListItemsPostResponseListDataObjectJsonWriter = new UserPersonalListItemsPostResponseListDataObjectJsonWriter();
+                var postResponseListDataObjectJsonWriter = new PostResponseListDataObjectJsonWriter();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LIST, cancellationToken);
-                await userCustomListItemsPostResponseListDataObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.List, cancellationToken).ConfigureAwait(false);
+                await postResponseListDataObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.List, cancellationToken).ConfigureAwait(false);
             }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
