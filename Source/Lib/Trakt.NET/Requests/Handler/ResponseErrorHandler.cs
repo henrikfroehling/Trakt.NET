@@ -13,10 +13,10 @@
 
     internal static class ResponseErrorHandler
     {
-        internal static async Task HandleErrorsAsync(ExtendedHttpRequestMessage requestMessage, HttpResponseMessage responseMessage,
-                                                     bool isCheckinRequest = false, bool isDeviceRequest = false, bool isInAuthorizationPolling = false,
-                                                     bool isAuthorizationRequest = false, bool isAuthorizationRevoke = false,
-                                                     CancellationToken cancellationToken = default)
+        internal static Task HandleErrorsAsync(ExtendedHttpRequestMessage requestMessage, HttpResponseMessage responseMessage,
+                                               bool isCheckinRequest = false, bool isDeviceRequest = false, bool isInAuthorizationPolling = false,
+                                               bool isAuthorizationRequest = false, bool isAuthorizationRevoke = false,
+                                               CancellationToken cancellationToken = default)
         {
             if (requestMessage == null)
                 throw new ArgumentNullException(nameof(requestMessage));
@@ -24,6 +24,15 @@
             if (responseMessage == null)
                 throw new ArgumentNullException(nameof(responseMessage));
 
+            return InternalHandleErrorsAsync(requestMessage, responseMessage, isCheckinRequest, isDeviceRequest, isInAuthorizationPolling,
+                                             isAuthorizationRequest, isAuthorizationRevoke, cancellationToken);
+        }
+
+        private static async Task InternalHandleErrorsAsync(ExtendedHttpRequestMessage requestMessage, HttpResponseMessage responseMessage,
+                                                            bool isCheckinRequest = false, bool isDeviceRequest = false, bool isInAuthorizationPolling = false,
+                                                            bool isAuthorizationRequest = false, bool isAuthorizationRevoke = false,
+                                                            CancellationToken cancellationToken = default)
+        {
             string responseContent = string.Empty;
 
             if (responseMessage.Content != null)

@@ -109,11 +109,16 @@
             return result;
         }
 
-        public async Task<bool> CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken, CancellationToken cancellationToken = default)
+        public Task<bool> CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace())
                 throw new ArgumentException("access token must not be null, empty or contain any spaces", nameof(accessToken));
 
+            return InternalCheckIfAccessTokenWasRevokedOrIsNotValidAsync(accessToken, cancellationToken);
+        }
+
+        private async Task<bool> InternalCheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken, CancellationToken cancellationToken = default)
+        {
             ITraktAuthorization currentAuthorization = _client.Authorization;
             _client.Authorization = TraktAuthorization.CreateWith(accessToken);
 
