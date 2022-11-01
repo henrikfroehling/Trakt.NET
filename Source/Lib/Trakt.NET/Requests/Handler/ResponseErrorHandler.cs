@@ -171,7 +171,7 @@
                     ServerReasonPhrase = reasonPhrase
                 };
             }
-            else if (requestObjectType != RequestObjectType.Unspecified && !isDeviceRequest && !isInAuthorizationPolling && !isAuthorizationRequest && !isAuthorizationRevoke)
+            else if (requestObjectType != RequestObjectType.Unspecified)
             {
                 HandleNotFoundObjectError(errorParameters, requestUrl, requestBody, responseBody, reasonPhrase, requestObjectType);
             }
