@@ -94,13 +94,11 @@
 
         internal static async Task<Pair<bool, float>> ReadFloatValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (await jsonReader.ReadAsync(cancellationToken))
+            if (await jsonReader.ReadAsync(cancellationToken)
+                && (jsonReader.TokenType == JsonToken.Float || jsonReader.TokenType == JsonToken.Integer)
+                && float.TryParse(jsonReader.Value.ToString(), out float value))
             {
-                if (jsonReader.TokenType == JsonToken.Float || jsonReader.TokenType == JsonToken.Integer)
-                {
-                    if (float.TryParse(jsonReader.Value.ToString(), out float value))
-                        return new Pair<bool, float>(true, value);
-                }
+                return new Pair<bool, float>(true, value);
             }
 
             return new Pair<bool, float>(false, default);
@@ -108,13 +106,10 @@
 
         internal static async Task<Pair<bool, int>> ReadIntegerValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (await jsonReader.ReadAsync(cancellationToken))
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.Integer
+                && int.TryParse(jsonReader.Value.ToString(), out int value))
             {
-                if (jsonReader.TokenType == JsonToken.Integer)
-                {
-                    if (int.TryParse(jsonReader.Value.ToString(), out int value))
-                        return new Pair<bool, int>(true, value);
-                }
+                return new Pair<bool, int>(true, value);
             }
 
             return new Pair<bool, int>(false, default);
@@ -122,13 +117,10 @@
 
         internal static async Task<Pair<bool, uint>> ReadUnsignedIntegerValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (await jsonReader.ReadAsync(cancellationToken))
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.Integer
+                && uint.TryParse(jsonReader.Value.ToString(), out uint value))
             {
-                if (jsonReader.TokenType == JsonToken.Integer)
-                {
-                    if (uint.TryParse(jsonReader.Value.ToString(), out uint value))
-                        return new Pair<bool, uint>(true, value);
-                }
+                return new Pair<bool, uint>(true, value);
             }
 
             return new Pair<bool, uint>(false, default);
@@ -136,13 +128,10 @@
 
         internal static async Task<Pair<bool, ulong>> ReadUnsignedLongValueAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
-            if (await jsonReader.ReadAsync(cancellationToken))
+            if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.Integer
+                && ulong.TryParse(jsonReader.Value.ToString(), out ulong value))
             {
-                if (jsonReader.TokenType == JsonToken.Integer)
-                {
-                    if (ulong.TryParse(jsonReader.Value.ToString(), out ulong value))
-                        return new Pair<bool, ulong>(true, value);
-                }
+                return new Pair<bool, ulong>(true, value);
             }
 
             return new Pair<bool, ulong>(false, default);
