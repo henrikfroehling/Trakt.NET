@@ -21,7 +21,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME
             };
@@ -60,7 +60,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION
@@ -102,7 +102,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_Privacy()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -145,7 +145,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_Privacy_And_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -189,7 +189,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_Privacy_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -234,7 +234,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -277,7 +277,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -321,7 +321,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_DisplayNumbers_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -366,7 +366,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Privacy()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Privacy = PRIVACY
@@ -408,7 +408,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Privacy_And_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Privacy = PRIVACY,
@@ -451,7 +451,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Privacy_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Privacy = PRIVACY,
@@ -494,7 +494,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Privacy_And_DisplayNumbers_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Privacy = PRIVACY,
@@ -539,7 +539,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 DisplayNumbers = DISPLAY_NUMBERS
@@ -581,7 +581,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 AllowComments = ALLOW_COMMENTS
@@ -623,7 +623,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_DisplayNumbers_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 DisplayNumbers = DISPLAY_NUMBERS,
@@ -667,7 +667,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_Complete()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -745,7 +745,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_Exceptions()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME
             };

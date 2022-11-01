@@ -636,7 +636,7 @@ namespace TraktNet.Modules
             if (listName.Length == 0)
                 throw new ArgumentException("list name must not be empty", nameof(listName));
 
-            var requestBody = new TraktUserCustomListPost
+            var requestBody = new TraktUserPersonalListPost
             {
                 Name = listName,
                 Description = listDescription,
@@ -698,7 +698,7 @@ namespace TraktNet.Modules
             if (isListNameNotValid && isDescriptionNotSet && isPrivacyNotSetOrValid && isDisplayNumbersNotSet && isAllowCommentsNotSet)
                 throw new ArgumentException("no list specific values set");
 
-            var requestBody = new TraktUserCustomListPost
+            var requestBody = new TraktUserPersonalListPost
             {
                 Name = listName,
                 Description = listDescription,

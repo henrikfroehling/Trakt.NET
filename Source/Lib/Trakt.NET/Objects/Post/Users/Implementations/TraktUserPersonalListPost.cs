@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
 
     /// <summary>An episode custom list post.</summary>
-    public class TraktUserCustomListPost : ITraktUserPersonalListPost
+    public class TraktUserPersonalListPost : ITraktUserPersonalListPost
     {
         /// <summary>Gets or sets the required name of the custom list.</summary>
         public string Name { get; set; }

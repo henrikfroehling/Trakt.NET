@@ -5,7 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class UserCustomListPostObjectJsonWriter : AObjectJsonWriter<ITraktUserPersonalListPost>
+    internal class UserPersonalListPostObjectJsonWriter : AObjectJsonWriter<ITraktUserPersonalListPost>
     {
         public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktUserPersonalListPost obj, CancellationToken cancellationToken = default)
         {

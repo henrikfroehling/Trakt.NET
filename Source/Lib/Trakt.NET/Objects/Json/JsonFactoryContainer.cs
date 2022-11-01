@@ -433,7 +433,7 @@
             s_jsonIOFactories.Add(typeof(ITraktListLike), new ListLikeJsonIOFactory());
 
             // user post objects
-            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListPost), new UserCustomListPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListPost), new UserPersonalListPostJsonIOFactory());
 
             // user response post objects
             s_jsonIOFactories.Add(typeof(ITraktUserFollowUserPostResponse), new UserFollowUserPostResponseJsonIOFactory());
