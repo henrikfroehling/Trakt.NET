@@ -21,7 +21,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Name()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = NEW_LIST_NAME
             };
@@ -62,7 +62,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Name_And_Description()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = NEW_LIST_NAME,
                 Description = NEW_DESCRIPTION
@@ -104,7 +104,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Name_And_Description_And_Privacy()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = NEW_LIST_NAME,
                 Description = NEW_DESCRIPTION,
@@ -147,7 +147,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Name_And_Description_And_Privacy_And_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = NEW_LIST_NAME,
                 Description = NEW_DESCRIPTION,
@@ -192,7 +192,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Name_And_Description_And_Privacy_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = NEW_LIST_NAME,
                 Description = NEW_DESCRIPTION,
@@ -237,7 +237,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Name_And_Description_And_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = NEW_LIST_NAME,
                 Description = NEW_DESCRIPTION,
@@ -281,7 +281,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Name_And_Description_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = NEW_LIST_NAME,
                 Description = NEW_DESCRIPTION,
@@ -325,7 +325,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Name_And_Description_And_DisplayNumbers_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = NEW_LIST_NAME,
                 Description = NEW_DESCRIPTION,
@@ -370,7 +370,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Description()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Description = NEW_DESCRIPTION
             };
@@ -411,7 +411,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Description_And_Privacy()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Description = NEW_DESCRIPTION,
                 Privacy = NEW_PRIVACY
@@ -453,7 +453,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Description_And_Privacy_And_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Description = NEW_DESCRIPTION,
                 Privacy = NEW_PRIVACY,
@@ -497,7 +497,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Description_And_Privacy_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Description = NEW_DESCRIPTION,
                 Privacy = NEW_PRIVACY,
@@ -541,7 +541,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Description_And_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Description = NEW_DESCRIPTION,
                 DisplayNumbers = NEW_DISPLAY_NUMBERS
@@ -584,7 +584,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Description_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Description = NEW_DESCRIPTION,
                 AllowComments = NEW_ALLOW_COMMENTS
@@ -627,7 +627,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Description_And_DisplayNumbers_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Description = NEW_DESCRIPTION,
                 DisplayNumbers = NEW_DISPLAY_NUMBERS,
@@ -671,7 +671,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Privacy()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Privacy = NEW_PRIVACY
             };
@@ -712,7 +712,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Privacy_And_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Privacy = NEW_PRIVACY,
                 DisplayNumbers = NEW_DISPLAY_NUMBERS
@@ -755,7 +755,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Privacy_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Privacy = NEW_PRIVACY,
                 AllowComments = NEW_ALLOW_COMMENTS
@@ -798,7 +798,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Privacy_And_DisplayNumbers_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Privacy = NEW_PRIVACY,
                 DisplayNumbers = NEW_DISPLAY_NUMBERS,
@@ -842,7 +842,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 DisplayNumbers = NEW_DISPLAY_NUMBERS
             };
@@ -883,7 +883,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 AllowComments = NEW_ALLOW_COMMENTS
             };
@@ -925,7 +925,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_DisplayNumbers_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 DisplayNumbers = NEW_DISPLAY_NUMBERS,
                 AllowComments = NEW_ALLOW_COMMENTS
@@ -968,7 +968,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_Complete()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = NEW_LIST_NAME,
                 Description = NEW_DESCRIPTION,
@@ -1041,65 +1041,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_UpdatePersonalList_ArgumentExceptions()
-        {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
-            {
-                Name = NEW_LIST_NAME
-            };
-
-            string postJson = await TestUtility.SerializeObject(createListPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdatePersonalListAsync(null, LIST_ID, NEW_LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.UpdatePersonalListAsync(string.Empty, LIST_ID, NEW_LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.UpdatePersonalListAsync("user name", LIST_ID, NEW_LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.UpdatePersonalListAsync(USERNAME, null, NEW_LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.UpdatePersonalListAsync(USERNAME, string.Empty, NEW_LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.UpdatePersonalListAsync(USERNAME, "list id", NEW_LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            string description = string.Empty;
-
-            createListPost = new TraktUserCustomListPost
-            {
-                Description = description
-            };
-
-            postJson = await TestUtility.SerializeObject(createListPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            act = () => client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, description);
-            await act.Should().NotThrowAsync();
-
-            act = () => client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, null, TraktAccessScope.Unspecified);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
+    using Objects.Post.Responses.Json.Reader;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -15,8 +16,8 @@
             {
                 var responseGroupReader = new UserPersonalListItemsPostResponseGroupObjectJsonReader();
                 var responseNotFoundGroupReader = new UserPersonalListItemsPostResponseNotFoundGroupObjectJsonReader();
-                var listDataReader = new UserPersonalListItemsPostResponseListDataObjectJsonReader();
-                ITraktUserPersonalListItemsPostResponse customListItemsPostResponse = new TraktUserPersonalListItemsPostResponse();
+                var listDataReader = new PostResponseListDataObjectJsonReader();
+                ITraktUserPersonalListItemsPostResponse listItemsPostResponse = new TraktUserPersonalListItemsPostResponse();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -25,16 +26,16 @@
                     switch (propertyName)
                     {
                         case JsonProperties.PROPERTY_NAME_ADDED:
-                            customListItemsPostResponse.Added = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            listItemsPostResponse.Added = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_EXISTING:
-                            customListItemsPostResponse.Existing = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            listItemsPostResponse.Existing = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_NOT_FOUND:
-                            customListItemsPostResponse.NotFound = await responseNotFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            listItemsPostResponse.NotFound = await responseNotFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_LIST:
-                            customListItemsPostResponse.List = await listDataReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            listItemsPostResponse.List = await listDataReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -42,7 +43,7 @@
                     }
                 }
 
-                return customListItemsPostResponse;
+                return listItemsPostResponse;
             }
 
             return await Task.FromResult(default(ITraktUserPersonalListItemsPostResponse));

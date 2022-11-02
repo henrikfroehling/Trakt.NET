@@ -1,5 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Users.PersonalListItems.Responses
 {
+    using Objects.Post.Responses;
+
     /// <summary>
     /// Represents the response for an user personal list items post. See also <see cref="ITraktUserPersonalListItemsPost" />.
     /// <para>Contains the number of added, existing and not found movies, shows, seasons, episodes and people.</para>
@@ -28,6 +30,6 @@
         /// Information about the updated list.
         /// <para>Nullable</para>
         /// </summary>
-        public ITraktUserPersonalListItemsPostResponseListData List { get; set; }
+        public ITraktPostResponseListData List { get; set; }
     }
 }

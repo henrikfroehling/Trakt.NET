@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
@@ -44,19 +45,19 @@
             var requestMock = new UsersDeleteByIdRequestMock();
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             requestMock = new UsersDeleteByIdRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             requestMock = new UsersDeleteByIdRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

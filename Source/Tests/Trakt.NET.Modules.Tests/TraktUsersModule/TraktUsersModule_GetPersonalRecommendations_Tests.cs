@@ -520,21 +520,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetPersonalRecommendations_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(
-                GET_PERSONAL_RECOMMENDATIONS_URI, USER_RECOMMENDATIONS_JSON, 1, 10, 1, RECOMMENDATIONS_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktRecommendation>>> act = () => client.Users.GetPersonalRecommendationsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetPersonalRecommendationsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetPersonalRecommendationsAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

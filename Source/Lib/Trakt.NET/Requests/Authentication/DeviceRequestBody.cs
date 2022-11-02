@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Requests.Authentication
 {
+    using Exceptions;
     using Extensions;
     using Interfaces;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -20,7 +20,7 @@
         public void Validate()
         {
             if (string.IsNullOrEmpty(ClientId) || ClientId.ContainsSpace())
-                throw new ArgumentException("client id not valid", nameof(ClientId));
+                throw new TraktRequestValidationException(nameof(ClientId), "client id not valid");
         }
     }
 }

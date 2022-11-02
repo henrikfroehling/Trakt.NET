@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
@@ -53,37 +54,37 @@
             var request = new UserListLikeRequest { Id = "123" };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty username
             request = new UserListLikeRequest { Username = string.Empty, Id = "123" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
             request = new UserListLikeRequest { Username = "invalid username", Id = "123" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id is null
             request = new UserListLikeRequest { Username = "username" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new UserListLikeRequest { Username = "username", Id = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new UserListLikeRequest { Username = "username", Id = "invalid id" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

@@ -6,7 +6,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class UserCustomListPostObjectJsonReader : AObjectJsonReader<ITraktUserPersonalListPost>
+    internal class UserPersonalListPostObjectJsonReader : AObjectJsonReader<ITraktUserPersonalListPost>
     {
         public override async Task<ITraktUserPersonalListPost> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
@@ -14,7 +14,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                ITraktUserPersonalListPost userCustomListPost = new TraktUserCustomListPost();
+                ITraktUserPersonalListPost userPersonalListPost = new TraktUserPersonalListPost();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -23,25 +23,25 @@
                     switch (propertyName)
                     {
                         case JsonProperties.PROPERTY_NAME_NAME:
-                            userCustomListPost.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            userPersonalListPost.Name = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_DESCRIPTION:
-                            userCustomListPost.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            userPersonalListPost.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_PRIVACY:
-                            userCustomListPost.Privacy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktAccessScope>(jsonReader, cancellationToken);
+                            userPersonalListPost.Privacy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktAccessScope>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_DISPLAY_NUMBERS:
-                            userCustomListPost.DisplayNumbers = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            userPersonalListPost.DisplayNumbers = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_ALLOW_COMMENTS:
-                            userCustomListPost.AllowComments = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            userPersonalListPost.AllowComments = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SORT_BY:
-                            userCustomListPost.SortBy = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            userPersonalListPost.SortBy = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SORT_HOW:
-                            userCustomListPost.SortHow = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            userPersonalListPost.SortHow = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -49,7 +49,7 @@
                     }
                 }
 
-                return userCustomListPost;
+                return userPersonalListPost;
             }
 
             return await Task.FromResult(default(ITraktUserPersonalListPost));

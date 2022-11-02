@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Shows;
     using Xunit;
@@ -51,17 +52,17 @@
             var request = new ShowSummaryRequest();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new ShowSummaryRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new ShowSummaryRequest { Id = "invalid id" };
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

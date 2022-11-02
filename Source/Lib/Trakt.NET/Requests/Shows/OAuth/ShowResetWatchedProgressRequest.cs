@@ -26,13 +26,13 @@
 
         public override void Validate()
         {
+            base.Validate();
+
             if (Id == null)
                 throw new TraktRequestValidationException(nameof(Id), "show id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
                 throw new TraktRequestValidationException(nameof(Id), "show id not valid");
-
-            base.Validate();
         }
     }
 }

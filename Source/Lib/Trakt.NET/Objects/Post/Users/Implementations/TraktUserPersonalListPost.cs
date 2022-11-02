@@ -1,12 +1,13 @@
 ﻿namespace TraktNet.Objects.Post.Users
 {
     using Enums;
+    using Exceptions;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>An episode custom list post.</summary>
-    public class TraktUserCustomListPost : ITraktUserPersonalListPost
+    public class TraktUserPersonalListPost : ITraktUserPersonalListPost
     {
         /// <summary>Gets or sets the required name of the custom list.</summary>
         public string Name { get; set; }
@@ -41,7 +42,11 @@
 
         public void Validate()
         {
-            // TODO
+            if (Name == null)
+                throw new TraktPostValidationException(nameof(Name), "list name must not be null");
+
+            if (Name.Length == 0)
+                throw new TraktPostValidationException(nameof(Name), "list name must not be empty");
         }
     }
 }

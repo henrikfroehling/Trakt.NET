@@ -714,21 +714,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetComments_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(
-                GET_COMMENTS_URI, USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetCommentsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetCommentsAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

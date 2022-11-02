@@ -56,29 +56,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_DeletePersonalList_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_PERSONAL_LIST_URI, HttpStatusCode.NoContent);
-
-            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeletePersonalListAsync(null, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.DeletePersonalListAsync(string.Empty, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.DeletePersonalListAsync("user name", LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.DeletePersonalListAsync(USERNAME, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.DeletePersonalListAsync(USERNAME, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.DeletePersonalListAsync(USERNAME, "list id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

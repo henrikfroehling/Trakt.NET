@@ -1,14 +1,15 @@
-﻿namespace TraktNet.Objects.Post.Users.PersonalListItems.Responses.Json.Writer
+﻿namespace TraktNet.Objects.Post.Responses.Json.Writer
 {
     using Newtonsoft.Json;
     using System.Threading;
     using System.Threading.Tasks;
     using TraktNet.Extensions;
     using TraktNet.Objects.Json;
+    using TraktNet.Objects.Post.Responses;
 
-    internal class UserPersonalListItemsPostResponseListDataObjectJsonWriter : AObjectJsonWriter<ITraktUserPersonalListItemsPostResponseListData>
+    internal class PostResponseListDataObjectJsonWriter : AObjectJsonWriter<ITraktPostResponseListData>
     {
-        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktUserPersonalListItemsPostResponseListData obj, CancellationToken cancellationToken = default)
+        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktPostResponseListData obj, CancellationToken cancellationToken = default)
         {
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);

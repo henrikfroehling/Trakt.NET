@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
+    using Objects.Post.Responses.Json.Reader;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -15,7 +16,8 @@
             {
                 var responseGroupReader = new UserPersonalListItemsPostResponseGroupObjectJsonReader();
                 var responseNotFoundGroupReader = new UserPersonalListItemsPostResponseNotFoundGroupObjectJsonReader();
-                ITraktUserPersonalListItemsRemovePostResponse customListItemsRemovePostResponse = new TraktUserPersonalListItemsRemovePostResponse();
+                var listDataReader = new PostResponseListDataObjectJsonReader();
+                ITraktUserPersonalListItemsRemovePostResponse listItemsRemovePostResponse = new TraktUserPersonalListItemsRemovePostResponse();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -24,10 +26,13 @@
                     switch (propertyName)
                     {
                         case JsonProperties.PROPERTY_NAME_DELETED:
-                            customListItemsRemovePostResponse.Deleted = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            listItemsRemovePostResponse.Deleted = await responseGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_NOT_FOUND:
-                            customListItemsRemovePostResponse.NotFound = await responseNotFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            listItemsRemovePostResponse.NotFound = await responseNotFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_LIST:
+                            listItemsRemovePostResponse.List = await listDataReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -35,7 +40,7 @@
                     }
                 }
 
-                return customListItemsRemovePostResponse;
+                return listItemsRemovePostResponse;
             }
 
             return await Task.FromResult(default(ITraktUserPersonalListItemsRemovePostResponse));

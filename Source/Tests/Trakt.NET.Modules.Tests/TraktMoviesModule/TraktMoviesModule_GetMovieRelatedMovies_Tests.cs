@@ -198,21 +198,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieRelatedMovies_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_RELATED_MOVIES_URI,
-                                                           MOVIE_RELATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktMovie>>> act = () => client.Movies.GetMovieRelatedMoviesAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieRelatedMoviesAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieRelatedMoviesAsync("movie id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

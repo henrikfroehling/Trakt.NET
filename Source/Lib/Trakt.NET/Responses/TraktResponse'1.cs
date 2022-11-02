@@ -7,7 +7,11 @@
 
     /// <summary>A Trakt response with content of type <typeparamref name="TResponseContentType" />.</summary>
     /// <typeparam name="TResponseContentType">The content type.</typeparam>
-    public class TraktResponse<TResponseContentType> : TraktNoContentResponse, ITraktResponse<TResponseContentType>, IEquatable<TraktResponse<TResponseContentType>>
+    public class TraktResponse<TResponseContentType>
+        : TraktNoContentResponse,
+          ITraktResponse<TResponseContentType>,
+          IEquatable<TraktResponse<TResponseContentType>>,
+          IEqualityComparer<TraktResponse<TResponseContentType>>
     {
         /// <summary>Gets, whether this response has a content value set.</summary>
         public bool HasValue { get; set; }
@@ -92,6 +96,11 @@
                 && other.RetryAfter == RetryAfter;
         }
 
+        public bool Equals(TraktResponse<TResponseContentType> left, TraktResponse<TResponseContentType> right)
+            => left.Equals(right);
+
+        public int GetHashCode(TraktResponse<TResponseContentType> obj) => obj.GetHashCode();
+
         /// <summary>Enables implicit conversion to <typeparamref name="TResponseContentType" /> for this type.</summary>
         /// <param name="response">The <see cref="TraktResponse{TResponseContentType}" /> instance, which will be converted to <typeparamref name="TResponseContentType" />.</param>
         public static implicit operator TResponseContentType(TraktResponse<TResponseContentType> response) => response.Value;
@@ -99,7 +108,7 @@
         /// <summary>Enables implicit conversion to <see cref="TraktResponse{TResponseContentType}" /> for this type.</summary>
         /// <param name="value">The <typeparamref name="TResponseContentType" /> instance, which will be converted to <see cref="TraktResponse{TResponseContentType}" />.</param>
         public static implicit operator TraktResponse<TResponseContentType>(TResponseContentType value)
-            => new TraktResponse<TResponseContentType>
+            => new()
             {
                 Value = value,
                 HasValue = !EqualityComparer<TResponseContentType>.Default.Equals(value, default),

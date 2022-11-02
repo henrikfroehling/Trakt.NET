@@ -2,7 +2,6 @@
 {
     using Enums;
     using Exceptions;
-    using Extensions;
     using Objects.Basic;
     using Objects.Get.Episodes;
     using Objects.Get.Lists;
@@ -51,10 +50,9 @@
         /// </param>
         /// <returns>An <see cref="ITraktComment" /> instance with the queried comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, CancellationToken cancellationToken = default)
         {
-            ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new CommentSummaryRequest
@@ -82,11 +80,10 @@
         /// </param>
         /// <returns>An <see cref="ITraktCommentItem" /> instance with the queried comment's media item.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given commentId is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktCommentItem>> GetCommentItemAsync(uint commentId, TraktExtendedInfo extendedInfo = null,
                                                                           CancellationToken cancellationToken = default)
         {
-            ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new CommentItemRequest
@@ -122,12 +119,11 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktCommentLike>> GetCommentLikesAsync(uint commentId, TraktExtendedInfo extendedInfo = null,
                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                 CancellationToken cancellationToken = default)
         {
-            ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecutePagedRequestAsync(new CommentLikesRequest
@@ -155,10 +151,10 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktComment" /> instances with the data of each queried comment.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if one of the given comment ids is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public async Task<IEnumerable<TraktResponse<ITraktComment>>> GetMutlipleCommentsAsync(uint[] commentIds, CancellationToken cancellationToken = default)
         {
-            if (commentIds == null || commentIds.Length <= 0)
+            if (commentIds == null || commentIds.Length == 0)
                 return new List<TraktResponse<ITraktComment>>();
 
             var tasks = new List<Task<TraktResponse<ITraktComment>>>();
@@ -336,16 +332,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given movie's title is null, empty or contains spaces.
-        /// Thrown, if the given movie has no valid ids. See also <seealso cref="ITraktMovieIds" />.
-        /// Thrown, if the given comment is null or empty.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or its ids are null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given movie's year is not valid.
-        /// Thrown, if the given comment's word count is below five.
-        /// </exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostMovieCommentAsync(ITraktMovieCommentPost movieCommentPost,
                                                                                     CancellationToken cancellationToken = default)
         {
@@ -377,13 +365,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given show's title is null, empty or contains spaces.
-        /// Thrown, if the given show has no valid ids. See also <seealso cref="ITraktShowIds" />.
-        /// Thrown, if the given comment is null or empty.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given show is null or its ids are null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostShowCommentAsync(ITraktShowCommentPost showCommentPost,
                                                                                    CancellationToken cancellationToken = default)
         {
@@ -415,12 +398,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given season has no valid ids. See also <seealso cref="ITraktSeasonIds" />.
-        /// Thrown, if the given comment is null or empty.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given season is null or its ids are null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostSeasonCommentAsync(ITraktSeasonCommentPost seasonCommentPost,
                                                                                      CancellationToken cancellationToken = default)
         {
@@ -452,12 +431,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given episode has no valid ids. See also <seealso cref="ITraktEpisodeIds" />.
-        /// Thrown, if the given comment is null or empty.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or its ids are null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostEpisodeCommentAsync(ITraktEpisodeCommentPost episodeCommentPost,
                                                                                       CancellationToken cancellationToken = default)
         {
@@ -489,12 +464,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given list has no valid ids. See also <seealso cref="ITraktListIds" />.
-        /// Thrown, if the given comment is null or empty.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given list is null or its ids are null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostListCommentAsync(ITraktListCommentPost listCommentPost,
                                                                                    CancellationToken cancellationToken = default)
         {
@@ -523,17 +494,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully updated comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given comment id is null, empty or contains spaces.
-        /// Thrown, if the given comment is null or empty.
-        /// </exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> UpdateCommentAsync(uint commentId, string comment, bool? containsSpoiler = null,
                                                                                  CancellationToken cancellationToken = default)
         {
-            ValidateId(commentId);
-            ValidateComment(comment);
-
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new CommentUpdateRequest
@@ -564,17 +529,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktCommentPostResponse" /> instance, containing the successfully posted reply's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given comment id is null, empty or contains spaces.
-        /// Thrown, if the given comment is null or empty.
-        /// </exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given comment's word count is below five.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktCommentPostResponse>> PostCommentReplyAsync(uint commentId, string comment, bool? containsSpoiler = null,
                                                                                     CancellationToken cancellationToken = default)
         {
-            ValidateId(commentId);
-            ValidateComment(comment);
-
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new CommentReplyRequest
@@ -602,10 +561,9 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktNoContentResponse> DeleteCommentAsync(uint commentId, CancellationToken cancellationToken = default)
         {
-            ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteNoContentRequestAsync(new CommentDeleteRequest
@@ -628,10 +586,9 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktNoContentResponse> LikeCommentAsync(uint commentId, CancellationToken cancellationToken = default)
         {
-            ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteNoContentRequestAsync(new CommentLikeRequest
@@ -654,10 +611,9 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktNoContentResponse> UnlikeCommentAsync(uint commentId, CancellationToken cancellationToken = default)
         {
-            ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteNoContentRequestAsync(new CommentUnlikeRequest
@@ -688,11 +644,10 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given comment id is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetCommentRepliesAsync(uint commentId, TraktPagedParameters pagedParameters = null,
                                                                               CancellationToken cancellationToken = default)
         {
-            ValidateId(commentId);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecutePagedRequestAsync(new CommentRepliesRequest
@@ -702,21 +657,6 @@
                 Limit = pagedParameters?.Limit,
             },
             cancellationToken);
-        }
-
-        private void ValidateId(uint commentId)
-        {
-            if (commentId == 0)
-                throw new ArgumentException("comment id not valid", nameof(commentId));
-        }
-
-        private void ValidateComment(string comment)
-        {
-            if (string.IsNullOrEmpty(comment))
-                throw new ArgumentException("comment is empty", nameof(comment));
-
-            if (comment.WordCount() < 5)
-                throw new ArgumentOutOfRangeException(nameof(comment), "comment has too few words - at least five words are required");
         }
     }
 }

@@ -143,29 +143,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetListLikes_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_LIST_LIKES_URI, LIST_LIKES_JSON, 1, 10, 1, LIST_LIKES_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktListLike>>> act = () => client.Users.GetListLikesAsync(null, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListLikesAsync(string.Empty, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListLikesAsync("user name", LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListLikesAsync(USERNAME, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListLikesAsync(USERNAME, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListLikesAsync(USERNAME, "list id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

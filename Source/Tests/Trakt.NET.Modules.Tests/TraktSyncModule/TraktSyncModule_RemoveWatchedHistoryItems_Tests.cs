@@ -10,7 +10,6 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
-    using TraktNet.Objects.Post.Syncs.History;
     using TraktNet.Objects.Post.Syncs.History.Responses;
     using TraktNet.Responses;
     using Xunit;
@@ -91,21 +90,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_RemoveWatchedHistoryItems_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(RemoveHistoryPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHED_HISTORY_ITEMS_URI, postJson, HISTORY_REMOVE_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>>> act = () => client.Sync.RemoveWatchedHistoryItemsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Sync.RemoveWatchedHistoryItemsAsync(new TraktSyncHistoryRemovePost());
-            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

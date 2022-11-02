@@ -89,20 +89,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetFriends_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_FRIENDS_URI, FRIENDS_JSON);
-
-            Func<Task<TraktListResponse<ITraktUserFriend>>> act = () => client.Users.GetFriendsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetFriendsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetFriendsAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

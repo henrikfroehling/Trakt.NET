@@ -1,19 +1,20 @@
-﻿namespace TraktNet.Objects.Post.Users.PersonalListItems.Responses.Json.Reader
+﻿namespace TraktNet.Objects.Post.Responses.Json.Reader
 {
     using Newtonsoft.Json;
     using System.Threading;
     using System.Threading.Tasks;
     using TraktNet.Objects.Json;
+    using TraktNet.Objects.Post.Responses;
 
-    internal class UserPersonalListItemsPostResponseListDataObjectJsonReader : AObjectJsonReader<ITraktUserPersonalListItemsPostResponseListData>
+    internal class PostResponseListDataObjectJsonReader : AObjectJsonReader<ITraktPostResponseListData>
     {
-        public override async Task<ITraktUserPersonalListItemsPostResponseListData> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<ITraktPostResponseListData> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                ITraktUserPersonalListItemsPostResponseListData customListItemsPostResponseListData = new TraktUserPersonalListItemsPostResponseListData();
+                ITraktPostResponseListData postResponseListData = new TraktPostResponseListData();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -26,12 +27,12 @@
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
                                 if (value.First)
-                                    customListItemsPostResponseListData.UpdatedAt = value.Second;
+                                    postResponseListData.UpdatedAt = value.Second;
 
                                 break;
                             }
                         case JsonProperties.PROPERTY_NAME_ITEM_COUNT:
-                            customListItemsPostResponseListData.ItemCount = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            postResponseListData.ItemCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -39,10 +40,10 @@
                     }
                 }
 
-                return customListItemsPostResponseListData;
+                return postResponseListData;
             }
 
-            return await Task.FromResult(default(ITraktUserPersonalListItemsPostResponseListData));
+            return await Task.FromResult(default(ITraktPostResponseListData));
         }
     }
 }

@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Users.OAuth;
@@ -58,19 +59,19 @@
             var requestMock = new UserCollectionShowsRequest();
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty username
             requestMock = new UserCollectionShowsRequest { Username = string.Empty };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
             requestMock = new UserCollectionShowsRequest { Username = "invalid username" };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

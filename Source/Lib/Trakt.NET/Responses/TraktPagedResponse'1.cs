@@ -7,7 +7,11 @@
 
     /// <summary>A Trakt paged list response with items of content type <typeparamref name="TResponseContentType" />.</summary>
     /// <typeparam name="TResponseContentType">The content type of the list items.</typeparam>
-    public class TraktPagedResponse<TResponseContentType> : TraktListResponse<TResponseContentType>, ITraktPagedResponse<TResponseContentType>, IEquatable<TraktPagedResponse<TResponseContentType>>
+    public class TraktPagedResponse<TResponseContentType>
+        : TraktListResponse<TResponseContentType>,
+          ITraktPagedResponse<TResponseContentType>,
+          IEquatable<TraktPagedResponse<TResponseContentType>>,
+          IEqualityComparer<TraktPagedResponse<TResponseContentType>>
     {
         /// <summary>Gets the page count for this response.</summary>
         public int? PageCount { get; set; }
@@ -31,6 +35,11 @@
                 && other.ItemCount == ItemCount;
         }
 
+        public bool Equals(TraktPagedResponse<TResponseContentType> left, TraktPagedResponse<TResponseContentType> right)
+            => left.Equals(right);
+
+        public int GetHashCode(TraktPagedResponse<TResponseContentType> obj) => obj.GetHashCode();
+
         /// <summary>Enables implicit conversion to <see cref="List{TResponseContentType}" /> for this type.</summary>
         /// <param name="response">The <see cref="TraktPagedResponse{TResponseContentType}" /> instance, which will be converted to <see cref="List{TResponseContentType}" />.</param>
         public static explicit operator List<TResponseContentType>(TraktPagedResponse<TResponseContentType> response) => response.Value.ToList();
@@ -38,7 +47,7 @@
         /// <summary>Enables implicit conversion to <see cref="TraktPagedResponse{TResponseContentType}" /> for this type.</summary>
         /// <param name="value">The <see cref="List{TResponseContentType}" /> instance, which will be converted to <see cref="TraktPagedResponse{TResponseContentType}" />.</param>
         public static implicit operator TraktPagedResponse<TResponseContentType>(List<TResponseContentType> value)
-            => new TraktPagedResponse<TResponseContentType>
+            => new()
             {
                 Value = value,
                 HasValue = value != null,

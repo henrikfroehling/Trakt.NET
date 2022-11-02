@@ -1,10 +1,10 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Enums;
+    using Exceptions;
     using Extensions;
     using Objects.Get.Users;
     using Parameters;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class UserCommentsRequest : AUsersPagedGetRequest<ITraktUserComment>
@@ -42,10 +42,10 @@
             base.Validate();
 
             if (Username == null)
-                throw new ArgumentNullException(nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username must not be null");
 
             if (Username == string.Empty || Username.ContainsSpace())
-                throw new ArgumentException("username not valid", nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username not valid");
         }
     }
 }

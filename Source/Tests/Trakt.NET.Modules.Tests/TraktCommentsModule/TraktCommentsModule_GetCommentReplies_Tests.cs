@@ -123,15 +123,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_GetCommentReplies_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_COMMENT_REPLIES_URI,
-                                                           COMMENT_REPLIES_JSON, 1, 10, COMMENT_REPLIES_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Comments.GetCommentRepliesAsync(0);
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

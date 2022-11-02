@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Requests.Movies
 {
+    using Exceptions;
     using Objects.Get.Movies;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class MovieReleasesRequest : AMovieRequest<ITraktMovieRelease>
@@ -25,7 +25,7 @@
             base.Validate();
 
             if (CountryCode != null && CountryCode.Length != 2)
-                throw new ArgumentOutOfRangeException(nameof(CountryCode), "country code has wrong length");
+                throw new TraktRequestValidationException(nameof(CountryCode), "country code has wrong length; country code should be two characters long");
         }
     }
 }

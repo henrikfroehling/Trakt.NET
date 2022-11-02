@@ -300,23 +300,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodeLists_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, EPISODE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(null, SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodeListsAsync(string.Empty, SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodeListsAsync("show id", SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodeListsAsync(SHOW_ID, SEASON_NR, 0);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-        }
     }
 }

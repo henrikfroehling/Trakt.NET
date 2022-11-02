@@ -232,20 +232,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktListsModule_GetListItems_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_LIST_ITEMS_URI, LIST_ITEMS_JSON);
-
-            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Lists.GetListItemsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Lists.GetListItemsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Lists.GetListItemsAsync("list id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

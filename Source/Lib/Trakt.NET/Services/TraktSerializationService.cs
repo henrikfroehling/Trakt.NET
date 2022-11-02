@@ -60,7 +60,7 @@
                 throw new ArgumentNullException(nameof(authorizationJson), "authorization json string must not be null");
 
             if (authorizationJson.Length == 0)
-                throw new ArgumentException(nameof(authorizationJson), "authorization json string must not be empty");
+                throw new ArgumentException("authorization json string must not be empty", nameof(authorizationJson));
 
             IObjectJsonReader<ITraktAuthorization> objectJsonReader = JsonFactoryContainer.CreateObjectReader<ITraktAuthorization>();
             AuthorizationObjectJsonReader authorizationObjectJsonReader = (objectJsonReader as AuthorizationObjectJsonReader);
@@ -82,7 +82,7 @@
                 throw new ArgumentNullException(nameof(json), "json string must not be null");
 
             if (json.Length == 0)
-                throw new ArgumentException(nameof(json), "json string must not be empty");
+                throw new ArgumentException("json string must not be empty", nameof(json));
 
             IObjectJsonReader<TObjectType> objectJsonReader = JsonFactoryContainer.CreateObjectReader<TObjectType>();
             return objectJsonReader.ReadObjectAsync(json, cancellationToken);
@@ -119,7 +119,7 @@
                 throw new ArgumentNullException(nameof(json), "json string must not be null");
 
             if (json.Length == 0)
-                throw new ArgumentException(nameof(json), "json string must not be empty");
+                throw new ArgumentException("json string must not be empty", nameof(json));
 
             IArrayJsonReader<TObjectType> arrayJsonReader = new ArrayJsonReader<TObjectType>();
             return arrayJsonReader.ReadArrayAsync(json, cancellationToken);

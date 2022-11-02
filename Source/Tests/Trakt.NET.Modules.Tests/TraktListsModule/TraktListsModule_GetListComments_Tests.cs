@@ -216,22 +216,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktListsModule_GetListComments_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(
-                GET_LIST_COMMENTS_URI,
-                LIST_COMMENTS_JSON, 1, 10, 1, LIST_COMMENTS_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Lists.GetListCommentsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Lists.GetListCommentsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Lists.GetListCommentsAsync("list id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

@@ -229,6 +229,7 @@
             s_jsonIOFactories.Add(typeof(ITraktPersonShowCreditsCrewItem), new PersonShowCreditsCrewItemJsonIOFactory());
 
             // post response objects
+            s_jsonIOFactories.Add(typeof(ITraktPostResponseListData), new PostResponseListDataJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktPostResponseNotFoundEpisode), new PostResponseNotFoundEpisodeJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktPostResponseNotFoundMovie), new PostResponseNotFoundMovieJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktPostResponseNotFoundPerson), new PostResponseNotFoundPersonJsonIOFactory());
@@ -387,7 +388,6 @@
             // user personal list items post response objects
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponse), new UserPersonalListItemsPostResponseJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponseGroup), new UserPersonalListItemsPostResponseGroupJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponseListData), new UserPersonalListItemsPostResponseListDataJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsPostResponseNotFoundGroup), new UserPersonalListItemsPostResponseNotFoundGroupJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListItemsRemovePostResponse), new UserPersonalListItemsRemovePostResponseJsonIOFactory());
 
@@ -433,7 +433,7 @@
             s_jsonIOFactories.Add(typeof(ITraktListLike), new ListLikeJsonIOFactory());
 
             // user post objects
-            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListPost), new UserCustomListPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserPersonalListPost), new UserPersonalListPostJsonIOFactory());
 
             // user response post objects
             s_jsonIOFactories.Add(typeof(ITraktUserFollowUserPostResponse), new UserFollowUserPostResponseJsonIOFactory());
