@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Modules
+namespace TraktNet.Modules
 {
     using Enums;
     using Exceptions;
@@ -118,7 +118,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated personal recommendations order.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedRecommendedItemRanks"/> is null.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderRecommendedItemsAsync(IEnumerable<uint> reorderedRecommendedItemRanks,
                                                                                                     CancellationToken cancellationToken = default)
         {
@@ -183,7 +184,7 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given playback progress id is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktNoContentResponse> RemovePlaybackItemAsync(uint playbackId, CancellationToken cancellationToken = default)
         {
             if (playbackId == 0)
@@ -275,12 +276,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktSyncCollectionPostResponse" /> instance, which contains information about which items were added, updated, existing and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given collection post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given collection post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktSyncCollectionPostResponse>> AddCollectionItemsAsync(ITraktSyncCollectionPost collectionPost,
                                                                                              CancellationToken cancellationToken = default)
         {
-            ValidateCollectionPost(collectionPost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncCollectionAddRequest
@@ -309,12 +309,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktSyncCollectionRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given collection remove post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given collection remove post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync(ITraktSyncCollectionPost collectionRemovePost,
                                                                                                       CancellationToken cancellationToken = default)
         {
-            ValidateCollectionPost(collectionRemovePost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncCollectionRemoveRequest
@@ -450,12 +449,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktSyncHistoryPostResponse" /> instance, which contains information about which items were added and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given history post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given history post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktSyncHistoryPostResponse>> AddWatchedHistoryItemsAsync(ITraktSyncHistoryPost historyPost,
                                                                                               CancellationToken cancellationToken = default)
         {
-            ValidateHistoryPost(historyPost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchedHistoryAddRequest
@@ -484,12 +482,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktSyncHistoryRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given history remove post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given history remove post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>> RemoveWatchedHistoryItemsAsync(ITraktSyncHistoryRemovePost historyRemovePost,
                                                                                                        CancellationToken cancellationToken = default)
         {
-            ValidateHistoryRemovePost(historyRemovePost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchedHistoryRemoveRequest
@@ -561,12 +558,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktSyncRatingsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given ratings post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given ratings post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktSyncRatingsPostResponse>> AddRatingsAsync(ITraktSyncRatingsPost ratingsPost,
                                                                                   CancellationToken cancellationToken = default)
         {
-            ValidateRatingsPost(ratingsPost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncRatingsAddRequest
@@ -595,12 +591,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktSyncRatingsRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given ratings remove post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given ratings remove post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync(ITraktSyncRatingsPost ratingsRemovePost,
                                                                                            CancellationToken cancellationToken = default)
         {
-            ValidateRatingsPost(ratingsRemovePost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncRatingsRemoveRequest
@@ -629,12 +624,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktSyncRecommendationsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given recommendations post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given recommendations post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktSyncRecommendationsPostResponse>> AddPersonalRecommendationsAsync(ITraktSyncRecommendationsPost recommendationsPost,
                                                                                                           CancellationToken cancellationToken = default)
         {
-            ValidateRecommendationsPost(recommendationsPost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendationsAddRequest
@@ -663,14 +657,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktSyncRecommendationsRemovePostResponse" /> instance, which contains information about which items were removed and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given recommendations post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given recommendations post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktSyncRecommendationsRemovePostResponse>> RemovePersonalRecommendationsAsync(ITraktSyncRecommendationsPost recommendationsPost,
                                                                                                                    CancellationToken cancellationToken = default)
         {
-            if (recommendationsPost == null)
-                throw new ArgumentNullException(nameof(recommendationsPost), "recommendations post must not be null");
-
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendationsRemoveRequest
@@ -739,7 +730,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated watchlist order.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedWatchlistItemRanks"/> is null.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderWatchlistItemsAsync(IEnumerable<uint> reorderedWatchlistItemRanks,
                                                                                                   CancellationToken cancellationToken = default)
         {
@@ -774,12 +766,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktSyncWatchlistPostResponse" /> instance, which contains information about which items were added, existing and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given watchlist post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given watchlist post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktSyncWatchlistPostResponse>> AddWatchlistItemsAsync(ITraktSyncWatchlistPost watchlistPost,
                                                                                            CancellationToken cancellationToken = default)
         {
-            ValidateWatchlistPost(watchlistPost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistAddRequest
@@ -808,12 +799,11 @@
         /// </param>
         /// <returns>An <see cref="ITraktSyncWatchlistRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given watchlist remove post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given watchlist remove post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>> RemoveWatchlistItemsAsync(ITraktSyncWatchlistPost watchlistRemovePost,
                                                                                                     CancellationToken cancellationToken = default)
         {
-            ValidateWatchlistPost(watchlistRemovePost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistRemoveRequest
@@ -821,54 +811,6 @@
                 RequestBody = watchlistRemovePost
             },
             cancellationToken);
-        }
-
-        private void ValidateCollectionPost(ITraktSyncCollectionPost collectionPost)
-        {
-            if (collectionPost == null)
-                throw new ArgumentNullException(nameof(collectionPost), "collection post must not be null");
-
-            collectionPost.Validate();
-        }
-
-        private void ValidateHistoryPost(ITraktSyncHistoryPost historyPost)
-        {
-            if (historyPost == null)
-                throw new ArgumentNullException(nameof(historyPost), "history post must not be null");
-
-            historyPost.Validate();
-        }
-
-        private void ValidateHistoryRemovePost(ITraktSyncHistoryRemovePost historyRemovePost)
-        {
-            if (historyRemovePost == null)
-                throw new ArgumentNullException(nameof(historyRemovePost), "history remove post must not be null");
-
-            historyRemovePost.Validate();
-        }
-
-        private void ValidateRatingsPost(ITraktSyncRatingsPost ratingsPost)
-        {
-            if (ratingsPost == null)
-                throw new ArgumentNullException(nameof(ratingsPost), "ratings post must not be null");
-
-            ratingsPost.Validate();
-        }
-
-        private void ValidateWatchlistPost(ITraktSyncWatchlistPost watchlistPost)
-        {
-            if (watchlistPost == null)
-                throw new ArgumentNullException(nameof(watchlistPost), "watchlist post must not be null");
-
-            watchlistPost.Validate();
-        }
-
-        private void ValidateRecommendationsPost(ITraktSyncRecommendationsPost recommendationsPost)
-        {
-            if (recommendationsPost == null)
-                throw new ArgumentNullException(nameof(recommendationsPost), "recommendations post must not be null");
-
-            recommendationsPost.Validate();
         }
     }
 }

@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Users;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Users.OAuth;
@@ -54,37 +55,37 @@
             var request = new UserPersonalListUpdateRequest { Id = "123", RequestBody = new TraktUserPersonalListPost() };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty username
             request = new UserPersonalListUpdateRequest { Username = string.Empty, Id = "123", RequestBody = new TraktUserPersonalListPost() };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
             request = new UserPersonalListUpdateRequest { Username = "invalid username", Id = "123", RequestBody = new TraktUserPersonalListPost() };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id is null
             request = new UserPersonalListUpdateRequest { Username = "username", RequestBody = new TraktUserPersonalListPost() };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new UserPersonalListUpdateRequest { Username = "username", Id = string.Empty, RequestBody = new TraktUserPersonalListPost() };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new UserPersonalListUpdateRequest { Username = "username", Id = "invalid id", RequestBody = new TraktUserPersonalListPost() };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

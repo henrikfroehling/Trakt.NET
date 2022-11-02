@@ -2,14 +2,12 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Exceptions;
-    using TraktNet.Modules;
     using TraktNet.Objects.Get.Shows;
     using TraktNet.Responses;
     using Xunit;
@@ -118,42 +116,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktShowsModule_GetShow_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_URI, SHOW_JSON);
-
-            Func<Task<TraktResponse<ITraktShow>>> act = () => client.Shows.GetShowAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowAsync("show id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktShowsModule_GetMultipleShows_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_URI, SHOW_JSON);
-
-            Func<Task<IEnumerable<TraktResponse<ITraktShow>>>> act = () => client.Shows.GetMultipleShowsAsync(null);
-            await act.Should().NotThrowAsync();
-
-            act = () => client.Shows.GetMultipleShowsAsync(new TraktMultipleObjectsQueryParams());
-            await act.Should().NotThrowAsync();
-
-            act = () => client.Shows.GetMultipleShowsAsync(new TraktMultipleObjectsQueryParams { { null } });
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetMultipleShowsAsync(new TraktMultipleObjectsQueryParams { { string.Empty } });
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetMultipleShowsAsync(new TraktMultipleObjectsQueryParams { { "show id" } });
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

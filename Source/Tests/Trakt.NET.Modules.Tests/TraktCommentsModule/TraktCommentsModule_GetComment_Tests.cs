@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
@@ -72,30 +71,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_GetComment_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_COMMENT_URI, COMMENT_JSON);
-
-            Func<Task<TraktResponse<ITraktComment>>> act = () => client.Comments.GetCommentAsync(0);
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_GetMutlipleComments_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_COMMENT_URI, COMMENT_JSON);
-
-            Func<Task<IEnumerable<TraktResponse<ITraktComment>>>> act = () => client.Comments.GetMutlipleCommentsAsync(new uint[] { 0 });
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Comments.GetMutlipleCommentsAsync(new uint[] { });
-            await act.Should().NotThrowAsync();
-
-            act = () => client.Comments.GetMutlipleCommentsAsync(null);
-            await act.Should().NotThrowAsync();
         }
     }
 }

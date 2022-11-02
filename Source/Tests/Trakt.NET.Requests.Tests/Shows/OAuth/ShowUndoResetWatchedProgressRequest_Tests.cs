@@ -4,6 +4,7 @@ namespace TraktNet.Requests.Tests.Shows
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Shows.OAuth;
     using Xunit;
@@ -45,17 +46,17 @@ namespace TraktNet.Requests.Tests.Shows
             var request = new ShowUndoResetWatchedProgressRequest();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new ShowUndoResetWatchedProgressRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new ShowUndoResetWatchedProgressRequest { Id = "invalid id" };
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

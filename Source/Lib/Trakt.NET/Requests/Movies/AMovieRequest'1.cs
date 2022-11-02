@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.Requests.Movies
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Interfaces;
-    using System;
     using System.Collections.Generic;
 
     internal abstract class AMovieRequest<TResponseContentType> : AGetRequest<TResponseContentType>, IHasId
@@ -21,10 +21,10 @@
         public override void Validate()
         {
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "movie id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("movie id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "movie id not valid");
         }
     }
 }

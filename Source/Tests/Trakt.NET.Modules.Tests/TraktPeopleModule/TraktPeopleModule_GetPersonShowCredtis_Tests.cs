@@ -186,20 +186,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktPeopleModule_GetPersonShowCredits_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, PERSON_SHOW_CREDITS_JSON);
-
-            Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.People.GetPersonShowCreditsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.People.GetPersonShowCreditsAsync("person id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

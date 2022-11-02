@@ -129,29 +129,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetAllSeasons_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, SEASONS_ALL_FULL_JSON);
-
-            Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetAllSeasonsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetAllSeasonsAsync("show id");
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID, null, "eng");
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID, null, "e");
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            act = () => client.Seasons.GetAllSeasonsAsync(SHOW_ID, null, "all");
-            await act.Should().NotThrowAsync();
-        }
     }
 }

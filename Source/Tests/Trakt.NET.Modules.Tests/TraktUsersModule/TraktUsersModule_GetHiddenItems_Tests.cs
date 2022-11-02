@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Enums;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Users;
     using TraktNet.Requests.Parameters;
@@ -347,20 +346,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetHiddenItems_With_Type_And_Page_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(
-                GetHiddenItemsUri,
-                HIDDEN_ITEMS_JSON, 1, 10, 1, HIDDEN_ITEMS_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktUserHiddenItem>>> act = () => client.Users.GetHiddenItemsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetHiddenItemsAsync(TraktHiddenItemsSection.Unspecified);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

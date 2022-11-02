@@ -55,11 +55,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given searchQuery is null, empty or contains spaces.
-        /// Thrown, if the given searchResultType is unspecified.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given searchResultType is null</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, string searchQuery,
                                                                                      TraktSearchField searchFields = null, ITraktSearchFilter filter = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
@@ -108,11 +104,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given lookupId is null, empty or contains spaces.
-        /// Thrown, if the given searchIdType is unspecified.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given searchIdType is null.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
                                                                                     TraktSearchResultType searchResultTypes = null,
                                                                                     TraktExtendedInfo extendedInfo = null,

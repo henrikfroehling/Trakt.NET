@@ -54,14 +54,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_DeleteComment_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_COMMENT_URI, HttpStatusCode.NoContent);
-
-            Func<Task<TraktNoContentResponse>> act = () => client.Comments.DeleteCommentAsync(0);
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

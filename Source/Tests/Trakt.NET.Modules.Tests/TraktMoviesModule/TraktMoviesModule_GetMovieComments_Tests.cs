@@ -198,21 +198,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieComments_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_COMMENTS_URI,
-                                                           MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Movies.GetMovieCommentsAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieCommentsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieCommentsAsync("movie id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

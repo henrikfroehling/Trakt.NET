@@ -71,41 +71,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktShowsModule_GetShowTranslations_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, SHOW_TRANSLATIONS_JSON);
-
-            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowTranslationsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowTranslationsAsync("show id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktShowsModule_GetShowTranslations_With_LanguageCode_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, SHOW_TRANSLATIONS_JSON);
-
-            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowTranslationsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowTranslationsAsync("show id");
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID, "eng");
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            act = () => client.Shows.GetShowTranslationsAsync(SHOW_ID, "e");
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-        }
     }
 }

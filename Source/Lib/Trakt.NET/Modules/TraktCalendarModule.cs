@@ -44,7 +44,6 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetUserShowsAsync(DateTime? startDate = null, int? days = null,
                                                                              TraktExtendedInfo extendedInfo = null,
                                                                              ITraktCalendarFilter filter = null,
@@ -82,7 +81,6 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetUserNewShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                 TraktExtendedInfo extendedInfo = null,
                                                                                 ITraktCalendarFilter filter = null,
@@ -120,7 +118,6 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetUserSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
                                                                                        TraktExtendedInfo extendedInfo = null,
                                                                                        ITraktCalendarFilter filter = null,
@@ -158,7 +155,6 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktCalendarMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarMovie>> GetUserMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                TraktExtendedInfo extendedInfo = null,
                                                                                ITraktCalendarFilter filter = null,
@@ -196,7 +192,6 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktCalendarMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarMovie>> GetUserDVDMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                   TraktExtendedInfo extendedInfo = null,
                                                                                   ITraktCalendarFilter filter = null,
@@ -234,7 +229,6 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetAllShowsAsync(DateTime? startDate = null, int? days = null,
                                                                             TraktExtendedInfo extendedInfo = null,
                                                                             ITraktCalendarFilter filter = null,
@@ -272,7 +266,6 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetAllNewShowsAsync(DateTime? startDate = null, int? days = null,
                                                                                TraktExtendedInfo extendedInfo = null,
                                                                                ITraktCalendarFilter filter = null,
@@ -310,7 +303,6 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktCalendarShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarShow>> GetAllSeasonPremieresAsync(DateTime? startDate = null, int? days = null,
                                                                                       TraktExtendedInfo extendedInfo = null,
                                                                                       ITraktCalendarFilter filter = null,
@@ -348,7 +340,6 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktCalendarMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarMovie>> GetAllMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                               TraktExtendedInfo extendedInfo = null,
                                                                               ITraktCalendarFilter filter = null,
@@ -386,7 +377,6 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktCalendarMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given days value is not between 1 and 31.</exception>
         public Task<TraktListResponse<ITraktCalendarMovie>> GetAllDVDMoviesAsync(DateTime? startDate = null, int? days = null,
                                                                                  TraktExtendedInfo extendedInfo = null,
                                                                                  ITraktCalendarFilter filter = null,

@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Enums;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
     using TraktNet.Objects.Post.Users.HiddenItems.Responses;
@@ -86,24 +85,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_RemoveHiddenItems_Exceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(HiddenItemsPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(RemoveHiddenItemsUri, postJson, HIDDEN_ITEMS_REMOVE_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktUserHiddenItemsRemovePostResponse>>> act = () => client.Users.RemoveHiddenItemsAsync(HiddenItemsPost, null);
-            await act.Should().ThrowAsync<TraktRequestValidationException>();
-
-            act = () => client.Users.RemoveHiddenItemsAsync(HiddenItemsPost, TraktHiddenItemsSection.Unspecified);
-            await act.Should().ThrowAsync<TraktRequestValidationException>();
-
-            act = () => client.Users.RemoveHiddenItemsAsync(null, HIDDEN_ITEMS_SECTION);
-            await act.Should().ThrowAsync<ArgumentNullException>();
         }
     }
 }

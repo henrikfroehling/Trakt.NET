@@ -56,20 +56,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_UnfollowUser_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UNFOLLOW_USER_URI, HttpStatusCode.NoContent);
-
-            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnfollowUserAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.UnfollowUserAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.UnfollowUserAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

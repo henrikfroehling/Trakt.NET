@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Episodes;
     using Xunit;
 
@@ -26,25 +27,25 @@
             var request = new EpisodeListsRequest { EpisodeNumber = 1 };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new EpisodeListsRequest { Id = string.Empty, EpisodeNumber = 1 };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new EpisodeListsRequest { Id = "invalid id", EpisodeNumber = 1 };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // episode number == 0
             request = new EpisodeListsRequest { EpisodeNumber = 0 };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
 
         [Theory, ClassData(typeof(EpisodeListsRequest_TestData))]

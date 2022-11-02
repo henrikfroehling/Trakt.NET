@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Exceptions;
     using TraktNet.Extensions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Parameters;
@@ -36,19 +37,19 @@
             var request = new UserWatchedHistoryRequest();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty username
             request = new UserWatchedHistoryRequest { Username = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
             request = new UserWatchedHistoryRequest { Username = "invalid username" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
 
         [Theory, ClassData(typeof(UserWatchedHistoryRequest_TestData))]

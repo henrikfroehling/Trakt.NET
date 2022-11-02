@@ -2,10 +2,10 @@
 {
     using Base;
     using Enums;
+    using Exceptions;
     using Extensions;
     using Interfaces;
     using Objects.Basic;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class UserListCommentsRequest : AGetRequest<ITraktComment>, IHasId, ISupportsPagination
@@ -49,16 +49,16 @@
         public override void Validate()
         {
             if (Username == null)
-                throw new ArgumentNullException(nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username must not be null");
 
             if (Username == string.Empty || Username.ContainsSpace())
-                throw new ArgumentException("username not valid", nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username not valid");
 
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "list id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("list id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "list id not valid");
         }
     }
 }

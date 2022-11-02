@@ -162,20 +162,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetStatistics_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_STATISTICS_URI, STATISTICS_JSON);
-
-            Func<Task<TraktResponse<ITraktUserStatistics>>> act = () => client.Users.GetStatisticsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetStatisticsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetStatisticsAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

@@ -9,7 +9,6 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
-    using TraktNet.Objects.Post.Syncs.Watchlist;
     using TraktNet.Objects.Post.Syncs.Watchlist.Responses;
     using TraktNet.Responses;
     using Xunit;
@@ -93,21 +92,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_AddWatchlistItems_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(AddWatchlistPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(ADD_WATCHLIST_ITEMS_URI, postJson, WATCHLIST_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncWatchlistPostResponse>>> act = () => client.Sync.AddWatchlistItemsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Sync.AddWatchlistItemsAsync(new TraktSyncWatchlistPost());
-            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

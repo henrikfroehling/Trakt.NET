@@ -1,10 +1,10 @@
 ﻿namespace TraktNet.Requests.People
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Interfaces;
     using Parameters;
-    using System;
     using System.Collections.Generic;
 
     internal abstract class APersonRequest<TResponseContentType> : AGetRequest<TResponseContentType>, IHasId, ISupportsExtendedInfo
@@ -31,10 +31,10 @@
         public override void Validate()
         {
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "person id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("person id or slug not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "person id or slug not valid");
         }
     }
 }

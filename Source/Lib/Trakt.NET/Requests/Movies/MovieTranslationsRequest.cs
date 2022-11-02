@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Requests.Movies
 {
+    using Exceptions;
     using Objects.Get.Movies;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class MovieTranslationsRequest : AMovieRequest<ITraktMovieTranslation>
@@ -25,7 +25,7 @@
             base.Validate();
 
             if (LanguageCode != null && LanguageCode.Length != 2)
-                throw new ArgumentOutOfRangeException(nameof(LanguageCode), "language code has wrong length");
+                throw new TraktRequestValidationException(nameof(LanguageCode), "language code has wrong length; language code should be two characters long");
         }
     }
 }

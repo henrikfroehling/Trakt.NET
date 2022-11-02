@@ -69,14 +69,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_ApproveFollowRequest_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(APPROVE_FOLLOW_REQUEST_URI, FOLLOWER_JSON);
-
-            Func<Task<TraktResponse<ITraktUserFollower>>> act = () => client.Users.ApproveFollowRequestAsync(0);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-        }
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.Requests.Authentication
 {
     using Enums;
+    using Exceptions;
     using Extensions;
     using Interfaces;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -29,16 +29,16 @@
         public void Validate()
         {
             if (string.IsNullOrEmpty(Code) || Code.ContainsSpace())
-                throw new ArgumentException("code not valid", nameof(Code));
+                throw new TraktRequestValidationException(nameof(Code), "code not valid");
 
             if (string.IsNullOrEmpty(ClientId) || ClientId.ContainsSpace())
-                throw new ArgumentException("client id not valid", nameof(ClientId));
+                throw new TraktRequestValidationException(nameof(ClientId), "client id not valid");
 
             if (string.IsNullOrEmpty(ClientSecret) || ClientSecret.ContainsSpace())
-                throw new ArgumentException("client secret not valid", nameof(ClientSecret));
+                throw new TraktRequestValidationException(nameof(ClientSecret), "client secret not valid");
 
             if (string.IsNullOrEmpty(RedirectUri) || RedirectUri.ContainsSpace())
-                throw new ArgumentException("redirect uri not valid", nameof(RedirectUri));
+                throw new TraktRequestValidationException(nameof(RedirectUri), "redirect uri not valid");
         }
     }
 }
