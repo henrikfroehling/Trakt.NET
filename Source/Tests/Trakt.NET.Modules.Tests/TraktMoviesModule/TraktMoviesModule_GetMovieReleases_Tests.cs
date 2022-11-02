@@ -61,21 +61,6 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieReleases_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_RELEASES_URI, MOVIE_RELEASES_JSON);
-
-            Func<Task<TraktListResponse<ITraktMovieRelease>>> act = () => client.Movies.GetMovieReleasesAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieReleasesAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieReleasesAsync("movie id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
-
-        [Fact]
         public async Task Test_TraktMoviesModule_GetMovieReleases_Single()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_RELEASES_URI}/{COUNTRY_CODE}", MOVIE_RELEASES_JSON);
@@ -85,27 +70,6 @@
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(3);
-        }
-
-        [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieReleases_Single_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_RELEASES_URI}/{COUNTRY_CODE}", MOVIE_RELEASES_JSON);
-
-            Func<Task<TraktListResponse<ITraktMovieRelease>>> act = () => client.Movies.GetMovieReleasesAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieReleasesAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieReleasesAsync("movie id");
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieReleasesAsync(MOVIE_ID, "usa");
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            act = () => client.Movies.GetMovieReleasesAsync(MOVIE_ID, "u");
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

@@ -8,7 +8,6 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Post.Syncs.Ratings;
     using TraktNet.Objects.Post.Syncs.Ratings.Responses;
     using TraktNet.Responses;
     using Xunit;
@@ -87,21 +86,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_AddRatings_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(AddRatingsPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(ADD_RATINGS_URI, postJson, RATINGS_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncRatingsPostResponse>>> act =() => client.Sync.AddRatingsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Sync.AddRatingsAsync(new TraktSyncRatingsPost());
-            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

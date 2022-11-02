@@ -73,20 +73,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonRatings_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_RATINGS_URI, SEASON_RATINGS_JSON);
-
-            Func<Task<TraktResponse<ITraktRating>>> act = () => client.Seasons.GetSeasonRatingsAsync(null, SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetSeasonRatingsAsync(string.Empty, SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetSeasonRatingsAsync("show id", SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

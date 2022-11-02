@@ -9,7 +9,6 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
-    using TraktNet.Objects.Post.Users.PersonalListItems;
     using TraktNet.Objects.Post.Users.PersonalListItems.Responses;
     using TraktNet.Responses;
     using Xunit;
@@ -99,40 +98,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_AddPersonalListItems_Exceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(AddPersonalListItemsPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(ADD_PERSONAL_LIST_ITEMS_URI, postJson, CUSTOM_LIST_ITEMS_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktUserPersonalListItemsPostResponse>>> act =
-                () => client.Users.AddPersonalListItemsAsync(null, LIST_ID, AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<TraktRequestValidationException>();
-
-            act = () => client.Users.AddPersonalListItemsAsync(string.Empty, LIST_ID, AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<TraktRequestValidationException>();
-
-            act = () => client.Users.AddPersonalListItemsAsync("user name", LIST_ID, AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<TraktRequestValidationException>();
-
-            act = () => client.Users.AddPersonalListItemsAsync(USERNAME, null, AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<TraktRequestValidationException>();
-
-            act = () => client.Users.AddPersonalListItemsAsync(USERNAME, string.Empty, AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<TraktRequestValidationException>();
-
-            act = () => client.Users.AddPersonalListItemsAsync(USERNAME, "list id", AddPersonalListItemsPost);
-            await act.Should().ThrowAsync<TraktRequestValidationException>();
-
-            act = () => client.Users.AddPersonalListItemsAsync(USERNAME, LIST_ID, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.AddPersonalListItemsAsync(USERNAME, LIST_ID, new TraktUserPersonalListItemsPost());
-            await act.Should().ThrowAsync<TraktPostValidationException>();
         }
     }
 }

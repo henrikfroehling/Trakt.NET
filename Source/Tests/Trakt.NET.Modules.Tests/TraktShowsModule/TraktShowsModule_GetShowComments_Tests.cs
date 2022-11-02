@@ -220,21 +220,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktShowsModule_GetShowComments_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_COMMENTS_URI,
-                SHOW_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Shows.GetShowCommentsAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowCommentsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowCommentsAsync("show id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

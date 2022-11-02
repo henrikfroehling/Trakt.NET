@@ -7,7 +7,6 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Basic;
     using TraktNet.Objects.Get.Shows;
     using TraktNet.Responses;
     using Xunit;
@@ -202,24 +201,6 @@
             TraktClient client = TestUtility.GetMockClient(GET_EPISODE_PEOPLE_URI, (HttpStatusCode)522);
             Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Episodes.GetEpisodePeopleAsync(SHOW_ID, SEASON_NR, EPISODE_NR);
             await act.Should().ThrowAsync<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodePeople_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_PEOPLE_URI, EPISODE_PEOPLE_JSON);
-
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Episodes.GetEpisodePeopleAsync(null, SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodePeopleAsync(string.Empty, SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodePeopleAsync("show id", SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodePeopleAsync(SHOW_ID, SEASON_NR, 0);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

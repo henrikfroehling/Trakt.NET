@@ -95,17 +95,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_RemovePersonalRecommendations_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(RecommendationsPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_RECOMMENDATIONS_URI, postJson, RECOMMENDATIONS_REMOVE_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncRecommendationsRemovePostResponse>>> act = () => client.Sync.RemovePersonalRecommendationsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-        }
     }
 }

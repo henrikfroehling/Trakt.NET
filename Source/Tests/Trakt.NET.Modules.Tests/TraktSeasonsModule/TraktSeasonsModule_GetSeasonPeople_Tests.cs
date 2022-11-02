@@ -202,20 +202,5 @@
             Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
             await act.Should().ThrowAsync<TraktServerUnavailableException>();
         }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, SEASON_PEOPLE_JSON);
-
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(null, SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetSeasonPeopleAsync(string.Empty, SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetSeasonPeopleAsync("show id", SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

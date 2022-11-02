@@ -133,33 +133,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_PostCommentReply_ArgumentExceptions()
-        {
-            ITraktCommentReplyPost commentReplyPost = new TraktCommentReplyPost
-            {
-                Comment = COMMENT_TEXT
-            };
-
-            string postJson = await TestUtility.SerializeObject(commentReplyPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(POST_COMMENT_REPLY_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostCommentReplyAsync(0, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            const string comment = "one two three four";
-
-            act = () => client.Comments.PostCommentReplyAsync(COMMENT_ID, comment);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-        }
     }
 }

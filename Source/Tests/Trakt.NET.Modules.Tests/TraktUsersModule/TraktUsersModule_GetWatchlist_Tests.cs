@@ -485,23 +485,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetWatchlist_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(
-                GET_WATCHLIST_URI,
-                WATCHLIST_JSON, 1, 10, 1, WATCHLIST_ITEM_COUNT,
-                sortBy: SORT_BY, sortHow: SORT_HOW);
-
-            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetWatchlistAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetWatchlistAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

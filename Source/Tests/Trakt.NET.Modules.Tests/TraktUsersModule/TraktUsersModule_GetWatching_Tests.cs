@@ -140,20 +140,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetWatching_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_WATCHING_URI, WATCHING_ITEM_MOVIE_JSON);
-
-            Func<Task<TraktResponse<ITraktUserWatchingItem>>> act = () => client.Users.GetWatchingAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetWatchingAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetWatchingAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }

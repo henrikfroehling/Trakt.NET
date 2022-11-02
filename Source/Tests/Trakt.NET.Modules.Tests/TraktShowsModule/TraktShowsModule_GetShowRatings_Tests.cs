@@ -73,20 +73,5 @@
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
         }
-
-        [Fact]
-        public async Task Test_TraktShowsModule_GetShowRatings_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_RATINGS_URI, SHOW_RATINGS_JSON);
-
-            Func<Task<TraktResponse<ITraktRating>>> act = () => client.Shows.GetShowRatingsAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowRatingsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowRatingsAsync("show id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
     }
 }
