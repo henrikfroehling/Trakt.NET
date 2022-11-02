@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Episodes;
     using Xunit;
@@ -65,25 +66,25 @@
             var requestMock = new TraktEpisodeRequestMock { EpisodeNumber = 1 };
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             requestMock = new TraktEpisodeRequestMock { Id = string.Empty, EpisodeNumber = 1 };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             requestMock = new TraktEpisodeRequestMock { Id = "invalid id", EpisodeNumber = 1 };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // episode number == 0
             requestMock = new TraktEpisodeRequestMock { Id = "123", EpisodeNumber = 0 };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

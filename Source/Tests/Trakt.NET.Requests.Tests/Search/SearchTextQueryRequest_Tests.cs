@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Parameters.Filter;
@@ -30,29 +31,25 @@
         }
 
         [Fact]
-        public void Test_SearchTextQueryRequest_Validate_Throws_ArgumentNullException()
-        {
-            // no result types set
-            var request = new SearchTextQueryRequest { Query = "query" };
-
-            Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
-
-            // no query set
-            request = new SearchTextQueryRequest { ResultTypes = TraktSearchResultType.Episode };
-
-            act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
-        }
-
-        [Fact]
-        public void Test_SearchTextQueryRequest_Validate_Throws_ArgumentException()
+        public void Test_SearchTextQueryRequest_Validate_Throws_Exceptions()
         {
             // result types is unspecified
             var request = new SearchTextQueryRequest { Query = "query", ResultTypes = TraktSearchResultType.Unspecified };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
+
+            // no result types set
+            request = new SearchTextQueryRequest { Query = "query" };
+
+            act = () => request.Validate();
+            act.Should().Throw<TraktRequestValidationException>();
+
+            // no query set
+            request = new SearchTextQueryRequest { ResultTypes = TraktSearchResultType.Episode };
+
+            act = () => request.Validate();
+            act.Should().Throw<TraktRequestValidationException>();
         }
 
         [Theory, ClassData(typeof(SearchTextQueryRequest_TestData))]
