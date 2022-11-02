@@ -44,12 +44,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktMovieCheckinPostResponse" /> instance, containing the successfully checked in movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given movie's title is null or empty.
-        /// Thrown, if the given movie has no valid ids set.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if its ids are null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktMovieCheckinPostResponse>> CheckIntoMovieAsync(ITraktMovieCheckinPost movieCheckinPost,
                                                                                        CancellationToken cancellationToken = default)
         {
@@ -81,8 +77,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if its ids are null.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeAsync(ITraktEpisodeCheckinPost episodeCheckinPost,
                                                                                            CancellationToken cancellationToken = default)
         {

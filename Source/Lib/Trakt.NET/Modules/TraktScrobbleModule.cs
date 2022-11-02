@@ -45,9 +45,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktMovieScrobblePostResponse>> StartMovieAsync(ITraktMovieScrobblePost movieScrobblePost,
                                                                                     CancellationToken cancellationToken = default)
         {
@@ -74,9 +73,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktMovieScrobblePostResponse>> PauseMovieAsync(ITraktMovieScrobblePost movieScrobblePost,
                                                                                     CancellationToken cancellationToken = default)
         {
@@ -103,9 +101,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktMovieScrobblePostResponse" /> instance, containing the successfully scrobbled movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movie's title is null or empty. Thrown, if the given movie has no valid ids set.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if the given movie's ids are null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid. Thrown, if the given progress value is not between 0 and 100.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktMovieScrobblePostResponse>> StopMovieAsync(ITraktMovieScrobblePost movieScrobblePost,
                                                                                    CancellationToken cancellationToken = default)
         {
@@ -132,13 +129,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given episode is null or if the given episode's ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
-        /// Thrown, if the given progress value is not between 0 and 100.
-        /// </exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StartEpisodeAsync(ITraktEpisodeScrobblePost episodeScrobblePost,
                                                                                         CancellationToken cancellationToken = default)
         {
@@ -165,13 +157,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given episode is null or if the given episode's ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
-        /// Thrown, if the given progress value is not between 0 and 100.
-        /// </exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> PauseEpisodeAsync(ITraktEpisodeScrobblePost episodeScrobblePost,
                                                                                         CancellationToken cancellationToken = default)
         {
@@ -198,13 +185,8 @@
         /// </param>
         /// <returns>An <see cref="ITraktEpisodeScrobblePostResponse" /> instance, containing the successfully scrobbled episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">
-        /// Thrown, if the given episode is null or if the given episode's ids are null.
-        /// </exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given episode's season number is below zero or the given episode's number is below one.
-        /// Thrown, if the given progress value is not between 0 and 100.
-        /// </exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktEpisodeScrobblePostResponse>> StopEpisodeAsync(ITraktEpisodeScrobblePost episodeScrobblePost,
                                                                                        CancellationToken cancellationToken = default)
         {
