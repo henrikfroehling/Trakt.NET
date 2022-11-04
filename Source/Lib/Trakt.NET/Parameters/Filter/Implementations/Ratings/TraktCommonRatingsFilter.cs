@@ -7,11 +7,11 @@
     {
         public Range<float>? TMDBRatings { get; set; }
 
-        public Range<int>? TMDBVotes { get; set; }
+        public Range<uint>? TMDBVotes { get; set; }
 
         public Range<float>? IMDBRatings { get; set; }
 
-        public Range<int>? IMDBVotes { get; set; }
+        public Range<uint>? IMDBVotes { get; set; }
 
         public override bool HasValues => base.HasValues || HasTMDBRatingsSet() || HasTMDBVotesSet() || HasIMDBRatingsSet() || HasIMDBVotesSet();
 
@@ -27,7 +27,7 @@
 
             if (HasTMDBVotesSet())
             {
-                Range<int> votes = TMDBVotes.Value;
+                Range<uint> votes = TMDBVotes.Value;
                 parameters.Add("tmdb_votes", $"{votes.Begin}-{votes.End}");
             }
 
@@ -39,7 +39,7 @@
 
             if (HasIMDBVotesSet())
             {
-                Range<int> votes = IMDBVotes.Value;
+                Range<uint> votes = IMDBVotes.Value;
                 parameters.Add("imdb_votes", $"{votes.Begin}-{votes.End}");
             }
 
@@ -61,7 +61,7 @@
         {
             if (TMDBVotes.HasValue)
             {
-                Range<int> votes = TMDBVotes.Value;
+                Range<uint> votes = TMDBVotes.Value;
                 return votes.Begin > 0 && votes.End > 0 && votes.End > votes.Begin;
             }
 
@@ -83,7 +83,7 @@
         {
             if (IMDBVotes.HasValue)
             {
-                Range<int> votes = IMDBVotes.Value;
+                Range<uint> votes = IMDBVotes.Value;
                 return votes.Begin > 0 && votes.End > 0 && votes.End > votes.Begin;
             }
 

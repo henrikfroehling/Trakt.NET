@@ -5,9 +5,9 @@
 
     public interface ITraktBasicRatingsFilter
     {
-        Range<int>? Ratings { get; set; }
+        Range<uint>? Ratings { get; set; }
 
-        Range<int>? Votes { get; set; }
+        Range<uint>? Votes { get; set; }
 
         bool HasValues { get; }
 

@@ -6,10 +6,10 @@
     {
         Range<float>? TMDBRatings { get; set; }
 
-        Range<int>? TMDBVotes { get; set; }
+        Range<uint>? TMDBVotes { get; set; }
 
         Range<float>? IMDBRatings { get; set; }
 
-        Range<int>? IMDBVotes { get; set; }
+        Range<uint>? IMDBVotes { get; set; }
     }
 }

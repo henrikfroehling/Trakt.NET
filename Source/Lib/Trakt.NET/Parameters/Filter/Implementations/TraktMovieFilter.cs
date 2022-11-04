@@ -7,13 +7,13 @@
     {
         private readonly ITraktMovieRatingsFilter _movieRatingsFilter;
 
-        public Range<int>? Ratings
+        public Range<uint>? Ratings
         {
             get => _movieRatingsFilter.Ratings;
             set => _movieRatingsFilter.Ratings = value;
         }
 
-        public Range<int>? Votes
+        public Range<uint>? Votes
         {
             get => _movieRatingsFilter.Votes;
             set => _movieRatingsFilter.Votes = value;
@@ -25,7 +25,7 @@
             set => _movieRatingsFilter.TMDBRatings = value;
         }
 
-        public Range<int>? TMDBVotes
+        public Range<uint>? TMDBVotes
         {
             get => _movieRatingsFilter.TMDBVotes;
             set => _movieRatingsFilter.TMDBVotes = value;
@@ -37,7 +37,7 @@
             set => _movieRatingsFilter.IMDBRatings = value;
         }
 
-        public Range<int>? IMDBVotes
+        public Range<uint>? IMDBVotes
         {
             get => _movieRatingsFilter.IMDBVotes;
             set => _movieRatingsFilter.IMDBVotes = value;

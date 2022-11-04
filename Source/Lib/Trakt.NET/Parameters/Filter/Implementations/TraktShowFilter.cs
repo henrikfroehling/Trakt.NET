@@ -12,13 +12,13 @@
 
         public TraktShowStatus[] States { get; set; }
 
-        public Range<int>? Ratings
+        public Range<uint>? Ratings
         {
             get => _showRatingsFilter.Ratings;
             set => _showRatingsFilter.Ratings = value;
         }
 
-        public Range<int>? Votes
+        public Range<uint>? Votes
         {
             get => _showRatingsFilter.Votes;
             set => _showRatingsFilter.Votes = value;
@@ -30,7 +30,7 @@
             set => _showRatingsFilter.TMDBRatings = value;
         }
 
-        public Range<int>? TMDBVotes
+        public Range<uint>? TMDBVotes
         {
             get => _showRatingsFilter.TMDBVotes;
             set => _showRatingsFilter.TMDBVotes = value;
@@ -42,7 +42,7 @@
             set => _showRatingsFilter.IMDBRatings = value;
         }
 
-        public Range<int>? IMDBVotes
+        public Range<uint>? IMDBVotes
         {
             get => _showRatingsFilter.IMDBVotes;
             set => _showRatingsFilter.IMDBVotes = value;

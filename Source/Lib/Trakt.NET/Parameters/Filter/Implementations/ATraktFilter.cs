@@ -7,9 +7,9 @@
     {
         public string Query { get; set; }
 
-        public int? Year { get; set; }
+        public uint? Year { get; set; }
 
-        public Range<int>? Years { get; set; }
+        public Range<uint>? Years { get; set; }
 
         public string[] Genres { get; set; }
 
@@ -17,7 +17,7 @@
 
         public string[] Countries { get; set; }
 
-        public Range<int>? Runtimes { get; set; }
+        public Range<uint>? Runtimes { get; set; }
 
         public string[] Studios { get; set; }
 
@@ -36,8 +36,8 @@
                 parameters.Add("years", $"{Year.Value}");
             else if (HasYearsSet())
             {
-                int startYear = Years.Value.Begin;
-                int endYear = Years.Value.End;
+                uint startYear = Years.Value.Begin;
+                uint endYear = Years.Value.End;
 
                 if (startYear <= endYear)
                     parameters.Add("years", $"{startYear}-{endYear}");
@@ -56,7 +56,7 @@
 
             if (HasRuntimesSet())
             {
-                Range<int> runtimes = Runtimes.Value;
+                Range<uint> runtimes = Runtimes.Value;
                 parameters.Add("runtimes", $"{runtimes.Begin}-{runtimes.End}");
             }
 
@@ -89,9 +89,9 @@
         {
             if (Years.HasValue)
             {
-                Range<int> years = Years.Value;
-                int startYear = years.Begin;
-                int endYear = years.End;
+                Range<uint> years = Years.Value;
+                uint startYear = years.Begin;
+                uint endYear = years.End;
                 return startYear.ToString().Length == 4 && endYear.ToString().Length == 4;
             }
 
@@ -108,7 +108,7 @@
         {
             if (Runtimes.HasValue)
             {
-                Range<int> runtimes = Runtimes.Value;
+                Range<uint> runtimes = Runtimes.Value;
                 return runtimes.Begin > 0 && runtimes.End > 0 && runtimes.End > runtimes.Begin;
             }
 

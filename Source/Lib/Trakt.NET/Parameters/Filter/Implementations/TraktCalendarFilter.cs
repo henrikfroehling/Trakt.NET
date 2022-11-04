@@ -7,13 +7,13 @@
     {
         private readonly ITraktCalendarRatingsFilter _calendarRatingsFilter;
 
-        public Range<int>? Ratings
+        public Range<uint>? Ratings
         {
             get => _calendarRatingsFilter.Ratings;
             set => _calendarRatingsFilter.Ratings = value;
         }
         
-        public Range<int>? Votes
+        public Range<uint>? Votes
         {
             get => _calendarRatingsFilter.Votes;
             set => _calendarRatingsFilter.Votes = value;
