@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Parameters
 {
-    public interface ITraktSearchFilter : ITraktShowFilter
+    public interface ITraktSearchFilter : ITraktShowAndMovieFilter, ITraktCommonRatingsFilter
     {
     }
 }
