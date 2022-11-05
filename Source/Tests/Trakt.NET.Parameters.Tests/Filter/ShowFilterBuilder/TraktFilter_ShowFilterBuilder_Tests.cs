@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Requests.Tests.Parameters
+﻿namespace TraktNet.Parameters.Tests.Filter
 {
     using FluentAssertions;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
     using TraktNet.Parameters;
     using Xunit;
 
-    [TestCategory("Requests.Parameters")]
+    [TestCategory("Parameters.Filter")]
     public class TraktShowFilter_Tests
     {
         [Fact]

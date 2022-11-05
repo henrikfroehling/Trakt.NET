@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Requests.Tests.Parameters
+﻿namespace TraktNet.Parameters.Tests.Filter
 {
     using FluentAssertions;
     using System.Collections.Generic;
@@ -6,13 +6,13 @@
     using TraktNet.Parameters;
     using Xunit;
 
-    [TestCategory("Requests.Parameters")]
-    public class TraktSearchFilter_Tests
+    [TestCategory("Parameters.Filter")]
+    public class TraktMovieFilter_Tests
     {
         [Fact]
-        public void Test_TraktSearchFilterBuilder_EmptyFilter()
+        public void Test_TraktMovieFilterBuilder_EmptyFilter()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().Build();
 
             filter.Query.Should().BeNull();
             filter.Year.Should().BeNull();
@@ -29,123 +29,123 @@
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_HasValues()
+        public void Test_TraktMovieFilterBuilder_HasValues()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().Build();
             filter.HasValues.Should().BeFalse();
 
-            filter = TraktFilter.NewSearchFilter().WithQuery("query").Build();
+            filter = TraktFilter.NewMovieFilter().WithQuery("query").Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilter.NewSearchFilter().WithYear(2018).Build();
+            filter = TraktFilter.NewMovieFilter().WithYear(2018).Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilter.NewSearchFilter().WithYears(2016, 2018).Build();
+            filter = TraktFilter.NewMovieFilter().WithYears(2016, 2018).Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilter.NewSearchFilter().WithGenres("action", "drama").Build();
+            filter = TraktFilter.NewMovieFilter().WithGenres("action", "drama").Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilter.NewSearchFilter().WithLanguages("de", "en").Build();
+            filter = TraktFilter.NewMovieFilter().WithLanguages("de", "en").Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilter.NewSearchFilter().WithCountries("gb", "us").Build();
+            filter = TraktFilter.NewMovieFilter().WithCountries("gb", "us").Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilter.NewSearchFilter().WithRuntimes(30, 180).Build();
+            filter = TraktFilter.NewMovieFilter().WithRuntimes(30, 180).Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilter.NewSearchFilter().WithRatings(60, 90).Build();
+            filter = TraktFilter.NewMovieFilter().WithRatings(60, 90).Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilter.NewSearchFilter().WithCertifications("pg-13", "nr").Build();
+            filter = TraktFilter.NewMovieFilter().WithCertifications("pg-13", "nr").Build();
             filter.HasValues.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_GetParameters_With_Query()
+        public void Test_TraktMovieFilterBuilder_GetParameters_With_Query()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithQuery("query").Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithQuery("query").Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" } });
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_GetParameters_With_Year()
+        public void Test_TraktMovieFilterBuilder_GetParameters_With_Year()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithYear(2018).Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithYear(2018).Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", "2018" } });
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_GetParameters_With_Years()
+        public void Test_TraktMovieFilterBuilder_GetParameters_With_Years()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithYears(2016, 2018).Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithYears(2016, 2018).Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", "2016-2018" } });
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_GetParameters_With_Years_Reversed()
+        public void Test_TraktMovieFilterBuilder_GetParameters_With_Years_Reversed()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithYears(2018, 2016).Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithYears(2018, 2016).Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", "2016-2018" } });
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_GetParameters_With_Genres()
+        public void Test_TraktMovieFilterBuilder_GetParameters_With_Genres()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithGenres("action", "drama").Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithGenres("action", "drama").Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "genres", "action,drama" } });
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_GetParameters_With_Languages()
+        public void Test_TraktMovieFilterBuilder_GetParameters_With_Languages()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithLanguages("de", "en").Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithLanguages("de", "en").Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "languages", "de,en" } });
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_GetParameters_With_Countries()
+        public void Test_TraktMovieFilterBuilder_GetParameters_With_Countries()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithCountries("gb", "us").Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithCountries("gb", "us").Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "countries", "gb,us" } });
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_GetParameters_With_Runtimes()
+        public void Test_TraktMovieFilterBuilder_GetParameters_With_Runtimes()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithRuntimes(30, 180).Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithRuntimes(30, 180).Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "runtimes", "30-180" } });
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_GetParameters_With_Ratings()
+        public void Test_TraktMovieFilterBuilder_GetParameters_With_Ratings()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithRatings(60, 90).Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithRatings(60, 90).Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "ratings", "60-90" } });
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_GetParameters_With_Certifications()
+        public void Test_TraktMovieFilterBuilder_GetParameters_With_Certifications()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithCertifications("pg-13", "nr").Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithCertifications("pg-13", "nr").Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "certifications", "pg-13,nr" } });
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_GetParameters()
+        public void Test_TraktMovieFilterBuilder_GetParameters()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter()
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter()
                 .WithQuery("query")
                 .WithYears(2016, 2018)
                 .WithGenres("action", "drama")
@@ -169,79 +169,79 @@
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_ToString_With_Query()
+        public void Test_TraktMovieFilterBuilder_ToString_With_Query()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithQuery("query").Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithQuery("query").Build();
             filter.ToString().Should().Be("query=query");
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_ToString_With_Year()
+        public void Test_TraktMovieFilterBuilder_ToString_With_Year()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithYear(2018).Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithYear(2018).Build();
             filter.ToString().Should().Be("years=2018");
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_ToString_With_Years()
+        public void Test_TraktMovieFilterBuilder_ToString_With_Years()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithYears(2016, 2018).Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithYears(2016, 2018).Build();
             filter.ToString().Should().Be("years=2016-2018");
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_ToString_With_Years_Reversed()
+        public void Test_TraktMovieFilterBuilder_ToString_With_Years_Reversed()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithYears(2018, 2016).Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithYears(2018, 2016).Build();
             filter.ToString().Should().Be("years=2016-2018");
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_ToString_With_Genres()
+        public void Test_TraktMovieFilterBuilder_ToString_With_Genres()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithGenres("action", "drama").Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithGenres("action", "drama").Build();
             filter.ToString().Should().Be("genres=action,drama");
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_ToString_With_Languages()
+        public void Test_TraktMovieFilterBuilder_ToString_With_Languages()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithLanguages("de", "en").Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithLanguages("de", "en").Build();
             filter.ToString().Should().Be("languages=de,en");
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_ToString_With_Countries()
+        public void Test_TraktMovieFilterBuilder_ToString_With_Countries()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithCountries("gb", "us").Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithCountries("gb", "us").Build();
             filter.ToString().Should().Be("countries=gb,us");
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_ToString_With_Runtimes()
+        public void Test_TraktMovieFilterBuilder_ToString_With_Runtimes()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithRuntimes(30, 180).Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithRuntimes(30, 180).Build();
             filter.ToString().Should().Be("runtimes=30-180");
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_ToString_With_Ratings()
+        public void Test_TraktMovieFilterBuilder_ToString_With_Ratings()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithRatings(60, 90).Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithRatings(60, 90).Build();
             filter.ToString().Should().Be("ratings=60-90");
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_ToString_With_Certifications()
+        public void Test_TraktMovieFilterBuilder_ToString_With_Certifications()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter().WithCertifications("pg-13", "nr").Build();
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter().WithCertifications("pg-13", "nr").Build();
             filter.ToString().Should().Be("certifications=pg-13,nr");
         }
 
         [Fact]
-        public void Test_TraktSearchFilterBuilder_ToString()
+        public void Test_TraktMovieFilterBuilder_ToString()
         {
-            ITraktSearchFilter filter = TraktFilter.NewSearchFilter()
+            ITraktMovieFilter filter = TraktFilter.NewMovieFilter()
                 .WithQuery("query")
                 .WithYears(2016, 2018)
                 .WithGenres("action", "drama")
