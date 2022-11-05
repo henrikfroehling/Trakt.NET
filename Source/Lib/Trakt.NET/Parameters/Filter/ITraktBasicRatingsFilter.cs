@@ -9,10 +9,10 @@
 
         Range<uint>? Votes { get; set; }
 
-        bool HasValues { get; }
+        bool HasRatingsValues { get; }
 
-        IDictionary<string, object> GetParameters();
+        IDictionary<string, object> GetRatingsParameters();
 
-        string ToString();
+        string RatingsToString();
     }
 }

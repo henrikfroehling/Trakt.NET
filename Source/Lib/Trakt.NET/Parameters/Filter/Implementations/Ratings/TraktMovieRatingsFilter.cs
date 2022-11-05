@@ -9,11 +9,11 @@
 
         public Range<float>? Metascores { get; set; }
 
-        public override bool HasValues => base.HasValues || HasRottenTomatoesMeterSet() || HasMetascoresSet();
+        public override bool HasRatingsValues => base.HasRatingsValues || HasRottenTomatoesMeterSet() || HasMetascoresSet();
 
-        public override IDictionary<string, object> GetParameters()
+        public override IDictionary<string, object> GetRatingsParameters()
         {
-            IDictionary<string, object> parameters = base.GetParameters();
+            IDictionary<string, object> parameters = base.GetRatingsParameters();
 
             if (HasRottenTomatoesMeterSet())
             {

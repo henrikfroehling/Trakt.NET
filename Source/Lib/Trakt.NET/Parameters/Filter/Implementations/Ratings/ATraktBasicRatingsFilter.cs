@@ -9,9 +9,9 @@
 
         public Range<uint>? Votes { get; set; }
 
-        public virtual bool HasValues => HasRatingsSet() || HasVotesSet();
+        public virtual bool HasRatingsValues => HasRatingsSet() || HasVotesSet();
 
-        public virtual IDictionary<string, object> GetParameters()
+        public virtual IDictionary<string, object> GetRatingsParameters()
         {
             var parameters = new Dictionary<string, object>();
 
@@ -30,9 +30,9 @@
             return parameters;
         }
 
-        public override string ToString()
+        public string RatingsToString()
         {
-            IDictionary<string, object> parameters = GetParameters();
+            IDictionary<string, object> parameters = GetRatingsParameters();
 
             if (parameters.Count == 0)
                 return string.Empty;

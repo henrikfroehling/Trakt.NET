@@ -48,7 +48,9 @@
             set => _showRatingsFilter.IMDBVotes = value;
         }
 
-        public override bool HasValues => base.HasValues || HasNetworksSet || HasStatesSet || _showRatingsFilter.HasValues;
+        public override bool HasValues => base.HasValues || HasNetworksSet || HasStatesSet || _showRatingsFilter.HasRatingsValues;
+
+        public bool HasRatingsValues => _showRatingsFilter.HasRatingsValues;
 
         public TraktShowFilter() => _showRatingsFilter = new TraktShowRatingsFilter();
 
@@ -69,7 +71,7 @@
                 parameters.Add("status", string.Join(",", statesAsString));
             }
 
-            IDictionary<string, object> ratingsParameters = _showRatingsFilter.GetParameters();
+            IDictionary<string, object> ratingsParameters = _showRatingsFilter.GetRatingsParameters();
 
             foreach (KeyValuePair<string, object> parameter in ratingsParameters)
                 parameters.Add(parameter.Key, parameter.Value);

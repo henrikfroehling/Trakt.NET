@@ -43,14 +43,16 @@
             set => _ratingsFilter.IMDBVotes = value;
         }
 
-        public override bool HasValues => base.HasValues || _ratingsFilter.HasValues;
+        public override bool HasValues => base.HasValues || _ratingsFilter.HasRatingsValues;
+
+        public bool HasRatingsValues => _ratingsFilter.HasRatingsValues;
 
         public TraktSearchFilter() => _ratingsFilter = new TraktCommonRatingsFilter();
 
         public override IDictionary<string, object> GetParameters()
         {
             IDictionary<string, object> parameters = base.GetParameters();
-            IDictionary<string, object> ratingsParameters = _ratingsFilter.GetParameters();
+            IDictionary<string, object> ratingsParameters = _ratingsFilter.GetRatingsParameters();
 
             foreach (KeyValuePair<string, object> parameter in ratingsParameters)
                 parameters.Add(parameter.Key, parameter.Value);

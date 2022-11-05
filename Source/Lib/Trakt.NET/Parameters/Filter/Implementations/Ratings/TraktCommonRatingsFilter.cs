@@ -13,11 +13,11 @@
 
         public Range<uint>? IMDBVotes { get; set; }
 
-        public override bool HasValues => base.HasValues || HasTMDBRatingsSet() || HasTMDBVotesSet() || HasIMDBRatingsSet() || HasIMDBVotesSet();
+        public override bool HasRatingsValues => base.HasRatingsValues || HasTMDBRatingsSet() || HasTMDBVotesSet() || HasIMDBRatingsSet() || HasIMDBVotesSet();
 
-        public override IDictionary<string, object> GetParameters()
+        public override IDictionary<string, object> GetRatingsParameters()
         {
-            IDictionary<string, object> parameters = base.GetParameters();
+            IDictionary<string, object> parameters = base.GetRatingsParameters();
 
             if (HasTMDBRatingsSet())
             {

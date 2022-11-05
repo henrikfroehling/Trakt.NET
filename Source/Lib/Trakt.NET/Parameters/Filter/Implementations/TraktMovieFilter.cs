@@ -55,14 +55,16 @@
             set => _movieRatingsFilter.Metascores = value;
         }
 
-        public override bool HasValues => base.HasValues || _movieRatingsFilter.HasValues;
+        public override bool HasValues => base.HasValues || _movieRatingsFilter.HasRatingsValues;
+
+        public bool HasRatingsValues => _movieRatingsFilter.HasRatingsValues;
 
         public TraktMovieFilter() => _movieRatingsFilter = new TraktMovieRatingsFilter();
 
         public override IDictionary<string, object> GetParameters()
         {
             IDictionary<string, object> parameters = base.GetParameters();
-            IDictionary<string, object> ratingsParameters = _movieRatingsFilter.GetParameters();
+            IDictionary<string, object> ratingsParameters = _movieRatingsFilter.GetRatingsParameters();
 
             foreach (KeyValuePair<string, object> parameter in ratingsParameters)
                 parameters.Add(parameter.Key, parameter.Value);
