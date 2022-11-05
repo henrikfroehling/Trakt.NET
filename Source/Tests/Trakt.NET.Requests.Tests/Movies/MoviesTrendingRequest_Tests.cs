@@ -4,9 +4,9 @@
     using System.Collections;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Movies;
     using TraktNet.Requests.Parameters;
-    using TraktNet.Requests.Parameters.Filter;
     using Xunit;
 
     [TestCategory("Requests.Movies.Lists")]
@@ -32,7 +32,7 @@
         public class MoviesTrendingRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
-            private static readonly ITraktMovieFilter _filter = TraktFilterDirectory.MovieFilter.WithYears(2005, 2016).Build();
+            private static readonly ITraktMovieFilter _filter = TraktFilter.NewMovieFilter().WithYears(2005, 2016).Build();
             private const int _page = 5;
             private const int _limit = 20;
 

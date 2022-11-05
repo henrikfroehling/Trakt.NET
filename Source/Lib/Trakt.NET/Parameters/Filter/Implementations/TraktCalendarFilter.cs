@@ -35,5 +35,9 @@
 
             return parameters;
         }
+
+        public IDictionary<string, object> GetRatingsParameters() => _calendarRatingsFilter.GetRatingsParameters();
+
+        public string RatingsToString() => _calendarRatingsFilter.RatingsToString();
     }
 }

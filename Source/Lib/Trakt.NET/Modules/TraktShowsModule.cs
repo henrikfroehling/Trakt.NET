@@ -8,9 +8,9 @@
     using Objects.Get.Shows;
     using Objects.Get.Users;
     using Objects.Post.Shows;
+    using Parameters;
     using Requests.Handler;
     using Requests.Parameters;
-    using Requests.Parameters.Filter;
     using Requests.Shows;
     using Requests.Shows.OAuth;
     using Responses;

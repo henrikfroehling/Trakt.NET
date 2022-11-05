@@ -71,5 +71,9 @@
 
             return parameters;
         }
+
+        public IDictionary<string, object> GetRatingsParameters() => _movieRatingsFilter.GetRatingsParameters();
+
+        public string RatingsToString() => _movieRatingsFilter.RatingsToString();
     }
 }

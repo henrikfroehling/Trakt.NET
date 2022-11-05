@@ -6,10 +6,10 @@
     using Objects.Get.Lists;
     using Objects.Get.Movies;
     using Objects.Get.Users;
+    using Parameters;
     using Requests.Handler;
     using Requests.Movies;
     using Requests.Parameters;
-    using Requests.Parameters.Filter;
     using Responses;
     using System;
     using System.Collections.Generic;

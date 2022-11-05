@@ -3,9 +3,9 @@
     using Enums;
     using Exceptions;
     using Objects.Basic;
+    using Parameters;
     using Requests.Handler;
     using Requests.Parameters;
-    using Requests.Parameters.Filter;
     using Requests.Search;
     using Responses;
     using System;

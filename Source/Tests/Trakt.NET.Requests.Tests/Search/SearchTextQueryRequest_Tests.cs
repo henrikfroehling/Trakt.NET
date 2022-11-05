@@ -7,9 +7,9 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Parameters;
-    using TraktNet.Requests.Parameters.Filter;
     using TraktNet.Requests.Search;
     using Xunit;
 
@@ -67,7 +67,7 @@
             private static readonly TraktSearchResultType _resultTypes = TraktSearchResultType.Movie | TraktSearchResultType.Show;
             private const string _query = "searchQuery";
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
-            private static readonly ITraktSearchFilter _filter = TraktFilterDirectory.SearchFilter.WithYears(2005, 2016).Build();
+            private static readonly ITraktSearchFilter _filter = TraktFilter.NewSearchFilter().WithYears(2005, 2016).Build();
             private static readonly TraktSearchField _searchFields = TraktSearchField.Description | TraktSearchField.Title;
             private const int _page = 5;
             private const int _limit = 20;

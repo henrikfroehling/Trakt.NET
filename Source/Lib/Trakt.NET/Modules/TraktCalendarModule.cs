@@ -2,11 +2,11 @@
 {
     using Exceptions;
     using Objects.Get.Calendars;
+    using Parameters;
     using Requests.Calendars;
     using Requests.Calendars.OAuth;
     using Requests.Handler;
     using Requests.Parameters;
-    using Requests.Parameters.Filter;
     using Responses;
     using System;
     using System.Threading;

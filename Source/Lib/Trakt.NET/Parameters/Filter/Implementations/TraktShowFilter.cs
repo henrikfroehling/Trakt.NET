@@ -79,6 +79,10 @@
             return parameters;
         }
 
+        public IDictionary<string, object> GetRatingsParameters() => _showRatingsFilter.GetRatingsParameters();
+
+        public string RatingsToString() => _showRatingsFilter.RatingsToString();
+
         private bool HasNetworksSet => Networks != null && Networks.Length > 0;
 
         private bool HasStatesSet => States != null && States.Length > 0;

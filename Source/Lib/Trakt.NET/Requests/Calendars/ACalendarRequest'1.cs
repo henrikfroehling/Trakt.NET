@@ -4,9 +4,9 @@
     using Extensions;
     using Interfaces;
     using Parameters;
-    using Parameters.Filter;
     using System;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal abstract class ACalendarRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ISupportsExtendedInfo, ISupportsFilter
     {

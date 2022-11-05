@@ -3,8 +3,8 @@
     using Enums;
     using Exceptions;
     using Interfaces;
-    using Parameters.Filter;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal sealed class SearchTextQueryRequest : ASearchRequest, ISupportsFilter
     {
