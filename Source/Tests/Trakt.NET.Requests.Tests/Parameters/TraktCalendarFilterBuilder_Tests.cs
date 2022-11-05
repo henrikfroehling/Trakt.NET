@@ -3,7 +3,7 @@
     using FluentAssertions;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Requests.Parameters.Filter;
+    using TraktNet.Parameters;
     using Xunit;
 
     [TestCategory("Requests.Parameters")]
@@ -12,7 +12,7 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_EmptyFilter()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().Build();
 
             filter.Query.Should().BeNull();
             filter.Year.Should().BeNull();
@@ -30,38 +30,38 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_HasValues()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().Build();
             filter.HasValues.Should().BeFalse();
 
-            filter = TraktFilterDirectory.CalendarFilter.WithQuery("query").Build();
+            filter = TraktFilter.NewCalendarFilter().WithQuery("query").Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilterDirectory.CalendarFilter.WithYear(2018).Build();
+            filter = TraktFilter.NewCalendarFilter().WithYear(2018).Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilterDirectory.CalendarFilter.WithYears(2016, 2018).Build();
+            filter = TraktFilter.NewCalendarFilter().WithYears(2016, 2018).Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilterDirectory.CalendarFilter.WithGenres("action", "drama").Build();
+            filter = TraktFilter.NewCalendarFilter().WithGenres("action", "drama").Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilterDirectory.CalendarFilter.WithLanguages("de", "en").Build();
+            filter = TraktFilter.NewCalendarFilter().WithLanguages("de", "en").Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilterDirectory.CalendarFilter.WithCountries("gb", "us").Build();
+            filter = TraktFilter.NewCalendarFilter().WithCountries("gb", "us").Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilterDirectory.CalendarFilter.WithRuntimes(30, 180).Build();
+            filter = TraktFilter.NewCalendarFilter().WithRuntimes(30, 180).Build();
             filter.HasValues.Should().BeTrue();
 
-            filter = TraktFilterDirectory.CalendarFilter.WithRatings(60, 90).Build();
+            filter = TraktFilter.NewCalendarFilter().WithRatings(60, 90).Build();
             filter.HasValues.Should().BeTrue();
         }
 
         [Fact]
         public void Test_TraktCalendarFilterBuilder_GetParameters_With_Query()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithQuery("query").Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithQuery("query").Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "query", "query" } });
         }
@@ -69,7 +69,7 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_GetParameters_With_Year()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithYear(2018).Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithYear(2018).Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", "2018" } });
         }
@@ -77,7 +77,7 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_GetParameters_With_Years()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithYears(2016, 2018).Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithYears(2016, 2018).Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", "2016-2018" } });
         }
@@ -85,7 +85,7 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_GetParameters_With_Years_Reversed()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithYears(2018, 2016).Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithYears(2018, 2016).Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "years", "2016-2018" } });
         }
@@ -93,7 +93,7 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_GetParameters_With_Genres()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithGenres("action", "drama").Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithGenres("action", "drama").Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "genres", "action,drama" } });
         }
@@ -101,7 +101,7 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_GetParameters_With_Languages()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithLanguages("de", "en").Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithLanguages("de", "en").Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "languages", "de,en" } });
         }
@@ -109,7 +109,7 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_GetParameters_With_Countries()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithCountries("gb", "us").Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithCountries("gb", "us").Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "countries", "gb,us" } });
         }
@@ -117,7 +117,7 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_GetParameters_With_Runtimes()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithRuntimes(30, 180).Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithRuntimes(30, 180).Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "runtimes", "30-180" } });
         }
@@ -125,7 +125,7 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_GetParameters_With_Ratings()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithRatings(60, 90).Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithRatings(60, 90).Build();
             filter.GetParameters().Should().NotBeNull().And.HaveCount(1);
             filter.GetParameters().Should().Contain(new Dictionary<string, object>() { { "ratings", "60-90" } });
         }
@@ -133,7 +133,7 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_GetParameters()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter()
                 .WithQuery("query")
                 .WithYears(2016, 2018)
                 .WithGenres("action", "drama")
@@ -157,70 +157,70 @@
         [Fact]
         public void Test_TraktCalendarFilterBuilder_ToString_With_Query()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithQuery("query").Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithQuery("query").Build();
             filter.ToString().Should().Be("query=query");
         }
 
         [Fact]
         public void Test_TraktCalendarFilterBuilder_ToString_With_Year()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithYear(2018).Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithYear(2018).Build();
             filter.ToString().Should().Be("years=2018");
         }
 
         [Fact]
         public void Test_TraktCalendarFilterBuilder_ToString_With_Years()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithYears(2016, 2018).Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithYears(2016, 2018).Build();
             filter.ToString().Should().Be("years=2016-2018");
         }
 
         [Fact]
         public void Test_TraktCalendarFilterBuilder_ToString_With_Years_Reversed()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithYears(2018, 2016).Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithYears(2018, 2016).Build();
             filter.ToString().Should().Be("years=2016-2018");
         }
 
         [Fact]
         public void Test_TraktCalendarFilterBuilder_ToString_With_Genres()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithGenres("action", "drama").Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithGenres("action", "drama").Build();
             filter.ToString().Should().Be("genres=action,drama");
         }
 
         [Fact]
         public void Test_TraktCalendarFilterBuilder_ToString_With_Languages()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithLanguages("de", "en").Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithLanguages("de", "en").Build();
             filter.ToString().Should().Be("languages=de,en");
         }
 
         [Fact]
         public void Test_TraktCalendarFilterBuilder_ToString_With_Countries()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithCountries("gb", "us").Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithCountries("gb", "us").Build();
             filter.ToString().Should().Be("countries=gb,us");
         }
 
         [Fact]
         public void Test_TraktCalendarFilterBuilder_ToString_With_Runtimes()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithRuntimes(30, 180).Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithRuntimes(30, 180).Build();
             filter.ToString().Should().Be("runtimes=30-180");
         }
 
         [Fact]
         public void Test_TraktCalendarFilterBuilder_ToString_With_Ratings()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter.WithRatings(60, 90).Build();
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter().WithRatings(60, 90).Build();
             filter.ToString().Should().Be("ratings=60-90");
         }
 
         [Fact]
         public void Test_TraktCalendarFilterBuilder_ToString()
         {
-            ITraktCalendarFilter filter = TraktFilterDirectory.CalendarFilter
+            ITraktCalendarFilter filter = TraktFilter.NewCalendarFilter()
                 .WithQuery("query")
                 .WithYears(2016, 2018)
                 .WithGenres("action", "drama")
