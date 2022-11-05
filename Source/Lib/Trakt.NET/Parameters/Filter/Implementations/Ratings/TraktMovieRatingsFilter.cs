@@ -4,7 +4,7 @@
     using System.Globalization;
     using TraktNet.Utils;
 
-    public sealed class TraktMovieRatingsFilter : TraktCommonRatingsFilter, ITraktMovieRatingsFilter
+    internal sealed class TraktMovieRatingsFilter : TraktCommonRatingsFilter, ITraktMovieRatingsFilter
     {
         public Range<float>? RottenTomatousMeter { get; set; }
 

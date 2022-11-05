@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public abstract class ATraktShowAndMovieFilter : ATraktFilter, ITraktShowAndMovieFilter
+    internal abstract class ATraktShowAndMovieFilter : ATraktFilter, ITraktShowAndMovieFilter
     {
         public string[] Certifications { get; set; }
 

@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using TraktNet.Utils;
 
-    public abstract class ATraktFilter : ITraktFilter
+    internal abstract class ATraktFilter : ITraktFilter
     {
         public string Query { get; set; }
 

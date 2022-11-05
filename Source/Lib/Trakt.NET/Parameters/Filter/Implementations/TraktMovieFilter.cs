@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using TraktNet.Utils;
 
-    public sealed class TraktMovieFilter : ATraktShowAndMovieFilter, ITraktMovieFilter
+    internal sealed class TraktMovieFilter : ATraktShowAndMovieFilter, ITraktMovieFilter
     {
         private readonly ITraktMovieRatingsFilter _movieRatingsFilter;
 

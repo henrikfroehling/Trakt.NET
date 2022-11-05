@@ -4,7 +4,7 @@
     using TraktNet.Enums;
     using TraktNet.Utils;
 
-    public class TraktShowFilter : ATraktShowAndMovieFilter, ITraktShowFilter
+    internal class TraktShowFilter : ATraktShowAndMovieFilter, ITraktShowFilter
     {
         private readonly ITraktShowRatingsFilter _showRatingsFilter;
 

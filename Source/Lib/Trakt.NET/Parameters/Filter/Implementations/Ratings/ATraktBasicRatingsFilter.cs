@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using TraktNet.Utils;
 
-    public abstract class ATraktBasicRatingsFilter : ITraktBasicRatingsFilter
+    internal abstract class ATraktBasicRatingsFilter : ITraktBasicRatingsFilter
     {
         public Range<uint>? Ratings { get; set; }
 

@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using TraktNet.Utils;
 
-    public sealed class TraktCalendarFilter : ATraktFilter, ITraktCalendarFilter
+    internal sealed class TraktCalendarFilter : ATraktFilter, ITraktCalendarFilter
     {
         private readonly ITraktCalendarRatingsFilter _calendarRatingsFilter;
 

@@ -4,7 +4,7 @@
     using System.Globalization;
     using TraktNet.Utils;
 
-    public class TraktCommonRatingsFilter : ATraktBasicRatingsFilter, ITraktCommonRatingsFilter
+    internal class TraktCommonRatingsFilter : ATraktBasicRatingsFilter, ITraktCommonRatingsFilter
     {
         public Range<float>? TMDBRatings { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Parameters
 {
-    public sealed class TraktCalendarRatingsFilter : ATraktBasicRatingsFilter, ITraktCalendarRatingsFilter
+    internal sealed class TraktCalendarRatingsFilter : ATraktBasicRatingsFilter, ITraktCalendarRatingsFilter
     {
     }
 }
