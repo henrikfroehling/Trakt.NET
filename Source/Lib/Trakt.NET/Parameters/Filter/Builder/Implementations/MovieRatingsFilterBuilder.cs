@@ -18,6 +18,12 @@
 
         public ITraktMovieFilterBuilder WithRottenTomatoesMeter(float start, float end)
         {
+            if (start > 100.0)
+                throw new ArgumentOutOfRangeException(nameof(start), "start should have maximum value of 100.0");
+
+            if (end > 100.0)
+                throw new ArgumentOutOfRangeException(nameof(start), "end should have maximum value of 100.0");
+
             if (end < start)
                 throw new ArgumentOutOfRangeException(nameof(start), "start should be less than end");
 
@@ -27,6 +33,12 @@
 
         public ITraktMovieFilterBuilder WithMetascores(float start, float end)
         {
+            if (start > 100.0)
+                throw new ArgumentOutOfRangeException(nameof(start), "start should have maximum value of 100.0");
+
+            if (end > 100.0)
+                throw new ArgumentOutOfRangeException(nameof(start), "end should have maximum value of 100.0");
+
             if (end < start)
                 throw new ArgumentOutOfRangeException(nameof(start), "start should be less than end");
 

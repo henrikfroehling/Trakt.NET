@@ -106,15 +106,22 @@
             if (language == null)
                 throw new ArgumentNullException(nameof(language));
 
-            if (language.Length > 0)
-                _languages.Value.Add(language);
+            if (language.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(language), "language code must be a 2 character code");
+
+            _languages.Value.Add(language);
 
             if (languages?.Length > 0)
             {
                 foreach (string value in languages)
                 {
                     if (!string.IsNullOrEmpty(value))
+                    {
+                        if (value.Length != 2)
+                            throw new ArgumentOutOfRangeException(nameof(languages), "language code must be a 2 character code");
+
                         _languages.Value.Add(value);
+                    }
                 }
             }
 
@@ -129,7 +136,12 @@
             foreach (string language in languages)
             {
                 if (!string.IsNullOrEmpty(language))
+                {
+                    if (language.Length != 2)
+                        throw new ArgumentOutOfRangeException(nameof(languages), "language code must be a 2 character code");
+
                     _languages.Value.Add(language);
+                }
             }
 
             return GetBuilder();
@@ -140,15 +152,22 @@
             if (country == null)
                 throw new ArgumentNullException(nameof(country));
 
-            if (country.Length > 0)
-                _countries.Value.Add(country);
+            if (country.Length != 2)
+                throw new ArgumentOutOfRangeException(nameof(country), "country code must be a 2 character code");
+
+            _countries.Value.Add(country);
 
             if (countries?.Length > 0)
             {
                 foreach (string value in countries)
                 {
                     if (!string.IsNullOrEmpty(value))
+                    {
+                        if (value.Length != 2)
+                            throw new ArgumentOutOfRangeException(nameof(countries), "country code must be a 2 character code");
+
                         _countries.Value.Add(value);
+                    }
                 }
             }
 
@@ -163,7 +182,12 @@
             foreach (string country in countries)
             {
                 if (!string.IsNullOrEmpty(country))
+                {
+                    if (country.Length != 2)
+                        throw new ArgumentOutOfRangeException(nameof(countries), "country code must be a 2 character code");
+
                     _countries.Value.Add(country);
+                }
             }
 
             return GetBuilder();

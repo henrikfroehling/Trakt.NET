@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Parameters
 {
     using System.Collections.Generic;
+    using System.Globalization;
     using TraktNet.Utils;
 
     public sealed class TraktMovieRatingsFilter : TraktCommonRatingsFilter, ITraktMovieRatingsFilter
@@ -14,17 +15,18 @@
         public override IDictionary<string, object> GetRatingsParameters()
         {
             IDictionary<string, object> parameters = base.GetRatingsParameters();
+            CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture("en-US");
 
             if (HasRottenTomatoesMeterSet())
             {
                 Range<float> rtMeter = RottenTomatousMeter.Value;
-                parameters.Add("rt_meters", $"{rtMeter.Begin}-{rtMeter.End}");
+                parameters.Add("rt_meters", $"{rtMeter.Begin.ToString("F1", cultureInfo)}-{rtMeter.End.ToString("F1", cultureInfo)}");
             }
 
             if (HasMetascoresSet())
             {
                 Range<float> metascores = Metascores.Value;
-                parameters.Add("metascores", $"{metascores.Begin}-{metascores.End}");
+                parameters.Add("metascores", $"{metascores.Begin.ToString("F1", cultureInfo)}-{metascores.End.ToString("F1", cultureInfo)}");
             }
 
             return parameters;

@@ -22,6 +22,12 @@
 
         public TFilterBuilder WithRatings(uint start, uint end)
         {
+            if (start > 100)
+                throw new ArgumentOutOfRangeException(nameof(start), "start should have maximum value of 100");
+
+            if (end > 100)
+                throw new ArgumentOutOfRangeException(nameof(start), "end should have maximum value of 100");
+
             if (end < start)
                 throw new ArgumentOutOfRangeException(nameof(start), "start should be less than end");
 
@@ -31,6 +37,12 @@
 
         public TFilterBuilder WithVotes(uint start, uint end)
         {
+            if (start > 100000)
+                throw new ArgumentOutOfRangeException(nameof(start), "start should have maximum value of 100000");
+
+            if (end > 100000)
+                throw new ArgumentOutOfRangeException(nameof(start), "end should have maximum value of 100000");
+
             if (end < start)
                 throw new ArgumentOutOfRangeException(nameof(start), "start should be less than end");
 

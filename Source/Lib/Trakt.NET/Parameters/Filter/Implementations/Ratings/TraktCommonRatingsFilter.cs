@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Parameters
 {
     using System.Collections.Generic;
+    using System.Globalization;
     using TraktNet.Utils;
 
     public class TraktCommonRatingsFilter : ATraktBasicRatingsFilter, ITraktCommonRatingsFilter
@@ -18,11 +19,12 @@
         public override IDictionary<string, object> GetRatingsParameters()
         {
             IDictionary<string, object> parameters = base.GetRatingsParameters();
+            CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture("en-US");
 
             if (HasTMDBRatingsSet())
             {
                 Range<float> ratings = TMDBRatings.Value;
-                parameters.Add("tmdb_ratings", $"{ratings.Begin}-{ratings.End}");
+                parameters.Add("tmdb_ratings", $"{ratings.Begin.ToString("F1", cultureInfo)}-{ratings.End.ToString("F1", cultureInfo)}");
             }
 
             if (HasTMDBVotesSet())
@@ -34,7 +36,7 @@
             if (HasIMDBRatingsSet())
             {
                 Range<float> ratings = IMDBRatings.Value;
-                parameters.Add("imdb_ratings", $"{ratings.Begin}-{ratings.End}");
+                parameters.Add("imdb_ratings", $"{ratings.Begin.ToString("F1", cultureInfo)}-{ratings.End.ToString("F1", cultureInfo)}");
             }
 
             if (HasIMDBVotesSet())

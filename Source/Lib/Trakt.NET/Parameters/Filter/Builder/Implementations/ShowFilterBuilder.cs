@@ -57,15 +57,19 @@
             if (status == null)
                 throw new ArgumentNullException(nameof(status));
 
-            if (status != TraktShowStatus.Unspecified)
-                _states.Value.Add(status);
+            if (status == TraktShowStatus.Unspecified)
+                throw new ArgumentException("status must not be unspecified", nameof(status));
+
+            _states.Value.Add(status);
 
             if (states?.Length > 0)
             {
                 foreach (TraktShowStatus value in states)
                 {
-                    if (value != TraktShowStatus.Unspecified)
-                        _states.Value.Add(value);
+                    if (value == TraktShowStatus.Unspecified)
+                        throw new ArgumentException("status must not be unspecified", nameof(states));
+
+                    _states.Value.Add(value);
                 }
             }
 
@@ -79,8 +83,10 @@
 
             foreach (TraktShowStatus status in states)
             {
-                if (status != null && status != TraktShowStatus.Unspecified)
-                    _states.Value.Add(status);
+                if (status == TraktShowStatus.Unspecified)
+                    throw new ArgumentException("status must not be unspecified", nameof(states));
+
+                _states.Value.Add(status);
             }
 
             return GetBuilder();
