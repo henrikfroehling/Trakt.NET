@@ -5,54 +5,54 @@
 
     internal sealed class TraktMovieFilter : ATraktShowAndMovieFilter, ITraktMovieFilter
     {
-        private readonly ITraktMovieRatingsFilter _movieRatingsFilter;
+        private readonly TraktMovieRatingsFilter _movieRatingsFilter;
 
         public Range<uint>? Ratings
         {
             get => _movieRatingsFilter.Ratings;
-            set => _movieRatingsFilter.Ratings = value;
+            internal set => _movieRatingsFilter.Ratings = value;
         }
 
         public Range<uint>? Votes
         {
             get => _movieRatingsFilter.Votes;
-            set => _movieRatingsFilter.Votes = value;
+            internal set => _movieRatingsFilter.Votes = value;
         }
 
         public Range<float>? TMDBRatings
         {
             get => _movieRatingsFilter.TMDBRatings;
-            set => _movieRatingsFilter.TMDBRatings = value;
+            internal set => _movieRatingsFilter.TMDBRatings = value;
         }
 
         public Range<uint>? TMDBVotes
         {
             get => _movieRatingsFilter.TMDBVotes;
-            set => _movieRatingsFilter.TMDBVotes = value;
+            internal set => _movieRatingsFilter.TMDBVotes = value;
         }
 
         public Range<float>? IMDBRatings
         {
             get => _movieRatingsFilter.IMDBRatings;
-            set => _movieRatingsFilter.IMDBRatings = value;
+            internal set => _movieRatingsFilter.IMDBRatings = value;
         }
 
         public Range<uint>? IMDBVotes
         {
             get => _movieRatingsFilter.IMDBVotes;
-            set => _movieRatingsFilter.IMDBVotes = value;
+            internal set => _movieRatingsFilter.IMDBVotes = value;
         }
 
         public Range<float>? RottenTomatousMeter
         {
             get => _movieRatingsFilter.RottenTomatousMeter;
-            set => _movieRatingsFilter.RottenTomatousMeter = value;
+            internal set => _movieRatingsFilter.RottenTomatousMeter = value;
         }
 
         public Range<float>? Metascores
         {
             get => _movieRatingsFilter.Metascores;
-            set => _movieRatingsFilter.Metascores = value;
+            internal set => _movieRatingsFilter.Metascores = value;
         }
 
         public override bool HasValues => base.HasValues || _movieRatingsFilter.HasRatingsValues;

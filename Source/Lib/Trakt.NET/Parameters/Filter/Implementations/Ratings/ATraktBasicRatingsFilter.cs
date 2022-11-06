@@ -5,9 +5,9 @@
 
     internal abstract class ATraktBasicRatingsFilter : ITraktBasicRatingsFilter
     {
-        public Range<uint>? Ratings { get; set; }
+        public Range<uint>? Ratings { get; internal set; }
 
-        public Range<uint>? Votes { get; set; }
+        public Range<uint>? Votes { get; internal set; }
 
         public virtual bool HasRatingsValues => HasRatingsSet() || HasVotesSet();
 

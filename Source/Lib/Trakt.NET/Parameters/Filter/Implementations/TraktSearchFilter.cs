@@ -5,42 +5,42 @@
 
     internal sealed class TraktSearchFilter : ATraktShowAndMovieFilter, ITraktSearchFilter
     {
-        private readonly ITraktCommonRatingsFilter _searchRatingsFilter;
+        private readonly TraktCommonRatingsFilter _searchRatingsFilter;
 
         public Range<uint>? Ratings
         {
             get => _searchRatingsFilter.Ratings;
-            set => _searchRatingsFilter.Ratings = value;
+            internal set => _searchRatingsFilter.Ratings = value;
         }
 
         public Range<uint>? Votes
         {
             get => _searchRatingsFilter.Votes;
-            set => _searchRatingsFilter.Votes = value;
+            internal set => _searchRatingsFilter.Votes = value;
         }
 
         public Range<float>? TMDBRatings
         {
             get => _searchRatingsFilter.TMDBRatings;
-            set => _searchRatingsFilter.TMDBRatings = value;
+            internal set => _searchRatingsFilter.TMDBRatings = value;
         }
         
         public Range<uint>? TMDBVotes
         {
             get => _searchRatingsFilter.TMDBVotes;
-            set => _searchRatingsFilter.TMDBVotes = value;
+            internal set => _searchRatingsFilter.TMDBVotes = value;
         }
         
         public Range<float>? IMDBRatings
         {
             get => _searchRatingsFilter.IMDBRatings;
-            set => _searchRatingsFilter.IMDBRatings = value;
+            internal set => _searchRatingsFilter.IMDBRatings = value;
         }
         
         public Range<uint>? IMDBVotes
         {
             get => _searchRatingsFilter.IMDBVotes;
-            set => _searchRatingsFilter.IMDBVotes = value;
+            internal set => _searchRatingsFilter.IMDBVotes = value;
         }
 
         public override bool HasValues => base.HasValues || _searchRatingsFilter.HasRatingsValues;

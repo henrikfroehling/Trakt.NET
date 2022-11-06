@@ -112,7 +112,7 @@
 
         public override ITraktShowFilter Build()
         {
-            ITraktShowFilter filter = new TraktShowFilter
+            var filter = new TraktShowFilter
             {
                 Query = _query,
                 Year = _year,

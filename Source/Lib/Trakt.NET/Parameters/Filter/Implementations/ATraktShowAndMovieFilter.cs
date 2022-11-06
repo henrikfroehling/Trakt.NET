@@ -4,7 +4,7 @@
 
     internal abstract class ATraktShowAndMovieFilter : ATraktFilter, ITraktShowAndMovieFilter
     {
-        public string[] Certifications { get; set; }
+        public string[] Certifications { get; internal set; }
 
         public override bool HasValues => base.HasValues || HasCertificationsSet;
 

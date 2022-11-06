@@ -34,7 +34,7 @@
 
         public override ITraktMovieFilter Build()
         {
-            ITraktMovieFilter filter = new TraktMovieFilter
+            var filter = new TraktMovieFilter
             {
                 Query = _query,
                 Year = _year,

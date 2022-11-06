@@ -5,21 +5,21 @@
 
     internal abstract class ATraktFilter : ITraktFilter
     {
-        public string Query { get; set; }
+        public string Query { get; internal set; }
 
-        public uint? Year { get; set; }
+        public uint? Year { get; internal set; }
 
-        public Range<uint>? Years { get; set; }
+        public Range<uint>? Years { get; internal set; }
 
-        public string[] Genres { get; set; }
+        public string[] Genres { get; internal set; }
 
-        public string[] Languages { get; set; }
+        public string[] Languages { get; internal set; }
 
-        public string[] Countries { get; set; }
+        public string[] Countries { get; internal set; }
 
-        public Range<uint>? Runtimes { get; set; }
+        public Range<uint>? Runtimes { get; internal set; }
 
-        public string[] Studios { get; set; }
+        public string[] Studios { get; internal set; }
 
         public virtual bool HasValues
             => HasQuerySet || HasYearSet || HasYearsSet() || HasGenresSet

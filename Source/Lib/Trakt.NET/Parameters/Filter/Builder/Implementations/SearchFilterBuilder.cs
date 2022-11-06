@@ -28,7 +28,7 @@
 
         public override ITraktSearchFilter Build()
         {
-            ITraktSearchFilter filter = new TraktSearchFilter
+            var filter = new TraktSearchFilter
             {
                 Query = _query,
                 Year = _year,

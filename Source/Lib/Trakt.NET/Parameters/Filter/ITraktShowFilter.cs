@@ -6,9 +6,9 @@
     public interface ITraktShowFilter : ITraktShowAndMovieFilter, ITraktShowRatingsFilter
     {
         /// <summary>Optional network names.</summary>
-        string[] Networks { get; set; }
+        string[] Networks { get; }
 
         /// <summary>Optional show status.</summary>
-        TraktShowStatus[] States { get; set; }
+        TraktShowStatus[] States { get; }
     }
 }

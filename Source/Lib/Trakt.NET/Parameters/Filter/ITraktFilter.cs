@@ -6,28 +6,28 @@
     public interface ITraktFilter
     {
         /// <summary>Optional search titles and descriptions.</summary>
-        string Query { get; set; }
+        string Query { get; }
 
         /// <summary>Optional 4 digit year.</summary>
-        uint? Year { get; set; }
+        uint? Year { get; }
 
         /// <summary>Optional range of 4 digit years.</summary>
-        Range<uint>? Years { get; set; }
+        Range<uint>? Years { get; }
 
         /// <summary>Optional genre slugs.</summary>
-        string[] Genres { get; set; }
+        string[] Genres { get; }
 
         /// <summary>Optional 2 character language codes.</summary>
-        string[] Languages { get; set; }
+        string[] Languages { get; }
 
         /// <summary>Optional 2 character country codes.</summary>
-        string[] Countries { get; set; }
+        string[] Countries { get; }
 
         /// <summary>Optional runtime range in minutes.</summary>
-        Range<uint>? Runtimes { get; set; }
+        Range<uint>? Runtimes { get; }
 
         /// <summary>Optional studio slugs.</summary>
-        string[] Studios { get; set; }
+        string[] Studios { get; }
 
         /// <summary>Returns whether the filter has any values set.</summary>
         bool HasValues { get; }

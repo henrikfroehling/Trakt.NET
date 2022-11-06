@@ -6,7 +6,7 @@
 
     internal class TraktShowFilter : ATraktShowAndMovieFilter, ITraktShowFilter
     {
-        private readonly ITraktShowRatingsFilter _showRatingsFilter;
+        private readonly TraktShowRatingsFilter _showRatingsFilter;
 
         public string[] Networks { get; set; }
 
@@ -15,37 +15,37 @@
         public Range<uint>? Ratings
         {
             get => _showRatingsFilter.Ratings;
-            set => _showRatingsFilter.Ratings = value;
+            internal set => _showRatingsFilter.Ratings = value;
         }
 
         public Range<uint>? Votes
         {
             get => _showRatingsFilter.Votes;
-            set => _showRatingsFilter.Votes = value;
+            internal set => _showRatingsFilter.Votes = value;
         }
 
         public Range<float>? TMDBRatings
         {
             get => _showRatingsFilter.TMDBRatings;
-            set => _showRatingsFilter.TMDBRatings = value;
+            internal set => _showRatingsFilter.TMDBRatings = value;
         }
 
         public Range<uint>? TMDBVotes
         {
             get => _showRatingsFilter.TMDBVotes;
-            set => _showRatingsFilter.TMDBVotes = value;
+            internal set => _showRatingsFilter.TMDBVotes = value;
         }
 
         public Range<float>? IMDBRatings
         {
             get => _showRatingsFilter.IMDBRatings;
-            set => _showRatingsFilter.IMDBRatings = value;
+            internal set => _showRatingsFilter.IMDBRatings = value;
         }
 
         public Range<uint>? IMDBVotes
         {
             get => _showRatingsFilter.IMDBVotes;
-            set => _showRatingsFilter.IMDBVotes = value;
+            internal set => _showRatingsFilter.IMDBVotes = value;
         }
 
         public override bool HasValues => base.HasValues || HasNetworksSet || HasStatesSet || _showRatingsFilter.HasRatingsValues;

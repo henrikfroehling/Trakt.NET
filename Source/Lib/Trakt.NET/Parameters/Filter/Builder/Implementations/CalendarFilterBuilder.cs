@@ -16,7 +16,7 @@
 
         public override ITraktCalendarFilter Build()
         {
-            ITraktCalendarFilter filter =  new TraktCalendarFilter
+            var filter =  new TraktCalendarFilter
             {
                 Query = _query,
                 Year = _year,

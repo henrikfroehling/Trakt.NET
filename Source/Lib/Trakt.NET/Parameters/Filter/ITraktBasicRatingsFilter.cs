@@ -6,10 +6,10 @@
     public interface ITraktBasicRatingsFilter
     {
         /// <summary>Optional Trakt rating range between 0 and 100.</summary>
-        Range<uint>? Ratings { get; set; }
+        Range<uint>? Ratings { get; }
 
         /// <summary>Optional Trakt vote count between 0 and 100000.</summary>
-        Range<uint>? Votes { get; set; }
+        Range<uint>? Votes { get; }
 
         /// <summary>Returns whether the filter has any rating values set.</summary>
         bool HasRatingsValues { get; }

@@ -6,13 +6,13 @@
 
     internal class TraktCommonRatingsFilter : ATraktBasicRatingsFilter, ITraktCommonRatingsFilter
     {
-        public Range<float>? TMDBRatings { get; set; }
+        public Range<float>? TMDBRatings { get; internal set; }
 
-        public Range<uint>? TMDBVotes { get; set; }
+        public Range<uint>? TMDBVotes { get; internal set; }
 
-        public Range<float>? IMDBRatings { get; set; }
+        public Range<float>? IMDBRatings { get; internal set; }
 
-        public Range<uint>? IMDBVotes { get; set; }
+        public Range<uint>? IMDBVotes { get; internal set; }
 
         public override bool HasRatingsValues => base.HasRatingsValues || HasTMDBRatingsSet() || HasTMDBVotesSet() || HasIMDBRatingsSet() || HasIMDBVotesSet();
 

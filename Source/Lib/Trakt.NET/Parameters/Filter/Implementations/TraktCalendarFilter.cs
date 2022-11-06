@@ -5,18 +5,18 @@
 
     internal sealed class TraktCalendarFilter : ATraktFilter, ITraktCalendarFilter
     {
-        private readonly ITraktCalendarRatingsFilter _calendarRatingsFilter;
+        private readonly TraktCalendarRatingsFilter _calendarRatingsFilter;
 
         public Range<uint>? Ratings
         {
             get => _calendarRatingsFilter.Ratings;
-            set => _calendarRatingsFilter.Ratings = value;
+            internal set => _calendarRatingsFilter.Ratings = value;
         }
         
         public Range<uint>? Votes
         {
             get => _calendarRatingsFilter.Votes;
-            set => _calendarRatingsFilter.Votes = value;
+            internal set => _calendarRatingsFilter.Votes = value;
         }
 
         public override bool HasValues => base.HasValues || _calendarRatingsFilter.HasRatingsValues;

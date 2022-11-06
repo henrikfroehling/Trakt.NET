@@ -6,9 +6,9 @@
 
     internal sealed class TraktMovieRatingsFilter : TraktCommonRatingsFilter, ITraktMovieRatingsFilter
     {
-        public Range<float>? RottenTomatousMeter { get; set; }
+        public Range<float>? RottenTomatousMeter { get; internal set; }
 
-        public Range<float>? Metascores { get; set; }
+        public Range<float>? Metascores { get; internal set; }
 
         public override bool HasRatingsValues => base.HasRatingsValues || HasRottenTomatoesMeterSet() || HasMetascoresSet();
 
