@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Modules.Tests.TraktSearchModule
 {
     using TraktNet.Enums;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Parameters;
-    using TraktNet.Requests.Parameters.Filter;
 
     public partial class TraktSearchModule_Tests
     {
@@ -22,7 +22,7 @@
         private readonly TraktSearchField TEXT_QUERY_SEARCH_FIELD_TITLE = TraktSearchField.Title;
         private readonly TraktSearchField TEXT_QUERY_SEARCH_FIELD_OVERVIEW = TraktSearchField.Overview;
 
-        private readonly ITraktSearchFilter FILTER = TraktFilterDirectory.SearchFilter
+        private readonly ITraktSearchFilter FILTER = TraktFilter.NewSearchFilter()
             .WithYear(2011)
             .WithGenres("action", "thriller")
             .WithLanguages("en", "de")

@@ -2,11 +2,11 @@
 {
     using Exceptions;
     using Objects.Get.Calendars;
+    using Parameters;
     using Requests.Calendars;
     using Requests.Calendars.OAuth;
     using Requests.Handler;
     using Requests.Parameters;
-    using Requests.Parameters.Filter;
     using Responses;
     using System;
     using System.Threading;
@@ -30,6 +30,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-shows/get-shows">"Trakt API Doc - Calendars: My Shows"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
+        /// See also <seealso cref="TraktFilter.NewCalendarFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
@@ -37,7 +41,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktCalendarFilter" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -67,6 +71,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-new-shows/get-new-shows">"Trakt API Doc - Calendars: My New Shows"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
+        /// See also <seealso cref="TraktFilter.NewCalendarFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
@@ -74,7 +82,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktCalendarFilter" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -104,6 +112,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-season-premieres/get-season-premieres">"Trakt API Doc - Calendars: My Season Premieres"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
+        /// See also <seealso cref="TraktFilter.NewCalendarFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
@@ -111,7 +123,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktCalendarFilter" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -141,6 +153,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-movies/get-movies">"Trakt API Doc - Calendars: My Movies"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
+        /// See also <seealso cref="TraktFilter.NewCalendarFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
@@ -148,7 +164,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktCalendarFilter" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -178,6 +194,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-dvd/get-dvd-releases">"Trakt API Doc - Calendars: My DVD"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
+        /// See also <seealso cref="TraktFilter.NewCalendarFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
@@ -185,7 +205,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktCalendarFilter" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -215,6 +235,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-shows/get-shows">"Trakt API Doc - Calendars: All Shows"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
+        /// See also <seealso cref="TraktFilter.NewCalendarFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
@@ -222,7 +246,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktCalendarFilter" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -252,6 +276,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-new-shows/get-new-shows">"Trakt API Doc - Calendars: All New Shows"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
+        /// See also <seealso cref="TraktFilter.NewCalendarFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
@@ -259,7 +287,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktCalendarFilter" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -289,6 +317,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-season-premieres/get-season-premieres">"Trakt API Doc - Calendars: All Season Premieres"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
+        /// See also <seealso cref="TraktFilter.NewCalendarFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
@@ -296,7 +328,7 @@
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktCalendarFilter" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -326,6 +358,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-movies/get-movies">"Trakt API Doc - Calendars: All Movies"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
+        /// See also <seealso cref="TraktFilter.NewCalendarFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
@@ -333,7 +369,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktCalendarFilter" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -363,6 +399,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-movies/get-dvd-releases">"Trakt API Doc - Calendars: All DVD"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
+        /// See also <seealso cref="TraktFilter.NewCalendarFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="startDate">The date, on which the time period should start. Defaults to today. Will be converted to the Trakt date-format.</param>
         /// <param name="days">1 - 31 days, specifying the length of the time period. Defaults to 7 days.</param>
@@ -370,7 +410,7 @@
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktCalendarFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktCalendarFilter" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.

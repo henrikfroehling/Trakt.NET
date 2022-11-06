@@ -3,9 +3,9 @@
     using Enums;
     using Exceptions;
     using Objects.Basic;
+    using Parameters;
     using Requests.Handler;
     using Requests.Parameters;
-    using Requests.Parameters.Filter;
     using Requests.Search;
     using Responses;
     using System;
@@ -29,6 +29,10 @@
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
+        /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktSearchFilterBuilder" /> to create an instance of the optional <see cref="ITraktSearchFilter" />.
+        /// See also <seealso cref="TraktFilter.NewSearchFilter()" />.
         /// </para>
         /// </summary>
         /// <param name="searchResultTypes">
