@@ -30,6 +30,10 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktSearchFilterBuilder" /> to create an instance of the optional <see cref="ITraktSearchFilter" />.
+        /// See also <seealso cref="TraktFilter.NewSearchFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="searchResultTypes">
         /// The object type(s), for which will be searched. See also <seealso cref="TraktSearchResultType" />.

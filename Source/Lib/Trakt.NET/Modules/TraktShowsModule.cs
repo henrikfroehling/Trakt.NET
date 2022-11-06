@@ -599,12 +599,16 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/trending/get-trending-shows">"Trakt API Doc - Shows: Trending"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktShowFilterBuilder" /> to create an instance of the optional <see cref="ITraktShowFilter" />.
+        /// See also <seealso cref="TraktFilter.NewShowFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -641,12 +645,16 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/popular/get-popular-shows">"Trakt API Doc - Shows: Popular"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktShowFilterBuilder" /> to create an instance of the optional <see cref="ITraktShowFilter" />.
+        /// See also <seealso cref="TraktFilter.NewShowFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -683,13 +691,17 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/played/get-the-most-played-shows">"Trakt API Doc - Shows: Played"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktShowFilterBuilder" /> to create an instance of the optional <see cref="ITraktShowFilter" />.
+        /// See also <seealso cref="TraktFilter.NewShowFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="period">The time period, for which the most played shows should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -728,13 +740,17 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/watched/get-the-most-watched-shows">"Trakt API Doc - Shows: Watched"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktShowFilterBuilder" /> to create an instance of the optional <see cref="ITraktShowFilter" />.
+        /// See also <seealso cref="TraktFilter.NewShowFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="period">The time period, for which the most watched shows should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -773,13 +789,17 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/collected/get-the-most-collected-shows">"Trakt API Doc - Shows: Collected"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktShowFilterBuilder" /> to create an instance of the optional <see cref="ITraktShowFilter" />.
+        /// See also <seealso cref="TraktFilter.NewShowFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="period">The time period, for which the most collected shows should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -818,12 +838,16 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/shows/anticipated/get-the-most-anticipated-shows">"Trakt API Doc - Shows: Anticipated"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktShowFilterBuilder" /> to create an instance of the optional <see cref="ITraktShowFilter" />.
+        /// See also <seealso cref="TraktFilter.NewShowFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktShowFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
