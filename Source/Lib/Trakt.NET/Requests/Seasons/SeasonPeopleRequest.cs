@@ -4,6 +4,7 @@ namespace TraktNet.Requests.Seasons
     using Objects.Get.Shows;
     using Parameters;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal sealed class SeasonPeopleRequest : ASeasonRequest<ITraktShowCastAndCrew>, ISupportsExtendedInfo
     {

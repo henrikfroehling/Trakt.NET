@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Modules
 {
     using Requests.Parameters;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Collection containing multiple different combinations of show ids, season- and episode-numbers and extended infos.

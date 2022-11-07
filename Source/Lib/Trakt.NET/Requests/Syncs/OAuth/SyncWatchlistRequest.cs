@@ -5,6 +5,7 @@
     using Objects.Get.Watchlist;
     using Parameters;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal sealed class SyncWatchlistRequest : ASyncGetRequest<ITraktWatchlistItem>, ISupportsExtendedInfo, ISupportsPagination
     {

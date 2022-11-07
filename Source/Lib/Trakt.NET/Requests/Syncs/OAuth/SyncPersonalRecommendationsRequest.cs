@@ -5,6 +5,7 @@
     using Objects.Get.Users;
     using Parameters;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal class SyncPersonalRecommendationsRequest : ASyncGetRequest<ITraktRecommendation>, ISupportsExtendedInfo, ISupportsPagination
     {

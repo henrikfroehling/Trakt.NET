@@ -9,7 +9,6 @@
     using TraktNet.Parameters;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Calendars.OAuth;
-    using TraktNet.Requests.Parameters;
     using Xunit;
 
     [TestCategory("Requests.Calendars.OAuth.Movies")]

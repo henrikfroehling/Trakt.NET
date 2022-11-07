@@ -6,6 +6,7 @@
     using Interfaces;
     using Parameters;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal abstract class APersonRequest<TResponseContentType> : AGetRequest<TResponseContentType>, IHasId, ISupportsExtendedInfo
     {

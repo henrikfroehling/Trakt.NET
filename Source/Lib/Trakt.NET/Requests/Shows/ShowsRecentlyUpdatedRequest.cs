@@ -7,6 +7,7 @@
     using Parameters;
     using System;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal sealed class ShowsRecentlyUpdatedRequest : AGetRequest<ITraktRecentlyUpdatedShow>, ISupportsExtendedInfo, ISupportsPagination
     {

@@ -7,7 +7,6 @@
     using TraktNet.Enums;
     using TraktNet.Parameters;
     using TraktNet.Requests.Movies;
-    using TraktNet.Requests.Parameters;
     using Xunit;
 
     [TestCategory("Requests.Movies.Lists")]

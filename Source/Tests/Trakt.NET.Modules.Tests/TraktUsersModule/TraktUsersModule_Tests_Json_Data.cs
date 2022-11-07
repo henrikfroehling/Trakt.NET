@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using TraktNet.Enums;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
 
     public partial class TraktUsersModule_Tests
     {

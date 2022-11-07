@@ -8,8 +8,8 @@
     using TraktNet.Enums;
     using TraktNet.Exceptions;
     using TraktNet.Extensions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
-    using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
 

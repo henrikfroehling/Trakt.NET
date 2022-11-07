@@ -31,6 +31,7 @@ namespace TraktNet.Modules
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to sync.

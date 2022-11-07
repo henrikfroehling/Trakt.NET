@@ -4,6 +4,7 @@
     using Interfaces;
     using Parameters;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal abstract class AUsersGetRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ISupportsExtendedInfo
     {

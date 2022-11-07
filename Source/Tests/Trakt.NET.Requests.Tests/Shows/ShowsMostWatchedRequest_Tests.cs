@@ -6,7 +6,6 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Parameters;
-    using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Shows;
     using Xunit;
 

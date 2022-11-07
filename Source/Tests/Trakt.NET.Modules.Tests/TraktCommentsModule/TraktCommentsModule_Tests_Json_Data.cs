@@ -7,7 +7,7 @@
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
 
     public partial class TraktCommentsModule_Tests
     {

@@ -4,6 +4,7 @@
     using Objects.Basic;
     using Parameters;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal sealed class MoviePeopleRequest : AMovieRequest<ITraktCastAndCrew>, ISupportsExtendedInfo
     {

@@ -4,6 +4,7 @@
     using Objects.Get.Collections;
     using Parameters;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal sealed class SyncCollectionShowsRequest : ASyncGetRequest<ITraktCollectionShow>, ISupportsExtendedInfo
     {

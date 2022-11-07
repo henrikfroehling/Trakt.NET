@@ -9,6 +9,7 @@
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using TraktNet.Parameters;
 
     /// <summary>A Trakt calendar show, containing episode and show information.</summary>
     public class TraktCalendarShow : ITraktCalendarShow

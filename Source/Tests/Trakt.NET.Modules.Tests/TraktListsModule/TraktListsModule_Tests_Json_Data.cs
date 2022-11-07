@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Modules.Tests.TraktListsModule
 {
     using TraktNet.Enums;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
 
     public partial class TraktListsModule_Tests
     {

@@ -4,6 +4,7 @@
     using Objects.Get.Shows;
     using Parameters;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal sealed class ShowPeopleRequest : AShowRequest<ITraktShowCastAndCrew>, ISupportsExtendedInfo
     {
