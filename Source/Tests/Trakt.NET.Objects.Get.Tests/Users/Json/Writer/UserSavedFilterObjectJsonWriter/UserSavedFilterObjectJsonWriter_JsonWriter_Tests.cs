@@ -12,7 +12,7 @@
     using TraktNet.Objects.Get.Users.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Get.Users.JsonWriter")]
+    [TestCategory("Objects.Get.Users.JsonWriter")]
     public class UserSavedFilterObjectJsonWriter_Tests
     {
         private readonly DateTime UPDATED_AT = DateTime.UtcNow;

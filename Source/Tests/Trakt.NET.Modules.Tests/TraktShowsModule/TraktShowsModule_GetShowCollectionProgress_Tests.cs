@@ -14,7 +14,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Shows")]
+    [TestCategory("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
         private readonly string GET_SHOW_COLLECTION_PROGRESS_URI = $"shows/{SHOW_ID}/progress/collection";
@@ -841,23 +841,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktShowsModule_GetShowCollectionProgress_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(
-                GET_SHOW_COLLECTION_PROGRESS_URI,
-                SHOW_COLLECTION_PROGRESS_JSON);
-
-            Func<Task<TraktResponse<ITraktShowCollectionProgress>>> act = () => client.Shows.GetShowCollectionProgressAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowCollectionProgressAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowCollectionProgressAsync("show id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

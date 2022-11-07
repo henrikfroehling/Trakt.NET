@@ -12,7 +12,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Get.History.JsonWriter")]
+    [TestCategory("Objects.Get.History.JsonWriter")]
     public partial class HistoryItemArrayJsonWriter_Tests
     {
         [Fact]

@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_PERSONAL_LISTS_URI = $"users/{USERNAME}/lists";
@@ -72,21 +72,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetPersonalLists_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LISTS_URI, LISTS_JSON);
-
-            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetPersonalListsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetPersonalListsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetPersonalListsAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

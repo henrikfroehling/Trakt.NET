@@ -13,9 +13,10 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryPostMovie>();
-                var showArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryPostShow>();
-                var episodeArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryPostEpisode>();
+                var movieArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryRemovePostMovie>();
+                var showArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryRemovePostShow>();
+                var seasonArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryRemovePostSeason>();
+                var episodeArrayJsonReader = new ArrayJsonReader<ITraktSyncHistoryRemovePostEpisode>();
                 ITraktSyncHistoryRemovePost syncHistoryRemovePost = new TraktSyncHistoryRemovePost();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -29,6 +30,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_SHOWS:
                             syncHistoryRemovePost.Shows = await showArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_SEASONS:
+                            syncHistoryRemovePost.Seasons = await seasonArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_EPISODES:
                             syncHistoryRemovePost.Episodes = await episodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);

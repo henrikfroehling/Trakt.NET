@@ -8,7 +8,7 @@
     using TraktNet.Requests.Base;
     using Xunit;
 
-    [Category("Requests.Base")]
+    [TestCategory("Requests.Base")]
     public class ADeleteRequest_Tests
     {
         internal class DeleteRequestMock : ADeleteRequest

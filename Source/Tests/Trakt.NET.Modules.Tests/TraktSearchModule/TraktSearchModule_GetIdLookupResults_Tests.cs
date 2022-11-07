@@ -9,11 +9,11 @@
     using TraktNet.Enums;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Basic;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Search")]
+    [TestCategory("Modules.Search")]
     public partial class TraktSearchModule_Tests
     {
         [Fact]
@@ -395,28 +395,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSearchModule_GetIdLookupResults_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GetIdLookupUri, SEARCH_ID_LOOKUP_RESULTS_JSON,
-                                                           1, 10, 1, ID_LOOKUP_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktSearchResult>>> act = () => client.Search.GetIdLookupResultsAsync(default, LOOKUP_ID);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Search.GetIdLookupResultsAsync(TraktSearchIdType.Unspecified, LOOKUP_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, "lookup id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

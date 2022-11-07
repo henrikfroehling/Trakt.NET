@@ -32,7 +32,7 @@
         }
 
         internal static IAuthenticationRequestHandler GetInstance(TraktClient client)
-            => s_requestHandler ?? (s_requestHandler = new AuthenticationRequestHandler(client));
+            => s_requestHandler ??= new AuthenticationRequestHandler(client);
 
         public string CreateAuthorizationUrl(string clientId, string redirectUri, string state = null)
         {
@@ -109,11 +109,16 @@
             return result;
         }
 
-        public async Task<bool> CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken, CancellationToken cancellationToken = default)
+        public Task<bool> CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(accessToken) || accessToken.ContainsSpace())
                 throw new ArgumentException("access token must not be null, empty or contain any spaces", nameof(accessToken));
 
+            return InternalCheckIfAccessTokenWasRevokedOrIsNotValidAsync(accessToken, cancellationToken);
+        }
+
+        private async Task<bool> InternalCheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken, CancellationToken cancellationToken = default)
+        {
             ITraktAuthorization currentAuthorization = _client.Authorization;
             _client.Authorization = TraktAuthorization.CreateWith(accessToken);
 
@@ -366,8 +371,17 @@
                     IObjectJsonReader<ITraktError> objectJsonReader = JsonFactoryContainer.CreateObjectReader<ITraktError>();
                     ITraktError traktError = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
-                    var errorMessage = traktError != null ? ($"error on {(isRefreshRequest ? "refreshing" : "retrieving")} oauth access token\nerror: {traktError.Error}\ndescription: {traktError.Description}")
-                                                          : "unknown error";
+                    string errorMessage = "unknown error";
+
+                    if (traktError != null)
+                    {
+                        string actionString = "retrieving";
+
+                        if (isRefreshRequest)
+                            actionString = "refreshing";
+
+                        errorMessage = $"error on {actionString} oauth access token\nerror: {traktError.Error}\ndescription: {traktError.Description}";
+                    }
 
                     throw new TraktAuthenticationOAuthException(errorMessage)
                     {

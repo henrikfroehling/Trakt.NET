@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_PERSONAL_LIST_ITEMS_URI = $"users/{USERNAME}/lists/{LIST_ID}/items";
@@ -123,30 +123,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetPersonalListItems_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_ITEMS_URI, LIST_ITEMS_JSON);
-
-            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetPersonalListItemsAsync(null, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetPersonalListItemsAsync(string.Empty, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetPersonalListItemsAsync("user name", LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetPersonalListItemsAsync(USERNAME, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetPersonalListItemsAsync(USERNAME, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetPersonalListItemsAsync(USERNAME, "list id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

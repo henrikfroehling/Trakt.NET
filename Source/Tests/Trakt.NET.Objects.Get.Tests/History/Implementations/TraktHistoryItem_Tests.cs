@@ -10,7 +10,7 @@
     using TraktNet.Objects.Get.History.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.History.Implementations")]
+    [TestCategory("Objects.Get.History.Implementations")]
     public class TraktHistoryItem_Tests
     {
         [Fact]

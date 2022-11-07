@@ -10,7 +10,7 @@
     using TraktNet.Requests.Movies;
     using Xunit;
 
-    [Category("Requests.Movies.Lists")]
+    [TestCategory("Requests.Movies.Lists")]
     public class MoviesRecentlyUpdatedIdsRequest_Tests
     {
         [Fact]

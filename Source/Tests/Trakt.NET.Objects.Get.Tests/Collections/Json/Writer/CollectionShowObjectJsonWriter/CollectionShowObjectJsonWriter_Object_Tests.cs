@@ -13,7 +13,7 @@
     using TraktNet.Objects.Get.Shows;
     using Xunit;
 
-    [Category("Objects.Get.Collections.JsonWriter")]
+    [TestCategory("Objects.Get.Collections.JsonWriter")]
     public partial class CollectionShowObjectJsonWriter_Tests
     {
         [Fact]

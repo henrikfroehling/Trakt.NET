@@ -7,6 +7,7 @@
     using Interfaces.Base;
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
@@ -83,9 +84,7 @@
 
         private ExtendedHttpRequestMessage CreateRequestMessage()
         {
-            if (_request == null)
-                throw new ArgumentNullException(nameof(_request));
-
+            Debug.Assert(_request != null);
             string url = BuildUrl();
 
             var requestMessage = new ExtendedHttpRequestMessage(_request.Method, url)

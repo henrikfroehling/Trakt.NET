@@ -6,7 +6,7 @@
     using TraktNet.Requests.Checkins.OAuth;
     using Xunit;
 
-    [Category("Requests.Checkins.OAuth")]
+    [TestCategory("Requests.Checkins.OAuth")]
     public class CheckinsDeleteRequest_Tests
     {
         [Fact]

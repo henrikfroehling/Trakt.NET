@@ -8,7 +8,7 @@
     using TraktNet.Objects.Get.Syncs.Playback.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Syncs.Playback.JsonReader")]
+    [TestCategory("Objects.Get.Syncs.Playback.JsonReader")]
     public partial class SyncPlaybackProgressItemObjectJsonReader_Tests
     {
         [Fact]

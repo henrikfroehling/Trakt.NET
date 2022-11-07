@@ -4,11 +4,12 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Seasons;
     using Xunit;
 
-    [Category("Requests.Seasons")]
+    [TestCategory("Requests.Seasons")]
     public class ASeasonRequest_1_Tests
     {
         internal class SeasonRequestMock : ASeasonRequest<int>
@@ -63,19 +64,19 @@
             var requestMock = new SeasonRequestMock();
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             requestMock = new SeasonRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             requestMock = new SeasonRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

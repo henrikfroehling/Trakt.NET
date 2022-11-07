@@ -9,7 +9,7 @@
     using TraktNet.Objects.Get.Watched.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Watched.Implementations")]
+    [TestCategory("Objects.Get.Watched.Implementations")]
     public class TraktWatchedShowSeason_Tests
     {
         [Fact]

@@ -10,7 +10,7 @@
     using TraktNet.Objects.Get.Episodes.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Get.Episodes.JsonWriter")]
+    [TestCategory("Objects.Get.Episodes.JsonWriter")]
     public partial class EpisodeIdsObjectJsonWriter_Tests
     {
         [Fact]

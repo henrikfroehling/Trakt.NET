@@ -11,7 +11,7 @@
     using TraktNet.Objects.Get.Lists.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Lists.JsonReader")]
+    [TestCategory("Objects.Get.Lists.JsonReader")]
     public partial class ListItemObjectJsonReader_Episode_Tests
     {
         [Fact]

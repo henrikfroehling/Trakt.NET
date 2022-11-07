@@ -15,7 +15,7 @@
     using TraktNet.Objects.Get.Shows;
     using Xunit;
 
-    [Category("Objects.Get.Calendars.JsonWriter")]
+    [TestCategory("Objects.Get.Calendars.JsonWriter")]
     public partial class CalendarShowObjectJsonWriter_Tests
     {
         private readonly DateTime UPDATED_AT = DateTime.UtcNow;

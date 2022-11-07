@@ -3,9 +3,8 @@
     using Enums;
     using Exceptions;
     using Objects.Basic;
+    using Parameters;
     using Requests.Handler;
-    using Requests.Parameters;
-    using Requests.Parameters.Filter;
     using Requests.Search;
     using Responses;
     using System;
@@ -29,6 +28,10 @@
         /// <para>OAuth authorization not required.</para>
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
+        /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktSearchFilterBuilder" /> to create an instance of the optional <see cref="ITraktSearchFilter" />.
+        /// See also <seealso cref="TraktFilter.NewSearchFilter()" />.
         /// </para>
         /// </summary>
         /// <param name="searchResultTypes">
@@ -55,11 +58,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given searchQuery is null, empty or contains spaces.
-        /// Thrown, if the given searchResultType is unspecified.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given searchResultType is null</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktSearchResult>> GetTextQueryResultsAsync(TraktSearchResultType searchResultTypes, string searchQuery,
                                                                                      TraktSearchField searchFields = null, ITraktSearchFilter filter = null,
                                                                                      TraktExtendedInfo extendedInfo = null,
@@ -108,11 +107,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given lookupId is null, empty or contains spaces.
-        /// Thrown, if the given searchIdType is unspecified.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given searchIdType is null.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktSearchResult>> GetIdLookupResultsAsync(TraktSearchIdType searchIdType, string lookupId,
                                                                                     TraktSearchResultType searchResultTypes = null,
                                                                                     TraktExtendedInfo extendedInfo = null,

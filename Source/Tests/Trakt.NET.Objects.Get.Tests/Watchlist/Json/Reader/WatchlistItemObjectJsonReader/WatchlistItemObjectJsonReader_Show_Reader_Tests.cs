@@ -11,7 +11,7 @@
     using TraktNet.Objects.Get.Watchlist.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Watchlist.JsonReader")]
+    [TestCategory("Objects.Get.Watchlist.JsonReader")]
     public partial class WatchlistItemObjectJsonReader_Show_Tests
     {
         [Fact]

@@ -10,7 +10,7 @@
     using TraktNet.Objects.Get.Syncs.Activities.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Syncs.Activities.JsonReader")]
+    [TestCategory("Objects.Get.Syncs.Activities.JsonReader")]
     public partial class SyncSeasonsLastActivitiesObjectJsonReader_Tests
     {
         [Fact]

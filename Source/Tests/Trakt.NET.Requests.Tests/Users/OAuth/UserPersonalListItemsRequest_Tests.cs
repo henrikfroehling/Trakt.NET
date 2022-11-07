@@ -6,12 +6,13 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
-    using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
 
-    [Category("Requests.Users.OAuth")]
+    [TestCategory("Requests.Users.OAuth")]
     public class UserPersonalListItemsRequest_Tests
     {
         [Fact]
@@ -42,37 +43,37 @@
             var request = new UserPersonalListItemsRequest { Id = "123" };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty username
             request = new UserPersonalListItemsRequest { Username = string.Empty, Id = "123" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
             request = new UserPersonalListItemsRequest { Username = "invalid username", Id = "123" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id is null
             request = new UserPersonalListItemsRequest { Username = "username" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new UserPersonalListItemsRequest { Username = "username", Id = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new UserPersonalListItemsRequest { Username = "username", Id = "invalid id" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
 
         [Theory, ClassData(typeof(UserCustomListItemsRequest_TestData))]

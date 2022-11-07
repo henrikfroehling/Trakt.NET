@@ -6,12 +6,13 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
-    using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
 
-    [Category("Requests.Users.OAuth")]
+    [TestCategory("Requests.Users.OAuth")]
     public class UserHiddenItemsRequest_Tests
     {
         [Fact]
@@ -35,13 +36,13 @@
             var requestMock = new UserHiddenItemsRequest();
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // section is unspecified
             requestMock = new UserHiddenItemsRequest { Section = TraktHiddenItemsSection.Unspecified };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
 
         [Theory, ClassData(typeof(UserHiddenItemsRequest_TestData))]

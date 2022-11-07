@@ -13,7 +13,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string CREATE_PERSONAL_LIST_URI = $"users/{USERNAME}/lists";
@@ -21,7 +21,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME
             };
@@ -60,7 +60,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION
@@ -102,7 +102,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_Privacy()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -145,7 +145,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_Privacy_And_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -189,7 +189,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_Privacy_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -234,7 +234,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -277,7 +277,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -321,7 +321,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Description_And_DisplayNumbers_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -366,7 +366,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Privacy()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Privacy = PRIVACY
@@ -408,7 +408,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Privacy_And_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Privacy = PRIVACY,
@@ -451,7 +451,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Privacy_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Privacy = PRIVACY,
@@ -494,7 +494,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_Privacy_And_DisplayNumbers_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Privacy = PRIVACY,
@@ -539,7 +539,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_DisplayNumbers()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 DisplayNumbers = DISPLAY_NUMBERS
@@ -581,7 +581,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 AllowComments = ALLOW_COMMENTS
@@ -623,7 +623,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_With_DisplayNumbers_And_AllowComments()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 DisplayNumbers = DISPLAY_NUMBERS,
@@ -667,7 +667,7 @@
         [Fact]
         public async Task Test_TraktUsersModule_CreatePersonalList_Complete()
         {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
             {
                 Name = LIST_NAME,
                 Description = DESCRIPTION,
@@ -740,35 +740,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_CreatePersonalList_ArgumentExceptions()
-        {
-            ITraktUserPersonalListPost createListPost = new TraktUserCustomListPost
-            {
-                Name = LIST_NAME
-            };
-
-            string postJson = await TestUtility.SerializeObject(createListPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.CreatePersonalListAsync(null, LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.CreatePersonalListAsync(string.Empty, LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.CreatePersonalListAsync("user name", LIST_NAME);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.CreatePersonalListAsync(USERNAME, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.CreatePersonalListAsync(USERNAME, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

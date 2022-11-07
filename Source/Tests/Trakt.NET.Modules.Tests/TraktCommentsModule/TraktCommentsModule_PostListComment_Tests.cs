@@ -7,13 +7,12 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Lists;
     using TraktNet.Objects.Post.Comments;
     using TraktNet.Objects.Post.Comments.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Comments")]
+    [TestCategory("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
         private const string POST_LIST_COMMENT_URI = "comments";
@@ -31,7 +30,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_LIST_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostListCommentAsync(List, COMMENT_TEXT);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostListCommentAsync(listCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -75,7 +74,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_LIST_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostListCommentAsync(List, COMMENT_TEXT, SPOILER);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostListCommentAsync(listCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -119,7 +118,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_LIST_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostListCommentAsync(List, COMMENT_TEXT, null, SHARING);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostListCommentAsync(listCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -164,7 +163,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_LIST_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostListCommentAsync(List, COMMENT_TEXT, SPOILER, SHARING);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostListCommentAsync(listCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -213,71 +212,23 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktCommentsModule_PostListComment_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            ITraktListCommentPost listCommentPost = new TraktListCommentPost
+            {
+                List = List,
+                Comment = COMMENT_TEXT
+            };
+
             TraktClient client = TestUtility.GetOAuthMockClient(POST_LIST_COMMENT_URI, statusCode);
 
             try
             {
-                await client.Comments.PostListCommentAsync(List, COMMENT_TEXT);
+                await client.Comments.PostListCommentAsync(listCommentPost);
                 Assert.False(true);
             }
             catch (Exception exception)
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_PostListComment_ArgumentExceptions()
-        {
-            ITraktList list = new TraktList
-            {
-                Ids = new TraktListIds
-                {
-                    Trakt = 2228577,
-                    Slug = "oscars-2016"
-                }
-            };
-
-            ITraktListCommentPost listCommentPost = new TraktListCommentPost
-            {
-                List = list,
-                Comment = COMMENT_TEXT
-            };
-
-            string postJson = await TestUtility.SerializeObject(listCommentPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(POST_LIST_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostListCommentAsync(null, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            list.Ids = null;
-
-            act = () => client.Comments.PostListCommentAsync(list, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            list.Ids = new TraktListIds();
-
-            act = () => client.Comments.PostListCommentAsync(list, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            list.Ids = new TraktListIds
-            {
-                Trakt = 2228577,
-                Slug = "oscars-2016"
-            };
-
-            act = () => client.Comments.PostListCommentAsync(list, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Comments.PostListCommentAsync(list, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            const string comment = "one two three four";
-
-            act = () => client.Comments.PostListCommentAsync(list, comment);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

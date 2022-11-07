@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Scrobbles
 {
+    using Exceptions;
     using Get.Movies;
     using Objects.Json;
     using System.Threading;
@@ -22,7 +23,16 @@
 
         public override void Validate()
         {
-            // TODO
+            base.Validate();
+
+            if (Movie == null)
+                throw new TraktPostValidationException(nameof(Movie), "movie must not be null");
+
+            if (Movie.Ids == null)
+                throw new TraktPostValidationException($"{nameof(Movie)}.Ids", "movie ids must not be null");
+
+            if (!Movie.Ids.HasAnyId)
+                throw new TraktPostValidationException($"{nameof(Movie)}.Ids", "movie ids have no valid id");
         }
     }
 }

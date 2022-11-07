@@ -8,11 +8,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Lists;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Seasons")]
+    [TestCategory("Modules.Seasons")]
     public partial class TraktSeasonsModule_Tests
     {
         private readonly string GET_SEASON_LISTS_URI = $"shows/{SHOW_ID}/seasons/{SEASON_NR}/lists";
@@ -288,21 +288,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonLists_ArgumentsExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_LISTS_URI, SEASON_LISTS_JSON, 1, 10, 1, LIST_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Seasons.GetSeasonListsAsync(null, SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetSeasonListsAsync(string.Empty, SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetSeasonListsAsync("show id", SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

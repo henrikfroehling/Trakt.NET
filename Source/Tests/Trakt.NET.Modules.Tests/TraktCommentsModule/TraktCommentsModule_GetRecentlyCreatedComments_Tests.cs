@@ -8,11 +8,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Users;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Comments")]
+    [TestCategory("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
         private const string GET_COMMENTS_RECENT_URI = "comments/recent";

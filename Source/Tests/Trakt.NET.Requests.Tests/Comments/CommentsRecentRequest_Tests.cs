@@ -5,7 +5,7 @@
     using TraktNet.Requests.Comments;
     using Xunit;
 
-    [Category("Requests.Comments")]
+    [TestCategory("Requests.Comments")]
     public class CommentsRecentRequest_Tests
     {
         [Fact]

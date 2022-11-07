@@ -4,11 +4,12 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Lists;
     using Xunit;
 
-    [Category("Requests.Lists")]
+    [TestCategory("Requests.Lists")]
     public class AListRequest_Tests
     {
         internal class ListRequestMock : AListRequest<int>
@@ -50,19 +51,19 @@
             var requestMock = new ListRequestMock();
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             requestMock = new ListRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             requestMock = new ListRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

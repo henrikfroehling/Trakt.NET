@@ -10,7 +10,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private readonly string REMOVE_PLAYBACK_ITEM_URI = $"sync/playback/{PLAYBACK_ID}";

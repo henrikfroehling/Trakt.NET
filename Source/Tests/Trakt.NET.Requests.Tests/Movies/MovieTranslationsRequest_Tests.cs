@@ -4,10 +4,11 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Movies;
     using Xunit;
 
-    [Category("Requests.Movies")]
+    [TestCategory("Requests.Movies")]
     public class MovieTranslationsRequest_Tests
     {
         [Fact]
@@ -49,28 +50,28 @@
             var request = new MovieTranslationsRequest();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new MovieTranslationsRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new MovieTranslationsRequest { Id = "invalid id" };
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // language code with wrong length
             request = new MovieTranslationsRequest { Id = "123", LanguageCode = "eng" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             request = new MovieTranslationsRequest { Id = "123", LanguageCode = "e" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

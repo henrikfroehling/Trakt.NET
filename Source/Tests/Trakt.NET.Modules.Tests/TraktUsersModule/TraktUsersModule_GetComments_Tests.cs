@@ -8,11 +8,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Users;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_COMMENTS_URI = $"users/{USERNAME}/comments";
@@ -713,22 +713,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetComments_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(
-                GET_COMMENTS_URI, USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktUserComment>>> act = () => client.Users.GetCommentsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetCommentsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetCommentsAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

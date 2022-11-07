@@ -9,11 +9,11 @@
     using TraktNet.Exceptions;
     using TraktNet.Extensions;
     using TraktNet.Objects.Get.History;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string GET_WATCHED_HISTORY_URI = "sync/history";

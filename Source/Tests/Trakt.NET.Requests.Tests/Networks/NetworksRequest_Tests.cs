@@ -6,7 +6,7 @@
     using TraktNet.Requests.Networks;
     using Xunit;
 
-    [Category("Requests.Networks")]
+    [TestCategory("Requests.Networks")]
     public class NetworksRequest_Tests
     {
         [Fact]

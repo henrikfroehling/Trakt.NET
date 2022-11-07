@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Objects.Get.Users.Statistics;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class UserStatisticsRequest : AGetRequest<ITraktUserStatistics>
@@ -23,10 +23,10 @@
         public override void Validate()
         {
             if (Username == null)
-                throw new ArgumentNullException(nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username must not be null");
 
             if (Username == string.Empty || Username.ContainsSpace())
-                throw new ArgumentException("username not valid", nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username not valid");
         }
     }
 }

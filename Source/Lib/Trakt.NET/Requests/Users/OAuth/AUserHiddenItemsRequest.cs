@@ -2,8 +2,8 @@
 {
     using Base;
     using Enums;
+    using Exceptions;
     using Objects.Post.Users.HiddenItems;
-    using System;
     using System.Collections.Generic;
 
     internal abstract class AUserHiddenItemsRequest<TResponseContentType> : APostRequest<TResponseContentType, ITraktUserHiddenItemsPost>
@@ -22,10 +22,10 @@
             base.Validate();
 
             if (Section == null)
-                throw new ArgumentNullException(nameof(Section));
+                throw new TraktRequestValidationException(nameof(Section), "section must not be null");
 
             if (Section == TraktHiddenItemsSection.Unspecified)
-                throw new ArgumentException("section type must not be unspecified", nameof(Section));
+                throw new TraktRequestValidationException(nameof(Section), "section type must not be unspecified");
         }
     }
 }

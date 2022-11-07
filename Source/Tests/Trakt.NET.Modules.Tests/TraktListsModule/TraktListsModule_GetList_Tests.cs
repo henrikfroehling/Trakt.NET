@@ -12,7 +12,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Lists")]
+    [TestCategory("Modules.Lists")]
     public partial class TraktListsModule_Tests
     {
         private readonly string GET_LIST_URI = $"lists/{LIST_ID}";
@@ -89,21 +89,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktListsModule_GetList_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_LIST_URI, SINGLE_LIST_JSON);
-
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Lists.GetListAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Lists.GetListAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Lists.GetListAsync("movie id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

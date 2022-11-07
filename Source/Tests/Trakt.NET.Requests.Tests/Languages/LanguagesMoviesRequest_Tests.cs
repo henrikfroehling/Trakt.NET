@@ -6,7 +6,7 @@
     using TraktNet.Requests.Languages;
     using Xunit;
 
-    [Category("Requests.Languages")]
+    [TestCategory("Requests.Languages")]
     public class LanguagesMoviesRequest_Tests
     {
         [Fact]

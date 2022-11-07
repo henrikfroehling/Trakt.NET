@@ -6,7 +6,7 @@
     using TraktNet.Enums;
     using Xunit;
 
-    [Category("Enums")]
+    [TestCategory("Enums")]
     public class TraktShowStatus_Tests
     {
         [Fact]

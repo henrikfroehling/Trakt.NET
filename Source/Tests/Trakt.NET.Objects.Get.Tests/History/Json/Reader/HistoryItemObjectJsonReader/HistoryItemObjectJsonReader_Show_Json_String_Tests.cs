@@ -8,7 +8,7 @@
     using TraktNet.Objects.Get.History.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.History.JsonReader")]
+    [TestCategory("Objects.Get.History.JsonReader")]
     public partial class HistoryItemObjectJsonReader_Tests
     {
         [Fact]

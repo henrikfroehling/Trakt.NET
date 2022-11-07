@@ -4,10 +4,11 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Movies;
     using Xunit;
 
-    [Category("Requests.Movies")]
+    [TestCategory("Requests.Movies")]
     public class MovieAliasesRequest_Tests
     {
         [Fact]
@@ -37,17 +38,17 @@
             var request = new MovieAliasesRequest();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new MovieAliasesRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new MovieAliasesRequest { Id = "invalid id" };
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

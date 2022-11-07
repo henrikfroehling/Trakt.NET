@@ -6,10 +6,11 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Seasons;
     using Xunit;
 
-    [Category("Requests.Seasons")]
+    [TestCategory("Requests.Seasons")]
     public class SeasonCommentsRequest_Tests
     {
         [Fact]
@@ -26,19 +27,19 @@
             var request = new SeasonCommentsRequest();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new SeasonCommentsRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new SeasonCommentsRequest { Id = "invalid id" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
 
         [Theory, ClassData(typeof(SeasonCommentsRequest_TestData))]

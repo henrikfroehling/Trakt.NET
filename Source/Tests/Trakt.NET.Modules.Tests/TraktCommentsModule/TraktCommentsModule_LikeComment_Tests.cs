@@ -10,7 +10,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Comments")]
+    [TestCategory("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
         private readonly string LIKE_COMMENT_URI = $"comments/{COMMENT_ID}/like";
@@ -53,15 +53,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_LikeComment_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_COMMENT_URI, HttpStatusCode.NoContent);
-
-            Func<Task<TraktNoContentResponse>> act = () => client.Comments.LikeCommentAsync(0);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

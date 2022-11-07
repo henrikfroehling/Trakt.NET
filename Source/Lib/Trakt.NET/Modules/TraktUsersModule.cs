@@ -11,7 +11,6 @@ namespace TraktNet.Modules
     using Objects.Get.Users.Statistics;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
-    using Objects.Post;
     using Objects.Post.Basic;
     using Objects.Post.Basic.Responses;
     using Objects.Post.Users;
@@ -20,8 +19,8 @@ namespace TraktNet.Modules
     using Objects.Post.Users.PersonalListItems;
     using Objects.Post.Users.PersonalListItems.Responses;
     using Objects.Post.Users.Responses;
+    using PostBuilder;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Users.OAuth;
     using Responses;
     using System;
@@ -29,6 +28,7 @@ namespace TraktNet.Modules
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to users.
@@ -145,7 +145,7 @@ namespace TraktNet.Modules
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given hidden items section is unspecified.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktUserHiddenItem>> GetHiddenItemsAsync(TraktHiddenItemsSection hiddenItemsSection,
                                                                                   TraktHiddenItemType hiddenItemType = null,
                                                                                   TraktExtendedInfo extendedInfo = null,
@@ -222,13 +222,12 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktUserHiddenItemsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given hidden items post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given hidden items post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktUserHiddenItemsPostResponse>> AddHiddenItemsAsync(ITraktUserHiddenItemsPost hiddenItemsPost,
                                                                                           TraktHiddenItemsSection hiddenItemsSection,
                                                                                           CancellationToken cancellationToken = default)
         {
-            ValidateHiddenItemsPost(hiddenItemsPost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserHiddenItemsAddRequest
@@ -259,13 +258,12 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktUserHiddenItemsRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given hidden items post is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given hidden items post is empty.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktUserHiddenItemsRemovePostResponse>> RemoveHiddenItemsAsync(ITraktUserHiddenItemsPost hiddenItemsPost,
                                                                                                    TraktHiddenItemsSection hiddenItemsSection,
                                                                                                    CancellationToken cancellationToken = default)
         {
-            ValidateHiddenItemsPost(hiddenItemsPost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserHiddenItemsRemoveRequest
@@ -330,7 +328,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktUser" /> instance containing the user's profile information.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktUser>> GetUserProfileAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                    CancellationToken cancellationToken = default)
         {
@@ -362,7 +360,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktCollectionMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktCollectionMovie>> GetCollectionMoviesAsync(string usernameOrSlug,
                                                                                        TraktExtendedInfo extendedInfo = null,
                                                                                        CancellationToken cancellationToken = default)
@@ -395,7 +393,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktCollectionShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktCollectionShow>> GetCollectionShowsAsync(string usernameOrSlug,
                                                                                      TraktExtendedInfo extendedInfo = null,
                                                                                      CancellationToken cancellationToken = default)
@@ -438,7 +436,7 @@ namespace TraktNet.Modules
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktUserComment>> GetCommentsAsync(string usernameOrSlug,
                                                                             TraktCommentType commentType = null,
                                                                             TraktObjectType objectType = null,
@@ -476,7 +474,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktList" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktList>> GetPersonalListsAsync(string usernameOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -504,10 +502,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>Anv <see cref="ITraktList" /> instance containing the personal list informations.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given username or slug is null, empty or contains spaces.
-        /// Thrown, if the given list id is null, empty or contains spaces.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktList>> GetPersonalListAsync(string usernameOrSlug, string listIdOrSlug,
                                                                     CancellationToken cancellationToken = default)
         {
@@ -536,14 +531,11 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktList" /> instances with the data of each queried personal list.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if one of the given usernames is null, empty or contains spaces.
-        /// Thrown, if one of the given list ids is null, empty or contains spaces.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public async Task<IEnumerable<TraktResponse<ITraktList>>> GetMultiplePersonalListsAsync(TraktMultipleUserListsQueryParams userListsQueryParams,
                                                                                                 CancellationToken cancellationToken = default)
         {
-            if (userListsQueryParams == null || userListsQueryParams.Count <= 0)
+            if (userListsQueryParams == null || userListsQueryParams.Count == 0)
                 return new List<TraktResponse<ITraktList>>();
 
             var tasks = new List<Task<TraktResponse<ITraktList>>>();
@@ -579,10 +571,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktListItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given username or slug is null, empty or contains spaces.
-        /// Thrown, if the given list id is null, empty or contains spaces.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktListItem>> GetPersonalListItemsAsync(string usernameOrSlug, string listIdOrSlug,
                                                                                   TraktListItemType listItemType = null, TraktExtendedInfo extendedInfo = null,
                                                                                   TraktPagedParameters pagedParameters = null,
@@ -621,22 +610,14 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktList" /> instance containing information about the successfully created personal list.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given username or slug is null, empty or contains spaces.
-        /// Thrown, if the given list name is null or empty.
-        /// </exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktList>> CreatePersonalListAsync(string usernameOrSlug, string listName,
                                                                        string listDescription = null, TraktAccessScope privacy = null,
                                                                        bool? displayNumbers = null, bool? allowComments = null,
                                                                        CancellationToken cancellationToken = default)
         {
-            if (listName == null)
-                throw new ArgumentNullException(nameof(listName), "list name must not be null");
-
-            if (listName.Length == 0)
-                throw new ArgumentException("list name must not be empty", nameof(listName));
-
-            var requestBody = new TraktUserCustomListPost
+            var requestBody = new TraktUserPersonalListPost
             {
                 Name = listName,
                 Description = listDescription,
@@ -683,6 +664,7 @@ namespace TraktNet.Modules
         /// Thrown, if the no new values are given (list name is null or empty and description is null and privacy is not set and
         /// display numbers is not set and comments allowed is not set).
         /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktList>> UpdatePersonalListAsync(string usernameOrSlug, string listIdOrSlug,
                                                                        string listName = null, string listDescription = null,
                                                                        TraktAccessScope privacy = null,
@@ -698,7 +680,7 @@ namespace TraktNet.Modules
             if (isListNameNotValid && isDescriptionNotSet && isPrivacyNotSetOrValid && isDisplayNumbersNotSet && isAllowCommentsNotSet)
                 throw new ArgumentException("no list specific values set");
 
-            var requestBody = new TraktUserCustomListPost
+            var requestBody = new TraktUserPersonalListPost
             {
                 Name = listName,
                 Description = listDescription,
@@ -735,8 +717,8 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated personal lists order.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedListsRank"/> is null.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderPersonalListsAsync(string usernameOrSlug, IEnumerable<uint> reorderedListsRank,
                                                                                                  CancellationToken cancellationToken = default)
         {
@@ -769,8 +751,8 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated personal list items order.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="reorderedListItemsRank"/> is null.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderPersonalListItemsAsync(string usernameOrSlug, string listIdOrSlug,
                                                                                                      IEnumerable<uint> reorderedListItemsRank,
                                                                                                      CancellationToken cancellationToken = default)
@@ -803,10 +785,7 @@ namespace TraktNet.Modules
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given username or slug is null, empty or contains spaces.
-        /// Thrown, if the given list id is null, empty or contains spaces.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktNoContentResponse> DeletePersonalListAsync(string usernameOrSlug, string listIdOrSlug,
                                                                     CancellationToken cancellationToken = default)
         {
@@ -841,17 +820,12 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktUserPersonalListItemsPostResponse" /> instance, which contains information about which items were added, existing and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given list items post is null.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given username or slug is null, empty or contains spaces.
-        /// Thrown, if the given list id is null, empty or contains spaces.
-        /// Thrown, if the given list items post is empty.
-        /// </exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktUserPersonalListItemsPostResponse>> AddPersonalListItemsAsync(string usernameOrSlug, string listIdOrSlug,
                                                                                                       ITraktUserPersonalListItemsPost listItemsPost,
                                                                                                       CancellationToken cancellationToken = default)
         {
-            ValidatePersonalListItemsPost(listItemsPost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserPersonalListItemsAddRequest
@@ -884,17 +858,12 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktUserPersonalListItemsPostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown if the given list items remove post is null.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given username or slug is null, empty or contains spaces.
-        /// Thrown, if the given list id is null, empty or contains spaces.
-        /// Thrown, if the given list items remove post is empty.
-        /// </exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktUserPersonalListItemsRemovePostResponse>> RemovePersonalListItemsAsync(string usernameOrSlug, string listIdOrSlug,
                                                                                                                ITraktUserPersonalListItemsPost listItemsRemovePost,
                                                                                                                CancellationToken cancellationToken = default)
         {
-            ValidatePersonalListItemsPost(listItemsRemovePost);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserPersonalListItemsRemoveRequest
@@ -929,10 +898,7 @@ namespace TraktNet.Modules
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given username or slug is null, empty or contains spaces.
-        /// Thrown, if the given list id is null, empty or contains spaces.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetListCommentsAsync(string usernameOrSlug, string listIdOrSlug,
                                                                             TraktCommentSortOrder commentSortOrder = null,
                                                                             TraktPagedParameters pagedParameters = null,
@@ -978,8 +944,8 @@ namespace TraktNet.Modules
         /// Thrown, if the given list id is null, empty or contains spaces.
         /// </exception>
         public Task<TraktPagedResponse<ITraktListLike>> GetListLikesAsync(string usernameOrSlug, string listIdOrSlug,
-                                                                                  TraktPagedParameters pagedParameters = null,
-                                                                                  CancellationToken cancellationToken = default)
+                                                                          TraktPagedParameters pagedParameters = null,
+                                                                          CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -1007,10 +973,7 @@ namespace TraktNet.Modules
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given username or slug is null, empty or contains spaces.
-        /// Thrown, if the given list id is null, empty or contains spaces.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktNoContentResponse> LikeListAsync(string usernameOrSlug, string listIdOrSlug,
                                                           CancellationToken cancellationToken = default)
         {
@@ -1038,10 +1001,7 @@ namespace TraktNet.Modules
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given username or slug is null, empty or contains spaces.
-        /// Thrown, if the given list id is null, empty or contains spaces.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktNoContentResponse> UnlikeListAsync(string usernameOrSlug, string listIdOrSlug,
                                                             CancellationToken cancellationToken = default)
         {
@@ -1068,8 +1028,8 @@ namespace TraktNet.Modules
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>A list of <see cref="ITraktList" /> instances.</returns>
-        /// <exception cref="ArgumentNullException">Thrown, if the given usernameOrSlug is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given usernameOrSlug is empty or contains spaces.</exception>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktList>> GetListCollaborationsAsync(string usernameOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -1099,7 +1059,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktUserFollower" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktUserFollower>> GetFollowersAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                              CancellationToken cancellationToken = default)
         {
@@ -1131,7 +1091,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktUserFollower" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktUserFollower>> GetFollowingAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                              CancellationToken cancellationToken = default)
         {
@@ -1163,7 +1123,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktUserFriend" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktUserFriend>> GetFriendsAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                          CancellationToken cancellationToken = default)
         {
@@ -1194,7 +1154,7 @@ namespace TraktNet.Modules
         /// See <see cref="ITraktUserFollowUserPostResponse.ApprovedAt" />.
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktUserFollowUserPostResponse>> FollowUserAsync(string usernameOrSlug,
                                                                                      CancellationToken cancellationToken = default)
         {
@@ -1220,7 +1180,7 @@ namespace TraktNet.Modules
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktNoContentResponse> UnfollowUserAsync(string usernameOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -1246,10 +1206,9 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktUserFollower" /> instance containing information about the approved user.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given follower request id is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktUserFollower>> ApproveFollowRequestAsync(uint followerRequestId, CancellationToken cancellationToken = default)
         {
-            ValidateFollowerRequestId(followerRequestId);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserApproveFollowerRequest
@@ -1272,10 +1231,9 @@ namespace TraktNet.Modules
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given follower request id is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktNoContentResponse> DenyFollowRequestAsync(uint followerRequestId, CancellationToken cancellationToken = default)
         {
-            ValidateFollowerRequestId(followerRequestId);
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteNoContentRequestAsync(new UserDenyFollowerRequest
@@ -1314,7 +1272,7 @@ namespace TraktNet.Modules
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktHistoryItem>> GetWatchedHistoryAsync(string usernameOrSlug, TraktSyncItemType historyItemType = null,
                                                                                   uint? itemId = null, DateTime? startAt = null,
                                                                                   DateTime? endAt = null, TraktExtendedInfo extendedInfo = null,
@@ -1362,7 +1320,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktRecommendation" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktRecommendation>> GetPersonalRecommendationsAsync(string usernameOrSlug, TraktRecommendationObjectType recommendationObjectType = null,
                                                                                               TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null,
                                                                                               TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)
@@ -1406,7 +1364,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktRatingsItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktRatingsItem>> GetRatingsAsync(string usernameOrSlug, TraktRatingsItemType ratingsItemType = null,
                                                                            int[] ratingsFilter = null, TraktExtendedInfo extendedInfo = null,
                                                                            TraktPagedParameters pagedParameters = null,
@@ -1453,7 +1411,7 @@ namespace TraktNet.Modules
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktWatchlistItem>> GetWatchlistAsync(string usernameOrSlug, TraktSyncItemType watchlistItemType = null,
                                                                                TraktWatchlistSortOrder sortOrder = null,
                                                                                TraktExtendedInfo extendedInfo = null,
@@ -1492,7 +1450,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktUserWatchingItem" /> instance containing the movie or episode an user is currently watching.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktUserWatchingItem>> GetWatchingAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                             CancellationToken cancellationToken = default)
         {
@@ -1524,7 +1482,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktWatchedMovie" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktWatchedMovie>> GetWatchedMoviesAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                                  CancellationToken cancellationToken = default)
         {
@@ -1556,7 +1514,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktWatchedShow" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktWatchedShow>> GetWatchedShowsAsync(string usernameOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                                CancellationToken cancellationToken = default)
         {
@@ -1584,7 +1542,7 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>An <see cref="ITraktUserStatistics" /> instance coontaining statistics about movies, shows and episodes.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given username or slug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktUserStatistics>> GetStatisticsAsync(string usernameOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -1594,28 +1552,6 @@ namespace TraktNet.Modules
                 Username = usernameOrSlug
             },
             cancellationToken);
-        }
-
-        private void ValidateHiddenItemsPost(ITraktUserHiddenItemsPost hiddenItemsPost)
-        {
-            if (hiddenItemsPost == null)
-                throw new ArgumentNullException(nameof(hiddenItemsPost), "hidden items post must not be null");
-
-            hiddenItemsPost.Validate();
-        }
-
-        private void ValidatePersonalListItemsPost(ITraktUserPersonalListItemsPost personalListItemsPost)
-        {
-            if (personalListItemsPost == null)
-                throw new ArgumentNullException(nameof(personalListItemsPost), "personal list items post must not be null");
-
-            personalListItemsPost.Validate();
-        }
-
-        private void ValidateFollowerRequestId(ulong followerRequestId)
-        {
-            if (followerRequestId == 0)
-                throw new ArgumentOutOfRangeException(nameof(followerRequestId), "follower request id is not valid");
         }
     }
 }

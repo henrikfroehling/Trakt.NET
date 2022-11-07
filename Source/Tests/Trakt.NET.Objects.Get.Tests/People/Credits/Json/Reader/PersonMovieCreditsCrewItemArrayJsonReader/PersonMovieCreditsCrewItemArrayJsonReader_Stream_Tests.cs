@@ -12,7 +12,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Get.People.Credits.JsonReader")]
+    [TestCategory("Objects.Get.People.Credits.JsonReader")]
     public partial class PersonMovieCreditsCrewItemArrayJsonReader_Tests
     {
         [Fact]

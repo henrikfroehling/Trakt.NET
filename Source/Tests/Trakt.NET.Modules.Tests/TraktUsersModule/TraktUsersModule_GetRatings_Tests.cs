@@ -8,11 +8,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Ratings;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_RATINGS_URI = $"users/{USERNAME}/ratings";
@@ -626,21 +626,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetRatings_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_RATINGS_URI, RATINGS_JSON);
-
-            Func<Task<TraktPagedResponse<ITraktRatingsItem>>> act = () => client.Users.GetRatingsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetRatingsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetRatingsAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

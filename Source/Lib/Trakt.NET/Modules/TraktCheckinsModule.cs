@@ -1,13 +1,11 @@
 ﻿namespace TraktNet.Modules
 {
     using Exceptions;
-    using Extensions;
-    using Objects.Basic;
     using Objects.Get.Episodes;
     using Objects.Get.Movies;
-    using Objects.Get.Shows;
     using Objects.Post.Checkins;
     using Objects.Post.Checkins.Responses;
+    using PostBuilder;
     using Requests.Checkins.OAuth;
     using Requests.Handler;
     using Responses;
@@ -33,51 +31,29 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/check-into-an-item">"Trakt API Doc - Checkin: Checkin"</a> for more information.
         /// </para>
+        /// <para>
+        /// It is recommended to use the <see cref="ITraktMovieCheckinPostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktMovieCheckinPost" />.
+        /// See also <seealso cref="TraktPost.NewMovieCheckinPost()" />.
+        /// </para>
         /// </summary>
-        /// <param name="movie">The <see cref="ITraktMovie" />, which will be checked in.</param>
-        /// <param name="appVersion">Optional application version for the checkin.</param>
-        /// <param name="appBuildDate">Optional application build date for the checkin. Will be converted to the Trakt date-format.</param>
-        /// <param name="message">The message, which will be used for sharing. If none is given, the user's default message will be used.</param>
-        /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
-        /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
-        /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
+        /// <param name="movieCheckinPost">An <see cref="ITraktMovieCheckinPost" /> instance, which should be posted.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>An <see cref="ITraktMovieCheckinPostResponse" /> instance, containing the successfully checked in movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given movie's title is null or empty.
-        /// Thrown, if the given movie has no valid ids set.
-        /// </exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given movie is null or if its ids are null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given movie's year is not valid.</exception>
-        public Task<TraktResponse<ITraktMovieCheckinPostResponse>> CheckIntoMovieAsync(ITraktMovie movie, string appVersion = null, DateTime? appBuildDate = null,
-                                                                                       string message = null, ITraktConnections sharing = null,
-                                                                                       string foursquareVenueID = null, string foursquareVenueName = null,
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktResponse<ITraktMovieCheckinPostResponse>> CheckIntoMovieAsync(ITraktMovieCheckinPost movieCheckinPost,
                                                                                        CancellationToken cancellationToken = default)
         {
-            var requestBody = new TraktMovieCheckinPost
-            {
-                Movie = movie,
-                Message = message,
-                Sharing = sharing,
-                FoursquareVenueId = foursquareVenueID,
-                FoursquareVenueName = foursquareVenueName
-            };
-
-            if (!string.IsNullOrEmpty(appVersion))
-                requestBody.AppVersion = appVersion;
-
-            if (appBuildDate.HasValue)
-                requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
-
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktMovieCheckinPostResponse, ITraktMovieCheckinPost>
             {
-                RequestBody = requestBody
+                RequestBody = movieCheckinPost
             },
             cancellationToken);
         }
@@ -88,161 +64,29 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/check-into-an-item">"Trakt API Doc - Checkin: Checkin"</a> for more information.
         /// </para>
+        /// <para>
+        /// It is recommended to use the <see cref="ITraktEpisodeCheckinPostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktEpisodeCheckinPost" />.
+        /// See also <seealso cref="TraktPost.NewEpisodeCheckinPost()" />.
+        /// </para>
         /// </summary>
-        /// <param name="episode">The <see cref="ITraktEpisode" />, which will be checked in.</param>
-        /// <param name="appVersion">Optional application version for the checkin.</param>
-        /// <param name="appBuildDate">Optional application build date for the checkin. Will be converted to the Trakt date-format.</param>
-        /// <param name="message">The message, which will be used for sharing. If none is given, the user's default message will be used.</param>
-        /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
-        /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
-        /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
+        /// <param name="episodeCheckinPost">An <see cref="ITraktEpisodeCheckinPost" /> instance, which should be posted.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>An <see cref="ITraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given episode has no valid ids set.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null or if its ids are null.</exception>
-        public Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeAsync(ITraktEpisode episode, string appVersion = null, DateTime? appBuildDate = null,
-                                                                                           string message = null, ITraktConnections sharing = null,
-                                                                                           string foursquareVenueID = null, string foursquareVenueName = null,
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeAsync(ITraktEpisodeCheckinPost episodeCheckinPost,
                                                                                            CancellationToken cancellationToken = default)
         {
-            var requestBody = new TraktEpisodeCheckinPost
-            {
-                Episode = episode,
-                Show = null,
-                Message = message,
-                Sharing = sharing,
-                FoursquareVenueId = foursquareVenueID,
-                FoursquareVenueName = foursquareVenueName
-            };
-
-            if (!string.IsNullOrEmpty(appVersion))
-                requestBody.AppVersion = appVersion;
-
-            if (appBuildDate.HasValue)
-                requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
-
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktEpisodeCheckinPostResponse, ITraktEpisodeCheckinPost>
             {
-                RequestBody = requestBody
-            },
-            cancellationToken);
-        }
-
-        /// <summary>
-        /// Checks into the given <see cref="ITraktEpisode" />. Use this method, if the given episode has no valid ids.
-        /// <para>OAuth authorization required.</para>
-        /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/check-into-an-item">"Trakt API Doc - Checkin: Checkin"</a> for more information.
-        /// </para>
-        /// </summary>
-        /// <param name="episode">The <see cref="ITraktEpisode" />, which will be checked in.</param>
-        /// <param name="show">The <see cref="ITraktShow" />, which will be used to check into the given episode.</param>
-        /// <param name="appVersion">Optional application version for the checkin.</param>
-        /// <param name="appBuildDate">Optional application build date for the checkin. Will be converted to the Trakt date-format.</param>
-        /// <param name="message">The message, which will be used for sharing. If none is given, the user's default message will be used.</param>
-        /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
-        /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
-        /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
-        /// <param name="cancellationToken">
-        /// Propagates notification that the request should be canceled.<para/>
-        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
-        /// </param>
-        /// <returns>An <see cref="ITraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
-        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given show's title is null or empty.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null. Thrown, if the given show is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given episode's season number or the given episode's number is below zero.</exception>
-        public Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeWithShowAsync(ITraktEpisode episode, ITraktShow show,
-                                                                                                   string appVersion = null, DateTime? appBuildDate = null,
-                                                                                                   string message = null, ITraktConnections sharing = null,
-                                                                                                   string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                                                   CancellationToken cancellationToken = default)
-        {
-            var requestBody = new TraktEpisodeCheckinPost
-            {
-                Episode = episode,
-                Show = show,
-                Message = message,
-                Sharing = sharing,
-                FoursquareVenueId = foursquareVenueID,
-                FoursquareVenueName = foursquareVenueName
-            };
-
-            if (!string.IsNullOrEmpty(appVersion))
-                requestBody.AppVersion = appVersion;
-
-            if (appBuildDate.HasValue)
-                requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
-
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktEpisodeCheckinPostResponse, ITraktEpisodeCheckinPost>
-            {
-                RequestBody = requestBody
-            },
-            cancellationToken);
-        }
-
-        /// <summary>
-        /// Checks into the given <see cref="ITraktEpisode" />. Use this method, if the given episode has no valid ids.
-        /// <para>OAuth authorization required.</para>
-        /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/check-into-an-item">"Trakt API Doc - Checkin: Checkin"</a> for more information.
-        /// </para>
-        /// </summary>
-        /// <param name="absoluteEpisodeNumber">The absolute number of the episode, which will be checked in.</param>
-        /// <param name="show">The <see cref="ITraktShow" />, which will be used to check into the given episode.</param>
-        /// <param name="appVersion">Optional application version for the checkin.</param>
-        /// <param name="appBuildDate">Optional application build date for the checkin. Will be converted to the Trakt date-format.</param>
-        /// <param name="message">The message, which will be used for sharing. If none is given, the user's default message will be used.</param>
-        /// <param name="sharing">Optional sharing settings, which will override the user's default sharing settings.</param>
-        /// <param name="foursquareVenueID">Optional Foursquare venue id for the checkin.</param>
-        /// <param name="foursquareVenueName">Optional Foursquare venue name for the checkin.</param>
-        /// <param name="cancellationToken">
-        /// Propagates notification that the request should be canceled.<para/>
-        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
-        /// </param>
-        /// <returns>An <see cref="ITraktEpisodeCheckinPostResponse" /> instance, containing the successfully checked in episode's data.</returns>
-        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given show's title is null or empty.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given episode is null. Thrown, if the given show is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given episode's season number or the given episode's number is below zero.</exception>
-        public Task<TraktResponse<ITraktEpisodeCheckinPostResponse>> CheckIntoEpisodeWithShowAsync(int absoluteEpisodeNumber, ITraktShow show,
-                                                                                                   string appVersion = null, DateTime? appBuildDate = null,
-                                                                                                   string message = null, ITraktConnections sharing = null,
-                                                                                                   string foursquareVenueID = null, string foursquareVenueName = null,
-                                                                                                   CancellationToken cancellationToken = default)
-        {
-            var requestBody = new TraktEpisodeCheckinPost
-            {
-                Episode = new TraktEpisode
-                {
-                    NumberAbsolute = absoluteEpisodeNumber
-                },
-                Show = show,
-                Message = message,
-                Sharing = sharing,
-                FoursquareVenueId = foursquareVenueID,
-                FoursquareVenueName = foursquareVenueName
-            };
-
-            if (!string.IsNullOrEmpty(appVersion))
-                requestBody.AppVersion = appVersion;
-
-            if (appBuildDate.HasValue)
-                requestBody.AppDate = appBuildDate.Value.ToTraktDateString();
-
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new CheckinRequest<ITraktEpisodeCheckinPostResponse, ITraktEpisodeCheckinPost>
-            {
-                RequestBody = requestBody
+                RequestBody = episodeCheckinPost
             },
             cancellationToken);
         }

@@ -2,9 +2,8 @@
 {
     using System;
     using TraktNet.Enums;
-    using TraktNet.Requests.Parameters;
-    using TraktNet.Requests.Parameters.Filter;
     using TraktNet.Objects.Post.Shows;
+    using TraktNet.Parameters;
 
     public partial class TraktShowsModule_Tests
     {
@@ -54,7 +53,7 @@
 
         private ITraktShowResetWatchedProgressPost SetupEmptyShowResetWatchedProgressPost() => new TraktShowResetWatchedProgressPost();
 
-        private readonly ITraktShowFilter FILTER = TraktFilterDirectory.ShowFilter
+        private readonly ITraktShowFilter FILTER = TraktFilter.NewShowFilter()
                 .WithCertifications("TV-MA")
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction)
                 .WithQuery("most anticipated show")

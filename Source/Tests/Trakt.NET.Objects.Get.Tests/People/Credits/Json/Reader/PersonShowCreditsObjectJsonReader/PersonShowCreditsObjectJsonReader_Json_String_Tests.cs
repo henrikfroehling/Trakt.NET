@@ -9,7 +9,7 @@
     using TraktNet.Objects.Get.People.Credits.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.People.Credits.JsonReader")]
+    [TestCategory("Objects.Get.People.Credits.JsonReader")]
     public partial class PersonShowCreditsObjectJsonReader_Tests
     {
         [Fact]

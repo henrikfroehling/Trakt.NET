@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -10,12 +9,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
-    using TraktNet.Objects.Post.Syncs.Ratings;
     using TraktNet.Objects.Post.Syncs.Ratings.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string REMOVE_RATINGS_URI = "sync/ratings/remove";
@@ -88,31 +86,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_RemoveRatings_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(RemoveRatingsPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_RATINGS_URI, postJson, RATINGS_REMOVE_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>>> act = () => client.Sync.RemoveRatingsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Sync.RemoveRatingsAsync(new TraktSyncRatingsPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncRatingsPost ratingsRemovePost = new TraktSyncRatingsPost
-            {
-                Movies = new List<ITraktSyncRatingsPostMovie>(),
-                Shows = new List<ITraktSyncRatingsPostShow>(),
-                Episodes = new List<ITraktSyncRatingsPostEpisode>()
-            };
-
-            act = () => client.Sync.RemoveRatingsAsync(ratingsRemovePost);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

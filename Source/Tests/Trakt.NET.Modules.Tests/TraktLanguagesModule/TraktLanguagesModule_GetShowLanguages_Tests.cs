@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Languages")]
+    [TestCategory("Modules.Languages")]
     public partial class TraktLanguagesModule_Tests
     {
         private const string LANGUAGES_SHOWS_URI = "languages/shows";

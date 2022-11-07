@@ -2,8 +2,7 @@
 {
     using System;
     using TraktNet.Enums;
-    using TraktNet.Requests.Parameters;
-    using TraktNet.Requests.Parameters.Filter;
+    using TraktNet.Parameters;
 
     public partial class TraktMoviesModule_Tests
     {
@@ -23,7 +22,7 @@
         private readonly DateTime TODAY = DateTime.UtcNow;
         private const int UPDATED_IDS_COUNT = 4;
 
-        private readonly ITraktMovieFilter FILTER = TraktFilterDirectory.MovieFilter
+        private readonly ITraktMovieFilter FILTER = TraktFilter.NewMovieFilter()
             .WithCertifications("TV-MA")
             .WithQuery("most anticipated movie")
             .WithYear(2016)

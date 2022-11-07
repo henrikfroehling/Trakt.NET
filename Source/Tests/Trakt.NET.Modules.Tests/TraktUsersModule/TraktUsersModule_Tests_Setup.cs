@@ -89,11 +89,10 @@
                         Ids = new TraktShowIds { Trakt = 3 }
                     }
                 },
-                People = new List<ITraktPerson>()
+                People = new List<ITraktUserPersonalListItemsPostPerson>()
                 {
-                    new TraktPerson
+                    new TraktUserPersonalListItemsPostPerson
                     {
-                        Name = "Jeff Bridges",
                         Ids = new TraktPersonIds
                         {
                             Trakt = 2,
@@ -162,11 +161,10 @@
                         Ids = new TraktShowIds { Trakt = 3 }
                     }
                 },
-                People = new List<ITraktPerson>()
+                People = new List<ITraktUserPersonalListItemsPostPerson>()
                 {
-                    new TraktPerson
+                    new TraktUserPersonalListItemsPostPerson
                     {
-                        Name = "Jeff Bridges",
                         Ids = new TraktPersonIds
                         {
                             Trakt = 2,

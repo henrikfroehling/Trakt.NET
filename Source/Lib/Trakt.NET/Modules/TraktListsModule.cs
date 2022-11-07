@@ -5,12 +5,12 @@
     using Objects.Get.Lists;
     using Requests.Handler;
     using Requests.Lists;
-    using Requests.Parameters;
     using Responses;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
     using TraktNet.Objects.Basic;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to lists.
@@ -104,8 +104,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktList" /> instance with the queried list's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given listId is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given listId is empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktList>> GetListAsync(string listIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -136,8 +135,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktListItem" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given listIdOrSlug is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given listIdOrSlug is empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktListItem>> GetListItemsAsync(string listIdOrSlug, TraktListItemType listItemType = null,
                                                                           TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)
@@ -169,8 +167,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktListLike" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given listIdOrSlug is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given listIdOrSlug is empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktListLike>> GetListLikesAsync(string listIdOrSlug, TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)
         {
@@ -206,8 +203,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentNullException">Thrown, if the given listIdOrSlug is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given listIdOrSlug is empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetListCommentsAsync(string listIdOrSlug, TraktCommentSortOrder commentSortOrder = null,
                                                                             TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default)

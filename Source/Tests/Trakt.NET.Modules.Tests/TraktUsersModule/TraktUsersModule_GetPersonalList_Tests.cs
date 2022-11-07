@@ -2,19 +2,17 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Net;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Exceptions;
-    using TraktNet.Modules;
     using TraktNet.Objects.Get.Lists;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_PERSONAL_LIST_URI = $"users/{USERNAME}/lists/{LIST_ID}";
@@ -113,60 +111,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetPersonalList_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_URI, LIST_JSON);
-
-            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.GetPersonalListAsync(null, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetPersonalListAsync(string.Empty, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetPersonalListAsync("user name", LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetPersonalListAsync(USERNAME, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetPersonalListAsync(USERNAME, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetPersonalListAsync(USERNAME, "list id");
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetMultipleCustomLists_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_URI, LIST_JSON);
-
-            Func<Task<IEnumerable<TraktResponse<ITraktList>>>> act = () => client.Users.GetMultiplePersonalListsAsync(null);
-            await act.Should().NotThrowAsync();
-
-            act = () => client.Users.GetMultiplePersonalListsAsync(new TraktMultipleUserListsQueryParams());
-            await act.Should().NotThrowAsync();
-
-            act = () => client.Users.GetMultiplePersonalListsAsync(new TraktMultipleUserListsQueryParams { { null, LIST_ID } });
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetMultiplePersonalListsAsync(new TraktMultipleUserListsQueryParams { { string.Empty, LIST_ID } });
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetMultiplePersonalListsAsync(new TraktMultipleUserListsQueryParams { { "user name", LIST_ID } });
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetMultiplePersonalListsAsync(new TraktMultipleUserListsQueryParams { { USERNAME, null } });
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetMultiplePersonalListsAsync(new TraktMultipleUserListsQueryParams { { USERNAME, string.Empty } });
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetMultiplePersonalListsAsync(new TraktMultipleUserListsQueryParams { { USERNAME, "list id" } });
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

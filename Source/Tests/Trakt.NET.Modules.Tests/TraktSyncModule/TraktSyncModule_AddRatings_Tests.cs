@@ -2,19 +2,17 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Post.Syncs.Ratings;
     using TraktNet.Objects.Post.Syncs.Ratings.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string ADD_RATINGS_URI = "sync/ratings";
@@ -88,31 +86,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_AddRatings_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(AddRatingsPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(ADD_RATINGS_URI, postJson, RATINGS_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncRatingsPostResponse>>> act =() => client.Sync.AddRatingsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Sync.AddRatingsAsync(new TraktSyncRatingsPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncRatingsPost ratingsPost = new TraktSyncRatingsPost
-            {
-                Movies = new List<ITraktSyncRatingsPostMovie>(),
-                Shows = new List<ITraktSyncRatingsPostShow>(),
-                Episodes = new List<ITraktSyncRatingsPostEpisode>()
-            };
-
-            act = () => client.Sync.AddRatingsAsync(ratingsPost);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

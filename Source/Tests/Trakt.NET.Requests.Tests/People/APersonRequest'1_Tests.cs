@@ -4,12 +4,13 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
-    using TraktNet.Requests.Parameters;
     using TraktNet.Requests.People;
     using Xunit;
 
-    [Category("Requests.People")]
+    [TestCategory("Requests.People")]
     public class APersonRequest_1_Tests
     {
         internal class PersonRequestMock : APersonRequest<int>
@@ -64,19 +65,19 @@
             var requestMock = new PersonRequestMock();
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             requestMock = new PersonRequestMock { Id = string.Empty };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             requestMock = new PersonRequestMock { Id = "invalid id" };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

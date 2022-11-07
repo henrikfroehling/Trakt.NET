@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Requests.Seasons
 {
+    using Exceptions;
     using Objects.Get.Seasons;
-    using System;
     using System.Collections.Generic;
 
     internal class SeasonTranslationsRequest : ASeasonRequest<ITraktSeasonTranslation>
@@ -25,7 +25,7 @@
             base.Validate();
 
             if (LanguageCode != null && LanguageCode.Length != 2)
-                throw new ArgumentOutOfRangeException(nameof(LanguageCode), "language code has wrong length");
+                throw new TraktRequestValidationException(nameof(LanguageCode), "language code has wrong length; language code should be two characters long");
         }
     }
 }

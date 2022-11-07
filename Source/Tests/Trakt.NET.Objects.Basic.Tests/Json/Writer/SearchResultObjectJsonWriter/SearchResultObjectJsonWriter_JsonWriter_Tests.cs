@@ -18,7 +18,7 @@
     using TraktNet.Objects.Get.Users;
     using Xunit;
 
-    [Category("Objects.Basic.JsonWriter")]
+    [TestCategory("Objects.Basic.JsonWriter")]
     public partial class SearchResultObjectJsonWriter_Tests
     {
         private readonly DateTime CREATED_UPDATED_AT = DateTime.UtcNow;

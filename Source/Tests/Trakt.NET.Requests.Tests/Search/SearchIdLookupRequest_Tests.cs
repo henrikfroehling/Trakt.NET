@@ -6,12 +6,13 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
-    using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Search;
     using Xunit;
 
-    [Category("Requests.Search")]
+    [TestCategory("Requests.Search")]
     public class SearchIdLookupRequest_Tests
     {
         [Fact]
@@ -29,41 +30,37 @@
         }
 
         [Fact]
-        public void Test_SearchIdLookupRequest_Validate_Throws_ArgumentNullException()
-        {
-            // no id type set
-            var request = new SearchIdLookupRequest { LookupId = "lookupId" };
-
-            Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
-
-            // no lookup id set
-            request = new SearchIdLookupRequest { IdType = TraktSearchIdType.Trakt };
-
-            act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
-        }
-
-        [Fact]
-        public void Test_SearchIdLookupRequest_Validate_Throws_ArgumentException()
+        public void Test_SearchIdLookupRequest_Validate_Throws_Exceptions()
         {
             // id type is unspecified
             var request = new SearchIdLookupRequest { LookupId = "lookupId", IdType = TraktSearchIdType.Unspecified };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // lookup id is empty
             request = new SearchIdLookupRequest { LookupId = string.Empty, IdType = TraktSearchIdType.Trakt };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // lookup id contains spaces
             request = new SearchIdLookupRequest { LookupId = "lookup id", IdType = TraktSearchIdType.Trakt };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
+
+            // no id type set
+            request = new SearchIdLookupRequest { LookupId = "lookupId" };
+
+            act = () => request.Validate();
+            act.Should().Throw<TraktRequestValidationException>();
+
+            // no lookup id set
+            request = new SearchIdLookupRequest { IdType = TraktSearchIdType.Trakt };
+
+            act = () => request.Validate();
+            act.Should().Throw<TraktRequestValidationException>();
         }
 
         [Theory, ClassData(typeof(SearchIdLookupRequest_TestData))]

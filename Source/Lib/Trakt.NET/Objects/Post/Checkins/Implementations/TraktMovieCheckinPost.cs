@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Objects.Post.Checkins
 {
+    using Exceptions;
     using Get.Movies;
     using Objects.Json;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -24,19 +24,13 @@
         public override void Validate()
         {
             if (Movie == null)
-                throw new ArgumentNullException(nameof(Movie), "movie must not be null");
-
-            if (string.IsNullOrEmpty(Movie.Title))
-                throw new ArgumentException("movie title not valid", nameof(Movie.Title));
-
-            if (Movie.Year <= 0 || Movie.Year.ToString().Length != 4)
-                throw new ArgumentOutOfRangeException(nameof(Movie), "movie year not valid");
+                throw new TraktPostValidationException(nameof(Movie), "movie must not be null");
 
             if (Movie.Ids == null)
-                throw new ArgumentNullException(nameof(Movie.Ids), "movie.Ids must not be null");
+                throw new TraktPostValidationException($"{nameof(Movie)}.Ids", "movie ids must not be null");
 
             if (!Movie.Ids.HasAnyId)
-                throw new ArgumentException("movie.Ids have no valid id", nameof(Movie.Ids));
+                throw new TraktPostValidationException($"{nameof(Movie)}.Ids", "movie ids have no valid id");
         }
     }
 }

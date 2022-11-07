@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Authentication")]
+    [TestCategory("Modules.Authentication")]
     public partial class TraktAuthenticationModule_Tests
     {
         private const string GET_DEVICE_URI = "oauth/device/code";
@@ -185,27 +185,6 @@
         }
 
         [Fact]
-        public async Task Test_TraktAuthenticationModule_GenerateDevice_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient();
-
-            client.ClientId = null;
-
-            Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientId = string.Empty;
-
-            act = () => client.Authentication.GenerateDeviceAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientId = "client id";
-
-            act = () => client.Authentication.GenerateDeviceAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
-
-        [Fact]
         public async Task Test_TraktAuthenticationModule_GenerateDevice_With_ClientId()
         {
             string deviceJson = await TestUtility.SerializeObject(MockDevice);
@@ -275,21 +254,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktAuthenticationModule_GenerateDevice_With_ClientId_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient();
-
-            Func<Task<TraktResponse<ITraktDevice>>> act = () => client.Authentication.GenerateDeviceAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.GenerateDeviceAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.GenerateDeviceAsync("client id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

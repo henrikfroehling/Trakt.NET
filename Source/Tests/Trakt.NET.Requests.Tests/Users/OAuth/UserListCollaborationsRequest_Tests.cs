@@ -4,11 +4,12 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
 
-    [Category("Requests.Users.OAuth")]
+    [TestCategory("Requests.Users.OAuth")]
     public class UserListCollaborationsRequest_Tests
     {
         [Fact]
@@ -45,19 +46,19 @@
             var request = new UserListCollaborationsRequest();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty username
             request = new UserListCollaborationsRequest { Username = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
             request = new UserListCollaborationsRequest { Username = "invalid username" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

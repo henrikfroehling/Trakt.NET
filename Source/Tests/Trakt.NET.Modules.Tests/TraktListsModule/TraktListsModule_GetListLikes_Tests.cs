@@ -8,11 +8,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Lists;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Lists")]
+    [TestCategory("Modules.Lists")]
     public partial class TraktListsModule_Tests
     {
         private readonly string GET_LIST_LIKES_URI = $"lists/{LIST_ID}/likes";
@@ -125,21 +125,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktListsModule_GetListLikes_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_LIST_LIKES_URI, LIST_LIKES_JSON);
-
-            Func<Task<TraktPagedResponse<ITraktListLike>>> act = () => client.Lists.GetListLikesAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Lists.GetListLikesAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Lists.GetListLikesAsync("list id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

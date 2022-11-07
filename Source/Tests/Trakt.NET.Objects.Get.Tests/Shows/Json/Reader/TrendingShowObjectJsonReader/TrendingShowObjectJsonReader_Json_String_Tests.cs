@@ -8,7 +8,7 @@
     using TraktNet.Objects.Get.Shows.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Shows.JsonReader")]
+    [TestCategory("Objects.Get.Shows.JsonReader")]
     public partial class TrendingShowObjectJsonReader_Tests
     {
         [Fact]

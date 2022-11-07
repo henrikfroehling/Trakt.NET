@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -10,12 +9,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
-    using TraktNet.Objects.Post.Syncs.Watchlist;
     using TraktNet.Objects.Post.Syncs.Watchlist.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string ADD_WATCHLIST_ITEMS_URI = "sync/watchlist";
@@ -94,31 +92,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_AddWatchlistItems_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(AddWatchlistPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(ADD_WATCHLIST_ITEMS_URI, postJson, WATCHLIST_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncWatchlistPostResponse>>> act = () => client.Sync.AddWatchlistItemsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Sync.AddWatchlistItemsAsync(new TraktSyncWatchlistPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncWatchlistPost watchlistPost = new TraktSyncWatchlistPost
-            {
-                Movies = new List<ITraktSyncWatchlistPostMovie>(),
-                Shows = new List<ITraktSyncWatchlistPostShow>(),
-                Episodes = new List<ITraktSyncWatchlistPostEpisode>()
-            };
-
-            act = () => client.Sync.AddWatchlistItemsAsync(watchlistPost);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

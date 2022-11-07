@@ -12,7 +12,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.People")]
+    [TestCategory("Modules.People")]
     public partial class TraktPeopleModule_Tests
     {
         private readonly string GET_PERSON_MOVIE_CREDITS_URI = $"people/{PERSON_ID}/movies";
@@ -223,21 +223,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktPeopleModule_GetPersonMovieCredits_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_PERSON_MOVIE_CREDITS_URI, PERSON_MOVIE_CREDITS_JSON);
-
-            Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.People.GetPersonMovieCreditsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.People.GetPersonMovieCreditsAsync("person id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

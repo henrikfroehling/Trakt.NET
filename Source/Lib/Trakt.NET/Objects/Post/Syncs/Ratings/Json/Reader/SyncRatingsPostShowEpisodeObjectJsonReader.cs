@@ -23,24 +23,30 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PROPERTY_NAME_RATED_AT:
-                            {
-                                Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
-
-                                if (value.First)
-                                    syncRatingsPostShowEpisode.RatedAt = value.Second;
-
-                                break;
-                            }
-                        case JsonProperties.PROPERTY_NAME_RATING:
-                            syncRatingsPostShowEpisode.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
-                            break;
                         case JsonProperties.PROPERTY_NAME_NUMBER:
                             {
                                 Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
 
                                 if (value.First)
                                     syncRatingsPostShowEpisode.Number = value.Second;
+
+                                break;
+                            }
+                        case JsonProperties.PROPERTY_NAME_RATING:
+                            {
+                                Pair<bool, int> value = await JsonReaderHelper.ReadIntegerValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    syncRatingsPostShowEpisode.Rating = value.Second;
+
+                                break;
+                            }
+                        case JsonProperties.PROPERTY_NAME_RATED_AT:
+                            {
+                                Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    syncRatingsPostShowEpisode.RatedAt = value.Second;
 
                                 break;
                             }

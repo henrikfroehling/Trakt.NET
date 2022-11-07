@@ -9,7 +9,7 @@
     using TraktNet.Requests.Scrobbles.OAuth;
     using Xunit;
 
-    [Category("Requests.Scrobbles.OAuth")]
+    [TestCategory("Requests.Scrobbles.OAuth")]
     public class ScrobbleStopRequest_2_Tests
     {
         internal class RequestBodyMock : IRequestBody

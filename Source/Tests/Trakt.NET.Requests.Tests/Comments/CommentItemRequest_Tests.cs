@@ -4,12 +4,13 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Comments;
-    using TraktNet.Requests.Parameters;
     using Xunit;
 
-    [Category("Requests.Comments")]
+    [TestCategory("Requests.Comments")]
     public class CommentItemRequest_Tests
     {
         [Fact]
@@ -71,19 +72,19 @@
             var request = new CommentItemRequest();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new CommentItemRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new CommentItemRequest { Id = "invalid id" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

@@ -6,7 +6,6 @@
     using Objects.Get.People;
     using Objects.Get.People.Credits;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.People;
     using Responses;
     using System;
@@ -14,6 +13,7 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to people.
@@ -46,7 +46,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktPerson" /> instance with the queried person's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktPerson>> GetPersonAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                 CancellationToken cancellationToken = default)
         {
@@ -75,11 +75,11 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktPerson" /> instances with the data of each queried person.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if one of the given person ids is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public async Task<IEnumerable<TraktResponse<ITraktPerson>>> GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams personsQueryParams,
                                                                                             CancellationToken cancellationToken = default)
         {
-            if (personsQueryParams == null || personsQueryParams.Count <= 0)
+            if (personsQueryParams == null || personsQueryParams.Count == 0)
                 return new List<TraktResponse<ITraktPerson>>();
 
             var tasks = new List<Task<TraktResponse<ITraktPerson>>>();
@@ -112,7 +112,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktPersonMovieCredits" /> instance with the queried person's movie credits.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktPersonMovieCredits>> GetPersonMovieCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                                         CancellationToken cancellationToken = default)
         {
@@ -144,7 +144,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktPersonShowCredits" /> instance with the queried person's show credits.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktPersonShowCredits>> GetPersonShowCreditsAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                                       CancellationToken cancellationToken = default)
         {
@@ -181,7 +181,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given personIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktList>> GetPersonListsAsync(string personIdOrSlug, TraktListType listType = null,
                                                                         TraktListSortOrder listSortOrder = null,
                                                                         TraktPagedParameters pagedParameters = null,

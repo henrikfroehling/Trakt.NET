@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Users.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Users.Responses.JsonReader")]
+    [TestCategory("Objects.Post.Users.Responses.JsonReader")]
     public partial class UserFollowUserPostResponseObjectJsonReader_Tests
     {
         [Fact]

@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Shows.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Shows.Implementations")]
+    [TestCategory("Objects.Post.Shows.Implementations")]
     public class TraktShowResetWatchedProgressPost_Tests
     {
         [Fact]

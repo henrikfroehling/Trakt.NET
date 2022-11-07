@@ -8,11 +8,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Watchlist;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_WATCHLIST_URI = $"users/{USERNAME}/watchlist";
@@ -484,24 +484,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetWatchlist_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(
-                GET_WATCHLIST_URI,
-                WATCHLIST_JSON, 1, 10, 1, WATCHLIST_ITEM_COUNT,
-                sortBy: SORT_BY, sortHow: SORT_HOW);
-
-            Func<Task<TraktPagedResponse<ITraktWatchlistItem>>> act = () => client.Users.GetWatchlistAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetWatchlistAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetWatchlistAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

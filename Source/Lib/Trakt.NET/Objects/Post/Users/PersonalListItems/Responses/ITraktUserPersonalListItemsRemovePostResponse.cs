@@ -1,5 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Users.PersonalListItems.Responses
 {
+    using Objects.Post.Responses;
+
     /// <summary>
     /// Represents the response for an user personal list items remove post. See also <see cref="ITraktUserPersonalListItemsPost" />.
     /// <para>Contains the number of deleted and not found movies, shows, seasons, episodes and people.</para>
@@ -17,5 +19,11 @@
         /// <para>Nullable</para>
         /// </summary>
         ITraktUserPersonalListItemsPostResponseNotFoundGroup NotFound { get; set; }
+
+        /// <summary>
+        /// Information about the updated list.
+        /// <para>Nullable</para>
+        /// </summary>
+        ITraktPostResponseListData List { get; set; }
     }
 }

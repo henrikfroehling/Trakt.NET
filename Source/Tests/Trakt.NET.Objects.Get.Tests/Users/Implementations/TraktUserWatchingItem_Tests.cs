@@ -10,7 +10,7 @@
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Users.Implementations")]
+    [TestCategory("Objects.Get.Users.Implementations")]
     public class TraktUserWatchingItem_Tests
     {
         [Fact]

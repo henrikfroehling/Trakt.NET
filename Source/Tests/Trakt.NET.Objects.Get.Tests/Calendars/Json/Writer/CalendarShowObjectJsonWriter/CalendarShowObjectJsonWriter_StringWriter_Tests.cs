@@ -14,7 +14,7 @@
     using TraktNet.Objects.Get.Shows;
     using Xunit;
 
-    [Category("Objects.Get.Calendars.JsonWriter")]
+    [TestCategory("Objects.Get.Calendars.JsonWriter")]
     public partial class CalendarShowObjectJsonWriter_Tests
     {
         [Fact]

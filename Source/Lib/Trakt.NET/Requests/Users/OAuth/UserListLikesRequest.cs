@@ -1,10 +1,10 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Interfaces;
     using Objects.Get.Lists;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class UserListLikesRequest : AGetRequest<ITraktListLike>, ISupportsPagination
@@ -40,11 +40,17 @@
 
         public override void Validate()
         {
-            if (string.IsNullOrEmpty(Username) || Username.ContainsSpace())
-                throw new ArgumentException("username not valid", nameof(Username));
+            if (Username == null)
+                throw new TraktRequestValidationException(nameof(Username), "username must not be null");
 
-            if (string.IsNullOrEmpty(ListId) || ListId.ContainsSpace())
-                throw new ArgumentException("list id not valid", nameof(ListId));
+            if (Username == string.Empty || Username.ContainsSpace())
+                throw new TraktRequestValidationException(nameof(Username), "username not valid");
+
+            if (ListId == null)
+                throw new TraktRequestValidationException(nameof(ListId), "list id must not be null");
+
+            if (ListId == string.Empty || ListId.ContainsSpace())
+                throw new TraktRequestValidationException(nameof(ListId), "list id not valid");
         }
     }
 }

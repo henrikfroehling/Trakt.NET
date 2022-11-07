@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_LISTS_COLLABORATIONS_URI = $"users/{USERNAME}/lists/collaborations";
@@ -72,21 +72,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetListCollaborations_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_LISTS_COLLABORATIONS_URI, LISTS_JSON);
-
-            Func<Task<TraktListResponse<ITraktList>>> act = () => client.Users.GetListCollaborationsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetListCollaborationsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListCollaborationsAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

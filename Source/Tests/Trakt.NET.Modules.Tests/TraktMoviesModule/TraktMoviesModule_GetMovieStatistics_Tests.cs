@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Movies")]
+    [TestCategory("Modules.Movies")]
     public partial class TraktMoviesModule_Tests
     {
         private readonly string GET_MOVIE_STATISTICS_URI = $"movies/{MOVIE_ID}/stats";
@@ -67,21 +67,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieStatistics_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_STATISTICS_URI, MOVIE_STATISTICS_JSON);
-
-            Func<Task<TraktResponse<ITraktStatistics>>> act = () => client.Movies.GetMovieStatisticsAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieStatisticsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieStatisticsAsync("movie id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

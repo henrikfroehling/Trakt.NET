@@ -7,7 +7,7 @@
     using TraktNet.Requests.Certifications;
     using Xunit;
 
-    [Category("Requests.Certifications")]
+    [TestCategory("Requests.Certifications")]
     public class ACertificationsRequest_Tests
     {
         internal class CertificationsRequestMock : ACertificationsRequest

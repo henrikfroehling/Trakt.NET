@@ -11,7 +11,7 @@
     using TraktNet.Objects.Get.Collections.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Collections.JsonReader")]
+    [TestCategory("Objects.Get.Collections.JsonReader")]
     public partial class CollectionMovieObjectJsonReader_Tests
     {
         [Fact]

@@ -9,7 +9,6 @@
     using Objects.Get.Shows;
     using Objects.Get.Users;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Seasons;
     using Responses;
     using System;
@@ -17,6 +16,7 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to seasons.
@@ -52,10 +52,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktSeason" /> instances with the data of each queried season.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given translationLanguageCode is shorter or longer than two characters, if it is not set to "all".
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktSeason>> GetAllSeasonsAsync(string showIdOrSlug,
                                                                         TraktExtendedInfo extendedInfo = null,
                                                                         string translationLanguageCode = null,
@@ -96,11 +93,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktEpisode" /> instances with the data of each episode in the queried season.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given season number is below zero.
-        /// Thrown, if the given translationLanguageCode is shorter or longer than two characters, if it is not set to "all".
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktEpisode>> GetSeasonAsync(string showIdOrSlug, uint seasonNumber,
                                                                      TraktExtendedInfo extendedInfo = null,
                                                                      string translationLanguageCode = null,
@@ -133,12 +126,11 @@
         /// </param>
         /// <returns>A list of lists, each containing <see cref="ITraktEpisode" /> instances with the data of each episode in the queried seasons.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if one of the given show ids is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if one of the given season numbers is below zero.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public async Task<IEnumerable<TraktListResponse<ITraktEpisode>>> GetMultipleSeasonsAsync(TraktMultipleSeasonsQueryParams seasonsQueryParams,
                                                                                                  CancellationToken cancellationToken = default)
         {
-            if (seasonsQueryParams == null || seasonsQueryParams.Count <= 0)
+            if (seasonsQueryParams == null || seasonsQueryParams.Count == 0)
                 return new List<TraktListResponse<ITraktEpisode>>();
 
             var tasks = new List<Task<TraktListResponse<ITraktEpisode>>>();
@@ -178,8 +170,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetSeasonCommentsAsync(string showIdOrSlug, uint seasonNumber,
                                                                               TraktCommentSortOrder commentSortOrder = null,
                                                                               TraktPagedParameters pagedParameters = null,
@@ -222,8 +213,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktList>> GetSeasonListsAsync(string showIdOrSlug, uint seasonNumber,
                                                                         TraktListType listType = null, TraktListSortOrder listSortOrder = null,
                                                                         TraktPagedParameters pagedParameters = null,
@@ -262,7 +252,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktShowCastAndCrew" /> instance, containing the cast and crew for a season with the given showIdOrSlug and the given season number.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktShowCastAndCrew>> GetSeasonPeopleAsync(string showIdOrSlug, uint seasonNumber, TraktExtendedInfo extendedInfo = null,
                                                                                CancellationToken cancellationToken = default)
         {
@@ -292,8 +282,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktRating" /> instance, containing the ratings for a season with the given showIdOrSlug and the given season number.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktRating>> GetSeasonRatingsAsync(string showIdOrSlug, uint seasonNumber,
                                                                        CancellationToken cancellationToken = default)
         {
@@ -322,8 +311,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktStatistics" /> instance, containing the statistics for a season with the given showIdOrSlug and the given season number.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktStatistics>> GetSeasonStatisticsAsync(string showIdOrSlug, uint seasonNumber,
                                                                               CancellationToken cancellationToken = default)
         {
@@ -353,8 +341,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktSeasonTranslation" /> instances, each containing a title, overview and language code.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given languageCode is shorter or longer than two characters.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktSeasonTranslation>> GetSeasonTranslationsAsync(string showIdOrSlug, uint seasonNumber, string languageCode = null,
                                                                                            CancellationToken cancellationToken = default)
         {
@@ -388,8 +375,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktUser" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given season number is below zero.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktUser>> GetSeasonWatchingUsersAsync(string showIdOrSlug, uint seasonNumber,
                                                                                TraktExtendedInfo extendedInfo = null,
                                                                                CancellationToken cancellationToken = default)

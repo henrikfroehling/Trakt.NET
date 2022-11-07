@@ -2,11 +2,7 @@
 *<sup>Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))</sup>*
 
 [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET)
-[![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET&hashtags=Trakt,Nuget,CSharp)
-[![Twitter Follow](https://img.shields.io/twitter/follow/henrikfroehling?style=social)](https://twitter.com/henrikfroehling)
 ===
-
-_**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApiSharp).**_
 
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
 
@@ -25,11 +21,23 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 ### Features
 
-Full Trakt.tv API Coverage || Authentication Support (OAuth 2.0 and Device) || Completely asynchronous || API Environments (Production and Sandbox) || Serialization Service || Language Service
+- Full Trakt.tv API Coverage
+- Authentication Support (OAuth 2.0 and Device)
+- Completely asynchronous
+- API Environments (Production and Sandbox)
+- Serialization Service
+- Language Service
 
 ### Supported Platforms
 
-.Net Core >= 2.0 || .Net Framework >= 4.6.1 || .NET >= 5 || Mono >= 5.4 || Xamarin.iOS >= 10.14 || Xamarin.Mac >= 3.8 || Xamarin.Android >= 8.0 || Windows UWP >= 10.0.16299
+- .NET >= 5
+- .Net Core >= 2.0
+- .Net Framework >= 4.6.1
+- Xamarin.iOS >= 10.14
+- Xamarin.Mac >= 3.8
+- Xamarin.Android >= 8.0
+- Windows UWP >= 10.0.16299
+- Mono >= 5.4
 
 ---
 
@@ -56,16 +64,6 @@ PM> Install-Package Trakt.NET
 or with the [NuGet Package Management](https://docs.nuget.org/consume/package-manager-dialog) in Visual Studio and search for "trakt".
 
 Each release will also be published in [Releases](https://github.com/henrikfroehling/Trakt.NET/releases).
-
----
-### Packages
-
-You can also get the latest built packages here: https://github.com/henrikfroehling/Trakt.NET/packages
-
-There are three types of packages:
-- with suffix `release.preview.{latest-build-number}`: Latest package preview of the next upcoming planned version.
-- with suffix `developer.preview.{latest-build-number}`: Latest package with the latest library changes. These might not be stable.
-- without suffix: Actual released version packages.
 
 ---
 ### Examples

@@ -1,11 +1,11 @@
 ﻿namespace TraktNet.Requests.Seasons
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Interfaces;
     using Objects.Get.Seasons;
     using Parameters;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class SeasonsAllRequest : AGetRequest<ITraktSeason>, IHasId, ISupportsExtendedInfo
@@ -39,13 +39,13 @@
         public override void Validate()
         {
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "show id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("show id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "show id not valid");
 
             if (TranslationLanguageCode != null && TranslationLanguageCode != "all" && TranslationLanguageCode.Length != 2)
-                throw new ArgumentOutOfRangeException(nameof(TranslationLanguageCode), "translation language code has wrong length");
+                throw new TraktRequestValidationException(nameof(TranslationLanguageCode), "translation language code has wrong length");
         }
     }
 }

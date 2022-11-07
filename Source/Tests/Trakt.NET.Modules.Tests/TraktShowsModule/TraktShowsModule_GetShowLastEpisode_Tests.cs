@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Shows")]
+    [TestCategory("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
         private readonly string GET_SHOW_LAST_EPISODE_URI = $"shows/{SHOW_ID}/last_episode";
@@ -104,21 +104,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktShowsModule_GetShowLastEpisode_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_LAST_EPISODE_URI, SHOW_EPISODE_JSON);
-
-            Func<Task<TraktResponse<ITraktEpisode>>> act = () => client.Shows.GetShowLastEpisodeAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowLastEpisodeAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowLastEpisodeAsync("show id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

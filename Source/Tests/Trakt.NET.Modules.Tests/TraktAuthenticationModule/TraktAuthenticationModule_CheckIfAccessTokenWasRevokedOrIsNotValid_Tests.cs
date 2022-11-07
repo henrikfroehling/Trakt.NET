@@ -9,7 +9,7 @@
     using TraktNet.Exceptions;
     using Xunit;
 
-    [Category("Modules.Authentication")]
+    [TestCategory("Modules.Authentication")]
     public partial class TraktAuthenticationModule_Tests
     {
         // "Fake-Request" is sync/last_activities

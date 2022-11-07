@@ -14,7 +14,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Scrobble")]
+    [TestCategory("Modules.Scrobble")]
     public partial class TraktScrobbleModule_Tests
     {
         [Fact]
@@ -30,7 +30,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, postJson, EPISODE_STOP_SCROBBLE_POST_RESPONSE_JSON);
-            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StopEpisodeAsync(Episode, STOP_PROGRESS);
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StopEpisodeAsync(episodeStopScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -71,9 +71,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, postJson, EPISODE_STOP_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
-                await client.Scrobble.StopEpisodeAsync(Episode, STOP_PROGRESS, APP_VERSION);
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StopEpisodeAsync(episodeStopScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -114,9 +112,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, postJson, EPISODE_STOP_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
-                await client.Scrobble.StopEpisodeAsync(Episode, STOP_PROGRESS, null, APP_BUILD_DATE);
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StopEpisodeAsync(episodeStopScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -158,9 +154,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, postJson, EPISODE_STOP_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
-                await client.Scrobble.StopEpisodeAsync(Episode, STOP_PROGRESS, APP_VERSION, APP_BUILD_DATE);
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StopEpisodeAsync(episodeStopScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -202,9 +196,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, postJson, EPISODE_STOP_SCROBBLE_POST_RESPONSE_JSON);
-
-            TraktResponse<ITraktEpisodeScrobblePostResponse> response =
-                await client.Scrobble.StopEpisodeAsync(Episode, STOP_PROGRESS, APP_VERSION, APP_BUILD_DATE);
+            TraktResponse<ITraktEpisodeScrobblePostResponse> response = await client.Scrobble.StopEpisodeAsync(episodeStopScrobblePost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -250,11 +242,17 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktScrobbleModule_StopEpisode_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            ITraktEpisodeScrobblePost episodeStopScrobblePost = new TraktEpisodeScrobblePost
+            {
+                Episode = Episode,
+                Progress = STOP_PROGRESS
+            };
+
             TraktClient client = TestUtility.GetOAuthMockClient(SCROBBLE_STOP_URI, statusCode);
 
             try
             {
-                await client.Scrobble.StopEpisodeAsync(Episode, STOP_PROGRESS);
+                await client.Scrobble.StopEpisodeAsync(episodeStopScrobblePost);
                 Assert.False(true);
             }
             catch (Exception exception)

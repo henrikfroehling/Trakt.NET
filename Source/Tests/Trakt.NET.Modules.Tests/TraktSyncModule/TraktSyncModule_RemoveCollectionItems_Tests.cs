@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -10,12 +9,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
-    using TraktNet.Objects.Post.Syncs.Collection;
     using TraktNet.Objects.Post.Syncs.Collection.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string REMOVE_COLLECTION_ITEMS_URI = "sync/collection/remove";
@@ -88,31 +86,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_RemoveCollectionItems_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(RemoveCollectionItemsPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_COLLECTION_ITEMS_URI, postJson, COLLECTION_REMOVE_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>>> act = () => client.Sync.RemoveCollectionItemsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Sync.RemoveCollectionItemsAsync(new TraktSyncCollectionPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncCollectionPost collectionRemovePost = new TraktSyncCollectionPost
-            {
-                Movies = new List<ITraktSyncCollectionPostMovie>(),
-                Shows = new List<ITraktSyncCollectionPostShow>(),
-                Episodes = new List<ITraktSyncCollectionPostEpisode>()
-            };
-
-            act = () => client.Sync.RemoveCollectionItemsAsync(collectionRemovePost);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

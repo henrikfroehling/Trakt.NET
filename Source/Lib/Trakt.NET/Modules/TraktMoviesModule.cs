@@ -6,10 +6,9 @@
     using Objects.Get.Lists;
     using Objects.Get.Movies;
     using Objects.Get.Users;
+    using Parameters;
     using Requests.Handler;
     using Requests.Movies;
-    using Requests.Parameters;
-    using Requests.Parameters.Filter;
     using Responses;
     using System;
     using System.Collections.Generic;
@@ -48,7 +47,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktMovie" /> instance with the queried movie's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktMovie>> GetMovieAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                               CancellationToken cancellationToken = default)
         {
@@ -77,11 +76,11 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktMovie" /> instances with the data of each queried movie.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if one of the given movie ids is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public async Task<IEnumerable<TraktResponse<ITraktMovie>>> GetMultipleMoviesAsync(TraktMultipleObjectsQueryParams moviesQueryParams,
                                                                                           CancellationToken cancellationToken = default)
         {
-            if (moviesQueryParams == null || moviesQueryParams.Count <= 0)
+            if (moviesQueryParams == null || moviesQueryParams.Count == 0)
                 return new List<TraktResponse<ITraktMovie>>();
 
             var tasks = new List<Task<TraktResponse<ITraktMovie>>>();
@@ -110,7 +109,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktMovieAlias" /> instances, each containing a title and country code.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktMovieAlias>> GetMovieAliasesAsync(string movieIdOrSlug,
                                                                               CancellationToken cancellationToken = default)
         {
@@ -138,8 +137,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktMovieRelease" /> instances, each containing a country code, certification, release date and a note.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given countryCode is shorter or longer than two characters.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktMovieRelease>> GetMovieReleasesAsync(string movieIdOrSlug, string countryCode = null,
                                                                                  CancellationToken cancellationToken = default)
         {
@@ -168,8 +166,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktMovieTranslation" /> instances, each containing a title, tagline, overview and language code.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given languageCode is shorter or longer than two characters.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktMovieTranslation>> GetMovieTranslationsAsync(string movieIdOrSlug, string languageCode = null,
                                                                                          CancellationToken cancellationToken = default)
         {
@@ -205,7 +202,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetMovieCommentsAsync(string movieIdOrSlug,
                                                                              TraktCommentSortOrder commentSortOrder = null,
                                                                              TraktPagedParameters pagedParameters = null,
@@ -246,7 +243,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktList>> GetMovieListsAsync(string movieIdOrSlug, TraktListType listType = null,
                                                                        TraktListSortOrder listSortOrder = null,
                                                                        TraktPagedParameters pagedParameters = null,
@@ -283,7 +280,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktCastAndCrew" /> instance, containing the cast and crew for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktCastAndCrew>> GetMoviePeopleAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                           CancellationToken cancellationToken = default)
         {
@@ -311,7 +308,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktRating" /> instance, containing the ratings for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktRating>> GetMovieRatingsAsync(string movieIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -348,7 +345,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktMovie>> GetMovieRelatedMoviesAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                 CancellationToken cancellationToken = default)
@@ -379,7 +376,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktStatistics" /> instance, containing the statistics for a movie with the given movieIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktStatistics>> GetMovieStatisticsAsync(string movieIdOrSlug, CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -409,7 +406,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktUser" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given movieIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktUser>> GetMovieWatchingUsersAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                               CancellationToken cancellationToken = default)
         {
@@ -429,12 +426,16 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/trending/get-trending-movies">"Trakt API Doc - Movies: Trending"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
+        /// See also <seealso cref="TraktFilter.NewMovieFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -471,12 +472,16 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/popular/get-popular-movies">"Trakt API Doc - Movies: Popular"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
+        /// See also <seealso cref="TraktFilter.NewMovieFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -513,13 +518,17 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/played/get-the-most-played-movies">"Trakt API Doc - Movies: Played"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
+        /// See also <seealso cref="TraktFilter.NewMovieFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="period">The time period, for which the most played movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -558,13 +567,17 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/watched/get-the-most-watched-movies">"Trakt API Doc - Movies: Watched"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
+        /// See also <seealso cref="TraktFilter.NewMovieFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="period">The time period, for which the most watched movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -603,13 +616,17 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/watched/get-the-most-collected-movies">"Trakt API Doc - Movies: Collected"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
+        /// See also <seealso cref="TraktFilter.NewMovieFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="period">The time period, for which the most collected movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -648,12 +665,16 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/movies/anticipated/get-the-most-anticipated-movies">"Trakt API Doc - Movies: Anticipated"</a> for more information.
         /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
+        /// See also <seealso cref="TraktFilter.NewMovieFilter()" />.
+        /// </para>
         /// </summary>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
-        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="TraktMovieFilter" />.</param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>

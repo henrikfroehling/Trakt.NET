@@ -9,7 +9,7 @@
     using TraktNet.Objects.Basic.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Basic.JsonReader")]
+    [TestCategory("Objects.Basic.JsonReader")]
     public partial class ImageObjectJsonReader_Tests
     {
         [Fact]
