@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Requests.Parameters
+﻿namespace TraktNet.Parameters
 {
     /// <summary>
     /// Container class for pagination parameters.
