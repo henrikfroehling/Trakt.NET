@@ -3,7 +3,6 @@
     using Episodes;
     using Get.Seasons;
     using Modules;
-    using Requests.Parameters;
     using System;
     using System.Collections.Generic;
     using System.Threading;

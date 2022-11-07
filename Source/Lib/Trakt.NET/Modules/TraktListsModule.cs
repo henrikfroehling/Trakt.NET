@@ -5,7 +5,6 @@
     using Objects.Get.Lists;
     using Requests.Handler;
     using Requests.Lists;
-    using Requests.Parameters;
     using Responses;
     using System;
     using System.Threading;

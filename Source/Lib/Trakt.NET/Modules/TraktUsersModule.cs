@@ -21,7 +21,6 @@ namespace TraktNet.Modules
     using Objects.Post.Users.Responses;
     using PostBuilder;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Users.OAuth;
     using Responses;
     using System;

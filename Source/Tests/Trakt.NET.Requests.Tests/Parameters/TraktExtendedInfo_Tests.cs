@@ -2,7 +2,7 @@
 {
     using FluentAssertions;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using Xunit;
 
     [TestCategory("Requests.Parameters")]

@@ -9,7 +9,7 @@
     using TraktNet.Exceptions;
     using TraktNet.Extensions;
     using TraktNet.Objects.Get.History;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 

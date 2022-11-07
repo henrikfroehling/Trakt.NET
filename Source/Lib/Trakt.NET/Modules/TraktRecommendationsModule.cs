@@ -4,7 +4,6 @@
     using Objects.Get.Movies;
     using Objects.Get.Shows;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Recommendations.OAuth;
     using Responses;
     using System;

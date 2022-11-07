@@ -24,7 +24,6 @@ namespace TraktNet.Modules
     using Objects.Post.Syncs.Watchlist.Responses;
     using PostBuilder;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Syncs.OAuth;
     using Responses;
     using System;

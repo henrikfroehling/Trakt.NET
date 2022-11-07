@@ -10,7 +10,6 @@
     using Objects.Post.Shows;
     using Parameters;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Shows;
     using Requests.Shows.OAuth;
     using Responses;

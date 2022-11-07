@@ -6,7 +6,6 @@
     using Objects.Get.People;
     using Objects.Get.People.Credits;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.People;
     using Responses;
     using System;

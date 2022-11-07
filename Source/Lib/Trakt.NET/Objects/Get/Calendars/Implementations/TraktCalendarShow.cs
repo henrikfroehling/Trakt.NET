@@ -3,7 +3,6 @@
     using Enums;
     using Episodes;
     using Modules;
-    using Requests.Parameters;
     using Seasons;
     using Shows;
     using System;

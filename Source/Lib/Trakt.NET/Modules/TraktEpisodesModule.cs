@@ -9,7 +9,6 @@
     using Objects.Get.Users;
     using Requests.Episodes;
     using Requests.Handler;
-    using Requests.Parameters;
     using Responses;
     using System;
     using System.Collections.Generic;

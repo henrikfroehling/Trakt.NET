@@ -9,7 +9,6 @@
     using Objects.Get.Shows;
     using Objects.Get.Users;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Seasons;
     using Responses;
     using System;

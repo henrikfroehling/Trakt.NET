@@ -1,6 +1,5 @@
 ﻿namespace TraktNet.Modules
 {
-    using Requests.Parameters;
     using TraktNet.Parameters;
 
     /// <summary>

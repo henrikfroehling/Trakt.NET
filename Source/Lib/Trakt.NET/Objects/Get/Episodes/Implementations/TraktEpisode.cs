@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Episodes
 {
     using Modules;
-    using Requests.Parameters;
     using Seasons;
     using System;
     using System.Collections.Generic;
