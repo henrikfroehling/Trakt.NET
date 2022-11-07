@@ -5,9 +5,9 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Comments;
-    using TraktNet.Requests.Parameters;
     using Xunit;
 
     [TestCategory("Requests.Comments")]

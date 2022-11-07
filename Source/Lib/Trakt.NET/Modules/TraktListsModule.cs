@@ -5,12 +5,12 @@
     using Objects.Get.Lists;
     using Requests.Handler;
     using Requests.Lists;
-    using Requests.Parameters;
     using Responses;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
     using TraktNet.Objects.Basic;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to lists.

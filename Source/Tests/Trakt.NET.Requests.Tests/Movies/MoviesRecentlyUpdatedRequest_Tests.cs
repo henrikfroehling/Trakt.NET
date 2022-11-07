@@ -6,9 +6,9 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Extensions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Movies;
-    using TraktNet.Requests.Parameters;
     using Xunit;
 
     [TestCategory("Requests.Movies.Lists")]

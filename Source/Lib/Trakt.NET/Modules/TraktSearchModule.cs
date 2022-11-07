@@ -5,7 +5,6 @@
     using Objects.Basic;
     using Parameters;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Search;
     using Responses;
     using System;

@@ -3,7 +3,6 @@
     using System;
     using TraktNet.Enums;
     using TraktNet.Parameters;
-    using TraktNet.Requests.Parameters;
 
     public partial class TraktMoviesModule_Tests
     {

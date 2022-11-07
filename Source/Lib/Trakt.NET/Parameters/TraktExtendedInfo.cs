@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Requests.Parameters
+﻿namespace TraktNet.Parameters
 {
     using System.Collections.Generic;
     using System.Threading;

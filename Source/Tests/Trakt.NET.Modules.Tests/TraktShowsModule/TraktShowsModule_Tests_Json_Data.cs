@@ -4,7 +4,6 @@
     using TraktNet.Enums;
     using TraktNet.Objects.Post.Shows;
     using TraktNet.Parameters;
-    using TraktNet.Requests.Parameters;
 
     public partial class TraktShowsModule_Tests
     {

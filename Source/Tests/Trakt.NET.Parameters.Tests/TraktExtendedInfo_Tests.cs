@@ -1,11 +1,11 @@
-﻿namespace TraktNet.Requests.Tests.Parameters
+﻿namespace TraktNet.Parameters.Tests
 {
     using FluentAssertions;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using Xunit;
 
-    [TestCategory("Requests.Parameters")]
+    [TestCategory("Parameters")]
     public class TraktExtendedInfo_Tests
     {
         [Fact]

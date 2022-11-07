@@ -7,7 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using Xunit;
 
     [TestCategory("Modules.Movies")]

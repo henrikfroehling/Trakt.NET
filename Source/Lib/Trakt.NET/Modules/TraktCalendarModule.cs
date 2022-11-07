@@ -6,7 +6,6 @@
     using Requests.Calendars;
     using Requests.Calendars.OAuth;
     using Requests.Handler;
-    using Requests.Parameters;
     using Responses;
     using System;
     using System.Threading;
