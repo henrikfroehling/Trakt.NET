@@ -2,10 +2,10 @@
 {
     using Episodes;
     using Modules;
-    using Requests.Parameters;
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using TraktNet.Parameters;
 
     /// <summary>A Trakt season of a Trakt show.</summary>
     public interface ITraktSeason

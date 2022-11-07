@@ -21,7 +21,6 @@ namespace TraktNet.Modules
     using Objects.Post.Users.Responses;
     using PostBuilder;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Users.OAuth;
     using Responses;
     using System;
@@ -29,6 +28,7 @@ namespace TraktNet.Modules
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to users.

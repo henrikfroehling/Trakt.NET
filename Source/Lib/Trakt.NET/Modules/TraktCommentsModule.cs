@@ -15,13 +15,13 @@
     using Requests.Comments;
     using Requests.Comments.OAuth;
     using Requests.Handler;
-    using Requests.Parameters;
     using Responses;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to comments.

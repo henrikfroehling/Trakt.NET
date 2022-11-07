@@ -24,13 +24,13 @@ namespace TraktNet.Modules
     using Objects.Post.Syncs.Watchlist.Responses;
     using PostBuilder;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Syncs.OAuth;
     using Responses;
     using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to sync.

@@ -4,12 +4,12 @@
     using Objects.Get.Movies;
     using Objects.Get.Shows;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Recommendations.OAuth;
     using Responses;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to recommendations.

@@ -9,7 +9,6 @@
     using Objects.Get.Shows;
     using Objects.Get.Users;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.Seasons;
     using Responses;
     using System;
@@ -17,6 +16,7 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to seasons.

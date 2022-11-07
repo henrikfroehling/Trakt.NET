@@ -6,7 +6,6 @@
     using Objects.Get.People;
     using Objects.Get.People.Credits;
     using Requests.Handler;
-    using Requests.Parameters;
     using Requests.People;
     using Responses;
     using System;
@@ -14,6 +13,7 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to people.

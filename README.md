@@ -4,8 +4,6 @@
 [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET)
 ===
 
-_**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApiSharp).**_
-
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
 
 [![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.2.0-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.2.0)
@@ -23,11 +21,23 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 ### Features
 
-Full Trakt.tv API Coverage || Authentication Support (OAuth 2.0 and Device) || Completely asynchronous || API Environments (Production and Sandbox) || Serialization Service || Language Service
+- Full Trakt.tv API Coverage
+- Authentication Support (OAuth 2.0 and Device)
+- Completely asynchronous
+- API Environments (Production and Sandbox)
+- Serialization Service
+- Language Service
 
 ### Supported Platforms
 
-.Net Core >= 2.0 || .Net Framework >= 4.6.1 || .NET >= 5 || Mono >= 5.4 || Xamarin.iOS >= 10.14 || Xamarin.Mac >= 3.8 || Xamarin.Android >= 8.0 || Windows UWP >= 10.0.16299
+- .NET >= 5
+- .Net Core >= 2.0
+- .Net Framework >= 4.6.1
+- Xamarin.iOS >= 10.14
+- Xamarin.Mac >= 3.8
+- Xamarin.Android >= 8.0
+- Windows UWP >= 10.0.16299
+- Mono >= 5.4
 
 ---
 
