@@ -5,7 +5,6 @@
     using Objects.Get.Lists;
     using Parameters;
     using System.Collections.Generic;
-    using TraktNet.Parameters;
 
     internal class ListItemsRequest : AListRequest<ITraktListItem>, ISupportsPagination
     {

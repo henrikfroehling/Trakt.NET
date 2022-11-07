@@ -4,7 +4,6 @@
     using Objects.Get.Movies;
     using Parameters;
     using System.Collections.Generic;
-    using TraktNet.Parameters;
 
     internal sealed class MovieSummaryRequest : AMovieRequest<ITraktMovie>, ISupportsExtendedInfo
     {

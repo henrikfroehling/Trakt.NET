@@ -4,7 +4,6 @@
     using Objects.Get.Shows;
     using Parameters;
     using System.Collections.Generic;
-    using TraktNet.Parameters;
 
     internal sealed class ShowSummaryRequest : AShowRequest<ITraktShow>, ISupportsExtendedInfo
     {

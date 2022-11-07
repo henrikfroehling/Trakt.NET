@@ -4,7 +4,6 @@
     using Objects.Get.Watched;
     using Parameters;
     using System.Collections.Generic;
-    using TraktNet.Parameters;
 
     internal sealed class SyncWatchedShowsRequest : ASyncGetRequest<ITraktWatchedShow>, ISupportsExtendedInfo
     {

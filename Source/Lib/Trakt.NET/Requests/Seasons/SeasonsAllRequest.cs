@@ -7,7 +7,6 @@
     using Objects.Get.Seasons;
     using Parameters;
     using System.Collections.Generic;
-    using TraktNet.Parameters;
 
     internal sealed class SeasonsAllRequest : AGetRequest<ITraktSeason>, IHasId, ISupportsExtendedInfo
     {

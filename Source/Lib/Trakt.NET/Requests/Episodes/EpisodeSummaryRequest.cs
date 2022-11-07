@@ -4,7 +4,6 @@
     using Objects.Get.Episodes;
     using Parameters;
     using System.Collections.Generic;
-    using TraktNet.Parameters;
 
     internal sealed class EpisodeSummaryRequest : AEpisodeRequest<ITraktEpisode>, ISupportsExtendedInfo
     {

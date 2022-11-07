@@ -7,7 +7,6 @@
     using Parameters;
     using System;
     using System.Collections.Generic;
-    using TraktNet.Parameters;
 
     internal sealed class SyncWatchedHistoryRequest : ASyncGetRequest<ITraktHistoryItem>, ISupportsExtendedInfo, ISupportsPagination
     {
