@@ -9,7 +9,7 @@ A `TraktExtendedInfo` instance can be created to specify, how much data should b
 To create an instance of `TraktExtendedInfo`, there are basically two ways.
 
 ```csharp
-using TraktNet.Requests.Parameters;
+using TraktNet.Parameters;
 
 var extendedInfo = new TraktExtendedInfo
 {
@@ -36,7 +36,7 @@ With `Reset[Option]()` you can disable a single option and with `Reset()` you ca
 `TraktExtendedInfo` has a fluent interface which allows you to chain its method calls like in the following example.
 
 ```csharp
-using TraktNet.Requests.Parameters;
+using TraktNet.Parameters;
 
 var extendedInfo = new TraktExtendedInfo().SetMetadata().SetFull().SetNoSeasons().SetEpisodes().Reset().SetNoSeasons().Reset();
 ```
@@ -45,33 +45,41 @@ var extendedInfo = new TraktExtendedInfo().SetMetadata().SetFull().SetNoSeasons(
 
 There are four different filters you can use.
 
-- `TraktCalendarFilter` for all methods in the `TraktClient.Calendars`
-- `TraktMovieFilter` for some methods in the `TraktClient.Movies`
-- `TraktShowFilter` for some methods in the `TraktClient.Shows`
-- `TraktSearchModule` for the `GetTextQueryResultsAsync()` method in the `TraktClient.Search`
+- `ITraktCalendarFilter` for all methods in the `TraktClient.Calendars` module
+- `ITraktMovieFilter` for some methods in the `TraktClient.Movies` module
+- `ITraktShowFilter` for some methods in the `TraktClient.Shows` module
+- `ITraktSearcFilter` for the `GetTextQueryResultsAsync()` method in the `TraktClient.Search` module
 
-Each filter has a fluent interface which allows you to chain its method calls. For example, create a `TraktCalendarFilter` instance like this.
+For each filter exists a builder to create an instance of it.
+
+| Filter | Builder |
+|--------|---------|
+| `ITraktCalendarFilter` | `TraktFilter.NewCalendarFilter().Build()` |
+| `ITraktMovieFilter` | `TraktFilter.NewMovieFilter().Build()` |
+| `ITraktShowFilter` | `TraktFilter.NewShowFilter().Build()` |
+| `ITraktSearchFilter` | `TraktFilter.NewSearchFilter().Build()` |
+
+Each filter is immutable.
+
+If you want to change one, just create a new instance.
+
+Filters are only creatable through their builder methods.
+
+In the following example, a `ITraktCalendarFilter` is created.
 
 ```csharp
-using TraktNet.Requests.Parameters.Filter;
+using TraktNet.Parameters;
 
-var filter = new TraktCalendarFilter().WithQuery("calendar movie")
-                                      .WithYears(2016)
-                                      .WithGenres("drama", "fantasy")
-                                      .WithLanguages("en", "de")
-                                      .WithCountries("us")
-                                      .WithRuntimes(30, 60)
-                                      .WithRatings(80, 95);
+ITraktCalendarFilter calendarFilter = TraktFilter.NewCalenderFilter()
+                                          .WithQuery("calendar movie")
+                                          .WithYears(2020, 2022)
+                                          .WithGenres("drama", "fantasy")
+                                          .WithLanguages("en", "de")
+                                          .WithCountries("us")
+                                          .WithRuntimes(30, 60)
+                                          .WithRatings(80, 95)
+                                          .Build();
 ```
-
-And edit it like this.
-
-```csharp
-filter.AddGenres("action", "science-fiction")
-      .AddLanguages("fr");
-```
-
-All methods, which begin with `With...` will overwrite existing values. If you want to add values, you must use a method, which begins with `Add...`. With `Clear()` you can remove all current values in a filter.
 
 ### Multiple Ids
 
