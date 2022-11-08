@@ -184,4 +184,64 @@ queryParams.Add("username-3", "list-id-5");
 
 ### Post Objects (Post Builder)
 
-TODO
+There are several methods which require a post object.
+These are mostly required in the following modules:
+- `TraktClient.Checkins` module
+- `TraktClient.Comments` module
+- `TraktClient.Scrobble` module
+- `TraktClient.Sync` module
+- `TraktClient.Users` module
+
+Here is an overview of the post objects, its modules and its builder methods:
+| Post Object | Module | Builder |
+|-------------|--------|---------|
+| `ITraktSyncCollectionPost` | `TraktClient.Sync` | `TraktPost.NewSyncCollectionPost().Build()` |
+| `ITraktSyncCollectionRemovePost` | `TraktClient.Sync` | `TraktPost.NewSyncCollectionRemovePost().Build()` |
+| `ITraktSyncHistoryPost` | `TraktClient.Sync` | `TraktPost.NewSyncHistoryPost().Build()` |
+| `ITraktSyncHistoryRemovePost` | `TraktClient.Sync` | `TraktPost.NewSyncHistoryRemovePost().Build()` |
+| `ITraktSyncRatingsPost` | `TraktClient.Sync` | `TraktPost.NewSyncRatingsPost().Build()` |
+| `ITraktSyncRatingsRemovePost` | `TraktClient.Sync` | `TraktPost.NewSyncRatingsRemovePost().Build()` |
+| `ITraktSyncRecommendationsPost` | `TraktClient.Sync` | `TraktPost.NewSyncRecommendationsPost().Build()` |
+| `ITraktSyncRecommendationsRemovePost` | `TraktClient.Sync` | `TraktPost.NewSyncRecommendationsRemovePost().Build()` |
+| `ITraktSyncWatchlistPost` | `TraktClient.Sync` | `TraktPost.NewSyncWatchlistPost().Build()` |
+| `ITraktSyncWatchlistRemovePost` | `TraktClient.Sync` | `TraktPost.NewSyncWatchlistRemovePost().Build()` |
+| `ITraktUserHiddenItemsPost` | `TraktClient.Users` | `TraktPost.NewUserHiddenItemsPost().Build()` |
+| `ITraktUserHiddenItemsRemovePost` | `TraktClient.Users` | `TraktPost.NewUserHiddenItemsRemovePost().Build()` |
+| `ITraktUserPersonalListItemsPost` | `TraktClient.Users` | `TraktPost.NewUserPersonalListItemsPost().Build()` |
+| `ITraktUserPersonalListItemsRemovePost` | `TraktClient.Users` | `TraktPost.NewUserPersonalListItemsRemovePost().Build()` |
+| `ITraktMovieCommentPost` | `TraktClient.Comments` | `TraktPost.NewMovieCommentPost().Build()` |
+| `ITraktShowCommentPost` | `TraktClient.Comments` | `TraktPost.NewShowCommentPost().Build()` |
+| `ITraktSeasonCommentPost` | `TraktClient.Comments` | `TraktPost.NewSeasonCommentPost().Build()` |
+| `ITraktEpisodeCommentPost` | `TraktClient.Comments` | `TraktPost.NewEpisodeCommentPost().Build()` |
+| `ITraktListCommentPost` | `TraktClient.Comments` | `TraktPost.NewListCommentPost().Build()` |
+| `ITraktMovieCheckinPost` | `TraktClient.Checkins` | `TraktPost.NewMovieCheckinPost().Build()` |
+| `ITraktEpisodeCheckinPost` | `TraktClient.Checkins` | `TraktPost.NewEpisodeCheckinPost().Build()` |
+| `ITraktMovieScrobblePost` | `TraktClient.Scrobble` | `TraktPost.NewMovieScrobblePost().Build()` |
+| `ITraktEpisodeScrobblePost` | `TraktClient.Scrobble` | `TraktPost.NewEpisodeScrobblePost().Build()` |
+
+You do not need to use the builder methods for creating instances of post objects.
+
+It is also possible to just create an instance, like this:
+```csharp
+ITraktSyncRecommendationsPost recommendationsPost = new TraktSyncRecommendationsPost();
+```
+But it is recommended to use the builder methods.
+
+They check the added values for validity while creating an instance.
+
+The following example creates an `ITraktSyncRecommendationsPost` instance which is required for the `AddPersonalRecommendationsAsync()` method in the `TraktClient.Sync` module.
+
+```csharp
+// Get shows and movies for this example.
+TraktPagedResponse<ITraktTrendingMovie> trendingMovies = await client.Movies.GetTrendingMoviesAsync();
+TraktPagedResponse<ITraktTrendingShow> trendingShows = await client.Shows.GetTrendingShowsAsync();
+
+// Create the post object with the queried shows and movies.
+ITraktSyncRecommendationsPost recommendationsPost = TraktPost.NewSyncRecommendationsPost()
+                                                        .WithMovies(trendingMovies)
+                                                        .WithShows(trendingShows)
+                                                        .Build();
+
+// Use the post object.
+TraktResponse<ITraktSyncRecommendationsPostResponse> response = await client.Sync.AddPersonalRecommendationsAsync(recommendationsPost);
+```
