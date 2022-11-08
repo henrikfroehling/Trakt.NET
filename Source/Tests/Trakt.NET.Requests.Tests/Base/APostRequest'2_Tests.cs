@@ -7,16 +7,17 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Interfaces;
     using Xunit;
 
-    [Category("Requests.Base")]
+    [TestCategory("Requests.Base")]
     public class APostRequest_2_Tests
     {
         internal class RequestBodyMock : IRequestBody
         {
-            public Task<string> ToJson(CancellationToken cancellationToken = default(CancellationToken)) => Task.FromResult("");
+            public Task<string> ToJson(CancellationToken cancellationToken = default) => Task.FromResult("");
 
             public void Validate()
             {
@@ -45,12 +46,12 @@
         }
 
         [Fact]
-        public void Test_APostRequest_2_Validate_Throws_ArgumentNullException()
+        public void Test_APostRequest_2_Validate_Throws_TraktRequestValidationException()
         {
             var requestMock = new PostRequestMock();
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

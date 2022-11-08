@@ -4,10 +4,11 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Shows.OAuth;
     using Xunit;
 
-    [Category("Requests.Shows.OAuth")]
+    [TestCategory("Requests.Shows.OAuth")]
     public class ShowResetWatchedProgressRequest_Tests
     {
         [Fact]
@@ -38,25 +39,25 @@
             var request = new ShowResetWatchedProgressRequest();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new ShowResetWatchedProgressRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new ShowResetWatchedProgressRequest { Id = "invalid id" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // request body is null
             request = new ShowResetWatchedProgressRequest { Id = "id" };
             
             act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

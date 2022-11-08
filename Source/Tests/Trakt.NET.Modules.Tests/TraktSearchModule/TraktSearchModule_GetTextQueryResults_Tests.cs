@@ -6,14 +6,13 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Enums;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Basic;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Search")]
+    [TestCategory("Modules.Search")]
     public partial class TraktSearchModule_Tests
     {
         [Fact]
@@ -2149,22 +2148,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSearchModule_GetTextQueryResults_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GetTextQueryUri,
-                                                           SEARCH_TEXT_QUERY_RESULTS_JSON, 1, 10, 1, TEXT_QUERY_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktSearchResult>>> act = () => client.Search.GetTextQueryResultsAsync(default, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Search.GetTextQueryResultsAsync(TEXT_QUERY_TYPE_MOVIE, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Search.GetTextQueryResultsAsync(TraktSearchResultType.Unspecified, TEXT_QUERY);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

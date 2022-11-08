@@ -7,14 +7,13 @@
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
-    using TraktNet.Enums;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
     using TraktNet.Objects.Post.Users.HiddenItems.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         [Fact]
@@ -86,24 +85,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_AddHiddenItems_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(HiddenItemsPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(AddHiddenItemsUri, postJson, HIDDEN_ITEMS_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktUserHiddenItemsPostResponse>>> act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.AddHiddenItemsAsync(HiddenItemsPost, TraktHiddenItemsSection.Unspecified);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.AddHiddenItemsAsync(null, HIDDEN_ITEMS_SECTION);
-            await act.Should().ThrowAsync<ArgumentNullException>();
         }
     }
 }

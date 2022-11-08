@@ -4,7 +4,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using Xunit;
 
-    [Category("Core")]
+    [TestCategory("Core")]
     public class TraktConfiguration_Tests
     {
         [Fact]

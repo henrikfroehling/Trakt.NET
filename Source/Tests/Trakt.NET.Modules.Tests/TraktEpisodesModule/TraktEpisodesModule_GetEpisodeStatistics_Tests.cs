@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Episodes")]
+    [TestCategory("Modules.Episodes")]
     public partial class TraktEpisodesModule_Tests
     {
         private readonly string GET_EPISODE_STATISTICS_URI = $"shows/{SHOW_ID}/seasons/{SEASON_NR}/episodes/{EPISODE_NR}/stats";
@@ -68,24 +68,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodeStatistics_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_STATISTICS_URI, EPISODE_STATISTICS_JSON);
-
-            Func<Task<TraktResponse<ITraktStatistics>>> act = () => client.Episodes.GetEpisodeStatisticsAsync(null, SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodeStatisticsAsync(string.Empty, SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodeStatisticsAsync("show id", SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodeStatisticsAsync(SHOW_ID, SEASON_NR, 0);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

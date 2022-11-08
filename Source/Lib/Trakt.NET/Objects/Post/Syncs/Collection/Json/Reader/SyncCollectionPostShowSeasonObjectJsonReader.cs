@@ -1,7 +1,9 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Collection.Json.Reader
 {
+    using Enums;
     using Newtonsoft.Json;
     using Objects.Json;
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using Utils;
@@ -32,6 +34,30 @@
 
                                 break;
                             }
+                        case JsonProperties.PROPERTY_NAME_COLLECTED_AT:
+                            {
+                                Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktSyncCollectionPostShowSeason.CollectedAt = value.Second;
+
+                                break;
+                            }
+                        case JsonProperties.PROPERTY_NAME_MEDIA_TYPE:
+                            traktSyncCollectionPostShowSeason.MediaType = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaType>(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_RESOLUTION:
+                            traktSyncCollectionPostShowSeason.MediaResolution = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaResolution>(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_AUDIO:
+                            traktSyncCollectionPostShowSeason.Audio = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaAudio>(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_AUDIO_CHANNELS:
+                            traktSyncCollectionPostShowSeason.AudioChannels = await JsonReaderHelper.ReadEnumerationValueAsync<TraktMediaAudioChannel>(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_3D:
+                            traktSyncCollectionPostShowSeason.ThreeDimensional = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            break;
                         case JsonProperties.PROPERTY_NAME_EPISODES:
                             traktSyncCollectionPostShowSeason.Episodes = await syncCollectionPostShowEpisodeArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;

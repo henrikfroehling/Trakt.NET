@@ -1,10 +1,10 @@
 ﻿namespace TraktNet.Requests.Search
 {
     using Enums;
+    using Exceptions;
     using Interfaces;
-    using Parameters.Filter;
-    using System;
     using System.Collections.Generic;
+    using TraktNet.Parameters;
 
     internal sealed class SearchTextQueryRequest : ASearchRequest, ISupportsFilter
     {
@@ -40,13 +40,16 @@
         public override void Validate()
         {
             if (ResultTypes == null)
-                throw new ArgumentNullException(nameof(ResultTypes));
+                throw new TraktRequestValidationException(nameof(ResultTypes), "result type must not be null");
 
             if (ResultTypes == TraktSearchResultType.Unspecified)
-                throw new ArgumentException("result type must not be unspecified", nameof(ResultTypes));
+                throw new TraktRequestValidationException(nameof(ResultTypes), "result type must not be unspecified");
 
             if (Query == null)
-                throw new ArgumentNullException(nameof(Query));
+                throw new TraktRequestValidationException(nameof(Query), "query must not be null");
+
+            if (Query.Length == 0)
+                throw new TraktRequestValidationException(nameof(Query), "query must not be empty");
         }
     }
 }

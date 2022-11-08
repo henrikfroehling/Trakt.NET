@@ -1,20 +1,21 @@
 ﻿namespace TraktNet.Responses.Interfaces
 {
+    using Enums;
     using System;
 
     public interface ITraktResponseHeaders
     {
         /// <summary>Gets the value of the set "sort-by" response header. Might not be set.</summary>
-        string SortBy { get; set; }
+        TraktSortBy? SortBy { get; set; }
 
         /// <summary>Gets the value of the set "sort-how" response header. Might not be set.</summary>
-        string SortHow { get; set; }
+        TraktSortHow? SortHow { get; set; }
 
         /// <summary>Gets the value of the set "applied-sort-by" response header. Might not be set.</summary>
-        string AppliedSortBy { get; set; }
+        TraktSortBy? AppliedSortBy { get; set; }
 
         /// <summary>Gets the value of the set "applied-sort-how" response header. Might not be set.</summary>
-        string AppliedSortHow { get; set; }
+        TraktSortHow? AppliedSortHow { get; set; }
 
         /// <summary>Gets the value of the set "start-date" response header. Might not be set.</summary>
         DateTime? StartDate { get; set; }
@@ -48,5 +49,11 @@
 
         /// <summary>The web URL where the user can sign up for Trakt VIP.</summary>
         string UpgradeURL { get; set; }
+
+        /// <summary>Determines whether the user is a VIP user.</summary>
+        bool? IsVIPUser { get; set; }
+
+        /// <summary>The user's account limit.</summary>
+        int? AccountLimit { get; set; }
     }
 }

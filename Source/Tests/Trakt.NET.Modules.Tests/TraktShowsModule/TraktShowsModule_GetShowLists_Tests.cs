@@ -7,12 +7,12 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Users.Lists;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Objects.Get.Lists;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Shows")]
+    [TestCategory("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
         private readonly string GET_SHOW_LISTS_URI = $"shows/{SHOW_ID}/lists";
@@ -323,22 +323,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktShowsModule_GetShowLists_ArgumentsExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_LISTS_URI,
-                SHOW_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Shows.GetShowListsAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowListsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowListsAsync("show id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

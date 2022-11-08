@@ -13,7 +13,7 @@
     using TraktNet.Utils;
     using Xunit;
 
-    [Category("Modules.Authentication")]
+    [TestCategory("Modules.Authentication")]
     public partial class TraktAuthenticationModule_Tests
     {
         [Fact]

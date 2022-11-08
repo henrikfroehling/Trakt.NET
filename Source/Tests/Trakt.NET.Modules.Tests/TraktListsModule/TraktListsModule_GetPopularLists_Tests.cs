@@ -7,12 +7,12 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Users.Lists;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Objects.Get.Lists;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Lists")]
+    [TestCategory("Modules.Lists")]
     public partial class TraktListsModule_Tests
     {
         private const string GET_POPULAR_LISTS_URI = "lists/popular";

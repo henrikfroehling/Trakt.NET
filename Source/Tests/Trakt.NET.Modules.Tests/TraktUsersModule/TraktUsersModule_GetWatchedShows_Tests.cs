@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_WATCHED_SHOWS_URI = $"users/{USERNAME}/watched/shows";
@@ -87,21 +87,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetWatchedShows_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_WATCHED_SHOWS_URI, WATCHED_SHOWS_JSON);
-
-            Func<Task<TraktListResponse<ITraktWatchedShow>>> act = () => client.Users.GetWatchedShowsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetWatchedShowsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetWatchedShowsAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

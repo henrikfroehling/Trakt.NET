@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Comments
 {
+    using Exceptions;
     using Get.Shows;
     using Objects.Json;
     using System.Threading;
@@ -22,7 +23,16 @@
 
         public override void Validate()
         {
-            // TODO
+            base.Validate();
+
+            if (Show == null)
+                throw new TraktPostValidationException(nameof(Show), "show must not be null");
+
+            if (Show.Ids == null)
+                throw new TraktPostValidationException(nameof(Show.Ids), "show ids must not be null");
+
+            if (!Show.Ids.HasAnyId)
+                throw new TraktPostValidationException("show ids have no valid id", nameof(Show.Ids));
         }
     }
 }

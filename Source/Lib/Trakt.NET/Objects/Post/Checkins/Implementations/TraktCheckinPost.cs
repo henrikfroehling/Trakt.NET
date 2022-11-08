@@ -8,10 +8,10 @@
     {
         /// <summary>
         /// Gets or sets the sharing options for the checkin post.
-        /// See also <seealso cref="ITraktSharing" />.
+        /// See also <seealso cref="ITraktConnections" />.
         /// <para>Nullable</para>
         /// </summary>
-        public ITraktSharing Sharing { get; set; }
+        public ITraktConnections Sharing { get; set; }
 
         /// <summary>Gets or sets the message for the checkin post.<para>Nullable</para></summary>
         public string Message { get; set; }

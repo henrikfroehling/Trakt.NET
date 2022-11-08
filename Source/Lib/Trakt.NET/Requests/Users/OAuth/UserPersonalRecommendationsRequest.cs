@@ -2,9 +2,9 @@
 {
     using Base;
     using Enums;
+    using Exceptions;
     using Extensions;
     using Objects.Get.Users;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class UserPersonalRecommendationsRequest : AUsersPagedGetRequest<ITraktRecommendation>
@@ -41,10 +41,10 @@
             base.Validate();
 
             if (Username == null)
-                throw new ArgumentNullException(nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username must not be null");
 
             if (Username == string.Empty || Username.ContainsSpace())
-                throw new ArgumentException("username not valid", nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username not valid");
         }
     }
 }

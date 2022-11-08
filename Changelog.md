@@ -1,6 +1,93 @@
 Changelog
 =============
 
+Version 1.3.0
+===
+
+#### 1.3.0
+(2022-11-08)
+
+Breaking Changes:
+
+- Rename "CustomList(s)" requests to "PersonalList(s)" requests ([Issue 276](https://github.com/henrikfroehling/Trakt.NET/issues/276))
+- Rename `ITraktSharing` to `ITraktConnections` ([Issue 303](https://github.com/henrikfroehling/Trakt.NET/issues/303))
+- Rename `TraktUserCustomListPost` to `TraktUserPersonalListPost` ([Issue 349](https://github.com/henrikfroehling/Trakt.NET/issues/349))
+- Move parameter types into namespace `TraktNet.Parameters` ([Issue 354](https://github.com/henrikfroehling/Trakt.NET/issues/354))
+  - `TraktExtendedInfo`
+  - `TraktPagedParameters`
+  - `TraktIncludeReplies`
+- Refactor filters ([Issue 289](https://github.com/henrikfroehling/Trakt.NET/issues/289))
+  - Filters are now in the namespace `TraktNet.Parameters`
+  - Filters are now immutable and cannot be changed after created
+  - Filters are now only creatable with their builder methods
+    - `ITraktCalendarFilter` => `TraktFilter.NewCalendarFilter().Build()`
+    - `ITraktMovieFilter` => `TraktFilter.NewMovieFilter().Build()`
+    - `ITraktShowFilter` => `TraktFilter.NewShowFilter().Build()`
+    - `ITraktSearchFilter` => `TraktFilter.NewSearchFilter().Build()`
+- Post builder refactoring ([Issue 319](https://github.com/henrikfroehling/Trakt.NET/issues/319))
+  - Post builder methods have been completely refactored and unified
+  - Post builder methods are now in the namespace `TraktNet.PostBuilder`
+  - Posts can be created with the `TraktPost.New...Post().Build()` methods
+  - There have been added new builders methods for creating comment-, checkin- and scrobble-posts ([Issue 346](https://github.com/henrikfroehling/Trakt.NET/issues/346))
+  - Following post objects are now also creatable with the post builder methods
+    - `ITraktSyncCollectionRemovePost`
+    - `ITraktSyncRatingsRemovePost`
+    - `ITraktSyncRecommendationsRemovePost`
+    - `ITraktSyncWatchlistRemovePost`
+    - `ITraktUserHiddenItemsRemovePost`
+    - `ITraktUserPersonalListItemsRemovePost`
+    - `ITraktMovieCommentPost`
+    - `ITraktShowCommentPost`
+    - `ITraktSeasonCommentPost`
+    - `ITraktEpisodeCommentPost`
+    - `ITraktListCommentPost`
+    - `ITraktMovieCheckinPost`
+    - `ITraktEpisodeCheckinPost`
+    - `ITraktMovieScrobblePost`
+    - `ITraktEpisodeScrobblePost`
+
+Added:
+
+- Add support for "limits" property in `ITraktUserSettings` ([Issue 272](https://github.com/henrikfroehling/Trakt.NET/issues/272))
+- Add new exception type for HTTP Status Code 420 (user has exceeded their account limit) ([Issue 273](https://github.com/henrikfroehling/Trakt.NET/issues/273))
+- Add support for "notes" (255 maximum characters) for watchlist and personal list items ([Issue 274](https://github.com/henrikfroehling/Trakt.NET/issues/274))
+- Add value "recommendations" in `TraktListType` enumeration ([Issue 275](https://github.com/henrikfroehling/Trakt.NET/issues/275))
+- Add support for "lists/{id}" GET request ([Issue 277](https://github.com/henrikfroehling/Trakt.NET/issues/277))
+- Add support for "lists/{id}/likes" GET request ([Issue 278](https://github.com/henrikfroehling/Trakt.NET/issues/278))
+- Add support for "lists/{id}/items/{type}" GET request ([Issue 279](https://github.com/henrikfroehling/Trakt.NET/issues/279))
+- Add support for "lists/{id}/comments/{sort}" GET request ([Issue 280](https://github.com/henrikfroehling/Trakt.NET/issues/280))
+- Add support for "users/{id}/lists/collaborations" GET request ([Issue 281](https://github.com/henrikfroehling/Trakt.NET/issues/281))
+- Add support for "users/saved_filters" GET request ([Issue 282](https://github.com/henrikfroehling/Trakt.NET/issues/282))
+- Add support for "facebook" and "apple" properties in `ITraktConnections` ([Issue 283](https://github.com/henrikfroehling/Trakt.NET/issues/283))
+- Add support for "rated" property in `ITraktSharingText` ([Issue 284](https://github.com/henrikfroehling/Trakt.NET/issues/284))
+- Add support for "vip_og", "vip_years" and "vip_cover_image" properties in `ITraktUser` ([Issue 285](https://github.com/henrikfroehling/Trakt.NET/issues/285))
+- Add support for "movies/updates/id/{start_date}" GET request ([Issue 293](https://github.com/henrikfroehling/Trakt.NET/issues/293))
+- Add support for "shows/updates/id/{start_date}" GET request ([Issue 294](https://github.com/henrikfroehling/Trakt.NET/issues/294))
+- Add support for "id" and "rank" properties in `ITraktWatchlistItem` ([Issue 310](https://github.com/henrikfroehling/Trakt.NET/issues/310))
+- New Post builder implementations ([Issue 346](https://github.com/henrikfroehling/Trakt.NET/issues/346))
+
+Fixed:
+
+- [Bug]: ValidateHistoryPost for RemoveWatchedHistoryItemsAsync ignores WithHistoryIds ([Issue 316](https://github.com/henrikfroehling/Trakt.NET/issues/316))
+
+Improved:
+
+- Return enum types for response headers with fixed values (e.g. SortBy, SortHow) ([Issue 288](https://github.com/henrikfroehling/Trakt.NET/issues/288))
+- Improve request validations ([Issue 350](https://github.com/henrikfroehling/Trakt.NET/issues/350))
+
+Changed:
+
+- Rename "CustomList(s)" requests to "PersonalList(s)" requests ([Issue 276](https://github.com/henrikfroehling/Trakt.NET/issues/276))
+- Rename `ITraktSharing` to `ITraktConnections` ([Issue 303](https://github.com/henrikfroehling/Trakt.NET/issues/303))
+- Change type of "rank" property in `ITraktListItem` to `int` ([Issue 311](https://github.com/henrikfroehling/Trakt.NET/issues/311))
+- Rename `TraktUserCustomListPost` to `TraktUserPersonalListPost` ([Issue 349](https://github.com/henrikfroehling/Trakt.NET/issues/349))
+- Move parameter types into namespace `TraktNet.Parameters` ([Issue 354](https://github.com/henrikfroehling/Trakt.NET/issues/354))
+  - `TraktExtendedInfo`
+  - `TraktPagedParameters`
+  - `TraktIncludeReplies`
+
+---------
+
 Version 1.2.0
 ===
 

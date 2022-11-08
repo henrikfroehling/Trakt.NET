@@ -6,7 +6,7 @@
     using TraktNet.Requests.Genres;
     using Xunit;
 
-    [Category("Requests.Genres")]
+    [TestCategory("Requests.Genres")]
     public class GenresShowsRequest_Tests
     {
         [Fact]

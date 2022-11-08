@@ -8,7 +8,7 @@
     using TraktNet.Requests.Base;
     using Xunit;
 
-    [Category("Requests.Base")]
+    [TestCategory("Requests.Base")]
     public class AGetRequest_1_Tests
     {
         internal class GetRequestMock : AGetRequest<int>

@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Countries")]
+    [TestCategory("Modules.Countries")]
     public partial class TraktCountriesModule_Tests
     {
         private const string COUNTRIES_SHOWS_URI = "countries/shows";

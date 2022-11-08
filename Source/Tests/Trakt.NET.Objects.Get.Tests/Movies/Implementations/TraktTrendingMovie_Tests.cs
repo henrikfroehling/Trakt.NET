@@ -8,7 +8,7 @@
     using TraktNet.Objects.Get.Movies.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Movies.Implementations")]
+    [TestCategory("Objects.Get.Movies.Implementations")]
     public class TraktTrendingMovie_Tests
     {
         [Fact]

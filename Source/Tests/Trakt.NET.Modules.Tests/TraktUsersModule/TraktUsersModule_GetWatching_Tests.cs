@@ -12,7 +12,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_WATCHING_URI = $"users/{USERNAME}/watching";
@@ -139,21 +139,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetWatching_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_WATCHING_URI, WATCHING_ITEM_MOVIE_JSON);
-
-            Func<Task<TraktResponse<ITraktUserWatchingItem>>> act = () => client.Users.GetWatchingAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetWatchingAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetWatchingAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

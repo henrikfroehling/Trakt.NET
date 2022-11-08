@@ -6,6 +6,7 @@
     using System.Net;
     using System.Net.Http;
     using System.Net.Http.Headers;
+    using TraktNet.Enums;
     using TraktNet.Requests.Handler;
 
     internal class TestHttpClientProvider : IHttpClientProvider
@@ -46,8 +47,8 @@
                                         uint? page = null, uint? limit = null,
                                         int? pageCount = null, int? itemCount = null,
                                         int? userCount = null, string startDate = null,
-                                        string endDate = null, string sortBy = null,
-                                        string sortHow = null)
+                                        string endDate = null, TraktSortBy? sortBy = null,
+                                        TraktSortHow? sortHow = null)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
             _baseUrl.Should().NotBeNullOrEmpty();
@@ -78,11 +79,11 @@
             if (!string.IsNullOrEmpty(endDate))
                 response.Headers.Add(HEADER_ENDDATE_KEY, endDate);
 
-            if (!string.IsNullOrEmpty(sortBy))
-                response.Headers.Add(HEADER_SORT_BY_KEY, sortBy);
+            if (sortBy.HasValue)
+                response.Headers.Add(HEADER_SORT_BY_KEY, SortByToString(sortBy.Value));
 
-            if (!string.IsNullOrEmpty(sortHow))
-                response.Headers.Add(HEADER_SORT_HOW_KEY, sortHow);
+            if (sortHow.HasValue)
+                response.Headers.Add(HEADER_SORT_HOW_KEY, SortHowToString(sortHow.Value));
 
             response.Headers.Add("Accept", ACCEPT_MEDIA_TYPE);
             response.Content = new StringContent(responseContent);
@@ -93,9 +94,7 @@
                     { TRAKT_API_HEADER_KEY, _clientId },
                     { TRAKT_API_VERSION_HEADER_KEY, "2" }
                 })
-#pragma warning disable RCS1163 // Unused parameter.
                 .Respond(r => response);
-#pragma warning restore RCS1163 // Unused parameter.
         }
 
         internal void SetupMockResponse(string uri, HttpStatusCode httpStatusCode)
@@ -117,8 +116,8 @@
                                              uint? page = null, uint? limit = null,
                                              int? pageCount = null, int? itemCount = null,
                                              int? userCount = null, string startDate = null,
-                                             string endDate = null, string sortBy = null,
-                                             string sortHow = null)
+                                             string endDate = null, TraktSortBy? sortBy = null,
+                                             TraktSortHow? sortHow = null)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
             _baseUrl.Should().NotBeNullOrEmpty();
@@ -149,11 +148,11 @@
             if (!string.IsNullOrEmpty(endDate))
                 response.Headers.Add(HEADER_ENDDATE_KEY, endDate);
 
-            if (!string.IsNullOrEmpty(sortBy))
-                response.Headers.Add(HEADER_SORT_BY_KEY, sortBy);
+            if (sortBy.HasValue)
+                response.Headers.Add(HEADER_SORT_BY_KEY, SortByToString(sortBy.Value));
 
-            if (!string.IsNullOrEmpty(sortHow))
-                response.Headers.Add(HEADER_SORT_HOW_KEY, sortHow);
+            if (sortHow.HasValue)
+                response.Headers.Add(HEADER_SORT_HOW_KEY, SortHowToString(sortHow.Value));
 
             response.Headers.Add("Accept", ACCEPT_MEDIA_TYPE);
             response.Content = new StringContent(responseContent);
@@ -165,9 +164,7 @@
                     { TRAKT_API_VERSION_HEADER_KEY, "2" },
                     { TRAKT_API_AUTHORIZATION_HEADEY_KEY, $"Bearer {TestConstants.MOCK_AUTHORIZATION.AccessToken}" }
                 })
-#pragma warning disable RCS1163 // Unused parameter.
                 .Respond(r => response);
-#pragma warning restore RCS1163 // Unused parameter.
         }
 
         internal void SetupOAuthMockResponse(string uri, string requestContent, string responseContent)
@@ -314,5 +311,33 @@
             _mockHttpMessageHandler.Should().NotBeNull();
             _mockHttpMessageHandler.VerifyNoOutstandingExpectation();
         }
+
+        private static string SortByToString(TraktSortBy sortBy)
+            => sortBy switch
+            {
+                TraktSortBy.Rank => "rank",
+                TraktSortBy.Added => "added",
+                TraktSortBy.Title => "title",
+                TraktSortBy.Released => "released",
+                TraktSortBy.Runtime => "runtime",
+                TraktSortBy.Popularity => "popularity",
+                TraktSortBy.Percentage => "percentage",
+                TraktSortBy.Votes => "votes",
+                TraktSortBy.MyRating => "my_rating",
+                TraktSortBy.Random => "random",
+                TraktSortBy.Watched => "watched",
+                TraktSortBy.Collected => "collected",
+                TraktSortBy.Unspecified => null,
+                _ => null
+            };
+
+        private static string SortHowToString(TraktSortHow sortHow)
+            => sortHow switch
+            {
+                TraktSortHow.Ascending => "asc",
+                TraktSortHow.Descending => "desc",
+                TraktSortHow.Unspecified => null,
+                _ => null
+            };
     }
 }

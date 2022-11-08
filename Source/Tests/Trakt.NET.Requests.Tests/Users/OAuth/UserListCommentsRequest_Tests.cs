@@ -6,11 +6,12 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
 
-    [Category("Requests.Users")]
+    [TestCategory("Requests.Users")]
     public class UserListCommentsRequest_Tests
     {
         [Fact]
@@ -41,37 +42,37 @@
             var requestMock = new UserListCommentsRequest { Id = "123" };
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty username
             requestMock = new UserListCommentsRequest { Username = string.Empty, Id = "123" };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
             requestMock = new UserListCommentsRequest { Username = "invalid username", Id = "123" };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id is null
             requestMock = new UserListCommentsRequest { Username = "username" };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             requestMock = new UserListCommentsRequest { Username = "username", Id = string.Empty };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             requestMock = new UserListCommentsRequest { Username = "username", Id = "invalid id" };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
 
         [Theory, ClassData(typeof(UserListCommentsRequest_TestData))]

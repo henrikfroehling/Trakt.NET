@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Scrobbles.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Scrobbles.Responses.Implementations")]
+    [TestCategory("Objects.Post.Scrobbles.Responses.Implementations")]
     public class TraktEpisodeScrobblePostResponse_Tests
     {
         [Fact]

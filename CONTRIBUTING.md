@@ -5,9 +5,7 @@ Contributing Guidelines
 
 [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) is an open source project and there are many ways to contribute, from improving the documentation, submitting bug reports and feature requests or writing new feature implementations which can be incorporated into [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET).
 
-**Please do not use the issue tracker for support questions.** If you have questions regarding on how to use the library, there is a [chat room on Gitter](https://gitter.im/Trakt-NET/Lobby) for that.
-
-**Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
+**Please do not use the issue tracker for support questions.** If you have questions regarding on how to use the library, [start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions).
 
 ---
 
@@ -43,4 +41,4 @@ Please **DO NOT** target the `main` branch.
 ---
 
 ### **Cross-platform compatibility**
-- [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) is built against .NET Standard 1.1
+- [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET) is built against .NET Standard 2.0

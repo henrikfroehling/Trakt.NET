@@ -13,10 +13,10 @@
 
     internal static class ResponseErrorHandler
     {
-        internal static async Task HandleErrorsAsync(ExtendedHttpRequestMessage requestMessage, HttpResponseMessage responseMessage,
-                                                     bool isCheckinRequest = false, bool isDeviceRequest = false, bool isInAuthorizationPolling = false,
-                                                     bool isAuthorizationRequest = false, bool isAuthorizationRevoke = false,
-                                                     CancellationToken cancellationToken = default)
+        internal static Task HandleErrorsAsync(ExtendedHttpRequestMessage requestMessage, HttpResponseMessage responseMessage,
+                                               bool isCheckinRequest = false, bool isDeviceRequest = false, bool isInAuthorizationPolling = false,
+                                               bool isAuthorizationRequest = false, bool isAuthorizationRevoke = false,
+                                               CancellationToken cancellationToken = default)
         {
             if (requestMessage == null)
                 throw new ArgumentNullException(nameof(requestMessage));
@@ -24,6 +24,15 @@
             if (responseMessage == null)
                 throw new ArgumentNullException(nameof(responseMessage));
 
+            return InternalHandleErrorsAsync(requestMessage, responseMessage, isCheckinRequest, isDeviceRequest, isInAuthorizationPolling,
+                                             isAuthorizationRequest, isAuthorizationRevoke, cancellationToken);
+        }
+
+        private static async Task InternalHandleErrorsAsync(ExtendedHttpRequestMessage requestMessage, HttpResponseMessage responseMessage,
+                                                            bool isCheckinRequest = false, bool isDeviceRequest = false, bool isInAuthorizationPolling = false,
+                                                            bool isAuthorizationRequest = false, bool isAuthorizationRevoke = false,
+                                                            CancellationToken cancellationToken = default)
+        {
             string responseContent = string.Empty;
 
             if (responseMessage.Content != null)
@@ -87,6 +96,9 @@
                     break;
                 case (HttpStatusCode)418:
                     HandleDeniedError(errorParameters);
+                    break;
+                case (HttpStatusCode)420:
+                    HandleAccountLimitError(errorParameters);
                     break;
                 case (HttpStatusCode)422:
                     HandleValidationError(errorParameters);
@@ -159,7 +171,7 @@
                     ServerReasonPhrase = reasonPhrase
                 };
             }
-            else if (requestObjectType != RequestObjectType.Unspecified && !isDeviceRequest && !isInAuthorizationPolling && !isAuthorizationRequest && !isAuthorizationRevoke)
+            else if (requestObjectType != RequestObjectType.Unspecified)
             {
                 HandleNotFoundObjectError(errorParameters, requestUrl, requestBody, responseBody, reasonPhrase, requestObjectType);
             }
@@ -409,6 +421,20 @@
                     ServerReasonPhrase = errorParameters.ServerReasonPhrase
                 };
             }
+        }
+
+        private static void HandleAccountLimitError(ResponseErrorParameters errorParameters)
+        {
+            throw new TraktUserAccountLimitException
+            {
+                RequestUrl = errorParameters.Url,
+                RequestBody = errorParameters.RequestBody,
+                Response = errorParameters.ResponseBody,
+                ServerReasonPhrase = errorParameters.ServerReasonPhrase,
+                UpgradeURL = !string.IsNullOrEmpty(errorParameters.Headers.UpgradeURL) ? errorParameters.Headers.UpgradeURL : "",
+                IsVIPUser = errorParameters.Headers.IsVIPUser ?? false,
+                AccountLimit = errorParameters.Headers.AccountLimit
+            };
         }
 
         private static void HandleValidationError(ResponseErrorParameters errorParameters)

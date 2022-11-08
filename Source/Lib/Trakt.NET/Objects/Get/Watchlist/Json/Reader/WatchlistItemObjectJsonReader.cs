@@ -31,6 +31,18 @@
 
                     switch (propertyName)
                     {
+                        case JsonProperties.PROPERTY_NAME_ID:
+                            {
+                                var value = await JsonReaderHelper.ReadUnsignedIntegerValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktWatchlistItem.Id = value.Second;
+
+                                break;
+                            }
+                        case JsonProperties.PROPERTY_NAME_RANK:
+                            traktWatchlistItem.Rank = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            break;
                         case JsonProperties.PROPERTY_NAME_LISTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
@@ -40,6 +52,9 @@
 
                                 break;
                             }
+                        case JsonProperties.PROPERTY_NAME_NOTES:
+                            traktWatchlistItem.Notes = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                            break;
                         case JsonProperties.PROPERTY_NAME_TYPE:
                             traktWatchlistItem.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSyncItemType>(jsonReader, cancellationToken);
                             break;

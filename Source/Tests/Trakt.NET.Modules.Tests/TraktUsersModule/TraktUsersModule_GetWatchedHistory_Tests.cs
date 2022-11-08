@@ -8,11 +8,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.History;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_WATCHED_HISTORY_URI = $"users/{USERNAME}/history";
@@ -2009,23 +2009,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetWatchedHistory_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(
-                GET_WATCHED_HISTORY_URI,
-                HISTORY_JSON, 1, 10, 1, HISTORY_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktHistoryItem>>> act = () => client.Users.GetWatchedHistoryAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetWatchedHistoryAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetWatchedHistoryAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -6,13 +6,12 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Extensions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Calendars;
-    using TraktNet.Requests.Parameters;
-    using TraktNet.Requests.Parameters.Filter;
     using Xunit;
 
-    [Category("Requests.Calendars.Shows")]
+    [TestCategory("Requests.Calendars.Shows")]
     public class CalendarAllShowsRequest_Tests
     {
         [Fact]
@@ -44,7 +43,7 @@
             private static readonly DateTime _startDate = DateTime.Now.AddDays(-7);
             private const int _days = 14;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
-            private static readonly ITraktCalendarFilter _filter = TraktFilterDirectory.CalendarFilter.WithYears(2010, 2017).Build();
+            private static readonly ITraktCalendarFilter _filter = TraktFilter.NewCalendarFilter().WithYears(2010, 2017).Build();
 
             private static readonly CalendarAllShowsRequest _request1 = new CalendarAllShowsRequest();
 

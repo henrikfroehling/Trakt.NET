@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Objects.Post.Basic
 {
+    using Exceptions;
     using Objects.Json;
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -19,7 +19,7 @@
         public void Validate()
         {
             if (Rank == null)
-                throw new ArgumentNullException($"{nameof(Rank)} must not be null", default(Exception));
+                throw new TraktPostValidationException(nameof(Rank), "rank must not be null");
         }
     }
 }

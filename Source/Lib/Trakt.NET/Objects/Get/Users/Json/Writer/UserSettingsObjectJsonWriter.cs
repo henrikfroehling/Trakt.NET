@@ -29,9 +29,9 @@
 
             if (obj.Connections != null)
             {
-                var sharingObjectJsonWriter = new SharingObjectJsonWriter();
+                var connectionsObjectJsonWriter = new ConnectionsObjectJsonWriter();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_CONNECTIONS, cancellationToken).ConfigureAwait(false);
-                await sharingObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Connections, cancellationToken).ConfigureAwait(false);
+                await connectionsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Connections, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.SharingText != null)
@@ -39,6 +39,13 @@
                 var sharingTextObjectJsonWriter = new SharingTextObjectJsonWriter();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHARING_TEXT, cancellationToken).ConfigureAwait(false);
                 await sharingTextObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.SharingText, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Limits != null)
+            {
+                var limitsObjectJsonWriter = new UserLimitsObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LIMITS, cancellationToken).ConfigureAwait(false);
+                await limitsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Limits, cancellationToken).ConfigureAwait(false);
             }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);

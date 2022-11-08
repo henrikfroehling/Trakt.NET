@@ -6,7 +6,7 @@
     using TraktNet.Objects.Authentication;
     using Xunit;
 
-    [Category("Modules.Authentication")]
+    [TestCategory("Modules.Authentication")]
     public partial class TraktAuthenticationModule_Tests
     {
         [Fact]

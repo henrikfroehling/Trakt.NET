@@ -66,6 +66,15 @@
                         case JsonProperties.PROPERTY_NAME_IMAGES:
                             traktUser.Images = await imagesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_VIP_OG:
+                            traktUser.IsVIP_OG = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_VIP_YEARS:
+                            traktUser.VIP_Years = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_VIP_COVER_IMAGE:
+                            traktUser.VIP_CoverImage = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

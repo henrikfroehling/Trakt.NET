@@ -8,7 +8,7 @@
     using TraktNet.Objects.Post.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Responses.JsonReader")]
+    [TestCategory("Objects.Post.Responses.JsonReader")]
     public partial class PostResponseNotFoundEpisodeObjectJsonReader_Tests
     {
         [Fact]

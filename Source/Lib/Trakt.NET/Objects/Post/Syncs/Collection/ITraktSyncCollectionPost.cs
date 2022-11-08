@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// A Trakt collection post, containing all movies, shows and / or episodes,
+    /// A Trakt collection post, containing all movies, shows, seasons and / or episodes,
     /// which should be added to the user's collection.
     /// </summary>
     public interface ITraktSyncCollectionPost : IRequestBody
@@ -20,6 +20,12 @@
         /// <para>Each <see cref="ITraktSyncCollectionPostShow" /> must have at least a valid Trakt id.</para>
         /// </summary>
         IEnumerable<ITraktSyncCollectionPostShow> Shows { get; set; }
+
+        /// <summary>
+        /// An optional list of <see cref="ITraktSyncCollectionPostSeason" />s.
+        /// <para>Each <see cref="ITraktSyncCollectionPostSeason" /> must have at least a valid Trakt id.</para>
+        /// </summary>
+        IEnumerable<ITraktSyncCollectionPostSeason> Seasons { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncCollectionPostEpisode" />s.

@@ -10,7 +10,7 @@
     using TraktNet.Objects.Authentication.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Authentication.Implementations")]
+    [TestCategory("Objects.Authentication.Implementations")]
     public class TraktAuthorization_Tests
     {
         private static readonly DateTime s_timestampOriginPlusCurrent = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(1506271312);

@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
+    using Objects.Post.Responses.Json.Reader;
     using Syncs.Responses.Json.Reader;
     using System.Threading;
     using System.Threading.Tasks;
@@ -16,6 +17,7 @@
             {
                 var groupReader = new SyncPostResponseGroupObjectJsonReader();
                 var notFoundGroupReader = new SyncPostResponseNotFoundGroupObjectJsonReader();
+                var listDataReader = new PostResponseListDataObjectJsonReader();
                 ITraktSyncWatchlistRemovePostResponse syncWatchlistRemovePostResponse = new TraktSyncWatchlistRemovePostResponse();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -29,6 +31,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_NOT_FOUND:
                             syncWatchlistRemovePostResponse.NotFound = await notFoundGroupReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_LIST:
+                            syncWatchlistRemovePostResponse.List = await listDataReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Scrobbles
 {
+    using Exceptions;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -16,6 +17,10 @@
 
         public abstract Task<string> ToJson(CancellationToken cancellationToken = default);
 
-        public abstract void Validate();
+        public virtual void Validate()
+        {
+            if (Progress.CompareTo(0.0f) < 0 || Progress.CompareTo(100.0f) > 0)
+                throw new TraktPostValidationException(nameof(Progress), "progress value not valid - value must be between 0 and 100");
+        }
     }
 }

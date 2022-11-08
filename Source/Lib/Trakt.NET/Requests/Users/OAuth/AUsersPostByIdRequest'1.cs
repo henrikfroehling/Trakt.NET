@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Interfaces;
-    using System;
     using System.Collections.Generic;
 
     internal abstract class AUsersPostByIdRequest<TResponseContentType, TRequestBodyType> : APostRequest<TResponseContentType, TRequestBodyType>, IHasId where TRequestBodyType : IRequestBody
@@ -25,10 +25,10 @@
             base.Validate();
 
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "id not valid");
         }
     }
 }

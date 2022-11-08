@@ -5,12 +5,11 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
-    using TraktNet.Requests.Parameters;
-    using TraktNet.Requests.Parameters.Filter;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Shows;
     using Xunit;
 
-    [Category("Requests.Shows.Lists")]
+    [TestCategory("Requests.Shows.Lists")]
     public class ShowsMostCollectedRequest_Tests
     {
         [Fact]
@@ -33,7 +32,7 @@
         public class ShowsMostCollectedRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
-            private static readonly ITraktShowFilter _filter = TraktFilterDirectory.ShowFilter.WithYears(2005, 2016).Build();
+            private static readonly ITraktShowFilter _filter = TraktFilter.NewShowFilter().WithYears(2005, 2016).Build();
             private static readonly TraktTimePeriod _timePeriod = TraktTimePeriod.Monthly;
             private const int _page = 5;
             private const int _limit = 20;

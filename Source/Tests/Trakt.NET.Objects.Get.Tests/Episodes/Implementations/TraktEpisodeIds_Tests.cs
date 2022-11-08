@@ -7,7 +7,7 @@
     using TraktNet.Objects.Get.Episodes.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Episodes.Implementations")]
+    [TestCategory("Objects.Get.Episodes.Implementations")]
     public class TraktEpisodeIds_Tests
     {
         [Fact]

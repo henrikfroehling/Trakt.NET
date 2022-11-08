@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.Requests.Comments.OAuth
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Interfaces;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class CommentUnlikeRequest : ADeleteRequest, IHasId
@@ -19,10 +19,10 @@
         public override void Validate()
         {
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "comment id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("comment id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "comment id not valid");
         }
     }
 }

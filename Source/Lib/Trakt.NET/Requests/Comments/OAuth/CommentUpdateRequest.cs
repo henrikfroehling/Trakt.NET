@@ -1,11 +1,11 @@
 ﻿namespace TraktNet.Requests.Comments.OAuth
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Interfaces;
     using Objects.Post.Comments;
     using Objects.Post.Comments.Responses;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class CommentUpdateRequest : APutRequest<ITraktCommentPostResponse, ITraktCommentUpdatePost>, IHasId
@@ -25,10 +25,10 @@
             base.Validate();
 
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "comment id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("comment id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "comment id not valid");
         }
     }
 }

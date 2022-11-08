@@ -27,6 +27,9 @@
                         case JsonProperties.PROPERTY_NAME_WATCHED:
                             traktSharingText.Watched = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_RATED:
+                            traktSharingText.Rated = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

@@ -11,7 +11,7 @@
     using TraktNet.Objects.Get.Collections.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Get.Collections.JsonWriter")]
+    [TestCategory("Objects.Get.Collections.JsonWriter")]
     public partial class CollectionShowEpisodeObjectJsonWriter_Tests
     {
         [Fact]

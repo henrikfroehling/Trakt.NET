@@ -14,7 +14,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Get.Collections.JsonWriter")]
+    [TestCategory("Objects.Get.Collections.JsonWriter")]
     public partial class CollectionShowSeasonArrayJsonWriter_Tests
     {
         private readonly DateTime COLLECTED_AT = DateTime.UtcNow;

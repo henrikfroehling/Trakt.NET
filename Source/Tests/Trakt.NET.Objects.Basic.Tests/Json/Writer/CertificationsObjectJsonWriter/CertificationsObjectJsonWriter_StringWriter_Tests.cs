@@ -10,7 +10,7 @@
     using TraktNet.Objects.Basic.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Basic.JsonWriter")]
+    [TestCategory("Objects.Basic.JsonWriter")]
     public partial class CertificationsObjectJsonWriter_Tests
     {
         [Fact]

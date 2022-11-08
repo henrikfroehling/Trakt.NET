@@ -2,10 +2,10 @@
 {
     using Base;
     using Enums;
+    using Exceptions;
     using Extensions;
     using Interfaces;
-    using Objects.Get.Users.Lists;
-    using System;
+    using Objects.Get.Lists;
     using System.Collections.Generic;
 
     internal sealed class PersonListsRequest : AGetRequest<ITraktList>, IHasId, ISupportsPagination
@@ -51,10 +51,10 @@
         public override void Validate()
         {
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "person id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("person id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "person id or slug not valid");
         }
     }
 }

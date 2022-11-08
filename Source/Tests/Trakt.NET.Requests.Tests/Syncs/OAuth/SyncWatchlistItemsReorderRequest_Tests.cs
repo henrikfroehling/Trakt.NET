@@ -6,7 +6,7 @@ namespace TraktNet.Requests.Tests.Syncs.OAuth
     using TraktNet.Requests.Syncs.OAuth;
     using Xunit;
 
-    [Category("Requests.Syncs.OAuth")]
+    [TestCategory("Requests.Syncs.OAuth")]
 
     public class SyncWatchlistItemsReorderRequest_Tests
     {

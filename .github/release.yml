@@ -1,0 +1,13 @@
+changelog:
+  categories:
+    - title: Breaking Changes (Library)
+      labels:
+        - "Breaking Change"
+    - title: Fixed
+        - Bug
+    - title: New Features
+      labels:
+        - Feature
+    - title: Improvements
+      labels:
+        - Improvement

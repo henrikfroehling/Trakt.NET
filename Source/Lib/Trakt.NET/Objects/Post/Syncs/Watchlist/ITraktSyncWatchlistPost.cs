@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// A Trakt watchlist post, containing all movies, shows and / or episodes,
+    /// A Trakt watchlist post, containing all movies, shows, seasons and / or episodes,
     /// which should be added to the user's watchlist.
     /// </summary>
     public interface ITraktSyncWatchlistPost : IRequestBody
@@ -20,6 +20,12 @@
         /// <para>Each <see cref="ITraktSyncWatchlistPostShow" /> must have at least a valid Trakt id.</para>
         /// </summary>
         IEnumerable<ITraktSyncWatchlistPostShow> Shows { get; set; }
+
+        /// <summary>
+        /// An optional list of <see cref="ITraktSyncWatchlistPostSeason" />s.
+        /// <para>Each <see cref="ITraktSyncWatchlistPostSeason" /> must have at least a valid Trakt id.</para>
+        /// </summary>
+        IEnumerable<ITraktSyncWatchlistPostSeason> Seasons { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncWatchlistPostEpisode" />s.

@@ -4,18 +4,18 @@
     using Exceptions;
     using Objects.Basic;
     using Objects.Get.Episodes;
+    using Objects.Get.Lists;
     using Objects.Get.Shows;
     using Objects.Get.Users;
-    using Objects.Get.Users.Lists;
     using Requests.Episodes;
     using Requests.Handler;
-    using Requests.Parameters;
     using Responses;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to episodes.
@@ -50,11 +50,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktEpisode" /> instance with the queried episode's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given season-number is below zero.
-        /// Thrown, if the given episode-number is below one.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktEpisode>> GetEpisodeAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                   TraktExtendedInfo extendedInfo = null,
                                                                   CancellationToken cancellationToken = default)
@@ -86,15 +82,11 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktEpisode" /> instances with the data of each queried episode.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if one of the given show ids is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given season-number is below zero.
-        /// Thrown, if the given episode-number is below one.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public async Task<IEnumerable<TraktResponse<ITraktEpisode>>> GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams episodesQueryParams,
                                                                                               CancellationToken cancellationToken = default)
         {
-            if (episodesQueryParams == null || episodesQueryParams.Count <= 0)
+            if (episodesQueryParams == null || episodesQueryParams.Count == 0)
                 return new List<TraktResponse<ITraktEpisode>>();
 
             var tasks = new List<Task<TraktResponse<ITraktEpisode>>>();
@@ -134,11 +126,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given season-number is below zero.
-        /// Thrown, if the given episode-number is below one.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetEpisodeCommentsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                                TraktCommentSortOrder commentSortOrder = null,
                                                                                TraktPagedParameters pagedParameters = null,
@@ -183,11 +171,7 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given season-number is below zero.
-        /// Thrown, if the given episode-number is below one.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktList>> GetEpisodeListsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                          TraktListType listType = null, TraktListSortOrder listSortOrder = null,
                                                                          TraktPagedParameters pagedParameters = null,
@@ -228,7 +212,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktShowCastAndCrew" /> instance, containing the cast and crew for a episode with the given showIdOrSlug and the given season number.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktShowCastAndCrew>> GetEpisodePeopleAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                             TraktExtendedInfo extendedInfo = null,
                                                                             CancellationToken cancellationToken = default)
@@ -261,11 +245,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktRating" /> instance, containing the ratings for a episode with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given season-number is below zero.
-        /// Thrown, if the given episode-number is below one.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktRating>> GetEpisodeRatingsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                         CancellationToken cancellationToken = default)
         {
@@ -296,11 +276,7 @@
         /// </param>
         /// <returns>An <see cref="ITraktStatistics" /> instance, containing the statistics for a episode with the given showIdOrSlug.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given season-number is below zero.
-        /// Thrown, if the given episode-number is below one.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktStatistics>> GetEpisodeStatisticsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                                CancellationToken cancellationToken = default)
         {
@@ -332,12 +308,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktEpisodeTranslation" /> instances, each containing a title, overview and language code.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given season-number is below zero.
-        /// Thrown, if the given episode-number is below one.
-        /// Thrown, if the given languageCode is shorter or longer than two characters.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktEpisodeTranslation>> GetEpisodeTranslationsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                                              string languageCode = null,
                                                                                              CancellationToken cancellationToken = default)
@@ -374,11 +345,7 @@
         /// </param>
         /// <returns>A list of <see cref="ITraktUser" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given showIdOrSlug is null, empty or contains spaces.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown, if the given season-number is below zero.
-        /// Thrown, if the given episode-number is below one.
-        /// </exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktListResponse<ITraktUser>> GetEpisodeWatchingUsersAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                                 TraktExtendedInfo extendedInfo = null,
                                                                                 CancellationToken cancellationToken = default)

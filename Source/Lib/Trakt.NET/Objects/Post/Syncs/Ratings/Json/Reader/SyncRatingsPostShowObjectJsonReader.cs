@@ -26,18 +26,6 @@
 
                     switch (propertyName)
                     {
-                        case JsonProperties.PROPERTY_NAME_RATED_AT:
-                            {
-                                Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
-
-                                if (value.First)
-                                    syncRatingsPostShow.RatedAt = value.Second;
-
-                                break;
-                            }
-                        case JsonProperties.PROPERTY_NAME_RATING:
-                            syncRatingsPostShow.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
-                            break;
                         case JsonProperties.PROPERTY_NAME_TITLE:
                             syncRatingsPostShow.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
@@ -47,6 +35,18 @@
                         case JsonProperties.PROPERTY_NAME_IDS:
                             syncRatingsPostShow.Ids = await showIdsObjectJsonReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_RATING:
+                            syncRatingsPostShow.Rating = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_RATED_AT:
+                            {
+                                Pair<bool, DateTime> value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    syncRatingsPostShow.RatedAt = value.Second;
+
+                                break;
+                            }
                         case JsonProperties.PROPERTY_NAME_SEASONS:
                             syncRatingsPostShow.Seasons = await seasonArrayJsonReader.ReadArrayAsync(jsonReader, cancellationToken);
                             break;

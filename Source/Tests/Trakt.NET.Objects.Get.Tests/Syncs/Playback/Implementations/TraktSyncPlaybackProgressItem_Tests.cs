@@ -10,7 +10,7 @@
     using TraktNet.Objects.Get.Syncs.Playback.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Syncs.Playback.Implementations")]
+    [TestCategory("Objects.Get.Syncs.Playback.Implementations")]
     public class TraktSyncPlaybackProgressItem_Tests
     {
         [Fact]

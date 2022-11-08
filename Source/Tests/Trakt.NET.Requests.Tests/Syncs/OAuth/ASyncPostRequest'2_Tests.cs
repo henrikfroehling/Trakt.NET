@@ -9,7 +9,7 @@
     using TraktNet.Requests.Syncs.OAuth;
     using Xunit;
 
-    [Category("Requests.Syncs.OAuth")]
+    [TestCategory("Requests.Syncs.OAuth")]
     public class ASyncPostRequest_2_Tests
     {
         internal class RequestBodyMock : IRequestBody

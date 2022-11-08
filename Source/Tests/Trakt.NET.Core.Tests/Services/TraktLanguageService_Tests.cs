@@ -6,7 +6,7 @@
     using TraktNet.Services;
     using Xunit;
 
-    [Category("Services")]
+    [TestCategory("Services")]
     public class TraktLanguageService_Tests
     {
         [Fact]

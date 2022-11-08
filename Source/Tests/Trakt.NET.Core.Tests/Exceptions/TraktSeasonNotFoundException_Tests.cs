@@ -6,7 +6,7 @@
     using TraktNet.Exceptions;
     using Xunit;
 
-    [Category("Exceptions")]
+    [TestCategory("Exceptions")]
     public class TraktSeasonNotFoundException_Tests
     {
         [Fact]

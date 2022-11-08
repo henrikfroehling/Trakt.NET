@@ -8,11 +8,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Basic;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Comments")]
+    [TestCategory("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
         private readonly string GET_COMMENT_LIKES_URI = $"comments/{GET_COMMENT_ID}/likes";
@@ -178,16 +178,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_GetCommentLikes_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_COMMENT_LIKES_URI,
-                                                           COMMENT_LIKES_JSON, 1, 10, ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktCommentLike>>> act = () => client.Comments.GetCommentLikesAsync(0);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

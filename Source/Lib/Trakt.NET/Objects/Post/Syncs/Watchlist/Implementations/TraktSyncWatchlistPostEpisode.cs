@@ -7,5 +7,8 @@
     {
         /// <summary>Gets or sets the required episode ids. See also <seealso cref="ITraktEpisodeIds" />.</summary>
         public ITraktEpisodeIds Ids { get; set; }
+
+        /// <summary>Gets or sets the episode notes.</summary>
+        public string Notes { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Comments
 {
-    using Get.Users.Lists;
+    using Get.Lists;
 
     /// <summary>A list comment post.</summary>
     public interface ITraktListCommentPost : ITraktCommentPost

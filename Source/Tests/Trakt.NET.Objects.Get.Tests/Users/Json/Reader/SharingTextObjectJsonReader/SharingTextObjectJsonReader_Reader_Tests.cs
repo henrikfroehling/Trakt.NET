@@ -10,7 +10,7 @@
     using TraktNet.Objects.Get.Users.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Users.JsonReader")]
+    [TestCategory("Objects.Get.Users.JsonReader")]
     public partial class SharingTextObjectJsonReader_Tests
     {
         [Fact]
@@ -18,15 +18,15 @@
         {
             var traktJsonReader = new SharingTextObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_COMPLETE))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(JSON_COMPLETE);
+            using var jsonReader = new JsonTextReader(reader);
+            var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                userSharingText.Should().NotBeNull();
-                userSharingText.Watching.Should().Be("I'm watching [item]");
-                userSharingText.Watched.Should().Be("I just watched [item]");
-            }
+            userSharingText.Should().NotBeNull();
+
+            userSharingText.Watching.Should().Be("I'm watching [item]");
+            userSharingText.Watched.Should().Be("I just watched [item]");
+            userSharingText.Rated.Should().Be("[item] [stars]");
         }
 
         [Fact]
@@ -34,15 +34,15 @@
         {
             var traktJsonReader = new SharingTextObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_INCOMPLETE_1))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(JSON_INCOMPLETE_1);
+            using var jsonReader = new JsonTextReader(reader);
+            var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                userSharingText.Should().NotBeNull();
-                userSharingText.Watching.Should().BeNull();
-                userSharingText.Watched.Should().Be("I just watched [item]");
-            }
+            userSharingText.Should().NotBeNull();
+
+            userSharingText.Watching.Should().BeNull();
+            userSharingText.Watched.Should().Be("I just watched [item]");
+            userSharingText.Rated.Should().Be("[item] [stars]");
         }
 
         [Fact]
@@ -50,15 +50,31 @@
         {
             var traktJsonReader = new SharingTextObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_INCOMPLETE_2))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(JSON_INCOMPLETE_2);
+            using var jsonReader = new JsonTextReader(reader);
+            var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                userSharingText.Should().NotBeNull();
-                userSharingText.Watching.Should().Be("I'm watching [item]");
-                userSharingText.Watched.Should().BeNull();
-            }
+            userSharingText.Should().NotBeNull();
+
+            userSharingText.Watching.Should().Be("I'm watching [item]");
+            userSharingText.Watched.Should().BeNull();
+            userSharingText.Rated.Should().Be("[item] [stars]");
+        }
+
+        [Fact]
+        public async Task Test_SharingTextObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
+        {
+            var traktJsonReader = new SharingTextObjectJsonReader();
+
+            using var reader = new StringReader(JSON_INCOMPLETE_3);
+            using var jsonReader = new JsonTextReader(reader);
+            var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            userSharingText.Should().NotBeNull();
+
+            userSharingText.Watching.Should().Be("I'm watching [item]");
+            userSharingText.Watched.Should().Be("I just watched [item]");
+            userSharingText.Rated.Should().BeNull();
         }
 
         [Fact]
@@ -66,15 +82,15 @@
         {
             var traktJsonReader = new SharingTextObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_1))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(JSON_NOT_VALID_1);
+            using var jsonReader = new JsonTextReader(reader);
+            var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                userSharingText.Should().NotBeNull();
-                userSharingText.Watching.Should().BeNull();
-                userSharingText.Watched.Should().Be("I just watched [item]");
-            }
+            userSharingText.Should().NotBeNull();
+
+            userSharingText.Watching.Should().BeNull();
+            userSharingText.Watched.Should().Be("I just watched [item]");
+            userSharingText.Rated.Should().Be("[item] [stars]");
         }
 
         [Fact]
@@ -82,15 +98,15 @@
         {
             var traktJsonReader = new SharingTextObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_2))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(JSON_NOT_VALID_2);
+            using var jsonReader = new JsonTextReader(reader);
+            var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                userSharingText.Should().NotBeNull();
-                userSharingText.Watching.Should().Be("I'm watching [item]");
-                userSharingText.Watched.Should().BeNull();
-            }
+            userSharingText.Should().NotBeNull();
+
+            userSharingText.Watching.Should().Be("I'm watching [item]");
+            userSharingText.Watched.Should().BeNull();
+            userSharingText.Rated.Should().Be("[item] [stars]");
         }
 
         [Fact]
@@ -98,15 +114,31 @@
         {
             var traktJsonReader = new SharingTextObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID_3))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(JSON_NOT_VALID_3);
+            using var jsonReader = new JsonTextReader(reader);
+            var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                userSharingText.Should().NotBeNull();
-                userSharingText.Watching.Should().BeNull();
-                userSharingText.Watched.Should().BeNull();
-            }
+            userSharingText.Should().NotBeNull();
+
+            userSharingText.Watching.Should().Be("I'm watching [item]");
+            userSharingText.Watched.Should().Be("I just watched [item]");
+            userSharingText.Rated.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_SharingTextObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
+        {
+            var traktJsonReader = new SharingTextObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID_4);
+            using var jsonReader = new JsonTextReader(reader);
+            var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            userSharingText.Should().NotBeNull();
+
+            userSharingText.Watching.Should().BeNull();
+            userSharingText.Watched.Should().BeNull();
+            userSharingText.Rated.Should().BeNull();
         }
 
         [Fact]
@@ -122,12 +154,10 @@
         {
             var traktJsonReader = new SharingTextObjectJsonReader();
 
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
-                userSharingText.Should().BeNull();
-            }
+            using var reader = new StringReader(string.Empty);
+            using var jsonReader = new JsonTextReader(reader);
+            var userSharingText = await traktJsonReader.ReadObjectAsync(jsonReader);
+            userSharingText.Should().BeNull();
         }
     }
 }

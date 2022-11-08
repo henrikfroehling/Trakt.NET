@@ -10,7 +10,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string DENY_FOLLOW_REQUEST_URI = $"users/requests/{REQUEST_ID}";
@@ -55,15 +55,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_DenyFollowRequest_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(DENY_FOLLOW_REQUEST_URI, HttpStatusCode.NoContent);
-
-            Func<Task<TraktNoContentResponse>> act = () => client.Users.DenyFollowRequestAsync(0);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }
