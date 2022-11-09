@@ -9,14 +9,15 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\..\..\Build\Examples\Authentication\OAuthAuthentication\Debug</OutputPath>
+    <OutputPath>..\..\..\..\Build\Examples\Parameters\Filter\Debug</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\..\..\Build\Examples\Authentication\OAuthAuthentication\Release</OutputPath>
+    <OutputPath>..\..\..\..\Build\Examples\Parameters\Filter\Release</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.45.0" />
     <PackageReference Include="Trakt.NET" Version="1.3.0" />
   </ItemGroup>
 
