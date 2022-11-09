@@ -19,5 +19,10 @@ This folder contains examples for how to use the Trakt.NET library.
 - [Get multiple shows](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Modules/ShowsModule/GetMultipleShowsExample)
 
 ---
+### Parameters
+#### Filter
+- [Calendar Filter](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Parameters/TraktFilterExample)
+
+---
 ### Serialization
 - [Serialize Authorization token](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Serialization/TraktSerializeAuthorizationExample)

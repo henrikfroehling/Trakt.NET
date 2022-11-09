@@ -3,8 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
+    <Copyright>Copyright © Henrik Fröhling 2022</Copyright>
     <Authors>Henrik Fröhling</Authors>
-    <Copyright>Copyright © Henrik Fröhling 2020</Copyright>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,7 +17,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Trakt.NET" Version="1.2.0" />
+    <PackageReference Include="Trakt.NET" Version="1.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Trakt.Net.Examples.Utility\Trakt.Net.Examples.Utility.csproj" />
   </ItemGroup>
 
 </Project>
