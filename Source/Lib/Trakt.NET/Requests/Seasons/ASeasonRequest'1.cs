@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.Requests.Seasons
 {
     using Base;
+    using Exceptions;
     using Extensions;
     using Interfaces;
-    using System;
     using System.Collections.Generic;
 
     internal abstract class ASeasonRequest<TResponseContentType> : AGetRequest<TResponseContentType>, IHasId
@@ -24,10 +24,10 @@
         public override void Validate()
         {
             if (Id == null)
-                throw new ArgumentNullException(nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "show id must not be null");
 
             if (Id == string.Empty || Id.ContainsSpace())
-                throw new ArgumentException("show id not valid", nameof(Id));
+                throw new TraktRequestValidationException(nameof(Id), "show id not valid");
         }
     }
 }

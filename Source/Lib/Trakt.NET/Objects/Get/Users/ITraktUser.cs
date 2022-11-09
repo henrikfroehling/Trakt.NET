@@ -40,5 +40,14 @@
 
         /// <summary>Gets or sets the collection of images for the user. See also <seealso cref="ITraktUserImages" />.<para>Nullable</para></summary>
         ITraktUserImages Images { get; set; }
+
+        /// <summary>Gets or sets the user's VIP OG status.</summary>
+        bool? IsVIP_OG { get; set; }
+
+        /// <summary>Gets or sets the user's VIP years.</summary>
+        int? VIP_Years { get; set; }
+
+        /// <summary>Gets or sets the user's VIP cover image.</summary>
+        string VIP_CoverImage { get; set; }
     }
 }

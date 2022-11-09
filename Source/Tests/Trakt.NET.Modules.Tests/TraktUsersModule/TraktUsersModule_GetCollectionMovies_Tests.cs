@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_COLLECTION_MOVIES_URI = $"users/{USERNAME}/collection/movies";
@@ -87,21 +87,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetCollectionMovies_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_COLLECTION_MOVIES_URI, COLLECTION_MOVIES_JSON);
-
-            Func<Task<TraktListResponse<ITraktCollectionMovie>>> act = () => client.Users.GetCollectionMoviesAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetCollectionMoviesAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetCollectionMoviesAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

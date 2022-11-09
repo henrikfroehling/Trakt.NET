@@ -10,7 +10,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Get.Watched.JsonReader")]
+    [TestCategory("Objects.Get.Watched.JsonReader")]
     public partial class WatchedShowSeasonArrayJsonReader_Tests
     {
         [Fact]

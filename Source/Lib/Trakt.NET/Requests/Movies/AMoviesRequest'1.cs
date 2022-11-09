@@ -3,7 +3,6 @@
     using Base;
     using Interfaces;
     using Parameters;
-    using Parameters.Filter;
     using System.Collections.Generic;
 
     internal abstract class AMoviesRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ISupportsExtendedInfo, ISupportsFilter, ISupportsPagination

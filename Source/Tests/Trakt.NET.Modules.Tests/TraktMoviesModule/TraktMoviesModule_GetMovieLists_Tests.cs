@@ -7,12 +7,10 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Users.Lists;
-    using TraktNet.Requests.Parameters;
-    using TraktNet.Responses;
+    using TraktNet.Parameters;
     using Xunit;
 
-    [Category("Modules.Movies")]
+    [TestCategory("Modules.Movies")]
     public partial class TraktMoviesModule_Tests
     {
         private readonly string GET_MOVIE_LISTS_URI = $"movies/{MOVIE_ID}/lists";
@@ -290,22 +288,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieLists_ArgumentsExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_LISTS_URI,
-                                                           MOVIE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieListsAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Movies.GetMovieListsAsync("movie id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

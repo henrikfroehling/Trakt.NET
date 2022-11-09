@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Modules.Tests.TraktRecommendationsModule
 {
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
 
     public partial class TraktRecommendationsModule_Tests
     {

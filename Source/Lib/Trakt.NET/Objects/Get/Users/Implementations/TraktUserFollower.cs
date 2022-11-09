@@ -158,5 +158,41 @@
                     User.Images = value;
             }
         }
+
+        /// <summary>Gets or sets the user's VIP OG status.</summary>
+        public bool? IsVIP_OG
+        {
+            get { return User?.IsVIP_OG; }
+
+            set
+            {
+                if (User != null)
+                    User.IsVIP_OG = value;
+            }
+        }
+
+        /// <summary>Gets or sets the user's VIP years.</summary>
+        public int? VIP_Years
+        {
+            get { return User?.VIP_Years; }
+
+            set
+            {
+                if (User != null)
+                    User.VIP_Years = value;
+            }
+        }
+
+        /// <summary>Gets or sets the user's VIP cover image.</summary>
+        public string VIP_CoverImage
+        {
+            get { return User?.VIP_CoverImage; }
+
+            set
+            {
+                if (User != null)
+                    User.VIP_CoverImage = value;
+            }
+        }
     }
 }

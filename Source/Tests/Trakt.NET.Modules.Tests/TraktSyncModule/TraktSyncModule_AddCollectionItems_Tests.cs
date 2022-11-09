@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -10,12 +9,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
-    using TraktNet.Objects.Post.Syncs.Collection;
     using TraktNet.Objects.Post.Syncs.Collection.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string ADD_COLLECTION_ITEMS_URI = "sync/collection";
@@ -100,31 +98,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_AddCollectionItems_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(AddCollectionItemsPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(ADD_COLLECTION_ITEMS_URI, postJson, COLLECTION_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncCollectionPostResponse>>> act = () => client.Sync.AddCollectionItemsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Sync.AddCollectionItemsAsync(new TraktSyncCollectionPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncCollectionPost collectionPost = new TraktSyncCollectionPost
-            {
-                Movies = new List<ITraktSyncCollectionPostMovie>(),
-                Shows = new List<ITraktSyncCollectionPostShow>(),
-                Episodes = new List<ITraktSyncCollectionPostEpisode>()
-            };
-
-            act = () => client.Sync.AddCollectionItemsAsync(collectionPost);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

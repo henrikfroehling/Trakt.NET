@@ -7,12 +7,12 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Users.Lists;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Objects.Get.Lists;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_LIST_LIKES_URI = $"users/{USERNAME}/lists/{LIST_ID}/likes";
@@ -142,30 +142,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetListLikes_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_LIST_LIKES_URI, LIST_LIKES_JSON, 1, 10, 1, LIST_LIKES_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktListLike>>> act = () => client.Users.GetListLikesAsync(null, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListLikesAsync(string.Empty, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListLikesAsync("user name", LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListLikesAsync(USERNAME, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListLikesAsync(USERNAME, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListLikesAsync(USERNAME, "list id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_USER_PROFILE_URI = $"users/{USERNAME}";
@@ -129,21 +129,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetUserProfile_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_USER_PROFILE_URI, PROFILE_JSON);
-
-            Func<Task<TraktResponse<ITraktUser>>> act = () => client.Users.GetUserProfileAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetUserProfileAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetUserProfileAsync("user name");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -2,10 +2,10 @@
 {
     using Enums;
     using Get.Episodes.Json.Reader;
+    using Get.Lists.Json.Reader;
     using Get.Movies.Json.Reader;
     using Get.People.Json.Reader;
     using Get.Shows.Json.Reader;
-    using Get.Users.Lists.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;

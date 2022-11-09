@@ -4,10 +4,11 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Shows;
     using Xunit;
 
-    [Category("Requests.Shows")]
+    [TestCategory("Requests.Shows")]
     public class ShowStatisticsRequest_Tests
     {
         [Fact]
@@ -37,17 +38,17 @@
             var request = new ShowStatisticsRequest();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new ShowStatisticsRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new ShowStatisticsRequest { Id = "invalid id" };
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

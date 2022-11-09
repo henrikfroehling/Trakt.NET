@@ -7,11 +7,12 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Interfaces;
     using Xunit;
 
-    [Category("Requests.Base")]
+    [TestCategory("Requests.Base")]
     public class APutRequest_2_Tests
     {
         internal class RequestBodyMock : IRequestBody
@@ -45,12 +46,12 @@
         }
 
         [Fact]
-        public void Test_APutRequest_2_Validate_Throws_ArgumentNullException()
+        public void Test_APutRequest_2_Validate_Throws_TraktRequestValidationException()
         {
             var requestMock = new PutRequestMock();
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

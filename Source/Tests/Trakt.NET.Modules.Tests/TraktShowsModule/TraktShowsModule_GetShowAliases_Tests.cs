@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Shows")]
+    [TestCategory("Modules.Shows")]
     public partial class TraktShowsModule_Tests
     {
         private readonly string GET_SHOW_ALIASES_URI = $"shows/{SHOW_ID}/aliases";
@@ -58,21 +58,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktShowsModule_GetShowAliases_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SHOW_ALIASES_URI, SHOW_ALIASES_JSON);
-
-            Func<Task<TraktListResponse<ITraktShowAlias>>> act = () => client.Shows.GetShowAliasesAsync(null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowAliasesAsync(string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Shows.GetShowAliasesAsync("show id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

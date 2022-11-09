@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Requests.Search
 {
     using Enums;
+    using Exceptions;
     using Extensions;
-    using System;
     using System.Collections.Generic;
 
     internal sealed class SearchIdLookupRequest : ASearchRequest
@@ -29,16 +29,16 @@
         public override void Validate()
         {
             if (IdType == null)
-                throw new ArgumentNullException(nameof(IdType));
+                throw new TraktRequestValidationException(nameof(IdType), "id type must not be null");
 
             if (IdType == TraktSearchIdType.Unspecified)
-                throw new ArgumentException("id type must not be unspecified", nameof(IdType));
+                throw new TraktRequestValidationException(nameof(IdType), "id type must not be unspecified");
 
             if (LookupId == null)
-                throw new ArgumentNullException(nameof(LookupId));
+                throw new TraktRequestValidationException(nameof(LookupId), "lookup id must not be null");
 
             if (LookupId == string.Empty || LookupId.ContainsSpace())
-                throw new ArgumentException("lookup id is not valid", nameof(LookupId));
+                throw new TraktRequestValidationException(nameof(LookupId), "lookup id is not valid");
         }
     }
 }

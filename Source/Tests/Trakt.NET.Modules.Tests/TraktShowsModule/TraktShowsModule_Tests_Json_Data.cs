@@ -2,9 +2,8 @@
 {
     using System;
     using TraktNet.Enums;
-    using TraktNet.Requests.Parameters;
-    using TraktNet.Requests.Parameters.Filter;
     using TraktNet.Objects.Post.Shows;
+    using TraktNet.Parameters;
 
     public partial class TraktShowsModule_Tests
     {
@@ -27,6 +26,7 @@
         private const string LANGUAGE_CODE = "en";
         private readonly TraktLastActivity LAST_ACTIVITY = TraktLastActivity.Collected;
         private readonly DateTime RESET_WATCHED_PROGRESS_AT = DateTime.UtcNow;
+        private const int UPDATED_IDS_COUNT = 4;
 
         private string ProgressHidden { get; }
         private string ProgressSpecials { get; }
@@ -53,7 +53,7 @@
 
         private ITraktShowResetWatchedProgressPost SetupEmptyShowResetWatchedProgressPost() => new TraktShowResetWatchedProgressPost();
 
-        private readonly ITraktShowFilter FILTER = TraktFilterDirectory.ShowFilter
+        private readonly ITraktShowFilter FILTER = TraktFilter.NewShowFilter()
                 .WithCertifications("TV-MA")
                 .WithStates(TraktShowStatus.ReturningSeries, TraktShowStatus.InProduction)
                 .WithQuery("most anticipated show")
@@ -64,6 +64,14 @@
                 .WithRuntimes(30, 60)
                 .WithRatings(80, 95)
                 .Build();
+
+        private const string RECENTLY_UPDATED_SHOW_IDS_JSON =
+            @"[
+                1,
+                20,
+                34,
+                50
+              ]";
 
         private const string RESET_WATCHED_PROGRESS_POST_RESPONSE_JSON =
             @"{

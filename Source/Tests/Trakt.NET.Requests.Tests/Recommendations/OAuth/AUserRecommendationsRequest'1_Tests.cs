@@ -4,12 +4,12 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
-    using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Recommendations.OAuth;
     using Xunit;
 
-    [Category("Requests.Recommendations.OAuth")]
+    [TestCategory("Requests.Recommendations.OAuth")]
     public class AUserRecommendationsRequest_1_Tests
     {
         internal class UserRecommendationsRequestMock : AUserRecommendationsRequest<int>

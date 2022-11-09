@@ -1,7 +1,7 @@
 ﻿namespace TraktNet.Modules.Tests.TraktSeasonsModule
 {
     using TraktNet.Enums;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
 
     public partial class TraktSeasonsModule_Tests
     {

@@ -7,13 +7,12 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Post.Comments;
     using TraktNet.Objects.Post.Comments.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Comments")]
+    [TestCategory("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
         private const string POST_MOVIE_COMMENT_URI = "comments";
@@ -31,7 +30,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_MOVIE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostMovieCommentAsync(Movie, COMMENT_TEXT);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostMovieCommentAsync(movieCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -75,7 +74,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_MOVIE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostMovieCommentAsync(Movie, COMMENT_TEXT, SPOILER);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostMovieCommentAsync(movieCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -119,7 +118,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_MOVIE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostMovieCommentAsync(Movie, COMMENT_TEXT, null, SHARING);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostMovieCommentAsync(movieCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -164,7 +163,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_MOVIE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostMovieCommentAsync(Movie, COMMENT_TEXT, SPOILER, SHARING);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostMovieCommentAsync(movieCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -213,99 +212,23 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktCommentsModule_PostMovieComment_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            ITraktMovieCommentPost movieCommentPost = new TraktMovieCommentPost
+            {
+                Movie = Movie,
+                Comment = COMMENT_TEXT
+            };
+
             TraktClient client = TestUtility.GetOAuthMockClient(POST_MOVIE_COMMENT_URI, statusCode);
 
             try
             {
-                await client.Comments.PostMovieCommentAsync(Movie, COMMENT_TEXT);
+                await client.Comments.PostMovieCommentAsync(movieCommentPost);
                 Assert.False(true);
             }
             catch (Exception exception)
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_PostMovieComment_ArgumentExceptions()
-        {
-            ITraktMovie movie = new TraktMovie
-            {
-                Title = "Guardians of the Galaxy",
-                Year = 2014,
-                Ids = new TraktMovieIds
-                {
-                    Trakt = 28,
-                    Slug = "guardians-of-the-galaxy-2014",
-                    Imdb = "tt2015381",
-                    Tmdb = 118340
-                }
-            };
-
-            ITraktMovieCommentPost movieCommentPost = new TraktMovieCommentPost
-            {
-                Movie = movie,
-                Comment = COMMENT_TEXT
-            };
-
-            string postJson = await TestUtility.SerializeObject(movieCommentPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(POST_MOVIE_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostMovieCommentAsync(null, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            movie.Title = string.Empty;
-
-            act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            movie.Title = "Guardians of the Galaxy";
-            movie.Year = 0;
-
-            act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            movie.Year = 123;
-
-            act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            movie.Year = 12345;
-
-            act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            movie.Year = 2014;
-            movie.Ids = null;
-
-            act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            movie.Ids = new TraktMovieIds();
-
-            act = () => client.Comments.PostMovieCommentAsync(movie, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            movie.Ids = new TraktMovieIds
-            {
-                Trakt = 28,
-                Slug = "guardians-of-the-galaxy-2014",
-                Imdb = "tt2015381",
-                Tmdb = 118340
-            };
-
-            act = () => client.Comments.PostMovieCommentAsync(movie, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Comments.PostMovieCommentAsync(movie, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            const string comment = "one two three four";
-
-            act = () => client.Comments.PostMovieCommentAsync(movie, comment);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

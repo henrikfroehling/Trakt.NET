@@ -7,7 +7,7 @@
     using TraktNet.Objects.Get.Shows.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Shows.Implementations")]
+    [TestCategory("Objects.Get.Shows.Implementations")]
     public class TraktShowAlias_Tests
     {
         [Fact]

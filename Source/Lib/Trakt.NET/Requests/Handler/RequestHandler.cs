@@ -196,16 +196,28 @@
                 DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 Stream responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
                 DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
-                IArrayJsonReader<TResponseContentType> arrayJsonReader = new ArrayJsonReader<TResponseContentType>();
-                DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
-                IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
-                var response = new TraktListResponse<TResponseContentType>
+                var response = new TraktListResponse<TResponseContentType>();
+
+                if (typeof(TResponseContentType) == typeof(int))
                 {
-                    IsSuccess = true,
-                    HasValue = contentObject != null,
-                    Value = contentObject
-                };
+                    IArrayJsonReader<int> intArrayJsonReader = new IntArrayJsonReader();
+                    IEnumerable<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+
+                    response.IsSuccess = true;
+                    response.HasValue = values != null;
+                    response.Value = (IEnumerable<TResponseContentType>)values;
+                }
+                else
+                {
+                    IArrayJsonReader<TResponseContentType> arrayJsonReader = new ArrayJsonReader<TResponseContentType>();
+                    DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
+                    IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+
+                    response.IsSuccess = true;
+                    response.HasValue = contentObject != null;
+                    response.Value = contentObject;
+                }
 
                 if (responseMessage.Headers != null)
                     ResponseHeaderParser.ParseResponseHeaderValues(response, responseMessage.Headers);
@@ -236,16 +248,28 @@
                 DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.PAGED_LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 Stream responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
                 DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
-                IArrayJsonReader<TResponseContentType> arrayJsonReader = new ArrayJsonReader<TResponseContentType>();
-                DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
-                IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
-                var response = new TraktPagedResponse<TResponseContentType>
+                var response = new TraktPagedResponse<TResponseContentType>();
+
+                if (typeof(TResponseContentType) == typeof(int))
                 {
-                    IsSuccess = true,
-                    HasValue = contentObject != null,
-                    Value = contentObject
-                };
+                    IArrayJsonReader<int> intArrayJsonReader = new IntArrayJsonReader();
+                    IEnumerable<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+                    
+                    response.IsSuccess = true;
+                    response.HasValue = values != null;
+                    response.Value = (IEnumerable<TResponseContentType>)values;
+                }
+                else
+                {
+                    IArrayJsonReader<TResponseContentType> arrayJsonReader = new ArrayJsonReader<TResponseContentType>();
+                    DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
+                    IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+
+                    response.IsSuccess = true;
+                    response.HasValue = contentObject != null;
+                    response.Value = contentObject;
+                }
 
                 if (responseMessage.Headers != null)
                     ResponseHeaderParser.ParsePagedResponseHeaderValues(response, responseMessage.Headers);

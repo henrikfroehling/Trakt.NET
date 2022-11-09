@@ -3,11 +3,11 @@
     using TraktNet.Enums;
     using TraktNet.Objects.Basic;
     using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Lists;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Get.Users.Lists;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
 
     public partial class TraktCommentsModule_Tests
     {
@@ -25,7 +25,7 @@
         private readonly TraktCommentType COMMENT_TYPE = TraktCommentType.Shout;
         private readonly TraktObjectType OBJECT_TYPE = TraktObjectType.Episode;
 
-        private readonly ITraktSharing SHARING = new TraktSharing
+        private readonly ITraktConnections SHARING = new TraktConnections
         {
             Google = false,
             Twitter = true

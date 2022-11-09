@@ -44,11 +44,12 @@ jobs:
     environment: Development
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: '6.0.x'
+          dotnet-quality: 'ga'
       - name: Restore dependencies
         run: dotnet restore ${{ env.SOLUTION_NAME }}
       - name: Build solution
@@ -68,7 +69,7 @@ jobs:
         shell: pwsh
         run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg|.snupkg'} | Rename-Item -NewName {'Trakt.NET.' + '${{ env.VERSION_NUMBER }}' + '-' + '${{ env.PACKAGE_VERSION_SUFFIX }}' + '.' + '${{ github.run_number }}' + $_.Extension}
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: develop-ci-${{ env.PACKAGE_VERSION_SUFFIX }}.${{ env.VERSION_NUMBER }}-${{github.run_number}}-${{github.sha}}
           path: |

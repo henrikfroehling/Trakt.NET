@@ -10,7 +10,7 @@
     using TraktNet.Objects.Get.Watchlist.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Watchlist.JsonReader")]
+    [TestCategory("Objects.Get.Watchlist.JsonReader")]
     public partial class WatchlistItemObjectJsonReader_Tests
     {
         [Fact]
@@ -26,12 +26,10 @@
         {
             var traktJsonReader = new WatchlistItemObjectJsonReader();
 
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
-                traktWatchlistItem.Should().BeNull();
-            }
+            using var reader = new StringReader(string.Empty);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktWatchlistItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            traktWatchlistItem.Should().BeNull();
         }
     }
 }

@@ -8,7 +8,7 @@
     using TraktNet.Requests.Shows.OAuth;
     using Xunit;
 
-    [Category("Requests.Shows.OAuth")]
+    [TestCategory("Requests.Shows.OAuth")]
     public class ShowWatchedProgressRequest_Tests
     {
         [Fact]

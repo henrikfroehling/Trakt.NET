@@ -13,7 +13,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string ADD_RECOMMENDATIONS_URI = "sync/recommendations";
@@ -98,18 +98,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_AddPersonalRecommendations_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(RecommendationsPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(ADD_RECOMMENDATIONS_URI, postJson, RECOMMENDATIONS_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncRecommendationsPostResponse>>> act = () => client.Sync.AddPersonalRecommendationsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
         }
     }
 }

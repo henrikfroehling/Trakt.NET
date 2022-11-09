@@ -5,12 +5,12 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
-    using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Syncs.OAuth;
     using Xunit;
 
-    [Category("Requests.Syncs.OAuth")]
+    [TestCategory("Requests.Syncs.OAuth")]
     public class SyncPersonalRecommendationsRequest_Tests
     {
         [Fact]

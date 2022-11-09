@@ -1,10 +1,10 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Enums;
+    using Exceptions;
     using Extensions;
     using Interfaces;
     using Objects.Get.Ratings;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -58,10 +58,10 @@
             base.Validate();
 
             if (Username == null)
-                throw new ArgumentNullException(nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username must not be null");
 
             if (Username == string.Empty || Username.ContainsSpace())
-                throw new ArgumentException("username not valid", nameof(Username));
+                throw new TraktRequestValidationException(nameof(Username), "username not valid");
         }
     }
 }

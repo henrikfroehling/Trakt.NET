@@ -1,12 +1,14 @@
 ﻿namespace TraktNet.Objects.Post.Syncs.Watchlist
 {
+    using Exceptions;
     using Objects.Json;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
-    /// A Trakt watchlist post, containing all movies, shows and / or episodes,
+    /// A Trakt watchlist post, containing all movies, shows, seasons and / or episodes,
     /// which should be added to the user's watchlist.
     /// </summary>
     public class TraktSyncWatchlistPost : ITraktSyncWatchlistPost
@@ -24,6 +26,12 @@
         public IEnumerable<ITraktSyncWatchlistPostShow> Shows { get; set; }
 
         /// <summary>
+        /// An optional list of <see cref="ITraktSyncWatchlistPostSeason" />s.
+        /// <para>Each <see cref="ITraktSyncWatchlistPostSeason" /> must have at least a valid Trakt id.</para>
+        /// </summary>
+        public IEnumerable<ITraktSyncWatchlistPostSeason> Seasons { get; set; }
+
+        /// <summary>
         /// An optional list of <see cref="ITraktSyncWatchlistPostEpisode" />s.
         /// <para>Each <see cref="ITraktSyncWatchlistPostEpisode" /> must have at least a valid Trakt id.</para>
         /// </summary>
@@ -37,7 +45,13 @@
 
         public void Validate()
         {
-            // TODO
+            bool bHasNoMovies = Movies == null || !Movies.Any();
+            bool bHasNoShows = Shows == null || !Shows.Any();
+            bool bHasNoSeasons = Seasons == null || !Seasons.Any();
+            bool bHasNoEpisodes = Episodes == null || !Episodes.Any();
+
+            if (bHasNoMovies && bHasNoShows && bHasNoSeasons && bHasNoEpisodes)
+                throw new TraktPostValidationException("no watchlist items set");
         }
     }
 }

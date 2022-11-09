@@ -8,7 +8,7 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Reader
     using TraktNet.Objects.Get.Syncs.Activities.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Syncs.Activities.JsonReader")]
+    [TestCategory("Objects.Get.Syncs.Activities.JsonReader")]
     public partial class SyncWatchlistLastActivitiesObjectJsonReader_Tests
     {
         [Fact]

@@ -11,7 +11,7 @@
     using TraktNet.Objects.Get.Movies;
     using Xunit;
 
-    [Category("Objects.Get.History.JsonWriter")]
+    [TestCategory("Objects.Get.History.JsonWriter")]
     public partial class HistoryItemObjectJsonWriter_Tests
     {
         [Fact]

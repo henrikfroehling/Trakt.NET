@@ -1,8 +1,7 @@
 ﻿namespace TraktNet.Modules.Tests.TraktCalendarModule
 {
     using System;
-    using TraktNet.Requests.Parameters;
-    using TraktNet.Requests.Parameters.Filter;
+    using TraktNet.Parameters;
 
     public partial class TraktCalendarModule_Tests
     {
@@ -12,7 +11,7 @@
         private readonly DateTime TODAY = DateTime.UtcNow;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
 
-        private readonly ITraktCalendarFilter FILTER = TraktFilterDirectory.CalendarFilter
+        private readonly ITraktCalendarFilter FILTER = TraktFilter.NewCalendarFilter()
             .WithQuery("calendar movie")
             .WithYear(2016)
             .WithGenres("drama", "fantasy")

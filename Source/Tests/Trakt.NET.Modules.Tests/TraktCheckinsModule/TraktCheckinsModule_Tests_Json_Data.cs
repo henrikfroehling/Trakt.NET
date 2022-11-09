@@ -4,7 +4,6 @@
     using TraktNet.Objects.Basic;
     using TraktNet.Objects.Get.Episodes;
     using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.Shows;
 
     public partial class TraktCheckinsModule_Tests
     {
@@ -15,7 +14,7 @@
         private const string FOURSQUARE_VENUE_ID = "venue id";
         private const string FOURSQUARE_VENUE_NAME = "venue name";
 
-        private readonly ITraktSharing SHARING = new TraktSharing
+        private readonly ITraktConnections SHARING = new TraktConnections
         {
             Google = false,
             Twitter = true
@@ -23,7 +22,6 @@
 
         private ITraktMovie Movie { get; }
         private ITraktEpisode Episode { get; }
-        private ITraktShow Show { get; }
 
         public TraktCheckinsModule_Tests()
         {
@@ -53,8 +51,6 @@
                     TvRage = 637041
                 }
             };
-
-            Show = new TraktShow { Title = "Breaking Bad" };
         }
 
         private const string MOVIE_CHECKIN_POST_RESPONSE_JSON =

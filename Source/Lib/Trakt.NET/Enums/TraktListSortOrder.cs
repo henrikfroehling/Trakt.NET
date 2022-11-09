@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Enums
 {
-    using Objects.Get.Users.Lists;
+    using Objects.Get.Lists;
 
     /// <summary>Determines the sort order for lists of <see cref="ITraktList" />.</summary>
     public sealed class TraktListSortOrder : TraktEnumeration

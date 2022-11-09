@@ -8,7 +8,11 @@
 
     /// <summary>A Trakt list response with items of content type <typeparamref name="TResponseContentType" />.</summary>
     /// <typeparam name="TResponseContentType">The content type of the list items.</typeparam>
-    public class TraktListResponse<TResponseContentType> : TraktResponse<IEnumerable<TResponseContentType>>, ITraktListResponse<TResponseContentType>, IEquatable<TraktListResponse<TResponseContentType>>
+    public class TraktListResponse<TResponseContentType>
+        : TraktResponse<IEnumerable<TResponseContentType>>,
+          ITraktListResponse<TResponseContentType>,
+          IEquatable<TraktListResponse<TResponseContentType>>,
+          IEqualityComparer<TraktListResponse<TResponseContentType>>
     {
         /// <summary>
         /// Compares this instance with another <see cref="TraktListResponse{TResponseContentType}" /> instance.
@@ -23,9 +27,14 @@
             return base.Equals(other);
         }
 
+        public bool Equals(TraktListResponse<TResponseContentType> left, TraktListResponse<TResponseContentType> right)
+            => left.Equals(right);
+
         /// <summary>Gets the enumerator for the list in this response instance.</summary>
         /// <returns>An enumerator for the list in this response instance.</returns>
         public IEnumerator<TResponseContentType> GetEnumerator() => Value.GetEnumerator();
+
+        public int GetHashCode(TraktListResponse<TResponseContentType> obj) => obj.GetHashCode();
 
         /// <summary>Gets the enumerator for the list in this response instance.</summary>
         /// <returns>An enumerator for the list in this response instance.</returns>
@@ -38,7 +47,7 @@
         /// <summary>Enables implicit conversion to <see cref="TraktListResponse{TResponseContentType}" /> for this type.</summary>
         /// <param name="value">The <see cref="List{TResponseContentType}" /> instance, which will be converted to <see cref="TraktListResponse{TResponseContentType}" />.</param>
         public static implicit operator TraktListResponse<TResponseContentType>(List<TResponseContentType> value)
-            => new TraktListResponse<TResponseContentType>
+            => new()
             {
                 Value = value,
                 HasValue = value != null,

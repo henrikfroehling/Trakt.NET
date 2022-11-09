@@ -9,7 +9,7 @@
     using TraktNet.Objects.Get.Movies.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Movies.JsonReader")]
+    [TestCategory("Objects.Get.Movies.JsonReader")]
     public partial class MovieObjectJsonReader_Tests
     {
         [Fact]

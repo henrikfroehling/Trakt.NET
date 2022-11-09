@@ -7,13 +7,12 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Post.Comments;
     using TraktNet.Objects.Post.Comments.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Comments")]
+    [TestCategory("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
         private const string POST_SHOW_COMMENT_URI = "comments";
@@ -31,7 +30,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_SHOW_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostShowCommentAsync(Show, COMMENT_TEXT);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostShowCommentAsync(showCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -75,7 +74,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_SHOW_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostShowCommentAsync(Show, COMMENT_TEXT, SPOILER);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostShowCommentAsync(showCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -119,7 +118,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_SHOW_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostShowCommentAsync(Show, COMMENT_TEXT, null, SHARING);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostShowCommentAsync(showCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -164,7 +163,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(POST_SHOW_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostShowCommentAsync(Show, COMMENT_TEXT, SPOILER, SHARING);
+            TraktResponse<ITraktCommentPostResponse> response = await client.Comments.PostShowCommentAsync(showCommentPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -213,86 +212,23 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktCommentsModule_PostShowComment_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            ITraktShowCommentPost showCommentPost = new TraktShowCommentPost
+            {
+                Show = Show,
+                Comment = COMMENT_TEXT
+            };
+
             TraktClient client = TestUtility.GetOAuthMockClient(POST_SHOW_COMMENT_URI, statusCode);
 
             try
             {
-                await client.Comments.PostShowCommentAsync(Show, COMMENT_TEXT);
+                await client.Comments.PostShowCommentAsync(showCommentPost);
                 Assert.False(true);
             }
             catch (Exception exception)
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_PostShowComment_ArgumentExceptions()
-        {
-            ITraktShow show = new TraktShow
-            {
-                Title = "Breaking Bad",
-                Ids = new TraktShowIds
-                {
-                    Trakt = 1388,
-                    Slug = "breaking bad",
-                    Tvdb = 81189,
-                    Imdb = "tt0903747",
-                    Tmdb = 1396,
-                    TvRage = 18164
-                }
-            };
-
-            ITraktShowCommentPost showCommentPost = new TraktShowCommentPost
-            {
-                Show = show,
-                Comment = COMMENT_TEXT
-            };
-
-            string postJson = await TestUtility.SerializeObject(showCommentPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(POST_SHOW_COMMENT_URI, postJson, COMMENT_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktCommentPostResponse>>> act = () => client.Comments.PostShowCommentAsync(null, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            show.Title = string.Empty;
-
-            act = () => client.Comments.PostShowCommentAsync(show, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            show.Title = "Breaking Bad";
-            show.Ids = null;
-
-            act = () => client.Comments.PostShowCommentAsync(show, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            show.Ids = new TraktShowIds();
-
-            act = () => client.Comments.PostShowCommentAsync(show, COMMENT_TEXT);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            show.Ids = new TraktShowIds
-            {
-                Trakt = 1388,
-                Slug = "breaking bad",
-                Tvdb = 81189,
-                Imdb = "tt0903747",
-                Tmdb = 1396,
-                TvRage = 18164
-            };
-
-            act = () => client.Comments.PostShowCommentAsync(show, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Comments.PostShowCommentAsync(show, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            const string comment = "one two three four";
-
-            act = () => client.Comments.PostShowCommentAsync(show, comment);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

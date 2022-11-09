@@ -4,7 +4,6 @@
     using Extensions;
     using Interfaces;
     using Parameters;
-    using Parameters.Filter;
     using System;
     using System.Collections.Generic;
 

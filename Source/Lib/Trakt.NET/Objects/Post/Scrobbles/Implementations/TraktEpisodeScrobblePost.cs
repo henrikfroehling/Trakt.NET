@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Post.Scrobbles
 {
+    using Exceptions;
     using Get.Episodes;
     using Get.Shows;
     using Objects.Json;
@@ -30,7 +31,33 @@
 
         public override void Validate()
         {
-            // TODO
+            base.Validate();
+
+            if (Episode == null)
+                throw new TraktPostValidationException(nameof(Episode), "episode must not be null");
+
+            if (Show == null)
+            {
+                if (Episode.Ids == null)
+                    throw new TraktPostValidationException($"{nameof(Episode)}.Ids", "episode ids must not be null");
+
+                if (!Episode.Ids.HasAnyId)
+                    throw new TraktPostValidationException($"{nameof(Episode)}.Ids", "episode ids have no valid id");
+            }
+            else
+            {
+                if (Show.Ids == null)
+                    throw new TraktPostValidationException($"{nameof(Show)}.Ids", "show ids must not be null");
+
+                if (!Show.Ids.HasAnyId)
+                    throw new TraktPostValidationException($"{nameof(Show)}.Ids", "show ids have no valid id");
+
+                if (Episode.SeasonNumber < 0)
+                    throw new TraktPostValidationException($"{nameof(Episode)}.SeasonNumber", "episode season number must be valid, if episode ids not valid or empty");
+
+                if (Episode.Number < 1)
+                    throw new TraktPostValidationException($"{nameof(Episode)}.Number", "episode number must be valid, if episode ids not valid or empty");
+            }
         }
     }
 }

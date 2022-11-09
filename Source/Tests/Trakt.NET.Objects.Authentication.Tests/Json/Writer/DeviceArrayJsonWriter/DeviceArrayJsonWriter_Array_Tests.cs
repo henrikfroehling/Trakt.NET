@@ -9,7 +9,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Authentication.JsonWriter")]
+    [TestCategory("Objects.Authentication.JsonWriter")]
     public partial class DeviceArrayJsonWriter_Tests
     {
         [Fact]

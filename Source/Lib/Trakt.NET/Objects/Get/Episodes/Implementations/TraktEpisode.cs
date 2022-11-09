@@ -1,11 +1,11 @@
 ﻿namespace TraktNet.Objects.Get.Episodes
 {
     using Modules;
-    using Requests.Parameters;
     using Seasons;
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using TraktNet.Parameters;
 
     /// <summary>A Trakt episode of a Trakt season.</summary>
     public class TraktEpisode : ITraktEpisode

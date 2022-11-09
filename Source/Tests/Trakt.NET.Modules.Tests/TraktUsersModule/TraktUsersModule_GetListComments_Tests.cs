@@ -8,11 +8,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Basic;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string GET_LIST_COMMENTS_URI = $"users/{USERNAME}/lists/{LIST_ID}/comments";
@@ -238,32 +238,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_GetListComments_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(
-                GET_LIST_COMMENTS_URI,
-                LIST_COMMENTS_JSON, 1, 10, 1, LIST_COMMENTS_ITEM_COUNT);
-
-            Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Users.GetListCommentsAsync(null, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetListCommentsAsync(string.Empty, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListCommentsAsync("user name", LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListCommentsAsync(USERNAME, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.GetListCommentsAsync(USERNAME, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.GetListCommentsAsync(USERNAME, "list id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

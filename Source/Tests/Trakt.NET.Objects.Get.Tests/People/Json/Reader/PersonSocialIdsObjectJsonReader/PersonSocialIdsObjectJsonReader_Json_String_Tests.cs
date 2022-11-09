@@ -8,7 +8,7 @@
     using TraktNet.Objects.Get.People.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.People.JsonReader")]
+    [TestCategory("Objects.Get.People.JsonReader")]
     public partial class PersonSocialIdsObjectJsonReader_Tests
     {
         [Fact]

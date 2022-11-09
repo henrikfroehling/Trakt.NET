@@ -4,11 +4,12 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Episodes;
-    using TraktNet.Requests.Parameters;
     using Xunit;
 
-    [Category("Requests.Episodes")]
+    [TestCategory("Requests.Episodes")]
     public class EpisodeWatchingUsersRequest_Tests
     {
         [Fact]
@@ -82,25 +83,25 @@
             var request = new EpisodeWatchingUsersRequest { EpisodeNumber = 1 };
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new EpisodeWatchingUsersRequest { Id = string.Empty, EpisodeNumber = 1 };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new EpisodeWatchingUsersRequest { Id = "invalid id", EpisodeNumber = 1 };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // episode number == 0
             request = new EpisodeWatchingUsersRequest { EpisodeNumber = 0 };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Seasons")]
+    [TestCategory("Modules.Seasons")]
     public partial class TraktSeasonsModule_Tests
     {
         private readonly string GET_SEASON_TRANSLATIONS_URI = $"shows/{SHOW_ID}/seasons/{SEASON_NR}/translations";
@@ -70,42 +70,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonTranslations_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_TRANSLATIONS_URI, SEASON_TRANSLATIONS_JSON);
-
-            Func<Task<TraktListResponse<ITraktSeasonTranslation>>> act = () => client.Seasons.GetSeasonTranslationsAsync(null, SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetSeasonTranslationsAsync(string.Empty, SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetSeasonTranslationsAsync("show id", SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonTranslations_With_LanguageCode_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_TRANSLATIONS_URI, SEASON_TRANSLATIONS_JSON);
-
-            Func<Task<TraktListResponse<ITraktSeasonTranslation>>> act = () => client.Seasons.GetSeasonTranslationsAsync(null, SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetSeasonTranslationsAsync(string.Empty, SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetSeasonTranslationsAsync("show id", SEASON_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Seasons.GetSeasonTranslationsAsync(SHOW_ID, SEASON_NR, "eng");
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
-
-            act = () => client.Seasons.GetSeasonTranslationsAsync(SHOW_ID, SEASON_NR, "e");
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

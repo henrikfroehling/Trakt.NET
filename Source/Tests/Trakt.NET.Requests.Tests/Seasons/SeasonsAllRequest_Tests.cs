@@ -5,12 +5,13 @@
     using System.Collections;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
-    using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Seasons;
     using Xunit;
 
-    [Category("Requests.Seasons")]
+    [TestCategory("Requests.Seasons")]
     public class SeasonsAllRequest_Tests
     {
         [Fact]
@@ -41,30 +42,30 @@
             var request = new SeasonsAllRequest();
 
             Action act = () => request.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             request = new SeasonsAllRequest { Id = string.Empty };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             request = new SeasonsAllRequest { Id = "invalid id" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // wrong translation language code format
             request = new SeasonsAllRequest { Id = "123", TranslationLanguageCode = "eng" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             request = new SeasonsAllRequest { Id = "123", TranslationLanguageCode = "e" };
 
             act = () => request.Validate();
-            act.Should().Throw<ArgumentOutOfRangeException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             request = new SeasonsAllRequest { Id = "123", TranslationLanguageCode = "all" };
 

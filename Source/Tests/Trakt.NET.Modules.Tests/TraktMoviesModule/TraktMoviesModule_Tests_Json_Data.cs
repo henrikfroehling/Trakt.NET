@@ -2,8 +2,7 @@
 {
     using System;
     using TraktNet.Enums;
-    using TraktNet.Requests.Parameters;
-    using TraktNet.Requests.Parameters.Filter;
+    using TraktNet.Parameters;
 
     public partial class TraktMoviesModule_Tests
     {
@@ -21,8 +20,9 @@
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
         private readonly DateTime TODAY = DateTime.UtcNow;
+        private const int UPDATED_IDS_COUNT = 4;
 
-        private readonly ITraktMovieFilter FILTER = TraktFilterDirectory.MovieFilter
+        private readonly ITraktMovieFilter FILTER = TraktFilter.NewMovieFilter()
             .WithCertifications("TV-MA")
             .WithQuery("most anticipated movie")
             .WithYear(2016)
@@ -1138,6 +1138,14 @@
                     }
                   }
                 }
+              ]";
+
+        private const string RECENTLY_UPDATED_MOVIE_IDS_JSON =
+            @"[
+                1,
+                20,
+                34,
+                50
               ]";
 
         private const string TRENDING_MOVIES_JSON =

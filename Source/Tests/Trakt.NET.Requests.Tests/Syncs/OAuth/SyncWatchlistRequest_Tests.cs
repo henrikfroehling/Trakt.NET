@@ -5,11 +5,11 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Syncs.OAuth;
     using Xunit;
 
-    [Category("Requests.Syncs.OAuth")]
+    [TestCategory("Requests.Syncs.OAuth")]
     public class SyncWatchlistRequest_Tests
     {
         [Fact]

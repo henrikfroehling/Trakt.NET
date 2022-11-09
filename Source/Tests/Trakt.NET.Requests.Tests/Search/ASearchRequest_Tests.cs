@@ -5,12 +5,12 @@
     using System.Collections;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
-    using TraktNet.Requests.Parameters;
     using TraktNet.Requests.Search;
     using Xunit;
 
-    [Category("Requests.Search")]
+    [TestCategory("Requests.Search")]
     public class ASearchRequest_Tests
     {
         internal class SearchRequestMock : ASearchRequest

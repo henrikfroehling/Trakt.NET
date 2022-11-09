@@ -2,11 +2,11 @@
 {
     using Basic.Json.Writer;
     using Extensions;
+    using Lists.Json.Writer;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
-    using Users.Lists.Json.Writer;
 
     internal class UserLikeItemObjectJsonWriter : AObjectJsonWriter<ITraktUserLikeItem>
     {

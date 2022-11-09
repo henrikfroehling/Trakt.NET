@@ -2,15 +2,11 @@
 *<sup>Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))</sup>*
 
 [Trakt.NET](https://github.com/henrikfroehling/Trakt.NET)
-[![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fhenrikfroehling%2FTrakt.NET&hashtags=Trakt,Nuget,CSharp)
-[![Twitter Follow](https://img.shields.io/twitter/follow/henrikfroehling?style=social)](https://twitter.com/henrikfroehling)
 ===
-
-_**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApiSharp).**_
 
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
 
-[![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.2.0-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.2.0)
+[![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.3.0-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.3.0)
 
 [![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-blue.svg?style=flat)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
@@ -25,23 +21,23 @@ _**Formerly known as [TraktApiSharp](https://github.com/henrikfroehling/TraktApi
 
 ### Features
 
-Full Trakt.tv API Coverage || Authentication Support (OAuth 2.0 and Device) || Completely asynchronous || API Environments (Production and Sandbox) || Serialization Service || Language Service
+- Full Trakt.tv API Coverage
+- Authentication Support (OAuth 2.0 and Device)
+- Completely asynchronous
+- API Environments (Production and Sandbox)
+- Serialization Service
+- Language Service
 
 ### Supported Platforms
 
-.Net Core >= 2.0 || .Net Framework >= 4.6.1 || .NET >= 5 || Mono >= 5.4 || Xamarin.iOS >= 10.14 || Xamarin.Mac >= 3.8 || Xamarin.Android >= 8.0 || Windows UWP >= 10.0.16299
-
----
-
-### Discussions and Issues
-Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
-
-Or do you want to report a bug? [Create an issue](https://github.com/henrikfroehling/Trakt.NET/issues/new/choose)
-
-### Contributions are welcome
-Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
-
-### [Documentation](https://github.com/henrikfroehling/Trakt.NET/tree/develop/docs/Library_API_Documentation#library-api-documentation)
+- .NET >= 5
+- .Net Core >= 2.0
+- .Net Framework >= 4.6.1
+- Xamarin.iOS >= 10.14
+- Xamarin.Mac >= 3.8
+- Xamarin.Android >= 8.0
+- Windows UWP >= 10.0.16299
+- Mono >= 5.4
 
 ---
 
@@ -58,14 +54,16 @@ or with the [NuGet Package Management](https://docs.nuget.org/consume/package-ma
 Each release will also be published in [Releases](https://github.com/henrikfroehling/Trakt.NET/releases).
 
 ---
-### Packages
 
-You can also get the latest built packages here: https://github.com/henrikfroehling/Trakt.NET/packages
+### Discussions and Issues
+Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
 
-There are three types of packages:
-- with suffix `release.preview.{latest-build-number}`: Latest package preview of the next upcoming planned version.
-- with suffix `developer.preview.{latest-build-number}`: Latest package with the latest library changes. These might not be stable.
-- without suffix: Actual released version packages.
+Or do you want to report a bug? [Create an issue](https://github.com/henrikfroehling/Trakt.NET/issues/new/choose)
+
+### Contributions are welcome
+Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
+
+### [Documentation](https://github.com/henrikfroehling/Trakt.NET/tree/develop/docs/Library_API_Documentation#library-api-documentation)
 
 ---
 ### Examples

@@ -13,7 +13,7 @@
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Get.Users.JsonReader")]
+    [TestCategory("Objects.Get.Users.JsonReader")]
     public partial class RecommendationArrayJsonReader_Tests
     {
         [Fact]

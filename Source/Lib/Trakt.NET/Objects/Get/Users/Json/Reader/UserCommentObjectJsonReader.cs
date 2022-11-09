@@ -3,6 +3,7 @@
     using Basic.Json.Reader;
     using Enums;
     using Episodes.Json.Reader;
+    using Lists.Json.Reader;
     using Movies.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
@@ -10,7 +11,6 @@
     using Shows.Json.Reader;
     using System.Threading;
     using System.Threading.Tasks;
-    using Users.Lists.Json.Reader;
 
     internal class UserCommentObjectJsonReader : AObjectJsonReader<ITraktUserComment>
     {

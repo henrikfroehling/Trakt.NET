@@ -10,7 +10,7 @@
     using TraktNet.Objects.Basic.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Basic.JsonReader")]
+    [TestCategory("Objects.Basic.JsonReader")]
     public partial class CertificationsObjectJsonReader_Tests
     {
         [Fact]

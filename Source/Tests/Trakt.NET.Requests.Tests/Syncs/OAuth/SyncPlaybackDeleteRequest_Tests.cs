@@ -4,11 +4,12 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Exceptions;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Syncs.OAuth;
     using Xunit;
 
-    [Category("Requests.Syncs.OAuth")]
+    [TestCategory("Requests.Syncs.OAuth")]
     public class SyncPlaybackDeleteRequest_Tests
     {
         [Fact]
@@ -52,19 +53,19 @@
             var requestMock = new SyncPlaybackDeleteRequest();
 
             Action act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // empty id
             requestMock = new SyncPlaybackDeleteRequest { Id = string.Empty };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
 
             // id with spaces
             requestMock = new SyncPlaybackDeleteRequest { Id = "invalid id" };
 
             act = () => requestMock.Validate();
-            act.Should().Throw<ArgumentException>();
+            act.Should().Throw<TraktRequestValidationException>();
         }
     }
 }

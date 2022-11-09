@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -10,12 +9,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
-    using TraktNet.Objects.Post.Syncs.Watchlist;
     using TraktNet.Objects.Post.Syncs.Watchlist.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string REMOVE_WATCHLIST_ITEMS_URI = "sync/watchlist/remove";
@@ -88,31 +86,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_RemoveWatchlistItems_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(RemoveWatchlistPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHLIST_ITEMS_URI, postJson, WATCHLIST_REMOVE_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>>> act = () => client.Sync.RemoveWatchlistItemsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Sync.RemoveWatchlistItemsAsync(new TraktSyncWatchlistPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncWatchlistPost watchlistRemovePost = new TraktSyncWatchlistPost
-            {
-                Movies = new List<ITraktSyncWatchlistPostMovie>(),
-                Shows = new List<ITraktSyncWatchlistPostShow>(),
-                Episodes = new List<ITraktSyncWatchlistPostEpisode>()
-            };
-
-            act = () => client.Sync.RemoveWatchlistItemsAsync(watchlistRemovePost);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

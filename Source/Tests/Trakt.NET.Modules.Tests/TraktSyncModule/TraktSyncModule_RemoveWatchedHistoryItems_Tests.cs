@@ -10,12 +10,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
-    using TraktNet.Objects.Post.Syncs.History;
     using TraktNet.Objects.Post.Syncs.History.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string REMOVE_WATCHED_HISTORY_ITEMS_URI = "sync/history/remove";
@@ -91,31 +90,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_RemoveWatchedHistoryItems_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(RemoveHistoryPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_WATCHED_HISTORY_ITEMS_URI, postJson, HISTORY_REMOVE_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncHistoryRemovePostResponse>>> act = () => client.Sync.RemoveWatchedHistoryItemsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Sync.RemoveWatchedHistoryItemsAsync(new TraktSyncHistoryRemovePost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncHistoryRemovePost collectionPost = new TraktSyncHistoryRemovePost
-            {
-                Movies = new List<ITraktSyncHistoryPostMovie>(),
-                Shows = new List<ITraktSyncHistoryPostShow>(),
-                Episodes = new List<ITraktSyncHistoryPostEpisode>()
-            };
-
-            act = () => client.Sync.RemoveWatchedHistoryItemsAsync(collectionPost);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

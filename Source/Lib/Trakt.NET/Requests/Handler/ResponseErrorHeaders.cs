@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Requests.Handler
 {
+    using Enums;
     using Responses.Interfaces;
     using System;
 
@@ -9,13 +10,13 @@
 
         public int? ItemCount { get; set; }
 
-        public string SortBy { get; set; }
+        public TraktSortBy? SortBy { get; set; }
 
-        public string SortHow { get; set; }
+        public TraktSortHow? SortHow { get; set; }
 
-        public string AppliedSortBy { get; set; }
+        public TraktSortBy? AppliedSortBy { get; set; }
 
-        public string AppliedSortHow { get; set; }
+        public TraktSortHow? AppliedSortHow { get; set; }
 
         public DateTime? StartDate { get; set; }
 
@@ -38,5 +39,9 @@
         public int? RetryAfter { get; set; }
 
         public string UpgradeURL { get; set; }
+
+        public bool? IsVIPUser { get; set; }
+
+        public int? AccountLimit { get; set; }
     }
 }

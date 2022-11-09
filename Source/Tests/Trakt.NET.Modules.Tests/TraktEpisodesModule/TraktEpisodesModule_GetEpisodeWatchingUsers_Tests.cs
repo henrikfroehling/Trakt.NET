@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Episodes")]
+    [TestCategory("Modules.Episodes")]
     public partial class TraktEpisodesModule_Tests
     {
         private readonly string GET_EPISODE_WATCHING_USERS_URI = $"shows/{SHOW_ID}/seasons/{SEASON_NR}/episodes/{EPISODE_NR}/watching";
@@ -72,24 +72,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodeWatchingUsersArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_WATCHING_USERS_URI, EPISODE_WATCHING_USERS_JSON);
-
-            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Episodes.GetEpisodeWatchingUsersAsync(null, SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodeWatchingUsersAsync(string.Empty, SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodeWatchingUsersAsync("show id", SEASON_NR, EPISODE_NR);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Episodes.GetEpisodeWatchingUsersAsync(SHOW_ID, SEASON_NR, 0);
-            await act.Should().ThrowAsync<ArgumentOutOfRangeException>();
         }
     }
 }

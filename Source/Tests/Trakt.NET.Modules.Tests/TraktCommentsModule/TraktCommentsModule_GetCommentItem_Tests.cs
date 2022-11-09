@@ -12,7 +12,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Comments")]
+    [TestCategory("Modules.Comments")]
     public partial class TraktCommentsModule_Tests
     {
         private readonly string GET_COMMENT_ITEM_URI = $"comments/{GET_COMMENT_ID}/item";
@@ -107,15 +107,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktCommentsModule_GetCommentItem_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_COMMENT_ITEM_URI, COMMENT_JSON);
-
-            Func<Task<TraktResponse<ITraktCommentItem>>> act = () => client.Comments.GetCommentItemAsync(0);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

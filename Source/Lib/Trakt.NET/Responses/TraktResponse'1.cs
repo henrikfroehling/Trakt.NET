@@ -1,12 +1,17 @@
 ﻿namespace TraktNet.Responses
 {
+    using Enums;
     using Interfaces;
     using System;
     using System.Collections.Generic;
 
     /// <summary>A Trakt response with content of type <typeparamref name="TResponseContentType" />.</summary>
     /// <typeparam name="TResponseContentType">The content type.</typeparam>
-    public class TraktResponse<TResponseContentType> : TraktNoContentResponse, ITraktResponse<TResponseContentType>, IEquatable<TraktResponse<TResponseContentType>>
+    public class TraktResponse<TResponseContentType>
+        : TraktNoContentResponse,
+          ITraktResponse<TResponseContentType>,
+          IEquatable<TraktResponse<TResponseContentType>>,
+          IEqualityComparer<TraktResponse<TResponseContentType>>
     {
         /// <summary>Gets, whether this response has a content value set.</summary>
         public bool HasValue { get; set; }
@@ -15,16 +20,16 @@
         public TResponseContentType Value { get; set; }
 
         /// <summary>Gets the value of the set "sort-by" response header. Might not be set.</summary>
-        public string SortBy { get; set; }
+        public TraktSortBy? SortBy { get; set; }
 
         /// <summary>Gets the value of the set "sort-how" response header. Might not be set.</summary>
-        public string SortHow { get; set; }
+        public TraktSortHow? SortHow { get; set; }
 
         /// <summary>Gets the value of the set "applied-sort-by" response header. Might not be set.</summary>
-        public string AppliedSortBy { get; set; }
+        public TraktSortBy? AppliedSortBy { get; set; }
 
         /// <summary>Gets the value of the set "applied-sort-how" response header. Might not be set.</summary>
-        public string AppliedSortHow { get; set; }
+        public TraktSortHow? AppliedSortHow { get; set; }
 
         /// <summary>Gets the value of the set "start-date" response header. Might not be set.</summary>
         public DateTime? StartDate { get; set; }
@@ -59,6 +64,12 @@
         /// <summary>The web URL where the user can sign up for Trakt VIP.</summary>
         public string UpgradeURL { get; set; }
 
+        /// <summary>Determines whether the user is a VIP user.</summary>
+        public bool? IsVIPUser { get; set; }
+
+        /// <summary>The user's account limit.</summary>
+        public int? AccountLimit { get; set; }
+
         /// <summary>
         /// Compares this instance with another <see cref="TraktResponse{TResponseContentType}" /> instance.
         /// </summary>
@@ -85,6 +96,11 @@
                 && other.RetryAfter == RetryAfter;
         }
 
+        public bool Equals(TraktResponse<TResponseContentType> left, TraktResponse<TResponseContentType> right)
+            => left.Equals(right);
+
+        public int GetHashCode(TraktResponse<TResponseContentType> obj) => obj.GetHashCode();
+
         /// <summary>Enables implicit conversion to <typeparamref name="TResponseContentType" /> for this type.</summary>
         /// <param name="response">The <see cref="TraktResponse{TResponseContentType}" /> instance, which will be converted to <typeparamref name="TResponseContentType" />.</param>
         public static implicit operator TResponseContentType(TraktResponse<TResponseContentType> response) => response.Value;
@@ -92,7 +108,7 @@
         /// <summary>Enables implicit conversion to <see cref="TraktResponse{TResponseContentType}" /> for this type.</summary>
         /// <param name="value">The <typeparamref name="TResponseContentType" /> instance, which will be converted to <see cref="TraktResponse{TResponseContentType}" />.</param>
         public static implicit operator TraktResponse<TResponseContentType>(TResponseContentType value)
-            => new TraktResponse<TResponseContentType>
+            => new()
             {
                 Value = value,
                 HasValue = !EqualityComparer<TResponseContentType>.Default.Equals(value, default),

@@ -9,7 +9,7 @@
     using TraktNet.Objects.Post.Syncs.Recommendations.Responses.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Post.Syncs.Recommendations.Responses.Implementations")]
+    [TestCategory("Objects.Post.Syncs.Recommendations.Responses.Implementations")]
     public class TraktSyncRecommendationsPostResponseNotFoundGroup_Tests
     {
         [Fact]

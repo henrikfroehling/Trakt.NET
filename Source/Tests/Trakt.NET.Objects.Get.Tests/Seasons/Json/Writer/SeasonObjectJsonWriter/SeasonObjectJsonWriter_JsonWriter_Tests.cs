@@ -13,7 +13,7 @@
     using TraktNet.Objects.Get.Seasons.Json.Writer;
     using Xunit;
 
-    [Category("Objects.Get.Seasons.JsonWriter")]
+    [TestCategory("Objects.Get.Seasons.JsonWriter")]
     public partial class SeasonObjectJsonWriter_Tests
     {
         private static readonly DateTime FIRST_AIRED = DateTime.UtcNow.AddMonths(-1);

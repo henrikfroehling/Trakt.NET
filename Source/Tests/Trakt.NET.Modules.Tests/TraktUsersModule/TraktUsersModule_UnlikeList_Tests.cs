@@ -10,7 +10,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Users")]
+    [TestCategory("Modules.Users")]
     public partial class TraktUsersModule_Tests
     {
         private readonly string UNLIKE_LIST_URI = $"users/{USERNAME}/lists/{LIST_ID}/like";
@@ -55,30 +55,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktUsersModule_UnlikeList_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetOAuthMockClient(UNLIKE_LIST_URI, HttpStatusCode.NoContent);
-
-            Func<Task<TraktNoContentResponse>> act = () => client.Users.UnlikeListAsync(null, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.UnlikeListAsync(string.Empty, LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.UnlikeListAsync("user name", LIST_ID);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.UnlikeListAsync(USERNAME, null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Users.UnlikeListAsync(USERNAME, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Users.UnlikeListAsync(USERNAME, "list id");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

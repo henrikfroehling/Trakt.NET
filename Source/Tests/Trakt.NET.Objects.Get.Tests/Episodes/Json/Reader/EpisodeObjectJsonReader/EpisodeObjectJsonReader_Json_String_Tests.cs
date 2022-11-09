@@ -9,7 +9,7 @@
     using TraktNet.Objects.Get.Episodes.Json.Reader;
     using Xunit;
 
-    [Category("Objects.Get.Episodes.JsonReader")]
+    [TestCategory("Objects.Get.Episodes.JsonReader")]
     public partial class EpisodeObjectJsonReader_Tests
     {
         [Fact]

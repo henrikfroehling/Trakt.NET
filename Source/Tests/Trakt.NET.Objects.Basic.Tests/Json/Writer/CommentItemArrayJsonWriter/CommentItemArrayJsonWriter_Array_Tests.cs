@@ -9,15 +9,15 @@
     using TraktNet.Extensions;
     using TraktNet.Objects.Basic;
     using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Lists;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Get.Users;
-    using TraktNet.Objects.Get.Users.Lists;
     using TraktNet.Objects.Json;
     using Xunit;
 
-    [Category("Objects.Basic.JsonWriter")]
+    [TestCategory("Objects.Basic.JsonWriter")]
     public partial class CommentItemArrayJsonWriter_Tests
     {
         [Fact]

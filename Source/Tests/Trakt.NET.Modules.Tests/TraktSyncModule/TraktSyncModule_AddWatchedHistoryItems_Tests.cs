@@ -2,7 +2,6 @@
 {
     using FluentAssertions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -10,12 +9,11 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Post.Responses;
-    using TraktNet.Objects.Post.Syncs.History;
     using TraktNet.Objects.Post.Syncs.History.Responses;
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Sync")]
+    [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
         private const string ADD_WATCHED_HISTORY_ITEMS_URI = "sync/history";
@@ -88,31 +86,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktSyncModule_AddWatchedHistoryItems_ArgumentExceptions()
-        {
-            string postJson = await TestUtility.SerializeObject(AddHistoryPost);
-            postJson.Should().NotBeNullOrEmpty();
-
-            TraktClient client = TestUtility.GetOAuthMockClient(ADD_WATCHED_HISTORY_ITEMS_URI, postJson, HISTORY_POST_RESPONSE_JSON);
-
-            Func<Task<TraktResponse<ITraktSyncHistoryPostResponse>>> act = () => client.Sync.AddWatchedHistoryItemsAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Sync.AddWatchedHistoryItemsAsync(new TraktSyncHistoryPost());
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            ITraktSyncHistoryPost collectionPost = new TraktSyncHistoryPost
-            {
-                Movies = new List<ITraktSyncHistoryPostMovie>(),
-                Shows = new List<ITraktSyncHistoryPostShow>(),
-                Episodes = new List<ITraktSyncHistoryPostEpisode>()
-            };
-
-            act = () => client.Sync.AddWatchedHistoryItemsAsync(collectionPost);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

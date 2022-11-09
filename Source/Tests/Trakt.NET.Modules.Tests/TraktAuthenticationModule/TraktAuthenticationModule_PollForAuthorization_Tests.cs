@@ -11,7 +11,7 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [Category("Modules.Authentication")]
+    [TestCategory("Modules.Authentication")]
     public partial class TraktAuthenticationModule_Tests
     {
         private const string POLL_FOR_AUTHORIZATION_URI = "oauth/device/token";
@@ -133,83 +133,6 @@
         }
 
         [Fact]
-        public async Task Test_TraktAuthenticationModule_PollForAuthorization_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient();
-            client.Authentication.Device = null;
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.Authentication.Device = new TraktDevice
-            {
-                DeviceCode = null
-            };
-
-            act = () => client.Authentication.PollForAuthorizationAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.Authentication.Device = new TraktDevice
-            {
-                DeviceCode = string.Empty,
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-            };
-
-            act = () => client.Authentication.PollForAuthorizationAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.Authentication.Device = new TraktDevice
-            {
-                DeviceCode = "mock device code",
-                ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-            };
-
-            act = () => client.Authentication.PollForAuthorizationAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
-            client.Authentication.Device = new TraktDevice
-            {
-                DeviceCode = MOCK_DEVICE_CODE
-            };
-
-            act = () => client.Authentication.PollForAuthorizationAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.Authentication.Device = MockDevice;
-            client.ClientId = null;
-
-            act = () => client.Authentication.PollForAuthorizationAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientId = string.Empty;
-
-            act = () => client.Authentication.PollForAuthorizationAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientId = "client id";
-
-            act = () => client.Authentication.PollForAuthorizationAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientId = TraktClientId;
-            client.ClientSecret = null;
-
-            act = () => client.Authentication.PollForAuthorizationAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientSecret = string.Empty;
-
-            act = () => client.Authentication.PollForAuthorizationAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientSecret = "client secret";
-
-            act = () => client.Authentication.PollForAuthorizationAsync();
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
-
-        [Fact]
         public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device()
         {
             string authorizationJson = await TestUtility.SerializeObject(MockAuthorization);
@@ -320,70 +243,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient();
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(null);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = string.Empty,
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                });
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = "mock device code",
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                });
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
-            act = () => client.Authentication.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = MOCK_DEVICE_CODE
-                });
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientId = null;
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientId = string.Empty;
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientId = "client id";
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientId = TraktClientId;
-            client.ClientSecret = null;
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientSecret = string.Empty;
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientSecret = "client secret";
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice);
-            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Fact]
@@ -498,66 +357,6 @@
         }
 
         [Fact]
-        public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_And_ClientId_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient();
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(null, TraktClientId);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = string.Empty,
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                },
-                TraktClientId);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = "mock device code",
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                },
-                TraktClientId);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
-            act = () => client.Authentication.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = MOCK_DEVICE_CODE
-                },
-                TraktClientId);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, "client id");
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientSecret = null;
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientSecret = string.Empty;
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            client.ClientSecret = "client secret";
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId);
-            await act.Should().ThrowAsync<ArgumentException>();
-        }
-
-        [Fact]
         public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_And_ClientId_And_ClientSecret()
         {
             string authorizationJson = await TestUtility.SerializeObject(MockAuthorization);
@@ -668,60 +467,6 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
-        }
-
-        [Fact]
-        public async Task Test_TraktAuthenticationModule_PollForAuthorization_With_Device_And_ClientId_And_ClientSecret_ArgumentExceptions()
-        {
-            TraktClient client = TestUtility.GetAuthenticationMockClient();
-
-            Func<Task<TraktResponse<ITraktAuthorization>>> act = () => client.Authentication.PollForAuthorizationAsync(null, TraktClientId, TraktClientSecret);
-            await act.Should().ThrowAsync<ArgumentNullException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = string.Empty,
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                },
-                TraktClientId, TraktClientSecret);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = "mock device code",
-                    ExpiresInSeconds = DEVICE_EXPIRES_IN_SECONDS
-                },
-                TraktClientId, TraktClientSecret);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            // ExpiredUnused == true, because of ExpiresInSeconds defaults to 0
-            act = () => client.Authentication.PollForAuthorizationAsync(
-                new TraktDevice
-                {
-                    DeviceCode = MOCK_DEVICE_CODE
-                },
-                TraktClientId, TraktClientSecret);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, null, TraktClientSecret);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, string.Empty, TraktClientSecret);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, "client id", TraktClientSecret);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, null);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, string.Empty);
-            await act.Should().ThrowAsync<ArgumentException>();
-
-            act = () => client.Authentication.PollForAuthorizationAsync(MockDevice, TraktClientId, "client secret");
-            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }
