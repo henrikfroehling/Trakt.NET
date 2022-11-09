@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.32804.182
@@ -26,6 +26,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetSingleShowExample", "Modules\ShowsModule\GetSingleShowExample\GetSingleShowExample.csproj", "{05051597-6F1C-4D58-B84F-2FC26AA06D2D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetTrendingShowsExample", "Modules\ShowsModule\GetTrendingShowsExample\GetTrendingShowsExample.csproj", "{ACFF3E0D-44A4-45A4-8E17-8E5D7172380B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{E6E1F6A3-8F87-47BB-B222-52933F962374}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.Net.Examples.Utility", "Shared\Trakt.Net.Examples.Utility\Trakt.Net.Examples.Utility.csproj", "{E7742360-E345-45D5-8F8C-6D8505EB6636}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
