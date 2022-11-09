@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TraktNet;
 using TraktNet.Objects.Get.Shows;
-using TraktNet.Requests.Parameters;
+using TraktNet.Parameters;
 using TraktNet.Responses;
 
 namespace GetTrendingShows

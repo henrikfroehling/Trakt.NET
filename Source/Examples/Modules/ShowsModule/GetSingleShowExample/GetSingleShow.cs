@@ -5,7 +5,7 @@
     using TraktNet;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Shows;
-    using TraktNet.Requests.Parameters;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
 
     internal static class GetSingleShow
