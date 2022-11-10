@@ -14,9 +14,9 @@ This folder contains examples for how to use the Trakt.NET library.
 ---
 ### Modules
 #### Shows Module
-- [Get trending shows](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Modules/ShowsModule/GetTrendingShowsExample)
-- [Get single shows](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Modules/ShowsModule/GetSingleShowExample)
-- [Get multiple shows](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Modules/ShowsModule/GetMultipleShowsExample)
+- [Get trending shows](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Modules/ShowsModule/GetTrendingShows.ipynb)
+- [Get single shows](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Modules/ShowsModule/GetSingleShow.ipynb)
+- [Get multiple shows](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Modules/ShowsModule/GetMultipleShows.ipynb)
 
 ---
 ### Parameters
@@ -25,4 +25,4 @@ This folder contains examples for how to use the Trakt.NET library.
 
 ---
 ### Serialization
-- [Serialize Authorization token](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Serialization/SerializeAuthorization.ipynb)
+- [Serialize Authorization](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Serialization/SerializeAuthorization.ipynb)
