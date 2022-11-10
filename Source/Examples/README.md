@@ -4,12 +4,12 @@ This folder contains examples for how to use the Trakt.NET library.
 
 ---
 ### Authentication
-- [Device Authentication](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Authentication/TraktDeviceAuthenticationExample)
-- [OAuth Authentication](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Authentication/TraktOAuthAuthenticationExample)
+- [Device Authentication](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Authentication/DeviceAuthentication.ipynb)
+- [OAuth Authentication](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Authentication/OAuthAuthentication.ipynb)
 
 ---
 ### Configuration
-- [Configuration](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Configuration/TraktConfigurationExample)
+- [Configuration](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Configuration/ConfigurationOverview.ipynb)
 
 ---
 ### Modules
@@ -21,8 +21,8 @@ This folder contains examples for how to use the Trakt.NET library.
 ---
 ### Parameters
 #### Filter
-- [Calendar Filter](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Parameters/TraktFilterExample)
+- [Calendar Filter](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Parameters/Filter//CalendarFilter.ipynb)
 
 ---
 ### Serialization
-- [Serialize Authorization token](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Serialization/TraktSerializeAuthorizationExample)
+- [Serialize Authorization token](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Serialization/SerializeAuthorization.ipynb)
