@@ -2,6 +2,8 @@
 
 This folder contains examples for how to use the Trakt.NET library.
 
+You can open each example in Visual Studio Code in your browser by pressing `.`.
+
 ---
 ### Authentication
 - [Device Authentication](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Authentication/DeviceAuthentication.ipynb)
