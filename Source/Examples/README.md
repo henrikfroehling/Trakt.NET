@@ -21,7 +21,10 @@ This folder contains examples for how to use the Trakt.NET library.
 ---
 ### Parameters
 #### Filter
-- [Calendar Filter](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Parameters/Filter//CalendarFilter.ipynb)
+- [Calendar Filter](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Parameters/Filter/CalendarFilter.ipynb)
+
+#### Post Builder
+- [Recommendations Post Builder](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples/Parameters/PostBuilder/RecommendationsPostBuilder.ipynb)
 
 ---
 ### Serialization
