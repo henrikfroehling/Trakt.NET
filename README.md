@@ -1,7 +1,7 @@
 ![](https://raw.githubusercontent.com/henrikfroehling/Trakt.NET/develop/.github/trending_movies_shows.gif)
 *<sup>Example output (rendered in console with [Spectre.Console](https://github.com/spectresystems/spectre.console))</sup>*
 
-[Trakt.NET](https://github.com/henrikfroehling/Trakt.NET)
+Trakt.NET
 ===
 
 **This is a .NET wrapper library for the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#).**
