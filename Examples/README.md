@@ -5,13 +5,14 @@ This folder contains examples for how to use the Trakt.NET library.
 You can open each example in Visual Studio Code in your browser by pressing `.`.
 
 ---
+### Basics
+- [Configuration](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Examples/Basics/Configuration.ipynb)
+- [Exceptions](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Examples/Basics/Exceptions.ipynb)
+
+---
 ### Authentication
 - [Device Authentication](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Examples/Authentication/DeviceAuthentication.ipynb)
 - [OAuth Authentication](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Examples/Authentication/OAuthAuthentication.ipynb)
-
----
-### Configuration
-- [Configuration](https://github.com/henrikfroehling/Trakt.NET/tree/develop/Examples/Configuration/ConfigurationOverview.ipynb)
 
 ---
 ### Modules
