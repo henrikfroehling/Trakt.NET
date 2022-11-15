@@ -68,7 +68,7 @@ Do want to contribute? [See how you can contribute](https://github.com/henrikfro
 ---
 ### Examples
     
-Examples can be found here: https://github.com/henrikfroehling/Trakt.NET/tree/develop/Source/Examples
+Examples can be found here: https://github.com/henrikfroehling/Trakt.NET/tree/develop/Examples
 
 ---
 <details>
