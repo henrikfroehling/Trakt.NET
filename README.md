@@ -22,7 +22,7 @@ This is a .NET wrapper library with which developers can build .NET applications
 Some examples that Trakt.NET can be used for include:
 - Retrieve information about movies and TV shows, including details such as titles, descriptions, ratings and release dates
 - Tracking what TV shows and movies a user is watching, has watched or wants to watch
-- Providing recommendations for TV shows and movies bases on a user's watch history
+- Providing recommendations for TV shows and movies based on a user's watch history
 - Building custom TV show and movie lists
 
 To use Trakt.NET, you will need to obtain an API key from Trakt and follow the guidelines for using the API.
