@@ -5,10 +5,10 @@
         {
           "files": [ "**/*.csproj" ],
           "exclude": [ "**/bin/**", "**/obj/**" ],
-          "src": "../Lib"
+          "src": "../Source/Lib"
         }
       ],
-      "dest": "temp/api",
+      "dest": "api",
       "filter": "filterConfig.yml",
       "properties": {
         "TargetFramework": "netstandard2.0"
@@ -18,34 +18,24 @@
   "build": {
     "content": [
       {
-        "files": [ "**/*.yml" ],
-        "src": "temp/api",
-        "dest": "api",
-        "exclude": [ "filterConfig.yml" ]
-      },
-      {
-        "files": [
-          "gettingstarted/**/*.{md,yml}",
-          "apispec/**/*.{md,yml}",
-          "*.{md,yml}"
-        ],
-        "exclude": [ "filterConfig.yml" ]
+        "files": [ "**/*.{md,yml}" ],
+        "exclude": [ "_site/**", "obj/**", "filterConfig.yml" ]
       },
       {
         "files": "Changelog.md",
-        "src": "../.."
+        "src": ".."
       }
     ],
     "resource": [
       {
-        "files": [ "images/**" ]
+        "files": [ "**/images/**", "codesnippet/**" ],
+        "exclude": [ "_site/**", "obj/**" ]
       }
     ],
-    "overwrite": "apispec/*.md",
-    "dest": "../../docs/_site",
+    "dest": "_site",
     "globalMetadata": {
       "_appTitle": "Trakt.NET",
-      "_appFooter": "<span>The MIT License (MIT)<br />Copyright © 2016 - 2023 Henrik Fröhling et al.<br />Made with <a href=\"https://dotnet.github.io/docfx/\">docfx</a></span>",
+      "_appFooter": "<span>The MIT License (MIT)<br />Copyright © 2016 - 2023 Henrik Fröhling et al.<br />Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>",
       "_enableSearch": true,
       "_gitContribute": {
         "branch": "develop"
@@ -54,12 +44,6 @@
     "template": [
       "default"
     ],
-    "fileMetadataFiles": [],
-    "markdownEngineName": "markdig",
-    "noLangKeyword": false,
-    "keepFileLink": false,
-    "cleanupCacheHistory": false,
-    "disableGitFeatures": false,
     "postProcessors": [ "ExtractSearchIndex" ],
     "xrefService": [
       "https://xref.docs.microsoft.com/query?uid={uid}"
