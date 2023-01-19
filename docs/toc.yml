@@ -1,6 +1,6 @@
-- name: Getting Started
-  href: gettingstarted/
-- name: Specification
-  href: apispec/
-- name: API Documentation
-  href: temp/api/
+- name: Docs
+  href: docs/
+- name: API
+  href: api/
+- name: Examples
+  href: examples/

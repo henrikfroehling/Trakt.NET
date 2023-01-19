@@ -1,0 +1,36 @@
+- name: Overview
+  href: index.md
+- name: Basics
+  items:
+  - name: Configuration
+    href: basics/configuration.md
+  - name: Exceptions
+    href: basics/exceptions.md
+- name: Authentication
+  items:
+  - name: Device Authentication
+    href: authentication/device-authentication.md
+  - name: OAuth Authentication
+    href: authentication/oauth-authentication.md
+- name: Modules
+  items:
+  - name: Shows Module
+    items:
+    - name: Get Trending Shows
+      href: modules/shows/get-trending-shows.md
+    - name: Get Single Show
+      href: modules/shows/get-single-show.md
+    - name: Get Multiple Shows
+      href: modules/shows/get-multiple-shows.md
+- name: Parameters
+  items:
+  - name: Filter
+    items:
+    - name: Calendar Filter
+      href: parameters/filter/calendar-filter.md
+  - name: Post Builder
+    items:
+    - name: Recommendations Post Builder
+      href: parameters/postbuilder/recommendations-post-builder.md
+- name: Serialization
+  href: serialization/serialize-authorization.md
