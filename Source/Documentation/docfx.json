@@ -45,7 +45,7 @@
     "dest": "../../docs/_site",
     "globalMetadata": {
       "_appTitle": "Trakt.NET",
-      "_appFooter": "<span>The MIT License (MIT)<br />Copyright © 2016 - 2023 Henrik Fröhling et al.</span>",
+      "_appFooter": "<span>The MIT License (MIT)<br />Copyright © 2016 - 2023 Henrik Fröhling et al.<br />Made with <a href=\"https://dotnet.github.io/docfx/\">docfx</a></span>",
       "_enableSearch": true,
       "_gitContribute": {
         "branch": "develop"
