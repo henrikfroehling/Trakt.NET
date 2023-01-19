@@ -39,8 +39,9 @@ To use Trakt.NET, you will need to obtain an API key from Trakt and follow the g
 ### Supported Platforms
 
 - .NET >= 5
-- .Net Core >= 2.0
-- .Net Framework >= 4.6.1
+- .NET Core >= 2.0
+- .NET Framework >= 4.6.1
+- .NET MAUI
 - Xamarin.iOS >= 10.14
 - Xamarin.Mac >= 3.8
 - Xamarin.Android >= 8.0
