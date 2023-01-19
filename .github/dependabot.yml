@@ -1,0 +1,25 @@
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "GitHub Actions"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"

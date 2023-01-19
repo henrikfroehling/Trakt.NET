@@ -1,4 +1,4 @@
-Trakt.NET is primarily authored by:
+Trakt.NET is maintained by:
 
 * [Henrik Fröhling](https://github.com/henrikfroehling) [(henrik.froehling@gmail.com)](mailto:henrik.froehling@gmail.com)
 
