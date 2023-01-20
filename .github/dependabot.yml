@@ -1,7 +1,19 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"
-    directory: "/"
+    directory: "/Source/Lib/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Tests/"
     schedule:
       interval: "weekly"
       day: "friday"
