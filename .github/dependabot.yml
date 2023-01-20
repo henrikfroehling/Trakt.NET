@@ -1,17 +1,5 @@
 version: 2
 updates:
-  - package-ecosystem: "nuget"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "friday"
-    commit-message:
-      prefix: "NuGet"
-      include: "scope"
-    target-branch: "develop"
-    reviewers:
-      - "henrikfroehling"
-
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -22,4 +10,160 @@ updates:
       include: "scope"
     target-branch: "develop"
     reviewers:
+      - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Lib/Trakt.NET/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Tests/Trakt.NET.Core.Tests/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Tests/Trakt.NET.Modules.Tests/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Tests/Trakt.NET.Objects.Authentication.Tests/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Tests/Trakt.NET.Objects.Basic.Tests/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Tests/Trakt.NET.Objects.Get.Tests/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Tests/Trakt.NET.Objects.Post.Tests/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Tests/Trakt.NET.Parameters.Tests/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Tests/Trakt.NET.PostBuilder.Tests/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Tests/Trakt.NET.Requests.Tests/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
+
+  - package-ecosystem: "nuget"
+    directory: "/Source/Tests/Trakt.NET.Tests.Utility/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+    commit-message:
+      prefix: "NuGet"
+      include: "scope"
+    target-branch: "develop"
+    reviewers:
+      - "henrikfroehling"
+    assignees:
       - "henrikfroehling"
