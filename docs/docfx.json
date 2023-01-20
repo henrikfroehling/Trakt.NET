@@ -42,7 +42,10 @@
       }
     },
     "template": [
-      "default"
+      "default",
+      "templates/singulinkfx",
+      "plugins/memberpage",
+      "plugins/memberpage-extras"
     ],
     "postProcessors": [ "ExtractSearchIndex" ],
     "xrefService": [
