@@ -11,6 +11,8 @@ updates:
     target-branch: "develop"
     reviewers:
       - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
 
   - package-ecosystem: "nuget"
     directory: "/Source/Lib/Trakt.NET/"
@@ -22,6 +24,8 @@ updates:
       include: "scope"
     target-branch: "develop"
     reviewers:
+      - "henrikfroehling"
+    assignees:
       - "henrikfroehling"
 
   - package-ecosystem: "nuget"
@@ -35,6 +39,8 @@ updates:
     target-branch: "develop"
     reviewers:
       - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
 
   - package-ecosystem: "nuget"
     directory: "/Source/Tests/Trakt.NET.Modules.Tests/"
@@ -46,6 +52,8 @@ updates:
       include: "scope"
     target-branch: "develop"
     reviewers:
+      - "henrikfroehling"
+    assignees:
       - "henrikfroehling"
 
   - package-ecosystem: "nuget"
@@ -59,6 +67,8 @@ updates:
     target-branch: "develop"
     reviewers:
       - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
 
   - package-ecosystem: "nuget"
     directory: "/Source/Tests/Trakt.NET.Objects.Basic.Tests/"
@@ -70,6 +80,8 @@ updates:
       include: "scope"
     target-branch: "develop"
     reviewers:
+      - "henrikfroehling"
+    assignees:
       - "henrikfroehling"
 
   - package-ecosystem: "nuget"
@@ -83,6 +95,8 @@ updates:
     target-branch: "develop"
     reviewers:
       - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
 
   - package-ecosystem: "nuget"
     directory: "/Source/Tests/Trakt.NET.Objects.Post.Tests/"
@@ -94,6 +108,8 @@ updates:
       include: "scope"
     target-branch: "develop"
     reviewers:
+      - "henrikfroehling"
+    assignees:
       - "henrikfroehling"
 
   - package-ecosystem: "nuget"
@@ -107,6 +123,8 @@ updates:
     target-branch: "develop"
     reviewers:
       - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
 
   - package-ecosystem: "nuget"
     directory: "/Source/Tests/Trakt.NET.PostBuilder.Tests/"
@@ -118,6 +136,8 @@ updates:
       include: "scope"
     target-branch: "develop"
     reviewers:
+      - "henrikfroehling"
+    assignees:
       - "henrikfroehling"
 
   - package-ecosystem: "nuget"
@@ -131,6 +151,8 @@ updates:
     target-branch: "develop"
     reviewers:
       - "henrikfroehling"
+    assignees:
+      - "henrikfroehling"
 
   - package-ecosystem: "nuget"
     directory: "/Source/Tests/Trakt.NET.Tests.Utility/"
@@ -142,4 +164,6 @@ updates:
       include: "scope"
     target-branch: "develop"
     reviewers:
+      - "henrikfroehling"
+    assignees:
       - "henrikfroehling"
