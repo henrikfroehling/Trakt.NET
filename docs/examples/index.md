@@ -2,7 +2,7 @@
 
 ### Basics
 - [Configuration](basics/configuration.md)
-- [Exceptions](basics/exceptions.md)
+- [Exception Handling](basics/exceptions.md)
 
 ### Authentication
 - [Device Authentication](authentication/device-authentication.md)

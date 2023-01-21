@@ -1,4 +1,4 @@
 - name: Getting Started
   items:
   - name: Quick Start
-    href: ../index.md
+    href: quickstart.md

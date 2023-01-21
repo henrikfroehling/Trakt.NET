@@ -4,7 +4,7 @@
   items:
   - name: Configuration
     href: basics/configuration.md
-  - name: Exceptions
+  - name: Exception Handling
     href: basics/exceptions.md
 - name: Authentication
   items:
