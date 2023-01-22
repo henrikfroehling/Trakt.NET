@@ -1,6 +1,6 @@
 ### Recommendations Post Builder
 
-In this example we use the post builder methods to create a `ITraktSyncRecommendationsPost`.
+In this example we use the post builder methods to create a [`ITraktSyncRecommendationsPost`](xref:TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost).
 
 First, we create a new Trakt.NET client.
 

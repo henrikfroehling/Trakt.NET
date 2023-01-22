@@ -32,8 +32,8 @@ showIdOrSlug3 = string.IsNullOrEmpty(showIdOrSlug3) ? "breaking-bad" : showIdOrS
 ```
 
 The following lines show how we can get the details of multiple shows in one library call.
-1. In line 11 we create a TraktMultipleObjectsQueryParams instance, which holds the ids of the shows.
-2. We use the TraktMultipleObjectsQueryParams for the request (see line 20).
+1. In line 11 we create a [TraktMultipleObjectsQueryParams](xref:TraktNet.Modules.TraktMultipleObjectsQueryParams) instance, which holds the ids of the shows.
+2. We use the [TraktMultipleObjectsQueryParams](xref:TraktNet.Modules.TraktMultipleObjectsQueryParams) for the request (see line 20).
 
 ```csharp
 using TraktNet.Exceptions;

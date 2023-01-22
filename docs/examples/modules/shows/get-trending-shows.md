@@ -15,7 +15,7 @@ var client = new TraktClient(clientID);
 
 The following lines show how to get the first page of trending shows.
 
-If no `TraktPagedParameters` are given, the default page is the first page and the default limit per page is 10 items.
+If no [`TraktPagedParameters`](xref:TraktNet.Parameters.TraktPagedParameters) are given, the default page is the first page and the default limit per page is 10 items.
 
 ```csharp
 using TraktNet.Exceptions;
@@ -25,7 +25,11 @@ using TraktNet.Responses;
 try
 {
     TraktPagedResponse<ITraktTrendingShow> trendingShowsResponse = await client.Shows.GetTrendingShowsAsync(new TraktExtendedInfo { Full = true });
-    display(trendingShowsResponse.Value);
+
+    for (ITraktTrendingShow trendingShow in trendingShowsResponse)
+    {
+        Console.WriteLine($"Watchers: {trendingShow.Watchers}, Title: {trendingShow.Title}, Year: {trendingShow.Year}, Rating: {trendingShow.Rating}");
+    }
 }
 catch (TraktException ex)
 {
@@ -40,7 +44,7 @@ catch (TraktException ex)
 }
 ```
 
-For getting the second page, we use the `TraktPagedParameters` for setting the page we want to get.
+For getting the second page, we use the [`TraktPagedParameters`](xref:TraktNet.Parameters.TraktPagedParameters) for setting the page we want to get.
 
 ```csharp
 try
@@ -51,8 +55,11 @@ try
         new TraktExtendedInfo { Full = true },
         pagedParameters: pagedParameters
     );
-    
-    display(trendingShowsResponse.Value);
+
+    for (ITraktTrendingShow trendingShow in trendingShowsResponse)
+    {
+        Console.WriteLine($"Watchers: {trendingShow.Watchers}, Title: {trendingShow.Title}, Year: {trendingShow.Year}, Rating: {trendingShow.Rating}");
+    }
 }
 catch (TraktException ex)
 {

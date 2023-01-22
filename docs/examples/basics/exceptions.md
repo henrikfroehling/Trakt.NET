@@ -1,7 +1,7 @@
 ### Exception Handling
 
 By default, the library uses exceptions.
-You can find all supported exceptions in the namespace [`TraktNet.Exceptions`](../../api/TraktNet.Exceptions.html).
+You can find all supported exceptions in the namespace [`TraktNet.Exceptions`](xref:TraktNet.Exceptions).
 
 The library usage would look like this:
 

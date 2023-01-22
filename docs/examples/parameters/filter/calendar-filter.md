@@ -47,7 +47,12 @@ try
         extendedInfo: new TraktExtendedInfo { Full = true }     // We like to get full information about the shows.
     );
 
-    display(calendarShowsResponse.Value);
+    ITraktCalendarShow calendarShow = calendarShowsResponse.Value;
+
+    Console.WriteLine($"Title: {calendarShow.Title}");
+    Console.WriteLine($"Year: {calendarShow.Year}");
+    Console.WriteLine($"Rating: {calendarShow.Rating}");
+    Console.WriteLine($"First Aired: {calendarShow.FirstAiredInCalendar}");
 }
 catch (TraktException ex)
 {

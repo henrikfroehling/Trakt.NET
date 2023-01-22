@@ -10,7 +10,7 @@ using TraktNet.Objects.Authentication;
 ITraktAuthorization fakeAuthorization = TraktAuthorization.CreateWith(DateTime.Now, 90 * 24 * 3600, "FakeAccessToken", "FakeRefreshToken");
 ```
 
-We use the `TraktSerializationService` to serialize the previously created authorization as JSON data.
+We use the [`TraktSerializationService`](xref:TraktNet.Services.TraktSerializationService) to serialize the previously created authorization as JSON data.
 
 ```csharp
 using TraktNet.Services;
@@ -21,7 +21,7 @@ Console.WriteLine("Serialized Fake Authorization:");
 Console.WriteLine(fakeAuthorizationJson);
 ```
 
-Then, we use the `TraktSerializationService` to deserialize the JSON data back to an authorization object.
+Then, we use the [`TraktSerializationService`](xref:TraktNet.Services.TraktSerializationService) to deserialize the JSON data back to an authorization object.
 
 ```csharp
 ITraktAuthorization deserializedFakeAuthorization = await TraktSerializationService.DeserializeAsync(fakeAuthorizationJson);
