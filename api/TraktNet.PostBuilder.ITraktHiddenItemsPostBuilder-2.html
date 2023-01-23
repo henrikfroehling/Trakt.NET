@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Interface ITraktHiddenItemsPostBuilder&lt;TPostBuilder, TPostObject&gt;
+ | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Interface ITraktHiddenItemsPostBuilder&lt;TPostBuilder, TPostObject&gt;
+ | Trakt.NET ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/discord.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="Trakt.NET" class="logomark">
+              <span class="brand-title">Trakt.NET</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="Trakt.NET" class="logomark">
+                          <span class="brand-title">Trakt.NET</span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                    <article class="content wrap" id="_content" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2">
+
+
+  <h1 id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2" class="text-break">Interface ITraktHiddenItemsPostBuilder&lt;TPostBuilder, TPostObject&gt;
+</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.PostBuilder.html">TraktNet.PostBuilder</a></h6>
+  <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
+  <h5 id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface ITraktHiddenItemsPostBuilder&lt;TPostBuilder, TPostObject&gt;
+    where TPostBuilder : ITraktHiddenItemsPostBuilder&lt;TPostBuilder, TPostObject&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TPostBuilder</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TPostObject</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_Build" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.Build">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_Build">Build()</a>
+        </td>
+        <td class="markdown level1 summary"><p>Creates a new <code data-dev-comment-type="typeparamref" class="typeparamref">TPostObject</code> instance with the added movies, shows, seasons and users.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithMovie_TraktNet_Objects_Get_Movies_ITraktMovie_" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithMovie(TraktNet.Objects.Get.Movies.ITraktMovie)">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithMovie_TraktNet_Objects_Get_Movies_ITraktMovie_">WithMovie(ITraktMovie)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movie</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithMovie_TraktNet_Objects_Get_Movies_ITraktMovieIds_" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithMovie(TraktNet.Objects.Get.Movies.ITraktMovieIds)">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithMovie_TraktNet_Objects_Get_Movies_ITraktMovieIds_">WithMovie(ITraktMovieIds)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movieIds</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithMovies_IEnumerable_TraktNet_Objects_Get_Movies_ITraktMovie__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithMovies(IEnumerable{TraktNet.Objects.Get.Movies.ITraktMovie})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithMovies_IEnumerable_TraktNet_Objects_Get_Movies_ITraktMovie__">WithMovies(IEnumerable&lt;ITraktMovie&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movies</code> collection to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithMovies_IEnumerable_TraktNet_Objects_Get_Movies_ITraktMovieIds__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithMovies(IEnumerable{TraktNet.Objects.Get.Movies.ITraktMovieIds})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithMovies_IEnumerable_TraktNet_Objects_Get_Movies_ITraktMovieIds__">WithMovies(IEnumerable&lt;ITraktMovieIds&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">movieIds</code> collection to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithSeason_TraktNet_Objects_Get_Seasons_ITraktSeason_" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithSeason(TraktNet.Objects.Get.Seasons.ITraktSeason)">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithSeason_TraktNet_Objects_Get_Seasons_ITraktSeason_">WithSeason(ITraktSeason)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">season</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithSeason_TraktNet_Objects_Get_Seasons_ITraktSeasonIds_" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithSeason(TraktNet.Objects.Get.Seasons.ITraktSeasonIds)">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithSeason_TraktNet_Objects_Get_Seasons_ITraktSeasonIds_">WithSeason(ITraktSeasonIds)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">seasonIds</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithSeasons_IEnumerable_TraktNet_Objects_Get_Seasons_ITraktSeason__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithSeasons(IEnumerable{TraktNet.Objects.Get.Seasons.ITraktSeason})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithSeasons_IEnumerable_TraktNet_Objects_Get_Seasons_ITraktSeason__">WithSeasons(IEnumerable&lt;ITraktSeason&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">seasons</code> collection to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithSeasons_IEnumerable_TraktNet_Objects_Get_Seasons_ITraktSeasonIds__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithSeasons(IEnumerable{TraktNet.Objects.Get.Seasons.ITraktSeasonIds})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithSeasons_IEnumerable_TraktNet_Objects_Get_Seasons_ITraktSeasonIds__">WithSeasons(IEnumerable&lt;ITraktSeasonIds&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">seasonIds</code> collection to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShow_TraktNet_Objects_Get_Shows_ITraktShow_" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShow(TraktNet.Objects.Get.Shows.ITraktShow)">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShow_TraktNet_Objects_Get_Shows_ITraktShow_">WithShow(ITraktShow)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">show</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShow_TraktNet_Objects_Get_Shows_ITraktShowIds_" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShow(TraktNet.Objects.Get.Shows.ITraktShowIds)">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShow_TraktNet_Objects_Get_Shows_ITraktShowIds_">WithShow(ITraktShowIds)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIds</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShow_IEnumerable_System_Int32__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShow,IEnumerable{System.Int32})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShow_IEnumerable_System_Int32__">WithShowAndSeasons(ITraktShow, IEnumerable&lt;Int32&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">show</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShow_System_Int32_System_Int32___" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShow,System.Int32,System.Int32[])">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShow_System_Int32_System_Int32___">WithShowAndSeasons(ITraktShow, Int32, Int32[])</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">show</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShowIds_IEnumerable_System_Int32__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShowIds,IEnumerable{System.Int32})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShowIds_IEnumerable_System_Int32__">WithShowAndSeasons(ITraktShowIds, IEnumerable&lt;Int32&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIds</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShowIds_System_Int32_System_Int32___" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShowAndSeasons(TraktNet.Objects.Get.Shows.ITraktShowIds,System.Int32,System.Int32[])">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_Objects_Get_Shows_ITraktShowIds_System_Int32_System_Int32___">WithShowAndSeasons(ITraktShowIds, Int32, Int32[])</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIds</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_PostBuilder_HiddenShowIdsWithSeasons_" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShowAndSeasons(TraktNet.PostBuilder.HiddenShowIdsWithSeasons)">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_PostBuilder_HiddenShowIdsWithSeasons_">WithShowAndSeasons(HiddenShowIdsWithSeasons)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIdsWithSeasons</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_PostBuilder_HiddenShowWithSeasons_" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShowAndSeasons(TraktNet.PostBuilder.HiddenShowWithSeasons)">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowAndSeasons_TraktNet_PostBuilder_HiddenShowWithSeasons_">WithShowAndSeasons(HiddenShowWithSeasons)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showWithSeasons</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShows_IEnumerable_TraktNet_Objects_Get_Shows_ITraktShow__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShows(IEnumerable{TraktNet.Objects.Get.Shows.ITraktShow})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShows_IEnumerable_TraktNet_Objects_Get_Shows_ITraktShow__">WithShows(IEnumerable&lt;ITraktShow&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">shows</code> collection to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShows_IEnumerable_TraktNet_Objects_Get_Shows_ITraktShowIds__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShows(IEnumerable{TraktNet.Objects.Get.Shows.ITraktShowIds})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShows_IEnumerable_TraktNet_Objects_Get_Shows_ITraktShowIds__">WithShows(IEnumerable&lt;ITraktShowIds&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIds</code> collection to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowsAndSeasons_IEnumerable_TraktNet_PostBuilder_HiddenShowIdsWithSeasons__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShowsAndSeasons(IEnumerable{TraktNet.PostBuilder.HiddenShowIdsWithSeasons})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowsAndSeasons_IEnumerable_TraktNet_PostBuilder_HiddenShowIdsWithSeasons__">WithShowsAndSeasons(IEnumerable&lt;HiddenShowIdsWithSeasons&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showIdsWithSeasons</code> collection to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowsAndSeasons_IEnumerable_TraktNet_PostBuilder_HiddenShowWithSeasons__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithShowsAndSeasons(IEnumerable{TraktNet.PostBuilder.HiddenShowWithSeasons})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithShowsAndSeasons_IEnumerable_TraktNet_PostBuilder_HiddenShowWithSeasons__">WithShowsAndSeasons(IEnumerable&lt;HiddenShowWithSeasons&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">showsWithSeasons</code> collection to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithUser_TraktNet_Objects_Get_Users_ITraktUser_" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithUser(TraktNet.Objects.Get.Users.ITraktUser)">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithUser_TraktNet_Objects_Get_Users_ITraktUser_">WithUser(ITraktUser)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">user</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithUser_TraktNet_Objects_Get_Users_ITraktUserIds_" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithUser(TraktNet.Objects.Get.Users.ITraktUserIds)">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithUser_TraktNet_Objects_Get_Users_ITraktUserIds_">WithUser(ITraktUserIds)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">userIds</code> to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithUsers_IEnumerable_TraktNet_Objects_Get_Users_ITraktUser__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithUsers(IEnumerable{TraktNet.Objects.Get.Users.ITraktUser})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithUsers_IEnumerable_TraktNet_Objects_Get_Users_ITraktUser__">WithUsers(IEnumerable&lt;ITraktUser&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">users</code> collection to the builder.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithUsers_IEnumerable_TraktNet_Objects_Get_Users_ITraktUserIds__" data-uid="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder`2.WithUsers(IEnumerable{TraktNet.Objects.Get.Users.ITraktUserIds})">
+          <a class="xref" href="TraktNet.PostBuilder.ITraktHiddenItemsPostBuilder-2.html#TraktNet_PostBuilder_ITraktHiddenItemsPostBuilder_2_WithUsers_IEnumerable_TraktNet_Objects_Get_Users_ITraktUserIds__">WithUsers(IEnumerable&lt;ITraktUserIds&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds the given <code data-dev-comment-type="paramref" class="paramref">userIds</code> collection to the builder.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>Copyright &#169; 2016 - 2023 Henrik Fr&#246;hling et al.</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+</html>

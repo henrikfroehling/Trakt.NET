@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Device Authentication | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Device Authentication | Trakt.NET ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../../styles/config.css">
+      <link rel="stylesheet" href="../../styles/discord.css">
+      <link rel="stylesheet" href="../../styles/singulink.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../../index.html">
+              <img src="../../logo.svg" alt="Trakt.NET" class="logomark">
+              <span class="brand-title">Trakt.NET</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../../index.html">
+                          <img src="../../logo.svg" alt="Trakt.NET" class="logomark">
+                          <span class="brand-title">Trakt.NET</span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                    <article class="content wrap" id="_content" data-uid="">
+<h3 id="device-authentication">Device Authentication</h3>
+
+<p>In this example we authenticate our Trakt.NET client with the Device Authentication method to get Trakt authorization, which is required for OAuth requests.</p>
+<p>For authentication and authorization requests the Client-ID and Client-Secret are both required.</p>
+<pre><code class="lang-csharp">using TraktNet;
+
+Console.WriteLine(&quot;Please enter your Trakt Client-ID:&quot;);
+string clientID = Console.ReadLine();
+
+Console.WriteLine(&quot;Please enter your Trakt Client-Secret:&quot;);
+string clientSecret = Console.ReadLine();
+
+var client = new TraktClient(clientID, clientSecret);
+</code></pre><p>We can now request authorization by authenticating with the Device Authentication method.</p>
+<p>The following lines show the steps which are required to get an authorization.</p>
+<ol>
+<li>Create a new device (see line 30)</li>
+</ol>
+<p>The created device has a verification URL (see line 46) which the user needs to visit. Secondly, the created device has a user code (see line 47) which the user needs to enter on the verification website.</p>
+<ol>
+<li>The user needs to visit the verification website and enter the user code.</li>
+<li>We poll for authorization (see line 49). The time window is a few minutes long before the polling fails (see line 40).</li>
+</ol>
+<p>There are some additional steps in this example, which are not required for authenticating. They only show the usage in the context of this example.</p>
+<ol>
+<li>Refreshing an already existing authorization (see line 73)</li>
+<li>Revoking an already existing authorization (see line 91)</li>
+</ol>
+<pre><code class="lang-csharp">using TraktNet.Exceptions;
+using TraktNet.Objects.Authentication;
+using TraktNet.Responses;
+
+// Helper method for writing authorization information
+void WriteAuthorizationInformation(ITraktAuthorization authorization)
+{
+    Console.WriteLine($&quot;Created (UTC): {authorization.CreatedAt}&quot;);
+    Console.WriteLine($&quot;Access Scope: {authorization.Scope.DisplayName}&quot;);
+    Console.WriteLine($&quot;Refresh Possible: {authorization.IsRefreshPossible}&quot;);
+    Console.WriteLine($&quot;Valid: {authorization.IsValid}&quot;);
+    Console.WriteLine($&quot;Access Token: {authorization.AccessToken}&quot;);
+    Console.WriteLine($&quot;Refresh Token: {authorization.RefreshToken}&quot;);
+    Console.WriteLine($&quot;Token Expired: {authorization.IsExpired}&quot;);
+
+    var created = authorization.CreatedAt;
+    var expirationDate = created.AddSeconds(authorization.ExpiresInSeconds);
+    var difference = expirationDate - DateTime.UtcNow;
+
+    var days = difference.Days &gt; 0 ? difference.Days : 0;
+    var hours = difference.Hours &gt; 0 ? difference.Hours : 0;
+    var minutes = difference.Minutes &gt; 0 ? difference.Minutes : 0;
+
+    Console.WriteLine($&quot;Expires in {days} Days, {hours} Hours, {minutes} Minutes&quot;);
+}
+
+try
+{
+    // Create a new device
+    TraktResponse&lt;ITraktDevice&gt; deviceResponse = await client.Authentication.GenerateDeviceAsync();
+
+    ITraktDevice device = deviceResponse.Value;
+
+    if (device.IsValid)
+    {
+        Console.WriteLine(&quot;-------------- Device created successfully --------------&quot;);
+        Console.WriteLine($&quot;Device Created (UTC): {device.CreatedAt}&quot;);
+        Console.WriteLine($&quot;Device Code: {device.DeviceCode}&quot;);
+        Console.WriteLine($&quot;Device expires in {device.ExpiresInSeconds} seconds&quot;);
+        Console.WriteLine($&quot;Device Interval: {device.IntervalInSeconds} seconds&quot;);
+        Console.WriteLine($&quot;Device Expired Unused: {device.IsExpiredUnused}&quot;);
+        Console.WriteLine($&quot;Device Valid: {device.IsValid}&quot;);
+        Console.WriteLine(&quot;-------------------------------------------------------&quot;);
+
+        Console.WriteLine(&quot;You have to authenticate this application.&quot;);
+        Console.WriteLine($&quot;Please visit the following webpage: {device.VerificationUrl}&quot;); // Verification website
+        Console.WriteLine($&quot;Sign in or sign up on that webpage and enter the following code: {device.UserCode}&quot;); // User code needs to be entered on the verification website
+
+        TraktResponse&lt;ITraktAuthorization&gt; authorizationResponse = await client.Authentication.PollForAuthorizationAsync();
+
+        // NOTE: We do not need to explicitly set the authorization in the client.
+        // This is not necessary, since it&#39;s automatically set.
+        // client.Authorization = authorizationResponse.Value;
+
+        ITraktAuthorization authorization = authorizationResponse.Value;
+
+        // or
+        // ITraktAuthorization authorization = client.Authorization;
+
+        if (authorization.IsValid)
+        {
+            Console.WriteLine(&quot;-------------- Authentication successful --------------&quot;);
+            WriteAuthorizationInformation(authorization);
+            Console.WriteLine(&quot;-------------------------------------------------------&quot;);
+        }
+        else
+            Console.WriteLine(&quot;-------------- Authentication failed --------------&quot;);
+
+        Console.WriteLine(&quot;Do you want to refresh the current authorization? [y/n]:&quot;);
+        string yesNo = Console.ReadLine();
+
+        if (yesNo.Equals(&quot;y&quot;))
+        {
+            TraktResponse&lt;ITraktAuthorization&gt; newAuthorizationResponse = await client.Authentication.RefreshAuthorizationAsync();
+
+            ITraktAuthorization newAuthorization = newAuthorizationResponse.Value;
+
+            if (newAuthorization.IsValid)
+            {
+                Console.WriteLine(&quot;-------------- Authorization refreshed successfully --------------&quot;);
+                WriteAuthorizationInformation(newAuthorization);
+                Console.WriteLine(&quot;-------------------------------------------------------&quot;);
+            }
+            else
+                Console.WriteLine(&quot;-------------- Refreshing Authorization failed --------------&quot;);
+        }
+
+        Console.WriteLine(&quot;Do you want to revoke your authorization? [y/n]:&quot;);
+        yesNo = Console.ReadLine();
+
+        if (yesNo.Equals(&quot;y&quot;))
+        {
+            TraktNoContentResponse response = await client.Authentication.RevokeAuthorizationAsync();
+
+            // If no exception was thrown, revoking was successfull
+            Console.WriteLine(&quot;-----------------------------------&quot;);
+            Console.WriteLine(&quot;Authorization revoked successfully&quot;);
+            Console.WriteLine(&quot;-----------------------------------&quot;);
+        }
+    }
+}
+catch (TraktException ex)
+{
+    Console.WriteLine(&quot;-------------- Trakt Exception --------------&quot;);
+    Console.WriteLine($&quot;Exception message: {ex.Message}&quot;);
+    Console.WriteLine($&quot;Status code: {ex.StatusCode}&quot;);
+    Console.WriteLine($&quot;Request URL: {ex.RequestUrl}&quot;);
+    Console.WriteLine($&quot;Request message: {ex.RequestBody}&quot;);
+    Console.WriteLine($&quot;Request response: {ex.Response}&quot;);
+    Console.WriteLine($&quot;Server Reason Phrase: {ex.ServerReasonPhrase}&quot;);
+    Console.WriteLine(&quot;---------------------------------------------&quot;);
+}
+</code></pre></article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>Copyright &#169; 2016 - 2023 Henrik Fr&#246;hling et al.</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script type="text/javascript" src="../../styles/jquery.twbsPagination.js"></script>
+        <script type="text/javascript" src="../../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+        <script type="text/javascript" src="../../styles/docfx.js"></script>
+        <script type="text/javascript" src="../../styles/singulink.js"></script>
+        <script type="text/javascript" src="../../styles/main.js"></script>    </body>
+</html>

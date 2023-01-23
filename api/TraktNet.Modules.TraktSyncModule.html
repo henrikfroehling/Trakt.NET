@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class TraktSyncModule
+ | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class TraktSyncModule
+ | Trakt.NET ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/discord.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="Trakt.NET" class="logomark">
+              <span class="brand-title">Trakt.NET</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="Trakt.NET" class="logomark">
+                          <span class="brand-title">Trakt.NET</span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                    <article class="content wrap" id="_content" data-uid="TraktNet.Modules.TraktSyncModule">
+
+
+  <h1 id="TraktNet_Modules_TraktSyncModule" data-uid="TraktNet.Modules.TraktSyncModule" class="text-break">Class TraktSyncModule
+</h1>
+  <div class="markdown level0 summary"><p>Provides access to data retrieving methods specific to sync.
+<p>
+This module contains all methods of the <a href="http://docs.trakt.apiary.io/#reference/sync">&quot;Trakt API Doc - Sync&quot;</a> section.
+</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="TraktNet.Modules.ATraktModule.html">ATraktModule</a></div>
+    <div class="level2"><span class="xref">TraktSyncModule</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Modules.html">TraktNet.Modules</a></h6>
+  <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
+  <h5 id="TraktNet_Modules_TraktSyncModule_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TraktSyncModule : ATraktModule</code></pre>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_AddCollectionItemsAsync_TraktNet_Objects_Post_Syncs_Collection_ITraktSyncCollectionPost_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddCollectionItemsAsync(TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_AddCollectionItemsAsync_TraktNet_Objects_Post_Syncs_Collection_ITraktSyncCollectionPost_CancellationToken_">AddCollectionItemsAsync(ITraktSyncCollectionPost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds items to the user&apos;s collection. Accepts shows, seasons, episodes and movies.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/get-collection/add-items-to-collection">&quot;Trakt API Doc - Sync: Add to Collection&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionPostBuilder.html">ITraktSyncCollectionPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost.html">ITraktSyncCollectionPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncCollectionPost">NewSyncCollectionPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_AddPersonalRecommendationsAsync_TraktNet_Objects_Post_Syncs_Recommendations_ITraktSyncRecommendationsPost_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddPersonalRecommendationsAsync(TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_AddPersonalRecommendationsAsync_TraktNet_Objects_Post_Syncs_Recommendations_ITraktSyncRecommendationsPost_CancellationToken_">AddPersonalRecommendationsAsync(ITraktSyncRecommendationsPost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds items to the user&apos;s personal recommendations. Accepts movies and shows.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/get-personal-recommendations/add-items-to-personal-recommendations">&quot;Trakt API Doc - Sync: Add to Personal Recommendations&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRecommendationsPostBuilder.html">ITraktSyncRecommendationsPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost.html">ITraktSyncRecommendationsPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRecommendationsPost">NewSyncRecommendationsPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_AddRatingsAsync_TraktNet_Objects_Post_Syncs_Ratings_ITraktSyncRatingsPost_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddRatingsAsync(TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_AddRatingsAsync_TraktNet_Objects_Post_Syncs_Ratings_ITraktSyncRatingsPost_CancellationToken_">AddRatingsAsync(ITraktSyncRatingsPost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds items to the user&apos;s ratings. Accepts shows, seasons, episodes and movies.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/add-ratings/add-new-ratings">&quot;Trakt API Doc - Sync: Add Ratings&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder.html">ITraktSyncRatingsPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost.html">ITraktSyncRatingsPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRatingsPost">NewSyncRatingsPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_AddWatchedHistoryItemsAsync_TraktNet_Objects_Post_Syncs_History_ITraktSyncHistoryPost_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddWatchedHistoryItemsAsync(TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_AddWatchedHistoryItemsAsync_TraktNet_Objects_Post_Syncs_History_ITraktSyncHistoryPost_CancellationToken_">AddWatchedHistoryItemsAsync(ITraktSyncHistoryPost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds items to the user&apos;s watch history. Accepts shows, seasons, episodes and movies.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/add-to-history/add-items-to-watched-history">&quot;Trakt API Doc - Sync: Add to History&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryPostBuilder.html">ITraktSyncHistoryPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryPost.html">ITraktSyncHistoryPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncHistoryPost">NewSyncHistoryPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_AddWatchlistItemsAsync_TraktNet_Objects_Post_Syncs_Watchlist_ITraktSyncWatchlistPost_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.AddWatchlistItemsAsync(TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_AddWatchlistItemsAsync_TraktNet_Objects_Post_Syncs_Watchlist_ITraktSyncWatchlistPost_CancellationToken_">AddWatchlistItemsAsync(ITraktSyncWatchlistPost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds items to the user&apos;s watchlist. Accepts shows, seasons, episodes and movies.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/add-to-watchlist/add-items-to-watchlist">&quot;Trakt API Doc - Sync: Add to Watchlist&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder.html">ITraktSyncWatchlistPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost.html">ITraktSyncWatchlistPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncWatchlistPost">NewSyncWatchlistPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_GetCollectionMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetCollectionMoviesAsync(TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetCollectionMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetCollectionMoviesAsync(TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all collected movies in the user&apos;s collection.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/get-collection/get-collection">&quot;Trakt API Doc - Sync: Get Collection&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_GetCollectionShowsAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetCollectionShowsAsync(TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetCollectionShowsAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetCollectionShowsAsync(TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all collected shows in the user&apos;s collection.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/get-collection/get-collection">&quot;Trakt API Doc - Sync: Get Collection&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_GetLastActivitiesAsync_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetLastActivitiesAsync(CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetLastActivitiesAsync_CancellationToken_">GetLastActivitiesAsync(CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the user&apos;s last activities.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/last-activities/get-last-activity">&quot;Trakt API Doc - Sync: Last Activities&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_GetPersonalRecommendationsAsync_TraktNet_Enums_TraktRecommendationObjectType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetPersonalRecommendationsAsync(TraktNet.Enums.TraktRecommendationObjectType,TraktNet.Enums.TraktWatchlistSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetPersonalRecommendationsAsync_TraktNet_Enums_TraktRecommendationObjectType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetPersonalRecommendationsAsync(TraktRecommendationObjectType, TraktWatchlistSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets an user&apos;s personal recommendations for movies and / or shows.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/get-personal-recommendations/get-personal-recommendations">&quot;Trakt API Doc - Sync: Personal Recommendations&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_GetPlaybackProgressAsync_TraktNet_Enums_TraktSyncType_System_Nullable_DateTime__System_Nullable_DateTime__TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetPlaybackProgressAsync(TraktNet.Enums.TraktSyncType,System.Nullable{DateTime},System.Nullable{DateTime},TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetPlaybackProgressAsync_TraktNet_Enums_TraktSyncType_System_Nullable_DateTime__System_Nullable_DateTime__TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetPlaybackProgressAsync(TraktSyncType, Nullable&lt;DateTime&gt;, Nullable&lt;DateTime&gt;, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the user&apos;s saved playback progress of scrobbles that are paused.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/last-activities/get-playback-progress">&quot;Trakt API Doc - Sync: Playback&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_GetRatingsAsync_TraktNet_Enums_TraktRatingsItemType_System_Int32___TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetRatingsAsync(TraktNet.Enums.TraktRatingsItemType,System.Int32[],TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetRatingsAsync_TraktNet_Enums_TraktRatingsItemType_System_Int32___TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetRatingsAsync(TraktRatingsItemType, Int32[], TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the user&apos;s ratings for movies, shows, seasons and / or episodes.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/get-ratings/get-ratings">&quot;Trakt API Doc - Sync: Get Ratings&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_GetWatchedHistoryAsync_TraktNet_Enums_TraktSyncItemType_System_Nullable_System_UInt32__System_Nullable_DateTime__System_Nullable_DateTime__TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedHistoryAsync(TraktNet.Enums.TraktSyncItemType,System.Nullable{System.UInt32},System.Nullable{DateTime},System.Nullable{DateTime},TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchedHistoryAsync_TraktNet_Enums_TraktSyncItemType_System_Nullable_System_UInt32__System_Nullable_DateTime__System_Nullable_DateTime__TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetWatchedHistoryAsync(TraktSyncItemType, Nullable&lt;UInt32&gt;, Nullable&lt;DateTime&gt;, Nullable&lt;DateTime&gt;, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all movies, shows, seasons and / or episodes the user has watched, sorted by most recent.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/get-history/get-watched-history">&quot;Trakt API Doc - Sync: Get History&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_GetWatchedMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedMoviesAsync(TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchedMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetWatchedMoviesAsync(TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all movies the user has watched, sorted by most plays.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watched/get-watched">&quot;Trakt API Doc - Sync: Get Watched&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_GetWatchedShowsAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchedShowsAsync(TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchedShowsAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetWatchedShowsAsync(TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all shows the user has watched, sorted by most plays.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watched/get-watched">&quot;Trakt API Doc - Sync: Get Watched&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_GetWatchlistAsync_TraktNet_Enums_TraktSyncItemType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.GetWatchlistAsync(TraktNet.Enums.TraktSyncItemType,TraktNet.Enums.TraktWatchlistSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchlistAsync_TraktNet_Enums_TraktSyncItemType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetWatchlistAsync(TraktSyncItemType, TraktWatchlistSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the user&apos;s watchlist containing movies, shows, seasons and / or episodes.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/get-watchlist/get-watchlist">&quot;Trakt API Doc - Sync: Get Watchlist&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_RemoveCollectionItemsAsync_TraktNet_Objects_Post_Syncs_Collection_ITraktSyncCollectionPost_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveCollectionItemsAsync(TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemoveCollectionItemsAsync_TraktNet_Objects_Post_Syncs_Collection_ITraktSyncCollectionPost_CancellationToken_">RemoveCollectionItemsAsync(ITraktSyncCollectionPost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Removes items from the user&apos;s collection. Accepts shows, seasons, episodes and movies.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-collection/remove-items-from-collection">&quot;Trakt API Doc - Sync: Remove from Collection&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncCollectionPostBuilder.html">ITraktSyncCollectionPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Collection.ITraktSyncCollectionPost.html">ITraktSyncCollectionPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncCollectionPost">NewSyncCollectionPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_RemovePersonalRecommendationsAsync_TraktNet_Objects_Post_Syncs_Recommendations_ITraktSyncRecommendationsPost_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemovePersonalRecommendationsAsync(TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemovePersonalRecommendationsAsync_TraktNet_Objects_Post_Syncs_Recommendations_ITraktSyncRecommendationsPost_CancellationToken_">RemovePersonalRecommendationsAsync(ITraktSyncRecommendationsPost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Remove items from the user&apos;s personal recommendations. Accepts movies and shows.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/remove-from-personal-recommendations/remove-items-from-personal-recommendations">&quot;Trakt API Doc - Sync: Remove from Personal Recommendations&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRecommendationsPostBuilder.html">ITraktSyncRecommendationsPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost.html">ITraktSyncRecommendationsPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRecommendationsPost">NewSyncRecommendationsPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_RemovePlaybackItemAsync_System_UInt32_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemovePlaybackItemAsync(System.UInt32,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemovePlaybackItemAsync_System_UInt32_CancellationToken_">RemovePlaybackItemAsync(UInt32, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Removes a playback progress item from the user&apos;s playback progress list.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-playback/remove-a-playback-item">&quot;Trakt API Doc - Sync: Remove Playback&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_RemoveRatingsAsync_TraktNet_Objects_Post_Syncs_Ratings_ITraktSyncRatingsPost_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveRatingsAsync(TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemoveRatingsAsync_TraktNet_Objects_Post_Syncs_Ratings_ITraktSyncRatingsPost_CancellationToken_">RemoveRatingsAsync(ITraktSyncRatingsPost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Removes items from the user&apos;s ratings. Accepts shows, seasons, episodes and movies.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-ratings/remove-ratings">&quot;Trakt API Doc - Sync: Remove Ratings&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder.html">ITraktSyncRatingsPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost.html">ITraktSyncRatingsPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncRatingsPost">NewSyncRatingsPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_RemoveWatchedHistoryItemsAsync_TraktNet_Objects_Post_Syncs_History_ITraktSyncHistoryRemovePost_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveWatchedHistoryItemsAsync(TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryRemovePost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemoveWatchedHistoryItemsAsync_TraktNet_Objects_Post_Syncs_History_ITraktSyncHistoryRemovePost_CancellationToken_">RemoveWatchedHistoryItemsAsync(ITraktSyncHistoryRemovePost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Removes items from the user&apos;s watch history. Accepts shows, seasons, episodes and movies.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-history/remove-items-from-history">&quot;Trakt API Doc - Sync: Remove from History&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncHistoryRemovePostBuilder.html">ITraktSyncHistoryRemovePostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryRemovePost.html">ITraktSyncHistoryRemovePost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncHistoryRemovePost">NewSyncHistoryRemovePost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_RemoveWatchlistItemsAsync_TraktNet_Objects_Post_Syncs_Watchlist_ITraktSyncWatchlistPost_CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.RemoveWatchlistItemsAsync(TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_RemoveWatchlistItemsAsync_TraktNet_Objects_Post_Syncs_Watchlist_ITraktSyncWatchlistPost_CancellationToken_">RemoveWatchlistItemsAsync(ITraktSyncWatchlistPost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Removes items from the user&apos;s watchlist. Accepts shows, seasons, episodes and movies.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-watchlist/remove-items-from-watchlists">&quot;Trakt API Doc - Sync: Remove from Watchlist&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder.html">ITraktSyncWatchlistPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost.html">ITraktSyncWatchlistPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewSyncWatchlistPost">NewSyncWatchlistPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_ReorderRecommendedItemsAsync_IEnumerable_System_UInt32__CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.ReorderRecommendedItemsAsync(IEnumerable{System.UInt32},CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_ReorderRecommendedItemsAsync_IEnumerable_System_UInt32__CancellationToken_">ReorderRecommendedItemsAsync(IEnumerable&lt;UInt32&gt;, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Reorder all items on a user&apos;s personal recommendations.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-personal-recommendations/reorder-personally-recommended-items">&quot;Trakt API Doc - Sync: Reorder Personal Recommendations&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktSyncModule_ReorderWatchlistItemsAsync_IEnumerable_System_UInt32__CancellationToken_" data-uid="TraktNet.Modules.TraktSyncModule.ReorderWatchlistItemsAsync(IEnumerable{System.UInt32},CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_ReorderWatchlistItemsAsync_IEnumerable_System_UInt32__CancellationToken_">ReorderWatchlistItemsAsync(IEnumerable&lt;UInt32&gt;, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Reorders an user&apos;s watchlist.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-watchlist/reorder-watchlist-items">&quot;Trakt API Doc - Sync: Reorder Watchlist&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>Copyright &#169; 2016 - 2023 Henrik Fr&#246;hling et al.</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+</html>

@@ -1,0 +1,645 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class TraktUsersModule
+ | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class TraktUsersModule
+ | Trakt.NET ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/discord.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="Trakt.NET" class="logomark">
+              <span class="brand-title">Trakt.NET</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="Trakt.NET" class="logomark">
+                          <span class="brand-title">Trakt.NET</span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                    <article class="content wrap" id="_content" data-uid="TraktNet.Modules.TraktUsersModule">
+
+
+  <h1 id="TraktNet_Modules_TraktUsersModule" data-uid="TraktNet.Modules.TraktUsersModule" class="text-break">Class TraktUsersModule
+</h1>
+  <div class="markdown level0 summary"><p>Provides access to data retrieving methods specific to users.
+<p>
+This module contains all methods of the <a href="http://docs.trakt.apiary.io/#reference/users">&quot;Trakt API Doc - Users&quot;</a> section.
+</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="TraktNet.Modules.ATraktModule.html">ATraktModule</a></div>
+    <div class="level2"><span class="xref">TraktUsersModule</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Modules.html">TraktNet.Modules</a></h6>
+  <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
+  <h5 id="TraktNet_Modules_TraktUsersModule_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TraktUsersModule : ATraktModule</code></pre>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_AddHiddenItemsAsync_TraktNet_Objects_Post_Users_HiddenItems_ITraktUserHiddenItemsPost_TraktNet_Enums_TraktHiddenItemsSection_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.AddHiddenItemsAsync(TraktNet.Objects.Post.Users.HiddenItems.ITraktUserHiddenItemsPost,TraktNet.Enums.TraktHiddenItemsSection,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_AddHiddenItemsAsync_TraktNet_Objects_Post_Users_HiddenItems_ITraktUserHiddenItemsPost_TraktNet_Enums_TraktHiddenItemsSection_CancellationToken_">AddHiddenItemsAsync(ITraktUserHiddenItemsPost, TraktHiddenItemsSection, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds items to an user&apos;s hidden list. Accepts shows, seasons and movies.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/add-hidden-items/add-hidden-items">&quot;Trakt API Doc - Users: Add Hidden Items&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsPostBuilder.html">ITraktUserHiddenItemsPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Users.HiddenItems.ITraktUserHiddenItemsPost.html">ITraktUserHiddenItemsPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsPost">NewUserHiddenItemsPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_AddPersonalListItemsAsync_System_String_System_String_TraktNet_Objects_Post_Users_PersonalListItems_ITraktUserPersonalListItemsPost_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.AddPersonalListItemsAsync(System.String,System.String,TraktNet.Objects.Post.Users.PersonalListItems.ITraktUserPersonalListItemsPost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_AddPersonalListItemsAsync_System_String_System_String_TraktNet_Objects_Post_Users_PersonalListItems_ITraktUserPersonalListItemsPost_CancellationToken_">AddPersonalListItemsAsync(String, String, ITraktUserPersonalListItemsPost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Adds items to an user&apos;s personal list. Accepts shows, seasons, episodes, movies and people.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/add-list-items/add-items-to-personal-list">&quot;Trakt API Doc - Users: List Items&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsPostBuilder.html">ITraktUserPersonalListItemsPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Users.PersonalListItems.ITraktUserPersonalListItemsPost.html">ITraktUserPersonalListItemsPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsPost">NewUserPersonalListItemsPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_ApproveFollowRequestAsync_System_UInt32_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.ApproveFollowRequestAsync(System.UInt32,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_ApproveFollowRequestAsync_System_UInt32_CancellationToken_">ApproveFollowRequestAsync(UInt32, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Approves a follower request with the given id.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/approve-or-deny-follower-requests/approve-follow-request">&quot;Trakt API Doc - Users: Approve or Deny Follower Requests&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_CreatePersonalListAsync_System_String_System_String_System_String_TraktNet_Enums_TraktAccessScope_System_Nullable_System_Boolean__System_Nullable_System_Boolean__CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.CreatePersonalListAsync(System.String,System.String,System.String,TraktNet.Enums.TraktAccessScope,System.Nullable{System.Boolean},System.Nullable{System.Boolean},CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_CreatePersonalListAsync_System_String_System_String_System_String_TraktNet_Enums_TraktAccessScope_System_Nullable_System_Boolean__System_Nullable_System_Boolean__CancellationToken_">CreatePersonalListAsync(String, String, String, TraktAccessScope, Nullable&lt;Boolean&gt;, Nullable&lt;Boolean&gt;, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Creates a new personal list.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/lists/create-personal-list">&quot;Trakt API Doc - Users: Lists&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_DeletePersonalListAsync_System_String_System_String_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.DeletePersonalListAsync(System.String,System.String,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_DeletePersonalListAsync_System_String_System_String_CancellationToken_">DeletePersonalListAsync(String, String, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Deletes an user&apos;s personal list.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/list/delete-a-user&apos;s-personal-list">&quot;Trakt API Doc - Users: List&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_DenyFollowRequestAsync_System_UInt32_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.DenyFollowRequestAsync(System.UInt32,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_DenyFollowRequestAsync_System_UInt32_CancellationToken_">DenyFollowRequestAsync(UInt32, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Denies a follower request with the given id.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/approve-or-deny-follower-requests/deny-follow-request">&quot;Trakt API Doc - Users: Approve or Deny Follower Requests&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_FollowUserAsync_System_String_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.FollowUserAsync(System.String,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_FollowUserAsync_System_String_CancellationToken_">FollowUserAsync(String, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Sends a follow request for an user with the given username.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/follow/follow-this-user">&quot;Trakt API Doc - Users: Follow&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetCollectionMoviesAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetCollectionMoviesAsync(System.String,TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetCollectionMoviesAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetCollectionMoviesAsync(String, TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all collected movies in an user&apos;s collection.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/collection/get-collection">&quot;Trakt API Doc - Users: Collection&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetCollectionShowsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetCollectionShowsAsync(System.String,TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetCollectionShowsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetCollectionShowsAsync(String, TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all collected shows in an user&apos;s collection.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/collection/get-collection">&quot;Trakt API Doc - Users: Collection&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetCommentsAsync_System_String_TraktNet_Enums_TraktCommentType_TraktNet_Enums_TraktObjectType_System_Nullable_TraktNet_Parameters_TraktIncludeReplies__TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetCommentsAsync(System.String,TraktNet.Enums.TraktCommentType,TraktNet.Enums.TraktObjectType,System.Nullable{TraktNet.Parameters.TraktIncludeReplies},TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetCommentsAsync_System_String_TraktNet_Enums_TraktCommentType_TraktNet_Enums_TraktObjectType_System_Nullable_TraktNet_Parameters_TraktIncludeReplies__TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetCommentsAsync(String, TraktCommentType, TraktObjectType, Nullable&lt;TraktIncludeReplies&gt;, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all comments an user has posted, sorted by most recent.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/comments/get-comments">&quot;Trakt API Doc - Users: Comments&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetFollowersAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetFollowersAsync(System.String,TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetFollowersAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetFollowersAsync(String, TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets an user&apos;s followers.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/followers/get-followers">&quot;Trakt API Doc - Users: Followers&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetFollowingAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetFollowingAsync(System.String,TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetFollowingAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetFollowingAsync(String, TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets users an user is following.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/following/get-following">&quot;Trakt API Doc - Users: Following&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetFollowRequestsAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetFollowRequestsAsync(TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetFollowRequestsAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetFollowRequestsAsync(TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the user&apos;s pending follow requests.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/follower-requests/get-follow-requests">&quot;Trakt API Doc - Users: Follower Requests&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetFriendsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetFriendsAsync(System.String,TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetFriendsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetFriendsAsync(String, TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets an user&apos;s friends.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/friends/get-friends">&quot;Trakt API Doc - Users: Friends&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetHiddenItemsAsync_TraktNet_Enums_TraktHiddenItemsSection_TraktNet_Enums_TraktHiddenItemType_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetHiddenItemsAsync(TraktNet.Enums.TraktHiddenItemsSection,TraktNet.Enums.TraktHiddenItemType,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetHiddenItemsAsync_TraktNet_Enums_TraktHiddenItemsSection_TraktNet_Enums_TraktHiddenItemType_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetHiddenItemsAsync(TraktHiddenItemsSection, TraktHiddenItemType, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the user&apos;s hidden items, like movies, shows and / or seasons.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/hidden-items/get-hidden-items">&quot;Trakt API Doc - Users: Hidden Items&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetLikesAsync_TraktNet_Enums_TraktUserLikeType_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetLikesAsync(TraktNet.Enums.TraktUserLikeType,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetLikesAsync_TraktNet_Enums_TraktUserLikeType_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetLikesAsync(TraktUserLikeType, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the items (movies, shows, seasons, episodes, persons, comments, lists) the user likes.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/likes/get-likes">&quot;Trakt API Doc - Users: Likes&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetListCollaborationsAsync_System_String_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetListCollaborationsAsync(System.String,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetListCollaborationsAsync_System_String_CancellationToken_">GetListCollaborationsAsync(String, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all lists a user can collaborate on.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/collaborations/get-all-lists-a-user-can-collaborate-on">&quot;Trakt API Doc - Users: Collaborations&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetListCommentsAsync_System_String_System_String_TraktNet_Enums_TraktCommentSortOrder_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetListCommentsAsync(System.String,System.String,TraktNet.Enums.TraktCommentSortOrder,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetListCommentsAsync_System_String_System_String_TraktNet_Enums_TraktCommentSortOrder_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetListCommentsAsync(String, String, TraktCommentSortOrder, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets top level comments for an user&apos;s list.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/list-comments/get-all-list-comments">&quot;Trakt API Doc - Users: List Comments&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetListLikesAsync_System_String_System_String_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetListLikesAsync(System.String,System.String,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetListLikesAsync_System_String_System_String_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetListLikesAsync(String, String, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all likes for an user&apos;s list.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/list-likes/get-all-users-who-liked-a-list">&quot;Trakt API Doc - Users: List Likes&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetMultiplePersonalListsAsync_TraktNet_Modules_TraktMultipleUserListsQueryParams_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetMultiplePersonalListsAsync(TraktNet.Modules.TraktMultipleUserListsQueryParams,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetMultiplePersonalListsAsync_TraktNet_Modules_TraktMultipleUserListsQueryParams_CancellationToken_">GetMultiplePersonalListsAsync(TraktMultipleUserListsQueryParams, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets multiple different personal lists for multiple different users at once.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/list/get-personal-list">&quot;Trakt API Doc - Users: List&quot;</a> for more information.
+</p>
+<p>See also <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetPersonalListAsync_System_String_System_String_CancellationToken_">GetPersonalListAsync(String, String, CancellationToken)</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetPendingFollowingRequestsAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetPendingFollowingRequestsAsync(TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetPendingFollowingRequestsAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetPendingFollowingRequestsAsync(TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the user&apos;s pending following requests.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/following-requests/get-pending-following-requests">&quot;Trakt API Doc - Users: Following Requests&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetPersonalListAsync_System_String_System_String_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetPersonalListAsync(System.String,System.String,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetPersonalListAsync_System_String_System_String_CancellationToken_">GetPersonalListAsync(String, String, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets an user&apos;s single personal list.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/list/get-personal-list">&quot;Trakt API Doc - Users: List&quot;</a> for more information.
+</p>
+<p>See also <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetMultiplePersonalListsAsync_TraktNet_Modules_TraktMultipleUserListsQueryParams_CancellationToken_">GetMultiplePersonalListsAsync(TraktMultipleUserListsQueryParams, CancellationToken)</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetPersonalListItemsAsync_System_String_System_String_TraktNet_Enums_TraktListItemType_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetPersonalListItemsAsync(System.String,System.String,TraktNet.Enums.TraktListItemType,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetPersonalListItemsAsync_System_String_System_String_TraktNet_Enums_TraktListItemType_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetPersonalListItemsAsync(String, String, TraktListItemType, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the items on an user&apos;s single personal list.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/list-items/get-items-on-a-personal-list">&quot;Trakt API Doc - Users: List Items&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetPersonalListsAsync_System_String_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetPersonalListsAsync(System.String,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetPersonalListsAsync_System_String_CancellationToken_">GetPersonalListsAsync(String, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets an user&apos;s personal lists.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/lists/get-a-user&apos;s-personal-lists">&quot;Trakt API Doc - Users: Lists&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetPersonalRecommendationsAsync_System_String_TraktNet_Enums_TraktRecommendationObjectType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetPersonalRecommendationsAsync(System.String,TraktNet.Enums.TraktRecommendationObjectType,TraktNet.Enums.TraktWatchlistSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetPersonalRecommendationsAsync_System_String_TraktNet_Enums_TraktRecommendationObjectType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetPersonalRecommendationsAsync(String, TraktRecommendationObjectType, TraktWatchlistSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets an user&apos;s personal recommendations for movies and / or shows.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/personal-recommendations/get-personal-recommendations">&quot;Trakt API Doc - Users: Personal Recommendations&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetRatingsAsync_System_String_TraktNet_Enums_TraktRatingsItemType_System_Int32___TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetRatingsAsync(System.String,TraktNet.Enums.TraktRatingsItemType,System.Int32[],TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetRatingsAsync_System_String_TraktNet_Enums_TraktRatingsItemType_System_Int32___TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetRatingsAsync(String, TraktRatingsItemType, Int32[], TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets an user&apos;s ratings for movies, shows, seasons and / or episodes.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/ratings/get-ratings">&quot;Trakt API Doc - Users: Ratings&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetSavedFiltersAsync_TraktNet_Enums_TraktFilterSection_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetSavedFiltersAsync(TraktNet.Enums.TraktFilterSection,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetSavedFiltersAsync_TraktNet_Enums_TraktFilterSection_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetSavedFiltersAsync(TraktFilterSection, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the saved filters a user has created.
+<p>OAuth authorization required.</p>
+<p>VIP Only.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/saved-filters/get-saved-filters">&quot;Trakt API Doc - Users: Saved Filters&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetSettingsAsync_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetSettingsAsync(CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetSettingsAsync_CancellationToken_">GetSettingsAsync(CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the user&apos;s settings.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/settings/retrieve-settings">&quot;Trakt API Doc - Users: Settings&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetStatisticsAsync_System_String_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetStatisticsAsync(System.String,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetStatisticsAsync_System_String_CancellationToken_">GetStatisticsAsync(String, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets statistics about the movies, shows and episodes an user has watched.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/stats/get-stats">&quot;Trakt API Doc - Users: Stats&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetUserProfileAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetUserProfileAsync(System.String,TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetUserProfileAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetUserProfileAsync(String, TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets an user&apos;s profile information.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/profile/get-user-profile">&quot;Trakt API Doc - Users: Profile&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetWatchedHistoryAsync_System_String_TraktNet_Enums_TraktSyncItemType_System_Nullable_System_UInt32__System_Nullable_DateTime__System_Nullable_DateTime__TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetWatchedHistoryAsync(System.String,TraktNet.Enums.TraktSyncItemType,System.Nullable{System.UInt32},System.Nullable{DateTime},System.Nullable{DateTime},TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetWatchedHistoryAsync_System_String_TraktNet_Enums_TraktSyncItemType_System_Nullable_System_UInt32__System_Nullable_DateTime__System_Nullable_DateTime__TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetWatchedHistoryAsync(String, TraktSyncItemType, Nullable&lt;UInt32&gt;, Nullable&lt;DateTime&gt;, Nullable&lt;DateTime&gt;, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all movies, shows, seasons and / or episodes an user has watched, sorted by most recent.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/history/get-watched-history">&quot;Trakt API Doc - Users: History&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetWatchedMoviesAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetWatchedMoviesAsync(System.String,TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetWatchedMoviesAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetWatchedMoviesAsync(String, TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all movies an user has watched, sorted by most plays.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/watched/get-watched">&quot;Trakt API Doc - Users: Watched&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetWatchedShowsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetWatchedShowsAsync(System.String,TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetWatchedShowsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetWatchedShowsAsync(String, TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all shows an user has watched, sorted by most plays.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/watched/get-watched">&quot;Trakt API Doc - Users: Watched&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetWatchingAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetWatchingAsync(System.String,TraktNet.Parameters.TraktExtendedInfo,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetWatchingAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetWatchingAsync(String, TraktExtendedInfo, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the movie or episode an user is currently watching.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/watching/get-watching">&quot;Trakt API Doc - Users: Watching&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_GetWatchlistAsync_System_String_TraktNet_Enums_TraktSyncItemType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.GetWatchlistAsync(System.String,TraktNet.Enums.TraktSyncItemType,TraktNet.Enums.TraktWatchlistSortOrder,TraktNet.Parameters.TraktExtendedInfo,TraktNet.Parameters.TraktPagedParameters,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetWatchlistAsync_System_String_TraktNet_Enums_TraktSyncItemType_TraktNet_Enums_TraktWatchlistSortOrder_TraktNet_Parameters_TraktExtendedInfo_TraktNet_Parameters_TraktPagedParameters_CancellationToken_">GetWatchlistAsync(String, TraktSyncItemType, TraktWatchlistSortOrder, TraktExtendedInfo, TraktPagedParameters, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets all items in an user&apos;s watchlist.
+<p>OAuth authorization optional.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/watchlist/get-watchlist">&quot;Trakt API Doc - Users: Watchlist&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_LikeListAsync_System_String_System_String_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.LikeListAsync(System.String,System.String,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_LikeListAsync_System_String_System_String_CancellationToken_">LikeListAsync(String, String, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Likes an user&apos;s list.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/list-like/like-a-list">&quot;Trakt API Doc - Users: List Like&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_RemoveHiddenItemsAsync_TraktNet_Objects_Post_Users_HiddenItems_ITraktUserHiddenItemsPost_TraktNet_Enums_TraktHiddenItemsSection_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.RemoveHiddenItemsAsync(TraktNet.Objects.Post.Users.HiddenItems.ITraktUserHiddenItemsPost,TraktNet.Enums.TraktHiddenItemsSection,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_RemoveHiddenItemsAsync_TraktNet_Objects_Post_Users_HiddenItems_ITraktUserHiddenItemsPost_TraktNet_Enums_TraktHiddenItemsSection_CancellationToken_">RemoveHiddenItemsAsync(ITraktUserHiddenItemsPost, TraktHiddenItemsSection, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Removes items from an user&apos;s hidden list. Accepts shows, seasons and movies.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/remove-hidden-items/remove-hidden-items">&quot;Trakt API Doc - Users: Remove Hidden Items&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktUserHiddenItemsPostBuilder.html">ITraktUserHiddenItemsPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Users.HiddenItems.ITraktUserHiddenItemsPost.html">ITraktUserHiddenItemsPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserHiddenItemsPost">NewUserHiddenItemsPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_RemovePersonalListItemsAsync_System_String_System_String_TraktNet_Objects_Post_Users_PersonalListItems_ITraktUserPersonalListItemsPost_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.RemovePersonalListItemsAsync(System.String,System.String,TraktNet.Objects.Post.Users.PersonalListItems.ITraktUserPersonalListItemsPost,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_RemovePersonalListItemsAsync_System_String_System_String_TraktNet_Objects_Post_Users_PersonalListItems_ITraktUserPersonalListItemsPost_CancellationToken_">RemovePersonalListItemsAsync(String, String, ITraktUserPersonalListItemsPost, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Removes items from an user&apos;s personal list. Accepts shows, seasons, episodes, movies and people.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/remove-list-items/remove-items-from-personal-list">&quot;Trakt API Doc - Users: Remove List Items&quot;</a> for more information.
+</p>
+<p>
+It is recommended to use the <a class="xref" href="TraktNet.PostBuilder.ITraktUserPersonalListItemsPostBuilder.html">ITraktUserPersonalListItemsPostBuilder</a> to create an instance
+of the required <a class="xref" href="TraktNet.Objects.Post.Users.PersonalListItems.ITraktUserPersonalListItemsPost.html">ITraktUserPersonalListItemsPost</a>.
+See also <a class="xref" href="TraktNet.PostBuilder.TraktPost.html#TraktNet_PostBuilder_TraktPost_NewUserPersonalListItemsPost">NewUserPersonalListItemsPost()</a>.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_ReorderPersonalListItemsAsync_System_String_System_String_IEnumerable_System_UInt32__CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.ReorderPersonalListItemsAsync(System.String,System.String,IEnumerable{System.UInt32},CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_ReorderPersonalListItemsAsync_System_String_System_String_IEnumerable_System_UInt32__CancellationToken_">ReorderPersonalListItemsAsync(String, String, IEnumerable&lt;UInt32&gt;, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Reorders an user&apos;s personal list items.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/reorder-list-items/reorder-items-on-a-list">&quot;Trakt API Doc - Users: Reorder List Items&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_ReorderPersonalListsAsync_System_String_IEnumerable_System_UInt32__CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.ReorderPersonalListsAsync(System.String,IEnumerable{System.UInt32},CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_ReorderPersonalListsAsync_System_String_IEnumerable_System_UInt32__CancellationToken_">ReorderPersonalListsAsync(String, IEnumerable&lt;UInt32&gt;, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Reorders an user&apos;s personal lists.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/reorder-lists/reorder-a-user&apos;s-lists">&quot;Trakt API Doc - Users: Reorder Lists&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_UnfollowUserAsync_System_String_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.UnfollowUserAsync(System.String,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_UnfollowUserAsync_System_String_CancellationToken_">UnfollowUserAsync(String, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Sends an unfollow request for an user with the given username.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/follow/unfollow-this-user">&quot;Trakt API Doc - Users: Follow&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_UnlikeListAsync_System_String_System_String_CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.UnlikeListAsync(System.String,System.String,CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_UnlikeListAsync_System_String_System_String_CancellationToken_">UnlikeListAsync(String, String, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Removes like on an user&apos;s list.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="http://docs.trakt.apiary.io/#reference/users/list-like/remove-like-on-a-list">&quot;Trakt API Doc - Users: List Like&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Modules_TraktUsersModule_UpdatePersonalListAsync_System_String_System_String_System_String_System_String_TraktNet_Enums_TraktAccessScope_System_Nullable_System_Boolean__System_Nullable_System_Boolean__CancellationToken_" data-uid="TraktNet.Modules.TraktUsersModule.UpdatePersonalListAsync(System.String,System.String,System.String,System.String,TraktNet.Enums.TraktAccessScope,System.Nullable{System.Boolean},System.Nullable{System.Boolean},CancellationToken)">
+          <a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_UpdatePersonalListAsync_System_String_System_String_System_String_System_String_TraktNet_Enums_TraktAccessScope_System_Nullable_System_Boolean__System_Nullable_System_Boolean__CancellationToken_">UpdatePersonalListAsync(String, String, String, String, TraktAccessScope, Nullable&lt;Boolean&gt;, Nullable&lt;Boolean&gt;, CancellationToken)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Updates an user&apos;s personal list.
+<p>OAuth authorization required.</p>
+<p>
+See <a href="https://trakt.docs.apiary.io/#reference/users/list/update-personal-list">&quot;Trakt API Doc - Users: List&quot;</a> for more information.
+</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>Copyright &#169; 2016 - 2023 Henrik Fr&#246;hling et al.</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+</html>

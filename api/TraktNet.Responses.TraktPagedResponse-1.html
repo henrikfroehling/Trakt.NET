@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class TraktPagedResponse&lt;TResponseContentType&gt;
+ | Trakt.NET </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class TraktPagedResponse&lt;TResponseContentType&gt;
+ | Trakt.NET ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/discord.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../logo.svg" alt="Trakt.NET" class="logomark">
+              <span class="brand-title">Trakt.NET</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../logo.svg" alt="Trakt.NET" class="logomark">
+                          <span class="brand-title">Trakt.NET</span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  <span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                    <article class="content wrap" id="_content" data-uid="TraktNet.Responses.TraktPagedResponse`1">
+
+
+  <h1 id="TraktNet_Responses_TraktPagedResponse_1" data-uid="TraktNet.Responses.TraktPagedResponse`1" class="text-break">Class TraktPagedResponse&lt;TResponseContentType&gt;
+</h1>
+  <div class="markdown level0 summary"><p>A Trakt paged list response with items of content type <code data-dev-comment-type="typeparamref" class="typeparamref">TResponseContentType</code>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a></div>
+    <div class="level2"><a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<span class="xref">IEnumerable</span>&lt;TResponseContentType&gt;&gt;</div>
+    <div class="level3"><a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;TResponseContentType&gt;</div>
+    <div class="level4"><span class="xref">TraktPagedResponse&lt;TResponseContentType&gt;</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">IEquatable</span>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</div>
+    <div><span class="xref">IEqualityComparer</span>&lt;<a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html">TraktNoContentResponse</a>&gt;</div>
+    <div><span class="xref">IEquatable</span>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<span class="xref">IEnumerable</span>&lt;TResponseContentType&gt;&gt;&gt;</div>
+    <div><span class="xref">IEqualityComparer</span>&lt;<a class="xref" href="TraktNet.Responses.TraktResponse-1.html">TraktResponse</a>&lt;<span class="xref">IEnumerable</span>&lt;TResponseContentType&gt;&gt;&gt;</div>
+    <div><span class="xref">IEquatable</span>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;TResponseContentType&gt;&gt;</div>
+    <div><span class="xref">IEqualityComparer</span>&lt;<a class="xref" href="TraktNet.Responses.TraktListResponse-1.html">TraktListResponse</a>&lt;TResponseContentType&gt;&gt;</div>
+    <div><a class="xref" href="TraktNet.Responses.Interfaces.ITraktPagedResponse-1.html">ITraktPagedResponse</a>&lt;TResponseContentType&gt;</div>
+    <div><a class="xref" href="TraktNet.Responses.Interfaces.ITraktListResponse-1.html">ITraktListResponse</a>&lt;TResponseContentType&gt;</div>
+    <div><a class="xref" href="TraktNet.Responses.Interfaces.ITraktResponse-1.html">ITraktResponse</a>&lt;<span class="xref">IEnumerable</span>&lt;TResponseContentType&gt;&gt;</div>
+    <div><a class="xref" href="TraktNet.Responses.Interfaces.ITraktNoContentResponse.html">ITraktNoContentResponse</a></div>
+    <div><span class="xref">IEnumerable</span>&lt;TResponseContentType&gt;</div>
+    <div><a class="xref" href="TraktNet.Responses.Interfaces.ITraktPagedResponseHeaders.html">ITraktPagedResponseHeaders</a></div>
+    <div><a class="xref" href="TraktNet.Responses.Interfaces.ITraktResponseHeaders.html">ITraktResponseHeaders</a></div>
+    <div><span class="xref">IEquatable</span>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;TResponseContentType&gt;&gt;</div>
+    <div><span class="xref">IEqualityComparer</span>&lt;<a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse</a>&lt;TResponseContentType&gt;&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktListResponse-1.html#TraktNet_Responses_TraktListResponse_1_Equals_TraktNet_Responses_TraktListResponse__0__">TraktListResponse&lt;TResponseContentType&gt;.Equals(TraktListResponse&lt;TResponseContentType&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktListResponse-1.html#TraktNet_Responses_TraktListResponse_1_Equals_TraktNet_Responses_TraktListResponse__0__TraktNet_Responses_TraktListResponse__0__">TraktListResponse&lt;TResponseContentType&gt;.Equals(TraktListResponse&lt;TResponseContentType&gt;, TraktListResponse&lt;TResponseContentType&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktListResponse-1.html#TraktNet_Responses_TraktListResponse_1_GetEnumerator">TraktListResponse&lt;TResponseContentType&gt;.GetEnumerator()</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktListResponse-1.html#TraktNet_Responses_TraktListResponse_1_GetHashCode_TraktNet_Responses_TraktListResponse__0__">TraktListResponse&lt;TResponseContentType&gt;.GetHashCode(TraktListResponse&lt;TResponseContentType&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_HasValue">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.HasValue</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_Value">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.Value</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_SortBy">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.SortBy</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_SortHow">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.SortHow</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_AppliedSortBy">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.AppliedSortBy</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_AppliedSortHow">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.AppliedSortHow</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_StartDate">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.StartDate</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_EndDate">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.EndDate</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_TrendingUserCount">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.TrendingUserCount</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_Page">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.Page</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_Limit">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.Limit</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_IsPrivateUser">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.IsPrivateUser</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_ItemId">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.ItemId</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_ItemType">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.ItemType</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_RateLimit">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.RateLimit</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_RetryAfter">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.RetryAfter</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_UpgradeURL">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.UpgradeURL</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_IsVIPUser">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.IsVIPUser</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_AccountLimit">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.AccountLimit</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_Equals_TraktNet_Responses_TraktResponse__0__">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.Equals(TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_Equals_TraktNet_Responses_TraktResponse__0__TraktNet_Responses_TraktResponse__0__">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.Equals(TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;, TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktResponse-1.html#TraktNet_Responses_TraktResponse_1_GetHashCode_TraktNet_Responses_TraktResponse__0__">TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;.GetHashCode(TraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html#TraktNet_Responses_TraktNoContentResponse_IsSuccess">TraktNoContentResponse.IsSuccess</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html#TraktNet_Responses_TraktNoContentResponse_Exception">TraktNoContentResponse.Exception</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html#TraktNet_Responses_TraktNoContentResponse_Equals_TraktNet_Responses_TraktNoContentResponse_">TraktNoContentResponse.Equals(TraktNoContentResponse)</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html#TraktNet_Responses_TraktNoContentResponse_Equals_TraktNet_Responses_TraktNoContentResponse_TraktNet_Responses_TraktNoContentResponse_">TraktNoContentResponse.Equals(TraktNoContentResponse, TraktNoContentResponse)</a>
+    </div>
+    <div>
+      <a class="xref" href="TraktNet.Responses.TraktNoContentResponse.html#TraktNet_Responses_TraktNoContentResponse_GetHashCode_TraktNet_Responses_TraktNoContentResponse_">TraktNoContentResponse.GetHashCode(TraktNoContentResponse)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Responses.html">TraktNet.Responses</a></h6>
+  <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
+  <h5 id="TraktNet_Responses_TraktPagedResponse_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TraktPagedResponse&lt;TResponseContentType&gt; : TraktListResponse&lt;TResponseContentType&gt;, ITraktPagedResponse&lt;TResponseContentType&gt;, ITraktListResponse&lt;TResponseContentType&gt;, ITraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;, ITraktNoContentResponse, ITraktPagedResponseHeaders, ITraktResponseHeaders</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TResponseContentType</span></td>
+        <td><p>The content type of the list items.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="TraktNet_Responses_TraktPagedResponse_1_ItemCount" data-uid="TraktNet.Responses.TraktPagedResponse`1.ItemCount">
+          <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html#TraktNet_Responses_TraktPagedResponse_1_ItemCount">ItemCount</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the item count per page for this response.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Responses_TraktPagedResponse_1_PageCount" data-uid="TraktNet.Responses.TraktPagedResponse`1.PageCount">
+          <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html#TraktNet_Responses_TraktPagedResponse_1_PageCount">PageCount</a>
+        </td>
+        <td class="markdown level1 summary"><p>Gets the page count for this response.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="TraktNet_Responses_TraktPagedResponse_1_Equals_TraktNet_Responses_TraktPagedResponse__0__TraktNet_Responses_TraktPagedResponse__0__" data-uid="TraktNet.Responses.TraktPagedResponse`1.Equals(TraktNet.Responses.TraktPagedResponse{`0},TraktNet.Responses.TraktPagedResponse{`0})">
+          <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html#TraktNet_Responses_TraktPagedResponse_1_Equals_TraktNet_Responses_TraktPagedResponse__0__TraktNet_Responses_TraktPagedResponse__0__">Equals(TraktPagedResponse&lt;TResponseContentType&gt;, TraktPagedResponse&lt;TResponseContentType&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>A Trakt paged list response with items of content type <code data-dev-comment-type="typeparamref" class="typeparamref">TResponseContentType</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Responses_TraktPagedResponse_1_Equals_TraktNet_Responses_TraktPagedResponse__0__" data-uid="TraktNet.Responses.TraktPagedResponse`1.Equals(TraktNet.Responses.TraktPagedResponse{`0})">
+          <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html#TraktNet_Responses_TraktPagedResponse_1_Equals_TraktNet_Responses_TraktPagedResponse__0__">Equals(TraktPagedResponse&lt;TResponseContentType&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Compares this instance with another <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> instance.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Responses_TraktPagedResponse_1_GetHashCode_TraktNet_Responses_TraktPagedResponse__0__" data-uid="TraktNet.Responses.TraktPagedResponse`1.GetHashCode(TraktNet.Responses.TraktPagedResponse{`0})">
+          <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html#TraktNet_Responses_TraktPagedResponse_1_GetHashCode_TraktNet_Responses_TraktPagedResponse__0__">GetHashCode(TraktPagedResponse&lt;TResponseContentType&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>A Trakt paged list response with items of content type <code data-dev-comment-type="typeparamref" class="typeparamref">TResponseContentType</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+</h3>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="TraktNet_Responses_TraktPagedResponse_1_op_Explicit_TraktNet_Responses_TraktPagedResponse__0___List__0_" data-uid="TraktNet.Responses.TraktPagedResponse`1.op_Explicit(TraktNet.Responses.TraktPagedResponse{`0})~List{`0}">
+          <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html#TraktNet_Responses_TraktPagedResponse_1_op_Explicit_TraktNet_Responses_TraktPagedResponse__0___List__0_">Explicit(TraktPagedResponse&lt;TResponseContentType&gt; to List&lt;TResponseContentType&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Enables implicit conversion to <see cref="!:List&lt;TResponseContentType>"></see> for this type.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Responses_TraktPagedResponse_1_op_Implicit_List__0___TraktNet_Responses_TraktPagedResponse__0_" data-uid="TraktNet.Responses.TraktPagedResponse`1.op_Implicit(List{`0})~TraktNet.Responses.TraktPagedResponse{`0}">
+          <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html#TraktNet_Responses_TraktPagedResponse_1_op_Implicit_List__0___TraktNet_Responses_TraktPagedResponse__0_">Implicit(List&lt;TResponseContentType&gt; to TraktPagedResponse&lt;TResponseContentType&gt;)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Enables implicit conversion to <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html">TraktPagedResponse&lt;TResponseContentType&gt;</a> for this type.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="TraktNet_Responses_TraktPagedResponse_1_op_Implicit_TraktNet_Responses_TraktPagedResponse__0___System_Boolean" data-uid="TraktNet.Responses.TraktPagedResponse`1.op_Implicit(TraktNet.Responses.TraktPagedResponse{`0})~System.Boolean">
+          <a class="xref" href="TraktNet.Responses.TraktPagedResponse-1.html#TraktNet_Responses_TraktPagedResponse_1_op_Implicit_TraktNet_Responses_TraktPagedResponse__0___System_Boolean">Implicit(TraktPagedResponse&lt;TResponseContentType&gt; to Boolean)</a>
+        </td>
+        <td class="markdown level1 summary"><p>Enables implicit conversion to bool for this type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>Copyright &#169; 2016 - 2023 Henrik Fr&#246;hling et al.</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>    </body>
+</html>
