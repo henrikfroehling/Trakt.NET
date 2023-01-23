@@ -7,7 +7,7 @@ This is an overview of all namespaces in the **Trakt.NET** library.
 | [`TraktNet`](xref:TraktNet) | Global namespace containing the [`TraktClient`](xref:TraktNet.TraktClient) .|
 | [`TraktNet.Enums`](xref:TraktNet.Enums) | Contains all enumerations.|
 | [`TraktNet.Exceptions`](xref:TraktNet.Exceptions) | Contains all exceptions.|
-| [`TraktNet.Extensions`](xref:TraktNet.Extensions) | Contains extension methods for `DateTime` and `string`.|
+| [`TraktNet.Extensions`](xref:TraktNet.Extensions) | Contains extension methods for [`DateTime`](https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=net-7.0) and [`string`](https://learn.microsoft.com/en-us/dotnet/api/system.string?view=net-7.0).|
 | [`TraktNet.Modules`](xref:TraktNet.Modules) | Contains all library modules for accessing the Trakt API endpoints.|
 | [`TraktNet.Objects.Authentication`](xref:TraktNet.Objects.Authentication) | Contains all classes, which represent JSON objects, that are mainly used by for authentication and authorization.|
 | [`TraktNet.Objects.Basic`](xref:TraktNet.Objects.Basic) | Contains all classes, which represent JSON objects, that are commonly used.|

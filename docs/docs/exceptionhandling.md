@@ -20,7 +20,7 @@ catch (TraktException ex)
 }
 ```
 
-Other exceptions, you need to be aware of, are `ArgumentNullException`, `ArgumentException` and occasionally `ArgumentOutOfRangeException`. As the names suggest, they are only thrown, if you pass invalid arguments to the library methods.
+Other exceptions, you need to be aware of, are [`ArgumentNullException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception?view=net-7.0), [`ArgumentException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception?view=net-7.0) and occasionally [`ArgumentOutOfRangeException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception?view=net-7.0). As the names suggest, they are only thrown, if you pass invalid arguments to the library methods.
 
 _**Note: Trakt.NET checks all input parameters before any actual Trakt API request is made.**_
 
