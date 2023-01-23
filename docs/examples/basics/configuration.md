@@ -65,7 +65,7 @@ Console.WriteLine($"API Version: {client.Configuration.ApiVersion}");
 
 It is possible to use the staging environment for testing purposes.
 
-With `client.Configuration.UseSandboxEnvironment` we can enable this environment, which changes the API's base URL.
+With [`client.Configuration.UseSandboxEnvironment`](xref:TraktNet.Core.TraktConfiguration.UseSandboxEnvironment) we can enable this environment, which changes the API's base URL.
 
 ```csharp
 Console.WriteLine($"API Base Url (UseStagingUrl == false): {client.Configuration.BaseUrl}");

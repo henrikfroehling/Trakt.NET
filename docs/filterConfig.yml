@@ -15,8 +15,8 @@ apiRules:
     uidRegex: ^TraktNet\.Requests\.Parameters
     type: Type
 - exclude:
-    uidRegex: ^TraktNet\.Core
+    uidRegex: ^TraktNet\.Core\.Constants$
     type: Type
-- include:
-    uidRegex: ^TraktNet\.Core\.TraktConfiguration$
+- exclude:
+    uidRegex: ^TraktNet\.Core\.DebugAsserter$
     type: Type

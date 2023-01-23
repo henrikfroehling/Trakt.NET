@@ -10,7 +10,7 @@ Trakt.NET has a response system with four different response types.
 ### Response Properties
 
 - `bool IsSuccess`, indicating whether a request was successful
-- `Exception Exception`, containing the exception which was thrown on failure (only assigned, if `client.Configuration.ThrowResponseExceptions` is set to `false`
+- `Exception Exception`, containing the exception which was thrown on failure (only assigned, if [`client.Configuration.ThrowResponseExceptions`](xref:TraktNet.Core.TraktConfiguration.ThrowResponseExceptions) is set to `false`
 
 [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1), [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) and [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1) also have the following properties:
 

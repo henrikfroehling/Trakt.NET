@@ -64,7 +64,7 @@ catch (TraktException ex)
 }
 ```
 
-The following lines show how to get full information about a show. The only difference to the previous example is the `new TraktExtendedInfo().SetFull()` in line 10.
+The following lines show how to get full information about a show. The only difference to the previous example is the [`new TraktExtendedInfo().SetFull()`](xref:TraktNet.Parameters.TraktExtendedInfo.SetFull) in line 10.
 
 ```csharp
 using TraktNet.Parameters;
