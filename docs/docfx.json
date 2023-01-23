@@ -50,7 +50,7 @@
     "template": [
       "default",
       "templates/singulinkfx",
-      "plugins/memberpage",
+      "plugins/memberpage/memberpage.2.59.4/content",
       "plugins/memberpage-extras"
     ],
     "postProcessors": [ "ExtractSearchIndex" ],
