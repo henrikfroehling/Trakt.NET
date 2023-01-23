@@ -1,0 +1,22 @@
+apiRules:
+- exclude:
+    uidRegex: ^TraktNet\.Objects\.Json
+    type: Type
+- exclude:
+    uidRegex: ^TraktNet\.Requests
+    type: Type
+- include:
+    uidRegex: ^TraktNet\.Requests\.Handler\.IHttpClientProvider$
+    type: Type
+- include:
+    uidRegex: ^TraktNet\.Requests\.Handler\.HttpClientProvider$
+    type: Type
+- include:
+    uidRegex: ^TraktNet\.Requests\.Parameters
+    type: Type
+- exclude:
+    uidRegex: ^TraktNet\.Core\.Constants$
+    type: Type
+- exclude:
+    uidRegex: ^TraktNet\.Core\.DebugAsserter$
+    type: Type
