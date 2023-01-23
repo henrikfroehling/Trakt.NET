@@ -41,18 +41,6 @@
 
 ---
 
-### Discussions and Issues
-Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
-
-Or do you want to report a bug? [Create an issue](https://github.com/henrikfroehling/Trakt.NET/issues/new/choose)
-
-### Contributions are welcome
-Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
-
-### [Documentation](https://github.com/henrikfroehling/Trakt.NET/tree/develop/docs/Library_API_Documentation#library-api-documentation)
-
----
-
 ### Installation
 
 Install the latest release by running the following NuGet command
@@ -66,14 +54,16 @@ or with the [NuGet Package Management](https://docs.nuget.org/consume/package-ma
 Each release will also be published in [Releases](https://github.com/henrikfroehling/Trakt.NET/releases).
 
 ---
-### Packages
 
-You can also get the latest built packages here: https://github.com/henrikfroehling/Trakt.NET/packages
+### Discussions and Issues
+Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
 
-There are three types of packages:
-- with suffix `release.preview.{latest-build-number}`: Latest package preview of the next upcoming planned version.
-- with suffix `developer.preview.{latest-build-number}`: Latest package with the latest library changes. These might not be stable.
-- without suffix: Actual released version packages.
+Or do you want to report a bug? [Create an issue](https://github.com/henrikfroehling/Trakt.NET/issues/new/choose)
+
+### Contributions are welcome
+Do want to contribute? [See how you can contribute](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
+
+### [Documentation](https://github.com/henrikfroehling/Trakt.NET/tree/develop/docs/Library_API_Documentation#library-api-documentation)
 
 ---
 ### Examples
