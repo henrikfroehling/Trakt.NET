@@ -1,0 +1,4 @@
+- add links to .NET library symbols
+- fix missing API documentation for TraktConfiguration
+- fix missing detailed API documentation for methods
+- rename ".Build()" to "Builder"

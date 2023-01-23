@@ -14,3 +14,5 @@ var result = await task;
 
 await client.[ModuleName].[MethodName]Async([arguments]);
 ```
+
+[More information on async programming in C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/).

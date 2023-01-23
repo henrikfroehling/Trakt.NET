@@ -22,7 +22,7 @@ But you can enforce the library to call these requests with OAuth authorization 
 client.Configuration.ForceAuthorization = true;
 ```
 
-By default, the library throws exceptions when a request fails. See [Exception Handling section](https://github.com/henrikfroehling/Trakt.NET/wiki/07-Exception-Handling) for more information.
+By default, the library throws exceptions when a request fails. See [Exception Handling section](exceptionhandling.md) for more information.
 
 You can toggle this behaviour with the following setting:
 

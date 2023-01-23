@@ -2,20 +2,20 @@
 
 Trakt.NET has a response system with four different response types.
 
-- `TraktNoContentResponse` for Trakt responses without content (HTTP Code 204)
-- `TraktResponse<TContentType>` for Trakt responses that return only a single object, where `TContentType` is the type of that object
-- `TraktListResponse<TContentType>` for Trakt responses that return a list of objects, where `TContentType` is the type of a list item object
-- `TraktPagedResponse<TContentType>` for Trakt responses that return a list and pagination headers, where `TContentType` is the type of a list item object
+- [`TraktNoContentResponse`](xref:TraktNet.Responses.TraktNoContentResponse) for Trakt responses without content (HTTP Code 204)
+- [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1) for Trakt responses that return only a single object, where `TContentType` is the type of that object
+- [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) for Trakt responses that return a list of objects, where `TContentType` is the type of a list item object
+- [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1) for Trakt responses that return a list and pagination headers, where `TContentType` is the type of a list item object
 
 ### Response Properties
 
 - `bool IsSuccess`, indicating whether a request was successful
 - `Exception Exception`, containing the exception which was thrown on failure (only assigned, if `client.Configuration.ThrowResponseExceptions` is set to `false`
 
-`TraktResponse<TContentType>`, `TraktListResponse<TContentType>` and `TraktPagedResponse<TContentType>` also have the following properties:
+[`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1), [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) and [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1) also have the following properties:
 
 - `bool HasValue`, indicating whether a response contains a value (single object or list of objects)
-- `TContentType Value`, the actual response value (single object for `TraktResponse` and `IEnumerable<TContentType>` for `TraktListResponse` and `TraktPagedResponse`)
+- `TContentType Value`, the actual response value (single object for [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1) and `IEnumerable<TContentType>` for [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) and [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1))
 
 ### Exceptions
 
@@ -51,7 +51,7 @@ else
 
 Every response type (see above) contains response headers returned by the Trakt API.
 
-Following headers are available in `TraktResponse<TContentType>` and `TraktListResponse<TContentType>`:
+Following headers are available in [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1) and [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1):
 
 - `string SortBy`
 - `string SortHow`
@@ -66,12 +66,12 @@ Following headers are available in `TraktResponse<TContentType>` and `TraktListR
 - `int? ItemId`
 - `string ItemType`
 
-Following headers are available in `TraktPagedResponse<TContentType>` additionally:
+Following headers are available in [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1)additionally:
 
 - `int? PageCount`
 - `int? ItemCount`
 
-`TraktNoContentResponse` doesn't contain any headers.
+[`TraktNoContentResponse`](xref:TraktNet.Responses.TraktNoContentResponse) doesn't contain any headers.
 
 ### Example Usage
 

@@ -2,7 +2,7 @@
 
 [![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.3.0-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.3.0)
 
-[Getting Started](docs/quickstart.md) - [Examples](examples/index.md) - [API Documentation](xref:TraktNet) - [GitHub Repository](https://github.com/henrikfroehling/Trakt.NET) - [Issues](https://github.com/henrikfroehling/Trakt.NET/issues/new/choose) - [Discussions](https://github.com/henrikfroehling/Trakt.NET/discussions)
+[Documentation](docs/index.md) - [Examples](examples/index.md) - [API Documentation](xref:TraktNet) - [GitHub Repository](https://github.com/henrikfroehling/Trakt.NET) - [Issues](https://github.com/henrikfroehling/Trakt.NET/issues/new/choose) - [Discussions](https://github.com/henrikfroehling/Trakt.NET/discussions)
 
 #### Overview
 
