@@ -35,7 +35,7 @@ jobs:
         run: dotnet build ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} /m /p:BuildInParallel=true
 
       - name: Build documentation
-        run: cd docs && docfx
+        run: cd docs && docfx metadata && docfx build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
