@@ -105,6 +105,11 @@
     <div class="level1"><a class="xref" href="TraktNet.Modules.TraktMultipleQueryParams-1.html">TraktMultipleQueryParams</a>&lt;<a class="xref" href="TraktNet.Modules.TraktObjectsQueryParams.html">TraktObjectsQueryParams</a>&gt;</div>
     <div class="level2"><span class="xref">TraktMultipleObjectsQueryParams</span></div>
   </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="TraktNet.Modules.TraktObjectsQueryParams.html">TraktObjectsQueryParams</a>&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+  </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
@@ -119,12 +124,36 @@
     <div>
       <a class="xref" href="TraktNet.Modules.TraktMultipleQueryParams-1.html#TraktNet_Modules_TraktMultipleQueryParams_1_GetEnumerator">TraktMultipleQueryParams&lt;TraktObjectsQueryParams&gt;.GetEnumerator()</a>
     </div>
+    <div>
+      <a class="xref" href="TraktNet.Modules.TraktMultipleQueryParams-1.html#TraktNet_Modules_TraktMultipleQueryParams_1_System_Collections_IEnumerable_GetEnumerator">TraktMultipleQueryParams&lt;TraktObjectsQueryParams&gt;.IEnumerable.GetEnumerator()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Modules.html">TraktNet.Modules</a></h6>
   <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
   <h5 id="TraktNet_Modules_TraktMultipleObjectsQueryParams_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TraktMultipleObjectsQueryParams : TraktMultipleQueryParams&lt;TraktObjectsQueryParams&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class TraktMultipleObjectsQueryParams : TraktMultipleQueryParams&lt;TraktObjectsQueryParams&gt;, IEnumerable&lt;TraktObjectsQueryParams&gt;, IEnumerable</code></pre>
   </div>
   <h5 id="TraktNet_Modules_TraktMultipleObjectsQueryParams_examples"><strong>Examples</strong></h5>
   <p>This example shows an instantiation of this class.</p>

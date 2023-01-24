@@ -164,12 +164,15 @@
     <div>
       <a class="xref" href="TraktNet.Responses.Interfaces.ITraktResponseHeaders.html#TraktNet_Responses_Interfaces_ITraktResponseHeaders_AccountLimit">ITraktResponseHeaders.AccountLimit</a>
     </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator#system-collections-generic-ienumerable-1-getenumerator">IEnumerable&lt;TResponseContentType&gt;.GetEnumerator()</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Responses.Interfaces.html">TraktNet.Responses.Interfaces</a></h6>
   <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
   <h5 id="TraktNet_Responses_Interfaces_ITraktListResponse_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface ITraktListResponse&lt;out TResponseContentType&gt; : ITraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;, ITraktNoContentResponse, ITraktResponseHeaders</code></pre>
+    <pre><code class="lang-csharp hljs">public interface ITraktListResponse&lt;out TResponseContentType&gt; : ITraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;, ITraktNoContentResponse, ITraktResponseHeaders, IEnumerable&lt;TResponseContentType&gt;, IEnumerable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

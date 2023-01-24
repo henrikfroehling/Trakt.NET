@@ -104,36 +104,98 @@ the request body, if it was a post or put request and the actual response conten
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">TraktException</span></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktAuthenticationDeviceException.html">TraktAuthenticationDeviceException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktAuthenticationException.html">TraktAuthenticationException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktAuthenticationOAuthException.html">TraktAuthenticationOAuthException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktAuthorizationException.html">TraktAuthorizationException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktBadGatewayException.html">TraktBadGatewayException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktBadRequestException.html">TraktBadRequestException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktCheckinException.html">TraktCheckinException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktConflictException.html">TraktConflictException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktDeniedException.html">TraktDeniedException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktExpiredException.html">TraktExpiredException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktFailedVIPValidationException.html">TraktFailedVIPValidationException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktForbiddenException.html">TraktForbiddenException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktLockedUserAccountException.html">TraktLockedUserAccountException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktMethodNotFoundException.html">TraktMethodNotFoundException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktNotFoundException.html">TraktNotFoundException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktObjectNotFoundException.html">TraktObjectNotFoundException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktPreconditionFailedException.html">TraktPreconditionFailedException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktRateLimitException.html">TraktRateLimitException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktServerException.html">TraktServerException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktServerUnavailableException.html">TraktServerUnavailableException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktUserAccountLimitException.html">TraktUserAccountLimitException</a></div>
-      <div class="level2"><a class="xref" href="TraktNet.Exceptions.TraktValidationException.html">TraktValidationException</a></div>
+    <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></div>
+    <div class="level2"><span class="xref">TraktException</span></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktAuthenticationDeviceException.html">TraktAuthenticationDeviceException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktAuthenticationException.html">TraktAuthenticationException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktAuthenticationOAuthException.html">TraktAuthenticationOAuthException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktAuthorizationException.html">TraktAuthorizationException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktBadGatewayException.html">TraktBadGatewayException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktBadRequestException.html">TraktBadRequestException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktCheckinException.html">TraktCheckinException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktConflictException.html">TraktConflictException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktDeniedException.html">TraktDeniedException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktExpiredException.html">TraktExpiredException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktFailedVIPValidationException.html">TraktFailedVIPValidationException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktForbiddenException.html">TraktForbiddenException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktLockedUserAccountException.html">TraktLockedUserAccountException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktMethodNotFoundException.html">TraktMethodNotFoundException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktNotFoundException.html">TraktNotFoundException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktObjectNotFoundException.html">TraktObjectNotFoundException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktPostValidationException.html">TraktPostValidationException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktPreconditionFailedException.html">TraktPreconditionFailedException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktRateLimitException.html">TraktRateLimitException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktServerException.html">TraktServerException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktServerUnavailableException.html">TraktServerUnavailableException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktUserAccountLimitException.html">TraktUserAccountLimitException</a></div>
+      <div class="level3"><a class="xref" href="TraktNet.Exceptions.TraktValidationException.html">TraktValidationException</a></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.runtime.serialization.iserializable">ISerializable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.getbaseexception#system-exception-getbaseexception">Exception.GetBaseException()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.getobjectdata#system-exception-getobjectdata(system-runtime-serialization-serializationinfo-system-runtime-serialization-streamingcontext)">Exception.GetObjectData(SerializationInfo, StreamingContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.gettype#system-exception-gettype">Exception.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.tostring#system-exception-tostring">Exception.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.data#system-exception-data">Exception.Data</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.helplink#system-exception-helplink">Exception.HelpLink</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.hresult#system-exception-hresult">Exception.HResult</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.innerexception#system-exception-innerexception">Exception.InnerException</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.message#system-exception-message">Exception.Message</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.source#system-exception-source">Exception.Source</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.stacktrace#system-exception-stacktrace">Exception.StackTrace</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.targetsite#system-exception-targetsite">Exception.TargetSite</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception.serializeobjectstate">Exception.SerializeObjectState</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Exceptions.html">TraktNet.Exceptions</a></h6>
   <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
   <h5 id="TraktNet_Exceptions_TraktException_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TraktException : Exception</code></pre>
+    <pre><code class="lang-csharp hljs">public class TraktException : Exception, ISerializable</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -146,8 +208,8 @@ the request body, if it was a post or put request and the actual response conten
     </thead>
     <tbody>
       <tr>
-        <td id="TraktNet_Exceptions_TraktException__ctor_System_String_Exception_" data-uid="TraktNet.Exceptions.TraktException.#ctor(System.String,Exception)">
-          <a class="xref" href="TraktNet.Exceptions.TraktException.html#TraktNet_Exceptions_TraktException__ctor_System_String_Exception_">TraktException(String, Exception)</a>
+        <td id="TraktNet_Exceptions_TraktException__ctor_System_String_System_Exception_" data-uid="TraktNet.Exceptions.TraktException.#ctor(System.String,System.Exception)">
+          <a class="xref" href="TraktNet.Exceptions.TraktException.html#TraktNet_Exceptions_TraktException__ctor_System_String_System_Exception_">TraktException(String, Exception)</a>
         </td>
         <td class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="TraktNet.Exceptions.TraktException.html">TraktException</a> class with a custom message.</p>
 </td>

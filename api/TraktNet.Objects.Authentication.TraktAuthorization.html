@@ -107,13 +107,34 @@
   <div class="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="TraktNet.Objects.Authentication.ITraktAuthorization.html">ITraktAuthorization</a></div>
-    <div><span class="xref">IEquatable</span>&lt;<a class="xref" href="TraktNet.Objects.Authentication.ITraktAuthorization.html">ITraktAuthorization</a>&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="TraktNet.Objects.Authentication.ITraktAuthorization.html">ITraktAuthorization</a>&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
+    </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Objects.Authentication.html">TraktNet.Objects.Authentication</a></h6>
   <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
   <h5 id="TraktNet_Objects_Authentication_TraktAuthorization_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class TraktAuthorization : object, ITraktAuthorization</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class TraktAuthorization : ITraktAuthorization, IEquatable&lt;ITraktAuthorization&gt;</code></pre>
   </div>
   <h3 id="properties">Properties
 </h3>
@@ -224,8 +245,8 @@ Returns false, if <a class="xref" href="TraktNet.Objects.Authentication.TraktAut
     </thead>
     <tbody>
       <tr>
-        <td id="TraktNet_Objects_Authentication_TraktAuthorization_CreateWith_DateTime_System_String_System_String_" data-uid="TraktNet.Objects.Authentication.TraktAuthorization.CreateWith(DateTime,System.String,System.String)">
-          <a class="xref" href="TraktNet.Objects.Authentication.TraktAuthorization.html#TraktNet_Objects_Authentication_TraktAuthorization_CreateWith_DateTime_System_String_System_String_">CreateWith(DateTime, String, String)</a>
+        <td id="TraktNet_Objects_Authentication_TraktAuthorization_CreateWith_System_DateTime_System_String_System_String_" data-uid="TraktNet.Objects.Authentication.TraktAuthorization.CreateWith(System.DateTime,System.String,System.String)">
+          <a class="xref" href="TraktNet.Objects.Authentication.TraktAuthorization.html#TraktNet_Objects_Authentication_TraktAuthorization_CreateWith_System_DateTime_System_String_System_String_">CreateWith(DateTime, String, String)</a>
         </td>
         <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.Objects.Authentication.ITraktAuthorization.html">ITraktAuthorization</a> instance with the given values.
 <a class="xref" href="TraktNet.Objects.Authentication.TraktAuthorization.html#TraktNet_Objects_Authentication_TraktAuthorization_ExpiresInSeconds">ExpiresInSeconds</a> of the created <a class="xref" href="TraktNet.Objects.Authentication.ITraktAuthorization.html">ITraktAuthorization</a> instance will have the default
@@ -233,8 +254,8 @@ value of 3600 * 24 * 90 seconds, equal to 90 days.</p>
 </td>
       </tr>
       <tr>
-        <td id="TraktNet_Objects_Authentication_TraktAuthorization_CreateWith_DateTime_System_UInt32_System_String_System_String_" data-uid="TraktNet.Objects.Authentication.TraktAuthorization.CreateWith(DateTime,System.UInt32,System.String,System.String)">
-          <a class="xref" href="TraktNet.Objects.Authentication.TraktAuthorization.html#TraktNet_Objects_Authentication_TraktAuthorization_CreateWith_DateTime_System_UInt32_System_String_System_String_">CreateWith(DateTime, UInt32, String, String)</a>
+        <td id="TraktNet_Objects_Authentication_TraktAuthorization_CreateWith_System_DateTime_System_UInt32_System_String_System_String_" data-uid="TraktNet.Objects.Authentication.TraktAuthorization.CreateWith(System.DateTime,System.UInt32,System.String,System.String)">
+          <a class="xref" href="TraktNet.Objects.Authentication.TraktAuthorization.html#TraktNet_Objects_Authentication_TraktAuthorization_CreateWith_System_DateTime_System_UInt32_System_String_System_String_">CreateWith(DateTime, UInt32, String, String)</a>
         </td>
         <td class="markdown level1 summary"><p>Creates a new <a class="xref" href="TraktNet.Objects.Authentication.ITraktAuthorization.html">ITraktAuthorization</a> instance with the given values.</p>
 </td>

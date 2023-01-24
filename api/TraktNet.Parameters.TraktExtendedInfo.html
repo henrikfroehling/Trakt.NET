@@ -107,11 +107,32 @@ This class has an fluent interface.
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
     <div class="level1"><span class="xref">TraktExtendedInfo</span></div>
   </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="TraktNet.Parameters.html">TraktNet.Parameters</a></h6>
   <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
   <h5 id="TraktNet_Parameters_TraktExtendedInfo_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TraktExtendedInfo : object</code></pre>
+    <pre><code class="lang-csharp hljs">public class TraktExtendedInfo</code></pre>
   </div>
   <h3 id="constructors">Constructors
 </h3>
@@ -149,7 +170,7 @@ All flags are disabled by default.</p>
         </td>
         <td class="markdown level1 summary"><p>Gets or sets, whether episodes information should be retrieved.
 <p>
-Only supported by <a class="xref" href="TraktNet.Modules.TraktSeasonsModule.html#TraktNet_Modules_TraktSeasonsModule_GetAllSeasonsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_String_CancellationToken_">GetAllSeasonsAsync(String, TraktExtendedInfo, String, CancellationToken)</a>.
+Only supported by <a class="xref" href="TraktNet.Modules.TraktSeasonsModule.html#TraktNet_Modules_TraktSeasonsModule_GetAllSeasonsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_String_System_Threading_CancellationToken_">GetAllSeasonsAsync(String, TraktExtendedInfo, String, CancellationToken)</a>.
 Will be ignored otherwise.
 </p>
 <p>See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetEpisodes">SetEpisodes()</a> and <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_ResetEpisodes">ResetEpisodes()</a>.</p>
@@ -184,10 +205,10 @@ Will be ignored otherwise.
         </td>
         <td class="markdown level1 summary"><p>Gets or sets, whether metadata information should be retrieved.
 <p>
-Only supported by <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetCollectionMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetCollectionMoviesAsync(TraktExtendedInfo, CancellationToken)</a>,
-<a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetCollectionShowsAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetCollectionShowsAsync(TraktExtendedInfo, CancellationToken)</a>,
-<a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetCollectionMoviesAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetCollectionMoviesAsync(String, TraktExtendedInfo, CancellationToken)</a> and
-<a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetCollectionShowsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetCollectionShowsAsync(String, TraktExtendedInfo, CancellationToken)</a>.
+Only supported by <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetCollectionMoviesAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetCollectionMoviesAsync(TraktExtendedInfo, CancellationToken)</a>,
+<a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetCollectionShowsAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetCollectionShowsAsync(TraktExtendedInfo, CancellationToken)</a>,
+<a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetCollectionMoviesAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetCollectionMoviesAsync(String, TraktExtendedInfo, CancellationToken)</a> and
+<a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetCollectionShowsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetCollectionShowsAsync(String, TraktExtendedInfo, CancellationToken)</a>.
 Will be ignored otherwise.
 </p>
 <p>See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetMetadata">SetMetadata()</a> and <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_ResetMetadata">ResetMetadata()</a>.</p>
@@ -199,8 +220,8 @@ Will be ignored otherwise.
         </td>
         <td class="markdown level1 summary"><p>Gets or sets, whether no seasons information should be retrieved.
 <p>
-Only supported by <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchedShowsAsync_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetWatchedShowsAsync(TraktExtendedInfo, CancellationToken)</a> and
-<a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetWatchedShowsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_CancellationToken_">GetWatchedShowsAsync(String, TraktExtendedInfo, CancellationToken)</a>.
+Only supported by <a class="xref" href="TraktNet.Modules.TraktSyncModule.html#TraktNet_Modules_TraktSyncModule_GetWatchedShowsAsync_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetWatchedShowsAsync(TraktExtendedInfo, CancellationToken)</a> and
+<a class="xref" href="TraktNet.Modules.TraktUsersModule.html#TraktNet_Modules_TraktUsersModule_GetWatchedShowsAsync_System_String_TraktNet_Parameters_TraktExtendedInfo_System_Threading_CancellationToken_">GetWatchedShowsAsync(String, TraktExtendedInfo, CancellationToken)</a>.
 Will be ignored otherwise.
 </p>
 <p>See also <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetNoSeasons">SetNoSeasons()</a> and <a class="xref" href="TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_ResetNoSeasons">ResetNoSeasons()</a>.</p>

@@ -114,6 +114,9 @@
       <a class="xref" href="TraktNet.Responses.Interfaces.ITraktNoContentResponse.html#TraktNet_Responses_Interfaces_ITraktNoContentResponse_Exception">ITraktNoContentResponse.Exception</a>
     </div>
     <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator#system-collections-generic-ienumerable-1-getenumerator">IEnumerable&lt;TResponseContentType&gt;.GetEnumerator()</a>
+    </div>
+    <div>
       <a class="xref" href="TraktNet.Responses.Interfaces.ITraktPagedResponseHeaders.html#TraktNet_Responses_Interfaces_ITraktPagedResponseHeaders_PageCount">ITraktPagedResponseHeaders.PageCount</a>
     </div>
     <div>
@@ -175,7 +178,7 @@
   <h6><strong>Assembly</strong>: Trakt.NET.dll</h6>
   <h5 id="TraktNet_Responses_Interfaces_ITraktPagedResponse_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface ITraktPagedResponse&lt;out TResponseContentType&gt; : ITraktListResponse&lt;TResponseContentType&gt;, ITraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;, ITraktNoContentResponse, ITraktPagedResponseHeaders, ITraktResponseHeaders</code></pre>
+    <pre><code class="lang-csharp hljs">public interface ITraktPagedResponse&lt;out TResponseContentType&gt; : ITraktListResponse&lt;TResponseContentType&gt;, ITraktResponse&lt;IEnumerable&lt;TResponseContentType&gt;&gt;, ITraktNoContentResponse, IEnumerable&lt;TResponseContentType&gt;, IEnumerable, ITraktPagedResponseHeaders, ITraktResponseHeaders</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
