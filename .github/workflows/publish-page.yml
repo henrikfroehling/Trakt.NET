@@ -8,7 +8,7 @@ on:
 
 env:
   BUILD_TYPE: Release
-  PROJECT_NAME: 'Source\Lib\Trakt.NET\Trakt.NET.csproj'
+  PROJECT_NAME: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
 
 jobs:
   page-deployment:
