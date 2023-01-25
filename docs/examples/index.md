@@ -5,8 +5,8 @@
 - [Exception Handling](basics/exceptions.md)
 
 ### Authentication
-- [Device Authentication](authentication/device-authentication.md)
-- [OAuth Authentication](authentication/oauth-authentication.md)
+- [Device Authentication](auth/device-authentication.md)
+- [OAuth Authentication](auth/oauth-authentication.md)
 
 ### Modules
 #### Shows Module

@@ -8,8 +8,8 @@
   href: basicsetup.md
 - name: Configuration
   href: configuration.md
-- name: Authentication
-  href: authentication.md
+- name: Authentication and Authorization
+  href: auth.md
 - name: Async
   href: async.md
 - name: Exception Handling

@@ -1,4 +1,4 @@
-### Recommendations Post Builder
+# Recommendations Post Builder
 
 In this example we use the post builder methods to create a [`ITraktSyncRecommendationsPost`](xref:TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost).
 

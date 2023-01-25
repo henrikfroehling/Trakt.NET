@@ -9,9 +9,9 @@
 - name: Authentication
   items:
   - name: Device Authentication
-    href: authentication/device-authentication.md
+    href: auth/device-authentication.md
   - name: OAuth Authentication
-    href: authentication/oauth-authentication.md
+    href: auth/oauth-authentication.md
 - name: Modules
   items:
   - name: Shows Module

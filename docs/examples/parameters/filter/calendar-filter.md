@@ -1,4 +1,4 @@
-### Calendar Filter
+# Calendar Filter
 
 In this example we create a calendar filter to filter all new calendar shows.
 

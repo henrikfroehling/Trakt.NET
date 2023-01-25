@@ -10,12 +10,12 @@
 
 **[Configuration](configuration.md)**
 
-**[Authentication](authentication.md)**
-- [Authorization](authentication.md#authorization)
-- [OAuth Authentication](authentication.md#oauth-authentication)
-- [Device Authentication](authentication.md#device-authentication)
-- [Refresh Authentication](authentication.md#refresh-authentication)
-- [Revoke Authentication](authentication.md#revoke-authentication)
+**[Authentication and Authorization](auth.md)**
+- [Authorization](auth.md#authorization)
+- [OAuth Authentication](auth.md#oauth-authentication)
+- [Device Authentication](auth.md#device-authentication)
+- [Refresh Authorization](auth.md#refresh-authorization)
+- [Revoke Authorization](auth.md#revoke-authorization)
 
 **[Async](async.md)**
 

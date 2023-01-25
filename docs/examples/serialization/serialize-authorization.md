@@ -1,4 +1,4 @@
-### Serialize Authorization
+# Serialize Authorization
 
 This example shows how we can serialize a given authorization as JSON data and deserialize the JSON data back to an authorization.
 

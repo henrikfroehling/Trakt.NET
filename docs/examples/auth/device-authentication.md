@@ -1,4 +1,4 @@
-### Device Authentication
+# Device Authentication
 
 In this example we authenticate our Trakt.NET client with the Device Authentication method to get Trakt authorization, which is required for OAuth requests.
 
