@@ -51,7 +51,7 @@ To use Trakt.NET, you will need to obtain an API key from Trakt and follow the g
 > dotnet add package Trakt.NET
 ```
 
-or with the [NuGet Package Management](https://docs.nuget.org/consume/package-manager-dialog) in Visual Studio and search for "trakt".
+or with the [Visual Studio Package Management](https://learn.microsoft.com/de-de/nuget/consume-packages/install-use-packages-visual-studio) and search for "trakt".
 
 ### Quickstart
 
