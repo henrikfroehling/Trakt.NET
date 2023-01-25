@@ -1,4 +1,4 @@
-### OAuth Authentication
+# OAuth Authentication
 
 In this example we authenticate our Trakt.NET client with the OAuth Authentication method to get Trakt authorization, which is required for OAuth requests.
 

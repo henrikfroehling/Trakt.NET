@@ -1,4 +1,4 @@
-### Get details for multiple single shows
+# Get details for multiple single shows
 
 In this example we get the details of multiple single shows simultaneously.
 

@@ -1,4 +1,4 @@
-## Exception Handling
+# Exception Handling
 
 Trakt.NET uses exceptions extensively. Every exception in the library inherits by [`TraktException`](xref:TraktNet.Exceptions.TraktException). That means you don't need to catch every single exception thrown by the library, only [`TraktException`](xref:TraktNet.Exceptions.TraktException):
 
@@ -22,7 +22,8 @@ catch (TraktException ex)
 
 Other exceptions, you need to be aware of, are [`ArgumentNullException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception?view=net-7.0), [`ArgumentException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception?view=net-7.0) and occasionally [`ArgumentOutOfRangeException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception?view=net-7.0). As the names suggest, they are only thrown, if you pass invalid arguments to the library methods.
 
-_**Note: Trakt.NET checks all input parameters before any actual Trakt API request is made.**_
+> [!NOTE]
+> Trakt.NET checks all input parameters before any actual Trakt API request is made.
 
 This means, that you will get one of the `Argument...` exceptions before a [`TraktException`](xref:TraktNet.Exceptions.TraktException).
 

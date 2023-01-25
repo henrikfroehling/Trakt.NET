@@ -1,4 +1,4 @@
-## Namespaces
+# Namespaces
 
 This is an overview of all namespaces in the **Trakt.NET** library.
 

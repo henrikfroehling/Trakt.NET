@@ -1,4 +1,4 @@
-### Get single show details
+# Get single show details
 
 In this example we get the details of a single show.
 

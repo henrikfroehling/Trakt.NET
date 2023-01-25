@@ -1,4 +1,4 @@
-## Async
+# Async
 
 Almost every library method runs asynchronously. Every method, that runs asynchronously, has the suffix `Async`. The common syntax for calling library methods is the following:
 

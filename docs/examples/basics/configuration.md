@@ -1,4 +1,4 @@
-### Configuration
+# Configuration
 
 In this example we take a look at the possible configuration settings.
 

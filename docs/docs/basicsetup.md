@@ -1,4 +1,4 @@
-## Basic Setup
+# Basic Setup
 
 The main entry point to the library is a [`TraktClient`](xref:TraktNet.TraktClient) instance. There are three different ways to create a new instance of it and which way to choose depends on how you want to use the library.
 
@@ -19,7 +19,7 @@ var client = new TraktClient
 };
 ```
 
-If you also want to [authenticate](authentication.md) your application users, the client secret of your [Trakt application](https://trakt.tv/oauth/applications) will also be needed additionally:
+If you also want to [authenticate](auth.md) your application users, the client secret of your [Trakt application](https://trakt.tv/oauth/applications) will also be needed additionally:
 
 ```csharp
 var client = new TraktClient("Your Trakt Client Id", "Your Trakt Client Secret");
@@ -33,7 +33,7 @@ var client = new TraktClient
 };
 ```
 
-If you want to use requests, which do require OAuth authorization, you will also have to provide an OAuth access token. Read the [Authentication section](authentication.md) on how to get a new [Trakt.tv](https://trakt.tv/) OAuth authorization, including access token and the refresh token, or provide an existing access token:
+If you want to use requests, which do require OAuth authorization, you will also have to provide an OAuth access token. Read the [Authentication section](auth.md) on how to get a new [Trakt.tv](https://trakt.tv/) OAuth authorization, including access token and the refresh token, or provide an existing access token:
 
 ```csharp
 var client = new TraktClient("Your Trakt Client Id", "Your Trakt Client Secret")
@@ -51,4 +51,5 @@ var client = new TraktClient
 };
 ```
 
-_**Note: A client id for your [Trakt application](https://trakt.tv/oauth/applications) will always be needed.**_
+> [!NOTE]
+> A client id for your [Trakt application](https://trakt.tv/oauth/applications) will always be needed.
