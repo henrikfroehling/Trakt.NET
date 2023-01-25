@@ -95,7 +95,9 @@ Year: 2023
 {"title":"The Last of Us","year":2023,"ids":{"trakt":158947,"slug":"the-last-of-us","tvdb":392256,"imdb":"tt3581920","tmdb":100088}}
 ```
 
-### [Documentation](https://henrikfroehling.github.io/Trakt.NET/docs/index.html)
+### Documentation
+
+https://henrikfroehling.github.io/Trakt.NET/docs/index.html
 
 ### Examples
 
