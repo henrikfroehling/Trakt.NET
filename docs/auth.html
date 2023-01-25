@@ -5,9 +5,9 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Authentication | Trakt.NET </title>
+      <title>Authentication and Authorization | Trakt.NET </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Authentication | Trakt.NET ">
+      <meta name="title" content="Authentication and Authorization | Trakt.NET ">
       <meta name="generator" content="docfx ">
   
       <link rel="shortcut icon" href="../favicon.ico">
@@ -90,13 +90,13 @@
                         </div>
 
                     <article class="content wrap" id="_content" data-uid="">
-<h2 id="authentication">Authentication</h2>
+<h1 id="authentication-and-authorization">Authentication and Authorization</h1>
 
-<p>Authentication is necessary if you need to call Trakt API requests, that require OAuth authorization. Every method in the library, that requires OAuth authorization, indicates this in its method documentation.</p>
-<p>The Trakt API provides two methods for authenticating users and both are supported by the library. See <a href="authentication.html#oauth-authentication">here</a> and <a href="authentication.html#device-authentication">here</a> for more information.</p>
-<h3 id="authorization">Authorization</h3>
+<p>Authentication is necessary if you need to call Trakt API requests, that require authorization. Every method in the library, that requires authorization, indicates this in its method documentation.</p>
+<p>The Trakt API provides two methods for authenticating users and both are supported by the library. See <a href="auth.html#oauth-authentication">here</a> and <a href="auth.html#device-authentication">here</a> for more information.</p>
+<h2 id="authorization">Authorization</h2>
 <p>Authorization information for the Trakt API contains not only the access token but also a refresh token, that makes it possible to retrieve new authorization information without authenticating the user again and without the need of the user to interact.</p>
-<p>The <a class="xref" href="../api/TraktNet.Objects.Authentication.TraktAuthorization.html"><code>TraktAuthorization</code></a> class represents such authorization information. It also contains the UTC DateTime, when it was created and can tell you if it is expired and if the containing authorization information can be <a href="authentication.html#refresh-authentication">refreshed</a>. You can get a new TraktAuthorization instance by authenticating the user either with <a href="authentication.html#oauth-authentication">OAuth</a>- or <a href="authentication.html#device-authentication">Device</a>-Authentication.</p>
+<p>The <a class="xref" href="../api/TraktNet.Objects.Authentication.TraktAuthorization.html"><code>TraktAuthorization</code></a> class represents such authorization information. It also contains the UTC DateTime, when it was created and can tell you if it is expired and if the containing authorization information can be <a href="auth.html#refresh-authorization">refreshed</a>. You can get a new TraktAuthorization instance by authenticating the user either with <a href="auth.html#oauth-authentication">OAuth</a>- or <a href="auth.html#device-authentication">Device</a>-Authentication.</p>
 <p>If you already have an access token (and optionally a refresh token), you can create a new <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> instance in one of the following ways:</p>
 <pre><code class="lang-csharp">using TraktNet.Objects.Authentication;
 
@@ -127,7 +127,7 @@ ITraktAuthorization authorization = TraktAuthorization.CreateWith(createdAt, &qu
 ITraktAuthorization authorization = TraktAuthorization.CreateWith(createdAt, &quot;existing access token&quot;, &quot;existing refresh token&quot;)
 </code></pre><p>And then just pass it to your <a class="xref" href="../api/TraktNet.TraktClient.html"><code>TraktClient</code></a> instance:</p>
 <pre><code class="lang-csharp">client.Authorization = authorization;
-</code></pre><h3 id="oauth-authentication">OAuth Authentication</h3>
+</code></pre><h2 id="oauth-authentication">OAuth Authentication</h2>
 <p>The workflow for authenticating users with the <a href="https://trakt.docs.apiary.io/#reference/authentication-oauth">traditional OAuth method</a> is the following:</p>
 <ol>
 <li>Create an authorization URL: <code>string authorizationUrl = client.Authentication.CreateAuthorizationUrl();</code> <a class="xref" href="../api/TraktNet.Modules.TraktAuthenticationModule.html#TraktNet_Modules_TraktAuthenticationModule_CreateAuthorizationUrl">Reference</a></li>
@@ -144,10 +144,12 @@ ITraktAuthorization authorization = await client.Authentication.GetAuthorization
 
 client.Authentication.OAuthAuthorizationCode = code;
 ITraktAuthorization authorization = await client.Authentication.GetAuthorizationAsync();
-</code></pre><p><em><strong>Note: You don&#39;t need to pass the returned <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> to your <a class="xref" href="../api/TraktNet.TraktClient.html"><code>TraktClient</code></a> instance. This happens automatically inside the library.</strong></em></p>
-<p><em><strong>Note: A <a class="xref" href="../api/TraktNet.Exceptions.TraktAuthenticationOAuthException.html"><code>TraktAuthenticationOAuthException</code></a> will be thrown if the code provided by your users is invalid.</strong></em></p>
-<p><a href="../examples/authentication/oauth-authentication.html">Here</a> is an example of how to authenticate a user with OAuth Authentication.</p>
-<h3 id="device-authentication">Device Authentication</h3>
+</code></pre><div class="NOTE"><h5>Note</h5><p>You don&#39;t need to pass the returned <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> to your <a class="xref" href="../api/TraktNet.TraktClient.html"><code>TraktClient</code></a> instance. This happens automatically inside the library.</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p>A <a class="xref" href="../api/TraktNet.Exceptions.TraktAuthenticationOAuthException.html"><code>TraktAuthenticationOAuthException</code></a> will be thrown if the code provided by your users is invalid.</p>
+</div>
+<p><a href="../examples/auth/oauth-authentication.html">Here</a> is an example of how to authenticate a user with OAuth Authentication.</p>
+<h2 id="device-authentication">Device Authentication</h2>
 <p>The workflow for authenticating users with the <a href="https://trakt.docs.apiary.io/#reference/authentication-devices">Device method</a> is the following:</p>
 <ol>
 <li>Create a new <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktDevice.html"><code>ITraktDevice</code></a>: <code>ITraktDevice device = await client.Authentication.GenerateDeviceAsync();</code> (<a class="xref" href="../api/TraktNet.Modules.TraktAuthenticationModule.html#TraktNet_Modules_TraktAuthenticationModule_GenerateDeviceAsync_System_String_System_Threading_CancellationToken_">Reference</a>) The returned <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktDevice.html"><code>ITraktDevice</code></a> is valid for about ten minutes and contains a device code and a verification URL.</li>
@@ -157,11 +159,13 @@ ITraktAuthorization authorization = await client.Authentication.GetAuthorization
 <pre><code class="lang-csharp">using TraktNet.Objects.Authentication;
 
 ITraktAuthorization authorization = await client.Authentication.PollForAuthorizationAsync();
-</code></pre><p><em><strong>Note: You don&#39;t need to pass the returned <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> to your <a class="xref" href="../api/TraktNet.TraktClient.html"><code>TraktClient</code></a> instance. This happens automatically inside the library.</strong></em></p>
-<p><em><strong>Note: A <a class="xref" href="../api/TraktNet.Exceptions.TraktAuthenticationDeviceException.html"><code>TraktAuthenticationDeviceException</code></a> will be thrown, if <a class="xref" href="../api/TraktNet.Modules.TraktAuthenticationModule.html#TraktNet_Modules_TraktAuthenticationModule_PollForAuthorizationAsync_System_Threading_CancellationToken_"><code>PollForAuthorizationAsync()</code></a> fails.</strong></em></p>
-<p><a href="../examples/authentication/device-authentication.html">Here</a> is an example of how to authenticate a user with Device Authentication.</p>
-<h3 id="refresh-authentication">Refresh Authentication</h3>
-<p>The Trakt authorization information will be valid for about 90 days for each one of your users. You need to refresh the authorization before the current one expires. Your <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> needs to have a valid refresh token set. You can check this with its property <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html#TraktNet_Objects_Authentication_ITraktAuthorization_IsRefreshPossible"><code>IsRefreshPossible</code></a>. The <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> interface has the property <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html#TraktNet_Objects_Authentication_ITraktAuthorization_IsExpired"><code>IsExpired</code></a>, that tells you if it is expired. To check, if an authorization was revoked by the user, you can call the following method:</p>
+</code></pre><div class="NOTE"><h5>Note</h5><p>You don&#39;t need to pass the returned <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> to your <a class="xref" href="../api/TraktNet.TraktClient.html"><code>TraktClient</code></a> instance. This happens automatically inside the library.</p>
+</div>
+<div class="NOTE"><h5>Note</h5><p>A <a class="xref" href="../api/TraktNet.Exceptions.TraktAuthenticationDeviceException.html"><code>TraktAuthenticationDeviceException</code></a> will be thrown, if <a class="xref" href="../api/TraktNet.Modules.TraktAuthenticationModule.html#TraktNet_Modules_TraktAuthenticationModule_PollForAuthorizationAsync_System_Threading_CancellationToken_"><code>PollForAuthorizationAsync()</code></a> fails.</p>
+</div>
+<p><a href="../examples/auth/device-authentication.html">Here</a> is an example of how to authenticate a user with Device Authentication.</p>
+<h2 id="refresh-authorization">Refresh Authorization</h2>
+<p>The Trakt authorization information will be valid for 90 days for each one of your users. You need to refresh the authorization before the current one expires. Your <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> needs to have a valid refresh token set. You can check this with its property <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html#TraktNet_Objects_Authentication_ITraktAuthorization_IsRefreshPossible"><code>IsRefreshPossible</code></a>. The <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> interface has the property <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html#TraktNet_Objects_Authentication_ITraktAuthorization_IsExpired"><code>IsExpired</code></a>, that tells you if it is expired. To check, if an authorization was revoked by the user, you can call the following method:</p>
 <pre><code class="lang-csharp">using TraktNet.Objects.Authentication;
 
 // Precondition: client.Authorization is already set
@@ -179,11 +183,13 @@ bool revoked = await client.Authentication.CheckIfAccessTokenWasRevokedOrIsNotVa
 
 // Precondition: client.Authorization is already set
 ITraktAuthorization newAuthorization = await client.Authentication.RefreshAuthorizationAsync();
-</code></pre><p><em><strong>Note: You don&#39;t need to pass the returned <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> to your <a class="xref" href="../api/TraktNet.TraktClient.html"><code>TraktClient</code></a> instance. This happens automatically inside the library.</strong></em></p>
-<h3 id="revoke-authentication">Revoke Authentication</h3>
+</code></pre><div class="NOTE"><h5>Note</h5><p>You don&#39;t need to pass the returned <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> to your <a class="xref" href="../api/TraktNet.TraktClient.html"><code>TraktClient</code></a> instance. This happens automatically inside the library.</p>
+</div>
+<h2 id="revoke-authorization">Revoke Authorization</h2>
 <p>Revoking the current authorization is also very simple:</p>
 <pre><code class="lang-csharp">await client.Authentication.RevokeAuthorizationAsync();
-</code></pre><p><em><strong>Note: After a successful call to <a class="xref" href="../api/TraktNet.Modules.TraktAuthenticationModule.html#TraktNet_Modules_TraktAuthenticationModule_RevokeAuthorizationAsync_System_Threading_CancellationToken_"><code>RevokeAuthorizationAsync()</code></a>, <a class="xref" href="../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Authorization"><code>client.Authorization</code></a> will return a default and invalid <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> instance.</strong></em></p>
+</code></pre><div class="NOTE"><h5>Note</h5><p>After a successful call to <a class="xref" href="../api/TraktNet.Modules.TraktAuthenticationModule.html#TraktNet_Modules_TraktAuthenticationModule_RevokeAuthorizationAsync_System_Threading_CancellationToken_"><code>RevokeAuthorizationAsync()</code></a>, <a class="xref" href="../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Authorization"><code>client.Authorization</code></a> will return a default and invalid <a class="xref" href="../api/TraktNet.Objects.Authentication.ITraktAuthorization.html"><code>ITraktAuthorization</code></a> instance.</p>
+</div>
 </article>
                 </div>
 

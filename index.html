@@ -88,8 +88,8 @@
                     <article class="content wrap" id="_content" data-uid="">
 <h1 id="traktnet">Trakt.NET</h1>
 
-<p><a href="https://www.nuget.org/packages/Trakt.NET/1.3.0"><img src="https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.3.0-blue.svg?style=flat" alt="NuGet Package"></a></p>
-<p><a href="docs/index.html">Documentation</a> - <a href="examples/index.html">Examples</a> - <a class="xref" href="api/TraktNet.html">API Documentation</a> - <a href="https://github.com/henrikfroehling/Trakt.NET">GitHub Repository</a> - <a href="https://github.com/henrikfroehling/Trakt.NET/issues/new/choose">Issues</a> - <a href="https://github.com/henrikfroehling/Trakt.NET/discussions">Discussions</a></p>
+<p><a href="https://www.nuget.org/packages/Trakt.NET/1.3.0"><img src="https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.3.0-blue.svg?style=flat" alt="NuGet Package"></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="License"></a> 
+<a href="https://github.com/henrikfroehling/Trakt.NET"><img src="https://img.shields.io/github/stars/henrikfroehling/Trakt.NET?style=social" alt="GitHub Repo stars"></a> <a href="https://github.com/henrikfroehling/Trakt.NET/issues"><img src="https://img.shields.io/github/issues/henrikfroehling/Trakt.NET" alt="GitHub issues"></a> <a href="https://github.com/henrikfroehling/Trakt.NET/discussions"><img src="https://img.shields.io/github/discussions/henrikfroehling/Trakt.NET" alt="GitHub Discussions"></a></p>
 <h4 id="overview">Overview</h4>
 <p>This is a .NET wrapper library with which developers can build .NET applications that integrate with the <a href="https://trakt.tv/">Trakt.tv</a> <a href="http://docs.trakt.apiary.io/#">API</a> and access its features and data.</p>
 <p>Some examples that Trakt.NET can be used for include:</p>
@@ -103,7 +103,7 @@
 <h4 id="features">Features</h4>
 <ul>
 <li>Full Trakt.tv API Coverage</li>
-<li>Authentication Support (OAuth 2.0 and Device)</li>
+<li>Authentication and Authorization Support (OAuth 2.0 and Device)</li>
 <li>Completely asynchronous</li>
 <li>API Environments (Production and Sandbox)</li>
 <li>Serialization Service</li>
@@ -121,7 +121,39 @@
 <li>Windows UWP &gt;= 10.0.16299</li>
 <li>Mono &gt;= 5.4</li>
 </ul>
-</article>
+<h4 id="quickstart">Quickstart</h4>
+<pre><code>&gt; dotnet add package Trakt.NET
+</code></pre><pre><code class="lang-csharp">using System;
+using TraktNet;
+using TraktNet.Exceptions;
+using TraktNet.Objects.Get.Shows;
+using TraktNet.Responses;
+using TraktNet.Services;
+
+var client = new TraktClient(&quot;Your Trakt Client ID&quot;);
+
+try
+{
+    TraktResponse&lt;ITraktShow&gt; showResponse = await client.Shows.GetShowAsync(&quot;the-last-of-us&quot;);
+    ITraktShow show = showResponse.Value;
+
+    Console.WriteLine($&quot;Title: {show.Title}&quot;);
+    Console.WriteLine($&quot;Year: {show.Year}&quot;);
+    Console.WriteLine();
+
+    string json = await TraktSerializationService.SerializeAsync(show);
+    Console.WriteLine(json);
+}
+catch (TraktException ex)
+{
+    Console.WriteLine(ex);
+}
+</code></pre><p>Output:</p>
+<pre><code>Title: The Last of Us
+Year: 2023
+
+{&quot;title&quot;:&quot;The Last of Us&quot;,&quot;year&quot;:2023,&quot;ids&quot;:{&quot;trakt&quot;:158947,&quot;slug&quot;:&quot;the-last-of-us&quot;,&quot;tvdb&quot;:392256,&quot;imdb&quot;:&quot;tt3581920&quot;,&quot;tmdb&quot;:100088}}
+</code></pre></article>
                 </div>
 
                 <div class="copyright-footer">

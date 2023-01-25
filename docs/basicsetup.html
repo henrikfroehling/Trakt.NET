@@ -90,7 +90,7 @@
                         </div>
 
                     <article class="content wrap" id="_content" data-uid="">
-<h2 id="basic-setup">Basic Setup</h2>
+<h1 id="basic-setup">Basic Setup</h1>
 
 <p>The main entry point to the library is a <a class="xref" href="../api/TraktNet.TraktClient.html"><code>TraktClient</code></a> instance. There are three different ways to create a new instance of it and which way to choose depends on how you want to use the library.</p>
 <p>If you just want to use requests, which do not require the OAuth authorization of <a href="https://trakt.tv/">Trakt.tv</a>, you will only have to provide the client id of your <a href="https://trakt.tv/oauth/applications">Trakt application</a>:</p>
@@ -103,7 +103,7 @@ var client = new TraktClient
 {
     ClientId = &quot;Your Trakt Client Id&quot;
 };
-</code></pre><p>If you also want to <a href="authentication.html">authenticate</a> your application users, the client secret of your <a href="https://trakt.tv/oauth/applications">Trakt application</a> will also be needed additionally:</p>
+</code></pre><p>If you also want to <a href="auth.html">authenticate</a> your application users, the client secret of your <a href="https://trakt.tv/oauth/applications">Trakt application</a> will also be needed additionally:</p>
 <pre><code class="lang-csharp">var client = new TraktClient(&quot;Your Trakt Client Id&quot;, &quot;Your Trakt Client Secret&quot;);
 
 // or
@@ -113,7 +113,7 @@ var client = new TraktClient
     ClientId = &quot;Your Trakt Client Id&quot;,
     ClientSecret = &quot;Your Trakt Client Secret&quot;
 };
-</code></pre><p>If you want to use requests, which do require OAuth authorization, you will also have to provide an OAuth access token. Read the <a href="authentication.html">Authentication section</a> on how to get a new <a href="https://trakt.tv/">Trakt.tv</a> OAuth authorization, including access token and the refresh token, or provide an existing access token:</p>
+</code></pre><p>If you want to use requests, which do require OAuth authorization, you will also have to provide an OAuth access token. Read the <a href="auth.html">Authentication section</a> on how to get a new <a href="https://trakt.tv/">Trakt.tv</a> OAuth authorization, including access token and the refresh token, or provide an existing access token:</p>
 <pre><code class="lang-csharp">var client = new TraktClient(&quot;Your Trakt Client Id&quot;, &quot;Your Trakt Client Secret&quot;)
 {
     Authorization = TraktAuthorization.CreateWith(&quot;An existing access token&quot;)
@@ -127,7 +127,8 @@ var client = new TraktClient
     ClientSecret = &quot;Your Trakt Client Secret&quot;,
     Authorization = TraktAuthorization.CreateWith(&quot;An existing access token&quot;)
 };
-</code></pre><p><em><strong>Note: A client id for your <a href="https://trakt.tv/oauth/applications">Trakt application</a> will always be needed.</strong></em></p>
+</code></pre><div class="NOTE"><h5>Note</h5><p>A client id for your <a href="https://trakt.tv/oauth/applications">Trakt application</a> will always be needed.</p>
+</div>
 </article>
                 </div>
 

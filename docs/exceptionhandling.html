@@ -90,7 +90,7 @@
                         </div>
 
                     <article class="content wrap" id="_content" data-uid="">
-<h2 id="exception-handling">Exception Handling</h2>
+<h1 id="exception-handling">Exception Handling</h1>
 
 <p>Trakt.NET uses exceptions extensively. Every exception in the library inherits by <a class="xref" href="../api/TraktNet.Exceptions.TraktException.html"><code>TraktException</code></a>. That means you don&#39;t need to catch every single exception thrown by the library, only <a class="xref" href="../api/TraktNet.Exceptions.TraktException.html"><code>TraktException</code></a>:</p>
 <pre><code class="lang-csharp">using TraktNet.Exceptions;
@@ -109,7 +109,8 @@ catch (TraktException ex)
     Console.WriteLine($&quot;Server Reason Phrase: {ex.ServerReasonPhrase}&quot;);    // could be null
 }
 </code></pre><p>Other exceptions, you need to be aware of, are <a href="https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception?view=net-7.0"><code>ArgumentNullException</code></a>, <a href="https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception?view=net-7.0"><code>ArgumentException</code></a> and occasionally <a href="https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception?view=net-7.0"><code>ArgumentOutOfRangeException</code></a>. As the names suggest, they are only thrown, if you pass invalid arguments to the library methods.</p>
-<p><em><strong>Note: Trakt.NET checks all input parameters before any actual Trakt API request is made.</strong></em></p>
+<div class="NOTE"><h5>Note</h5><p>Trakt.NET checks all input parameters before any actual Trakt API request is made.</p>
+</div>
 <p>This means, that you will get one of the <code>Argument...</code> exceptions before a <a class="xref" href="../api/TraktNet.Exceptions.TraktException.html"><code>TraktException</code></a>.</p>
 <p>For every possible Trakt media object (show, movie, person, etc.), there is also an exception, if the object was not found, e.g. a call to</p>
 <pre><code class="lang-csharp">using TraktNet.Objects.Get.Shows;
