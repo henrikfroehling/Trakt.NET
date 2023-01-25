@@ -94,10 +94,28 @@
 
 <p>The recommended way to install <strong>Trakt.NET</strong> is to use NuGet, but you can also directly link to a <strong>Trakt.NET.dll</strong> file or build the library from source code.</p>
 <h2 id="nuget">NuGet</h2>
-<p>Navigate to your project’s directory and install <strong>Trakt.NET</strong> with NuGet command line: <code>Install-Package Trakt.NET</code>. Or open your project / solution in Visual Studio and use the <a href="https://learn.microsoft.com/de-de/nuget/consume-packages/install-use-packages-visual-studio">Visual Studio Package Management</a> and search for <code>trakt</code>.</p>
+<p>Navigate to your project’s directory and install <strong>Trakt.NET</strong> with:</p>
+<pre><code>&gt; dotnet add package Trakt.NET
+</code></pre><p>Or open your project / solution in Visual Studio and use the <a href="https://learn.microsoft.com/de-de/nuget/consume-packages/install-use-packages-visual-studio">Visual Studio Package Management</a> and search for &quot;trakt&quot;.</p>
 <h2 id="build-from-source">Build from Source</h2>
-<p>The library can be built inside of Visual Studio or Visual Studio Code. You need at least Visual Studio 2017 with C# 7 support. The ZIP Archive of any specific version contains the source code of the library or you clone the repository.</p>
-<p>To actually build the library, open the <code>Trakt.NET.sln</code> in Visual Studio and build the project <code>Trakt.NET.csproj</code>. This solution <code>Trakt.NET.sln</code> also contains all test projects. If you just want to build the library, you can open the solution <code>Trakt.NET_WithoutTestProjects.slnf</code> alternavely, which only opens the library project itself. After the build was successful, you can find the library DLL in the directory <code>Build\Lib\[Debug|Release]</code>.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Install Visual Studio 2022 (Community or higher) or Visual Studio Code and make sure you have the latest updates.</p>
+<h3 id="build">Build</h3>
+<p>To clone and build it locally run the following git commands:</p>
+<pre><code>&gt; git clone https://github.com/henrikfroehling/Trakt.NET.git
+&gt; cd Trakt.NET
+</code></pre><h4 id="complete-solution-including-tests">Complete Solution (including tests)</h4>
+<p>Run following commands in the projects root directory to build the complete solution:</p>
+<pre><code>&gt; dotnet restore Source/Trakt.NET.sln
+&gt; dotnet build Source/Trakt.NET.sln -c [Debug|Release] --no-restore /m /p:BuildInParallel=true
+</code></pre><p>Running the tests:</p>
+<pre><code>&gt; dotnet test Source/Trakt.NET.sln -c [Debug|Release] --no-build --no-restore
+</code></pre><p>Alternatively you can also open the solution <code>Source/Trakt.NET.sln</code> in Visual Studio or Visual Studio Code.</p>
+<h4 id="only-library-itself-without-any-tests-etc">Only Library itself (without any tests, etc.)</h4>
+<p>Run following commands in the projects root directory to build only the library itself:</p>
+<pre><code>&gt; dotnet restore Source/Lib/Trakt.NET/Trakt.NET.csproj
+&gt; dotnet build Source/Lib/Trakt.NET/Trakt.NET.csproj -c [Debug|Release] --no-restore
+</code></pre><p>Alternatively you can also open the solution filter <code>Source/Trakt.NET_OnlyLibraryProject.slnf</code> in Visual Studio or Visual Studio Code.</p>
 </article>
                 </div>
 
