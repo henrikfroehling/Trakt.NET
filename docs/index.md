@@ -1,6 +1,7 @@
 # Trakt.NET
 
 [![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.3.0-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.3.0) [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT) 
+
 [![GitHub Repo stars](https://img.shields.io/github/stars/henrikfroehling/Trakt.NET?style=social)](https://github.com/henrikfroehling/Trakt.NET) [![GitHub issues](https://img.shields.io/github/issues/henrikfroehling/Trakt.NET)](https://github.com/henrikfroehling/Trakt.NET/issues) [![GitHub Discussions](https://img.shields.io/github/discussions/henrikfroehling/Trakt.NET)](https://github.com/henrikfroehling/Trakt.NET/discussions)
 
 #### Overview
