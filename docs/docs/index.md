@@ -2,14 +2,26 @@
 
 **[Installation](installation.md)**
 - [NuGet](installation.md#nuget)
+- [Build from Source](installation.md#build-from-source)
 
 **[Build from Source](building.md)**
+- [Prerequisites](building.md#prerequisites)
+- [Build](building.md#build)
+- [Complete Solution (including tests)](building.md#complete-solution-including-tests)
+- [Only Library itself (without any tests, etc.)](building.md#only-library-itself-without-any-tests-etc)
 
 **[Namespaces](namespaces.md)**
 
 **[Basic Setup](basicsetup.md)**
+- [Cliend-ID](basicsetup.md#client-id)
+- [Client-ID and Client-Secret](basicsetup.md#client-id-and-client-secret)
+- [Client-ID, Client-Secret and Authorization](basicsetup.md#client-id-client-secret-and-authorization)
 
 **[Configuration](configuration.md)**
+- [Sandbox Environment](configuration.md#sandbox-environment)
+- [Forced Authorization](configuration.md#forced-authorization)
+- [Response Exceptions](configuration.md#response-exceptions)
+- [API Version](configuration.md#api-version)
 
 **[Authentication and Authorization](auth.md)**
 - [Authorization](auth.md#authorization)
@@ -21,6 +33,9 @@
 **[Async / Await](async.md)**
 
 **[Exception Handling](exceptionhandling.md)**
+- [Usage](exceptionhandling.md#usage)
+- [Disabling Exceptions](exceptionhandling.md#disabling-exceptions)
+- [Exception Types](exceptionhandling.md#exception-types)
 
 **[Null Handling](nullhandling.md)**
 
