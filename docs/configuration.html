@@ -95,15 +95,21 @@
 <pre><code class="lang-csharp">using TraktNet;
 
 var client = new TraktClient(&quot;ClientID&quot;, &quot;OptionalClientSecret&quot;);
-</code></pre><p>The library allows you to use the sandbox environment of the Trakt API, which is disabled by default.</p>
+</code></pre><h3 id="sandbox-environment">Sandbox Environment</h3>
+<p>The library allows you to use the sandbox environment of the Trakt API, which is disabled by default.</p>
 <p>You can enable the usage of the sandbox environment with the following setting:</p>
 <pre><code class="lang-csharp">client.Configuration.UseSandboxEnvironment = true;
-</code></pre><p>Some API requests support optional OAuth authorization. The library calls these requests without OAuth authorization.</p>
+</code></pre><h3 id="forced-authorization">Forced Authorization</h3>
+<p>Some API requests support optional OAuth authorization. The library calls these requests without OAuth authorization.</p>
 <p>But you can enforce the library to call these requests with OAuth authorization with the following setting:</p>
 <pre><code class="lang-csharp">client.Configuration.ForceAuthorization = true;
-</code></pre><p>By default, the library throws exceptions when a request fails. See <a href="exceptionhandling.html">Exception Handling section</a> for more information.</p>
+</code></pre><h3 id="response-exceptions">Response Exceptions</h3>
+<p>By default, the library throws exceptions when a request fails. See <a href="exceptionhandling.html">Exception Handling section</a> for more information.</p>
 <p>You can toggle this behaviour with the following setting:</p>
 <pre><code class="lang-csharp">client.Configuration.ThrowResponseExceptions = true;
+</code></pre><h3 id="api-version">API Version</h3>
+<p>The following property determines the used Trakt API version. The default value is currently 2.</p>
+<pre><code class="lang-csharp">Console.WriteLine($&quot;API Version: {client.Configuration.ApiVersion}&quot;);
 </code></pre></article>
                 </div>
 

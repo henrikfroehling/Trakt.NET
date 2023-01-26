@@ -10014,7 +10014,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/basicsetup.html",
-          "hash": "39BJRkgkdyPRLtA30k8/vYFI4MgzYGJ+hdwIi0j2R/8="
+          "hash": "rkYsa9AfVV5Kt76vU/mWH/RjgTWZn+/TFYXe7RmEM8A="
         }
       },
       "is_incremental": false,
@@ -10038,7 +10038,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/configuration.html",
-          "hash": "CpWEMNxVIvMMlb8SKLkAuUVAMSpxjVaWfUD5mBFDGBY="
+          "hash": "dKXAyKPxjSCd5gH+7KRMmE/kdi9hSoZKBUqL2/gT/qc="
         }
       },
       "is_incremental": false,
@@ -10050,7 +10050,7 @@
       "output": {
         ".html": {
           "relative_path": "docs/exceptionhandling.html",
-          "hash": "m0lkrscMMivT3Fev8G7RBk2QtIS6rXo/WbG0d6uMySU="
+          "hash": "YqLypST1AFqEyN+igdl3W6BJGk1P2su+h1smU0N5VTQ="
         }
       },
       "is_incremental": false,
@@ -10190,35 +10190,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "examples/basics/configuration.md",
-      "output": {
-        ".html": {
-          "relative_path": "examples/basics/configuration.html",
-          "hash": "qNaCgMT9GxcYkI0dEe7JF0pUEy319vX5lGpysKAItuQ="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "examples/basics/exceptions.md",
-      "output": {
-        ".html": {
-          "relative_path": "examples/basics/exceptions.html",
-          "hash": "SeRhYuAZHjj3cQv4GmecPkqfrckRswYOPA200mV1L8U="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "examples/index.md",
       "output": {
         ".html": {
           "relative_path": "examples/index.html",
-          "hash": "7ki28TXqepbJZp4LJxUx1IS5s7+gCaccHww9Gy713Ew="
+          "hash": "pD0ev5u++SrcsMXLMyjRALtetW+ahoDIprmWh5+ID7k="
         }
       },
       "is_incremental": false,
@@ -10302,7 +10278,7 @@
       "output": {
         ".html": {
           "relative_path": "examples/toc.html",
-          "hash": "19L30sZiwOAM4ArKcRAdiVoayKrAbpMfn50wJRWaESw="
+          "hash": "GVDG1NnAIqtb56mIQTe7BwOZZ4YcW68juH+1gaWyPx0="
         }
       },
       "is_incremental": false,
@@ -10347,7 +10323,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 27,
+          "total_file_count": 25,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {

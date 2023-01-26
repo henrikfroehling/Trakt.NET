@@ -93,9 +93,10 @@
 <h1 id="basic-setup">Basic Setup</h1>
 
 <p>The main entry point to the library is a <a class="xref" href="../api/TraktNet.TraktClient.html"><code>TraktClient</code></a> instance. There are three different ways to create a new instance of it and which way to choose depends on how you want to use the library.</p>
-<p>If you just want to use requests, which do not require the OAuth authorization of <a href="https://trakt.tv/">Trakt.tv</a>, you will only have to provide the client id of your <a href="https://trakt.tv/oauth/applications">Trakt application</a>:</p>
 <pre><code class="lang-csharp">using TraktNet;
-</code></pre><pre><code class="lang-csharp">var client = new TraktClient(&quot;Your Trakt Client Id&quot;);
+</code></pre><h3 id="cliend-id">Cliend-ID</h3>
+<p>If you just want to use requests, which do not require the OAuth authorization of <a href="https://trakt.tv/">Trakt.tv</a>, you will only have to provide the client id of your <a href="https://trakt.tv/oauth/applications">Trakt application</a>:</p>
+<pre><code class="lang-csharp">var client = new TraktClient(&quot;Your Trakt Client Id&quot;);
 
 // or
 
@@ -103,7 +104,16 @@ var client = new TraktClient
 {
     ClientId = &quot;Your Trakt Client Id&quot;
 };
-</code></pre><p>If you also want to <a href="auth.html">authenticate</a> your application users, the client secret of your <a href="https://trakt.tv/oauth/applications">Trakt application</a> will also be needed additionally:</p>
+</code></pre><p>The following snippet shows the status flags, when the client&#39;s Client-Secret is not set.</p>
+<pre><code class="lang-csharp">Console.WriteLine($&quot;Requests without Authorization possible: {client.IsValidForUseWithoutAuthorization}&quot;);
+Console.WriteLine($&quot;Authentication possible: {client.IsValidForAuthenticationProcess}&quot;);
+Console.WriteLine($&quot;Requests with Authorization possible: {client.IsValidForUseWithAuthorization}&quot;);
+</code></pre><p>Output:</p>
+<pre><code>Requests without Authorization possible: true
+Authentication possible: false
+Requests with Authorization possible: false
+</code></pre><h3 id="client-id-and-client-secret">Client-ID and Client-Secret</h3>
+<p>If you also want to <a href="auth.html">authenticate</a> your application users, the client secret of your <a href="https://trakt.tv/oauth/applications">Trakt application</a> will also be needed additionally:</p>
 <pre><code class="lang-csharp">var client = new TraktClient(&quot;Your Trakt Client Id&quot;, &quot;Your Trakt Client Secret&quot;);
 
 // or
@@ -113,7 +123,16 @@ var client = new TraktClient
     ClientId = &quot;Your Trakt Client Id&quot;,
     ClientSecret = &quot;Your Trakt Client Secret&quot;
 };
-</code></pre><p>If you want to use requests, which do require OAuth authorization, you will also have to provide an OAuth access token. Read the <a href="auth.html">Authentication section</a> on how to get a new <a href="https://trakt.tv/">Trakt.tv</a> OAuth authorization, including access token and the refresh token, or provide an existing access token:</p>
+</code></pre><p>The following snippet shows the status flags, when the client&#39;s Client-Secret is not set.</p>
+<pre><code class="lang-csharp">Console.WriteLine($&quot;Requests without Authorization possible: {client.IsValidForUseWithoutAuthorization}&quot;);
+Console.WriteLine($&quot;Authentication possible: {client.IsValidForAuthenticationProcess}&quot;);
+Console.WriteLine($&quot;Requests with Authorization possible: {client.IsValidForUseWithAuthorization}&quot;);
+</code></pre><p>Output:</p>
+<pre><code>Requests without Authorization possible: true
+Authentication possible: true
+Requests with Authorization possible: false
+</code></pre><h3 id="client-id-client-secret-and-authorization">Client-ID, Client-Secret and Authorization</h3>
+<p>If you want to use requests, which do require OAuth authorization, you will also have to provide an OAuth access token. Read the <a href="auth.html">Authentication section</a> on how to get a new <a href="https://trakt.tv/">Trakt.tv</a> OAuth authorization, including access token and the refresh token, or provide an existing access token:</p>
 <pre><code class="lang-csharp">var client = new TraktClient(&quot;Your Trakt Client Id&quot;, &quot;Your Trakt Client Secret&quot;)
 {
     Authorization = TraktAuthorization.CreateWith(&quot;An existing access token&quot;)
@@ -127,7 +146,16 @@ var client = new TraktClient
     ClientSecret = &quot;Your Trakt Client Secret&quot;,
     Authorization = TraktAuthorization.CreateWith(&quot;An existing access token&quot;)
 };
-</code></pre><div class="NOTE"><h5>Note</h5><p>A client id for your <a href="https://trakt.tv/oauth/applications">Trakt application</a> will always be needed.</p>
+</code></pre><p>The following snippet shows the status flags, when the client&#39;s Client-Secret is not set.</p>
+<pre><code class="lang-csharp">Console.WriteLine($&quot;Requests without Authorization possible: {client.IsValidForUseWithoutAuthorization}&quot;);
+Console.WriteLine($&quot;Authentication possible: {client.IsValidForAuthenticationProcess}&quot;);
+Console.WriteLine($&quot;Requests with Authorization possible: {client.IsValidForUseWithAuthorization}&quot;);
+</code></pre><p>Output:</p>
+<pre><code>Requests without Authorization possible: true
+Authentication possible: true
+Requests with Authorization possible: true
+</code></pre><hr>
+<div class="NOTE"><h5>Note</h5><p>A client id for your <a href="https://trakt.tv/oauth/applications">Trakt application</a> will always be needed.</p>
 </div>
 </article>
                 </div>
