@@ -2,6 +2,8 @@
   href: index.md
 - name: Installation
   href: installation.md
+- name: Build from Source
+  href: building.md
 - name: Namespaces
   href: namespaces.md
 - name: Basic Setup
@@ -10,7 +12,7 @@
   href: configuration.md
 - name: Authentication and Authorization
   href: auth.md
-- name: Async
+- name: Async / Await
   href: async.md
 - name: Exception Handling
   href: exceptionhandling.md
