@@ -13,7 +13,7 @@
 **[Namespaces](namespaces.md)**
 
 **[Basic Setup](basicsetup.md)**
-- [Cliend-ID](basicsetup.md#client-id)
+- [Client-ID](basicsetup.md#client-id)
 - [Client-ID and Client-Secret](basicsetup.md#client-id-and-client-secret)
 - [Client-ID, Client-Secret and Authorization](basicsetup.md#client-id-client-secret-and-authorization)
 

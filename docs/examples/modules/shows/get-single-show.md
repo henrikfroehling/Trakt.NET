@@ -4,14 +4,7 @@ In this example we get the details of a single show.
 
 Since we do not need authentication or authorization for this example, only the Client-ID is required.
 
-```csharp
-using TraktNet;
-
-Console.ReadLine("Please enter your Trakt Client-ID:");
-string clientID = Console.ReadLine();
-
-var client = new TraktClient(clientID);
-```
+[!code-csharp[](../../../codesnippets/examples/ClientSetup.cs)]
 
 Set the Trakt-ID or -Slug for the show.
 
@@ -25,120 +18,16 @@ if (string.IsNullOrEmpty(showIdOrSlug))
 
 The following lines show how to get minimal information about a show.
 
-```csharp
-using TraktNet.Exceptions;
-using TraktNet.Objects.Get.Shows;
-using TraktNet.Responses;
-
-try
-{
-    TraktResponse<ITraktShow> showResponse = await client.Shows.GetShowAsync(showIdOrSlug);
-    
-    ITraktShow show = showResponse.Value;
-
-    Console.WriteLine($"Title: {show.Title}");
-    Console.WriteLine($"Year: {show.Year ?? 0}");
-
-    ITraktShowIds ids = show.Ids;
-
-    if (ids != null)
-    {
-        Console.WriteLine($"Trakt-Id: {ids.Trakt}");
-        Console.WriteLine($"Slug: {ids.Slug}");
-        Console.WriteLine($"ImDB-Id: {ids.Imdb}");
-        Console.WriteLine($"TmDB-Id: {ids.Tmdb ?? 0}");
-        Console.WriteLine($"TVDB-Id: {ids.Tvdb ?? 0}");
-        Console.WriteLine($"TVRage-Id: {ids.TvRage ?? 0}");
-    }
-}
-catch (TraktException ex)
-{
-    Console.WriteLine("-------------- Trakt Exception --------------");
-    Console.WriteLine($"Exception message: {ex.Message}");
-    Console.WriteLine($"Status code: {ex.StatusCode}");
-    Console.WriteLine($"Request URL: {ex.RequestUrl}");
-    Console.WriteLine($"Request message: {ex.RequestBody}");
-    Console.WriteLine($"Request response: {ex.Response}");
-    Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
-    Console.WriteLine("---------------------------------------------");
-}
-```
+[!code-csharp[](../../../codesnippets/examples/modules/shows/SingleShow.cs#L7-L24)]
 
 The following lines show how to get full information about a show. The only difference to the previous example is the [`new TraktExtendedInfo().SetFull()`](xref:TraktNet.Parameters.TraktExtendedInfo.SetFull) in line 10.
 
-```csharp
-using TraktNet.Parameters;
+[!code-csharp[](../../../codesnippets/examples/modules/shows/SingleShowExtended.cs#L5-L22)]
 
-try
-{
-    TraktResponse<ITraktShow> showResponse = await client.Shows.GetShowAsync(showIdOrSlug, new TraktExtendedInfo().SetFull());
-    
-    ITraktShow show = showResponse.Value;
+Here are the complete codes.
 
-    Console.WriteLine($"Title: {show.Title}");
-    Console.WriteLine($"Year: {show.Year ?? 0}");
+Single Show without extended info:
+[!code-csharp[](../../../codesnippets/examples/modules/shows/SingleShow.cs)]
 
-    ITraktShowIds ids = show.Ids;
-
-    if (ids != null)
-    {
-        Console.WriteLine($"Trakt-Id: {ids.Trakt}");
-        Console.WriteLine($"Slug: {ids.Slug}");
-        Console.WriteLine($"ImDB-Id: {ids.Imdb}");
-        Console.WriteLine($"TmDB-Id: {ids.Tmdb ?? 0}");
-        Console.WriteLine($"TVDB-Id: {ids.Tvdb ?? 0}");
-        Console.WriteLine($"TVRage-Id: {ids.TvRage ?? 0}");
-    }
-    
-    Console.WriteLine($"Overview: {show.Overview}");
-
-    if (show.FirstAired.HasValue)
-        Console.WriteLine($"First Aired (UTC): {show.FirstAired.Value}");
-
-    ITraktShowAirs airs = show.Airs;
-
-    if (airs != null)
-    {
-        Console.WriteLine($"Airs on: {airs.Day}");
-        Console.WriteLine($"Airs at: {airs.Time}");
-        Console.WriteLine($"Airs in: {airs.TimeZoneId}");
-    }
-
-    Console.WriteLine($"Runtime: {show.Runtime ?? 0} Minutes");
-
-    if (show.Genres != null)
-        Console.WriteLine($"Genres: {string.Join(", ", show.Genres)}");
-
-    Console.WriteLine($"Certification: {show.Certification}");
-    Console.WriteLine($"Network: {show.Network}");
-    Console.WriteLine($"Aired Episodes: {show.AiredEpisodes ?? 0}");
-
-    if (show.Status != null)
-        Console.WriteLine($"Status: {show.Status.DisplayName}");
-
-    Console.WriteLine($"Rating: {show.Rating ?? 0.0f}");
-    Console.WriteLine($"Votes: {show.Votes ?? 0}");
-    Console.WriteLine($"Country Code: {show.CountryCode}");
-    Console.WriteLine($"Language Code: {show.LanguageCode}");
-
-    if (show.UpdatedAt.HasValue)
-        Console.WriteLine($"Updated At (UTC): {show.UpdatedAt.Value}");
-
-    if (show.AvailableTranslationLanguageCodes != null)
-        Console.WriteLine($"Available Translation Languages: {string.Join(", ", show.AvailableTranslationLanguageCodes)}");
-
-    Console.WriteLine($"Trailer: {show.Trailer}");
-    Console.WriteLine($"Homepage: {show.Homepage}");
-}
-catch (TraktException ex)
-{
-    Console.WriteLine("-------------- Trakt Exception --------------");
-    Console.WriteLine($"Exception message: {ex.Message}");
-    Console.WriteLine($"Status code: {ex.StatusCode}");
-    Console.WriteLine($"Request URL: {ex.RequestUrl}");
-    Console.WriteLine($"Request message: {ex.RequestBody}");
-    Console.WriteLine($"Request response: {ex.Response}");
-    Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
-    Console.WriteLine("---------------------------------------------");
-}
-```
+Single Show with extended info:
+[!code-csharp[](../../../codesnippets/examples/modules/shows/SingleShowExtended.cs)]
