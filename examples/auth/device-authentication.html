@@ -105,19 +105,76 @@ string clientSecret = Console.ReadLine();
 var client = new TraktClient(clientID, clientSecret);
 </code></pre><p>We can now request authorization by authenticating with the Device Authentication method.</p>
 <p>The following lines show the steps which are required to get an authorization.</p>
-<ol>
-<li>Create a new device (see line 30)</li>
-</ol>
-<p>The created device has a verification URL (see line 46) which the user needs to visit. Secondly, the created device has a user code (see line 47) which the user needs to enter on the verification website.</p>
-<ol>
-<li>The user needs to visit the verification website and enter the user code.</li>
-<li>We poll for authorization (see line 49). The time window is a few minutes long before the polling fails (see line 40).</li>
-</ol>
-<p>There are some additional steps in this example, which are not required for authenticating. They only show the usage in the context of this example.</p>
-<ol>
-<li>Refreshing an already existing authorization (see line 73)</li>
-<li>Revoking an already existing authorization (see line 91)</li>
-</ol>
+<p>Create a new device</p>
+<pre><code class="lang-csharp">TraktResponse&lt;ITraktDevice&gt; deviceResponse = await client.Authentication.GenerateDeviceAsync();
+
+ITraktDevice device = deviceResponse.Value;
+</code></pre><p>The created device has a verification URL</p>
+<pre><code class="lang-csharp">Console.WriteLine($&quot;Please visit the following webpage: {device.VerificationUrl}&quot;); // Verification website
+</code></pre><p>which the user needs to visit.</p>
+<p>Secondly, the created device has a user code</p>
+<pre><code class="lang-csharp">Console.WriteLine($&quot;Sign in or sign up on that webpage and enter the following code: {device.UserCode}&quot;); // User code needs to be entered on the verification website
+</code></pre><p>which the user needs to enter on the verification website.</p>
+<p>The user needs to visit the verification website and enter the user code.</p>
+<pre><code class="lang-csharp">Console.WriteLine(&quot;You have to authenticate this application.&quot;);
+Console.WriteLine($&quot;Please visit the following webpage: {device.VerificationUrl}&quot;); // Verification website
+Console.WriteLine($&quot;Sign in or sign up on that webpage and enter the following code: {device.UserCode}&quot;); // User code needs to be entered on the verification website
+</code></pre><p>We poll for authorization.</p>
+<pre><code class="lang-csharp">TraktResponse&lt;ITraktAuthorization&gt; authorizationResponse = await client.Authentication.PollForAuthorizationAsync();
+
+// NOTE: We do not need to explicitly set the authorization in the client.
+// This is not necessary, since it&#39;s automatically set.
+// client.Authorization = authorizationResponse.Value;
+
+ITraktAuthorization authorization = authorizationResponse.Value;
+
+// or
+// ITraktAuthorization authorization = client.Authorization;
+
+if (authorization.IsValid)
+{
+    Console.WriteLine(&quot;-------------- Authentication successful --------------&quot;);
+    WriteAuthorizationInformation(authorization);
+    Console.WriteLine(&quot;-------------------------------------------------------&quot;);
+}
+else
+    Console.WriteLine(&quot;-------------- Authentication failed --------------&quot;);
+</code></pre><p>The time window is a few minutes long before the polling fails.</p>
+<pre><code class="lang-csharp">Console.WriteLine($&quot;Device Interval: {device.IntervalInSeconds} seconds&quot;);
+</code></pre><p>There are some additional steps in this example, which are not required for authenticating. They only show the usage in the context of this example.</p>
+<p>Refreshing an already existing authorization</p>
+<pre><code class="lang-csharp">Console.WriteLine(&quot;Do you want to refresh the current authorization? [y/n]:&quot;);
+string yesNo = Console.ReadLine();
+
+if (yesNo.Equals(&quot;y&quot;))
+{
+    TraktResponse&lt;ITraktAuthorization&gt; newAuthorizationResponse = await client.Authentication.RefreshAuthorizationAsync();
+
+    ITraktAuthorization newAuthorization = newAuthorizationResponse.Value;
+
+    if (newAuthorization.IsValid)
+    {
+        Console.WriteLine(&quot;-------------- Authorization refreshed successfully --------------&quot;);
+        WriteAuthorizationInformation(newAuthorization);
+        Console.WriteLine(&quot;-------------------------------------------------------&quot;);
+    }
+    else
+        Console.WriteLine(&quot;-------------- Refreshing Authorization failed --------------&quot;);
+}
+</code></pre><p>Revoking an already existing authorization</p>
+<pre><code class="lang-csharp">Console.WriteLine(&quot;Do you want to revoke your authorization? [y/n]:&quot;);
+yesNo = Console.ReadLine();
+
+if (yesNo.Equals(&quot;y&quot;))
+{
+    TraktNoContentResponse response = await client.Authentication.RevokeAuthorizationAsync();
+
+    // If no exception was thrown, revoking was successfull
+    Console.WriteLine(&quot;-----------------------------------&quot;);
+    Console.WriteLine(&quot;Authorization revoked successfully&quot;);
+    Console.WriteLine(&quot;-----------------------------------&quot;);
+}
+</code></pre><p>Here is the complete code:</p>
 <pre><code class="lang-csharp">using TraktNet.Exceptions;
 using TraktNet.Objects.Authentication;
 using TraktNet.Responses;

@@ -103,10 +103,20 @@ Console.WriteLine(&quot;Please enter your Trakt Client-Secret:&quot;);
 string clientSecret = Console.ReadLine();
 
 var client = new TraktClient(clientID, clientSecret);
-
-// For this example we do not want to manipulate the production API
+</code></pre><pre><code class="lang-csharp">// For this example we do not want to manipulate the production API
 client.Configuration.UseSandboxEnvironment = true;
 </code></pre><p>The following lines show how to create a recommendations post with its post builder.</p>
+<p>We get some sample data.</p>
+<pre><code class="lang-csharp">TraktPagedResponse&lt;ITraktTrendingMovie&gt; trendingMovies = await client.Movies.GetTrendingMoviesAsync();
+TraktPagedResponse&lt;ITraktTrendingShow&gt; trendingShows = await client.Shows.GetTrendingShowsAsync();
+</code></pre><p>We use the post builder to create a recommendations post.</p>
+<pre><code class="lang-csharp">ITraktSyncRecommendationsPost recommendationsPost = TraktPost.NewSyncRecommendationsPost()
+                                                        .WithMovies(trendingMovies) // Add all movies.
+                                                        .WithShows(trendingShows)   // Add all shows.
+                                                        .Build();                   // Creates the recommendations post with the added movies and shows.
+</code></pre><p>Then we use the created recommendations post in a request.</p>
+<pre><code class="lang-csharp">TraktResponse&lt;ITraktSyncRecommendationsPostResponse&gt; response = await client.Sync.AddPersonalRecommendationsAsync(recommendationsPost);
+</code></pre><p>Here is the complete code:</p>
 <pre><code class="lang-csharp">using TraktNet.Exceptions;
 using TraktNet.Objects.Get.Movies;
 using TraktNet.Objects.Get.Shows;

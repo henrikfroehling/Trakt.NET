@@ -102,6 +102,25 @@ string clientID = Console.ReadLine();
 var client = new TraktClient(clientID);
 </code></pre><p>The following lines show how to get the first page of trending shows.</p>
 <p>If no <a class="xref" href="../../../api/TraktNet.Parameters.TraktPagedParameters.html"><code>TraktPagedParameters</code></a> are given, the default page is the first page and the default limit per page is 10 items.</p>
+<pre><code class="lang-csharp">TraktPagedResponse&lt;ITraktTrendingShow&gt; trendingShowsResponse = await client.Shows.GetTrendingShowsAsync(new TraktExtendedInfo { Full = true });
+
+foreach (ITraktTrendingShow trendingShow in trendingShowsResponse)
+{
+    Console.WriteLine($&quot;Watchers: {trendingShow.Watchers}, Title: {trendingShow.Title}, Year: {trendingShow.Year}, Rating: {trendingShow.Rating}&quot;);
+}
+</code></pre><p>For getting the second page, we use the <a class="xref" href="../../../api/TraktNet.Parameters.TraktPagedParameters.html"><code>TraktPagedParameters</code></a> for setting the page we want to get.</p>
+<pre><code class="lang-csharp">var pagedParameters = new TraktPagedParameters { Page = 2 };
+</code></pre><pre><code class="lang-csharp">TraktPagedResponse&lt;ITraktTrendingShow&gt; trendingShowsResponse = await client.Shows.GetTrendingShowsAsync(
+    new TraktExtendedInfo { Full = true },
+    pagedParameters: pagedParameters
+);
+
+foreach (ITraktTrendingShow trendingShow in trendingShowsResponse)
+{
+    Console.WriteLine($&quot;Watchers: {trendingShow.Watchers}, Title: {trendingShow.Title}, Year: {trendingShow.Year}, Rating: {trendingShow.Rating}&quot;);
+}
+</code></pre><p>Here are the complete codes.</p>
+<p>Trending Shows with default first page:</p>
 <pre><code class="lang-csharp">using TraktNet.Exceptions;
 using TraktNet.Parameters;
 using TraktNet.Responses;
@@ -110,7 +129,7 @@ try
 {
     TraktPagedResponse&lt;ITraktTrendingShow&gt; trendingShowsResponse = await client.Shows.GetTrendingShowsAsync(new TraktExtendedInfo { Full = true });
 
-    for (ITraktTrendingShow trendingShow in trendingShowsResponse)
+    foreach (ITraktTrendingShow trendingShow in trendingShowsResponse)
     {
         Console.WriteLine($&quot;Watchers: {trendingShow.Watchers}, Title: {trendingShow.Title}, Year: {trendingShow.Year}, Rating: {trendingShow.Rating}&quot;);
     }
@@ -126,7 +145,7 @@ catch (TraktException ex)
     Console.WriteLine($&quot;Server Reason Phrase: {ex.ServerReasonPhrase}&quot;);
     Console.WriteLine(&quot;---------------------------------------------&quot;);
 }
-</code></pre><p>For getting the second page, we use the <a class="xref" href="../../../api/TraktNet.Parameters.TraktPagedParameters.html"><code>TraktPagedParameters</code></a> for setting the page we want to get.</p>
+</code></pre><p>Trending Shows with second page:</p>
 <pre><code class="lang-csharp">try
 {
     var pagedParameters = new TraktPagedParameters { Page = 2 };
@@ -136,7 +155,7 @@ catch (TraktException ex)
         pagedParameters: pagedParameters
     );
 
-    for (ITraktTrendingShow trendingShow in trendingShowsResponse)
+    foreach (ITraktTrendingShow trendingShow in trendingShowsResponse)
     {
         Console.WriteLine($&quot;Watchers: {trendingShow.Watchers}, Title: {trendingShow.Title}, Year: {trendingShow.Year}, Rating: {trendingShow.Rating}&quot;);
     }

@@ -107,6 +107,45 @@ string showIdOrSlug = Console.ReadLine();
 if (string.IsNullOrEmpty(showIdOrSlug))
     showIdOrSlug = &quot;game-of-thrones&quot;; // Game of Thrones as fallback
 </code></pre><p>The following lines show how to get minimal information about a show.</p>
+<pre><code class="lang-csharp">TraktResponse&lt;ITraktShow&gt; showResponse = await client.Shows.GetShowAsync(showIdOrSlug);
+
+ITraktShow show = showResponse.Value;
+
+Console.WriteLine($&quot;Title: {show.Title}&quot;);
+Console.WriteLine($&quot;Year: {show.Year ?? 0}&quot;);
+
+ITraktShowIds ids = show.Ids;
+
+if (ids != null)
+{
+    Console.WriteLine($&quot;Trakt-Id: {ids.Trakt}&quot;);
+    Console.WriteLine($&quot;Slug: {ids.Slug}&quot;);
+    Console.WriteLine($&quot;ImDB-Id: {ids.Imdb}&quot;);
+    Console.WriteLine($&quot;TmDB-Id: {ids.Tmdb ?? 0}&quot;);
+    Console.WriteLine($&quot;TVDB-Id: {ids.Tvdb ?? 0}&quot;);
+    Console.WriteLine($&quot;TVRage-Id: {ids.TvRage ?? 0}&quot;);
+}
+</code></pre><p>The following lines show how to get full information about a show. The only difference to the previous example is the <a class="xref" href="../../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetFull"><code>new TraktExtendedInfo().SetFull()</code></a> in line 10.</p>
+<pre><code class="lang-csharp">TraktResponse&lt;ITraktShow&gt; showResponse = await client.Shows.GetShowAsync(showIdOrSlug, new TraktExtendedInfo().SetFull());
+
+ITraktShow show = showResponse.Value;
+
+Console.WriteLine($&quot;Title: {show.Title}&quot;);
+Console.WriteLine($&quot;Year: {show.Year ?? 0}&quot;);
+
+ITraktShowIds ids = show.Ids;
+
+if (ids != null)
+{
+    Console.WriteLine($&quot;Trakt-Id: {ids.Trakt}&quot;);
+    Console.WriteLine($&quot;Slug: {ids.Slug}&quot;);
+    Console.WriteLine($&quot;ImDB-Id: {ids.Imdb}&quot;);
+    Console.WriteLine($&quot;TmDB-Id: {ids.Tmdb ?? 0}&quot;);
+    Console.WriteLine($&quot;TVDB-Id: {ids.Tvdb ?? 0}&quot;);
+    Console.WriteLine($&quot;TVRage-Id: {ids.TvRage ?? 0}&quot;);
+}
+</code></pre><p>Here are the complete codes.</p>
+<p>Single Show without extended info:</p>
 <pre><code class="lang-csharp">using TraktNet.Exceptions;
 using TraktNet.Objects.Get.Shows;
 using TraktNet.Responses;
@@ -114,7 +153,7 @@ using TraktNet.Responses;
 try
 {
     TraktResponse&lt;ITraktShow&gt; showResponse = await client.Shows.GetShowAsync(showIdOrSlug);
-
+    
     ITraktShow show = showResponse.Value;
 
     Console.WriteLine($&quot;Title: {show.Title}&quot;);
@@ -143,13 +182,13 @@ catch (TraktException ex)
     Console.WriteLine($&quot;Server Reason Phrase: {ex.ServerReasonPhrase}&quot;);
     Console.WriteLine(&quot;---------------------------------------------&quot;);
 }
-</code></pre><p>The following lines show how to get full information about a show. The only difference to the previous example is the <a class="xref" href="../../../api/TraktNet.Parameters.TraktExtendedInfo.html#TraktNet_Parameters_TraktExtendedInfo_SetFull"><code>new TraktExtendedInfo().SetFull()</code></a> in line 10.</p>
+</code></pre><p>Single Show with extended info:</p>
 <pre><code class="lang-csharp">using TraktNet.Parameters;
 
 try
 {
     TraktResponse&lt;ITraktShow&gt; showResponse = await client.Shows.GetShowAsync(showIdOrSlug, new TraktExtendedInfo().SetFull());
-
+    
     ITraktShow show = showResponse.Value;
 
     Console.WriteLine($&quot;Title: {show.Title}&quot;);
@@ -166,7 +205,7 @@ try
         Console.WriteLine($&quot;TVDB-Id: {ids.Tvdb ?? 0}&quot;);
         Console.WriteLine($&quot;TVRage-Id: {ids.TvRage ?? 0}&quot;);
     }
-
+    
     Console.WriteLine($&quot;Overview: {show.Overview}&quot;);
 
     if (show.FirstAired.HasValue)

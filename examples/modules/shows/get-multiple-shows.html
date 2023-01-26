@@ -115,10 +115,82 @@ showIdOrSlug1 = string.IsNullOrEmpty(showIdOrSlug1) ? &quot;game-of-thrones&quot
 showIdOrSlug2 = string.IsNullOrEmpty(showIdOrSlug2) ? &quot;mr-robot&quot; : showIdOrSlug2;
 showIdOrSlug3 = string.IsNullOrEmpty(showIdOrSlug3) ? &quot;breaking-bad&quot; : showIdOrSlug3;
 </code></pre><p>The following lines show how we can get the details of multiple shows in one library call.</p>
-<ol>
-<li>In line 11 we create a <a class="xref" href="../../../api/TraktNet.Modules.TraktMultipleObjectsQueryParams.html">TraktMultipleObjectsQueryParams</a> instance, which holds the ids of the shows.</li>
-<li>We use the <a class="xref" href="../../../api/TraktNet.Modules.TraktMultipleObjectsQueryParams.html">TraktMultipleObjectsQueryParams</a> for the request (see line 20).</li>
-</ol>
+<p>We create a <a class="xref" href="../../../api/TraktNet.Modules.TraktMultipleObjectsQueryParams.html">TraktMultipleObjectsQueryParams</a> instance, which holds the ids of the shows.</p>
+<pre><code class="lang-csharp">var extendedInfo = new TraktExtendedInfo { Full = true };
+
+var parameters = new TraktMultipleObjectsQueryParams
+{
+    showIdOrSlug1, // For this show we want only the minimal information.
+
+    // The following shows will have full information.
+    { showIdOrSlug2, extendedInfo },
+    { showIdOrSlug3, extendedInfo }
+};
+</code></pre><p>We use the <a class="xref" href="../../../api/TraktNet.Modules.TraktMultipleObjectsQueryParams.html">TraktMultipleObjectsQueryParams</a> for the request.</p>
+<pre><code class="lang-csharp">IEnumerable&lt;TraktResponse&lt;ITraktShow&gt;&gt; mutlipleShowsResponse = await client.Shows.GetMultipleShowsAsync(parameters);
+
+foreach (TraktResponse&lt;ITraktShow&gt; showResponse in mutlipleShowsResponse)
+{
+    ITraktShow show = showResponse.Value;
+
+    Console.WriteLine(&quot;-------------------------------------------------------------------------&quot;);
+    
+    Console.WriteLine($&quot;Title: {show.Title}&quot;);
+    Console.WriteLine($&quot;Year: {show.Year ?? 0}&quot;);
+
+    ITraktShowIds ids = show.Ids;
+
+    if (ids != null)
+    {
+        Console.WriteLine($&quot;Trakt-Id: {ids.Trakt}&quot;);
+        Console.WriteLine($&quot;Slug: {ids.Slug}&quot;);
+        Console.WriteLine($&quot;ImDB-Id: {ids.Imdb}&quot;);
+        Console.WriteLine($&quot;TmDB-Id: {ids.Tmdb ?? 0}&quot;);
+        Console.WriteLine($&quot;TVDB-Id: {ids.Tvdb ?? 0}&quot;);
+        Console.WriteLine($&quot;TVRage-Id: {ids.TvRage ?? 0}&quot;);
+    }
+
+    Console.WriteLine($&quot;Overview: {show.Overview}&quot;);
+
+    if (show.FirstAired.HasValue)
+        Console.WriteLine($&quot;First Aired (UTC): {show.FirstAired.Value}&quot;);
+
+    ITraktShowAirs airs = show.Airs;
+
+    if (airs != null)
+    {
+        Console.WriteLine($&quot;Airs on: {airs.Day}&quot;);
+        Console.WriteLine($&quot;Airs at: {airs.Time}&quot;);
+        Console.WriteLine($&quot;Airs in: {airs.TimeZoneId}&quot;);
+    }
+
+    Console.WriteLine($&quot;Runtime: {show.Runtime ?? 0} Minutes&quot;);
+
+    if (show.Genres != null)
+        Console.WriteLine($&quot;Genres: {string.Join(&quot;, &quot;, show.Genres)}&quot;);
+
+    Console.WriteLine($&quot;Certification: {show.Certification}&quot;);
+    Console.WriteLine($&quot;Network: {show.Network}&quot;);
+    Console.WriteLine($&quot;Aired Episodes: {show.AiredEpisodes ?? 0}&quot;);
+
+    if (show.Status != null)
+        Console.WriteLine($&quot;Status: {show.Status.DisplayName}&quot;);
+
+    Console.WriteLine($&quot;Rating: {show.Rating ?? 0.0f}&quot;);
+    Console.WriteLine($&quot;Votes: {show.Votes ?? 0}&quot;);
+    Console.WriteLine($&quot;Country Code: {show.CountryCode}&quot;);
+    Console.WriteLine($&quot;Language Code: {show.LanguageCode}&quot;);
+
+    if (show.UpdatedAt.HasValue)
+        Console.WriteLine($&quot;Updated At (UTC): {show.UpdatedAt.Value}&quot;);
+
+    if (show.AvailableTranslationLanguageCodes != null)
+        Console.WriteLine($&quot;Available Translation Languages: {string.Join(&quot;, &quot;, show.AvailableTranslationLanguageCodes)}&quot;);
+
+    Console.WriteLine($&quot;Trailer: {show.Trailer}&quot;);
+    Console.WriteLine($&quot;Homepage: {show.Homepage}&quot;);
+}
+</code></pre><p>Here is the complete code:</p>
 <pre><code class="lang-csharp">using TraktNet.Exceptions;
 using TraktNet.Modules;
 using TraktNet.Objects.Get.Shows;
@@ -145,7 +217,7 @@ try
         ITraktShow show = showResponse.Value;
 
         Console.WriteLine(&quot;-------------------------------------------------------------------------&quot;);
-
+        
         Console.WriteLine($&quot;Title: {show.Title}&quot;);
         Console.WriteLine($&quot;Year: {show.Year ?? 0}&quot;);
 
