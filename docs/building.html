@@ -5,9 +5,9 @@
     <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Services | Trakt.NET </title>
+      <title>Build from Source | Trakt.NET </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Services | Trakt.NET ">
+      <meta name="title" content="Build from Source | Trakt.NET ">
       <meta name="generator" content="docfx ">
   
       <link rel="shortcut icon" href="../favicon.ico">
@@ -90,15 +90,27 @@
                         </div>
 
                     <article class="content wrap" id="_content" data-uid="">
-<h1 id="services">Services</h1>
+<h1 id="build-from-source">Build from Source</h1>
 
-<p>The library contains some services which could be helpful additionally.</p>
-<h3 id="serialization-service">Serialization Service</h3>
-<pre><code class="lang-csharp">using TraktNet.Services;
-</code></pre><p>The <a class="xref" href="../api/TraktNet.Services.TraktSerializationService.html"><code>TraktSerializationService</code></a> provides methods for serializing and deserializing Trakt.NET objects. Objects will be serialized as a JSON string.</p>
-<h3 id="language-service">Language Service</h3>
-<pre><code class="lang-csharp">using TraktNet.Services;
-</code></pre><p>The <a class="xref" href="../api/TraktNet.Services.TraktLanguageService.html"><code>TraktLanguageService</code></a> provides methods for looking up the language and country names for language codes, that are returned by the Trakt API.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Install Visual Studio 2022 (Community or higher) or Visual Studio Code and make sure you have the latest updates.</p>
+<h3 id="build">Build</h3>
+<p>To clone and build it locally run the following git commands:</p>
+<pre><code>&gt; git clone https://github.com/henrikfroehling/Trakt.NET.git
+&gt; cd Trakt.NET
+</code></pre><h4 id="complete-solution-including-tests">Complete Solution (including tests)</h4>
+<p>Run following commands in the projects root directory to build the complete solution:</p>
+<pre><code>&gt; dotnet restore Source/Trakt.NET.sln
+&gt; dotnet build Source/Trakt.NET.sln -c [Debug|Release] --no-restore /m /p:BuildInParallel=true
+</code></pre><p>Running the tests:</p>
+<pre><code>&gt; dotnet test Source/Trakt.NET.sln -c [Debug|Release] --no-build --no-restore
+</code></pre><p>Alternatively you can also open the solution <code>&lt;PROJECT_ROOT&gt;/Source/Trakt.NET.sln</code> in Visual Studio or Visual Studio Code.</p>
+<h4 id="only-library-itself-without-any-tests-etc">Only Library itself (without any tests, etc.)</h4>
+<p>Run following commands in the projects root directory to build only the library itself:</p>
+<pre><code>&gt; dotnet restore Source/Lib/Trakt.NET/Trakt.NET.csproj
+&gt; dotnet build Source/Lib/Trakt.NET/Trakt.NET.csproj -c [Debug|Release] --no-restore
+</code></pre><p>Alternatively you can also open the solution filter <code>&lt;PROJECT_ROOT&gt;/Source/Trakt.NET_OnlyLibraryProject.slnf</code> in Visual Studio or Visual Studio Code.</p>
+<p>Either way, after building the library, you can find the binaries in <code>&lt;PROJECT_ROOT&gt;/Build/Lib/[Debug|Release]/netstandard2.0</code>.</p>
 </article>
                 </div>
 

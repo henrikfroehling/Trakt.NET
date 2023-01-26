@@ -99,7 +99,7 @@
 <li><a class="xref" href="../api/TraktNet.Responses.TraktListResponse-1.html"><code>TraktListResponse&lt;TContentType&gt;</code></a> for Trakt responses that return a list of objects, where <code>TContentType</code> is the type of a list item object</li>
 <li><a class="xref" href="../api/TraktNet.Responses.TraktPagedResponse-1.html"><code>TraktPagedResponse&lt;TContentType&gt;</code></a> for Trakt responses that return a list and pagination headers, where <code>TContentType</code> is the type of a list item object</li>
 </ul>
-<h2 id="response-properties">Response Properties</h2>
+<h3 id="response-properties">Response Properties</h3>
 <ul>
 <li><code>bool IsSuccess</code>, indicating whether a request was successful</li>
 <li><code>Exception Exception</code>, containing the exception which was thrown on failure (only assigned, if <a class="xref" href="../api/TraktNet.Core.TraktConfiguration.html#TraktNet_Core_TraktConfiguration_ThrowResponseExceptions"><code>client.Configuration.ThrowResponseExceptions</code></a> is set to <code>false</code></li>
@@ -109,7 +109,7 @@
 <li><code>bool HasValue</code>, indicating whether a response contains a value (single object or list of objects)</li>
 <li><code>TContentType Value</code>, the actual response value (single object for <a class="xref" href="../api/TraktNet.Responses.TraktResponse-1.html"><code>TraktResponse&lt;TContentType&gt;</code></a> and <code>IEnumerable&lt;TContentType&gt;</code> for <a class="xref" href="../api/TraktNet.Responses.TraktListResponse-1.html"><code>TraktListResponse&lt;TContentType&gt;</code></a> and <a class="xref" href="../api/TraktNet.Responses.TraktPagedResponse-1.html"><code>TraktPagedResponse&lt;TContentType&gt;</code></a>)</li>
 </ul>
-<h2 id="exceptions">Exceptions</h2>
+<h3 id="exceptions">Exceptions</h3>
 <p>By default, the library throws an exception, when a request fails.
 This means, you should wrap each request in a <code>try</code>-<code>catch</code>-block.</p>
 <p>You can disable this behaviour with the following setting:</p>
@@ -128,30 +128,35 @@ else
     // get the exception, if request failed
     Exception exception = response.Exception;
 }
-</code></pre><h2 id="response-headers">Response Headers</h2>
+</code></pre><h3 id="response-headers">Response Headers</h3>
 <p>Every response type (see above) contains response headers returned by the Trakt API.</p>
-<p>Following headers are available in <a class="xref" href="../api/TraktNet.Responses.TraktResponse-1.html"><code>TraktResponse&lt;TContentType&gt;</code></a> and <a class="xref" href="../api/TraktNet.Responses.TraktListResponse-1.html"><code>TraktListResponse&lt;TContentType&gt;</code></a>:</p>
+<p>Following headers are available in <a class="xref" href="../api/TraktNet.Responses.TraktResponse-1.html"><code>TraktResponse&lt;TContentType&gt;</code></a>, <a class="xref" href="../api/TraktNet.Responses.TraktListResponse-1.html"><code>TraktListResponse&lt;TContentType&gt;</code></a> and <a class="xref" href="../api/TraktNet.Responses.TraktPagedResponse-1.html"><code>TraktPagedResponse&lt;TContentType&gt;</code></a>:</p>
 <ul>
-<li><code>string SortBy</code></li>
-<li><code>string SortHow</code></li>
-<li><code>string AppliedSortBy</code></li>
-<li><code>string AppliedSortHow</code></li>
-<li><code>DateTime? StartDate</code></li>
+<li><code>int? AccountLimit</code></li>
+<li><code>TraktSortBy? AppliedSortBy</code></li>
+<li><code>TraktSortHow? AppliedSortHow</code></li>
 <li><code>DateTime? EndDate</code></li>
-<li><code>int? TrendingUserCount</code></li>
-<li><code>uint? Page</code></li>
-<li><code>uint? Limit</code></li>
 <li><code>bool? IsPrivateUser</code></li>
+<li><code>bool? IsVIPUser</code></li>
 <li><code>int? ItemId</code></li>
 <li><code>string ItemType</code></li>
+<li><code>uint? Limit</code></li>
+<li><code>uint? Page</code></li>
+<li><code>string RateLimit</code></li>
+<li><code>int? RetryAfter</code></li>
+<li><code>TraktSortBy? SortBy</code></li>
+<li><code>TraktSortHow? SortHow</code></li>
+<li><code>DateTime? StartDate</code></li>
+<li><code>int? TrendingUserCount</code></li>
+<li><code>string UpgradeURL</code></li>
 </ul>
-<p>Following headers are available in <a class="xref" href="../api/TraktNet.Responses.TraktPagedResponse-1.html"><code>TraktPagedResponse&lt;TContentType&gt;</code></a>additionally:</p>
+<p>Following headers are only available in <a class="xref" href="../api/TraktNet.Responses.TraktPagedResponse-1.html"><code>TraktPagedResponse&lt;TContentType&gt;</code></a>:</p>
 <ul>
-<li><code>int? PageCount</code></li>
 <li><code>int? ItemCount</code></li>
+<li><code>int? PageCount</code></li>
 </ul>
 <p><a class="xref" href="../api/TraktNet.Responses.TraktNoContentResponse.html"><code>TraktNoContentResponse</code></a> doesn&#39;t contain any headers.</p>
-<h2 id="example-usage">Example Usage</h2>
+<h3 id="example-usage">Example Usage</h3>
 <pre><code class="lang-csharp">using TraktNet;
 using TraktNet.Objects.Get.Shows;
 using TraktNet.Responses;

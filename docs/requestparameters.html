@@ -93,7 +93,7 @@
 <h1 id="request-parameters">Request Parameters</h1>
 
 <p>Many methods in the <a href="modules.html">modules</a> accept <a href="requestparameters.html#extended-info">extended info</a> specifications, <a href="requestparameters.html#filters">filters</a> and / or collections with <a href="requestparameters.html#multiple-ids">multiple object ids</a>.</p>
-<h2 id="extended-info">Extended Info</h2>
+<h3 id="extended-info">Extended Info</h3>
 <p>A <a class="xref" href="../api/TraktNet.Parameters.TraktExtendedInfo.html"><code>TraktExtendedInfo</code></a> instance can be created to specify, how much data should be retrieved for a request. It is possible to create just one instance of it and use it for each request or to create a new instance of it for every new request.</p>
 <p>To create an instance of <a class="xref" href="../api/TraktNet.Parameters.TraktExtendedInfo.html"><code>TraktExtendedInfo</code></a>, there are basically two ways.</p>
 <pre><code class="lang-csharp">using TraktNet.Parameters;
@@ -154,7 +154,7 @@ var extendedInfo = new TraktExtendedInfo().SetFull();
 <pre><code class="lang-csharp">using TraktNet.Parameters;
 
 var extendedInfo = new TraktExtendedInfo().SetMetadata().SetFull().SetNoSeasons().SetEpisodes().Reset().SetNoSeasons().Reset();
-</code></pre><h2 id="filters">Filters</h2>
+</code></pre><h3 id="filters">Filters</h3>
 <p>There are four different filters you can use.</p>
 <ul>
 <li><a class="xref" href="../api/TraktNet.Parameters.ITraktCalendarFilter.html"><code>ITraktCalendarFilter</code></a> for all methods in the <a class="xref" href="../api/TraktNet.TraktClient.html#TraktNet_TraktClient_Calendar"><code>TraktClient.Calendar</code></a> module</li>
@@ -209,7 +209,7 @@ ITraktCalendarFilter calendarFilter = TraktFilter.NewCalenderFilter()
                                           .WithRuntimes(30, 60)
                                           .WithRatings(80, 95)
                                           .Build();
-</code></pre><h2 id="multiple-ids">Multiple Ids</h2>
+</code></pre><h3 id="multiple-ids">Multiple Ids</h3>
 <p>The methods</p>
 <ul>
 <li><a class="xref" href="../api/TraktNet.Modules.TraktMoviesModule.html#TraktNet_Modules_TraktMoviesModule_GetMultipleMoviesAsync_TraktNet_Modules_TraktMultipleObjectsQueryParams_System_Threading_CancellationToken_"><code>TraktClient.Movies.GetMultipleMoviesAsync()</code></a></li>
@@ -254,7 +254,7 @@ require each a collection of mutliple ids of objects, which you want to retrieve
 </tr>
 </tbody>
 </table>
-<h3 id="traktmultipleobjectsqueryparamsxreftraktnetmodulestraktmultipleobjectsqueryparams"><a class="xref" href="../api/TraktNet.Modules.TraktMultipleObjectsQueryParams.html"><code>TraktMultipleObjectsQueryParams</code></a></h3>
+<h4 id="traktmultipleobjectsqueryparamsxreftraktnetmodulestraktmultipleobjectsqueryparams"><a class="xref" href="../api/TraktNet.Modules.TraktMultipleObjectsQueryParams.html"><code>TraktMultipleObjectsQueryParams</code></a></h4>
 <pre><code class="lang-csharp">using TraktNet.Modules;
 
 var queryParams = new TraktMultipleObjectsQueryParams
@@ -272,7 +272,7 @@ var queryParams = new TraktMultipleObjectsQueryParams();
 queryParams.Add(&quot;id-1&quot;);
 queryParams.Add(&quot;id-2&quot;, new TraktExtendedInfo { Full = true });
 queryParams.Add(&quot;id-3&quot;);
-</code></pre><h3 id="traktmultipleseasonsqueryparamsxreftraktnetmodulestraktmultipleseasonsqueryparams"><a class="xref" href="../api/TraktNet.Modules.TraktMultipleSeasonsQueryParams.html"><code>TraktMultipleSeasonsQueryParams</code></a></h3>
+</code></pre><h4 id="traktmultipleseasonsqueryparamsxreftraktnetmodulestraktmultipleseasonsqueryparams"><a class="xref" href="../api/TraktNet.Modules.TraktMultipleSeasonsQueryParams.html"><code>TraktMultipleSeasonsQueryParams</code></a></h4>
 <pre><code class="lang-csharp">using TraktNet.Modules;
 
 var queryParams = new TraktMultipleSeasonsQueryParams
@@ -290,7 +290,7 @@ var queryParams = new TraktMultipleSeasonsQueryParams();
 queryParams.Add(&quot;show-id-1&quot;, 1);
 queryParams.Add(&quot;show-id-2&quot;, 3, new TraktExtendedInfo { Full = true });
 queryParams.Add(&quot;show-id-3&quot;, 2);
-</code></pre><h3 id="traktmultipleepisodesqueryparamsxreftraktnetmodulestraktmultipleepisodesqueryparams"><a class="xref" href="../api/TraktNet.Modules.TraktMultipleEpisodesQueryParams.html"><code>TraktMultipleEpisodesQueryParams</code></a></h3>
+</code></pre><h4 id="traktmultipleepisodesqueryparamsxreftraktnetmodulestraktmultipleepisodesqueryparams"><a class="xref" href="../api/TraktNet.Modules.TraktMultipleEpisodesQueryParams.html"><code>TraktMultipleEpisodesQueryParams</code></a></h4>
 <pre><code class="lang-csharp">using TraktNet.Modules;
 
 var queryParams = new TraktMultipleEpisodesQueryParams
@@ -308,7 +308,7 @@ var queryParams = new TraktMultipleEpisodesQueryParams();
 queryParams.Add(&quot;show-id-1&quot;, 1, 1);
 queryParams.Add(&quot;show-id-2&quot;, 3, 5, new TraktExtendedInfo { Full = true });
 queryParams.Add(&quot;show-id-3&quot;, 2, 1);
-</code></pre><h3 id="traktmultipleuserlistsqueryparamsxreftraktnetmodulestraktmultipleuserlistsqueryparams"><a class="xref" href="../api/TraktNet.Modules.TraktMultipleUserListsQueryParams.html"><code>TraktMultipleUserListsQueryParams</code></a></h3>
+</code></pre><h4 id="traktmultipleuserlistsqueryparamsxreftraktnetmodulestraktmultipleuserlistsqueryparams"><a class="xref" href="../api/TraktNet.Modules.TraktMultipleUserListsQueryParams.html"><code>TraktMultipleUserListsQueryParams</code></a></h4>
 <pre><code class="lang-csharp">using TraktNet.Modules;
 
 var queryParams = new TraktMultipleUserListsQueryParams
@@ -326,7 +326,7 @@ var queryParams = new TraktMultipleUserListsQueryParams();
 queryParams.Add(&quot;username-1&quot;, &quot;list-id-1&quot;);
 queryParams.Add(&quot;username-2&quot;, &quot;list-id-3&quot;);
 queryParams.Add(&quot;username-3&quot;, &quot;list-id-5&quot;);
-</code></pre><h2 id="post-objects-post-builder">Post Objects (Post Builder)</h2>
+</code></pre><h3 id="post-objects-post-builder">Post Objects (Post Builder)</h3>
 <p>There are several methods which require a post object.
 These are mostly required in the following modules:</p>
 <ul>
