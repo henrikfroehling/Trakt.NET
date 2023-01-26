@@ -2,7 +2,8 @@
 
 **[Installation](installation.md)**
 - [NuGet](installation.md#nuget)
-- [Build from Source](installation.md#build-from-source)
+
+**[Build from Source](building.md)**
 
 **[Namespaces](namespaces.md)**
 
@@ -17,7 +18,7 @@
 - [Refresh Authorization](auth.md#refresh-authorization)
 - [Revoke Authorization](auth.md#revoke-authorization)
 
-**[Async](async.md)**
+**[Async / Await](async.md)**
 
 **[Exception Handling](exceptionhandling.md)**
 

@@ -7,7 +7,7 @@ Trakt.NET has a response system with four different response types.
 - [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) for Trakt responses that return a list of objects, where `TContentType` is the type of a list item object
 - [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1) for Trakt responses that return a list and pagination headers, where `TContentType` is the type of a list item object
 
-## Response Properties
+### Response Properties
 
 - `bool IsSuccess`, indicating whether a request was successful
 - `Exception Exception`, containing the exception which was thrown on failure (only assigned, if [`client.Configuration.ThrowResponseExceptions`](xref:TraktNet.Core.TraktConfiguration.ThrowResponseExceptions) is set to `false`
@@ -17,7 +17,7 @@ Trakt.NET has a response system with four different response types.
 - `bool HasValue`, indicating whether a response contains a value (single object or list of objects)
 - `TContentType Value`, the actual response value (single object for [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1) and `IEnumerable<TContentType>` for [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) and [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1))
 
-## Exceptions
+### Exceptions
 
 By default, the library throws an exception, when a request fails.
 This means, you should wrap each request in a `try`-`catch`-block.
@@ -47,33 +47,38 @@ else
 }
 ```
 
-## Response Headers
+### Response Headers
 
 Every response type (see above) contains response headers returned by the Trakt API.
 
-Following headers are available in [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1) and [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1):
+Following headers are available in [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1), [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) and [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1):
 
-- `string SortBy`
-- `string SortHow`
-- `string AppliedSortBy`
-- `string AppliedSortHow`
-- `DateTime? StartDate`
+- `int? AccountLimit`
+- `TraktSortBy? AppliedSortBy`
+- `TraktSortHow? AppliedSortHow`
 - `DateTime? EndDate`
-- `int? TrendingUserCount`
-- `uint? Page`
-- `uint? Limit`
 - `bool? IsPrivateUser`
+- `bool? IsVIPUser`
 - `int? ItemId`
 - `string ItemType`
+- `uint? Limit`
+- `uint? Page`
+- `string RateLimit`
+- `int? RetryAfter`
+- `TraktSortBy? SortBy`
+- `TraktSortHow? SortHow`
+- `DateTime? StartDate`
+- `int? TrendingUserCount`
+- `string UpgradeURL`
 
-Following headers are available in [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1)additionally:
+Following headers are only available in [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1):
 
-- `int? PageCount`
 - `int? ItemCount`
+- `int? PageCount`
 
 [`TraktNoContentResponse`](xref:TraktNet.Responses.TraktNoContentResponse) doesn't contain any headers.
 
-## Example Usage
+### Example Usage
 
 ```csharp
 using TraktNet;
