@@ -6,7 +6,7 @@ The main entry point to the library is a [`TraktClient`](xref:TraktNet.TraktClie
 using TraktNet;
 ```
 
-### Cliend-ID
+### Client-ID
 
 If you just want to use requests, which do not require the OAuth authorization of [Trakt.tv](https://trakt.tv/), you will only have to provide the client id of your [Trakt application](https://trakt.tv/oauth/applications):
 
