@@ -1,9 +1,5 @@
 # Trakt.NET Examples
 
-### Basics
-- [Configuration](basics/configuration.md)
-- [Exception Handling](basics/exceptions.md)
-
 ### Authentication
 - [Device Authentication](auth/device-authentication.md)
 - [OAuth Authentication](auth/oauth-authentication.md)

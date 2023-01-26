@@ -2,6 +2,10 @@
 
 Trakt.NET uses exceptions extensively. Every exception in the library inherits by [`TraktException`](xref:TraktNet.Exceptions.TraktException). That means you don't need to catch every single exception thrown by the library, only [`TraktException`](xref:TraktNet.Exceptions.TraktException):
 
+### Usage
+
+The library usage would look like this:
+
 ```csharp
 using TraktNet.Exceptions;
 
@@ -19,6 +23,49 @@ catch (TraktException ex)
     Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");    // could be null
 }
 ```
+
+If you want to catch a specific exception, the usage would look like this:
+
+```csharp
+try
+{
+    var response = await client.Module.RequestAsync(Parameters...);
+}
+catch (TraktMovieNotFoundException ex) // Specific exception, which is thrown when a movie is not found
+{
+    // Do something with the exception
+} 
+catch (TraktException ex) // Base exception type
+{
+    // Do something with the exception
+}
+```
+
+### Disabling Exceptions
+
+If you do not want to use exceptions, you can disable this behaviour with the following setting:
+
+```csharp
+client.Configuration.ThrowResponseExceptions = false;
+```
+
+You then need to check whether a response is valid like this:
+
+```csharp
+var response = await client.Module.RequestAsync(Parameters...);
+
+if (response) // Or response.IsSuccess
+{
+    // Do something with the response.
+}
+else
+{
+    // Get a possible thrown exception
+    var exception = response.Exception;
+}
+```
+
+### Exception Types
 
 Other exceptions, you need to be aware of, are [`ArgumentNullException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception?view=net-7.0), [`ArgumentException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception?view=net-7.0) and occasionally [`ArgumentOutOfRangeException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception?view=net-7.0). As the names suggest, they are only thrown, if you pass invalid arguments to the library methods.
 
