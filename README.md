@@ -31,7 +31,6 @@ To use Trakt.NET, you will need to obtain an API key from Trakt and follow the g
 - Completely asynchronous
 - API Environments (Production and Sandbox)
 - Serialization Service
-- Language Service
 
 ### Supported Platforms
 
