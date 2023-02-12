@@ -32,11 +32,11 @@ jobs:
         id: update
         shell: bash
         run: |
-          OUTPUT=$(dotnet outdated)
+          OUTPUT=$(dotnet outdated ${{ env.SOLUTION_NAME }})
           if [[ $OUTPUT =~ "No outdated dependencies" ]]; then
             echo "::set-output name=updated::false"
           else
-            dotnet outdated -u
+            dotnet outdated -u ${{ env.SOLUTION_NAME }}
             echo "::set-output name=updated::true"
           fi
 
