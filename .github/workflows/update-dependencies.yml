@@ -7,7 +7,7 @@ on:
 
 env:
   BUILD_TYPE: Release
-  SOLUTION_NAME: 'Source\Trakt.NET.sln'
+  SOLUTION_NAME: 'Source/Trakt.NET.sln'
 
 jobs:
   dependencies:
