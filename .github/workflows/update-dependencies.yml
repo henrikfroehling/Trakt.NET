@@ -37,30 +37,25 @@ jobs:
             echo "::set-output name=updated::false"
           else
             dotnet outdated -u ${{ env.SOLUTION_NAME }}
-            echo "::set-output name=updated::true"
+            echo "updated=true" >> $GITHUB_ENV
           fi
 
       - name: Run tests
-        if: ${{ steps.update.outputs.updated == 'true' }}
+        if: ${{ env.updated == 'true' }}
         run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }}
 
-      - name: Create new branch
-        if: ${{ steps.update.outputs.updated == 'true' }}
-        run: git checkout -b update-nuget-packages-${{ github.run_number }}
-
-      - name: Create Commit
-        if: ${{ steps.update.outputs.updated == 'true' }}
-        run: |
-          git config --global user.name "Continous Integration"
-          git config --global user.email "henrikfroehling@users.noreply.github.com"
-          git commit -a -m "Update NuGet packages"
-
       - name: Create Pull Request
-        if: ${{ steps.update.outputs.updated == 'true' }}
+        if: ${{ env.updated == 'true' }}
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ACTIONS_PAT }}
           title: Update NuGet packages
           labels: automated, dependencies
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           branch: update-nuget-packages-${{ github.run_number }}
+          commit-message: "Update NuGet packages"
+          signoff: true
+          assignees: henrikfroehling
+          reviewers: henrikfroehling
           base: develop
