@@ -1,0 +1,66 @@
+name: "Automated Dependency Updates"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 20 * * 5'
+
+env:
+  BUILD_TYPE: Release
+  SOLUTION_NAME: 'Source\Trakt.NET.sln'
+
+jobs:
+  dependencies:
+    if: contains(github.ref, 'develop')
+    name: "Update NuGet packages"
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+          dotnet-quality: 'ga'
+
+      - name: Install .NET tool dotnet-outdated-tool
+        run: dotnet tool install --global dotnet-outdated-tool
+
+      - name: Update
+        id: update
+        shell: bash
+        run: |
+          OUTPUT=$(dotnet outdated)
+          if [[ $OUTPUT =~ "No outdated dependencies" ]]; then
+            echo "::set-output name=updated::false"
+          else
+            dotnet outdated -u
+            echo "::set-output name=updated::true"
+          fi
+
+      - name: Run tests
+        if: ${{ steps.update.outputs.updated == 'true' }}
+        run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }}
+
+      - name: Create new branch
+        if: ${{ steps.update.outputs.updated == 'true' }}
+        run: git checkout -b update-nuget-packages-${{ github.run_number }}
+
+      - name: Create Commit
+        if: ${{ steps.update.outputs.updated == 'true' }}
+        run: |
+          git config --global user.name "Continous Integration"
+          git config --global user.email "henrikfroehling@users.noreply.github.com"
+          git commit -a -m "Update NuGet packages"
+
+      - name: Create Pull Request
+        if: ${{ steps.update.outputs.updated == 'true' }}
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: Update NuGet packages
+          labels: automated, dependencies
+          branch: update-nuget-packages-${{ github.run_number }}
+          base: develop
