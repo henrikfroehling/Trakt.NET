@@ -51,8 +51,8 @@ jobs:
           token: ${{ secrets.ACTIONS_PAT }}
           title: Update NuGet packages
           labels: automated, dependencies
-          committer: GitHub <noreply@github.com>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           branch: update-nuget-packages-${{ github.run_number }}
           commit-message: "Update NuGet packages"
           signoff: true
