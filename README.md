@@ -2,6 +2,7 @@ Trakt.NET
 ===
 
 [![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.3.0-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.3.0)
+
 [![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-blue.svg?style=flat)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/Pull%20Requests-Welcome-blue.svg?style=flat)](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
@@ -31,27 +32,14 @@ To use Trakt.NET, you will need to obtain an API key from Trakt and follow the g
 - Completely asynchronous
 - API Environments (Production and Sandbox)
 - Serialization Service
-- Language Service
 
 ### Supported Platforms
 
-- .NET >= 5
-- .NET Core >= 2.0
-- .NET Framework >= 4.6.1
-- .NET MAUI
-- Xamarin.iOS >= 10.14
-- Xamarin.Mac >= 3.8
-- Xamarin.Android >= 8.0
-- Windows UWP >= 10.0.16299
-- Mono >= 5.4
-
-### Installation
-
-```
-> dotnet add package Trakt.NET
-```
-
-or with the [Visual Studio Package Management](https://learn.microsoft.com/de-de/nuget/consume-packages/install-use-packages-visual-studio) and search for "trakt".
+|     |     |     |     |
+|:---:|:---:|:---:|:---:|
+| .NET >= 5 | .NET MAUI | .NET Framework >= 4.6.1 | .NET Core >= 2.0 |
+| Xamarin.Android >= 8.0 | Xamarin.iOS >= 10.14 | Xamarin.Mac >= 3.8 |
+| Windows UWP >= 10.0.16299 | Mono >= 5.4 |
 
 ### Quickstart
 
@@ -101,7 +89,7 @@ https://henrikfroehling.github.io/Trakt.NET/docs/index.html
 
 ### Examples
 
-Examples can be found here: https://henrikfroehling.github.io/Trakt.NET/examples/index.html
+https://henrikfroehling.github.io/Trakt.NET/examples/index.html
 
 ### Discussions and Issues
 Do you have a question or suggestion? [Start a discussion](https://github.com/henrikfroehling/Trakt.NET/discussions)
