@@ -59,7 +59,7 @@ jobs:
         run: dotnet build ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --no-restore /m /p:BuildInParallel=true
 
       - name: Run tests
-        run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity normal --no-build --no-restore
+        run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity normal --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
       - name: Get version number
         shell: pwsh
