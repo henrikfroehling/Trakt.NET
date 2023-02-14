@@ -61,6 +61,9 @@ jobs:
       - name: Run tests
         run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity normal --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+
       - name: Get version number
         shell: pwsh
         run: |
@@ -75,9 +78,6 @@ jobs:
       - name: Rename artifacts
         shell: pwsh
         run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg|.snupkg'} | Rename-Item -NewName {'Trakt.NET.' + '${{ env.VERSION_NUMBER }}' + '-' + '${{ env.PACKAGE_VERSION_SUFFIX }}' + '.' + '${{ github.run_number }}' + $_.Extension}
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
