@@ -11,15 +11,14 @@
     <Company>Henrik Fröhling</Company>
     <PackageProjectUrl>https://github.com/henrikfroehling/Trakt.NET</PackageProjectUrl>
     <Copyright>Copyright © 2016 - Current Henrik Fröhling et al.</Copyright>
-    <Description>.NET wrapper library for the Trakt.tv API.
+    <Description>A .NET wrapper library with which developers can build .NET applications that integrate with the Trakt.tv API and access its features and data.
 
 Features
 - Full Trakt.tv API Coverage
-- Authentication Support (OAuth 2.0 and Device)
+- Authentication and Authorization Support (OAuth 2.0 and Device)
 - Completely asynchronous
 - API Environments (Production and Sandbox)
-- Serialization Service
-- Language Service</Description>
+- Serialization Service</Description>
     <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
     <PackageTags>trakt rest api</PackageTags>
     <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#130</PackageReleaseNotes>
