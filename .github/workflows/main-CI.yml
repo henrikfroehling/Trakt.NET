@@ -44,17 +44,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '7.0.x'
           dotnet-quality: 'ga'
+
       - name: Restore dependencies
         run: dotnet restore ${{ env.SOLUTION_NAME }}
+
       - name: Build solution
         run: dotnet build ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --no-restore /m /p:BuildInParallel=true
+
       - name: Run tests
-        run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity normal --no-build --no-restore
+        run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity normal --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+
       - name: Get version number
         shell: pwsh
         run: |
@@ -62,11 +70,14 @@ jobs:
           $versionNumber = "$($csprojcontents.Project.PropertyGroup.VersionPrefix)".Trim()
           Write-Host "Found version:" $versionNumber
           echo "VERSION_NUMBER=$versionNumber" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
+
       - name: Nuget pack
         run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --verbosity detailed --output ${{ env.BUILD_DIRECTORY }} --version-suffix "pre-deployment-${{ github.run_number }}" -p:PackageID="Trakt.NET" --no-build --no-restore
+
       - name: Rename artifacts
         shell: pwsh
         run: Get-ChildItem -Path ${{ env.BUILD_DIRECTORY }} | Where-Object {$_.Extension -match '.dll|.pdb|.xml|.nupkg'} | Rename-Item -NewName {'Trakt.NET.' + '${{ env.VERSION_NUMBER }}' + '.' + '${{ github.run_number }}' + $_.Extension}
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -76,7 +87,9 @@ jobs:
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.pdb
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.xml
             ${{ env.BUILD_DIRECTORY }}/Trakt.NET*.nupkg
+
       - name: Add GitHub packages source
         run: dotnet nuget add source --username henrikfroehling --password ${{ secrets.PAT_GITHUB }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/henrikfroehling/index.json"
+
       - name: Push package
         run: dotnet nuget push "${{ env.BUILD_DIRECTORY }}\Trakt.NET*.nupkg" --api-key ${{ secrets.PAT_GITHUB }} --source "github"
