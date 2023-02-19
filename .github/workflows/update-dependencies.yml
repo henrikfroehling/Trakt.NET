@@ -1,0 +1,76 @@
+name: "Automated Dependency Updates"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 20 * * 5'
+
+env:
+  BUILD_TYPE: Release
+  SOLUTION_NAME: 'Source/Trakt.NET.sln'
+
+jobs:
+  dependencies:
+    if: ${{ !contains(github.ref, 'main') }}
+    name: "Update NuGet packages"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+          dotnet-quality: 'ga'
+
+      - name: Install .NET tool dotnet-outdated-tool
+        run: dotnet tool install --global dotnet-outdated-tool
+
+      - name: Update
+        id: update
+        shell: bash
+        run: |
+          OUTPUT=$(dotnet outdated ${{ env.SOLUTION_NAME }})
+          if [[ $OUTPUT =~ "No outdated dependencies" ]]; then
+            echo "updated=false" >> $GITHUB_ENV
+          else
+            dotnet outdated -u ${{ env.SOLUTION_NAME }}
+            echo "updated=true" >> $GITHUB_ENV
+          fi
+
+      - name: Run tests
+        if: ${{ env.updated == 'true' }}
+        run: dotnet test ${{ env.SOLUTION_NAME }} --configuration ${{ env.BUILD_TYPE }}
+
+      - name: Create Pull Request
+        id: cpr
+        if: ${{ env.updated == 'true' }}
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.ACTIONS_PAT }}
+          title: Update NuGet packages
+          labels: automated, dependencies
+          committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          branch: update-nuget-packages-${{ github.run_number }}
+          delete-branch: true
+          commit-message: "Update NuGet packages"
+          signoff: true
+          assignees: henrikfroehling
+          reviewers: henrikfroehling
+
+      - name: Enable Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: peter-evans/enable-pull-request-automerge@v2
+        with:
+          token: ${{ secrets.ACTIONS_PAT }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+
+      - name: Auto approve
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: juliangruber/approve-pull-request-action@v2
+        with:
+          github-token: ${{ secrets.ACTIONS_PAT }}
+          number: ${{ steps.cpr.outputs.pull-request-number }}
