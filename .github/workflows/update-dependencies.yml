@@ -34,7 +34,7 @@ jobs:
         run: |
           OUTPUT=$(dotnet outdated ${{ env.SOLUTION_NAME }})
           if [[ $OUTPUT =~ "No outdated dependencies" ]]; then
-            echo "::set-output name=updated::false"
+            echo "updated=false" >> $GITHUB_ENV
           else
             dotnet outdated -u ${{ env.SOLUTION_NAME }}
             echo "updated=true" >> $GITHUB_ENV

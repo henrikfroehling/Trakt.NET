@@ -29,7 +29,7 @@ jobs:
           dotnet-quality: 'ga'
 
       - name: Setup DocFX
-        run: dotnet tool install -g docfx
+        run: dotnet tool install -g docfx --version 2.60.2
 
       - name: Build library
         run: dotnet build ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} /m /p:BuildInParallel=true
