@@ -81,7 +81,8 @@ Output:
 ```
 Title: The Last of Us
 Year: 2023
-
+```
+```json
 {"title":"The Last of Us","year":2023,"ids":{"trakt":158947,"slug":"the-last-of-us","tvdb":392256,"imdb":"tt3581920","tmdb":100088}}
 ```
 
