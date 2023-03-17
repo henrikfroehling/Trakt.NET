@@ -17,8 +17,10 @@
     using Requests.Handler;
     using Responses;
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
     using TraktNet.Parameters;
@@ -152,10 +154,11 @@
         /// <returns>A list of <see cref="ITraktComment" /> instances with the data of each queried comment.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        [Obsolete("GetMutlipleCommentsAsync is deprecated, please use GetCommentsStreamAsync instead.")]
         public async Task<IEnumerable<TraktResponse<ITraktComment>>> GetMutlipleCommentsAsync(uint[] commentIds, CancellationToken cancellationToken = default)
         {
             if (commentIds == null || commentIds.Length == 0)
-                return new List<TraktResponse<ITraktComment>>();
+                return Enumerable.Empty<TraktResponse<ITraktComment>>();
 
             var tasks = new List<Task<TraktResponse<ITraktComment>>>();
 
@@ -167,6 +170,43 @@
 
             TraktResponse<ITraktComment>[] comments = await Task.WhenAll(tasks).ConfigureAwait(false);
             return comments.ToList();
+        }
+
+        /// <summary>
+        /// Gets multiple different <see cref="ITraktComment" />s or replies at once with the given Trakt-Ids or -Slugs.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// </para>
+        /// <para>See also <seealso cref="GetCommentAsync(uint, CancellationToken)" />.</para>
+        /// </summary>
+        /// <param name="commentIds">An array of comment ids.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1?view=net-7.0">async stream</a> of <see cref="ITraktComment" /> instances with the data of each queried comment.</returns>
+        /// <exception cref="TraktException">Thrown, if one request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public async IAsyncEnumerable<TraktResponse<ITraktComment>> GetCommentsStreamAsync(uint[] commentIds, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            if (commentIds == null || commentIds.Length == 0)
+                yield break;
+
+            var tasks = new List<Task<TraktResponse<ITraktComment>>>();
+
+            for (int i = 0; i < commentIds.Length; i++)
+            {
+                Task<TraktResponse<ITraktComment>> task = GetCommentAsync(commentIds[i], cancellationToken);
+                tasks.Add(task);
+            }
+
+            while(tasks.Any())
+            {
+                var finishedTask = await Task.WhenAny(tasks).ConfigureAwait(false);
+                tasks.Remove(finishedTask);
+                yield return await finishedTask;
+            }
         }
 
         /// <summary>
