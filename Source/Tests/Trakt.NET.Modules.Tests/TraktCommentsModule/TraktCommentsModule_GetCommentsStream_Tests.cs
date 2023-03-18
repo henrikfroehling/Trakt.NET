@@ -23,7 +23,7 @@
         public async Task Test_TraktCommentsModule_GetCommentStream_ShouldReturn2Comments()
         {
             uint[] commentIds = { GET_COMMENT_ID, GET_COMMENT_ID };
-            int totalComments = 1;
+            int totalComments = commentIds.Length;
             TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, COMMENT_JSON);
             IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
 

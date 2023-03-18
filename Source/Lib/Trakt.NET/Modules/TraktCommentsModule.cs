@@ -23,6 +23,7 @@
     using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Extensions;
     using TraktNet.Parameters;
 
     /// <summary>
@@ -201,11 +202,9 @@
                 tasks.Add(task);
             }
 
-            while(tasks.Any())
+            await foreach(TraktResponse<ITraktComment> result in tasks.StreamFinishedTaskResultsAsync().ConfigureAwait(false))
             {
-                var finishedTask = await Task.WhenAny(tasks).ConfigureAwait(false);
-                tasks.Remove(finishedTask);
-                yield return await finishedTask;
+                yield return result;
             }
         }
 

@@ -13,8 +13,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Extensions;
     using TraktNet.Parameters;
 
     /// <summary>
@@ -83,11 +85,12 @@
         /// <returns>A list of <see cref="ITraktEpisode" /> instances with the data of each queried episode.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        [Obsolete("GetMultipleEpisodesAsync is deprecated, please use GetEpisodesStreamAsync instead.")]
         public async Task<IEnumerable<TraktResponse<ITraktEpisode>>> GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams episodesQueryParams,
                                                                                               CancellationToken cancellationToken = default)
         {
             if (episodesQueryParams == null || episodesQueryParams.Count == 0)
-                return new List<TraktResponse<ITraktEpisode>>();
+                return Enumerable.Empty<TraktResponse<ITraktEpisode>>();
 
             var tasks = new List<Task<TraktResponse<ITraktEpisode>>>();
 
@@ -100,6 +103,43 @@
 
             TraktResponse<ITraktEpisode>[] episodes = await Task.WhenAll(tasks).ConfigureAwait(false);
             return episodes.ToList();
+        }
+
+        /// <summary>
+        /// Gets multiple different <see cref="ITraktEpisode" />s at once in a show with the given Trakt-Show-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+        /// </para>
+        /// <para>See also <seealso cref="GetEpisodeAsync(string, uint, uint, TraktExtendedInfo, CancellationToken)" />.</para>
+        /// </summary>
+        /// <param name="episodesQueryParams">A list of show ids, season numbers, episode numbers and optional extended infos. See also <seealso cref="TraktMultipleEpisodesQueryParams" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1?view=net-7.0">async stream</a> of <see cref="ITraktEpisode" /> instances with the data of each queried episode.</returns>
+        /// <exception cref="TraktException">Thrown, if one request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public async IAsyncEnumerable<TraktResponse<ITraktEpisode>> GetEpisodesStreamAsync(TraktMultipleEpisodesQueryParams episodesQueryParams,
+                                                                                              [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            if (episodesQueryParams == null || episodesQueryParams.Count == 0)
+                yield break;
+
+            var tasks = new List<Task<TraktResponse<ITraktEpisode>>>();
+
+            foreach (TraktEpisodeQueryParams queryParam in episodesQueryParams)
+            {
+                Task<TraktResponse<ITraktEpisode>> task = GetEpisodeAsync(queryParam.ShowId, queryParam.Season, queryParam.Episode,
+                                                                          queryParam.ExtendedInfo, cancellationToken);
+                tasks.Add(task);
+            }
+
+            await foreach (TraktResponse<ITraktEpisode> result in tasks.StreamFinishedTaskResultsAsync().ConfigureAwait(false))
+            {
+                yield return result;
+            }
         }
 
         /// <summary>
