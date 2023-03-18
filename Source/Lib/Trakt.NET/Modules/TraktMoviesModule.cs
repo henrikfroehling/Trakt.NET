@@ -13,8 +13,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Extensions;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to movies.
@@ -93,6 +95,42 @@
 
             TraktResponse<ITraktMovie>[] movies = await Task.WhenAll(tasks).ConfigureAwait(false);
             return movies.ToList();
+        }
+
+        /// <summary>
+        /// Gets multiple different <see cref="ITraktMovie" />s at once with the given Trakt-Ids or -Slugs.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
+        /// </para>
+        /// <para>See also <seealso cref="GetMovieAsync(string, TraktExtendedInfo, CancellationToken)" />.</para>
+        /// </summary>
+        /// <param name="moviesQueryParams">A list of movie ids and optional extended infos. See also <seealso cref="TraktMultipleObjectsQueryParams" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1?view=net-7.0">async stream</a> of <see cref="ITraktMovie" /> instances with the data of each queried movie.</returns>
+        /// <exception cref="TraktException">Thrown, if one request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public async IAsyncEnumerable<TraktResponse<ITraktMovie>> GetMoviesStreamAsync(TraktMultipleObjectsQueryParams moviesQueryParams,
+                                                                                          [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            if (moviesQueryParams == null || moviesQueryParams.Count == 0)
+                yield break;
+
+            var tasks = new List<Task<TraktResponse<ITraktMovie>>>();
+
+            foreach (TraktObjectsQueryParams queryParam in moviesQueryParams)
+            {
+                Task<TraktResponse<ITraktMovie>> task = GetMovieAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
+                tasks.Add(task);
+            }
+
+            await foreach (TraktResponse<ITraktMovie> result in tasks.StreamFinishedTaskResultsAsync().ConfigureAwait(false))
+            {
+                yield return result;
+            }
         }
 
         /// <summary>
