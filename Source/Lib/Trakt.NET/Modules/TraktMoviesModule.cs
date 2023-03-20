@@ -79,6 +79,7 @@
         /// <returns>A list of <see cref="ITraktMovie" /> instances with the data of each queried movie.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        [Obsolete("GetMultipleMoviesAsync is deprecated, please use GetMoviesStreamAsync instead.")]
         public async Task<IEnumerable<TraktResponse<ITraktMovie>>> GetMultipleMoviesAsync(TraktMultipleObjectsQueryParams moviesQueryParams,
                                                                                           CancellationToken cancellationToken = default)
         {
