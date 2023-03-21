@@ -16,8 +16,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Extensions;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to shows.
@@ -80,6 +82,7 @@
         /// <returns>A list of <see cref="ITraktShow" /> instances with the data of each queried show.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        [Obsolete("GetMultipleShowsAsync is deprecated, please use GetShowsStreamAsync instead.")]
         public async Task<IEnumerable<TraktResponse<ITraktShow>>> GetMultipleShowsAsync(TraktMultipleObjectsQueryParams showsQueryParams,
                                                                                         CancellationToken cancellationToken = default)
         {
@@ -96,6 +99,42 @@
 
             TraktResponse<ITraktShow>[] shows = await Task.WhenAll(tasks).ConfigureAwait(false);
             return shows.ToList();
+        }
+
+        /// <summary>
+        /// Gets multiple different <see cref="ITraktShow" />s at once with the given Trakt-Ids or -Slugs.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
+        /// </para>
+        /// <para>See also <seealso cref="GetShowAsync(string, TraktExtendedInfo, CancellationToken)" />.</para>
+        /// </summary>
+        /// <param name="showsQueryParams">A list of show ids and optional extended infos. See also <seealso cref="TraktMultipleObjectsQueryParams" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1?view=net-7.0">async stream</a> of <see cref="ITraktShow" /> instances with the data of each queried show.</returns>
+        /// <exception cref="TraktException">Thrown, if one request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public async IAsyncEnumerable<TraktResponse<ITraktShow>> GetShowsStreamAsync(TraktMultipleObjectsQueryParams showsQueryParams,
+                                                                                        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            if (showsQueryParams == null || showsQueryParams.Count == 0)
+                yield break;
+
+            var tasks = new List<Task<TraktResponse<ITraktShow>>>();
+
+            foreach (TraktObjectsQueryParams queryParam in showsQueryParams)
+            {
+                Task<TraktResponse<ITraktShow>> task = GetShowAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
+                tasks.Add(task);
+            }
+
+            await foreach(TraktResponse<ITraktShow> result in tasks.StreamFinishedTaskResultsAsync().ConfigureAwait(false))
+            {
+                yield return result;
+            }
         }
 
         /// <summary>
