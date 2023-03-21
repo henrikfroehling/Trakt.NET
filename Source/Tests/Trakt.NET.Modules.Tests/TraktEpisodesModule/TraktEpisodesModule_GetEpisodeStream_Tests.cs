@@ -19,7 +19,7 @@
         private readonly string GET_EPISODE_STREAM_URI = $"shows/{SHOW_ID}/seasons/{SEASON_NR}/episodes/{EPISODE_NR}";
 
         [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_ShouldReturn2Episodes()
+        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync()
         {
             var parameters = new TraktMultipleEpisodesQueryParams
             {
@@ -65,7 +65,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_WithExtendedInfo_ShouldReturn2Episodes()
+        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_WithExtendedInfo()
         {
             var parameters = new TraktMultipleEpisodesQueryParams
             {
@@ -110,7 +110,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_EmptyParameters_ShouldReturn0Episodes()
+        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_EmptyParameters()
         {
             var parameters = new TraktMultipleEpisodesQueryParams
             {
@@ -121,7 +121,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_NullParameters_ShouldReturn0Episodes()
+        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_NullParameters()
         {
             TraktMultipleEpisodesQueryParams parameters = null;
             TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_STREAM_URI}?extended={EXTENDED_INFO}", EPISODE_SUMMARY_FULL_JSON);

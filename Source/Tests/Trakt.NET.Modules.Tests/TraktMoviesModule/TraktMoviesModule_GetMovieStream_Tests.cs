@@ -19,7 +19,7 @@
         private readonly string GET_MOVIE_STREAM_URI = $"movies/{MOVIE_ID}";
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieStreamAsync_ShouldReturn2Movies()
+        public async Task Test_TraktMoviesModule_GetMovieStreamAsync()
         {
             var parameters = new TraktMultipleObjectsQueryParams
             {
@@ -53,7 +53,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithExtendedInfo_ShouldReturn2Movies()
+        public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithExtendedInfo()
         {
             var parameters = new TraktMultipleObjectsQueryParams
             {
@@ -100,7 +100,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithNullParameters_ShouldReturn0Movies()
+        public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithNullParameters()
         {
             var parameters = new TraktMultipleObjectsQueryParams
             {
@@ -115,7 +115,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithEmptyParameters_ShouldReturn0Movies()
+        public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithEmptyParameters()
         {
             var parameters = new TraktMultipleObjectsQueryParams
             {

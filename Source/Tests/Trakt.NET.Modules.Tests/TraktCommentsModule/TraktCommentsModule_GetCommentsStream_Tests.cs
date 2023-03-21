@@ -20,7 +20,7 @@
         private readonly string GET_COMMENTS_STREAM_URI = $"comments/{GET_COMMENT_ID}";
 
         [Fact]
-        public async Task Test_TraktCommentsModule_GetCommentStream_ShouldReturn2Comments()
+        public async Task Test_TraktCommentsModule_GetCommentStream()
         {
             uint[] commentIds = { GET_COMMENT_ID, GET_COMMENT_ID };
             int totalComments = commentIds.Length;
@@ -57,7 +57,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktCommentsModule_GetCommentStream_NullCommentsIds_ShouldReturn_EmptyList()
+        public async Task Test_TraktCommentsModule_GetCommentStream_WithNullParameters()
         {
             uint[] commentIds = null;
             TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, COMMENT_JSON);
@@ -67,7 +67,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktCommentsModule_GetCommentStream_EmptyCommentsIds_ShouldReturn_EmptyList()
+        public async Task Test_TraktCommentsModule_GetCommentStream_WithEmptyParameters()
         {
             uint[] commentIds = new uint[0];
             TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, COMMENT_JSON);
