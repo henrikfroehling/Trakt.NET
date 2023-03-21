@@ -14,8 +14,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Extensions;
     using TraktNet.Parameters;
 
     /// <summary>
@@ -127,6 +129,7 @@
         /// <returns>A list of lists, each containing <see cref="ITraktEpisode" /> instances with the data of each episode in the queried seasons.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        [Obsolete("GetMultipleSeasonsAsync is deprecated, please use GetSeasonsStreamAsync instead.")]
         public async Task<IEnumerable<TraktListResponse<ITraktEpisode>>> GetMultipleSeasonsAsync(TraktMultipleSeasonsQueryParams seasonsQueryParams,
                                                                                                  CancellationToken cancellationToken = default)
         {
@@ -145,6 +148,44 @@
 
             TraktListResponse<ITraktEpisode>[] seasons = await Task.WhenAll(tasks).ConfigureAwait(false);
             return seasons.ToList();
+        }
+
+        /// <summary>
+        /// Gets multiple different seasons at once in a show with the given Trakt-Show-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/seasons/season/get-single-season-for-a-show">"Trakt API Doc - Seasons: Season"</a> for more information.
+        /// </para>
+        /// <para>See also <seealso cref="GetSeasonAsync(string, uint, TraktExtendedInfo, string, CancellationToken)" />.</para>
+        /// </summary>
+        /// <param name="seasonsQueryParams">A list of show ids, season numbers and optional extended infos. See also <seealso cref="TraktMultipleSeasonsQueryParams" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of lists, each containing <see cref="ITraktEpisode" /> instances with the data of each episode in the queried seasons.</returns>
+        /// <exception cref="TraktException">Thrown, if one request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public async IAsyncEnumerable<TraktListResponse<ITraktEpisode>> GetSeasonsStreamAsync(TraktMultipleSeasonsQueryParams seasonsQueryParams,
+                                                                                                 [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            if (seasonsQueryParams == null || seasonsQueryParams.Count == 0)
+                yield break;
+
+            var tasks = new List<Task<TraktListResponse<ITraktEpisode>>>();
+
+            foreach (TraktSeasonsQueryParams queryParam in seasonsQueryParams)
+            {
+                Task<TraktListResponse<ITraktEpisode>> task = GetSeasonAsync(queryParam.ShowId, queryParam.Season, queryParam.ExtendedInfo,
+                                                                             queryParam.TranslationLanguageCode, cancellationToken);
+
+                tasks.Add(task);
+            }
+
+            await foreach (TraktListResponse<ITraktEpisode> result in tasks.StreamFinishedTaskResultsAsync().ConfigureAwait(false))
+            {
+                yield return result;
+            }
         }
 
         /// <summary>
