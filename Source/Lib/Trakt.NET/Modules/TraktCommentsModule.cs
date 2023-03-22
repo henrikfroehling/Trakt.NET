@@ -158,7 +158,7 @@
         public async Task<IEnumerable<TraktResponse<ITraktComment>>> GetMutlipleCommentsAsync(uint[] commentIds, CancellationToken cancellationToken = default)
         {
             if (commentIds == null || commentIds.Length == 0)
-                return Enumerable.Empty<TraktResponse<ITraktComment>>();
+                return new List<TraktResponse<ITraktComment>>();
 
             var tasks = new List<Task<TraktResponse<ITraktComment>>>();
 

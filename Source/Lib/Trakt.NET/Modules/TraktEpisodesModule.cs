@@ -90,7 +90,7 @@
                                                                                               CancellationToken cancellationToken = default)
         {
             if (episodesQueryParams == null || episodesQueryParams.Count == 0)
-                return Enumerable.Empty<TraktResponse<ITraktEpisode>>();
+                return new List<TraktResponse<ITraktEpisode>>();
 
             var tasks = new List<Task<TraktResponse<ITraktEpisode>>>();
 
