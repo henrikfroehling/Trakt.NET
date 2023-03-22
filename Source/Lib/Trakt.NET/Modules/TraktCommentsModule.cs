@@ -180,7 +180,7 @@
         /// </para>
         /// <para>See also <seealso cref="GetCommentAsync(uint, CancellationToken)" />.</para>
         /// </summary>
-        /// <param name="commentIds">An array of comment ids.</param>
+        /// <param name="commentIds">A list of comment ids.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
