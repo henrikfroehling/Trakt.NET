@@ -27,7 +27,7 @@
                 { PERSON_ID }
             };
             int totalPersons = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONS_STREAM_URI, PERSON_MINIMAL_JSON);
+            TraktClient client = TestUtility.GetMockClientForMultipleCalls(GET_PERSONS_STREAM_URI, PERSON_MINIMAL_JSON, totalPersons);
             IAsyncEnumerable<TraktResponse<ITraktPerson>> responses = client.People.GetPersonsStreamAsync(parameters);
 
             int returnedPersons = 0;
@@ -62,7 +62,7 @@
                 { PERSON_ID, EXTENDED_INFO }
             };
             int totalPersons = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient($"{GET_PERSONS_STREAM_URI}?extended={EXTENDED_INFO}", PERSON_FULL_JSON);
+            TraktClient client = TestUtility.GetMockClientForMultipleCalls($"{GET_PERSONS_STREAM_URI}?extended={EXTENDED_INFO}", PERSON_FULL_JSON, totalPersons);
             IAsyncEnumerable<TraktResponse<ITraktPerson>> responses = client.People.GetPersonsStreamAsync(parameters);
 
             int returnedPersons = 0;

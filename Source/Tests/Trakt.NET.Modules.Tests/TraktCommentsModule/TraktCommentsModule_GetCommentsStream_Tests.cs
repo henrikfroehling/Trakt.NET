@@ -22,9 +22,9 @@
         [Fact]
         public async Task Test_TraktCommentsModule_GetCommentStream()
         {
-            uint[] commentIds = { GET_COMMENT_ID, GET_COMMENT_ID };
-            int totalComments = commentIds.Length;
-            TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, COMMENT_JSON);
+            List<uint> commentIds = new List<uint> { GET_COMMENT_ID, GET_COMMENT_ID };
+            int totalComments = commentIds.Count;
+            TraktClient client = TestUtility.GetMockClientForMultipleCalls(GET_COMMENTS_STREAM_URI, COMMENT_JSON, totalComments);
             IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
 
 
@@ -59,7 +59,7 @@
         [Fact]
         public async Task Test_TraktCommentsModule_GetCommentStream_WithNullParameters()
         {
-            uint[] commentIds = null;
+            List<uint> commentIds = null;
             TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, COMMENT_JSON);
             IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
 
@@ -69,7 +69,7 @@
         [Fact]
         public async Task Test_TraktCommentsModule_GetCommentStream_WithEmptyParameters()
         {
-            uint[] commentIds = new uint[0];
+            List<uint> commentIds = new List<uint>();
             TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, COMMENT_JSON);
             IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
 
@@ -95,11 +95,12 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktCommentsModule_GetCommentStream_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            List<uint> commentIds = new List<uint> { GET_COMMENT_ID, GET_COMMENT_ID };
             TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, statusCode);
 
             try
             {
-                IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(new uint[] { GET_COMMENT_ID, GET_COMMENT_ID });
+                IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
                 await foreach(TraktResponse<ITraktComment> response in responses.ConfigureAwait(false)) {
 
                 }

@@ -27,7 +27,7 @@
                 { SHOW_ID, SEASON_NR, EPISODE_NR }
             };
             int totalNumberOfEpisodes = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient(GET_EPISODE_STREAM_URI, EPISODE_SUMMARY_FULL_JSON);
+            TraktClient client = TestUtility.GetMockClientForMultipleCalls(GET_EPISODE_STREAM_URI, EPISODE_SUMMARY_FULL_JSON, totalNumberOfEpisodes);
             IAsyncEnumerable<TraktResponse<ITraktEpisode>> responses = client.Episodes.GetEpisodesStreamAsync(parameters);
 
             int episodesReturned = 0;
@@ -73,7 +73,7 @@
                 { SHOW_ID, SEASON_NR, EPISODE_NR, EXTENDED_INFO }
             };
             int totalNumberOfEpisodes = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_STREAM_URI}?extended={EXTENDED_INFO}", EPISODE_SUMMARY_FULL_JSON);
+            TraktClient client = TestUtility.GetMockClientForMultipleCalls($"{GET_EPISODE_STREAM_URI}?extended={EXTENDED_INFO}", EPISODE_SUMMARY_FULL_JSON, totalNumberOfEpisodes);
             IAsyncEnumerable<TraktResponse<ITraktEpisode>> responses = client.Episodes.GetEpisodesStreamAsync(parameters);
 
             int episodesReturned = 0;
@@ -157,7 +157,7 @@
                     { SHOW_ID, SEASON_NR, EPISODE_NR, EXTENDED_INFO },
                     { SHOW_ID, SEASON_NR, EPISODE_NR, EXTENDED_INFO }
                 };
-                int responses = client.Episodes.GetEpisodesStreamAsync(parameters);
+                IAsyncEnumerable<TraktResponse<ITraktEpisode>> responses = client.Episodes.GetEpisodesStreamAsync(parameters);
                 (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
                 Assert.False(true);
             }

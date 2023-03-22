@@ -25,10 +25,10 @@
             TraktMultipleUserListsQueryParams parameters = new TraktMultipleUserListsQueryParams
             {
                 { USERNAME, LIST_ID },
-                { USERNAME, LIST_NAME },
+                { USERNAME, LIST_ID },
             };
             int totalLists = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_URI, LIST_JSON);
+            TraktClient client = TestUtility.GetMockClientForMultipleCalls(GET_PERSONAL_LIST_STREAM_URI, LIST_JSON, totalLists);
             IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(parameters);
 
             int returnedLists = 0;
@@ -68,10 +68,10 @@
             TraktMultipleUserListsQueryParams parameters = new TraktMultipleUserListsQueryParams
             {
                 { USERNAME, LIST_ID },
-                { USERNAME, LIST_NAME },
+                { USERNAME, LIST_ID },
             };
             int totalLists = parameters.Count;
-            TraktClient client = TestUtility.GetOAuthMockClient(GET_PERSONAL_LIST_URI, LIST_JSON);
+            TraktClient client = TestUtility.GetOAuthMockClient(GET_PERSONAL_LIST_STREAM_URI, LIST_JSON);
             client.Configuration.ForceAuthorization = true;
 
             IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(parameters);
@@ -111,8 +111,7 @@
         public async Task Test_TraktUsersModule_GetPersonalListStreamAsync_WithEmptyParameters()
         {
             TraktMultipleUserListsQueryParams parameters = new TraktMultipleUserListsQueryParams();
-            int totalLists = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_URI, LIST_JSON);
+            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_STREAM_URI, LIST_JSON);
             IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(parameters);
 
             (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
@@ -121,14 +120,8 @@
         [Fact]
         public async Task Test_TraktUsersModule_GetPersonalListStreamAsync_WithNullParameters()
         {
-            TraktMultipleUserListsQueryParams parameters = new TraktMultipleUserListsQueryParams
-            {
-                { USERNAME, LIST_ID },
-                { USERNAME, LIST_NAME },
-            };
-            int totalLists = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_URI, LIST_JSON);
-            IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(parameters);
+            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_STREAM_URI, LIST_JSON);
+            IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(null);
 
             (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
         }
@@ -155,10 +148,9 @@
             TraktMultipleUserListsQueryParams parameters = new TraktMultipleUserListsQueryParams
             {
                 { USERNAME, LIST_ID },
-                { USERNAME, LIST_NAME },
+                { USERNAME, LIST_ID },
             };
-            int totalLists = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_URI, statusCode);
+            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_STREAM_URI, statusCode);
 
             try
             {

@@ -28,7 +28,7 @@
                 { SHOW_ID }
             };
             int totalShows = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient(GET_SHOWS_STREAM_URI, SHOW_JSON);
+            TraktClient client = TestUtility.GetMockClientForMultipleCalls(GET_SHOWS_STREAM_URI, SHOW_JSON, totalShows);
             IAsyncEnumerable<TraktResponse<ITraktShow>> responses = client.Shows.GetShowsStreamAsync(parameters);
 
             int returnedShows = 0;
@@ -64,7 +64,7 @@
                 { SHOW_ID, EXTENDED_INFO }
             };
             int totalShows = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient($"{GET_SHOWS_STREAM_URI}?extended={EXTENDED_INFO}", SHOW_JSON);
+            TraktClient client = TestUtility.GetMockClientForMultipleCalls($"{GET_SHOWS_STREAM_URI}?extended={EXTENDED_INFO}", SHOW_JSON, totalShows);
             IAsyncEnumerable<TraktResponse<ITraktShow>> responses = client.Shows.GetShowsStreamAsync(parameters);
 
             int returnedShows = 0;

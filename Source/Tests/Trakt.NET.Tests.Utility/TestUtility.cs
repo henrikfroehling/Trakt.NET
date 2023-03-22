@@ -18,6 +18,16 @@
             return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
         }
 
+        internal static TraktClient GetMockClientForMultipleCalls(string uri, string responseContent, int calls)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            for (int i = 0; i < calls; i++)
+            {
+                httpClientProvider.SetupMockResponse(uri, responseContent);
+            }
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
         internal static TraktClient GetMockClient(string uri, string responseContent,
                                                   uint? page = null, uint? limit = null,
                                                   int? pageCount = null, int? itemCount = null,

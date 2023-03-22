@@ -27,7 +27,7 @@
                 { MOVIE_ID }
             };
             int totalMovies = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_STREAM_URI, MOVIE_JSON);
+            TraktClient client = TestUtility.GetMockClientForMultipleCalls(GET_MOVIE_STREAM_URI, MOVIE_JSON, totalMovies);
             IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(parameters);
 
             int returnedMovies = 0;
@@ -61,7 +61,7 @@
                 { MOVIE_ID, EXTENDED_INFO }
             };
             int totalMovies = parameters.Count;
-            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_STREAM_URI}?extended={EXTENDED_INFO}", MOVIE_JSON);
+            TraktClient client = TestUtility.GetMockClientForMultipleCalls($"{GET_MOVIE_STREAM_URI}?extended={EXTENDED_INFO}", MOVIE_JSON, totalMovies);
             IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(parameters);
 
             int returnedMovies = 0;
@@ -102,14 +102,8 @@
         [Fact]
         public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithNullParameters()
         {
-            TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
-            {
-                { MOVIE_ID, EXTENDED_INFO },
-                { MOVIE_ID, EXTENDED_INFO }
-            };
-            int totalMovies = parameters.Count;
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_STREAM_URI}?extended={EXTENDED_INFO}", MOVIE_JSON);
-            IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(parameters);
+            IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(null);
 
             (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
         }
@@ -119,8 +113,6 @@
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
-                { MOVIE_ID, EXTENDED_INFO },
-                { MOVIE_ID, EXTENDED_INFO }
             };
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_STREAM_URI}?extended={EXTENDED_INFO}", MOVIE_JSON);
             IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(parameters);
