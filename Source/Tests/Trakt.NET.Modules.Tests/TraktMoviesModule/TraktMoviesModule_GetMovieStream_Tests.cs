@@ -21,17 +21,17 @@
         [Fact]
         public async Task Test_TraktMoviesModule_GetMovieStreamAsync()
         {
-            var parameters = new TraktMultipleObjectsQueryParams
+            TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
                 { MOVIE_ID },
                 { MOVIE_ID }
             };
-            var totalMovies = parameters.Count;
+            int totalMovies = parameters.Count;
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_STREAM_URI, MOVIE_JSON);
             IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(parameters);
 
             int returnedMovies = 0;
-            await foreach(var response in responses.ConfigureAwait(false))
+            await foreach(TraktResponse<ITraktMovie> response in responses.ConfigureAwait(false))
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -55,17 +55,17 @@
         [Fact]
         public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithExtendedInfo()
         {
-            var parameters = new TraktMultipleObjectsQueryParams
+            TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
                 { MOVIE_ID, EXTENDED_INFO },
                 { MOVIE_ID, EXTENDED_INFO }
             };
-            var totalMovies = parameters.Count;
+            int totalMovies = parameters.Count;
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_STREAM_URI}?extended={EXTENDED_INFO}", MOVIE_JSON);
             IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(parameters);
 
             int returnedMovies = 0;
-            await foreach (var response in responses.ConfigureAwait(false))
+            await foreach (TraktResponse<ITraktMovie> response in responses.ConfigureAwait(false))
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -102,31 +102,30 @@
         [Fact]
         public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithNullParameters()
         {
-            var parameters = new TraktMultipleObjectsQueryParams
+            TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
                 { MOVIE_ID, EXTENDED_INFO },
                 { MOVIE_ID, EXTENDED_INFO }
             };
-            var totalMovies = parameters.Count;
+            int totalMovies = parameters.Count;
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_STREAM_URI}?extended={EXTENDED_INFO}", MOVIE_JSON);
             IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(parameters);
 
-            (await responses.ToListAsync()).Should().BeEmpty();
+            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
         }
 
         [Fact]
         public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithEmptyParameters()
         {
-            var parameters = new TraktMultipleObjectsQueryParams
+            TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
                 { MOVIE_ID, EXTENDED_INFO },
                 { MOVIE_ID, EXTENDED_INFO }
             };
-            var totalMovies = parameters.Count;
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_STREAM_URI}?extended={EXTENDED_INFO}", MOVIE_JSON);
             IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(parameters);
 
-            (await responses.ToListAsync()).Should().BeEmpty();
+            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
         }
 
         [Theory]
@@ -148,11 +147,17 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktMoviesModule_GetMoviesStreamAsync_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
+            {
+                { MOVIE_ID, EXTENDED_INFO },
+                { MOVIE_ID, EXTENDED_INFO }
+            };
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_STREAM_URI, statusCode);
 
             try
             {
-                await client.Movies.GetMovieAsync(MOVIE_ID);
+                IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(parameters);
+                (await responses.ToListAsync().ConfigureAwait(false)).Should().NotBeNullOrEmpty();
                 Assert.False(true);
             }
             catch (Exception exception)

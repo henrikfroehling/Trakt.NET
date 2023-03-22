@@ -21,18 +21,18 @@
         [Fact]
         public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync()
         {
-            var parameters = new TraktMultipleEpisodesQueryParams
+            TraktMultipleEpisodesQueryParams parameters = new TraktMultipleEpisodesQueryParams
             {
                 { SHOW_ID, SEASON_NR, EPISODE_NR },
                 { SHOW_ID, SEASON_NR, EPISODE_NR }
             };
-            var totalNumberOfEpisodes = parameters.Count;
+            int totalNumberOfEpisodes = parameters.Count;
             TraktClient client = TestUtility.GetMockClient(GET_EPISODE_STREAM_URI, EPISODE_SUMMARY_FULL_JSON);
             IAsyncEnumerable<TraktResponse<ITraktEpisode>> responses = client.Episodes.GetEpisodesStreamAsync(parameters);
 
             int episodesReturned = 0;
 
-            await foreach(TraktResponse<ITraktEpisode> response in responses)
+            await foreach (TraktResponse<ITraktEpisode> response in responses.ConfigureAwait(false))
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -67,18 +67,18 @@
         [Fact]
         public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_WithExtendedInfo()
         {
-            var parameters = new TraktMultipleEpisodesQueryParams
+            TraktMultipleEpisodesQueryParams parameters = new TraktMultipleEpisodesQueryParams
             {
                 { SHOW_ID, SEASON_NR, EPISODE_NR, EXTENDED_INFO },
                 { SHOW_ID, SEASON_NR, EPISODE_NR, EXTENDED_INFO }
             };
-            var totalNumberOfEpisodes = parameters.Count;
+            int totalNumberOfEpisodes = parameters.Count;
             TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_STREAM_URI}?extended={EXTENDED_INFO}", EPISODE_SUMMARY_FULL_JSON);
             IAsyncEnumerable<TraktResponse<ITraktEpisode>> responses = client.Episodes.GetEpisodesStreamAsync(parameters);
 
             int episodesReturned = 0;
 
-            await foreach (TraktResponse<ITraktEpisode> response in responses)
+            await foreach (TraktResponse<ITraktEpisode> response in responses.ConfigureAwait(false))
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -112,12 +112,12 @@
         [Fact]
         public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_EmptyParameters()
         {
-            var parameters = new TraktMultipleEpisodesQueryParams
+            TraktMultipleEpisodesQueryParams parameters = new TraktMultipleEpisodesQueryParams
             {
             };
             TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_STREAM_URI}?extended={EXTENDED_INFO}", EPISODE_SUMMARY_FULL_JSON);
             IAsyncEnumerable<TraktResponse<ITraktEpisode>> responses = client.Episodes.GetEpisodesStreamAsync(parameters);
-            (await responses.ToListAsync()).Should().BeEmpty();
+            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
         }
 
         [Fact]
@@ -126,7 +126,7 @@
             TraktMultipleEpisodesQueryParams parameters = null;
             TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_STREAM_URI}?extended={EXTENDED_INFO}", EPISODE_SUMMARY_FULL_JSON);
             IAsyncEnumerable<TraktResponse<ITraktEpisode>> responses = client.Episodes.GetEpisodesStreamAsync(parameters);
-            (await responses.ToListAsync()).Should().BeEmpty();
+            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
         }
 
         [Theory]
@@ -152,13 +152,13 @@
 
             try
             {
-                var parameters = new TraktMultipleEpisodesQueryParams
-            {
-                { SHOW_ID, SEASON_NR, EPISODE_NR, EXTENDED_INFO },
-                { SHOW_ID, SEASON_NR, EPISODE_NR, EXTENDED_INFO }
-            };
-                var responses = await client.Episodes.GetEpisodesStreamAsync(parameters).ToListAsync();
-
+                TraktMultipleEpisodesQueryParams parameters = new TraktMultipleEpisodesQueryParams
+                {
+                    { SHOW_ID, SEASON_NR, EPISODE_NR, EXTENDED_INFO },
+                    { SHOW_ID, SEASON_NR, EPISODE_NR, EXTENDED_INFO }
+                };
+                int responses = client.Episodes.GetEpisodesStreamAsync(parameters);
+                (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
                 Assert.False(true);
             }
             catch (Exception exception)

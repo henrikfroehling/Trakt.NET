@@ -31,7 +31,7 @@
             IAsyncEnumerable<TraktResponse<ITraktPerson>> responses = client.People.GetPersonsStreamAsync(parameters);
 
             int returnedPersons = 0;
-            await foreach (TraktResponse<ITraktPerson> response in responses)
+            await foreach (TraktResponse<ITraktPerson> response in responses.ConfigureAwait(false))
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -66,7 +66,7 @@
             IAsyncEnumerable<TraktResponse<ITraktPerson>> responses = client.People.GetPersonsStreamAsync(parameters);
 
             int returnedPersons = 0;
-            await foreach (var response in responses)
+            await foreach (TraktResponse<ITraktPerson> response in responses.ConfigureAwait(false))
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -99,7 +99,7 @@
             TraktClient client = TestUtility.GetMockClient($"{GET_PERSONS_STREAM_URI}?extended={EXTENDED_INFO}", PERSON_FULL_JSON);
             IAsyncEnumerable<TraktResponse<ITraktPerson>> responses = client.People.GetPersonsStreamAsync(null);
 
-            (await responses.ToListAsync()).Should().BeEmpty();
+            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
         }
 
         [Fact]
@@ -110,7 +110,7 @@
             TraktClient client = TestUtility.GetMockClient($"{GET_PERSONS_STREAM_URI}?extended={EXTENDED_INFO}", PERSON_FULL_JSON);
             IAsyncEnumerable<TraktResponse<ITraktPerson>> responses = client.People.GetPersonsStreamAsync(parameters);
 
-            (await responses.ToListAsync()).Should().BeEmpty();
+            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
         }
 
         [Theory]
@@ -142,7 +142,7 @@
             try
             {
                 IAsyncEnumerable<TraktResponse<ITraktPerson>> responses = client.People.GetPersonsStreamAsync(parameters);
-                (await responses.ToListAsync()).Should().NotBeNull();
+                (await responses.ToListAsync().ConfigureAwait(false)).Should().NotBeNull();
                 Assert.False(true);
             }
             catch (Exception exception)

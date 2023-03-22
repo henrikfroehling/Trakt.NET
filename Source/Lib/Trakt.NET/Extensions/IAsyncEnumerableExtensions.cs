@@ -21,7 +21,7 @@
             if (source is null)
                 return default;
 
-            var list = new List<TSource>();
+            List<TSource> list = new List<TSource>();
             await foreach (TSource value in source.WithCancellation(cancellationToken).ConfigureAwait(false))
             {
                 list.Add(value);

@@ -63,7 +63,7 @@
             TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, COMMENT_JSON);
             IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
 
-            (await responses.ToListAsync()).Any().Should().BeFalse();
+            (await responses.ToListAsync().ConfigureAwait(false)).Any().Should().BeFalse();
         }
 
         [Fact]

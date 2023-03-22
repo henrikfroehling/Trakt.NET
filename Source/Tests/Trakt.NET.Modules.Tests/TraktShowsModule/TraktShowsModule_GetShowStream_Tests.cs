@@ -32,7 +32,7 @@
             IAsyncEnumerable<TraktResponse<ITraktShow>> responses = client.Shows.GetShowsStreamAsync(parameters);
 
             int returnedShows = 0;
-            await foreach (var response in responses)
+            await foreach (TraktResponse<ITraktShow> response in responses.ConfigureAwait(false))
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -68,7 +68,7 @@
             IAsyncEnumerable<TraktResponse<ITraktShow>> responses = client.Shows.GetShowsStreamAsync(parameters);
 
             int returnedShows = 0;
-            await foreach (var response in responses.ConfigureAwait(false))
+            await foreach (TraktResponse<ITraktShow> response in responses.ConfigureAwait(false))
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -158,7 +158,7 @@
 
             try
             {
-                var responses = client.Shows.GetShowsStreamAsync(parameters);
+                IAsyncEnumerable<TraktResponse<ITraktShow>> responses = client.Shows.GetShowsStreamAsync(parameters);
                 (await responses.ToListAsync().ConfigureAwait(false)).Should().NotBeNullOrEmpty();
                 Assert.False(true);
             }
