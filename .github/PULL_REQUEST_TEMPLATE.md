@@ -1,6 +1,6 @@
 ### Your checklist for this pull request
 - [ ] I have read the [Contributing Guidelines](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md).
-- [ ] I made sure sure I am making a pull request against the right target branch. [Which branch should I target?](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md#which-branch-should-i-target)
+- [ ] I made sure I am making a pull request against the right target branch. [Which branch should I target?](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md#which-branch-should-i-target)
 - [ ] Unit tests pass locally with my changes.
 - [ ] I have added tests that prove my fix is effective or that my feature works.
 - [ ] I have added necessary documentation (if appropriate).
