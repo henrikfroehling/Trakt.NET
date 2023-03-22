@@ -247,12 +247,12 @@ namespace TraktNet.Modules
         /// See <a href="https://trakt.docs.apiary.io/#reference/users/remove-hidden-items/remove-hidden-items">"Trakt API Doc - Users: Remove Hidden Items"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="ITraktUserHiddenItemsPostBuilder" /> to create an instance
-        /// of the required <see cref="ITraktUserHiddenItemsPost" />.
-        /// See also <seealso cref="TraktPost.NewUserHiddenItemsPost()" />.
+        /// It is recommended to use the <see cref="ITraktUserHiddenItemsRemovePostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktUserHiddenItemsRemovePost" />.
+        /// See also <seealso cref="TraktPost.NewUserHiddenItemsRemovePost()" />.
         /// </para>
         /// </summary>
-        /// <param name="hiddenItemsPost">An <see cref="ITraktUserHiddenItemsPost" /> instance containing all shows, seasons and movies, which should be removed.</param>
+        /// <param name="hiddenItemsRemovePost">An <see cref="ITraktUserHiddenItemsRemovePost" /> instance containing all shows, seasons and movies, which should be removed.</param>
         /// <param name="hiddenItemsSection">Determines, which type of hidden items section should be queried. <see cref="TraktHiddenItemsSection "/></param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -262,7 +262,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktUserHiddenItemsRemovePostResponse>> RemoveHiddenItemsAsync(ITraktUserHiddenItemsPost hiddenItemsPost,
+        public Task<TraktResponse<ITraktUserHiddenItemsRemovePostResponse>> RemoveHiddenItemsAsync(ITraktUserHiddenItemsRemovePost hiddenItemsRemovePost,
                                                                                                    TraktHiddenItemsSection hiddenItemsSection,
                                                                                                    CancellationToken cancellationToken = default)
         {
@@ -270,7 +270,7 @@ namespace TraktNet.Modules
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserHiddenItemsRemoveRequest
             {
-                RequestBody = hiddenItemsPost,
+                RequestBody = hiddenItemsRemovePost,
                 Section = hiddenItemsSection
             },
             cancellationToken);

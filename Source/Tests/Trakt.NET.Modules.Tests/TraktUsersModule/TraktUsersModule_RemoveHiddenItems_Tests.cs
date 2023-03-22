@@ -19,14 +19,14 @@
         [Fact]
         public async Task Test_TraktUsersModule_RemoveHiddenItems()
         {
-            string postJson = await TestUtility.SerializeObject(HiddenItemsPost);
+            string postJson = await TestUtility.SerializeObject(HiddenItemsRemovePost);
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(
                 RemoveHiddenItemsUri, postJson, HIDDEN_ITEMS_REMOVE_POST_RESPONSE_JSON);
 
             TraktResponse<ITraktUserHiddenItemsRemovePostResponse> response =
-                await client.Users.RemoveHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
+                await client.Users.RemoveHiddenItemsAsync(HiddenItemsRemovePost, HIDDEN_ITEMS_SECTION);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -78,7 +78,7 @@
 
             try
             {
-                await client.Users.RemoveHiddenItemsAsync(HiddenItemsPost, HIDDEN_ITEMS_SECTION);
+                await client.Users.RemoveHiddenItemsAsync(HiddenItemsRemovePost, HIDDEN_ITEMS_SECTION);
                 Assert.False(true);
             }
             catch (Exception exception)

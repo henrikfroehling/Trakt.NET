@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
@@ -15,6 +16,7 @@
         /// </summary>
         /// <param name="languageCode">The two letter language code, for which the language name should be looked up.</param>
         /// <returns>The language name for the given language code or an empty string, if not found.</returns>
+        [Obsolete("This method is deprecated and will be removed in a future version.")]
         public static string GetLanguage(string languageCode)
         {
             if (string.IsNullOrEmpty(languageCode))
@@ -35,6 +37,7 @@
         /// </summary>
         /// <param name="availableTranslationLanguageCodes">A list of two letter language codes, for which the language names should be looked up.</param>
         /// <returns>A list containing the found languages names. If the given language codes list is null or empty, an empty list will be returned.</returns>
+        [Obsolete("This method is deprecated and will be removed in a future version.")]
         public static IEnumerable<string> GetAvailableTranslationLanguages(IEnumerable<string> availableTranslationLanguageCodes)
         {
             if (availableTranslationLanguageCodes == null || !availableTranslationLanguageCodes.Any())
@@ -62,6 +65,7 @@
         /// </summary>
         /// <param name="countryCode">The two letter country code, for which the country name should be looked up.</param>
         /// <returns>The country name for the given country code or an empty string, if not found.</returns>
+        [Obsolete("This method is deprecated and will be removed in a future version.")]
         public static string GetCountry(string countryCode)
         {
             if (string.IsNullOrEmpty(countryCode))
