@@ -1,0 +1,44 @@
+name: "Publish GitHub Page"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  BUILD_TYPE: Release
+  PROJECT_NAME: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
+
+jobs:
+  page-deployment:
+    name: "Create website"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+          dotnet-quality: 'ga'
+
+      - name: Setup DocFX
+        run: dotnet tool install -g docfx --version 2.60.2
+
+      - name: Build library
+        run: dotnet build ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} /m /p:BuildInParallel=true
+
+      - name: Build documentation
+        run: cd docs && docfx metadata && docfx build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_site
