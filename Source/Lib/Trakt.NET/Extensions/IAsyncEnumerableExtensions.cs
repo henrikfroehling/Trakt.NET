@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -18,7 +19,7 @@
         public static async Task<List<TSource>> ToListAsync<TSource>(this IAsyncEnumerable<TSource>  source, CancellationToken cancellationToken = default)
         {
             if (source is null)
-                return default;
+                return new List<TSource>();
 
             List<TSource> list = new List<TSource>();
             await foreach (TSource value in source.WithCancellation(cancellationToken).ConfigureAwait(false))
