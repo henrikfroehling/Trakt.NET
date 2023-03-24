@@ -8,7 +8,7 @@
     public static class IEnumerableExtensions
     {
         /// <summary>Returns results from a list of tasks as they finish.</summary>
-        /// <param name="source">The list of tasks to stream results from as they finish</param>
+        /// <param name="source">The list of tasks to stream results from as they finish.</param>
         /// <returns>An IAsyncEnumerable of the results from the tasks.</returns>
         public static async IAsyncEnumerable<TSource> StreamFinishedTaskResultsAsync<TSource>(this List<Task<TSource>> source)
         {
@@ -25,7 +25,7 @@
         }
 
         /// <summary>Returns results from an IEnumerable of tasks as they finish.</summary>
-        /// <param name="source">The collection of tasks to stream results from as they finish</param>
+        /// <param name="source">The collection of tasks to stream results from as they finish.</param>
         /// <returns>An IAsyncEnumerable of the results from the tasks.</returns>
         public static async IAsyncEnumerable<TSource> StreamFinishedTaskResultsAsync<TSource>(this IEnumerable<Task<TSource>> source)
         {
