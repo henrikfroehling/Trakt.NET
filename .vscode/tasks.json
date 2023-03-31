@@ -470,6 +470,53 @@
             ],
             "group": "test",
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Install DocFx",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "tool",
+                "install",
+                "-g",
+                "docfx"
+            ]
+        },
+        {
+            "label": "Create documentation metadata",
+            "type": "process",
+            "command": "docfx",
+            "dependsOn": [ "Build Library Release" ],
+            "args": [
+                "metadata"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/docs/"
+            }
+        },
+        {
+            "label": "Create documentation",
+            "type": "process",
+            "command": "docfx",
+            "dependsOn": [ "Create documentation metadata" ],
+            "args": [
+                "build"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/docs/"
+            }
+        },
+        {
+            "label": "Run documentation",
+            "type": "process",
+            "command": "docfx",
+            "dependsOn": [ "Create documentation" ],
+            "args": [
+                "--serve"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/docs/"
+            }
         }
     ]
 }
