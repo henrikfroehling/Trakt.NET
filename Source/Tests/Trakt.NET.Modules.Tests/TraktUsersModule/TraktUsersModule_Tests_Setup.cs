@@ -12,7 +12,7 @@ namespace TraktNet.Modules.Tests.TraktUsersModule
     public partial class TraktUsersModule_Tests
     {
         private ITraktUserPersonalListItemsPost AddPersonalListItemsPost { get; }
-        private ITraktUserPersonalListItemsPost RemovePersonalListItemsPost { get; }
+        private ITraktUserPersonalListItemsRemovePost RemovePersonalListItemsRemovePost { get; }
         private string GetHiddenItemsUri { get; }
         private string HistoryStartAt { get; }
         private string HistoryEndAt { get; }
@@ -25,7 +25,7 @@ namespace TraktNet.Modules.Tests.TraktUsersModule
         public TraktUsersModule_Tests()
         {
             AddPersonalListItemsPost = SetupAddPersonalListItemsPost();
-            RemovePersonalListItemsPost = SetupRemovePersonalListItemsPost();
+            RemovePersonalListItemsRemovePost = SetupRemovePersonalListItemsRemovePost();
             GetHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}";
             HistoryStartAt = START_AT.ToTraktLongDateTimeString();
             HistoryEndAt = END_AT.ToTraktLongDateTimeString();
@@ -108,9 +108,9 @@ namespace TraktNet.Modules.Tests.TraktUsersModule
             };
         }
 
-        private ITraktUserPersonalListItemsPost SetupRemovePersonalListItemsPost()
+        private ITraktUserPersonalListItemsRemovePost SetupRemovePersonalListItemsRemovePost()
         {
-            return new TraktUserPersonalListItemsPost
+            return new TraktUserPersonalListItemsRemovePost
             {
                 Movies = new List<ITraktUserPersonalListItemsPostMovie>()
                 {
