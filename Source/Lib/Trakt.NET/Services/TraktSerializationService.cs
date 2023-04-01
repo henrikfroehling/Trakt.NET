@@ -20,11 +20,23 @@
         /// </param>
         /// <returns>Returns a JSON string of the given <see cref="ITraktAuthorization" /> instance.</returns>
         public static Task<string> SerializeAsync(ITraktAuthorization authorization, CancellationToken cancellationToken = default)
+            => SerializeAsync(authorization, false, cancellationToken);
+
+        /// <summary>Serializes a <see cref="ITraktAuthorization" /> instance to a JSON string.</summary>
+        /// <param name="authorization">The <see cref="ITraktAuthorization" /> instance, which will be serialized.</param>
+        /// <param name="indentation">Determines whether the written JSON data should be indented.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the serialization should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>Returns a JSON string of the given <see cref="ITraktAuthorization" /> instance.</returns>
+        public static Task<string> SerializeAsync(ITraktAuthorization authorization, bool indentation, CancellationToken cancellationToken = default)
         {
             if (authorization == null)
                 throw new ArgumentNullException(nameof(authorization), "authorization must not be null");
 
             IObjectJsonWriter<ITraktAuthorization> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<ITraktAuthorization>();
+            objectJsonWriter.WithIndentation = indentation;
             AuthorizationObjectJsonWriter authorizationObjectJsonWriter = (objectJsonWriter as AuthorizationObjectJsonWriter);
             authorizationObjectJsonWriter.CompleteSerialization = true;
             return authorizationObjectJsonWriter.WriteObjectAsync(authorization, cancellationToken);
@@ -39,11 +51,24 @@
         /// </param>
         /// <returns>Returns a JSON string of the given object instance.</returns>
         public static Task<string> SerializeAsync<TObjectType>(TObjectType obj, CancellationToken cancellationToken = default)
+            => SerializeAsync<TObjectType>(obj, false, cancellationToken);
+
+        /// <summary>Serializes a <typeparamref name="TObjectType"/> instance to a JSON string.</summary>
+        /// <typeparam name="TObjectType">The type of the object, which will be serialized to a JSON string.</typeparam>
+        /// <param name="obj">The object instance, which will be serialized.</param>
+        /// <param name="indentation">Determines whether the written JSON data should be indented.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the serialization should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>Returns a JSON string of the given object instance.</returns>
+        public static Task<string> SerializeAsync<TObjectType>(TObjectType obj, bool indentation, CancellationToken cancellationToken = default)
         {
             if (EqualityComparer<TObjectType>.Default.Equals(obj, default))
                 throw new ArgumentNullException(nameof(obj), "object must not be null");
 
             IObjectJsonWriter<TObjectType> objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<TObjectType>();
+            objectJsonWriter.WithIndentation = indentation;
             return objectJsonWriter.WriteObjectAsync(obj, cancellationToken);
         }
 
@@ -97,11 +122,24 @@
         /// </param>
         /// <returns>Returns a JSON string of the given objects collection.</returns>
         public static Task<string> SerializeCollectionAsync<TObjectType>(IEnumerable<TObjectType> objects, CancellationToken cancellationToken = default)
+            => SerializeCollectionAsync<TObjectType>(objects, false, cancellationToken);
+
+        /// <summary>Serializes a collection of <typeparamref name="TObjectType"/> instances to a JSON string.</summary>
+        /// <typeparam name="TObjectType">The type of the objects, which will be serialized to a JSON string.</typeparam>
+        /// <param name="objects">The objects, which will be serialized.</param>
+        /// <param name="indentation">Determines whether the written JSON data should be indented.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the serialization should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>Returns a JSON string of the given objects collection.</returns>
+        public static Task<string> SerializeCollectionAsync<TObjectType>(IEnumerable<TObjectType> objects, bool indentation, CancellationToken cancellationToken = default)
         {
             if (objects == null)
                 throw new ArgumentNullException(nameof(objects), "objects must not be null");
 
             IArrayJsonWriter<TObjectType> arrayJsonWriter = new ArrayJsonWriter<TObjectType>();
+            arrayJsonWriter.WithIndentation = indentation;
             return arrayJsonWriter.WriteArrayAsync(objects, cancellationToken);
         }
 

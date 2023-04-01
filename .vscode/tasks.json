@@ -264,6 +264,32 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "Run All Tests Debug",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "test",
+                "Source/Trakt.NET.sln",
+                "--configuration",
+                "Debug"
+            ],
+            "group": "test",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Run All Tests Release",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "test",
+                "Source/Trakt.NET.sln",
+                "--configuration",
+                "Release"
+            ],
+            "group": "test",
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "Run Module Tests Debug",
             "type": "process",
             "command": "dotnet",

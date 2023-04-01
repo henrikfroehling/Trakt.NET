@@ -9,6 +9,8 @@
 
     internal class ArrayJsonWriter<TObjectType> : IArrayJsonWriter<TObjectType>
     {
+        public bool WithIndentation { get; set; }
+
         public virtual Task<string> WriteArrayAsync(IEnumerable<TObjectType> objects, CancellationToken cancellationToken = default)
         {
             using var writer = new StringWriter();
@@ -27,6 +29,14 @@
         public virtual async Task WriteArrayAsync(JsonTextWriter jsonWriter, IEnumerable<TObjectType> objects, CancellationToken cancellationToken = default)
         {
             CheckJsonTextWriter(jsonWriter);
+
+            if (WithIndentation)
+            {
+                jsonWriter.Formatting = Formatting.Indented;
+                jsonWriter.IndentChar = ' ';
+                jsonWriter.Indentation = 4;
+            }
+
             var objectJsonWriter = JsonFactoryContainer.CreateObjectWriter<TObjectType>();
             var writerTasks = new List<Task>();
             await jsonWriter.WriteStartArrayAsync(cancellationToken).ConfigureAwait(false);
