@@ -7,6 +7,8 @@
 
     internal interface IObjectJsonWriter<TObjectType>
     {
+        bool WithIndentation { get; set; }
+
         Task<string> WriteObjectAsync(TObjectType obj, CancellationToken cancellationToken = default);
 
         Task<string> WriteObjectAsync(StringWriter writer, TObjectType obj, CancellationToken cancellationToken = default);
