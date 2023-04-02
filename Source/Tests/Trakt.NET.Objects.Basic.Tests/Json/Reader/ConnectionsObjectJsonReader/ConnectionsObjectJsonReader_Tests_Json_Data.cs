@@ -10,7 +10,10 @@
                 ""medium"": true,
                 ""slack"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_INCOMPLETE_1 =
@@ -20,7 +23,10 @@
                 ""medium"": true,
                 ""slack"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_INCOMPLETE_2 =
@@ -30,7 +36,10 @@
                 ""medium"": true,
                 ""slack"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_INCOMPLETE_3 =
@@ -40,7 +49,10 @@
                 ""medium"": true,
                 ""slack"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_INCOMPLETE_4 =
@@ -50,7 +62,10 @@
                 ""tumblr"": true,
                 ""slack"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_INCOMPLETE_5 =
@@ -60,7 +75,10 @@
                 ""tumblr"": true,
                 ""medium"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_INCOMPLETE_6 =
@@ -70,7 +88,10 @@
                 ""tumblr"": true,
                 ""medium"": true,
                 ""slack"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_INCOMPLETE_7 =
@@ -80,7 +101,49 @@
                 ""tumblr"": true,
                 ""medium"": true,
                 ""slack"": true,
-                ""facebook"": true
+                ""facebook"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
+              }";
+
+        private const string JSON_INCOMPLETE_8 =
+            @"{
+                ""twitter"": true,
+                ""google"": true,
+                ""tumblr"": true,
+                ""medium"": true,
+                ""slack"": true,
+                ""facebook"": true,
+                ""apple"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
+              }";
+
+        private const string JSON_INCOMPLETE_9 =
+            @"{
+                ""twitter"": true,
+                ""google"": true,
+                ""tumblr"": true,
+                ""medium"": true,
+                ""slack"": true,
+                ""facebook"": true,
+                ""apple"": true,
+                ""mastodon"": true,
+                ""dropbox"": true
+              }";
+
+        private const string JSON_INCOMPLETE_10 =
+            @"{
+                ""twitter"": true,
+                ""google"": true,
+                ""tumblr"": true,
+                ""medium"": true,
+                ""slack"": true,
+                ""facebook"": true,
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true
               }";
 
         private const string JSON_NOT_VALID_1 =
@@ -91,18 +154,24 @@
                 ""medium"": true,
                 ""slack"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_NOT_VALID_2 =
             @"{
                 ""twitter"": true,
-                ""go"": true,
+                ""gg"": true,
                 ""tumblr"": true,
                 ""medium"": true,
                 ""slack"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_NOT_VALID_3 =
@@ -113,7 +182,10 @@
                 ""medium"": true,
                 ""slack"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_NOT_VALID_4 =
@@ -121,10 +193,13 @@
                 ""twitter"": true,
                 ""google"": true,
                 ""tumblr"": true,
-                ""med"": true,
+                ""md"": true,
                 ""slack"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_NOT_VALID_5 =
@@ -135,7 +210,10 @@
                 ""medium"": true,
                 ""sl"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_NOT_VALID_6 =
@@ -146,7 +224,10 @@
                 ""medium"": true,
                 ""slack"": true,
                 ""fb"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_NOT_VALID_7 =
@@ -157,18 +238,66 @@
                 ""medium"": true,
                 ""slack"": true,
                 ""facebook"": true,
-                ""apl"": true
+                ""app"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
 
         private const string JSON_NOT_VALID_8 =
             @"{
+                ""twitter"": true,
+                ""google"": true,
+                ""tumblr"": true,
+                ""medium"": true,
+                ""slack"": true,
+                ""facebook"": true,
+                ""apple"": true,
+                ""mas"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
+              }";
+
+        private const string JSON_NOT_VALID_9 =
+            @"{
+                ""twitter"": true,
+                ""google"": true,
+                ""tumblr"": true,
+                ""medium"": true,
+                ""slack"": true,
+                ""facebook"": true,
+                ""apple"": true,
+                ""mastodon"": true,
+                ""mic"": true,
+                ""dropbox"": true
+              }";
+
+        private const string JSON_NOT_VALID_10 =
+            @"{
+                ""twitter"": true,
+                ""google"": true,
+                ""tumblr"": true,
+                ""medium"": true,
+                ""slack"": true,
+                ""facebook"": true,
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""db"": true
+              }";
+
+        private const string JSON_NOT_VALID_11 =
+            @"{
                 ""tw"": true,
-                ""go"": true,
+                ""gg"": true,
                 ""tbl"": true,
-                ""med"": true,
+                ""md"": true,
                 ""sl"": true,
                 ""fb"": true,
-                ""apl"": true
+                ""app"": true,
+                ""mas"": true,
+                ""mic"": true,
+                ""db"": true
               }";
     }
 }

@@ -45,5 +45,8 @@
         /// <para>Nullable</para>
         /// </summary>
         ITraktPersonSocialIds SocialIds { get; set; }
+
+        /// <summary>Gets or sets when the person was lastly updated.<para>Nullable</para></summary>
+        DateTime? UpdatedAt { get; set; }
     }
 }

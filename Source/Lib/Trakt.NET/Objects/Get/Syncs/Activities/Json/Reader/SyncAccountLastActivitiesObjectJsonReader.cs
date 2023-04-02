@@ -57,6 +57,15 @@ namespace TraktNet.Objects.Get.Syncs.Activities.Json.Reader
 
                                 break;
                             }
+                        case JsonProperties.PROPERTY_NAME_REQUESTED_AT:
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    accountLastActivities.RequestedAt = value.Second;
+
+                                break;
+                            }
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

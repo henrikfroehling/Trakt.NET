@@ -10,6 +10,7 @@
         public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktPersonSocialIds obj, CancellationToken cancellationToken = default)
         {
             CheckJsonTextWriter(jsonWriter);
+            await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (!string.IsNullOrEmpty(obj.Twitter))
             {
