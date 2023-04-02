@@ -29,7 +29,7 @@
             AddCollectionItemsPost = SetupAddCollectionItemsPost();
             AddRatingsPost = SetupAddRatingsPost();
             RecommendationsPost = SetupAddRecommendationsPost();
-            RemoveRecommendationsPost = SetupAddRecommendationsRemovePost();
+            RemoveRecommendationsPost = SetupRecommendationsRemovePost();
             AddHistoryPost = SetupAddHistoryPost();
             AddWatchlistPost = SetupAddWatchlistPost();
             RemoveCollectionItemsPost = SetupRemoveCollectionItemsPost();
@@ -333,7 +333,7 @@
             };
         }
 
-        private ITraktSyncRecommendationsRemovePost SetupAddRecommendationsRemovePost()
+        private ITraktSyncRecommendationsRemovePost SetupRecommendationsRemovePost()
         {
             return new TraktSyncRecommendationsRemovePost
             {
