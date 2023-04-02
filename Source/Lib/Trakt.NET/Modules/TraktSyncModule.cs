@@ -579,12 +579,12 @@ namespace TraktNet.Modules
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-ratings/remove-ratings">"Trakt API Doc - Sync: Remove Ratings"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="ITraktSyncRatingsPostBuilder" /> to create an instance
-        /// of the required <see cref="ITraktSyncRatingsPost" />.
-        /// See also <seealso cref="TraktPost.NewSyncRatingsPost()" />.
+        /// It is recommended to use the <see cref="ITraktSyncRatingsRemovePostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncRatingsRemovePost" />.
+        /// See also <seealso cref="TraktPost.NewSyncRatingsRemovePost()" />.
         /// </para>
         /// </summary>
-        /// <param name="ratingsRemovePost">An <see cref="ITraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <param name="ratingsRemovePost">An <see cref="ITraktSyncRatingsRemovePost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -593,7 +593,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync(ITraktSyncRatingsPost ratingsRemovePost,
+        public Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync(ITraktSyncRatingsRemovePost ratingsRemovePost,
                                                                                            CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
