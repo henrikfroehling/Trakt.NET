@@ -22,7 +22,7 @@
         private ITraktSyncCollectionRemovePost RemoveCollectionItemsPost { get; }
         private ITraktSyncRatingsRemovePost RemoveRatingsPost { get; }
         private ITraktSyncHistoryRemovePost RemoveHistoryPost { get; }
-        private ITraktSyncWatchlistPost RemoveWatchlistPost { get; }
+        private ITraktSyncWatchlistRemovePost RemoveWatchlistPost { get; }
 
         public TraktSyncModule_Tests()
         {
@@ -963,9 +963,9 @@
             };
         }
 
-        private ITraktSyncWatchlistPost SetupRemoveWatchlistPost()
+        private ITraktSyncWatchlistRemovePost SetupRemoveWatchlistPost()
         {
-            return new TraktSyncWatchlistPost
+            return new TraktSyncWatchlistRemovePost
             {
                 Movies = new List<ITraktSyncWatchlistPostMovie>()
                 {
