@@ -21,14 +21,14 @@
         [Fact]
         public async Task Test_TraktUsersModule_RemovePersonalListItems()
         {
-            string postJson = await TestUtility.SerializeObject(RemovePersonalListItemsRemovePost);
+            string postJson = await TestUtility.SerializeObject(RemovePersonalListItemsPost);
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_PERSONAL_LIST_ITEMS_URI, postJson,
                                                                 CUSTOM_LIST_ITEMS_REMOVE_POST_RESPONSE_JSON);
 
             TraktResponse<ITraktUserPersonalListItemsRemovePostResponse> response =
-                await client.Users.RemovePersonalListItemsAsync(USERNAME, LIST_ID, RemovePersonalListItemsRemovePost);
+                await client.Users.RemovePersonalListItemsAsync(USERNAME, LIST_ID, RemovePersonalListItemsPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -84,7 +84,7 @@
 
             try
             {
-                await client.Users.RemovePersonalListItemsAsync(USERNAME, LIST_ID, RemovePersonalListItemsRemovePost);
+                await client.Users.RemovePersonalListItemsAsync(USERNAME, LIST_ID, RemovePersonalListItemsPost);
                 Assert.False(true);
             }
             catch (Exception exception)
