@@ -7,7 +7,7 @@
     using Objects.Post.Users.PersonalListItems.Responses;
     using System.Collections.Generic;
 
-    internal sealed class UserPersonalListItemsRemoveRequest : AUsersPostByIdRequest<ITraktUserPersonalListItemsRemovePostResponse, ITraktUserPersonalListItemsPost>
+    internal sealed class UserPersonalListItemsRemoveRequest : AUsersPostByIdRequest<ITraktUserPersonalListItemsRemovePostResponse, ITraktUserPersonalListItemsRemovePost>
     {
         internal string Username { get; set; }
 

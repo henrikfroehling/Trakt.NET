@@ -12,7 +12,7 @@ namespace TraktNet.Modules.Tests.TraktUsersModule
     public partial class TraktUsersModule_Tests
     {
         private ITraktUserPersonalListItemsPost AddPersonalListItemsPost { get; }
-        private ITraktUserPersonalListItemsPost RemovePersonalListItemsPost { get; }
+        private ITraktUserPersonalListItemsRemovePost RemovePersonalListItemsPost { get; }
         private string GetHiddenItemsUri { get; }
         private string HistoryStartAt { get; }
         private string HistoryEndAt { get; }
@@ -108,9 +108,9 @@ namespace TraktNet.Modules.Tests.TraktUsersModule
             };
         }
 
-        private ITraktUserPersonalListItemsPost SetupRemovePersonalListItemsPost()
+        private ITraktUserPersonalListItemsRemovePost SetupRemovePersonalListItemsPost()
         {
-            return new TraktUserPersonalListItemsPost
+            return new TraktUserPersonalListItemsRemovePost
             {
                 Movies = new List<ITraktUserPersonalListItemsPostMovie>()
                 {
