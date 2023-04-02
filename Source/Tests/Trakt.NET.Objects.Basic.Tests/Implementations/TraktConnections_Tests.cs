@@ -22,6 +22,9 @@
             traktConnections.Slack.Should().BeNull();
             traktConnections.Facebook.Should().BeNull();
             traktConnections.Apple.Should().BeNull();
+            traktConnections.Mastodon.Should().BeNull();
+            traktConnections.Microsoft.Should().BeNull();
+            traktConnections.Dropbox.Should().BeNull();
         }
 
         [Fact]
@@ -38,6 +41,9 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         private const string JSON =
@@ -48,7 +54,10 @@
                 ""medium"": true,
                 ""slack"": true,
                 ""facebook"": true,
-                ""apple"": true
+                ""apple"": true,
+                ""mastodon"": true,
+                ""microsoft"": true,
+                ""dropbox"": true
               }";
     }
 }

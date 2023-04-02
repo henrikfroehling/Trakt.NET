@@ -13,7 +13,7 @@
     public partial class ConnectionsObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Complete()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Complete()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -30,10 +30,13 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Incomplete_1()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -50,10 +53,13 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Incomplete_2()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -70,10 +76,13 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Incomplete_3()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -90,10 +99,13 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Incomplete_4()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Incomplete_4()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -110,10 +122,13 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Incomplete_5()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Incomplete_5()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -130,10 +145,13 @@
             traktConnections.Slack.Should().BeNull();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Incomplete_6()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Incomplete_6()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -150,10 +168,13 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeNull();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Incomplete_7()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Incomplete_7()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -170,10 +191,82 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeNull();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Incomplete_8()
+        {
+            var traktJsonReader = new ConnectionsObjectJsonReader();
+
+            using var reader = new StringReader(JSON_INCOMPLETE_8);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktConnections.Should().NotBeNull();
+
+            traktConnections.Twitter.Should().BeTrue();
+            traktConnections.Google.Should().BeTrue();
+            traktConnections.Tumblr.Should().BeTrue();
+            traktConnections.Medium.Should().BeTrue();
+            traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeNull();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Incomplete_9()
+        {
+            var traktJsonReader = new ConnectionsObjectJsonReader();
+
+            using var reader = new StringReader(JSON_INCOMPLETE_9);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktConnections.Should().NotBeNull();
+
+            traktConnections.Twitter.Should().BeTrue();
+            traktConnections.Google.Should().BeTrue();
+            traktConnections.Tumblr.Should().BeTrue();
+            traktConnections.Medium.Should().BeTrue();
+            traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeNull();
+            traktConnections.Dropbox.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Incomplete_10()
+        {
+            var traktJsonReader = new ConnectionsObjectJsonReader();
+
+            using var reader = new StringReader(JSON_INCOMPLETE_10);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktConnections.Should().NotBeNull();
+
+            traktConnections.Twitter.Should().BeTrue();
+            traktConnections.Google.Should().BeTrue();
+            traktConnections.Tumblr.Should().BeTrue();
+            traktConnections.Medium.Should().BeTrue();
+            traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Not_Valid_1()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -190,10 +283,13 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Not_Valid_2()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -210,10 +306,13 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Not_Valid_3()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -230,10 +329,13 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Not_Valid_4()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -250,10 +352,13 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_5()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Not_Valid_5()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -270,10 +375,13 @@
             traktConnections.Slack.Should().BeNull();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_6()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Not_Valid_6()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -290,10 +398,13 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeNull();
             traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_7()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Not_Valid_7()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
@@ -310,14 +421,86 @@
             traktConnections.Slack.Should().BeTrue();
             traktConnections.Facebook.Should().BeTrue();
             traktConnections.Apple.Should().BeNull();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_8()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Not_Valid_8()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 
             using var reader = new StringReader(JSON_NOT_VALID_8);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktConnections.Should().NotBeNull();
+
+            traktConnections.Twitter.Should().BeTrue();
+            traktConnections.Google.Should().BeTrue();
+            traktConnections.Tumblr.Should().BeTrue();
+            traktConnections.Medium.Should().BeTrue();
+            traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeNull();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Not_Valid_9()
+        {
+            var traktJsonReader = new ConnectionsObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID_9);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktConnections.Should().NotBeNull();
+
+            traktConnections.Twitter.Should().BeTrue();
+            traktConnections.Google.Should().BeTrue();
+            traktConnections.Tumblr.Should().BeTrue();
+            traktConnections.Medium.Should().BeTrue();
+            traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeNull();
+            traktConnections.Dropbox.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Not_Valid_10()
+        {
+            var traktJsonReader = new ConnectionsObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID_10);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktConnections.Should().NotBeNull();
+
+            traktConnections.Twitter.Should().BeTrue();
+            traktConnections.Google.Should().BeTrue();
+            traktConnections.Tumblr.Should().BeTrue();
+            traktConnections.Medium.Should().BeTrue();
+            traktConnections.Slack.Should().BeTrue();
+            traktConnections.Facebook.Should().BeTrue();
+            traktConnections.Apple.Should().BeTrue();
+            traktConnections.Mastodon.Should().BeTrue();
+            traktConnections.Microsoft.Should().BeTrue();
+            traktConnections.Dropbox.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Not_Valid_11()
+        {
+            var traktJsonReader = new ConnectionsObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID_11);
             using var jsonReader = new JsonTextReader(reader);
             var traktConnections = await traktJsonReader.ReadObjectAsync(jsonReader);
 
@@ -330,10 +513,13 @@
             traktConnections.Slack.Should().BeNull();
             traktConnections.Facebook.Should().BeNull();
             traktConnections.Apple.Should().BeNull();
+            traktConnections.Mastodon.Should().BeNull();
+            traktConnections.Microsoft.Should().BeNull();
+            traktConnections.Dropbox.Should().BeNull();
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Null()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Null()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
             Func<Task<ITraktConnections>> traktConnections = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
@@ -341,7 +527,7 @@
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonReader_ReadObject_From_JsonReader_Empty()
+        public async Task Test_ConnectionsObjectJsonReader_ReadObject_Empty()
         {
             var traktJsonReader = new ConnectionsObjectJsonReader();
 

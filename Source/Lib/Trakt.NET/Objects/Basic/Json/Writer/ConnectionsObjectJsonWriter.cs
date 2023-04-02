@@ -54,6 +54,24 @@
                 await jsonWriter.WriteValueAsync(obj.Apple, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Mastodon.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MASTODON, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Mastodon, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Microsoft.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_MICROSOFT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Microsoft, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Dropbox.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_DROPBOX, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Dropbox, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }
