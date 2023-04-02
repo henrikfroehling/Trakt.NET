@@ -14,7 +14,7 @@
     public partial class ConnectionsObjectJsonWriter_Tests
     {
         [Fact]
-        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Exceptions()
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Exceptions()
         {
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
             ITraktConnections traktConnections = new TraktConnections();
@@ -23,7 +23,7 @@
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Only_Twitter_Property()
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Only_Twitter_Property()
         {
             ITraktConnections traktConnections = new TraktConnections
             {
@@ -38,7 +38,7 @@
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Only_Google_Property()
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Only_Google_Property()
         {
             ITraktConnections traktConnections = new TraktConnections
             {
@@ -53,7 +53,7 @@
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Only_Tumblr_Property()
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Only_Tumblr_Property()
         {
             ITraktConnections traktConnections = new TraktConnections
             {
@@ -68,7 +68,7 @@
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Only_Medium_Property()
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Only_Medium_Property()
         {
             ITraktConnections traktConnections = new TraktConnections
             {
@@ -83,7 +83,7 @@
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Only_Slack_Property()
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Only_Slack_Property()
         {
             ITraktConnections traktConnections = new TraktConnections
             {
@@ -98,7 +98,7 @@
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Only_Facebook_Property()
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Only_Facebook_Property()
         {
             ITraktConnections traktConnections = new TraktConnections
             {
@@ -113,7 +113,7 @@
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Only_Apple_Property()
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Only_Apple_Property()
         {
             ITraktConnections traktConnections = new TraktConnections
             {
@@ -128,7 +128,52 @@
         }
 
         [Fact]
-        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_JsonWriter_Complete()
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Only_Mastodon_Property()
+        {
+            ITraktConnections traktConnections = new TraktConnections
+            {
+                Mastodon = true
+            };
+
+            using var stringWriter = new StringWriter();
+            using var jsonWriter = new JsonTextWriter(stringWriter);
+            var traktJsonWriter = new ConnectionsObjectJsonWriter();
+            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
+            stringWriter.ToString().Should().Be(@"{""mastodon"":true}");
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Only_Microsoft_Property()
+        {
+            ITraktConnections traktConnections = new TraktConnections
+            {
+                Microsoft = true
+            };
+
+            using var stringWriter = new StringWriter();
+            using var jsonWriter = new JsonTextWriter(stringWriter);
+            var traktJsonWriter = new ConnectionsObjectJsonWriter();
+            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
+            stringWriter.ToString().Should().Be(@"{""microsoft"":true}");
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Only_Dropbox_Property()
+        {
+            ITraktConnections traktConnections = new TraktConnections
+            {
+                Dropbox = true
+            };
+
+            using var stringWriter = new StringWriter();
+            using var jsonWriter = new JsonTextWriter(stringWriter);
+            var traktJsonWriter = new ConnectionsObjectJsonWriter();
+            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
+            stringWriter.ToString().Should().Be(@"{""dropbox"":true}");
+        }
+
+        [Fact]
+        public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Complete()
         {
             ITraktConnections traktConnections = new TraktConnections
             {
@@ -138,7 +183,10 @@
                 Medium = true,
                 Slack = true,
                 Facebook = true,
-                Apple = true
+                Apple = true,
+                Mastodon = true,
+                Microsoft = true,
+                Dropbox = true
             };
 
             using var stringWriter = new StringWriter();
@@ -147,7 +195,8 @@
             await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
             stringWriter.ToString().Should().Be(@"{""twitter"":true,""google"":true," +
                                                 @"""tumblr"":true,""medium"":true,""slack"":true," +
-                                                @"""facebook"":true,""apple"":true}");
+                                                @"""facebook"":true,""apple"":true,""mastodon"":true," +
+                                                @"""microsoft"":true,""dropbox"":true}");
         }
     }
 }

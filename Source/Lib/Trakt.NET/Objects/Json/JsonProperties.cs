@@ -59,6 +59,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_DIRECTING = "directing";
         internal const string PROPERTY_NAME_DISPLAY_NUMBERS = "display_numbers";
         internal const string PROPERTY_NAME_DISTRIBUTION = "distribution";
+        internal const string PROPERTY_NAME_DROPBOX = "dropbox";
         internal const string PROPERTY_NAME_EDITING = "editing";
         internal const string PROPERTY_NAME_EPISODE = "episode";
         internal const string PROPERTY_NAME_EPISODE_COUNT = "episode_count";
@@ -111,10 +112,12 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_LISTED_AT = "listed_at";
         internal const string PROPERTY_NAME_LISTS = "lists";
         internal const string PROPERTY_NAME_LOCATION = "location";
+        internal const string PROPERTY_NAME_MASTODON = "mastodon";
         internal const string PROPERTY_NAME_MEDIA_TYPE = "media_type";
         internal const string PROPERTY_NAME_MEDIUM = "medium";
         internal const string PROPERTY_NAME_MESSAGE = "message";
         internal const string PROPERTY_NAME_METADATA = "metadata";
+        internal const string PROPERTY_NAME_MICROSOFT = "microsoft";
         internal const string PROPERTY_NAME_MINUTES = "minutes";
         internal const string PROPERTY_NAME_MOVIE = "movie";
         internal const string PROPERTY_NAME_MOVIES = "movies";
