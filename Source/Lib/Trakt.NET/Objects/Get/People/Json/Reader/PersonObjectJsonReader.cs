@@ -65,6 +65,15 @@
                         case JsonProperties.PROPERTY_NAME_SOCIAL_IDS:
                             traktPerson.SocialIds = await socialIdsObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_UPDATED_AT:
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktPerson.UpdatedAt = value.Second;
+
+                                break;
+                            }
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;
