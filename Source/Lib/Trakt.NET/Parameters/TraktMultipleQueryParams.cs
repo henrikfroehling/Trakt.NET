@@ -1,4 +1,4 @@
-namespace TraktNet.Modules
+namespace TraktNet.Parameters
 {
     using System.Collections;
     using System.Collections.Generic;

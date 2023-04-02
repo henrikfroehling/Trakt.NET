@@ -9,6 +9,8 @@
 
     internal abstract class AObjectJsonWriter<TObjectType> : IObjectJsonWriter<TObjectType>
     {
+        public bool WithIndentation { get; set; }
+
         public virtual Task<string> WriteObjectAsync(TObjectType obj, CancellationToken cancellationToken = default)
         {
             using var writer = new StringWriter();
@@ -19,7 +21,8 @@
         {
             CheckObject(obj);
             CheckStringWriter(writer);
-            using (var jsonWriter = new JsonTextWriter(writer))
+            using var jsonWriter = new JsonTextWriter(writer);
+            CheckJsonTextWriter(jsonWriter);
             await WriteObjectAsync(jsonWriter, obj, cancellationToken).ConfigureAwait(false);
             return writer.ToString();
         }
@@ -42,6 +45,13 @@
         {
             if (jsonWriter == null)
                 throw new ArgumentNullException(nameof(jsonWriter));
+
+            if (WithIndentation)
+            {
+                jsonWriter.Formatting = Formatting.Indented;
+                jsonWriter.IndentChar = ' ';
+                jsonWriter.Indentation = 4;
+            }
         }
     }
 }

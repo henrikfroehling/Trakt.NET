@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Modules.Tests.TraktUsersModule
+namespace TraktNet.Modules.Tests.TraktUsersModule
 {
     using System.Collections.Generic;
     using TraktNet.Extensions;
@@ -12,7 +12,7 @@
     public partial class TraktUsersModule_Tests
     {
         private ITraktUserPersonalListItemsPost AddPersonalListItemsPost { get; }
-        private ITraktUserPersonalListItemsPost RemovePersonalListItemsPost { get; }
+        private ITraktUserPersonalListItemsRemovePost RemovePersonalListItemsPost { get; }
         private string GetHiddenItemsUri { get; }
         private string HistoryStartAt { get; }
         private string HistoryEndAt { get; }
@@ -20,6 +20,7 @@
         private string AddHiddenItemsUri { get; }
         private string RemoveHiddenItemsUri { get; }
         private ITraktUserHiddenItemsPost HiddenItemsPost { get; }
+        private ITraktUserHiddenItemsRemovePost HiddenItemsRemovePost { get; }
 
         public TraktUsersModule_Tests()
         {
@@ -32,6 +33,7 @@
             AddHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}";
             RemoveHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}/remove";
             HiddenItemsPost = SetupHiddenItemsPost();
+            HiddenItemsRemovePost = SetupHiddenItemsRemovePost();
         }
 
         private ITraktUserPersonalListItemsPost SetupAddPersonalListItemsPost()
@@ -106,9 +108,9 @@
             };
         }
 
-        private ITraktUserPersonalListItemsPost SetupRemovePersonalListItemsPost()
+        private ITraktUserPersonalListItemsRemovePost SetupRemovePersonalListItemsPost()
         {
-            return new TraktUserPersonalListItemsPost
+            return new TraktUserPersonalListItemsRemovePost
             {
                 Movies = new List<ITraktUserPersonalListItemsPostMovie>()
                 {
@@ -181,6 +183,66 @@
         private ITraktUserHiddenItemsPost SetupHiddenItemsPost()
         {
             return new TraktUserHiddenItemsPost
+            {
+                Movies = new List<ITraktUserHiddenItemsPostMovie>()
+                {
+                    new TraktUserHiddenItemsPostMovie
+                    {
+                        Ids = new TraktMovieIds { Trakt = 1 },
+                    },
+                    new TraktUserHiddenItemsPostMovie
+                    {
+                        Ids = new TraktMovieIds { Imdb = "tt0000111" }
+                    }
+                },
+                Shows = new List<ITraktUserHiddenItemsPostShow>()
+                {
+                    new TraktUserHiddenItemsPostShow
+                    {
+                        Ids = new TraktShowIds { Trakt = 1 }
+                    },
+                    new TraktUserHiddenItemsPostShow
+                    {
+                        Seasons = new List<ITraktUserHiddenItemsPostShowSeason>()
+                        {
+                            new TraktUserHiddenItemsPostShowSeason
+                            {
+                                Number = 1
+                            }
+                        },
+                        Ids = new TraktShowIds { Trakt = 2 }
+                    },
+                    new TraktUserHiddenItemsPostShow
+                    {
+                        Seasons = new List<ITraktUserHiddenItemsPostShowSeason>()
+                        {
+                            new TraktUserHiddenItemsPostShowSeason
+                            {
+                                Number = 2
+                            }
+                        },
+                        Ids = new TraktShowIds { Trakt = 3 }
+                    }
+                },
+                Seasons = new List<ITraktUserHiddenItemsPostSeason>()
+                {
+                    new TraktUserHiddenItemsPostSeason
+                    {
+                        Ids = new TraktSeasonIds
+                        {
+                            Trakt = 61430,
+                            Tvdb = 578373,
+                            Tmdb = 60523,
+                            TvRage = 36939
+                        }
+                    }
+                }
+            };
+        }
+
+        private ITraktUserHiddenItemsRemovePost SetupHiddenItemsRemovePost()
+        {
+            return new TraktUserHiddenItemsRemovePost
             {
                 Movies = new List<ITraktUserHiddenItemsPostMovie>()
                 {

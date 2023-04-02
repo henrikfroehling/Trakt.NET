@@ -245,12 +245,12 @@ namespace TraktNet.Modules
         /// See <a href="https://trakt.docs.apiary.io/#reference/users/remove-hidden-items/remove-hidden-items">"Trakt API Doc - Users: Remove Hidden Items"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="ITraktUserHiddenItemsPostBuilder" /> to create an instance
-        /// of the required <see cref="ITraktUserHiddenItemsPost" />.
-        /// See also <seealso cref="TraktPost.NewUserHiddenItemsPost()" />.
+        /// It is recommended to use the <see cref="ITraktUserHiddenItemsRemovePostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktUserHiddenItemsRemovePost" />.
+        /// See also <seealso cref="TraktPost.NewUserHiddenItemsRemovePost()" />.
         /// </para>
         /// </summary>
-        /// <param name="hiddenItemsPost">An <see cref="ITraktUserHiddenItemsPost" /> instance containing all shows, seasons and movies, which should be removed.</param>
+        /// <param name="hiddenItemsRemovePost">An <see cref="ITraktUserHiddenItemsRemovePost" /> instance containing all shows, seasons and movies, which should be removed.</param>
         /// <param name="hiddenItemsSection">Determines, which type of hidden items section should be queried. <see cref="TraktHiddenItemsSection "/></param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -260,7 +260,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktUserHiddenItemsRemovePostResponse>> RemoveHiddenItemsAsync(ITraktUserHiddenItemsPost hiddenItemsPost,
+        public Task<TraktResponse<ITraktUserHiddenItemsRemovePostResponse>> RemoveHiddenItemsAsync(ITraktUserHiddenItemsRemovePost hiddenItemsRemovePost,
                                                                                                    TraktHiddenItemsSection hiddenItemsSection,
                                                                                                    CancellationToken cancellationToken = default)
         {
@@ -268,7 +268,7 @@ namespace TraktNet.Modules
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserHiddenItemsRemoveRequest
             {
-                RequestBody = hiddenItemsPost,
+                RequestBody = hiddenItemsRemovePost,
                 Section = hiddenItemsSection
             },
             cancellationToken);
@@ -844,24 +844,24 @@ namespace TraktNet.Modules
         /// See <a href="https://trakt.docs.apiary.io/#reference/users/remove-list-items/remove-items-from-personal-list">"Trakt API Doc - Users: Remove List Items"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="ITraktUserPersonalListItemsPostBuilder" /> to create an instance
-        /// of the required <see cref="ITraktUserPersonalListItemsPost" />.
-        /// See also <seealso cref="TraktPost.NewUserPersonalListItemsPost()" />.
+        /// It is recommended to use the <see cref="ITraktUserPersonalListItemsRemovePostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktUserPersonalListItemsRemovePost" />.
+        /// See also <seealso cref="TraktPost.NewUserPersonalListItemsRemovePost()" />.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which items should be removed from a personal list.</param>
         /// <param name="listIdOrSlug">The id or slug of the personal list, from which items should be removed.</param>
-        /// <param name="listItemsRemovePost">An <see cref="ITraktUserPersonalListItemsPost" /> instance containing all shows, seasons, episodes, movies and people, which should be removed.</param>
+        /// <param name="listItemsRemovePost">An <see cref="ITraktUserPersonalListItemsRemovePost" /> instance containing all shows, seasons, episodes, movies and people, which should be removed.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
-        /// <returns>An <see cref="ITraktUserPersonalListItemsPostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
+        /// <returns>An <see cref="TraktUserPersonalListItemsRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktUserPersonalListItemsRemovePostResponse>> RemovePersonalListItemsAsync(string usernameOrSlug, string listIdOrSlug,
-                                                                                                               ITraktUserPersonalListItemsPost listItemsRemovePost,
+                                                                                                               ITraktUserPersonalListItemsRemovePost listItemsRemovePost,
                                                                                                                CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);

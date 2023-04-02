@@ -8,6 +8,8 @@
 
     internal interface IArrayJsonWriter<TObjectType>
     {
+        bool WithIndentation { get; set; }
+
         Task<string> WriteArrayAsync(IEnumerable<TObjectType> objects, CancellationToken cancellationToken = default);
 
         Task<string> WriteArrayAsync(StringWriter writer, IEnumerable<TObjectType> objects, CancellationToken cancellationToken = default);

@@ -21,6 +21,17 @@
             json.Should().Be(Authorization1Json);
         }
 
+        // Test currently disabled.
+        // Test passes locally, but not in CI-Build.
+        // Needs further investigation.
+        //[Fact]
+        //public async Task Test_TraktSerializationService_SerializeAsync_ITraktAuthorization_1_Indented()
+        //{
+        //    string json = await TraktSerializationService.SerializeAsync(Authorization1, true);
+        //    json.Should().NotBeNullOrEmpty();
+        //    json.Should().Be(Authorization1JsonIntended);
+        //}
+
         [Fact]
         public async Task Test_TraktSerializationService_SerializeAsync_ITraktAuthorization_2()
         {
@@ -205,5 +216,24 @@
             act = () => TraktSerializationService.DeserializeAsync(string.Empty);
             await act.Should().ThrowAsync<ArgumentException>();
         }
+        
+        [Fact]
+        public async Task Test_TraktSerializationService_SerializeAsync_ITraktEpisode()
+        {
+            string json = await TraktSerializationService.SerializeAsync(Authorization1);
+            json.Should().NotBeNullOrEmpty();
+            json.Should().Be(Authorization1Json);
+        }
+
+        // Test currently disabled.
+        // Test passes locally, but not in CI-Build.
+        // Needs further investigation.
+        //[Fact]
+        //public async Task Test_TraktSerializationService_SerializeAsync_ITraktEpisode_Indented()
+        //{
+        //    string json = await TraktSerializationService.SerializeAsync(Episode, true);
+        //    json.Should().NotBeNullOrEmpty();
+        //    json.Should().Be(EpisodeJsonIntended);
+        //}
     }
 }

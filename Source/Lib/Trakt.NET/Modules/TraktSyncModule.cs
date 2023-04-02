@@ -297,12 +297,12 @@ namespace TraktNet.Modules
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-collection/remove-items-from-collection">"Trakt API Doc - Sync: Remove from Collection"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="ITraktSyncCollectionPostBuilder" /> to create an instance
-        /// of the required <see cref="ITraktSyncCollectionPost" />.
-        /// See also <seealso cref="TraktPost.NewSyncCollectionPost()" />.
+        /// It is recommended to use the <see cref="ITraktSyncCollectionRemovePostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncCollectionRemovePost" />.
+        /// See also <seealso cref="TraktPost.NewSyncCollectionRemovePost()" />.
         /// </para>
         /// </summary>
-        /// <param name="collectionRemovePost">An <see cref="ITraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <param name="collectionRemovePost">An <see cref="ITraktSyncCollectionRemovePost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -311,7 +311,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync(ITraktSyncCollectionPost collectionRemovePost,
+        public Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync(ITraktSyncCollectionRemovePost collectionRemovePost,
                                                                                                       CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -579,12 +579,12 @@ namespace TraktNet.Modules
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-ratings/remove-ratings">"Trakt API Doc - Sync: Remove Ratings"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="ITraktSyncRatingsPostBuilder" /> to create an instance
-        /// of the required <see cref="ITraktSyncRatingsPost" />.
-        /// See also <seealso cref="TraktPost.NewSyncRatingsPost()" />.
+        /// It is recommended to use the <see cref="ITraktSyncRatingsRemovePostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncRatingsRemovePost" />.
+        /// See also <seealso cref="TraktPost.NewSyncRatingsRemovePost()" />.
         /// </para>
         /// </summary>
-        /// <param name="ratingsRemovePost">An <see cref="ITraktSyncRatingsPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <param name="ratingsRemovePost">An <see cref="ITraktSyncRatingsRemovePost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -593,7 +593,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync(ITraktSyncRatingsPost ratingsRemovePost,
+        public Task<TraktResponse<ITraktSyncRatingsRemovePostResponse>> RemoveRatingsAsync(ITraktSyncRatingsRemovePost ratingsRemovePost,
                                                                                            CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -645,12 +645,12 @@ namespace TraktNet.Modules
         /// See <a href="https://trakt.docs.apiary.io/#reference/sync/remove-from-personal-recommendations/remove-items-from-personal-recommendations">"Trakt API Doc - Sync: Remove from Personal Recommendations"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="ITraktSyncRecommendationsPostBuilder" /> to create an instance
-        /// of the required <see cref="ITraktSyncRecommendationsPost" />.
-        /// See also <seealso cref="TraktPost.NewSyncRecommendationsPost()" />.
+        /// It is recommended to use the <see cref="ITraktSyncRecommendationsRemovePostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncRecommendationsRemovePost" />.
+        /// See also <seealso cref="TraktPost.NewSyncRecommendationsRemovePost()" />.
         /// </para>
         /// </summary>
-        /// <param name="recommendationsPost">An <see cref="ITraktSyncRecommendationsPost" /> instance containing all movies and shows, which should be removed.</param>
+        /// <param name="recommendationsRemovePost">An <see cref="ITraktSyncRecommendationsRemovePost" /> instance containing all movies and shows, which should be removed.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -659,14 +659,14 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktSyncRecommendationsRemovePostResponse>> RemovePersonalRecommendationsAsync(ITraktSyncRecommendationsPost recommendationsPost,
+        public Task<TraktResponse<ITraktSyncRecommendationsRemovePostResponse>> RemovePersonalRecommendationsAsync(ITraktSyncRecommendationsRemovePost recommendationsRemovePost,
                                                                                                                    CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendationsRemoveRequest
             {
-                RequestBody = recommendationsPost
+                RequestBody = recommendationsRemovePost
             },
             cancellationToken);
         }
@@ -787,12 +787,12 @@ namespace TraktNet.Modules
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-watchlist/remove-items-from-watchlists">"Trakt API Doc - Sync: Remove from Watchlist"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="ITraktSyncWatchlistPostBuilder" /> to create an instance
-        /// of the required <see cref="ITraktSyncWatchlistPost" />.
-        /// See also <seealso cref="TraktPost.NewSyncWatchlistPost()" />.
+        /// It is recommended to use the <see cref="ITraktSyncWatchlistRemovePostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncWatchlistRemovePost" />.
+        /// See also <seealso cref="TraktPost.NewSyncWatchlistRemovePost()" />.
         /// </para>
         /// </summary>
-        /// <param name="watchlistRemovePost">An <see cref="ITraktSyncWatchlistPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <param name="watchlistRemovePost">An <see cref="ITraktSyncWatchlistRemovePost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -801,7 +801,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>> RemoveWatchlistItemsAsync(ITraktSyncWatchlistPost watchlistRemovePost,
+        public Task<TraktResponse<ITraktSyncWatchlistRemovePostResponse>> RemoveWatchlistItemsAsync(ITraktSyncWatchlistRemovePost watchlistRemovePost,
                                                                                                     CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
