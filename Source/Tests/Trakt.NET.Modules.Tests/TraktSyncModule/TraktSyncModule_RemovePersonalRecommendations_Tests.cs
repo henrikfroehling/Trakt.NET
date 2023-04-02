@@ -25,7 +25,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(REMOVE_RECOMMENDATIONS_URI, postJson, RECOMMENDATIONS_REMOVE_POST_RESPONSE_JSON);
-            TraktResponse<ITraktSyncRecommendationsRemovePostResponse> response = await client.Sync.RemovePersonalRecommendationsAsync(RecommendationsPost);
+            TraktResponse<ITraktSyncRecommendationsRemovePostResponse> response = await client.Sync.RemovePersonalRecommendationsAsync(RemoveRecommendationsPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -87,7 +87,7 @@
 
             try
             {
-                await client.Sync.RemovePersonalRecommendationsAsync(RecommendationsPost);
+                await client.Sync.RemovePersonalRecommendationsAsync(RemoveRecommendationsPost);
                 Assert.False(true);
             }
             catch (Exception exception)
