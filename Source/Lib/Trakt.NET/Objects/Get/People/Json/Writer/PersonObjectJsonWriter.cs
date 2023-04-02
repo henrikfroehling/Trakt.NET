@@ -35,13 +35,13 @@
             if (obj.Birthday.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_BIRTHDAY, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.Birthday.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Birthday.Value.ToTraktDateString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Death.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_DEATH, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.Death.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Death.Value.ToTraktDateString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.Birthplace))
@@ -73,6 +73,12 @@
                 var personSocialIdsObjectJsonWriter = new PersonSocialIdsObjectJsonWriter();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SOCIAL_IDS, cancellationToken).ConfigureAwait(false);
                 await personSocialIdsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.SocialIds, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.UpdatedAt.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_UPDATED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.UpdatedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);

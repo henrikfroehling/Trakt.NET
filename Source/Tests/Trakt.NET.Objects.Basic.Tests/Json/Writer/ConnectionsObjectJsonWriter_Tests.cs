@@ -1,9 +1,7 @@
 ﻿namespace TraktNet.Objects.Basic.Tests.Json.Writer
 {
     using FluentAssertions;
-    using Newtonsoft.Json;
     using System;
-    using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Basic;
@@ -17,8 +15,7 @@
         public async Task Test_ConnectionsObjectJsonWriter_WriteObject_Exceptions()
         {
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            ITraktConnections traktConnections = new TraktConnections();
-            Func<Task> action = () => traktJsonWriter.WriteObjectAsync(default(JsonTextWriter), traktConnections);
+            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             await action.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -30,11 +27,9 @@
                 Twitter = true
             };
 
-            using var stringWriter = new StringWriter();
-            using var jsonWriter = new JsonTextWriter(stringWriter);
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
-            stringWriter.ToString().Should().Be(@"{""twitter"":true}");
+            string json = await traktJsonWriter.WriteObjectAsync(traktConnections);
+            json.Should().Be(@"{""twitter"":true}");
         }
 
         [Fact]
@@ -45,11 +40,9 @@
                 Google = true
             };
 
-            using var stringWriter = new StringWriter();
-            using var jsonWriter = new JsonTextWriter(stringWriter);
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
-            stringWriter.ToString().Should().Be(@"{""google"":true}");
+            string json = await traktJsonWriter.WriteObjectAsync(traktConnections);
+            json.Should().Be(@"{""google"":true}");
         }
 
         [Fact]
@@ -60,11 +53,9 @@
                 Tumblr = true
             };
 
-            using var stringWriter = new StringWriter();
-            using var jsonWriter = new JsonTextWriter(stringWriter);
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
-            stringWriter.ToString().Should().Be(@"{""tumblr"":true}");
+            string json = await traktJsonWriter.WriteObjectAsync(traktConnections);
+            json.Should().Be(@"{""tumblr"":true}");
         }
 
         [Fact]
@@ -75,11 +66,9 @@
                 Medium = true
             };
 
-            using var stringWriter = new StringWriter();
-            using var jsonWriter = new JsonTextWriter(stringWriter);
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
-            stringWriter.ToString().Should().Be(@"{""medium"":true}");
+            string json = await traktJsonWriter.WriteObjectAsync(traktConnections);
+            json.Should().Be(@"{""medium"":true}");
         }
 
         [Fact]
@@ -90,11 +79,9 @@
                 Slack = true
             };
 
-            using var stringWriter = new StringWriter();
-            using var jsonWriter = new JsonTextWriter(stringWriter);
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
-            stringWriter.ToString().Should().Be(@"{""slack"":true}");
+            string json = await traktJsonWriter.WriteObjectAsync(traktConnections);
+            json.Should().Be(@"{""slack"":true}");
         }
 
         [Fact]
@@ -105,11 +92,9 @@
                 Facebook = true
             };
 
-            using var stringWriter = new StringWriter();
-            using var jsonWriter = new JsonTextWriter(stringWriter);
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
-            stringWriter.ToString().Should().Be(@"{""facebook"":true}");
+            string json = await traktJsonWriter.WriteObjectAsync(traktConnections);
+            json.Should().Be(@"{""facebook"":true}");
         }
 
         [Fact]
@@ -120,11 +105,9 @@
                 Apple = true
             };
 
-            using var stringWriter = new StringWriter();
-            using var jsonWriter = new JsonTextWriter(stringWriter);
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
-            stringWriter.ToString().Should().Be(@"{""apple"":true}");
+            string json = await traktJsonWriter.WriteObjectAsync(traktConnections);
+            json.Should().Be(@"{""apple"":true}");
         }
 
         [Fact]
@@ -135,11 +118,9 @@
                 Mastodon = true
             };
 
-            using var stringWriter = new StringWriter();
-            using var jsonWriter = new JsonTextWriter(stringWriter);
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
-            stringWriter.ToString().Should().Be(@"{""mastodon"":true}");
+            string json = await traktJsonWriter.WriteObjectAsync(traktConnections);
+            json.Should().Be(@"{""mastodon"":true}");
         }
 
         [Fact]
@@ -150,11 +131,9 @@
                 Microsoft = true
             };
 
-            using var stringWriter = new StringWriter();
-            using var jsonWriter = new JsonTextWriter(stringWriter);
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
-            stringWriter.ToString().Should().Be(@"{""microsoft"":true}");
+            string json = await traktJsonWriter.WriteObjectAsync(traktConnections);
+            json.Should().Be(@"{""microsoft"":true}");
         }
 
         [Fact]
@@ -165,11 +144,9 @@
                 Dropbox = true
             };
 
-            using var stringWriter = new StringWriter();
-            using var jsonWriter = new JsonTextWriter(stringWriter);
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
-            stringWriter.ToString().Should().Be(@"{""dropbox"":true}");
+            string json = await traktJsonWriter.WriteObjectAsync(traktConnections);
+            json.Should().Be(@"{""dropbox"":true}");
         }
 
         [Fact]
@@ -189,14 +166,12 @@
                 Dropbox = true
             };
 
-            using var stringWriter = new StringWriter();
-            using var jsonWriter = new JsonTextWriter(stringWriter);
             var traktJsonWriter = new ConnectionsObjectJsonWriter();
-            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktConnections);
-            stringWriter.ToString().Should().Be(@"{""twitter"":true,""google"":true," +
-                                                @"""tumblr"":true,""medium"":true,""slack"":true," +
-                                                @"""facebook"":true,""apple"":true,""mastodon"":true," +
-                                                @"""microsoft"":true,""dropbox"":true}");
+            string json = await traktJsonWriter.WriteObjectAsync(traktConnections);
+            json.Should().Be(@"{""twitter"":true,""google"":true," +
+                             @"""tumblr"":true,""medium"":true,""slack"":true," +
+                             @"""facebook"":true,""apple"":true,""mastodon"":true," +
+                             @"""microsoft"":true,""dropbox"":true}");
         }
     }
 }
