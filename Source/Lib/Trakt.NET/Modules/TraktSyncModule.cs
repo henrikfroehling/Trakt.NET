@@ -297,12 +297,12 @@ namespace TraktNet.Modules
         /// See <a href="http://docs.trakt.apiary.io/#reference/sync/remove-from-collection/remove-items-from-collection">"Trakt API Doc - Sync: Remove from Collection"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="ITraktSyncCollectionPostBuilder" /> to create an instance
-        /// of the required <see cref="ITraktSyncCollectionPost" />.
-        /// See also <seealso cref="TraktPost.NewSyncCollectionPost()" />.
+        /// It is recommended to use the <see cref="ITraktSyncCollectionRemovePostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncCollectionRemovePost" />.
+        /// See also <seealso cref="TraktPost.NewSyncCollectionRemovePost()" />.
         /// </para>
         /// </summary>
-        /// <param name="collectionRemovePost">An <see cref="ITraktSyncCollectionPost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
+        /// <param name="collectionRemovePost">An <see cref="ITraktSyncCollectionRemovePost" /> instance containing all shows, seasons, episodes and movies, which should be removed.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -311,7 +311,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync(ITraktSyncCollectionPost collectionRemovePost,
+        public Task<TraktResponse<ITraktSyncCollectionRemovePostResponse>> RemoveCollectionItemsAsync(ITraktSyncCollectionRemovePost collectionRemovePost,
                                                                                                       CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
