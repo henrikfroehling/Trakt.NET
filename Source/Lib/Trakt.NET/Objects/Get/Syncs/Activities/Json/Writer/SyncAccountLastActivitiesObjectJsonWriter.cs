@@ -37,6 +37,12 @@ namespace TraktNet.Objects.Get.Syncs.Activities.Json.Writer
                 await jsonWriter.WriteValueAsync(obj.PendingAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.RequestedAt.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_REQUESTED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.RequestedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

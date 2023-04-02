@@ -26,6 +26,7 @@
             lastActivities.Watchlist.Should().BeNull();
             lastActivities.Recommendations.Should().BeNull();
             lastActivities.Account.Should().BeNull();
+            lastActivities.SavedFilters.Should().BeNull();
         }
 
         [Fact]
@@ -88,6 +89,10 @@
             lastActivities.Account.FollowedAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
             lastActivities.Account.FollowingAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
             lastActivities.Account.PendingAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
+            lastActivities.Account.RequestedAt.Should().Be(DateTime.Parse("2022-04-27T03:38:09.000Z").ToUniversalTime());
+
+            lastActivities.SavedFilters.Should().NotBeNull();
+            lastActivities.SavedFilters.UpdatedAt.Should().Be(DateTime.Parse("2022-06-14T06:52:18.000Z").ToUniversalTime());
         }
 
         private const string JSON =
@@ -143,7 +148,11 @@
                   ""settings_at"": ""2014-11-20T06:52:18.837Z"",
                   ""followed_at"": ""2014-11-20T06:52:18.837Z"",
                   ""following_at"": ""2014-11-20T06:52:18.837Z"",
-                  ""pending_at"": ""2014-11-20T06:52:18.837Z""
+                  ""pending_at"": ""2014-11-20T06:52:18.837Z"",
+                  ""requested_at"": ""2022-04-27T03:38:09.000Z""
+                },
+                ""saved_filters"": {
+                  ""updated_at"": ""2022-06-14T06:52:18.000Z""
                 }
               }";
     }

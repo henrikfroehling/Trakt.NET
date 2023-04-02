@@ -70,5 +70,12 @@
         /// <para>Nullable</para>
         /// </summary>
         public ITraktSyncAccountLastActivities Account { get; set; }
+
+        /// <summary>
+        /// Gets or sets a collection of UTC datetimes of last activities for saved filters.
+        /// See also <seealso cref="ITraktSyncSavedFiltersLastActivities" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        public ITraktSyncSavedFiltersLastActivities SavedFilters { get; set; }
     }
 }

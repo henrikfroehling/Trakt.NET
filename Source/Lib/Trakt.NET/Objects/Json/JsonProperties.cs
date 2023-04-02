@@ -161,6 +161,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_REVENUE = "revenue";
         internal const string PROPERTY_NAME_REVIEW = "review";
         internal const string PROPERTY_NAME_RUNTIME = "runtime";
+        internal const string PROPERTY_NAME_SAVED_FILTERS = "saved_filters";
         internal const string PROPERTY_NAME_SCOPE = "scope";
         internal const string PROPERTY_NAME_SCORE = "score";
         internal const string PROPERTY_NAME_SECTION = "section";
