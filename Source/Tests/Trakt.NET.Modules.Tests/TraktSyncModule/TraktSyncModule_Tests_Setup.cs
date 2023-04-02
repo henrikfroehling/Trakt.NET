@@ -18,7 +18,7 @@
         private ITraktSyncRecommendationsPost RecommendationsPost { get; }
         private ITraktSyncHistoryPost AddHistoryPost { get; }
         private ITraktSyncWatchlistPost AddWatchlistPost { get; }
-        private ITraktSyncCollectionPost RemoveCollectionItemsPost { get; }
+        private ITraktSyncCollectionRemovePost RemoveCollectionItemsPost { get; }
         private ITraktSyncRatingsPost RemoveRatingsPost { get; }
         private ITraktSyncHistoryRemovePost RemoveHistoryPost { get; }
         private ITraktSyncWatchlistPost RemoveWatchlistPost { get; }
@@ -561,9 +561,9 @@
             };
         }
 
-        private ITraktSyncCollectionPost SetupRemoveCollectionItemsPost()
+        private ITraktSyncCollectionRemovePost SetupRemoveCollectionItemsPost()
         {
-            return new TraktSyncCollectionPost
+            return new TraktSyncCollectionRemovePost
             {
                 Movies = new List<ITraktSyncCollectionPostMovie>()
                 {
