@@ -16,18 +16,20 @@
         private ITraktSyncCollectionPost AddCollectionItemsPost { get; }
         private ITraktSyncRatingsPost AddRatingsPost { get; }
         private ITraktSyncRecommendationsPost RecommendationsPost { get; }
+        private ITraktSyncRecommendationsRemovePost RemoveRecommendationsPost { get; }
         private ITraktSyncHistoryPost AddHistoryPost { get; }
         private ITraktSyncWatchlistPost AddWatchlistPost { get; }
-        private ITraktSyncCollectionPost RemoveCollectionItemsPost { get; }
-        private ITraktSyncRatingsPost RemoveRatingsPost { get; }
+        private ITraktSyncCollectionRemovePost RemoveCollectionItemsPost { get; }
+        private ITraktSyncRatingsRemovePost RemoveRatingsPost { get; }
         private ITraktSyncHistoryRemovePost RemoveHistoryPost { get; }
-        private ITraktSyncWatchlistPost RemoveWatchlistPost { get; }
+        private ITraktSyncWatchlistRemovePost RemoveWatchlistPost { get; }
 
         public TraktSyncModule_Tests()
         {
             AddCollectionItemsPost = SetupAddCollectionItemsPost();
             AddRatingsPost = SetupAddRatingsPost();
             RecommendationsPost = SetupAddRecommendationsPost();
+            RemoveRecommendationsPost = SetupRecommendationsRemovePost();
             AddHistoryPost = SetupAddHistoryPost();
             AddWatchlistPost = SetupAddWatchlistPost();
             RemoveCollectionItemsPost = SetupRemoveCollectionItemsPost();
@@ -331,6 +333,66 @@
             };
         }
 
+        private ITraktSyncRecommendationsRemovePost SetupRecommendationsRemovePost()
+        {
+            return new TraktSyncRecommendationsRemovePost
+            {
+                Movies = new List<ITraktSyncRecommendationsPostMovie>
+                {
+                    new TraktSyncRecommendationsPostMovie
+                    {
+                        Title = "Batman Begins",
+                        Year = 2005,
+                        Ids = new TraktMovieIds
+                        {
+                            Trakt = 1,
+                            Slug = "batman-begins-2005",
+                            Imdb = "tt0372784",
+                            Tmdb = 272
+                        },
+                        Notes = "One of Chritian Bale's most iconic roles."
+                    },
+                    new TraktSyncRecommendationsPostMovie
+                    {
+                        Ids = new TraktMovieIds
+                        {
+                            Imdb = "tt0000111"
+                        }
+                    }
+                },
+                Shows = new List<ITraktSyncRecommendationsPostShow>
+                {
+                    new TraktSyncRecommendationsPostShow
+                    {
+                        Title = "Breaking Bad",
+                        Year = 2008,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 1,
+                            Slug = "breaking-bad",
+                            Tvdb = 81189,
+                            Imdb = "tt0903747",
+                            Tmdb = 1396
+                        },
+                        Notes = "I AM THE DANGER!"
+                    },
+                    new TraktSyncRecommendationsPostShow
+                    {
+                        Title = "The Walking Dead",
+                        Year = 2010,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 2,
+                            Slug = "the-walking-dead",
+                            Tvdb = 153021,
+                            Imdb = "tt1520211",
+                            Tmdb = 1402
+                        }
+                    }
+                }
+            };
+        }
+
         private ITraktSyncHistoryPost SetupAddHistoryPost()
         {
             return new TraktSyncHistoryPost
@@ -561,9 +623,9 @@
             };
         }
 
-        private ITraktSyncCollectionPost SetupRemoveCollectionItemsPost()
+        private ITraktSyncCollectionRemovePost SetupRemoveCollectionItemsPost()
         {
-            return new TraktSyncCollectionPost
+            return new TraktSyncCollectionRemovePost
             {
                 Movies = new List<ITraktSyncCollectionPostMovie>()
                 {
@@ -675,9 +737,9 @@
             };
         }
 
-        private ITraktSyncRatingsPost SetupRemoveRatingsPost()
+        private ITraktSyncRatingsRemovePost SetupRemoveRatingsPost()
         {
-            return new TraktSyncRatingsPost
+            return new TraktSyncRatingsRemovePost
             {
                 Movies = new List<ITraktSyncRatingsPostMovie>()
                 {
@@ -901,9 +963,9 @@
             };
         }
 
-        private ITraktSyncWatchlistPost SetupRemoveWatchlistPost()
+        private ITraktSyncWatchlistRemovePost SetupRemoveWatchlistPost()
         {
-            return new TraktSyncWatchlistPost
+            return new TraktSyncWatchlistRemovePost
             {
                 Movies = new List<ITraktSyncWatchlistPostMovie>()
                 {

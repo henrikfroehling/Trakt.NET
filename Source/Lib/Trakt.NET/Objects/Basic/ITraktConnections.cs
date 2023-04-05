@@ -23,5 +23,14 @@
 
         /// <summary>Gets or sets, whether Apple connection is enabled.</summary>
         bool? Apple { get; set; }
+
+        /// <summary>Gets or sets, whether Mastodon connection is enabled.</summary>
+        bool? Mastodon { get; set; }
+
+        /// <summary>Gets or sets, whether Microsoft connection is enabled.</summary>
+        bool? Microsoft { get; set; }
+
+        /// <summary>Gets or sets, whether Dropbox connection is enabled.</summary>
+        bool? Dropbox { get; set; }
     }
 }

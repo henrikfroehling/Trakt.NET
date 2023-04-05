@@ -22,8 +22,9 @@
                 var accountLastActivitiesReader = new SyncAccountLastActivitiesObjectJsonReader();
                 var recommendationsLastActivitiesReader = new SyncRecommendationsLastActivitiesObjectJsonReader();
                 var watchlistLastActivitiesReader = new SyncWatchlistLastActivitiesObjectJsonReader();
+                var savedFiltersLastActivitiesReader = new SyncSavedFiltersLastActivitiesObjectJsonReader();
 
-                ITraktSyncLastActivities moviesLastActivities = new TraktSyncLastActivities();
+                ITraktSyncLastActivities lastActivities = new TraktSyncLastActivities();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -36,36 +37,39 @@
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
 
                                 if (value.First)
-                                    moviesLastActivities.All = value.Second;
+                                    lastActivities.All = value.Second;
 
                                 break;
                             }
                         case JsonProperties.PROPERTY_NAME_MOVIES:
-                            moviesLastActivities.Movies = await moviesLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            lastActivities.Movies = await moviesLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SHOWS:
-                            moviesLastActivities.Shows = await showsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            lastActivities.Shows = await showsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SEASONS:
-                            moviesLastActivities.Seasons = await seasonsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            lastActivities.Seasons = await seasonsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_EPISODES:
-                            moviesLastActivities.Episodes = await episodesLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            lastActivities.Episodes = await episodesLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_COMMENTS:
-                            moviesLastActivities.Comments = await commentsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            lastActivities.Comments = await commentsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_LISTS:
-                            moviesLastActivities.Lists = await listsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            lastActivities.Lists = await listsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_WATCHLIST:
-                            moviesLastActivities.Watchlist = await watchlistLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            lastActivities.Watchlist = await watchlistLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_RECOMMENDATIONS:
-                            moviesLastActivities.Recommendations = await recommendationsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            lastActivities.Recommendations = await recommendationsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_ACCOUNT:
-                            moviesLastActivities.Account = await accountLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            lastActivities.Account = await accountLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_SAVED_FILTERS:
+                            lastActivities.SavedFilters = await savedFiltersLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -73,7 +77,7 @@
                     }
                 }
 
-                return moviesLastActivities;
+                return lastActivities;
             }
 
             return await Task.FromResult(default(ITraktSyncLastActivities));

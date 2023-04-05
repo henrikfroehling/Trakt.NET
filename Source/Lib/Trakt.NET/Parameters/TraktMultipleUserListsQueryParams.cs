@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Modules
+﻿namespace TraktNet.Parameters
 {
     /// <summary>
     /// Collection containing multiple different combinations of usernames and list ids.

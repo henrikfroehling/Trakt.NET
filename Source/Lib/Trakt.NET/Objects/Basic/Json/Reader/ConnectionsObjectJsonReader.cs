@@ -13,7 +13,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                ITraktConnections traktSharing = new TraktConnections();
+                ITraktConnections connections = new TraktConnections();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -22,25 +22,34 @@
                     switch (propertyName)
                     {
                         case JsonProperties.PROPERTY_NAME_TWITTER:
-                            traktSharing.Twitter = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            connections.Twitter = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_GOOGLE:
-                            traktSharing.Google = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            connections.Google = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_TUMBLR:
-                            traktSharing.Tumblr = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            connections.Tumblr = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_MEDIUM:
-                            traktSharing.Medium = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            connections.Medium = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SLACK:
-                            traktSharing.Slack = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            connections.Slack = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_FACEBOOK:
-                            traktSharing.Facebook = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            connections.Facebook = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_APPLE:
-                            traktSharing.Apple = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            connections.Apple = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_MASTODON:
+                            connections.Mastodon = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_MICROSOFT:
+                            connections.Microsoft = await jsonReader.ReadAsBooleanAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_DROPBOX:
+                            connections.Dropbox = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -48,7 +57,7 @@
                     }
                 }
 
-                return traktSharing;
+                return connections;
             }
 
             return await Task.FromResult(default(ITraktConnections));
