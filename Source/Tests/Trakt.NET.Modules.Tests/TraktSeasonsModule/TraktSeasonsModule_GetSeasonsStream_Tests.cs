@@ -11,6 +11,7 @@
     using TraktNet.Objects.Get.Episodes;
     using TraktNet.Responses;
     using TraktNet.Extensions;
+    using TraktNet.Parameters;
     using Xunit;
 
     [TestCategory("Modules.Seasons")]
@@ -19,7 +20,7 @@
         private readonly string GET_SEASONS_STREAM_URI = $"shows/{SHOW_ID}/seasons/{SEASON_NR}";
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonsStreamAsync()
+        public async Task Test_TraktSeasonsModule_GetSeasonsStream()
         {
             TraktMultipleSeasonsQueryParams parameters = new TraktMultipleSeasonsQueryParams
             {
@@ -43,7 +44,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonsStreamAsync_With_ExtendedInfo()
+        public async Task Test_TraktSeasonsModule_GetSeasonsStream_With_ExtendedInfo()
         {
             TraktMultipleSeasonsQueryParams parameters = new TraktMultipleSeasonsQueryParams
             {
@@ -68,7 +69,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonsStreamAsync_With_Translations()
+        public async Task Test_TraktSeasonsModule_GetSeasonsStream_With_Translations()
         {
             TraktMultipleSeasonsQueryParams parameters = new TraktMultipleSeasonsQueryParams
             {
@@ -94,7 +95,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonsStreamAsync_With_ExtendedInfo_And_Translations()
+        public async Task Test_TraktSeasonsModule_GetSeasonsStream_With_ExtendedInfo_And_Translations()
         {
             TraktMultipleSeasonsQueryParams parameters = new TraktMultipleSeasonsQueryParams
             {
@@ -120,7 +121,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonsStreamAsync_With_All_Translations()
+        public async Task Test_TraktSeasonsModule_GetSeasonsStream_With_All_Translations()
         {
             TraktMultipleSeasonsQueryParams parameters = new TraktMultipleSeasonsQueryParams
             {
@@ -146,7 +147,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonsStreamAsync_With_ExtendedInfo_And_All_Translations()
+        public async Task Test_TraktSeasonsModule_GetSeasonsStream_With_ExtendedInfo_And_All_Translations()
         {
             TraktMultipleSeasonsQueryParams parameters = new TraktMultipleSeasonsQueryParams
             {
@@ -172,7 +173,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonsStreamAsync_WithNullParameters()
+        public async Task Test_TraktSeasonsModule_GetSeasonsStream_WithNullParameters()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_SEASONS_STREAM_URI}?extended={EXTENDED_INFO}&translations=all",
                                                            SEASON_EPISODES_JSON);
@@ -182,7 +183,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonsStreamAsync_WithEmptyParameters()
+        public async Task Test_TraktSeasonsModule_GetSeasonsStream_WithEmptyParameters()
         {
             TraktMultipleSeasonsQueryParams parameters = new TraktMultipleSeasonsQueryParams();
             TraktClient client = TestUtility.GetMockClient($"{GET_SEASONS_STREAM_URI}?extended={EXTENDED_INFO}&translations=all",
@@ -209,7 +210,7 @@
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktSeasonsModule_GetSeasonsStreamAsync_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktSeasonsModule_GetSeasonsStream_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
             TraktMultipleSeasonsQueryParams parameters = new TraktMultipleSeasonsQueryParams
             {

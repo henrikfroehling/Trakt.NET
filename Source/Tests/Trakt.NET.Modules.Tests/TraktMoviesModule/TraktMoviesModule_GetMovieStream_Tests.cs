@@ -11,6 +11,7 @@
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Responses;
     using TraktNet.Extensions;
+    using TraktNet.Parameters;
     using Xunit;
 
     [TestCategory("Modules.Movies")]
@@ -19,7 +20,7 @@
         private readonly string GET_MOVIE_STREAM_URI = $"movies/{MOVIE_ID}";
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieStreamAsync()
+        public async Task Test_TraktMoviesModule_GetMovieStream()
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
@@ -53,7 +54,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithExtendedInfo()
+        public async Task Test_TraktMoviesModule_GetMovieStream_WithExtendedInfo()
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
@@ -100,7 +101,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithNullParameters()
+        public async Task Test_TraktMoviesModule_GetMovieStream_WithNullParameters()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_STREAM_URI}?extended={EXTENDED_INFO}", MOVIE_JSON);
             IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(null);
@@ -109,7 +110,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieStreamAsync_WithEmptyParameters()
+        public async Task Test_TraktMoviesModule_GetMovieStream_WithEmptyParameters()
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
@@ -137,7 +138,7 @@
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktMoviesModule_GetMoviesStreamAsync_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktMoviesModule_GetMoviesStream_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {

@@ -11,6 +11,7 @@
     using TraktNet.Objects.Get.Episodes;
     using TraktNet.Responses;
     using TraktNet.Extensions;
+    using TraktNet.Parameters;
     using Xunit;
 
     [TestCategory("Modules.Episodes")]

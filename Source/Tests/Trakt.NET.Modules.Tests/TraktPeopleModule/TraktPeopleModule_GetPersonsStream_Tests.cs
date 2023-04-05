@@ -11,6 +11,7 @@
     using TraktNet.Objects.Get.People;
     using TraktNet.Responses;
     using TraktNet.Extensions;
+    using TraktNet.Parameters;
     using Xunit;
 
     [TestCategory("Modules.People")]
@@ -19,7 +20,7 @@
         private readonly string GET_PERSONS_STREAM_URI = $"people/{PERSON_ID}";
 
         [Fact]
-        public async Task Test_TraktPeopleModule_GetPersonStreamAsync()
+        public async Task Test_TraktPeopleModule_GetPersonStream()
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
@@ -54,7 +55,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktPeopleModule_GetPersonStreamAsync_With_ExtendedInfo()
+        public async Task Test_TraktPeopleModule_GetPersonStream_With_ExtendedInfo()
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
@@ -94,7 +95,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktPeopleModule_GetPersonStreamAsync_WithNullParameters()
+        public async Task Test_TraktPeopleModule_GetPersonStream_WithNullParameters()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_PERSONS_STREAM_URI}?extended={EXTENDED_INFO}", PERSON_FULL_JSON);
             IAsyncEnumerable<TraktResponse<ITraktPerson>> responses = client.People.GetPersonsStreamAsync(null);
@@ -103,7 +104,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktPeopleModule_GetPersonStreamAsync_With_EmptyParameters()
+        public async Task Test_TraktPeopleModule_GetPersonStream_With_EmptyParameters()
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams();
             int totalPersons = parameters.Count;
@@ -130,7 +131,7 @@
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktPeopleModule_GetPersonStreamAsync_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktPeopleModule_GetPersonStream_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {

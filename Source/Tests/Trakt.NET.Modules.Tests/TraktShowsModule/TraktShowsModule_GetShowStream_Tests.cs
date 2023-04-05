@@ -12,6 +12,7 @@
     using TraktNet.Objects.Get.Shows;
     using TraktNet.Responses;
     using TraktNet.Extensions;
+    using TraktNet.Parameters;
     using Xunit;
 
     [TestCategory("Modules.Shows")]
@@ -20,7 +21,7 @@
         private readonly string GET_SHOWS_STREAM_URI = $"shows/{SHOW_ID}";
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowsStreamAsync()
+        public async Task Test_TraktShowsModule_GetShowsStream()
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
@@ -56,7 +57,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowStreamAsync_With_ExtendedInfo()
+        public async Task Test_TraktShowsModule_GetShowStream_With_ExtendedInfo()
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {
@@ -113,7 +114,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowStreamAsync_WithNullParameters()
+        public async Task Test_TraktShowsModule_GetShowStream_WithNullParameters()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_SHOWS_STREAM_URI}?extended={EXTENDED_INFO}", SHOW_JSON);
             IAsyncEnumerable<TraktResponse<ITraktShow>> responses = client.Shows.GetShowsStreamAsync(null);
@@ -121,7 +122,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowStreamAsync_WithEmptyParameters()
+        public async Task Test_TraktShowsModule_GetShowStream_WithEmptyParameters()
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams();
             int totalShows = parameters.Count;
@@ -147,7 +148,7 @@
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktShowsModule_GetShowsStreamAsync_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktShowsModule_GetShowsStream_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
             TraktMultipleObjectsQueryParams parameters = new TraktMultipleObjectsQueryParams
             {

@@ -62,6 +62,24 @@
             };
         }
 
+        internal static TraktClient GetOAuthMockClientForMultipleCalls(string uri, string responseContent,
+                                                       uint? page = null, uint? limit = null,
+                                                       int? pageCount = null, int? itemCount = null,
+                                                       int? userCount = null, string startDate = null,
+                                                       string endDate = null, TraktSortBy? sortBy = null,
+                                                       TraktSortHow? sortHow = null, int calls)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            for (var i = 0; i < calls; i++)
+            {
+                httpClientProvider.SetupOAuthMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
+            }
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider)
+            {
+                Authorization = TestConstants.MOCK_AUTHORIZATION
+            };
+        }
+
         internal static TraktClient GetOAuthMockClient(string uri, string requestContent, string responseContent)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
