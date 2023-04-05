@@ -19,7 +19,7 @@
         private readonly string GET_EPISODE_STREAM_URI = $"shows/{SHOW_ID}/seasons/{SEASON_NR}/episodes/{EPISODE_NR}";
 
         [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync()
+        public async Task Test_TraktEpisodesModule_GetEpisodesStream()
         {
             TraktMultipleEpisodesQueryParams parameters = new TraktMultipleEpisodesQueryParams
             {
@@ -65,7 +65,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_WithExtendedInfo()
+        public async Task Test_TraktEpisodesModule_GetEpisodesStream_WithExtendedInfo()
         {
             TraktMultipleEpisodesQueryParams parameters = new TraktMultipleEpisodesQueryParams
             {
@@ -110,7 +110,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_EmptyParameters()
+        public async Task Test_TraktEpisodesModule_GetEpisodesStream_EmptyParameters()
         {
             TraktMultipleEpisodesQueryParams parameters = new TraktMultipleEpisodesQueryParams
             {
@@ -121,7 +121,7 @@
         }
 
         [Fact]
-        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_NullParameters()
+        public async Task Test_TraktEpisodesModule_GetEpisodesStream_NullParameters()
         {
             TraktMultipleEpisodesQueryParams parameters = null;
             TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_STREAM_URI}?extended={EXTENDED_INFO}", EPISODE_SUMMARY_FULL_JSON);
@@ -146,7 +146,7 @@
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktEpisodesModule_GetEpisodesStreamAsync_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktEpisodesModule_GetEpisodesStream_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
             TraktClient client = TestUtility.GetMockClient(GET_EPISODE_STREAM_URI, statusCode);
 
