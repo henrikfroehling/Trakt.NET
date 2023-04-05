@@ -60,7 +60,7 @@ try
     Console.WriteLine($"Year: {show.Year}");
     Console.WriteLine();
 
-    string json = await TraktSerializationService.SerializeAsync(show);
+    string json = await TraktSerializationService.SerializeAsync(show, true);
     Console.WriteLine(json);
 }
 catch (TraktException ex)
@@ -70,9 +70,19 @@ catch (TraktException ex)
 ```
 
 Output:
-```
+```json
 Title: The Last of Us
 Year: 2023
 
-{"title":"The Last of Us","year":2023,"ids":{"trakt":158947,"slug":"the-last-of-us","tvdb":392256,"imdb":"tt3581920","tmdb":100088}}
+{
+    "title": "The Last of Us",
+    "year": 2023,
+    "ids": {
+        "trakt": 158947,
+        "slug": "the-last-of-us",
+        "tvdb": 392256,
+        "imdb": "tt3581920",
+        "tmdb": 100088
+    }
+}
 ```
