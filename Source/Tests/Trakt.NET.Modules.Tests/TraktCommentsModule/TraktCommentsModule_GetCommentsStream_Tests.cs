@@ -30,7 +30,7 @@
 
             int commentsReturned = 0;
 
-            await foreach(TraktResponse<ITraktComment> response in responses.ConfigureAwait(false))
+            await foreach(TraktResponse<ITraktComment> response in responses)
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -63,7 +63,7 @@
             TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, COMMENT_JSON);
             IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
 
-            (await responses.ToListAsync().ConfigureAwait(false)).Any().Should().BeFalse();
+            (await responses.ToListAsync()).Any().Should().BeFalse();
         }
 
         [Fact]
@@ -101,7 +101,7 @@
             try
             {
                 IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
-                await foreach(TraktResponse<ITraktComment> response in responses.ConfigureAwait(false)) {
+                await foreach(TraktResponse<ITraktComment> response in responses) {
 
                 }
                 Assert.False(true);

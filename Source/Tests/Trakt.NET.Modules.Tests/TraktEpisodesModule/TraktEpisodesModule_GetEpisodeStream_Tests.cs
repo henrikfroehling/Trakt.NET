@@ -33,7 +33,7 @@
 
             int episodesReturned = 0;
 
-            await foreach (TraktResponse<ITraktEpisode> response in responses.ConfigureAwait(false))
+            await foreach (TraktResponse<ITraktEpisode> response in responses)
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -79,7 +79,7 @@
 
             int episodesReturned = 0;
 
-            await foreach (TraktResponse<ITraktEpisode> response in responses.ConfigureAwait(false))
+            await foreach (TraktResponse<ITraktEpisode> response in responses)
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -118,7 +118,7 @@
             };
             TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_STREAM_URI}?extended={EXTENDED_INFO}", EPISODE_SUMMARY_FULL_JSON);
             IAsyncEnumerable<TraktResponse<ITraktEpisode>> responses = client.Episodes.GetEpisodesStreamAsync(parameters);
-            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
+            (await responses.ToListAsync()).Should().BeEmpty();
         }
 
         [Fact]
@@ -127,7 +127,7 @@
             TraktMultipleEpisodesQueryParams parameters = null;
             TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_STREAM_URI}?extended={EXTENDED_INFO}", EPISODE_SUMMARY_FULL_JSON);
             IAsyncEnumerable<TraktResponse<ITraktEpisode>> responses = client.Episodes.GetEpisodesStreamAsync(parameters);
-            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
+            (await responses.ToListAsync()).Should().BeEmpty();
         }
 
         [Theory]
@@ -159,7 +159,7 @@
                     { SHOW_ID, SEASON_NR, EPISODE_NR, EXTENDED_INFO }
                 };
                 IAsyncEnumerable<TraktResponse<ITraktEpisode>> responses = client.Episodes.GetEpisodesStreamAsync(parameters);
-                (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
+                (await responses.ToListAsync()).Should().BeEmpty();
                 Assert.False(true);
             }
             catch (Exception exception)

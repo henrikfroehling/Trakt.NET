@@ -33,7 +33,7 @@
 
             int returnedSeasons = 0;
 
-            await foreach (TraktListResponse<ITraktEpisode> response in responses.ConfigureAwait(false)) {
+            await foreach (TraktListResponse<ITraktEpisode> response in responses) {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
                 response.HasValue.Should().BeTrue();
@@ -57,7 +57,7 @@
             IAsyncEnumerable<TraktListResponse<ITraktEpisode>> responses = client.Seasons.GetSeasonsStreamAsync(parameters);
 
             int returnedSeasons = 0;
-            await foreach (TraktListResponse<ITraktEpisode> response in responses.ConfigureAwait(false))
+            await foreach (TraktListResponse<ITraktEpisode> response in responses)
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -83,7 +83,7 @@
             IAsyncEnumerable<TraktListResponse<ITraktEpisode>> responses = client.Seasons.GetSeasonsStreamAsync(parameters);
 
             int returnedSeasons = 0;
-            await foreach (TraktListResponse<ITraktEpisode> response in responses.ConfigureAwait(false))
+            await foreach (TraktListResponse<ITraktEpisode> response in responses)
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -109,7 +109,7 @@
             IAsyncEnumerable<TraktListResponse<ITraktEpisode>> responses = client.Seasons.GetSeasonsStreamAsync(parameters);
 
             int returnedSeasons = 0;
-            await foreach (TraktListResponse<ITraktEpisode> response in responses.ConfigureAwait(false))
+            await foreach (TraktListResponse<ITraktEpisode> response in responses)
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -135,7 +135,7 @@
             IAsyncEnumerable<TraktListResponse<ITraktEpisode>> responses = client.Seasons.GetSeasonsStreamAsync(parameters);
 
             int returnedSeasons = 0;
-            await foreach (TraktListResponse<ITraktEpisode> response in responses.ConfigureAwait(false))
+            await foreach (TraktListResponse<ITraktEpisode> response in responses)
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -161,7 +161,7 @@
             IAsyncEnumerable<TraktListResponse<ITraktEpisode>> responses = client.Seasons.GetSeasonsStreamAsync(parameters);
 
             int returnedSeasons = 0;
-            await foreach (TraktListResponse<ITraktEpisode> response in responses.ConfigureAwait(false))
+            await foreach (TraktListResponse<ITraktEpisode> response in responses)
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -179,7 +179,7 @@
                                                            SEASON_EPISODES_JSON);
 
             IAsyncEnumerable<TraktListResponse<ITraktEpisode>> responses = client.Seasons.GetSeasonsStreamAsync(null);
-            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
+            (await responses.ToListAsync()).Should().BeEmpty();
         }
 
         [Fact]
@@ -190,7 +190,7 @@
                                                            SEASON_EPISODES_JSON);
 
             IAsyncEnumerable<TraktListResponse<ITraktEpisode>> responses = client.Seasons.GetSeasonsStreamAsync(parameters);
-            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
+            (await responses.ToListAsync()).Should().BeEmpty();
         }
 
         [Theory]
@@ -222,7 +222,7 @@
             try
             {
                 IAsyncEnumerable<TraktListResponse<ITraktEpisode>> responses = client.Seasons.GetSeasonsStreamAsync(parameters);
-                (await responses.ToListAsync().ConfigureAwait(false)).Should().NotBeNull();
+                (await responses.ToListAsync()).Should().NotBeNull();
                 Assert.False(true);
             }
             catch (Exception exception)

@@ -33,7 +33,7 @@
             IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(parameters);
 
             int returnedLists = 0;
-            await foreach (TraktResponse<ITraktList> response in responses.ConfigureAwait(false))
+            await foreach (TraktResponse<ITraktList> response in responses)
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -72,13 +72,13 @@
                 { USERNAME, LIST_ID },
             };
             int totalLists = parameters.Count;
-            TraktClient client = TestUtility.GetOAuthMockClientForMultipleCalls(GET_PERSONAL_LIST_STREAM_URI, LIST_JSON, calls: totalLists);
+            TraktClient client = TestUtility.GetOAuthMockClientForMultipleCalls(GET_PERSONAL_LIST_STREAM_URI, LIST_JSON, totalLists);
             client.Configuration.ForceAuthorization = true;
 
             IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(parameters);
 
             int returnedLists = 0;
-            await foreach (TraktResponse<ITraktList> response in responses.ConfigureAwait(false))
+            await foreach (TraktResponse<ITraktList> response in responses)
             {
                 response.Should().NotBeNull();
                 response.IsSuccess.Should().BeTrue();
@@ -115,7 +115,7 @@
             TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_STREAM_URI, LIST_JSON);
             IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(parameters);
 
-            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
+            (await responses.ToListAsync()).Should().BeEmpty();
         }
 
         [Fact]
@@ -124,7 +124,7 @@
             TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_STREAM_URI, LIST_JSON);
             IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(null);
 
-            (await responses.ToListAsync().ConfigureAwait(false)).Should().BeEmpty();
+            (await responses.ToListAsync()).Should().BeEmpty();
         }
 
         [Theory]
@@ -156,7 +156,7 @@
             try
             {
                 IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(parameters);
-                (await responses.ToListAsync().ConfigureAwait(false)).Should().NotBeNullOrEmpty();
+                (await responses.ToListAsync()).Should().NotBeNullOrEmpty();
                 Assert.False(true);
             }
             catch (Exception exception)

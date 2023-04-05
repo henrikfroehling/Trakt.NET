@@ -62,12 +62,12 @@
             };
         }
 
-        internal static TraktClient GetOAuthMockClientForMultipleCalls(string uri, string responseContent,
+        internal static TraktClient GetOAuthMockClientForMultipleCalls(string uri, string responseContent, int calls,
                                                        uint? page = null, uint? limit = null,
                                                        int? pageCount = null, int? itemCount = null,
                                                        int? userCount = null, string startDate = null,
                                                        string endDate = null, TraktSortBy? sortBy = null,
-                                                       TraktSortHow? sortHow = null, int calls)
+                                                       TraktSortHow? sortHow = null)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
             for (var i = 0; i < calls; i++)
