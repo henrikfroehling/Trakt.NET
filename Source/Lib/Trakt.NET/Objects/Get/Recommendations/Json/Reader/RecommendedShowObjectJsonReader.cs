@@ -12,8 +12,6 @@ namespace TraktNet.Objects.Get.Recommendations.Json.Reader
         
         protected override async Task ReadPropertyAsync(JsonTextReader jsonReader, ITraktRecommendedShow show, string propertyName, CancellationToken cancellationToken = default)
         {
-            await base.ReadPropertyAsync(jsonReader, show, propertyName, cancellationToken);
-
             switch (propertyName)
             {
                 case JsonProperties.PROPERTY_NAME_RECOMMENDED_BY:
@@ -21,7 +19,7 @@ namespace TraktNet.Objects.Get.Recommendations.Json.Reader
                     show.RecommendedBy = await recommendedByArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                     break;
                 default:
-                    await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
+                    await base.ReadPropertyAsync(jsonReader, show, propertyName, cancellationToken);
                     break;
             }
         }
