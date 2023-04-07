@@ -15,6 +15,8 @@
 
         public bool? IgnoreCollected { get; set; }
 
+        public bool? IgnoreWatchlisted { get; set; }
+
         public override IDictionary<string, object> GetUriPathParameters()
         {
             var uriParams = new Dictionary<string, object>();
@@ -27,6 +29,9 @@
 
             if (IgnoreCollected.HasValue)
                 uriParams.Add("ignore_collected", IgnoreCollected.Value.ToString().ToLower());
+
+            if (IgnoreWatchlisted.HasValue)
+                uriParams.Add("ignore_watchlisted", IgnoreWatchlisted.Value.ToString().ToLower());
 
             return uriParams;
         }
