@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Requests.Recommendations.OAuth
 {
-    using Objects.Get.Shows;
+    using Objects.Get.Recommendations;
 
-    internal sealed class UserShowRecommendationsRequest : AUserRecommendationsRequest<ITraktShow>
+    internal sealed class UserShowRecommendationsRequest : AUserRecommendationsRequest<ITraktRecommendedShow>
     {
         public override string UriTemplate => "recommendations/shows{?extended,limit,ignore_collected}";
 

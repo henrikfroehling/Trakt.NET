@@ -7,7 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Shows;
+    using TraktNet.Objects.Get.Recommendations;
     using TraktNet.Responses;
     using Xunit;
 
@@ -22,7 +22,7 @@
             TraktClient client = TestUtility.GetOAuthMockClient(GET_SHOW_RECOMMENDATIONS_URI,
                                                                 SHOW_RECOMMENDATIONS_JSON, 1, 10);
 
-            TraktPagedResponse<ITraktShow> response = await client.Recommendations.GetShowRecommendationsAsync();
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -38,7 +38,7 @@
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}?limit={LIMIT}",
                                                                 SHOW_RECOMMENDATIONS_JSON, 1, LIMIT);
 
-            TraktPagedResponse<ITraktShow> response = await client.Recommendations.GetShowRecommendationsAsync(LIMIT);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(LIMIT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -54,7 +54,7 @@
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}?ignore_collected=true",
                                                                 SHOW_RECOMMENDATIONS_JSON, 1, 10);
 
-            TraktPagedResponse<ITraktShow> response = await client.Recommendations.GetShowRecommendationsAsync(null, true);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(null, true);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -70,7 +70,7 @@
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}?extended={EXTENDED_INFO}",
                                                                 SHOW_RECOMMENDATIONS_JSON, 1, 10);
 
-            TraktPagedResponse<ITraktShow> response = await client.Recommendations.GetShowRecommendationsAsync(null, null, EXTENDED_INFO);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -86,7 +86,7 @@
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}?ignore_collected=true&extended={EXTENDED_INFO}&limit={LIMIT}",
                                                                 SHOW_RECOMMENDATIONS_JSON, 1, LIMIT);
 
-            TraktPagedResponse<ITraktShow> response = await client.Recommendations.GetShowRecommendationsAsync(LIMIT, true, EXTENDED_INFO);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(LIMIT, true, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();

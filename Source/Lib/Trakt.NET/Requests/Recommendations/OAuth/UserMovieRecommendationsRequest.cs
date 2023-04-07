@@ -1,8 +1,8 @@
 ﻿namespace TraktNet.Requests.Recommendations.OAuth
 {
-    using Objects.Get.Movies;
+    using Objects.Get.Recommendations;
 
-    internal sealed class UserMovieRecommendationsRequest : AUserRecommendationsRequest<ITraktMovie>
+    internal sealed class UserMovieRecommendationsRequest : AUserRecommendationsRequest<ITraktRecommendedMovie>
     {
         public override string UriTemplate => "recommendations/movies{?extended,limit,ignore_collected}";
 
