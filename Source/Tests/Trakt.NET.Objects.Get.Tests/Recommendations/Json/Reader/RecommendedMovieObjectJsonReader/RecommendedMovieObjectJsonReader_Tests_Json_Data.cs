@@ -1259,5 +1259,71 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""country"": ""us"",
               ""status"": ""released""
             }";
+
+        private const string JSON_NOT_VALID =
+            @"{
+              ""ttl"": ""Star Wars: The Force Awakens"",
+              ""y"": 2015,
+              ""id"": {
+                ""trakt"": 94024,
+                ""slug"": ""star-wars-the-force-awakens-2015"",
+                ""imdb"": ""tt2488496"",
+                ""tmdb"": 140607
+              },
+              ""tl"": ""Every generation has a story."",
+              ""ov"": ""Thirty years after defeating the Galactic Empire,..."",
+              ""rel"": ""2015-12-18"",
+              ""run"": 136,
+              ""tr"": ""http://youtube.com/watch?v=uwa7N0ShN2U"",
+              ""hp"": ""http://www.starwars.com/films/star-wars-episode-vii"",
+              ""rate"": 8.31988,
+              ""vote"": 9338,
+              ""ua"": ""2016-03-31T09:01:59Z"",
+              ""lang"": ""en"",
+              ""av_tr"": [
+                ""en"",
+                ""de"",
+                ""en"",
+                ""it""
+              ],
+              ""gen"": [
+                ""action"",
+                ""adventure"",
+                ""fantasy"",
+                ""science-fiction""
+              ],
+              ""cert"": ""PG-13"",
+              ""co"": ""us"",
+              ""st"": ""released"",
+              ""rec_by"": [
+                {
+                  ""user"": {
+                    ""username"": ""sean"",
+                    ""private"": false,
+                    ""name"": ""Sean Rudford"",
+                    ""vip"": true,
+                    ""vip_ep"": true,
+                    ""ids"": {
+                      ""slug"": ""sean"",
+                      ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
+                    },
+                    ""joined_at"": ""2010-09-25T17:49:25.000Z"",
+                    ""location"": ""SF"",
+                    ""about"": ""I have all your cassette tapes."",
+                    ""gender"": ""male"",
+                    ""age"": 35,
+                    ""images"": {
+                      ""avatar"": {
+                        ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
+                      }
+                    },
+                    ""vip_og"": true,
+                    ""vip_years"": 5,
+                    ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
+                  },
+                  ""notes"": ""Recommended because ...""
+                }
+              ]
+            }";
     }
 }

@@ -1206,6 +1206,37 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
         }
 
         [Fact]
+        public async Task Test_RecommendedMovieObjectJsonReader_ReadObject_Not_Valid()
+        {
+            var traktJsonReader = new RecommendedMovieObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktRecommendedMovie = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktRecommendedMovie.Should().NotBeNull();
+            traktRecommendedMovie.Title.Should().BeNull();
+            traktRecommendedMovie.Year.Should().BeNull();
+            traktRecommendedMovie.Ids.Should().BeNull();
+            traktRecommendedMovie.Tagline.Should().BeNull();
+            traktRecommendedMovie.Overview.Should().BeNull();
+            traktRecommendedMovie.Released.Should().BeNull();
+            traktRecommendedMovie.Runtime.Should().BeNull();
+            traktRecommendedMovie.UpdatedAt.Should().BeNull();
+            traktRecommendedMovie.Trailer.Should().BeNull();
+            traktRecommendedMovie.Homepage.Should().BeNull();
+            traktRecommendedMovie.Rating.Should().BeNull();
+            traktRecommendedMovie.Votes.Should().BeNull();
+            traktRecommendedMovie.LanguageCode.Should().BeNull();
+            traktRecommendedMovie.AvailableTranslationLanguageCodes.Should().BeNull();
+            traktRecommendedMovie.Genres.Should().BeNull();
+            traktRecommendedMovie.Certification.Should().BeNull();
+            traktRecommendedMovie.CountryCode.Should().BeNull();
+            traktRecommendedMovie.Status.Should().BeNull();
+            traktRecommendedMovie.RecommendedBy.Should().BeNull();
+        }
+
+        [Fact]
         public async Task Test_RecommendedMovieObjectJsonReader_ReadObject_Null()
         {
             var traktJsonReader = new RecommendedMovieObjectJsonReader();

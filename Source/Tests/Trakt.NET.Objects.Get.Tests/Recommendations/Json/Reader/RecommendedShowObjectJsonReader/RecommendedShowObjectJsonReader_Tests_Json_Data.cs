@@ -1580,5 +1580,80 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ],
               ""aired_episodes"": 50
             }";
+
+        private const string JSON_NOT_VALID =
+            @"{
+              ""tlt"": ""Game of Thrones"",
+              ""ye"": 2011,
+              ""id"": {
+                ""trakt"": 1390,
+                ""slug"": ""game-of-thrones"",
+                ""tvdb"": 121361,
+                ""imdb"": ""tt0944947"",
+                ""tmdb"": 1399,
+                ""tvrage"": 24493
+              },
+              ""ov"": ""Seven noble families fight for control of the mythical land of Westeros."",
+              ""fa"": ""2011-04-17T07:00:00Z"",
+              ""ai"": {
+                ""day"": ""Sunday"",
+                ""time"": ""21:00"",
+                ""timezone"": ""America/New_York""
+              },
+              ""rt"": 60,
+              ""cert"": ""TV-MA"",
+              ""net"": ""HBO"",
+              ""co"": ""us"",
+              ""trai"": ""http://youtube.com/watch?v=F9Bo89m2f6g"",
+              ""hp"": ""http://www.hbo.com/game-of-thrones"",
+              ""st"": ""returning series"",
+              ""rate"": 9.38327,
+              ""vt"": 44773,
+              ""ua"": ""2016-04-06T10:39:11Z"",
+              ""lang"": ""en"",
+              ""av_tr"": [
+                ""en"",
+                ""fr"",
+                ""it"",
+                ""de""
+              ],
+              ""gen"": [
+                ""drama"",
+                ""fantasy"",
+                ""science-fiction"",
+                ""action"",
+                ""adventure""
+              ],
+              ""aired_eps"": 50,
+              ""rec_by"": [
+                {
+                  ""user"": {
+                    ""username"": ""sean"",
+                    ""private"": false,
+                    ""name"": ""Sean Rudford"",
+                    ""vip"": true,
+                    ""vip_ep"": true,
+                    ""ids"": {
+                      ""slug"": ""sean"",
+                      ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
+                    },
+                    ""joined_at"": ""2010-09-25T17:49:25.000Z"",
+                    ""location"": ""SF"",
+                    ""about"": ""I have all your cassette tapes."",
+                    ""gender"": ""male"",
+                    ""age"": 35,
+                    ""images"": {
+                      ""avatar"": {
+                        ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
+                      }
+                    },
+                    ""vip_og"": true,
+                    ""vip_years"": 5,
+                    ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
+                  },
+                  ""notes"": ""Recommended because ...""
+                }
+              ]
+            }";
     }
 }

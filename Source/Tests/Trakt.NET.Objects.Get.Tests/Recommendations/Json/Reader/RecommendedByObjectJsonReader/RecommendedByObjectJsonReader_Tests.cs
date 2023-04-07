@@ -94,6 +94,20 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
         }
 
         [Fact]
+        public async Task Test_RecommendedByObjectJsonReader_ReadObject_Not_Valid()
+        {
+            var traktJsonReader = new RecommendedByObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktRecommendedBy = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktRecommendedBy.Should().NotBeNull();
+            traktRecommendedBy.User.Should().BeNull();
+            traktRecommendedBy.Notes.Should().BeNull();
+        }
+
+        [Fact]
         public async Task Test_RecommendedByObjectJsonReader_ReadObject_Null()
         {
             var traktJsonReader = new RecommendedByObjectJsonReader();

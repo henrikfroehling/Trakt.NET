@@ -1499,6 +1499,40 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
         }
 
         [Fact]
+        public async Task Test_RecommendedShowObjectJsonReader_ReadObject_Not_Valid()
+        {
+            var traktJsonReader = new RecommendedShowObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktRecommendedShow = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktRecommendedShow.Should().NotBeNull();
+            traktRecommendedShow.Title.Should().BeNull();
+            traktRecommendedShow.Year.Should().BeNull();
+            traktRecommendedShow.Ids.Should().BeNull();
+            traktRecommendedShow.Overview.Should().BeNull();
+            traktRecommendedShow.FirstAired.Should().BeNull();
+            traktRecommendedShow.Airs.Should().BeNull();
+            traktRecommendedShow.Runtime.Should().BeNull();
+            traktRecommendedShow.Certification.Should().BeNull();
+            traktRecommendedShow.Network.Should().BeNull();
+            traktRecommendedShow.CountryCode.Should().BeNull();
+            traktRecommendedShow.Trailer.Should().BeNull();
+            traktRecommendedShow.Homepage.Should().BeNull();
+            traktRecommendedShow.Status.Should().BeNull();
+            traktRecommendedShow.Rating.Should().BeNull();
+            traktRecommendedShow.Votes.Should().BeNull();
+            traktRecommendedShow.UpdatedAt.Should().BeNull();
+            traktRecommendedShow.LanguageCode.Should().BeNull();
+            traktRecommendedShow.AvailableTranslationLanguageCodes.Should().BeNull();
+            traktRecommendedShow.Genres.Should().BeNull();
+            traktRecommendedShow.AiredEpisodes.Should().BeNull();
+            traktRecommendedShow.Seasons.Should().BeNull();
+            traktRecommendedShow.RecommendedBy.Should().BeNull();
+        }
+
+        [Fact]
         public async Task Test_RecommendedShowObjectJsonReader_ReadObject_Null()
         {
             var traktJsonReader = new RecommendedShowObjectJsonReader();
