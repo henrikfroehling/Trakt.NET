@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Requests.Movies
+namespace TraktNet.Requests.People
 {
     using Base;
     using Extensions;
@@ -6,9 +6,9 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class MoviesRecentlyUpdatedIdsRequest : AGetRequest<int>, ISupportsPagination
+    internal sealed class PeopleRecentlyUpdatedIdsRequest : AGetRequest<int>, ISupportsPagination
     {
-        public override string UriTemplate => "movies/updates/id{/start_date}{?page,limit}";
+        public override string UriTemplate => "people/updates/id{/start_date}{?page,limit}";
 
         internal DateTime? StartDate { get; set; }
 

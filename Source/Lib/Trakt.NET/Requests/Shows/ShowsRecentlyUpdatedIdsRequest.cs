@@ -21,13 +21,7 @@
             var uriParams = new Dictionary<string, object>();
 
             if (StartDate.HasValue)
-            {
-                // Drop minutes and seconds to optimize server side caching
-                var newStartDate = new DateTime(StartDate.Value.Year, StartDate.Value.Month, StartDate.Value.Day,
-                                                StartDate.Value.Hour, 0, 0, 0);
-
-                uriParams.Add("start_date", newStartDate.ToTraktDateString());
-            }
+                uriParams.Add("start_date", StartDate.Value.ToTraktCacheEfficientLongDateTimeString());
 
             if (Page.HasValue)
                 uriParams.Add("page", Page.Value.ToString());
