@@ -45,8 +45,8 @@
         private readonly TraktSyncItemType HISTORY_ITEM_TYPE = TraktSyncItemType.Episode;
         private const uint HISTORY_LIMIT = 4;
         private const int WATCHLIST_ITEM_COUNT = 4;
-        private const TraktSortBy SORT_BY = TraktSortBy.Rank;
-        private const TraktSortHow SORT_HOW = TraktSortHow.Ascending;
+        private readonly TraktSortBy SORT_BY = TraktSortBy.Rank;
+        private readonly TraktSortHow SORT_HOW = TraktSortHow.Ascending;
         private readonly TraktSyncItemType WATCHLIST_ITEM_TYPE = TraktSyncItemType.Movie;
         private readonly TraktWatchlistSortOrder WATCHLIST_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const uint WATCHLIST_LIMIT = 4;

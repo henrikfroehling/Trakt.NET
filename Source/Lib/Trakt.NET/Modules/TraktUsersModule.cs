@@ -599,11 +599,7 @@ namespace TraktNet.Modules
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the personal list should be created.</param>
-        /// <param name="listName">The name of the newly created personal list.</param>
-        /// <param name="listDescription">The description of the newly created personal list.</param>  
-        /// <param name="privacy">Determines the visibility of the newly created personal list. See also <seealso cref="TraktAccessScope" />.</param>
-        /// <param name="displayNumbers">Determines, if ranking numbers should be visible on the newly created personal list.</param>
-        /// <param name="allowComments">Determines, if comments are allowed on the newly created personal list.</param>
+        /// <param name="personalListPost">An <see cref="ITraktUserPersonalListPost" /> instance containing the data about the to be created list.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -612,28 +608,15 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktList>> CreatePersonalListAsync(string usernameOrSlug, string listName,
-                                                                       string listDescription = null, TraktAccessScope privacy = null,
-                                                                       bool? displayNumbers = null, bool? allowComments = null,
+        public Task<TraktResponse<ITraktList>> CreatePersonalListAsync(string usernameOrSlug, ITraktUserPersonalListPost personalListPost,
                                                                        CancellationToken cancellationToken = default)
         {
-            var requestBody = new TraktUserPersonalListPost
-            {
-                Name = listName,
-                Description = listDescription,
-                DisplayNumbers = displayNumbers,
-                AllowComments = allowComments
-            };
-
-            if (privacy != null && privacy != TraktAccessScope.Unspecified)
-                requestBody.Privacy = privacy;
-
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserPersonalListAddRequest
             {
                 Username = usernameOrSlug,
-                RequestBody = requestBody
+                RequestBody = personalListPost
             },
             cancellationToken);
         }
@@ -647,57 +630,26 @@ namespace TraktNet.Modules
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the personal list should be updated.</param>
         /// <param name="listIdOrSlug">The id or slug of the personal list, which should be updated.</param>
-        /// <param name="listName">A new name for the personal list with the given id.</param>
-        /// <param name="listDescription">A new description for the personal list with the given id.</param>
-        /// <param name="privacy">A new visibility setting for the personal list with the given id.</param>
-        /// <param name="displayNumbers">A new ranking numbers visibility setting for the personal list with the given id.</param>
-        /// <param name="allowComments">A new comments allowed setting for the personal list with the given id.</param>
+        /// <param name="personalListPost">An <see cref="ITraktUserPersonalListPost" /> instance containing the data about the to be updated list.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>An <see cref="ITraktList" /> instance containing information about the successfully updated personal list.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="ArgumentException">
-        /// Thrown, if the given username or slug is null, empty or contains spaces.
-        /// Thrown, if the given list id is null, empty or contains spaces.
-        /// Thrown, if the no new values are given (list name is null or empty and description is null and privacy is not set and
-        /// display numbers is not set and comments allowed is not set).
-        /// </exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktList>> UpdatePersonalListAsync(string usernameOrSlug, string listIdOrSlug,
-                                                                       string listName = null, string listDescription = null,
-                                                                       TraktAccessScope privacy = null,
-                                                                       bool? displayNumbers = null, bool? allowComments = null,
+                                                                       ITraktUserPersonalListPost personalListPost,
                                                                        CancellationToken cancellationToken = default)
         {
-            bool isListNameNotValid = string.IsNullOrEmpty(listName);
-            bool isDescriptionNotSet = listDescription == null;
-            bool isPrivacyNotSetOrValid = privacy == null || privacy == TraktAccessScope.Unspecified;
-            bool isDisplayNumbersNotSet = !displayNumbers.HasValue;
-            bool isAllowCommentsNotSet = !allowComments.HasValue;
-
-            if (isListNameNotValid && isDescriptionNotSet && isPrivacyNotSetOrValid && isDisplayNumbersNotSet && isAllowCommentsNotSet)
-                throw new ArgumentException("no list specific values set");
-
-            var requestBody = new TraktUserPersonalListPost
-            {
-                Name = listName,
-                Description = listDescription,
-                DisplayNumbers = displayNumbers,
-                AllowComments = allowComments
-            };
-
-            if (!isPrivacyNotSetOrValid)
-                requestBody.Privacy = privacy;
-
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new UserPersonalListUpdateRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
-                RequestBody = requestBody
+                RequestBody = personalListPost
             },
             cancellationToken);
         }

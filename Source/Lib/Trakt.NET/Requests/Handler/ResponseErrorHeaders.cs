@@ -10,13 +10,13 @@
 
         public int? ItemCount { get; set; }
 
-        public TraktSortBy? SortBy { get; set; }
+        public TraktSortBy SortBy { get; set; }
 
-        public TraktSortHow? SortHow { get; set; }
+        public TraktSortHow SortHow { get; set; }
 
-        public TraktSortBy? AppliedSortBy { get; set; }
+        public TraktSortBy AppliedSortBy { get; set; }
 
-        public TraktSortHow? AppliedSortHow { get; set; }
+        public TraktSortHow AppliedSortHow { get; set; }
 
         public DateTime? StartDate { get; set; }
 

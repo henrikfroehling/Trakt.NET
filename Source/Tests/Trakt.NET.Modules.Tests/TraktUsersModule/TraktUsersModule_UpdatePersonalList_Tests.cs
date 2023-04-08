@@ -30,9 +30,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -72,9 +70,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, NEW_LIST_NAME, NEW_DESCRIPTION);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -115,9 +111,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, NEW_LIST_NAME, NEW_DESCRIPTION, NEW_PRIVACY);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -159,10 +153,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, NEW_LIST_NAME, NEW_DESCRIPTION,
-                                                         NEW_PRIVACY, NEW_DISPLAY_NUMBERS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -204,10 +195,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, NEW_LIST_NAME, NEW_DESCRIPTION, NEW_PRIVACY,
-                                                         null, NEW_ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -248,10 +236,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, NEW_LIST_NAME, NEW_DESCRIPTION,
-                                                         null, NEW_DISPLAY_NUMBERS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -292,10 +277,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, NEW_LIST_NAME, NEW_DESCRIPTION,
-                                                         null, null, NEW_ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -337,10 +319,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, NEW_LIST_NAME, NEW_DESCRIPTION, null,
-                                                         NEW_DISPLAY_NUMBERS, NEW_ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -379,9 +358,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, NEW_DESCRIPTION);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -421,9 +398,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, NEW_DESCRIPTION, NEW_PRIVACY);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -464,10 +439,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, NEW_DESCRIPTION,
-                                                         NEW_PRIVACY, NEW_DISPLAY_NUMBERS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -508,10 +480,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, NEW_DESCRIPTION,
-                                                         NEW_PRIVACY, null, NEW_ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -551,10 +520,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, NEW_DESCRIPTION,
-                                                         null, NEW_DISPLAY_NUMBERS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -594,10 +560,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, NEW_DESCRIPTION,
-                                                         null, null, NEW_ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -638,10 +601,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, NEW_DESCRIPTION, null,
-                                                         NEW_DISPLAY_NUMBERS, NEW_ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -680,9 +640,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, null, NEW_PRIVACY);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -722,10 +680,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, null,
-                                                         NEW_PRIVACY, NEW_DISPLAY_NUMBERS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -765,10 +720,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, null, NEW_PRIVACY,
-                                                         null, NEW_ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -809,10 +761,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, null, NEW_PRIVACY,
-                                                         NEW_DISPLAY_NUMBERS, NEW_ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -851,9 +800,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, null, null, NEW_DISPLAY_NUMBERS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -892,10 +839,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, null, null,
-                                                         null, NEW_ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -935,10 +879,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, null, null, null,
-                                                         NEW_DISPLAY_NUMBERS, NEW_ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -981,10 +922,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, NEW_LIST_NAME, NEW_DESCRIPTION,
-                                                         NEW_PRIVACY, NEW_DISPLAY_NUMBERS, NEW_ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -1030,11 +968,16 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktUsersModule_UpdatePersonalList_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
+            {
+                Name = NEW_LIST_NAME
+            };
+
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, statusCode);
 
             try
             {
-                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, NEW_LIST_NAME);
+                await client.Users.UpdatePersonalListAsync(USERNAME, LIST_ID, createListPost);
                 Assert.False(true);
             }
             catch (Exception exception)
