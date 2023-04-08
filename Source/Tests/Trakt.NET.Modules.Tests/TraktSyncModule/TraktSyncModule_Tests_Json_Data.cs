@@ -19,8 +19,8 @@
         private readonly DateTime START_AT = DateTime.UtcNow.AddMonths(-1);
         private readonly DateTime END_AT = DateTime.UtcNow;
         private const uint HISTORY_ITEM_ID = 123U;
-        private const TraktSortBy WATCHLIST_SORT_BY = TraktSortBy.Rank;
-        private const TraktSortHow WATCHLIST_SORT_HOW = TraktSortHow.Ascending;
+        private readonly TraktSortBy WATCHLIST_SORT_BY = TraktSortBy.Rank;
+        private readonly TraktSortHow WATCHLIST_SORT_HOW = TraktSortHow.Ascending;
         private readonly TraktSyncItemType WATCHLIST_ITEM_TYPE = TraktSyncItemType.Episode;
         private readonly TraktWatchlistSortOrder WATCHLIST_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const uint PLAYBACK_ID = 13U;
