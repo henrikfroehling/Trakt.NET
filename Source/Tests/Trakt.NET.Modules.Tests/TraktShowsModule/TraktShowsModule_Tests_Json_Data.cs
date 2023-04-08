@@ -17,6 +17,7 @@
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
         private readonly TraktTimePeriod TIME_PERIOD = TraktTimePeriod.Monthly;
         private readonly DateTime TODAY = DateTime.UtcNow;
+        private readonly DateTime START_DATE = DateTime.UtcNow;
         private const bool PROGRESS_HIDDEN = true;
         private const bool PROGRESS_SPECIALS = true;
         private const bool PROGRESS_COUNT_SPECIALS = true;

@@ -274,7 +274,7 @@ namespace TraktNet.Requests.Handler
             }
         }
 
-        private static string Encode(string value)
+        internal static string Encode(string value)
         {
             var result = new StringBuilder();
 

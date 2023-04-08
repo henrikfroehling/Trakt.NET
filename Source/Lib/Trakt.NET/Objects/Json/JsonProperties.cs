@@ -152,6 +152,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_RECOMMENDATIONS = "recommendations";
         internal const string PROPERTY_NAME_RECOMMENDATIONS_AT = "recommendations_at";
         internal const string PROPERTY_NAME_RECOMMENDED = "recommended";
+        internal const string PROPERTY_NAME_RECOMMENDED_BY = "recommended_by";
         internal const string PROPERTY_NAME_REFRESH_TOKEN = "refresh_token";
         internal const string PROPERTY_NAME_RELEASE_DATE = "release_date";
         internal const string PROPERTY_NAME_RELEASE_TYPE = "release_type";

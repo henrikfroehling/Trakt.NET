@@ -8,6 +8,7 @@
     using TraktNet.Core;
     using TraktNet.Enums;
     using TraktNet.Objects.Json;
+    using TraktNet.Requests.Handler;
 
     internal static class TestUtility
     {
@@ -32,8 +33,8 @@
                                                   uint? page = null, uint? limit = null,
                                                   int? pageCount = null, int? itemCount = null,
                                                   int? userCount = null, string startDate = null,
-                                                  string endDate = null, TraktSortBy? sortBy = null,
-                                                  TraktSortHow? sortHow = null)
+                                                  string endDate = null, TraktSortBy sortBy = null,
+                                                  TraktSortHow sortHow = null)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
             httpClientProvider.SetupMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
@@ -51,8 +52,8 @@
                                                        uint? page = null, uint? limit = null,
                                                        int? pageCount = null, int? itemCount = null,
                                                        int? userCount = null, string startDate = null,
-                                                       string endDate = null, TraktSortBy? sortBy = null,
-                                                       TraktSortHow? sortHow = null)
+                                                       string endDate = null, TraktSortBy sortBy = null,
+                                                       TraktSortHow sortHow = null)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
             httpClientProvider.SetupOAuthMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
@@ -185,5 +186,7 @@
 
             return stream;
         }
+
+        internal static string EncodeForURL(string uri) => RequestUri.Encode(uri);
     }
 }

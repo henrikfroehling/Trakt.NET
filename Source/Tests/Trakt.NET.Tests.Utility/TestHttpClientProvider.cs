@@ -47,8 +47,8 @@
                                         uint? page = null, uint? limit = null,
                                         int? pageCount = null, int? itemCount = null,
                                         int? userCount = null, string startDate = null,
-                                        string endDate = null, TraktSortBy? sortBy = null,
-                                        TraktSortHow? sortHow = null)
+                                        string endDate = null, TraktSortBy sortBy = null,
+                                        TraktSortHow sortHow = null)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
             _baseUrl.Should().NotBeNullOrEmpty();
@@ -79,11 +79,11 @@
             if (!string.IsNullOrEmpty(endDate))
                 response.Headers.Add(HEADER_ENDDATE_KEY, endDate);
 
-            if (sortBy.HasValue)
-                response.Headers.Add(HEADER_SORT_BY_KEY, SortByToString(sortBy.Value));
+            if (sortBy != null)
+                response.Headers.Add(HEADER_SORT_BY_KEY, sortBy.UriName);
 
-            if (sortHow.HasValue)
-                response.Headers.Add(HEADER_SORT_HOW_KEY, SortHowToString(sortHow.Value));
+            if (sortHow != null)
+                response.Headers.Add(HEADER_SORT_HOW_KEY, sortHow.UriName);
 
             response.Headers.Add("Accept", ACCEPT_MEDIA_TYPE);
             response.Content = new StringContent(responseContent);
@@ -116,8 +116,8 @@
                                              uint? page = null, uint? limit = null,
                                              int? pageCount = null, int? itemCount = null,
                                              int? userCount = null, string startDate = null,
-                                             string endDate = null, TraktSortBy? sortBy = null,
-                                             TraktSortHow? sortHow = null)
+                                             string endDate = null, TraktSortBy sortBy = null,
+                                             TraktSortHow sortHow = null)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
             _baseUrl.Should().NotBeNullOrEmpty();
@@ -148,11 +148,11 @@
             if (!string.IsNullOrEmpty(endDate))
                 response.Headers.Add(HEADER_ENDDATE_KEY, endDate);
 
-            if (sortBy.HasValue)
-                response.Headers.Add(HEADER_SORT_BY_KEY, SortByToString(sortBy.Value));
+            if (sortBy != null)
+                response.Headers.Add(HEADER_SORT_BY_KEY, sortBy.UriName);
 
-            if (sortHow.HasValue)
-                response.Headers.Add(HEADER_SORT_HOW_KEY, SortHowToString(sortHow.Value));
+            if (sortHow != null)
+                response.Headers.Add(HEADER_SORT_HOW_KEY, sortHow.UriName);
 
             response.Headers.Add("Accept", ACCEPT_MEDIA_TYPE);
             response.Content = new StringContent(responseContent);
@@ -311,33 +311,5 @@
             _mockHttpMessageHandler.Should().NotBeNull();
             _mockHttpMessageHandler.VerifyNoOutstandingExpectation();
         }
-
-        private static string SortByToString(TraktSortBy sortBy)
-            => sortBy switch
-            {
-                TraktSortBy.Rank => "rank",
-                TraktSortBy.Added => "added",
-                TraktSortBy.Title => "title",
-                TraktSortBy.Released => "released",
-                TraktSortBy.Runtime => "runtime",
-                TraktSortBy.Popularity => "popularity",
-                TraktSortBy.Percentage => "percentage",
-                TraktSortBy.Votes => "votes",
-                TraktSortBy.MyRating => "my_rating",
-                TraktSortBy.Random => "random",
-                TraktSortBy.Watched => "watched",
-                TraktSortBy.Collected => "collected",
-                TraktSortBy.Unspecified => null,
-                _ => null
-            };
-
-        private static string SortHowToString(TraktSortHow sortHow)
-            => sortHow switch
-            {
-                TraktSortHow.Ascending => "asc",
-                TraktSortHow.Descending => "desc",
-                TraktSortHow.Unspecified => null,
-                _ => null
-            };
     }
 }

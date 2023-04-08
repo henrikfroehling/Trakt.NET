@@ -238,5 +238,40 @@
             },
             cancellationToken);
         }
+
+        /// <summary>
+        /// Gets recently updated people ids since the given <paramref name="startDate" />.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/people/updated-ids/get-recently-updated-people-trakt-ids">"Trakt API Doc - People: Updated Ids"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="startDate">The start date, after which updated people ids should be queried. Will be converted to the Trakt UTC-datetime and -format.</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ListItem}"/> instance containing the queried updated people ids and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        public Task<TraktPagedResponse<int>> GetRecentlyUpdatedPeopleIdsAsync(DateTime? startDate = null, TraktPagedParameters pagedParameters = null,
+                                                                              CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new PeopleRecentlyUpdatedIdsRequest
+            {
+                StartDate = startDate,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
     }
 }

@@ -20,6 +20,7 @@
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
         private readonly DateTime TODAY = DateTime.UtcNow;
+        private readonly DateTime START_DATE = DateTime.UtcNow;
         private const int UPDATED_IDS_COUNT = 4;
 
         private readonly ITraktMovieFilter FILTER = TraktFilter.NewMovieFilter()

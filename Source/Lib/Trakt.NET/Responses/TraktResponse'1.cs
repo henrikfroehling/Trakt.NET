@@ -20,16 +20,16 @@
         public TResponseContentType Value { get; set; }
 
         /// <summary>Gets the value of the set "sort-by" response header. Might not be set.</summary>
-        public TraktSortBy? SortBy { get; set; }
+        public TraktSortBy SortBy { get; set; }
 
         /// <summary>Gets the value of the set "sort-how" response header. Might not be set.</summary>
-        public TraktSortHow? SortHow { get; set; }
+        public TraktSortHow SortHow { get; set; }
 
         /// <summary>Gets the value of the set "applied-sort-by" response header. Might not be set.</summary>
-        public TraktSortBy? AppliedSortBy { get; set; }
+        public TraktSortBy AppliedSortBy { get; set; }
 
         /// <summary>Gets the value of the set "applied-sort-how" response header. Might not be set.</summary>
-        public TraktSortHow? AppliedSortHow { get; set; }
+        public TraktSortHow AppliedSortHow { get; set; }
 
         /// <summary>Gets the value of the set "start-date" response header. Might not be set.</summary>
         public DateTime? StartDate { get; set; }

@@ -19,7 +19,36 @@
                     ""slug"": ""blackfish-2013"",
                     ""imdb"": ""tt2545118"",
                     ""tmdb"": 158999
-                  }
+                  },
+                  ""recommended_by"": [
+                    {
+                      ""user"": {
+                        ""username"": ""sean"",
+                        ""private"": false,
+                        ""name"": ""Sean Rudford"",
+                        ""vip"": true,
+                        ""vip_ep"": true,
+                        ""ids"": {
+                          ""slug"": ""sean"",
+                          ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
+                        },
+                        ""joined_at"": ""2010-09-25T17:49:25.000Z"",
+                        ""location"": ""SF"",
+                        ""about"": ""I have all your cassette tapes."",
+                        ""gender"": ""male"",
+                        ""age"": 35,
+                        ""images"": {
+                          ""avatar"": {
+                            ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
+                          }
+                        },
+                        ""vip_og"": true,
+                        ""vip_years"": 5,
+                        ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
+                      },
+                      ""notes"": ""Recommended because ...""
+                    }
+                  ]
                 },
                 {
                   ""title"": ""Waiting for Superman"",
@@ -29,7 +58,36 @@
                     ""slug"": ""waiting-for-superman-2010"",
                     ""imdb"": ""tt1566648"",
                     ""tmdb"": 39440
-                  }
+                  },
+                  ""recommended_by"": [
+                    {
+                      ""user"": {
+                        ""username"": ""sean"",
+                        ""private"": false,
+                        ""name"": ""Sean Rudford"",
+                        ""vip"": true,
+                        ""vip_ep"": true,
+                        ""ids"": {
+                          ""slug"": ""sean"",
+                          ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
+                        },
+                        ""joined_at"": ""2010-09-25T17:49:25.000Z"",
+                        ""location"": ""SF"",
+                        ""about"": ""I have all your cassette tapes."",
+                        ""gender"": ""male"",
+                        ""age"": 35,
+                        ""images"": {
+                          ""avatar"": {
+                            ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
+                          }
+                        },
+                        ""vip_og"": true,
+                        ""vip_years"": 5,
+                        ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
+                      },
+                      ""notes"": ""Recommended because ...""
+                    }
+                  ]
                 },
                 {
                   ""title"": ""Inside Job"",
@@ -39,7 +97,36 @@
                     ""slug"": ""inside-job-2010"",
                     ""imdb"": ""tt1645089"",
                     ""tmdb"": 44639
-                  }
+                  },
+                  ""recommended_by"": [
+                    {
+                      ""user"": {
+                        ""username"": ""sean"",
+                        ""private"": false,
+                        ""name"": ""Sean Rudford"",
+                        ""vip"": true,
+                        ""vip_ep"": true,
+                        ""ids"": {
+                          ""slug"": ""sean"",
+                          ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
+                        },
+                        ""joined_at"": ""2010-09-25T17:49:25.000Z"",
+                        ""location"": ""SF"",
+                        ""about"": ""I have all your cassette tapes."",
+                        ""gender"": ""male"",
+                        ""age"": 35,
+                        ""images"": {
+                          ""avatar"": {
+                            ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
+                          }
+                        },
+                        ""vip_og"": true,
+                        ""vip_years"": 5,
+                        ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
+                      },
+                      ""notes"": ""Recommended because ...""
+                    }
+                  ]
                 }
               ]";
 
@@ -55,7 +142,36 @@
                     ""imdb"": ""tt0429318"",
                     ""tmdb"": 579,
                     ""tvrage"": null
-                  }
+                  },
+                  ""recommended_by"": [
+                    {
+                      ""user"": {
+                        ""username"": ""sean"",
+                        ""private"": false,
+                        ""name"": ""Sean Rudford"",
+                        ""vip"": true,
+                        ""vip_ep"": true,
+                        ""ids"": {
+                          ""slug"": ""sean"",
+                          ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
+                        },
+                        ""joined_at"": ""2010-09-25T17:49:25.000Z"",
+                        ""location"": ""SF"",
+                        ""about"": ""I have all your cassette tapes."",
+                        ""gender"": ""male"",
+                        ""age"": 35,
+                        ""images"": {
+                          ""avatar"": {
+                            ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
+                          }
+                        },
+                        ""vip_og"": true,
+                        ""vip_years"": 5,
+                        ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
+                      },
+                      ""notes"": ""Recommended because ...""
+                    }
+                  ]
                 },
                 {
                   ""title"": ""Shark Tank"",
@@ -67,7 +183,36 @@
                     ""imdb"": ""tt1442550"",
                     ""tmdb"": 30703,
                     ""tvrage"": 22610
-                  }
+                  },
+                  ""recommended_by"": [
+                    {
+                      ""user"": {
+                        ""username"": ""sean"",
+                        ""private"": false,
+                        ""name"": ""Sean Rudford"",
+                        ""vip"": true,
+                        ""vip_ep"": true,
+                        ""ids"": {
+                          ""slug"": ""sean"",
+                          ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
+                        },
+                        ""joined_at"": ""2010-09-25T17:49:25.000Z"",
+                        ""location"": ""SF"",
+                        ""about"": ""I have all your cassette tapes."",
+                        ""gender"": ""male"",
+                        ""age"": 35,
+                        ""images"": {
+                          ""avatar"": {
+                            ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
+                          }
+                        },
+                        ""vip_og"": true,
+                        ""vip_years"": 5,
+                        ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
+                      },
+                      ""notes"": ""Recommended because ...""
+                    }
+                  ]
                 },
                 {
                   ""title"": ""Hell's Kitchen"",
@@ -79,7 +224,36 @@
                     ""imdb"": ""tt0437005"",
                     ""tmdb"": 2370,
                     ""tvrage"": null
-                  }
+                  },
+                  ""recommended_by"": [
+                    {
+                      ""user"": {
+                        ""username"": ""sean"",
+                        ""private"": false,
+                        ""name"": ""Sean Rudford"",
+                        ""vip"": true,
+                        ""vip_ep"": true,
+                        ""ids"": {
+                          ""slug"": ""sean"",
+                          ""uuid"": ""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""
+                        },
+                        ""joined_at"": ""2010-09-25T17:49:25.000Z"",
+                        ""location"": ""SF"",
+                        ""about"": ""I have all your cassette tapes."",
+                        ""gender"": ""male"",
+                        ""age"": 35,
+                        ""images"": {
+                          ""avatar"": {
+                            ""full"": ""https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg""
+                          }
+                        },
+                        ""vip_og"": true,
+                        ""vip_years"": 5,
+                        ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
+                      },
+                      ""notes"": ""Recommended because ...""
+                    }
+                  ]
                 }
               ]";
     }

@@ -22,6 +22,8 @@
     using Get.People.Json.Factories;
     using Get.Ratings;
     using Get.Ratings.Json.Factories;
+    using Get.Recommendations;
+    using Get.Recommendations.Json.Factories;
     using Get.Seasons;
     using Get.Seasons.Json.Factories;
     using Get.Shows;
@@ -238,6 +240,11 @@
 
             // rating objects
             s_jsonIOFactories.Add(typeof(ITraktRatingsItem), new RatingsItemJsonIOFactory());
+
+            // recommendations objects
+            s_jsonIOFactories.Add(typeof(ITraktRecommendedBy), new RecommendedByJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktRecommendedMovie), new RecommendedMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktRecommendedShow), new RecommendedShowJsonIOFactory());
 
             // season objects
             s_jsonIOFactories.Add(typeof(ITraktSeason), new SeasonJsonIOFactory());

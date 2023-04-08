@@ -1,15 +1,14 @@
 ﻿namespace TraktNet.Modules
 {
     using Exceptions;
-    using Objects.Get.Movies;
-    using Objects.Get.Shows;
+    using Objects.Get.Recommendations;
+    using Parameters;
     using Requests.Handler;
     using Requests.Recommendations.OAuth;
     using Responses;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to recommendations.
@@ -32,6 +31,7 @@
         /// </summary>
         /// <param name="limit">Determines, how many movie recommendations should be queried. Maximum is 100.</param>
         /// <param name="ignoreCollected">Determines, if already collected movies should be filtered out.</param>
+        /// <param name="ignoreWatchlisted">Determines, if already watchlisted movies should be filtered out.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
@@ -41,17 +41,18 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{ITraktMovie}"/> instance containing the queried movies and which also
+        /// An <see cref="TraktPagedResponse{ITraktRecommendedMovie}"/> instance containing the queried movies and which also
         /// contains the queried page number and the page's item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktRecommendedMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktMovie>> GetMovieRecommendationsAsync(uint? limit = null,
-                                                                                  bool? ignoreCollected = null,
-                                                                                  TraktExtendedInfo extendedInfo = null,
-                                                                                  CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktRecommendedMovie>> GetMovieRecommendationsAsync(uint? limit = null,
+                                                                                             bool? ignoreCollected = null,
+                                                                                             bool? ignoreWatchlisted = null,
+                                                                                             TraktExtendedInfo extendedInfo = null,
+                                                                                             CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -59,7 +60,8 @@
             {
                 ExtendedInfo = extendedInfo,
                 Limit = limit,
-                IgnoreCollected = ignoreCollected
+                IgnoreCollected = ignoreCollected,
+                IgnoreWatchlisted = ignoreWatchlisted
             },
             cancellationToken);
         }
@@ -98,6 +100,7 @@
         /// </summary>
         /// <param name="limit">Determines, how many show recommendations should be queried. Maximum is 100.</param>
         /// <param name="ignoreCollected">Determines, if already collected shows should be filtered out.</param>
+        /// <param name="ignoreWatchlisted">Determines, if already watchlisted shows should be filtered out.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the shows should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
@@ -107,17 +110,18 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{ITraktShow}"/> instance containing the queried shows and which also
+        /// An <see cref="TraktPagedResponse{ITraktRecommendedShow}"/> instance containing the queried shows and which also
         /// contains the queried page number and the page's item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktShow" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktRecommendedShow" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktShow>> GetShowRecommendationsAsync(uint? limit = null,
-                                                                                bool? ignoreCollected = null,
-                                                                                TraktExtendedInfo extendedInfo = null,
-                                                                                CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktRecommendedShow>> GetShowRecommendationsAsync(uint? limit = null,
+                                                                                           bool? ignoreCollected = null,
+                                                                                           bool? ignoreWatchlisted = null,
+                                                                                           TraktExtendedInfo extendedInfo = null,
+                                                                                           CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
@@ -125,7 +129,8 @@
             {
                 ExtendedInfo = extendedInfo,
                 Limit = limit,
-                IgnoreCollected = ignoreCollected
+                IgnoreCollected = ignoreCollected,
+                IgnoreWatchlisted = ignoreWatchlisted
             },
             cancellationToken);
         }
