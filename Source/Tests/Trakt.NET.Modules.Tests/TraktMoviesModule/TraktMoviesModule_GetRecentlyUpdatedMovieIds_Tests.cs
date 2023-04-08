@@ -38,11 +38,13 @@
         [Fact]
         public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_With_StartDate()
         {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{TODAY.ToTraktDateString()}",
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}",
                 RECENTLY_UPDATED_MOVIE_IDS_JSON, 1, 10, 1, UPDATED_IDS_COUNT);
 
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(TODAY);
+            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -117,12 +119,14 @@
         [Fact]
         public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_With_StartDate_And_Page()
         {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{TODAY.ToTraktDateString()}?page={PAGE}",
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page={PAGE}",
                 RECENTLY_UPDATED_MOVIE_IDS_JSON, PAGE, 10, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(TODAY, pagedParameters);
+            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -137,12 +141,14 @@
         [Fact]
         public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_With_StartDate_And_Limit()
         {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{TODAY.ToTraktDateString()}?limit={LIMIT}",
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?limit={LIMIT}",
                 RECENTLY_UPDATED_MOVIE_IDS_JSON, 1, LIMIT, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(TODAY, pagedParameters);
+            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -157,12 +163,14 @@
         [Fact]
         public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_Complete()
         {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{TODAY.ToTraktDateString()}?page={PAGE}&limit={LIMIT}",
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page={PAGE}&limit={LIMIT}",
                 RECENTLY_UPDATED_MOVIE_IDS_JSON, PAGE, LIMIT, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(TODAY, pagedParameters);
+            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();

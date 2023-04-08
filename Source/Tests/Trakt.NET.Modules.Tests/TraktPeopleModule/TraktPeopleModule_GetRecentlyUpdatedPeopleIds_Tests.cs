@@ -16,7 +16,7 @@ namespace TraktNet.Modules.Tests.TraktPeopleModule
     public partial class TraktPeopleModule_Tests
     {
         private const string GET_RECENTLY_UPDATED_PEOPLE_IDS_URI = "people/updates/id";
-        private readonly DateTime TODAY = DateTime.UtcNow;
+        private readonly DateTime START_DATE = DateTime.UtcNow;
 
         [Fact]
         public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds()
@@ -39,11 +39,13 @@ namespace TraktNet.Modules.Tests.TraktPeopleModule
         [Fact]
         public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_With_StartDate()
         {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{TODAY.ToTraktDateString()}",
+                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{startDate}",
                 RECENTLY_UPDATED_PEOPLE_IDS_JSON, 1, 10, 1, UPDATED_IDS_COUNT);
 
-            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(TODAY);
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(START_DATE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -118,12 +120,14 @@ namespace TraktNet.Modules.Tests.TraktPeopleModule
         [Fact]
         public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_With_StartDate_And_Page()
         {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{TODAY.ToTraktDateString()}?page={PAGE}",
+                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{startDate}?page={PAGE}",
                 RECENTLY_UPDATED_PEOPLE_IDS_JSON, PAGE, 10, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(TODAY, pagedParameters);
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(START_DATE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -138,12 +142,14 @@ namespace TraktNet.Modules.Tests.TraktPeopleModule
         [Fact]
         public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_With_StartDate_And_Limit()
         {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{TODAY.ToTraktDateString()}?limit={LIMIT}",
+                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{startDate}?limit={LIMIT}",
                 RECENTLY_UPDATED_PEOPLE_IDS_JSON, 1, LIMIT, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(TODAY, pagedParameters);
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(START_DATE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -158,12 +164,14 @@ namespace TraktNet.Modules.Tests.TraktPeopleModule
         [Fact]
         public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_Complete()
         {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{TODAY.ToTraktDateString()}?page={PAGE}&limit={LIMIT}",
+                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{startDate}?page={PAGE}&limit={LIMIT}",
                 RECENTLY_UPDATED_PEOPLE_IDS_JSON, PAGE, LIMIT, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(TODAY, pagedParameters);
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(START_DATE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();

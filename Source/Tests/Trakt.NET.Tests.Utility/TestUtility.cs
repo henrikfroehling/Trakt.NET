@@ -8,6 +8,7 @@
     using TraktNet.Core;
     using TraktNet.Enums;
     using TraktNet.Objects.Json;
+    using TraktNet.Requests.Handler;
 
     internal static class TestUtility
     {
@@ -157,5 +158,7 @@
 
             return stream;
         }
+
+        internal static string EncodeForURL(string uri) => RequestUri.Encode(uri);
     }
 }

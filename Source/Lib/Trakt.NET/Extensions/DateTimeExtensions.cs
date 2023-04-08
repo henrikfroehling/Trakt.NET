@@ -109,8 +109,8 @@
         /// <returns>A cache efficient string, containing the datetime in the Trakt datetime format, with minutes, seconds and milliseconds set to zero.</returns>
         public static string ToTraktCacheEfficientLongDateTimeString(this DateTime value)
         {
-            var dateTime = new DateTime(value.Year, value.Month, value.Day, value.Hour, 0, 0, 0);
-            return dateTime.ToTraktLongDateTimeString();
+            var dateTime = value.ToUniversalTime();
+            return $"{dateTime.Year}-{dateTime.Month:00}-{dateTime.Day:00}T{dateTime.Hour:00}:00:00.000Z";
         }
     }
 }
