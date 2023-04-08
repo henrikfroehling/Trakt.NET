@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Modules.Tests.TraktMoviesModule
+namespace TraktNet.Modules.Tests.TraktPeopleModule
 {
     using FluentAssertions;
     using System;
@@ -12,18 +12,19 @@
     using TraktNet.Responses;
     using Xunit;
 
-    [TestCategory("Modules.Movies")]
-    public partial class TraktMoviesModule_Tests
+    [TestCategory("Modules.People")]
+    public partial class TraktPeopleModule_Tests
     {
-        private const string GET_RECENTLY_UPDATED_MOVIE_IDS_URI = "movies/updates/id";
+        private const string GET_RECENTLY_UPDATED_PEOPLE_IDS_URI = "people/updates/id";
+        private readonly DateTime START_DATE = DateTime.UtcNow;
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds()
+        public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds()
         {
-            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_MOVIE_IDS_URI,
-                RECENTLY_UPDATED_MOVIE_IDS_JSON, 1, 10, 1, UPDATED_IDS_COUNT);
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_PEOPLE_IDS_URI,
+                RECENTLY_UPDATED_PEOPLE_IDS_JSON, 1, 10, 1, UPDATED_IDS_COUNT);
 
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync();
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -36,15 +37,15 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_With_StartDate()
+        public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_With_StartDate()
         {
             var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
 
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}",
-                RECENTLY_UPDATED_MOVIE_IDS_JSON, 1, 10, 1, UPDATED_IDS_COUNT);
+                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{startDate}",
+                RECENTLY_UPDATED_PEOPLE_IDS_JSON, 1, 10, 1, UPDATED_IDS_COUNT);
 
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE);
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(START_DATE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -57,14 +58,14 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_With_Page()
+        public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_With_Page()
         {
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}?page={PAGE}",
-                RECENTLY_UPDATED_MOVIE_IDS_JSON, PAGE, 10, 1, UPDATED_IDS_COUNT);
+                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}?page={PAGE}",
+                RECENTLY_UPDATED_PEOPLE_IDS_JSON, PAGE, 10, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(null, pagedParameters);
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -77,14 +78,14 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_With_Limit()
+        public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_With_Limit()
         {
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}?limit={LIMIT}",
-                RECENTLY_UPDATED_MOVIE_IDS_JSON, 1, LIMIT, 1, UPDATED_IDS_COUNT);
+                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}?limit={LIMIT}",
+                RECENTLY_UPDATED_PEOPLE_IDS_JSON, 1, LIMIT, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(null, pagedParameters);
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -97,14 +98,14 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_With_Page_And_Limit()
+        public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_With_Page_And_Limit()
         {
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}?page={PAGE}&limit={LIMIT}",
-                RECENTLY_UPDATED_MOVIE_IDS_JSON, PAGE, LIMIT, 1, UPDATED_IDS_COUNT);
+                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}?page={PAGE}&limit={LIMIT}",
+                RECENTLY_UPDATED_PEOPLE_IDS_JSON, PAGE, LIMIT, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(null, pagedParameters);
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -117,16 +118,16 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_With_StartDate_And_Page()
+        public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_With_StartDate_And_Page()
         {
             var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
 
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page={PAGE}",
-                RECENTLY_UPDATED_MOVIE_IDS_JSON, PAGE, 10, 1, UPDATED_IDS_COUNT);
+                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{startDate}?page={PAGE}",
+                RECENTLY_UPDATED_PEOPLE_IDS_JSON, PAGE, 10, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(START_DATE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -139,16 +140,16 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_With_StartDate_And_Limit()
+        public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_With_StartDate_And_Limit()
         {
             var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
 
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?limit={LIMIT}",
-                RECENTLY_UPDATED_MOVIE_IDS_JSON, 1, LIMIT, 1, UPDATED_IDS_COUNT);
+                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{startDate}?limit={LIMIT}",
+                RECENTLY_UPDATED_PEOPLE_IDS_JSON, 1, LIMIT, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(START_DATE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -161,16 +162,16 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_Complete()
+        public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_Complete()
         {
             var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
 
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page={PAGE}&limit={LIMIT}",
-                RECENTLY_UPDATED_MOVIE_IDS_JSON, PAGE, LIMIT, 1, UPDATED_IDS_COUNT);
+                $"{GET_RECENTLY_UPDATED_PEOPLE_IDS_URI}/{startDate}?page={PAGE}&limit={LIMIT}",
+                RECENTLY_UPDATED_PEOPLE_IDS_JSON, PAGE, LIMIT, 1, UPDATED_IDS_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
+            TraktPagedResponse<int> response = await client.People.GetRecentlyUpdatedPeopleIdsAsync(START_DATE, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -199,13 +200,13 @@
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktPeopleModule_GetRecentlyUpdatedPeopleIds_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_MOVIE_IDS_URI, statusCode);
+            TraktClient client = TestUtility.GetMockClient(GET_RECENTLY_UPDATED_PEOPLE_IDS_URI, statusCode);
 
             try
             {
-                await client.Movies.GetRecentlyUpdatedMovieIdsAsync();
+                await client.People.GetRecentlyUpdatedPeopleIdsAsync();
                 Assert.False(true);
             }
             catch (Exception exception)

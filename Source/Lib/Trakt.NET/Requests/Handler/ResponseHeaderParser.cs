@@ -154,7 +154,7 @@
             }
         }
 
-        private static TraktSortBy? ParseSortBy(string sortBy)
+        private static TraktSortBy ParseSortBy(string sortBy)
         {
             if (!string.IsNullOrEmpty(sortBy))
             {
@@ -179,7 +179,7 @@
             return null;
         }
 
-        private static TraktSortHow? ParseSortHow(string sortHow)
+        private static TraktSortHow ParseSortHow(string sortHow)
         {
             if (!string.IsNullOrEmpty(sortHow))
             {
