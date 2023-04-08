@@ -6,16 +6,16 @@
     public interface ITraktResponseHeaders
     {
         /// <summary>Gets the value of the set "sort-by" response header. Might not be set.</summary>
-        TraktSortBy? SortBy { get; set; }
+        TraktSortBy SortBy { get; set; }
 
         /// <summary>Gets the value of the set "sort-how" response header. Might not be set.</summary>
-        TraktSortHow? SortHow { get; set; }
+        TraktSortHow SortHow { get; set; }
 
         /// <summary>Gets the value of the set "applied-sort-by" response header. Might not be set.</summary>
-        TraktSortBy? AppliedSortBy { get; set; }
+        TraktSortBy AppliedSortBy { get; set; }
 
         /// <summary>Gets the value of the set "applied-sort-how" response header. Might not be set.</summary>
-        TraktSortHow? AppliedSortHow { get; set; }
+        TraktSortHow AppliedSortHow { get; set; }
 
         /// <summary>Gets the value of the set "start-date" response header. Might not be set.</summary>
         DateTime? StartDate { get; set; }

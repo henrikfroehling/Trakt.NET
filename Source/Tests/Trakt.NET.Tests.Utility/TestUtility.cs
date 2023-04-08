@@ -22,8 +22,8 @@
                                                   uint? page = null, uint? limit = null,
                                                   int? pageCount = null, int? itemCount = null,
                                                   int? userCount = null, string startDate = null,
-                                                  string endDate = null, TraktSortBy? sortBy = null,
-                                                  TraktSortHow? sortHow = null)
+                                                  string endDate = null, TraktSortBy sortBy = null,
+                                                  TraktSortHow sortHow = null)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
             httpClientProvider.SetupMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
@@ -41,8 +41,8 @@
                                                        uint? page = null, uint? limit = null,
                                                        int? pageCount = null, int? itemCount = null,
                                                        int? userCount = null, string startDate = null,
-                                                       string endDate = null, TraktSortBy? sortBy = null,
-                                                       TraktSortHow? sortHow = null)
+                                                       string endDate = null, TraktSortBy sortBy = null,
+                                                       TraktSortHow sortHow = null)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
             httpClientProvider.SetupOAuthMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
