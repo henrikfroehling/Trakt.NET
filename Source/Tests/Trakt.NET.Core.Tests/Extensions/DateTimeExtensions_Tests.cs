@@ -95,9 +95,6 @@
             var month = dateTime.Month;
             var year = dateTime.Year;
             var hour = dateTime.Hour;
-            var minute = dateTime.Minute;
-            var second = dateTime.Second;
-            var millisecond = dateTime.Millisecond;
 
             var value = $"{year}-{month:00}-{day:00}T{hour:00}:00:00.000Z";
 
