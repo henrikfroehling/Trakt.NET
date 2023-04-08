@@ -25,11 +25,19 @@
         /// <summary>Gets or sets, whether the personal list allows comments.</summary>
         bool? AllowComments { get; set; }
 
-        /// <summary>Gets or sets the personal list sort-by setting.</summary>
-        string SortBy { get; set; }
+        /// <summary>
+        /// Gets or sets the custom list sort-by setting.
+        /// See also <seealso cref="TraktSortBy" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        TraktSortBy SortBy { get; set; }
 
-        /// <summary>Gets or sets the personal list sort-how setting.</summary>
-        string SortHow { get; set; }
+        /// <summary>
+        /// Gets or sets the custom list sort-how setting.
+        /// See also <seealso cref="TraktSortHow" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        TraktSortHow SortHow { get; set; }
 
         /// <summary>Returns whether the post has any values set.</summary>
         bool HasAnyValuesSet();

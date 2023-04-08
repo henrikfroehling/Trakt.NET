@@ -28,11 +28,19 @@
         /// <summary>Gets or sets, whether the custom list allows comments.</summary>
         public bool? AllowComments { get; set; }
 
-        /// <summary>Gets or sets the custom list sort-by setting.</summary>
-        public string SortBy { get; set; }
+        /// <summary>
+        /// Gets or sets the custom list sort-by setting.
+        /// See also <seealso cref="TraktSortBy" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        public TraktSortBy SortBy { get; set; }
 
-        /// <summary>Gets or sets the custom list sort-how setting.</summary>
-        public string SortHow { get; set; }
+        /// <summary>
+        /// Gets or sets the custom list sort-how setting.
+        /// See also <seealso cref="TraktSortHow" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        public TraktSortHow SortHow { get; set; }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {
@@ -58,7 +66,8 @@
             return !string.IsNullOrEmpty(Name) || !string.IsNullOrEmpty(Description)
                 || (Privacy != null && Privacy != TraktAccessScope.Unspecified)
                 || DisplayNumbers.HasValue || AllowComments.HasValue
-                || !string.IsNullOrEmpty(SortBy) || !string.IsNullOrEmpty(SortHow);
+                || (SortBy != null && SortBy != TraktSortBy.Unspecified)
+                || (SortHow != null && SortHow != TraktSortHow.Unspecified);
         }
     }
 }
