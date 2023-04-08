@@ -16,7 +16,7 @@
 
             foreach (Task<TSource> task in source)
             {
-                yield return await task;
+                yield return await task.ConfigureAwait(false);
             }
         }
     }

@@ -128,7 +128,7 @@
                 tasks.Add(task);
             }
 
-            await foreach (TraktResponse<ITraktMovie> result in tasks.StreamFinishedTaskResultsAsync().ConfigureAwait(false))
+            await foreach (TraktResponse<ITraktMovie> result in tasks.StreamFinishedTaskResultsAsync())
             {
                 yield return result;
             }

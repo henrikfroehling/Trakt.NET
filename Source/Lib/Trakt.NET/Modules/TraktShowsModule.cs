@@ -131,7 +131,7 @@
                 tasks.Add(task);
             }
 
-            await foreach(TraktResponse<ITraktShow> result in tasks.StreamFinishedTaskResultsAsync().ConfigureAwait(false))
+            await foreach(TraktResponse<ITraktShow> result in tasks.StreamFinishedTaskResultsAsync())
             {
                 yield return result;
             }

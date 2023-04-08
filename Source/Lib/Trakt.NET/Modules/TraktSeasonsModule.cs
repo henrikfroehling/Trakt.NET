@@ -182,7 +182,7 @@
                 tasks.Add(task);
             }
 
-            await foreach (TraktListResponse<ITraktEpisode> result in tasks.StreamFinishedTaskResultsAsync().ConfigureAwait(false))
+            await foreach (TraktListResponse<ITraktEpisode> result in tasks.StreamFinishedTaskResultsAsync())
             {
                 yield return result;
             }

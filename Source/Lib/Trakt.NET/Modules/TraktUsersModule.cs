@@ -583,7 +583,7 @@ namespace TraktNet.Modules
                 tasks.Add(task);
             }
 
-            await foreach(TraktResponse<ITraktList> result in tasks.StreamFinishedTaskResultsAsync().ConfigureAwait(false))
+            await foreach(TraktResponse<ITraktList> result in tasks.StreamFinishedTaskResultsAsync())
             {
                 yield return result;
             }
