@@ -30,5 +30,8 @@
 
         /// <summary>Gets or sets the personal list sort-how setting.</summary>
         string SortHow { get; set; }
+
+        /// <summary>Returns whether the post has any values set.</summary>
+        bool HasAnyValuesSet();
     }
 }
