@@ -12,6 +12,7 @@
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
         private const uint PAGE = 2;
         private const uint LIMIT = 4;
+        private const int UPDATED_IDS_COUNT = 4;
 
         private const string PERSON_MINIMAL_JSON =
             @"{
@@ -222,6 +223,14 @@
                     }
                   }
                 }
+              ]";
+
+        private const string RECENTLY_UPDATED_PEOPLE_IDS_JSON =
+            @"[
+                1,
+                20,
+                34,
+                50
               ]";
     }
 }

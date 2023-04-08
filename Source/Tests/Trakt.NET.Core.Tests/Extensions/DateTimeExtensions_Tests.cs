@@ -86,5 +86,20 @@
             var dateTraktString = dateTime.ToTraktLongDateTimeString();
             dateTraktString.Should().NotBeNullOrEmpty().And.Be(value);
         }
+
+        [Fact]
+        public void Test_DateTimeExtensions_ToTraktCacheEfficientLongDateTimeString()
+        {
+            var dateTime = DateTime.UtcNow;
+            var day = dateTime.Day;
+            var month = dateTime.Month;
+            var year = dateTime.Year;
+            var hour = dateTime.Hour;
+
+            var value = $"{year}-{month:00}-{day:00}T{hour:00}:00:00.000Z";
+
+            var dateTraktString = dateTime.ToTraktCacheEfficientLongDateTimeString();
+            dateTraktString.Should().NotBeNullOrEmpty().And.Be(value);
+        }
     }
 }
