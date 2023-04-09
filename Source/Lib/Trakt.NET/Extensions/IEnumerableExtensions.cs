@@ -14,9 +14,11 @@
             if(source is null || source.Count == 0)
                 yield break;
 
-            foreach (Task<TSource> task in source)
+            while (source.Count > 0)
             {
-                yield return await task.ConfigureAwait(false);
+                Task<TSource> finishedTask = await Task.WhenAny(source).ConfigureAwait(false);
+                source.Remove(finishedTask);
+                yield return await finishedTask;
             }
         }
     }
