@@ -9,7 +9,7 @@
     using TraktNet.Enums;
     using TraktNet.Requests.Handler;
 
-    internal class TestHttpClientProvider : IHttpClientProvider
+    internal class TestHttpClientProvider : HttpClientProvider
     {
         private const string HEADER_PAGINATION_PAGE_KEY = "X-Pagination-Page";
         private const string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
@@ -27,20 +27,24 @@
         private readonly string _baseUrl;
         private readonly string _clientId;
         private readonly MockHttpMessageHandler _mockHttpMessageHandler;
+        private HttpClient _httpClient;
 
         public TestHttpClientProvider(string baseUrl)
         {
             _baseUrl = baseUrl;
             _clientId = TestConstants.TRAKT_CLIENT_ID;
             _mockHttpMessageHandler = new MockHttpMessageHandler();
+            _ = SetupHttpClient();
         }
 
-        public HttpClient GetHttpClient(string _)
+        public override HttpClient GetHttpClient(string _) => _httpClient;
+
+        protected override HttpClient SetupHttpClient()
         {
             _mockHttpMessageHandler.Should().NotBeNull();
-            var httpClient = new HttpClient(_mockHttpMessageHandler);
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ACCEPT_MEDIA_TYPE));
-            return httpClient;
+            _httpClient = new HttpClient(_mockHttpMessageHandler);
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ACCEPT_MEDIA_TYPE));
+            return _httpClient;
         }
 
         internal void SetupMockResponse(string uri, string responseContent,
