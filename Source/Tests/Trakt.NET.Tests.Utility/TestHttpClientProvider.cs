@@ -35,7 +35,7 @@
             _mockHttpMessageHandler = new MockHttpMessageHandler();
         }
 
-        public HttpClient GetHttpClient()
+        public HttpClient GetHttpClient(string _)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
             var httpClient = new HttpClient(_mockHttpMessageHandler);

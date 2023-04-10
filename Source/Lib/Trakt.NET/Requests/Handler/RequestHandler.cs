@@ -16,44 +16,56 @@
 
     internal sealed class RequestHandler : IRequestHandler
     {
-        private readonly TraktClient _client;
-        private readonly RequestMessageBuilder _requestMessageBuilder;
-        private static IRequestHandler s_requestHandler;
+        private readonly bool _throwsResponseExceptions;
+        private readonly IHttpClientProvider _httpClientProvider;
+        private readonly string _clientId;
+        private readonly int _apiVersion;
+        private readonly string _baseUrl;
+        private readonly string _accessToken;
+        private readonly bool _isAuthorized;
+        private readonly bool _forceAuthorization;
 
         internal RequestHandler(TraktClient client)
         {
-            _client = client;
-            _requestMessageBuilder = new RequestMessageBuilder(_client);
+            _throwsResponseExceptions = client.Configuration.ThrowResponseExceptions;
+            _httpClientProvider = client.HttpClientProvider;
+            _clientId = client.ClientId;
+            _apiVersion = client.Configuration.ApiVersion;
+            _baseUrl = client.Configuration.BaseUrl;
+            _accessToken = client.Authentication.Authorization.AccessToken;
+            _isAuthorized = client.Authentication.IsAuthorized;
+            _forceAuthorization = client.Configuration.ForceAuthorization;
         }
-
-        internal static IRequestHandler GetInstance(TraktClient client)
-            => s_requestHandler ?? (s_requestHandler = new RequestHandler(client));
 
         public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default)
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             return await QueryNoContentAsync(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             return await QuerySingleItemAsync<TResponseContentType>(requestMessage, false, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
@@ -62,14 +74,16 @@
         public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPostRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             return await QueryNoContentAsync(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             var isCheckinRequest = request is CheckinRequest<TResponseContentType, TRequestBodyType>;
             return await QuerySingleItemAsync<TResponseContentType>(requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
         }
@@ -77,14 +91,16 @@
         public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
@@ -93,28 +109,32 @@
         public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPutRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             return await QueryNoContentAsync(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktResponse<TResponseContentType>> ExecuteSingleItemRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             return await QuerySingleItemAsync<TResponseContentType>(requestMessage, false, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
         {
             ValidateRequest(request);
-            ExtendedHttpRequestMessage requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build(cancellationToken).ConfigureAwait(false);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
@@ -133,7 +153,7 @@
             }
             catch (Exception ex)
             {
-                if (_client.Configuration.ThrowResponseExceptions)
+                if (_throwsResponseExceptions)
                     throw;
 
                 return new TraktNoContentResponse { IsSuccess = false, Exception = ex };
@@ -174,7 +194,7 @@
             }
             catch (Exception ex)
             {
-                if (_client.Configuration.ThrowResponseExceptions)
+                if (_throwsResponseExceptions)
                     throw;
 
                 return new TraktResponse<TResponseContentType> { IsSuccess = false, Exception = ex };
@@ -226,7 +246,7 @@
             }
             catch (Exception ex)
             {
-                if (_client.Configuration.ThrowResponseExceptions)
+                if (_throwsResponseExceptions)
                     throw;
 
                 return new TraktListResponse<TResponseContentType> { IsSuccess = false, Exception = ex };
@@ -278,7 +298,7 @@
             }
             catch (Exception ex)
             {
-                if (_client.Configuration.ThrowResponseExceptions)
+                if (_throwsResponseExceptions)
                     throw;
 
                 return new TraktPagedResponse<TResponseContentType> { IsSuccess = false, Exception = ex };
@@ -291,7 +311,7 @@
 
         private async Task<HttpResponseMessage> ExecuteRequestAsync(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default)
         {
-            HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+            HttpResponseMessage responseMessage = await _httpClientProvider.GetHttpClient(_clientId).SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
             if (!responseMessage.IsSuccessStatusCode)
                 await ResponseErrorHandler.HandleErrorsAsync(requestMessage, responseMessage, isCheckinRequest, cancellationToken: cancellationToken).ConfigureAwait(false);
@@ -306,5 +326,12 @@
 
             request.Validate();
         }
+
+        private RequestMessageBuilder CreateRequestMessageBuilder(IRequest request = null, IRequestBody requestBody = null)
+            => new RequestMessageBuilder(_clientId, _apiVersion, _baseUrl, _accessToken, _isAuthorized, _forceAuthorization)
+               {
+                    Request = request,
+                    RequestBody = requestBody
+               };
     }
 }
