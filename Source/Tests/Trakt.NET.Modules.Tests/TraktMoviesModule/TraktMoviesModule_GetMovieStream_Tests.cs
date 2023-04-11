@@ -29,6 +29,7 @@
             };
             int totalMovies = parameters.Count;
             TraktClient client = TestUtility.GetMockClientForMultipleCalls(GET_MOVIE_STREAM_URI, MOVIE_JSON, totalMovies);
+            client.LogWriter = _logWriter;
             IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(parameters);
 
             int returnedMovies = 0;
@@ -63,6 +64,7 @@
             };
             int totalMovies = parameters.Count;
             TraktClient client = TestUtility.GetMockClientForMultipleCalls($"{GET_MOVIE_STREAM_URI}?extended={EXTENDED_INFO}", MOVIE_JSON, totalMovies);
+            client.LogWriter = _logWriter;
             IAsyncEnumerable<TraktResponse<ITraktMovie>> responses = client.Movies.GetMoviesStreamAsync(parameters);
 
             int returnedMovies = 0;

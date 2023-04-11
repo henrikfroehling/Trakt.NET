@@ -1,7 +1,9 @@
 ﻿namespace TraktNet.Modules.Tests.TraktSeasonsModule
 {
+    using Trakt.NET.Tests.Utility;
     using TraktNet.Enums;
     using TraktNet.Parameters;
+    using Xunit.Abstractions;
 
     public partial class TraktSeasonsModule_Tests
     {
@@ -18,6 +20,13 @@
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private const string LANGUAGE_CODE = "en";
+
+        private readonly TestLogWriter _logWriter;
+
+        public TraktSeasonsModule_Tests(ITestOutputHelper testOutputHelper)
+        {
+            _logWriter = new TestLogWriter(testOutputHelper);
+        }
 
         private const string SEASON_TRANSLATIONS_JSON =
             @"[

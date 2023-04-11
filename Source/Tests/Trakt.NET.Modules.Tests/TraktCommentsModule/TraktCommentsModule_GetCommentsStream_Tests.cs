@@ -25,6 +25,7 @@
             List<uint> commentIds = new List<uint> { GET_COMMENT_ID, GET_COMMENT_ID };
             int totalComments = commentIds.Count;
             TraktClient client = TestUtility.GetMockClientForMultipleCalls(GET_COMMENTS_STREAM_URI, COMMENT_JSON, totalComments);
+            client.LogWriter = _logWriter;
             IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
 
 

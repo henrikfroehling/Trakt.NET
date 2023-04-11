@@ -1,8 +1,10 @@
 ﻿namespace TraktNet.Modules.Tests.TraktMoviesModule
 {
     using System;
+    using Trakt.NET.Tests.Utility;
     using TraktNet.Enums;
     using TraktNet.Parameters;
+    using Xunit.Abstractions;
 
     public partial class TraktMoviesModule_Tests
     {
@@ -22,6 +24,13 @@
         private readonly DateTime TODAY = DateTime.UtcNow;
         private readonly DateTime START_DATE = DateTime.UtcNow;
         private const int UPDATED_IDS_COUNT = 4;
+
+        private readonly TestLogWriter _logWriter;
+
+        public TraktMoviesModule_Tests(ITestOutputHelper testOutputHelper)
+        {
+            _logWriter = new TestLogWriter(testOutputHelper);
+        }
 
         private readonly ITraktMovieFilter FILTER = TraktFilter.NewMovieFilter()
             .WithCertifications("TV-MA")

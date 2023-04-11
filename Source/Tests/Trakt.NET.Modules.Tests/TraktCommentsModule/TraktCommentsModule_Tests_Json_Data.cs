@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Modules.Tests.TraktCommentsModule
 {
+    using Trakt.NET.Tests.Utility;
     using TraktNet.Enums;
     using TraktNet.Objects.Basic;
     using TraktNet.Objects.Get.Episodes;
@@ -8,6 +9,7 @@
     using TraktNet.Objects.Get.Seasons;
     using TraktNet.Objects.Get.Shows;
     using TraktNet.Parameters;
+    using Xunit.Abstractions;
 
     public partial class TraktCommentsModule_Tests
     {
@@ -37,8 +39,12 @@
         private ITraktEpisode Episode { get; }
         private ITraktList List { get; }
 
-        public TraktCommentsModule_Tests()
+        private readonly TestLogWriter _logWriter;
+
+        public TraktCommentsModule_Tests(ITestOutputHelper testOutputHelper)
         {
+            _logWriter = new TestLogWriter(testOutputHelper);
+
             Movie = new TraktMovie
             {
                 Title = "Guardians of the Galaxy",

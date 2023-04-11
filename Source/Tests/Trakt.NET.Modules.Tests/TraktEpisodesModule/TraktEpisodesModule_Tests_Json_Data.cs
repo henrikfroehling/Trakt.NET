@@ -1,7 +1,9 @@
 ﻿namespace TraktNet.Modules.Tests.TraktEpisodesModule
 {
+    using Trakt.NET.Tests.Utility;
     using TraktNet.Enums;
     using TraktNet.Parameters;
+    using Xunit.Abstractions;
 
     public partial class TraktEpisodesModule_Tests
     {
@@ -16,6 +18,13 @@
         private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
+
+        private readonly TestLogWriter _logWriter;
+
+        public TraktEpisodesModule_Tests(ITestOutputHelper testOutputHelper)
+        {
+            _logWriter = new TestLogWriter(testOutputHelper);
+        }
 
         private const string EPISODE_SUMMARY_FULL_JSON =
             @"{
