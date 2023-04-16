@@ -100,18 +100,7 @@
                                                                      TraktExtendedInfo extendedInfo = null,
                                                                      string translationLanguageCode = null,
                                                                      CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteListRequestAsync(new SeasonSingleRequest
-            {
-                Id = showIdOrSlug,
-                SeasonNumber = seasonNumber,
-                ExtendedInfo = extendedInfo,
-                TranslationLanguageCode = translationLanguageCode
-            },
-            cancellationToken);
-        }
+            => GetSeasonImplementationAsync(false, showIdOrSlug, seasonNumber, extendedInfo, translationLanguageCode, cancellationToken);
 
         /// <summary>
         /// Gets multiple different seasons at once in a show with the given Trakt-Show-Id or -Slug.
@@ -176,8 +165,8 @@
 
             foreach (TraktSeasonsQueryParams queryParam in seasonsQueryParams)
             {
-                Task<TraktListResponse<ITraktEpisode>> task = GetSeasonAsync(queryParam.ShowId, queryParam.Season, queryParam.ExtendedInfo,
-                                                                             queryParam.TranslationLanguageCode, cancellationToken);
+                Task<TraktListResponse<ITraktEpisode>> task = GetSeasonInStreamAsync(queryParam.ShowId, queryParam.Season, queryParam.ExtendedInfo,
+                                                                                     queryParam.TranslationLanguageCode, cancellationToken);
 
                 tasks.Add(task);
             }
@@ -430,6 +419,33 @@
                 ExtendedInfo = extendedInfo
             },
             cancellationToken);
+        }
+
+        private Task<TraktListResponse<ITraktEpisode>> GetSeasonInStreamAsync(string showIdOrSlug, uint seasonNumber,
+                                                                            TraktExtendedInfo extendedInfo = null,
+                                                                            string translationLanguageCode = null,
+                                                                            CancellationToken cancellationToken = default)
+            => GetSeasonImplementationAsync(true, showIdOrSlug, seasonNumber, extendedInfo, translationLanguageCode, cancellationToken);
+
+        private Task<TraktListResponse<ITraktEpisode>> GetSeasonImplementationAsync(bool asyncStream, string showIdOrSlug, uint seasonNumber,
+                                                                                   TraktExtendedInfo extendedInfo = null,
+                                                                                   string translationLanguageCode = null,
+                                                                                   CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            var request = new SeasonSingleRequest
+            {
+                Id = showIdOrSlug,
+                SeasonNumber = seasonNumber,
+                ExtendedInfo = extendedInfo,
+                TranslationLanguageCode = translationLanguageCode
+            };
+
+            if (asyncStream)
+                return requestHandler.ExecuteListStreamRequestAsync(request, cancellationToken);
+
+            return requestHandler.ExecuteListRequestAsync(request, cancellationToken);
         }
     }
 }

@@ -50,7 +50,15 @@
             ValidateRequest(request);
             var requestMessageBuilder = CreateRequestMessageBuilder(request);
             ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
-            return await QuerySingleItemAsync<TResponseContentType>(requestMessage, false, cancellationToken).ConfigureAwait(false);
+            return await QuerySingleItemAsync<TResponseContentType>(false, requestMessage, false, cancellationToken).ConfigureAwait(false);
+        }
+
+        public async Task<TraktResponse<TResponseContentType>> ExecuteSingleItemStreamRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
+        {
+            ValidateRequest(request);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
+            return await QuerySingleItemAsync<TResponseContentType>(true, requestMessage, false, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
@@ -58,7 +66,15 @@
             ValidateRequest(request);
             var requestMessageBuilder = CreateRequestMessageBuilder(request);
             ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
-            return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
+            return await QueryListAsync<TResponseContentType>(false, requestMessage, cancellationToken).ConfigureAwait(false);
+        }
+
+        public async Task<TraktListResponse<TResponseContentType>> ExecuteListStreamRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
+        {
+            ValidateRequest(request);
+            var requestMessageBuilder = CreateRequestMessageBuilder(request);
+            ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
+            return await QueryListAsync<TResponseContentType>(true, requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
@@ -85,7 +101,7 @@
             var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
             ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
             var isCheckinRequest = request is CheckinRequest<TResponseContentType, TRequestBodyType>;
-            return await QuerySingleItemAsync<TResponseContentType>(requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
+            return await QuerySingleItemAsync<TResponseContentType>(false, requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
@@ -93,7 +109,7 @@
             ValidateRequest(request);
             var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
             ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
-            return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
+            return await QueryListAsync<TResponseContentType>(false, requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPostRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
@@ -119,7 +135,7 @@
             ValidateRequest(request);
             var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
             ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
-            return await QuerySingleItemAsync<TResponseContentType>(requestMessage, false, cancellationToken).ConfigureAwait(false);
+            return await QuerySingleItemAsync<TResponseContentType>(false, requestMessage, false, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktListResponse<TResponseContentType>> ExecuteListRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
@@ -127,7 +143,7 @@
             ValidateRequest(request);
             var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
             ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build(cancellationToken).ConfigureAwait(false);
-            return await QueryListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
+            return await QueryListAsync<TResponseContentType>(false, requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType, TRequestBodyType>(IPutRequest<TResponseContentType, TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
@@ -164,7 +180,7 @@
             }
         }
 
-        private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default)
+        private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(bool asyncStream, ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = null;
 
@@ -173,11 +189,7 @@
                 responseMessage = await ExecuteRequestAsync(requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
                 DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
                 DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.SINGLE_ITEM_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
-                Stream responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
-                DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
-                IObjectJsonReader<TResponseContentType> objectJsonReader = JsonFactoryContainer.CreateObjectReader<TResponseContentType>();
-                DebugAsserter.AssertObjectJsonReaderIsNotNull(objectJsonReader);
-                TResponseContentType contentObject = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+                TResponseContentType contentObject = await ReadContentObjectAsync<TResponseContentType>(asyncStream, responseMessage, cancellationToken).ConfigureAwait(false);
                 bool hasValue = !EqualityComparer<TResponseContentType>.Default.Equals(contentObject, default);
 
                 var response = new TraktResponse<TResponseContentType>
@@ -205,7 +217,7 @@
             }
         }
 
-        private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
+        private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(bool asyncStream, ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
             HttpResponseMessage responseMessage = null;
 
@@ -214,30 +226,14 @@
                 responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
                 DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
                 DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
-                Stream responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
-                DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
+                IEnumerable<TResponseContentType> contentObjects = await ReadContentListAsync<TResponseContentType>(asyncStream, responseMessage, cancellationToken).ConfigureAwait(false);
 
-                var response = new TraktListResponse<TResponseContentType>();
-
-                if (typeof(TResponseContentType) == typeof(int))
+                var response = new TraktListResponse<TResponseContentType>
                 {
-                    IArrayJsonReader<int> intArrayJsonReader = new IntArrayJsonReader();
-                    IEnumerable<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
-
-                    response.IsSuccess = true;
-                    response.HasValue = values != null;
-                    response.Value = (IEnumerable<TResponseContentType>)values;
-                }
-                else
-                {
-                    IArrayJsonReader<TResponseContentType> arrayJsonReader = new ArrayJsonReader<TResponseContentType>();
-                    DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
-                    IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
-
-                    response.IsSuccess = true;
-                    response.HasValue = contentObject != null;
-                    response.Value = contentObject;
-                }
+                    IsSuccess = true,
+                    HasValue = contentObjects != null,
+                    Value = (IEnumerable<TResponseContentType>)contentObjects
+                };
 
                 if (responseMessage.Headers != null)
                     ResponseHeaderParser.ParseResponseHeaderValues(response, responseMessage.Headers);
@@ -266,30 +262,14 @@
                 responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
                 DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
                 DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.PAGED_LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
-                Stream responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
-                DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
+                IEnumerable<TResponseContentType> contentObjects = await ReadContentListAsync<TResponseContentType>(false, responseMessage, cancellationToken).ConfigureAwait(false);
 
-                var response = new TraktPagedResponse<TResponseContentType>();
-
-                if (typeof(TResponseContentType) == typeof(int))
+                var response = new TraktPagedResponse<TResponseContentType>
                 {
-                    IArrayJsonReader<int> intArrayJsonReader = new IntArrayJsonReader();
-                    IEnumerable<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
-                    
-                    response.IsSuccess = true;
-                    response.HasValue = values != null;
-                    response.Value = (IEnumerable<TResponseContentType>)values;
-                }
-                else
-                {
-                    IArrayJsonReader<TResponseContentType> arrayJsonReader = new ArrayJsonReader<TResponseContentType>();
-                    DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
-                    IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
-
-                    response.IsSuccess = true;
-                    response.HasValue = contentObject != null;
-                    response.Value = contentObject;
-                }
+                    IsSuccess = true,
+                    HasValue = contentObjects != null,
+                    Value = (IEnumerable<TResponseContentType>)contentObjects
+                };
 
                 if (responseMessage.Headers != null)
                     ResponseHeaderParser.ParsePagedResponseHeaderValues(response, responseMessage.Headers);
@@ -333,5 +313,57 @@
                     Request = request,
                     RequestBody = requestBody
                };
+
+        private IArrayJsonReader<TResponseContentType> CreateArrayReader<TResponseContentType>()
+        {
+            if (typeof(TResponseContentType) == typeof(int))
+                return (IArrayJsonReader<TResponseContentType>)new IntArrayJsonReader();
+
+            return new ArrayJsonReader<TResponseContentType>();
+        }
+
+        private async Task<TResponseContentType> ReadContentObjectAsync<TResponseContentType>(bool asyncStream, HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)
+        {
+            DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
+
+            if (asyncStream)
+            {
+                IObjectJsonReader<TResponseContentType> asyncObjectJsonReader = JsonFactoryContainer.CreateObjectReader<TResponseContentType>();
+                DebugAsserter.AssertObjectJsonReaderIsNotNull(asyncObjectJsonReader);
+
+                string responseContent = await ResponseMessageHelper.GetResponseContentAsync(responseMessage).ConfigureAwait(false);
+                DebugAsserter.AssertResponseContentIsNotEmpty(responseContent);
+                return await asyncObjectJsonReader.ReadObjectAsync(responseContent, cancellationToken).ConfigureAwait(false);
+            }
+
+            IObjectJsonReader<TResponseContentType> objectJsonReader = JsonFactoryContainer.CreateObjectReader<TResponseContentType>();
+            DebugAsserter.AssertObjectJsonReaderIsNotNull(objectJsonReader);
+
+            Stream responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
+            DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
+            return await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+        }
+
+        private async Task<IEnumerable<TResponseContentType>> ReadContentListAsync<TResponseContentType>(bool asyncStream, HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)
+        {
+            DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
+
+            if (asyncStream)
+            {
+                IArrayJsonReader<TResponseContentType> asyncArrayJsonReader = CreateArrayReader<TResponseContentType>();
+                DebugAsserter.AssertArrayJsonReaderIsNotNull(asyncArrayJsonReader);
+
+                string responseContent = await ResponseMessageHelper.GetResponseContentAsync(responseMessage).ConfigureAwait(false);
+                DebugAsserter.AssertResponseContentIsNotEmpty(responseContent);
+                return await asyncArrayJsonReader.ReadArrayAsync(responseContent, cancellationToken).ConfigureAwait(false);
+            }
+
+            IArrayJsonReader<TResponseContentType> arrayJsonReader = CreateArrayReader<TResponseContentType>();
+            DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
+
+            Stream responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
+            DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
+            return await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+        }
     }
 }

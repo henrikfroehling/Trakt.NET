@@ -25,6 +25,9 @@
         internal static void AssertResponseContentStreamIsNotNull(Stream stream)
             => Debug.Assert(stream != null, "precondition for deserializing response content failed: stream is null");
 
+        internal static void AssertResponseContentIsNotEmpty(string responseContent)
+            => Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed: response content is empty");
+
         internal static void AssertObjectJsonReaderIsNotNull<TReturnType>(IObjectJsonReader<TReturnType> objectJsonReader)
             => Debug.Assert(objectJsonReader != null, "precondition for deserializing response content failed: json object reader is null");
 

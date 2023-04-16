@@ -8,5 +8,8 @@
     {
         internal static async Task<Stream> GetResponseContentStreamAsync(HttpResponseMessage responseMessage)
             => responseMessage.Content != null ? await responseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false) : default;
+
+        internal static async Task<string> GetResponseContentAsync(HttpResponseMessage responseMessage)
+            => responseMessage.Content != null ? await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false) : string.Empty;
     }
 }

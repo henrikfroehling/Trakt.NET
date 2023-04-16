@@ -56,18 +56,7 @@
         public Task<TraktResponse<ITraktEpisode>> GetEpisodeAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                   TraktExtendedInfo extendedInfo = null,
                                                                   CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new EpisodeSummaryRequest
-            {
-                Id = showIdOrSlug,
-                SeasonNumber = seasonNumber,
-                EpisodeNumber = episodeNumber,
-                ExtendedInfo = extendedInfo
-            },
-            cancellationToken);
-        }
+            => GetEpisodeImplementationAsync(false, showIdOrSlug, seasonNumber, episodeNumber, extendedInfo, cancellationToken);
 
         /// <summary>
         /// Gets multiple different <see cref="ITraktEpisode" />s at once in a show with the given Trakt-Show-Id or -Slug.
@@ -131,8 +120,8 @@
 
             foreach (TraktEpisodeQueryParams queryParam in episodesQueryParams)
             {
-                Task<TraktResponse<ITraktEpisode>> task = GetEpisodeAsync(queryParam.ShowId, queryParam.Season, queryParam.Episode,
-                                                                          queryParam.ExtendedInfo, cancellationToken);
+                Task<TraktResponse<ITraktEpisode>> task = GetEpisodeInStreamAsync(queryParam.ShowId, queryParam.Season, queryParam.Episode,
+                                                                                  queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -400,6 +389,31 @@
                 ExtendedInfo = extendedInfo
             },
             cancellationToken);
+        }
+
+        private Task<TraktResponse<ITraktEpisode>> GetEpisodeInStreamAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                           TraktExtendedInfo extendedInfo = null,
+                                                                           CancellationToken cancellationToken = default)
+            => GetEpisodeImplementationAsync(true, showIdOrSlug, seasonNumber, episodeNumber, extendedInfo, cancellationToken);
+
+        private Task<TraktResponse<ITraktEpisode>> GetEpisodeImplementationAsync(bool asyncStream, string showIdOrSlug, uint seasonNumber, uint episodeNumber,
+                                                                                 TraktExtendedInfo extendedInfo = null,
+                                                                                 CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            var request = new EpisodeSummaryRequest
+            {
+                Id = showIdOrSlug,
+                SeasonNumber = seasonNumber,
+                EpisodeNumber = episodeNumber,
+                ExtendedInfo = extendedInfo
+            };
+
+            if (asyncStream)
+                return requestHandler.ExecuteSingleItemStreamRequestAsync(request, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(request, cancellationToken);
         }
     }
 }

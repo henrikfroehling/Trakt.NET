@@ -51,16 +51,7 @@
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktPerson>> GetPersonAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                 CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new PersonSummaryRequest
-            {
-                Id = personIdOrSlug,
-                ExtendedInfo = extendedInfo
-            },
-            cancellationToken);
-        }
+            => GetPersoImplementationAsync(false, personIdOrSlug, extendedInfo, cancellationToken);
 
         /// <summary>
         /// Gets multiple different <see cref="ITraktPerson" />s at once with the given Trakt-Ids or -Slugs.
@@ -123,7 +114,7 @@
 
             foreach (TraktObjectsQueryParams queryParam in personsQueryParams)
             {
-                Task<TraktResponse<ITraktPerson>> task = GetPersonAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
+                Task<TraktResponse<ITraktPerson>> task = GetPersoInStreamAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -272,6 +263,27 @@
                 Limit = pagedParameters?.Limit
             },
             cancellationToken);
+        }
+
+        private Task<TraktResponse<ITraktPerson>> GetPersoInStreamAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                        CancellationToken cancellationToken = default)
+            => GetPersoImplementationAsync(true, personIdOrSlug, extendedInfo, cancellationToken);
+
+        private Task<TraktResponse<ITraktPerson>> GetPersoImplementationAsync(bool asyncStream, string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                              CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            var request = new PersonSummaryRequest
+            {
+                Id = personIdOrSlug,
+                ExtendedInfo = extendedInfo
+            };
+
+            if (asyncStream)
+                return requestHandler.ExecuteSingleItemStreamRequestAsync(request, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(request, cancellationToken);
         }
     }
 }
