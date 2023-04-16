@@ -29,7 +29,6 @@
             };
             int totalSeasons = parameters.Count;
             TraktClient client = TestUtility.GetMockClientForMultipleCalls(GET_SEASONS_STREAM_URI, SEASON_EPISODES_JSON, totalSeasons);
-            client.LogWriter = _logWriter;
             IAsyncEnumerable<TraktListResponse<ITraktEpisode>> responses = client.Seasons.GetSeasonsStreamAsync(parameters);
 
             int returnedSeasons = 0;
@@ -55,7 +54,6 @@
             int totalSeasons = parameters.Count;
             TraktClient client = TestUtility.GetMockClientForMultipleCalls($"{GET_SEASONS_STREAM_URI}?extended={EXTENDED_INFO}",
                                                            SEASON_EPISODES_JSON, totalSeasons);
-            client.LogWriter = _logWriter;
             IAsyncEnumerable<TraktListResponse<ITraktEpisode>> responses = client.Seasons.GetSeasonsStreamAsync(parameters);
 
             int returnedSeasons = 0;

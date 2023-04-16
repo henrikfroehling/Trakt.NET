@@ -1,7 +1,6 @@
 namespace TraktNet.Modules.Tests.TraktUsersModule
 {
     using System.Collections.Generic;
-    using Trakt.NET.Tests.Utility;
     using TraktNet.Extensions;
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.People;
@@ -9,7 +8,6 @@ namespace TraktNet.Modules.Tests.TraktUsersModule
     using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Post.Users.HiddenItems;
     using TraktNet.Objects.Post.Users.PersonalListItems;
-    using Xunit.Abstractions;
 
     public partial class TraktUsersModule_Tests
     {
@@ -24,11 +22,8 @@ namespace TraktNet.Modules.Tests.TraktUsersModule
         private ITraktUserHiddenItemsPost HiddenItemsPost { get; }
         private ITraktUserHiddenItemsRemovePost HiddenItemsRemovePost { get; }
 
-        private readonly TestLogWriter _logWriter;
-
-        public TraktUsersModule_Tests(ITestOutputHelper testOutputHelper)
+        public TraktUsersModule_Tests()
         {
-            _logWriter = new TestLogWriter(testOutputHelper);
             AddPersonalListItemsPost = SetupAddPersonalListItemsPost();
             RemovePersonalListItemsPost = SetupRemovePersonalListItemsPost();
             GetHiddenItemsUri = $"users/hidden/{HIDDEN_ITEMS_SECTION.UriName}";

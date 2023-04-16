@@ -7,19 +7,12 @@
     using Requests.Handler;
     using System.Net.Http;
 
-    public interface ILogWriter
-    {
-        void WriteLine(string text);
-    }
-
     /// <summary>
     /// Provides access to all functionality of this library.
     /// <para>Provides the only access to all of the library's modules.</para>
     /// </summary>
     public class TraktClient
     {
-        public ILogWriter LogWriter { get; set; }
-
         internal TraktClient(IHttpClientProvider httpClientProvider = default)
         {
             HttpClientProvider = httpClientProvider ?? new HttpClientProvider();

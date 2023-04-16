@@ -24,7 +24,6 @@
         private readonly string _accessToken;
         private readonly bool _isAuthorized;
         private readonly bool _forceAuthorization;
-        private readonly ILogWriter _logWriter;
 
         internal RequestHandler(TraktClient client)
         {
@@ -36,7 +35,6 @@
             _accessToken = client.Authentication.Authorization.AccessToken;
             _isAuthorized = client.Authentication.IsAuthorized;
             _forceAuthorization = client.Configuration.ForceAuthorization;
-            _logWriter = client.LogWriter;
         }
 
         public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync(IRequest request, CancellationToken cancellationToken = default)
@@ -172,21 +170,15 @@
 
             try
             {
-                responseMessage = await ExecuteRequestAsync(requestMessage, isCheckinRequest, cancellationToken);
+                responseMessage = await ExecuteRequestAsync(requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
                 DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
                 DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.SINGLE_ITEM_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
-                Stream responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage);
+                Stream responseContentStream = await ResponseMessageHelper.GetResponseContentStreamAsync(responseMessage).ConfigureAwait(false);
                 DebugAsserter.AssertResponseContentStreamIsNotNull(responseContentStream);
-
-                _logWriter?.WriteLine($"QuerySingleItemAsync: Current Thread ID = {Thread.CurrentThread.ManagedThreadId}; Current Task ID = {Task.CurrentId}");
-                _logWriter?.WriteLine($"QuerySingleItemAsync: Thread ID = {Thread.CurrentThread.ManagedThreadId}; Task ID = {Task.CurrentId}; URL = \"{requestMessage.Url}\"");
-
                 IObjectJsonReader<TResponseContentType> objectJsonReader = JsonFactoryContainer.CreateObjectReader<TResponseContentType>();
                 DebugAsserter.AssertObjectJsonReaderIsNotNull(objectJsonReader);
-                TResponseContentType contentObject = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken);
-
+                TResponseContentType contentObject = await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
                 bool hasValue = !EqualityComparer<TResponseContentType>.Default.Equals(contentObject, default);
-                _logWriter?.WriteLine($"QuerySingleItemAsync: Thread ID = {Thread.CurrentThread.ManagedThreadId}; Task ID = {Task.CurrentId}; HasValue = {hasValue}");
 
                 var response = new TraktResponse<TResponseContentType>
                 {
@@ -202,8 +194,6 @@
             }
             catch (Exception ex)
             {
-                _logWriter?.WriteLine($"QuerySingleItemAsync: Thread ID = {Thread.CurrentThread.ManagedThreadId}; Task ID = {Task.CurrentId}; Exception: {ex}");
-
                 if (_throwsResponseExceptions)
                     throw;
 

@@ -30,7 +30,6 @@
             };
             int totalLists = parameters.Count;
             TraktClient client = TestUtility.GetMockClientForMultipleCalls(GET_PERSONAL_LIST_STREAM_URI, LIST_JSON, totalLists);
-            client.LogWriter = _logWriter;
             IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(parameters);
 
             int returnedLists = 0;
@@ -74,7 +73,6 @@
             };
             int totalLists = parameters.Count;
             TraktClient client = TestUtility.GetOAuthMockClientForMultipleCalls(GET_PERSONAL_LIST_STREAM_URI, LIST_JSON, totalLists);
-            client.LogWriter = _logWriter;
             client.Configuration.ForceAuthorization = true;
 
             IAsyncEnumerable<TraktResponse<ITraktList>> responses = client.Users.GetPersonalListsStreamAsync(parameters);

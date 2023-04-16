@@ -1,11 +1,9 @@
 ﻿namespace TraktNet.Modules.Tests.TraktShowsModule
 {
     using System;
-    using Trakt.NET.Tests.Utility;
     using TraktNet.Enums;
     using TraktNet.Objects.Post.Shows;
     using TraktNet.Parameters;
-    using Xunit.Abstractions;
 
     public partial class TraktShowsModule_Tests
     {
@@ -39,11 +37,8 @@
         private ITraktShowResetWatchedProgressPost ResetWatchedProgressPostEmpty { get; }
         private ITraktShowResetWatchedProgressPost ResetWatchedProgressPost { get; }
 
-        private readonly TestLogWriter _logWriter;
-
-        public TraktShowsModule_Tests(ITestOutputHelper testOutputHelper)
+        public TraktShowsModule_Tests()
         {
-            _logWriter = new TestLogWriter(testOutputHelper);
             ProgressHidden = PROGRESS_HIDDEN.ToString().ToLower();
             ProgressSpecials = PROGRESS_SPECIALS.ToString().ToLower();
             ProgressCountSpecials = PROGRESS_COUNT_SPECIALS.ToString().ToLower();

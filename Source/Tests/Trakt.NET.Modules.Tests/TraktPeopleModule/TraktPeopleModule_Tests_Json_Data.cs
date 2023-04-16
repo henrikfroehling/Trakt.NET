@@ -1,9 +1,7 @@
 ﻿namespace TraktNet.Modules.Tests.TraktPeopleModule
 {
-    using Trakt.NET.Tests.Utility;
     using TraktNet.Enums;
     using TraktNet.Parameters;
-    using Xunit.Abstractions;
 
     public partial class TraktPeopleModule_Tests
     {
@@ -15,13 +13,6 @@
         private const uint PAGE = 2;
         private const uint LIMIT = 4;
         private const int UPDATED_IDS_COUNT = 4;
-
-        private readonly TestLogWriter _logWriter;
-
-        public TraktPeopleModule_Tests(ITestOutputHelper testOutputHelper)
-        {
-            _logWriter = new TestLogWriter(testOutputHelper);
-        }
 
         private const string PERSON_MINIMAL_JSON =
             @"{
