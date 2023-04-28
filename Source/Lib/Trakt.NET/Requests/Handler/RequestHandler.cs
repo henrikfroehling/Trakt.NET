@@ -158,11 +158,9 @@
 
         private async Task<TraktNoContentResponse> QueryNoContentAsync(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
-            HttpResponseMessage responseMessage = null;
-
             try
             {
-                responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
+                HttpResponseMessage responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
                 DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
                 DebugAsserter.AssertHttpResponseCodeIsExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.NO_CONTENT_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 return new TraktNoContentResponse { IsSuccess = true };
@@ -174,19 +172,13 @@
 
                 return new TraktNoContentResponse { IsSuccess = false, Exception = ex };
             }
-            finally
-            {
-                responseMessage?.Dispose();
-            }
         }
 
         private async Task<TraktResponse<TResponseContentType>> QuerySingleItemAsync<TResponseContentType>(bool asyncStream, ExtendedHttpRequestMessage requestMessage, bool isCheckinRequest = false, CancellationToken cancellationToken = default)
         {
-            HttpResponseMessage responseMessage = null;
-
             try
             {
-                responseMessage = await ExecuteRequestAsync(requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
+                HttpResponseMessage responseMessage = await ExecuteRequestAsync(requestMessage, isCheckinRequest, cancellationToken).ConfigureAwait(false);
                 DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
                 DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.SINGLE_ITEM_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 TResponseContentType contentObject = await ReadContentObjectAsync<TResponseContentType>(asyncStream, responseMessage, cancellationToken).ConfigureAwait(false);
@@ -211,19 +203,13 @@
 
                 return new TraktResponse<TResponseContentType> { IsSuccess = false, Exception = ex };
             }
-            finally
-            {
-                responseMessage?.Dispose();
-            }
         }
 
         private async Task<TraktListResponse<TResponseContentType>> QueryListAsync<TResponseContentType>(bool asyncStream, ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
-            HttpResponseMessage responseMessage = null;
-
             try
             {
-                responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
+                HttpResponseMessage responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
                 DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
                 DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 IEnumerable<TResponseContentType> contentObjects = await ReadContentListAsync<TResponseContentType>(asyncStream, responseMessage, cancellationToken).ConfigureAwait(false);
@@ -247,19 +233,13 @@
 
                 return new TraktListResponse<TResponseContentType> { IsSuccess = false, Exception = ex };
             }
-            finally
-            {
-                responseMessage?.Dispose();
-            }
         }
 
         private async Task<TraktPagedResponse<TResponseContentType>> QueryPagedListAsync<TResponseContentType>(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
-            HttpResponseMessage responseMessage = null;
-
             try
             {
-                responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
+                HttpResponseMessage responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
                 DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
                 DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.PAGED_LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
                 IEnumerable<TResponseContentType> contentObjects = await ReadContentListAsync<TResponseContentType>(false, responseMessage, cancellationToken).ConfigureAwait(false);
@@ -282,10 +262,6 @@
                     throw;
 
                 return new TraktPagedResponse<TResponseContentType> { IsSuccess = false, Exception = ex };
-            }
-            finally
-            {
-                responseMessage?.Dispose();
             }
         }
 
