@@ -155,6 +155,8 @@
             s_jsonIOFactories.Add(typeof(ITraktRating), new RatingJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSearchResult), new SearchResultJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktStatistics), new StatisticsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktStudio), new StudioJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktStudioIds), new StudioIdsJsonIOFactory());
 
             // basic post objects
             s_jsonIOFactories.Add(typeof(ITraktListItemsReorderPost), new ListItemsReorderPostJsonIOFactory());
