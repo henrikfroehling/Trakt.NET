@@ -421,6 +421,32 @@
         }
 
         /// <summary>
+        /// Gets all studios of a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/movies/studios/get-movie-studios">"Trakt API Doc - Movies: Studios"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="ITraktMovieIds" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktStudio" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktListResponse<ITraktStudio>> GetMovieStudiosAsync(string movieIdOrSlug, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteListRequestAsync(new MovieStudiosRequest
+            {
+                Id = movieIdOrSlug
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets trending movies.
         /// <para>OAuth authorization not required.</para>
         /// <para>
