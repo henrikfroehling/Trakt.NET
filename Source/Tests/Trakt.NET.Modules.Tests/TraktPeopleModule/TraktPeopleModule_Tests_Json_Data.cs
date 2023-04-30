@@ -13,6 +13,7 @@
         private const uint PAGE = 2;
         private const uint LIMIT = 4;
         private const int UPDATED_IDS_COUNT = 4;
+        private const int UPDATED_PEOPLE_COUNT = 2;
 
         private const string PERSON_MINIMAL_JSON =
             @"{
@@ -231,6 +232,36 @@
                 20,
                 34,
                 50
+              ]";
+
+        private const string RECENTLY_UPDATED_PEOPLE_JSON =
+            @"[
+                {
+                  ""updated_at"": ""2022-11-03T18:58:09.000Z"",
+                  ""person"": {
+                    ""name"": ""Charlie Cox"",
+                    ""ids"": {
+                      ""trakt"": 417084,
+                      ""slug"": ""charlie-cox"",
+                      ""imdb"": ""nm1214435"",
+                      ""tmdb"": 23458,
+                      ""tvrage"": 145276
+                    }
+                  }
+                },
+                {
+                  ""updated_at"": ""2022-11-03T18:58:09.000Z"",
+                  ""person"": {
+                    ""name"": ""Deborah Ann Woll"",
+                    ""ids"": {
+                      ""trakt"": 451773,
+                      ""slug"": ""deborah-ann-woll"",
+                      ""imdb"": ""nm2832695"",
+                      ""tmdb"": 212154,
+                      ""tvrage"": null
+                    }
+                  }
+                }
               ]";
     }
 }
