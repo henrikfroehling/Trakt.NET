@@ -1205,5 +1205,45 @@
                   }
                 }
               ]";
+
+        private const string SHOW_STUDIOS_JSON =
+            @"[
+                {
+                  ""name"": ""ABC Studios"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 1,
+                    ""slug"": ""abc-studios"",
+                    ""tmdb"": 19366
+                  }
+                },
+                {
+                  ""name"": ""DeKnight Productions"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 2,
+                    ""slug"": ""deknight-productions"",
+                    ""tmdb"": 51963
+                  }
+                },
+                {
+                  ""name"": ""Goddard Textiles"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 3,
+                    ""slug"": ""goddard-textiles"",
+                    ""tmdb"": 51964
+                  }
+                },
+                {
+                  ""name"": ""Marvel Television"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 4,
+                    ""slug"": ""marvel-television"",
+                    ""tmdb"": 38679
+                  }
+                }
+              ]";
     }
 }
