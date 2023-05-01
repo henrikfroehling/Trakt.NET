@@ -1245,5 +1245,37 @@
                   }
                 }
               ]";
+
+        private const string SHOW_CERTIFICATIONS_JSON =
+            @"[
+                {
+                  ""certification"": ""TV-MA"",
+                  ""country"": ""us""
+                },
+                {
+                  ""certification"": ""12"",
+                  ""country"": ""de""
+                },
+                {
+                  ""certification"": ""15"",
+                  ""country"": ""kr""
+                },
+                {
+                  ""certification"": ""15"",
+                  ""country"": ""gb""
+                },
+                {
+                  ""certification"": ""16"",
+                  ""country"": ""br""
+                },
+                {
+                  ""certification"": ""12"",
+                  ""country"": ""nl""
+                },
+                {
+                  ""certification"": ""18"",
+                  ""country"": ""pt""
+                }
+              ]";
     }
 }
