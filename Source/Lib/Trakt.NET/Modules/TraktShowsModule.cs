@@ -619,6 +619,32 @@
         }
 
         /// <summary>
+        /// Gets all certifications for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/shows/certifications/get-all-show-certifications">"Trakt API Doc - Shows: Certifications"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktShowCertification" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktListResponse<ITraktShowCertification>> GetShowCertificationsAsync(string showIdOrSlug, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteListRequestAsync(new ShowCertificationsRequest
+            {
+                Id = showIdOrSlug
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets trending shows.
         /// <para>OAuth authorization not required.</para>
         /// <para>
@@ -895,6 +921,55 @@
 
             return requestHandler.ExecutePagedRequestAsync(new ShowsMostAnticipatedRequest
             {
+                ExtendedInfo = extendedInfo,
+                Filter = filter,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets the most recommended shows.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/shows/recommended/get-the-most-recommended-shows">"Trakt API Doc - Shows: Recommended"</a> for more information.
+        /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktShowFilterBuilder" /> to create an instance of the optional <see cref="ITraktShowFilter" />.
+        /// See also <seealso cref="TraktFilter.NewShowFilter()" />.
+        /// </para>
+        /// </summary>
+        /// <param name="period">The time period, for which the most recommended shows should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the shows should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktShowFilter" />.</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktMostRecommendedShow}"/> instance containing the queried most recommended shows and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostRecommendedShow" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        public Task<TraktPagedResponse<ITraktMostRecommendedShow>> GetMostRecommendedShowsAsync(TraktTimePeriod period = null,
+                                                                                                TraktExtendedInfo extendedInfo = null,
+                                                                                                ITraktShowFilter filter = null,
+                                                                                                TraktPagedParameters pagedParameters = null,
+                                                                                                CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecutePagedRequestAsync(new ShowsMostRecommendedRequest
+            {
+                Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
