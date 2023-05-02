@@ -14,10 +14,10 @@
         {
             var allValues = TraktEnumeration.GetAll<TraktTimePeriod>();
 
-            allValues.Should().NotBeNull().And.HaveCount(5);
+            allValues.Should().NotBeNull().And.HaveCount(6);
             allValues.Should().Contain(new List<TraktTimePeriod>() { TraktTimePeriod.Unspecified, TraktTimePeriod.Weekly,
                                                                      TraktTimePeriod.Monthly, TraktTimePeriod.Yearly,
-                                                                     TraktTimePeriod.All });
+                                                                     TraktTimePeriod.Daily, TraktTimePeriod.All });
         }
     }
 }
