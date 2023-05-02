@@ -12,6 +12,7 @@
         private const uint PAGE = 2;
         private const uint LIMIT = 4;
         private const int ITEM_COUNT = 2;
+        private const int MOST_RECOMMENDED_ITEM_COUNT = 3;
         private const int USER_COUNT = 300;
         private const int LISTS_ITEM_COUNT = 10;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
@@ -1224,6 +1225,49 @@
                     ""trakt"": 23,
                     ""slug"": ""genre-films"",
                     ""tmdb"": 28788
+                  }
+                }
+              ]";
+
+        private const string MOST_RECOMMENDED_MOVIES_JSON =
+            @"[
+                {
+                  ""user_count"": 76254,
+                  ""movie"": {
+                    ""title"": ""The Dark Knight"",
+                    ""year"": 2008,
+                    ""ids"": {
+                      ""trakt"": 120,
+                      ""slug"": ""the-dark-knight-2008"",
+                      ""imdb"": ""tt0468569"",
+                      ""tmdb"": 155
+                    }
+                  }
+                },
+                {
+                  ""user_count"": 61289,
+                  ""movie"": {
+                    ""title"": ""The Avengers"",
+                    ""year"": 2012,
+                    ""ids"": {
+                      ""trakt"": 14701,
+                      ""slug"": ""the-avengers-2012"",
+                      ""imdb"": ""tt0848228"",
+                      ""tmdb"": 24428
+                    }
+                  }
+                },
+                {
+                  ""user_count"": 55443,
+                  ""movie"": {
+                    ""title"": ""Despicable Me"",
+                    ""year"": 2010,
+                    ""ids"": {
+                      ""trakt"": 12496,
+                      ""slug"": ""despicable-me-2010"",
+                      ""imdb"": ""tt1323594"",
+                      ""tmdb"": 20352
+                    }
                   }
                 }
               ]";
