@@ -206,14 +206,15 @@
             s_jsonIOFactories.Add(typeof(ITraktHistoryItem), new HistoryItemJsonIOFactory());
 
             // movie objects
+            s_jsonIOFactories.Add(typeof(ITraktBoxOfficeMovie), new BoxOfficeMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMostAnticipatedMovie), new MostAnticipatedMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMostPWCMovie), new MostPWCMovieJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktMostRecommendedMovie), new MostRecommendedMovieJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMovie), new MovieJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMovieAlias), new MovieAliasJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMovieIds), new MovieIdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMovieRelease), new MovieReleaseJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMovieTranslation), new MovieTranslationJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktBoxOfficeMovie), new BoxOfficeMovieJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktMostAnticipatedMovie), new MostAnticipatedMovieJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktMostPWCMovie), new MostPWCMovieJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktRecentlyUpdatedMovie), new RecentlyUpdatedMovieJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktTrendingMovie), new TrendingMovieJsonIOFactory());
 
