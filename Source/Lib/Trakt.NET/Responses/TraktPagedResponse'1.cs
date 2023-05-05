@@ -28,11 +28,56 @@
 
         public int? ItemCount { get; set; }
 
-        /// <summary>Returns whether the response has more pages which can be retrieved.</summary>
+        /// <summary>Returns whether the response can retrieve the previous page.</summary>
+        public bool HasPreviousPage => Page.HasValue && PageCount.HasValue && Page.Value > 1;
+
+        /// <summary>Returns whether the response can retrieve the next page.</summary>
         public bool HasNextPage => Page.HasValue && PageCount.HasValue && Page.Value < PageCount.Value;
 
         /// <summary>
-        /// Gets the next retriavable page for this response, if <see cref="HasNextPage" /> is true.
+        /// Gets the previous retrievable page for this response, if <see cref="HasPreviousPage" /> is true.
+        /// <para>
+        /// If this response is already the first page response or if there are no more pages to retrieve,
+        /// this response instance will be returned.
+        /// </para>
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{TResponseContentType}"/> instance containing the items of the previous page and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{TResponseContentType}" /> and <typeparamref name="TResponseContentType" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        public Task<TraktPagedResponse<TResponseContentType>> GetPreviousPageAsync(CancellationToken cancellationToken = default)
+        {
+            if (HasPreviousPage && _request != null)
+            {
+                Debug.Assert(_request is ISupportsPagination);
+                Debug.Assert(_client != null);
+
+                var page = (_request as ISupportsPagination).Page;
+
+                if (page.HasValue && page.Value > 1)
+                {
+                    page = page.Value - 1;
+                    (_request as ISupportsPagination).Page = page;
+                    var requestHandler = new RequestHandler(_client);
+                    return requestHandler.ExecutePagedRequestAsync(_request, cancellationToken);
+                }
+            }
+
+            // There is no previous page or request is not set because API endpoint supports a "limit" but not paging.
+            // Just return the current response.
+            return Task.FromResult(this);
+        }
+
+        /// <summary>
+        /// Gets the next retrievable page for this response, if <see cref="HasNextPage" /> is true.
         /// <para>
         /// If this response is already the last page response or if there are no more pages to retrieve,
         /// this response instance will be returned.
