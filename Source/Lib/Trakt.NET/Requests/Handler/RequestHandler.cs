@@ -57,6 +57,14 @@
             return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
+        internal static async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(TraktClient client, IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(client);
+            var response = await requestHandler.ExecutePagedRequestAsync(request, cancellationToken).ConfigureAwait(false);
+            response.SetRequestAndClient(request, client);
+            return response;
+        }
+
         // post requests
 
         public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPostRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody

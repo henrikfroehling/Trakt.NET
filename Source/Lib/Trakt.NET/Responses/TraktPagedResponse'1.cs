@@ -52,9 +52,8 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         public Task<TraktPagedResponse<TResponseContentType>> GetNextPageAsync(CancellationToken cancellationToken = default)
         {
-            if (HasNextPage)
+            if (HasNextPage && _request != null)
             {
-                Debug.Assert(_request != null);
                 Debug.Assert(_request is ISupportsPagination);
                 Debug.Assert(_client != null);
 
@@ -69,7 +68,7 @@
                 }
             }
 
-            // There is no next page.
+            // There is no next page or request is not set because API endpoint supports a "limit" but not paging.
             // Just return the current response.
             return Task.FromResult(this);
         }

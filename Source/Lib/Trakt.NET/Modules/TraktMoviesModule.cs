@@ -208,16 +208,15 @@
                                                                              TraktPagedParameters pagedParameters = null,
                                                                              CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MovieCommentsRequest
+            var request = new MovieCommentsRequest
             {
                 Id = movieIdOrSlug,
                 SortOrder = commentSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -249,17 +248,16 @@
                                                                        TraktPagedParameters pagedParameters = null,
                                                                        CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MovieListsRequest
+            var request = new MovieListsRequest
             {
                 Id = movieIdOrSlug,
                 Type = listType,
                 SortOrder = listSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -350,16 +348,15 @@
                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                 CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MovieRelatedMoviesRequest
+            var request = new MovieRelatedMoviesRequest
             {
                 Id = movieIdOrSlug,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -480,16 +477,15 @@
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesTrendingRequest
+            var request = new MoviesTrendingRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -526,16 +522,15 @@
                                                                            TraktPagedParameters pagedParameters = null,
                                                                            CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesPopularRequest
+            var request = new MoviesPopularRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -574,17 +569,16 @@
                                                                                      TraktPagedParameters pagedParameters = null,
                                                                                      CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesMostPlayedRequest
+            var request = new MoviesMostPlayedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -623,17 +617,16 @@
                                                                                       TraktPagedParameters pagedParameters = null,
                                                                                       CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesMostWatchedRequest
+            var request = new MoviesMostWatchedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -672,17 +665,16 @@
                                                                                         TraktPagedParameters pagedParameters = null,
                                                                                         CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesMostCollectedRequest
+            var request = new MoviesMostCollectedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -719,16 +711,15 @@
                                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                                   CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesMostAnticipatedRequest
+            var request = new MoviesMostAnticipatedRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -767,17 +758,16 @@
                                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                                   CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesMostRecommendedRequest
+            var request = new MoviesMostRecommendedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -839,16 +829,15 @@
                                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                                   CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesRecentlyUpdatedRequest
+            var request = new MoviesRecentlyUpdatedRequest
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -875,15 +864,14 @@
         public Task<TraktPagedResponse<int>> GetRecentlyUpdatedMovieIdsAsync(DateTime? startDate = null, TraktPagedParameters pagedParameters = null,
                                                                              CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesRecentlyUpdatedIdsRequest
+            var request = new MoviesRecentlyUpdatedIdsRequest
             {
                 StartDate = startDate,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
     }
 }

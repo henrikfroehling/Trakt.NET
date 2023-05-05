@@ -47,14 +47,13 @@
         public Task<TraktPagedResponse<ITraktList>> GetPopularListsAsync(TraktPagedParameters pagedParameters = null,
                                                                          CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ListsPopularRequest
+            var request = new ListsPopularRequest
             {
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -80,14 +79,13 @@
         public Task<TraktPagedResponse<ITraktList>> GetTrendingListsAsync(TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ListsTrendingRequest
+            var request = new ListsTrendingRequest
             {
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -140,17 +138,16 @@
                                                                           TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ListItemsRequest
+            var request = new ListItemsRequest
             {
                 Id = listIdOrSlug,
                 Type = listItemType,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -171,15 +168,14 @@
         public Task<TraktPagedResponse<ITraktListLike>> GetListLikesAsync(string listIdOrSlug, TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ListLikesRequest
+            var request = new ListLikesRequest
             {
                 Id = listIdOrSlug,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -208,16 +204,15 @@
                                                                             TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ListCommentsRequest
+            var request = new ListCommentsRequest
             {
                 Id = listIdOrSlug,
                 SortOrder = commentSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
     }
 }
