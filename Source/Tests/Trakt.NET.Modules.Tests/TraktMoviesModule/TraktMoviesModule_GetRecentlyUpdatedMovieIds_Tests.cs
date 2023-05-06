@@ -182,6 +182,184 @@
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page=2&limit={LIMIT}",
+                RECENTLY_UPDATED_MOVIE_IDS_JSON, 2, LIMIT, 5, UPDATED_IDS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(UPDATED_IDS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(UPDATED_IDS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_Paging_Only_HasPreviousPage()
+        {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page=2&limit={LIMIT}",
+                RECENTLY_UPDATED_MOVIE_IDS_JSON, 2, LIMIT, 2, UPDATED_IDS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(UPDATED_IDS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(UPDATED_IDS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_Paging_Only_HasNextPage()
+        {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page=1&limit={LIMIT}",
+                RECENTLY_UPDATED_MOVIE_IDS_JSON, 1, LIMIT, 2, UPDATED_IDS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(UPDATED_IDS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(UPDATED_IDS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page=1&limit={LIMIT}",
+                RECENTLY_UPDATED_MOVIE_IDS_JSON, 1, LIMIT, 1, UPDATED_IDS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(UPDATED_IDS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(UPDATED_IDS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_Paging_GetPreviousPage()
+        {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page=2&limit={LIMIT}",
+                RECENTLY_UPDATED_MOVIE_IDS_JSON, 2, LIMIT, 2, UPDATED_IDS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(UPDATED_IDS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(UPDATED_IDS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetMockClient(client,
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page=1&limit={LIMIT}",
+                RECENTLY_UPDATED_MOVIE_IDS_JSON, 1, LIMIT, 2, UPDATED_IDS_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(UPDATED_IDS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(UPDATED_IDS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetRecentlyUpdatedMovieIds_Paging_GetNextPage()
+        {
+            var startDate = TestUtility.EncodeForURL(START_DATE.ToTraktCacheEfficientLongDateTimeString());
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page=1&limit={LIMIT}",
+                RECENTLY_UPDATED_MOVIE_IDS_JSON, 1, LIMIT, 2, UPDATED_IDS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<int> response = await client.Movies.GetRecentlyUpdatedMovieIdsAsync(START_DATE, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(UPDATED_IDS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(UPDATED_IDS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetMockClient(client,
+                $"{GET_RECENTLY_UPDATED_MOVIE_IDS_URI}/{startDate}?page=2&limit={LIMIT}",
+                RECENTLY_UPDATED_MOVIE_IDS_JSON, 2, LIMIT, 2, UPDATED_IDS_COUNT);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(UPDATED_IDS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(UPDATED_IDS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
