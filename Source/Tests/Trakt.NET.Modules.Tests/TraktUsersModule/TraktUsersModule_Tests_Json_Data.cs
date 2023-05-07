@@ -66,6 +66,7 @@
         private readonly TraktFilterSection FILTER_SECTION = TraktFilterSection.Movies;
         private const int SAVED_FILTERS_COUNT = 2;
         private const int SAVED_FILTERS_LIMIT = 4;
+        private const int LIST_ITEMS_COUNT = 5;
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 

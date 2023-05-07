@@ -187,17 +187,16 @@
                                                                         TraktPagedParameters pagedParameters = null,
                                                                         CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new PersonListsRequest
+            var request = new PersonListsRequest
             {
                 Id = personIdOrSlug,
                 Type = listType,
                 SortOrder = listSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -224,15 +223,14 @@
         public Task<TraktPagedResponse<int>> GetRecentlyUpdatedPeopleIdsAsync(DateTime? startDate = null, TraktPagedParameters pagedParameters = null,
                                                                               CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new PeopleRecentlyUpdatedIdsRequest
+            var request = new PeopleRecentlyUpdatedIdsRequest
             {
                 StartDate = startDate,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -265,16 +263,15 @@
                                                                                                    TraktPagedParameters pagedParameters = null,
                                                                                                    CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new PeopleRecentlyUpdatedRequest
+            var request = new PeopleRecentlyUpdatedRequest
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
     }
 }

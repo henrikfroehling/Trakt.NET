@@ -43,6 +43,8 @@
             return httpClient;
         }
 
+        internal void Clear() => _mockHttpMessageHandler.Clear();
+
         internal void SetupMockResponse(string uri, string responseContent,
                                         uint? page = null, uint? limit = null,
                                         int? pageCount = null, int? itemCount = null,

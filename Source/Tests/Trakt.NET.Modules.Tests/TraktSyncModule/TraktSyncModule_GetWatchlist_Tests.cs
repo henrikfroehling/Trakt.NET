@@ -431,6 +431,206 @@
             response.SortHow.Should().NotBeNull().And.Be(WATCHLIST_SORT_HOW);
         }
 
+        [Fact]
+        public async Task Test_TraktSyncModule_GetWatchlist_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                WATCHLIST_JSON, 2, LIMIT, 5, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, WATCHLIST_SORT_ORDER, EXTENDED_INFO,
+                                                    pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetWatchlist_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                WATCHLIST_JSON, 2, LIMIT, 2, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, WATCHLIST_SORT_ORDER, EXTENDED_INFO,
+                                                    pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetWatchlist_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                WATCHLIST_JSON, 1, LIMIT, 2, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, WATCHLIST_SORT_ORDER, EXTENDED_INFO,
+                                                    pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetWatchlist_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                WATCHLIST_JSON, 1, LIMIT, 1, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, WATCHLIST_SORT_ORDER, EXTENDED_INFO,
+                                                    pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetWatchlist_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                WATCHLIST_JSON, 2, LIMIT, 2, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, WATCHLIST_SORT_ORDER, EXTENDED_INFO,
+                                                    pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetOAuthMockClient(client,
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                WATCHLIST_JSON, 1, LIMIT, 2, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktSyncModule_GetWatchlist_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                WATCHLIST_JSON, 1, LIMIT, 2, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktWatchlistItem> response =
+                await client.Sync.GetWatchlistAsync(WATCHLIST_ITEM_TYPE, WATCHLIST_SORT_ORDER, EXTENDED_INFO,
+                                                    pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetOAuthMockClient(client,
+                $"{GET_WATCHLIST_URI}/{WATCHLIST_ITEM_TYPE.UriName}/{WATCHLIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                WATCHLIST_JSON, 2, LIMIT, 2, ITEM_COUNT,
+                sortBy: WATCHLIST_SORT_BY, sortHow: WATCHLIST_SORT_HOW);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]

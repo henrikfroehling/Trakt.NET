@@ -166,6 +166,192 @@
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
+        [Fact]
+        public async Task Test_TraktUsersModule_GetSavedFilters_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_SAVED_FILTERS_URI}?section={FILTER_SECTION.UriName}" +
+                $"&page=2&limit={SAVED_FILTERS_LIMIT}",
+                SAVED_FILTERS_JSON, 2, SAVED_FILTERS_LIMIT, 5, SAVED_FILTERS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, SAVED_FILTERS_LIMIT);
+
+            TraktPagedResponse<ITraktUserSavedFilter> response =
+                await client.Users.GetSavedFiltersAsync(FILTER_SECTION, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SAVED_FILTERS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SAVED_FILTERS_COUNT);
+            response.Limit.Should().Be(SAVED_FILTERS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetSavedFilters_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_SAVED_FILTERS_URI}?section={FILTER_SECTION.UriName}" +
+                $"&page=2&limit={SAVED_FILTERS_LIMIT}",
+                SAVED_FILTERS_JSON, 2, SAVED_FILTERS_LIMIT, 2, SAVED_FILTERS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, SAVED_FILTERS_LIMIT);
+
+            TraktPagedResponse<ITraktUserSavedFilter> response =
+                await client.Users.GetSavedFiltersAsync(FILTER_SECTION, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SAVED_FILTERS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SAVED_FILTERS_COUNT);
+            response.Limit.Should().Be(SAVED_FILTERS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetSavedFilters_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_SAVED_FILTERS_URI}?section={FILTER_SECTION.UriName}" +
+                $"&page=1&limit={SAVED_FILTERS_LIMIT}",
+                SAVED_FILTERS_JSON, 1, SAVED_FILTERS_LIMIT, 2, SAVED_FILTERS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, SAVED_FILTERS_LIMIT);
+
+            TraktPagedResponse<ITraktUserSavedFilter> response =
+                await client.Users.GetSavedFiltersAsync(FILTER_SECTION, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SAVED_FILTERS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SAVED_FILTERS_COUNT);
+            response.Limit.Should().Be(SAVED_FILTERS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetSavedFilters_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_SAVED_FILTERS_URI}?section={FILTER_SECTION.UriName}" +
+                $"&page=1&limit={SAVED_FILTERS_LIMIT}",
+                SAVED_FILTERS_JSON, 1, SAVED_FILTERS_LIMIT, 1, SAVED_FILTERS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, SAVED_FILTERS_LIMIT);
+
+            TraktPagedResponse<ITraktUserSavedFilter> response =
+                await client.Users.GetSavedFiltersAsync(FILTER_SECTION, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SAVED_FILTERS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SAVED_FILTERS_COUNT);
+            response.Limit.Should().Be(SAVED_FILTERS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetSavedFilters_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_SAVED_FILTERS_URI}?section={FILTER_SECTION.UriName}" +
+                $"&page=2&limit={SAVED_FILTERS_LIMIT}",
+                SAVED_FILTERS_JSON, 2, SAVED_FILTERS_LIMIT, 2, SAVED_FILTERS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, SAVED_FILTERS_LIMIT);
+
+            TraktPagedResponse<ITraktUserSavedFilter> response =
+                await client.Users.GetSavedFiltersAsync(FILTER_SECTION, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SAVED_FILTERS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SAVED_FILTERS_COUNT);
+            response.Limit.Should().Be(SAVED_FILTERS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetOAuthMockClient(client,
+                $"{GET_SAVED_FILTERS_URI}?section={FILTER_SECTION.UriName}" +
+                $"&page=1&limit={SAVED_FILTERS_LIMIT}",
+                SAVED_FILTERS_JSON, 1, SAVED_FILTERS_LIMIT, 2, SAVED_FILTERS_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SAVED_FILTERS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SAVED_FILTERS_COUNT);
+            response.Limit.Should().Be(SAVED_FILTERS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetSavedFilters_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_SAVED_FILTERS_URI}?section={FILTER_SECTION.UriName}" +
+                $"&page=1&limit={SAVED_FILTERS_LIMIT}",
+                SAVED_FILTERS_JSON, 1, SAVED_FILTERS_LIMIT, 2, SAVED_FILTERS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, SAVED_FILTERS_LIMIT);
+
+            TraktPagedResponse<ITraktUserSavedFilter> response =
+                await client.Users.GetSavedFiltersAsync(FILTER_SECTION, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SAVED_FILTERS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SAVED_FILTERS_COUNT);
+            response.Limit.Should().Be(SAVED_FILTERS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetOAuthMockClient(client,
+                $"{GET_SAVED_FILTERS_URI}?section={FILTER_SECTION.UriName}" +
+                $"&page=2&limit={SAVED_FILTERS_LIMIT}",
+                SAVED_FILTERS_JSON, 2, SAVED_FILTERS_LIMIT, 2, SAVED_FILTERS_COUNT);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SAVED_FILTERS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SAVED_FILTERS_COUNT);
+            response.Limit.Should().Be(SAVED_FILTERS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]

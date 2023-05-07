@@ -316,6 +316,192 @@
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
+        [Fact]
+        public async Task Test_TraktUsersModule_GetHiddenItems_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}" +
+                $"&extended={EXTENDED_INFO}&page=2&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, 2, HIDDEN_ITEMS_LIMIT, 5, HIDDEN_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, HIDDEN_ITEMS_LIMIT);
+
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetHiddenItems_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}" +
+                $"&extended={EXTENDED_INFO}&page=2&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, 2, HIDDEN_ITEMS_LIMIT, 2, HIDDEN_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, HIDDEN_ITEMS_LIMIT);
+
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetHiddenItems_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}" +
+                $"&extended={EXTENDED_INFO}&page=1&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, 1, HIDDEN_ITEMS_LIMIT, 2, HIDDEN_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, HIDDEN_ITEMS_LIMIT);
+
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetHiddenItems_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}" +
+                $"&extended={EXTENDED_INFO}&page=1&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, 1, HIDDEN_ITEMS_LIMIT, 1, HIDDEN_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, HIDDEN_ITEMS_LIMIT);
+
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetHiddenItems_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}" +
+                $"&extended={EXTENDED_INFO}&page=2&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, 2, HIDDEN_ITEMS_LIMIT, 2, HIDDEN_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, HIDDEN_ITEMS_LIMIT);
+
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetOAuthMockClient(client,
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}" +
+                $"&extended={EXTENDED_INFO}&page=1&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, 1, HIDDEN_ITEMS_LIMIT, 2, HIDDEN_ITEMS_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetHiddenItems_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}" +
+                $"&extended={EXTENDED_INFO}&page=1&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, 1, HIDDEN_ITEMS_LIMIT, 2, HIDDEN_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, HIDDEN_ITEMS_LIMIT);
+
+            TraktPagedResponse<ITraktUserHiddenItem> response =
+                await client.Users.GetHiddenItemsAsync(HIDDEN_ITEMS_SECTION, HIDDEN_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetOAuthMockClient(client,
+                $"{GetHiddenItemsUri}?type={HIDDEN_ITEM_TYPE.UriName}" +
+                $"&extended={EXTENDED_INFO}&page=2&limit={HIDDEN_ITEMS_LIMIT}",
+                HIDDEN_ITEMS_JSON, 2, HIDDEN_ITEMS_LIMIT, 2, HIDDEN_ITEMS_COUNT);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(HIDDEN_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(HIDDEN_ITEMS_COUNT);
+            response.Limit.Should().Be(HIDDEN_ITEMS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]

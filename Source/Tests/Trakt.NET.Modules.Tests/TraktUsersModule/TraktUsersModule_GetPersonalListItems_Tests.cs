@@ -8,6 +8,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Lists;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
@@ -91,6 +92,184 @@
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(5);
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSONAL_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                LIST_ITEMS_JSON, 2, LIMIT, 5, LIST_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetPersonalListItemsAsync(USERNAME, LIST_ID, LIST_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEMS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSONAL_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                LIST_ITEMS_JSON, 2, LIMIT, 2, LIST_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetPersonalListItemsAsync(USERNAME, LIST_ID, LIST_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEMS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSONAL_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                LIST_ITEMS_JSON, 1, LIMIT, 2, LIST_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetPersonalListItemsAsync(USERNAME, LIST_ID, LIST_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEMS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSONAL_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                LIST_ITEMS_JSON, 1, LIMIT, 1, LIST_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetPersonalListItemsAsync(USERNAME, LIST_ID, LIST_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEMS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSONAL_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                LIST_ITEMS_JSON, 2, LIMIT, 2, LIST_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetPersonalListItemsAsync(USERNAME, LIST_ID, LIST_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEMS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetMockClient(client,
+                $"{GET_PERSONAL_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                LIST_ITEMS_JSON, 1, LIMIT, 2, LIST_ITEMS_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEMS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSONAL_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                LIST_ITEMS_JSON, 1, LIMIT, 2, LIST_ITEMS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetPersonalListItemsAsync(USERNAME, LIST_ID, LIST_ITEM_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEMS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetMockClient(client,
+                $"{GET_PERSONAL_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                LIST_ITEMS_JSON, 2, LIMIT, 2, LIST_ITEMS_COUNT);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEMS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEMS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
         }
 
         [Theory]
