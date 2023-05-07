@@ -7,7 +7,7 @@
     public class TraktPersonMovieCreditsCrewItem : ITraktPersonMovieCreditsCrewItem
     {
         /// <summary>Gets or sets the jobs collection of the crew position.<para>Nullable</para></summary>
-        public IEnumerable<string> Jobs { get; set; }
+        public IList<string> Jobs { get; set; }
 
         /// <summary>
         /// Gets or sets the movie of the crew position. See also <seealso cref="ITraktMovie" />.

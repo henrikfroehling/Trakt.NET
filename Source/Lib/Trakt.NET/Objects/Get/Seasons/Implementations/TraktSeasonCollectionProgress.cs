@@ -10,6 +10,6 @@
         /// Gets or sets the collected episodes. See also <seealso cref="ITraktEpisodeCollectionProgress" />.
         /// <para>Nullable</para>
         /// </summary>
-        public IEnumerable<ITraktEpisodeCollectionProgress> Episodes { get; set; }
+        public IList<ITraktEpisodeCollectionProgress> Episodes { get; set; }
     }
 }

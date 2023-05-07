@@ -7,6 +7,6 @@ namespace TraktNet.Objects.Get.Recommendations
     public interface ITraktRecommendedShow : ITraktShow
     {
         /// <summary>Gets or sets the list of users who recommended this show. See also <seealso cref="ITraktRecommendedBy" />.<para>Nullable</para></summary>
-        IEnumerable<ITraktRecommendedBy> RecommendedBy { get; set; }
+        IList<ITraktRecommendedBy> RecommendedBy { get; set; }
     }
 }

@@ -7,7 +7,7 @@
     public interface ITraktPersonMovieCreditsCastItem
     {
         /// <summary>Gets or sets the characters collection of the cast position.<para>Nullable</para></summary>
-        IEnumerable<string> Characters { get; set; }
+        IList<string> Characters { get; set; }
 
         /// <summary>
         /// Gets or sets the movie of the cast position. See also <seealso cref="ITraktMovie" />.
