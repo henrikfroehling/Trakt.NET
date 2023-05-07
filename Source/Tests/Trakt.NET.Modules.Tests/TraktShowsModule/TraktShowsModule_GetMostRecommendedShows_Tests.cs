@@ -594,7 +594,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
         {
             TraktClient client = TestUtility.GetMockClient(
                 $"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
-                MOST_RECOMMENDED_SHOWS_JSON, 2, LIMIT, 5, ITEM_COUNT);
+                MOST_RECOMMENDED_SHOWS_JSON, 2, LIMIT, 5, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
@@ -604,8 +604,8 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
-            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Value.Should().NotBeNull().And.HaveCount(MOST_RECOMMENDED_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOST_RECOMMENDED_ITEM_COUNT);
             response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(2);
             response.PageCount.Should().HaveValue().And.Be(5);
@@ -618,7 +618,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
         {
             TraktClient client = TestUtility.GetMockClient(
                 $"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
-                MOST_RECOMMENDED_SHOWS_JSON, 2, LIMIT, 2, ITEM_COUNT);
+                MOST_RECOMMENDED_SHOWS_JSON, 2, LIMIT, 2, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
@@ -628,8 +628,8 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
-            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Value.Should().NotBeNull().And.HaveCount(MOST_RECOMMENDED_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOST_RECOMMENDED_ITEM_COUNT);
             response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(2);
             response.PageCount.Should().HaveValue().And.Be(2);
@@ -642,7 +642,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
         {
             TraktClient client = TestUtility.GetMockClient(
                 $"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
-                MOST_RECOMMENDED_SHOWS_JSON, 1, LIMIT, 2, ITEM_COUNT);
+                MOST_RECOMMENDED_SHOWS_JSON, 1, LIMIT, 2, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
@@ -652,8 +652,8 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
-            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Value.Should().NotBeNull().And.HaveCount(MOST_RECOMMENDED_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOST_RECOMMENDED_ITEM_COUNT);
             response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1);
             response.PageCount.Should().HaveValue().And.Be(2);
@@ -666,7 +666,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
         {
             TraktClient client = TestUtility.GetMockClient(
                 $"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
-                MOST_RECOMMENDED_SHOWS_JSON, 1, LIMIT, 1, ITEM_COUNT);
+                MOST_RECOMMENDED_SHOWS_JSON, 1, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
@@ -676,8 +676,8 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
-            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Value.Should().NotBeNull().And.HaveCount(MOST_RECOMMENDED_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOST_RECOMMENDED_ITEM_COUNT);
             response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1);
             response.PageCount.Should().HaveValue().And.Be(1);
@@ -690,7 +690,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
         {
             TraktClient client = TestUtility.GetMockClient(
                 $"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
-                MOST_RECOMMENDED_SHOWS_JSON, 2, LIMIT, 2, ITEM_COUNT);
+                MOST_RECOMMENDED_SHOWS_JSON, 2, LIMIT, 2, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
@@ -700,8 +700,8 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
-            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Value.Should().NotBeNull().And.HaveCount(MOST_RECOMMENDED_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOST_RECOMMENDED_ITEM_COUNT);
             response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(2);
             response.PageCount.Should().HaveValue().And.Be(2);
@@ -710,15 +710,15 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             TestUtility.ResetMockClient(client,
                 $"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
-                MOST_RECOMMENDED_SHOWS_JSON, 1, LIMIT, 2, ITEM_COUNT);
+                MOST_RECOMMENDED_SHOWS_JSON, 1, LIMIT, 2, MOST_RECOMMENDED_ITEM_COUNT);
 
             response = await response.GetPreviousPageAsync();
             
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
-            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Value.Should().NotBeNull().And.HaveCount(MOST_RECOMMENDED_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOST_RECOMMENDED_ITEM_COUNT);
             response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1);
             response.PageCount.Should().HaveValue().And.Be(2);
@@ -731,7 +731,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
         {
             TraktClient client = TestUtility.GetMockClient(
                 $"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
-                MOST_RECOMMENDED_SHOWS_JSON, 1, LIMIT, 2, ITEM_COUNT);
+                MOST_RECOMMENDED_SHOWS_JSON, 1, LIMIT, 2, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
@@ -741,8 +741,8 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
-            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Value.Should().NotBeNull().And.HaveCount(MOST_RECOMMENDED_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOST_RECOMMENDED_ITEM_COUNT);
             response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(1);
             response.PageCount.Should().HaveValue().And.Be(2);
@@ -751,15 +751,15 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             TestUtility.ResetMockClient(client,
                 $"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
-                MOST_RECOMMENDED_SHOWS_JSON, 2, LIMIT, 2, ITEM_COUNT);
+                MOST_RECOMMENDED_SHOWS_JSON, 2, LIMIT, 2, MOST_RECOMMENDED_ITEM_COUNT);
 
             response = await response.GetNextPageAsync();
             
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
-            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Value.Should().NotBeNull().And.HaveCount(MOST_RECOMMENDED_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOST_RECOMMENDED_ITEM_COUNT);
             response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(2);
             response.PageCount.Should().HaveValue().And.Be(2);
