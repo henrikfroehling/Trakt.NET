@@ -15,6 +15,6 @@
         /// Otherwise, only the specified episodes will be added to the watchlist.
         /// </para>
         /// </summary>
-        public IEnumerable<ITraktSyncWatchlistPostShowEpisode> Episodes { get; set; }
+        public IList<ITraktSyncWatchlistPostShowEpisode> Episodes { get; set; }
     }
 }

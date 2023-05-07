@@ -19,7 +19,7 @@
         /// Otherwise, only the specified seasons and / or episodes will be added to the personal list.
         /// </para>
         /// </summary>
-        public IEnumerable<ITraktUserPersonalListItemsPostShowSeason> Seasons { get; set; }
+        public IList<ITraktUserPersonalListItemsPostShowSeason> Seasons { get; set; }
 
         /// <summary>Gets or sets the show notes.</summary>
         public string Notes { get; set; }

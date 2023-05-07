@@ -13,24 +13,24 @@
         /// An optional list of <see cref="ITraktSyncHistoryPostMovie" />s.
         /// <para>Each <see cref="ITraktSyncHistoryPostMovie" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        IEnumerable<ITraktSyncHistoryPostMovie> Movies { get; set; }
+        IList<ITraktSyncHistoryPostMovie> Movies { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncHistoryPostShow" />s.
         /// <para>Each <see cref="ITraktSyncHistoryPostShow" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        IEnumerable<ITraktSyncHistoryPostShow> Shows { get; set; }
+        IList<ITraktSyncHistoryPostShow> Shows { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncHistoryPostSeason" />s.
         /// <para>Each <see cref="ITraktSyncHistoryPostSeason" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        IEnumerable<ITraktSyncHistoryPostSeason> Seasons { get; set; }
+        IList<ITraktSyncHistoryPostSeason> Seasons { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncHistoryPostEpisode" />s.
         /// <para>Each <see cref="ITraktSyncHistoryPostEpisode" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        IEnumerable<ITraktSyncHistoryPostEpisode> Episodes { get; set; }
+        IList<ITraktSyncHistoryPostEpisode> Episodes { get; set; }
     }
 }

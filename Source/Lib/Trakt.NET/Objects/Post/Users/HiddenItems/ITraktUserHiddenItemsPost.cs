@@ -14,21 +14,21 @@
         /// An optional list of <see cref="ITraktUserHiddenItemsPostMovie" />s.
         /// <para>Each <see cref="ITraktUserHiddenItemsPostMovie" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        IEnumerable<ITraktUserHiddenItemsPostMovie> Movies { get; set; }
+        IList<ITraktUserHiddenItemsPostMovie> Movies { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktUserHiddenItemsPostShow" />s.
         /// <para>Each <see cref="ITraktUserHiddenItemsPostShow" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        IEnumerable<ITraktUserHiddenItemsPostShow> Shows { get; set; }
+        IList<ITraktUserHiddenItemsPostShow> Shows { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktUserHiddenItemsPostSeason" />s.
         /// <para>Each <see cref="ITraktUserHiddenItemsPostSeason" /> must have at least a valid Trakt id and a name.</para>
         /// </summary>
-        IEnumerable<ITraktUserHiddenItemsPostSeason> Seasons { get; set; }
+        IList<ITraktUserHiddenItemsPostSeason> Seasons { get; set; }
 
         /// <summary>An optional list of <see cref="ITraktUser" />s.</summary>
-        IEnumerable<ITraktUser> Users { get; set; }
+        IList<ITraktUser> Users { get; set; }
     }
 }

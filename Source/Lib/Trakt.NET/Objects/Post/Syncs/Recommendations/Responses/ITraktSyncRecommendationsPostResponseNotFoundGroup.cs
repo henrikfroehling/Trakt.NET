@@ -9,12 +9,12 @@
         /// A list of <see cref="ITraktSyncRecommendationsPostMovie" />, containing the ids of recommended movies, which were not found.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktSyncRecommendationsPostMovie> Movies { get; set; }
+        IList<ITraktSyncRecommendationsPostMovie> Movies { get; set; }
 
         /// <summary>
         /// A list of <see cref="ITraktSyncRecommendationsPostShow" />, containing the ids of recommended shows, which were not found.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktSyncRecommendationsPostShow> Shows { get; set; }
+        IList<ITraktSyncRecommendationsPostShow> Shows { get; set; }
     }
 }

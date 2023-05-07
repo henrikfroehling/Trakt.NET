@@ -15,6 +15,6 @@
         /// Otherwise, only the specified episodes will be added to the personal list.
         /// </para>
         /// </summary>
-        public IEnumerable<ITraktUserPersonalListItemsPostShowEpisode> Episodes { get; set; }
+        public IList<ITraktUserPersonalListItemsPostShowEpisode> Episodes { get; set; }
     }
 }
