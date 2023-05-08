@@ -22,7 +22,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
                 traktCommentLikes.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -34,7 +34,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -70,7 +70,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -99,7 +99,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -128,7 +128,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -164,7 +164,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -193,7 +193,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -219,7 +219,7 @@
         public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCommentLike>();
-            Func<Task<IEnumerable<ITraktCommentLike>>> traktCommentLikes = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktCommentLike>>> traktCommentLikes = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktCommentLikes.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -230,7 +230,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentLike> traktCommentLikes = await jsonReader.ReadArrayAsync(stream);
                 traktCommentLikes.Should().BeNull();
             }
         }

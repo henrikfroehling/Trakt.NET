@@ -16,7 +16,7 @@
         public async Task Test_SearchResultArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
-            Func<Task<IEnumerable<ITraktSearchResult>>> traktSearchResults = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktSearchResult>>> traktSearchResults = () => jsonReader.ReadArrayAsync(default(string));
             await traktSearchResults.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -24,7 +24,7 @@
         public async Task Test_SearchResultArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
             var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
-            IEnumerable<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(string.Empty);
+            IList<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(string.Empty);
             traktSearchResults.Should().BeNull();
         }
     }

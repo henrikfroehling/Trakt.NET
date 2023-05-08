@@ -1059,7 +1059,7 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncWatchlistPostEpisode>()
+                Episodes = new List<ITraktSyncWatchlistPostEpisode>()
                 {
                     new TraktSyncWatchlistPostEpisode
                     {

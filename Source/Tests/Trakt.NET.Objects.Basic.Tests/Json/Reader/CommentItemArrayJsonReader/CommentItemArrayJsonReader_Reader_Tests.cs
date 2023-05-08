@@ -24,7 +24,7 @@
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktCommentItems.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -37,7 +37,7 @@
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -186,7 +186,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -285,7 +285,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -384,7 +384,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -526,7 +526,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -668,7 +668,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -799,7 +799,7 @@
         public async Task Test_CommentItemArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktCommentItem>();
-            Func<Task<IEnumerable<ITraktCommentItem>>> traktCommentItems = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktCommentItem>>> traktCommentItems = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             await traktCommentItems.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -811,7 +811,7 @@
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentItem> traktCommentItems = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktCommentItems.Should().BeNull();
             }
         }

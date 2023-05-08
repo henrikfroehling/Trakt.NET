@@ -22,7 +22,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
                 traktCastAndCrews.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -34,7 +34,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
 
                 traktCastAndCrews.Should().NotBeNull();
                 ITraktCastAndCrew[] items = traktCastAndCrews.ToArray();
@@ -77,7 +77,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
 
                 traktCastAndCrews.Should().NotBeNull();
                 ITraktCastAndCrew[] items = traktCastAndCrews.ToArray();
@@ -113,7 +113,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
 
                 traktCastAndCrews.Should().NotBeNull();
                 ITraktCastAndCrew[] items = traktCastAndCrews.ToArray();
@@ -149,7 +149,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
 
                 traktCastAndCrews.Should().NotBeNull();
                 ITraktCastAndCrew[] items = traktCastAndCrews.ToArray();
@@ -181,7 +181,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
 
                 traktCastAndCrews.Should().NotBeNull();
                 ITraktCastAndCrew[] items = traktCastAndCrews.ToArray();
@@ -210,7 +210,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
 
                 traktCastAndCrews.Should().NotBeNull();
                 ITraktCastAndCrew[] items = traktCastAndCrews.ToArray();
@@ -225,7 +225,7 @@
         public async Task Test_CastAndCrewArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCastAndCrew>();
-            Func<Task<IEnumerable<ITraktCastAndCrew>>> traktCastAndCrews = () =>jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktCastAndCrew>>> traktCastAndCrews = () =>jsonReader.ReadArrayAsync(default(Stream));
             await traktCastAndCrews.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -236,7 +236,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCastAndCrew> traktCastAndCrews = await jsonReader.ReadArrayAsync(stream);
                 traktCastAndCrews.Should().BeNull();
             }
         }

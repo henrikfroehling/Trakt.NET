@@ -23,7 +23,7 @@
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktRatings.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -36,7 +36,7 @@
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -91,7 +91,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -146,7 +146,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -201,7 +201,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -256,7 +256,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -311,7 +311,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -362,7 +362,7 @@
         public async Task Test_RatingArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktRating>();
-            Func<Task<IEnumerable<ITraktRating>>> traktRatings = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktRating>>> traktRatings = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             await traktRatings.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -374,7 +374,7 @@
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktRating> traktRatings = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktRatings.Should().BeNull();
             }
         }

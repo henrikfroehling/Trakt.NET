@@ -23,7 +23,7 @@
 
             using var stream = JSON_EMPTY_ARRAY.ToStream();
 
-            IEnumerable<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
+            IList<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
             traktRecommendations.Should().NotBeNull().And.BeEmpty();
         }
 
@@ -34,7 +34,7 @@
 
             using var stream = JSON_COMPLETE.ToStream();
 
-            IEnumerable<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
+            IList<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
             traktRecommendations.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
             ITraktRecommendation[] recommendationMovies = traktRecommendations.ToArray();
@@ -78,7 +78,7 @@
 
             using var stream = JSON_INCOMPLETE_1.ToStream();
 
-            IEnumerable<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
+            IList<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
             traktRecommendations.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
             ITraktRecommendation[] recommendationMovies = traktRecommendations.ToArray();
@@ -122,7 +122,7 @@
 
             using var stream = JSON_INCOMPLETE_2.ToStream();
 
-            IEnumerable<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
+            IList<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
             traktRecommendations.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
             ITraktRecommendation[] recommendationMovies = traktRecommendations.ToArray();
@@ -166,7 +166,7 @@
 
             using var stream = JSON_NOT_VALID_1.ToStream();
 
-            IEnumerable<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
+            IList<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
             traktRecommendations.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
             ITraktRecommendation[] recommendationMovies = traktRecommendations.ToArray();
@@ -210,7 +210,7 @@
 
             using var stream = JSON_NOT_VALID_2.ToStream();
 
-            IEnumerable<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
+            IList<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
             traktRecommendations.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
             ITraktRecommendation[] recommendationMovies = traktRecommendations.ToArray();
@@ -254,7 +254,7 @@
 
             using var stream = JSON_NOT_VALID_3.ToStream();
 
-            IEnumerable<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
+            IList<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
             traktRecommendations.Should().NotBeNull().And.NotBeEmpty().And.HaveCount(2);
 
             ITraktRecommendation[] recommendationMovies = traktRecommendations.ToArray();
@@ -295,7 +295,7 @@
         public async Task Test_RecommendationArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktRecommendation>();
-            Func<Task<IEnumerable<ITraktRecommendation>>> traktRecommendations = () => jsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktRecommendation>>> traktRecommendations = () => jsonReader.ReadArrayAsync(default(JsonTextReader));
             await traktRecommendations.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -306,7 +306,7 @@
 
             using var stream = string.Empty.ToStream();
 
-            IEnumerable<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
+            IList<ITraktRecommendation> traktRecommendations = await jsonReader.ReadArrayAsync(stream);
             traktRecommendations.Should().BeNull();
         }
     }

@@ -8,7 +8,7 @@
 
     internal class UserFollowUserPostResponseArrayJsonReader : ArrayJsonReader<ITraktUserFollowUserPostResponse>
     {
-        public override async Task<IEnumerable<ITraktUserFollowUserPostResponse>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<IList<ITraktUserFollowUserPostResponse>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
@@ -27,7 +27,7 @@
                 return userFollowUserPostResponses;
             }
 
-            return await Task.FromResult(default(IEnumerable<ITraktUserFollowUserPostResponse>));
+            return await Task.FromResult(default(IList<ITraktUserFollowUserPostResponse>));
         }
     }
 }

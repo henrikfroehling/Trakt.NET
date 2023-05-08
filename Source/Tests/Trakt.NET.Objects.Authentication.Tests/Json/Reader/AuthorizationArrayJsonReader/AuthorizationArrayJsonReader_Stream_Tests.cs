@@ -23,7 +23,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
                 traktAuthorizations.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -38,7 +38,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
 
                 traktAuthorizations.Should().NotBeNull();
                 ITraktAuthorization[] items = traktAuthorizations.ToArray();
@@ -73,7 +73,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
 
                 traktAuthorizations.Should().NotBeNull();
                 ITraktAuthorization[] items = traktAuthorizations.ToArray();
@@ -108,7 +108,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
 
                 traktAuthorizations.Should().NotBeNull();
                 ITraktAuthorization[] items = traktAuthorizations.ToArray();
@@ -143,7 +143,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
 
                 traktAuthorizations.Should().NotBeNull();
                 ITraktAuthorization[] items = traktAuthorizations.ToArray();
@@ -178,7 +178,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
 
                 traktAuthorizations.Should().NotBeNull();
                 ITraktAuthorization[] items = traktAuthorizations.ToArray();
@@ -207,7 +207,7 @@
         public async Task Test_AuthorizationArrayJsonReader_ReadObject_From_Stream_Null()
         {
             var objectJsonReader = new AuthorizationArrayJsonReader();
-            Func<Task<IEnumerable<ITraktAuthorization>>> traktAuthorizations = () => objectJsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktAuthorization>>> traktAuthorizations = () => objectJsonReader.ReadArrayAsync(default(Stream));
             await traktAuthorizations.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -218,7 +218,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktAuthorization> traktAuthorizations = await objectJsonReader.ReadArrayAsync(stream);
                 traktAuthorizations.Should().BeNull();
             }
         }

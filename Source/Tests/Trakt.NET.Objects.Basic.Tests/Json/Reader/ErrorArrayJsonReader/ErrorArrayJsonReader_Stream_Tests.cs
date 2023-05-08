@@ -22,7 +22,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
                 traktErrors.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -34,7 +34,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
 
                 traktErrors.Should().NotBeNull();
                 ITraktError[] errors = traktErrors.ToArray();
@@ -56,7 +56,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
 
                 traktErrors.Should().NotBeNull();
                 ITraktError[] errors = traktErrors.ToArray();
@@ -78,7 +78,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
 
                 traktErrors.Should().NotBeNull();
                 ITraktError[] errors = traktErrors.ToArray();
@@ -100,7 +100,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
 
                 traktErrors.Should().NotBeNull();
                 ITraktError[] errors = traktErrors.ToArray();
@@ -122,7 +122,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
 
                 traktErrors.Should().NotBeNull();
                 ITraktError[] errors = traktErrors.ToArray();
@@ -144,7 +144,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
 
                 traktErrors.Should().NotBeNull();
                 ITraktError[] errors = traktErrors.ToArray();
@@ -163,7 +163,7 @@
         public async Task Test_ErrorArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktError>();
-            Func<Task<IEnumerable<ITraktError>>> traktErrors = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktError>>> traktErrors = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktErrors.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -174,7 +174,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(stream);
                 traktErrors.Should().BeNull();
             }
         }

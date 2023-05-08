@@ -19,7 +19,7 @@
         public async Task Test_CrewArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktCrew>();
-            IEnumerable<ITraktCrew> traktCrews = new List<TraktCrew>();
+            IList<ITraktCrew> traktCrews = new List<ITraktCrew>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktCrews);
             await action.Should().ThrowAsync<ArgumentNullException>();
         }
@@ -27,7 +27,7 @@
         [Fact]
         public async Task Test_CrewArrayJsonWriter_WriteArray_JsonWriter_Empty()
         {
-            IEnumerable<ITraktCrew> traktCrews = new List<TraktCrew>();
+            IList<ITraktCrew> traktCrews = new List<ITraktCrew>();
 
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
@@ -41,11 +41,11 @@
         [Fact]
         public async Task Test_CrewArrayJsonWriter_WriteArray_JsonWriter_SingleObject()
         {
-            IEnumerable<ITraktCrew> traktCrews = new List<ITraktCrew>
+            IList<ITraktCrew> traktCrews = new List<ITraktCrew>
             {
                 new TraktCrew
                 {
-                    Production = new List<TraktCrewMember>
+                    Production = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -67,7 +67,7 @@
                             }
                         }
                     },
-                    Art = new List<TraktCrewMember>
+                    Art = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -89,7 +89,7 @@
                             }
                         }
                     },
-                    Crew = new List<TraktCrewMember>
+                    Crew = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -111,7 +111,7 @@
                             }
                         }
                     },
-                    CostumeAndMakeup = new List<TraktCrewMember>
+                    CostumeAndMakeup = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -133,7 +133,7 @@
                             }
                         }
                     },
-                    Directing = new List<TraktCrewMember>
+                    Directing = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -155,7 +155,7 @@
                             }
                         }
                     },
-                    Writing = new List<TraktCrewMember>
+                    Writing = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -177,7 +177,7 @@
                             }
                         }
                     },
-                    Sound = new List<TraktCrewMember>
+                    Sound = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -199,7 +199,7 @@
                             }
                         }
                     },
-                    Camera = new List<TraktCrewMember>
+                    Camera = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -221,7 +221,7 @@
                             }
                         }
                     },
-                    Lighting = new List<TraktCrewMember>
+                    Lighting = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -243,7 +243,7 @@
                             }
                         }
                     },
-                    VisualEffects = new List<TraktCrewMember>
+                    VisualEffects = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -265,7 +265,7 @@
                             }
                         }
                     },
-                    Editing = new List<TraktCrewMember>
+                    Editing = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -345,11 +345,11 @@
         [Fact]
         public async Task Test_CrewArrayJsonWriter_WriteArray_JsonWriter_Complete()
         {
-            IEnumerable<ITraktCrew> traktCrews = new List<ITraktCrew>
+            IList<ITraktCrew> traktCrews = new List<ITraktCrew>
             {
                 new TraktCrew
                 {
-                    Production = new List<TraktCrewMember>
+                    Production = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -371,7 +371,7 @@
                             }
                         }
                     },
-                    Art = new List<TraktCrewMember>
+                    Art = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -393,7 +393,7 @@
                             }
                         }
                     },
-                    Crew = new List<TraktCrewMember>
+                    Crew = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -415,7 +415,7 @@
                             }
                         }
                     },
-                    CostumeAndMakeup = new List<TraktCrewMember>
+                    CostumeAndMakeup = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -437,7 +437,7 @@
                             }
                         }
                     },
-                    Directing = new List<TraktCrewMember>
+                    Directing = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -459,7 +459,7 @@
                             }
                         }
                     },
-                    Writing = new List<TraktCrewMember>
+                    Writing = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -481,7 +481,7 @@
                             }
                         }
                     },
-                    Sound = new List<TraktCrewMember>
+                    Sound = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -503,7 +503,7 @@
                             }
                         }
                     },
-                    Camera = new List<TraktCrewMember>
+                    Camera = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -525,7 +525,7 @@
                             }
                         }
                     },
-                    Lighting = new List<TraktCrewMember>
+                    Lighting = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -547,7 +547,7 @@
                             }
                         }
                     },
-                    VisualEffects = new List<TraktCrewMember>
+                    VisualEffects = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -569,7 +569,7 @@
                             }
                         }
                     },
-                    Editing = new List<TraktCrewMember>
+                    Editing = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -594,7 +594,7 @@
                 },
                 new TraktCrew
                 {
-                    Production = new List<TraktCrewMember>
+                    Production = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -616,7 +616,7 @@
                             }
                         }
                     },
-                    Art = new List<TraktCrewMember>
+                    Art = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -638,7 +638,7 @@
                             }
                         }
                     },
-                    Crew = new List<TraktCrewMember>
+                    Crew = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -660,7 +660,7 @@
                             }
                         }
                     },
-                    CostumeAndMakeup = new List<TraktCrewMember>
+                    CostumeAndMakeup = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -682,7 +682,7 @@
                             }
                         }
                     },
-                    Directing = new List<TraktCrewMember>
+                    Directing = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -704,7 +704,7 @@
                             }
                         }
                     },
-                    Writing = new List<TraktCrewMember>
+                    Writing = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -726,7 +726,7 @@
                             }
                         }
                     },
-                    Sound = new List<TraktCrewMember>
+                    Sound = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -748,7 +748,7 @@
                             }
                         }
                     },
-                    Camera = new List<TraktCrewMember>
+                    Camera = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -770,7 +770,7 @@
                             }
                         }
                     },
-                    Lighting = new List<TraktCrewMember>
+                    Lighting = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -792,7 +792,7 @@
                             }
                         }
                     },
-                    VisualEffects = new List<TraktCrewMember>
+                    VisualEffects = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {
@@ -814,7 +814,7 @@
                             }
                         }
                     },
-                    Editing = new List<TraktCrewMember>
+                    Editing = new List<ITraktCrewMember>
                     {
                         new TraktCrewMember
                         {

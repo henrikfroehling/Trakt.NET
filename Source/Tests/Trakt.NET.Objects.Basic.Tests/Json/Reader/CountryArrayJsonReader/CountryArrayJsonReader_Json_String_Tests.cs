@@ -17,7 +17,7 @@
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
             var jsonReader = new ArrayJsonReader<ITraktCountry>();
-            IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
+            IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktCountries.Should().NotBeNull().And.BeEmpty();
         }
 
@@ -25,7 +25,7 @@
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new ArrayJsonReader<ITraktCountry>();
-            IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
+            IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
             traktCountries.Should().NotBeNull();
             ITraktCountry[] countries = traktCountries.ToArray();
@@ -43,7 +43,7 @@
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktCountry>();
-            IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
+            IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
             traktCountries.Should().NotBeNull();
             ITraktCountry[] countries = traktCountries.ToArray();
@@ -61,7 +61,7 @@
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktCountry>();
-            IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
+            IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
             traktCountries.Should().NotBeNull();
             ITraktCountry[] countries = traktCountries.ToArray();
@@ -79,7 +79,7 @@
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktCountry>();
-            IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
+            IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             traktCountries.Should().NotBeNull();
             ITraktCountry[] countries = traktCountries.ToArray();
@@ -97,7 +97,7 @@
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktCountry>();
-            IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
+            IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
             traktCountries.Should().NotBeNull();
             ITraktCountry[] countries = traktCountries.ToArray();
@@ -115,7 +115,7 @@
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new ArrayJsonReader<ITraktCountry>();
-            IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
+            IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
             traktCountries.Should().NotBeNull();
             ITraktCountry[] countries = traktCountries.ToArray();
@@ -133,7 +133,7 @@
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCountry>();
-            Func<Task<IEnumerable<ITraktCountry>>> traktCountries = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktCountry>>> traktCountries = () => jsonReader.ReadArrayAsync(default(string));
             await traktCountries.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -141,7 +141,7 @@
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
             var jsonReader = new ArrayJsonReader<ITraktCountry>();
-            IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(string.Empty);
+            IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(string.Empty);
             traktCountries.Should().BeNull();
         }
     }

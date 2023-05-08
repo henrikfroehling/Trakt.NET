@@ -23,7 +23,7 @@
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktStatisticss.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -36,7 +36,7 @@
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktStatisticss.Should().NotBeNull();
                 ITraktStatistics[] statistics = traktStatisticss.ToArray();
@@ -69,7 +69,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktStatisticss.Should().NotBeNull();
                 ITraktStatistics[] statistics = traktStatisticss.ToArray();
@@ -102,7 +102,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktStatisticss.Should().NotBeNull();
                 ITraktStatistics[] statistics = traktStatisticss.ToArray();
@@ -135,7 +135,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktStatisticss.Should().NotBeNull();
                 ITraktStatistics[] statistics = traktStatisticss.ToArray();
@@ -168,7 +168,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktStatisticss.Should().NotBeNull();
                 ITraktStatistics[] statistics = traktStatisticss.ToArray();
@@ -201,7 +201,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktStatisticss.Should().NotBeNull();
                 ITraktStatistics[] statistics = traktStatisticss.ToArray();
@@ -230,7 +230,7 @@
         public async Task Test_StatisticsArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktStatistics>();
-            Func<Task<IEnumerable<ITraktStatistics>>> traktStatisticss = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktStatistics>>> traktStatisticss = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             await traktStatisticss.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -242,7 +242,7 @@
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktStatistics> traktStatisticss = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktStatisticss.Should().BeNull();
             }
         }

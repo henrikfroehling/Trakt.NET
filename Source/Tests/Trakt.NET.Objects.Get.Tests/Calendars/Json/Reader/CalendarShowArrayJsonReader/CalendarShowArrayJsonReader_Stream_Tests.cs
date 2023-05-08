@@ -22,7 +22,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
                 traktCalendarShows.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -34,7 +34,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarShows.Should().NotBeNull();
                 ITraktCalendarShow[] calendarShows = traktCalendarShows.ToArray();
@@ -94,7 +94,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarShows.Should().NotBeNull();
                 ITraktCalendarShow[] calendarShows = traktCalendarShows.ToArray();
@@ -154,7 +154,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarShows.Should().NotBeNull();
                 ITraktCalendarShow[] calendarShows = traktCalendarShows.ToArray();
@@ -214,7 +214,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarShows.Should().NotBeNull();
                 ITraktCalendarShow[] calendarShows = traktCalendarShows.ToArray();
@@ -274,7 +274,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarShows.Should().NotBeNull();
                 ITraktCalendarShow[] calendarShows = traktCalendarShows.ToArray();
@@ -334,7 +334,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarShows.Should().NotBeNull();
                 ITraktCalendarShow[] calendarShows = traktCalendarShows.ToArray();
@@ -391,7 +391,7 @@
         public async Task Test_CalendarShowArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCalendarShow>();
-            Func<Task<IEnumerable<ITraktCalendarShow>>> traktCalendarShows = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktCalendarShow>>> traktCalendarShows = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktCalendarShows.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -402,7 +402,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarShow> traktCalendarShows = await jsonReader.ReadArrayAsync(stream);
                 traktCalendarShows.Should().BeNull();
             }
         }

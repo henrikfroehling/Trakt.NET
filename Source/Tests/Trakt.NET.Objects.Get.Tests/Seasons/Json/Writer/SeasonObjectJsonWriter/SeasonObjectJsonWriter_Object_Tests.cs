@@ -203,7 +203,7 @@
                             "en",
                             "de"
                         },
-                        Translations = new List<TraktEpisodeTranslation>
+                        Translations = new List<ITraktEpisodeTranslation>
                         {
                             new TraktEpisodeTranslation
                             {
@@ -244,7 +244,7 @@
                             "en",
                             "de"
                         },
-                        Translations = new List<TraktEpisodeTranslation>
+                        Translations = new List<ITraktEpisodeTranslation>
                         {
                             new TraktEpisodeTranslation
                             {
@@ -336,7 +336,7 @@
                             "en",
                             "de"
                         },
-                        Translations = new List<TraktEpisodeTranslation>
+                        Translations = new List<ITraktEpisodeTranslation>
                         {
                             new TraktEpisodeTranslation
                             {
@@ -377,7 +377,7 @@
                             "en",
                             "de"
                         },
-                        Translations = new List<TraktEpisodeTranslation>
+                        Translations = new List<ITraktEpisodeTranslation>
                         {
                             new TraktEpisodeTranslation
                             {
