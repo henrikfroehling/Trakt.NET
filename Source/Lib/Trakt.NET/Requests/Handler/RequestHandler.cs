@@ -210,21 +210,21 @@
                 if (typeof(TResponseContentType) == typeof(int))
                 {
                     IArrayJsonReader<int> intArrayJsonReader = new IntArrayJsonReader();
-                    IEnumerable<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+                    IList<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                     response.IsSuccess = true;
                     response.HasValue = values != null;
-                    response.Value = (IEnumerable<TResponseContentType>)values;
+                    response.Value = (IList<TResponseContentType>)values;
                 }
                 else
                 {
                     IArrayJsonReader<TResponseContentType> arrayJsonReader = new ArrayJsonReader<TResponseContentType>();
                     DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
-                    IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+                    IList<TResponseContentType> contentObjects = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                     response.IsSuccess = true;
-                    response.HasValue = contentObject != null;
-                    response.Value = contentObject;
+                    response.HasValue = contentObjects != null;
+                    response.Value = contentObjects;
                 }
 
                 if (responseMessage.Headers != null)
@@ -262,21 +262,21 @@
                 if (typeof(TResponseContentType) == typeof(int))
                 {
                     IArrayJsonReader<int> intArrayJsonReader = new IntArrayJsonReader();
-                    IEnumerable<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+                    IList<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
                     
                     response.IsSuccess = true;
                     response.HasValue = values != null;
-                    response.Value = (IEnumerable<TResponseContentType>)values;
+                    response.Value = (IList<TResponseContentType>)values;
                 }
                 else
                 {
                     IArrayJsonReader<TResponseContentType> arrayJsonReader = new ArrayJsonReader<TResponseContentType>();
                     DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
-                    IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+                    IList<TResponseContentType> contentObjects = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                     response.IsSuccess = true;
-                    response.HasValue = contentObject != null;
-                    response.Value = contentObject;
+                    response.HasValue = contentObjects != null;
+                    response.Value = contentObjects;
                 }
 
                 if (responseMessage.Headers != null)
