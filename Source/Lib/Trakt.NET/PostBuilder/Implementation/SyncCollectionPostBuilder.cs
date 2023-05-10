@@ -1154,62 +1154,44 @@
             if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
-                {
-                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
-                        .Add(CreateCollectionPostMovie(movie));
-                }
+                    syncCollectionPost.Movies.Add(CreateCollectionPostMovie(movie));
             }
 
             if (_movieIds.IsValueCreated && _movieIds.Value.Any())
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
-                {
-                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
-                        .Add(CreateCollectionPostMovie(movieIds));
-                }
+                    syncCollectionPost.Movies.Add(CreateCollectionPostMovie(movieIds));
             }
 
             if (_moviesCollectedAt.IsValueCreated && _moviesCollectedAt.Value.Any())
             {
                 foreach (CollectedMovie movieCollectedAt in _moviesCollectedAt.Value)
-                {
-                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
-                        .Add(CreateCollectionPostMovie(movieCollectedAt.Object, null, movieCollectedAt.CollectedAt));
-                }
+                    syncCollectionPost.Movies.Add(CreateCollectionPostMovie(movieCollectedAt.Object, null, movieCollectedAt.CollectedAt));
             }
 
             if (_movieIdsCollectedAt.IsValueCreated && _movieIdsCollectedAt.Value.Any())
             {
                 foreach (CollectedMovieIds movieIdCollectedAt in _movieIdsCollectedAt.Value)
-                {
-                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
-                        .Add(CreateCollectionPostMovie(movieIdCollectedAt.Object, null, movieIdCollectedAt.CollectedAt));
-                }
+                    syncCollectionPost.Movies.Add(CreateCollectionPostMovie(movieIdCollectedAt.Object, null, movieIdCollectedAt.CollectedAt));
             }
 
             if (_moviesWithMetadata.IsValueCreated && _moviesWithMetadata.Value.Any())
             {
                 foreach (MovieWithMetadata movieWithMetadata in _moviesWithMetadata.Value)
-                {
-                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
-                        .Add(CreateCollectionPostMovie(movieWithMetadata.Object, movieWithMetadata.Metadata));
-                }
+                    syncCollectionPost.Movies.Add(CreateCollectionPostMovie(movieWithMetadata.Object, movieWithMetadata.Metadata));
             }
 
             if (_movieIdsWithMetadata.IsValueCreated && _movieIdsWithMetadata.Value.Any())
             {
                 foreach (MovieIdsWithMetadata movieIdWithMetadata in _movieIdsWithMetadata.Value)
-                {
-                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
-                        .Add(CreateCollectionPostMovie(movieIdWithMetadata.Object, movieIdWithMetadata.Metadata));
-                }
+                    syncCollectionPost.Movies.Add(CreateCollectionPostMovie(movieIdWithMetadata.Object, movieIdWithMetadata.Metadata));
             }
 
             if (_moviesWithMetadataCollected.IsValueCreated && _moviesWithMetadataCollected.Value.Any())
             {
                 foreach (CollectedMovieWithMetadata movieWithMetadataCollectedAt in _moviesWithMetadataCollected.Value)
                 {
-                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
+                    syncCollectionPost.Movies
                         .Add(CreateCollectionPostMovie(movieWithMetadataCollectedAt.Object, movieWithMetadataCollectedAt.Metadata, movieWithMetadataCollectedAt.CollectedAt));
                 }
             }
@@ -1218,7 +1200,7 @@
             {
                 foreach (CollectedMovieIdsWithMetadata movieIdWithMetadataCollectedAt in _movieIdsWithMetadataCollectedAt.Value)
                 {
-                    (syncCollectionPost.Movies as List<ITraktSyncCollectionPostMovie>)
+                    syncCollectionPost.Movies
                         .Add(CreateCollectionPostMovie(movieIdWithMetadataCollectedAt.Object, movieIdWithMetadataCollectedAt.Metadata, movieIdWithMetadataCollectedAt.CollectedAt));
                 }
             }
@@ -1239,62 +1221,44 @@
             if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
-                {
-                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
-                        .Add(CreateCollectionPostShow(show));
-                }
+                    syncCollectionPost.Shows.Add(CreateCollectionPostShow(show));
             }
 
             if (_showIds.IsValueCreated && _showIds.Value.Any())
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
-                {
-                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
-                        .Add(CreateCollectionPostShow(showIds));
-                }
+                    syncCollectionPost.Shows.Add(CreateCollectionPostShow(showIds));
             }
 
             if (_showsCollectedAt.IsValueCreated && _showsCollectedAt.Value.Any())
             {
                 foreach (CollectedShow showCollectedAt in _showsCollectedAt.Value)
-                {
-                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
-                        .Add(CreateCollectionPostShow(showCollectedAt.Object, null, showCollectedAt.CollectedAt));
-                }
+                    syncCollectionPost.Shows.Add(CreateCollectionPostShow(showCollectedAt.Object, null, showCollectedAt.CollectedAt));
             }
 
             if (_showIdsCollectedAt.IsValueCreated && _showIdsCollectedAt.Value.Any())
             {
                 foreach (CollectedShowIds showIdCollectedAt in _showIdsCollectedAt.Value)
-                {
-                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
-                        .Add(CreateCollectionPostShow(showIdCollectedAt.Object, null, showIdCollectedAt.CollectedAt));
-                }
+                    syncCollectionPost.Shows.Add(CreateCollectionPostShow(showIdCollectedAt.Object, null, showIdCollectedAt.CollectedAt));
             }
 
             if (_showsWithMetadata.IsValueCreated && _showsWithMetadata.Value.Any())
             {
                 foreach (ShowWithMetadata showWithMetadata in _showsWithMetadata.Value)
-                {
-                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
-                        .Add(CreateCollectionPostShow(showWithMetadata.Object, showWithMetadata.Metadata));
-                }
+                    syncCollectionPost.Shows.Add(CreateCollectionPostShow(showWithMetadata.Object, showWithMetadata.Metadata));
             }
 
             if (_showIdsWithMetadata.IsValueCreated && _showIdsWithMetadata.Value.Any())
             {
                 foreach (ShowIdsWithMetadata showIdWithMetadata in _showIdsWithMetadata.Value)
-                {
-                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
-                        .Add(CreateCollectionPostShow(showIdWithMetadata.Object, showIdWithMetadata.Metadata));
-                }
+                    syncCollectionPost.Shows.Add(CreateCollectionPostShow(showIdWithMetadata.Object, showIdWithMetadata.Metadata));
             }
 
             if (_showsWithMetadataCollected.IsValueCreated && _showsWithMetadataCollected.Value.Any())
             {
                 foreach (CollectedShowWithMetadata showWithMetadataCollectedAt in _showsWithMetadataCollected.Value)
                 {
-                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
+                    syncCollectionPost.Shows
                         .Add(CreateCollectionPostShow(showWithMetadataCollectedAt.Object, showWithMetadataCollectedAt.Metadata, showWithMetadataCollectedAt.CollectedAt));
                 }
             }
@@ -1303,7 +1267,7 @@
             {
                 foreach (CollectedShowIdsWithMetadata showIdWithMetadataCollectedAt in _showIdsWithMetadataCollectedAt.Value)
                 {
-                    (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>)
+                    syncCollectionPost.Shows
                         .Add(CreateCollectionPostShow(showIdWithMetadataCollectedAt.Object, showIdWithMetadataCollectedAt.Metadata, showIdWithMetadataCollectedAt.CollectedAt));
                 }
             }
@@ -1329,62 +1293,44 @@
             if (_seasons.IsValueCreated && _seasons.Value.Any())
             {
                 foreach (ITraktSeason season in _seasons.Value)
-                {
-                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
-                        .Add(CreateCollectionPostSeason(season));
-                }
+                    syncCollectionPost.Seasons.Add(CreateCollectionPostSeason(season));
             }
 
             if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
             {
                 foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
-                {
-                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
-                        .Add(CreateCollectionPostSeason(seasonIds));
-                }
+                    syncCollectionPost.Seasons.Add(CreateCollectionPostSeason(seasonIds));
             }
 
             if (_seasonsCollectedAt.IsValueCreated && _seasonsCollectedAt.Value.Any())
             {
                 foreach (CollectedSeason seasonCollectedAt in _seasonsCollectedAt.Value)
-                {
-                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
-                        .Add(CreateCollectionPostSeason(seasonCollectedAt.Object, null, seasonCollectedAt.CollectedAt));
-                }
+                    syncCollectionPost.Seasons.Add(CreateCollectionPostSeason(seasonCollectedAt.Object, null, seasonCollectedAt.CollectedAt));
             }
 
             if (_seasonIdsCollectedAt.IsValueCreated && _seasonIdsCollectedAt.Value.Any())
             {
                 foreach (CollectedSeasonIds seasonIdCollectedAt in _seasonIdsCollectedAt.Value)
-                {
-                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
-                        .Add(CreateCollectionPostSeason(seasonIdCollectedAt.Object, null, seasonIdCollectedAt.CollectedAt));
-                }
+                    syncCollectionPost.Seasons.Add(CreateCollectionPostSeason(seasonIdCollectedAt.Object, null, seasonIdCollectedAt.CollectedAt));
             }
 
             if (_seasonsWithMetadata.IsValueCreated && _seasonsWithMetadata.Value.Any())
             {
                 foreach (SeasonWithMetadata seasonWithMetadata in _seasonsWithMetadata.Value)
-                {
-                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
-                        .Add(CreateCollectionPostSeason(seasonWithMetadata.Object, seasonWithMetadata.Metadata));
-                }
+                    syncCollectionPost.Seasons.Add(CreateCollectionPostSeason(seasonWithMetadata.Object, seasonWithMetadata.Metadata));
             }
 
             if (_seasonIdsWithMetadata.IsValueCreated && _seasonIdsWithMetadata.Value.Any())
             {
                 foreach (SeasonIdsWithMetadata seasonIdWithMetadata in _seasonIdsWithMetadata.Value)
-                {
-                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
-                        .Add(CreateCollectionPostSeason(seasonIdWithMetadata.Object, seasonIdWithMetadata.Metadata));
-                }
+                    syncCollectionPost.Seasons.Add(CreateCollectionPostSeason(seasonIdWithMetadata.Object, seasonIdWithMetadata.Metadata));
             }
 
             if (_seasonsWithMetadataCollected.IsValueCreated && _seasonsWithMetadataCollected.Value.Any())
             {
                 foreach (CollectedSeasonWithMetadata seasonWithMetadataCollectedAt in _seasonsWithMetadataCollected.Value)
                 {
-                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
+                    syncCollectionPost.Seasons
                         .Add(CreateCollectionPostSeason(seasonWithMetadataCollectedAt.Object, seasonWithMetadataCollectedAt.Metadata, seasonWithMetadataCollectedAt.CollectedAt));
                 }
             }
@@ -1393,7 +1339,7 @@
             {
                 foreach (CollectedSeasonIdsWithMetadata seasonIdWithMetadataCollectedAt in _seasonIdsWithMetadataCollectedAt.Value)
                 {
-                    (syncCollectionPost.Seasons as List<ITraktSyncCollectionPostSeason>)
+                    syncCollectionPost.Seasons
                         .Add(CreateCollectionPostSeason(seasonIdWithMetadataCollectedAt.Object, seasonIdWithMetadataCollectedAt.Metadata, seasonIdWithMetadataCollectedAt.CollectedAt));
                 }
             }
@@ -1413,62 +1359,44 @@
             if (_episodes.IsValueCreated && _episodes.Value.Any())
             {
                 foreach (ITraktEpisode episode in _episodes.Value)
-                {
-                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
-                        .Add(CreateCollectionPostEpisode(episode));
-                }
+                    syncCollectionPost.Episodes.Add(CreateCollectionPostEpisode(episode));
             }
 
             if (_episodeIds.IsValueCreated && _episodeIds.Value.Any())
             {
                 foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
-                {
-                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
-                        .Add(CreateCollectionPostEpisode(episodeIds));
-                }
+                    syncCollectionPost.Episodes.Add(CreateCollectionPostEpisode(episodeIds));
             }
 
             if (_episodesCollectedAt.IsValueCreated && _episodesCollectedAt.Value.Any())
             {
                 foreach (CollectedEpisode episodeCollectedAt in _episodesCollectedAt.Value)
-                {
-                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
-                        .Add(CreateCollectionPostEpisode(episodeCollectedAt.Object, null, episodeCollectedAt.CollectedAt));
-                }
+                    syncCollectionPost.Episodes.Add(CreateCollectionPostEpisode(episodeCollectedAt.Object, null, episodeCollectedAt.CollectedAt));
             }
 
             if (_episodeIdsCollectedAt.IsValueCreated && _episodeIdsCollectedAt.Value.Any())
             {
                 foreach (CollectedEpisodeIds episodeIdCollectedAt in _episodeIdsCollectedAt.Value)
-                {
-                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
-                        .Add(CreateCollectionPostEpisode(episodeIdCollectedAt.Object, null, episodeIdCollectedAt.CollectedAt));
-                }
+                    syncCollectionPost.Episodes.Add(CreateCollectionPostEpisode(episodeIdCollectedAt.Object, null, episodeIdCollectedAt.CollectedAt));
             }
 
             if (_episodesWithMetadata.IsValueCreated && _episodesWithMetadata.Value.Any())
             {
                 foreach (EpisodeWithMetadata episodeWithMetadata in _episodesWithMetadata.Value)
-                {
-                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
-                        .Add(CreateCollectionPostEpisode(episodeWithMetadata.Object, episodeWithMetadata.Metadata));
-                }
+                    syncCollectionPost.Episodes.Add(CreateCollectionPostEpisode(episodeWithMetadata.Object, episodeWithMetadata.Metadata));
             }
 
             if (_episodeIdsWithMetadata.IsValueCreated && _episodeIdsWithMetadata.Value.Any())
             {
                 foreach (EpisodeIdsWithMetadata episodeIdWithMetadata in _episodeIdsWithMetadata.Value)
-                {
-                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
-                        .Add(CreateCollectionPostEpisode(episodeIdWithMetadata.Object, episodeIdWithMetadata.Metadata));
-                }
+                    syncCollectionPost.Episodes.Add(CreateCollectionPostEpisode(episodeIdWithMetadata.Object, episodeIdWithMetadata.Metadata));
             }
 
             if (_episodesWithMetadataCollected.IsValueCreated && _episodesWithMetadataCollected.Value.Any())
             {
                 foreach (CollectedEpisodeWithMetadata episodeWithMetadataCollectedAt in _episodesWithMetadataCollected.Value)
                 {
-                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
+                    syncCollectionPost.Episodes
                         .Add(CreateCollectionPostEpisode(episodeWithMetadataCollectedAt.Object, episodeWithMetadataCollectedAt.Metadata, episodeWithMetadataCollectedAt.CollectedAt));
                 }
             }
@@ -1477,7 +1405,7 @@
             {
                 foreach (CollectedEpisodeIdsWithMetadata episodeIdWithMetadataCollectedAt in _episodeIdsWithMetadataCollectedAt.Value)
                 {
-                    (syncCollectionPost.Episodes as List<ITraktSyncCollectionPostEpisode>)
+                    syncCollectionPost.Episodes
                         .Add(CreateCollectionPostEpisode(episodeIdWithMetadataCollectedAt.Object, episodeIdWithMetadataCollectedAt.Metadata, episodeIdWithMetadataCollectedAt.CollectedAt));
                 }
             }
@@ -1596,17 +1524,14 @@
                         syncCollectionPostShowSeason.Episodes = new List<ITraktSyncCollectionPostShowEpisode>();
 
                         foreach (PostCollectionEpisode episode in season.Episodes)
-                        {
-                            (syncCollectionPostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
-                                .Add(CreateCollectionPostShowEpisode(episode));
-                        }
+                            syncCollectionPostShowSeason.Episodes.Add(CreateCollectionPostShowEpisode(episode));
                     }
 
-                    (syncCollectionPostShow.Seasons as List<ITraktSyncCollectionPostShowSeason>).Add(syncCollectionPostShowSeason);
+                    syncCollectionPostShow.Seasons.Add(syncCollectionPostShowSeason);
                 }
             }
 
-            (syncCollectionPost.Shows as List<ITraktSyncCollectionPostShow>).Add(syncCollectionPostShow);
+            syncCollectionPost.Shows.Add(syncCollectionPostShow);
         }
 
         private static ITraktSyncCollectionPostShowSeason CreateCollectionPostShowSeason(PostCollectionSeason season)
