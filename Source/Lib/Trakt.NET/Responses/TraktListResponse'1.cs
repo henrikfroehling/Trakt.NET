@@ -66,13 +66,13 @@
 
         public int Count => Value != null ? Value.Count : 0;
 
-        public bool IsReadOnly => (bool)Value?.IsReadOnly;
+        public bool IsReadOnly => Value != null ? Value.IsReadOnly : false;
 
         public void Add(TResponseContentType item) => Value?.Add(item);
 
         public void Clear() => Value?.Clear();
 
-        public bool Contains(TResponseContentType item) => (bool)Value?.Contains(item);
+        public bool Contains(TResponseContentType item) => Value != null ? Value.Contains(item) : false;
 
         public void CopyTo(TResponseContentType[] array, int arrayIndex) => Value?.CopyTo(array, arrayIndex);
 
@@ -80,7 +80,7 @@
 
         public void Insert(int index, TResponseContentType item) => Value?.Insert(index, item);
 
-        public bool Remove(TResponseContentType item) => (bool)Value?.Remove(item);
+        public bool Remove(TResponseContentType item) => Value != null ? Value.Remove(item) : false;
 
         public void RemoveAt(int index) => Value?.RemoveAt(index);
     }
