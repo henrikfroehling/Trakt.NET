@@ -27,6 +27,6 @@
         /// See also <seealso cref="ITraktWatchedShowSeason" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktWatchedShowSeason> WatchedSeasons { get; set; }
+        IList<ITraktWatchedShowSeason> WatchedSeasons { get; set; }
     }
 }

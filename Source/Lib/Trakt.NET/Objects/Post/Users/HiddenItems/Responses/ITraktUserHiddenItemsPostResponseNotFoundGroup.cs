@@ -11,24 +11,24 @@
         /// A list of <see cref="ITraktPostResponseNotFoundMovie" />s, containing the ids of movies, which were not found.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktPostResponseNotFoundMovie> Movies { get; set; }
+        IList<ITraktPostResponseNotFoundMovie> Movies { get; set; }
 
         /// <summary>
         /// A list of <see cref="ITraktPostResponseNotFoundShow" />s, containing the ids of shows, which were not found.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktPostResponseNotFoundShow> Shows { get; set; }
+        IList<ITraktPostResponseNotFoundShow> Shows { get; set; }
 
         /// <summary>
         /// A list of <see cref="ITraktPostResponseNotFoundSeason" />s, containing the ids of seasons, which were not found.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktPostResponseNotFoundSeason> Seasons { get; set; }
+        IList<ITraktPostResponseNotFoundSeason> Seasons { get; set; }
 
         /// <summary>
         /// A list of <see cref="ITraktUser" />s, containing users, which were not found.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktUser> Users { get; set; }
+        IList<ITraktUser> Users { get; set; }
     }
 }

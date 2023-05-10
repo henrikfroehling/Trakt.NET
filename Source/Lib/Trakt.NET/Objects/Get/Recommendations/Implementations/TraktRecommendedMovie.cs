@@ -7,6 +7,6 @@ namespace TraktNet.Objects.Get.Recommendations
     public class TraktRecommendedMovie : TraktMovie, ITraktRecommendedMovie
     {
         /// <summary>Gets or sets the list of users who recommended this movie. See also <seealso cref="ITraktRecommendedBy" />.<para>Nullable</para></summary>
-        public IEnumerable<ITraktRecommendedBy> RecommendedBy { get; set; }
+        public IList<ITraktRecommendedBy> RecommendedBy { get; set; }
     }
 }

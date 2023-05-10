@@ -312,7 +312,7 @@
         public async Task Test_WatchedShowEpisodeArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktWatchedShowEpisode>();
-            Func<Task<IEnumerable<ITraktWatchedShowEpisode>>> traktEpisodeWatchedProgress = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktWatchedShowEpisode>>> traktEpisodeWatchedProgress = () => jsonReader.ReadArrayAsync(default(string));
             await traktEpisodeWatchedProgress.Should().ThrowAsync<ArgumentNullException>();
         }
 

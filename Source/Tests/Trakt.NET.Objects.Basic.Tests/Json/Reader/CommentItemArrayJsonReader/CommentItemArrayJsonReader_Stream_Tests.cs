@@ -23,7 +23,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
                 traktCommentItems.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -35,7 +35,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -183,7 +183,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -281,7 +281,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -379,7 +379,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -520,7 +520,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -661,7 +661,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -792,7 +792,7 @@
         public async Task Test_CommentItemArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCommentItem>();
-            Func<Task<IEnumerable<ITraktCommentItem>>> traktCommentItems = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktCommentItem>>> traktCommentItems = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktCommentItems.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -803,7 +803,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
                 traktCommentItems.Should().BeNull();
             }
         }

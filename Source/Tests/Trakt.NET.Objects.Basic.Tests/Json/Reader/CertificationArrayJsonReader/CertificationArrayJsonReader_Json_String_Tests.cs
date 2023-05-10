@@ -256,7 +256,7 @@
         public async Task Test_CertificationArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertification>();
-            Func<Task<IEnumerable<ITraktCertification>>> traktCertifications = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktCertification>>> traktCertifications = () => jsonReader.ReadArrayAsync(default(string));
             await traktCertifications.Should().ThrowAsync<ArgumentNullException>();
         }
 

@@ -22,7 +22,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
                 traktCalendarMovies.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -34,7 +34,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarMovies.Should().NotBeNull();
                 ITraktCalendarMovie[] calendarMovies = traktCalendarMovies.ToArray();
@@ -70,7 +70,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarMovies.Should().NotBeNull();
                 ITraktCalendarMovie[] calendarMovies = traktCalendarMovies.ToArray();
@@ -106,7 +106,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarMovies.Should().NotBeNull();
                 ITraktCalendarMovie[] calendarMovies = traktCalendarMovies.ToArray();
@@ -142,7 +142,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarMovies.Should().NotBeNull();
                 ITraktCalendarMovie[] calendarMovies = traktCalendarMovies.ToArray();
@@ -178,7 +178,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarMovies.Should().NotBeNull();
                 ITraktCalendarMovie[] calendarMovies = traktCalendarMovies.ToArray();
@@ -214,7 +214,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
 
                 traktCalendarMovies.Should().NotBeNull();
                 ITraktCalendarMovie[] calendarMovies = traktCalendarMovies.ToArray();
@@ -247,7 +247,7 @@
         public async Task Test_CalendarMovieArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCalendarMovie>();
-            Func<Task<IEnumerable<ITraktCalendarMovie>>> traktCalendarMovies = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktCalendarMovie>>> traktCalendarMovies = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktCalendarMovies.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -258,7 +258,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCalendarMovie> traktCalendarMovies = await jsonReader.ReadArrayAsync(stream);
                 traktCalendarMovies.Should().BeNull();
             }
         }

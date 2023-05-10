@@ -17,25 +17,25 @@
         /// An optional list of <see cref="ITraktSyncWatchlistPostMovie" />s.
         /// <para>Each <see cref="ITraktSyncWatchlistPostMovie" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktSyncWatchlistPostMovie> Movies { get; set; }
+        public IList<ITraktSyncWatchlistPostMovie> Movies { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncWatchlistPostShow" />s.
         /// <para>Each <see cref="ITraktSyncWatchlistPostShow" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktSyncWatchlistPostShow> Shows { get; set; }
+        public IList<ITraktSyncWatchlistPostShow> Shows { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncWatchlistPostSeason" />s.
         /// <para>Each <see cref="ITraktSyncWatchlistPostSeason" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktSyncWatchlistPostSeason> Seasons { get; set; }
+        public IList<ITraktSyncWatchlistPostSeason> Seasons { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncWatchlistPostEpisode" />s.
         /// <para>Each <see cref="ITraktSyncWatchlistPostEpisode" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktSyncWatchlistPostEpisode> Episodes { get; set; }
+        public IList<ITraktSyncWatchlistPostEpisode> Episodes { get; set; }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {

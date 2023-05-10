@@ -866,7 +866,7 @@
         public async Task Test_SeasonCollectionProgressArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktSeasonCollectionProgress>();
-            Func<Task<IEnumerable<ITraktSeasonCollectionProgress>>> traktSeasonCollectionProgresses = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktSeasonCollectionProgress>>> traktSeasonCollectionProgresses = () => jsonReader.ReadArrayAsync(default(string));
             await traktSeasonCollectionProgresses.Should().ThrowAsync<ArgumentNullException>();
         }
 

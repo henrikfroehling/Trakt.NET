@@ -83,7 +83,7 @@
         public async Task Test_PostResponseNotFoundMovieArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundMovie>();
-            Func<Task<IEnumerable<ITraktPostResponseNotFoundMovie>>> notFoundMovies = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktPostResponseNotFoundMovie>>> notFoundMovies = () => jsonReader.ReadArrayAsync(default(Stream));
             await notFoundMovies.Should().ThrowAsync<ArgumentNullException>();
         }
 

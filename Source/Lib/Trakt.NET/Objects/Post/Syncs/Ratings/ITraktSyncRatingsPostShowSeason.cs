@@ -25,6 +25,6 @@
         /// Otherwise, only the specified episodes will be added to the ratings.
         /// </para>
         /// </summary>
-        IEnumerable<ITraktSyncRatingsPostShowEpisode> Episodes { get; set; }
+        IList<ITraktSyncRatingsPostShowEpisode> Episodes { get; set; }
     }
 }

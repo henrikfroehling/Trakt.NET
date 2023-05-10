@@ -19,7 +19,7 @@
         public async Task Test_SeasonArrayJsonWriter_WriteArray_StringWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktSeason>();
-            IEnumerable<ITraktSeason> traktSeasons = new List<TraktSeason>();
+            IList<ITraktSeason> traktSeasons = new List<ITraktSeason>();
             Func<Task<string>> action = () => traktJsonWriter.WriteArrayAsync(default(StringWriter), traktSeasons);
             await action.Should().ThrowAsync<ArgumentNullException>();
         }
@@ -27,7 +27,7 @@
         [Fact]
         public async Task Test_SeasonArrayJsonWriter_WriteArray_StringWriter_Empty()
         {
-            IEnumerable<ITraktSeason> traktSeasons = new List<TraktSeason>();
+            IList<ITraktSeason> traktSeasons = new List<ITraktSeason>();
 
             using (var stringWriter = new StringWriter())
             {
@@ -40,7 +40,7 @@
         [Fact]
         public async Task Test_SeasonArrayJsonWriter_WriteArray_StringWriter_SingleObject()
         {
-            IEnumerable<ITraktSeason> traktSeasons = new List<ITraktSeason>
+            IList<ITraktSeason> traktSeasons = new List<ITraktSeason>
             {
                 new TraktSeason
                 {
@@ -87,7 +87,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {
@@ -128,7 +128,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {
@@ -184,7 +184,7 @@
         [Fact]
         public async Task Test_SeasonArrayJsonWriter_WriteArray_StringWriter_Complete()
         {
-            IEnumerable<ITraktSeason> traktSeasons = new List<ITraktSeason>
+            IList<ITraktSeason> traktSeasons = new List<ITraktSeason>
             {
                 new TraktSeason
                 {
@@ -231,7 +231,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {
@@ -272,7 +272,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {
@@ -335,7 +335,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {
@@ -376,7 +376,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {

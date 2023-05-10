@@ -152,17 +152,16 @@ namespace TraktNet.Modules
                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new UserHiddenItemsRequest
+            var request = new UserHiddenItemsRequest
             {
                 Section = hiddenItemsSection,
                 Type = hiddenItemType,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -191,15 +190,14 @@ namespace TraktNet.Modules
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new UserSavedFiltersRequest
+            var request = new UserSavedFiltersRequest
             {
                 Section = section,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -299,15 +297,14 @@ namespace TraktNet.Modules
                                                                           TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new UserLikesRequest
+            var request = new UserLikesRequest
             {
                 Type = likeType,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -445,9 +442,7 @@ namespace TraktNet.Modules
                                                                             TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new UserCommentsRequest
+            var request = new UserCommentsRequest
             {
                 Username = usernameOrSlug,
                 CommentType = commentType,
@@ -456,8 +451,9 @@ namespace TraktNet.Modules
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -577,9 +573,7 @@ namespace TraktNet.Modules
                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new UserPersonalListItemsRequest
+            var request = new UserPersonalListItemsRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
@@ -587,8 +581,9 @@ namespace TraktNet.Modules
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -671,7 +666,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderPersonalListsAsync(string usernameOrSlug, IEnumerable<uint> reorderedListsRank,
+        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderPersonalListsAsync(string usernameOrSlug, IList<uint> reorderedListsRank,
                                                                                                  CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -706,7 +701,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderPersonalListItemsAsync(string usernameOrSlug, string listIdOrSlug,
-                                                                                                     IEnumerable<uint> reorderedListItemsRank,
+                                                                                                     IList<uint> reorderedListItemsRank,
                                                                                                      CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -856,17 +851,16 @@ namespace TraktNet.Modules
                                                                             TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new UserListCommentsRequest
+            var request = new UserListCommentsRequest
             {
                 Username = usernameOrSlug,
                 Id = listIdOrSlug,
                 SortOrder = commentSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -899,16 +893,15 @@ namespace TraktNet.Modules
                                                                           TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new UserListLikesRequest
+            var request = new UserListLikesRequest
             {
                 Username = usernameOrSlug,
                 ListId = listIdOrSlug,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -1231,9 +1224,7 @@ namespace TraktNet.Modules
                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new UserWatchedHistoryRequest
+            var request = new UserWatchedHistoryRequest
             {
                 Username = usernameOrSlug,
                 Type = historyItemType,
@@ -1243,8 +1234,9 @@ namespace TraktNet.Modules
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -1277,9 +1269,7 @@ namespace TraktNet.Modules
                                                                                               TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null,
                                                                                               TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new UserPersonalRecommendationsRequest
+            var request = new UserPersonalRecommendationsRequest
             {
                 Username = usernameOrSlug,
                 Type = recommendationObjectType,
@@ -1287,8 +1277,9 @@ namespace TraktNet.Modules
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -1322,9 +1313,7 @@ namespace TraktNet.Modules
                                                                            TraktPagedParameters pagedParameters = null,
                                                                            CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new UserRatingsRequest
+            var request = new UserRatingsRequest
             {
                 Username = usernameOrSlug,
                 Type = ratingsItemType,
@@ -1332,8 +1321,9 @@ namespace TraktNet.Modules
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -1370,9 +1360,7 @@ namespace TraktNet.Modules
                                                                                TraktPagedParameters pagedParameters = null,
                                                                                CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new UserWatchlistRequest
+            var request = new UserWatchlistRequest
             {
                 Username = usernameOrSlug,
                 Type = watchlistItemType,
@@ -1380,8 +1368,9 @@ namespace TraktNet.Modules
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>

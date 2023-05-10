@@ -17,7 +17,7 @@
         public async Task Test_CertificationsArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertifications>();
-            IEnumerable<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
+            IList<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             multipleTraktCertifications.Should().NotBeNull().And.BeEmpty();
         }
 
@@ -25,7 +25,7 @@
         public async Task Test_CertificationsArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertifications>();
-            IEnumerable<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
+            IList<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
             multipleTraktCertifications.Should().NotBeNull();
             ITraktCertifications[] traktCertifications = multipleTraktCertifications.ToArray();
@@ -67,7 +67,7 @@
         public async Task Test_CertificationsArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertifications>();
-            IEnumerable<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
+            IList<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
             multipleTraktCertifications.Should().NotBeNull();
             ITraktCertifications[] traktCertifications = multipleTraktCertifications.ToArray();
@@ -109,7 +109,7 @@
         public async Task Test_CertificationsArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertifications>();
-            IEnumerable<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
+            IList<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
             multipleTraktCertifications.Should().NotBeNull();
             ITraktCertifications[] traktCertifications = multipleTraktCertifications.ToArray();
@@ -151,7 +151,7 @@
         public async Task Test_CertificationsArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertifications>();
-            IEnumerable<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
+            IList<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             multipleTraktCertifications.Should().NotBeNull();
             ITraktCertifications[] traktCertifications = multipleTraktCertifications.ToArray();
@@ -180,7 +180,7 @@
         public async Task Test_CertificationsArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertifications>();
-            IEnumerable<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
+            IList<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
             multipleTraktCertifications.Should().NotBeNull();
             ITraktCertifications[] traktCertifications = multipleTraktCertifications.ToArray();
@@ -209,7 +209,7 @@
         public async Task Test_CertificationsArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertifications>();
-            IEnumerable<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
+            IList<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
             multipleTraktCertifications.Should().NotBeNull();
             ITraktCertifications[] traktCertifications = multipleTraktCertifications.ToArray();
@@ -225,7 +225,7 @@
         public async Task Test_CertificationsArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertifications>();
-            Func<Task<IEnumerable<ITraktCertifications>>> multipleTraktCertifications = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktCertifications>>> multipleTraktCertifications = () => jsonReader.ReadArrayAsync(default(string));
             await multipleTraktCertifications.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -233,7 +233,7 @@
         public async Task Test_CertificationsArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
             var jsonReader = new ArrayJsonReader<ITraktCertifications>();
-            IEnumerable<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(string.Empty);
+            IList<ITraktCertifications> multipleTraktCertifications = await jsonReader.ReadArrayAsync(string.Empty);
             multipleTraktCertifications.Should().BeNull();
         }
     }

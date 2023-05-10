@@ -83,7 +83,7 @@
         public async Task Test_PostResponseNotFoundSeasonArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktPostResponseNotFoundSeason>();
-            Func<Task<IEnumerable<ITraktPostResponseNotFoundSeason>>> notFoundSeasons = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktPostResponseNotFoundSeason>>> notFoundSeasons = () => jsonReader.ReadArrayAsync(default(Stream));
             await notFoundSeasons.Should().ThrowAsync<ArgumentNullException>();
         }
 

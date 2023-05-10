@@ -4,7 +4,7 @@
 
     /// <summary>A Trakt list response with items of content type <typeparamref name="TResponseContentType" />.</summary>
     /// <typeparam name="TResponseContentType">The content type of the list items.</typeparam>
-    public interface ITraktListResponse<out TResponseContentType> : ITraktResponse<IEnumerable<TResponseContentType>>, IEnumerable<TResponseContentType>
+    public interface ITraktListResponse<TResponseContentType> : ITraktResponse<IList<TResponseContentType>>, IList<TResponseContentType>
     {
     }
 }

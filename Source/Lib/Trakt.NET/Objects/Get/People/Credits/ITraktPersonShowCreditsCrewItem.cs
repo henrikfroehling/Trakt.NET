@@ -7,7 +7,7 @@
     public interface ITraktPersonShowCreditsCrewItem
     {
         /// <summary>Gets or sets the jobs collection of the crew position.<para>Nullable</para></summary>
-        IEnumerable<string> Jobs { get; set; }
+        IList<string> Jobs { get; set; }
 
         /// <summary>Gets or sets the episode count of the crew position.<para>Nullable</para></summary>
         int? EpisodeCount { get; set; }

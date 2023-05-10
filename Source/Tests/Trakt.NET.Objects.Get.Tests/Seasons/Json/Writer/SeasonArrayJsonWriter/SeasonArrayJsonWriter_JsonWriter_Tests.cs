@@ -23,7 +23,7 @@
         public async Task Test_SeasonArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktSeason>();
-            IEnumerable<ITraktSeason> traktSeasons = new List<TraktSeason>();
+            IList<ITraktSeason> traktSeasons = new List<ITraktSeason>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktSeasons);
             await action.Should().ThrowAsync<ArgumentNullException>();
         }
@@ -31,7 +31,7 @@
         [Fact]
         public async Task Test_SeasonArrayJsonWriter_WriteArray_JsonWriter_Empty()
         {
-            IEnumerable<ITraktSeason> traktSeasons = new List<TraktSeason>();
+            IList<ITraktSeason> traktSeasons = new List<ITraktSeason>();
 
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
@@ -45,7 +45,7 @@
         [Fact]
         public async Task Test_SeasonArrayJsonWriter_WriteArray_JsonWriter_SingleObject()
         {
-            IEnumerable<ITraktSeason> traktSeasons = new List<ITraktSeason>
+            IList<ITraktSeason> traktSeasons = new List<ITraktSeason>
             {
                 new TraktSeason
                 {
@@ -92,7 +92,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {
@@ -133,7 +133,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {
@@ -190,7 +190,7 @@
         [Fact]
         public async Task Test_SeasonArrayJsonWriter_WriteArray_JsonWriter_Complete()
         {
-            IEnumerable<ITraktSeason> traktSeasons = new List<ITraktSeason>
+            IList<ITraktSeason> traktSeasons = new List<ITraktSeason>
             {
                 new TraktSeason
                 {
@@ -237,7 +237,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {
@@ -278,7 +278,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {
@@ -341,7 +341,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {
@@ -382,7 +382,7 @@
                                 "en",
                                 "de"
                             },
-                            Translations = new List<TraktEpisodeTranslation>
+                            Translations = new List<ITraktEpisodeTranslation>
                             {
                                 new TraktEpisodeTranslation
                                 {

@@ -365,6 +365,184 @@
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
+        [Fact]
+        public async Task Test_TraktSearchModule_GetIdLookupResults_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GetIdLookupUri}?type={ID_LOOKUP_RESULT_TYPE.UriName}&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                SEARCH_ID_LOOKUP_RESULTS_JSON, 2, LIMIT, 5, ID_LOOKUP_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktSearchResult> response =
+                await client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, LOOKUP_ID, ID_LOOKUP_RESULT_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ID_LOOKUP_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ID_LOOKUP_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktSearchModule_GetIdLookupResults_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GetIdLookupUri}?type={ID_LOOKUP_RESULT_TYPE.UriName}&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                SEARCH_ID_LOOKUP_RESULTS_JSON, 2, LIMIT, 2, ID_LOOKUP_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktSearchResult> response =
+                await client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, LOOKUP_ID, ID_LOOKUP_RESULT_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ID_LOOKUP_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ID_LOOKUP_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktSearchModule_GetIdLookupResults_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GetIdLookupUri}?type={ID_LOOKUP_RESULT_TYPE.UriName}&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                SEARCH_ID_LOOKUP_RESULTS_JSON, 1, LIMIT, 2, ID_LOOKUP_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktSearchResult> response =
+                await client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, LOOKUP_ID, ID_LOOKUP_RESULT_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ID_LOOKUP_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ID_LOOKUP_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktSearchModule_GetIdLookupResults_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GetIdLookupUri}?type={ID_LOOKUP_RESULT_TYPE.UriName}&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                SEARCH_ID_LOOKUP_RESULTS_JSON, 1, LIMIT, 1, ID_LOOKUP_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktSearchResult> response =
+                await client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, LOOKUP_ID, ID_LOOKUP_RESULT_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ID_LOOKUP_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ID_LOOKUP_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktSearchModule_GetIdLookupResults_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GetIdLookupUri}?type={ID_LOOKUP_RESULT_TYPE.UriName}&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                SEARCH_ID_LOOKUP_RESULTS_JSON, 2, LIMIT, 2, ID_LOOKUP_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktSearchResult> response =
+                await client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, LOOKUP_ID, ID_LOOKUP_RESULT_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ID_LOOKUP_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ID_LOOKUP_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetMockClient(client,
+                $"{GetIdLookupUri}?type={ID_LOOKUP_RESULT_TYPE.UriName}&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                SEARCH_ID_LOOKUP_RESULTS_JSON, 1, LIMIT, 2, ID_LOOKUP_ITEM_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ID_LOOKUP_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ID_LOOKUP_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktSearchModule_GetIdLookupResults_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GetIdLookupUri}?type={ID_LOOKUP_RESULT_TYPE.UriName}&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                SEARCH_ID_LOOKUP_RESULTS_JSON, 1, LIMIT, 2, ID_LOOKUP_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktSearchResult> response =
+                await client.Search.GetIdLookupResultsAsync(ID_LOOKUP_TYPE, LOOKUP_ID, ID_LOOKUP_RESULT_TYPE, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ID_LOOKUP_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ID_LOOKUP_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetMockClient(client,
+                $"{GetIdLookupUri}?type={ID_LOOKUP_RESULT_TYPE.UriName}&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                SEARCH_ID_LOOKUP_RESULTS_JSON, 2, LIMIT, 2, ID_LOOKUP_ITEM_COUNT);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ID_LOOKUP_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ID_LOOKUP_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]

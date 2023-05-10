@@ -19,6 +19,32 @@
             return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
         }
 
+        internal static void ResetMockClient(this TraktClient client, string uri, string responseContent,
+                                             uint? page = null, uint? limit = null,
+                                             int? pageCount = null, int? itemCount = null,
+                                             int? userCount = null, string startDate = null,
+                                             string endDate = null, TraktSortBy sortBy = null,
+                                             TraktSortHow sortHow = null)
+        {
+            (client.HttpClientProvider as TestHttpClientProvider).Clear();
+
+            (client.HttpClientProvider as TestHttpClientProvider)
+                .SetupMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
+        }
+
+        internal static void ResetOAuthMockClient(this TraktClient client, string uri, string responseContent,
+                                                  uint? page = null, uint? limit = null,
+                                                  int? pageCount = null, int? itemCount = null,
+                                                  int? userCount = null, string startDate = null,
+                                                  string endDate = null, TraktSortBy sortBy = null,
+                                                  TraktSortHow sortHow = null)
+        {
+            (client.HttpClientProvider as TestHttpClientProvider).Clear();
+
+            (client.HttpClientProvider as TestHttpClientProvider)
+                .SetupOAuthMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
+        }
+
         internal static TraktClient GetMockClient(string uri, string responseContent,
                                                   uint? page = null, uint? limit = null,
                                                   int? pageCount = null, int? itemCount = null,

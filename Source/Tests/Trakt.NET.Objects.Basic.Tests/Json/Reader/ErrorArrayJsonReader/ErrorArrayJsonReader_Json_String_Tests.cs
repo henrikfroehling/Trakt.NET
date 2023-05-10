@@ -17,7 +17,7 @@
         public async Task Test_ErrorArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
             var jsonReader = new ArrayJsonReader<ITraktError>();
-            IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
+            IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktErrors.Should().NotBeNull().And.BeEmpty();
         }
 
@@ -25,7 +25,7 @@
         public async Task Test_ErrorArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new ArrayJsonReader<ITraktError>();
-            IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
+            IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
             traktErrors.Should().NotBeNull();
             ITraktError[] errors = traktErrors.ToArray();
@@ -43,7 +43,7 @@
         public async Task Test_ErrorArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktError>();
-            IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
+            IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
             traktErrors.Should().NotBeNull();
             ITraktError[] errors = traktErrors.ToArray();
@@ -61,7 +61,7 @@
         public async Task Test_ErrorArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktError>();
-            IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
+            IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
             traktErrors.Should().NotBeNull();
             ITraktError[] errors = traktErrors.ToArray();
@@ -79,7 +79,7 @@
         public async Task Test_ErrorArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktError>();
-            IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
+            IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             traktErrors.Should().NotBeNull();
             ITraktError[] errors = traktErrors.ToArray();
@@ -97,7 +97,7 @@
         public async Task Test_ErrorArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktError>();
-            IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
+            IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
             traktErrors.Should().NotBeNull();
             ITraktError[] errors = traktErrors.ToArray();
@@ -115,7 +115,7 @@
         public async Task Test_ErrorArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new ArrayJsonReader<ITraktError>();
-            IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
+            IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
             traktErrors.Should().NotBeNull();
             ITraktError[] errors = traktErrors.ToArray();
@@ -133,7 +133,7 @@
         public async Task Test_ErrorArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktError>();
-            Func<Task<IEnumerable<ITraktError>>> traktErrors = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktError>>> traktErrors = () => jsonReader.ReadArrayAsync(default(string));
             await traktErrors.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -141,7 +141,7 @@
         public async Task Test_ErrorArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
             var jsonReader = new ArrayJsonReader<ITraktError>();
-            IEnumerable<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(string.Empty);
+            IList<ITraktError> traktErrors = await jsonReader.ReadArrayAsync(string.Empty);
             traktErrors.Should().BeNull();
         }
     }

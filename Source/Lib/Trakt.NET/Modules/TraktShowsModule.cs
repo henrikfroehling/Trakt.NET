@@ -181,16 +181,15 @@
                                                                             TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowCommentsRequest
+            var request = new ShowCommentsRequest
             {
                 Id = showIdOrSlug,
                 SortOrder = commentSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -222,17 +221,16 @@
                                                                       TraktPagedParameters pagedParameters = null,
                                                                       CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowListsRequest
+            var request = new ShowListsRequest
             {
                 Id = showIdOrSlug,
                 Type = listType,
                 SortOrder = listSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -323,16 +321,15 @@
                                                                              TraktPagedParameters pagedParameters = null,
                                                                              CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowRelatedShowsRequest
+            var request = new ShowRelatedShowsRequest
             {
                 Id = showIdOrSlug,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -678,16 +675,15 @@
                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                   CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowsTrendingRequest
+            var request = new ShowsTrendingRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -724,16 +720,15 @@
                                                                          TraktPagedParameters pagedParameters = null,
                                                                          CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowsPopularRequest
+            var request = new ShowsPopularRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -772,17 +767,16 @@
                                                                                    TraktPagedParameters pagedParameters = null,
                                                                                    CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowsMostPlayedRequest
+            var request = new ShowsMostPlayedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -821,17 +815,16 @@
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowsMostWatchedRequest
+            var request = new ShowsMostWatchedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -870,17 +863,16 @@
                                                                                       TraktPagedParameters pagedParameters = null,
                                                                                       CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowsMostCollectedRequest
+            var request = new ShowsMostCollectedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -917,16 +909,15 @@
                                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                                 CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowsMostAnticipatedRequest
+            var request = new ShowsMostAnticipatedRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -965,17 +956,16 @@
                                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                                 CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowsMostRecommendedRequest
+            var request = new ShowsMostRecommendedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -1008,16 +998,15 @@
                                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                                 CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowsRecentlyUpdatedRequest
+            var request = new ShowsRecentlyUpdatedRequest
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -1044,15 +1033,14 @@
         public Task<TraktPagedResponse<int>> GetRecentlyUpdatedShowIdsAsync(DateTime? startDate = null, TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new ShowsRecentlyUpdatedIdsRequest
+            var request = new ShowsRecentlyUpdatedIdsRequest
             {
                 StartDate = startDate,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
     }
 }

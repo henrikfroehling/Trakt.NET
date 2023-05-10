@@ -7,7 +7,7 @@
     public interface ITraktCastMember
     {
         /// <summary>Gets or sets the characters collection of the cast member.<para>Nullable</para></summary>
-        IEnumerable<string> Characters { get; set; }
+        IList<string> Characters { get; set; }
 
         /// <summary>Gets or sets the cast member. See also <seealso cref="ITraktPerson" />.<para>Nullable</para></summary>
         ITraktPerson Person { get; set; }

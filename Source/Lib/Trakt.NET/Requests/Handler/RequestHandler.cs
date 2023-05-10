@@ -57,6 +57,14 @@
             return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
+        internal static async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(TraktClient client, IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(client);
+            var response = await requestHandler.ExecutePagedRequestAsync(request, cancellationToken).ConfigureAwait(false);
+            response.SetRequestAndClient(request, client);
+            return response;
+        }
+
         // post requests
 
         public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPostRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
@@ -202,21 +210,21 @@
                 if (typeof(TResponseContentType) == typeof(int))
                 {
                     IArrayJsonReader<int> intArrayJsonReader = new IntArrayJsonReader();
-                    IEnumerable<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+                    IList<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                     response.IsSuccess = true;
                     response.HasValue = values != null;
-                    response.Value = (IEnumerable<TResponseContentType>)values;
+                    response.Value = (IList<TResponseContentType>)values;
                 }
                 else
                 {
                     IArrayJsonReader<TResponseContentType> arrayJsonReader = new ArrayJsonReader<TResponseContentType>();
                     DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
-                    IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+                    IList<TResponseContentType> contentObjects = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                     response.IsSuccess = true;
-                    response.HasValue = contentObject != null;
-                    response.Value = contentObject;
+                    response.HasValue = contentObjects != null;
+                    response.Value = contentObjects;
                 }
 
                 if (responseMessage.Headers != null)
@@ -254,21 +262,21 @@
                 if (typeof(TResponseContentType) == typeof(int))
                 {
                     IArrayJsonReader<int> intArrayJsonReader = new IntArrayJsonReader();
-                    IEnumerable<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+                    IList<int> values = await intArrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
                     
                     response.IsSuccess = true;
                     response.HasValue = values != null;
-                    response.Value = (IEnumerable<TResponseContentType>)values;
+                    response.Value = (IList<TResponseContentType>)values;
                 }
                 else
                 {
                     IArrayJsonReader<TResponseContentType> arrayJsonReader = new ArrayJsonReader<TResponseContentType>();
                     DebugAsserter.AssertArrayJsonReaderIsNotNull(arrayJsonReader);
-                    IEnumerable<TResponseContentType> contentObject = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
+                    IList<TResponseContentType> contentObjects = await arrayJsonReader.ReadArrayAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
 
                     response.IsSuccess = true;
-                    response.HasValue = contentObject != null;
-                    response.Value = contentObject;
+                    response.HasValue = contentObjects != null;
+                    response.Value = contentObjects;
                 }
 
                 if (responseMessage.Headers != null)

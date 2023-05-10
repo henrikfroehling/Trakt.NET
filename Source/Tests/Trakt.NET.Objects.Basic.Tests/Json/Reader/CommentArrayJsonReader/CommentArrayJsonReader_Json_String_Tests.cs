@@ -17,7 +17,7 @@
         public async Task Test_CommentArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
             var jsonReader = new ArrayJsonReader<ITraktComment>();
-            IEnumerable<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
+            IList<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktComments.Should().NotBeNull().And.BeEmpty();
         }
 
@@ -25,7 +25,7 @@
         public async Task Test_CommentArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new ArrayJsonReader<ITraktComment>();
-            IEnumerable<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
+            IList<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
             traktComments.Should().NotBeNull();
             ITraktComment[] comments = traktComments.ToArray();
@@ -75,7 +75,7 @@
         public async Task Test_CommentArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktComment>();
-            IEnumerable<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
+            IList<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
             traktComments.Should().NotBeNull();
             ITraktComment[] comments = traktComments.ToArray();
@@ -118,7 +118,7 @@
         public async Task Test_CommentArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktComment>();
-            IEnumerable<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
+            IList<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
             traktComments.Should().NotBeNull();
             ITraktComment[] comments = traktComments.ToArray();
@@ -161,7 +161,7 @@
         public async Task Test_CommentArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktComment>();
-            IEnumerable<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
+            IList<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             traktComments.Should().NotBeNull();
             ITraktComment[] comments = traktComments.ToArray();
@@ -211,7 +211,7 @@
         public async Task Test_CommentArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktComment>();
-            IEnumerable<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
+            IList<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
             traktComments.Should().NotBeNull();
             ITraktComment[] comments = traktComments.ToArray();
@@ -261,7 +261,7 @@
         public async Task Test_CommentArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new ArrayJsonReader<ITraktComment>();
-            IEnumerable<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
+            IList<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
             traktComments.Should().NotBeNull();
             ITraktComment[] comments = traktComments.ToArray();
@@ -311,7 +311,7 @@
         public async Task Test_CommentArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktComment>();
-            Func<Task<IEnumerable<ITraktComment>>> traktComments = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktComment>>> traktComments = () => jsonReader.ReadArrayAsync(default(string));
             await traktComments.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -319,7 +319,7 @@
         public async Task Test_CommentArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
             var jsonReader = new ArrayJsonReader<ITraktComment>();
-            IEnumerable<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(string.Empty);
+            IList<ITraktComment> traktComments = await jsonReader.ReadArrayAsync(string.Empty);
             traktComments.Should().BeNull();
         }
     }

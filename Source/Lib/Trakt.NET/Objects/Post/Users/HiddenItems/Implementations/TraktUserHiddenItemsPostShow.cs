@@ -25,6 +25,6 @@
         /// Otherwise, only the specified seasons will be added to the hidden items list.
         /// </para>
         /// </summary>
-        public IEnumerable<ITraktUserHiddenItemsPostShowSeason> Seasons { get; set; }
+        public IList<ITraktUserHiddenItemsPostShowSeason> Seasons { get; set; }
     }
 }

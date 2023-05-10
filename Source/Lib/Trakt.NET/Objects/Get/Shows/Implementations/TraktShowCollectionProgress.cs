@@ -14,6 +14,6 @@
         /// Gets or sets the collected seasons. See also <seealso cref="ITraktSeasonCollectionProgress" />.
         /// <para>Nullable</para>
         /// </summary>
-        public IEnumerable<ITraktSeasonCollectionProgress> Seasons { get; set; }
+        public IList<ITraktSeasonCollectionProgress> Seasons { get; set; }
     }
 }
