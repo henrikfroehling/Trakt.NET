@@ -30,6 +30,6 @@
         /// Otherwise, only the specified seasons and / or episodes will be added to the history.
         /// </para>
         /// </summary>
-        public IEnumerable<ITraktSyncHistoryPostShowSeason> Seasons { get; set; }
+        public IList<ITraktSyncHistoryPostShowSeason> Seasons { get; set; }
     }
 }

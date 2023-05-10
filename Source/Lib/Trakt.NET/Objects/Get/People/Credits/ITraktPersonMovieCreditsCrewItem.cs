@@ -7,7 +7,7 @@
     public interface ITraktPersonMovieCreditsCrewItem
     {
         /// <summary>Gets or sets the jobs collection of the crew position.<para>Nullable</para></summary>
-        IEnumerable<string> Jobs { get; set; }
+        IList<string> Jobs { get; set; }
 
         /// <summary>
         /// Gets or sets the movie of the crew position. See also <seealso cref="ITraktMovie" />.

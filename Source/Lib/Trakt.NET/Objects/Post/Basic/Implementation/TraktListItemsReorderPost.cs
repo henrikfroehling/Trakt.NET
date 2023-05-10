@@ -8,7 +8,7 @@
 
     public class TraktListItemsReorderPost : ITraktListItemsReorderPost
     {
-        public IEnumerable<uint> Rank { get; set; }
+        public IList<uint> Rank { get; set; }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {

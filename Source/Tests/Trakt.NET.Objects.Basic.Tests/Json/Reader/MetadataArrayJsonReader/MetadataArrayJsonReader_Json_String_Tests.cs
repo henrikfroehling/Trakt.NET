@@ -18,7 +18,7 @@
         public async Task Test_MetadataArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
             var jsonReader = new ArrayJsonReader<ITraktMetadata>();
-            IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
+            IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktMetadatas.Should().NotBeNull().And.BeEmpty();
         }
 
@@ -26,7 +26,7 @@
         public async Task Test_MetadataArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new ArrayJsonReader<ITraktMetadata>();
-            IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
+            IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
             traktMetadatas.Should().NotBeNull();
             ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -52,7 +52,7 @@
         public async Task Test_MetadataArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktMetadata>();
-            IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
+            IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
             traktMetadatas.Should().NotBeNull();
             ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -78,7 +78,7 @@
         public async Task Test_MetadataArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktMetadata>();
-            IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
+            IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
             traktMetadatas.Should().NotBeNull();
             ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -104,7 +104,7 @@
         public async Task Test_MetadataArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktMetadata>();
-            IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
+            IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             traktMetadatas.Should().NotBeNull();
             ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -130,7 +130,7 @@
         public async Task Test_MetadataArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktMetadata>();
-            IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
+            IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
             traktMetadatas.Should().NotBeNull();
             ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -156,7 +156,7 @@
         public async Task Test_MetadataArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new ArrayJsonReader<ITraktMetadata>();
-            IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
+            IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
             traktMetadatas.Should().NotBeNull();
             ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -182,7 +182,7 @@
         public async Task Test_MetadataArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktMetadata>();
-            Func<Task<IEnumerable<ITraktMetadata>>> traktMetadatas = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktMetadata>>> traktMetadatas = () => jsonReader.ReadArrayAsync(default(string));
             await traktMetadatas.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -190,7 +190,7 @@
         public async Task Test_MetadataArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
             var jsonReader = new ArrayJsonReader<ITraktMetadata>();
-            IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(string.Empty);
+            IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(string.Empty);
             traktMetadatas.Should().BeNull();
         }
     }

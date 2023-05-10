@@ -18,22 +18,22 @@
         /// An optional list of <see cref="ITraktUserHiddenItemsPostMovie" />s.
         /// <para>Each <see cref="ITraktUserHiddenItemsPostMovie" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktUserHiddenItemsPostMovie> Movies { get; set; }
+        public IList<ITraktUserHiddenItemsPostMovie> Movies { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktUserHiddenItemsPostShow" />s.
         /// <para>Each <see cref="ITraktUserHiddenItemsPostShow" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktUserHiddenItemsPostShow> Shows { get; set; }
+        public IList<ITraktUserHiddenItemsPostShow> Shows { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktUserHiddenItemsPostSeason" />s.
         /// <para>Each <see cref="ITraktUserHiddenItemsPostSeason" /> must have at least a valid Trakt id and a name.</para>
         /// </summary>
-        public IEnumerable<ITraktUserHiddenItemsPostSeason> Seasons { get; set; }
+        public IList<ITraktUserHiddenItemsPostSeason> Seasons { get; set; }
 
         /// <summary>An optional list of <see cref="ITraktUser" />s.</summary>
-        public IEnumerable<ITraktUser> Users { get; set; }
+        public IList<ITraktUser> Users { get; set; }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {

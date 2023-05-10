@@ -17,7 +17,7 @@
         public async Task Test_GenreArrayJsonReader_ReadArray_From_Json_String_Empty_Array()
         {
             var jsonReader = new ArrayJsonReader<ITraktGenre>();
-            IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
+            IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_EMPTY_ARRAY);
             traktGenres.Should().NotBeNull().And.BeEmpty();
         }
 
@@ -25,7 +25,7 @@
         public async Task Test_GenreArrayJsonReader_ReadArray_From_Json_String_Complete()
         {
             var jsonReader = new ArrayJsonReader<ITraktGenre>();
-            IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
+            IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_COMPLETE);
 
             traktGenres.Should().NotBeNull();
             ITraktGenre[] genres = traktGenres.ToArray();
@@ -45,7 +45,7 @@
         public async Task Test_GenreArrayJsonReader_ReadArray_From_Json_String_Incomplete_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktGenre>();
-            IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
+            IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_1);
 
             traktGenres.Should().NotBeNull();
             ITraktGenre[] genres = traktGenres.ToArray();
@@ -65,7 +65,7 @@
         public async Task Test_GenreArrayJsonReader_ReadArray_From_Json_String_Incomplete_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktGenre>();
-            IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
+            IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_INCOMPLETE_2);
 
             traktGenres.Should().NotBeNull();
             ITraktGenre[] genres = traktGenres.ToArray();
@@ -85,7 +85,7 @@
         public async Task Test_GenreArrayJsonReader_ReadArray_From_Json_String_Not_Valid_1()
         {
             var jsonReader = new ArrayJsonReader<ITraktGenre>();
-            IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
+            IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_1);
 
             traktGenres.Should().NotBeNull();
             ITraktGenre[] genres = traktGenres.ToArray();
@@ -105,7 +105,7 @@
         public async Task Test_GenreArrayJsonReader_ReadArray_From_Json_String_Not_Valid_2()
         {
             var jsonReader = new ArrayJsonReader<ITraktGenre>();
-            IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
+            IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_2);
 
             traktGenres.Should().NotBeNull();
             ITraktGenre[] genres = traktGenres.ToArray();
@@ -125,7 +125,7 @@
         public async Task Test_GenreArrayJsonReader_ReadArray_From_Json_String_Not_Valid_3()
         {
             var jsonReader = new ArrayJsonReader<ITraktGenre>();
-            IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
+            IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(JSON_NOT_VALID_3);
 
             traktGenres.Should().NotBeNull();
             ITraktGenre[] genres = traktGenres.ToArray();
@@ -145,7 +145,7 @@
         public async Task Test_GenreArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktGenre>();
-            Func<Task<IEnumerable<ITraktGenre>>> traktGenres = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktGenre>>> traktGenres = () => jsonReader.ReadArrayAsync(default(string));
             await traktGenres.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -153,7 +153,7 @@
         public async Task Test_GenreArrayJsonReader_ReadArray_From_Json_String_Empty()
         {
             var jsonReader = new ArrayJsonReader<ITraktGenre>();
-            IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(string.Empty);
+            IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(string.Empty);
             traktGenres.Should().BeNull();
         }
     }

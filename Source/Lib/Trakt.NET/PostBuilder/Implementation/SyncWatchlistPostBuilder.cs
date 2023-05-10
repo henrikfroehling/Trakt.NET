@@ -674,37 +674,25 @@
             if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
-                {
-                    (syncWatchlistPost.Movies as List<ITraktSyncWatchlistPostMovie>)
-                        .Add(CreateWatchlistPostMovie(movie));
-                }
+                    syncWatchlistPost.Movies.Add(CreateWatchlistPostMovie(movie));
             }
 
             if (_movieIds.IsValueCreated && _movieIds.Value.Any())
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
-                {
-                    (syncWatchlistPost.Movies as List<ITraktSyncWatchlistPostMovie>)
-                        .Add(CreateWatchlistPostMovie(movieIds));
-                }
+                    syncWatchlistPost.Movies.Add(CreateWatchlistPostMovie(movieIds));
             }
 
             if (_moviesWithNotes.IsValueCreated && _moviesWithNotes.Value.Any())
             {
                 foreach (MovieWithNotes movieWithNotes in _moviesWithNotes.Value)
-                {
-                    (syncWatchlistPost.Movies as List<ITraktSyncWatchlistPostMovie>)
-                        .Add(CreateWatchlistPostMovie(movieWithNotes.Object, movieWithNotes.Notes));
-                }
+                    syncWatchlistPost.Movies.Add(CreateWatchlistPostMovie(movieWithNotes.Object, movieWithNotes.Notes));
             }
 
             if (_movieIdsWithNotes.IsValueCreated && _movieIdsWithNotes.Value.Any())
             {
                 foreach (MovieIdsWithNotes movieIdsWithNotes in _movieIdsWithNotes.Value)
-                {
-                    (syncWatchlistPost.Movies as List<ITraktSyncWatchlistPostMovie>)
-                        .Add(CreateWatchlistPostMovie(movieIdsWithNotes.Object, movieIdsWithNotes.Notes));
-                }
+                    syncWatchlistPost.Movies.Add(CreateWatchlistPostMovie(movieIdsWithNotes.Object, movieIdsWithNotes.Notes));
             }
         }
 
@@ -723,37 +711,25 @@
             if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
-                {
-                    (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>)
-                        .Add(CreateWatchlistPostShow(show));
-                }
+                    syncWatchlistPost.Shows.Add(CreateWatchlistPostShow(show));
             }
 
             if (_showIds.IsValueCreated && _showIds.Value.Any())
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
-                {
-                    (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>)
-                        .Add(CreateWatchlistPostShow(showIds));
-                }
+                    syncWatchlistPost.Shows.Add(CreateWatchlistPostShow(showIds));
             }
 
             if (_showsWithNotes.IsValueCreated && _showsWithNotes.Value.Any())
             {
                 foreach (ShowWithNotes showWithNotes in _showsWithNotes.Value)
-                {
-                    (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>)
-                        .Add(CreateWatchlistPostShow(showWithNotes.Object, showWithNotes.Notes));
-                }
+                    syncWatchlistPost.Shows.Add(CreateWatchlistPostShow(showWithNotes.Object, showWithNotes.Notes));
             }
 
             if (_showIdsWithNotes.IsValueCreated && _showIdsWithNotes.Value.Any())
             {
                 foreach (ShowIdsWithNotes showIdsWithNotes in _showIdsWithNotes.Value)
-                {
-                    (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>)
-                        .Add(CreateWatchlistPostShow(showIdsWithNotes.Object, showIdsWithNotes.Notes));
-                }
+                    syncWatchlistPost.Shows.Add(CreateWatchlistPostShow(showIdsWithNotes.Object, showIdsWithNotes.Notes));
             }
 
             if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Any())
@@ -782,37 +758,25 @@
             if (_seasons.IsValueCreated && _seasons.Value.Any())
             {
                 foreach (ITraktSeason season in _seasons.Value)
-                {
-                    (syncWatchlistPost.Seasons as List<ITraktSyncWatchlistPostSeason>)
-                        .Add(CreateWatchlistPostSeason(season));
-                }
+                    syncWatchlistPost.Seasons.Add(CreateWatchlistPostSeason(season));
             }
 
             if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
             {
                 foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
-                {
-                    (syncWatchlistPost.Seasons as List<ITraktSyncWatchlistPostSeason>)
-                        .Add(CreateWatchlistPostSeason(seasonIds));
-                }
+                    syncWatchlistPost.Seasons.Add(CreateWatchlistPostSeason(seasonIds));
             }
 
             if (_seasonsWithNotes.IsValueCreated && _seasonsWithNotes.Value.Any())
             {
                 foreach (SeasonWithNotes seasonWithNotes in _seasonsWithNotes.Value)
-                {
-                    (syncWatchlistPost.Seasons as List<ITraktSyncWatchlistPostSeason>)
-                        .Add(CreateWatchlistPostSeason(seasonWithNotes.Object, seasonWithNotes.Notes));
-                }
+                    syncWatchlistPost.Seasons.Add(CreateWatchlistPostSeason(seasonWithNotes.Object, seasonWithNotes.Notes));
             }
 
             if (_seasonIdsWithNotes.IsValueCreated && _seasonIdsWithNotes.Value.Any())
             {
                 foreach (SeasonIdsWithNotes seasonIdsWithNotes in _seasonIdsWithNotes.Value)
-                {
-                    (syncWatchlistPost.Seasons as List<ITraktSyncWatchlistPostSeason>)
-                        .Add(CreateWatchlistPostSeason(seasonIdsWithNotes.Object, seasonIdsWithNotes.Notes));
-                }
+                    syncWatchlistPost.Seasons.Add(CreateWatchlistPostSeason(seasonIdsWithNotes.Object, seasonIdsWithNotes.Notes));
             }
         }
 
@@ -829,37 +793,25 @@
             if (_episodes.IsValueCreated && _episodes.Value.Any())
             {
                 foreach (ITraktEpisode episode in _episodes.Value)
-                {
-                    (syncWatchlistPost.Episodes as List<ITraktSyncWatchlistPostEpisode>)
-                        .Add(CreateWatchlistPostEpisode(episode));
-                }
+                    syncWatchlistPost.Episodes.Add(CreateWatchlistPostEpisode(episode));
             }
 
             if (_episodeIds.IsValueCreated && _episodeIds.Value.Any())
             {
                 foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
-                {
-                    (syncWatchlistPost.Episodes as List<ITraktSyncWatchlistPostEpisode>)
-                        .Add(CreateWatchlistPostEpisode(episodeIds));
-                }
+                    syncWatchlistPost.Episodes.Add(CreateWatchlistPostEpisode(episodeIds));
             }
 
             if (_episodesWithNotes.IsValueCreated && _episodesWithNotes.Value.Any())
             {
                 foreach (EpisodeWithNotes episodeWithNotes in _episodesWithNotes.Value)
-                {
-                    (syncWatchlistPost.Episodes as List<ITraktSyncWatchlistPostEpisode>)
-                        .Add(CreateWatchlistPostEpisode(episodeWithNotes.Object, episodeWithNotes.Notes));
-                }
+                    syncWatchlistPost.Episodes.Add(CreateWatchlistPostEpisode(episodeWithNotes.Object, episodeWithNotes.Notes));
             }
 
             if (_episodeIdsWithNotes.IsValueCreated && _episodeIdsWithNotes.Value.Any())
             {
                 foreach (EpisodeIdsWithNotes episodeIdsWithNotes in _episodeIdsWithNotes.Value)
-                {
-                    (syncWatchlistPost.Episodes as List<ITraktSyncWatchlistPostEpisode>)
-                        .Add(CreateWatchlistPostEpisode(episodeIdsWithNotes.Object, episodeIdsWithNotes.Notes));
-                }
+                    syncWatchlistPost.Episodes.Add(CreateWatchlistPostEpisode(episodeIdsWithNotes.Object, episodeIdsWithNotes.Notes));
             }
         }
 
@@ -974,17 +926,14 @@
                         syncWatchlistPostShowSeason.Episodes = new List<ITraktSyncWatchlistPostShowEpisode>();
 
                         foreach (PostEpisode episode in season.Episodes)
-                        {
-                            (syncWatchlistPostShowSeason.Episodes as List<ITraktSyncWatchlistPostShowEpisode>)
-                                .Add(CreateWatchlistPostShowEpisode(episode));
-                        }
+                            syncWatchlistPostShowSeason.Episodes.Add(CreateWatchlistPostShowEpisode(episode));
                     }
 
-                    (syncWatchlistPostShow.Seasons as List<ITraktSyncWatchlistPostShowSeason>).Add(syncWatchlistPostShowSeason);
+                    syncWatchlistPostShow.Seasons.Add(syncWatchlistPostShowSeason);
                 }
             }
 
-            (syncWatchlistPost.Shows as List<ITraktSyncWatchlistPostShow>).Add(syncWatchlistPostShow);
+            syncWatchlistPost.Shows.Add(syncWatchlistPostShow);
         }
 
         private static ITraktSyncWatchlistPostShowSeason CreateWatchlistPostShowSeason(PostSeason season)

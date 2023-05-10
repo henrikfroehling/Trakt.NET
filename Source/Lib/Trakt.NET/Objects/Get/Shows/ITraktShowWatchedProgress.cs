@@ -17,6 +17,6 @@
         /// Gets or sets the watched seasons. See also <seealso cref="ITraktSeasonWatchedProgress" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktSeasonWatchedProgress> Seasons { get; set; }
+        IList<ITraktSeasonWatchedProgress> Seasons { get; set; }
     }
 }

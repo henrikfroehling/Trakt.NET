@@ -22,7 +22,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
                 multipleTraktIds.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -34,7 +34,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -64,7 +64,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -94,7 +94,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -124,7 +124,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -154,7 +154,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -184,7 +184,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -211,7 +211,7 @@
         public async Task Test_IdsArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktIds>();
-            Func<Task<IEnumerable<ITraktIds>>> multipleTraktIds = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktIds>>> multipleTraktIds = () => jsonReader.ReadArrayAsync(default(Stream));
             await multipleTraktIds.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -222,7 +222,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktIds> multipleTraktIds = await jsonReader.ReadArrayAsync(stream);
                 multipleTraktIds.Should().BeNull();
             }
         }

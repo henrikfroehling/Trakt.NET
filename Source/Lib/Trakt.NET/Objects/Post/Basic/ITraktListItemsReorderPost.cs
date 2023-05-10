@@ -5,6 +5,6 @@
 
     public interface ITraktListItemsReorderPost : IRequestBody
     {
-        IEnumerable<uint> Rank { get; set; }
+        IList<uint> Rank { get; set; }
     }
 }

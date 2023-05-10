@@ -9,6 +9,6 @@
         /// Gets or sets the certifications for the country code "us". See also <seealso cref="ITraktCertification" />.
         /// <para>Nullable</para>
         /// </summary>
-        public IEnumerable<ITraktCertification> US { get; set; }
+        public IList<ITraktCertification> US { get; set; }
     }
 }

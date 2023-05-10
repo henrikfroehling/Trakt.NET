@@ -48,7 +48,7 @@
         public DateTime? UpdatedAt { get; set; }
 
         /// <summary>Gets or sets the list of translation language codes (two letters) for the episode.<para>Nullable</para></summary>
-        public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
+        public IList<string> AvailableTranslationLanguageCodes { get; set; }
 
         /// <summary>Gets or sets the list of <see cref="ITraktEpisodeTranslation" />s for the episode.<para>Nullable</para></summary>
         /// <seealso cref="ITraktSeason.Episodes" />
@@ -62,7 +62,7 @@
         /// a collection returned by <see cref="TraktSeasonsModule.GetSeasonAsync(string, uint, TraktExtendedInfo, string, CancellationToken)" />
         /// and a translation language code was specified.
         /// </remarks>
-        public IEnumerable<ITraktEpisodeTranslation> Translations { get; set; }
+        public IList<ITraktEpisodeTranslation> Translations { get; set; }
 
         /// <summary>Gets or sets the comment count of the episode.<para>Nullable</para></summary>
         public int? CommentCount { get; set; }

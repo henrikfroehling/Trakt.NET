@@ -13,6 +13,6 @@
         /// See also <seealso cref="ITraktCollectionShowEpisode" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCollectionShowEpisode> Episodes { get; set; }
+        IList<ITraktCollectionShowEpisode> Episodes { get; set; }
     }
 }

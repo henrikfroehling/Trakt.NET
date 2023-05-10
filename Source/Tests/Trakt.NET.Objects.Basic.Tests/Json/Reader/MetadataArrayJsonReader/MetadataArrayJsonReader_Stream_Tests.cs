@@ -23,7 +23,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
                 traktMetadatas.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -35,7 +35,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
 
                 traktMetadatas.Should().NotBeNull();
                 ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -65,7 +65,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
 
                 traktMetadatas.Should().NotBeNull();
                 ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -95,7 +95,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
 
                 traktMetadatas.Should().NotBeNull();
                 ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -125,7 +125,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
 
                 traktMetadatas.Should().NotBeNull();
                 ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -155,7 +155,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
 
                 traktMetadatas.Should().NotBeNull();
                 ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -185,7 +185,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
 
                 traktMetadatas.Should().NotBeNull();
                 ITraktMetadata[] metadatas = traktMetadatas.ToArray();
@@ -212,7 +212,7 @@
         public async Task Test_MetadataArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktMetadata>();
-            Func<Task<IEnumerable<ITraktMetadata>>> traktMetadatas = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktMetadata>>> traktMetadatas = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktMetadatas.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -223,7 +223,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktMetadata> traktMetadatas = await jsonReader.ReadArrayAsync(stream);
                 traktMetadatas.Should().BeNull();
             }
         }

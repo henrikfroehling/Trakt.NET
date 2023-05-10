@@ -7,6 +7,6 @@
     public class TraktSyncHistoryRemovePostResponseNotFoundGroup : TraktSyncPostResponseNotFoundGroup, ITraktSyncHistoryRemovePostResponseNotFoundGroup
     {
         /// <summary>Gets or sets a list of Trakt history item ids, which were not found.<para>Nullable</para></summary>
-        public IEnumerable<ulong> HistoryIds { get; set; }
+        public IList<ulong> HistoryIds { get; set; }
     }
 }

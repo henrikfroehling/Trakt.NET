@@ -320,7 +320,7 @@
         public async Task Test_CollectionMovieArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCollectionMovie>();
-            Func<Task<IEnumerable<ITraktCollectionMovie>>> traktCollectionMovies = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktCollectionMovie>>> traktCollectionMovies = () => jsonReader.ReadArrayAsync(default(string));
             await traktCollectionMovies.Should().ThrowAsync<ArgumentNullException>();
         }
 

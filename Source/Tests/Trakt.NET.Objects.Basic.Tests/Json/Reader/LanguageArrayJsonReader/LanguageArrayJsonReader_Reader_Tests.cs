@@ -23,7 +23,7 @@
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktLanguages.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -36,7 +36,7 @@
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -59,7 +59,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -82,7 +82,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -105,7 +105,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -128,7 +128,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -151,7 +151,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -170,7 +170,7 @@
         public async Task Test_LanguageArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktLanguage>();
-            Func<Task<IEnumerable<ITraktLanguage>>> traktLanguages = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktLanguage>>> traktLanguages = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             await traktLanguages.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -182,7 +182,7 @@
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktLanguage> traktLanguages = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktLanguages.Should().BeNull();
             }
         }

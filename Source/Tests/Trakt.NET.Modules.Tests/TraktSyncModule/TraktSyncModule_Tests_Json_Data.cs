@@ -32,7 +32,7 @@
         private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const int RECOMMENDATIONS_ITEM_COUNT = 2;
         private const int RECOMMENDATIONS_LIMIT = 6;
-        private readonly IEnumerable<uint> REORDERED_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
+        private readonly IList<uint> REORDERED_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 

@@ -151,7 +151,7 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>A deserialized object collection from a JSON string.</returns>
-        public static Task<IEnumerable<TObjectType>> DeserializeCollectionAsync<TObjectType>(string json, CancellationToken cancellationToken = default)
+        public static Task<IList<TObjectType>> DeserializeCollectionAsync<TObjectType>(string json, CancellationToken cancellationToken = default)
         {
             if (json == null)
                 throw new ArgumentNullException(nameof(json), "json string must not be null");

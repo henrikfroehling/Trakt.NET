@@ -7,6 +7,6 @@
     public interface ITraktSyncHistoryRemovePostResponseNotFoundGroup : ITraktSyncPostResponseNotFoundGroup
     {
         /// <summary>Gets or sets a list of Trakt history item ids, which were not found.<para>Nullable</para></summary>
-        IEnumerable<ulong> HistoryIds { get; set; }
+        IList<ulong> HistoryIds { get; set; }
     }
 }

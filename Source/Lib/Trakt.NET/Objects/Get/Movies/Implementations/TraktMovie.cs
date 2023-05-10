@@ -51,10 +51,10 @@
         public string LanguageCode { get; set; }
 
         /// <summary>Gets or sets the list of translation language codes (two letters) for the movie.<para>Nullable</para></summary>
-        public IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
+        public IList<string> AvailableTranslationLanguageCodes { get; set; }
 
         /// <summary>Gets or sets the collection of Trakt genre slugs for the movie.<para>Nullable</para></summary>
-        public IEnumerable<string> Genres { get; set; }
+        public IList<string> Genres { get; set; }
 
         /// <summary>Gets or sets the content certification of the movie.<para>Nullable</para></summary>
         public string Certification { get; set; }
