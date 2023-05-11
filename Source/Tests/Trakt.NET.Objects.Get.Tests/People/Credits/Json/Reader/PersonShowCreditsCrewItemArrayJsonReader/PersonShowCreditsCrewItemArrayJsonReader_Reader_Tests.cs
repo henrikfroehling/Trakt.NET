@@ -251,7 +251,7 @@
         public async Task Test_PersonShowCreditsCrewItemArrayJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktPersonShowCreditsCrewItem>();
-            Func<Task<IEnumerable<ITraktPersonShowCreditsCrewItem>>> showCreditsCrewItems = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktPersonShowCreditsCrewItem>>> showCreditsCrewItems = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             await showCreditsCrewItems.Should().ThrowAsync<ArgumentNullException>();
         }
 

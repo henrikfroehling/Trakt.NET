@@ -22,7 +22,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
                 traktLanguages.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -34,7 +34,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -56,7 +56,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -78,7 +78,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -100,7 +100,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -122,7 +122,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -144,7 +144,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
 
                 traktLanguages.Should().NotBeNull();
                 ITraktLanguage[] languages = traktLanguages.ToArray();
@@ -163,7 +163,7 @@
         public async Task Test_LanguageArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktLanguage>();
-            Func<Task<IEnumerable<ITraktLanguage>>> traktLanguages = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktLanguage>>> traktLanguages = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktLanguages.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -174,7 +174,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktLanguage> traktLanguages = await jsonReader.ReadArrayAsync(stream);
                 traktLanguages.Should().BeNull();
             }
         }

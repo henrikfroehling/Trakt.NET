@@ -175,7 +175,7 @@
         }
 
         /// <summary>Gets or sets the list of translation language codes (two letters) for the movie.<para>Nullable</para></summary>
-        public IEnumerable<string> AvailableTranslationLanguageCodes
+        public IList<string> AvailableTranslationLanguageCodes
         {
             get { return Movie?.AvailableTranslationLanguageCodes; }
 
@@ -187,7 +187,7 @@
         }
 
         /// <summary>Gets or sets the collection of Trakt genre slugs for the movie.<para>Nullable</para></summary>
-        public IEnumerable<string> Genres
+        public IList<string> Genres
         {
             get { return Movie?.Genres; }
 

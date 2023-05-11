@@ -232,7 +232,7 @@
         public async Task Test_CrewMemberArrayJsonReader_ReadObject_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktCrewMember>();
-            Func<Task<IEnumerable<ITraktCrewMember>>> traktCrewMembers = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktCrewMember>>> traktCrewMembers = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             await traktCrewMembers.Should().ThrowAsync<ArgumentNullException>();
         }
 

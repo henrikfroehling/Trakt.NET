@@ -31,6 +31,6 @@
         /// Otherwise, only the specified seasons and / or episodes will be added to the collection.
         /// </para>
         /// </summary>
-        IEnumerable<ITraktSyncCollectionPostShowSeason> Seasons { get; set; }
+        IList<ITraktSyncCollectionPostShowSeason> Seasons { get; set; }
     }
 }

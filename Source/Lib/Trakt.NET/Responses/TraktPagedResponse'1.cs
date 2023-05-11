@@ -8,7 +8,6 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -138,10 +137,6 @@
             => left.Equals(right);
 
         public int GetHashCode(TraktPagedResponse<TResponseContentType> obj) => obj.GetHashCode();
-
-        /// <summary>Enables implicit conversion to <see cref="List{TResponseContentType}" /> for this type.</summary>
-        /// <param name="response">The <see cref="TraktPagedResponse{TResponseContentType}" /> instance, which will be converted to <see cref="List{TResponseContentType}" />.</param>
-        public static explicit operator List<TResponseContentType>(TraktPagedResponse<TResponseContentType> response) => response.Value.ToList();
 
         /// <summary>Enables implicit conversion to <see cref="TraktPagedResponse{TResponseContentType}" /> for this type.</summary>
         /// <param name="value">The <see cref="List{TResponseContentType}" /> instance, which will be converted to <see cref="TraktPagedResponse{TResponseContentType}" />.</param>

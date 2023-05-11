@@ -231,7 +231,7 @@
         }
 
         /// <summary>Gets or sets the list of translation language codes (two letters) for the show.<para>Nullable</para></summary>
-        public IEnumerable<string> AvailableTranslationLanguageCodes
+        public IList<string> AvailableTranslationLanguageCodes
         {
             get { return Show?.AvailableTranslationLanguageCodes; }
 
@@ -243,7 +243,7 @@
         }
 
         /// <summary>Gets or sets the collection of Trakt genre slugs for the show.<para>Nullable</para></summary>
-        public IEnumerable<string> Genres
+        public IList<string> Genres
         {
             get { return Show?.Genres; }
 
@@ -267,7 +267,7 @@
         }
 
         /// <summary>Gets or sets the collection of Trakt seasons for the show. See also <seealso cref="ITraktSeason" />.<para>Nullable</para></summary>
-        public IEnumerable<ITraktSeason> Seasons
+        public IList<ITraktSeason> Seasons
         {
             get { return Show?.Seasons; }
 
@@ -427,7 +427,7 @@
         }
 
         /// <summary>Gets or sets the list of translation language codes (two letters) for the episode.<para>Nullable</para></summary>
-        public IEnumerable<string> AvailableEpisodeTranslationLanguageCodes
+        public IList<string> AvailableEpisodeTranslationLanguageCodes
         {
             get { return Episode?.AvailableTranslationLanguageCodes; }
 
@@ -450,7 +450,7 @@
         /// a collection returned by <see cref="TraktSeasonsModule.GetSeasonAsync(string, uint, TraktExtendedInfo, string, CancellationToken)" />
         /// and a translation language code was specified.
         /// </remarks>
-        public IEnumerable<ITraktEpisodeTranslation> EpisodeTranslations
+        public IList<ITraktEpisodeTranslation> EpisodeTranslations
         {
             get { return Episode?.Translations; }
 

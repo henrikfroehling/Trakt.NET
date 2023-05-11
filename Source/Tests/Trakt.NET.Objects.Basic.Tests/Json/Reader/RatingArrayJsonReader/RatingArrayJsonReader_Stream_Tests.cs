@@ -22,7 +22,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
                 traktRatings.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -34,7 +34,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -88,7 +88,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -142,7 +142,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -196,7 +196,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -250,7 +250,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -304,7 +304,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
 
                 traktRatings.Should().NotBeNull();
                 ITraktRating[] ratings = traktRatings.ToArray();
@@ -355,7 +355,7 @@
         public async Task Test_RatingArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktRating>();
-            Func<Task<IEnumerable<ITraktRating>>> traktRatings = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktRating>>> traktRatings = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktRatings.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -366,7 +366,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktRating> traktRatings = await jsonReader.ReadArrayAsync(stream);
                 traktRatings.Should().BeNull();
             }
         }

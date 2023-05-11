@@ -17,7 +17,7 @@
         /// Gets or sets the hidden seasons. See also <seealso cref="ITraktSeason" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktSeason> HiddenSeasons { get; set; }
+        IList<ITraktSeason> HiddenSeasons { get; set; }
 
         /// <summary>
         /// Gets or sets the episode, which the user should collect or watch.

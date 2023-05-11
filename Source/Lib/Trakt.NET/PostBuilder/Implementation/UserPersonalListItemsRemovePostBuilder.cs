@@ -93,19 +93,13 @@
             if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
-                {
-                    (userListItemsRemovePost.Movies as List<ITraktUserPersonalListItemsPostMovie>)
-                        .Add(CreateListItemsPostMovie(movie));
-                }
+                    userListItemsRemovePost.Movies.Add(CreateListItemsPostMovie(movie));
             }
 
             if (_movieIds.IsValueCreated && _movieIds.Value.Any())
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
-                {
-                    (userListItemsRemovePost.Movies as List<ITraktUserPersonalListItemsPostMovie>)
-                        .Add(CreateListItemsPostMovie(movieIds));
-                }
+                    userListItemsRemovePost.Movies.Add(CreateListItemsPostMovie(movieIds));
             }
         }
 
@@ -122,19 +116,13 @@
             if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
-                {
-                    (userListItemsRemovePost.Shows as List<ITraktUserPersonalListItemsPostShow>)
-                        .Add(CreateListItemsPostShow(show));
-                }
+                    userListItemsRemovePost.Shows.Add(CreateListItemsPostShow(show));
             }
 
             if (_showIds.IsValueCreated && _showIds.Value.Any())
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
-                {
-                    (userListItemsRemovePost.Shows as List<ITraktUserPersonalListItemsPostShow>)
-                        .Add(CreateListItemsPostShow(showIds));
-                }
+                    userListItemsRemovePost.Shows.Add(CreateListItemsPostShow(showIds));
             }
 
             if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Any())
@@ -154,19 +142,13 @@
             if (_seasons.IsValueCreated && _seasons.Value.Any())
             {
                 foreach (ITraktSeason season in _seasons.Value)
-                {
-                    (userListItemsRemovePost.Seasons as List<ITraktUserPersonalListItemsPostSeason>)
-                        .Add(CreateListItemsPostSeason(season));
-                }
+                    userListItemsRemovePost.Seasons.Add(CreateListItemsPostSeason(season));
             }
 
             if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
             {
                 foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
-                {
-                    (userListItemsRemovePost.Seasons as List<ITraktUserPersonalListItemsPostSeason>)
-                        .Add(CreateListItemsPostSeason(seasonIds));
-                }
+                    userListItemsRemovePost.Seasons.Add(CreateListItemsPostSeason(seasonIds));
             }
         }
 
@@ -180,19 +162,13 @@
             if (_episodes.IsValueCreated && _episodes.Value.Any())
             {
                 foreach (ITraktEpisode episode in _episodes.Value)
-                {
-                    (userListItemsRemovePost.Episodes as List<ITraktUserPersonalListItemsPostEpisode>)
-                        .Add(CreateListItemsPostEpisode(episode));
-                }
+                    userListItemsRemovePost.Episodes.Add(CreateListItemsPostEpisode(episode));
             }
 
             if (_episodeIds.IsValueCreated && _episodeIds.Value.Any())
             {
                 foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
-                {
-                    (userListItemsRemovePost.Episodes as List<ITraktUserPersonalListItemsPostEpisode>)
-                        .Add(CreateListItemsPostEpisode(episodeIds));
-                }
+                    userListItemsRemovePost.Episodes.Add(CreateListItemsPostEpisode(episodeIds));
             }
         }
 
@@ -206,19 +182,13 @@
             if (_persons.IsValueCreated && _persons.Value.Any())
             {
                 foreach (ITraktPerson person in _persons.Value)
-                {
-                    (userListItemsRemovePost.People as List<ITraktUserPersonalListItemsPostPerson>)
-                        .Add(CreateListItemsPostPerson(person));
-                }
+                    userListItemsRemovePost.People.Add(CreateListItemsPostPerson(person));
             }
 
             if (_personIds.IsValueCreated && _personIds.Value.Any())
             {
                 foreach (ITraktPersonIds personIds in _personIds.Value)
-                {
-                    (userListItemsRemovePost.People as List<ITraktUserPersonalListItemsPostPerson>)
-                        .Add(CreateListItemsPostPerson(personIds));
-                }
+                    userListItemsRemovePost.People.Add(CreateListItemsPostPerson(personIds));
             }
         }
 
@@ -281,17 +251,14 @@
                         userListItemsPostShowSeason.Episodes = new List<ITraktUserPersonalListItemsPostShowEpisode>();
 
                         foreach (PostEpisode episode in season.Episodes)
-                        {
-                            (userListItemsPostShowSeason.Episodes as List<ITraktUserPersonalListItemsPostShowEpisode>)
-                                .Add(CreateListItemsPostShowEpisode(episode));
-                        }
+                            userListItemsPostShowSeason.Episodes.Add(CreateListItemsPostShowEpisode(episode));
                     }
 
-                    (userListItemsPostShow.Seasons as List<ITraktUserPersonalListItemsPostShowSeason>).Add(userListItemsPostShowSeason);
+                    userListItemsPostShow.Seasons.Add(userListItemsPostShowSeason);
                 }
             }
 
-            (userListItemsRemovePost.Shows as List<ITraktUserPersonalListItemsPostShow>).Add(userListItemsPostShow);
+            userListItemsRemovePost.Shows.Add(userListItemsPostShow);
         }
 
         private static ITraktUserPersonalListItemsPostShowSeason CreateListItemsPostShowSeason(PostSeason season)

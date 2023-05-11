@@ -23,7 +23,7 @@
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
                 traktDevices.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -36,7 +36,7 @@
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
 
                 traktDevices.Should().NotBeNull();
                 ITraktDevice[] items = traktDevices.ToArray();
@@ -65,7 +65,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
 
                 traktDevices.Should().NotBeNull();
                 ITraktDevice[] items = traktDevices.ToArray();
@@ -94,7 +94,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
 
                 traktDevices.Should().NotBeNull();
                 ITraktDevice[] items = traktDevices.ToArray();
@@ -123,7 +123,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
 
                 traktDevices.Should().NotBeNull();
                 ITraktDevice[] items = traktDevices.ToArray();
@@ -152,7 +152,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
 
                 traktDevices.Should().NotBeNull();
                 ITraktDevice[] items = traktDevices.ToArray();
@@ -177,7 +177,7 @@
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_JsonReader_Null()
         {
             var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
-            Func<Task<IEnumerable<ITraktDevice>>> traktDevices = () =>objectJsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktDevice>>> traktDevices = () =>objectJsonReader.ReadArrayAsync(default(JsonTextReader));
             await traktDevices.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -189,7 +189,7 @@
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(jsonReader);
                 traktDevices.Should().BeNull();
             }
         }

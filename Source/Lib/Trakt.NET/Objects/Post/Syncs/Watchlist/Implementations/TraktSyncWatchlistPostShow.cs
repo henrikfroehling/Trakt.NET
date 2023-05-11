@@ -25,7 +25,7 @@
         /// Otherwise, only the specified seasons and / or episodes will be added to the watchlist.
         /// </para>
         /// </summary>
-        public IEnumerable<ITraktSyncWatchlistPostShowSeason> Seasons { get; set; }
+        public IList<ITraktSyncWatchlistPostShowSeason> Seasons { get; set; }
 
         /// <summary>Gets or sets the show notes.</summary>
         public string Notes { get; set; }

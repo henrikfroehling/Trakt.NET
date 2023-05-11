@@ -54,8 +54,8 @@
         private readonly TraktAccessScope NEW_PRIVACY = TraktAccessScope.Private;
         private const bool NEW_DISPLAY_NUMBERS = false;
         private const bool NEW_ALLOW_COMMENTS = false;
-        private readonly IEnumerable<uint> REORDERED_CUSTOM_LISTS = new List<uint> { 823, 224, 88768, 356456, 245, 2, 890 };
-        private readonly IEnumerable<uint> REORDERED_CUSTOM_LIST_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
+        private readonly IList<uint> REORDERED_CUSTOM_LISTS = new List<uint> { 823, 224, 88768, 356456, 245, 2, 890 };
+        private readonly IList<uint> REORDERED_CUSTOM_LIST_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
         private const int RATINGS_ITEM_COUNT = 5;
         private readonly TraktRecommendationObjectType RECOMMENDATION_TYPE = TraktRecommendationObjectType.Movie;
         private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;

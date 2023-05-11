@@ -33,6 +33,6 @@
         /// Otherwise, only the specified seasons and / or episodes will be added to the ratings.
         /// </para>
         /// </summary>
-        public IEnumerable<ITraktSyncRatingsPostShowSeason> Seasons { get; set; }
+        public IList<ITraktSyncRatingsPostShowSeason> Seasons { get; set; }
     }
 }

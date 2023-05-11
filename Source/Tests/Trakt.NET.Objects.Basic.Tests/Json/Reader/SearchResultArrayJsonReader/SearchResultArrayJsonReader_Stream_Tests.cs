@@ -18,7 +18,7 @@
         public async Task Test_SearchResultArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktSearchResult>();
-            Func<Task<IEnumerable<ITraktSearchResult>>> traktSearchResults = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktSearchResult>>> traktSearchResults = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktSearchResults.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -29,7 +29,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktSearchResult> traktSearchResults = await jsonReader.ReadArrayAsync(stream);
                 traktSearchResults.Should().BeNull();
             }
         }

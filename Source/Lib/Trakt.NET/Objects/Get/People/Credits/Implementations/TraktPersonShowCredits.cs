@@ -10,7 +10,7 @@
         /// See also <seealso cref="ITraktPersonShowCreditsCastItem" />.
         /// <para>Nullable</para>
         /// </summary>
-        public IEnumerable<ITraktPersonShowCreditsCastItem> Cast { get; set; }
+        public IList<ITraktPersonShowCreditsCastItem> Cast { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of crew positions, which a person has.

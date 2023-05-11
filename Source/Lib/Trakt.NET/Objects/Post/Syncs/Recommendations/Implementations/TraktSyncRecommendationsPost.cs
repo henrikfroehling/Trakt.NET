@@ -14,13 +14,13 @@
         /// An optional list of <see cref="ITraktSyncRecommendationsPostMovie" />s.
         /// <para>Each <see cref="ITraktSyncRecommendationsPostMovie" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktSyncRecommendationsPostMovie> Movies { get; set; }
+        public IList<ITraktSyncRecommendationsPostMovie> Movies { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncRecommendationsPostShow" />s.
         /// <para>Each <see cref="ITraktSyncRecommendationsPostShow" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktSyncRecommendationsPostShow> Shows { get; set; }
+        public IList<ITraktSyncRecommendationsPostShow> Shows { get; set; }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {

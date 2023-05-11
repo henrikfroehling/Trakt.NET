@@ -9,19 +9,19 @@
 
     internal class IntArrayJsonReader : IArrayJsonReader<int>
     {
-        public Task<IEnumerable<int>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
+        public Task<IList<int>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
         {
             CheckJson(json);
 
             if (json == string.Empty)
-                return Task.FromResult(default(IEnumerable<int>));
+                return Task.FromResult(default(IList<int>));
 
             using var reader = new StringReader(json);
             using var jsonReader = new JsonTextReader(reader);
             return ReadArrayAsync(jsonReader, cancellationToken);
         }
 
-        public Task<IEnumerable<int>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default)
+        public Task<IList<int>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             CheckStream(stream);
             using var streamReader = new StreamReader(stream);
@@ -29,7 +29,7 @@
             return ReadArrayAsync(jsonReader, cancellationToken);
         }
 
-        public async Task<IEnumerable<int>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public async Task<IList<int>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
@@ -46,7 +46,7 @@
                 return values;
             }
 
-            return await Task.FromResult(default(IEnumerable<int>));
+            return await Task.FromResult(default(IList<int>));
         }
 
         private void CheckJson(string json)

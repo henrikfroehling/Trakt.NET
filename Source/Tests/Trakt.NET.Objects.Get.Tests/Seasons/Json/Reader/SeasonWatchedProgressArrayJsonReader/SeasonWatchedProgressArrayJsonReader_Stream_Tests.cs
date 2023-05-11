@@ -913,7 +913,7 @@
         public async Task Test_SeasonWatchedProgressArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktSeasonWatchedProgress>();
-            Func<Task<IEnumerable<ITraktSeasonWatchedProgress>>> traktSeasonWatchedProgresses = () => traktJsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktSeasonWatchedProgress>>> traktSeasonWatchedProgresses = () => traktJsonReader.ReadArrayAsync(default(Stream));
             await traktSeasonWatchedProgresses.Should().ThrowAsync<ArgumentNullException>();
         }
 

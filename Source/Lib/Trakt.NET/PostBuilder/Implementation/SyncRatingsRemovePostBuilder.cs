@@ -35,19 +35,13 @@
             if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
-                {
-                    (syncRatingsRemovePost.Movies as List<ITraktSyncRatingsPostMovie>)
-                        .Add(CreateRatingsPostMovie(movie));
-                }
+                    syncRatingsRemovePost.Movies.Add(CreateRatingsPostMovie(movie));
             }
 
             if (_movieIds.IsValueCreated && _movieIds.Value.Any())
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
-                {
-                    (syncRatingsRemovePost.Movies as List<ITraktSyncRatingsPostMovie>)
-                        .Add(CreateRatingsPostMovie(movieIds));
-                }
+                    syncRatingsRemovePost.Movies.Add(CreateRatingsPostMovie(movieIds));
             }
         }
 
@@ -61,19 +55,13 @@
             if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
-                {
-                    (syncRatingsRemovePost.Shows as List<ITraktSyncRatingsPostShow>)
-                        .Add(CreateRatingsPostShow(show));
-                }
+                    syncRatingsRemovePost.Shows.Add(CreateRatingsPostShow(show));
             }
 
             if (_showIds.IsValueCreated && _showIds.Value.Any())
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
-                {
-                    (syncRatingsRemovePost.Shows as List<ITraktSyncRatingsPostShow>)
-                        .Add(CreateRatingsRemovePostShow(showIds));
-                }
+                    syncRatingsRemovePost.Shows.Add(CreateRatingsRemovePostShow(showIds));
             }
 
             if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Any())
@@ -93,19 +81,13 @@
             if (_seasons.IsValueCreated && _seasons.Value.Any())
             {
                 foreach (ITraktSeason season in _seasons.Value)
-                {
-                    (syncRatingsRemovePost.Seasons as List<ITraktSyncRatingsPostSeason>)
-                        .Add(CreateRatingsPostSeason(season));
-                }
+                    syncRatingsRemovePost.Seasons.Add(CreateRatingsPostSeason(season));
             }
 
             if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
             {
                 foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
-                {
-                    (syncRatingsRemovePost.Seasons as List<ITraktSyncRatingsPostSeason>)
-                        .Add(CreateRatingsPostSeason(seasonIds));
-                }
+                    syncRatingsRemovePost.Seasons.Add(CreateRatingsPostSeason(seasonIds));
             }
         }
 
@@ -119,19 +101,13 @@
             if (_episodes.IsValueCreated && _episodes.Value.Any())
             {
                 foreach (ITraktEpisode episode in _episodes.Value)
-                {
-                    (syncRatingsRemovePost.Episodes as List<ITraktSyncRatingsPostEpisode>)
-                        .Add(CreateRatingsPostEpisode(episode));
-                }
+                    syncRatingsRemovePost.Episodes.Add(CreateRatingsPostEpisode(episode));
             }
 
             if (_episodeIds.IsValueCreated && _episodeIds.Value.Any())
             {
                 foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
-                {
-                    (syncRatingsRemovePost.Episodes as List<ITraktSyncRatingsPostEpisode>)
-                        .Add(CreateRatingsPostEpisode(episodeIds));
-                }
+                    syncRatingsRemovePost.Episodes.Add(CreateRatingsPostEpisode(episodeIds));
             }
         }
 
@@ -190,17 +166,14 @@
                         syncRatingsRemovePostShowSeason.Episodes = new List<ITraktSyncRatingsPostShowEpisode>();
 
                         foreach (PostEpisode episode in season.Episodes)
-                        {
-                            (syncRatingsRemovePostShowSeason.Episodes as List<ITraktSyncRatingsPostShowEpisode>)
-                                .Add(CreateRatingsPostShowEpisode(episode));
-                        }
+                            syncRatingsRemovePostShowSeason.Episodes.Add(CreateRatingsPostShowEpisode(episode));
                     }
 
-                    (syncRatingsRemovePostShow.Seasons as List<ITraktSyncRatingsPostShowSeason>).Add(syncRatingsRemovePostShowSeason);
+                    syncRatingsRemovePostShow.Seasons.Add(syncRatingsRemovePostShowSeason);
                 }
             }
 
-            (syncRatingsRemovePost.Shows as List<ITraktSyncRatingsPostShow>).Add(syncRatingsRemovePostShow);
+            syncRatingsRemovePost.Shows.Add(syncRatingsRemovePostShow);
         }
 
         private static ITraktSyncRatingsPostShowSeason CreateRatingsPostShowSeason(PostSeason season)

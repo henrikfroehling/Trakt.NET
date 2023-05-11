@@ -9,66 +9,66 @@
         /// Gets or sets a list of crew members in the production category. See also <seealso cref="ITraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCrewMember> Production { get; set; }
+        IList<ITraktCrewMember> Production { get; set; }
 
         /// <summary>
         /// Gets or sets a list of crew members in the art category. See also <seealso cref="ITraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCrewMember> Art { get; set; }
+        IList<ITraktCrewMember> Art { get; set; }
 
         /// <summary>
         /// Gets or sets a list of crew members. See also <seealso cref="ITraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCrewMember> Crew { get; set; }
+        IList<ITraktCrewMember> Crew { get; set; }
 
         /// <summary>
         /// Gets or sets a list of crew members in the costume and make-up category. See also <seealso cref="ITraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCrewMember> CostumeAndMakeup { get; set; }
+        IList<ITraktCrewMember> CostumeAndMakeup { get; set; }
 
         /// <summary>
         /// Gets or sets a list of crew members in the directing category. See also <seealso cref="ITraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCrewMember> Directing { get; set; }
+        IList<ITraktCrewMember> Directing { get; set; }
 
         /// <summary>
         /// Gets or sets a list of crew members in the writing category. See also <seealso cref="ITraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCrewMember> Writing { get; set; }
+        IList<ITraktCrewMember> Writing { get; set; }
 
         /// <summary>
         /// Gets or sets a list of crew members in the sound category. See also <seealso cref="ITraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCrewMember> Sound { get; set; }
+        IList<ITraktCrewMember> Sound { get; set; }
 
         /// <summary>
         /// Gets or sets a list of crew members in the camera category. See also <seealso cref="ITraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCrewMember> Camera { get; set; }
+        IList<ITraktCrewMember> Camera { get; set; }
 
         /// <summary>
         /// Gets or sets a list of crew members in the lighting category. See also <seealso cref="ITraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCrewMember> Lighting { get; set; }
+        IList<ITraktCrewMember> Lighting { get; set; }
 
         /// <summary>
         /// Gets or sets a list of crew members in the visual effects category. See also <seealso cref="ITraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCrewMember> VisualEffects { get; set; }
+        IList<ITraktCrewMember> VisualEffects { get; set; }
 
         /// <summary>
         /// Gets or sets a list of crew members in the editing category. See also <seealso cref="ITraktCrewMember" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCrewMember> Editing { get; set; }
+        IList<ITraktCrewMember> Editing { get; set; }
     }
 }

@@ -24,7 +24,7 @@
         public async Task Test_HistoryItemArrayJsonReader_ReadArray_From_Json_String_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktHistoryItem>();
-            Func<Task<IEnumerable<ITraktHistoryItem>>> traktHistoryItems = () => jsonReader.ReadArrayAsync(default(string));
+            Func<Task<IList<ITraktHistoryItem>>> traktHistoryItems = () => jsonReader.ReadArrayAsync(default(string));
             await traktHistoryItems.Should().ThrowAsync<ArgumentNullException>();
         }
 

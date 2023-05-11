@@ -133,19 +133,13 @@
             if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
-                {
-                    (syncRecommendationsRemovePost.Movies as List<ITraktSyncRecommendationsPostMovie>)
-                        .Add(CreateRecommendationsPostMovie(movie));
-                }
+                    syncRecommendationsRemovePost.Movies.Add(CreateRecommendationsPostMovie(movie));
             }
 
             if (_movieIds.IsValueCreated && _movieIds.Value.Any())
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
-                {
-                    (syncRecommendationsRemovePost.Movies as List<ITraktSyncRecommendationsPostMovie>)
-                        .Add(CreateRecommendationsPostMovie(movieIds));
-                }
+                    syncRecommendationsRemovePost.Movies.Add(CreateRecommendationsPostMovie(movieIds));
             }
         }
 
@@ -159,19 +153,13 @@
             if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
-                {
-                    (syncRecommendationsRemovePost.Shows as List<ITraktSyncRecommendationsPostShow>)
-                        .Add(CreateRecommendationsPostShow(show));
-                }
+                    syncRecommendationsRemovePost.Shows.Add(CreateRecommendationsPostShow(show));
             }
 
             if (_showIds.IsValueCreated && _showIds.Value.Any())
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
-                {
-                    (syncRecommendationsRemovePost.Shows as List<ITraktSyncRecommendationsPostShow>)
-                        .Add(CreateRecommendationsPostShow(showIds));
-                }
+                    syncRecommendationsRemovePost.Shows.Add(CreateRecommendationsPostShow(showIds));
             }
         }
 

@@ -23,7 +23,7 @@
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktCrews.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -36,7 +36,7 @@
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
@@ -101,7 +101,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
@@ -159,7 +159,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
@@ -217,7 +217,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
@@ -282,7 +282,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
@@ -347,7 +347,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCrews.Should().NotBeNull();
                 ITraktCrew[] crews = traktCrews.ToArray();
@@ -408,7 +408,7 @@
         public async Task Test_CrewArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktCrew>();
-            Func<Task<IEnumerable<ITraktCrew>>> traktCrews = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktCrew>>> traktCrews = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             await traktCrews.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -420,7 +420,7 @@
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCrew> traktCrews = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktCrews.Should().BeNull();
             }
         }

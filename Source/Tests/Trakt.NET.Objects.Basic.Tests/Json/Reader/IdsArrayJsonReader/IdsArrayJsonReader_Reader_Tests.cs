@@ -23,7 +23,7 @@
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
                 multipleTraktIds.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -36,7 +36,7 @@
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -67,7 +67,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -98,7 +98,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -129,7 +129,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -160,7 +160,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -191,7 +191,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 multipleTraktIds.Should().NotBeNull();
                 ITraktIds[] ids = multipleTraktIds.ToArray();
@@ -218,7 +218,7 @@
         public async Task Test_IdsArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktIds>();
-            Func<Task<IEnumerable<ITraktIds>>> multipleTraktIds = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktIds>>> multipleTraktIds = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             await multipleTraktIds.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -230,7 +230,7 @@
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktIds> multipleTraktIds = await traktJsonReader.ReadArrayAsync(jsonReader);
                 multipleTraktIds.Should().BeNull();
             }
         }

@@ -7,7 +7,7 @@
     public class TraktPersonShowCreditsCrewItem : ITraktPersonShowCreditsCrewItem
     {
         /// <summary>Gets or sets the jobs collection of the crew position.<para>Nullable</para></summary>
-        public IEnumerable<string> Jobs { get; set; }
+        public IList<string> Jobs { get; set; }
 
         /// <summary>Gets or sets the episode count of the crew position.<para>Nullable</para></summary>
         public int? EpisodeCount { get; set; }

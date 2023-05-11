@@ -15,6 +15,6 @@
         /// Otherwise, only the specified episodes will be added to the history.
         /// </para>
         /// </summary>
-        IEnumerable<ITraktSyncHistoryRemovePostShowEpisode> Episodes { get; set; }
+        IList<ITraktSyncHistoryRemovePostShowEpisode> Episodes { get; set; }
     }
 }

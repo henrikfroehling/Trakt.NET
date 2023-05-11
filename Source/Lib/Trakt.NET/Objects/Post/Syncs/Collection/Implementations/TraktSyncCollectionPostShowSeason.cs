@@ -21,6 +21,6 @@
         /// Otherwise, only the specified episodes will be added to the collection.
         /// </para>
         /// </summary>
-        public IEnumerable<ITraktSyncCollectionPostShowEpisode> Episodes { get; set; }
+        public IList<ITraktSyncCollectionPostShowEpisode> Episodes { get; set; }
     }
 }

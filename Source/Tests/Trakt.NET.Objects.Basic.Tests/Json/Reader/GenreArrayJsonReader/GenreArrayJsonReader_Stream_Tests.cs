@@ -22,7 +22,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
                 traktGenres.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -34,7 +34,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
 
                 traktGenres.Should().NotBeNull();
                 ITraktGenre[] genres = traktGenres.ToArray();
@@ -58,7 +58,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
 
                 traktGenres.Should().NotBeNull();
                 ITraktGenre[] genres = traktGenres.ToArray();
@@ -82,7 +82,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
 
                 traktGenres.Should().NotBeNull();
                 ITraktGenre[] genres = traktGenres.ToArray();
@@ -106,7 +106,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
 
                 traktGenres.Should().NotBeNull();
                 ITraktGenre[] genres = traktGenres.ToArray();
@@ -130,7 +130,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
 
                 traktGenres.Should().NotBeNull();
                 ITraktGenre[] genres = traktGenres.ToArray();
@@ -154,7 +154,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
 
                 traktGenres.Should().NotBeNull();
                 ITraktGenre[] genres = traktGenres.ToArray();
@@ -175,7 +175,7 @@
         public async Task Test_GenreArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktGenre>();
-            Func<Task<IEnumerable<ITraktGenre>>> traktGenres = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktGenre>>> traktGenres = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktGenres.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -186,7 +186,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktGenre> traktGenres = await jsonReader.ReadArrayAsync(stream);
                 traktGenres.Should().BeNull();
             }
         }

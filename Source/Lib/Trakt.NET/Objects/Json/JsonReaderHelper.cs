@@ -10,7 +10,7 @@
 
     internal static class JsonReaderHelper
     {
-        internal static async Task<IEnumerable<string>> ReadStringArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        internal static async Task<IList<string>> ReadStringArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
@@ -30,7 +30,7 @@
             return default;
         }
 
-        internal static async Task<IEnumerable<ulong>> ReadUnsignedLongArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        internal static async Task<IList<ulong>> ReadUnsignedLongArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
@@ -48,7 +48,7 @@
             return default;
         }
 
-        internal static async Task<IEnumerable<uint>> ReadUnsignedIntegerArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        internal static async Task<IList<uint>> ReadUnsignedIntegerArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {

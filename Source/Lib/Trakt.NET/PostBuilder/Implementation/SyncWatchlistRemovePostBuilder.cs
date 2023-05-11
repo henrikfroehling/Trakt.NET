@@ -35,19 +35,13 @@
             if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
-                {
-                    (syncWatchlistRemovePost.Movies as List<ITraktSyncWatchlistPostMovie>)
-                        .Add(CreateWatchlistPostMovie(movie));
-                }
+                    syncWatchlistRemovePost.Movies.Add(CreateWatchlistPostMovie(movie));
             }
 
             if (_movieIds.IsValueCreated && _movieIds.Value.Any())
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
-                {
-                    (syncWatchlistRemovePost.Movies as List<ITraktSyncWatchlistPostMovie>)
-                        .Add(CreateWatchlistPostMovie(movieIds));
-                }
+                    syncWatchlistRemovePost.Movies.Add(CreateWatchlistPostMovie(movieIds));
             }
         }
 
@@ -61,19 +55,13 @@
             if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
-                {
-                    (syncWatchlistRemovePost.Shows as List<ITraktSyncWatchlistPostShow>)
-                        .Add(CreateWatchlistPostShow(show));
-                }
+                    syncWatchlistRemovePost.Shows.Add(CreateWatchlistPostShow(show));
             }
 
             if (_showIds.IsValueCreated && _showIds.Value.Any())
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
-                {
-                    (syncWatchlistRemovePost.Shows as List<ITraktSyncWatchlistPostShow>)
-                        .Add(CreateWatchlistRemovePostShow(showIds));
-                }
+                    syncWatchlistRemovePost.Shows.Add(CreateWatchlistRemovePostShow(showIds));
             }
 
             if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Any())
@@ -93,19 +81,13 @@
             if (_seasons.IsValueCreated && _seasons.Value.Any())
             {
                 foreach (ITraktSeason season in _seasons.Value)
-                {
-                    (syncWatchlistRemovePost.Seasons as List<ITraktSyncWatchlistPostSeason>)
-                        .Add(CreateWatchlistPostSeason(season));
-                }
+                    syncWatchlistRemovePost.Seasons.Add(CreateWatchlistPostSeason(season));
             }
 
             if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
             {
                 foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
-                {
-                    (syncWatchlistRemovePost.Seasons as List<ITraktSyncWatchlistPostSeason>)
-                        .Add(CreateWatchlistPostSeason(seasonIds));
-                }
+                    syncWatchlistRemovePost.Seasons.Add(CreateWatchlistPostSeason(seasonIds));
             }
         }
 
@@ -119,19 +101,13 @@
             if (_episodes.IsValueCreated && _episodes.Value.Any())
             {
                 foreach (ITraktEpisode episode in _episodes.Value)
-                {
-                    (syncWatchlistRemovePost.Episodes as List<ITraktSyncWatchlistPostEpisode>)
-                        .Add(CreateWatchlistPostEpisode(episode));
-                }
+                    syncWatchlistRemovePost.Episodes.Add(CreateWatchlistPostEpisode(episode));
             }
 
             if (_episodeIds.IsValueCreated && _episodeIds.Value.Any())
             {
                 foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
-                {
-                    (syncWatchlistRemovePost.Episodes as List<ITraktSyncWatchlistPostEpisode>)
-                        .Add(CreateWatchlistPostEpisode(episodeIds));
-                }
+                    syncWatchlistRemovePost.Episodes.Add(CreateWatchlistPostEpisode(episodeIds));
             }
         }
 
@@ -190,17 +166,14 @@
                         syncWatchlistRemovePostShowSeason.Episodes = new List<ITraktSyncWatchlistPostShowEpisode>();
 
                         foreach (PostEpisode episode in season.Episodes)
-                        {
-                            (syncWatchlistRemovePostShowSeason.Episodes as List<ITraktSyncWatchlistPostShowEpisode>)
-                                .Add(CreateWatchlistPostShowEpisode(episode));
-                        }
+                            syncWatchlistRemovePostShowSeason.Episodes.Add(CreateWatchlistPostShowEpisode(episode));
                     }
 
-                    (syncWatchlistRemovePostShow.Seasons as List<ITraktSyncWatchlistPostShowSeason>).Add(syncWatchlistRemovePostShowSeason);
+                    syncWatchlistRemovePostShow.Seasons.Add(syncWatchlistRemovePostShowSeason);
                 }
             }
 
-            (syncWatchlistRemovePost.Shows as List<ITraktSyncWatchlistPostShow>).Add(syncWatchlistRemovePostShow);
+            syncWatchlistRemovePost.Shows.Add(syncWatchlistRemovePostShow);
         }
 
         private static ITraktSyncWatchlistPostShowSeason CreateWatchlistPostShowSeason(PostSeason season)

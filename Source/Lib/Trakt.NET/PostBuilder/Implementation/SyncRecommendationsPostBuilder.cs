@@ -288,37 +288,25 @@
             if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
-                {
-                    (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>)
-                        .Add(CreateRecommendationsPostMovie(movie));
-                }
+                    syncRecommendationsPost.Movies.Add(CreateRecommendationsPostMovie(movie));
             }
 
             if (_movieIds.IsValueCreated && _movieIds.Value.Any())
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
-                {
-                    (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>)
-                        .Add(CreateRecommendationsPostMovie(movieIds));
-                }
+                    syncRecommendationsPost.Movies.Add(CreateRecommendationsPostMovie(movieIds));
             }
 
             if (_moviesWithNotes.IsValueCreated && _moviesWithNotes.Value.Any())
             {
                 foreach (MovieWithNotes movieWithNotes in _moviesWithNotes.Value)
-                {
-                    (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>)
-                        .Add(CreateRecommendationsPostMovie(movieWithNotes.Object, movieWithNotes.Notes));
-                }
+                    syncRecommendationsPost.Movies.Add(CreateRecommendationsPostMovie(movieWithNotes.Object, movieWithNotes.Notes));
             }
 
             if (_movieIdsWithNotes.IsValueCreated && _movieIdsWithNotes.Value.Any())
             {
                 foreach (MovieIdsWithNotes movieIdsWithNotes in _movieIdsWithNotes.Value)
-                {
-                    (syncRecommendationsPost.Movies as List<ITraktSyncRecommendationsPostMovie>)
-                        .Add(CreateRecommendationsPostMovie(movieIdsWithNotes.Object, movieIdsWithNotes.Notes));
-                }
+                    syncRecommendationsPost.Movies.Add(CreateRecommendationsPostMovie(movieIdsWithNotes.Object, movieIdsWithNotes.Notes));
             }
         }
 
@@ -335,37 +323,25 @@
             if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
-                {
-                    (syncRecommendationsPost.Shows as List<ITraktSyncRecommendationsPostShow>)
-                        .Add(CreateRecommendationsPostShow(show));
-                }
+                    syncRecommendationsPost.Shows.Add(CreateRecommendationsPostShow(show));
             }
 
             if (_showIds.IsValueCreated && _showIds.Value.Any())
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
-                {
-                    (syncRecommendationsPost.Shows as List<ITraktSyncRecommendationsPostShow>)
-                        .Add(CreateRecommendationsPostShow(showIds));
-                }
+                    syncRecommendationsPost.Shows.Add(CreateRecommendationsPostShow(showIds));
             }
 
             if (_showsWithNotes.IsValueCreated && _showsWithNotes.Value.Any())
             {
                 foreach (ShowWithNotes showWithNotes in _showsWithNotes.Value)
-                {
-                    (syncRecommendationsPost.Shows as List<ITraktSyncRecommendationsPostShow>)
-                        .Add(CreateRecommendationsPostShow(showWithNotes.Object, showWithNotes.Notes));
-                }
+                    syncRecommendationsPost.Shows.Add(CreateRecommendationsPostShow(showWithNotes.Object, showWithNotes.Notes));
             }
 
             if (_showIdsWithNotes.IsValueCreated && _showIdsWithNotes.Value.Any())
             {
                 foreach (ShowIdsWithNotes showIdsWithNotes in _showIdsWithNotes.Value)
-                {
-                    (syncRecommendationsPost.Shows as List<ITraktSyncRecommendationsPostShow>)
-                        .Add(CreateRecommendationsPostShow(showIdsWithNotes.Object, showIdsWithNotes.Notes));
-                }
+                    syncRecommendationsPost.Shows.Add(CreateRecommendationsPostShow(showIdsWithNotes.Object, showIdsWithNotes.Notes));
             }
         }
 

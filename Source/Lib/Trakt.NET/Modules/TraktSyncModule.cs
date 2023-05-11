@@ -119,7 +119,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderRecommendedItemsAsync(IEnumerable<uint> reorderedRecommendedItemRanks,
+        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderRecommendedItemsAsync(IList<uint> reorderedRecommendedItemRanks,
                                                                                                     CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
@@ -727,7 +727,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderWatchlistItemsAsync(IEnumerable<uint> reorderedWatchlistItemRanks,
+        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderWatchlistItemsAsync(IList<uint> reorderedWatchlistItemRanks,
                                                                                                   CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
