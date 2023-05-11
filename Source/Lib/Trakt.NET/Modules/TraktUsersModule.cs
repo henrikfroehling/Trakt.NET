@@ -503,16 +503,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktList>> GetPersonalListAsync(string usernameOrSlug, string listIdOrSlug,
                                                                     CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new UserPersonalSingleListRequest
-            {
-                Username = usernameOrSlug,
-                Id = listIdOrSlug
-            },
-            cancellationToken);
-        }
+            => GetPersonalListImplementationAsync(false, usernameOrSlug, listIdOrSlug, cancellationToken);
 
         /// <summary>
         /// Gets multiple different personal lists for multiple different users at once.
@@ -575,7 +566,7 @@ namespace TraktNet.Modules
 
             foreach (TraktUserListsQueryParams queryParam in userListsQueryParams)
             {
-                Task<TraktResponse<ITraktList>> task = GetPersonalListAsync(queryParam.Username, queryParam.ListId, cancellationToken);
+                Task<TraktResponse<ITraktList>> task = GetPersonalListInStreamAsync(queryParam.Username, queryParam.ListId, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -1532,6 +1523,27 @@ namespace TraktNet.Modules
                 Username = usernameOrSlug
             },
             cancellationToken);
+        }
+
+        private Task<TraktResponse<ITraktList>> GetPersonalListInStreamAsync(string usernameOrSlug, string listIdOrSlug,
+                                                                             CancellationToken cancellationToken = default)
+            => GetPersonalListImplementationAsync(true, usernameOrSlug, listIdOrSlug, cancellationToken);
+
+        private Task<TraktResponse<ITraktList>> GetPersonalListImplementationAsync(bool asyncStream, string usernameOrSlug, string listIdOrSlug,
+                                                                                   CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            var request = new UserPersonalSingleListRequest
+            {
+                Username = usernameOrSlug,
+                Id = listIdOrSlug
+            };
+
+            if (asyncStream)
+                return requestHandler.ExecuteSingleItemStreamRequestAsync(request, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(request, cancellationToken);
         }
     }
 }

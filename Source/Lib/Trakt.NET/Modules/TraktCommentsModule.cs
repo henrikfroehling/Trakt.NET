@@ -54,15 +54,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new CommentSummaryRequest
-            {
-                Id = commentId.ToString()
-            },
-            cancellationToken);
-        }
+            => GetCommentImplementationAsync(false, commentId, cancellationToken);
 
         /// <summary>
         /// Gets the attached media <see cref="ITraktCommentItem" /> from a comment with the given id.
@@ -196,7 +188,7 @@
 
             foreach (var commentId in commentIds)
             {
-                Task<TraktResponse<ITraktComment>> task = GetCommentAsync(commentId, cancellationToken);
+                Task<TraktResponse<ITraktComment>> task = GetCommentInStreamAsync(commentId, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -690,6 +682,20 @@
             };
 
             return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
+        }
+
+        private Task<TraktResponse<ITraktComment>> GetCommentInStreamAsync(uint commentId, CancellationToken cancellationToken = default)
+            => GetCommentImplementationAsync(true, commentId, cancellationToken);
+
+        private Task<TraktResponse<ITraktComment>> GetCommentImplementationAsync(bool asyncStream, uint commentId, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+            var request = new CommentSummaryRequest { Id = commentId.ToString() };
+
+            if (asyncStream)
+                return requestHandler.ExecuteSingleItemStreamRequestAsync(request, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(request, cancellationToken);
         }
     }
 }

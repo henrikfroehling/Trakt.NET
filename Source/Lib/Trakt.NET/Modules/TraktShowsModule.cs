@@ -55,16 +55,7 @@
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktShow>> GetShowAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                             CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new ShowSummaryRequest
-            {
-                Id = showIdOrSlug,
-                ExtendedInfo = extendedInfo
-            },
-            cancellationToken);
-        }
+            => GetShowImplementationAsync(false, showIdOrSlug, extendedInfo, cancellationToken);
 
         /// <summary>
         /// Gets multiple different <see cref="ITraktShow" />s at once with the given Trakt-Ids or -Slugs.
@@ -127,7 +118,7 @@
 
             foreach (TraktObjectsQueryParams queryParam in showsQueryParams)
             {
-                Task<TraktResponse<ITraktShow>> task = GetShowAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
+                Task<TraktResponse<ITraktShow>> task = GetShowInStreamAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -1080,6 +1071,27 @@
             };
 
             return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
+        }
+
+        private Task<TraktResponse<ITraktShow>> GetShowInStreamAsync(string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                     CancellationToken cancellationToken = default)
+            => GetShowImplementationAsync(true, showIdOrSlug, extendedInfo, cancellationToken);
+
+        private Task<TraktResponse<ITraktShow>> GetShowImplementationAsync(bool asyncStream, string showIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                           CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            var request = new ShowSummaryRequest
+            {
+                Id = showIdOrSlug,
+                ExtendedInfo = extendedInfo
+            };
+
+            if (asyncStream)
+                return requestHandler.ExecuteSingleItemStreamRequestAsync(request, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(request, cancellationToken);
         }
     }
 }

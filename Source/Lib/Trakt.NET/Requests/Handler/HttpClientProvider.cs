@@ -11,20 +11,17 @@
     {
         protected readonly MediaTypeWithQualityHeaderValue MEDIA_TYPE_HEADER = new MediaTypeWithQualityHeaderValue(Constants.MEDIA_TYPE);
         protected static readonly IDictionary<string, HttpClient> s_httpClientCache = new ConcurrentDictionary<string, HttpClient>();
-        protected readonly TraktClient _client;
 
-        public HttpClientProvider(TraktClient client)
+        public virtual HttpClient GetHttpClient(string clientId)
         {
-            _client = client ?? throw new ArgumentNullException(nameof(client));
-        }
+            if (string.IsNullOrEmpty(clientId))
+                throw new ArgumentException("client id must not be null or empty", nameof(clientId));
 
-        public virtual HttpClient GetHttpClient()
-        {
-            if (s_httpClientCache.TryGetValue(_client.ClientId, out HttpClient httpClient))
+            if (s_httpClientCache.TryGetValue(clientId, out HttpClient httpClient))
                 return httpClient;
 
             httpClient = SetupHttpClient();
-            s_httpClientCache[_client.ClientId] = httpClient;
+            s_httpClientCache[clientId] = httpClient;
 
             return httpClient;
         }

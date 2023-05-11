@@ -52,16 +52,7 @@
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktMovie>> GetMovieAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                               CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new MovieSummaryRequest
-            {
-                Id = movieIdOrSlug,
-                ExtendedInfo = extendedInfo
-            },
-            cancellationToken);
-        }
+            => GetMovieImplementationAsync(false, movieIdOrSlug, extendedInfo, cancellationToken);
 
         /// <summary>
         /// Gets multiple different <see cref="ITraktMovie" />s at once with the given Trakt-Ids or -Slugs.
@@ -124,7 +115,7 @@
 
             foreach (TraktObjectsQueryParams queryParam in moviesQueryParams)
             {
-                Task<TraktResponse<ITraktMovie>> task = GetMovieAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
+                Task<TraktResponse<ITraktMovie>> task = GetMovieInStreamAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -911,6 +902,27 @@
             };
 
             return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
+        }
+
+        private Task<TraktResponse<ITraktMovie>> GetMovieInStreamAsync(string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                       CancellationToken cancellationToken = default)
+            => GetMovieImplementationAsync(true, movieIdOrSlug, extendedInfo, cancellationToken);
+
+        private Task<TraktResponse<ITraktMovie>> GetMovieImplementationAsync(bool asyncStream, string movieIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                             CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            var request = new MovieSummaryRequest
+            {
+                Id = movieIdOrSlug,
+                ExtendedInfo = extendedInfo
+            };
+
+            if (asyncStream)
+                return requestHandler.ExecuteSingleItemStreamRequestAsync(request, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(request, cancellationToken);
         }
     }
 }
