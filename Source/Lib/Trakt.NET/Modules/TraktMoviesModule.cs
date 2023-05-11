@@ -247,16 +247,15 @@
                                                                              TraktPagedParameters pagedParameters = null,
                                                                              CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MovieCommentsRequest
+            var request = new MovieCommentsRequest
             {
                 Id = movieIdOrSlug,
                 SortOrder = commentSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -288,17 +287,16 @@
                                                                        TraktPagedParameters pagedParameters = null,
                                                                        CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MovieListsRequest
+            var request = new MovieListsRequest
             {
                 Id = movieIdOrSlug,
                 Type = listType,
                 SortOrder = listSortOrder,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -389,16 +387,15 @@
                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                 CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MovieRelatedMoviesRequest
+            var request = new MovieRelatedMoviesRequest
             {
                 Id = movieIdOrSlug,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -460,6 +457,32 @@
         }
 
         /// <summary>
+        /// Gets all studios of a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/movies/studios/get-movie-studios">"Trakt API Doc - Movies: Studios"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="ITraktMovieIds" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktStudio" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktListResponse<ITraktStudio>> GetMovieStudiosAsync(string movieIdOrSlug, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteListRequestAsync(new MovieStudiosRequest
+            {
+                Id = movieIdOrSlug
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
         /// Gets trending movies.
         /// <para>OAuth authorization not required.</para>
         /// <para>
@@ -493,16 +516,15 @@
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesTrendingRequest
+            var request = new MoviesTrendingRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -539,16 +561,15 @@
                                                                            TraktPagedParameters pagedParameters = null,
                                                                            CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesPopularRequest
+            var request = new MoviesPopularRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -587,17 +608,16 @@
                                                                                      TraktPagedParameters pagedParameters = null,
                                                                                      CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesMostPlayedRequest
+            var request = new MoviesMostPlayedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -636,17 +656,16 @@
                                                                                       TraktPagedParameters pagedParameters = null,
                                                                                       CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesMostWatchedRequest
+            var request = new MoviesMostWatchedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -685,17 +704,16 @@
                                                                                         TraktPagedParameters pagedParameters = null,
                                                                                         CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesMostCollectedRequest
+            var request = new MoviesMostCollectedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -732,16 +750,63 @@
                                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                                   CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesMostAnticipatedRequest
+            var request = new MoviesMostAnticipatedRequest
             {
                 ExtendedInfo = extendedInfo,
                 Filter = filter,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets the most recommended movies.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/movies/recommended/get-the-most-recommended-movies">"Trakt API Doc - Movies: Recommended"</a> for more information.
+        /// </para>
+        /// <para>
+        /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
+        /// See also <seealso cref="TraktFilter.NewMovieFilter()" />.
+        /// </para>
+        /// </summary>
+        /// <param name="period">The time period, for which the most recommended movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the movies should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="filter">Optional filters for genres, languages, year, runtimes, ratings, etc. See also <seealso cref="ITraktMovieFilter" />.</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktMostRecommendedMovie}"/> instance containing the queried most recommended movies and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostRecommendedMovie" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        public Task<TraktPagedResponse<ITraktMostRecommendedMovie>> GetMostRecommendedMoviesAsync(TraktTimePeriod period = null,
+                                                                                                  TraktExtendedInfo extendedInfo = null,
+                                                                                                  ITraktMovieFilter filter = null,
+                                                                                                  TraktPagedParameters pagedParameters = null,
+                                                                                                  CancellationToken cancellationToken = default)
+        {
+            var request = new MoviesMostRecommendedRequest
+            {
+                Period = period,
+                ExtendedInfo = extendedInfo,
+                Filter = filter,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -803,16 +868,15 @@
                                                                                                   TraktPagedParameters pagedParameters = null,
                                                                                                   CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesRecentlyUpdatedRequest
+            var request = new MoviesRecentlyUpdatedRequest
             {
                 StartDate = startDate,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -839,15 +903,14 @@
         public Task<TraktPagedResponse<int>> GetRecentlyUpdatedMovieIdsAsync(DateTime? startDate = null, TraktPagedParameters pagedParameters = null,
                                                                              CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new MoviesRecentlyUpdatedIdsRequest
+            var request = new MoviesRecentlyUpdatedIdsRequest
             {
                 StartDate = startDate,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
     }
 }

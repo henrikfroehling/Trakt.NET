@@ -15,8 +15,11 @@
         /// <summary>An yearly time period.</summary>
         public static TraktTimePeriod Yearly { get; } = new TraktTimePeriod(4, "yearly", "yearly", "Yearly");
 
+        /// <summary>A daily time period.</summary>
+        public static TraktTimePeriod Daily { get; } = new TraktTimePeriod(8, "daily", "daily", "Daily");
+
         /// <summary>An overall time period.</summary>
-        public static TraktTimePeriod All { get; } = new TraktTimePeriod(8, "all", "all", "All");
+        public static TraktTimePeriod All { get; } = new TraktTimePeriod(16, "all", "all", "All");
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktTimePeriod" /> class.<para />

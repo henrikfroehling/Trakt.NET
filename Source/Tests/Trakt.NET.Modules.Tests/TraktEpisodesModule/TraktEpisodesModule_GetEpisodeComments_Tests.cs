@@ -165,6 +165,164 @@
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
+        [Fact]
+        public async Task Test_TraktEpisodesModule_GetEpisodeCommments_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                                                           EPISODE_COMMENTS_JSON, 2, LIMIT, 5, COMMENTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Episodes.GetEpisodeCommentsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, COMMENT_SORT_ORDER, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktEpisodesModule_GetEpisodeCommments_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                                                           EPISODE_COMMENTS_JSON, 2, LIMIT, 2, COMMENTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Episodes.GetEpisodeCommentsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, COMMENT_SORT_ORDER, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktEpisodesModule_GetEpisodeCommments_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                                                           EPISODE_COMMENTS_JSON, 1, LIMIT, 2, COMMENTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Episodes.GetEpisodeCommentsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, COMMENT_SORT_ORDER, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktEpisodesModule_GetEpisodeCommments_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                                                           EPISODE_COMMENTS_JSON, 1, LIMIT, 1, COMMENTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Episodes.GetEpisodeCommentsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, COMMENT_SORT_ORDER, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktEpisodesModule_GetEpisodeCommments_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                                                           EPISODE_COMMENTS_JSON, 2, LIMIT, 2, COMMENTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Episodes.GetEpisodeCommentsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, COMMENT_SORT_ORDER, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetMockClient(client, $"{GET_EPISODE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                                        EPISODE_COMMENTS_JSON, 1, LIMIT, 2, COMMENTS_ITEM_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktEpisodesModule_GetEpisodeCommments_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                                                           EPISODE_COMMENTS_JSON, 1, LIMIT, 2, COMMENTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Episodes.GetEpisodeCommentsAsync(SHOW_ID, SEASON_NR, EPISODE_NR, COMMENT_SORT_ORDER, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetMockClient(client, $"{GET_EPISODE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                                        EPISODE_COMMENTS_JSON, 2, LIMIT, 2, COMMENTS_ITEM_COUNT);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktEpisodeNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]

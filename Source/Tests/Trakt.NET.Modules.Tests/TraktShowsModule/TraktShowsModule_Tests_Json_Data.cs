@@ -9,6 +9,7 @@
     {
         private const string SHOW_ID = "1390";
         private const int ITEM_COUNT = 2;
+        private const int MOST_RECOMMENDED_ITEM_COUNT = 3;
         private const int LISTS_ITEM_COUNT = 10;
         private const int USER_COUNT = 300;
         private const uint PAGE = 2;
@@ -1201,6 +1202,124 @@
                       ""imdb"": ""tt1520211"",
                       ""tmdb"": 1402,
                       ""tvrage"": 25056
+                    }
+                  }
+                }
+              ]";
+
+        private const string SHOW_STUDIOS_JSON =
+            @"[
+                {
+                  ""name"": ""ABC Studios"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 1,
+                    ""slug"": ""abc-studios"",
+                    ""tmdb"": 19366
+                  }
+                },
+                {
+                  ""name"": ""DeKnight Productions"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 2,
+                    ""slug"": ""deknight-productions"",
+                    ""tmdb"": 51963
+                  }
+                },
+                {
+                  ""name"": ""Goddard Textiles"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 3,
+                    ""slug"": ""goddard-textiles"",
+                    ""tmdb"": 51964
+                  }
+                },
+                {
+                  ""name"": ""Marvel Television"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 4,
+                    ""slug"": ""marvel-television"",
+                    ""tmdb"": 38679
+                  }
+                }
+              ]";
+
+        private const string SHOW_CERTIFICATIONS_JSON =
+            @"[
+                {
+                  ""certification"": ""TV-MA"",
+                  ""country"": ""us""
+                },
+                {
+                  ""certification"": ""12"",
+                  ""country"": ""de""
+                },
+                {
+                  ""certification"": ""15"",
+                  ""country"": ""kr""
+                },
+                {
+                  ""certification"": ""15"",
+                  ""country"": ""gb""
+                },
+                {
+                  ""certification"": ""16"",
+                  ""country"": ""br""
+                },
+                {
+                  ""certification"": ""12"",
+                  ""country"": ""nl""
+                },
+                {
+                  ""certification"": ""18"",
+                  ""country"": ""pt""
+                }
+              ]";
+
+        private const string MOST_RECOMMENDED_SHOWS_JSON =
+            @"[
+                {
+                  ""user_count"": 155291,
+                  ""show"": {
+                    ""title"": ""The Big Bang Theory"",
+                    ""year"": 2007,
+                    ""ids"": {
+                      ""trakt"": 1409,
+                      ""slug"": ""the-big-bang-theory"",
+                      ""tvdb"": 80379,
+                      ""imdb"": ""tt0898266"",
+                      ""tmdb"": 1418
+                    }
+                  }
+                },
+                {
+                  ""user_count"": 46170,
+                  ""show"": {
+                    ""title"": ""Grey's Anatomy"",
+                    ""year"": 2005,
+                    ""ids"": {
+                      ""trakt"": 1407,
+                      ""slug"": ""grey-s-anatomy"",
+                      ""tvdb"": 73762,
+                      ""imdb"": ""tt0413573"",
+                      ""tmdb"": 1416
+                    }
+                  }
+                },
+                {
+                  ""user_count"": 203742,
+                  ""show"": {
+                    ""title"": ""Game of Thrones"",
+                    ""year"": 2011,
+                    ""ids"": {
+                      ""trakt"": 1390,
+                      ""slug"": ""game-of-thrones"",
+                      ""tvdb"": 121361,
+                      ""imdb"": ""tt0944947"",
+                      ""tmdb"": 1399
                     }
                   }
                 }
