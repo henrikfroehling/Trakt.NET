@@ -8,6 +8,7 @@
         private const string SHOW_ID = "1390";
         private const uint SEASON_NR = 1U;
         private const string TRANSLATION_LANGUAGE_CODE = "en";
+        private const string TRANSLATION_LANGUAGE_CODE_All = "all";
         private const uint PAGE = 2;
         private const uint LIMIT = 4;
         private const int ITEM_COUNT = 3;

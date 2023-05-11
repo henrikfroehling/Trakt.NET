@@ -15,7 +15,7 @@
     {
         internal TraktClient(IHttpClientProvider httpClientProvider = default)
         {
-            HttpClientProvider = httpClientProvider ?? new HttpClientProvider(this);
+            HttpClientProvider = httpClientProvider ?? new HttpClientProvider();
             Configuration = new TraktConfiguration();
             Authentication = new TraktAuthenticationModule(this);
             Calendar = new TraktCalendarModule(this);

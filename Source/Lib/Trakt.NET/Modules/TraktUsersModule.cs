@@ -26,8 +26,10 @@ namespace TraktNet.Modules
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Extensions;
     using TraktNet.Parameters;
 
     /// <summary>
@@ -501,16 +503,7 @@ namespace TraktNet.Modules
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktList>> GetPersonalListAsync(string usernameOrSlug, string listIdOrSlug,
                                                                     CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new UserPersonalSingleListRequest
-            {
-                Username = usernameOrSlug,
-                Id = listIdOrSlug
-            },
-            cancellationToken);
-        }
+            => GetPersonalListImplementationAsync(false, usernameOrSlug, listIdOrSlug, cancellationToken);
 
         /// <summary>
         /// Gets multiple different personal lists for multiple different users at once.
@@ -528,6 +521,7 @@ namespace TraktNet.Modules
         /// <returns>A list of <see cref="ITraktList" /> instances with the data of each queried personal list.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        [Obsolete("GetMultiplePersonalListsAsync is deprecated, please use GetPersonalListsStreamAsync instead.")]
         public async Task<IEnumerable<TraktResponse<ITraktList>>> GetMultiplePersonalListsAsync(TraktMultipleUserListsQueryParams userListsQueryParams,
                                                                                                 CancellationToken cancellationToken = default)
         {
@@ -544,6 +538,42 @@ namespace TraktNet.Modules
 
             TraktResponse<ITraktList>[] lists = await Task.WhenAll(tasks).ConfigureAwait(false);
             return lists.ToList();
+        }
+
+        /// <summary>
+        /// Gets multiple different personal lists for multiple different users at once.
+        /// <para>OAuth authorization optional.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/list/get-personal-list">"Trakt API Doc - Users: List"</a> for more information.
+        /// </para>
+        /// <para>See also <seealso cref="GetPersonalListAsync(string, string, CancellationToken)" />.</para>
+        /// </summary>
+        /// <param name="userListsQueryParams">A list of usernames and list ids. See also <seealso cref="TraktMultipleUserListsQueryParams" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1?view=net-7.0">async stream</a> of <see cref="ITraktList" /> instances with the data of each queried personal list.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public async IAsyncEnumerable<TraktResponse<ITraktList>> GetPersonalListsStreamAsync(TraktMultipleUserListsQueryParams userListsQueryParams,
+                                                                                                [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            if (userListsQueryParams == null || userListsQueryParams.Count == 0)
+                yield break;
+
+            var tasks = new List<Task<TraktResponse<ITraktList>>>();
+
+            foreach (TraktUserListsQueryParams queryParam in userListsQueryParams)
+            {
+                Task<TraktResponse<ITraktList>> task = GetPersonalListInStreamAsync(queryParam.Username, queryParam.ListId, cancellationToken);
+                tasks.Add(task);
+            }
+
+            await foreach(TraktResponse<ITraktList> result in tasks.StreamFinishedTaskResultsAsync())
+            {
+                yield return result;
+            }
         }
 
         /// <summary>
@@ -1493,6 +1523,27 @@ namespace TraktNet.Modules
                 Username = usernameOrSlug
             },
             cancellationToken);
+        }
+
+        private Task<TraktResponse<ITraktList>> GetPersonalListInStreamAsync(string usernameOrSlug, string listIdOrSlug,
+                                                                             CancellationToken cancellationToken = default)
+            => GetPersonalListImplementationAsync(true, usernameOrSlug, listIdOrSlug, cancellationToken);
+
+        private Task<TraktResponse<ITraktList>> GetPersonalListImplementationAsync(bool asyncStream, string usernameOrSlug, string listIdOrSlug,
+                                                                                   CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            var request = new UserPersonalSingleListRequest
+            {
+                Username = usernameOrSlug,
+                Id = listIdOrSlug
+            };
+
+            if (asyncStream)
+                return requestHandler.ExecuteSingleItemStreamRequestAsync(request, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(request, cancellationToken);
         }
     }
 }
