@@ -85,6 +85,14 @@
             return await QueryPagedListAsync<TResponseContentType>(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
+        internal static async Task<TraktPagedResponse<TResponseContentType>> ExecutePagedRequestAsync<TResponseContentType>(TraktClient client, IRequest<TResponseContentType> request, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(client);
+            var response = await requestHandler.ExecutePagedRequestAsync(request, cancellationToken).ConfigureAwait(false);
+            response.SetRequestAndClient(request, client);
+            return response;
+        }
+
         // post requests
 
         public async Task<TraktNoContentResponse> ExecuteNoContentRequestAsync<TRequestBodyType>(IPostRequest<TRequestBodyType> request, CancellationToken cancellationToken = default) where TRequestBodyType : IRequestBody
@@ -212,13 +220,13 @@
                 HttpResponseMessage responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
                 DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
                 DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
-                IEnumerable<TResponseContentType> contentObjects = await ReadContentListAsync<TResponseContentType>(asyncStream, responseMessage, cancellationToken).ConfigureAwait(false);
+                IList<TResponseContentType> contentObjects = await ReadContentListAsync<TResponseContentType>(asyncStream, responseMessage, cancellationToken).ConfigureAwait(false);
 
                 var response = new TraktListResponse<TResponseContentType>
                 {
                     IsSuccess = true,
                     HasValue = contentObjects != null,
-                    Value = (IEnumerable<TResponseContentType>)contentObjects
+                    Value = contentObjects
                 };
 
                 if (responseMessage.Headers != null)
@@ -242,13 +250,13 @@
                 HttpResponseMessage responseMessage = await ExecuteRequestAsync(requestMessage, false, cancellationToken).ConfigureAwait(false);
                 DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
                 DebugAsserter.AssertHttpResponseCodeIsNotExpected(responseMessage.StatusCode, HttpStatusCode.NoContent, DebugAsserter.PAGED_LIST_RESPONSE_PRECONDITION_INVALID_STATUS_CODE);
-                IEnumerable<TResponseContentType> contentObjects = await ReadContentListAsync<TResponseContentType>(false, responseMessage, cancellationToken).ConfigureAwait(false);
+                IList<TResponseContentType> contentObjects = await ReadContentListAsync<TResponseContentType>(false, responseMessage, cancellationToken).ConfigureAwait(false);
 
                 var response = new TraktPagedResponse<TResponseContentType>
                 {
                     IsSuccess = true,
                     HasValue = contentObjects != null,
-                    Value = (IEnumerable<TResponseContentType>)contentObjects
+                    Value = contentObjects
                 };
 
                 if (responseMessage.Headers != null)
@@ -320,7 +328,7 @@
             return await objectJsonReader.ReadObjectAsync(responseContentStream, cancellationToken).ConfigureAwait(false);
         }
 
-        private async Task<IEnumerable<TResponseContentType>> ReadContentListAsync<TResponseContentType>(bool asyncStream, HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)
+        private async Task<IList<TResponseContentType>> ReadContentListAsync<TResponseContentType>(bool asyncStream, HttpResponseMessage responseMessage, CancellationToken cancellationToken = default)
         {
             DebugAsserter.AssertResponseMessageIsNotNull(responseMessage);
 
