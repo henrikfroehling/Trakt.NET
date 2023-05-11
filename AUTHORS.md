@@ -8,3 +8,4 @@ Contributors include:
 * [MCs88](https://github.com/MCs88)
 * [Arnaud Maichac](https://github.com/arnaudmaichac)
 * [skyfrk](https://github.com/skyfrk)
+* [John R. Peters, Jr.](https://github.com/jrpetersjr)
