@@ -19,8 +19,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Extensions;
     using TraktNet.Parameters;
 
     /// <summary>
@@ -52,15 +54,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new CommentSummaryRequest
-            {
-                Id = commentId.ToString()
-            },
-            cancellationToken);
-        }
+            => GetCommentImplementationAsync(false, commentId, cancellationToken);
 
         /// <summary>
         /// Gets the attached media <see cref="ITraktCommentItem" /> from a comment with the given id.
@@ -151,6 +145,7 @@
         /// <returns>A list of <see cref="ITraktComment" /> instances with the data of each queried comment.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        [Obsolete("GetMutlipleCommentsAsync is deprecated, please use GetCommentsStreamAsync instead.")]
         public async Task<IEnumerable<TraktResponse<ITraktComment>>> GetMutlipleCommentsAsync(uint[] commentIds, CancellationToken cancellationToken = default)
         {
             if (commentIds == null || commentIds.Length == 0)
@@ -166,6 +161,41 @@
 
             TraktResponse<ITraktComment>[] comments = await Task.WhenAll(tasks).ConfigureAwait(false);
             return comments.ToList();
+        }
+
+        /// <summary>
+        /// Gets multiple different <see cref="ITraktComment" />s or replies at once with the given Trakt-Ids or -Slugs.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// </para>
+        /// <para>See also <seealso cref="GetCommentAsync(uint, CancellationToken)" />.</para>
+        /// </summary>
+        /// <param name="commentIds">A list of comment ids.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1?view=net-7.0">async stream</a> of <see cref="ITraktComment" /> instances with the data of each queried comment.</returns>
+        /// <exception cref="TraktException">Thrown, if one request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public async IAsyncEnumerable<TraktResponse<ITraktComment>> GetCommentsStreamAsync(IEnumerable<uint> commentIds, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            if (commentIds == null || commentIds.Count() == 0)
+                yield break;
+
+            var tasks = new List<Task<TraktResponse<ITraktComment>>>();
+
+            foreach (var commentId in commentIds)
+            {
+                Task<TraktResponse<ITraktComment>> task = GetCommentInStreamAsync(commentId, cancellationToken);
+                tasks.Add(task);
+            }
+
+            await foreach(TraktResponse<ITraktComment> result in tasks.StreamFinishedTaskResultsAsync())
+            {
+                yield return result;
+            }
         }
 
         /// <summary>
@@ -652,6 +682,20 @@
             };
 
             return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
+        }
+
+        private Task<TraktResponse<ITraktComment>> GetCommentInStreamAsync(uint commentId, CancellationToken cancellationToken = default)
+            => GetCommentImplementationAsync(true, commentId, cancellationToken);
+
+        private Task<TraktResponse<ITraktComment>> GetCommentImplementationAsync(bool asyncStream, uint commentId, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+            var request = new CommentSummaryRequest { Id = commentId.ToString() };
+
+            if (asyncStream)
+                return requestHandler.ExecuteSingleItemStreamRequestAsync(request, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(request, cancellationToken);
         }
     }
 }

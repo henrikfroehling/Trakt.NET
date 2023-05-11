@@ -11,8 +11,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Extensions;
     using TraktNet.Parameters;
 
     /// <summary>
@@ -49,16 +51,7 @@
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktResponse<ITraktPerson>> GetPersonAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
                                                                 CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new PersonSummaryRequest
-            {
-                Id = personIdOrSlug,
-                ExtendedInfo = extendedInfo
-            },
-            cancellationToken);
-        }
+            => GetPersoImplementationAsync(false, personIdOrSlug, extendedInfo, cancellationToken);
 
         /// <summary>
         /// Gets multiple different <see cref="ITraktPerson" />s at once with the given Trakt-Ids or -Slugs.
@@ -76,6 +69,7 @@
         /// <returns>A list of <see cref="ITraktPerson" /> instances with the data of each queried person.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        [Obsolete("GetMultiplePersonsAsync is deprecated, please use GetPersonsStreamAsync instead.")]
         public async Task<IEnumerable<TraktResponse<ITraktPerson>>> GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams personsQueryParams,
                                                                                             CancellationToken cancellationToken = default)
         {
@@ -92,6 +86,42 @@
 
             TraktResponse<ITraktPerson>[] people = await Task.WhenAll(tasks).ConfigureAwait(false);
             return people.ToList();
+        }
+
+        /// <summary>
+        /// Gets multiple different <see cref="ITraktPerson" />s at once with the given Trakt-Ids or -Slugs.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
+        /// </para>
+        /// <para>See also <seealso cref="GetPersonAsync(string, TraktExtendedInfo, CancellationToken)" />.</para>
+        /// </summary>
+        /// <param name="personsQueryParams">A list of person ids and optional extended infos. See also <seealso cref="TraktMultipleObjectsQueryParams" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1?view=net-7.0">async stream</a> of <see cref="ITraktPerson" /> instances with the data of each queried person.</returns>
+        /// <exception cref="TraktException">Thrown, if one request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public async IAsyncEnumerable<TraktResponse<ITraktPerson>> GetPersonsStreamAsync(TraktMultipleObjectsQueryParams personsQueryParams,
+                                                                                            [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            if (personsQueryParams == null || personsQueryParams.Count == 0)
+                yield break;
+
+            var tasks = new List<Task<TraktResponse<ITraktPerson>>>();
+
+            foreach (TraktObjectsQueryParams queryParam in personsQueryParams)
+            {
+                Task<TraktResponse<ITraktPerson>> task = GetPersoInStreamAsync(queryParam.Id, queryParam.ExtendedInfo, cancellationToken);
+                tasks.Add(task);
+            }
+
+            await foreach(TraktResponse<ITraktPerson> result in tasks.StreamFinishedTaskResultsAsync())
+            {
+                yield return result;
+            }
         }
 
         /// <summary>
@@ -272,6 +302,27 @@
             };
 
             return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
+        }
+
+        private Task<TraktResponse<ITraktPerson>> GetPersoInStreamAsync(string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                        CancellationToken cancellationToken = default)
+            => GetPersoImplementationAsync(true, personIdOrSlug, extendedInfo, cancellationToken);
+
+        private Task<TraktResponse<ITraktPerson>> GetPersoImplementationAsync(bool asyncStream, string personIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                              CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            var request = new PersonSummaryRequest
+            {
+                Id = personIdOrSlug,
+                ExtendedInfo = extendedInfo
+            };
+
+            if (asyncStream)
+                return requestHandler.ExecuteSingleItemStreamRequestAsync(request, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(request, cancellationToken);
         }
     }
 }

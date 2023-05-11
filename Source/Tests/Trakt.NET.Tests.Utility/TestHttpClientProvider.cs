@@ -9,7 +9,7 @@
     using TraktNet.Enums;
     using TraktNet.Requests.Handler;
 
-    internal class TestHttpClientProvider : IHttpClientProvider
+    internal class TestHttpClientProvider : HttpClientProvider
     {
         private const string HEADER_PAGINATION_PAGE_KEY = "X-Pagination-Page";
         private const string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
@@ -35,10 +35,9 @@
             _mockHttpMessageHandler = new MockHttpMessageHandler();
         }
 
-        public HttpClient GetHttpClient()
+        public override HttpClient GetHttpClient(string _)
         {
-            _mockHttpMessageHandler.Should().NotBeNull();
-            var httpClient = new HttpClient(_mockHttpMessageHandler);
+            var httpClient = _mockHttpMessageHandler.ToHttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ACCEPT_MEDIA_TYPE));
             return httpClient;
         }

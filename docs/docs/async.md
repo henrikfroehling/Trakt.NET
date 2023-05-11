@@ -13,6 +13,20 @@ var result = await task;
 // or, without result
 
 await client.[ModuleName].[MethodName]Async([arguments]);
+
+// or from stream
+
+var results = client[ModuleName].[MethodName]StreamAsync([arguments]);
+await foreach (var result in results) {
+
+}
+
+// or from a stream to a list
+using TraktNet.Extensions;
+using System.Collections.Generic;
+..
+..
+var results = await client[ModuleName].[MethodName]StreamAsync([arguments]).ToListAsync();
 ```
 
 [More information on async programming in C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/).

@@ -22,13 +22,11 @@
     internal sealed class AuthenticationRequestHandler : IAuthenticationRequestHandler
     {
         private readonly TraktClient _client;
-        private readonly RequestMessageBuilder _requestMessageBuilder;
         private static IAuthenticationRequestHandler s_requestHandler;
 
         internal AuthenticationRequestHandler(TraktClient client)
         {
             _client = client;
-            _requestMessageBuilder = new RequestMessageBuilder(_client);
         }
 
         internal static IAuthenticationRequestHandler GetInstance(TraktClient client)
@@ -148,14 +146,10 @@
             {
                 request.Validate();
 
-                ExtendedHttpRequestMessage requestMessage =
-                    await _requestMessageBuilder.Reset(request)
-                        .WithRequestBody(request.RequestBody)
-                        .DisableAPIVersionHeader()
-                        .DisableAPIClientIdHeader()
-                        .Build().ConfigureAwait(false);
+                var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+                ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build().ConfigureAwait(false);
 
-                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient(_client.ClientId).SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 if (!responseMessage.IsSuccessStatusCode)
                     await ResponseErrorHandler.HandleErrorsAsync(requestMessage, responseMessage, isDeviceRequest: true, cancellationToken: cancellationToken).ConfigureAwait(false);
@@ -198,12 +192,8 @@
             {
                 request.Validate();
 
-                ExtendedHttpRequestMessage requestMessage =
-                    await _requestMessageBuilder.Reset(request)
-                        .WithRequestBody(request.RequestBody)
-                        .DisableAPIVersionHeader()
-                        .DisableAPIClientIdHeader()
-                        .Build().ConfigureAwait(false);
+                var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+                ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build().ConfigureAwait(false);
 
                 HttpResponseMessage responseMessage;
                 Stream responseContentStream;
@@ -215,7 +205,7 @@
 
                 while (totalExpiredSeconds < device.ExpiresInSeconds)
                 {
-                    responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+                    responseMessage = await _client.HttpClientProvider.GetHttpClient(_client.ClientId).SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                     responseCode = responseMessage.StatusCode;
                     reasonPhrase = responseMessage.ReasonPhrase;
@@ -242,7 +232,9 @@
                     {
                         await Task.Delay((int)device.IntervalInMilliseconds).ConfigureAwait(false);
                         totalExpiredSeconds += device.IntervalInSeconds;
-                        requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build().ConfigureAwait(false);
+
+                        requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+                        requestMessage = await requestMessageBuilder.Build().ConfigureAwait(false);
                         continue;
                     }
 
@@ -275,14 +267,10 @@
             {
                 request.Validate();
 
-                ExtendedHttpRequestMessage requestMessage =
-                    await _requestMessageBuilder.Reset(request)
-                        .WithRequestBody(request.RequestBody)
-                        .DisableAPIVersionHeader()
-                        .DisableAPIClientIdHeader()
-                        .Build().ConfigureAwait(false);
+                var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+                ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build().ConfigureAwait(false);
 
-                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient(_client.ClientId).SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 if (!responseMessage.IsSuccessStatusCode)
                 {
@@ -334,14 +322,10 @@
             {
                 request.Validate();
 
-                ExtendedHttpRequestMessage requestMessage =
-                    await _requestMessageBuilder.Reset(request)
-                        .WithRequestBody(request.RequestBody)
-                        .DisableAPIVersionHeader()
-                        .DisableAPIClientIdHeader()
-                        .Build().ConfigureAwait(false);
+                var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+                ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build().ConfigureAwait(false);
 
-                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient(_client.ClientId).SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 HttpStatusCode responseCode = responseMessage.StatusCode;
                 Stream responseContentStream;
@@ -450,5 +434,16 @@
             if (state != null && (state.Length == 0 || state.ContainsSpace()))
                 throw new ArgumentException("state not valid", nameof(state));
         }
+
+        private RequestMessageBuilder CreateRequestMessageBuilder(IRequest request = null, IRequestBody requestBody = null)
+            => new RequestMessageBuilder(_client.ClientId, _client.Configuration.ApiVersion, _client.Configuration.BaseUrl,
+                                         _client.Authentication.Authorization.AccessToken, _client.Authentication.IsAuthorized,
+                                         _client.Configuration.ForceAuthorization)
+               {
+                    UseAPIVersionHeader = false,
+                    UseAPIClientIdHeader = false,
+                    Request = request,
+                    RequestBody = requestBody
+               };
     }
 }
