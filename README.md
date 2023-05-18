@@ -68,7 +68,7 @@ try
     Console.WriteLine($"Year: {show.Year}");
     Console.WriteLine();
 
-    string json = await TraktSerializationService.SerializeAsync(show, true);
+    string json = await TraktSerializationService.SerializeAsync(show, indentation: true);
     Console.WriteLine(json);
 }
 catch (TraktException ex)
