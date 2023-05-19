@@ -18,6 +18,8 @@
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
             extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
         }
 
         [Fact]
@@ -32,6 +34,8 @@
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
             extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
 
             extendedInfo.ResetMetadata().Should().BeSameAs(extendedInfo);
 
@@ -40,6 +44,8 @@
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
             extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
         }
 
         [Fact]
@@ -54,6 +60,8 @@
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
             extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
 
             extendedInfo.ResetFull().Should().BeSameAs(extendedInfo);
 
@@ -62,6 +70,8 @@
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
             extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
         }
 
         [Fact]
@@ -76,6 +86,8 @@
             extendedInfo.NoSeasons.Should().BeTrue();
             extendedInfo.Episodes.Should().BeFalse();
             extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
 
             extendedInfo.ResetNoSeasons().Should().BeSameAs(extendedInfo);
 
@@ -84,6 +96,8 @@
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
             extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
         }
 
         [Fact]
@@ -98,6 +112,8 @@
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeTrue();
             extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
 
             extendedInfo.ResetEpisodes().Should().BeSameAs(extendedInfo);
 
@@ -106,6 +122,8 @@
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
             extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
         }
 
         [Fact]
@@ -120,6 +138,8 @@
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
             extendedInfo.GuestStars.Should().BeTrue();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
 
             extendedInfo.ResetGuestStars().Should().BeSameAs(extendedInfo);
 
@@ -128,6 +148,60 @@
             extendedInfo.NoSeasons.Should().BeFalse();
             extendedInfo.Episodes.Should().BeFalse();
             extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Test_TraktExtendedInfo_SetComments()
+        {
+            var extendedInfo = new TraktExtendedInfo();
+
+            extendedInfo.SetComments().Should().BeSameAs(extendedInfo);
+
+            extendedInfo.Metadata.Should().BeFalse();
+            extendedInfo.Full.Should().BeFalse();
+            extendedInfo.NoSeasons.Should().BeFalse();
+            extendedInfo.Episodes.Should().BeFalse();
+            extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeTrue();
+            extendedInfo.Vip.Should().BeFalse();
+
+            extendedInfo.ResetComments().Should().BeSameAs(extendedInfo);
+
+            extendedInfo.Metadata.Should().BeFalse();
+            extendedInfo.Full.Should().BeFalse();
+            extendedInfo.NoSeasons.Should().BeFalse();
+            extendedInfo.Episodes.Should().BeFalse();
+            extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Test_TraktExtendedInfo_SetVip()
+        {
+            var extendedInfo = new TraktExtendedInfo();
+
+            extendedInfo.SetVip().Should().BeSameAs(extendedInfo);
+
+            extendedInfo.Metadata.Should().BeFalse();
+            extendedInfo.Full.Should().BeFalse();
+            extendedInfo.NoSeasons.Should().BeFalse();
+            extendedInfo.Episodes.Should().BeFalse();
+            extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeTrue();
+
+            extendedInfo.ResetVip().Should().BeSameAs(extendedInfo);
+
+            extendedInfo.Metadata.Should().BeFalse();
+            extendedInfo.Full.Should().BeFalse();
+            extendedInfo.NoSeasons.Should().BeFalse();
+            extendedInfo.Episodes.Should().BeFalse();
+            extendedInfo.GuestStars.Should().BeFalse();
+            extendedInfo.Comments.Should().BeFalse();
+            extendedInfo.Vip.Should().BeFalse();
         }
 
         [Fact]
@@ -155,6 +229,14 @@
             extendedInfo.Reset();
             extendedInfo.GuestStars = true;
             extendedInfo.HasAnySet.Should().BeTrue();
+
+            extendedInfo.Reset();
+            extendedInfo.Comments = true;
+            extendedInfo.HasAnySet.Should().BeTrue();
+
+            extendedInfo.Reset();
+            extendedInfo.Vip = true;
+            extendedInfo.HasAnySet.Should().BeTrue();
         }
 
         [Fact]
@@ -178,6 +260,12 @@
 
             extendedInfo.SetGuestStars();
             extendedInfo.Resolve().Should().NotBeNull().And.HaveCount(5).And.Contain("metadata", "full", "noseasons", "episodes", "guest_stars");
+
+            extendedInfo.SetComments();
+            extendedInfo.Resolve().Should().NotBeNull().And.HaveCount(6).And.Contain("metadata", "full", "noseasons", "episodes", "guest_stars", "comments");
+
+            extendedInfo.SetVip();
+            extendedInfo.Resolve().Should().NotBeNull().And.HaveCount(7).And.Contain("metadata", "full", "noseasons", "episodes", "guest_stars", "comments", "vip");
         }
 
         [Fact]
@@ -201,6 +289,12 @@
 
             extendedInfo.SetGuestStars();
             extendedInfo.ToString().Should().NotBeNull().And.Be("metadata,full,noseasons,episodes,guest_stars");
+
+            extendedInfo.SetComments();
+            extendedInfo.ToString().Should().NotBeNull().And.Be("metadata,full,noseasons,episodes,guest_stars,comments");
+
+            extendedInfo.SetVip();
+            extendedInfo.ToString().Should().NotBeNull().And.Be("metadata,full,noseasons,episodes,guest_stars,comments,vip");
         }
     }
 }
