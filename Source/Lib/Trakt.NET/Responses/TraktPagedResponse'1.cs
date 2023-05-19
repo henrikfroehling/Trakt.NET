@@ -103,7 +103,7 @@
 
                 var page = (_request as ISupportsPagination).Page;
 
-                if (page.HasValue)
+                if (page.HasValue && page.Value < PageCount.Value)
                 {
                     page = page.Value + 1;
                     (_request as ISupportsPagination).Page = page;
