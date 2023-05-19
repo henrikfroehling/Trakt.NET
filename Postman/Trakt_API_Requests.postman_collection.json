@@ -18160,6 +18160,12 @@
 											"value": "true",
 											"description": "Count specials in the overall stats (only applies if specials are included) Example: true.",
 											"disabled": true
+										},
+										{
+											"key": "last_activity",
+											"value": "collected",
+											"description": "Use last watched episode for calculations.",
+											"disabled": true
 										}
 									]
 								}
@@ -18226,6 +18232,12 @@
 											"value": "true",
 											"description": "Count specials in the overall stats (only applies if specials are included) Example: true.",
 											"disabled": true
+										},
+										{
+											"key": "last_activity",
+											"value": "collected",
+											"description": "Use last watched episode for calculations.",
+											"disabled": true
 										}
 									]
 								}
@@ -18291,6 +18303,12 @@
 											"key": "count_specials",
 											"value": "true",
 											"description": "Count specials in the overall stats (only applies if specials are included) Example: true.",
+											"disabled": true
+										},
+										{
+											"key": "last_activity",
+											"value": "collected",
+											"description": "Use last watched episode for calculations.",
 											"disabled": true
 										}
 									]
@@ -18386,6 +18404,12 @@
 											"value": "true",
 											"description": "Count specials in the overall stats (only applies if specials are included) Example: true.",
 											"disabled": true
+										},
+										{
+											"key": "last_activity",
+											"value": "watched",
+											"description": "Use last watched episode for calculations.",
+											"disabled": true
 										}
 									]
 								}
@@ -18452,6 +18476,12 @@
 											"value": "true",
 											"description": "Count specials in the overall stats (only applies if specials are included) Example: true.",
 											"disabled": true
+										},
+										{
+											"key": "last_activity",
+											"value": "watched",
+											"description": "Use last watched episode for calculations.",
+											"disabled": true
 										}
 									]
 								}
@@ -18517,6 +18547,12 @@
 											"key": "count_specials",
 											"value": "true",
 											"description": "Count specials in the overall stats (only applies if specials are included) Example: true.",
+											"disabled": true
+										},
+										{
+											"key": "last_activity",
+											"value": "watched",
+											"description": "Use last watched episode for calculations.",
 											"disabled": true
 										}
 									]
@@ -18594,6 +18630,14 @@
 										"progress",
 										"watched",
 										"reset"
+									],
+									"query": [
+										{
+											"key": "reset_at",
+											"value": "2023-05-13",
+											"description": "Calculate progress from this specific date onwards.",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -18641,6 +18685,14 @@
 										"progress",
 										"watched",
 										"reset"
+									],
+									"query": [
+										{
+											"key": "reset_at",
+											"value": "2023-05-13",
+											"description": "Calculate progress from this specific date onwards.",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -18688,6 +18740,14 @@
 										"progress",
 										"watched",
 										"reset"
+									],
+									"query": [
+										{
+											"key": "reset_at",
+											"value": "2023-05-13",
+											"description": "Calculate progress from this specific date onwards.",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -20100,6 +20160,12 @@
 											"key": "extended",
 											"value": "full,episodes",
 											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
+											"key": "translations",
+											"value": "en",
+											"description": "Included translated episode titles and overviews in the response. Example \"all\" or \"en\"",
 											"disabled": true
 										}
 									]
