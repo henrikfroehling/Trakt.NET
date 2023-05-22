@@ -24842,7 +24842,7 @@
 									"query": [
 										{
 											"key": "extended",
-											"value": "full",
+											"value": "full,metadata",
 											"description": "Complete info for an item.",
 											"disabled": true
 										}
@@ -24895,7 +24895,7 @@
 									"query": [
 										{
 											"key": "extended",
-											"value": "full",
+											"value": "full,metadata",
 											"description": "Complete info for an item.",
 											"disabled": true
 										}
@@ -26193,6 +26193,67 @@
 					]
 				},
 				{
+					"name": "Update Watchlist Item",
+					"item": [
+						{
+							"name": "Update a watchlist item",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "trakt-api-version",
+										"value": "{{API_VERSION}}",
+										"type": "text"
+									},
+									{
+										"key": "trakt-api-key",
+										"value": "{{CLIENT_ID}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"notes\": \"This is a great movie!\"\r\n}"
+								},
+								"url": {
+									"raw": "{{API_URL}}/sync/watchlist/:list_item_id",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"sync",
+										"watchlist",
+										":list_item_id"
+									],
+									"variable": [
+										{
+											"key": "list_item_id",
+											"value": "1337",
+											"description": "List Item ID Example: 1337."
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Get Personal Recommendations",
 					"item": [
 						{
@@ -26565,6 +26626,67 @@
 										"sync",
 										"recommendations",
 										"reorder"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update Personal Recommendation Item",
+					"item": [
+						{
+							"name": "Update a personal recommendation item",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "trakt-api-version",
+										"value": "{{API_VERSION}}",
+										"type": "text"
+									},
+									{
+										"key": "trakt-api-key",
+										"value": "{{CLIENT_ID}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"notes\": \"This is a great movie!\"\r\n}"
+								},
+								"url": {
+									"raw": "{{API_URL}}/sync/recommendations/:list_item_id",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"sync",
+										"recommendations",
+										":list_item_id"
+									],
+									"variable": [
+										{
+											"key": "list_item_id",
+											"value": "1337",
+											"description": "List Item ID Example: 1337."
+										}
 									]
 								}
 							},
@@ -27888,7 +28010,7 @@
 										{
 											"key": "include_replies",
 											"value": "false",
-											"description": "Include comment replies. Possible values: true, false .",
+											"description": "Include comment replies. Possible values: true, false, only .",
 											"disabled": true
 										},
 										{
@@ -27967,7 +28089,7 @@
 										{
 											"key": "include_replies",
 											"value": "false",
-											"description": "Include comment replies. Possible values: true, false .",
+											"description": "Include comment replies. Possible values: true, false, only .",
 											"disabled": true
 										},
 										{
@@ -28052,7 +28174,7 @@
 										{
 											"key": "include_replies",
 											"value": "false",
-											"description": "Include comment replies. Possible values: true, false .",
+											"description": "Include comment replies. Possible values: true, false, only .",
 											"disabled": true
 										},
 										{
@@ -28133,7 +28255,7 @@
 										{
 											"key": "include_replies",
 											"value": "false",
-											"description": "Include comment replies. Possible values: true, false .",
+											"description": "Include comment replies. Possible values: true, false, only .",
 											"disabled": true
 										},
 										{
@@ -28205,7 +28327,7 @@
 										{
 											"key": "include_replies",
 											"value": "false",
-											"description": "Include comment replies. Possible values: true, false .",
+											"description": "Include comment replies. Possible values: true, false, only .",
 											"disabled": true
 										},
 										{
@@ -28283,7 +28405,7 @@
 										{
 											"key": "include_replies",
 											"value": "false",
-											"description": "Include comment replies. Possible values: true, false .",
+											"description": "Include comment replies. Possible values: true, false, only .",
 											"disabled": true
 										},
 										{
@@ -29682,6 +29804,80 @@
 											"key": "list_id",
 											"value": "star-wars-in-machete-order",
 											"description": "Trakt ID or Trakt slug Example: star-wars-in-machete-order."
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update List Item",
+					"item": [
+						{
+							"name": "Update a list item",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ACCESS_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "trakt-api-version",
+										"value": "{{API_VERSION}}",
+										"type": "text"
+									},
+									{
+										"key": "trakt-api-key",
+										"value": "{{CLIENT_ID}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"notes\": \"This is a great movie!\"\r\n}"
+								},
+								"url": {
+									"raw": "{{API_URL}}/users/:id/lists/:list_id/items/:list_item_id",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"users",
+										":id",
+										"lists",
+										":list_id",
+										"items",
+										":list_item_id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "sean",
+											"description": "User slug Example: sean"
+										},
+										{
+											"key": "list_id",
+											"value": "star-wars-in-machete-order",
+											"description": "Trakt ID or Trakt slug Example: star-wars-in-machete-order."
+										},
+										{
+											"key": "list_item_id",
+											"value": "1337",
+											"description": "List Item ID Example: 1337."
 										}
 									]
 								}
@@ -32281,7 +32477,7 @@
 									"query": [
 										{
 											"key": "extended",
-											"value": "full,noseasons",
+											"value": "full",
 											"description": "Complete info for an item.",
 											"disabled": true
 										}
@@ -32396,7 +32592,7 @@
 									"query": [
 										{
 											"key": "extended",
-											"value": "full,noseasons",
+											"value": "full",
 											"description": "Complete info for an item.",
 											"disabled": true
 										}
