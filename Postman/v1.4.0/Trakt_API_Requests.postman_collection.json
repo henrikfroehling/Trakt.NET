@@ -4706,6 +4706,14 @@
 									"path": [
 										"comments",
 										"{{COMMENT_ID}}"
+									],
+									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -4863,6 +4871,12 @@
 										"replies"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -5268,7 +5282,7 @@
 										},
 										{
 											"key": "extended",
-											"value": "full",
+											"value": "full,vip",
 											"description": "Complete info for an item.",
 											"disabled": true
 										},
@@ -6147,6 +6161,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -6223,6 +6243,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -6296,6 +6322,14 @@
 									"path": [
 										"lists",
 										"{{TRAKT_LIST_ID}}"
+									],
+									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -6330,6 +6364,14 @@
 									"path": [
 										"lists",
 										"{{TRAKT_LIST_SLUG}}"
+									],
+									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -7232,6 +7274,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -7281,6 +7329,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -7338,6 +7392,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -7387,6 +7447,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -10491,6 +10557,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -10540,6 +10612,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -10597,6 +10675,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -10646,6 +10730,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -10703,6 +10793,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -10752,6 +10848,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -10837,6 +10939,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -10887,6 +10995,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -10949,6 +11063,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -10999,6 +11119,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -11061,6 +11187,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -11111,6 +11243,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -12901,6 +13039,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -12951,6 +13095,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -13013,6 +13163,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -13063,6 +13219,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -13125,6 +13287,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -13175,6 +13343,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -17423,6 +17597,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -17472,6 +17652,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -17529,6 +17715,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -17578,6 +17770,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -17635,6 +17833,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -17684,6 +17888,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -17769,6 +17979,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -17819,6 +18035,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -17881,6 +18103,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -17931,6 +18159,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -17993,6 +18227,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -18043,6 +18283,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -20808,6 +21054,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -20866,6 +21118,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -20930,6 +21188,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -20988,6 +21252,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -21052,6 +21322,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -21110,6 +21386,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -21202,6 +21484,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -21261,6 +21549,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -21330,6 +21624,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -21389,6 +21689,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -21458,6 +21764,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -21517,6 +21829,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -22886,6 +23204,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -22951,6 +23275,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -23022,6 +23352,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -23087,6 +23423,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -23158,6 +23500,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -23223,6 +23571,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -23322,6 +23676,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -23388,6 +23748,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -23464,6 +23830,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -23530,6 +23902,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
@@ -23606,6 +23984,12 @@
 									],
 									"query": [
 										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
+										{
 											"key": "page",
 											"value": "1",
 											"description": "Number of page of results to be returned. Default: 1",
@@ -23672,6 +24056,12 @@
 										":sort"
 									],
 									"query": [
+										{
+											"key": "extended",
+											"value": "full,vip",
+											"description": "Complete info for an item.",
+											"disabled": true
+										},
 										{
 											"key": "page",
 											"value": "1",
