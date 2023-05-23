@@ -56,7 +56,7 @@ namespace TraktNet.Objects.Get.Tests.People.Implementations
             recentlyUpdatedPerson.Person.Birthplace.Should().Be("San Fernando Valley, California, USA");
             recentlyUpdatedPerson.Person.Homepage.Should().Be("http://www.bryancranston.com/");
             recentlyUpdatedPerson.Person.Gender.Should().Be(TraktGender.Male);
-            recentlyUpdatedPerson.Person.KnownForDepartment.Should().Be("acting");
+            recentlyUpdatedPerson.Person.KnownForDepartment.Should().Be(TraktKnownForDepartment.Acting);
             recentlyUpdatedPerson.Person.SocialIds.Should().NotBeNull();
             recentlyUpdatedPerson.Person.SocialIds.Twitter.Should().Be("BryanCranston");
             recentlyUpdatedPerson.Person.SocialIds.Facebook.Should().Be("thebryancranston");
@@ -78,7 +78,7 @@ namespace TraktNet.Objects.Get.Tests.People.Implementations
             recentlyUpdatedPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             recentlyUpdatedPerson.Homepage.Should().Be("http://www.bryancranston.com/");
             recentlyUpdatedPerson.Gender.Should().Be(TraktGender.Male);
-            recentlyUpdatedPerson.KnownForDepartment.Should().Be("acting");
+            recentlyUpdatedPerson.KnownForDepartment.Should().Be(TraktKnownForDepartment.Acting);
             recentlyUpdatedPerson.SocialIds.Should().NotBeNull();
             recentlyUpdatedPerson.SocialIds.Twitter.Should().Be("BryanCranston");
             recentlyUpdatedPerson.SocialIds.Facebook.Should().Be("thebryancranston");

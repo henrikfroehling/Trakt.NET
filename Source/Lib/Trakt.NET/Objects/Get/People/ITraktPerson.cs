@@ -37,8 +37,8 @@
         /// <summary>Gets or sets the gender of the person. See also <seealso cref="TraktGender" />.<para>Nullable</para></summary>
         TraktGender Gender { get; set; }
 
-        /// <summary>Gets or sets the known department of the person.<para>Nullable</para></summary>
-        string KnownForDepartment { get; set; }
+        /// <summary>Gets or sets the known department of the person. See also <seealso cref="TraktKnownForDepartment" />.<para>Nullable</para></summary>
+        TraktKnownForDepartment KnownForDepartment { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of social ids for the person for various web services.
