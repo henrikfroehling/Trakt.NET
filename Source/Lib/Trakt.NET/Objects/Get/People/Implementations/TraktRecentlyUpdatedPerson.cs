@@ -102,7 +102,7 @@ namespace TraktNet.Objects.Get.People
             }
         }
 
-        public string KnownForDepartment
+        public TraktKnownForDepartment KnownForDepartment
         {
             get => Person?.KnownForDepartment;
 

@@ -60,7 +60,7 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Writer
                     Birthplace = "San Fernando Valley, California, USA",
                     Homepage = "http://www.bryancranston.com/",
                     Gender = TraktGender.Male,
-                    KnownForDepartment = "acting",
+                    KnownForDepartment = TraktKnownForDepartment.Acting,
                     SocialIds = new TraktPersonSocialIds
                     {
                         Twitter = "BryanCranston",
@@ -112,7 +112,7 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Writer
                     Birthplace = "San Fernando Valley, California, USA",
                     Homepage = "http://www.bryancranston.com/",
                     Gender = TraktGender.Male,
-                    KnownForDepartment = "acting",
+                    KnownForDepartment = TraktKnownForDepartment.Acting,
                     SocialIds = new TraktPersonSocialIds
                     {
                         Twitter = "BryanCranston",

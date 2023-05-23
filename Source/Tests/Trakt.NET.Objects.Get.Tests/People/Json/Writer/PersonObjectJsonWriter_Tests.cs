@@ -142,7 +142,7 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Writer
         {
             ITraktPerson traktPerson = new TraktPerson
             {
-                KnownForDepartment = "acting"
+                KnownForDepartment = TraktKnownForDepartment.Acting
             };
 
             var traktJsonWriter = new PersonObjectJsonWriter();
@@ -203,7 +203,7 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Writer
                 Birthplace = "San Fernando Valley, California, USA",
                 Homepage = "http://www.bryancranston.com/",
                 Gender = TraktGender.Male,
-                KnownForDepartment = "acting",
+                KnownForDepartment = TraktKnownForDepartment.Acting,
                 SocialIds = new TraktPersonSocialIds
                 {
                     Twitter = "BryanCranston",

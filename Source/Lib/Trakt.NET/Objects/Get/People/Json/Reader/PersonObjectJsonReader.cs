@@ -61,7 +61,7 @@
                             traktPerson.Gender = await JsonReaderHelper.ReadEnumerationValueAsync<TraktGender>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_KNOWN_FOR_DEPARTMENT:
-                            traktPerson.KnownForDepartment = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            traktPerson.KnownForDepartment = await JsonReaderHelper.ReadEnumerationValueAsync<TraktKnownForDepartment>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SOCIAL_IDS:
                             traktPerson.SocialIds = await socialIdsObjectReader.ReadObjectAsync(jsonReader, cancellationToken);

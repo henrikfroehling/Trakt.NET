@@ -26,7 +26,7 @@
             person.Birthplace.Should().BeNullOrEmpty();
             person.Homepage.Should().BeNullOrEmpty();
             person.Gender.Should().BeNull();
-            person.KnownForDepartment.Should().BeNullOrEmpty();
+            person.KnownForDepartment.Should().BeNull();
             person.SocialIds.Should().BeNull();
             person.UpdatedAt.Should().BeNull();
         }
@@ -52,7 +52,7 @@
             person.Birthplace.Should().BeNullOrEmpty();
             person.Homepage.Should().BeNullOrEmpty();
             person.Gender.Should().BeNull();
-            person.KnownForDepartment.Should().BeNullOrEmpty();
+            person.KnownForDepartment.Should().BeNull();
             person.SocialIds.Should().BeNull();
             person.UpdatedAt.Should().BeNull();
         }
@@ -78,7 +78,7 @@
             person.Birthplace.Should().Be("San Fernando Valley, California, USA");
             person.Homepage.Should().Be("http://www.bryancranston.com/");
             person.Gender.Should().Be(TraktGender.Male);
-            person.KnownForDepartment.Should().Be("acting");
+            person.KnownForDepartment.Should().Be(TraktKnownForDepartment.Acting);
             person.SocialIds.Should().NotBeNull();
             person.SocialIds.Twitter.Should().Be("BryanCranston");
             person.SocialIds.Facebook.Should().Be("thebryancranston");
