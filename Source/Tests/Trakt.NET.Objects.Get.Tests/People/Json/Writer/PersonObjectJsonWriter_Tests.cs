@@ -4,6 +4,7 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Writer
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Enums;
     using TraktNet.Extensions;
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.People.Json.Writer;
@@ -128,7 +129,7 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Writer
         {
             ITraktPerson traktPerson = new TraktPerson
             {
-                Gender = "male"
+                Gender = TraktGender.Male
             };
 
             var traktJsonWriter = new PersonObjectJsonWriter();
@@ -201,7 +202,7 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Writer
                 Death = DEATH_AT,
                 Birthplace = "San Fernando Valley, California, USA",
                 Homepage = "http://www.bryancranston.com/",
-                Gender = "male",
+                Gender = TraktGender.Male,
                 KnownForDepartment = "acting",
                 SocialIds = new TraktPersonSocialIds
                 {

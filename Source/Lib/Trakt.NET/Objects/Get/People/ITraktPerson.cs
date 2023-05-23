@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.People
 {
+    using Enums;
     using System;
 
     /// <summary>A Trakt person.</summary>
@@ -33,8 +34,8 @@
         /// <summary>Gets or sets the web address of the homepage of the person.<para>Nullable</para></summary>
         string Homepage { get; set; }
 
-        /// <summary>Gets or sets the gender of the person.<para>Nullable</para></summary>
-        string Gender { get; set; }
+        /// <summary>Gets or sets the gender of the person. See also <seealso cref="TraktGender" />.<para>Nullable</para></summary>
+        TraktGender Gender { get; set; }
 
         /// <summary>Gets or sets the known department of the person.<para>Nullable</para></summary>
         string KnownForDepartment { get; set; }

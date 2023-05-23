@@ -6,6 +6,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Enums;
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.People.Json.Reader;
     using Xunit;
@@ -35,7 +36,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -67,7 +68,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -94,7 +95,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -126,7 +127,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -158,7 +159,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -190,7 +191,7 @@
             traktPerson.Death.Should().BeNull();
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -222,7 +223,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().BeNull();
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -254,7 +255,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().BeNull();
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -318,7 +319,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().BeNull();
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -350,7 +351,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().BeNull();
             traktPerson.UpdatedAt.Should().Be(DateTime.Parse("2022-11-03T17:00:54.000Z").ToUniversalTime());
@@ -378,7 +379,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -410,7 +411,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -437,7 +438,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -469,7 +470,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -501,7 +502,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -533,7 +534,7 @@
             traktPerson.Death.Should().BeNull();
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -565,7 +566,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().BeNull();
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -597,7 +598,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().BeNull();
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -661,7 +662,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().BeNull();
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -693,7 +694,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().BeNull();
             traktPerson.UpdatedAt.Should().Be(DateTime.Parse("2022-11-03T17:00:54.000Z").ToUniversalTime());
@@ -721,7 +722,7 @@
             traktPerson.Death.Should().Be(DateTime.Parse("2016-04-06T00:00:00Z").ToUniversalTime());
             traktPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktPerson.Gender.Should().Be("male");
+            traktPerson.Gender.Should().Be(TraktGender.Male);
             traktPerson.KnownForDepartment.Should().Be("acting");
             traktPerson.SocialIds.Should().NotBeNull();
             traktPerson.SocialIds.Twitter.Should().Be("BryanCranston");
