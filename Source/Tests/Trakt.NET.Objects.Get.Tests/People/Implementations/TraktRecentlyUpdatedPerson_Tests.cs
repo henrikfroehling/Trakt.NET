@@ -4,6 +4,7 @@ namespace TraktNet.Objects.Get.Tests.People.Implementations
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Enums;
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.People.Json.Reader;
     using Xunit;
@@ -54,7 +55,7 @@ namespace TraktNet.Objects.Get.Tests.People.Implementations
             recentlyUpdatedPerson.Person.Age.Should().Be(60);
             recentlyUpdatedPerson.Person.Birthplace.Should().Be("San Fernando Valley, California, USA");
             recentlyUpdatedPerson.Person.Homepage.Should().Be("http://www.bryancranston.com/");
-            recentlyUpdatedPerson.Person.Gender.Should().Be("male");
+            recentlyUpdatedPerson.Person.Gender.Should().Be(TraktGender.Male);
             recentlyUpdatedPerson.Person.KnownForDepartment.Should().Be("acting");
             recentlyUpdatedPerson.Person.SocialIds.Should().NotBeNull();
             recentlyUpdatedPerson.Person.SocialIds.Twitter.Should().Be("BryanCranston");
@@ -76,7 +77,7 @@ namespace TraktNet.Objects.Get.Tests.People.Implementations
             recentlyUpdatedPerson.Age.Should().Be(60);
             recentlyUpdatedPerson.Birthplace.Should().Be("San Fernando Valley, California, USA");
             recentlyUpdatedPerson.Homepage.Should().Be("http://www.bryancranston.com/");
-            recentlyUpdatedPerson.Gender.Should().Be("male");
+            recentlyUpdatedPerson.Gender.Should().Be(TraktGender.Male);
             recentlyUpdatedPerson.KnownForDepartment.Should().Be("acting");
             recentlyUpdatedPerson.SocialIds.Should().NotBeNull();
             recentlyUpdatedPerson.SocialIds.Twitter.Should().Be("BryanCranston");

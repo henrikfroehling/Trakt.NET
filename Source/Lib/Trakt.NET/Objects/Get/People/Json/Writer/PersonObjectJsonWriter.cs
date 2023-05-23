@@ -56,10 +56,10 @@
                 await jsonWriter.WriteValueAsync(obj.Homepage, cancellationToken).ConfigureAwait(false);
             }
 
-            if (!string.IsNullOrEmpty(obj.Gender))
+            if (obj.Gender != null)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_GENDER, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.Gender, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Gender.ObjectName, cancellationToken).ConfigureAwait(false);
             }
 
             if (!string.IsNullOrEmpty(obj.KnownForDepartment))

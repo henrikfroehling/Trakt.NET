@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.People.Json.Reader
 {
+    using Enums;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -57,7 +58,7 @@
                             traktPerson.Homepage = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_GENDER:
-                            traktPerson.Gender = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            traktPerson.Gender = await JsonReaderHelper.ReadEnumerationValueAsync<TraktGender>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_KNOWN_FOR_DEPARTMENT:
                             traktPerson.KnownForDepartment = await jsonReader.ReadAsStringAsync(cancellationToken);
