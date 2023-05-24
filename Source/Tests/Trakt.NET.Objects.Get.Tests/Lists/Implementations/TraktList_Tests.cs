@@ -43,7 +43,7 @@
             list.Should().NotBeNull();
             list.Name.Should().Be("Star Wars in machete order");
             list.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            list.Privacy.Should().Be(TraktAccessScope.Public);
+            list.Privacy.Should().Be(TraktListPrivacy.Public);
             list.DisplayNumbers.Should().BeTrue();
             list.AllowComments.Should().BeFalse();
             list.SortBy.Should().Be("rank");

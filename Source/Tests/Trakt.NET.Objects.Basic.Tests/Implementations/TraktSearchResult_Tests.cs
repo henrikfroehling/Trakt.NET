@@ -147,7 +147,7 @@
             traktSearchResultItem.List.Should().NotBeNull();
             traktSearchResultItem.List.Name.Should().Be("Star Wars in machete order");
             traktSearchResultItem.List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            traktSearchResultItem.List.Privacy.Should().Be(TraktAccessScope.Public);
+            traktSearchResultItem.List.Privacy.Should().Be(TraktListPrivacy.Public);
             traktSearchResultItem.List.DisplayNumbers.Should().BeTrue();
             traktSearchResultItem.List.AllowComments.Should().BeFalse();
             traktSearchResultItem.List.SortBy.Should().Be("rank");

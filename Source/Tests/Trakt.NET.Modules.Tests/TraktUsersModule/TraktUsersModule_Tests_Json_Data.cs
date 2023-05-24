@@ -17,7 +17,7 @@
         private const string LIST_NAME = "new list";
         private const string NEW_LIST_NAME = "new list name";
         private const string DESCRIPTION = "list description";
-        private readonly TraktAccessScope PRIVACY = TraktAccessScope.Public;
+        private readonly TraktListPrivacy PRIVACY = TraktListPrivacy.Public;
         private const bool DISPLAY_NUMBERS = true;
         private const bool ALLOW_COMMENTS = true;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
@@ -51,7 +51,7 @@
         private readonly TraktWatchlistSortOrder WATCHLIST_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const uint WATCHLIST_LIMIT = 4;
         private const string NEW_DESCRIPTION = "new list description";
-        private readonly TraktAccessScope NEW_PRIVACY = TraktAccessScope.Private;
+        private readonly TraktListPrivacy NEW_PRIVACY = TraktListPrivacy.Private;
         private const bool NEW_DISPLAY_NUMBERS = false;
         private const bool NEW_ALLOW_COMMENTS = false;
         private readonly IList<uint> REORDERED_CUSTOM_LISTS = new List<uint> { 823, 224, 88768, 356456, 245, 2, 890 };

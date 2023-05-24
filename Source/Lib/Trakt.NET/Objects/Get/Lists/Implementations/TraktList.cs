@@ -13,8 +13,8 @@
         /// <summary>Gets or sets the list description.<para>Nullable</para></summary>
         public string Description { get; set; }
 
-        /// <summary>Gets or sets the list's visibility status. See also <seealso cref="TraktAccessScope" />.<para>Nullable</para></summary>
-        public TraktAccessScope Privacy { get; set; }
+        /// <summary>Gets or sets the list's visibility status. See also <seealso cref="TraktListPrivacy" />.<para>Nullable</para></summary>
+        public TraktListPrivacy Privacy { get; set; }
 
         /// <summary>Gets or sets, whether the list displays ranking numbers.</summary>
         public bool? DisplayNumbers { get; set; }
