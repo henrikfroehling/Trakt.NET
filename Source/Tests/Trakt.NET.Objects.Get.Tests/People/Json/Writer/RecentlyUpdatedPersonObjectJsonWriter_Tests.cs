@@ -5,6 +5,7 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Writer
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Extensions;
+    using TraktNet.Enums;
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.People.Json.Writer;
     using Xunit;
@@ -58,8 +59,8 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Writer
                     Death = DEATH_AT,
                     Birthplace = "San Fernando Valley, California, USA",
                     Homepage = "http://www.bryancranston.com/",
-                    Gender = "male",
-                    KnownForDepartment = "acting",
+                    Gender = TraktGender.Male,
+                    KnownForDepartment = TraktKnownForDepartment.Acting,
                     SocialIds = new TraktPersonSocialIds
                     {
                         Twitter = "BryanCranston",
@@ -110,8 +111,8 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Writer
                     Death = DEATH_AT,
                     Birthplace = "San Fernando Valley, California, USA",
                     Homepage = "http://www.bryancranston.com/",
-                    Gender = "male",
-                    KnownForDepartment = "acting",
+                    Gender = TraktGender.Male,
+                    KnownForDepartment = TraktKnownForDepartment.Acting,
                     SocialIds = new TraktPersonSocialIds
                     {
                         Twitter = "BryanCranston",

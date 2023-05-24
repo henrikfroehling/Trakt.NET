@@ -68,7 +68,7 @@
                 RequestBody = new TraktUserPersonalListPost
                 {
                     Name = "list name",
-                    Privacy = TraktAccessScope.Unspecified
+                    Privacy = TraktListPrivacy.Unspecified
                 }
             };
 

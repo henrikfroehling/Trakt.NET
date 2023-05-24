@@ -6,6 +6,7 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Reader
     using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Enums;
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.People.Json.Reader;
     using Xunit;
@@ -38,8 +39,8 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Reader
             traktUpdatedPerson.Person.Age.Should().Be(60);
             traktUpdatedPerson.Person.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktUpdatedPerson.Person.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktUpdatedPerson.Person.Gender.Should().Be("male");
-            traktUpdatedPerson.Person.KnownForDepartment.Should().Be("acting");
+            traktUpdatedPerson.Person.Gender.Should().Be(TraktGender.Male);
+            traktUpdatedPerson.Person.KnownForDepartment.Should().Be(TraktKnownForDepartment.Acting);
             traktUpdatedPerson.Person.SocialIds.Should().NotBeNull();
             traktUpdatedPerson.Person.SocialIds.Twitter.Should().Be("BryanCranston");
             traktUpdatedPerson.Person.SocialIds.Facebook.Should().Be("thebryancranston");
@@ -73,8 +74,8 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Reader
             traktUpdatedPerson.Person.Age.Should().Be(60);
             traktUpdatedPerson.Person.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktUpdatedPerson.Person.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktUpdatedPerson.Person.Gender.Should().Be("male");
-            traktUpdatedPerson.Person.KnownForDepartment.Should().Be("acting");
+            traktUpdatedPerson.Person.Gender.Should().Be(TraktGender.Male);
+            traktUpdatedPerson.Person.KnownForDepartment.Should().Be(TraktKnownForDepartment.Acting);
             traktUpdatedPerson.Person.SocialIds.Should().NotBeNull();
             traktUpdatedPerson.Person.SocialIds.Twitter.Should().Be("BryanCranston");
             traktUpdatedPerson.Person.SocialIds.Facebook.Should().Be("thebryancranston");
@@ -122,8 +123,8 @@ namespace TraktNet.Objects.Get.Tests.People.Json.Reader
             traktUpdatedPerson.Person.Age.Should().Be(60);
             traktUpdatedPerson.Person.Birthplace.Should().Be("San Fernando Valley, California, USA");
             traktUpdatedPerson.Person.Homepage.Should().Be("http://www.bryancranston.com/");
-            traktUpdatedPerson.Person.Gender.Should().Be("male");
-            traktUpdatedPerson.Person.KnownForDepartment.Should().Be("acting");
+            traktUpdatedPerson.Person.Gender.Should().Be(TraktGender.Male);
+            traktUpdatedPerson.Person.KnownForDepartment.Should().Be(TraktKnownForDepartment.Acting);
             traktUpdatedPerson.Person.SocialIds.Should().NotBeNull();
             traktUpdatedPerson.Person.SocialIds.Twitter.Should().Be("BryanCranston");
             traktUpdatedPerson.Person.SocialIds.Facebook.Should().Be("thebryancranston");

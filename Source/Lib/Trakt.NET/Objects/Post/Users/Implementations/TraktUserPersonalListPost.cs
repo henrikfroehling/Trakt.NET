@@ -17,10 +17,10 @@
 
         /// <summary>
         /// Gets or sets the optional privacy setting of the custom list.
-        /// See also <seealso cref="TraktAccessScope" />.
+        /// See also <seealso cref="TraktListPrivacy" />.
         /// <para>Nullable</para>
         /// </summary>
-        public TraktAccessScope Privacy { get; set; }
+        public TraktListPrivacy Privacy { get; set; }
 
         /// <summary>Gets or sets, whether the custom list should display numbers.</summary>
         public bool? DisplayNumbers { get; set; }
@@ -56,7 +56,7 @@
             if (Name.Length == 0)
                 throw new TraktPostValidationException(nameof(Name), "list name must not be empty");
 
-            if (Privacy != null && Privacy == TraktAccessScope.Unspecified)
+            if (Privacy != null && Privacy == TraktListPrivacy.Unspecified)
                 throw new TraktPostValidationException(nameof(Privacy), "Privacy must not be unspecified");
         }
 
@@ -64,7 +64,7 @@
         public bool HasAnyValuesSet()
         {
             return !string.IsNullOrEmpty(Name) || !string.IsNullOrEmpty(Description)
-                || (Privacy != null && Privacy != TraktAccessScope.Unspecified)
+                || (Privacy != null && Privacy != TraktListPrivacy.Unspecified)
                 || DisplayNumbers.HasValue || AllowComments.HasValue
                 || (SortBy != null && SortBy != TraktSortBy.Unspecified)
                 || (SortHow != null && SortHow != TraktSortHow.Unspecified);

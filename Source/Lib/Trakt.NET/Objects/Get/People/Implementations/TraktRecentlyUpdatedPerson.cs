@@ -1,5 +1,6 @@
 namespace TraktNet.Objects.Get.People
 {
+    using Enums;
     using System;
 
     /// <summary>An updated Trakt person.</summary>
@@ -90,7 +91,7 @@ namespace TraktNet.Objects.Get.People
             }
         }
 
-        public string Gender
+        public TraktGender Gender
         {
             get => Person?.Gender;
 
@@ -101,7 +102,7 @@ namespace TraktNet.Objects.Get.People
             }
         }
 
-        public string KnownForDepartment
+        public TraktKnownForDepartment KnownForDepartment
         {
             get => Person?.KnownForDepartment;
 

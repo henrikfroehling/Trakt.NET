@@ -4,6 +4,7 @@
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Enums;
     using TraktNet.Objects.Get.People;
     using TraktNet.Objects.Get.People.Json.Reader;
     using Xunit;
@@ -24,8 +25,8 @@
             person.Age.Should().Be(0);
             person.Birthplace.Should().BeNullOrEmpty();
             person.Homepage.Should().BeNullOrEmpty();
-            person.Gender.Should().BeNullOrEmpty();
-            person.KnownForDepartment.Should().BeNullOrEmpty();
+            person.Gender.Should().BeNull();
+            person.KnownForDepartment.Should().BeNull();
             person.SocialIds.Should().BeNull();
             person.UpdatedAt.Should().BeNull();
         }
@@ -50,8 +51,8 @@
             person.Age.Should().Be(0);
             person.Birthplace.Should().BeNullOrEmpty();
             person.Homepage.Should().BeNullOrEmpty();
-            person.Gender.Should().BeNullOrEmpty();
-            person.KnownForDepartment.Should().BeNullOrEmpty();
+            person.Gender.Should().BeNull();
+            person.KnownForDepartment.Should().BeNull();
             person.SocialIds.Should().BeNull();
             person.UpdatedAt.Should().BeNull();
         }
@@ -76,8 +77,8 @@
             person.Age.Should().Be(60);
             person.Birthplace.Should().Be("San Fernando Valley, California, USA");
             person.Homepage.Should().Be("http://www.bryancranston.com/");
-            person.Gender.Should().Be("male");
-            person.KnownForDepartment.Should().Be("acting");
+            person.Gender.Should().Be(TraktGender.Male);
+            person.KnownForDepartment.Should().Be(TraktKnownForDepartment.Acting);
             person.SocialIds.Should().NotBeNull();
             person.SocialIds.Twitter.Should().Be("BryanCranston");
             person.SocialIds.Facebook.Should().Be("thebryancranston");

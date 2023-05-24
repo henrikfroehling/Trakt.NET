@@ -14,10 +14,10 @@
 
         /// <summary>
         /// Gets or sets the optional privacy setting of the personal list.
-        /// See also <seealso cref="TraktAccessScope" />.
+        /// See also <seealso cref="TraktListPrivacy" />.
         /// <para>Nullable</para>
         /// </summary>
-        TraktAccessScope Privacy { get; set; }
+        TraktListPrivacy Privacy { get; set; }
 
         /// <summary>Gets or sets, whether the personal list should display numbers.</summary>
         bool? DisplayNumbers { get; set; }

@@ -29,7 +29,7 @@
                             userPersonalListPost.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_PRIVACY:
-                            userPersonalListPost.Privacy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktAccessScope>(jsonReader, cancellationToken);
+                            userPersonalListPost.Privacy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktListPrivacy>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_DISPLAY_NUMBERS:
                             userPersonalListPost.DisplayNumbers = await jsonReader.ReadAsBooleanAsync(cancellationToken);
