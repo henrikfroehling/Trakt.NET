@@ -106,7 +106,7 @@
                     {
                         Name = "Star Wars in machete order",
                         Description = "Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.",
-                        Privacy = TraktAccessScope.Public,
+                        Privacy = TraktListPrivacy.Public,
                         DisplayNumbers = true,
                         AllowComments = true,
                         SortBy = "rank",
@@ -231,7 +231,7 @@
                     {
                         Name = "Star Wars in machete order",
                         Description = "Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.",
-                        Privacy = TraktAccessScope.Public,
+                        Privacy = TraktListPrivacy.Public,
                         DisplayNumbers = true,
                         AllowComments = true,
                         SortBy = "rank",
@@ -318,7 +318,7 @@
                     {
                         Name = "Star Wars in machete order",
                         Description = "Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.",
-                        Privacy = TraktAccessScope.Public,
+                        Privacy = TraktListPrivacy.Public,
                         DisplayNumbers = true,
                         AllowComments = true,
                         SortBy = "rank",

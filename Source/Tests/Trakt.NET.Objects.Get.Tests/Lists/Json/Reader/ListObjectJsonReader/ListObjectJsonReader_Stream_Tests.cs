@@ -26,7 +26,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -64,7 +64,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().BeNull();
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -102,7 +102,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().BeNull();
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -178,7 +178,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeNull();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -216,7 +216,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeNull();
                 traktList.SortBy.Should().Be("rank");
@@ -254,7 +254,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().BeNull();
@@ -292,7 +292,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -330,7 +330,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -368,7 +368,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -406,7 +406,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -444,7 +444,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -482,7 +482,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -520,7 +520,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -556,7 +556,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -641,7 +641,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().BeNull();
                 traktList.Description.Should().BeNull();
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeNull();
                 traktList.AllowComments.Should().BeNull();
                 traktList.SortBy.Should().BeNull();
@@ -977,7 +977,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().BeNull();
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -1015,7 +1015,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().BeNull();
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -1091,7 +1091,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeNull();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -1129,7 +1129,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeNull();
                 traktList.SortBy.Should().Be("rank");
@@ -1167,7 +1167,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().BeNull();
@@ -1205,7 +1205,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -1243,7 +1243,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -1281,7 +1281,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -1319,7 +1319,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -1357,7 +1357,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -1395,7 +1395,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -1433,7 +1433,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");
@@ -1469,7 +1469,7 @@
                 traktList.Should().NotBeNull();
                 traktList.Name.Should().Be("Star Wars in machete order");
                 traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktList.Privacy.Should().Be(TraktAccessScope.Public);
+                traktList.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktList.DisplayNumbers.Should().BeTrue();
                 traktList.AllowComments.Should().BeFalse();
                 traktList.SortBy.Should().Be("rank");

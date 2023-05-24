@@ -45,7 +45,7 @@
                 traktUserComment.List.Should().NotBeNull();
                 traktUserComment.List.Name.Should().Be("Star Wars in machete order");
                 traktUserComment.List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktUserComment.List.Privacy.Should().Be(TraktAccessScope.Public);
+                traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
                 traktUserComment.List.SortBy.Should().Be("rank");
@@ -107,7 +107,7 @@
                 traktUserComment.List.Should().NotBeNull();
                 traktUserComment.List.Name.Should().Be("Star Wars in machete order");
                 traktUserComment.List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktUserComment.List.Privacy.Should().Be(TraktAccessScope.Public);
+                traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
                 traktUserComment.List.SortBy.Should().Be("rank");
@@ -151,7 +151,7 @@
                 traktUserComment.List.Should().NotBeNull();
                 traktUserComment.List.Name.Should().Be("Star Wars in machete order");
                 traktUserComment.List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktUserComment.List.Privacy.Should().Be(TraktAccessScope.Public);
+                traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
                 traktUserComment.List.SortBy.Should().Be("rank");
@@ -294,7 +294,7 @@
                 traktUserComment.List.Should().NotBeNull();
                 traktUserComment.List.Name.Should().Be("Star Wars in machete order");
                 traktUserComment.List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktUserComment.List.Privacy.Should().Be(TraktAccessScope.Public);
+                traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
                 traktUserComment.List.SortBy.Should().Be("rank");
@@ -356,7 +356,7 @@
                 traktUserComment.List.Should().NotBeNull();
                 traktUserComment.List.Name.Should().Be("Star Wars in machete order");
                 traktUserComment.List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktUserComment.List.Privacy.Should().Be(TraktAccessScope.Public);
+                traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
                 traktUserComment.List.SortBy.Should().Be("rank");
@@ -400,7 +400,7 @@
                 traktUserComment.List.Should().NotBeNull();
                 traktUserComment.List.Name.Should().Be("Star Wars in machete order");
                 traktUserComment.List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                traktUserComment.List.Privacy.Should().Be(TraktAccessScope.Public);
+                traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
                 traktUserComment.List.SortBy.Should().Be("rank");
