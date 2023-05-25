@@ -43,7 +43,8 @@ jobs:
           elif [ "${{ github.ref_name }}" = "develop" ]; then
             echo "::set-output name=env_name::Development"
           else
-            echo "::set-output name=env_name::Release-Previews"
+             echo "::set-output name=env_name::Release-Previews"
+          fi 
 
       - name: Output environment name
         run: echo "Environment name = ${{ steps.branch_check.outputs.env_name }}"
