@@ -36,6 +36,7 @@ jobs:
     steps:
       - name: Check branch for enviroment
         id: branch_check
+        shell: bash
         run: |
           echo "Running on branch ${{ github.ref_name }}"
           if [ "${{ github.ref_name }}" = "main" ]; then
@@ -47,6 +48,7 @@ jobs:
           fi 
 
       - name: Output environment name
+        shell: bash
         run: echo "Environment name = ${{ steps.branch_check.outputs.env_name }}"
 
     outputs:
