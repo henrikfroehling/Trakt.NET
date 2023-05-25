@@ -4,28 +4,29 @@
     <Product>Trakt.NET</Product>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>TraktNet</RootNamespace>
+    <GenerateDocumentationFile Condition="'$(Configuration)' == 'Release'">true</GenerateDocumentationFile>
 
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <DebugType>embedded</DebugType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
 
     <Title>Trakt.NET</Title>
+    <Description>A .NET wrapper library with which developers can build .NET applications that integrate with the Trakt.tv API and access its features and data.</Description>
     <Authors>Henrik Fröhling</Authors>
     <Company>Henrik Fröhling</Company>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <PackageProjectUrl>https://henrikfroehling.github.io/Trakt.NET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
-    <Copyright>Copyright (c) 2016 - Current Henrik Fröhling and contributors</Copyright>
+    <Copyright>Copyright (c) 2016 - Current Henrik Fröhling and Contributors</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>trakt rest api</PackageTags>
+    <PackageTags>trakt rest api dotnet</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <VersionPrefix>1.4.0</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
     <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#130</PackageReleaseNotes>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,27 +34,19 @@
     <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="..\..\..\README.md" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\..\Build\Lib\Debug\</OutputPath>
-    <DocumentationFile>..\..\..\Build\Lib\Debug\netstandard2.0\Trakt.NET.xml</DocumentationFile>
-    <LangVersion>latest</LangVersion>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\..\Build\Lib\Release\</OutputPath>
-    <DocumentationFile>..\..\..\Build\Lib\Release\netstandard2.0\Trakt.NET.xml</DocumentationFile>
-    <LangVersion>latest</LangVersion>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.133" PrivateAssets="all" />
   </ItemGroup>
+
+  <Target Name="AddCommitHashToAssemblyAttributes" BeforeTargets="GetAssemblyAttributes">
+    <ItemGroup>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="'$(SourceRevisionId)' != ''">
+        <_Parameter1>CommitHash</_Parameter1>
+        <_Parameter2>$(SourceRevisionId)</_Parameter2>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
 </Project>
