@@ -73,15 +73,15 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore
-        working_directory: './Source'
+        working-directory: './Source'
 
       - name: Build solution
         run: dotnet build  --configuration Release --no-restore
-        working_directory: './Source'
+        working-directory: './Source'
 
       - name: Run tests
         run: dotnet test --configuration Release --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-        working_directory: './Source'
+        working-directory: './Source'
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
@@ -100,4 +100,4 @@ jobs:
       - name: Push package
         if: ${{ !contains(github.ref, 'pull') }}
         run: dotnet nuget push "**/Trakt.NET*.nupkg"
-        working_directory: './Source'
+        working-directory: './Source'
