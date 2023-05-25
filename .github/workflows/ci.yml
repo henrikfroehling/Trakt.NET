@@ -32,6 +32,7 @@ env:
 
 jobs:
   environment-check:
+    runs-on: windows-latest
     steps:
       - name: Check branch for enviroment
         id: branch_check
