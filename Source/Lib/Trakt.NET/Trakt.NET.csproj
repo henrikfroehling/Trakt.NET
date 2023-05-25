@@ -1,32 +1,40 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Product>Trakt.NET</Product>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>TraktNet</RootNamespace>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <VersionPrefix>1.4.0</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
-    <Authors>Henrik Fröhling</Authors>
-    <Company>Henrik Fröhling</Company>
-    <PackageProjectUrl>https://github.com/henrikfroehling/Trakt.NET</PackageProjectUrl>
-    <Copyright>Copyright © 2016 - Current Henrik Fröhling et al.</Copyright>
-    <Description>A .NET wrapper library with which developers can build .NET applications that integrate with the Trakt.tv API and access its features and data.
 
-Features
-- Full Trakt.tv API Coverage
-- Authentication and Authorization Support (OAuth 2.0 and Device)
-- Completely asynchronous
-- API Environments (Production and Sandbox)
-- Serialization Service</Description>
-    <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
-    <PackageTags>trakt rest api</PackageTags>
-    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#130</PackageReleaseNotes>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <DebugType>embedded</DebugType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+    <Title>Trakt.NET</Title>
+    <Authors>Henrik Fröhling</Authors>
+    <Company>Henrik Fröhling</Company>
+    <PackageProjectUrl>https://henrikfroehling.github.io/Trakt.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
+    <Copyright>Copyright (c) 2016 - Current Henrik Fröhling and contributors</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>trakt rest api</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <VersionPrefix>1.4.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
+    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#130</PackageReleaseNotes>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)LICENSE.md" Pack="true" PackagePath="..\..\..\LICENSE.md" />
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="..\..\..\README.md" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -48,12 +56,4 @@ Features
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\..\LICENSE.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
-
 </Project>
