@@ -1,0 +1,102 @@
+name: 'CI-Build'
+
+on:
+  workflow_dispatch:
+  push:
+    paths-ignore:
+      - 'Postman/**'
+      - 'AUTHORS.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'Changelog.md'
+      - 'LICENSE.md'
+      - 'PublishRelease.txt'
+      - 'README.md'
+      - 'coding_style.md'
+      - 'docs/**'
+  pull_request:
+    paths-ignore:
+      - 'Postman/**'
+      - 'AUTHORS.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'Changelog.md'
+      - 'LICENSE.md'
+      - 'PublishRelease.txt'
+      - 'README.md'
+      - 'coding_style.md'
+      - 'docs/**'
+
+env:
+  BRANCH_NAME: ${{ github.base_ref || github.ref_name }} 
+
+jobs:
+  environment-check:
+    steps:
+      - name: Check branch for enviroment
+        id: branch_check
+        run: |
+          echo "Running on branch ${{ github.ref_name }}"
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            echo "::set-output name=env_name::Production"
+          elif [ "${{ github.ref_name }}" = "develop" ]; then
+            echo "::set-output name=env_name::Development"
+          else
+            echo "::set-output name=env_name::Release-Previews"
+
+      - name: Output environment name
+        run: echo "Environment name = ${{ steps.branch_check.outputs.env_name }}"
+
+    outputs:
+      environment_name: ${{ steps.branch_check.outputs.env_name }}
+
+  build:
+    needs: [environment-check]
+    runs-on: windows-latest
+    environment:
+      name: ${{ needs.build.outputs.environment_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+          dotnet-quality: 'ga'
+          source-url: https://nuget.pkg.github.com/henrikfroehling/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Restore dependencies
+        run: dotnet restore
+        working_directory: './Source'
+
+      - name: Build solution
+        run: dotnet build  --configuration Release --no-restore
+        working_directory: './Source'
+
+      - name: Run tests
+        run: dotnet test --configuration Release --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        working_directory: './Source'
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Trakt.NET-CI-Build-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
+          path: |
+            '**/Trakt.NET*.dll'
+            '**/Trakt.NET*.pdb'
+            '**/Trakt.NET*.xml'
+            '**/Trakt.NET*.nupkg'
+            '**/Trakt.NET*.snupkg'
+
+      - name: Push package
+        if: ${{ !contains(github.ref, 'pull') }}
+        run: dotnet nuget push "**/Trakt.NET*.nupkg"
+        working_directory: './Source'
