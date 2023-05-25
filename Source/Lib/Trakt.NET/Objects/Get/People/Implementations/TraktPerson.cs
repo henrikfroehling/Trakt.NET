@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.People
 {
+    using Enums;
     using Extensions;
     using System;
 
@@ -48,11 +49,11 @@
         /// <summary>Gets or sets the web address of the homepage of the person.<para>Nullable</para></summary>
         public string Homepage { get; set; }
 
-        /// <summary>Gets or sets the gender of the person.<para>Nullable</para></summary>
-        public string Gender { get; set; }
+        /// <summary>Gets or sets the gender of the person. See also <seealso cref="TraktGender" />.<para>Nullable</para></summary>
+        public TraktGender Gender { get; set; }
 
-        /// <summary>Gets or sets the known department of the person.<para>Nullable</para></summary>
-        public string KnownForDepartment { get; set; }
+        /// <summary>Gets or sets the known department of the person. See also <seealso cref="TraktKnownForDepartment" />.<para>Nullable</para></summary>
+        public TraktKnownForDepartment KnownForDepartment { get; set; }
 
         /// <summary>
         /// Gets or sets the collection of social ids for the person for various web services.

@@ -82,7 +82,7 @@
                 Id = "123",
                 RequestBody = new TraktUserPersonalListPost
                 {
-                    Privacy = TraktAccessScope.Unspecified
+                    Privacy = TraktListPrivacy.Unspecified
                 }
             };
 

@@ -85,7 +85,7 @@
                 commentItems[0].List.Should().NotBeNull();
                 commentItems[0].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[0].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[0].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[0].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[0].List.DisplayNumbers.Should().BeTrue();
                 commentItems[0].List.AllowComments.Should().BeFalse();
                 commentItems[0].List.SortBy.Should().Be("rank");
@@ -152,7 +152,7 @@
                 commentItems[1].List.Should().NotBeNull();
                 commentItems[1].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[1].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[1].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[1].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[1].List.DisplayNumbers.Should().BeTrue();
                 commentItems[1].List.AllowComments.Should().BeFalse();
                 commentItems[1].List.SortBy.Should().Be("rank");
@@ -233,7 +233,7 @@
                 commentItems[0].List.Should().NotBeNull();
                 commentItems[0].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[0].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[0].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[0].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[0].List.DisplayNumbers.Should().BeTrue();
                 commentItems[0].List.AllowComments.Should().BeFalse();
                 commentItems[0].List.SortBy.Should().Be("rank");
@@ -348,7 +348,7 @@
                 commentItems[1].List.Should().NotBeNull();
                 commentItems[1].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[1].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[1].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[1].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[1].List.DisplayNumbers.Should().BeTrue();
                 commentItems[1].List.AllowComments.Should().BeFalse();
                 commentItems[1].List.SortBy.Should().Be("rank");
@@ -422,7 +422,7 @@
                 commentItems[0].List.Should().NotBeNull();
                 commentItems[0].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[0].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[0].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[0].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[0].List.DisplayNumbers.Should().BeTrue();
                 commentItems[0].List.AllowComments.Should().BeFalse();
                 commentItems[0].List.SortBy.Should().Be("rank");
@@ -489,7 +489,7 @@
                 commentItems[1].List.Should().NotBeNull();
                 commentItems[1].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[1].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[1].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[1].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[1].List.DisplayNumbers.Should().BeTrue();
                 commentItems[1].List.AllowComments.Should().BeFalse();
                 commentItems[1].List.SortBy.Should().Be("rank");
@@ -570,7 +570,7 @@
                 commentItems[0].List.Should().NotBeNull();
                 commentItems[0].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[0].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[0].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[0].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[0].List.DisplayNumbers.Should().BeTrue();
                 commentItems[0].List.AllowComments.Should().BeFalse();
                 commentItems[0].List.SortBy.Should().Be("rank");
@@ -630,7 +630,7 @@
                 commentItems[1].List.Should().NotBeNull();
                 commentItems[1].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[1].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[1].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[1].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[1].List.DisplayNumbers.Should().BeTrue();
                 commentItems[1].List.AllowComments.Should().BeFalse();
                 commentItems[1].List.SortBy.Should().Be("rank");
@@ -704,7 +704,7 @@
                 commentItems[0].List.Should().NotBeNull();
                 commentItems[0].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[0].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[0].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[0].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[0].List.DisplayNumbers.Should().BeTrue();
                 commentItems[0].List.AllowComments.Should().BeFalse();
                 commentItems[0].List.SortBy.Should().Be("rank");
@@ -764,7 +764,7 @@
                 commentItems[1].List.Should().NotBeNull();
                 commentItems[1].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[1].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[1].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[1].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[1].List.DisplayNumbers.Should().BeTrue();
                 commentItems[1].List.AllowComments.Should().BeFalse();
                 commentItems[1].List.SortBy.Should().Be("rank");

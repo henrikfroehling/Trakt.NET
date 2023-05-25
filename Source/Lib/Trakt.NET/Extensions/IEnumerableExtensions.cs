@@ -1,6 +1,7 @@
 ﻿namespace TraktNet.Extensions
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     /// <summary>Provides helper methods for IAsyncEnumerables.</summary>
@@ -11,7 +12,7 @@
         /// <returns>An IAsyncEnumerable of the results from the tasks.</returns>
         public static async IAsyncEnumerable<TSource> StreamFinishedTaskResultsAsync<TSource>(this List<Task<TSource>> source)
         {
-            if(source is null || source.Count == 0)
+            if(source is null || !source.Any())
                 yield break;
 
             while (source.Count > 0)

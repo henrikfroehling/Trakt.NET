@@ -56,16 +56,16 @@
                 await jsonWriter.WriteValueAsync(obj.Homepage, cancellationToken).ConfigureAwait(false);
             }
 
-            if (!string.IsNullOrEmpty(obj.Gender))
+            if (obj.Gender != null)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_GENDER, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.Gender, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Gender.ObjectName, cancellationToken).ConfigureAwait(false);
             }
 
-            if (!string.IsNullOrEmpty(obj.KnownForDepartment))
+            if (obj.KnownForDepartment != null)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_KNOWN_FOR_DEPARTMENT, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.KnownForDepartment, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.KnownForDepartment.ObjectName, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.SocialIds != null)
