@@ -38,10 +38,10 @@ jobs:
         id: branch_check
         shell: bash
         run: |
-          echo "Running on branch ${{ github.ref_name }}"
-          if [ "${{ github.ref_name }}" = "main" ]; then
+          echo "Running on branch ${{ env.BRANCH_NAME }}"
+          if [ "${{ env.BRANCH_NAME }}" = "main" ]; then
             echo "::set-output name=env_name::Production"
-          elif [ "${{ github.ref_name }}" = "develop" ]; then
+          elif [ "${{ env.BRANCH_NAME }}" = "develop" ]; then
             echo "::set-output name=env_name::Development"
           else
              echo "::set-output name=env_name::Release-Previews"
@@ -89,18 +89,22 @@ jobs:
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
 
+      - name: Create NuGet package
+        run: dotnet pack "**/Trakt.NET.csproj" --configuration Release --no-build --no-restore
+        working-directory: './Source'
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Trakt.NET-CI-Build-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
           path: |
-            '**/Trakt.NET*.dll'
-            '**/Trakt.NET*.pdb'
-            '**/Trakt.NET*.xml'
-            '**/Trakt.NET*.nupkg'
-            '**/Trakt.NET*.snupkg'
+            '**/Trakt.NET.dll'
+            '**/Trakt.NET.pdb'
+            '**/Trakt.NET.xml'
+            '**/*.nupkg'
+            '**/*.snupkg'
 
-      - name: Push package
+      - name: Push NuGet package to Github Package Registry
         if: ${{ !contains(github.ref, 'pull') }}
         run: dotnet nuget push "**/Trakt.NET*.nupkg"
         working-directory: './Source'
