@@ -96,12 +96,12 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Trakt.NET-CI-Build-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
+          retention-days: 14
           path: |
-            '**/Trakt.NET.dll'
-            '**/Trakt.NET.pdb'
-            '**/Trakt.NET.xml'
-            '**/*.nupkg'
-            '**/*.snupkg'
+            'Source/Lib/Trakt.NET/bin/**/Trakt.NET.dll'
+            'Source/Lib/Trakt.NET/bin/**/Trakt.NET.xml'
+            'Source/**/*.nupkg'
+            'Source/**/*.snupkg'
 
       - name: Push NuGet package to Github Package Registry
         if: ${{ !contains(github.ref, 'pull') }}
