@@ -20,7 +20,6 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <PackageProjectUrl>https://henrikfroehling.github.io/Trakt.NET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
-    <Copyright>Copyright (c) 2016 - Current Henrik Fröhling and Contributors</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>trakt rest api dotnet</PackageTags>
