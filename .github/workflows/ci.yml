@@ -109,8 +109,8 @@ jobs:
           path: |
             '${{ github.workspace }}\release\Trakt.NET.dll'
             '${{ github.workspace }}\release\Trakt.NET.xml'
-            '${{ github.workspace }}\Source\**\*.nupkg'
-            '${{ github.workspace }}\Source\**\*.snupkg'
+            '${{ github.workspace }}\release\*.nupkg'
+            '${{ github.workspace }}\release\*.snupkg'
 
       - name: Push NuGet package to Github Package Registry
         if: ${{ !contains(github.ref, 'pull') }}
