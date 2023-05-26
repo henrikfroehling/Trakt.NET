@@ -82,11 +82,15 @@ jobs:
         working-directory: './Source'
 
       - name: Run tests
-        run: dotnet test --configuration Release --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        run: dotnet test --configuration Release --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
         working-directory: './Source'
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
+
+      - name: Publish
+        run: dotnet publish "Lib/Trakt.NET/Trakt.NET.csproj" --configuration Release -o release --nologo --no-build --no-restore --no-dependencies
+        working-directory: './Source'
 
       - name: Create NuGet package
         run: dotnet pack "Lib/Trakt.NET/Trakt.NET.csproj" --configuration Release --no-build --no-restore
@@ -98,10 +102,10 @@ jobs:
           name: Trakt.NET-CI-Build-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
           retention-days: 14
           path: |
-            '${{ github.workspace }}\Source\Lib\Trakt.NET\bin\Release\netstandard2.0\Trakt.NET.dll'
-            '${{ github.workspace }}\Source\Lib\Trakt.NET\bin\Release\netstandard2.0\Trakt.NET.xml'
-            '${{ github.workspace }}\Source\Lib\Trakt.NET\bin\Release\*.nupkg'
-            '${{ github.workspace }}\Source\Lib\Trakt.NET\bin\Release\*.snupkg'
+            '${{ github.workspace }}\release\Trakt.NET.dll'
+            '${{ github.workspace }}\release\Trakt.NET.xml'
+            '${{ github.workspace }}\Source\**\*.nupkg'
+            '${{ github.workspace }}\Source\**\*.snupkg'
 
       - name: Push NuGet package to Github Package Registry
         if: ${{ !contains(github.ref, 'pull') }}
