@@ -35,24 +35,23 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Check branch for enviroment
-        id: branch_check
         shell: bash
         run: |
           echo "Running on branch ${{ env.BRANCH_NAME }}"
           if [ "${{ env.BRANCH_NAME }}" = "main" ]; then
-            echo "::set-output name=env_name::Production"
+            echo "env_name=Production" >> "$GITHUB_ENV"
           elif [ "${{ env.BRANCH_NAME }}" = "develop" ]; then
-            echo "::set-output name=env_name::Development"
+            echo "env_name=Development" >> "$GITHUB_ENV"
           else
-             echo "::set-output name=env_name::Release-Previews"
+            echo "env_name=Release-Previews" >> "$GITHUB_ENV"
           fi 
 
       - name: Output environment name
         shell: bash
-        run: echo "Environment name = ${{ steps.branch_check.outputs.env_name }}"
+        run: echo "Environment name = ${{ env.env_name }}"
 
     outputs:
-      environment_name: ${{ steps.branch_check.outputs.env_name }}
+      environment_name: ${{ env.env_name }}
 
   build:
     needs: [environment-check]
@@ -90,7 +89,7 @@ jobs:
         uses: codecov/codecov-action@v3
 
       - name: Create NuGet package
-        run: dotnet pack "**/Trakt.NET.csproj" --configuration Release --no-build --no-restore
+        run: dotnet pack "Lib/Trakt.NET/Trakt.NET.csproj" --configuration Release --no-build --no-restore
         working-directory: './Source'
 
       - name: Upload artifacts
