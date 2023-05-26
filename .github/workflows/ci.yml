@@ -89,12 +89,16 @@ jobs:
         uses: codecov/codecov-action@v3
 
       - name: Publish
-        run: dotnet publish "Lib/Trakt.NET/Trakt.NET.csproj" --configuration Release -o "${{ github.workspace }}/release" --nologo --no-build --no-restore --no-dependencies -verbosity detailed
+        run: dotnet publish "Lib/Trakt.NET/Trakt.NET.csproj" --configuration Release -o "${{ github.workspace }}/release" --nologo --no-build --no-restore --no-dependencies
         working-directory: './Source'
 
       - name: Create NuGet package
         run: dotnet pack "Lib/Trakt.NET/Trakt.NET.csproj" --configuration Release --no-build --no-restore
         working-directory: './Source'
+
+      - name: Copy NuGet package
+        shell: pwsh
+        run: Get-ChildItem -Path . -Recurse | Where-Object {$_.Extension -match '.nupkg|.snupkg'} | Copy-Item -Destination 'release'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
