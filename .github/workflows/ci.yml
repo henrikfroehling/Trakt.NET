@@ -89,7 +89,7 @@ jobs:
         uses: codecov/codecov-action@v3
 
       - name: Publish
-        run: dotnet publish "Lib/Trakt.NET/Trakt.NET.csproj" --configuration Release -o release --nologo --no-build --no-restore --no-dependencies
+        run: dotnet publish "Lib/Trakt.NET/Trakt.NET.csproj" --configuration Release -o "${{ github.workspace }}/release" --nologo --no-build --no-restore --no-dependencies -verbosity detailed
         working-directory: './Source'
 
       - name: Create NuGet package
