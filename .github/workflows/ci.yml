@@ -98,10 +98,10 @@ jobs:
           name: Trakt.NET-CI-Build-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
           retention-days: 14
           path: |
-            '${{ github.workspace }}/Source/**/Trakt.NET.dll'
-            '${{ github.workspace }}/Source/**/Trakt.NET.xml'
-            '${{ github.workspace }}/Source/**/*.nupkg'
-            '${{ github.workspace }}/Source/**/*.snupkg'
+            '${{ github.workspace }}\Source\Lib\Trakt.NET\bin\Release\netstandard2.0\Trakt.NET.dll'
+            '${{ github.workspace }}\Source\Lib\Trakt.NET\bin\Release\netstandard2.0\Trakt.NET.xml'
+            '${{ github.workspace }}\Source\Lib\Trakt.NET\bin\Release\*.nupkg'
+            '${{ github.workspace }}\Source\Lib\Trakt.NET\bin\Release\*.snupkg'
 
       - name: Push NuGet package to Github Package Registry
         if: ${{ !contains(github.ref, 'pull') }}
