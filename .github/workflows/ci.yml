@@ -119,11 +119,8 @@ jobs:
         working-directory: 'Source'
 
   docs:
-    needs: [environment-check]
     if: ${{ !contains(github.ref, 'pull') }}
     runs-on: windows-latest
-    environment:
-      name: ${{ needs.environment-check.outputs.environment_name }}
     permissions:
       contents: write
     concurrency:
