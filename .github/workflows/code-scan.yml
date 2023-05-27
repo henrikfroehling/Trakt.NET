@@ -1,8 +1,8 @@
 name: "Code Scan"
 
 on:
+  workflow_dispatch:
   push:
-    branches: [develop, main, release-*]
     paths-ignore:
       - 'Postman/**'
       - 'AUTHORS.md'
@@ -15,7 +15,6 @@ on:
       - 'coding_style.md'
       - 'docs/**'
   pull_request:
-    branches: [develop, release-*]
     paths-ignore:
       - 'Postman/**'
       - 'AUTHORS.md'
@@ -48,23 +47,19 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-      with:
-        fetch-depth: 2
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:
-        languages: ${{ matrix.language }}
+        languages: 'csharp'
 
-    - name: Restore packages
-      run: dotnet restore $env:Project_Name
-      env:
-        Configuration: ${{ matrix.configuration }}
+    - name: Restore dependencies
+      run: dotnet restore
+      working-directory: 'Source'
 
     - name: Build solution
-      run: dotnet build $env:Project_Name --configuration $env:Configuration --no-restore /m /p:BuildInParallel=true
-      env:
-        Configuration: ${{ matrix.configuration }}
+      run: dotnet build  --configuration Release --no-restore
+      working-directory: 'Source'
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
