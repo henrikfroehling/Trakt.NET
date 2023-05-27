@@ -28,7 +28,11 @@ on:
       - 'docs/**'
 
 env:
-  BRANCH_NAME: ${{ github.base_ref || github.ref_name }} 
+  BRANCH_NAME: ${{ github.base_ref || github.ref_name }}
+  DOTNET_VERSION: '7.0.x'
+  DOTNET_QUALITY: 'ga'
+  BUILD_CONFIGURATION: Release
+  PROJECT_NAME: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
 
 jobs:
   environment-check:
@@ -67,8 +71,8 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '7.0.x'
-          dotnet-quality: 'ga'
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-quality: ${{ env.DOTNET_QUALITY }}
           source-url: https://nuget.pkg.github.com/henrikfroehling/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -78,27 +82,24 @@ jobs:
         working-directory: 'Source'
 
       - name: Build solution
-        run: dotnet build  --configuration Release --no-restore
+        run: dotnet build  --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
         working-directory: 'Source'
 
       - name: Run tests
-        run: dotnet test --configuration Release --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        run: dotnet test --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
         working-directory: 'Source'
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
 
       - name: Create NuGet package
-        run: dotnet pack 'Source/Lib/Trakt.NET/Trakt.NET.csproj' --configuration Release --no-build --no-restore
+        run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore
 
       - name: Copy files for deployment
         shell: pwsh
         run: |
           New-Item -Type Directory -Force 'release'
-          Get-ChildItem -Path 'Source/Lib/Trakt.NET/bin/Release' -Recurse | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.deps.json|[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination 'release'
-
-      - name: List Release Artifacts
-        run: Get-ChildItem -Path 'release'
+          Get-ChildItem -Path 'Source/Lib/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}' -Recurse | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.deps.json|[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination 'release'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -111,3 +112,49 @@ jobs:
         if: ${{ !contains(github.ref, 'pull') }}
         run: dotnet nuget push '**/Trakt.NET*.nupkg'
         working-directory: 'Source'
+
+  docs:
+    needs: [environment-check]
+    if: ${{ !contains(github.ref, 'pull') }}
+    runs-on: windows-latest
+    environment:
+      name: ${{ needs.docs.outputs.environment_name }}
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-quality: ${{ env.DOTNET_QUALITY }}
+
+      - name: Setup DocFX
+        run: dotnet tool install -g docfx
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.PROJECT_NAME }}
+
+      - name: Build library
+        run: dotnet build ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+
+      - name: Build documentation
+        run: cd docs && docfx metadata && docfx build
+
+      - name: Upload documentation artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Trakt.NET-Documentation-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
+          retention-days: 14
+          path: 'docs/_site/'
+
+      - name: Deploy documentation
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref_name == 'main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: 'docs/_site'
