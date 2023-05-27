@@ -90,7 +90,7 @@ jobs:
 
       - name: Copy library files
         shell: pwsh
-        run: Get-ChildItem -Path 'Lib/Trakt.NET/bin/Release/netstandard2.0' | Where-Object {$_.Name -match 'Trakt.NET*'} | Copy-Item -Destination 'release'
+        run: Get-ChildItem -Path './Source/Lib/Trakt.NET/bin/Release/netstandard2.0' | Where-Object {$_.Name -match 'Trakt.NET*'} | Copy-Item -Destination 'release'
 
       - name: Create NuGet package
         run: dotnet pack './Source/Lib/Trakt.NET/Trakt.NET.csproj' --configuration Release --no-build --no-restore
