@@ -88,11 +88,12 @@ jobs:
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
 
-      - name: Publish
-        run: dotnet publish "./Source/Lib/Trakt.NET/Trakt.NET.csproj" --configuration Release -o "./release" --nologo --no-build --no-restore --no-dependencies
+      - name: Copy library files
+        shell: pwsh
+        run: Get-ChildItem -Path 'Lib/Trakt.NET/bin/Release/netstandard2.0' | Where-Object {$_.Name -match 'Trakt.NET*'} | Copy-Item -Destination 'release'
 
       - name: Create NuGet package
-        run: dotnet pack "./Source/Lib/Trakt.NET/Trakt.NET.csproj" --configuration Release --no-build --no-restore
+        run: dotnet pack './Source/Lib/Trakt.NET/Trakt.NET.csproj' --configuration Release --no-build --no-restore
 
       - name: Copy NuGet package
         shell: pwsh
@@ -106,12 +107,9 @@ jobs:
         with:
           name: Trakt.NET-CI-Build-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
           retention-days: 14
-          path: |
-            './release/Trakt.NET.dll'
-            './release/Trakt.NET.xml'
-            './release/*.nupkg'
-            './release/*.snupkg'
+          path: './release/'
 
       - name: Push NuGet package to Github Package Registry
         if: ${{ !contains(github.ref, 'pull') }}
-        run: dotnet nuget push "./release/Trakt.NET*.nupkg"
+        run: dotnet nuget push '**/Trakt.NET*.nupkg'
+        working-directory: './Source'
