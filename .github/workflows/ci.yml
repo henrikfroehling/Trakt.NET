@@ -101,6 +101,9 @@ jobs:
         run: Get-ChildItem -Path 'Lib/Trakt.NET/bin/Release' | Where-Object {$_.Extension -match '.nupkg|.snupkg'} | Copy-Item -Destination '${{ github.workspace }}\release'
         working-directory: './Source'
 
+      - name: List Release Artifacts
+        run: Get-ChildItem -Path '${{ github.workspace }}\release'
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
