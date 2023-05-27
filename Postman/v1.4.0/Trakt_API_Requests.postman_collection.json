@@ -62,6 +62,12 @@
 													"value": "true",
 													"description": "Set this to true, if you prefer the account sign up page to be the default.",
 													"disabled": true
+												},
+												{
+													"key": "prompt",
+													"value": "login",
+													"description": "Force the user to sign in and authorize your app.",
+													"disabled": true
 												}
 											]
 										}
