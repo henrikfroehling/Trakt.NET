@@ -61,7 +61,7 @@ jobs:
     needs: [environment-check]
     runs-on: windows-latest
     environment:
-      name: ${{ needs.build.outputs.environment_name }}
+      name: ${{ needs.environment-check.outputs.environment_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -123,7 +123,7 @@ jobs:
     if: ${{ !contains(github.ref, 'pull') }}
     runs-on: windows-latest
     environment:
-      name: ${{ needs.docs.outputs.environment_name }}
+      name: ${{ needs.environment-check.outputs.environment_name }}
     permissions:
       contents: write
     concurrency:
