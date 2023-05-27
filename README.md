@@ -117,7 +117,7 @@ Do want to contribute? [See how you can contribute](https://github.com/henrikfro
 ```text
 The MIT License (MIT)
 
-Copyright © 2016 - Current Henrik Fröhling et al.
+Copyright (c) 2016 - Current Henrik Fröhling and Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

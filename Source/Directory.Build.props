@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <IsTestProject>$(MSBuildProjectName.EndsWith('Tests'))</IsTestProject>
+    <IsTestUtilityProject>$(MSBuildProjectName.EndsWith('Tests.Utility'))</IsTestUtilityProject>
+    <LangVersion>latest</LangVersion>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <Copyright>Copyright (c) 2016 - Current Henrik Fröhling and Contributors</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+</Project>
