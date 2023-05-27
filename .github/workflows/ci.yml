@@ -75,37 +75,39 @@ jobs:
 
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: './Source'
+        working-directory: 'Source'
 
       - name: Build solution
         run: dotnet build  --configuration Release --no-restore
-        working-directory: './Source'
+        working-directory: 'Source'
 
       - name: Run tests
         run: dotnet test --configuration Release --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-        working-directory: './Source'
+        working-directory: 'Source'
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
 
       - name: Create NuGet package
-        run: dotnet pack './Source/Lib/Trakt.NET/Trakt.NET.csproj' --configuration Release --no-build --no-restore
+        run: dotnet pack 'Source/Lib/Trakt.NET/Trakt.NET.csproj' --configuration Release --no-build --no-restore
 
       - name: Copy files for deployment
         shell: pwsh
-        run: Get-ChildItem -Path './Source/Lib/Trakt.NET/bin/Release' -Recurse | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.deps.json|[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination '${{ github.workspace }}\release'
+        run: |
+          New-Item -Type Directory -Force 'release'
+          Get-ChildItem -Path 'Source/Lib/Trakt.NET/bin/Release' -Recurse | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.deps.json|[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination 'release'
 
       - name: List Release Artifacts
-        run: Get-ChildItem -Path '${{ github.workspace }}\release'
+        run: Get-ChildItem -Path 'release'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Trakt.NET-CI-Build-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
           retention-days: 14
-          path: './release/'
+          path: 'release/'
 
       - name: Push NuGet package to Github Package Registry
         if: ${{ !contains(github.ref, 'pull') }}
         run: dotnet nuget push '**/Trakt.NET*.nupkg'
-        working-directory: './Source'
+        working-directory: 'Source'
