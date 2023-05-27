@@ -113,6 +113,11 @@ jobs:
         run: dotnet nuget push '**/Trakt.NET*.nupkg'
         working-directory: 'Source'
 
+      - name: Release Deployment - Publish NuGet package
+        if: ${{ (github.ref_name == 'main' && startsWith(github.ref, 'refs/tags/v') }}
+        run: dotnet nuget push '**/Trakt.NET*.nupkg' --api-key ${{ secrets.NUGET_API_KEY }} --source 'https://api.nuget.org/v3/index.json'
+        working-directory: 'Source'
+
   docs:
     needs: [environment-check]
     if: ${{ !contains(github.ref, 'pull') }}
@@ -156,7 +161,7 @@ jobs:
 
       - name: Deploy documentation
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref_name == 'main' }}
+        if: ${{ (github.ref_name == 'main' && (github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')) }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: 'docs/_site'
