@@ -88,19 +88,15 @@ jobs:
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
 
-      - name: Copy library files
-        shell: pwsh
-        run: Get-ChildItem -Path './Source/Lib/Trakt.NET/bin/Release/netstandard2.0' | Where-Object {$_.Name -match 'Trakt.NET*'} | Copy-Item -Destination 'release'
-
       - name: Create NuGet package
         run: dotnet pack './Source/Lib/Trakt.NET/Trakt.NET.csproj' --configuration Release --no-build --no-restore
 
-      - name: Copy NuGet package
+      - name: Copy files for deployment
         shell: pwsh
-        run: Get-ChildItem -Path './Source/Lib/Trakt.NET/bin/Release' | Where-Object {$_.Extension -match '.nupkg|.snupkg'} | Copy-Item -Destination './release'
+        run: Get-ChildItem -Path './Source/Lib/Trakt.NET/bin/Release' -Recurse | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.deps.json|[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination '${{ github.workspace }}\release'
 
       - name: List Release Artifacts
-        run: Get-ChildItem -Path './release'
+        run: Get-ChildItem -Path '${{ github.workspace }}\release'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
