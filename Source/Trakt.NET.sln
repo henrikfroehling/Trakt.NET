@@ -29,17 +29,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Objects.Post.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{A7FA937C-9CD0-4601-A2FA-CBA2FDC1DA77}"
 	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\ci.yml = ..\.github\workflows\ci.yml
 		..\.github\workflows\code-scan.yml = ..\.github\workflows\code-scan.yml
-		..\.github\workflows\deployment.yml = ..\.github\workflows\deployment.yml
-		..\.github\workflows\develop-CI.yml = ..\.github\workflows\develop-CI.yml
-		..\.github\workflows\main-CI.yml = ..\.github\workflows\main-CI.yml
-		..\.github\workflows\release-CI.yml = ..\.github\workflows\release-CI.yml
 		..\.github\workflows\sonarcloud.yml = ..\.github\workflows\sonarcloud.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{E8878124-ADAC-493E-9ECC-8BF405D431AB}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\ISSUE_TEMPLATE\bug_report.yml = ..\.github\ISSUE_TEMPLATE\bug_report.yml
+		..\.github\ISSUE_TEMPLATE\config.yml = ..\.github\ISSUE_TEMPLATE\config.yml
 		..\.github\ISSUE_TEMPLATE\feature_request.yml = ..\.github\ISSUE_TEMPLATE\feature_request.yml
 		..\.github\PULL_REQUEST_TEMPLATE.md = ..\.github\PULL_REQUEST_TEMPLATE.md
 	EndProjectSection
@@ -52,8 +50,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Git", "Git", "{695F47B0-A80
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Releases", "Releases", "{8315C2AB-046F-4BE5-B417-E4CB97AA6A34}"
 	ProjectSection(SolutionItems) = preProject
-		..\PublishRelease.txt = ..\PublishRelease.txt
-		..\ReleaseNotes.md = ..\ReleaseNotes.md
+		..\Changelog.md = ..\Changelog.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contributing", "Contributing", "{EDB5D86C-D40A-4481-AE9E-97C456190749}"
@@ -73,7 +70,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Information", "Information"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.PostBuilder.Tests", "Tests\Trakt.NET.PostBuilder.Tests\Trakt.NET.PostBuilder.Tests.csproj", "{DF5B66BE-56C5-40B1-80E3-928BD97205D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Parameters.Tests", "Tests\Trakt.NET.Parameters.Tests\Trakt.NET.Parameters.Tests.csproj", "{3AE0421C-C4E8-4CC6-A618-A5143D1102AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Parameters.Tests", "Tests\Trakt.NET.Parameters.Tests\Trakt.NET.Parameters.Tests.csproj", "{3AE0421C-C4E8-4CC6-A618-A5143D1102AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman", "Postman", "{CBAF46D6-612D-4850-8238-21A7079542D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "v1.4.0", "v1.4.0", "{27CA1632-1E0D-4136-BA68-0490E3191BCB}"
+	ProjectSection(SolutionItems) = preProject
+		..\Postman\v1.4.0\README.md = ..\Postman\v1.4.0\README.md
+		..\Postman\v1.4.0\Trakt_API_Environment.postman_environment.json = ..\Postman\v1.4.0\Trakt_API_Environment.postman_environment.json
+		..\Postman\v1.4.0\Trakt_API_Requests.postman_collection.json = ..\Postman\v1.4.0\Trakt_API_Requests.postman_collection.json
+		..\Postman\v1.4.0\Trakt_API_Staging_Environment.postman_environment.json = ..\Postman\v1.4.0\Trakt_API_Staging_Environment.postman_environment.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Directory Build Properties", "Directory Build Properties", "{3DC8C555-C99D-4991-B74A-C75E966703DB}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{25D373D3-DD91-4722-A57D-A45AE37D0035}"
+	ProjectSection(SolutionItems) = preProject
+		Tests\Directory.Build.props = Tests\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version", "Version", "{565BDF15-9747-4793-AE1A-70D5E0F04FB0}"
+	ProjectSection(SolutionItems) = preProject
+		version.json = version.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -239,6 +261,11 @@ Global
 		{02EDFC5A-10AE-4653-AF73-F0C2E30CFFB3} = {E4690B7D-5380-4003-99C3-2091827DB262}
 		{DF5B66BE-56C5-40B1-80E3-928BD97205D6} = {40C02336-96D7-4D92-9CBA-79570413DBA4}
 		{3AE0421C-C4E8-4CC6-A618-A5143D1102AD} = {40C02336-96D7-4D92-9CBA-79570413DBA4}
+		{CBAF46D6-612D-4850-8238-21A7079542D9} = {E4690B7D-5380-4003-99C3-2091827DB262}
+		{27CA1632-1E0D-4136-BA68-0490E3191BCB} = {CBAF46D6-612D-4850-8238-21A7079542D9}
+		{3DC8C555-C99D-4991-B74A-C75E966703DB} = {E4690B7D-5380-4003-99C3-2091827DB262}
+		{25D373D3-DD91-4722-A57D-A45AE37D0035} = {3DC8C555-C99D-4991-B74A-C75E966703DB}
+		{565BDF15-9747-4793-AE1A-70D5E0F04FB0} = {E4690B7D-5380-4003-99C3-2091827DB262}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7025A39E-11A6-4587-98F7-E887B941D5A0}
