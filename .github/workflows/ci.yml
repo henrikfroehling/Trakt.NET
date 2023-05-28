@@ -31,6 +31,7 @@ env:
   DOTNET_QUALITY: 'ga'
   BUILD_CONFIGURATION: Release
   PROJECT_NAME: 'src/libs/Trakt.NET/Trakt.NET.csproj'
+  ARTIFACTS_DIRECTORY: 'artifacts'
 
 jobs:
 #  environment-check:
@@ -94,15 +95,23 @@ jobs:
       - name: Copy files for deployment
         shell: pwsh
         run: |
-          New-Item -Type Directory -Force 'release'
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}' -Recurse | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.deps.json|[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination 'release'
+          New-Item -Type Directory -Force '${{ env.ARTIFACTS_DIRECTORY }}'
+          New-Item -Type Directory -Force '${{ env.ARTIFACTS_DIRECTORY }}/netstandard2.1'
+          New-Item -Type Directory -Force '${{ env.ARTIFACTS_DIRECTORY }}/netstandard2.0'
+          New-Item -Type Directory -Force '${{ env.ARTIFACTS_DIRECTORY }}/net6.0'
+          New-Item -Type Directory -Force '${{ env.ARTIFACTS_DIRECTORY }}/net7.0'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}' | Where-Object {$_.Fullname -match '[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination ${{ env.ARTIFACTS_DIRECTORY }}
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/netstandard2.1' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_DIRECTORY }}/netstandard2.1'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/netstandard2.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_DIRECTORY }}/netstandard2.0'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net6.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_DIRECTORY }}/net6.0'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net7.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_DIRECTORY }}/net7.0'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: Trakt.NET-CI-Build-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
           retention-days: 14
-          path: 'release/'
+          path: '${{ env.ARTIFACTS_DIRECTORY }}/'
 
       - name: Push NuGet package to Github Package Registry
         if: ${{ !contains(github.ref, 'pull') }}

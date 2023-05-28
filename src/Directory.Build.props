@@ -1,65 +1,20 @@
 <Project>
   <PropertyGroup>
-    <IsTestProject>$(MSBuildProjectName.Contains('Tests'))</IsTestProject>
+    <IsTestProject>$(MSBuildProjectName.EndsWith('Tests'))</IsTestProject>
+    <IsTestUtilityProject>$(MSBuildProjectName.EndsWith('Tests.Utility'))</IsTestUtilityProject>
+
+    <LangVersion>latest</LangVersion>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <Copyright>Copyright (c) 2016 - Current Henrik Fröhling and Contributors</Copyright>
 
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
     <AnalysisLevel>latest-recommended</AnalysisLevel>
     <ImplicitUsings>true</ImplicitUsings>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <NoPackageAnalysis>true</NoPackageAnalysis>
-    <RootNamespace>TraktNet</RootNamespace>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-
-    <Title>Trakt.NET</Title>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <Authors>Henrik Fröhling</Authors>
-    <Company>Henrik Fröhling</Company>
-    <PackageProjectUrl>https://henrikfroehling.github.io/Trakt.NET</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
-    <Copyright>Copyright (c) 2016 - Current Henrik Fröhling et al.</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>trakt rest api</PackageTags>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <Description>A .NET wrapper library with which developers can build .NET applications that integrate with the Trakt.tv API and access its features and data.
-
-Features
-- Full Trakt.tv API Coverage
-- Authentication and Authorization Support (OAuth 2.0 and Device)
-- Completely asynchronous
-- API Environments (Production and Sandbox)
-- Serialization Service</Description>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)LICENSE.md" Pack="true" PackagePath="..\LICENSE.md" />
-    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="..\README.md" />
-  </ItemGroup>
 
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.132" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
-  </ItemGroup>
-
-  <Target Name="AddCommitHashToAssemblyAttributes" BeforeTargets="GetAssemblyAttributes">
-    <ItemGroup>
-      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="'$(SourceRevisionId)' != ''">
-        <_Parameter1>CommitHash</_Parameter1>
-        <_Parameter2>$(SourceRevisionId)</_Parameter2>
-      </AssemblyAttribute>
-    </ItemGroup>
-  </Target>
 </Project>
