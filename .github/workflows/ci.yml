@@ -13,7 +13,6 @@ on:
       - 'PublishRelease.txt'
       - 'README.md'
       - 'coding_style.md'
-      - 'docs/**'
   pull_request:
     paths-ignore:
       - 'Postman/**'
@@ -25,7 +24,6 @@ on:
       - 'PublishRelease.txt'
       - 'README.md'
       - 'coding_style.md'
-      - 'docs/**'
 
 env:
   BRANCH_NAME: ${{ github.base_ref || github.ref_name }}
