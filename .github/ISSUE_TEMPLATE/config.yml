@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions
+    url: https://github.com/henrikfroehling/Trakt.NET/discussions
+    about: Please ask and answer questions here.
+  - name: Documentation
+    url: https://henrikfroehling.github.io/Trakt.NET/docs/index.html
+    about: The official Trakt.NET documentation.
