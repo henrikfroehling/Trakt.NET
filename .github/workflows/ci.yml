@@ -28,7 +28,6 @@ on:
       - 'docs/**'
 
 env:
-  BRANCH_NAME: ${{ github.base_ref || github.ref_name }}
   DOTNET_VERSION: '7.0.x'
   DOTNET_QUALITY: 'ga'
   BUILD_CONFIGURATION: Release
@@ -39,23 +38,42 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Check branch for enviroment
+        if: github.event_name != 'pull_request'
         shell: bash
         run: |
-          echo "Running on branch ${{ env.BRANCH_NAME }}"
-          if [ "${{ env.BRANCH_NAME }}" = "main" ]; then
+          echo "Running on branch ${{ github.ref_name }}"
+          echo "target_br_name=${{ github.ref_name }}" >> "$GITHUB_ENV"
+          if [ "${{ github.ref_name }}" = "main" ]; then
             echo "env_name=Production" >> "$GITHUB_ENV"
-          elif [ "${{ env.BRANCH_NAME }}" = "develop" ]; then
+          elif [ "${{ github.ref_name }}" = "develop" ]; then
             echo "env_name=Development" >> "$GITHUB_ENV"
           else
             echo "env_name=Release-Previews" >> "$GITHUB_ENV"
           fi 
 
-      - name: Output environment name
+      - name: Check branch for enviroment in PR
+        if: github.event_name == 'pull_request'
         shell: bash
-        run: echo "Environment name = ${{ env.env_name }}"
+        run: |
+          echo "Running on branch ${{ github.head_ref }}"
+          echo "target_br_name=${{ github.base_ref }}" >> "$GITHUB_ENV"
+          if [ "${{ github.base_ref }}" = "main" ]; then
+            echo "env_name=Production" >> "$GITHUB_ENV"
+          elif [ "${{ github.base_ref }}" = "develop" ]; then
+            echo "env_name=Development" >> "$GITHUB_ENV"
+          else
+            echo "env_name=Release-Previews" >> "$GITHUB_ENV"
+          fi 
+
+      - name: Output environment
+        shell: bash
+        run: |
+          echo "Environment name = ${{ env.env_name }}"
+          echo "Branch name = ${{ env.target_br_name }}"
 
     outputs:
       environment_name: ${{ env.env_name }}
+      target_branch_name: ${{ env.target_br_name }}
 
   build:
     needs: [environment-check]
@@ -104,7 +122,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: Trakt.NET-CI-Build-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
+          name: Trakt.NET-CI-Build-${{ needs.environment-check.outputs.target_branch_name }}.${{ github.run_number }}-${{ github.sha }}
           retention-days: 14
           path: 'release/'
 
@@ -119,6 +137,7 @@ jobs:
         working-directory: 'Source'
 
   docs:
+    needs: [environment-check]
     if: ${{ !contains(github.ref, 'pull') }}
     runs-on: windows-latest
     permissions:
@@ -152,7 +171,7 @@ jobs:
       - name: Upload documentation artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: Trakt.NET-Documentation-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
+          name: Trakt.NET-Documentation-${{ needs.environment-check.outputs.target_branch_name }}.${{ github.run_number }}-${{ github.sha }}
           retention-days: 14
           path: 'docs/_site/'
 
