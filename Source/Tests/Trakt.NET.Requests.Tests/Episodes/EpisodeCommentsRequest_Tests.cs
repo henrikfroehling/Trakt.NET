@@ -63,7 +63,7 @@
             private const string _id = "123";
             private const uint _seasonNumber = 1;
             private const uint _episodeNumber = 8;
-            private static readonly TraktCommentSortOrder _sortOrder = TraktCommentSortOrder.Newest;
+            private static readonly TraktExtendedCommentSortOrder _sortOrder = TraktExtendedCommentSortOrder.Newest;
             private const int _page = 5;
             private const int _limit = 20;
 
