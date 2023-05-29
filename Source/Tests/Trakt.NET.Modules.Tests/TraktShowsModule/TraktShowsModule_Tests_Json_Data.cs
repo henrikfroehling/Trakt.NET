@@ -22,7 +22,7 @@
         private const bool PROGRESS_HIDDEN = true;
         private const bool PROGRESS_SPECIALS = true;
         private const bool PROGRESS_COUNT_SPECIALS = true;
-        private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
+        private readonly TraktShowsCommentSortOrder COMMENT_SORT_ORDER = TraktShowsCommentSortOrder.Likes;
         private readonly TraktListType LIST_ITEM_TYPE = TraktListType.Official;
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private const string LANGUAGE_CODE = "en";

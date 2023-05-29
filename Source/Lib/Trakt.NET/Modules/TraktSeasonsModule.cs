@@ -186,7 +186,7 @@
         /// </summary>
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
         /// <param name="seasonNumber">The number of the season, for which the comments should be queried.</param>
-        /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
+        /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktShowsCommentSortOrder" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -202,7 +202,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetSeasonCommentsAsync(string showIdOrSlug, uint seasonNumber,
-                                                                              TraktCommentSortOrder commentSortOrder = null,
+                                                                              TraktShowsCommentSortOrder commentSortOrder = null,
                                                                               TraktPagedParameters pagedParameters = null,
                                                                               CancellationToken cancellationToken = default)
         {
