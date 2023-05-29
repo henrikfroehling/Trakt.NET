@@ -56,7 +56,7 @@
         {
             private const string _id = "123";
             private const uint _seasonNumber = 1;
-            private static readonly TraktCommentSortOrder _sortOrder = TraktCommentSortOrder.Newest;
+            private static readonly TraktShowsCommentSortOrder _sortOrder = TraktShowsCommentSortOrder.Newest;
             private const int _page = 5;
             private const int _limit = 20;
 

@@ -7,7 +7,7 @@
 
     internal sealed class ShowCommentsRequest : AShowRequest<ITraktComment>, ISupportsPagination
     {
-        internal TraktCommentSortOrder SortOrder { get; set; }
+        internal TraktShowsCommentSortOrder SortOrder { get; set; }
 
         public uint? Page { get; set; }
 
@@ -19,7 +19,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            if (SortOrder != null && SortOrder != TraktCommentSortOrder.Unspecified)
+            if (SortOrder != null && SortOrder != TraktShowsCommentSortOrder.Unspecified)
                 uriParams.Add("sort_order", SortOrder.UriName);
 
             if (Page.HasValue)
