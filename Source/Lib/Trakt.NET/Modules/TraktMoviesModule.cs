@@ -218,7 +218,7 @@
         /// </para>
         /// </summary>
         /// <param name="movieIdOrSlug">The movie's Trakt-Id or -Slug. See also <seealso cref="ITraktMovieIds" />.</param>
-        /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
+        /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktExtendedCommentSortOrder" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -234,7 +234,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetMovieCommentsAsync(string movieIdOrSlug,
-                                                                             TraktCommentSortOrder commentSortOrder = null,
+                                                                             TraktExtendedCommentSortOrder commentSortOrder = null,
                                                                              TraktPagedParameters pagedParameters = null,
                                                                              CancellationToken cancellationToken = default)
         {

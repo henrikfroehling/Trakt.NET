@@ -55,7 +55,7 @@
         public class MovieCommentsRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
-            private static readonly TraktCommentSortOrder _sortOrder = TraktCommentSortOrder.Newest;
+            private static readonly TraktExtendedCommentSortOrder _sortOrder = TraktExtendedCommentSortOrder.Newest;
             private const int _page = 5;
             private const int _limit = 20;
 

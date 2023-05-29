@@ -14,7 +14,7 @@
         private const int ITEM_COUNT = 3;
         private const int LIST_ITEM_COUNT = 10;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
-        private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
+        private readonly TraktShowsCommentSortOrder COMMENT_SORT_ORDER = TraktShowsCommentSortOrder.Likes;
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private const string LANGUAGE_CODE = "en";

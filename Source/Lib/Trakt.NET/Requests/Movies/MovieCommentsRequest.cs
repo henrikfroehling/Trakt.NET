@@ -7,7 +7,7 @@
 
     internal sealed class MovieCommentsRequest : AMovieRequest<ITraktComment>, ISupportsPagination
     {
-        internal TraktCommentSortOrder SortOrder { get; set; }
+        internal TraktExtendedCommentSortOrder SortOrder { get; set; }
 
         public uint? Page { get; set; }
 
@@ -19,7 +19,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            if (SortOrder != null && SortOrder != TraktCommentSortOrder.Unspecified)
+            if (SortOrder != null && SortOrder != TraktExtendedCommentSortOrder.Unspecified)
                 uriParams.Add("sort_order", SortOrder.UriName);
 
             if (Page.HasValue)
