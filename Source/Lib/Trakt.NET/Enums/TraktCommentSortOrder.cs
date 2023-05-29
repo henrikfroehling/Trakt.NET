@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Enums
 {
-    /// <summary>Determines the sort order for comments lists.</summary>
+    /// <summary>Determines the sort order for comments.</summary>
     public sealed class TraktCommentSortOrder : TraktEnumeration
     {
         /// <summary>An invalid sort order.</summary>
