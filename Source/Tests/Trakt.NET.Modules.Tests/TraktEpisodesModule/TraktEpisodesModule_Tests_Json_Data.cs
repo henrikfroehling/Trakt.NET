@@ -13,7 +13,7 @@
         private const int COMMENTS_ITEM_COUNT = 4;
         private const int LISTS_ITEM_COUNT = 10;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
-        private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
+        private readonly TraktExtendedCommentSortOrder COMMENT_SORT_ORDER = TraktExtendedCommentSortOrder.Likes;
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
 
