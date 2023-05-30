@@ -44,11 +44,11 @@ jobs:
           echo "Running on branch ${{ github.ref_name }}"
           br_name=${{ github.ref_name }}
           echo "target_br_name=${br_name/\//-}" >> "$GITHUB_ENV"
-          if [ "${{ github.ref_name }}" == *"main"* ]; then
+          if [[ "${{ github.ref_name }}" == *"main"* ]]; then
             echo "env_name=Production" >> "$GITHUB_ENV"
-          elif [ "${{ github.ref_name }}" == *"develop"* ]; then
+          elif [[ "${{ github.ref_name }}" == *"develop"* ]]; then
             echo "env_name=Development" >> "$GITHUB_ENV"
-          elif [ "${{ github.ref_name }}" == *"release"* ]; then
+          elif [[ "${{ github.ref_name }}" == *"release"* ]]; then
             echo "env_name=Release-Previews" >> "$GITHUB_ENV"
           else
             echo "env_name=Development" >> "$GITHUB_ENV"
@@ -61,11 +61,11 @@ jobs:
           echo "Running on branch ${{ github.head_ref }}"
           br_name=${{ github.base_ref }}
           echo "target_br_name=${br_name/\//-}" >> "$GITHUB_ENV"
-          if [ "${{ github.base_ref }}" == *"main"* ]; then
+          if [[ "${{ github.base_ref }}" == *"main"* ]]; then
             echo "env_name=Production" >> "$GITHUB_ENV"
-          elif [ "${{ github.base_ref }}" == *"develop"* ]; then
+          elif [[ "${{ github.base_ref }}" == *"develop"* ]]; then
             echo "env_name=Development" >> "$GITHUB_ENV"
-          elif [ "${{ github.base_ref }}" == *"release"* ]; then
+          elif [[ "${{ github.base_ref }}" == *"release"* ]]; then
             echo "env_name=Release-Previews" >> "$GITHUB_ENV"
           else
             echo "env_name=Development" >> "$GITHUB_ENV"
