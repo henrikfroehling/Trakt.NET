@@ -42,7 +42,7 @@ jobs:
         run: |
           echo "Running on branch ${{ github.ref_name }}"
           br_name=${{ github.ref_name }}
-          echo "target_br_name=${br_name/\//-}" >> "$GITHUB_ENV"
+          echo "target_br_name=${br_name//\//-}" >> "$GITHUB_ENV"
           if [[ "${{ github.ref_name }}" == *"main"* ]]; then
             echo "env_name=Production" >> "$GITHUB_ENV"
           elif [[ "${{ github.ref_name }}" == *"develop"* ]]; then
@@ -59,7 +59,7 @@ jobs:
         run: |
           echo "Running on branch ${{ github.head_ref }}"
           br_name=${{ github.base_ref }}
-          echo "target_br_name=${br_name/\//-}" >> "$GITHUB_ENV"
+          echo "target_br_name=${br_name//\//-}" >> "$GITHUB_ENV"
           if [[ "${{ github.base_ref }}" == *"main"* ]]; then
             echo "env_name=Production" >> "$GITHUB_ENV"
           elif [[ "${{ github.base_ref }}" == *"develop"* ]]; then
