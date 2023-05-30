@@ -22,7 +22,7 @@
             TraktClient client = TestUtility.GetOAuthMockClient(GET_MOVIE_RECOMMENDATIONS_URI,
                                                                 MOVIE_RECOMMENDATIONS_JSON, 1, 10);
 
-            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync();
+            TraktListResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -38,7 +38,7 @@
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}?limit={LIMIT}",
                                                                 MOVIE_RECOMMENDATIONS_JSON, 1, LIMIT);
 
-            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(LIMIT);
+            TraktListResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(LIMIT);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -54,7 +54,7 @@
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}?ignore_collected=true",
                                                                 MOVIE_RECOMMENDATIONS_JSON, 1, 10);
 
-            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(null, true);
+            TraktListResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(null, true);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -70,7 +70,7 @@
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}?ignore_watchlisted=true",
                                                                 MOVIE_RECOMMENDATIONS_JSON, 1, 10);
 
-            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(null, null, true);
+            TraktListResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(null, null, true);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -86,7 +86,7 @@
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}?extended={EXTENDED_INFO}",
                                                                 MOVIE_RECOMMENDATIONS_JSON, 1, 10);
 
-            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(null, null, null, EXTENDED_INFO);
+            TraktListResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(null, null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -103,7 +103,7 @@
                 $"{GET_MOVIE_RECOMMENDATIONS_URI}?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&limit={LIMIT}",
                 MOVIE_RECOMMENDATIONS_JSON, 1, LIMIT);
 
-            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(LIMIT, true, true, EXTENDED_INFO);
+            TraktListResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(LIMIT, true, true, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
