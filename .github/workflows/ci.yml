@@ -42,13 +42,16 @@ jobs:
         shell: bash
         run: |
           echo "Running on branch ${{ github.ref_name }}"
-          echo "target_br_name=${{ github.ref_name }}" >> "$GITHUB_ENV"
-          if [ "${{ github.ref_name }}" = "main" ]; then
+          br_name=${{ github.ref_name }}
+          echo "target_br_name=${br_name/\//-}" >> "$GITHUB_ENV"
+          if [ "${{ github.ref_name }}" == *"main"* ]; then
             echo "env_name=Production" >> "$GITHUB_ENV"
-          elif [ "${{ github.ref_name }}" = "develop" ]; then
+          elif [ "${{ github.ref_name }}" == *"develop"* ]; then
             echo "env_name=Development" >> "$GITHUB_ENV"
-          else
+          elif [ "${{ github.ref_name }}" == *"release"* ]; then
             echo "env_name=Release-Previews" >> "$GITHUB_ENV"
+          else
+            echo "env_name=Development" >> "$GITHUB_ENV"
           fi 
 
       - name: Check branch for enviroment in PR
@@ -56,13 +59,16 @@ jobs:
         shell: bash
         run: |
           echo "Running on branch ${{ github.head_ref }}"
-          echo "target_br_name=${{ github.base_ref }}" >> "$GITHUB_ENV"
-          if [ "${{ github.base_ref }}" = "main" ]; then
+          br_name=${{ github.base_ref }}
+          echo "target_br_name=${br_name/\//-}" >> "$GITHUB_ENV"
+          if [ "${{ github.base_ref }}" == *"main"* ]; then
             echo "env_name=Production" >> "$GITHUB_ENV"
-          elif [ "${{ github.base_ref }}" = "develop" ]; then
+          elif [ "${{ github.base_ref }}" == *"develop"* ]; then
             echo "env_name=Development" >> "$GITHUB_ENV"
-          else
+          elif [ "${{ github.base_ref }}" == *"release"* ]; then
             echo "env_name=Release-Previews" >> "$GITHUB_ENV"
+          else
+            echo "env_name=Development" >> "$GITHUB_ENV"
           fi 
 
       - name: Output environment
@@ -130,12 +136,6 @@ jobs:
         if: ${{ !contains(github.ref, 'pull') }}
         run: dotnet nuget push '**/Trakt.NET*.nupkg'
         working-directory: 'Source'
-
-      - name: Release Deployment - Publish NuGet package
-        if: ${{ github.ref_name == 'main' && startsWith(github.ref, 'refs/tags/v') }}
-        run: dotnet nuget push '**/Trakt.NET*.nupkg' --api-key ${{ secrets.NUGET_API_KEY }} --source 'https://api.nuget.org/v3/index.json'
-        working-directory: 'Source'
-
   docs:
     needs: [environment-check]
     if: ${{ !contains(github.ref, 'pull') }}
