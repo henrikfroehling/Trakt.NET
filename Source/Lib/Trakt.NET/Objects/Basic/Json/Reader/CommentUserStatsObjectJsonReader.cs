@@ -1,6 +1,5 @@
 namespace TraktNet.Objects.Basic.Json.Reader
 {
-    using Get.Users.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -14,7 +13,6 @@ namespace TraktNet.Objects.Basic.Json.Reader
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var userReader = new UserObjectJsonReader();
                 ITraktCommentUserStats traktCommentUserStats = new TraktCommentUserStats();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
