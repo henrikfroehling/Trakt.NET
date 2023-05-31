@@ -61,10 +61,11 @@
                 await jsonWriter.WriteValueAsync(obj.Likes, cancellationToken).ConfigureAwait(false);
             }
 
-            if (obj.UserRating.HasValue)
+            if (obj.UserStats != null)
             {
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_USER_RATING, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.UserRating, cancellationToken).ConfigureAwait(false);
+                var userStatsObjectJsonWriter = new CommentUserStatsObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_USER_STATS, cancellationToken).ConfigureAwait(false);
+                await userStatsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.UserStats, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.User != null)
