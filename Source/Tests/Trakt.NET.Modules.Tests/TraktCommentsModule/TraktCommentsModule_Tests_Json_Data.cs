@@ -109,7 +109,11 @@
                 ""updated_at"": ""2016-04-03T08:23:38Z"",
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""WalterBishopj"",
                   ""private"": false,
@@ -177,7 +181,11 @@
                   ""created_at"": ""2016-04-01T12:44:40Z"",
                   ""replies"": 1,
                   ""likes"": 2,
-                  ""user_rating"": 7.3,
+                  ""user_stats"": {
+                    ""rating"": 8,
+                    ""play_count"": 1,
+                    ""completed_count"": 1
+                  },
                   ""user"": {
                     ""username"": ""WalterBishopj"",
                     ""private"": false,
@@ -195,7 +203,11 @@
                   ""created_at"": ""2016-04-01T12:44:40Z"",
                   ""replies"": 1,
                   ""likes"": 2,
-                  ""user_rating"": 7.3,
+                  ""user_stats"": {
+                    ""rating"": 8,
+                    ""play_count"": 1,
+                    ""completed_count"": 1
+                  },
                   ""user"": {
                     ""username"": ""WalterBishopj"",
                     ""private"": false,
@@ -216,7 +228,11 @@
                 ""review"": false,
                 ""replies"": 0,
                 ""likes"": 0,
-                ""user_rating"": null,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -255,7 +271,11 @@
                     ""updated_at"": ""2015-04-25T00:14:57.000Z"",
                     ""replies"": 0,
                     ""likes"": 0,
-                    ""user_rating"": 10,
+                    ""user_stats"": {
+                      ""rating"": 8,
+                      ""play_count"": 1,
+                      ""completed_count"": 1
+                    },
                     ""user"": {
                       ""username"": ""justin"",
                       ""private"": false,
@@ -291,7 +311,11 @@
                     ""updated_at"": ""2015-02-18T06:02:30.000Z"",
                     ""replies"": 0,
                     ""likes"": 0,
-                    ""user_rating"": 10,
+                    ""user_stats"": {
+                      ""rating"": 8,
+                      ""play_count"": 1,
+                      ""completed_count"": 1
+                    },
                     ""user"": {
                       ""username"": ""justin"",
                       ""private"": false,
@@ -335,7 +359,11 @@
                     ""updated_at"": ""2015-04-21T06:53:25.000Z"",
                     ""replies"": 0,
                     ""likes"": 0,
-                    ""user_rating"": 8,
+                    ""user_stats"": {
+                      ""rating"": 8,
+                      ""play_count"": 1,
+                      ""completed_count"": 1
+                    },
                     ""user"": {
                       ""username"": ""justin"",
                       ""private"": false,
@@ -382,7 +410,11 @@
                     ""updated_at"": ""2015-04-21T15:42:31.000Z"",
                     ""replies"": 1,
                     ""likes"": 0,
-                    ""user_rating"": 7,
+                    ""user_stats"": {
+                      ""rating"": 8,
+                      ""play_count"": 1,
+                      ""completed_count"": 1
+                    },
                     ""user"": {
                       ""username"": ""justin"",
                       ""private"": false,
@@ -422,7 +454,11 @@
                     ""updated_at"": ""2014-12-08T17:34:51.000Z"",
                     ""replies"": 0,
                     ""likes"": 0,
-                    ""user_rating"": null,
+                    ""user_stats"": {
+                      ""rating"": 8,
+                      ""play_count"": 1,
+                      ""completed_count"": 1
+                    },
                     ""user"": {
                       ""username"": ""justin"",
                       ""private"": false,

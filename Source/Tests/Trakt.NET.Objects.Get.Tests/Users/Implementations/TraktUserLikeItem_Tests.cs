@@ -43,7 +43,10 @@
             likeItem.Comment.Review.Should().BeFalse();
             likeItem.Comment.Replies.Should().Be(1);
             likeItem.Comment.Likes.Should().Be(2);
-            likeItem.Comment.UserRating.Should().Be(7.3f);
+            likeItem.Comment.UserStats.Should().NotBeNull();
+            likeItem.Comment.UserStats.Rating.Should().Be(8);
+            likeItem.Comment.UserStats.PlayCount.Should().Be(1);
+            likeItem.Comment.UserStats.CompletedCount.Should().Be(1);
             likeItem.Comment.User.Should().NotBeNull();
             likeItem.Comment.User.Username.Should().Be("sean");
             likeItem.Comment.User.IsPrivate.Should().BeFalse();
@@ -105,7 +108,11 @@
                   ""review"": false,
                   ""replies"": 1,
                   ""likes"": 2,
-                  ""user_rating"": 7.3,
+                  ""user_stats"": {
+                    ""rating"": 8,
+                    ""play_count"": 1,
+                    ""completed_count"": 1
+                  },
                   ""user"": {
                     ""username"": ""sean"",
                     ""private"": false,

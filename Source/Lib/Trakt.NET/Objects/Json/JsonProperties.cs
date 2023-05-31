@@ -43,6 +43,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_COMMENTED_AT = "commented_at";
         internal const string PROPERTY_NAME_COMMENTS = "comments";
         internal const string PROPERTY_NAME_COMPLETED = "completed";
+        internal const string PROPERTY_NAME_COMPLETED_COUNT = "completed_count";
         internal const string PROPERTY_NAME_CONNECTIONS = "connections";
         internal const string PROPERTY_NAME_COSTUME_AND_MAKE_UP = "costume & make-up";
         internal const string PROPERTY_NAME_COUNT = "count";
@@ -213,6 +214,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_USER_CODE = "user_code";
         internal const string PROPERTY_NAME_USER_COUNT = "user_count";
         internal const string PROPERTY_NAME_USER_RATING = "user_rating";
+        internal const string PROPERTY_NAME_USER_STATS = "user_stats";
         internal const string PROPERTY_NAME_USERNAME = "username";
         internal const string PROPERTY_NAME_UUID = "uuid";
         internal const string PROPERTY_NAME_VENUE_ID = "venue_id";

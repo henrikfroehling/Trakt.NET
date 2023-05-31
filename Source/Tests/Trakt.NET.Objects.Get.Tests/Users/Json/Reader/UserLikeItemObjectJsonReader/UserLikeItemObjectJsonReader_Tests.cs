@@ -25,13 +25,10 @@
         public async Task Test_UserLikeItemObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
             var traktJsonReader = new UserLikeItemObjectJsonReader();
-
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktUserLikeItem = await traktJsonReader.ReadObjectAsync(jsonReader);
-                traktUserLikeItem.Should().BeNull();
-            }
+            using var reader = new StringReader(string.Empty);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktUserLikeItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            traktUserLikeItem.Should().BeNull();
         }
     }
 }
