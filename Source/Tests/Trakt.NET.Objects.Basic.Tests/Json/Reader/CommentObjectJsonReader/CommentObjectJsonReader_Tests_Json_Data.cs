@@ -13,7 +13,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -36,7 +40,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -59,7 +67,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -82,7 +94,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -105,7 +121,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -128,7 +148,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -151,7 +175,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -174,7 +202,11 @@
                 ""spoiler"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -197,7 +229,11 @@
                 ""spoiler"": false,
                 ""review"": false,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -220,7 +256,11 @@
                 ""spoiler"": false,
                 ""review"": false,
                 ""replies"": 1,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -267,70 +307,10 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3
-              }";
-
-        private const string JSON_INCOMPLETE_12 =
-            @"{
-                ""id"": 76957
-              }";
-
-        private const string JSON_INCOMPLETE_13 =
-            @"{
-                ""parent_id"": 1234
-              }";
-
-        private const string JSON_INCOMPLETE_14 =
-            @"{
-                ""created_at"": ""2016-04-01T12:44:40Z""
-              }";
-
-        private const string JSON_INCOMPLETE_15 =
-            @"{
-                ""updated_at"": ""2016-04-03T08:23:38Z""
-              }";
-
-        private const string JSON_INCOMPLETE_16 =
-            @"{
-                ""comment"": ""I hate they made The flash a kids show. Could else be much better. And with a better flash offcourse.""
-              }";
-
-        private const string JSON_INCOMPLETE_17 =
-            @"{
-                ""spoiler"": false
-              }";
-
-        private const string JSON_INCOMPLETE_18 =
-            @"{
-                ""review"": false
-              }";
-
-        private const string JSON_INCOMPLETE_19 =
-            @"{
-                ""replies"": 1
-              }";
-
-        private const string JSON_INCOMPLETE_20 =
-            @"{
-                ""likes"": 2
-              }";
-
-        private const string JSON_INCOMPLETE_21 =
-            @"{
-                ""user_rating"": 7.3
-              }";
-
-        private const string JSON_INCOMPLETE_22 =
-            @"{
-                ""user"": {
-                  ""username"": ""sean"",
-                  ""private"": false,
-                  ""name"": ""Sean Rudford"",
-                  ""vip"": true,
-                  ""vip_ep"": true,
-                  ""ids"": {
-                    ""slug"": ""sean""
-                  }
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
                 }
               }";
 
@@ -345,7 +325,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -369,7 +353,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -393,7 +381,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -417,7 +409,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -441,7 +437,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -465,7 +465,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -489,7 +493,11 @@
                 ""rev"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -513,7 +521,11 @@
                 ""review"": false,
                 ""rep"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -537,7 +549,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""like"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -561,7 +577,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""ur"": 7.3,
+                ""us"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -585,7 +605,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""usr"": {
                   ""username"": ""sean"",
                   ""private"": false,
@@ -609,7 +633,11 @@
                 ""rev"": false,
                 ""rep"": 1,
                 ""like"": 2,
-                ""ur"": 7.3,
+                ""us"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""usr"": {
                   ""username"": ""sean"",
                   ""private"": false,

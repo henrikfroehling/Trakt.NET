@@ -47,7 +47,10 @@
                 responseValue.Review.Should().BeFalse();
                 responseValue.Replies.Should().Be(1);
                 responseValue.Likes.Should().Be(2);
-                responseValue.UserRating.Should().Be(7.3f);
+                responseValue.UserStats.Should().NotBeNull();
+                responseValue.UserStats.Rating.Should().Be(8);
+                responseValue.UserStats.PlayCount.Should().Be(1);
+                responseValue.UserStats.CompletedCount.Should().Be(1);
                 responseValue.User.Should().NotBeNull();
 
                 commentsReturned++;

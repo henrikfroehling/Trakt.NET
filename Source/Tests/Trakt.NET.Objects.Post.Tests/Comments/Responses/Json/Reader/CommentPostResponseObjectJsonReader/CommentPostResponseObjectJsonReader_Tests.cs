@@ -1,10 +1,10 @@
 ﻿namespace TraktNet.Objects.Post.Tests.Comments.Responses.Json.Reader
 {
     using FluentAssertions;
+    using Newtonsoft.Json;
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Objects.Post.Comments.Responses;
     using TraktNet.Objects.Post.Comments.Responses.Json.Reader;
@@ -14,13 +14,14 @@
     public partial class CommentPostResponseObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Complete()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_COMPLETE.ToStream())
+            using (var reader = new StringReader(JSON_COMPLETE))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -32,7 +33,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -51,13 +55,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_1()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_1.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_1))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -69,7 +74,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -88,13 +96,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_2()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_2.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_2))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -106,7 +115,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -125,13 +137,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_3()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_3.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_3))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -143,7 +156,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -162,13 +178,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_4()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_4()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_4.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_4))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -180,7 +197,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -199,13 +219,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_5()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_5()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_5.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_5))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -217,7 +238,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -236,13 +260,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_6()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_6()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_6.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_6))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -254,7 +279,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -273,13 +301,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_7()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_7()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_7.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_7))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -291,7 +320,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -310,13 +342,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_8()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_8()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_8.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_8))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -328,7 +361,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -347,13 +383,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_9()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_9()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_9.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_9))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -365,7 +402,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -384,13 +424,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_10()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_10()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_10.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_10))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -402,7 +443,7 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -421,13 +462,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_11()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_11()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_11.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_11))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -439,7 +481,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
@@ -451,13 +496,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_12()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_12()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_12.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_12))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -469,7 +515,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -483,13 +532,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_13()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_13()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_13.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_13))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -501,20 +551,21 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_14()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_14()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_14.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_14))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -526,20 +577,21 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_15()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_15()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_15.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_15))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -551,20 +603,21 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_16()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_16()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_16.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_16))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -576,20 +629,21 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_17()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_17()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_17.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_17))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -601,20 +655,21 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_18()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_18()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_18.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_18))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -626,20 +681,21 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_19()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_19()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_19.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_19))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -651,20 +707,21 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_20()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_20()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_20.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_20))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -676,20 +733,21 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_21()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_21()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_21.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_21))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -701,20 +759,21 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_22()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_22()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_22.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_22))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -726,20 +785,24 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_23()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_23()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_23.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_23))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -751,7 +814,7 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -765,13 +828,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Incomplete_24()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Incomplete_24()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_INCOMPLETE_24.ToStream())
+            using (var reader = new StringReader(JSON_INCOMPLETE_24))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -783,7 +847,7 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
@@ -795,13 +859,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_1()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_1.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_1))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -813,44 +878,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
-                traktCommentPostResponse.User.Should().NotBeNull();
-                traktCommentPostResponse.User.Username.Should().Be("sean");
-                traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
-                traktCommentPostResponse.User.Name.Should().Be("Sean Rudford");
-                traktCommentPostResponse.User.IsVIP.Should().BeTrue();
-                traktCommentPostResponse.User.IsVIP_EP.Should().BeTrue();
-                traktCommentPostResponse.User.Ids.Should().NotBeNull();
-                traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
-                traktCommentPostResponse.Sharing.Should().NotBeNull();
-                traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
-                traktCommentPostResponse.Sharing.Google.Should().BeTrue();
-                traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
-                traktCommentPostResponse.Sharing.Medium.Should().BeTrue();
-                traktCommentPostResponse.Sharing.Slack.Should().BeTrue();
-            }
-        }
-
-        [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_2()
-        {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
-
-            using (var stream = JSON_NOT_VALID_2.ToStream())
-            {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
-
-                traktCommentPostResponse.Should().NotBeNull();
-                traktCommentPostResponse.Id.Should().Be(76957U);
-                traktCommentPostResponse.ParentId.Should().BeNull();
-                traktCommentPostResponse.CreatedAt.Should().Be(DateTime.Parse("2016-04-01T12:44:40Z").ToUniversalTime());
-                traktCommentPostResponse.UpdatedAt.Should().Be(DateTime.Parse("2016-04-03T08:23:38Z").ToUniversalTime());
-                traktCommentPostResponse.Comment.Should().Be("I hate they made The flash a kids show. Could else be much better. And with a better flash offcourse.");
-                traktCommentPostResponse.Spoiler.Should().BeFalse();
-                traktCommentPostResponse.Review.Should().BeFalse();
-                traktCommentPostResponse.Replies.Should().Be(1);
-                traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -869,13 +900,55 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_3()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_3.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_2))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+                traktCommentPostResponse.Should().NotBeNull();
+                traktCommentPostResponse.Id.Should().Be(76957U);
+                traktCommentPostResponse.ParentId.Should().BeNull();
+                traktCommentPostResponse.CreatedAt.Should().Be(DateTime.Parse("2016-04-01T12:44:40Z").ToUniversalTime());
+                traktCommentPostResponse.UpdatedAt.Should().Be(DateTime.Parse("2016-04-03T08:23:38Z").ToUniversalTime());
+                traktCommentPostResponse.Comment.Should().Be("I hate they made The flash a kids show. Could else be much better. And with a better flash offcourse.");
+                traktCommentPostResponse.Spoiler.Should().BeFalse();
+                traktCommentPostResponse.Review.Should().BeFalse();
+                traktCommentPostResponse.Replies.Should().Be(1);
+                traktCommentPostResponse.Likes.Should().Be(2);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
+                traktCommentPostResponse.User.Should().NotBeNull();
+                traktCommentPostResponse.User.Username.Should().Be("sean");
+                traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
+                traktCommentPostResponse.User.Name.Should().Be("Sean Rudford");
+                traktCommentPostResponse.User.IsVIP.Should().BeTrue();
+                traktCommentPostResponse.User.IsVIP_EP.Should().BeTrue();
+                traktCommentPostResponse.User.Ids.Should().NotBeNull();
+                traktCommentPostResponse.User.Ids.Slug.Should().Be("sean");
+                traktCommentPostResponse.Sharing.Should().NotBeNull();
+                traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
+                traktCommentPostResponse.Sharing.Google.Should().BeTrue();
+                traktCommentPostResponse.Sharing.Tumblr.Should().BeTrue();
+                traktCommentPostResponse.Sharing.Medium.Should().BeTrue();
+                traktCommentPostResponse.Sharing.Slack.Should().BeTrue();
+            }
+        }
+
+        [Fact]
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
+        {
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
+
+            using (var reader = new StringReader(JSON_NOT_VALID_3))
+            using (var jsonReader = new JsonTextReader(reader))
+            {
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -887,7 +960,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -906,13 +982,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_4()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_4.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_4))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -924,7 +1001,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -943,13 +1023,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_5()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_5()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_5.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_5))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -961,7 +1042,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -980,13 +1064,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_6()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_6()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_6.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_6))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -998,7 +1083,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -1017,13 +1105,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_7()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_7()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_7.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_7))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -1035,7 +1124,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -1054,13 +1146,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_8()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_8()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_8.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_8))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -1072,7 +1165,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -1091,13 +1187,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_9()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_9()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_9.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_9))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -1109,7 +1206,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -1128,13 +1228,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_10()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_10()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_10.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_10))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -1146,7 +1247,7 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -1165,13 +1266,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_11()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_11()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_11.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_11))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -1183,7 +1285,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().NotBeNull();
                 traktCommentPostResponse.Sharing.Twitter.Should().BeTrue();
@@ -1195,13 +1300,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_12()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_12()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_12.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_12))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(76957U);
@@ -1213,7 +1319,10 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().Be(1);
                 traktCommentPostResponse.Likes.Should().Be(2);
-                traktCommentPostResponse.UserRating.Should().Be(7.3f);
+                traktCommentPostResponse.UserStats.Should().NotBeNull();
+                traktCommentPostResponse.UserStats.Rating.Should().Be(8);
+                traktCommentPostResponse.UserStats.PlayCount.Should().Be(1);
+                traktCommentPostResponse.UserStats.CompletedCount.Should().Be(1);
                 traktCommentPostResponse.User.Should().NotBeNull();
                 traktCommentPostResponse.User.Username.Should().Be("sean");
                 traktCommentPostResponse.User.IsPrivate.Should().BeFalse();
@@ -1227,13 +1336,14 @@
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Not_Valid_13()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_13()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
 
-            using (var stream = JSON_NOT_VALID_13.ToStream())
+            using (var reader = new StringReader(JSON_NOT_VALID_13))
+            using (var jsonReader = new JsonTextReader(reader))
             {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
+                var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
 
                 traktCommentPostResponse.Should().NotBeNull();
                 traktCommentPostResponse.Id.Should().Be(0U);
@@ -1245,30 +1355,28 @@
                 traktCommentPostResponse.Review.Should().BeFalse();
                 traktCommentPostResponse.Replies.Should().BeNull();
                 traktCommentPostResponse.Likes.Should().BeNull();
-                traktCommentPostResponse.UserRating.Should().BeNull();
+                traktCommentPostResponse.UserStats.Should().BeNull();
                 traktCommentPostResponse.User.Should().BeNull();
                 traktCommentPostResponse.Sharing.Should().BeNull();
             }
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Null()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
-            Func<Task<ITraktCommentPostResponse>> traktCommentPostResponse = () => jsonReader.ReadObjectAsync(default(Stream));
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
+            Func<Task<ITraktCommentPostResponse>> traktCommentPostResponse = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             await traktCommentPostResponse.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]
-        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_Stream_Empty()
+        public async Task Test_CommentPostResponseObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var jsonReader = new CommentPostResponseObjectJsonReader();
-
-            using (var stream = string.Empty.ToStream())
-            {
-                var traktCommentPostResponse = await jsonReader.ReadObjectAsync(stream);
-                traktCommentPostResponse.Should().BeNull();
-            }
+            var traktJsonReader = new CommentPostResponseObjectJsonReader();
+            using var reader = new StringReader(string.Empty);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktCommentPostResponse = await traktJsonReader.ReadObjectAsync(jsonReader);
+            traktCommentPostResponse.Should().BeNull();
         }
     }
 }

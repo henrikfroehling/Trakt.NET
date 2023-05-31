@@ -13,6 +13,8 @@
     [TestCategory("Objects.Basic.JsonWriter")]
     public partial class CommentObjectJsonWriter_Tests
     {
+        private readonly DateTime CREATED_UPDATED_AT = DateTime.UtcNow;
+
         [Fact]
         public async Task Test_CommentObjectJsonWriter_WriteObject_Object_Exceptions()
         {
@@ -162,17 +164,22 @@
         }
 
         [Fact]
-        public async Task Test_CommentObjectJsonWriter_WriteObject_Object_Only_UserRating_Property()
+        public async Task Test_CommentObjectJsonWriter_WriteObject_Object_Only_UserStats_Property()
         {
             ITraktComment traktComment = new TraktComment
             {
-                UserRating = 7.3f
+                UserStats = new TraktCommentUserStats
+                {
+                    Rating = 8,
+                    PlayCount = 1,
+                    CompletedCount = 1
+                }
             };
 
             var traktJsonWriter = new CommentObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktComment);
             json.Should().Be(@"{""id"":0,""created_at"":""0001-01-01T00:00:00.000Z""," +
-                             @"""spoiler"":false,""review"":false,""user_rating"":7.3}");
+                             @"""spoiler"":false,""review"":false,""user_stats"":{""rating"":8,""play_count"":1,""completed_count"":1}}");
         }
 
         [Fact]
@@ -216,7 +223,12 @@
                 Review = true,
                 Replies = 1,
                 Likes = 2,
-                UserRating = 7.3f,
+                UserStats = new TraktCommentUserStats
+                {
+                    Rating = 8,
+                    PlayCount = 1,
+                    CompletedCount = 1
+                },
                 User = new TraktUser
                 {
                     Username = "sean",
@@ -237,7 +249,7 @@
                              $"\"created_at\":\"{CREATED_UPDATED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"updated_at\":\"{CREATED_UPDATED_AT.ToTraktLongDateTimeString()}\"," +
                              @"""comment"":""I hate they made The flash a kids show. Could else be much better. And with a better flash offcourse.""," +
-                             @"""spoiler"":true,""review"":true,""replies"":1,""likes"":2,""user_rating"":7.3," +
+                             @"""spoiler"":true,""review"":true,""replies"":1,""likes"":2,""user_stats"":{""rating"":8,""play_count"":1,""completed_count"":1}," +
                              @"""user"":{""username"":""sean"",""private"":false,""ids"":{""slug"":""sean""}," +
                              @"""name"":""Sean Rudford"",""vip"":true,""vip_ep"":true}}");
         }

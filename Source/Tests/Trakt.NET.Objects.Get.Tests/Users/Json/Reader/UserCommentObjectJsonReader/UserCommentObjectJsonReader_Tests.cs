@@ -25,13 +25,10 @@
         public async Task Test_UserCommentObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
             var traktJsonReader = new UserCommentObjectJsonReader();
-
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktUserComment = await traktJsonReader.ReadObjectAsync(jsonReader);
-                traktUserComment.Should().BeNull();
-            }
+            using var reader = new StringReader(string.Empty);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktUserComment = await traktJsonReader.ReadObjectAsync(jsonReader);
+            traktUserComment.Should().BeNull();
         }
     }
 }
