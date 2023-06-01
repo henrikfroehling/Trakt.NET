@@ -6,16 +6,18 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Extensions;
+    using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Users;
     using TraktNet.Objects.Get.Users.Json.Writer;
-    using TraktNet.Objects.Get.Shows;
     using Xunit;
 
     [TestCategory("Objects.Get.Users.JsonWriter")]
     public partial class RecommendationObjectJsonWriter_Tests
     {
+        private readonly DateTime LISTED_AT = DateTime.UtcNow;
+
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Show_WriteObject_Object_Exceptions()
+        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Exceptions()
         {
             var traktJsonWriter = new RecommendationObjectJsonWriter();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
@@ -23,7 +25,20 @@
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Show_WriteObject_Object_Only_Rank_Property()
+        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_Id_Property()
+        {
+            ITraktRecommendation traktRecommendation = new TraktRecommendation
+            {
+                Id = 101
+            };
+
+            var traktJsonWriter = new RecommendationObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
+            json.Should().Be(@"{""id"":101}");
+        }
+
+        [Fact]
+        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_Rank_Property()
         {
             ITraktRecommendation traktRecommendation = new TraktRecommendation
             {
@@ -36,7 +51,7 @@
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Show_WriteObject_Object_Only_ListedAt_Property()
+        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_ListedAt_Property()
         {
             ITraktRecommendation traktRecommendation = new TraktRecommendation
             {
@@ -49,91 +64,90 @@
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Show_WriteObject_Object_Only_Type_Property()
+        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_Type_Property()
         {
             ITraktRecommendation traktRecommendation = new TraktRecommendation
             {
-                Type = TraktRecommendationObjectType.Show
+                Type = TraktRecommendationObjectType.Movie
             };
 
             var traktJsonWriter = new RecommendationObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
-            json.Should().Be(@"{""type"":""show""}");
+            json.Should().Be(@"{""type"":""movie""}");
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Show_WriteObject_Object_Only_Notes_Property()
+        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_Notes_Property()
         {
             ITraktRecommendation traktRecommendation = new TraktRecommendation
             {
-                Notes = "Atmospheric for days."
+                Notes = "Daft Punk really knocks it out of the park on the soundtrack."
             };
 
             var traktJsonWriter = new RecommendationObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
-            json.Should().Be(@"{""notes"":""Atmospheric for days.""}");
+            json.Should().Be(@"{""notes"":""Daft Punk really knocks it out of the park on the soundtrack.""}");
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Show_WriteObject_Object_Only_Show_Property()
+        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_Movie_Property()
         {
             ITraktRecommendation traktRecommendation = new TraktRecommendation
             {
-                Show = new TraktShow
+                Movie = new TraktMovie
                 {
-                    Title = "The Walking Dead",
+                    Title = "TRON: Legacy",
                     Year = 2010,
-                    Ids = new TraktShowIds
+                    Ids = new TraktMovieIds
                     {
-                        Trakt = 2U,
-                        Slug = "the-walking-dead",
-                        Tvdb = 153021U,
-                        Imdb = "tt1520211",
-                        Tmdb = 1402U
+                        Trakt = 1U,
+                        Slug = "tron-legacy-2010",
+                        Imdb = "tt1104001",
+                        Tmdb = 20526U
                     }
                 }
             };
 
             var traktJsonWriter = new RecommendationObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
-            json.Should().Be(@"{""show"":{""title"":""The Walking Dead"",""year"":2010," +
-                             @"""ids"":{""trakt"":2,""slug"":""the-walking-dead""," +
-                             @"""tvdb"":153021,""imdb"":""tt1520211"",""tmdb"":1402}}}");
+            json.Should().Be(@"{""movie"":{""title"":""TRON: Legacy"",""year"":2010," +
+                             @"""ids"":{""trakt"":1,""slug"":""tron-legacy-2010""," +
+                             @"""imdb"":""tt1104001"",""tmdb"":20526}}}");
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Show_WriteObject_Object_Complete()
+        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Complete()
         {
             ITraktRecommendation traktRecommendation = new TraktRecommendation
             {
+                Id = 101,
                 Rank = 1,
                 ListedAt = LISTED_AT,
-                Type = TraktRecommendationObjectType.Show,
-                Notes = "Atmospheric for days.",
-                Show = new TraktShow
+                Type = TraktRecommendationObjectType.Movie,
+                Notes = "Daft Punk really knocks it out of the park on the soundtrack.",
+                Movie = new TraktMovie
                 {
-                    Title = "The Walking Dead",
+                    Title = "TRON: Legacy",
                     Year = 2010,
-                    Ids = new TraktShowIds
+                    Ids = new TraktMovieIds
                     {
-                        Trakt = 2U,
-                        Slug = "the-walking-dead",
-                        Tvdb = 153021U,
-                        Imdb = "tt1520211",
-                        Tmdb = 1402U
+                        Trakt = 1U,
+                        Slug = "tron-legacy-2010",
+                        Imdb = "tt1104001",
+                        Tmdb = 20526U
                     }
                 }
             };
 
             var traktJsonWriter = new RecommendationObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
-            json.Should().Be(@"{""rank"":1," +
+            json.Should().Be(@"{""id"":101,""rank"":1," +
                              $"\"listed_at\":\"{LISTED_AT.ToTraktLongDateTimeString()}\"," +
-                             @"""type"":""show""," +
-                             @"""notes"":""Atmospheric for days.""," +
-                             @"""show"":{""title"":""The Walking Dead"",""year"":2010," +
-                             @"""ids"":{""trakt"":2,""slug"":""the-walking-dead""," +
-                             @"""tvdb"":153021,""imdb"":""tt1520211"",""tmdb"":1402}}}");
+                             @"""type"":""movie""," +
+                             @"""notes"":""Daft Punk really knocks it out of the park on the soundtrack.""," +
+                             @"""movie"":{""title"":""TRON: Legacy"",""year"":2010," +
+                             @"""ids"":{""trakt"":1,""slug"":""tron-legacy-2010""," +
+                             @"""imdb"":""tt1104001"",""tmdb"":20526}}}");
         }
     }
 }
