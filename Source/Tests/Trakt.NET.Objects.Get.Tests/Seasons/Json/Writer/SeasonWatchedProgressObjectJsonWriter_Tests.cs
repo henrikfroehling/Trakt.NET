@@ -14,6 +14,8 @@
     [TestCategory("Objects.Get.Seasons.JsonWriter")]
     public partial class SeasonWatchedProgressObjectJsonWriter_Tests
     {
+        private static readonly DateTime LAST_WATCHED_AT = DateTime.UtcNow;
+
         [Fact]
         public async Task Test_SeasonWatchedProgressObjectJsonWriter_WriteObject_Object_Exceptions()
         {
@@ -33,6 +35,19 @@
             var traktJsonWriter = new SeasonWatchedProgressObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktSeasonWatchedProgress);
             json.Should().Be(@"{""number"":1}");
+        }
+
+        [Fact]
+        public async Task Test_SeasonWatchedProgressObjectJsonWriter_WriteObject_Object_Only_Title_Property()
+        {
+            ITraktSeasonWatchedProgress traktSeasonWatchedProgress = new TraktSeasonWatchedProgress
+            {
+                Title = "The first Hodor."
+            };
+
+            var traktJsonWriter = new SeasonWatchedProgressObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktSeasonWatchedProgress);
+            json.Should().Be(@"{""title"":""The first Hodor.""}");
         }
 
         [Fact]
@@ -97,6 +112,7 @@
             ITraktSeasonWatchedProgress traktSeasonWatchedProgress = new TraktSeasonWatchedProgress
             {
                 Number = 1,
+                Title = "The first Hodor.",
                 Aired = 24,
                 Completed = 12,
                 Episodes = new List<ITraktEpisodeWatchedProgress>
@@ -118,7 +134,7 @@
 
             var traktJsonWriter = new SeasonWatchedProgressObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktSeasonWatchedProgress);
-            json.Should().Be(@"{""number"":1,""aired"":24,""completed"":12," +
+            json.Should().Be(@"{""number"":1,""title"":""The first Hodor."",""aired"":24,""completed"":12," +
                              @"""episodes"":[" +
                              $"{{\"number\":1,\"completed\":true,\"last_watched_at\":\"{LAST_WATCHED_AT.ToTraktLongDateTimeString()}\"}}," +
                              $"{{\"number\":2,\"completed\":true,\"last_watched_at\":\"{LAST_WATCHED_AT.ToTraktLongDateTimeString()}\"}}" +
