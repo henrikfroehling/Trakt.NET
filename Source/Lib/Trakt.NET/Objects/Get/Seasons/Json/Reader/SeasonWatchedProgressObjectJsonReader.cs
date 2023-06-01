@@ -26,6 +26,9 @@
                         case JsonProperties.PROPERTY_NAME_NUMBER:
                             traktSeasonWatchedProgress.Number = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_TITLE:
+                            traktSeasonWatchedProgress.Title = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
                         case JsonProperties.PROPERTY_NAME_AIRED:
                             traktSeasonWatchedProgress.Aired = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
