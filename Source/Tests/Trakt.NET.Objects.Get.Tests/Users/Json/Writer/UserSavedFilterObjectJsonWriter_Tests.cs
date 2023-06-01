@@ -43,6 +43,22 @@
         }
 
         [Fact]
+        public async Task Test_UserSavedFilterObjectJsonWriter_WriteObject_JsonWriter_Only_Rank_Property()
+        {
+            ITraktUserSavedFilter traktUserSavedFilter = new TraktUserSavedFilter
+            {
+                Rank = 1
+            };
+
+            using var stringWriter = new StringWriter();
+            using var jsonWriter = new JsonTextWriter(stringWriter);
+
+            var traktJsonWriter = new UserSavedFilterObjectJsonWriter();
+            await traktJsonWriter.WriteObjectAsync(jsonWriter, traktUserSavedFilter);
+            stringWriter.ToString().Should().Be(@"{""id"":0,""rank"":1}");
+        }
+
+        [Fact]
         public async Task Test_UserSavedFilterObjectJsonWriter_WriteObject_JsonWriter_Only_Section_Property()
         {
             ITraktUserSavedFilter traktUserSavedFilter = new TraktUserSavedFilter
@@ -128,6 +144,7 @@
             ITraktUserSavedFilter traktUserSavedFilter = new TraktUserSavedFilter
             {
                 Id = 1,
+                Rank = 1,
                 Section = TraktFilterSection.Movies,
                 Name = "Movies: IMDB + TMDB ratings",
                 Path = "/movies/recommended/weekly",
@@ -140,7 +157,7 @@
 
             var traktJsonWriter = new UserSavedFilterObjectJsonWriter();
             await traktJsonWriter.WriteObjectAsync(jsonWriter, traktUserSavedFilter);
-            stringWriter.ToString().Should().Be(@"{""id"":1," +
+            stringWriter.ToString().Should().Be(@"{""id"":1,""rank"":1," +
                                                 @"""section"":""movies""," +
                                                 @"""name"":""Movies: IMDB + TMDB ratings""," +
                                                 @"""path"":""/movies/recommended/weekly""," +

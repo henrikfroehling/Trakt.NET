@@ -25,7 +25,9 @@
 
             userSavedFilter.Should().NotBeNull();
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
+            userSavedFilter.Rank.Should().Be(1);
             userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
             userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
             userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
@@ -44,7 +46,9 @@
 
             userSavedFilter.Should().NotBeNull();
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(0);
+            userSavedFilter.Rank.Should().Be(1);
             userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
             userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
             userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
@@ -63,8 +67,10 @@
 
             userSavedFilter.Should().NotBeNull();
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
-            userSavedFilter.Section.Should().BeNull();
+            userSavedFilter.Rank.Should().BeNull();
+            userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
             userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
             userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
             userSavedFilter.Query.Should().Be("imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0");
@@ -82,9 +88,11 @@
 
             userSavedFilter.Should().NotBeNull();
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
-            userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
-            userSavedFilter.Name.Should().BeNullOrEmpty();
+            userSavedFilter.Rank.Should().Be(1);
+            userSavedFilter.Section.Should().BeNull();
+            userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
             userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
             userSavedFilter.Query.Should().Be("imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0");
             userSavedFilter.UpdatedAt.Should().HaveValue().And.Be(DateTime.Parse("2022-06-15T11:15:06.000Z").ToUniversalTime());
@@ -101,10 +109,12 @@
 
             userSavedFilter.Should().NotBeNull();
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
+            userSavedFilter.Rank.Should().Be(1);
             userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
-            userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
-            userSavedFilter.Path.Should().BeNullOrEmpty();
+            userSavedFilter.Name.Should().BeNull();
+            userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
             userSavedFilter.Query.Should().Be("imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0");
             userSavedFilter.UpdatedAt.Should().HaveValue().And.Be(DateTime.Parse("2022-06-15T11:15:06.000Z").ToUniversalTime());
         }
@@ -120,11 +130,13 @@
 
             userSavedFilter.Should().NotBeNull();
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
+            userSavedFilter.Rank.Should().Be(1);
             userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
             userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
-            userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
-            userSavedFilter.Query.Should().BeNullOrEmpty();
+            userSavedFilter.Path.Should().BeNull();
+            userSavedFilter.Query.Should().Be("imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0");
             userSavedFilter.UpdatedAt.Should().HaveValue().And.Be(DateTime.Parse("2022-06-15T11:15:06.000Z").ToUniversalTime());
         }
 
@@ -139,7 +151,30 @@
 
             userSavedFilter.Should().NotBeNull();
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
+            userSavedFilter.Rank.Should().Be(1);
+            userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
+            userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
+            userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
+            userSavedFilter.Query.Should().BeNull();
+            userSavedFilter.UpdatedAt.Should().HaveValue().And.Be(DateTime.Parse("2022-06-15T11:15:06.000Z").ToUniversalTime());
+        }
+
+        [Fact]
+        public async Task Test_UserSavedFilterObjectJsonReader_ReadObject_From_JsonReader_Incomplete_7()
+        {
+            var traktJsonReader = new UserSavedFilterObjectJsonReader();
+
+            using var reader = new StringReader(JSON_INCOMPLETE_7);
+            using var jsonReader = new JsonTextReader(reader);
+            var userSavedFilter = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            userSavedFilter.Should().NotBeNull();
+
+            userSavedFilter.Should().NotBeNull();
+            userSavedFilter.Id.Should().Be(1);
+            userSavedFilter.Rank.Should().Be(1);
             userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
             userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
             userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
@@ -158,7 +193,9 @@
 
             userSavedFilter.Should().NotBeNull();
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(0);
+            userSavedFilter.Rank.Should().Be(1);
             userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
             userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
             userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
@@ -177,8 +214,10 @@
 
             userSavedFilter.Should().NotBeNull();
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
-            userSavedFilter.Section.Should().BeNull();
+            userSavedFilter.Rank.Should().BeNull();
+            userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
             userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
             userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
             userSavedFilter.Query.Should().Be("imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0");
@@ -196,9 +235,11 @@
 
             userSavedFilter.Should().NotBeNull();
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
-            userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
-            userSavedFilter.Name.Should().BeNullOrEmpty();
+            userSavedFilter.Rank.Should().Be(1);
+            userSavedFilter.Section.Should().BeNull();
+            userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
             userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
             userSavedFilter.Query.Should().Be("imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0");
             userSavedFilter.UpdatedAt.Should().HaveValue().And.Be(DateTime.Parse("2022-06-15T11:15:06.000Z").ToUniversalTime());
@@ -215,10 +256,12 @@
 
             userSavedFilter.Should().NotBeNull();
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
+            userSavedFilter.Rank.Should().Be(1);
             userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
-            userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
-            userSavedFilter.Path.Should().BeNullOrEmpty();
+            userSavedFilter.Name.Should().BeNull();
+            userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
             userSavedFilter.Query.Should().Be("imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0");
             userSavedFilter.UpdatedAt.Should().HaveValue().And.Be(DateTime.Parse("2022-06-15T11:15:06.000Z").ToUniversalTime());
         }
@@ -232,11 +275,13 @@
             using var jsonReader = new JsonTextReader(reader);
             var userSavedFilter = await traktJsonReader.ReadObjectAsync(jsonReader);
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
+            userSavedFilter.Rank.Should().Be(1);
             userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
             userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
-            userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
-            userSavedFilter.Query.Should().BeNullOrEmpty();
+            userSavedFilter.Path.Should().BeNull();
+            userSavedFilter.Query.Should().Be("imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0");
             userSavedFilter.UpdatedAt.Should().HaveValue().And.Be(DateTime.Parse("2022-06-15T11:15:06.000Z").ToUniversalTime());
         }
 
@@ -249,12 +294,14 @@
             using var jsonReader = new JsonTextReader(reader);
             var userSavedFilter = await traktJsonReader.ReadObjectAsync(jsonReader);
 
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
+            userSavedFilter.Rank.Should().Be(1);
             userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
             userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
             userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
-            userSavedFilter.Query.Should().Be("imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0");
-            userSavedFilter.UpdatedAt.Should().BeNull();
+            userSavedFilter.Query.Should().BeNull();
+            userSavedFilter.UpdatedAt.Should().HaveValue().And.Be(DateTime.Parse("2022-06-15T11:15:06.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -266,11 +313,32 @@
             using var jsonReader = new JsonTextReader(reader);
             var userSavedFilter = await traktJsonReader.ReadObjectAsync(jsonReader);
 
+            userSavedFilter.Should().NotBeNull();
+            userSavedFilter.Id.Should().Be(1);
+            userSavedFilter.Rank.Should().Be(1);
+            userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
+            userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
+            userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
+            userSavedFilter.Query.Should().Be("imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0");
+            userSavedFilter.UpdatedAt.Should().BeNull();
+        }
+
+        [Fact]
+        public async Task Test_UserSavedFilterObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_8()
+        {
+            var traktJsonReader = new UserSavedFilterObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID_8);
+            using var jsonReader = new JsonTextReader(reader);
+            var userSavedFilter = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(0);
+            userSavedFilter.Rank.Should().BeNull();
             userSavedFilter.Section.Should().BeNull();
-            userSavedFilter.Name.Should().BeNullOrEmpty();
-            userSavedFilter.Path.Should().BeNullOrEmpty();
-            userSavedFilter.Query.Should().BeNullOrEmpty();
+            userSavedFilter.Name.Should().BeNull();
+            userSavedFilter.Path.Should().BeNull();
+            userSavedFilter.Query.Should().BeNull();
             userSavedFilter.UpdatedAt.Should().BeNull();
         }
 

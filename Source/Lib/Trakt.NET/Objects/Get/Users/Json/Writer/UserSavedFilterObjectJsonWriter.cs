@@ -17,6 +17,12 @@
             await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_ID, cancellationToken).ConfigureAwait(false);
             await jsonWriter.WriteValueAsync(obj.Id, cancellationToken).ConfigureAwait(false);
 
+            if (obj.Rank.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RANK, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Rank.Value, cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.Section != null && obj.Section != TraktFilterSection.Unspecified)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SECTION, cancellationToken).ConfigureAwait(false);
