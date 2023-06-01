@@ -25,7 +25,7 @@
             traktComment.Review.Should().BeFalse();
             traktComment.Replies.Should().BeNull();
             traktComment.Likes.Should().BeNull();
-            traktComment.UserRating.Should().BeNull();
+            traktComment.UserStats.Should().BeNull();
             traktComment.User.Should().BeNull();
         }
 
@@ -45,7 +45,10 @@
             traktComment.Review.Should().BeFalse();
             traktComment.Replies.Should().Be(1);
             traktComment.Likes.Should().Be(2);
-            traktComment.UserRating.Should().Be(7.3f);
+            traktComment.UserStats.Should().NotBeNull();
+            traktComment.UserStats.Rating.Should().Be(8);
+            traktComment.UserStats.PlayCount.Should().Be(1);
+            traktComment.UserStats.CompletedCount.Should().Be(1);
             traktComment.User.Should().NotBeNull();
             traktComment.User.Username.Should().Be("sean");
             traktComment.User.IsPrivate.Should().BeFalse();
@@ -67,7 +70,11 @@
                 ""review"": false,
                 ""replies"": 1,
                 ""likes"": 2,
-                ""user_rating"": 7.3,
+                ""user_stats"": {
+                  ""rating"": 8,
+                  ""play_count"": 1,
+                  ""completed_count"": 1
+                },
                 ""user"": {
                   ""username"": ""sean"",
                   ""private"": false,

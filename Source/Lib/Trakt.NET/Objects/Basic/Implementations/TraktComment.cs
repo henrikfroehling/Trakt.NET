@@ -33,8 +33,8 @@
         /// <summary>Gets or sets the number of likes for the comment.</summary>
         public int? Likes { get; set; }
 
-        /// <summary>Gets or sets the user rating for the comment.</summary>
-        public float? UserRating { get; set; }
+        /// <summary>Gets or sets the user stats for the comment. See also <seealso cref="ITraktCommentUserStats" />.<para>Nullable</para></summary>
+        public ITraktCommentUserStats UserStats { get; set; }
 
         /// <summary>Gets or sets the user, which has written the comment. See also <seealso cref="ITraktUser" />.<para>Nullable</para></summary>
         public ITraktUser User { get; set; }

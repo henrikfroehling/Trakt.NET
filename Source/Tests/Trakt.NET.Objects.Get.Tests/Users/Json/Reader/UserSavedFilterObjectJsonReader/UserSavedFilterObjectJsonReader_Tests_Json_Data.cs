@@ -5,6 +5,7 @@
         private const string JSON_COMPLETE =
             @"{
                 ""id"": 1,
+                ""rank"": 1,
                 ""section"": ""movies"",
                 ""name"": ""Movies: IMDB + TMDB ratings"",
                 ""path"": ""/movies/recommended/weekly"",
@@ -14,6 +15,7 @@
 
         private const string JSON_INCOMPLETE_1 =
             @"{
+                ""rank"": 1,
                 ""section"": ""movies"",
                 ""name"": ""Movies: IMDB + TMDB ratings"",
                 ""path"": ""/movies/recommended/weekly"",
@@ -24,6 +26,7 @@
         private const string JSON_INCOMPLETE_2 =
             @"{
                 ""id"": 1,
+                ""section"": ""movies"",
                 ""name"": ""Movies: IMDB + TMDB ratings"",
                 ""path"": ""/movies/recommended/weekly"",
                 ""query"": ""imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0"",
@@ -33,7 +36,8 @@
         private const string JSON_INCOMPLETE_3 =
             @"{
                 ""id"": 1,
-                ""section"": ""movies"",
+                ""rank"": 1,
+                ""name"": ""Movies: IMDB + TMDB ratings"",
                 ""path"": ""/movies/recommended/weekly"",
                 ""query"": ""imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0"",
                 ""updated_at"": ""2022-06-15T11:15:06.000Z""
@@ -42,8 +46,9 @@
         private const string JSON_INCOMPLETE_4 =
             @"{
                 ""id"": 1,
+                ""rank"": 1,
                 ""section"": ""movies"",
-                ""name"": ""Movies: IMDB + TMDB ratings"",
+                ""path"": ""/movies/recommended/weekly"",
                 ""query"": ""imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0"",
                 ""updated_at"": ""2022-06-15T11:15:06.000Z""
               }";
@@ -51,15 +56,27 @@
         private const string JSON_INCOMPLETE_5 =
             @"{
                 ""id"": 1,
+                ""rank"": 1,
                 ""section"": ""movies"",
                 ""name"": ""Movies: IMDB + TMDB ratings"",
-                ""path"": ""/movies/recommended/weekly"",
+                ""query"": ""imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0"",
                 ""updated_at"": ""2022-06-15T11:15:06.000Z""
               }";
 
         private const string JSON_INCOMPLETE_6 =
             @"{
                 ""id"": 1,
+                ""rank"": 1,
+                ""section"": ""movies"",
+                ""name"": ""Movies: IMDB + TMDB ratings"",
+                ""path"": ""/movies/recommended/weekly"",
+                ""updated_at"": ""2022-06-15T11:15:06.000Z""
+              }";
+
+        private const string JSON_INCOMPLETE_7 =
+            @"{
+                ""id"": 1,
+                ""rank"": 1,
                 ""section"": ""movies"",
                 ""name"": ""Movies: IMDB + TMDB ratings"",
                 ""path"": ""/movies/recommended/weekly"",
@@ -69,6 +86,7 @@
         private const string JSON_NOT_VALID_1 =
             @"{
                 ""i"": 1,
+                ""rank"": 1,
                 ""section"": ""movies"",
                 ""name"": ""Movies: IMDB + TMDB ratings"",
                 ""path"": ""/movies/recommended/weekly"",
@@ -79,7 +97,8 @@
         private const string JSON_NOT_VALID_2 =
             @"{
                 ""id"": 1,
-                ""sec"": ""movies"",
+                ""ra"": 1,
+                ""section"": ""movies"",
                 ""name"": ""Movies: IMDB + TMDB ratings"",
                 ""path"": ""/movies/recommended/weekly"",
                 ""query"": ""imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0"",
@@ -89,8 +108,9 @@
         private const string JSON_NOT_VALID_3 =
             @"{
                 ""id"": 1,
-                ""section"": ""movies"",
-                ""na"": ""Movies: IMDB + TMDB ratings"",
+                ""rank"": 1,
+                ""sec"": ""movies"",
+                ""name"": ""Movies: IMDB + TMDB ratings"",
                 ""path"": ""/movies/recommended/weekly"",
                 ""query"": ""imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0"",
                 ""updated_at"": ""2022-06-15T11:15:06.000Z""
@@ -99,9 +119,10 @@
         private const string JSON_NOT_VALID_4 =
             @"{
                 ""id"": 1,
+                ""rank"": 1,
                 ""section"": ""movies"",
-                ""name"": ""Movies: IMDB + TMDB ratings"",
-                ""pa"": ""/movies/recommended/weekly"",
+                ""nm"": ""Movies: IMDB + TMDB ratings"",
+                ""path"": ""/movies/recommended/weekly"",
                 ""query"": ""imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0"",
                 ""updated_at"": ""2022-06-15T11:15:06.000Z""
               }";
@@ -109,6 +130,18 @@
         private const string JSON_NOT_VALID_5 =
             @"{
                 ""id"": 1,
+                ""rank"": 1,
+                ""section"": ""movies"",
+                ""name"": ""Movies: IMDB + TMDB ratings"",
+                ""p"": ""/movies/recommended/weekly"",
+                ""query"": ""imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0"",
+                ""updated_at"": ""2022-06-15T11:15:06.000Z""
+              }";
+
+        private const string JSON_NOT_VALID_6 =
+            @"{
+                ""id"": 1,
+                ""rank"": 1,
                 ""section"": ""movies"",
                 ""name"": ""Movies: IMDB + TMDB ratings"",
                 ""path"": ""/movies/recommended/weekly"",
@@ -116,9 +149,10 @@
                 ""updated_at"": ""2022-06-15T11:15:06.000Z""
               }";
 
-        private const string JSON_NOT_VALID_6 =
+        private const string JSON_NOT_VALID_7 =
             @"{
                 ""id"": 1,
+                ""rank"": 1,
                 ""section"": ""movies"",
                 ""name"": ""Movies: IMDB + TMDB ratings"",
                 ""path"": ""/movies/recommended/weekly"",
@@ -126,12 +160,13 @@
                 ""ua"": ""2022-06-15T11:15:06.000Z""
               }";
 
-        private const string JSON_NOT_VALID_7 =
+        private const string JSON_NOT_VALID_8 =
             @"{
                 ""i"": 1,
+                ""ra"": 1,
                 ""sec"": ""movies"",
-                ""na"": ""Movies: IMDB + TMDB ratings"",
-                ""pa"": ""/movies/recommended/weekly"",
+                ""nm"": ""Movies: IMDB + TMDB ratings"",
+                ""p"": ""/movies/recommended/weekly"",
                 ""qu"": ""imdb_ratings=6.9-10.0&tmdb_ratings=4.2-10.0"",
                 ""ua"": ""2022-06-15T11:15:06.000Z""
               }";

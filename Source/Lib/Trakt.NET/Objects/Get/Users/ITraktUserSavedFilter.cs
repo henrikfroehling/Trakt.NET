@@ -9,6 +9,9 @@
         /// <summary>Gets or sets the id of the saved filter.</summary>
         int Id { get; set; }
 
+        /// <summary>Gets or sets the rank of the saved filter.</summary>
+        int? Rank { get; set; }
+
         /// <summary>
         /// Gets or sets the filter section of the saved filter.
         /// See also <seealso cref="TraktFilterSection" />.<para>Nullable</para>

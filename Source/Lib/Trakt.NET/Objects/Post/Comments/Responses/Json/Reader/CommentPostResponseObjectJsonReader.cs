@@ -15,8 +15,6 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var userReader = new UserObjectJsonReader();
-                var sharingReader = new ConnectionsObjectJsonReader();
                 ITraktCommentPostResponse traktCommentPostResponse = new TraktCommentPostResponse();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -76,21 +74,24 @@
                         case JsonProperties.PROPERTY_NAME_LIKES:
                             traktCommentPostResponse.Likes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.PROPERTY_NAME_USER_RATING:
+                        case JsonProperties.PROPERTY_NAME_USER_STATS:
                             {
-                                var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
-
-                                if (value.First)
-                                    traktCommentPostResponse.UserRating = value.Second;
-
+                                var userStatsReader = new CommentUserStatsObjectJsonReader();
+                                traktCommentPostResponse.UserStats = await userStatsReader.ReadObjectAsync(jsonReader, cancellationToken);
                                 break;
                             }
                         case JsonProperties.PROPERTY_NAME_USER:
-                            traktCommentPostResponse.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
-                            break;
+                            {
+                                var userReader = new UserObjectJsonReader();
+                                traktCommentPostResponse.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
+                                break;
+                            }
                         case JsonProperties.PROPERTY_NAME_SHARING:
-                            traktCommentPostResponse.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
-                            break;
+                            {
+                                var sharingReader = new ConnectionsObjectJsonReader();
+                                traktCommentPostResponse.Sharing = await sharingReader.ReadObjectAsync(jsonReader, cancellationToken);
+                                break;
+                            }
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

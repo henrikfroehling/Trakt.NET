@@ -31,6 +31,9 @@
 
                                 break;
                             }
+                        case JsonProperties.PROPERTY_NAME_RANK:
+                            traktUserSavedFilter.Rank = await jsonReader.ReadAsInt32Async(cancellationToken).ConfigureAwait(false);
+                            break;
                         case JsonProperties.PROPERTY_NAME_SECTION:
                             traktUserSavedFilter.Section = await JsonReaderHelper.ReadEnumerationValueAsync<TraktFilterSection>(jsonReader, cancellationToken);
                             break;
