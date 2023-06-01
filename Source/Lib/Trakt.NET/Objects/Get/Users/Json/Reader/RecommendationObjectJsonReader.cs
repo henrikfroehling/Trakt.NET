@@ -16,8 +16,6 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieObjectReader = new MovieObjectJsonReader();
-                var showObjectReader = new ShowObjectJsonReader();
                 ITraktRecommendation traktRecommendation = new TraktRecommendation();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -26,6 +24,15 @@
 
                     switch (propertyName)
                     {
+                        case JsonProperties.PROPERTY_NAME_ID:
+                            {
+                                var value = await JsonReaderHelper.ReadUnsignedLongValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    traktRecommendation.Id = value.Second;
+
+                                break;
+                            }
                         case JsonProperties.PROPERTY_NAME_RANK:
                             traktRecommendation.Rank = await jsonReader.ReadAsInt32Async(cancellationToken).ConfigureAwait(false);
                             break;
@@ -45,11 +52,17 @@
                             traktRecommendation.Notes = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                             break;
                         case JsonProperties.PROPERTY_NAME_MOVIE:
-                            traktRecommendation.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
-                            break;
+                            {
+                                var movieObjectReader = new MovieObjectJsonReader();
+                                traktRecommendation.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
+                                break;
+                            }
                         case JsonProperties.PROPERTY_NAME_SHOW:
-                            traktRecommendation.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
-                            break;
+                            {
+                                var showObjectReader = new ShowObjectJsonReader();
+                                traktRecommendation.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
+                                break;
+                            }
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;

@@ -8,6 +8,9 @@
     /// <summary>A Trakt recommendation.</summary>
     public class TraktRecommendation : ITraktRecommendation
     {
+        /// <summary>Gets or sets the id of this recommendation item.</summary>
+        public ulong? Id { get; set; }
+
         /// <summary>Gets or sets the recommendation rank.</summary>
         public int? Rank { get; set; }
 
