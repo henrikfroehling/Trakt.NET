@@ -18,6 +18,7 @@
             var userSavedFilter = new TraktUserSavedFilter();
 
             userSavedFilter.Id.Should().Be(0);
+            userSavedFilter.Rank.Should().BeNull();
             userSavedFilter.Section.Should().BeNull();
             userSavedFilter.Name.Should().BeNullOrEmpty();
             userSavedFilter.Path.Should().BeNullOrEmpty();
@@ -33,6 +34,7 @@
 
             userSavedFilter.Should().NotBeNull();
             userSavedFilter.Id.Should().Be(1);
+            userSavedFilter.Rank.Should().Be(1);
             userSavedFilter.Section.Should().Be(TraktFilterSection.Movies);
             userSavedFilter.Name.Should().Be("Movies: IMDB + TMDB ratings");
             userSavedFilter.Path.Should().Be("/movies/recommended/weekly");
@@ -43,6 +45,7 @@
         private const string JSON =
             @"{
                 ""id"": 1,
+                ""rank"": 1,
                 ""section"": ""movies"",
                 ""name"": ""Movies: IMDB + TMDB ratings"",
                 ""path"": ""/movies/recommended/weekly"",
