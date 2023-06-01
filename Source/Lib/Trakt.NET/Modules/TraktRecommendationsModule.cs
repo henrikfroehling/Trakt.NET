@@ -41,22 +41,21 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{ITraktRecommendedMovie}"/> instance containing the queried movies and which also
-        /// contains the queried page number and the page's item count.
+        /// An <see cref="TraktListResponse{ITraktRecommendedMovie}"/> instance containing the queried recommended movies.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktRecommendedMovie" />.
+        /// See also <seealso cref="TraktListResponse{ListItem}" /> and <seealso cref="ITraktRecommendedMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktRecommendedMovie>> GetMovieRecommendationsAsync(uint? limit = null,
-                                                                                             bool? ignoreCollected = null,
-                                                                                             bool? ignoreWatchlisted = null,
-                                                                                             TraktExtendedInfo extendedInfo = null,
-                                                                                             CancellationToken cancellationToken = default)
+        public Task<TraktListResponse<ITraktRecommendedMovie>> GetMovieRecommendationsAsync(uint? limit = null,
+                                                                                            bool? ignoreCollected = null,
+                                                                                            bool? ignoreWatchlisted = null,
+                                                                                            TraktExtendedInfo extendedInfo = null,
+                                                                                            CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new UserMovieRecommendationsRequest
+            return requestHandler.ExecuteListRequestAsync(new UserMovieRecommendationsRequest
             {
                 ExtendedInfo = extendedInfo,
                 Limit = limit,
@@ -110,22 +109,21 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{ITraktRecommendedShow}"/> instance containing the queried shows and which also
-        /// contains the queried page number and the page's item count.
+        /// An <see cref="TraktListResponse{ITraktRecommendedShow}"/> instance containing the queried recommended shows.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktRecommendedShow" />.
+        /// See also <seealso cref="TraktListResponse{ListItem}" /> and <seealso cref="ITraktRecommendedShow" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktRecommendedShow>> GetShowRecommendationsAsync(uint? limit = null,
-                                                                                           bool? ignoreCollected = null,
-                                                                                           bool? ignoreWatchlisted = null,
-                                                                                           TraktExtendedInfo extendedInfo = null,
-                                                                                           CancellationToken cancellationToken = default)
+        public Task<TraktListResponse<ITraktRecommendedShow>> GetShowRecommendationsAsync(uint? limit = null,
+                                                                                          bool? ignoreCollected = null,
+                                                                                          bool? ignoreWatchlisted = null,
+                                                                                          TraktExtendedInfo extendedInfo = null,
+                                                                                          CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecutePagedRequestAsync(new UserShowRecommendationsRequest
+            return requestHandler.ExecuteListRequestAsync(new UserShowRecommendationsRequest
             {
                 ExtendedInfo = extendedInfo,
                 Limit = limit,

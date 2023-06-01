@@ -6,6 +6,12 @@
         /// <summary>Gets or sets the number of the collected or watched season.</summary>
         int? Number { get; set; }
 
+        /// <summary>
+        /// Gets or sets the title of the season.
+        /// <para>Nullable</para>
+        /// </summary>
+        string Title { get; set; }
+
         /// <summary>Gets or sets the number of episodes in the season, which already aired.</summary>
         int? Aired { get; set; }
 

@@ -17,6 +17,7 @@
         {
             var recommendation = new TraktRecommendation();
 
+            recommendation.Id.Should().BeNull();
             recommendation.Rank.Should().BeNull();
             recommendation.ListedAt.Should().BeNull();
             recommendation.Type.Should().BeNull();
@@ -32,6 +33,7 @@
             var recommendation = await jsonReader.ReadObjectAsync(JSON_MOVIE) as TraktRecommendation;
 
             recommendation.Should().NotBeNull();
+            recommendation.Id.Should().Be(101);
             recommendation.Rank.Should().Be(1);
             recommendation.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             recommendation.Type.Should().Be(TraktRecommendationObjectType.Movie);
@@ -54,6 +56,7 @@
             var recommendation = await jsonReader.ReadObjectAsync(JSON_SHOW) as TraktRecommendation;
 
             recommendation.Should().NotBeNull();
+            recommendation.Id.Should().Be(102);
             recommendation.Rank.Should().Be(1);
             recommendation.ListedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
             recommendation.Type.Should().Be(TraktRecommendationObjectType.Show);
@@ -72,6 +75,7 @@
 
         private const string JSON_MOVIE =
             @"{
+                ""id"": 101,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""movie"",
@@ -90,6 +94,7 @@
 
         private const string JSON_SHOW =
             @"{
+                ""id"": 102,
                 ""rank"": 1,
                 ""listed_at"": ""2014-09-01T09:10:11.000Z"",
                 ""type"": ""show"",

@@ -47,7 +47,10 @@
             responseValue.Review.Should().BeFalse();
             responseValue.Replies.Should().Be(0);
             responseValue.Likes.Should().Be(0);
-            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.UserStats.Should().NotBeNull();
+            responseValue.UserStats.Rating.Should().Be(8);
+            responseValue.UserStats.PlayCount.Should().Be(1);
+            responseValue.UserStats.CompletedCount.Should().Be(1);
             responseValue.User.Should().NotBeNull();
             responseValue.User.Username.Should().Be("sean");
             responseValue.User.IsPrivate.Should().BeFalse();
@@ -91,7 +94,10 @@
             responseValue.Review.Should().BeFalse();
             responseValue.Replies.Should().Be(0);
             responseValue.Likes.Should().Be(0);
-            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.UserStats.Should().NotBeNull();
+            responseValue.UserStats.Rating.Should().Be(8);
+            responseValue.UserStats.PlayCount.Should().Be(1);
+            responseValue.UserStats.CompletedCount.Should().Be(1);
             responseValue.User.Should().NotBeNull();
             responseValue.User.Username.Should().Be("sean");
             responseValue.User.IsPrivate.Should().BeFalse();
@@ -135,7 +141,10 @@
             responseValue.Review.Should().BeFalse();
             responseValue.Replies.Should().Be(0);
             responseValue.Likes.Should().Be(0);
-            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.UserStats.Should().NotBeNull();
+            responseValue.UserStats.Rating.Should().Be(8);
+            responseValue.UserStats.PlayCount.Should().Be(1);
+            responseValue.UserStats.CompletedCount.Should().Be(1);
             responseValue.User.Should().NotBeNull();
             responseValue.User.Username.Should().Be("sean");
             responseValue.User.IsPrivate.Should().BeFalse();
@@ -180,7 +189,10 @@
             responseValue.Review.Should().BeFalse();
             responseValue.Replies.Should().Be(0);
             responseValue.Likes.Should().Be(0);
-            responseValue.UserRating.Should().NotHaveValue();
+            responseValue.UserStats.Should().NotBeNull();
+            responseValue.UserStats.Rating.Should().Be(8);
+            responseValue.UserStats.PlayCount.Should().Be(1);
+            responseValue.UserStats.CompletedCount.Should().Be(1);
             responseValue.User.Should().NotBeNull();
             responseValue.User.Username.Should().Be("sean");
             responseValue.User.IsPrivate.Should().BeFalse();
