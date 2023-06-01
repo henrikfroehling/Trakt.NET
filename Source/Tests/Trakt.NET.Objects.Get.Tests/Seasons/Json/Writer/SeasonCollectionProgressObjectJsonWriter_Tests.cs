@@ -14,6 +14,8 @@
     [TestCategory("Objects.Get.Seasons.JsonWriter")]
     public partial class SeasonCollectionProgressObjectJsonWriter_Tests
     {
+        private static readonly DateTime COLLECTED_AT = DateTime.UtcNow;
+
         [Fact]
         public async Task Test_SeasonCollectionProgressObjectJsonWriter_WriteObject_Object_Exceptions()
         {
@@ -33,6 +35,19 @@
             var traktJsonWriter = new SeasonCollectionProgressObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktSeasonCollectionProgress);
             json.Should().Be(@"{""number"":1}");
+        }
+
+        [Fact]
+        public async Task Test_SeasonCollectionProgressObjectJsonWriter_WriteObject_Object_Only_Title_Property()
+        {
+            ITraktSeasonCollectionProgress traktSeasonCollectionProgress = new TraktSeasonCollectionProgress
+            {
+                Title = "The first Hodor."
+            };
+
+            var traktJsonWriter = new SeasonCollectionProgressObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktSeasonCollectionProgress);
+            json.Should().Be(@"{""title"":""The first Hodor.""}");
         }
 
         [Fact]
@@ -97,6 +112,7 @@
             ITraktSeasonCollectionProgress traktSeasonCollectionProgress = new TraktSeasonCollectionProgress
             {
                 Number = 1,
+                Title = "The first Hodor.",
                 Aired = 24,
                 Completed = 12,
                 Episodes = new List<ITraktEpisodeCollectionProgress>
@@ -118,7 +134,7 @@
 
             var traktJsonWriter = new SeasonCollectionProgressObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktSeasonCollectionProgress);
-            json.Should().Be(@"{""number"":1,""aired"":24,""completed"":12," +
+            json.Should().Be(@"{""number"":1,""title"":""The first Hodor."",""aired"":24,""completed"":12," +
                              @"""episodes"":[" +
                              $"{{\"number\":1,\"completed\":true,\"collected_at\":\"{COLLECTED_AT.ToTraktLongDateTimeString()}\"}}," +
                              $"{{\"number\":2,\"completed\":true,\"collected_at\":\"{COLLECTED_AT.ToTraktLongDateTimeString()}\"}}" +
