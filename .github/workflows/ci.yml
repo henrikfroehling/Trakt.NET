@@ -114,18 +114,22 @@ jobs:
         working-directory: 'Source'
 
       - name: Upload coverage reports to Codecov
+        if: ${{ github.actor != 'dependabot[bot]' }}
         uses: codecov/codecov-action@v3
 
       - name: Create NuGet package
+        if: ${{ github.actor != 'dependabot[bot]' }}
         run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore
 
       - name: Copy files for deployment
+        if: ${{ github.actor != 'dependabot[bot]' }}
         shell: pwsh
         run: |
           New-Item -Type Directory -Force 'release'
           Get-ChildItem -Path 'Source/Lib/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}' -Recurse | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.deps.json|[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination 'release'
 
       - name: Upload artifacts
+        if: ${{ github.actor != 'dependabot[bot]' }}
         uses: actions/upload-artifact@v3
         with:
           name: Trakt.NET-CI-Build-${{ needs.environment-check.outputs.target_branch_name }}.${{ github.run_number }}-${{ github.sha }}
@@ -133,12 +137,13 @@ jobs:
           path: 'release/'
 
       - name: Push NuGet package to Github Package Registry
-        if: ${{ !contains(github.ref, 'pull') }}
+        if: ${{ !contains(github.ref, 'pull') && github.actor != 'dependabot[bot]' }}
         run: dotnet nuget push '**/Trakt.NET*.nupkg'
         working-directory: 'Source'
+
   docs:
     needs: [environment-check]
-    if: ${{ !contains(github.ref, 'pull') }}
+    if: ${{ !contains(github.ref, 'pull') && github.actor != 'dependabot[bot]' }}
     runs-on: windows-latest
     permissions:
       contents: write
