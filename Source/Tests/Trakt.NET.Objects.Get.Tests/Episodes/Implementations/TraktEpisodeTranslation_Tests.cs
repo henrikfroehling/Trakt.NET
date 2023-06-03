@@ -15,9 +15,10 @@
         {
             var episodeTranslation = new TraktEpisodeTranslation();
 
-            episodeTranslation.Title.Should().BeNullOrEmpty();
-            episodeTranslation.Overview.Should().BeNullOrEmpty();
-            episodeTranslation.LanguageCode.Should().BeNullOrEmpty();
+            episodeTranslation.Title.Should().BeNull();
+            episodeTranslation.Overview.Should().BeNull();
+            episodeTranslation.LanguageCode.Should().BeNull();
+            episodeTranslation.CountryCode.Should().BeNull();
         }
 
         [Fact]
@@ -28,8 +29,9 @@
 
             episodeTranslation.Should().NotBeNull();
             episodeTranslation.Title.Should().Be("Winter Is Coming");
-            episodeTranslation.Overview.Should().Be("Jon Arryn, the Hand of the King, is dead. King Robert Baratheon plans to ask his oldest friend, Eddard Stark, to take Jon's place. Across the sea, Viserys Targaryen plans to wed his sister to a nomadic warlord in exchange for an army.");
+            episodeTranslation.Overview.Should().Be("Jon Arryn, the Hand of the King, is dead...");
             episodeTranslation.LanguageCode.Should().Be("en");
+            episodeTranslation.CountryCode.Should().Be("us");
         }
 
         [Fact]
@@ -45,8 +47,9 @@
         private const string JSON =
             @"{
                 ""title"": ""Winter Is Coming"",
-                ""overview"": ""Jon Arryn, the Hand of the King, is dead. King Robert Baratheon plans to ask his oldest friend, Eddard Stark, to take Jon's place. Across the sea, Viserys Targaryen plans to wed his sister to a nomadic warlord in exchange for an army."",
-                ""language"": ""en""
+                ""overview"": ""Jon Arryn, the Hand of the King, is dead..."",
+                ""language"": ""en"",
+                ""country"": ""us""
               }";
     }
 }
