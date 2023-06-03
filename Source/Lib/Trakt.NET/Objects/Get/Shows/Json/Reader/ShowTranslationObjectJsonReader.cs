@@ -30,6 +30,9 @@
                         case JsonProperties.PROPERTY_NAME_LANGUAGE:
                             traktShowTranslation.LanguageCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_COUNTRY:
+                            traktShowTranslation.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

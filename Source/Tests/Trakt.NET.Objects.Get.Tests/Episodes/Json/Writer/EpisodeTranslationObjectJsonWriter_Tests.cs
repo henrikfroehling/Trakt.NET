@@ -50,12 +50,25 @@
         {
             ITraktEpisodeTranslation traktEpisodeTranslation = new TraktEpisodeTranslation
             {
-                LanguageCode = "language code"
+                LanguageCode = "en"
             };
 
             var traktJsonWriter = new EpisodeTranslationObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktEpisodeTranslation);
-            json.Should().Be(@"{""language"":""language code""}");
+            json.Should().Be(@"{""language"":""en""}");
+        }
+
+        [Fact]
+        public async Task Test_EpisodeTranslationObjectJsonWriter_WriteObject_Object_Only_CountryCode_Property()
+        {
+            ITraktEpisodeTranslation traktEpisodeTranslation = new TraktEpisodeTranslation
+            {
+                CountryCode = "us"
+            };
+
+            var traktJsonWriter = new EpisodeTranslationObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktEpisodeTranslation);
+            json.Should().Be(@"{""country"":""us""}");
         }
 
         [Fact]
@@ -65,12 +78,13 @@
             {
                 Title = "title",
                 Overview = "overview",
-                LanguageCode = "language code"
+                LanguageCode = "en",
+                CountryCode = "us"
             };
 
             var traktJsonWriter = new EpisodeTranslationObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktEpisodeTranslation);
-            json.Should().Be(@"{""title"":""title"",""overview"":""overview"",""language"":""language code""}");
+            json.Should().Be(@"{""title"":""title"",""overview"":""overview"",""language"":""en"",""country"":""us""}");
         }
     }
 }
