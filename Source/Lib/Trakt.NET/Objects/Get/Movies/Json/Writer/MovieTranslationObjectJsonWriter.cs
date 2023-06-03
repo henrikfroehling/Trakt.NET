@@ -30,6 +30,12 @@
                 await jsonWriter.WriteValueAsync(obj.LanguageCode, cancellationToken).ConfigureAwait(false);
             }
 
+            if (!string.IsNullOrEmpty(obj.CountryCode))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COUNTRY, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.CountryCode, cancellationToken).ConfigureAwait(false);
+            }
+
             if (!string.IsNullOrEmpty(obj.Tagline))
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TAGLINE, cancellationToken).ConfigureAwait(false);

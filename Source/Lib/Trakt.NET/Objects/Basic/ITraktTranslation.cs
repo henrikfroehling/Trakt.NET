@@ -11,5 +11,8 @@
 
         /// <summary>Gets or sets the two letter language code for the translation.<para>Nullable</para></summary>
         string LanguageCode { get; set; }
+
+        /// <summary>Gets or sets the two letter country code for the translation.<para>Nullable</para></summary>
+        string CountryCode { get; set; }
     }
 }

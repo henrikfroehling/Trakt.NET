@@ -30,6 +30,9 @@
                         case JsonProperties.PROPERTY_NAME_LANGUAGE:
                             traktMovieTranslation.LanguageCode = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_COUNTRY:
+                            traktMovieTranslation.CountryCode = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
                         case JsonProperties.PROPERTY_NAME_TAGLINE:
                             traktMovieTranslation.Tagline = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
