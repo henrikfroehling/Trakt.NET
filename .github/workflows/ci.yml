@@ -90,9 +90,11 @@ jobs:
 #        uses: codecov/codecov-action@v3
 
       - name: Create NuGet package
+        if: ${{ github.actor != 'dependabot[bot]' }}
         run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore
 
       - name: Copy files for deployment
+        if: ${{ github.actor != 'dependabot[bot]' }}
         shell: pwsh
         run: |
           New-Item -Type Directory -Force '${{ env.ARTIFACTS_DIRECTORY }}'
@@ -107,6 +109,7 @@ jobs:
           Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net7.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_DIRECTORY }}/net7.0'
 
       - name: Upload artifacts
+        if: ${{ github.actor != 'dependabot[bot]' }}
         uses: actions/upload-artifact@v3
         with:
           name: Trakt.NET-CI-Build-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
@@ -114,7 +117,7 @@ jobs:
           path: '${{ env.ARTIFACTS_DIRECTORY }}/'
 
       - name: Push NuGet package to Github Package Registry
-        if: ${{ !contains(github.ref, 'pull') }}
+        if: ${{ !contains(github.ref, 'pull') && github.actor != 'dependabot[bot]' }}
         run: dotnet nuget push '**/Trakt.NET*.nupkg'
         working-directory: 'src'
 

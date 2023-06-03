@@ -15,9 +15,10 @@
         {
             var seasonTranslation = new TraktSeasonTranslation();
 
-            seasonTranslation.Title.Should().BeNullOrEmpty();
-            seasonTranslation.Overview.Should().BeNullOrEmpty();
-            seasonTranslation.LanguageCode.Should().BeNullOrEmpty();
+            seasonTranslation.Title.Should().BeNull();
+            seasonTranslation.Overview.Should().BeNull();
+            seasonTranslation.LanguageCode.Should().BeNull();
+            seasonTranslation.CountryCode.Should().BeNull();
         }
 
         [Fact]
@@ -30,13 +31,15 @@
             seasonTranslation.Title.Should().Be("Sesong 1");
             seasonTranslation.Overview.Should().Be("Sesong 1 av Game of Thrones hadde premiere 17 Mai, 2011.");
             seasonTranslation.LanguageCode.Should().Be("no");
+            seasonTranslation.CountryCode.Should().Be("us");
         }
 
         private const string JSON =
             @"{
                 ""title"": ""Sesong 1"",
                 ""overview"": ""Sesong 1 av Game of Thrones hadde premiere 17 Mai, 2011."",
-                ""language"": ""no""
+                ""language"": ""no"",
+                ""country"": ""us""
               }";
     }
 }

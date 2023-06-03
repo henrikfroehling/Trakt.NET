@@ -15,6 +15,9 @@
         /// <summary>The hidden item contains a season.</summary>
         public static TraktHiddenItemType Season { get; } = new TraktHiddenItemType(4, "season", "season", "Season");
 
+        /// <summary>The hidden item contains a user.</summary>
+        public static TraktHiddenItemType User { get; } = new TraktHiddenItemType(8, "user", "user", "User");
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TraktHiddenItemType" /> class.<para />
         /// The initialized <see cref="TraktHiddenItemType" /> is invalid.
