@@ -1,7 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Users.Json.Writer
 {
     using FluentAssertions;
-    using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
@@ -14,14 +13,6 @@
     [TestCategory("Objects.Get.Users.JsonWriter")]
     public partial class RecommendationObjectJsonWriter_Tests
     {
-        [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Show_WriteObject_Object_Exceptions()
-        {
-            var traktJsonWriter = new RecommendationObjectJsonWriter();
-            Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
-            await action.Should().ThrowAsync<ArgumentNullException>();
-        }
-
         [Fact]
         public async Task Test_RecommendationObjectJsonWriter_Show_WriteObject_Object_Only_Id_Property()
         {
