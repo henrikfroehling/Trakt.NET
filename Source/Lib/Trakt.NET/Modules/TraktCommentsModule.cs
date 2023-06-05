@@ -181,7 +181,7 @@
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public async IAsyncEnumerable<TraktResponse<ITraktComment>> GetCommentsStreamAsync(IEnumerable<uint> commentIds, [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
-            if (commentIds == null || commentIds.Count() == 0)
+            if (commentIds == null || !commentIds.Any())
                 yield break;
 
             var tasks = new List<Task<TraktResponse<ITraktComment>>>();
