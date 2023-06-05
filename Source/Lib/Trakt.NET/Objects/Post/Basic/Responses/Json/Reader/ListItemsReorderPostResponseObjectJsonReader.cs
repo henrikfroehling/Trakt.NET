@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using Objects.Json;
+    using Objects.Post.Responses.Json.Reader;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@
 
             if (await jsonReader.ReadAsync(cancellationToken).ConfigureAwait(false) && jsonReader.TokenType == JsonToken.StartObject)
             {
+                var listDataReader = new PostResponseListDataObjectJsonReader();
                 ITraktListItemsReorderPostResponse listsReorderPostResponse = new TraktListItemsReorderPostResponse();
 
                 while (await jsonReader.ReadAsync(cancellationToken).ConfigureAwait(false) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -26,6 +28,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_SKIPPED_IDS:
                             listsReorderPostResponse.SkippedIds = await JsonReaderHelper.ReadUnsignedIntegerArrayAsync(jsonReader, cancellationToken).ConfigureAwait(false);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_LIST:
+                            listsReorderPostResponse.List = await listDataReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken).ConfigureAwait(false);
