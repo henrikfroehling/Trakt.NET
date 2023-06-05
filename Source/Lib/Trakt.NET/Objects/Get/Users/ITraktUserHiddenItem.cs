@@ -39,5 +39,12 @@
         /// <para>Nullable</para>
         /// </summary>
         ITraktSeason Season { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user, if <see cref="Type" /> is <see cref="TraktHiddenItemType.User" />.
+        /// See also <seealso cref="ITraktUser" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        ITraktUser User { get; set; }
     }
 }

@@ -26,12 +26,11 @@
         {
             var traktJsonReader = new UserHiddenItemObjectJsonReader();
 
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var traktUserHiddenItem = await traktJsonReader.ReadObjectAsync(jsonReader);
-                traktUserHiddenItem.Should().BeNull();
-            }
+            using var reader = new StringReader(string.Empty);
+            using var jsonReader = new JsonTextReader(reader);
+
+            var traktUserHiddenItem = await traktJsonReader.ReadObjectAsync(jsonReader);
+            traktUserHiddenItem.Should().BeNull();
         }
     }
 }

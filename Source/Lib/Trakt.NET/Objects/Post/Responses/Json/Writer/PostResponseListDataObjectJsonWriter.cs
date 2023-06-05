@@ -17,7 +17,7 @@
             if (obj.UpdatedAt.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_UPDATED_AT, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.UpdatedAt.Value.ToTraktDateString(), cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.UpdatedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.ItemCount.HasValue)
