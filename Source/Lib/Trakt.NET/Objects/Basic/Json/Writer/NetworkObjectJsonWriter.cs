@@ -18,6 +18,19 @@
                 await jsonWriter.WriteValueAsync(obj.Name, cancellationToken).ConfigureAwait(false);
             }
 
+            if (!string.IsNullOrEmpty(obj.Country))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COUNTRY, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Country, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Ids != null)
+            {
+                var networkIdsObjectJsonWriter = new NetworkIdsObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_IDS, cancellationToken).ConfigureAwait(false);
+                await networkIdsObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Ids, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

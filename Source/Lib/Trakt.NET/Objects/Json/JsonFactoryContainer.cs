@@ -152,6 +152,7 @@
             s_jsonIOFactories.Add(typeof(ITraktLanguage), new LanguageJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMetadata), new MetadataJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktNetwork), new NetworkJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktNetworkIds), new NetworkIdsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktRateLimitInfo), new RateLimitInfoJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktRating), new RatingJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSearchResult), new SearchResultJsonIOFactory());
