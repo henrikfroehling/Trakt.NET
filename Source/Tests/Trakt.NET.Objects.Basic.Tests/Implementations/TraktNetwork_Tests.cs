@@ -16,6 +16,8 @@
             var traktNetwork = new TraktNetwork();
 
             traktNetwork.Name.Should().BeNull();
+            traktNetwork.Country.Should().BeNull();
+            traktNetwork.Ids.Should().BeNull();
         }
 
         [Fact]
@@ -25,12 +27,21 @@
             var traktNetwork = await jsonReader.ReadObjectAsync(JSON) as TraktNetwork;
 
             traktNetwork.Should().NotBeNull();
-            traktNetwork.Name.Should().Be("ABC(US)");
+            traktNetwork.Name.Should().Be("ABC");
+            traktNetwork.Country.Should().Be("us");
+            traktNetwork.Ids.Should().NotBeNull();
+            traktNetwork.Ids.Trakt.Should().Be(16U);
+            traktNetwork.Ids.Tmdb.Should().Be(2U);
         }
 
         private const string JSON =
             @"{
-                ""name"": ""ABC(US)""
+                ""name"": ""ABC"",
+                ""country"": ""us"",
+                ""ids"": {
+                  ""trakt"": 16,
+                  ""tmdb"": 2
+                }
               }";
     }
 }
