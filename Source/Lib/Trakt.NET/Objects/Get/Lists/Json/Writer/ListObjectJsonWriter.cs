@@ -56,16 +56,16 @@
                 await jsonWriter.WriteValueAsync(obj.AllowComments, cancellationToken).ConfigureAwait(false);
             }
 
-            if (!string.IsNullOrEmpty(obj.SortBy))
+            if (obj.SortBy != null)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SORT_BY, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.SortBy, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.SortBy.ObjectName, cancellationToken).ConfigureAwait(false);
             }
 
-            if (!string.IsNullOrEmpty(obj.SortHow))
+            if (obj.SortHow != null)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SORT_HOW, cancellationToken).ConfigureAwait(false);
-                await jsonWriter.WriteValueAsync(obj.SortHow, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.SortHow.ObjectName, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.CreatedAt.HasValue)

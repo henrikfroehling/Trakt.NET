@@ -50,8 +50,8 @@
             list.Type.Should().Be(TraktListType.Personal);
             list.DisplayNumbers.Should().BeTrue();
             list.AllowComments.Should().BeFalse();
-            list.SortBy.Should().Be("rank");
-            list.SortHow.Should().Be("asc");
+            list.SortBy.Should().Be(TraktSortBy.Rank);
+            list.SortHow.Should().Be(TraktSortHow.Ascending);
             list.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             list.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             list.ItemCount.Should().Be(5);
