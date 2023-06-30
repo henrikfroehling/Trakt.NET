@@ -1,7 +1,9 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Lists.Json.Reader
 {
     using FluentAssertions;
+    using Newtonsoft.Json;
     using System;
+    using System.IO;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
@@ -13,16 +15,20 @@
     public partial class ListObjectJsonReader_Tests
     {
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Complete()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Complete()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_COMPLETE);
+            using var reader = new StringReader(JSON_COMPLETE);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -48,16 +54,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_1()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_1()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_1);
+            using var reader = new StringReader(JSON_INCOMPLETE_1);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().BeNull();
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -83,16 +93,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_2()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_2()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_2);
+            using var reader = new StringReader(JSON_INCOMPLETE_2);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
             traktList.Description.Should().BeNull();
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -118,16 +132,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_3()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_3()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_3);
+            using var reader = new StringReader(JSON_INCOMPLETE_3);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().BeNull();
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -153,16 +171,98 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_4()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_4()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_4);
+            using var reader = new StringReader(JSON_INCOMPLETE_4);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().BeNull();
+            traktList.Type.Should().Be(TraktListType.Personal);
+            traktList.DisplayNumbers.Should().BeTrue();
+            traktList.AllowComments.Should().BeFalse();
+            traktList.SortBy.Should().Be("rank");
+            traktList.SortHow.Should().Be("asc");
+            traktList.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            traktList.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            traktList.ItemCount.Should().Be(5);
+            traktList.CommentCount.Should().Be(1);
+            traktList.Likes.Should().Be(2);
+
+            traktList.Ids.Should().NotBeNull();
+            traktList.Ids.Trakt.Should().Be(55);
+            traktList.Ids.Slug.Should().Be("star-wars-in-machete-order");
+
+            traktList.User.Should().NotBeNull();
+            traktList.User.Username.Should().Be("sean");
+            traktList.User.IsPrivate.Should().BeFalse();
+            traktList.User.Name.Should().Be("Sean Rudford");
+            traktList.User.IsVIP.Should().BeTrue();
+            traktList.User.IsVIP_EP.Should().BeFalse();
+            traktList.User.Ids.Should().NotBeNull();
+            traktList.User.Ids.Slug.Should().Be("sean");
+        }
+
+        [Fact]
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_5()
+        {
+            var traktJsonReader = new ListObjectJsonReader();
+
+            using var reader = new StringReader(JSON_INCOMPLETE_5);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktList.Should().NotBeNull();
+            traktList.Name.Should().Be("Star Wars in machete order");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
+            traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().BeNull();
+            traktList.DisplayNumbers.Should().BeTrue();
+            traktList.AllowComments.Should().BeFalse();
+            traktList.SortBy.Should().Be("rank");
+            traktList.SortHow.Should().Be("asc");
+            traktList.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            traktList.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            traktList.ItemCount.Should().Be(5);
+            traktList.CommentCount.Should().Be(1);
+            traktList.Likes.Should().Be(2);
+
+            traktList.Ids.Should().NotBeNull();
+            traktList.Ids.Trakt.Should().Be(55);
+            traktList.Ids.Slug.Should().Be("star-wars-in-machete-order");
+
+            traktList.User.Should().NotBeNull();
+            traktList.User.Username.Should().Be("sean");
+            traktList.User.IsPrivate.Should().BeFalse();
+            traktList.User.Name.Should().Be("Sean Rudford");
+            traktList.User.IsVIP.Should().BeTrue();
+            traktList.User.IsVIP_EP.Should().BeFalse();
+            traktList.User.Ids.Should().NotBeNull();
+            traktList.User.Ids.Slug.Should().Be("sean");
+        }
+
+        [Fact]
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_6()
+        {
+            var traktJsonReader = new ListObjectJsonReader();
+
+            using var reader = new StringReader(JSON_INCOMPLETE_6);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktList.Should().NotBeNull();
+            traktList.Name.Should().Be("Star Wars in machete order");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
+            traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeNull();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -188,16 +288,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_5()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_7()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_5);
+            using var reader = new StringReader(JSON_INCOMPLETE_7);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeNull();
             traktList.SortBy.Should().Be("rank");
@@ -223,16 +327,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_6()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_8()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_6);
+            using var reader = new StringReader(JSON_INCOMPLETE_8);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().BeNull();
@@ -258,16 +366,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_7()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_9()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_7);
+            using var reader = new StringReader(JSON_INCOMPLETE_9);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -293,16 +405,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_8()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_10()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_8);
+            using var reader = new StringReader(JSON_INCOMPLETE_10);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -328,16 +444,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_9()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_11()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_9);
+            using var reader = new StringReader(JSON_INCOMPLETE_11);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -363,16 +483,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_10()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_12()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_10);
+            using var reader = new StringReader(JSON_INCOMPLETE_12);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -398,16 +522,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_11()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_13()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_11);
+            using var reader = new StringReader(JSON_INCOMPLETE_13);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -433,16 +561,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_12()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_14()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_12);
+            using var reader = new StringReader(JSON_INCOMPLETE_14);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -468,16 +600,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_13()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_15()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_13);
+            using var reader = new StringReader(JSON_INCOMPLETE_15);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -501,16 +637,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_14()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Incomplete_16()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_14);
+            using var reader = new StringReader(JSON_INCOMPLETE_16);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -529,364 +669,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_15()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_1()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_15);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_16()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_16);
+            using var reader = new StringReader(JSON_NOT_VALID_1);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().BeNull();
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_17()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_17);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_18()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_18);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeTrue();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_19()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_19);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeFalse();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_20()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_20);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().Be("rank");
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_21()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_21);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().Be("asc");
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_22()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_22);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_23()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_23);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_24()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_24);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().Be(5);
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_25()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_25);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().Be(1);
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_26()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_26);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().Be(2);
-            traktList.Ids.Should().BeNull();
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_27()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_27);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-
-            traktList.Ids.Should().NotBeNull();
-            traktList.Ids.Trakt.Should().Be(55);
-            traktList.Ids.Slug.Should().Be("star-wars-in-machete-order");
-
-            traktList.User.Should().BeNull();
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Incomplete_28()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_INCOMPLETE_28);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().BeNull();
-            traktList.Privacy.Should().BeNull();
-            traktList.DisplayNumbers.Should().BeNull();
-            traktList.AllowComments.Should().BeNull();
-            traktList.SortBy.Should().BeNull();
-            traktList.SortHow.Should().BeNull();
-            traktList.CreatedAt.Should().BeNull();
-            traktList.UpdatedAt.Should().BeNull();
-            traktList.ItemCount.Should().BeNull();
-            traktList.CommentCount.Should().BeNull();
-            traktList.Likes.Should().BeNull();
-            traktList.Ids.Should().BeNull();
-
-            traktList.User.Should().NotBeNull();
-            traktList.User.Username.Should().Be("sean");
-            traktList.User.IsPrivate.Should().BeFalse();
-            traktList.User.Name.Should().Be("Sean Rudford");
-            traktList.User.IsVIP.Should().BeTrue();
-            traktList.User.IsVIP_EP.Should().BeFalse();
-            traktList.User.Ids.Should().NotBeNull();
-            traktList.User.Ids.Slug.Should().Be("sean");
-        }
-
-        [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_1()
-        {
-            var jsonReader = new ListObjectJsonReader();
-
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_1);
-
-            traktList.Should().NotBeNull();
-            traktList.Name.Should().BeNull();
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -912,16 +708,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_2()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_2()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_2);
+            using var reader = new StringReader(JSON_NOT_VALID_2);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
             traktList.Description.Should().BeNull();
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -947,16 +747,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_3()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_3()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_3);
+            using var reader = new StringReader(JSON_NOT_VALID_3);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().BeNull();
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -982,16 +786,98 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_4()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_4()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_4);
+            using var reader = new StringReader(JSON_NOT_VALID_4);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().BeNull();
+            traktList.Type.Should().Be(TraktListType.Personal);
+            traktList.DisplayNumbers.Should().BeTrue();
+            traktList.AllowComments.Should().BeFalse();
+            traktList.SortBy.Should().Be("rank");
+            traktList.SortHow.Should().Be("asc");
+            traktList.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            traktList.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            traktList.ItemCount.Should().Be(5);
+            traktList.CommentCount.Should().Be(1);
+            traktList.Likes.Should().Be(2);
+
+            traktList.Ids.Should().NotBeNull();
+            traktList.Ids.Trakt.Should().Be(55);
+            traktList.Ids.Slug.Should().Be("star-wars-in-machete-order");
+
+            traktList.User.Should().NotBeNull();
+            traktList.User.Username.Should().Be("sean");
+            traktList.User.IsPrivate.Should().BeFalse();
+            traktList.User.Name.Should().Be("Sean Rudford");
+            traktList.User.IsVIP.Should().BeTrue();
+            traktList.User.IsVIP_EP.Should().BeFalse();
+            traktList.User.Ids.Should().NotBeNull();
+            traktList.User.Ids.Slug.Should().Be("sean");
+        }
+
+        [Fact]
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_5()
+        {
+            var traktJsonReader = new ListObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID_5);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktList.Should().NotBeNull();
+            traktList.Name.Should().Be("Star Wars in machete order");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
+            traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().BeNull();
+            traktList.DisplayNumbers.Should().BeTrue();
+            traktList.AllowComments.Should().BeFalse();
+            traktList.SortBy.Should().Be("rank");
+            traktList.SortHow.Should().Be("asc");
+            traktList.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            traktList.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            traktList.ItemCount.Should().Be(5);
+            traktList.CommentCount.Should().Be(1);
+            traktList.Likes.Should().Be(2);
+
+            traktList.Ids.Should().NotBeNull();
+            traktList.Ids.Trakt.Should().Be(55);
+            traktList.Ids.Slug.Should().Be("star-wars-in-machete-order");
+
+            traktList.User.Should().NotBeNull();
+            traktList.User.Username.Should().Be("sean");
+            traktList.User.IsPrivate.Should().BeFalse();
+            traktList.User.Name.Should().Be("Sean Rudford");
+            traktList.User.IsVIP.Should().BeTrue();
+            traktList.User.IsVIP_EP.Should().BeFalse();
+            traktList.User.Ids.Should().NotBeNull();
+            traktList.User.Ids.Slug.Should().Be("sean");
+        }
+
+        [Fact]
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_6()
+        {
+            var traktJsonReader = new ListObjectJsonReader();
+
+            using var reader = new StringReader(JSON_NOT_VALID_6);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
+
+            traktList.Should().NotBeNull();
+            traktList.Name.Should().Be("Star Wars in machete order");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
+            traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeNull();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -1017,16 +903,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_5()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_7()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_5);
+            using var reader = new StringReader(JSON_NOT_VALID_7);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeNull();
             traktList.SortBy.Should().Be("rank");
@@ -1052,16 +942,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_6()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_8()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_6);
+            using var reader = new StringReader(JSON_NOT_VALID_8);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().BeNull();
@@ -1087,16 +981,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_7()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_9()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_7);
+            using var reader = new StringReader(JSON_NOT_VALID_9);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -1122,16 +1020,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_8()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_10()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_8);
+            using var reader = new StringReader(JSON_NOT_VALID_10);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -1157,16 +1059,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_9()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_11()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_9);
+            using var reader = new StringReader(JSON_NOT_VALID_11);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -1192,16 +1098,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_10()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_12()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_10);
+            using var reader = new StringReader(JSON_NOT_VALID_12);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -1227,16 +1137,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_11()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_13()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_11);
+            using var reader = new StringReader(JSON_NOT_VALID_13);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -1262,16 +1176,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_12()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_14()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_12);
+            using var reader = new StringReader(JSON_NOT_VALID_14);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -1297,16 +1215,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_13()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_15()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_13);
+            using var reader = new StringReader(JSON_NOT_VALID_15);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -1330,16 +1252,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_14()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_16()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_14);
+            using var reader = new StringReader(JSON_NOT_VALID_16);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().Be("Star Wars in machete order");
-            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            traktList.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
             traktList.Privacy.Should().Be(TraktListPrivacy.Public);
+            traktList.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            traktList.Type.Should().Be(TraktListType.Personal);
             traktList.DisplayNumbers.Should().BeTrue();
             traktList.AllowComments.Should().BeFalse();
             traktList.SortBy.Should().Be("rank");
@@ -1358,16 +1284,20 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Not_Valid_15()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Not_Valid_17()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(JSON_NOT_VALID_15);
+            using var reader = new StringReader(JSON_NOT_VALID_17);
+            using var jsonReader = new JsonTextReader(reader);
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
 
             traktList.Should().NotBeNull();
             traktList.Name.Should().BeNull();
             traktList.Description.Should().BeNull();
             traktList.Privacy.Should().BeNull();
+            traktList.ShareLink.Should().BeNull();
+            traktList.Type.Should().BeNull();
             traktList.DisplayNumbers.Should().BeNull();
             traktList.AllowComments.Should().BeNull();
             traktList.SortBy.Should().BeNull();
@@ -1382,19 +1312,22 @@
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Null()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Null()
         {
-            var jsonReader = new ListObjectJsonReader();
-            Func<Task<ITraktList>> traktList = () => jsonReader.ReadObjectAsync(default(string));
+            var traktJsonReader = new ListObjectJsonReader();
+            Func<Task<ITraktList>> traktList = () => traktJsonReader.ReadObjectAsync(default(JsonTextReader));
             await traktList.Should().ThrowAsync<ArgumentNullException>();
         }
 
         [Fact]
-        public async Task Test_ListObjectJsonReader_ReadObject_From_Json_String_Empty()
+        public async Task Test_ListObjectJsonReader_ReadObject_From_JsonReader_Empty()
         {
-            var jsonReader = new ListObjectJsonReader();
+            var traktJsonReader = new ListObjectJsonReader();
 
-            var traktList = await jsonReader.ReadObjectAsync(string.Empty);
+            using var reader = new StringReader(string.Empty);
+            using var jsonReader = new JsonTextReader(reader);
+
+            var traktList = await traktJsonReader.ReadObjectAsync(jsonReader);
             traktList.Should().BeNull();
         }
     }
