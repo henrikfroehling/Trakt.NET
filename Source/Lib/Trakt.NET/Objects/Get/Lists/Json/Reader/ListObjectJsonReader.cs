@@ -34,6 +34,12 @@
                         case JsonProperties.PROPERTY_NAME_PRIVACY:
                             traktList.Privacy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktListPrivacy>(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_SHARE_LINK:
+                            traktList.ShareLink = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_TYPE:
+                            traktList.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktListType>(jsonReader, cancellationToken);
+                            break;
                         case JsonProperties.PROPERTY_NAME_DISPLAY_NUMBERS:
                             traktList.DisplayNumbers = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;

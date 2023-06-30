@@ -16,6 +16,12 @@
         /// <summary>Gets or sets the list's visibility status. See also <seealso cref="TraktListPrivacy" />.<para>Nullable</para></summary>
         TraktListPrivacy Privacy { get; set; }
 
+        /// <summary>Gets or sets the list's share link.<para>Nullable</para></summary>
+        string ShareLink { get; set; }
+
+        /// <summary>Gets or sets the list type. See also <seealso cref="TraktListType" />.<para>Nullable</para></summary>
+        TraktListType Type { get; set; }
+
         /// <summary>Gets or sets, whether the list displays ranking numbers.</summary>
         bool? DisplayNumbers { get; set; }
 
