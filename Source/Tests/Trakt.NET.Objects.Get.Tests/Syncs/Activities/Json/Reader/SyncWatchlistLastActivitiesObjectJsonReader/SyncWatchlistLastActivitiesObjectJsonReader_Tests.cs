@@ -18,14 +18,12 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Reader
         {
             var traktJsonReader = new SyncWatchlistLastActivitiesObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_COMPLETE))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var watchlistLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(JSON_COMPLETE);
+            using var jsonReader = new JsonTextReader(reader);
+            var watchlistLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                watchlistLastActivities.Should().NotBeNull();
-                watchlistLastActivities.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            }
+            watchlistLastActivities.Should().NotBeNull();
+            watchlistLastActivities.UpdatedAt.Should().Be(DateTime.Parse("2023-06-22T16:39:23.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -33,14 +31,12 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Reader
         {
             var traktJsonReader = new SyncWatchlistLastActivitiesObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var watchlistLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(JSON_NOT_VALID);
+            using var jsonReader = new JsonTextReader(reader);
+            var watchlistLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                watchlistLastActivities.Should().NotBeNull();
-                watchlistLastActivities.UpdatedAt.Should().BeNull();
-            }
+            watchlistLastActivities.Should().NotBeNull();
+            watchlistLastActivities.UpdatedAt.Should().BeNull();
         }
 
         [Fact]
@@ -56,12 +52,11 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Reader
         {
             var traktJsonReader = new SyncWatchlistLastActivitiesObjectJsonReader();
 
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var watchlistLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
-                watchlistLastActivities.Should().BeNull();
-            }
+            using var reader = new StringReader(string.Empty);
+            using var jsonReader = new JsonTextReader(reader);
+
+            var watchlistLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
+            watchlistLastActivities.Should().BeNull();
         }
     }
 }

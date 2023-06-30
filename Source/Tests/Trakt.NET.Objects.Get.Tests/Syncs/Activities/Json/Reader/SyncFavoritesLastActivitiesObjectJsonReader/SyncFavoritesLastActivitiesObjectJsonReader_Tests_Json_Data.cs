@@ -1,6 +1,6 @@
 namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Reader
 {
-    public partial class SyncRecommendationsLastActivitiesObjectJsonReader_Tests
+    public partial class SyncFavoritesLastActivitiesObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{

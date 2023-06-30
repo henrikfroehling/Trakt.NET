@@ -18,14 +18,12 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Reader
         {
             var traktJsonReader = new SyncRecommendationsLastActivitiesObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_COMPLETE))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var recommendationsLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(JSON_COMPLETE);
+            using var jsonReader = new JsonTextReader(reader);
+            var recommendationsLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                recommendationsLastActivities.Should().NotBeNull();
-                recommendationsLastActivities.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
-            }
+            recommendationsLastActivities.Should().NotBeNull();
+            recommendationsLastActivities.UpdatedAt.Should().Be(DateTime.Parse("2022-05-14T19:04:12.000Z").ToUniversalTime());
         }
 
         [Fact]
@@ -33,14 +31,12 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Reader
         {
             var traktJsonReader = new SyncRecommendationsLastActivitiesObjectJsonReader();
 
-            using (var reader = new StringReader(JSON_NOT_VALID))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var recommendationsLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
+            using var reader = new StringReader(JSON_NOT_VALID);
+            using var jsonReader = new JsonTextReader(reader);
+            var recommendationsLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
 
-                recommendationsLastActivities.Should().NotBeNull();
-                recommendationsLastActivities.UpdatedAt.Should().BeNull();
-            }
+            recommendationsLastActivities.Should().NotBeNull();
+            recommendationsLastActivities.UpdatedAt.Should().BeNull();
         }
 
         [Fact]
@@ -56,12 +52,11 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Reader
         {
             var traktJsonReader = new SyncRecommendationsLastActivitiesObjectJsonReader();
 
-            using (var reader = new StringReader(string.Empty))
-            using (var jsonReader = new JsonTextReader(reader))
-            {
-                var recommendationsLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
-                recommendationsLastActivities.Should().BeNull();
-            }
+            using var reader = new StringReader(string.Empty);
+            using var jsonReader = new JsonTextReader(reader);
+
+            var recommendationsLastActivities = await traktJsonReader.ReadObjectAsync(jsonReader);
+            recommendationsLastActivities.Should().BeNull();
         }
     }
 }

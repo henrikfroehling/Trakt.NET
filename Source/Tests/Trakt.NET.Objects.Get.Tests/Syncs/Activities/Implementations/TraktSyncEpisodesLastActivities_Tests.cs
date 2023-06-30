@@ -31,22 +31,22 @@
             var episodesLastActivities = await jsonReader.ReadObjectAsync(JSON) as TraktSyncEpisodesLastActivities;
 
             episodesLastActivities.Should().NotBeNull();
-            episodesLastActivities.WatchedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.305Z").ToUniversalTime());
-            episodesLastActivities.CollectedAt.Should().Be(DateTime.Parse("2014-11-19T22:02:41.308Z").ToUniversalTime());
-            episodesLastActivities.RatedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.310Z").ToUniversalTime());
-            episodesLastActivities.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.321Z").ToUniversalTime());
-            episodesLastActivities.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.325Z").ToUniversalTime());
-            episodesLastActivities.PausedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
+            episodesLastActivities.WatchedAt.Should().Be(DateTime.Parse("2023-06-30T13:38:37.000Z").ToUniversalTime());
+            episodesLastActivities.CollectedAt.Should().Be(DateTime.Parse("2016-11-09T23:16:22.000Z").ToUniversalTime());
+            episodesLastActivities.RatedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            episodesLastActivities.WatchlistedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            episodesLastActivities.CommentedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            episodesLastActivities.PausedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
         }
 
         private const string JSON =
             @"{
-                ""watched_at"": ""2014-11-20T06:51:30.305Z"",
-                ""collected_at"": ""2014-11-19T22:02:41.308Z"",
-                ""rated_at"": ""2014-11-20T06:51:30.310Z"",
-                ""watchlisted_at"": ""2014-11-20T06:51:30.321Z"",
-                ""commented_at"": ""2014-11-20T06:51:30.325Z"",
-                ""paused_at"": ""2014-11-20T06:51:30.250Z""
+                ""watched_at"": ""2023-06-30T13:38:37.000Z"",
+                ""collected_at"": ""2016-11-09T23:16:22.000Z"",
+                ""rated_at"": ""2015-02-18T12:54:39.000Z"",
+                ""watchlisted_at"": ""2015-02-18T12:54:39.000Z"",
+                ""commented_at"": ""2015-02-18T12:54:39.000Z"",
+                ""paused_at"": ""2015-02-18T12:54:39.000Z""
               }";
     }
 }

@@ -24,7 +24,9 @@
             lastActivities.Comments.Should().BeNull();
             lastActivities.Lists.Should().BeNull();
             lastActivities.Watchlist.Should().BeNull();
+            lastActivities.Favorites.Should().BeNull();
             lastActivities.Recommendations.Should().BeNull();
+            lastActivities.Collaborations.Should().BeNull();
             lastActivities.Account.Should().BeNull();
             lastActivities.SavedFilters.Should().BeNull();
         }
@@ -36,123 +38,139 @@
             var lastActivities = await jsonReader.ReadObjectAsync(JSON) as TraktSyncLastActivities;
 
             lastActivities.Should().NotBeNull();
-            lastActivities.All.Should().Be(DateTime.Parse("2014-11-20T07:01:32.378Z").ToUniversalTime());
+            lastActivities.All.Should().Be(DateTime.Parse("2023-06-30T13:38:37.000Z").ToUniversalTime());
 
             lastActivities.Movies.Should().NotBeNull();
-            lastActivities.Movies.WatchedAt.Should().Be(DateTime.Parse("2014-11-19T21:42:41.823Z").ToUniversalTime());
-            lastActivities.Movies.CollectedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.243Z").ToUniversalTime());
-            lastActivities.Movies.RatedAt.Should().Be(DateTime.Parse("2014-11-19T18:32:29.459Z").ToUniversalTime());
-            lastActivities.Movies.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-19T21:42:41.844Z").ToUniversalTime());
-            lastActivities.Movies.RecommendationsAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
-            lastActivities.Movies.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
-            lastActivities.Movies.PausedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
-            lastActivities.Movies.HiddenAt.Should().Be(DateTime.Parse("2016-08-20T06:51:30.000Z").ToUniversalTime());
+            lastActivities.Movies.WatchedAt.Should().Be(DateTime.Parse("2023-06-11T20:00:28.000Z").ToUniversalTime());
+            lastActivities.Movies.CollectedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            lastActivities.Movies.RatedAt.Should().Be(DateTime.Parse("2016-11-07T03:11:00.000Z").ToUniversalTime());
+            lastActivities.Movies.WatchlistedAt.Should().Be(DateTime.Parse("2023-06-04T13:48:29.000Z").ToUniversalTime());
+            lastActivities.Movies.FavoritedAt.Should().Be(DateTime.Parse("2021-04-07T22:07:11.000Z").ToUniversalTime());
+            lastActivities.Movies.RecommendationsAt.Should().Be(DateTime.Parse("2021-04-07T22:07:11.000Z").ToUniversalTime());
+            lastActivities.Movies.CommentedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            lastActivities.Movies.PausedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            lastActivities.Movies.HiddenAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
 
             lastActivities.Episodes.Should().NotBeNull();
-            lastActivities.Episodes.WatchedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.305Z").ToUniversalTime());
-            lastActivities.Episodes.CollectedAt.Should().Be(DateTime.Parse("2014-11-19T22:02:41.308Z").ToUniversalTime());
-            lastActivities.Episodes.RatedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.310Z").ToUniversalTime());
-            lastActivities.Episodes.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.321Z").ToUniversalTime());
-            lastActivities.Episodes.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.325Z").ToUniversalTime());
-            lastActivities.Episodes.PausedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
+            lastActivities.Episodes.WatchedAt.Should().Be(DateTime.Parse("2023-06-30T13:38:37.000Z").ToUniversalTime());
+            lastActivities.Episodes.CollectedAt.Should().Be(DateTime.Parse("2016-11-09T23:16:22.000Z").ToUniversalTime());
+            lastActivities.Episodes.RatedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            lastActivities.Episodes.WatchlistedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            lastActivities.Episodes.CommentedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            lastActivities.Episodes.PausedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
 
             lastActivities.Shows.Should().NotBeNull();
-            lastActivities.Shows.RatedAt.Should().Be(DateTime.Parse("2014-11-19T19:50:58.557Z").ToUniversalTime());
-            lastActivities.Shows.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.262Z").ToUniversalTime());
-            lastActivities.Shows.RecommendationsAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.281Z").ToUniversalTime());
-            lastActivities.Shows.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.281Z").ToUniversalTime());
-            lastActivities.Shows.HiddenAt.Should().Be(DateTime.Parse("2016-08-20T06:51:30.000Z").ToUniversalTime());
+            lastActivities.Shows.RatedAt.Should().Be(DateTime.Parse("2022-06-25T23:46:52.000Z").ToUniversalTime());
+            lastActivities.Shows.WatchlistedAt.Should().Be(DateTime.Parse("2023-06-22T16:39:23.000Z").ToUniversalTime());
+            lastActivities.Shows.FavoritedAt.Should().Be(DateTime.Parse("2021-06-28T00:13:46.000Z").ToUniversalTime());
+            lastActivities.Shows.RecommendationsAt.Should().Be(DateTime.Parse("2021-06-28T00:13:46.000Z").ToUniversalTime());
+            lastActivities.Shows.CommentedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            lastActivities.Shows.HiddenAt.Should().Be(DateTime.Parse("2022-12-20T19:34:50.000Z").ToUniversalTime());
 
             lastActivities.Seasons.Should().NotBeNull();
-            lastActivities.Seasons.RatedAt.Should().Be(DateTime.Parse("2014-11-19T19:54:24.537Z").ToUniversalTime());
-            lastActivities.Seasons.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.297Z").ToUniversalTime());
-            lastActivities.Seasons.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.301Z").ToUniversalTime());
-            lastActivities.Seasons.HiddenAt.Should().Be(DateTime.Parse("2016-08-20T06:51:30.000Z").ToUniversalTime());
+            lastActivities.Seasons.RatedAt.Should().Be(DateTime.Parse("2022-06-25T23:46:39.000Z").ToUniversalTime());
+            lastActivities.Seasons.WatchlistedAt.Should().Be(DateTime.Parse("2022-10-06T17:42:50.000Z").ToUniversalTime());
+            lastActivities.Seasons.CommentedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            lastActivities.Seasons.HiddenAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
 
             lastActivities.Comments.Should().NotBeNull();
-            lastActivities.Comments.LikedAt.Should().Be(DateTime.Parse("2014-11-20T03:38:09.122Z").ToUniversalTime());
-            lastActivities.Comments.BlockedAt.Should().Be(DateTime.Parse("2014-11-20T03:38:09.122Z").ToUniversalTime());
+            lastActivities.Comments.LikedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            lastActivities.Comments.BlockedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
 
             lastActivities.Lists.Should().NotBeNull();
-            lastActivities.Lists.LikedAt.Should().Be(DateTime.Parse("2014-11-20T00:36:48.506Z").ToUniversalTime());
-            lastActivities.Lists.UpdatedAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
-            lastActivities.Lists.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.250Z").ToUniversalTime());
+            lastActivities.Lists.LikedAt.Should().Be(DateTime.Parse("2022-06-28T21:32:53.000Z").ToUniversalTime());
+            lastActivities.Lists.UpdatedAt.Should().Be(DateTime.Parse("2022-10-14T21:47:15.000Z").ToUniversalTime());
+            lastActivities.Lists.CommentedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
 
             lastActivities.Watchlist.Should().NotBeNull();
-            lastActivities.Watchlist.UpdatedAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
+            lastActivities.Watchlist.UpdatedAt.Should().Be(DateTime.Parse("2023-06-22T16:39:23.000Z").ToUniversalTime());
+
+            lastActivities.Favorites.Should().NotBeNull();
+            lastActivities.Favorites.UpdatedAt.Should().Be(DateTime.Parse("2022-05-14T19:04:12.000Z").ToUniversalTime());
 
             lastActivities.Recommendations.Should().NotBeNull();
-            lastActivities.Recommendations.UpdatedAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
+            lastActivities.Recommendations.UpdatedAt.Should().Be(DateTime.Parse("2022-05-14T19:04:12.000Z").ToUniversalTime());
+
+            lastActivities.Collaborations.Should().NotBeNull();
+            lastActivities.Collaborations.UpdatedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
 
             lastActivities.Account.Should().NotBeNull();
-            lastActivities.Account.SettingsAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
-            lastActivities.Account.FollowedAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
-            lastActivities.Account.FollowingAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
-            lastActivities.Account.PendingAt.Should().Be(DateTime.Parse("2014-11-20T06:52:18.837Z").ToUniversalTime());
-            lastActivities.Account.RequestedAt.Should().Be(DateTime.Parse("2022-04-27T03:38:09.000Z").ToUniversalTime());
+            lastActivities.Account.SettingsAt.Should().Be(DateTime.Parse("2023-06-26T18:08:03.000Z").ToUniversalTime());
+            lastActivities.Account.FollowedAt.Should().Be(DateTime.Parse("2020-12-14T14:12:28.000Z").ToUniversalTime());
+            lastActivities.Account.FollowingAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            lastActivities.Account.PendingAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            lastActivities.Account.RequestedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
 
             lastActivities.SavedFilters.Should().NotBeNull();
-            lastActivities.SavedFilters.UpdatedAt.Should().Be(DateTime.Parse("2022-06-14T06:52:18.000Z").ToUniversalTime());
+            lastActivities.SavedFilters.UpdatedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
         }
 
         private const string JSON =
             @"{
-                ""all"": ""2014-11-20T07:01:32.378Z"",
+                ""all"": ""2023-06-30T13:38:37.000Z"",
                 ""movies"": {
-                  ""watched_at"": ""2014-11-19T21:42:41.823Z"",
-                  ""collected_at"": ""2014-11-20T06:51:30.243Z"",
-                  ""rated_at"": ""2014-11-19T18:32:29.459Z"",
-                  ""watchlisted_at"": ""2014-11-19T21:42:41.844Z"",
-                  ""recommendations_at"": ""2014-11-20T06:51:30.250Z"",
-                  ""commented_at"": ""2014-11-20T06:51:30.250Z"",
-                  ""paused_at"": ""2014-11-20T06:51:30.250Z"",
-                  ""hidden_at"": ""2016-08-20T06:51:30.000Z""
+                  ""watched_at"": ""2023-06-11T20:00:28.000Z"",
+                  ""collected_at"": ""2015-02-18T12:54:39.000Z"",
+                  ""rated_at"": ""2016-11-07T03:11:00.000Z"",
+                  ""watchlisted_at"": ""2023-06-04T13:48:29.000Z"",
+                  ""favorited_at"": ""2021-04-07T22:07:11.000Z"",
+                  ""recommendations_at"": ""2021-04-07T22:07:11.000Z"",
+                  ""commented_at"": ""2015-02-18T12:54:39.000Z"",
+                  ""paused_at"": ""2015-02-18T12:54:39.000Z"",
+                  ""hidden_at"": ""2015-02-18T12:54:39.000Z""
                 },
                 ""episodes"": {
-                  ""watched_at"": ""2014-11-20T06:51:30.305Z"",
-                  ""collected_at"": ""2014-11-19T22:02:41.308Z"",
-                  ""rated_at"": ""2014-11-20T06:51:30.310Z"",
-                  ""watchlisted_at"": ""2014-11-20T06:51:30.321Z"",
-                  ""commented_at"": ""2014-11-20T06:51:30.325Z"",
-                  ""paused_at"": ""2014-11-20T06:51:30.250Z""
+                  ""watched_at"": ""2023-06-30T13:38:37.000Z"",
+                  ""collected_at"": ""2016-11-09T23:16:22.000Z"",
+                  ""rated_at"": ""2015-02-18T12:54:39.000Z"",
+                  ""watchlisted_at"": ""2015-02-18T12:54:39.000Z"",
+                  ""commented_at"": ""2015-02-18T12:54:39.000Z"",
+                  ""paused_at"": ""2015-02-18T12:54:39.000Z""
                 },
                 ""shows"": {
-                  ""rated_at"": ""2014-11-19T19:50:58.557Z"",
-                  ""watchlisted_at"": ""2014-11-20T06:51:30.262Z"",
-                  ""recommendations_at"": ""2014-11-20T06:51:30.281Z"",
-                  ""commented_at"": ""2014-11-20T06:51:30.281Z"",
-                  ""hidden_at"": ""2016-08-20T06:51:30.000Z""
+                  ""rated_at"": ""2022-06-25T23:46:52.000Z"",
+                  ""watchlisted_at"": ""2023-06-22T16:39:23.000Z"",
+                  ""favorited_at"": ""2021-06-28T00:13:46.000Z"",
+                  ""recommendations_at"": ""2021-06-28T00:13:46.000Z"",
+                  ""commented_at"": ""2015-02-18T12:54:39.000Z"",
+                  ""hidden_at"": ""2022-12-20T19:34:50.000Z""
                 },
                 ""seasons"": {
-                  ""rated_at"": ""2014-11-19T19:54:24.537Z"",
-                  ""watchlisted_at"": ""2014-11-20T06:51:30.297Z"",
-                  ""commented_at"": ""2014-11-20T06:51:30.301Z"",
-                  ""hidden_at"": ""2016-08-20T06:51:30.000Z""
+                  ""rated_at"": ""2022-06-25T23:46:39.000Z"",
+                  ""watchlisted_at"": ""2022-10-06T17:42:50.000Z"",
+                  ""commented_at"": ""2015-02-18T12:54:39.000Z"",
+                  ""hidden_at"": ""2015-02-18T12:54:39.000Z""
                 },
                 ""comments"": {
-                  ""liked_at"": ""2014-11-20T03:38:09.122Z"",
-                  ""blocked_at"": ""2014-11-20T03:38:09.122Z""
+                  ""liked_at"": ""2015-02-18T12:54:39.000Z"",
+                  ""blocked_at"": ""2015-02-18T12:54:39.000Z""
                 },
                 ""lists"": {
-                  ""liked_at"": ""2014-11-20T00:36:48.506Z"",
-                  ""updated_at"": ""2014-11-20T06:52:18.837Z"",
-                  ""commented_at"": ""2014-11-20T06:51:30.250Z""
+                  ""liked_at"": ""2022-06-28T21:32:53.000Z"",
+                  ""updated_at"": ""2022-10-14T21:47:15.000Z"",
+                  ""commented_at"": ""2015-02-18T12:54:39.000Z""
                 },
                 ""watchlist"": {
-                  ""updated_at"": ""2014-11-20T06:52:18.837Z""
+                  ""updated_at"": ""2023-06-22T16:39:23.000Z""
+                },
+                ""favorites"": {
+                  ""updated_at"": ""2022-05-14T19:04:12.000Z""
                 },
                 ""recommendations"": {
-                  ""updated_at"": ""2014-11-20T06:52:18.837Z""
+                  ""updated_at"": ""2022-05-14T19:04:12.000Z""
+                },
+                ""collaborations"": {
+                  ""updated_at"": ""2015-02-18T12:54:39.000Z""
                 },
                 ""account"": {
-                  ""settings_at"": ""2014-11-20T06:52:18.837Z"",
-                  ""followed_at"": ""2014-11-20T06:52:18.837Z"",
-                  ""following_at"": ""2014-11-20T06:52:18.837Z"",
-                  ""pending_at"": ""2014-11-20T06:52:18.837Z"",
-                  ""requested_at"": ""2022-04-27T03:38:09.000Z""
+                  ""settings_at"": ""2023-06-26T18:08:03.000Z"",
+                  ""followed_at"": ""2020-12-14T14:12:28.000Z"",
+                  ""following_at"": ""2015-02-18T12:54:39.000Z"",
+                  ""pending_at"": ""2015-02-18T12:54:39.000Z"",
+                  ""requested_at"": ""2015-02-18T12:54:39.000Z""
                 },
                 ""saved_filters"": {
-                  ""updated_at"": ""2022-06-14T06:52:18.000Z""
+                  ""updated_at"": ""2015-02-18T12:54:39.000Z""
                 }
               }";
     }
