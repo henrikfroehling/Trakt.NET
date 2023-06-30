@@ -11,6 +11,9 @@
         /// <summary>Gets or sets the UTC datetime, when a show was lastly added to the watchlist.</summary>
         public DateTime? WatchlistedAt { get; set; }
 
+        /// <summary>Gets or sets the UTC datetime, when a show was lastly favorited.</summary>
+        public DateTime? FavoritedAt { get; set; }
+
         /// <summary>Gets or sets the UTC datetime, when a show was lastly recommended.</summary>
         public DateTime? RecommendationsAt { get; set; }
 

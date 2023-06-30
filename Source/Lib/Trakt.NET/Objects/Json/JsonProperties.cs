@@ -32,6 +32,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_CERTIFICATION = "certification";
         internal const string PROPERTY_NAME_CHARACTERS = "characters";
         internal const string PROPERTY_NAME_CODE = "code";
+        internal const string PROPERTY_NAME_COLLABORATIONS = "collaborations";
         internal const string PROPERTY_NAME_COLLECTED = "collected";
         internal const string PROPERTY_NAME_COLLECTED_AT = "collected_at";
         internal const string PROPERTY_NAME_COLLECTED_COUNT = "collected_count";
@@ -71,6 +72,8 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_EXPIRES_AT = "expires_at";
         internal const string PROPERTY_NAME_EXPIRES_IN = "expires_in";
         internal const string PROPERTY_NAME_FACEBOOK = "facebook";
+        internal const string PROPERTY_NAME_FAVORITED_AT = "favorited_at";
+        internal const string PROPERTY_NAME_FAVORITES = "favorites";
         internal const string PROPERTY_NAME_FIRST_AIRED = "first_aired";
         internal const string PROPERTY_NAME_FOLLOWED_AT = "followed_at";
         internal const string PROPERTY_NAME_FOLLOWERS = "followers";
