@@ -174,6 +174,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_SEASONS = "seasons";
         internal const string PROPERTY_NAME_SERIES_REGULAR = "series_regular";
         internal const string PROPERTY_NAME_SETTINGS_AT = "settings_at";
+        internal const string PROPERTY_NAME_SHARE_LINK = "share_link";
         internal const string PROPERTY_NAME_SHARING = "sharing";
         internal const string PROPERTY_NAME_SHARING_TEXT = "sharing_text";
         internal const string PROPERTY_NAME_SHOW = "show";

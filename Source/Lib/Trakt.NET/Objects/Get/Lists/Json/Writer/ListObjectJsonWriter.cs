@@ -32,6 +32,18 @@
                 await jsonWriter.WriteValueAsync(obj.Privacy.ObjectName, cancellationToken).ConfigureAwait(false);
             }
 
+            if (!string.IsNullOrEmpty(obj.ShareLink))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SHARE_LINK, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.ShareLink, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Type != null)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TYPE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Type.ObjectName, cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.DisplayNumbers.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_DISPLAY_NUMBERS, cancellationToken).ConfigureAwait(false);
