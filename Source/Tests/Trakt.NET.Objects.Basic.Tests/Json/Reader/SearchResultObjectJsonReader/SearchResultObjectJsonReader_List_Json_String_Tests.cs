@@ -27,8 +27,8 @@
             traktSearchResultItem.List.Privacy.Should().Be(TraktListPrivacy.Public);
             traktSearchResultItem.List.DisplayNumbers.Should().BeTrue();
             traktSearchResultItem.List.AllowComments.Should().BeFalse();
-            traktSearchResultItem.List.SortBy.Should().Be("rank");
-            traktSearchResultItem.List.SortHow.Should().Be("asc");
+            traktSearchResultItem.List.SortBy.Should().Be(TraktSortBy.Rank);
+            traktSearchResultItem.List.SortHow.Should().Be(TraktSortHow.Ascending);
             traktSearchResultItem.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.ItemCount.Should().Be(5);
@@ -68,8 +68,8 @@
             traktSearchResultItem.List.Privacy.Should().Be(TraktListPrivacy.Public);
             traktSearchResultItem.List.DisplayNumbers.Should().BeTrue();
             traktSearchResultItem.List.AllowComments.Should().BeFalse();
-            traktSearchResultItem.List.SortBy.Should().Be("rank");
-            traktSearchResultItem.List.SortHow.Should().Be("asc");
+            traktSearchResultItem.List.SortBy.Should().Be(TraktSortBy.Rank);
+            traktSearchResultItem.List.SortHow.Should().Be(TraktSortHow.Ascending);
             traktSearchResultItem.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.ItemCount.Should().Be(5);
@@ -109,8 +109,8 @@
             traktSearchResultItem.List.Privacy.Should().Be(TraktListPrivacy.Public);
             traktSearchResultItem.List.DisplayNumbers.Should().BeTrue();
             traktSearchResultItem.List.AllowComments.Should().BeFalse();
-            traktSearchResultItem.List.SortBy.Should().Be("rank");
-            traktSearchResultItem.List.SortHow.Should().Be("asc");
+            traktSearchResultItem.List.SortBy.Should().Be(TraktSortBy.Rank);
+            traktSearchResultItem.List.SortHow.Should().Be(TraktSortHow.Ascending);
             traktSearchResultItem.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.ItemCount.Should().Be(5);
@@ -204,8 +204,8 @@
             traktSearchResultItem.List.Privacy.Should().Be(TraktListPrivacy.Public);
             traktSearchResultItem.List.DisplayNumbers.Should().BeTrue();
             traktSearchResultItem.List.AllowComments.Should().BeFalse();
-            traktSearchResultItem.List.SortBy.Should().Be("rank");
-            traktSearchResultItem.List.SortHow.Should().Be("asc");
+            traktSearchResultItem.List.SortBy.Should().Be(TraktSortBy.Rank);
+            traktSearchResultItem.List.SortHow.Should().Be(TraktSortHow.Ascending);
             traktSearchResultItem.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.ItemCount.Should().Be(5);
@@ -245,8 +245,8 @@
             traktSearchResultItem.List.Privacy.Should().Be(TraktListPrivacy.Public);
             traktSearchResultItem.List.DisplayNumbers.Should().BeTrue();
             traktSearchResultItem.List.AllowComments.Should().BeFalse();
-            traktSearchResultItem.List.SortBy.Should().Be("rank");
-            traktSearchResultItem.List.SortHow.Should().Be("asc");
+            traktSearchResultItem.List.SortBy.Should().Be(TraktSortBy.Rank);
+            traktSearchResultItem.List.SortHow.Should().Be(TraktSortHow.Ascending);
             traktSearchResultItem.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.ItemCount.Should().Be(5);
@@ -286,8 +286,8 @@
             traktSearchResultItem.List.Privacy.Should().Be(TraktListPrivacy.Public);
             traktSearchResultItem.List.DisplayNumbers.Should().BeTrue();
             traktSearchResultItem.List.AllowComments.Should().BeFalse();
-            traktSearchResultItem.List.SortBy.Should().Be("rank");
-            traktSearchResultItem.List.SortHow.Should().Be("asc");
+            traktSearchResultItem.List.SortBy.Should().Be(TraktSortBy.Rank);
+            traktSearchResultItem.List.SortHow.Should().Be(TraktSortHow.Ascending);
             traktSearchResultItem.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             traktSearchResultItem.List.ItemCount.Should().Be(5);

@@ -35,8 +35,8 @@
             responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -68,8 +68,8 @@
             responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);

@@ -53,8 +53,8 @@
                 traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
-                traktUserComment.List.SortBy.Should().Be("rank");
-                traktUserComment.List.SortHow.Should().Be("asc");
+                traktUserComment.List.SortBy.Should().Be(TraktSortBy.Rank);
+                traktUserComment.List.SortHow.Should().Be(TraktSortHow.Ascending);
                 traktUserComment.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.ItemCount.Should().Be(5);
@@ -119,8 +119,8 @@
                 traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
-                traktUserComment.List.SortBy.Should().Be("rank");
-                traktUserComment.List.SortHow.Should().Be("asc");
+                traktUserComment.List.SortBy.Should().Be(TraktSortBy.Rank);
+                traktUserComment.List.SortHow.Should().Be(TraktSortHow.Ascending);
                 traktUserComment.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.ItemCount.Should().Be(5);
@@ -164,8 +164,8 @@
                 traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
-                traktUserComment.List.SortBy.Should().Be("rank");
-                traktUserComment.List.SortHow.Should().Be("asc");
+                traktUserComment.List.SortBy.Should().Be(TraktSortBy.Rank);
+                traktUserComment.List.SortHow.Should().Be(TraktSortHow.Ascending);
                 traktUserComment.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.ItemCount.Should().Be(5);
@@ -317,8 +317,8 @@
                 traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
-                traktUserComment.List.SortBy.Should().Be("rank");
-                traktUserComment.List.SortHow.Should().Be("asc");
+                traktUserComment.List.SortBy.Should().Be(TraktSortBy.Rank);
+                traktUserComment.List.SortHow.Should().Be(TraktSortHow.Ascending);
                 traktUserComment.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.ItemCount.Should().Be(5);
@@ -383,8 +383,8 @@
                 traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
-                traktUserComment.List.SortBy.Should().Be("rank");
-                traktUserComment.List.SortHow.Should().Be("asc");
+                traktUserComment.List.SortBy.Should().Be(TraktSortBy.Rank);
+                traktUserComment.List.SortHow.Should().Be(TraktSortHow.Ascending);
                 traktUserComment.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.ItemCount.Should().Be(5);
@@ -428,8 +428,8 @@
                 traktUserComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
                 traktUserComment.List.DisplayNumbers.Should().BeTrue();
                 traktUserComment.List.AllowComments.Should().BeFalse();
-                traktUserComment.List.SortBy.Should().Be("rank");
-                traktUserComment.List.SortHow.Should().Be("asc");
+                traktUserComment.List.SortBy.Should().Be(TraktSortBy.Rank);
+                traktUserComment.List.SortHow.Should().Be(TraktSortHow.Ascending);
                 traktUserComment.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 traktUserComment.List.ItemCount.Should().Be(5);

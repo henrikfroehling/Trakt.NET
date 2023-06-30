@@ -47,10 +47,10 @@
                             traktList.AllowComments = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SORT_BY:
-                            traktList.SortBy = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            traktList.SortBy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSortBy>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SORT_HOW:
-                            traktList.SortHow = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            traktList.SortHow = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSortHow>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_CREATED_AT:
                             {

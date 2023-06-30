@@ -121,7 +121,7 @@ namespace TraktNet.Objects.Get.Tests.Lists.Json.Writer
         {
             ITraktList traktList = new TraktList
             {
-                SortBy = "rank"
+                SortBy = TraktSortBy.Rank
             };
 
             var traktJsonWriter = new ListObjectJsonWriter();
@@ -134,7 +134,7 @@ namespace TraktNet.Objects.Get.Tests.Lists.Json.Writer
         {
             ITraktList traktList = new TraktList
             {
-                SortHow = "asc"
+                SortHow = TraktSortHow.Ascending
             };
 
             var traktJsonWriter = new ListObjectJsonWriter();
@@ -262,8 +262,8 @@ namespace TraktNet.Objects.Get.Tests.Lists.Json.Writer
                 Type = TraktListType.Personal,
                 DisplayNumbers = true,
                 AllowComments = false,
-                SortBy = "rank",
-                SortHow = "asc",
+                SortBy = TraktSortBy.Rank,
+                SortHow = TraktSortHow.Ascending,
                 CreatedAt = CREATED_AT,
                 UpdatedAt = UPDATED_AT,
                 ItemCount = 5,
