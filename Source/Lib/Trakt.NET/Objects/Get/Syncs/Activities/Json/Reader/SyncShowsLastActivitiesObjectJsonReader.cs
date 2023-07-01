@@ -39,6 +39,15 @@
 
                                 break;
                             }
+                        case JsonProperties.PROPERTY_NAME_FAVORITED_AT:
+                            {
+                                var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
+
+                                if (value.First)
+                                    showsLastActivities.FavoritedAt = value.Second;
+
+                                break;
+                            }
                         case JsonProperties.PROPERTY_NAME_RECOMMENDATIONS_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);

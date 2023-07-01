@@ -25,12 +25,12 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Implementations
             var savedFiltersLastActivities = await jsonReader.ReadObjectAsync(JSON) as TraktSyncSavedFiltersLastActivities;
 
             savedFiltersLastActivities.Should().NotBeNull();
-            savedFiltersLastActivities.UpdatedAt.Should().Be(DateTime.Parse("2022-06-14T06:52:18.000Z").ToUniversalTime());
+            savedFiltersLastActivities.UpdatedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
         }
 
         private const string JSON =
             @"{
-                ""updated_at"": ""2022-06-14T06:52:18.000Z""
+                ""updated_at"": ""2015-02-18T12:54:39.000Z""
               }";
     }
 }

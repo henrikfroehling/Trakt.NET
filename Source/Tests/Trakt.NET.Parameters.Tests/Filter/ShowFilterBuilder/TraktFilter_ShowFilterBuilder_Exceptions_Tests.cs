@@ -288,20 +288,10 @@
         }
 
         [Fact]
-        public void Test_TraktFilter_ShowFilterBuilder_WithNetworks_Params_ArgumentNullException()
+        public void Test_TraktFilter_ShowFilterBuilder_WithNetworkIds_ArgumentNullException()
         {
             Func<ITraktShowFilter> act = () => TraktFilter.NewShowFilter()
-                .WithNetworks(default(string))
-                .Build();
-
-            act.Should().Throw<ArgumentNullException>();
-        }
-
-        [Fact]
-        public void Test_TraktFilter_ShowFilterBuilder_WithNetworks_ArgumentNullException()
-        {
-            Func<ITraktShowFilter> act = () => TraktFilter.NewShowFilter()
-                .WithNetworks(default(List<string>))
+                .WithNetworkIds(default(List<uint>))
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();

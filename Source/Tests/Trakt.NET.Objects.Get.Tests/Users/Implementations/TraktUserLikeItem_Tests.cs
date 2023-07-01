@@ -73,8 +73,8 @@
             likeItem.List.Privacy.Should().Be(TraktListPrivacy.Public);
             likeItem.List.DisplayNumbers.Should().BeTrue();
             likeItem.List.AllowComments.Should().BeFalse();
-            likeItem.List.SortBy.Should().Be("rank");
-            likeItem.List.SortHow.Should().Be("asc");
+            likeItem.List.SortBy.Should().Be(TraktSortBy.Rank);
+            likeItem.List.SortHow.Should().Be(TraktSortHow.Ascending);
             likeItem.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             likeItem.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             likeItem.List.ItemCount.Should().Be(5);
