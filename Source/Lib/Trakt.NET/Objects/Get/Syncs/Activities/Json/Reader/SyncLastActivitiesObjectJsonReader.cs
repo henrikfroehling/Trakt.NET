@@ -23,6 +23,8 @@
                 var recommendationsLastActivitiesReader = new SyncRecommendationsLastActivitiesObjectJsonReader();
                 var watchlistLastActivitiesReader = new SyncWatchlistLastActivitiesObjectJsonReader();
                 var savedFiltersLastActivitiesReader = new SyncSavedFiltersLastActivitiesObjectJsonReader();
+                var favoritesLastActivitiesReader = new SyncFavoritesLastActivitiesObjectJsonReader();
+                var collaborationsLastActivitiesReader = new SyncCollaborationsLastActivitiesObjectJsonReader();
 
                 ITraktSyncLastActivities lastActivities = new TraktSyncLastActivities();
 
@@ -44,14 +46,14 @@
                         case JsonProperties.PROPERTY_NAME_MOVIES:
                             lastActivities.Movies = await moviesLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_EPISODES:
+                            lastActivities.Episodes = await episodesLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
                         case JsonProperties.PROPERTY_NAME_SHOWS:
                             lastActivities.Shows = await showsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SEASONS:
                             lastActivities.Seasons = await seasonsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
-                            break;
-                        case JsonProperties.PROPERTY_NAME_EPISODES:
-                            lastActivities.Episodes = await episodesLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_COMMENTS:
                             lastActivities.Comments = await commentsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
@@ -62,8 +64,14 @@
                         case JsonProperties.PROPERTY_NAME_WATCHLIST:
                             lastActivities.Watchlist = await watchlistLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
+                        case JsonProperties.PROPERTY_NAME_FAVORITES:
+                            lastActivities.Favorites = await favoritesLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
                         case JsonProperties.PROPERTY_NAME_RECOMMENDATIONS:
                             lastActivities.Recommendations = await recommendationsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_COLLABORATIONS:
+                            lastActivities.Collaborations = await collaborationsLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_ACCOUNT:
                             lastActivities.Account = await accountLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
