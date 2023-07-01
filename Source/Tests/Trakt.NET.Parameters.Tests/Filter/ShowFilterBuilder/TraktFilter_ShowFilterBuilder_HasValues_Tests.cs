@@ -218,20 +218,20 @@
         }
 
         [Fact]
-        public void Test_TraktFilter_ShowFilterBuilder_WithNetworks_Params_HasValues()
+        public void Test_TraktFilter_ShowFilterBuilder_WithNetworkIds_Params_HasValues()
         {
             ITraktShowFilter filter = TraktFilter.NewShowFilter()
-                .WithNetworks("HBO", "Netflix")
+                .WithNetworkIds(53, 78)
                 .Build();
 
             filter.HasValues.Should().BeTrue();
         }
 
         [Fact]
-        public void Test_TraktFilter_ShowFilterBuilder_WithNetworks_HasValues()
+        public void Test_TraktFilter_ShowFilterBuilder_WithNetworkIds_HasValues()
         {
             ITraktShowFilter filter = TraktFilter.NewShowFilter()
-                .WithNetworks(new List<string> { "HBO", "Netflix" })
+                .WithNetworkIds(new List<uint> { 53, 78 })
                 .Build();
 
             filter.HasValues.Should().BeTrue();
@@ -276,7 +276,7 @@
                 .WithTMDBVotes(7000, 9000)
                 .WithIMDBRatings(7, 9)
                 .WithIMDBVotes(7000, 9000)
-                .WithNetworks("HBO", "Netflix")
+                .WithNetworkIds(53, 78)
                 .WithStates(TraktShowStatus.Continuing, TraktShowStatus.InProduction)
                 .Build();
 
@@ -302,7 +302,7 @@
                 .WithTMDBVotes(7000, 9000)
                 .WithIMDBRatings(7, 9)
                 .WithIMDBVotes(7000, 9000)
-                .WithNetworks("HBO", "Netflix")
+                .WithNetworkIds(53, 78)
                 .WithStates(TraktShowStatus.Continuing, TraktShowStatus.InProduction)
                 .Build();
 
