@@ -278,29 +278,29 @@
         }
 
         [Fact]
-        public void Test_TraktFilter_ShowFilterBuilder_WithNetworks_Params_GetParameters()
+        public void Test_TraktFilter_ShowFilterBuilder_WithNetworkIds_Params_GetParameters()
         {
             ITraktShowFilter filter = TraktFilter.NewShowFilter()
-                .WithNetworks("HBO", "Netflix")
+                .WithNetworkIds(53, 78)
                 .Build();
 
             IDictionary<string, object> parameters = filter.GetParameters();
 
             parameters.Should().NotBeNull().And.HaveCount(1);
-            parameters.Should().Contain(new Dictionary<string, object> { { "networks", "HBO,Netflix" } });
+            parameters.Should().Contain(new Dictionary<string, object> { { "network_ids", "53,78" } });
         }
 
         [Fact]
-        public void Test_TraktFilter_ShowFilterBuilder_WithNetworks_GetParameters()
+        public void Test_TraktFilter_ShowFilterBuilder_WithNetworkIds_GetParameters()
         {
             ITraktShowFilter filter = TraktFilter.NewShowFilter()
-                .WithNetworks(new List<string> { "HBO", "Netflix" })
+                .WithNetworkIds(new List<uint> { 53, 78 })
                 .Build();
 
             IDictionary<string, object> parameters = filter.GetParameters();
 
             parameters.Should().NotBeNull().And.HaveCount(1);
-            parameters.Should().Contain(new Dictionary<string, object> { { "networks", "HBO,Netflix" } });
+            parameters.Should().Contain(new Dictionary<string, object> { { "network_ids", "53,78" } });
         }
 
         [Fact]
@@ -357,7 +357,7 @@
                 .WithTMDBVotes(7000, 9000)
                 .WithIMDBRatings(7, 9)
                 .WithIMDBVotes(7000, 9000)
-                .WithNetworks("HBO", "Netflix")
+                .WithNetworkIds(53, 78)
                 .WithStates(state1, state2)
                 .Build();
 
@@ -378,7 +378,7 @@
                                                                          { "tmdb_votes", "7000-9000" },
                                                                          { "imdb_ratings", "7.0-9.0" },
                                                                          { "imdb_votes", "7000-9000" },
-                                                                         { "networks", "HBO,Netflix" },
+                                                                         { "network_ids", "53,78" },
                                                                          { "status", $"{state1.UriName},{state2.UriName}" } });
         }
 
@@ -404,7 +404,7 @@
                 .WithTMDBVotes(7000, 9000)
                 .WithIMDBRatings(7, 9)
                 .WithIMDBVotes(7000, 9000)
-                .WithNetworks("HBO", "Netflix")
+                .WithNetworkIds(53, 78)
                 .WithStates(state1, state2)
                 .Build();
 
@@ -425,7 +425,7 @@
                                                                          { "tmdb_votes", "7000-9000" },
                                                                          { "imdb_ratings", "7.0-9.0" },
                                                                          { "imdb_votes", "7000-9000" },
-                                                                         { "networks", "HBO,Netflix" },
+                                                                         { "network_ids", "53,78" },
                                                                          { "status", $"{state1.UriName},{state2.UriName}" } });
         }
     }

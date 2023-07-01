@@ -8,7 +8,7 @@
     {
         private readonly TraktShowRatingsFilter _showRatingsFilter;
 
-        public string[] Networks { get; set; }
+        public uint[] NetworkIds { get; set; }
 
         public TraktShowStatus[] States { get; set; }
 
@@ -48,7 +48,7 @@
             internal set => _showRatingsFilter.IMDBVotes = value;
         }
 
-        public override bool HasValues => base.HasValues || HasNetworksSet || HasStatesSet || _showRatingsFilter.HasRatingsValues;
+        public override bool HasValues => base.HasValues || HasNetworkIdsSet || HasStatesSet || _showRatingsFilter.HasRatingsValues;
 
         public bool HasRatingsValues => _showRatingsFilter.HasRatingsValues;
 
@@ -58,8 +58,8 @@
         {
             IDictionary<string, object> parameters = base.GetParameters();
 
-            if (HasNetworksSet)
-                parameters.Add("networks", string.Join(",", Networks));
+            if (HasNetworkIdsSet)
+                parameters.Add("network_ids", string.Join(",", NetworkIds));
 
             if (HasStatesSet)
             {
@@ -83,7 +83,7 @@
 
         public string RatingsToString() => _showRatingsFilter.RatingsToString();
 
-        private bool HasNetworksSet => Networks != null && Networks.Length > 0;
+        private bool HasNetworkIdsSet => NetworkIds != null && NetworkIds.Length > 0;
 
         private bool HasStatesSet => States != null && States.Length > 0;
     }

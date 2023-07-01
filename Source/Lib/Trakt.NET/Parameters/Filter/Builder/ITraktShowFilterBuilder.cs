@@ -13,22 +13,22 @@
           ITraktShowRatingsFilterBuilder
     {
         /// <summary>
-        /// Adds the given <paramref name="network"/> and optional list of <paramref name="networks"/> to the builder.
-        /// <para>Empty values will be ignored.</para>
+        /// Adds the given <paramref name="networkId"/> and optional list of <paramref name="networkIds"/> to the builder.
+        /// <para>Network ids == 0 will be ignored.</para>
         /// </summary>
-        /// <param name="network">A network name which will be added to the builder.</param>
-        /// <param name="networks">An optional list of network names which will be added to the builder.</param>
+        /// <param name="networkId">A network id which will be added to the builder.</param>
+        /// <param name="networkIds">An optional list of network ids which will be added to the builder.</param>
         /// <returns>Returns a reference to itself. See also <seealso cref="ITraktShowFilterBuilder"/>.</returns>
-        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="network"/> is null.</exception>
-        ITraktShowFilterBuilder WithNetworks(string network, params string[] networks);
+        ITraktShowFilterBuilder WithNetworkIds(uint networkId, params uint[] networkIds);
 
         /// <summary>
-        /// Adds the given <paramref name="networks"/> to the builder.
-        /// <para>Empty values will be ignored.</para>
+        /// Adds the given <paramref name="networkIds"/> to the builder.
+        /// <para>Network ids == 0 will be ignored.</para>
         /// </summary>
-        /// <param name="networks">A list of network names which will be added to the builder.</param>
+        /// <param name="networkIds">A list of network ids which will be added to the builder.</param>
         /// <returns>Returns a reference to itself. See also <seealso cref="ITraktShowFilterBuilder"/>.</returns>
-        ITraktShowFilterBuilder WithNetworks(IEnumerable<string> networks);
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="networkIds"/> is null.</exception>
+        ITraktShowFilterBuilder WithNetworkIds(IEnumerable<uint> networkIds);
 
         /// <summary>Adds the given <paramref name="status"/> and optional list of <paramref name="states"/> to the builder.</summary>
         /// <param name="status">A <see cref="TraktShowStatus"/> which will be added to the builder.</param>
