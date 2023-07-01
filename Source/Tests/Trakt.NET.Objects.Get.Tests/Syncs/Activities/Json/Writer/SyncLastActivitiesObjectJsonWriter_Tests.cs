@@ -16,19 +16,20 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
         private readonly DateTime BLOCKED_AT = DateTime.UtcNow.AddMinutes(5);
         private readonly DateTime COLLECTED_AT = DateTime.UtcNow.AddMinutes(10);
         private readonly DateTime COMMENTED_AT = DateTime.UtcNow.AddMinutes(15);
-        private readonly DateTime FOLLOWED_AT = DateTime.UtcNow.AddMinutes(20);
-        private readonly DateTime FOLLOWING_AT = DateTime.UtcNow.AddMinutes(25);
-        private readonly DateTime HIDDEN_AT = DateTime.UtcNow.AddMinutes(30);
-        private readonly DateTime LIKED_AT = DateTime.UtcNow.AddMinutes(35);
-        private readonly DateTime PAUSED_AT = DateTime.UtcNow.AddMinutes(40);
-        private readonly DateTime PENDING_AT = DateTime.UtcNow.AddMinutes(45);
-        private readonly DateTime RATED_AT = DateTime.UtcNow.AddMinutes(50);
-        private readonly DateTime RECOMMENDATIONS_AT = DateTime.UtcNow.AddMinutes(55);
-        private readonly DateTime REQUESTED_AT = DateTime.UtcNow.AddMinutes(60);
-        private readonly DateTime SETTINGS_AT = DateTime.UtcNow.AddMinutes(65);
-        private readonly DateTime UPDATED_AT = DateTime.UtcNow.AddMinutes(70);
-        private readonly DateTime WATCHED_AT = DateTime.UtcNow.AddMinutes(75);
-        private readonly DateTime WATCHLISTED_AT = DateTime.UtcNow.AddMinutes(80);
+        private readonly DateTime FAVORITED_AT = DateTime.UtcNow.AddMinutes(20);
+        private readonly DateTime FOLLOWED_AT = DateTime.UtcNow.AddMinutes(25);
+        private readonly DateTime FOLLOWING_AT = DateTime.UtcNow.AddMinutes(30);
+        private readonly DateTime HIDDEN_AT = DateTime.UtcNow.AddMinutes(35);
+        private readonly DateTime LIKED_AT = DateTime.UtcNow.AddMinutes(40);
+        private readonly DateTime PAUSED_AT = DateTime.UtcNow.AddMinutes(45);
+        private readonly DateTime PENDING_AT = DateTime.UtcNow.AddMinutes(50);
+        private readonly DateTime RATED_AT = DateTime.UtcNow.AddMinutes(55);
+        private readonly DateTime RECOMMENDATIONS_AT = DateTime.UtcNow.AddMinutes(60);
+        private readonly DateTime REQUESTED_AT = DateTime.UtcNow.AddMinutes(65);
+        private readonly DateTime SETTINGS_AT = DateTime.UtcNow.AddMinutes(70);
+        private readonly DateTime UPDATED_AT = DateTime.UtcNow.AddMinutes(75);
+        private readonly DateTime WATCHED_AT = DateTime.UtcNow.AddMinutes(80);
+        private readonly DateTime WATCHLISTED_AT = DateTime.UtcNow.AddMinutes(85);
 
         [Fact]
         public async Task Test_SyncLastActivitiesObjectJsonWriter_Exceptions()
@@ -36,6 +37,14 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
             var traktJsonWriter = new SyncLastActivitiesObjectJsonWriter();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             await action.Should().ThrowAsync<ArgumentNullException>();
+        }
+
+        [Fact]
+        public async Task Test_SyncLastActivitiesObjectJsonWriter_Empty()
+        {
+            var traktJsonWriter = new SyncLastActivitiesObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(new TraktSyncLastActivities());
+            json.Should().Be("{}");
         }
 
         [Fact]
@@ -62,10 +71,10 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
                     CollectedAt = COLLECTED_AT,
                     RatedAt = RATED_AT,
                     WatchlistedAt = WATCHLISTED_AT,
+                    FavoritedAt = FAVORITED_AT,
                     RecommendationsAt = RECOMMENDATIONS_AT,
                     CommentedAt = COMMENTED_AT,
-                    PausedAt = PAUSED_AT,
-                    HiddenAt = HIDDEN_AT
+                    PausedAt = PAUSED_AT
                 }
             };
 
@@ -75,56 +84,10 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
                              $"\"collected_at\":\"{COLLECTED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"rated_at\":\"{RATED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"watchlisted_at\":\"{WATCHLISTED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"favorited_at\":\"{FAVORITED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"recommendations_at\":\"{RECOMMENDATIONS_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"paused_at\":\"{PAUSED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"hidden_at\":\"{HIDDEN_AT.ToTraktLongDateTimeString()}\"}}}}");
-        }
-
-        [Fact]
-        public async Task Test_SyncLastActivitiesObjectJsonWriter_Only_Shows_Property()
-        {
-            ITraktSyncLastActivities syncLastActivities = new TraktSyncLastActivities
-            {
-                Shows = new TraktSyncShowsLastActivities
-                {
-                    RatedAt = RATED_AT,
-                    WatchlistedAt = WATCHLISTED_AT,
-                    RecommendationsAt = RECOMMENDATIONS_AT,
-                    CommentedAt = COMMENTED_AT,
-                    HiddenAt = HIDDEN_AT
-                }
-            };
-
-            var traktJsonWriter = new SyncLastActivitiesObjectJsonWriter();
-            string json = await traktJsonWriter.WriteObjectAsync(syncLastActivities);
-            json.Should().Be($"{{\"shows\":{{\"rated_at\":\"{RATED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"watchlisted_at\":\"{WATCHLISTED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"recommendations_at\":\"{RECOMMENDATIONS_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"hidden_at\":\"{HIDDEN_AT.ToTraktLongDateTimeString()}\"}}}}");
-        }
-
-        [Fact]
-        public async Task Test_SyncLastActivitiesObjectJsonWriter_Only_Seasons_Property()
-        {
-            ITraktSyncLastActivities syncLastActivities = new TraktSyncLastActivities
-            {
-                Seasons = new TraktSyncSeasonsLastActivities
-                {
-                    RatedAt = RATED_AT,
-                    WatchlistedAt = WATCHLISTED_AT,
-                    CommentedAt = COMMENTED_AT,
-                    HiddenAt = HIDDEN_AT
-                }
-            };
-
-            var traktJsonWriter = new SyncLastActivitiesObjectJsonWriter();
-            string json = await traktJsonWriter.WriteObjectAsync(syncLastActivities);
-            json.Should().Be($"{{\"seasons\":{{\"rated_at\":\"{RATED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"watchlisted_at\":\"{WATCHLISTED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"hidden_at\":\"{HIDDEN_AT.ToTraktLongDateTimeString()}\"}}}}");
+                             $"\"paused_at\":\"{PAUSED_AT.ToTraktLongDateTimeString()}\"}}}}");
         }
 
         [Fact]
@@ -151,6 +114,54 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
                              $"\"watchlisted_at\":\"{WATCHLISTED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"paused_at\":\"{PAUSED_AT.ToTraktLongDateTimeString()}\"}}}}");
+        }
+
+        [Fact]
+        public async Task Test_SyncLastActivitiesObjectJsonWriter_Only_Shows_Property()
+        {
+            ITraktSyncLastActivities syncLastActivities = new TraktSyncLastActivities
+            {
+                Shows = new TraktSyncShowsLastActivities
+                {
+                    RatedAt = RATED_AT,
+                    WatchlistedAt = WATCHLISTED_AT,
+                    FavoritedAt = FAVORITED_AT,
+                    RecommendationsAt = RECOMMENDATIONS_AT,
+                    CommentedAt = COMMENTED_AT,
+                    HiddenAt = HIDDEN_AT
+                }
+            };
+
+            var traktJsonWriter = new SyncLastActivitiesObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(syncLastActivities);
+            json.Should().Be($"{{\"shows\":{{\"rated_at\":\"{RATED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"watchlisted_at\":\"{WATCHLISTED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"favorited_at\":\"{FAVORITED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"recommendations_at\":\"{RECOMMENDATIONS_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"hidden_at\":\"{HIDDEN_AT.ToTraktLongDateTimeString()}\"}}}}");
+        }
+
+        [Fact]
+        public async Task Test_SyncLastActivitiesObjectJsonWriter_Only_Seasons_Property()
+        {
+            ITraktSyncLastActivities syncLastActivities = new TraktSyncLastActivities
+            {
+                Seasons = new TraktSyncSeasonsLastActivities
+                {
+                    RatedAt = RATED_AT,
+                    WatchlistedAt = WATCHLISTED_AT,
+                    CommentedAt = COMMENTED_AT,
+                    HiddenAt = HIDDEN_AT
+                }
+            };
+
+            var traktJsonWriter = new SyncLastActivitiesObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(syncLastActivities);
+            json.Should().Be($"{{\"seasons\":{{\"rated_at\":\"{RATED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"watchlisted_at\":\"{WATCHLISTED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"hidden_at\":\"{HIDDEN_AT.ToTraktLongDateTimeString()}\"}}}}");
         }
 
         [Fact]
@@ -208,6 +219,22 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
         }
 
         [Fact]
+        public async Task Test_SyncLastActivitiesObjectJsonWriter_Only_Favorites_Property()
+        {
+            ITraktSyncLastActivities syncLastActivities = new TraktSyncLastActivities
+            {
+                Favorites = new TraktSyncFavoritesLastActivities
+                {
+                    UpdatedAt = UPDATED_AT
+                }
+            };
+
+            var traktJsonWriter = new SyncLastActivitiesObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(syncLastActivities);
+            json.Should().Be($"{{\"favorites\":{{\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"}}}}");
+        }
+
+        [Fact]
         public async Task Test_SyncLastActivitiesObjectJsonWriter_Only_Recommendations_Property()
         {
             ITraktSyncLastActivities syncLastActivities = new TraktSyncLastActivities
@@ -221,6 +248,22 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
             var traktJsonWriter = new SyncLastActivitiesObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(syncLastActivities);
             json.Should().Be($"{{\"recommendations\":{{\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"}}}}");
+        }
+
+        [Fact]
+        public async Task Test_SyncLastActivitiesObjectJsonWriter_Only_Collaborations_Property()
+        {
+            ITraktSyncLastActivities syncLastActivities = new TraktSyncLastActivities
+            {
+                Collaborations = new TraktSyncCollaborationsLastActivities
+                {
+                    UpdatedAt = UPDATED_AT
+                }
+            };
+
+            var traktJsonWriter = new SyncLastActivitiesObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(syncLastActivities);
+            json.Should().Be($"{{\"collaborations\":{{\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"}}}}");
         }
 
         [Fact]
@@ -275,10 +318,10 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
                     CollectedAt = COLLECTED_AT,
                     RatedAt = RATED_AT,
                     WatchlistedAt = WATCHLISTED_AT,
+                    FavoritedAt = FAVORITED_AT,
                     RecommendationsAt = RECOMMENDATIONS_AT,
                     CommentedAt = COMMENTED_AT,
-                    PausedAt = PAUSED_AT,
-                    HiddenAt = HIDDEN_AT
+                    PausedAt = PAUSED_AT
                 },
                 Episodes = new TraktSyncEpisodesLastActivities
                 {
@@ -293,6 +336,7 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
                 {
                     RatedAt = RATED_AT,
                     WatchlistedAt = WATCHLISTED_AT,
+                    FavoritedAt = FAVORITED_AT,
                     RecommendationsAt = RECOMMENDATIONS_AT,
                     CommentedAt = COMMENTED_AT,
                     HiddenAt = HIDDEN_AT
@@ -319,7 +363,15 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
                 {
                     UpdatedAt = UPDATED_AT
                 },
+                Favorites = new TraktSyncFavoritesLastActivities
+                {
+                    UpdatedAt = UPDATED_AT
+                },
                 Recommendations = new TraktSyncRecommendationsLastActivities
+                {
+                    UpdatedAt = UPDATED_AT
+                },
+                Collaborations = new TraktSyncCollaborationsLastActivities
                 {
                     UpdatedAt = UPDATED_AT
                 },
@@ -344,12 +396,19 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
                              $"\"collected_at\":\"{COLLECTED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"rated_at\":\"{RATED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"watchlisted_at\":\"{WATCHLISTED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"favorited_at\":\"{FAVORITED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"recommendations_at\":\"{RECOMMENDATIONS_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"paused_at\":\"{PAUSED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"hidden_at\":\"{HIDDEN_AT.ToTraktLongDateTimeString()}\"}}," +
+                             $"\"paused_at\":\"{PAUSED_AT.ToTraktLongDateTimeString()}\"}}," +
+                             $"\"episodes\":{{\"watched_at\":\"{WATCHED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"collected_at\":\"{COLLECTED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"rated_at\":\"{RATED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"watchlisted_at\":\"{WATCHLISTED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"paused_at\":\"{PAUSED_AT.ToTraktLongDateTimeString()}\"}}," +
                              $"\"shows\":{{\"rated_at\":\"{RATED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"watchlisted_at\":\"{WATCHLISTED_AT.ToTraktLongDateTimeString()}\"," +
+                             $"\"favorited_at\":\"{FAVORITED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"recommendations_at\":\"{RECOMMENDATIONS_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"hidden_at\":\"{HIDDEN_AT.ToTraktLongDateTimeString()}\"}}," +
@@ -357,19 +416,15 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Writer
                              $"\"watchlisted_at\":\"{WATCHLISTED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"hidden_at\":\"{HIDDEN_AT.ToTraktLongDateTimeString()}\"}}," +
-                             $"\"episodes\":{{\"watched_at\":\"{WATCHED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"collected_at\":\"{COLLECTED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"rated_at\":\"{RATED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"watchlisted_at\":\"{WATCHLISTED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"," +
-                             $"\"paused_at\":\"{PAUSED_AT.ToTraktLongDateTimeString()}\"}}," +
                              $"\"comments\":{{\"liked_at\":\"{LIKED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"blocked_at\":\"{BLOCKED_AT.ToTraktLongDateTimeString()}\"}}," +
                              $"\"lists\":{{\"liked_at\":\"{LIKED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"commented_at\":\"{COMMENTED_AT.ToTraktLongDateTimeString()}\"}}," +
                              $"\"watchlist\":{{\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"}}," +
+                             $"\"favorites\":{{\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"}}," +
                              $"\"recommendations\":{{\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"}}," +
+                             $"\"collaborations\":{{\"updated_at\":\"{UPDATED_AT.ToTraktLongDateTimeString()}\"}}," +
                              $"\"account\":{{\"settings_at\":\"{SETTINGS_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"followed_at\":\"{FOLLOWED_AT.ToTraktLongDateTimeString()}\"," +
                              $"\"following_at\":\"{FOLLOWING_AT.ToTraktLongDateTimeString()}\"," +
