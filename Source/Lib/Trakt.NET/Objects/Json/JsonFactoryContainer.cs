@@ -288,8 +288,10 @@
 
             // sync activities objects
             s_jsonIOFactories.Add(typeof(ITraktSyncAccountLastActivities), new SyncAccountLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncCollaborationsLastActivities), new SyncCollaborationsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncCommentsLastActivities), new SyncCommentsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncEpisodesLastActivities), new SyncEpisodesLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncFavoritesLastActivities), new SyncFavoritesLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncLastActivities), new SyncLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncListsLastActivities), new SyncListsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncMoviesLastActivities), new SyncMoviesLastActivitiesJsonIOFactory());

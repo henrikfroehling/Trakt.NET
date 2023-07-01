@@ -25,12 +25,12 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Implementations
             var watchlistLastActivities = await jsonReader.ReadObjectAsync(JSON) as TraktSyncWatchlistLastActivities;
 
             watchlistLastActivities.Should().NotBeNull();
-            watchlistLastActivities.UpdatedAt.Should().Be(DateTime.Parse("2014-09-01T09:10:11.000Z").ToUniversalTime());
+            watchlistLastActivities.UpdatedAt.Should().Be(DateTime.Parse("2023-06-22T16:39:23.000Z").ToUniversalTime());
         }
 
         private const string JSON =
             @"{
-                ""updated_at"": ""2014-09-01T09:10:11.000Z""
+                ""updated_at"": ""2023-06-22T16:39:23.000Z""
               }";
     }
 }
