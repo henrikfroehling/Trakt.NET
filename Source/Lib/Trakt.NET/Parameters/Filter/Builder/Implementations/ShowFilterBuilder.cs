@@ -8,29 +8,26 @@
     internal sealed class ShowFilterBuilder : AShowAndMovieFilterBuilder<ITraktShowFilter, ITraktShowFilterBuilder>, ITraktShowFilterBuilder
     {
         private readonly ShowRatingsFilterBuilder _showRatingsFilterBuilder;
-        private readonly Lazy<List<string>> _networks;
+        private readonly Lazy<List<uint>> _networks;
         private readonly Lazy<List<TraktShowStatus>> _states;
 
         internal ShowFilterBuilder()
         {
             _showRatingsFilterBuilder = new ShowRatingsFilterBuilder(this);
-            _networks = new Lazy<List<string>>();
+            _networks = new Lazy<List<uint>>();
             _states = new Lazy<List<TraktShowStatus>>();
         }
 
-        public ITraktShowFilterBuilder WithNetworks(string network, params string[] networks)
+        public ITraktShowFilterBuilder WithNetworkIds(uint networkId, params uint[] networkIds)
         {
-            if (network == null)
-                throw new ArgumentNullException(nameof(network));
+            if (networkId > 0)
+                _networks.Value.Add(networkId);
 
-            if (network.Length > 0)
-                _networks.Value.Add(network);
-
-            if (networks?.Length > 0)
+            if (networkIds?.Length > 0)
             {
-                foreach (string value in networks)
+                foreach (uint value in networkIds)
                 {
-                    if (!string.IsNullOrEmpty(value))
+                    if (value > 0)
                         _networks.Value.Add(value);
                 }
             }
@@ -38,15 +35,15 @@
             return GetBuilder();
         }
 
-        public ITraktShowFilterBuilder WithNetworks(IEnumerable<string> networks)
+        public ITraktShowFilterBuilder WithNetworkIds(IEnumerable<uint> networkIds)
         {
-            if (networks == null)
-                throw new ArgumentNullException(nameof(networks));
+            if (networkIds == null)
+                throw new ArgumentNullException(nameof(networkIds));
 
-            foreach (string network in networks)
+            foreach (uint networkId in networkIds)
             {
-                if (!string.IsNullOrEmpty(network))
-                    _networks.Value.Add(network);
+                if (networkId > 0)
+                    _networks.Value.Add(networkId);
             }
 
             return GetBuilder();
@@ -142,7 +139,7 @@
                 filter.Certifications = _certifications.Value.ToArray();
 
             if (_networks.IsValueCreated && _networks.Value.Any())
-                filter.Networks = _networks.Value.ToArray();
+                filter.NetworkIds = _networks.Value.ToArray();
 
             if (_states.IsValueCreated && _states.Value.Any())
                 filter.States = _states.Value.ToArray();
