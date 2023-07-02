@@ -28,11 +28,6 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup Condition="'$(IsTestProject)' != 'true' AND '$(IsTestUtilityProject)' == 'true'">
-    <PackageReference Include="RichardSzalay.MockHttp" Version="6.0.0" />
-    <PackageReference Include="System.Runtime" Version="4.3.1" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\Lib\Trakt.NET\Trakt.NET.csproj" />
   </ItemGroup>
