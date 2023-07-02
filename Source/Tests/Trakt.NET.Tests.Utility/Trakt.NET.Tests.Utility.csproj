@@ -4,4 +4,8 @@
     <ProjectGuid>{3AD110F4-2E28-4269-9449-2A45804523B5}</ProjectGuid>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="RichardSzalay.MockHttp" Version="6.0.0" />
+  </ItemGroup>
+
 </Project>
