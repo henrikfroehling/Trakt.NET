@@ -11,24 +11,24 @@ namespace TraktNet.Requests.Tests.Base
     using Xunit;
 
     [TestCategory("Requests.Base")]
-    public class AMostRecommendedRequest_1_Tests
+    public class AMostFavoritedRequest_1_Tests
     {
-        internal class MostRecommendedRequestMock : AMostRecommendedRequest<int>
+        internal class MostFavoritedRequestMock : AMostFavoritedRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
             public override void Validate() => throw new NotImplementedException();
         }
 
         [Fact]
-        public void Test_AMostRecommendedRequest_1_Has_AuthorizationRequirement_NotRequired()
+        public void Test_AMostFavoritedRequest_1_Has_AuthorizationRequirement_NotRequired()
         {
-            var requestMock = new MostRecommendedRequestMock();
+            var requestMock = new MostFavoritedRequestMock();
             requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
         }
 
-        [Theory, ClassData(typeof(MostRecommendedRequestMock_TestData))]
-        public void Test_AMostRecommendedRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                   IDictionary<string, object> expected)
+        [Theory, ClassData(typeof(MostFavoritedRequestMock_TestData))]
+        public void Test_AMostFavoritedRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+                                                                                 IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 
@@ -36,7 +36,7 @@ namespace TraktNet.Requests.Tests.Base
                 values.Should().Contain(expected);
         }
 
-        public class MostRecommendedRequestMock_TestData : IEnumerable<object[]>
+        public class MostFavoritedRequestMock_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly ITraktMovieFilter _filter = TraktFilter.NewMovieFilter().WithYears(2005, 2016).Build();
@@ -44,115 +44,115 @@ namespace TraktNet.Requests.Tests.Base
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly MostRecommendedRequestMock _request1 = new MostRecommendedRequestMock();
+            private static readonly MostFavoritedRequestMock _request1 = new MostFavoritedRequestMock();
 
-            private static readonly MostRecommendedRequestMock _request2 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request2 = new MostFavoritedRequestMock
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly MostRecommendedRequestMock _request3 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request3 = new MostFavoritedRequestMock
             {
                 Filter = _filter
             };
 
-            private static readonly MostRecommendedRequestMock _request4 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request4 = new MostFavoritedRequestMock
             {
                 Period = _timePeriod
             };
 
-            private static readonly MostRecommendedRequestMock _request5 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request5 = new MostFavoritedRequestMock
             {
                 Page = _page
             };
 
-            private static readonly MostRecommendedRequestMock _request6 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request6 = new MostFavoritedRequestMock
             {
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request7 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request7 = new MostFavoritedRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly MostRecommendedRequestMock _request8 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request8 = new MostFavoritedRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Period = _timePeriod
             };
 
-            private static readonly MostRecommendedRequestMock _request9 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request9 = new MostFavoritedRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly MostRecommendedRequestMock _request10 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request10 = new MostFavoritedRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request11 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request11 = new MostFavoritedRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request12 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request12 = new MostFavoritedRequestMock
             {
                 Filter = _filter,
                 Period = _timePeriod
             };
 
-            private static readonly MostRecommendedRequestMock _request13 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request13 = new MostFavoritedRequestMock
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly MostRecommendedRequestMock _request14 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request14 = new MostFavoritedRequestMock
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request15 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request15 = new MostFavoritedRequestMock
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request16 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request16 = new MostFavoritedRequestMock
             {
                 Period = _timePeriod,
                 Page = _page
             };
 
-            private static readonly MostRecommendedRequestMock _request17 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request17 = new MostFavoritedRequestMock
             {
                 Period = _timePeriod,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request18 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request18 = new MostFavoritedRequestMock
             {
                 Period = _timePeriod,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request19 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request19 = new MostFavoritedRequestMock
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request20 = new MostRecommendedRequestMock
+            private static readonly MostFavoritedRequestMock _request20 = new MostFavoritedRequestMock
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -163,7 +163,7 @@ namespace TraktNet.Requests.Tests.Base
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public MostRecommendedRequestMock_TestData()
+            public MostFavoritedRequestMock_TestData()
             {
                 SetupPathParamters();
             }
