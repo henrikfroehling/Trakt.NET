@@ -12,7 +12,7 @@
         private const uint PAGE = 2;
         private const uint LIMIT = 4;
         private const int ITEM_COUNT = 2;
-        private const int MOST_RECOMMENDED_ITEM_COUNT = 3;
+        private const int MOST_FAVORITED_ITEM_COUNT = 3;
         private const int USER_COUNT = 300;
         private const int LISTS_ITEM_COUNT = 10;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
@@ -1229,7 +1229,7 @@
                 }
               ]";
 
-        private const string MOST_RECOMMENDED_MOVIES_JSON =
+        private const string MOST_FAVORITED_MOVIES_JSON =
             @"[
                 {
                   ""user_count"": 76254,

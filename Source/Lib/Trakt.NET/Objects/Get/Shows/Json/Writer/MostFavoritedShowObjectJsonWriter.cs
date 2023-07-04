@@ -5,9 +5,9 @@ namespace TraktNet.Objects.Get.Shows.Json.Writer
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class MostRecommendedShowObjectJsonWriter : AObjectJsonWriter<ITraktMostRecommendedShow>
+    internal class MostFavoritedShowObjectJsonWriter : AObjectJsonWriter<ITraktMostFavoritedShow>
     {
-        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktMostRecommendedShow obj, CancellationToken cancellationToken = default)
+        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktMostFavoritedShow obj, CancellationToken cancellationToken = default)
         {
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);

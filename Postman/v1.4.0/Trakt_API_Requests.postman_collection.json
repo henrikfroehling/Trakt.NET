@@ -7893,10 +7893,10 @@
 					]
 				},
 				{
-					"name": "Recommended",
+					"name": "Favorited",
 					"item": [
 						{
-							"name": "Get the most recommended movies",
+							"name": "Get the most favorited movies",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -7917,13 +7917,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/movies/recommended",
+									"raw": "{{API_URL}}/movies/favorited",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"movies",
-										"recommended"
+										"favorited"
 									],
 									"query": [
 										{
@@ -8046,7 +8046,7 @@
 							"response": []
 						},
 						{
-							"name": "Get the most recommended movies (period)",
+							"name": "Get the most favorited movies (period)",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -8067,13 +8067,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/movies/recommended/:period",
+									"raw": "{{API_URL}}/movies/favorited/:period",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"movies",
-										"recommended",
+										"favorited",
 										":period"
 									],
 									"query": [
@@ -15132,10 +15132,10 @@
 					]
 				},
 				{
-					"name": "Recommended",
+					"name": "Favorited",
 					"item": [
 						{
-							"name": "Get the most recommended shows",
+							"name": "Get the most favorited shows",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -15156,13 +15156,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/shows/recommended",
+									"raw": "{{API_URL}}/shows/favorited",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"shows",
-										"recommended"
+										"favorited"
 									],
 									"query": [
 										{
@@ -15285,7 +15285,7 @@
 							"response": []
 						},
 						{
-							"name": "Get the most recommended shows (period)",
+							"name": "Get the most favorited shows (period)",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -15306,13 +15306,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/shows/recommended/:period",
+									"raw": "{{API_URL}}/shows/favorited/:period",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"shows",
-										"recommended",
+										"favorited",
 										":period"
 									],
 									"query": [
