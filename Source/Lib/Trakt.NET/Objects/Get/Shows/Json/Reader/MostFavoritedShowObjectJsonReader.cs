@@ -5,15 +5,15 @@ namespace TraktNet.Objects.Get.Shows.Json.Reader
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class MostRecommendedShowObjectJsonReader : AObjectJsonReader<ITraktMostRecommendedShow>
+    internal class MostFavoritedShowObjectJsonReader : AObjectJsonReader<ITraktMostFavoritedShow>
     {
-        public override async Task<ITraktMostRecommendedShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<ITraktMostFavoritedShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                ITraktMostRecommendedShow traktMostRecommendedShow = new TraktMostRecommendedShow();
+                ITraktMostFavoritedShow traktMostFavoritedShow = new TraktMostFavoritedShow();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -22,11 +22,11 @@ namespace TraktNet.Objects.Get.Shows.Json.Reader
                     switch (propertyName)
                     {
                         case JsonProperties.PROPERTY_NAME_USER_COUNT:
-                            traktMostRecommendedShow.UserCount = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            traktMostFavoritedShow.UserCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SHOW:
                             var showObjectReader = new ShowObjectJsonReader();
-                            traktMostRecommendedShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            traktMostFavoritedShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -34,10 +34,10 @@ namespace TraktNet.Objects.Get.Shows.Json.Reader
                     }
                 }
 
-                return traktMostRecommendedShow;
+                return traktMostFavoritedShow;
             }
 
-            return await Task.FromResult(default(ITraktMostRecommendedShow));
+            return await Task.FromResult(default(ITraktMostFavoritedShow));
         }
     }
 }

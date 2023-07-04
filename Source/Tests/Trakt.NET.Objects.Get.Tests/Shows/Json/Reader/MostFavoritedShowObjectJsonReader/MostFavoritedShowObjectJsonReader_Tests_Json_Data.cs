@@ -1,6 +1,6 @@
 namespace TraktNet.Objects.Get.Tests.Shows.Json.Reader
 {
-    public partial class MostRecommendedShowObjectJsonReader_Tests
+    public partial class MostFavoritedShowObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{
