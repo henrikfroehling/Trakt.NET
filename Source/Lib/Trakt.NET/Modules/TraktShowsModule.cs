@@ -973,18 +973,18 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{ITraktMostRecommendedShow}"/> instance containing the queried most recommended shows and which also
+        /// An <see cref="TraktPagedResponse{ITraktMostFavoritedShow}"/> instance containing the queried most recommended shows and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostRecommendedShow" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostFavoritedShow" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktMostRecommendedShow>> GetMostRecommendedShowsAsync(TraktTimePeriod period = null,
-                                                                                                TraktExtendedInfo extendedInfo = null,
-                                                                                                ITraktShowFilter filter = null,
-                                                                                                TraktPagedParameters pagedParameters = null,
-                                                                                                CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktMostFavoritedShow>> GetMostRecommendedShowsAsync(TraktTimePeriod period = null,
+                                                                                              TraktExtendedInfo extendedInfo = null,
+                                                                                              ITraktShowFilter filter = null,
+                                                                                              TraktPagedParameters pagedParameters = null,
+                                                                                              CancellationToken cancellationToken = default)
         {
             var request = new ShowsMostRecommendedRequest
             {

@@ -23,7 +23,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             TraktClient client = TestUtility.GetMockClient(GET_MOST_RECOMMENDED_SHOWS_URI,
                                                            MOST_RECOMMENDED_SHOWS_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync();
 
             response.Should().NotBeNull();
@@ -42,7 +42,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_SHOWS_URI}?{FILTER}",
                                                            MOST_RECOMMENDED_SHOWS_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, null, FILTER);
 
             response.Should().NotBeNull();
@@ -61,7 +61,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}",
                                                            MOST_RECOMMENDED_SHOWS_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD);
 
             response.Should().NotBeNull();
@@ -80,7 +80,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}?{FILTER}",
                                                            MOST_RECOMMENDED_SHOWS_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, null, FILTER);
 
             response.Should().NotBeNull();
@@ -99,7 +99,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_SHOWS_URI}?extended={EXTENDED_INFO}",
                                                            MOST_RECOMMENDED_SHOWS_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
@@ -118,7 +118,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_SHOWS_URI}?extended={EXTENDED_INFO}&{FILTER}",
                                                            MOST_RECOMMENDED_SHOWS_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
@@ -139,7 +139,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -160,7 +160,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
@@ -181,7 +181,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -202,7 +202,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
@@ -221,7 +221,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}",
                                                            MOST_RECOMMENDED_SHOWS_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, EXTENDED_INFO);
 
             response.Should().NotBeNull();
@@ -240,7 +240,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_SHOWS_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}&{FILTER}",
                                                            MOST_RECOMMENDED_SHOWS_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
@@ -261,7 +261,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -282,7 +282,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
@@ -303,7 +303,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -324,7 +324,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
@@ -345,7 +345,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -366,7 +366,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
@@ -387,7 +387,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -408,7 +408,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
@@ -429,7 +429,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -450,7 +450,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
@@ -471,7 +471,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -492,7 +492,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
@@ -513,7 +513,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -534,7 +534,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
@@ -555,7 +555,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -576,7 +576,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
@@ -598,7 +598,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -622,7 +622,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -646,7 +646,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -670,7 +670,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -694,7 +694,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -735,7 +735,7 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedShow> response =
+            TraktPagedResponse<ITraktMostFavoritedShow> response =
                 await client.Shows.GetMostRecommendedShowsAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
