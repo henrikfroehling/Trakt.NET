@@ -10,18 +10,18 @@ namespace TraktNet.Requests.Tests.Movies
     using Xunit;
 
     [TestCategory("Requests.Movies.Lists")]
-    public class MoviesMostRecommendedRequest_Tests
+    public class MoviesMostFavoritedRequest_Tests
     {
         [Fact]
-        public void Test_MoviesMostRecommendedRequest_Has_Valid_UriTemplate()
+        public void Test_MoviesMostFavoritedRequest_Has_Valid_UriTemplate()
         {
-            var request = new MoviesMostRecommendedRequest();
-            request.UriTemplate.Should().Be("movies/recommended{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
+            var request = new MoviesMostFavoritedRequest();
+            request.UriTemplate.Should().Be("movies/favorited{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
         }
 
-        [Theory, ClassData(typeof(MoviesMostRecommendedRequest_TestData))]
-        public void Test_MoviesMostRecommendedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                      IDictionary<string, object> expected)
+        [Theory, ClassData(typeof(MoviesMostFavoritedRequest_TestData))]
+        public void Test_MoviesMostFavoritedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+                                                                                    IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 
@@ -29,7 +29,7 @@ namespace TraktNet.Requests.Tests.Movies
                 values.Should().Contain(expected);
         }
 
-        public class MoviesMostRecommendedRequest_TestData : IEnumerable<object[]>
+        public class MoviesMostFavoritedRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly ITraktMovieFilter _filter = TraktFilter.NewMovieFilter().WithYears(2005, 2016).Build();
@@ -37,115 +37,115 @@ namespace TraktNet.Requests.Tests.Movies
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly MoviesMostRecommendedRequest _request1 = new MoviesMostRecommendedRequest();
+            private static readonly MoviesMostFavoritedRequest _request1 = new MoviesMostFavoritedRequest();
 
-            private static readonly MoviesMostRecommendedRequest _request2 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request2 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly MoviesMostRecommendedRequest _request3 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request3 = new MoviesMostFavoritedRequest
             {
                 Filter = _filter
             };
 
-            private static readonly MoviesMostRecommendedRequest _request4 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request4 = new MoviesMostFavoritedRequest
             {
                 Period = _timePeriod
             };
 
-            private static readonly MoviesMostRecommendedRequest _request5 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request5 = new MoviesMostFavoritedRequest
             {
                 Page = _page
             };
 
-            private static readonly MoviesMostRecommendedRequest _request6 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request6 = new MoviesMostFavoritedRequest
             {
                 Limit = _limit
             };
 
-            private static readonly MoviesMostRecommendedRequest _request7 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request7 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly MoviesMostRecommendedRequest _request8 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request8 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Period = _timePeriod
             };
 
-            private static readonly MoviesMostRecommendedRequest _request9 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request9 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly MoviesMostRecommendedRequest _request10 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request10 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly MoviesMostRecommendedRequest _request11 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request11 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MoviesMostRecommendedRequest _request12 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request12 = new MoviesMostFavoritedRequest
             {
                 Filter = _filter,
                 Period = _timePeriod
             };
 
-            private static readonly MoviesMostRecommendedRequest _request13 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request13 = new MoviesMostFavoritedRequest
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly MoviesMostRecommendedRequest _request14 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request14 = new MoviesMostFavoritedRequest
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly MoviesMostRecommendedRequest _request15 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request15 = new MoviesMostFavoritedRequest
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MoviesMostRecommendedRequest _request16 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request16 = new MoviesMostFavoritedRequest
             {
                 Period = _timePeriod,
                 Page = _page
             };
 
-            private static readonly MoviesMostRecommendedRequest _request17 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request17 = new MoviesMostFavoritedRequest
             {
                 Period = _timePeriod,
                 Limit = _limit
             };
 
-            private static readonly MoviesMostRecommendedRequest _request18 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request18 = new MoviesMostFavoritedRequest
             {
                 Period = _timePeriod,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MoviesMostRecommendedRequest _request19 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request19 = new MoviesMostFavoritedRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MoviesMostRecommendedRequest _request20 = new MoviesMostRecommendedRequest
+            private static readonly MoviesMostFavoritedRequest _request20 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -156,7 +156,7 @@ namespace TraktNet.Requests.Tests.Movies
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public MoviesMostRecommendedRequest_TestData()
+            public MoviesMostFavoritedRequest_TestData()
             {
                 SetupPathParamters();
             }

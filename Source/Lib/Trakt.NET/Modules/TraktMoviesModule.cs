@@ -788,7 +788,7 @@
                                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                                 CancellationToken cancellationToken = default)
         {
-            var request = new MoviesMostRecommendedRequest
+            var request = new MoviesMostFavoritedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
