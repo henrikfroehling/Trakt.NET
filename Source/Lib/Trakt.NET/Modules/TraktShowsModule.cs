@@ -986,7 +986,7 @@
                                                                                               TraktPagedParameters pagedParameters = null,
                                                                                               CancellationToken cancellationToken = default)
         {
-            var request = new ShowsMostRecommendedRequest
+            var request = new ShowsMostFavoritedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,
