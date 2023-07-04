@@ -5,9 +5,9 @@ namespace TraktNet.Objects.Get.Movies.Json.Writer
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class MostRecommendedMovieObjectJsonWriter : AObjectJsonWriter<ITraktMostRecommendedMovie>
+    internal class MostFavoritedMovieObjectJsonWriter : AObjectJsonWriter<ITraktMostFavoritedMovie>
     {
-        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktMostRecommendedMovie obj, CancellationToken cancellationToken = default)
+        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktMostFavoritedMovie obj, CancellationToken cancellationToken = default)
         {
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);

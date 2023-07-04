@@ -23,7 +23,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
             TraktClient client = TestUtility.GetMockClient(GET_MOST_RECOMMENDED_MOVIES_URI,
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync();
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -41,7 +41,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_MOVIES_URI}?{FILTER}",
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, FILTER);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -59,7 +59,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_MOVIES_URI}/{TIME_PERIOD.UriName}",
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -77,7 +77,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_MOVIES_URI}/{TIME_PERIOD.UriName}?{FILTER}",
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, FILTER);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -95,7 +95,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_MOVIES_URI}?extended={EXTENDED_INFO}",
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -113,7 +113,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_MOVIES_URI}?extended={EXTENDED_INFO}&{FILTER}",
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, FILTER);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -132,7 +132,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, null, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -151,7 +151,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, FILTER, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -170,7 +170,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, null, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -189,7 +189,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, FILTER, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -207,7 +207,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_MOVIES_URI}/{TIME_PERIOD.UriName}?extended={EXTENDED_INFO}",
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -225,7 +225,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
             TraktClient client = TestUtility.GetMockClient($"{GET_MOST_RECOMMENDED_MOVIES_URI}/{TIME_PERIOD.UriName}?{FILTER}&extended={EXTENDED_INFO}",
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, FILTER);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, FILTER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -244,7 +244,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -263,7 +263,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -282,7 +282,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -301,7 +301,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -320,7 +320,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -339,7 +339,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, 10, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -358,7 +358,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -377,7 +377,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, 1, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -396,7 +396,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, null, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -415,7 +415,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, FILTER, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -434,7 +434,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -453,7 +453,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(null, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -472,7 +472,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -491,7 +491,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, null, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -510,7 +510,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -529,7 +529,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
                                                            MOST_RECOMMENDED_MOVIES_JSON, PAGE, LIMIT, 1, MOST_RECOMMENDED_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktMostRecommendedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, FILTER, pagedParameters);
+            TraktPagedResponse<ITraktMostFavoritedMovie> response = await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, FILTER, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -550,7 +550,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response =
+            TraktPagedResponse<ITraktMostFavoritedMovie> response =
                 await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -574,7 +574,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response =
+            TraktPagedResponse<ITraktMostFavoritedMovie> response =
                 await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -598,7 +598,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response =
+            TraktPagedResponse<ITraktMostFavoritedMovie> response =
                 await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -622,7 +622,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response =
+            TraktPagedResponse<ITraktMostFavoritedMovie> response =
                 await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -646,7 +646,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response =
+            TraktPagedResponse<ITraktMostFavoritedMovie> response =
                 await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -687,7 +687,7 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
-            TraktPagedResponse<ITraktMostRecommendedMovie> response =
+            TraktPagedResponse<ITraktMostFavoritedMovie> response =
                 await client.Movies.GetMostRecommendedMoviesAsync(TIME_PERIOD, EXTENDED_INFO, null, pagedParameters);
 
             response.Should().NotBeNull();

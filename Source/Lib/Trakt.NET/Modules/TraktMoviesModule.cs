@@ -778,15 +778,15 @@
         /// An <see cref="TraktPagedResponse{ITraktMostRecommendedMovie}"/> instance containing the queried most recommended movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostRecommendedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostFavoritedMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktMostRecommendedMovie>> GetMostRecommendedMoviesAsync(TraktTimePeriod period = null,
-                                                                                                  TraktExtendedInfo extendedInfo = null,
-                                                                                                  ITraktMovieFilter filter = null,
-                                                                                                  TraktPagedParameters pagedParameters = null,
-                                                                                                  CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktMostFavoritedMovie>> GetMostRecommendedMoviesAsync(TraktTimePeriod period = null,
+                                                                                                TraktExtendedInfo extendedInfo = null,
+                                                                                                ITraktMovieFilter filter = null,
+                                                                                                TraktPagedParameters pagedParameters = null,
+                                                                                                CancellationToken cancellationToken = default)
         {
             var request = new MoviesMostRecommendedRequest
             {

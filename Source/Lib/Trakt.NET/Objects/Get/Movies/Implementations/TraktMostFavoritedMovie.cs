@@ -4,8 +4,8 @@ namespace TraktNet.Objects.Get.Movies
     using System;
     using System.Collections.Generic;
 
-    /// <summary>A recommended Trakt movie.</summary>
-    public class TraktMostRecommendedMovie : ITraktMostRecommendedMovie
+    /// <summary>A favorited Trakt movie.</summary>
+    public class TraktMostFavoritedMovie : ITraktMostFavoritedMovie
     {
         /// <summary>Gets or sets the user count for the <see cref="Movie" />.</summary>
         public int? UserCount { get; set; }
