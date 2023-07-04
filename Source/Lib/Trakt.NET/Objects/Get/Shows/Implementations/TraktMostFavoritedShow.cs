@@ -5,8 +5,8 @@ namespace TraktNet.Objects.Get.Shows
     using System;
     using System.Collections.Generic;
 
-    /// <summary>A recommended Trakt show.</summary>
-    public class TraktMostRecommendedShow : ITraktMostRecommendedShow
+    /// <summary>A favorited Trakt show.</summary>
+    public class TraktMostFavoritedShow : ITraktMostFavoritedShow
     {
         /// <summary>Gets or sets the user count for the <see cref="Show" />.</summary>
         public int? UserCount { get; set; }

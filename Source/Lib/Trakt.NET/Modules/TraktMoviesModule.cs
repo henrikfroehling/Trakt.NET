@@ -753,17 +753,17 @@
         }
 
         /// <summary>
-        /// Gets the most recommended movies.
+        /// Gets the most favorited movies.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="https://trakt.docs.apiary.io/#reference/movies/recommended/get-the-most-recommended-movies">"Trakt API Doc - Movies: Recommended"</a> for more information.
+        /// See <a href="https://trakt.docs.apiary.io/#reference/movies/favorited/get-the-most-favorited-movies">"Trakt API Doc - Movies: Favorited"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
         /// See also <seealso cref="TraktFilter.NewMovieFilter()" />.
         /// </para>
         /// </summary>
-        /// <param name="period">The time period, for which the most recommended movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
+        /// <param name="period">The time period, for which the most favorited movies should be queried. See also <seealso cref="TraktTimePeriod" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the movies should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
@@ -775,20 +775,20 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{ITraktMostRecommendedMovie}"/> instance containing the queried most recommended movies and which also
+        /// An <see cref="TraktPagedResponse{ITraktMostFavoritedMovie}"/> instance containing the queried most favorited movies and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostRecommendedMovie" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktMostFavoritedMovie" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktMostRecommendedMovie>> GetMostRecommendedMoviesAsync(TraktTimePeriod period = null,
-                                                                                                  TraktExtendedInfo extendedInfo = null,
-                                                                                                  ITraktMovieFilter filter = null,
-                                                                                                  TraktPagedParameters pagedParameters = null,
-                                                                                                  CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktMostFavoritedMovie>> GetMostFavoritedMoviesAsync(TraktTimePeriod period = null,
+                                                                                              TraktExtendedInfo extendedInfo = null,
+                                                                                              ITraktMovieFilter filter = null,
+                                                                                              TraktPagedParameters pagedParameters = null,
+                                                                                              CancellationToken cancellationToken = default)
         {
-            var request = new MoviesMostRecommendedRequest
+            var request = new MoviesMostFavoritedRequest
             {
                 Period = period,
                 ExtendedInfo = extendedInfo,

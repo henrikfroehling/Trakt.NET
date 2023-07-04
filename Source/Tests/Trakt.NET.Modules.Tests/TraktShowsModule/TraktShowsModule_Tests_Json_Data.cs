@@ -9,7 +9,7 @@
     {
         private const string SHOW_ID = "1390";
         private const int ITEM_COUNT = 2;
-        private const int MOST_RECOMMENDED_ITEM_COUNT = 3;
+        private const int MOST_FAVORITED_ITEM_COUNT = 3;
         private const int LISTS_ITEM_COUNT = 10;
         private const int USER_COUNT = 300;
         private const uint PAGE = 2;
@@ -1279,7 +1279,7 @@
                 }
               ]";
 
-        private const string MOST_RECOMMENDED_SHOWS_JSON =
+        private const string MOST_FAVORITED_SHOWS_JSON =
             @"[
                 {
                   ""user_count"": 155291,

@@ -1,20 +1,19 @@
-namespace TraktNet.Objects.Get.Movies.Json.Reader
+namespace TraktNet.Objects.Get.Shows.Json.Reader
 {
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class MostRecommendedMovieObjectJsonReader : AObjectJsonReader<ITraktMostRecommendedMovie>
+    internal class MostFavoritedShowObjectJsonReader : AObjectJsonReader<ITraktMostFavoritedShow>
     {
-        public override async Task<ITraktMostRecommendedMovie> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<ITraktMostFavoritedShow> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var movieObjectReader = new MovieObjectJsonReader();
-                ITraktMostRecommendedMovie traktMostRecommendedMovie = new TraktMostRecommendedMovie();
+                ITraktMostFavoritedShow traktMostFavoritedShow = new TraktMostFavoritedShow();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -23,10 +22,11 @@ namespace TraktNet.Objects.Get.Movies.Json.Reader
                     switch (propertyName)
                     {
                         case JsonProperties.PROPERTY_NAME_USER_COUNT:
-                            traktMostRecommendedMovie.UserCount = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            traktMostFavoritedShow.UserCount = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.PROPERTY_NAME_MOVIE:
-                            traktMostRecommendedMovie.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
+                        case JsonProperties.PROPERTY_NAME_SHOW:
+                            var showObjectReader = new ShowObjectJsonReader();
+                            traktMostFavoritedShow.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -34,10 +34,10 @@ namespace TraktNet.Objects.Get.Movies.Json.Reader
                     }
                 }
 
-                return traktMostRecommendedMovie;
+                return traktMostFavoritedShow;
             }
 
-            return await Task.FromResult(default(ITraktMostRecommendedMovie));
+            return await Task.FromResult(default(ITraktMostFavoritedShow));
         }
     }
 }

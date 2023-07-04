@@ -10,18 +10,18 @@ namespace TraktNet.Requests.Tests.Shows
     using Xunit;
 
     [TestCategory("Requests.Shows.Lists")]
-    public class ShowsMostRecommendedRequest_Tests
+    public class ShowsMostFavoritedRequest_Tests
     {
         [Fact]
-        public void Test_ShowsMostRecommendedRequest_Has_Valid_UriTemplate()
+        public void Test_ShowsMostFavoritedRequest_Has_Valid_UriTemplate()
         {
-            var request = new ShowsMostRecommendedRequest();
-            request.UriTemplate.Should().Be("shows/recommended{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}");
+            var request = new ShowsMostFavoritedRequest();
+            request.UriTemplate.Should().Be("shows/favorited{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications,networks,status}");
         }
 
-        [Theory, ClassData(typeof(ShowsMostRecommendedRequest_TestData))]
-        public void Test_ShowsMostRecommendedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                     IDictionary<string, object> expected)
+        [Theory, ClassData(typeof(ShowsMostFavoritedRequest_TestData))]
+        public void Test_ShowsMostFavoritedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+                                                                                   IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 
@@ -29,7 +29,7 @@ namespace TraktNet.Requests.Tests.Shows
                 values.Should().Contain(expected);
         }
 
-        public class ShowsMostRecommendedRequest_TestData : IEnumerable<object[]>
+        public class ShowsMostFavoritedRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly ITraktShowFilter _filter = TraktFilter.NewShowFilter().WithYears(2005, 2016).Build();
@@ -37,115 +37,115 @@ namespace TraktNet.Requests.Tests.Shows
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly ShowsMostRecommendedRequest _request1 = new ShowsMostRecommendedRequest();
+            private static readonly ShowsMostFavoritedRequest _request1 = new ShowsMostFavoritedRequest();
 
-            private static readonly ShowsMostRecommendedRequest _request2 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request2 = new ShowsMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly ShowsMostRecommendedRequest _request3 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request3 = new ShowsMostFavoritedRequest
             {
                 Filter = _filter
             };
 
-            private static readonly ShowsMostRecommendedRequest _request4 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request4 = new ShowsMostFavoritedRequest
             {
                 Period = _timePeriod
             };
 
-            private static readonly ShowsMostRecommendedRequest _request5 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request5 = new ShowsMostFavoritedRequest
             {
                 Page = _page
             };
 
-            private static readonly ShowsMostRecommendedRequest _request6 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request6 = new ShowsMostFavoritedRequest
             {
                 Limit = _limit
             };
 
-            private static readonly ShowsMostRecommendedRequest _request7 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request7 = new ShowsMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly ShowsMostRecommendedRequest _request8 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request8 = new ShowsMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Period = _timePeriod
             };
 
-            private static readonly ShowsMostRecommendedRequest _request9 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request9 = new ShowsMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly ShowsMostRecommendedRequest _request10 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request10 = new ShowsMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly ShowsMostRecommendedRequest _request11 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request11 = new ShowsMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly ShowsMostRecommendedRequest _request12 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request12 = new ShowsMostFavoritedRequest
             {
                 Filter = _filter,
                 Period = _timePeriod
             };
 
-            private static readonly ShowsMostRecommendedRequest _request13 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request13 = new ShowsMostFavoritedRequest
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly ShowsMostRecommendedRequest _request14 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request14 = new ShowsMostFavoritedRequest
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly ShowsMostRecommendedRequest _request15 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request15 = new ShowsMostFavoritedRequest
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly ShowsMostRecommendedRequest _request16 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request16 = new ShowsMostFavoritedRequest
             {
                 Period = _timePeriod,
                 Page = _page
             };
 
-            private static readonly ShowsMostRecommendedRequest _request17 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request17 = new ShowsMostFavoritedRequest
             {
                 Period = _timePeriod,
                 Limit = _limit
             };
 
-            private static readonly ShowsMostRecommendedRequest _request18 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request18 = new ShowsMostFavoritedRequest
             {
                 Period = _timePeriod,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly ShowsMostRecommendedRequest _request19 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request19 = new ShowsMostFavoritedRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly ShowsMostRecommendedRequest _request20 = new ShowsMostRecommendedRequest
+            private static readonly ShowsMostFavoritedRequest _request20 = new ShowsMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -156,7 +156,7 @@ namespace TraktNet.Requests.Tests.Shows
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public ShowsMostRecommendedRequest_TestData()
+            public ShowsMostFavoritedRequest_TestData()
             {
                 SetupPathParamters();
             }
