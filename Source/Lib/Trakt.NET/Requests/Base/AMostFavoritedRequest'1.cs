@@ -5,7 +5,7 @@ namespace TraktNet.Requests.Base
     using Parameters;
     using System.Collections.Generic;
 
-    internal abstract class AMostRecommendedRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ISupportsExtendedInfo, ISupportsFilter, ISupportsPagination
+    internal abstract class AMostFavoritedRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ISupportsExtendedInfo, ISupportsFilter, ISupportsPagination
     {
         internal TraktTimePeriod Period { get; set; }
 

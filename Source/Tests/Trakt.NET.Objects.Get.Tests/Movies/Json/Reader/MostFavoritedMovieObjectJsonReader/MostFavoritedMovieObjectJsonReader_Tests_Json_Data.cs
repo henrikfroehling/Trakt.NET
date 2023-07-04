@@ -1,6 +1,6 @@
 namespace TraktNet.Objects.Get.Tests.Movies.Json.Reader
 {
-    public partial class MostRecommendedMovieObjectJsonReader_Tests
+    public partial class MostFavoritedMovieObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{

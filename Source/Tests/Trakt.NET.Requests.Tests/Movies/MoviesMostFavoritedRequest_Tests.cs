@@ -1,34 +1,27 @@
-namespace TraktNet.Requests.Tests.Base
+namespace TraktNet.Requests.Tests.Movies
 {
     using FluentAssertions;
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Parameters;
-    using TraktNet.Requests.Base;
+    using TraktNet.Requests.Movies;
     using Xunit;
 
-    [TestCategory("Requests.Base")]
-    public class AMostRecommendedRequest_1_Tests
+    [TestCategory("Requests.Movies.Lists")]
+    public class MoviesMostFavoritedRequest_Tests
     {
-        internal class MostRecommendedRequestMock : AMostRecommendedRequest<int>
-        {
-            public override string UriTemplate { get { throw new NotImplementedException(); } }
-            public override void Validate() => throw new NotImplementedException();
-        }
-
         [Fact]
-        public void Test_AMostRecommendedRequest_1_Has_AuthorizationRequirement_NotRequired()
+        public void Test_MoviesMostFavoritedRequest_Has_Valid_UriTemplate()
         {
-            var requestMock = new MostRecommendedRequestMock();
-            requestMock.AuthorizationRequirement.Should().Be(AuthorizationRequirement.NotRequired);
+            var request = new MoviesMostFavoritedRequest();
+            request.UriTemplate.Should().Be("movies/favorited{/period}{?extended,page,limit,query,years,genres,languages,countries,runtimes,ratings,certifications}");
         }
 
-        [Theory, ClassData(typeof(MostRecommendedRequestMock_TestData))]
-        public void Test_AMostRecommendedRequest_1_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                   IDictionary<string, object> expected)
+        [Theory, ClassData(typeof(MoviesMostFavoritedRequest_TestData))]
+        public void Test_MoviesMostFavoritedRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+                                                                                    IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 
@@ -36,7 +29,7 @@ namespace TraktNet.Requests.Tests.Base
                 values.Should().Contain(expected);
         }
 
-        public class MostRecommendedRequestMock_TestData : IEnumerable<object[]>
+        public class MoviesMostFavoritedRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private static readonly ITraktMovieFilter _filter = TraktFilter.NewMovieFilter().WithYears(2005, 2016).Build();
@@ -44,115 +37,115 @@ namespace TraktNet.Requests.Tests.Base
             private const int _page = 5;
             private const int _limit = 20;
 
-            private static readonly MostRecommendedRequestMock _request1 = new MostRecommendedRequestMock();
+            private static readonly MoviesMostFavoritedRequest _request1 = new MoviesMostFavoritedRequest();
 
-            private static readonly MostRecommendedRequestMock _request2 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request2 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly MostRecommendedRequestMock _request3 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request3 = new MoviesMostFavoritedRequest
             {
                 Filter = _filter
             };
 
-            private static readonly MostRecommendedRequestMock _request4 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request4 = new MoviesMostFavoritedRequest
             {
                 Period = _timePeriod
             };
 
-            private static readonly MostRecommendedRequestMock _request5 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request5 = new MoviesMostFavoritedRequest
             {
                 Page = _page
             };
 
-            private static readonly MostRecommendedRequestMock _request6 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request6 = new MoviesMostFavoritedRequest
             {
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request7 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request7 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter
             };
 
-            private static readonly MostRecommendedRequestMock _request8 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request8 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Period = _timePeriod
             };
 
-            private static readonly MostRecommendedRequestMock _request9 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request9 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly MostRecommendedRequestMock _request10 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request10 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request11 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request11 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request12 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request12 = new MoviesMostFavoritedRequest
             {
                 Filter = _filter,
                 Period = _timePeriod
             };
 
-            private static readonly MostRecommendedRequestMock _request13 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request13 = new MoviesMostFavoritedRequest
             {
                 Filter = _filter,
                 Page = _page
             };
 
-            private static readonly MostRecommendedRequestMock _request14 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request14 = new MoviesMostFavoritedRequest
             {
                 Filter = _filter,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request15 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request15 = new MoviesMostFavoritedRequest
             {
                 Filter = _filter,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request16 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request16 = new MoviesMostFavoritedRequest
             {
                 Period = _timePeriod,
                 Page = _page
             };
 
-            private static readonly MostRecommendedRequestMock _request17 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request17 = new MoviesMostFavoritedRequest
             {
                 Period = _timePeriod,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request18 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request18 = new MoviesMostFavoritedRequest
             {
                 Period = _timePeriod,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request19 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request19 = new MoviesMostFavoritedRequest
             {
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly MostRecommendedRequestMock _request20 = new MostRecommendedRequestMock
+            private static readonly MoviesMostFavoritedRequest _request20 = new MoviesMostFavoritedRequest
             {
                 ExtendedInfo = _extendedInfo,
                 Filter = _filter,
@@ -163,7 +156,7 @@ namespace TraktNet.Requests.Tests.Base
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public MostRecommendedRequestMock_TestData()
+            public MoviesMostFavoritedRequest_TestData()
             {
                 SetupPathParamters();
             }
