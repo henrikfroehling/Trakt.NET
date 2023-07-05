@@ -38,7 +38,7 @@
         public async Task Test_TraktListsModule_GetTrendingLists_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_TRENDING_LISTS_URI}?extended={EXTENDED_INFO}",
-                                                           LISTS_JSON, PAGE, 10, 1, ITEM_COUNT);
+                                                           LISTS_JSON, 1, 10, 1, ITEM_COUNT);
 
             TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(EXTENDED_INFO);
 
@@ -48,7 +48,7 @@
             response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
             response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(PAGE);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
