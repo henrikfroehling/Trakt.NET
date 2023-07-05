@@ -137,13 +137,13 @@ jobs:
           path: 'release/'
 
       - name: Push NuGet package to Github Package Registry
-        if: ${{ !contains(github.ref, 'pull') && github.actor != 'dependabot[bot]' }}
+        if: ${{ !contains(github.ref, 'pull') && ${{ !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
         run: dotnet nuget push '**/Trakt.NET*.nupkg'
         working-directory: 'Source'
 
   docs:
     needs: [environment-check]
-    if: ${{ !contains(github.ref, 'pull') && github.actor != 'dependabot[bot]' }}
+    if: ${{ !contains(github.ref, 'pull') && ${{ !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
     runs-on: windows-latest
     permissions:
       contents: write
