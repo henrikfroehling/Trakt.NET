@@ -43,7 +43,7 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetMutlipleCommentsAsync(uint[], CancellationToken)" />.</para>
+        /// <para>See also <seealso cref="GetMutlipleCommentsAsync(TraktMultipleCommentsQueryParams, CancellationToken)" />.</para>
         /// </summary>
         /// <param name="commentId">The comment's id.</param>
         /// <param name="extendedInfo">
