@@ -31,6 +31,10 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/lists/popular/get-popular-lists">"Trakt API Doc - Lists: Popular"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the list items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -44,11 +48,13 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktList>> GetPopularListsAsync(TraktPagedParameters pagedParameters = null,
+        public Task<TraktPagedResponse<ITraktList>> GetPopularListsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                         TraktPagedParameters pagedParameters = null,
                                                                          CancellationToken cancellationToken = default)
         {
             var request = new ListsPopularRequest
             {
+                ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             };
