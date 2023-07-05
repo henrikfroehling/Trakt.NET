@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Comments;
     using Xunit;
@@ -30,7 +31,7 @@
         public void Test_CommentSummaryRequest_Has_Valid_UriTemplate()
         {
             var request = new CommentSummaryRequest();
-            request.UriTemplate.Should().Be("comments/{id}");
+            request.UriTemplate.Should().Be("comments/{id}{?extended}");
         }
 
         [Fact]
@@ -44,6 +45,17 @@
                                                        .And.Contain(new Dictionary<string, object>
                                                        {
                                                            ["id"] = "123"
+                                                       });
+
+            // id and extended info
+            requestMock = new CommentSummaryRequest { Id = "123", ExtendedInfo = new TraktExtendedInfo { Full = true } };
+
+            requestMock.GetUriPathParameters().Should().NotBeNull()
+                                                       .And.HaveCount(2)
+                                                       .And.Contain(new Dictionary<string, object>
+                                                       {
+                                                           ["id"] = "123",
+                                                           ["extended"] = "full"
                                                        });
         }
 

@@ -46,6 +46,10 @@
         /// <para>See also <seealso cref="GetMutlipleCommentsAsync(uint[], CancellationToken)" />.</para>
         /// </summary>
         /// <param name="commentId">The comment's id.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the comment's media item should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -53,8 +57,9 @@
         /// <returns>An <see cref="ITraktComment" /> instance with the queried comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, CancellationToken cancellationToken = default)
-            => GetCommentImplementationAsync(false, commentId, cancellationToken);
+        public Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, TraktExtendedInfo extendedInfo = null,
+                                                                  CancellationToken cancellationToken = default)
+            => GetCommentImplementationAsync(false, commentId, extendedInfo, cancellationToken);
 
         /// <summary>
         /// Gets the attached media <see cref="ITraktCommentItem" /> from a comment with the given id.
@@ -135,9 +140,9 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetCommentAsync(uint, CancellationToken)" />.</para>
+        /// <para>See also <seealso cref="GetCommentAsync(uint, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>
-        /// <param name="commentIds">An array of comment ids.</param>
+        /// <param name="commentsQueryParams">A list of comment ids and optional extended infos. See also <seealso cref="TraktMultipleCommentsQueryParams" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -146,16 +151,17 @@
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         [Obsolete("GetMutlipleCommentsAsync is deprecated, please use GetCommentsStreamAsync instead.")]
-        public async Task<IEnumerable<TraktResponse<ITraktComment>>> GetMutlipleCommentsAsync(uint[] commentIds, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<TraktResponse<ITraktComment>>> GetMutlipleCommentsAsync(TraktMultipleCommentsQueryParams commentsQueryParams,
+                                                                                              CancellationToken cancellationToken = default)
         {
-            if (commentIds == null || commentIds.Length == 0)
+            if (commentsQueryParams == null || commentsQueryParams.Count == 0)
                 return new List<TraktResponse<ITraktComment>>();
 
             var tasks = new List<Task<TraktResponse<ITraktComment>>>();
 
-            for (int i = 0; i < commentIds.Length; i++)
+            foreach (TraktCommentQueryParams queryParam in commentsQueryParams)
             {
-                Task<TraktResponse<ITraktComment>> task = GetCommentAsync(commentIds[i], cancellationToken);
+                Task<TraktResponse<ITraktComment>> task = GetCommentAsync(queryParam.CommentId, queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -169,9 +175,9 @@
         /// <para>
         /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetCommentAsync(uint, CancellationToken)" />.</para>
+        /// <para>See also <seealso cref="GetCommentAsync(uint, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>
-        /// <param name="commentIds">A list of comment ids.</param>
+        /// <param name="commentsQueryParams">A list of comment ids and optional extended infos. See also <seealso cref="TraktMultipleCommentsQueryParams" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -179,16 +185,17 @@
         /// <returns>An <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1?view=net-7.0">async stream</a> of <see cref="ITraktComment" /> instances with the data of each queried comment.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public async IAsyncEnumerable<TraktResponse<ITraktComment>> GetCommentsStreamAsync(IEnumerable<uint> commentIds, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        public async IAsyncEnumerable<TraktResponse<ITraktComment>> GetCommentsStreamAsync(TraktMultipleCommentsQueryParams commentsQueryParams,
+                                                                                           [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
-            if (commentIds == null || !commentIds.Any())
+            if (commentsQueryParams == null || commentsQueryParams.Count == 0)
                 yield break;
 
             var tasks = new List<Task<TraktResponse<ITraktComment>>>();
 
-            foreach (var commentId in commentIds)
+            foreach (TraktCommentQueryParams queryParam in commentsQueryParams)
             {
-                Task<TraktResponse<ITraktComment>> task = GetCommentInStreamAsync(commentId, cancellationToken);
+                Task<TraktResponse<ITraktComment>> task = GetCommentInStreamAsync(queryParam.CommentId, queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
@@ -684,13 +691,20 @@
             return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
-        private Task<TraktResponse<ITraktComment>> GetCommentInStreamAsync(uint commentId, CancellationToken cancellationToken = default)
-            => GetCommentImplementationAsync(true, commentId, cancellationToken);
+        private Task<TraktResponse<ITraktComment>> GetCommentInStreamAsync(uint commentId, TraktExtendedInfo extendedInfo = null,
+                                                                           CancellationToken cancellationToken = default)
+            => GetCommentImplementationAsync(true, commentId, extendedInfo, cancellationToken);
 
-        private Task<TraktResponse<ITraktComment>> GetCommentImplementationAsync(bool asyncStream, uint commentId, CancellationToken cancellationToken = default)
+        private Task<TraktResponse<ITraktComment>> GetCommentImplementationAsync(bool asyncStream, uint commentId,
+                                                                                 TraktExtendedInfo extendedInfo = null,
+                                                                                 CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
-            var request = new CommentSummaryRequest { Id = commentId.ToString() };
+            var request = new CommentSummaryRequest
+            {
+                Id = commentId.ToString(),
+                ExtendedInfo = extendedInfo
+            };
 
             if (asyncStream)
                 return requestHandler.ExecuteSingleItemStreamRequestAsync(request, cancellationToken);
