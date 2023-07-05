@@ -9,9 +9,10 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Basic;
-    using TraktNet.Responses;
     using TraktNet.Extensions;
+    using TraktNet.Objects.Basic;
+    using TraktNet.Parameters;
+    using TraktNet.Responses;
     using Xunit;
 
     [TestCategory("Modules.Comments")]
@@ -22,10 +23,15 @@
         [Fact]
         public async Task Test_TraktCommentsModule_GetCommentStream()
         {
-            List<uint> commentIds = new List<uint> { GET_COMMENT_ID, GET_COMMENT_ID };
-            int totalComments = commentIds.Count;
+            var parameters = new TraktMultipleCommentsQueryParams
+            {
+                { GET_COMMENT_ID },
+                { GET_COMMENT_ID }
+            };
+
+            int totalComments = parameters.Count;
             TraktClient client = TestUtility.GetMockClientForMultipleCalls(GET_COMMENTS_STREAM_URI, COMMENT_JSON, totalComments);
-            IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
+            IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(parameters);
 
 
             int commentsReturned = 0;
@@ -60,21 +66,23 @@
         }
 
         [Fact]
-        public async Task Test_TraktCommentsModule_GetCommentStream_WithNullParameters()
+        public async Task Test_TraktCommentsModule_GetCommentStream_With_Null_Parameters()
         {
-            List<uint> commentIds = null;
+            TraktMultipleCommentsQueryParams parameters = null;
+
             TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, COMMENT_JSON);
-            IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
+            IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(parameters);
 
             (await responses.ToListAsync()).Any().Should().BeFalse();
         }
 
         [Fact]
-        public async Task Test_TraktCommentsModule_GetCommentStream_WithEmptyParameters()
+        public async Task Test_TraktCommentsModule_GetCommentStream_With_Empty_Parameters()
         {
-            List<uint> commentIds = new List<uint>();
+            var parameters = new TraktMultipleCommentsQueryParams();
+
             TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, COMMENT_JSON);
-            IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
+            IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(parameters);
 
             (await responses.ToListAsync()).Any().Should().BeFalse();
         }
@@ -98,12 +106,17 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktCommentsModule_GetCommentStream_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            List<uint> commentIds = new List<uint> { GET_COMMENT_ID, GET_COMMENT_ID };
+            var parameters = new TraktMultipleCommentsQueryParams
+            {
+                { GET_COMMENT_ID },
+                { GET_COMMENT_ID }
+            };
+
             TraktClient client = TestUtility.GetMockClient(GET_COMMENTS_STREAM_URI, statusCode);
 
             try
             {
-                IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(commentIds);
+                IAsyncEnumerable<TraktResponse<ITraktComment>> responses = client.Comments.GetCommentsStreamAsync(parameters);
                 await foreach(TraktResponse<ITraktComment> response in responses) {
 
                 }
