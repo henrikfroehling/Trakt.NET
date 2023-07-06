@@ -108,6 +108,10 @@
         /// </para>
         /// </summary>
         /// <param name="listIdOrSlug">The list's Trakt-Id or -Slug. See also <seealso cref="ITraktListIds" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the list items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -115,13 +119,15 @@
         /// <returns>An <see cref="ITraktList" /> instance with the queried list's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktList>> GetListAsync(string listIdOrSlug, CancellationToken cancellationToken = default)
+        public Task<TraktResponse<ITraktList>> GetListAsync(string listIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                            CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SingleListRequest
             {
-                Id = listIdOrSlug
+                Id = listIdOrSlug,
+                ExtendedInfo = extendedInfo
             },
             cancellationToken);
         }
