@@ -35,13 +35,31 @@
         }
 
         [Fact]
+        public async Task Test_TraktListsModule_GetTrendingLists_With_ExtendedInfo()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_TRENDING_LISTS_URI}?extended={EXTENDED_INFO}",
+                                                           LISTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktListsModule_GetTrendingLists_With_Page()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_TRENDING_LISTS_URI}?page={PAGE}",
                                                            LISTS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(pagedParameters);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -60,7 +78,7 @@
                                                            LISTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(pagedParameters);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -73,13 +91,71 @@
         }
 
         [Fact]
-        public async Task Test_TraktListsModule_GetTrendingLists_Complete()
+        public async Task Test_TraktListsModule_GetTrendingLists_With_ExtendedInfo_Page()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_TRENDING_LISTS_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                                                           LISTS_JSON, PAGE, 10, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetTrendingLists_With_ExtendedInfo_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_TRENDING_LISTS_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                                                           LISTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetTrendingLists_With_Page_And_Limit()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_TRENDING_LISTS_URI}?page={PAGE}&limit={LIMIT}",
                                                            LISTS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(pagedParameters);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetTrendingLists_Complete()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_TRENDING_LISTS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                LISTS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -98,7 +174,7 @@
                 LISTS_JSON, 2, LIMIT, 5, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(pagedParameters);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -119,7 +195,7 @@
                 LISTS_JSON, 2, LIMIT, 2, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(pagedParameters);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -140,7 +216,7 @@
                 LISTS_JSON, 1, LIMIT, 2, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(pagedParameters);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -161,7 +237,7 @@
                 LISTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(pagedParameters);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -182,7 +258,7 @@
                 LISTS_JSON, 2, LIMIT, 2, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(pagedParameters);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -219,7 +295,7 @@
                 LISTS_JSON, 1, LIMIT, 2, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(pagedParameters);
+            TraktPagedResponse<ITraktList> response = await client.Lists.GetTrendingListsAsync(null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();

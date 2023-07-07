@@ -31,6 +31,10 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/lists/popular/get-popular-lists">"Trakt API Doc - Lists: Popular"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the list items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -44,11 +48,13 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktList>> GetPopularListsAsync(TraktPagedParameters pagedParameters = null,
+        public Task<TraktPagedResponse<ITraktList>> GetPopularListsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                         TraktPagedParameters pagedParameters = null,
                                                                          CancellationToken cancellationToken = default)
         {
             var request = new ListsPopularRequest
             {
+                ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             };
@@ -63,6 +69,10 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/lists/trending/get-trending-lists">"Trakt API Doc - Lists: Trending"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the list items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -76,11 +86,13 @@
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktList>> GetTrendingListsAsync(TraktPagedParameters pagedParameters = null,
+        public Task<TraktPagedResponse<ITraktList>> GetTrendingListsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                          TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)
         {
             var request = new ListsTrendingRequest
             {
+                ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             };
@@ -96,6 +108,10 @@
         /// </para>
         /// </summary>
         /// <param name="listIdOrSlug">The list's Trakt-Id or -Slug. See also <seealso cref="ITraktListIds" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the list items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -103,13 +119,15 @@
         /// <returns>An <see cref="ITraktList" /> instance with the queried list's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktList>> GetListAsync(string listIdOrSlug, CancellationToken cancellationToken = default)
+        public Task<TraktResponse<ITraktList>> GetListAsync(string listIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                            CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
             return requestHandler.ExecuteSingleItemRequestAsync(new SingleListRequest
             {
-                Id = listIdOrSlug
+                Id = listIdOrSlug,
+                ExtendedInfo = extendedInfo
             },
             cancellationToken);
         }
@@ -157,6 +175,10 @@
         /// </para>
         /// </summary>
         /// <param name="listIdOrSlug">The id or slug of the list, for which the likes should be queried.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the list items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -165,12 +187,14 @@
         /// <returns>A list of <see cref="ITraktListLike" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktPagedResponse<ITraktListLike>> GetListLikesAsync(string listIdOrSlug, TraktPagedParameters pagedParameters = null,
+        public Task<TraktPagedResponse<ITraktListLike>> GetListLikesAsync(string listIdOrSlug, TraktExtendedInfo extendedInfo = null,
+                                                                          TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)
         {
             var request = new ListLikesRequest
             {
                 Id = listIdOrSlug,
+                ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             };
@@ -186,6 +210,10 @@
         /// </summary>
         /// <param name="listIdOrSlug">The id or slug of the list, for which the comments should be queried.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about a comment's media item should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -201,13 +229,14 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetListCommentsAsync(string listIdOrSlug, TraktCommentSortOrder commentSortOrder = null,
-                                                                            TraktPagedParameters pagedParameters = null,
+                                                                            TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null,
                                                                             CancellationToken cancellationToken = default)
         {
             var request = new ListCommentsRequest
             {
                 Id = listIdOrSlug,
                 SortOrder = commentSortOrder,
+                ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             };

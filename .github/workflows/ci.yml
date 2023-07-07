@@ -117,7 +117,7 @@ jobs:
           path: '${{ env.ARTIFACTS_DIRECTORY }}/'
 
       - name: Push NuGet package to Github Package Registry
-        if: ${{ !contains(github.ref, 'pull') && github.actor != 'dependabot[bot]' }}
+        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
         run: dotnet nuget push '**/Trakt.NET*.nupkg'
         working-directory: 'src'
 

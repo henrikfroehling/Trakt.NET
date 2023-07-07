@@ -142,6 +142,10 @@
         /// <param name="seasonNumber">The number of the season containing the episode, for which the comments should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the comments should be queried.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktExtendedCommentSortOrder" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about a comment's media item should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -158,6 +162,7 @@
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktComment>> GetEpisodeCommentsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                                TraktExtendedCommentSortOrder commentSortOrder = null,
+                                                                               TraktExtendedInfo extendedInfo = null,
                                                                                TraktPagedParameters pagedParameters = null,
                                                                                CancellationToken cancellationToken = default)
         {
@@ -167,6 +172,7 @@
                 SeasonNumber = seasonNumber,
                 EpisodeNumber = episodeNumber,
                 SortOrder = commentSortOrder,
+                ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             };
@@ -186,6 +192,10 @@
         /// <param name="episodeNumber">The number of the episode, for which the lists should be queried.</param>
         /// <param name="listType">The type of lists, that should be queried. Defaults to personal lists.</param>
         /// <param name="listSortOrder">The list sort order. See also <seealso cref="TraktListSortOrder" />. Defaults to sorted by popularity.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the list items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -202,6 +212,7 @@
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public Task<TraktPagedResponse<ITraktList>> GetEpisodeListsAsync(string showIdOrSlug, uint seasonNumber, uint episodeNumber,
                                                                          TraktListType listType = null, TraktListSortOrder listSortOrder = null,
+                                                                         TraktExtendedInfo extendedInfo = null,
                                                                          TraktPagedParameters pagedParameters = null,
                                                                          CancellationToken cancellationToken = default)
         {
@@ -212,6 +223,7 @@
                 EpisodeNumber = episodeNumber,
                 Type = listType,
                 SortOrder = listSortOrder,
+                ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
             };

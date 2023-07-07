@@ -5,6 +5,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Lists;
     using Xunit;
@@ -36,6 +37,7 @@
 
         public class AListsRequest_TestData : IEnumerable<object[]>
         {
+            private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 5;
             private const int _limit = 20;
 
@@ -43,16 +45,40 @@
 
             private static readonly ListsRequestMock _request2 = new ListsRequestMock
             {
-                Page = _page
+                ExtendedInfo = _extendedInfo
             };
 
             private static readonly ListsRequestMock _request3 = new ListsRequestMock
             {
-                Limit = _limit
+                Page = _page
             };
 
             private static readonly ListsRequestMock _request4 = new ListsRequestMock
             {
+                Limit = _limit
+            };
+
+            private static readonly ListsRequestMock _request5 = new ListsRequestMock
+            {
+                ExtendedInfo = _extendedInfo,
+                Page = _page
+            };
+
+            private static readonly ListsRequestMock _request6 = new ListsRequestMock
+            {
+                ExtendedInfo = _extendedInfo,
+                Limit = _limit
+            };
+
+            private static readonly ListsRequestMock _request7 = new ListsRequestMock
+            {
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly ListsRequestMock _request8 = new ListsRequestMock
+            {
+                ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
@@ -64,8 +90,9 @@
                 SetupPathParamters();
             }
 
-            private void SetupPathParamters()
+            private static void SetupPathParamters()
             {
+                var strExtendedInfo = _extendedInfo.ToString();
                 var strPage = _page.ToString();
                 var strLimit = _limit.ToString();
 
@@ -73,16 +100,40 @@
 
                 _data.Add(new object[] { _request2.GetUriPathParameters(), new Dictionary<string, object>
                     {
-                        ["page"] = strPage
+                        ["extended"] = strExtendedInfo
                     }});
 
                 _data.Add(new object[] { _request3.GetUriPathParameters(), new Dictionary<string, object>
                     {
-                        ["limit"] = strLimit
+                        ["page"] = strPage
                     }});
 
                 _data.Add(new object[] { _request4.GetUriPathParameters(), new Dictionary<string, object>
                     {
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request5.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request6.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["extended"] = strExtendedInfo,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request7.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request8.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["extended"] = strExtendedInfo,
                         ["page"] = strPage,
                         ["limit"] = strLimit
                     }});
