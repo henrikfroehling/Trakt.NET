@@ -7,6 +7,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Shows;
     using Xunit;
 
@@ -17,7 +18,7 @@
         public void Test_ShowListsRequest_Has_Valid_UriTemplate()
         {
             var request = new ShowListsRequest();
-            request.UriTemplate.Should().Be("shows/{id}/lists{/type}{/sort_order}{?page,limit}");
+            request.UriTemplate.Should().Be("shows/{id}/lists{/type}{/sort_order}{?extended,page,limit}");
         }
 
         [Fact]
@@ -57,6 +58,7 @@
             private const string _id = "123";
             private static readonly TraktListType _type = TraktListType.Official;
             private static readonly TraktListSortOrder _sortOrder = TraktListSortOrder.Comments;
+            private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 5;
             private const int _limit = 20;
 
@@ -80,55 +82,54 @@
             private static readonly ShowListsRequest _request4 = new ShowListsRequest
             {
                 Id = _id,
-                Page = _page
+                ExtendedInfo = _extendedInfo
             };
 
             private static readonly ShowListsRequest _request5 = new ShowListsRequest
             {
                 Id = _id,
-                Limit = _limit
+                Page = _page
             };
 
             private static readonly ShowListsRequest _request6 = new ShowListsRequest
             {
                 Id = _id,
-                Type = _type,
-                SortOrder = _sortOrder
+                Limit = _limit
             };
 
             private static readonly ShowListsRequest _request7 = new ShowListsRequest
             {
                 Id = _id,
                 Type = _type,
-                Page = _page
+                SortOrder = _sortOrder
             };
 
             private static readonly ShowListsRequest _request8 = new ShowListsRequest
             {
                 Id = _id,
                 Type = _type,
-                Limit = _limit
+                ExtendedInfo = _extendedInfo
             };
 
             private static readonly ShowListsRequest _request9 = new ShowListsRequest
             {
                 Id = _id,
                 Type = _type,
-                Page = _page,
-                Limit = _limit
+                Page = _page
             };
 
             private static readonly ShowListsRequest _request10 = new ShowListsRequest
             {
                 Id = _id,
-                SortOrder = _sortOrder,
-                Page = _page
+                Type = _type,
+                Limit = _limit
             };
 
             private static readonly ShowListsRequest _request11 = new ShowListsRequest
             {
                 Id = _id,
-                SortOrder = _sortOrder,
+                Type = _type,
+                Page = _page,
                 Limit = _limit
             };
 
@@ -136,18 +137,69 @@
             {
                 Id = _id,
                 SortOrder = _sortOrder,
+                ExtendedInfo = _extendedInfo
+            };
+
+            private static readonly ShowListsRequest _request13 = new ShowListsRequest
+            {
+                Id = _id,
+                SortOrder = _sortOrder,
+                Page = _page
+            };
+
+            private static readonly ShowListsRequest _request14 = new ShowListsRequest
+            {
+                Id = _id,
+                SortOrder = _sortOrder,
+                Limit = _limit
+            };
+
+            private static readonly ShowListsRequest _request15 = new ShowListsRequest
+            {
+                Id = _id,
+                SortOrder = _sortOrder,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly ShowListsRequest _request13 = new ShowListsRequest
+            private static readonly ShowListsRequest _request16 = new ShowListsRequest
+            {
+                Id = _id,
+                ExtendedInfo = _extendedInfo,
+                Page = _page
+            };
+
+            private static readonly ShowListsRequest _request17 = new ShowListsRequest
+            {
+                Id = _id,
+                ExtendedInfo = _extendedInfo,
+                Limit = _limit
+            };
+
+            private static readonly ShowListsRequest _request18 = new ShowListsRequest
+            {
+                Id = _id,
+                ExtendedInfo = _extendedInfo,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly ShowListsRequest _request19 = new ShowListsRequest
             {
                 Id = _id,
                 Page = _page,
                 Limit = _limit
             };
 
-            private static readonly ShowListsRequest _request14 = new ShowListsRequest
+            private static readonly ShowListsRequest _request20 = new ShowListsRequest
+            {
+                Id = _id,
+                Type = _type,
+                SortOrder = _sortOrder,
+                ExtendedInfo = _extendedInfo
+            };
+
+            private static readonly ShowListsRequest _request21 = new ShowListsRequest
             {
                 Id = _id,
                 Type = _type,
@@ -155,7 +207,7 @@
                 Page = _page
             };
 
-            private static readonly ShowListsRequest _request15 = new ShowListsRequest
+            private static readonly ShowListsRequest _request22 = new ShowListsRequest
             {
                 Id = _id,
                 Type = _type,
@@ -163,11 +215,39 @@
                 Limit = _limit
             };
 
-            private static readonly ShowListsRequest _request16 = new ShowListsRequest
+            private static readonly ShowListsRequest _request23 = new ShowListsRequest
             {
                 Id = _id,
                 Type = _type,
                 SortOrder = _sortOrder,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly ShowListsRequest _request24 = new ShowListsRequest
+            {
+                Id = _id,
+                Type = _type,
+                SortOrder = _sortOrder,
+                ExtendedInfo = _extendedInfo,
+                Page = _page
+            };
+
+            private static readonly ShowListsRequest _request25 = new ShowListsRequest
+            {
+                Id = _id,
+                Type = _type,
+                SortOrder = _sortOrder,
+                ExtendedInfo = _extendedInfo,
+                Limit = _limit
+            };
+
+            private static readonly ShowListsRequest _request26 = new ShowListsRequest
+            {
+                Id = _id,
+                Type = _type,
+                SortOrder = _sortOrder,
+                ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
@@ -179,10 +259,11 @@
                 SetupPathParamters();
             }
 
-            private void SetupPathParamters()
+            private static void SetupPathParamters()
             {
                 var strType = _type.UriName;
                 var strSortOrder = _sortOrder.UriName;
+                var strExtendedInfo = _extendedInfo.ToString();
                 var strPage = _page.ToString();
                 var strLimit = _limit.ToString();
 
@@ -205,71 +286,120 @@
                 _data.Add(new object[] { _request4.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["page"] = strPage
+                        ["extended"] = strExtendedInfo
                     }});
 
                 _data.Add(new object[] { _request5.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["limit"] = strLimit
+                        ["page"] = strPage
                     }});
 
                 _data.Add(new object[] { _request6.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["type"] = strType,
-                        ["sort_order"] = strSortOrder
+                        ["limit"] = strLimit
                     }});
 
                 _data.Add(new object[] { _request7.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["type"] = strType,
-                        ["page"] = strPage
+                        ["sort_order"] = strSortOrder,
                     }});
 
                 _data.Add(new object[] { _request8.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["type"] = strType,
-                        ["limit"] = strLimit
+                        ["extended"] = strExtendedInfo
                     }});
 
                 _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["type"] = strType,
-                        ["page"] = strPage,
-                        ["limit"] = strLimit
+                        ["page"] = strPage
                     }});
 
                 _data.Add(new object[] { _request10.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["page"] = strPage
+                        ["type"] = strType,
+                        ["limit"] = strLimit
                     }});
 
                 _data.Add(new object[] { _request11.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
+                        ["type"] = strType,
+                        ["page"] = strPage,
                         ["limit"] = strLimit
                     }});
 
                 _data.Add(new object[] { _request12.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["page"] = strPage,
-                        ["limit"] = strLimit
+                        ["extended"] = strExtendedInfo
                     }});
 
                 _data.Add(new object[] { _request13.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request14.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request15.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["page"] = strPage,
                         ["limit"] = strLimit
                     }});
 
-                _data.Add(new object[] { _request14.GetUriPathParameters(), new Dictionary<string, object>
+                _data.Add(new object[] { _request16.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request17.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["extended"] = strExtendedInfo,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request18.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request19.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request20.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["type"] = strType,
+                        ["sort_order"] = strSortOrder,
+                        ["extended"] = strExtendedInfo
+                    }});
+
+                _data.Add(new object[] { _request21.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["type"] = strType,
@@ -277,7 +407,7 @@
                         ["page"] = strPage
                     }});
 
-                _data.Add(new object[] { _request15.GetUriPathParameters(), new Dictionary<string, object>
+                _data.Add(new object[] { _request22.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["type"] = strType,
@@ -285,11 +415,39 @@
                         ["limit"] = strLimit
                     }});
 
-                _data.Add(new object[] { _request16.GetUriPathParameters(), new Dictionary<string, object>
+                _data.Add(new object[] { _request23.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["type"] = strType,
                         ["sort_order"] = strSortOrder,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request24.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["type"] = strType,
+                        ["sort_order"] = strSortOrder,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request25.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["type"] = strType,
+                        ["sort_order"] = strSortOrder,
+                        ["extended"] = strExtendedInfo,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request26.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["type"] = strType,
+                        ["sort_order"] = strSortOrder,
+                        ["extended"] = strExtendedInfo,
                         ["page"] = strPage,
                         ["limit"] = strLimit
                     }});
