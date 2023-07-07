@@ -7,6 +7,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Movies;
     using Xunit;
 
@@ -17,7 +18,7 @@
         public void Test_MovieCommentsRequest_Has_Valid_UriTemplate()
         {
             var request = new MovieCommentsRequest();
-            request.UriTemplate.Should().Be("movies/{id}/comments{/sort_order}{?page,limit}");
+            request.UriTemplate.Should().Be("movies/{id}/comments{/sort_order}{?extended,page,limit}");
         }
 
         [Fact]
@@ -56,6 +57,7 @@
         {
             private const string _id = "123";
             private static readonly TraktExtendedCommentSortOrder _sortOrder = TraktExtendedCommentSortOrder.Newest;
+            private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 5;
             private const int _limit = 20;
 
@@ -73,40 +75,84 @@
             private static readonly MovieCommentsRequest _request3 = new MovieCommentsRequest
             {
                 Id = _id,
-                Page = _page
+                ExtendedInfo = _extendedInfo
             };
 
             private static readonly MovieCommentsRequest _request4 = new MovieCommentsRequest
             {
                 Id = _id,
-                Limit = _limit
+                Page = _page
             };
 
             private static readonly MovieCommentsRequest _request5 = new MovieCommentsRequest
             {
                 Id = _id,
-                SortOrder = _sortOrder,
-                Page = _page
+                Limit = _limit
             };
 
             private static readonly MovieCommentsRequest _request6 = new MovieCommentsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder,
-                Limit = _limit
+                ExtendedInfo = _extendedInfo
             };
 
             private static readonly MovieCommentsRequest _request7 = new MovieCommentsRequest
             {
                 Id = _id,
-                Page = _page,
-                Limit = _limit
+                SortOrder = _sortOrder,
+                Page = _page
             };
 
             private static readonly MovieCommentsRequest _request8 = new MovieCommentsRequest
             {
                 Id = _id,
                 SortOrder = _sortOrder,
+                Limit = _limit
+            };
+
+            private static readonly MovieCommentsRequest _request9 = new MovieCommentsRequest
+            {
+                Id = _id,
+                ExtendedInfo = _extendedInfo,
+                Page = _page
+            };
+
+            private static readonly MovieCommentsRequest _request10 = new MovieCommentsRequest
+            {
+                Id = _id,
+                ExtendedInfo = _extendedInfo,
+                Limit = _limit
+            };
+
+            private static readonly MovieCommentsRequest _request11 = new MovieCommentsRequest
+            {
+                Id = _id,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly MovieCommentsRequest _request12 = new MovieCommentsRequest
+            {
+                Id = _id,
+                SortOrder = _sortOrder,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly MovieCommentsRequest _request13 = new MovieCommentsRequest
+            {
+                Id = _id,
+                ExtendedInfo = _extendedInfo,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly MovieCommentsRequest _request14 = new MovieCommentsRequest
+            {
+                Id = _id,
+                SortOrder = _sortOrder,
+                ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
@@ -118,9 +164,10 @@
                 SetupPathParamters();
             }
 
-            private void SetupPathParamters()
+            private static void SetupPathParamters()
             {
                 var strSortOrder = _sortOrder.UriName;
+                var strExtendedInfo = _extendedInfo.ToString();
                 var strPage = _page.ToString();
                 var strLimit = _limit.ToString();
 
@@ -138,40 +185,84 @@
                 _data.Add(new object[] { _request3.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["page"] = strPage
+                        ["extended"] = strExtendedInfo
                     }});
 
                 _data.Add(new object[] { _request4.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["limit"] = strLimit
+                        ["page"] = strPage
                     }});
 
                 _data.Add(new object[] { _request5.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["sort_order"] = strSortOrder,
-                        ["page"] = strPage
+                        ["limit"] = strLimit
                     }});
 
                 _data.Add(new object[] { _request6.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["sort_order"] = strSortOrder,
-                        ["limit"] = strLimit
+                        ["extended"] = strExtendedInfo
                     }});
 
                 _data.Add(new object[] { _request7.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["page"] = strPage,
-                        ["limit"] = strLimit
+                        ["sort_order"] = strSortOrder,
+                        ["page"] = strPage
                     }});
 
                 _data.Add(new object[] { _request8.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["sort_order"] = strSortOrder,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request10.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["extended"] = strExtendedInfo,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request11.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request12.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["sort_order"] = strSortOrder,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request13.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request14.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["sort_order"] = strSortOrder,
+                        ["extended"] = strExtendedInfo,
                         ["page"] = strPage,
                         ["limit"] = strLimit
                     }});
