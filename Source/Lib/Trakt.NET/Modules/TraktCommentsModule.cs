@@ -664,6 +664,10 @@
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, for which the replies should be queried.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the comment's media item should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -678,12 +682,14 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktPagedResponse<ITraktComment>> GetCommentRepliesAsync(uint commentId, TraktPagedParameters pagedParameters = null,
+        public Task<TraktPagedResponse<ITraktComment>> GetCommentRepliesAsync(uint commentId, TraktExtendedInfo extendedInfo = null,
+                                                                              TraktPagedParameters pagedParameters = null,
                                                                               CancellationToken cancellationToken = default)
         {
             var request = new CommentRepliesRequest
             {
                 Id = commentId.ToString(),
+                ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit,
             };
