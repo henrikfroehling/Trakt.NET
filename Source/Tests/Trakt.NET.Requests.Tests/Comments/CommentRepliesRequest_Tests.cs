@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Comments;
     using Xunit;
@@ -31,7 +32,7 @@
         public void Test_CommentRepliesRequest_Has_Valid_UriTemplate()
         {
             var request = new CommentRepliesRequest();
-            request.UriTemplate.Should().Be("comments/{id}/replies{?page,limit}");
+            request.UriTemplate.Should().Be("comments/{id}/replies{?extended,page,limit}");
         }
 
         [Fact]
@@ -69,6 +70,7 @@
         public class CommentRepliesRequest_TestData : IEnumerable<object[]>
         {
             private const string _id = "123";
+            private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 5;
             private const int _limit = 20;
 
@@ -80,18 +82,46 @@
             private static readonly CommentRepliesRequest _request2 = new CommentRepliesRequest
             {
                 Id = _id,
-                Page = _page
+                ExtendedInfo = _extendedInfo
             };
 
             private static readonly CommentRepliesRequest _request3 = new CommentRepliesRequest
             {
                 Id = _id,
-                Limit = _limit
+                Page = _page
             };
 
             private static readonly CommentRepliesRequest _request4 = new CommentRepliesRequest
             {
                 Id = _id,
+                Limit = _limit
+            };
+
+            private static readonly CommentRepliesRequest _request5 = new CommentRepliesRequest
+            {
+                Id = _id,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly CommentRepliesRequest _request6 = new CommentRepliesRequest
+            {
+                Id = _id,
+                ExtendedInfo = _extendedInfo,
+                Page = _page
+            };
+
+            private static readonly CommentRepliesRequest _request7 = new CommentRepliesRequest
+            {
+                Id = _id,
+                ExtendedInfo = _extendedInfo,
+                Limit = _limit
+            };
+
+            private static readonly CommentRepliesRequest _request8 = new CommentRepliesRequest
+            {
+                Id = _id,
+                ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
@@ -103,8 +133,9 @@
                 SetupPathParamters();
             }
 
-            private void SetupPathParamters()
+            private static void SetupPathParamters()
             {
+                var strExtendedInfo = _extendedInfo.ToString();
                 var strPage = _page.ToString();
                 var strLimit = _limit.ToString();
 
@@ -116,18 +147,46 @@
                 _data.Add(new object[] { _request2.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["page"] = strPage
+                        ["extended"] = strExtendedInfo
                     }});
 
                 _data.Add(new object[] { _request3.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
-                        ["limit"] = strLimit
+                        ["page"] = strPage
                     }});
 
                 _data.Add(new object[] { _request4.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request5.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request6.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request7.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["extended"] = strExtendedInfo,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request8.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["extended"] = strExtendedInfo,
                         ["page"] = strPage,
                         ["limit"] = strLimit
                     }});

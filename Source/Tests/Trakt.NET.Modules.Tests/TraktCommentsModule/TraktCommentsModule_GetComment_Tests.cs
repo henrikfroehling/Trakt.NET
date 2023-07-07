@@ -17,10 +17,38 @@
         private readonly string GET_COMMENT_URI = $"comments/{GET_COMMENT_ID}";
 
         [Fact]
-        public async Task Test_TraktCommentsModule_GetComment()
+        public async Task Test_TraktCommentsModule_GetComment_Without_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient(GET_COMMENT_URI, COMMENT_JSON);
             TraktResponse<ITraktComment> response = await client.Comments.GetCommentAsync(GET_COMMENT_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            ITraktComment responseValue = response.Value;
+
+            responseValue.Id.Should().Be(GET_COMMENT_ID);
+            responseValue.ParentId.Should().Be(0U);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2016-04-01T12:44:40Z").ToUniversalTime());
+            responseValue.Comment.Should().Be("I hate they made The flash a kids show. Could else be much better. And with a better flash offcourse.");
+            responseValue.Spoiler.Should().BeFalse();
+            responseValue.Review.Should().BeFalse();
+            responseValue.Replies.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.UserStats.Should().NotBeNull();
+            responseValue.UserStats.Rating.Should().Be(8);
+            responseValue.UserStats.PlayCount.Should().Be(1);
+            responseValue.UserStats.CompletedCount.Should().Be(1);
+            responseValue.User.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktCommentsModule_GetComment_Complete()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_COMMENT_URI}?extended={EXTENDED_INFO}", COMMENT_JSON);
+            TraktResponse<ITraktComment> response = await client.Comments.GetCommentAsync(GET_COMMENT_ID, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
