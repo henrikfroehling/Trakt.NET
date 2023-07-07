@@ -3,6 +3,7 @@
     using Enums;
     using Interfaces;
     using Objects.Get.Lists;
+    using Parameters;
     using System.Collections.Generic;
 
     internal sealed class ShowListsRequest : AShowRequest<ITraktList>, ISupportsPagination
@@ -11,11 +12,13 @@
 
         internal TraktListSortOrder SortOrder { get; set; }
 
+        internal TraktExtendedInfo ExtendedInfo { get; set; }
+
         public uint? Page { get; set; }
 
         public uint? Limit { get; set; }
 
-        public override string UriTemplate => "shows/{id}/lists{/type}{/sort_order}{?page,limit}";
+        public override string UriTemplate => "shows/{id}/lists{/type}{/sort_order}{?extended,page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
@@ -28,6 +31,9 @@
 
             if (isTypeSetAndValid && SortOrder != null && SortOrder != TraktListSortOrder.Unspecified)
                 uriParams.Add("sort_order", SortOrder.UriName);
+
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriParams.Add("extended", ExtendedInfo.ToString());
 
             if (Page.HasValue)
                 uriParams.Add("page", Page.Value.ToString());

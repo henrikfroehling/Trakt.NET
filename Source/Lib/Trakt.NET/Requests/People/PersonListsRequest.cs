@@ -6,6 +6,7 @@
     using Extensions;
     using Interfaces;
     using Objects.Get.Lists;
+    using Parameters;
     using System.Collections.Generic;
 
     internal sealed class PersonListsRequest : AGetRequest<ITraktList>, IHasId, ISupportsPagination
@@ -16,13 +17,15 @@
 
         internal TraktListSortOrder SortOrder { get; set; }
 
+        internal TraktExtendedInfo ExtendedInfo { get; set; }
+
         public uint? Page { get; set; }
 
         public uint? Limit { get; set; }
 
         public RequestObjectType RequestObjectType => RequestObjectType.People;
 
-        public override string UriTemplate => "people/{id}/lists{/type}{/sort_order}{?page,limit}";
+        public override string UriTemplate => "people/{id}/lists{/type}{/sort_order}{?extended,page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
@@ -38,6 +41,9 @@
 
             if (isTypeSetAndValid && SortOrder != null && SortOrder != TraktListSortOrder.Unspecified)
                 uriParams.Add("sort_order", SortOrder.UriName);
+
+            if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
+                uriParams.Add("extended", ExtendedInfo.ToString());
 
             if (Page.HasValue)
                 uriParams.Add("page", Page.Value.ToString());

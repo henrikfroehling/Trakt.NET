@@ -39,12 +39,10 @@
         [Fact]
         public async Task Test_TraktShowsModule_GetShowLists_With_Type()
         {
-            TraktClient client = TestUtility.GetMockClient(
-                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}",
-                SHOW_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}",
+                                                           SHOW_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -60,10 +58,27 @@
         public async Task Test_TraktShowsModule_GetShowLists_With_SortOrder_And_Without_Type()
         {
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_LISTS_URI,
-                SHOW_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+                                                           SHOW_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, null, LIST_SORT_ORDER);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, LIST_SORT_ORDER);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_ExtendedInfo()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}?extended={EXTENDED_INFO}",
+                                                           SHOW_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -78,14 +93,11 @@
         [Fact]
         public async Task Test_TraktShowsModule_GetShowLists_With_Page()
         {
-            TraktClient client = TestUtility.GetMockClient(
-                $"{GET_SHOW_LISTS_URI}?page={PAGE}",
-                SHOW_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}?page={PAGE}",
+                                                           SHOW_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, null, null, pagedParameters);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -100,14 +112,11 @@
         [Fact]
         public async Task Test_TraktShowsModule_GetShowLists_With_Limit()
         {
-            TraktClient client = TestUtility.GetMockClient(
-                $"{GET_SHOW_LISTS_URI}?limit={LIMIT}",
-                SHOW_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}?limit={LIMIT}",
+                                                           SHOW_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, null, null, pagedParameters);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -120,36 +129,31 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowLists_With_Page_And_Limit()
+        public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_SortOrder()
         {
-            TraktClient client = TestUtility.GetMockClient(
-                $"{GET_SHOW_LISTS_URI}?page={PAGE}&limit={LIMIT}",
-                SHOW_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}",
+                                                           SHOW_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, null, null, pagedParameters);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
             response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
-            response.Limit.Should().Be(LIMIT);
-            response.Page.Should().Be(PAGE);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_SortOrder()
+        public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}",
+                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}?extended={EXTENDED_INFO}",
                 SHOW_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -164,14 +168,11 @@
         [Fact]
         public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_Page()
         {
-            TraktClient client = TestUtility.GetMockClient(
-                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}?page={PAGE}",
-                SHOW_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}?page={PAGE}",
+                                                           SHOW_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, null, pagedParameters);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -186,14 +187,11 @@
         [Fact]
         public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_Limit()
         {
-            TraktClient client = TestUtility.GetMockClient(
-                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}?limit={LIMIT}",
-                SHOW_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}?limit={LIMIT}",
+                                                           SHOW_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, null, pagedParameters);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -208,14 +206,11 @@
         [Fact]
         public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_Page_And_Limit()
         {
-            TraktClient client = TestUtility.GetMockClient(
-                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}?page={PAGE}&limit={LIMIT}",
-                SHOW_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}?page={PAGE}&limit={LIMIT}",
+                                                           SHOW_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, null, pagedParameters);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -228,16 +223,186 @@
         }
 
         [Fact]
-        public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_SortOrder_And_Page()
+        public async Task Test_TraktShowsModule_GetShowLists_With_SortOrder_And_ExtendedInfo_And_Without_Type()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}?extended={EXTENDED_INFO}",
+                                                           SHOW_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, LIST_SORT_ORDER, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_SortOrder_And_Page_And_Without_Type()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}?page={PAGE}",
+                                                           SHOW_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_SortOrder_And_Limit_And_Without_Type()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}?limit={LIMIT}",
+                                                           SHOW_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_SortOrder_Page_And_Limit_And_Without_Type()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}?page={PAGE}&limit={LIMIT}",
+                                                           SHOW_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_ExtendedInfo_And_Page()
         {
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page={PAGE}",
+                $"{GET_SHOW_LISTS_URI}?extended={EXTENDED_INFO}&page={PAGE}",
                 SHOW_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, null, EXTENDED_INFO, pagedParameters);
 
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, pagedParameters);
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_ExtendedInfo_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_LISTS_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                SHOW_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, null, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_ExtendedInfo_And_Page_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_LISTS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                SHOW_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, null, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_Page_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}?page={PAGE}&limit={LIMIT}",
+                                                           SHOW_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, null, null, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_SortOrder_And_ExtendedInfo()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?extended={EXTENDED_INFO}",
+                SHOW_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_SortOrder_And_Page()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page={PAGE}",
+                                                           SHOW_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -252,14 +417,73 @@
         [Fact]
         public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_SortOrder_And_Limit()
         {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?limit={LIMIT}",
+                                                           SHOW_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_SortOrder_And_Page_And_Limit()
+        {
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?limit={LIMIT}",
+                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page={PAGE}&limit={LIMIT}",
+                SHOW_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_SortOrder_And_ExtendedInfo_And_Page()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page={PAGE}",
+                SHOW_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowLists_With_Type_And_SortOrder_And_ExtendedInfo_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&limit={LIMIT}",
                 SHOW_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, pagedParameters);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -275,13 +499,12 @@
         public async Task Test_TraktShowsModule_GetShowLists_Complete()
         {
             TraktClient client = TestUtility.GetMockClient(
-                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page={PAGE}&limit={LIMIT}",
+                $"{GET_SHOW_LISTS_URI}/{LIST_ITEM_TYPE.UriName}/{LIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
                 SHOW_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-
-            TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, pagedParameters);
+            var response = await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -303,7 +526,7 @@
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
             TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, pagedParameters);
+                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -327,7 +550,7 @@
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
             TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, pagedParameters);
+                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -351,7 +574,7 @@
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
             TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, pagedParameters);
+                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -375,7 +598,7 @@
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
             TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, pagedParameters);
+                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -399,7 +622,7 @@
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
 
             TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, pagedParameters);
+                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -440,7 +663,7 @@
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
 
             TraktPagedResponse<ITraktList> response =
-                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, pagedParameters);
+                await client.Shows.GetShowListsAsync(SHOW_ID, LIST_ITEM_TYPE, LIST_SORT_ORDER, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();

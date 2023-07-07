@@ -36,13 +36,31 @@
         }
 
         [Fact]
+        public async Task Test_TraktCommentsModule_GetCommentReplies_With_ExtendedInfo()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_COMMENT_REPLIES_URI}?extended={EXTENDED_INFO}",
+                                                           COMMENT_REPLIES_JSON, PAGE, 10, 1, COMMENT_REPLIES_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENT_REPLIES_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENT_REPLIES_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktCommentsModule_GetCommentReplies_With_Page()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_COMMENT_REPLIES_URI}?page={PAGE}",
                                                            COMMENT_REPLIES_JSON, PAGE, 10, 1, COMMENT_REPLIES_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -61,7 +79,64 @@
                                                            COMMENT_REPLIES_JSON, 1, LIMIT, 1, COMMENT_REPLIES_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENT_REPLIES_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENT_REPLIES_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktCommentsModule_GetCommentReplies_With_Page_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_COMMENT_REPLIES_URI}?page={PAGE}&limit={LIMIT}",
+                                                           COMMENT_REPLIES_JSON, PAGE, LIMIT, 1, COMMENT_REPLIES_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENT_REPLIES_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENT_REPLIES_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktCommentsModule_GetCommentReplies_With_ExtendedInfo_And_Page()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_COMMENT_REPLIES_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                                                           COMMENT_REPLIES_JSON, PAGE, 10, 1, COMMENT_REPLIES_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENT_REPLIES_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENT_REPLIES_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktCommentsModule_GetCommentReplies_With_ExtendedInfo_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_COMMENT_REPLIES_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                                                           COMMENT_REPLIES_JSON, 1, LIMIT, 1, COMMENT_REPLIES_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -76,11 +151,11 @@
         [Fact]
         public async Task Test_TraktCommentsModule_GetCommentReplies_Complete()
         {
-            TraktClient client = TestUtility.GetMockClient($"{GET_COMMENT_REPLIES_URI}?page={PAGE}&limit={LIMIT}",
+            TraktClient client = TestUtility.GetMockClient($"{GET_COMMENT_REPLIES_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
                                                            COMMENT_REPLIES_JSON, PAGE, LIMIT, 1, COMMENT_REPLIES_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -99,7 +174,7 @@
                                                            COMMENT_REPLIES_JSON, 2, LIMIT, 5, COMMENT_REPLIES_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -120,7 +195,7 @@
                                                            COMMENT_REPLIES_JSON, 2, LIMIT, 2, COMMENT_REPLIES_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -141,7 +216,7 @@
                                                            COMMENT_REPLIES_JSON, 1, LIMIT, 2, COMMENT_REPLIES_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -162,7 +237,7 @@
                                                            COMMENT_REPLIES_JSON, 1, LIMIT, 1, COMMENT_REPLIES_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -183,7 +258,7 @@
                                                            COMMENT_REPLIES_JSON, 2, LIMIT, 2, COMMENT_REPLIES_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(2, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -220,7 +295,7 @@
                                                            COMMENT_REPLIES_JSON, 1, LIMIT, 2, COMMENT_REPLIES_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(1, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Comments.GetCommentRepliesAsync(GET_COMMENT_REPLIES_ID, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
