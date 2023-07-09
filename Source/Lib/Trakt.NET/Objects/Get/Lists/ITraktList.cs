@@ -57,7 +57,7 @@
         ITraktListIds Ids { get; set; }
 
         /// <summary>
-        /// Gets or sets the list's username of the user, which created this list.
+        /// Gets or sets the list's user, which created this list.
         /// See also <seealso cref="ITraktUser" />.
         /// <para>Nullable</para>
         /// </summary>

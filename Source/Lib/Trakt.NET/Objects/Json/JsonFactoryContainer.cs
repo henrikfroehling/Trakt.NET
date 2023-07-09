@@ -207,6 +207,14 @@
             // history objects
             s_jsonIOFactories.Add(typeof(ITraktHistoryItem), new HistoryItemJsonIOFactory());
 
+            // list objects
+            s_jsonIOFactories.Add(typeof(ITraktList), new ListJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktListIds), new ListIdsJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktListItem), new ListItemJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktListLike), new ListLikeJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktPopularList), new PopularListJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktTrendingList), new TrendingListJsonIOFactory());
+
             // movie objects
             s_jsonIOFactories.Add(typeof(ITraktBoxOfficeMovie), new BoxOfficeMovieJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktMostAnticipatedMovie), new MostAnticipatedMovieJsonIOFactory());
@@ -443,12 +451,6 @@
             s_jsonIOFactories.Add(typeof(ITraktUserSettings), new UserSettingsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserWatchingItem), new UserWatchingItemJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserWatchlistLimits), new UserWatchlistLimitsJsonIOFactory());
-
-            // user list objects
-            s_jsonIOFactories.Add(typeof(ITraktList), new ListJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktListIds), new ListIdsJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktListItem), new ListItemJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktListLike), new ListLikeJsonIOFactory());
 
             // user post objects
             s_jsonIOFactories.Add(typeof(ITraktUserPersonalListPost), new UserPersonalListPostJsonIOFactory());
