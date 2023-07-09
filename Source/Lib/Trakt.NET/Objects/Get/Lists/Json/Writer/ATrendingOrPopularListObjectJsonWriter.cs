@@ -33,7 +33,7 @@
             {
                 var listObjectWriter = new ListObjectJsonWriter();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LIST, cancellationToken).ConfigureAwait(false);
-                await listObjectWriter.WriteObjectAsync(obj.List, cancellationToken).ConfigureAwait(false);
+                await listObjectWriter.WriteObjectAsync(jsonWriter, obj.List, cancellationToken).ConfigureAwait(false);
             }
         }
     }
