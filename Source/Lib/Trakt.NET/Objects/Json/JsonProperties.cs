@@ -107,6 +107,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_LAST_UPDATED_AT = "last_updated_at";
         internal const string PROPERTY_NAME_LAST_WATCHED_AT = "last_watched_at";
         internal const string PROPERTY_NAME_LIGHTING = "lighting";
+        internal const string PROPERTY_NAME_LIKE_COUNT = "like_count";
         internal const string PROPERTY_NAME_LIKED_AT = "liked_at";
         internal const string PROPERTY_NAME_LIKES = "likes";
         internal const string PROPERTY_NAME_LIMIT = "limit";

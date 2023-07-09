@@ -12,7 +12,7 @@ namespace TraktNet.Objects.Get.Tests.Lists.Json.Writer
     using Xunit;
 
     [TestCategory("Objects.Get.Lists.JsonWriter")]
-    public partial class ListObjectJsonWriter_Tests
+    public class ListObjectJsonWriter_Tests
     {
         private readonly DateTime CREATED_AT = DateTime.UtcNow;
         private readonly DateTime UPDATED_AT = DateTime.UtcNow;
