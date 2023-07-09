@@ -2,11 +2,10 @@
 {
     using Base;
     using Interfaces;
-    using Objects.Get.Lists;
     using Parameters;
     using System.Collections.Generic;
 
-    internal abstract class AListsRequest : AGetRequest<ITraktList>, ISupportsPagination
+    internal abstract class AListsRequest<TListResponseContentType> : AGetRequest<TListResponseContentType>, ISupportsPagination
     {
         public TraktExtendedInfo ExtendedInfo { get; set; }
 

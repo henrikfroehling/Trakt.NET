@@ -41,16 +41,16 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{ITraktList}"/> instance containing the queried popular lists and which also
+        /// An <see cref="TraktPagedResponse{ITraktPopularList}"/> instance containing the queried popular lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktList" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktPopularList" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktList>> GetPopularListsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                         TraktPagedParameters pagedParameters = null,
-                                                                         CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktPopularList>> GetPopularListsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                TraktPagedParameters pagedParameters = null,
+                                                                                CancellationToken cancellationToken = default)
         {
             var request = new ListsPopularRequest
             {
@@ -79,16 +79,16 @@
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
         /// <returns>
-        /// An <see cref="TraktPagedResponse{ITraktList}"/> instance containing the queried trending lists and which also
+        /// An <see cref="TraktPagedResponse{ITraktTrendingList}"/> instance containing the queried trending lists and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktList" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktTrendingList" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktList>> GetTrendingListsAsync(TraktExtendedInfo extendedInfo = null,
-                                                                          TraktPagedParameters pagedParameters = null,
-                                                                          CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktTrendingList>> GetTrendingListsAsync(TraktExtendedInfo extendedInfo = null,
+                                                                                  TraktPagedParameters pagedParameters = null,
+                                                                                  CancellationToken cancellationToken = default)
         {
             var request = new ListsTrendingRequest
             {
