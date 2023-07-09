@@ -13,7 +13,7 @@
     [TestCategory("Requests.Lists")]
     public class AListsRequest_Tests
     {
-        internal class ListsRequestMock : AListsRequest
+        internal class ListsRequestMock : AListsRequest<int>
         {
             public override string UriTemplate { get { throw new NotImplementedException(); } }
         }
