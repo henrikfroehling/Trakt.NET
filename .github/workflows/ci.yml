@@ -203,9 +203,9 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           dotnet-quality: ${{ env.DOTNET_QUALITY }}
-          source-url: https://nuget.pkg.github.com/henrikfroehling/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#          source-url: https://nuget.pkg.github.com/henrikfroehling/index.json
+#        env:
+#          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Restore dependencies
         run: dotnet restore ${{ env.PROJECT_V200_NAME }}
@@ -236,11 +236,11 @@ jobs:
         if: ${{ github.actor != 'dependabot[bot]' }}
         uses: actions/upload-artifact@v3
         with:
-          name: Trakt.NET-CI-Build-${{ env.BRANCH_NAME }}.${{ github.run_number }}-${{ github.sha }}
+          name: Trakt.NET-CI-Build-v2.0.0-Alpha.${{ github.run_number }}-${{ github.sha }}
           retention-days: 14
           path: '${{ env.ARTIFACTS_V200_DIRECTORY }}/'
 
-      - name: Push NuGet package to Github Package Registry
-        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
-        run: dotnet nuget push '**/Trakt.NET*.nupkg'
-        working-directory: 'src'
+#      - name: Push NuGet package to Github Package Registry
+#        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
+#        run: dotnet nuget push '**/Trakt.NET*.nupkg'
+#        working-directory: 'src'
