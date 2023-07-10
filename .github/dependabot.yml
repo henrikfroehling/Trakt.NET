@@ -1,7 +1,7 @@
 version: 2
 updates:
 - package-ecosystem: nuget
-  directory: "Source/"
+  directory: "src/"
   schedule:
     interval: weekly
     day: "friday"
