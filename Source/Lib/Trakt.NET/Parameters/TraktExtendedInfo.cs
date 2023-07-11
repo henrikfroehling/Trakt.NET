@@ -75,7 +75,7 @@
         /// <summary>
         /// Gets or sets, whether comment media object information should be retrieved.
         /// <para>
-        /// Only supported by <see cref="Modules.TraktListsModule.GetListLikesAsync(string, TraktPagedParameters, CancellationToken)" />.
+        /// Only supported by <see cref="Modules.TraktListsModule.GetListLikesAsync(string, TraktExtendedInfo, TraktPagedParameters, CancellationToken)" />.
         /// Will be ignored otherwise.
         /// </para>
         /// <para>See also <see cref="SetEpisodes()" /> and <see cref="ResetEpisodes()" />.</para>

@@ -64,22 +64,22 @@
         /// <summary>Gets or sets the Trakt Client Id. See also <seealso cref="ClientSecret" />.</summary>
         public string ClientId
         {
-            get { return Authentication.ClientId; }
-            set { Authentication.ClientId = value; }
+            get => Authentication.ClientId;
+            set => Authentication.ClientId = value;
         }
 
         /// <summary>Gets or sets the Trakt Client Secret. See also <seealso cref="ClientId" />.</summary>
         public string ClientSecret
         {
-            get { return Authentication.ClientSecret; }
-            set { Authentication.ClientSecret = value; }
+            get => Authentication.ClientSecret;
+            set => Authentication.ClientSecret = value;
         }
 
         /// <summary>Gets or sets the Trakt Authorization information. See also <seealso cref="ITraktAuthorization" />.</summary>
         public ITraktAuthorization Authorization
         {
-            get { return Authentication.Authorization; }
-            set { Authentication.Authorization = value; }
+            get => Authentication.Authorization;
+            set => Authentication.Authorization = value;
         }
 
         /// <summary>
