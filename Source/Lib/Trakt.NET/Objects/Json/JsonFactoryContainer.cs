@@ -162,6 +162,7 @@
 
             // basic post objects
             s_jsonIOFactories.Add(typeof(ITraktListItemsReorderPost), new ListItemsReorderPostJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktListItemUpdatePost), new ListItemUpdatePostJsonIOFactory());
 
             // user response post objects
             s_jsonIOFactories.Add(typeof(ITraktListItemsReorderPostResponse), new ListItemsReorderPostResponseJsonIOFactory());
