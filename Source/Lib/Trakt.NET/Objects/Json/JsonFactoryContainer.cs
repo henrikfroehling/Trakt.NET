@@ -434,7 +434,7 @@
 
             // user objects
             s_jsonIOFactories.Add(typeof(ITraktAccountSettings), new AccountSettingsJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktRecommendation), new RecommendationJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktFavorite), new FavoriteJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSharingText), new SharingTextJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUser), new UserJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserComment), new UserCommentJsonIOFactory());

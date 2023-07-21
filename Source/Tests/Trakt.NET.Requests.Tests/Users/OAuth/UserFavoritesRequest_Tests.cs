@@ -13,47 +13,47 @@
     using Xunit;
 
     [TestCategory("Requests.Users.OAuth")]
-    public class UserPersonalRecommendationsRequest_Tests
+    public class UserFavoritesRequest_Tests
     {
         [Fact]
-        public void Test_UserPersonalRecommendationsRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserFavoritesRequest_Has_AuthorizationRequirement_Required()
         {
-            var request = new UserPersonalRecommendationsRequest();
+            var request = new UserFavoritesRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_UserPersonalRecommendationsRequest_Has_Valid_UriTemplate()
+        public void Test_UserFavoritesRequest_Has_Valid_UriTemplate()
         {
-            var request = new UserPersonalRecommendationsRequest();
-            request.UriTemplate.Should().Be("users/{username}/recommendations{/type}{/sort}{?extended,page,limit}");
+            var request = new UserFavoritesRequest();
+            request.UriTemplate.Should().Be("users/{username}/favorites{/type}{/sort}{?extended,page,limit}");
         }
 
         [Fact]
-        public void Test_UserPersonalRecommendationsRequest_Validate_Throws_Exceptions()
+        public void Test_UserFavoritesRequest_Validate_Throws_Exceptions()
         {
             // username is null
-            var request = new UserPersonalRecommendationsRequest();
+            var request = new UserFavoritesRequest();
 
             Action act = () => request.Validate();
             act.Should().Throw<TraktRequestValidationException>();
 
             // empty username
-            request = new UserPersonalRecommendationsRequest { Username = string.Empty };
+            request = new UserFavoritesRequest { Username = string.Empty };
 
             act = () => request.Validate();
             act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
-            request = new UserPersonalRecommendationsRequest { Username = "invalid username" };
+            request = new UserFavoritesRequest { Username = "invalid username" };
 
             act = () => request.Validate();
             act.Should().Throw<TraktRequestValidationException>();
         }
 
-        [Theory, ClassData(typeof(UserPersonalRecommendationsRequest_TestData))]
-        public void Test_UserPersonalRecommendationsRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
-                                                                                            IDictionary<string, object> expected)
+        [Theory, ClassData(typeof(UserFavoritesRequest_TestData))]
+        public void Test_UserFavoritesRequest_Returns_Valid_UriPathParameters(IDictionary<string, object> values,
+                                                                              IDictionary<string, object> expected)
         {
             values.Should().NotBeNull().And.HaveCount(expected.Count);
 
@@ -61,79 +61,79 @@
                 values.Should().Contain(expected);
         }
 
-        public class UserPersonalRecommendationsRequest_TestData : IEnumerable<object[]>
+        public class UserFavoritesRequest_TestData : IEnumerable<object[]>
         {
             private const string _username = "username";
-            private static readonly TraktRecommendationObjectType _type = TraktRecommendationObjectType.Show;
+            private static readonly TraktFavoriteObjectType _type = TraktFavoriteObjectType.Show;
             private static readonly TraktWatchlistSortOrder _sort = TraktWatchlistSortOrder.Rank;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 4;
             private const int _limit = 20;
 
-            private static readonly UserPersonalRecommendationsRequest _request1 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request1 = new UserFavoritesRequest
             {
                 Username = _username
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request2 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request2 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request3 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request3 = new UserFavoritesRequest
             {
                 Username = _username,
                 Sort = _sort
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request4 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request4 = new UserFavoritesRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request5 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request5 = new UserFavoritesRequest
             {
                 Username = _username,
                 Page = _page
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request6 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request6 = new UserFavoritesRequest
             {
                 Username = _username,
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request7 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request7 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
                 Sort = _sort
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request8 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request8 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request9 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request9 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
                 Page = _page
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request10 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request10 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request11 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request11 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
@@ -141,7 +141,7 @@
                 Page = _page
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request12 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request12 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
@@ -149,7 +149,7 @@
                 Page = _page
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request13 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request13 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
@@ -157,7 +157,7 @@
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request14 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request14 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
@@ -166,7 +166,7 @@
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request15 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request15 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
@@ -174,7 +174,7 @@
                 Page = _page
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request16 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request16 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
@@ -182,7 +182,7 @@
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request17 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request17 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
@@ -191,28 +191,28 @@
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request18 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request18 = new UserFavoritesRequest
             {
                 Username = _username,
                 Sort = _sort,
                 ExtendedInfo = _extendedInfo
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request19 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request19 = new UserFavoritesRequest
             {
                 Username = _username,
                 Sort = _sort,
                 Page = _page
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request20 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request20 = new UserFavoritesRequest
             {
                 Username = _username,
                 Sort = _sort,
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request21 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request21 = new UserFavoritesRequest
             {
                 Username = _username,
                 Sort = _sort,
@@ -220,7 +220,7 @@
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request22 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request22 = new UserFavoritesRequest
             {
                 Username = _username,
                 Sort = _sort,
@@ -228,7 +228,7 @@
                 Page = _page
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request23 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request23 = new UserFavoritesRequest
             {
                 Username = _username,
                 Sort = _sort,
@@ -236,7 +236,7 @@
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request24 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request24 = new UserFavoritesRequest
             {
                 Username = _username,
                 Sort = _sort,
@@ -245,21 +245,21 @@
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request25 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request25 = new UserFavoritesRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo,
                 Page = _page
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request26 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request26 = new UserFavoritesRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo,
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request27 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request27 = new UserFavoritesRequest
             {
                 Username = _username,
                 ExtendedInfo = _extendedInfo,
@@ -267,7 +267,7 @@
                 Limit = _limit
             };
 
-            private static readonly UserPersonalRecommendationsRequest _request28 = new UserPersonalRecommendationsRequest
+            private static readonly UserFavoritesRequest _request28 = new UserFavoritesRequest
             {
                 Username = _username,
                 Type = _type,
@@ -279,7 +279,7 @@
 
             private static readonly List<object[]> _data = new List<object[]>();
 
-            public UserPersonalRecommendationsRequest_TestData()
+            public UserFavoritesRequest_TestData()
             {
                 SetupPathParamters();
             }

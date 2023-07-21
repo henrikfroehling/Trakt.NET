@@ -6,11 +6,11 @@
     using Parameters;
     using System.Collections.Generic;
 
-    internal class SyncPersonalRecommendationsRequest : ASyncGetRequest<ITraktRecommendation>, ISupportsExtendedInfo, ISupportsPagination
+    internal class SyncPersonalRecommendationsRequest : ASyncGetRequest<ITraktFavorite>, ISupportsExtendedInfo, ISupportsPagination
     {
         public override string UriTemplate => "sync/recommendations{/type}{/sort}{?extended,page,limit}";
 
-        public TraktRecommendationObjectType Type { get; set; }
+        public TraktFavoriteObjectType Type { get; set; }
 
         public TraktWatchlistSortOrder Sort { get; set; }
 
@@ -24,7 +24,7 @@
         {
             var uriParams = base.GetUriPathParameters();
 
-            if (Type != null && Type != TraktRecommendationObjectType.Unspecified)
+            if (Type != null && Type != TraktFavoriteObjectType.Unspecified)
             {
                 uriParams.Add("type", Type.UriName);
 

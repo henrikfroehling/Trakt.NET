@@ -9,9 +9,9 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class RecommendationObjectJsonWriter : AObjectJsonWriter<ITraktRecommendation>
+    internal class FavoriteObjectJsonWriter : AObjectJsonWriter<ITraktFavorite>
     {
-        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktRecommendation obj, CancellationToken cancellationToken = default)
+        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktFavorite obj, CancellationToken cancellationToken = default)
         {
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
@@ -34,7 +34,7 @@
                 await jsonWriter.WriteValueAsync(obj.ListedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
-            if (obj.Type != null && obj.Type != TraktRecommendationObjectType.Unspecified)
+            if (obj.Type != null && obj.Type != TraktFavoriteObjectType.Unspecified)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TYPE, cancellationToken).ConfigureAwait(false);
                 await jsonWriter.WriteValueAsync(obj.Type.ObjectName, cancellationToken).ConfigureAwait(false);

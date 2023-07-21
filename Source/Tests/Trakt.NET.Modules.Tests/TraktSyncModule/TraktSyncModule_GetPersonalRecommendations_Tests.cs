@@ -24,7 +24,7 @@
                 GET_PERSONAL_RECOMMENDATIONS_URI,
                 RECOMMENDATIONS_JSON, 1, 10, 1, RECOMMENDATIONS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktRecommendation> response = await client.Sync.GetPersonalRecommendationsAsync();
+            TraktPagedResponse<ITraktFavorite> response = await client.Sync.GetPersonalRecommendationsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -43,7 +43,7 @@
                 $"{GET_PERSONAL_RECOMMENDATIONS_URI}/{RECOMMENDATION_TYPE.UriName}",
                 RECOMMENDATIONS_JSON, 1, 10, 1, RECOMMENDATIONS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE);
 
             response.Should().NotBeNull();
@@ -63,7 +63,7 @@
                 $"{GET_PERSONAL_RECOMMENDATIONS_URI}/{RECOMMENDATION_TYPE.UriName}/{RECOMMENDATION_SORT_ORDER.UriName}",
                 RECOMMENDATIONS_JSON, 1, 10, 1, RECOMMENDATIONS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER);
 
             response.Should().NotBeNull();
@@ -83,7 +83,7 @@
                 $"{GET_PERSONAL_RECOMMENDATIONS_URI}/{RECOMMENDATION_TYPE.UriName}/{RECOMMENDATION_SORT_ORDER.UriName}?extended={EXTENDED_INFO}",
                 RECOMMENDATIONS_JSON, 1, 10, 1, RECOMMENDATIONS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER, EXTENDED_INFO);
 
             response.Should().NotBeNull();
@@ -105,7 +105,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -127,7 +127,7 @@
 
             var pagedParameters = new TraktPagedParameters(null, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -149,7 +149,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -169,7 +169,7 @@
                 $"{GET_PERSONAL_RECOMMENDATIONS_URI}/{RECOMMENDATION_TYPE.UriName}?extended={EXTENDED_INFO}",
                 RECOMMENDATIONS_JSON, 1, 10, 1, RECOMMENDATIONS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
@@ -191,7 +191,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -213,7 +213,7 @@
 
             var pagedParameters = new TraktPagedParameters(null, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -235,7 +235,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -257,7 +257,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -279,7 +279,7 @@
 
             var pagedParameters = new TraktPagedParameters(null, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -301,7 +301,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -321,7 +321,7 @@
                 $"{GET_PERSONAL_RECOMMENDATIONS_URI}?extended={EXTENDED_INFO}",
                 RECOMMENDATIONS_JSON, 1, 10, 1, RECOMMENDATIONS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
@@ -343,7 +343,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -365,7 +365,7 @@
 
             var pagedParameters = new TraktPagedParameters(null, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -387,7 +387,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(null, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -409,7 +409,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -431,7 +431,7 @@
 
             var pagedParameters = new TraktPagedParameters(null, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -453,7 +453,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
@@ -476,7 +476,7 @@
 
             var pagedParameters = new TraktPagedParameters(PAGE, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -499,7 +499,7 @@
 
             var pagedParameters = new TraktPagedParameters(2, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -524,7 +524,7 @@
 
             var pagedParameters = new TraktPagedParameters(2, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -549,7 +549,7 @@
 
             var pagedParameters = new TraktPagedParameters(1, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -574,7 +574,7 @@
 
             var pagedParameters = new TraktPagedParameters(1, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -599,7 +599,7 @@
 
             var pagedParameters = new TraktPagedParameters(2, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
@@ -642,7 +642,7 @@
 
             var pagedParameters = new TraktPagedParameters(1, RECOMMENDATIONS_LIMIT);
 
-            TraktPagedResponse<ITraktRecommendation> response =
+            TraktPagedResponse<ITraktFavorite> response =
                 await client.Sync.GetPersonalRecommendationsAsync(RECOMMENDATION_TYPE, RECOMMENDATION_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();

@@ -58,10 +58,10 @@
         private readonly IList<uint> REORDERED_CUSTOM_LISTS = new List<uint> { 823, 224, 88768, 356456, 245, 2, 890 };
         private readonly IList<uint> REORDERED_CUSTOM_LIST_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
         private const int RATINGS_ITEM_COUNT = 5;
-        private readonly TraktRecommendationObjectType RECOMMENDATION_TYPE = TraktRecommendationObjectType.Movie;
-        private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
-        private const int RECOMMENDATIONS_ITEM_COUNT = 2;
-        private const int RECOMMENDATIONS_LIMIT = 6;
+        private readonly TraktFavoriteObjectType FAVORITE_TYPE = TraktFavoriteObjectType.Movie;
+        private readonly TraktWatchlistSortOrder FAVORITES_SORT_ORDER = TraktWatchlistSortOrder.Rank;
+        private const int FAVORITES_ITEM_COUNT = 2;
+        private const int FAVORITES_LIMIT = 6;
         private const int LIST_LIKES_LIMIT = 3;
         private const int LIST_LIKES_ITEM_COUNT = 2;
         private readonly TraktFilterSection FILTER_SECTION = TraktFilterSection.Movies;
@@ -1429,7 +1429,7 @@
                 ]
               }";
 
-        private const string USER_RECOMMENDATIONS_JSON =
+        private const string USER_FAVORITES_JSON =
             @"[
                 {
                   ""rank"": 1,

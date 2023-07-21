@@ -1,6 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Tests.Users.Json.Reader
 {
-    public partial class RecommendationObjectJsonReader_Tests
+    public partial class FavoriteObjectJsonReader_Tests
     {
         private const string JSON_MOVIE_COMPLETE =
             @"{

@@ -70,7 +70,7 @@ namespace TraktNet.Modules
         /// See <a href="https://trakt.docs.apiary.io/#reference/sync/get-personal-recommendations/get-personal-recommendations">"Trakt API Doc - Sync: Personal Recommendations"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="recommendationObjectType">Determines, which type of recommendation items should be queried. See also <seealso cref="TraktRecommendationObjectType" />.</param>
+        /// <param name="recommendationObjectType">Determines, which type of recommendation items should be queried. See also <seealso cref="TraktFavoriteObjectType" />.</param>
         /// <param name="sortOrder">
         /// The recommendations sort order. See also <seealso cref="TraktWatchlistSortOrder" />.
         /// Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
@@ -85,11 +85,11 @@ namespace TraktNet.Modules
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
-        /// <returns>A list of <see cref="ITraktRecommendation" /> instances.</returns>
+        /// <returns>A list of <see cref="ITraktFavorite" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktRecommendation>> GetPersonalRecommendationsAsync(TraktRecommendationObjectType recommendationObjectType = null,
-                                                                                              TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null,
-                                                                                              TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktFavorite>> GetPersonalRecommendationsAsync(TraktFavoriteObjectType recommendationObjectType = null,
+                                                                                        TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null,
+                                                                                        TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)
         {
             var request = new SyncPersonalRecommendationsRequest
             {
