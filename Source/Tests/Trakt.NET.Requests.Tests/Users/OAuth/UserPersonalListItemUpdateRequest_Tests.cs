@@ -14,28 +14,28 @@
     public class UserPersonalListItemUpdateRequest_Tests
     {
         [Fact]
-        public void Test_UserListItemUpdateRequest_Has_AuthorizationRequirement_Required()
+        public void Test_UserPersonalListItemUpdateRequest_Has_AuthorizationRequirement_Required()
         {
             var request = new UserPersonalListItemUpdateRequest();
             request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Required);
         }
 
         [Fact]
-        public void Test_UserListItemUpdateRequest_Returns_Valid_RequestObjectType()
+        public void Test_UserPersonalListItemUpdateRequest_Returns_Valid_RequestObjectType()
         {
             var requestMock = new UserPersonalListItemUpdateRequest();
             requestMock.RequestObjectType.Should().Be(RequestObjectType.Lists);
         }
 
         [Fact]
-        public void Test_UserListItemUpdateRequest_Has_Valid_UriTemplate()
+        public void Test_UserPersonalListItemUpdateRequest_Has_Valid_UriTemplate()
         {
             var request = new UserPersonalListItemUpdateRequest();
             request.UriTemplate.Should().Be("users/{username}/lists/{list_id}/items/{list_item_id}");
         }
 
         [Fact]
-        public void Test_UserListItemUpdateRequest_Returns_Valid_UriPathParameters()
+        public void Test_UserPersonalListItemUpdateRequest_Returns_Valid_UriPathParameters()
         {
             var request = new UserPersonalListItemUpdateRequest { Username = "username", Id = "star-wars-in-machete-order", ListItemId = 1 };
 
@@ -50,7 +50,7 @@
         }
 
         [Fact]
-        public void Test_UserListItemUpdateRequest_Validate_Throws_Exceptions()
+        public void Test_UserPersonalListItemUpdateRequest_Validate_Throws_Exceptions()
         {
             // username is null
             var request = new UserPersonalListItemUpdateRequest
