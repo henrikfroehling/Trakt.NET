@@ -1,6 +1,6 @@
 namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
 {
-    public partial class RecommendedByObjectJsonReader_Tests
+    public partial class FavoritedByObjectJsonReader_Tests
     {
         private const string JSON_COMPLETE =
             @"{
@@ -28,12 +28,12 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""vip_years"": 5,
                 ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
               },
-              ""notes"": ""Recommended because ...""
+              ""notes"": ""Favorited because ...""
             }";
 
         private const string JSON_INCOMPLETE_1 =
             @"{
-              ""notes"": ""Recommended because ...""
+              ""notes"": ""Favorited because ...""
             }";
 
         private const string JSON_INCOMPLETE_2 =
@@ -90,7 +90,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""vip_years"": 5,
                 ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
               },
-              ""nt"": ""Recommended because ...""
+              ""nt"": ""Favorited because ...""
             }";
     }
 }

@@ -1,8 +1,8 @@
 namespace TraktNet.Objects.Get.Recommendations.Json.Writer
 {
-    using Shows.Json.Writer;
     using Newtonsoft.Json;
     using Objects.Json;
+    using Shows.Json.Writer;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -12,11 +12,11 @@ namespace TraktNet.Objects.Get.Recommendations.Json.Writer
         {
             await base.WriteShowObjectAsync(jsonWriter, obj, cancellationToken).ConfigureAwait(false);
 
-            if (obj.RecommendedBy != null)
+            if (obj.FavoritedBy != null)
             {
-                var recommendedByArrayJsonWriter = new ArrayJsonWriter<ITraktRecommendedBy>();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RECOMMENDED_BY, cancellationToken).ConfigureAwait(false);
-                await recommendedByArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.RecommendedBy, cancellationToken).ConfigureAwait(false);
+                var favoritedByArrayJsonWriter = new ArrayJsonWriter<ITraktFavoritedBy>();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_FAVORITED_BY, cancellationToken).ConfigureAwait(false);
+                await favoritedByArrayJsonWriter.WriteArrayAsync(jsonWriter, obj.FavoritedBy, cancellationToken).ConfigureAwait(false);
             }
         }
     }
