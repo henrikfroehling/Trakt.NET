@@ -1,10 +1,10 @@
 namespace TraktNet.Objects.Get.Recommendations.Json.Reader
 {
+    using Movies.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
     using System.Threading.Tasks;
-    using Movies.Json.Reader;
 
     internal class RecommendedMovieObjectJsonReader : AMovieObjectJsonReader<ITraktRecommendedMovie>
     {
@@ -14,9 +14,9 @@ namespace TraktNet.Objects.Get.Recommendations.Json.Reader
         {
             switch (propertyName)
             {
-                case JsonProperties.PROPERTY_NAME_RECOMMENDED_BY:
-                    var recommendedByArrayReader = new ArrayJsonReader<ITraktRecommendedBy>();
-                    movie.RecommendedBy = await recommendedByArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
+                case JsonProperties.PROPERTY_NAME_FAVORITED_BY:
+                    var favoritedByArrayReader = new ArrayJsonReader<ITraktFavoritedBy>();
+                    movie.FavoritedBy = await favoritedByArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                     break;
                 default:
                     await base.ReadPropertyAsync(jsonReader, movie, propertyName, cancellationToken);

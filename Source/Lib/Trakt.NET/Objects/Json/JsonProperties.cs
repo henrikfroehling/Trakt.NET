@@ -73,6 +73,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_EXPIRES_IN = "expires_in";
         internal const string PROPERTY_NAME_FACEBOOK = "facebook";
         internal const string PROPERTY_NAME_FAVORITED_AT = "favorited_at";
+        internal const string PROPERTY_NAME_FAVORITED_BY = "favorited_by";
         internal const string PROPERTY_NAME_FAVORITES = "favorites";
         internal const string PROPERTY_NAME_FIRST_AIRED = "first_aired";
         internal const string PROPERTY_NAME_FOLLOWED_AT = "followed_at";
@@ -157,7 +158,6 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_RECOMMENDATIONS = "recommendations";
         internal const string PROPERTY_NAME_RECOMMENDATIONS_AT = "recommendations_at";
         internal const string PROPERTY_NAME_RECOMMENDED = "recommended";
-        internal const string PROPERTY_NAME_RECOMMENDED_BY = "recommended_by";
         internal const string PROPERTY_NAME_REFRESH_TOKEN = "refresh_token";
         internal const string PROPERTY_NAME_RELEASE_DATE = "release_date";
         internal const string PROPERTY_NAME_RELEASE_TYPE = "release_type";

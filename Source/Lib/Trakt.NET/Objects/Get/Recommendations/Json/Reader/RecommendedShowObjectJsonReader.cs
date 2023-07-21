@@ -2,9 +2,9 @@ namespace TraktNet.Objects.Get.Recommendations.Json.Reader
 {
     using Newtonsoft.Json;
     using Objects.Json;
+    using Shows.Json.Reader;
     using System.Threading;
     using System.Threading.Tasks;
-    using Shows.Json.Reader;
 
     internal class RecommendedShowObjectJsonReader : AShowObjectJsonReader<ITraktRecommendedShow>
     {
@@ -14,9 +14,9 @@ namespace TraktNet.Objects.Get.Recommendations.Json.Reader
         {
             switch (propertyName)
             {
-                case JsonProperties.PROPERTY_NAME_RECOMMENDED_BY:
-                    var recommendedByArrayReader = new ArrayJsonReader<ITraktRecommendedBy>();
-                    show.RecommendedBy = await recommendedByArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
+                case JsonProperties.PROPERTY_NAME_FAVORITED_BY:
+                    var favoritedByArrayReader = new ArrayJsonReader<ITraktFavoritedBy>();
+                    show.FavoritedBy = await favoritedByArrayReader.ReadArrayAsync(jsonReader, cancellationToken);
                     break;
                 default:
                     await base.ReadPropertyAsync(jsonReader, show, propertyName, cancellationToken);

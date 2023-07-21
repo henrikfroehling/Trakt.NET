@@ -48,32 +48,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -109,32 +109,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -170,32 +170,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -227,32 +227,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -288,32 +288,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -349,32 +349,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -410,32 +410,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -471,32 +471,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -532,32 +532,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -593,32 +593,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -654,32 +654,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -715,32 +715,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -776,32 +776,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -837,32 +837,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -898,32 +898,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -959,32 +959,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -1020,32 +1020,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -1081,32 +1081,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().BeNull();
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -1142,32 +1142,32 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().BeNull();
 
-            traktRecommendedMovie.RecommendedBy.Should().NotBeNull().And.HaveCount(1);
+            traktRecommendedMovie.FavoritedBy.Should().NotBeNull().And.HaveCount(1);
 
-            ITraktRecommendedBy recommendedBy = traktRecommendedMovie.RecommendedBy.First();
+            ITraktFavoritedBy favoritedBy = traktRecommendedMovie.FavoritedBy.First();
 
-            recommendedBy.Should().NotBeNull();
-            recommendedBy.User.Should().NotBeNull();
-            recommendedBy.User.Username.Should().Be("sean");
-            recommendedBy.User.IsPrivate.Should().BeFalse();
-            recommendedBy.User.Name.Should().Be("Sean Rudford");
-            recommendedBy.User.IsVIP.Should().BeTrue();
-            recommendedBy.User.IsVIP_EP.Should().BeTrue();
-            recommendedBy.User.Ids.Should().NotBeNull();
-            recommendedBy.User.Ids.Slug.Should().Be("sean");
-            recommendedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
-            recommendedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
-            recommendedBy.User.Location.Should().Be("SF");
-            recommendedBy.User.About.Should().Be("I have all your cassette tapes.");
-            recommendedBy.User.Gender.Should().Be("male");
-            recommendedBy.User.Age.Should().Be(35);
-            recommendedBy.User.Images.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Should().NotBeNull();
-            recommendedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
-            recommendedBy.User.IsVIP_OG.Should().BeTrue();
-            recommendedBy.User.VIP_Years.Should().Be(5);
-            recommendedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
-            recommendedBy.Notes.Should().Be("Recommended because ...");
+            favoritedBy.Should().NotBeNull();
+            favoritedBy.User.Should().NotBeNull();
+            favoritedBy.User.Username.Should().Be("sean");
+            favoritedBy.User.IsPrivate.Should().BeFalse();
+            favoritedBy.User.Name.Should().Be("Sean Rudford");
+            favoritedBy.User.IsVIP.Should().BeTrue();
+            favoritedBy.User.IsVIP_EP.Should().BeTrue();
+            favoritedBy.User.Ids.Should().NotBeNull();
+            favoritedBy.User.Ids.Slug.Should().Be("sean");
+            favoritedBy.User.Ids.UUID.Should().Be("3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070");
+            favoritedBy.User.JoinedAt.Should().HaveValue().And.Be(DateTime.Parse("2010-09-25T17:49:25.000Z").ToUniversalTime());
+            favoritedBy.User.Location.Should().Be("SF");
+            favoritedBy.User.About.Should().Be("I have all your cassette tapes.");
+            favoritedBy.User.Gender.Should().Be("male");
+            favoritedBy.User.Age.Should().Be(35);
+            favoritedBy.User.Images.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Should().NotBeNull();
+            favoritedBy.User.Images.Avatar.Full.Should().Be("https://walter-dev.trakt.tv/images/users/000/000/001/avatars/large/0ba3f72910.jpg");
+            favoritedBy.User.IsVIP_OG.Should().BeTrue();
+            favoritedBy.User.VIP_Years.Should().Be(5);
+            favoritedBy.User.VIP_CoverImage.Should().Be("https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg");
+            favoritedBy.Notes.Should().Be("Favorited because ...");
         }
 
         [Fact]
@@ -1202,7 +1202,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.Certification.Should().Be("PG-13");
             traktRecommendedMovie.CountryCode.Should().Be("us");
             traktRecommendedMovie.Status.Should().Be(TraktMovieStatus.Released);
-            traktRecommendedMovie.RecommendedBy.Should().BeNull();
+            traktRecommendedMovie.FavoritedBy.Should().BeNull();
         }
 
         [Fact]
@@ -1233,7 +1233,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
             traktRecommendedMovie.Certification.Should().BeNull();
             traktRecommendedMovie.CountryCode.Should().BeNull();
             traktRecommendedMovie.Status.Should().BeNull();
-            traktRecommendedMovie.RecommendedBy.Should().BeNull();
+            traktRecommendedMovie.FavoritedBy.Should().BeNull();
         }
 
         [Fact]

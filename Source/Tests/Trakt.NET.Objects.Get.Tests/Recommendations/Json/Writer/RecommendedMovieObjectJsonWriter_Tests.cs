@@ -275,13 +275,13 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Writer
         }
 
         [Fact]
-        public async Task Test_RecommendedMovieObjectJsonWriter_WriteObject_Only_RecommendedBy_Property()
+        public async Task Test_RecommendedMovieObjectJsonWriter_WriteObject_Only_FavoritedBy_Property()
         {
             ITraktRecommendedMovie traktRecommendedMovie = new TraktRecommendedMovie
             {
-                RecommendedBy = new List<ITraktRecommendedBy>
+                FavoritedBy = new List<ITraktFavoritedBy>
                 {
-                    new TraktRecommendedBy
+                    new TraktFavoritedBy
                     {
                         User = new TraktUser
                         {
@@ -300,18 +300,18 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Writer
                             Age = 35,
                             Gender = "male"
                         },
-                        Notes = "Recommended because ..."
+                        Notes = "Favorited because ..."
                     }
                 }
             };
 
             var traktJsonWriter = new RecommendedMovieObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktRecommendedMovie);
-            json.Should().Be(@"{""recommended_by"":[{""user"":{""username"":""sean"",""private"":false," +
+            json.Should().Be(@"{""favorited_by"":[{""user"":{""username"":""sean"",""private"":false," +
                              @"""ids"":{""slug"":""sean"",""uuid"":""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""}," +
                              @"""name"":""Sean Rudford"",""vip"":true,""vip_ep"":true,""location"":""SF""," +
                              @"""about"":""I have all your cassette tapes."",""gender"":""male"",""age"":35}," +
-                             @"""notes"":""Recommended because ...""}]}");
+                             @"""notes"":""Favorited because ...""}]}");
         }
 
         [Fact]
@@ -349,9 +349,9 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Writer
                 Certification = "PG-13",
                 CountryCode = "us",
                 Status = TraktMovieStatus.Released,
-                RecommendedBy = new List<ITraktRecommendedBy>
+                FavoritedBy = new List<ITraktFavoritedBy>
                 {
-                    new TraktRecommendedBy
+                    new TraktFavoritedBy
                     {
                         User = new TraktUser
                         {
@@ -370,7 +370,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Writer
                             Age = 35,
                             Gender = "male"
                         },
-                        Notes = "Recommended because ..."
+                        Notes = "Favorited because ..."
                     }
                 }
             };
@@ -391,11 +391,11 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Writer
                              @"""available_translations"":[""en"",""de"",""es"",""it""]," +
                              @"""genres"":[""action"",""adventure"",""fantasy"",""science-fiction""]," +
                              @"""certification"":""PG-13"",""country"":""us"",""status"":""released""," +
-                             @"""recommended_by"":[{""user"":{""username"":""sean"",""private"":false," +
+                             @"""favorited_by"":[{""user"":{""username"":""sean"",""private"":false," +
                              @"""ids"":{""slug"":""sean"",""uuid"":""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""}," +
                              @"""name"":""Sean Rudford"",""vip"":true,""vip_ep"":true,""location"":""SF""," +
                              @"""about"":""I have all your cassette tapes."",""gender"":""male"",""age"":35}," +
-                             @"""notes"":""Recommended because ...""}]}");
+                             @"""notes"":""Favorited because ...""}]}");
         }
     }
 }
