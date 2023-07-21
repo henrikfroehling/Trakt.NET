@@ -12,79 +12,79 @@
     using Xunit;
 
     [TestCategory("Objects.Get.Users.JsonWriter")]
-    public partial class RecommendationObjectJsonWriter_Tests
+    public partial class FavoriteObjectJsonWriter_Tests
     {
         private readonly DateTime LISTED_AT = DateTime.UtcNow;
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_Id_Property()
+        public async Task Test_FavoriteObjectJsonWriter_Movie_WriteObject_Object_Only_Id_Property()
         {
-            ITraktRecommendation traktRecommendation = new TraktRecommendation
+            ITraktFavorite traktFavorite = new TraktFavorite
             {
                 Id = 101
             };
 
-            var traktJsonWriter = new RecommendationObjectJsonWriter();
-            string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
+            var traktJsonWriter = new FavoriteObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktFavorite);
             json.Should().Be(@"{""id"":101}");
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_Rank_Property()
+        public async Task Test_FavoriteObjectJsonWriter_Movie_WriteObject_Object_Only_Rank_Property()
         {
-            ITraktRecommendation traktRecommendation = new TraktRecommendation
+            ITraktFavorite traktFavorite = new TraktFavorite
             {
                 Rank = 1
             };
 
-            var traktJsonWriter = new RecommendationObjectJsonWriter();
-            string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
+            var traktJsonWriter = new FavoriteObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktFavorite);
             json.Should().Be(@"{""rank"":1}");
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_ListedAt_Property()
+        public async Task Test_FavoriteObjectJsonWriter_Movie_WriteObject_Object_Only_ListedAt_Property()
         {
-            ITraktRecommendation traktRecommendation = new TraktRecommendation
+            ITraktFavorite traktFavorite = new TraktFavorite
             {
                 ListedAt = LISTED_AT
             };
 
-            var traktJsonWriter = new RecommendationObjectJsonWriter();
-            string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
+            var traktJsonWriter = new FavoriteObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktFavorite);
             json.Should().Be($"{{\"listed_at\":\"{LISTED_AT.ToTraktLongDateTimeString()}\"}}");
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_Type_Property()
+        public async Task Test_FavoriteObjectJsonWriter_Movie_WriteObject_Object_Only_Type_Property()
         {
-            ITraktRecommendation traktRecommendation = new TraktRecommendation
+            ITraktFavorite traktFavorite = new TraktFavorite
             {
-                Type = TraktRecommendationObjectType.Movie
+                Type = TraktFavoriteObjectType.Movie
             };
 
-            var traktJsonWriter = new RecommendationObjectJsonWriter();
-            string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
+            var traktJsonWriter = new FavoriteObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktFavorite);
             json.Should().Be(@"{""type"":""movie""}");
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_Notes_Property()
+        public async Task Test_FavoriteObjectJsonWriter_Movie_WriteObject_Object_Only_Notes_Property()
         {
-            ITraktRecommendation traktRecommendation = new TraktRecommendation
+            ITraktFavorite traktFavorite = new TraktFavorite
             {
                 Notes = "Daft Punk really knocks it out of the park on the soundtrack."
             };
 
-            var traktJsonWriter = new RecommendationObjectJsonWriter();
-            string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
+            var traktJsonWriter = new FavoriteObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktFavorite);
             json.Should().Be(@"{""notes"":""Daft Punk really knocks it out of the park on the soundtrack.""}");
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Only_Movie_Property()
+        public async Task Test_FavoriteObjectJsonWriter_Movie_WriteObject_Object_Only_Movie_Property()
         {
-            ITraktRecommendation traktRecommendation = new TraktRecommendation
+            ITraktFavorite traktFavorite = new TraktFavorite
             {
                 Movie = new TraktMovie
                 {
@@ -100,22 +100,22 @@
                 }
             };
 
-            var traktJsonWriter = new RecommendationObjectJsonWriter();
-            string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
+            var traktJsonWriter = new FavoriteObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktFavorite);
             json.Should().Be(@"{""movie"":{""title"":""TRON: Legacy"",""year"":2010," +
                              @"""ids"":{""trakt"":1,""slug"":""tron-legacy-2010""," +
                              @"""imdb"":""tt1104001"",""tmdb"":20526}}}");
         }
 
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_Movie_WriteObject_Object_Complete()
+        public async Task Test_FavoriteObjectJsonWriter_Movie_WriteObject_Object_Complete()
         {
-            ITraktRecommendation traktRecommendation = new TraktRecommendation
+            ITraktFavorite traktFavorite = new TraktFavorite
             {
                 Id = 101,
                 Rank = 1,
                 ListedAt = LISTED_AT,
-                Type = TraktRecommendationObjectType.Movie,
+                Type = TraktFavoriteObjectType.Movie,
                 Notes = "Daft Punk really knocks it out of the park on the soundtrack.",
                 Movie = new TraktMovie
                 {
@@ -131,8 +131,8 @@
                 }
             };
 
-            var traktJsonWriter = new RecommendationObjectJsonWriter();
-            string json = await traktJsonWriter.WriteObjectAsync(traktRecommendation);
+            var traktJsonWriter = new FavoriteObjectJsonWriter();
+            string json = await traktJsonWriter.WriteObjectAsync(traktFavorite);
             json.Should().Be(@"{""id"":101,""rank"":1," +
                              $"\"listed_at\":\"{LISTED_AT.ToTraktLongDateTimeString()}\"," +
                              @"""type"":""movie""," +

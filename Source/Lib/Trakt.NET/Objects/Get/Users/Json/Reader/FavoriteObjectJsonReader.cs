@@ -8,15 +8,15 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class RecommendationObjectJsonReader : AObjectJsonReader<ITraktRecommendation>
+    internal class FavoriteObjectJsonReader : AObjectJsonReader<ITraktFavorite>
     {
-        public override async Task<ITraktRecommendation> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<ITraktFavorite> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                ITraktRecommendation traktRecommendation = new TraktRecommendation();
+                ITraktFavorite traktFavorite = new TraktFavorite();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -29,38 +29,38 @@
                                 var value = await JsonReaderHelper.ReadUnsignedLongValueAsync(jsonReader, cancellationToken);
 
                                 if (value.First)
-                                    traktRecommendation.Id = value.Second;
+                                    traktFavorite.Id = value.Second;
 
                                 break;
                             }
                         case JsonProperties.PROPERTY_NAME_RANK:
-                            traktRecommendation.Rank = await jsonReader.ReadAsInt32Async(cancellationToken).ConfigureAwait(false);
+                            traktFavorite.Rank = await jsonReader.ReadAsInt32Async(cancellationToken).ConfigureAwait(false);
                             break;
                         case JsonProperties.PROPERTY_NAME_LISTED_AT:
                             {
                                 var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken).ConfigureAwait(false);
 
                                 if (value.First)
-                                    traktRecommendation.ListedAt = value.Second;
+                                    traktFavorite.ListedAt = value.Second;
 
                                 break;
                             }
                         case JsonProperties.PROPERTY_NAME_TYPE:
-                            traktRecommendation.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktRecommendationObjectType>(jsonReader, cancellationToken).ConfigureAwait(false);
+                            traktFavorite.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktFavoriteObjectType>(jsonReader, cancellationToken).ConfigureAwait(false);
                             break;
                         case JsonProperties.PROPERTY_NAME_NOTES:
-                            traktRecommendation.Notes = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                            traktFavorite.Notes = await jsonReader.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                             break;
                         case JsonProperties.PROPERTY_NAME_MOVIE:
                             {
                                 var movieObjectReader = new MovieObjectJsonReader();
-                                traktRecommendation.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
+                                traktFavorite.Movie = await movieObjectReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                                 break;
                             }
                         case JsonProperties.PROPERTY_NAME_SHOW:
                             {
                                 var showObjectReader = new ShowObjectJsonReader();
-                                traktRecommendation.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
+                                traktFavorite.Show = await showObjectReader.ReadObjectAsync(jsonReader, cancellationToken).ConfigureAwait(false);
                                 break;
                             }
                         default:
@@ -69,10 +69,10 @@
                     }
                 }
 
-                return traktRecommendation;
+                return traktFavorite;
             }
 
-            return await Task.FromResult(default(ITraktRecommendation));
+            return await Task.FromResult(default(ITraktFavorite));
         }
     }
 }

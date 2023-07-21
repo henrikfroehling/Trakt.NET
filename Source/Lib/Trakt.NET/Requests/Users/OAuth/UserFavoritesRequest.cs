@@ -7,15 +7,15 @@
     using Objects.Get.Users;
     using System.Collections.Generic;
 
-    internal sealed class UserPersonalRecommendationsRequest : AUsersPagedGetRequest<ITraktRecommendation>
+    internal sealed class UserFavoritesRequest : AUsersPagedGetRequest<ITraktFavorite>
     {
         internal string Username { get; set; }
 
-        public override string UriTemplate => "users/{username}/recommendations{/type}{/sort}{?extended,page,limit}";
+        public override string UriTemplate => "users/{username}/favorites{/type}{/sort}{?extended,page,limit}";
 
         public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
-        public TraktRecommendationObjectType Type { get; set; }
+        public TraktFavoriteObjectType Type { get; set; }
 
         public TraktWatchlistSortOrder Sort { get; set; }
 
@@ -25,7 +25,7 @@
 
             uriParams.Add("username", Username);
 
-            if (Type != null && Type != TraktRecommendationObjectType.Unspecified)
+            if (Type != null && Type != TraktFavoriteObjectType.Unspecified)
             {
                 uriParams.Add("type", Type.UriName);
 

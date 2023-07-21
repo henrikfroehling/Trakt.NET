@@ -39,7 +39,7 @@
 
         public class SyncPersonalRecommendationsRequest_TestData : IEnumerable<object[]>
         {
-            private static readonly TraktRecommendationObjectType _type = TraktRecommendationObjectType.Show;
+            private static readonly TraktFavoriteObjectType _type = TraktFavoriteObjectType.Show;
             private static readonly TraktWatchlistSortOrder _sort = TraktWatchlistSortOrder.Rank;
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 4;

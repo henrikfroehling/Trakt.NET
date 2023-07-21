@@ -28,7 +28,7 @@
         private const int PLAYBACK_PROGRESS_ITEM_COUNT = 4;
         private readonly DateTime PLAYBACK_PROGRESS_START_AT = DateTime.UtcNow;
         private readonly DateTime PLAYBACK_PROGRESS_END_AT = DateTime.UtcNow;
-        private readonly TraktRecommendationObjectType RECOMMENDATION_TYPE = TraktRecommendationObjectType.Movie;
+        private readonly TraktFavoriteObjectType RECOMMENDATION_TYPE = TraktFavoriteObjectType.Movie;
         private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const int RECOMMENDATIONS_ITEM_COUNT = 2;
         private const int RECOMMENDATIONS_LIMIT = 6;

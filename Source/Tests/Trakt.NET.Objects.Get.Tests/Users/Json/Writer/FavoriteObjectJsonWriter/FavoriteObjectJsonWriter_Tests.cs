@@ -8,12 +8,12 @@ namespace TraktNet.Objects.Get.Tests.Users.Json.Writer
     using Xunit;
 
     [TestCategory("Objects.Get.Users.JsonWriter")]
-    public partial class RecommendationObjectJsonWriter_Tests
+    public partial class FavoriteObjectJsonWriter_Tests
     {
         [Fact]
-        public async Task Test_RecommendationObjectJsonWriter_WriteObject_Object_Exceptions()
+        public async Task Test_FavoriteObjectJsonWriter_WriteObject_Object_Exceptions()
         {
-            var traktJsonWriter = new RecommendationObjectJsonWriter();
+            var traktJsonWriter = new FavoriteObjectJsonWriter();
             Func<Task<string>> action = () => traktJsonWriter.WriteObjectAsync(default);
             await action.Should().ThrowAsync<ArgumentNullException>();
         }
