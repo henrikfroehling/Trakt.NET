@@ -743,6 +743,37 @@ namespace TraktNet.Modules
         }
 
         /// <summary>
+        /// Update the notes on a watchlist item.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/update-watchlist-item/update-a-watchlist-item">"Trakt API Doc - Sync: Update Watchlist Item"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="listItemId">The id of the watchlist item which should be updated.</param>
+        /// <param name="notes">The new watchlist item's notes value. Can be null to delete the content of the notes.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns></returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktNoContentResponse> UpdateWatchlistItemAsync(uint listItemId, string notes = null,
+                                                                     CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteNoContentRequestAsync(new SyncWatchlistItemUpdateRequest
+            {
+                ListItemId = listItemId,
+                RequestBody = new TraktListItemUpdatePost
+                {
+                    Notes = notes
+                }
+            }, cancellationToken);
+        }
+
+        /// <summary>
         /// Adds items to the user's watchlist. Accepts shows, seasons, episodes and movies.
         /// <para>OAuth authorization required.</para>
         /// <para>
