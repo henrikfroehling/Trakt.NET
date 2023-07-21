@@ -4,30 +4,27 @@
     using Exceptions;
     using Extensions;
     using Interfaces;
-    using Objects.Post.Basic;
     using System.Collections.Generic;
 
-    internal sealed class UserPersonalListItemUpdateRequest : APutRequest<ITraktListItemUpdatePost>, IHasId
+    internal sealed class UserPersonalListItemUpdateRequest : AListItemUpdateRequest, IHasId
     {
         internal string Username { get; set; }
 
         public string Id { get; set; }
 
-        internal uint ListItemId { get; set; }
+        public override string UriTemplate => "users/{username}/lists/{list_id}/items/{list_item_id}";
 
         public RequestObjectType RequestObjectType => RequestObjectType.Lists;
 
-        public override string UriTemplate => "users/{username}/lists/{list_id}/items/{list_item_id}";
-
-        public override ITraktListItemUpdatePost RequestBody { get; set; }
-
         public override IDictionary<string, object> GetUriPathParameters()
-            => new Dictionary<string, object>
-            {
-                ["username"] = Username,
-                ["list_id"] = Id,
-                ["list_item_id"] = ListItemId.ToString()
-            };
+        {
+            var parameters = base.GetUriPathParameters();
+
+            parameters.Add("username", Username);
+            parameters.Add("list_id", Id);
+
+            return parameters;
+        }
 
         public override void Validate()
         {
@@ -44,9 +41,6 @@
 
             if (Id == string.Empty || Id.ContainsSpace())
                 throw new TraktRequestValidationException(nameof(Id), "list id not valid");
-
-            if (ListItemId == 0)
-                throw new TraktRequestValidationException(nameof(ListItemId), "list item id must not be 0");
         }
     }
 }
