@@ -6,16 +6,16 @@ namespace TraktNet.Objects.Get.Recommendations.Json.Reader
     using System.Threading.Tasks;
     using Users.Json.Reader;
 
-    internal class RecommendedByObjectJsonReader : AObjectJsonReader<ITraktRecommendedBy>
+    internal class FavoritedByObjectJsonReader : AObjectJsonReader<ITraktFavoritedBy>
     {
-        public override async Task<ITraktRecommendedBy> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<ITraktFavoritedBy> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
                 var userObjectReader = new UserObjectJsonReader();
-                ITraktRecommendedBy traktRecommendedBy = new TraktRecommendedBy();
+                ITraktFavoritedBy traktFavoritedBy = new TraktFavoritedBy();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -24,10 +24,10 @@ namespace TraktNet.Objects.Get.Recommendations.Json.Reader
                     switch (propertyName)
                     {
                         case JsonProperties.PROPERTY_NAME_USER:
-                            traktRecommendedBy.User = await userObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            traktFavoritedBy.User = await userObjectReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_NOTES:
-                            traktRecommendedBy.Notes = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            traktFavoritedBy.Notes = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
@@ -35,10 +35,10 @@ namespace TraktNet.Objects.Get.Recommendations.Json.Reader
                     }
                 }
 
-                return traktRecommendedBy;
+                return traktFavoritedBy;
             }
 
-            return await Task.FromResult(default(ITraktRecommendedBy));
+            return await Task.FromResult(default(ITraktFavoritedBy));
         }
     }
 }

@@ -20,7 +20,7 @@
                     ""imdb"": ""tt2545118"",
                     ""tmdb"": 158999
                   },
-                  ""recommended_by"": [
+                  ""favorited_by"": [
                     {
                       ""user"": {
                         ""username"": ""sean"",
@@ -46,7 +46,7 @@
                         ""vip_years"": 5,
                         ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                       },
-                      ""notes"": ""Recommended because ...""
+                      ""notes"": ""Favorited because ...""
                     }
                   ]
                 },
@@ -59,7 +59,7 @@
                     ""imdb"": ""tt1566648"",
                     ""tmdb"": 39440
                   },
-                  ""recommended_by"": [
+                  ""favorited_by"": [
                     {
                       ""user"": {
                         ""username"": ""sean"",
@@ -85,7 +85,7 @@
                         ""vip_years"": 5,
                         ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                       },
-                      ""notes"": ""Recommended because ...""
+                      ""notes"": ""Favorited because ...""
                     }
                   ]
                 },
@@ -98,7 +98,7 @@
                     ""imdb"": ""tt1645089"",
                     ""tmdb"": 44639
                   },
-                  ""recommended_by"": [
+                  ""favorited_by"": [
                     {
                       ""user"": {
                         ""username"": ""sean"",
@@ -124,7 +124,7 @@
                         ""vip_years"": 5,
                         ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                       },
-                      ""notes"": ""Recommended because ...""
+                      ""notes"": ""Favorited because ...""
                     }
                   ]
                 }
@@ -143,7 +143,7 @@
                     ""tmdb"": 579,
                     ""tvrage"": null
                   },
-                  ""recommended_by"": [
+                  ""favorited_by"": [
                     {
                       ""user"": {
                         ""username"": ""sean"",
@@ -169,7 +169,7 @@
                         ""vip_years"": 5,
                         ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                       },
-                      ""notes"": ""Recommended because ...""
+                      ""notes"": ""Favorited because ...""
                     }
                   ]
                 },
@@ -184,7 +184,7 @@
                     ""tmdb"": 30703,
                     ""tvrage"": 22610
                   },
-                  ""recommended_by"": [
+                  ""favorited_by"": [
                     {
                       ""user"": {
                         ""username"": ""sean"",
@@ -210,7 +210,7 @@
                         ""vip_years"": 5,
                         ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                       },
-                      ""notes"": ""Recommended because ...""
+                      ""notes"": ""Favorited because ...""
                     }
                   ]
                 },
@@ -225,7 +225,7 @@
                     ""tmdb"": 2370,
                     ""tvrage"": null
                   },
-                  ""recommended_by"": [
+                  ""favorited_by"": [
                     {
                       ""user"": {
                         ""username"": ""sean"",
@@ -251,7 +251,7 @@
                         ""vip_years"": 5,
                         ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                       },
-                      ""notes"": ""Recommended because ...""
+                      ""notes"": ""Favorited because ...""
                     }
                   ]
                 }

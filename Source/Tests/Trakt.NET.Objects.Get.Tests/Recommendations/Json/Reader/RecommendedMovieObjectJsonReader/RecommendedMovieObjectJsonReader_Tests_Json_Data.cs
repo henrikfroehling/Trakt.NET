@@ -37,7 +37,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -63,7 +63,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -102,7 +102,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -128,7 +128,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -167,7 +167,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -193,7 +193,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -227,7 +227,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -253,7 +253,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -292,7 +292,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -318,7 +318,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -357,7 +357,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -383,7 +383,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -422,7 +422,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -448,7 +448,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -487,7 +487,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -513,7 +513,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -552,7 +552,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -578,7 +578,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -617,7 +617,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -643,7 +643,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -682,7 +682,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -708,7 +708,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -747,7 +747,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -773,7 +773,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -812,7 +812,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -838,7 +838,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -877,7 +877,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -903,7 +903,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -937,7 +937,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -963,7 +963,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -997,7 +997,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""certification"": ""PG-13"",
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1023,7 +1023,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1062,7 +1062,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ],
               ""country"": ""us"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1088,7 +1088,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1127,7 +1127,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ],
               ""certification"": ""PG-13"",
               ""status"": ""released"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1153,7 +1153,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1192,7 +1192,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ],
               ""certification"": ""PG-13"",
               ""country"": ""us"",
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1218,7 +1218,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1295,7 +1295,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
               ""cert"": ""PG-13"",
               ""co"": ""us"",
               ""st"": ""released"",
-              ""rec_by"": [
+              ""fav_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1321,7 +1321,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";

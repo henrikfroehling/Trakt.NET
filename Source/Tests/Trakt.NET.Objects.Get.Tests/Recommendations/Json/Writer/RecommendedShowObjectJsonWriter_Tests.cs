@@ -7,9 +7,9 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Writer
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Extensions;
-    using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Get.Recommendations;
     using TraktNet.Objects.Get.Recommendations.Json.Writer;
+    using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Get.Users;
     using Xunit;
 
@@ -308,13 +308,13 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Writer
         }
 
         [Fact]
-        public async Task Test_RecommendedShowObjectJsonWriter_WriteObject_Only_RecommendedBy_Property()
+        public async Task Test_RecommendedShowObjectJsonWriter_WriteObject_Only_FavoritedBy_Property()
         {
             ITraktRecommendedShow traktRecommendedShow = new TraktRecommendedShow
             {
-                RecommendedBy = new List<ITraktRecommendedBy>
+                FavoritedBy = new List<ITraktFavoritedBy>
                 {
-                    new TraktRecommendedBy
+                    new TraktFavoritedBy
                     {
                         User = new TraktUser
                         {
@@ -333,18 +333,18 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Writer
                             Age = 35,
                             Gender = "male"
                         },
-                        Notes = "Recommended because ..."
+                        Notes = "Favorited because ..."
                     }
                 }
             };
 
             var traktJsonWriter = new RecommendedShowObjectJsonWriter();
             string json = await traktJsonWriter.WriteObjectAsync(traktRecommendedShow);
-            json.Should().Be(@"{""recommended_by"":[{""user"":{""username"":""sean"",""private"":false," +
+            json.Should().Be(@"{""favorited_by"":[{""user"":{""username"":""sean"",""private"":false," +
                              @"""ids"":{""slug"":""sean"",""uuid"":""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""}," +
                              @"""name"":""Sean Rudford"",""vip"":true,""vip_ep"":true,""location"":""SF""," +
                              @"""about"":""I have all your cassette tapes."",""gender"":""male"",""age"":35}," +
-                             @"""notes"":""Recommended because ...""}]}");
+                             @"""notes"":""Favorited because ...""}]}");
         }
 
         [Fact]
@@ -391,9 +391,9 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Writer
                 CountryCode = "us",
                 Status = TraktShowStatus.Ended,
                 AiredEpisodes = 50,
-                RecommendedBy = new List<ITraktRecommendedBy>
+                FavoritedBy = new List<ITraktFavoritedBy>
                 {
-                    new TraktRecommendedBy
+                    new TraktFavoritedBy
                     {
                         User = new TraktUser
                         {
@@ -412,7 +412,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Writer
                             Age = 35,
                             Gender = "male"
                         },
-                        Notes = "Recommended because ..."
+                        Notes = "Favorited because ..."
                     }
                 }
             };
@@ -432,11 +432,11 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Writer
                              @"""language"":""en"",""available_translations"":[""en"",""fr"",""it"",""de""]," +
                              @"""genres"":[""drama"",""fantasy"",""science-fiction"",""action"",""adventure""]," +
                              @"""aired_episodes"":50," +
-                             @"""recommended_by"":[{""user"":{""username"":""sean"",""private"":false," +
+                             @"""favorited_by"":[{""user"":{""username"":""sean"",""private"":false," +
                              @"""ids"":{""slug"":""sean"",""uuid"":""3528009dgf0dfhkasghsgng00ds7g0907hfdslsha0070""}," +
                              @"""name"":""Sean Rudford"",""vip"":true,""vip_ep"":true,""location"":""SF""," +
                              @"""about"":""I have all your cassette tapes."",""gender"":""male"",""age"":35}," +
-                             @"""notes"":""Recommended because ...""}]}");
+                             @"""notes"":""Favorited because ...""}]}");
         }
     }
 }

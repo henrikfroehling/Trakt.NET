@@ -46,7 +46,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -72,7 +72,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -120,7 +120,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -146,7 +146,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -194,7 +194,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -220,7 +220,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -261,7 +261,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -287,7 +287,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -335,7 +335,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -361,7 +361,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -409,7 +409,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -435,7 +435,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -479,7 +479,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -505,7 +505,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -553,7 +553,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -579,7 +579,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -627,7 +627,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -653,7 +653,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -701,7 +701,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -727,7 +727,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -775,7 +775,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -801,7 +801,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -849,7 +849,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -875,7 +875,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -923,7 +923,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -949,7 +949,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -997,7 +997,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1023,7 +1023,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1071,7 +1071,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1097,7 +1097,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1145,7 +1145,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1171,7 +1171,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1219,7 +1219,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1245,7 +1245,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1293,7 +1293,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1319,7 +1319,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1362,7 +1362,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1388,7 +1388,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1430,7 +1430,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""de""
               ],
               ""aired_episodes"": 50,
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1456,7 +1456,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1504,7 +1504,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""action"",
                 ""adventure""
               ],
-              ""recommended_by"": [
+              ""favorited_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1530,7 +1530,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";
@@ -1625,7 +1625,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                 ""adventure""
               ],
               ""aired_eps"": 50,
-              ""rec_by"": [
+              ""fav_by"": [
                 {
                   ""user"": {
                     ""username"": ""sean"",
@@ -1651,7 +1651,7 @@ namespace TraktNet.Objects.Get.Tests.Recommendations.Json.Reader
                     ""vip_years"": 5,
                     ""vip_cover_image"": ""https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg""
                   },
-                  ""notes"": ""Recommended because ...""
+                  ""notes"": ""Favorited because ...""
                 }
               ]
             }";

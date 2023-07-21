@@ -257,7 +257,7 @@
             s_jsonIOFactories.Add(typeof(ITraktRatingsItem), new RatingsItemJsonIOFactory());
 
             // recommendations objects
-            s_jsonIOFactories.Add(typeof(ITraktRecommendedBy), new RecommendedByJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktFavoritedBy), new FavoritedByJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktRecommendedMovie), new RecommendedMovieJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktRecommendedShow), new RecommendedShowJsonIOFactory());
 
