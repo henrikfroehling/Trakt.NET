@@ -13,14 +13,13 @@
     [TestCategory("Modules.Sync")]
     public partial class TraktSyncModule_Tests
     {
-        private readonly string UPDATE_WATCHLIST_ITEM_URI = $"sync/watchlist/{WATCHLIST_ITEM_ID}";
-        private const string NOTES = "This is a great movie!";
+        private readonly string UPDATE_FAVORITE_ITEM_URI = $"sync/favorites/{FAVORITE_ITEM_ID}";
 
         [Fact]
-        public async Task Test_TraktSyncModule_UpdateWatchlistItem()
+        public async Task Test_TraktSyncModule_UpdateFavoriteItem()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_WATCHLIST_ITEM_URI, HttpStatusCode.NoContent);
-            TraktNoContentResponse response = await client.Sync.UpdateWatchlistItemAsync(WATCHLIST_ITEM_ID, NOTES);
+            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_FAVORITE_ITEM_URI, HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Sync.UpdateFavoriteItemAsync(FAVORITE_ITEM_ID, NOTES);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -43,13 +42,13 @@
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktSyncModule_UpdateWatchlistItem_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktSyncModule_UpdateFavoriteItem_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_WATCHLIST_ITEM_URI, statusCode);
+            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_FAVORITE_ITEM_URI, statusCode);
 
             try
             {
-                await client.Sync.UpdateWatchlistItemAsync(WATCHLIST_ITEM_ID, NOTES);
+                await client.Sync.UpdateFavoriteItemAsync(FAVORITE_ITEM_ID, NOTES);
                 Assert.False(true);
             }
             catch (Exception exception)
