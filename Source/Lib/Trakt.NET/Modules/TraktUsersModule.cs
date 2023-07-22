@@ -1306,21 +1306,21 @@ namespace TraktNet.Modules
         }
 
         /// <summary>
-        /// Gets an user's personal recommendations for movies and / or shows.
+        /// Gets an user's favorite movies and / or shows.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="https://trakt.docs.apiary.io/#reference/users/personal-recommendations/get-personal-recommendations">"Trakt API Doc - Users: Personal Recommendations"</a> for more information.
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/favorites/get-favorites">"Trakt API Doc - Users: Favorites"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="usernameOrSlug">The username or slug of the user, for which the recommendations should be queried.</param>
-        /// <param name="recommendationObjectType">Determines, which type of recommendation items should be queried. See also <seealso cref="TraktRecommendationObjectType" />.</param>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the favorites should be queried.</param>
+        /// <param name="favoriteObjectType">Determines, which type of favorites items should be queried. See also <seealso cref="TraktFavoriteObjectType" />.</param>
         /// <param name="sortOrder">
-        /// The recommendations sort order. See also <seealso cref="TraktWatchlistSortOrder" />.
+        /// The favorites sort order. See also <seealso cref="TraktWatchlistSortOrder" />.
         /// Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
-        /// Will be ignored, if the given <paramref name="recommendationObjectType" /> is null or unspecified.
+        /// Will be ignored, if the given <paramref name="favoriteObjectType" /> is null or unspecified.
         /// </param>
         /// <param name="extendedInfo">
-        /// The extended info, which determines how much data about the recommendation items should be queried.
+        /// The extended info, which determines how much data about the favorited items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
@@ -1328,17 +1328,17 @@ namespace TraktNet.Modules
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
-        /// <returns>A list of <see cref="ITraktRecommendation" /> instances.</returns>
+        /// <returns>A list of <see cref="ITraktFavorite" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktPagedResponse<ITraktRecommendation>> GetPersonalRecommendationsAsync(string usernameOrSlug, TraktRecommendationObjectType recommendationObjectType = null,
-                                                                                              TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null,
-                                                                                              TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktFavorite>> GetFavoritesAsync(string usernameOrSlug, TraktFavoriteObjectType favoriteObjectType = null,
+                                                                          TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null,
+                                                                          TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)
         {
-            var request = new UserPersonalRecommendationsRequest
+            var request = new UserFavoritesRequest
             {
                 Username = usernameOrSlug,
-                Type = recommendationObjectType,
+                Type = favoriteObjectType,
                 Sort = sortOrder,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,

@@ -26,13 +26,13 @@
         /// <returns>An <see cref="ITraktSyncRatingsRemovePostBuilder"/> instance.</returns>
         public static ITraktSyncRatingsRemovePostBuilder NewSyncRatingsRemovePost() => new SyncRatingsRemovePostBuilder();
 
-        /// <summary>Creates a new <see cref="ITraktSyncRecommendationsPostBuilder"/>.</summary>
-        /// <returns>An <see cref="ITraktSyncRecommendationsPostBuilder"/> instance.</returns>
-        public static ITraktSyncRecommendationsPostBuilder NewSyncRecommendationsPost() => new SyncRecommendationsPostBuilder();
+        /// <summary>Creates a new <see cref="ITraktSyncFavoritesPostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktSyncFavoritesPostBuilder"/> instance.</returns>
+        public static ITraktSyncFavoritesPostBuilder NewSyncFavoritesPost() => new SyncFavoritesPostBuilder();
 
-        /// <summary>Creates a new <see cref="ITraktSyncRecommendationsRemovePostBuilder"/>.</summary>
-        /// <returns>An <see cref="ITraktSyncRecommendationsRemovePostBuilder"/> instance.</returns>
-        public static ITraktSyncRecommendationsRemovePostBuilder NewSyncRecommendationsRemovePost() => new SyncRecommendationsRemovePostBuilder();
+        /// <summary>Creates a new <see cref="ITraktSyncFavoritesRemovePostBuilder"/>.</summary>
+        /// <returns>An <see cref="ITraktSyncFavoritesRemovePostBuilder"/> instance.</returns>
+        public static ITraktSyncFavoritesRemovePostBuilder NewSyncFavoritesRemovePost() => new SyncFavoritesRemovePostBuilder();
 
         /// <summary>Creates a new <see cref="ITraktSyncWatchlistPostBuilder"/>.</summary>
         /// <returns>An <see cref="ITraktSyncWatchlistPostBuilder"/> instance.</returns>
