@@ -18,8 +18,8 @@ namespace TraktNet.Modules
     using Objects.Post.Syncs.History.Responses;
     using Objects.Post.Syncs.Ratings;
     using Objects.Post.Syncs.Ratings.Responses;
-    using Objects.Post.Syncs.Recommendations;
-    using Objects.Post.Syncs.Recommendations.Responses;
+    using Objects.Post.Syncs.Favorites;
+    using Objects.Post.Syncs.Favorites.Responses;
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
     using PostBuilder;
@@ -64,20 +64,20 @@ namespace TraktNet.Modules
         }
 
         /// <summary>
-        /// Gets an user's personal recommendations for movies and / or shows.
+        /// Gets an user's favorite movies and / or shows.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/get-personal-recommendations/get-personal-recommendations">"Trakt API Doc - Sync: Personal Recommendations"</a> for more information.
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/get-favorites/get-favorites">"Trakt API Doc - Sync: Get Favorites"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="recommendationObjectType">Determines, which type of recommendation items should be queried. See also <seealso cref="TraktFavoriteObjectType" />.</param>
+        /// <param name="favoriteObjectType">Determines, which type of favorite items should be queried. See also <seealso cref="TraktFavoriteObjectType" />.</param>
         /// <param name="sortOrder">
-        /// The recommendations sort order. See also <seealso cref="TraktWatchlistSortOrder" />.
+        /// The favorites sort order. See also <seealso cref="TraktWatchlistSortOrder" />.
         /// Will be ignored, if the given array contains a number higher than 10 or below 1 or if it contains more than ten numbers.
-        /// Will be ignored, if the given <paramref name="recommendationObjectType" /> is null or unspecified.
+        /// Will be ignored, if the given <paramref name="favoriteObjectType" /> is null or unspecified.
         /// </param>
         /// <param name="extendedInfo">
-        /// The extended info, which determines how much data about the recommendation items should be queried.
+        /// The extended info, which determines how much data about the favorite items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.
         /// </param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
@@ -87,13 +87,13 @@ namespace TraktNet.Modules
         /// </param>
         /// <returns>A list of <see cref="ITraktFavorite" /> instances.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktFavorite>> GetPersonalRecommendationsAsync(TraktFavoriteObjectType recommendationObjectType = null,
-                                                                                        TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null,
-                                                                                        TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktFavorite>> GetFavoritesAsync(TraktFavoriteObjectType favoriteObjectType = null,
+                                                                          TraktWatchlistSortOrder sortOrder = null, TraktExtendedInfo extendedInfo = null,
+                                                                          TraktPagedParameters pagedParameters = null, CancellationToken cancellationToken = default)
         {
-            var request = new SyncPersonalRecommendationsRequest
+            var request = new SyncFavoritesRequest
             {
-                Type = recommendationObjectType,
+                Type = favoriteObjectType,
                 Sort = sortOrder,
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
@@ -104,31 +104,31 @@ namespace TraktNet.Modules
         }
 
         /// <summary>
-        /// Reorder all items on a user's personal recommendations.
+        /// Reorder all user's favorites.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-personal-recommendations/reorder-personally-recommended-items">"Trakt API Doc - Sync: Reorder Personal Recommendations"</a> for more information.
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/reorder-favorites/reorder-favorited-items">"Trakt API Doc - Sync: Reorder Favorites"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="reorderedRecommendedItemRanks">A collection of list ids. Represents the new order of an user's personal recommendations.</param>
+        /// <param name="reorderedFavoritedItemRanks">A collection of list ids. Represents the new order of an user's favorites.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
-        /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated personal recommendations order.</returns>
+        /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated favorites order.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderRecommendedItemsAsync(IList<uint> reorderedRecommendedItemRanks,
-                                                                                                    CancellationToken cancellationToken = default)
+        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderFavoritedItemsAsync(IList<uint> reorderedFavoritedItemRanks,
+                                                                                                  CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendedItemsReorderRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncFavoritedItemsReorderRequest
             {
                 RequestBody = new TraktListItemsReorderPost
                 {
-                    Rank = reorderedRecommendedItemRanks
+                    Rank = reorderedFavoritedItemRanks
                 }
             },
             cancellationToken);
@@ -633,67 +633,67 @@ namespace TraktNet.Modules
         }
 
         /// <summary>
-        /// Adds items to the user's personal recommendations. Accepts movies and shows.
+        /// Adds items to the user's favorites. Accepts movies and shows.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/get-personal-recommendations/add-items-to-personal-recommendations">"Trakt API Doc - Sync: Add to Personal Recommendations"</a> for more information.
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/add-to-favorites/add-items-to-favorites">"Trakt API Doc - Sync: Add to Favorites"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="ITraktSyncRecommendationsPostBuilder" /> to create an instance
-        /// of the required <see cref="ITraktSyncRecommendationsPost" />.
-        /// See also <seealso cref="TraktPost.NewSyncRecommendationsPost()" />.
+        /// It is recommended to use the <see cref="ITraktSyncFavoritesPostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncFavoritesPost" />.
+        /// See also <seealso cref="TraktPost.NewSyncFavoritesPost()" />.
         /// </para>
         /// </summary>
-        /// <param name="recommendationsPost">An <see cref="ITraktSyncRecommendationsPost" /> instance containing all movies and shows, which should be added.</param>
+        /// <param name="favoritesPost">An <see cref="ITraktSyncFavoritesPost" /> instance containing all movies and shows, which should be added.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
-        /// <returns>An <see cref="ITraktSyncRecommendationsPostResponse" /> instance, which contains information about which items were added and not found.</returns>
+        /// <returns>An <see cref="ITraktSyncFavoritesPostResponse" /> instance, which contains information about which items were added and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktSyncRecommendationsPostResponse>> AddPersonalRecommendationsAsync(ITraktSyncRecommendationsPost recommendationsPost,
-                                                                                                          CancellationToken cancellationToken = default)
+        public Task<TraktResponse<ITraktSyncFavoritesPostResponse>> AddFavoriteItemsAsync(ITraktSyncFavoritesPost favoritesPost,
+                                                                                          CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendationsAddRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncFavoritesAddRequest
             {
-                RequestBody = recommendationsPost
+                RequestBody = favoritesPost
             },
             cancellationToken);
         }
 
         /// <summary>
-        /// Remove items from the user's personal recommendations. Accepts movies and shows.
+        /// Remove items from the user's favorites. Accepts movies and shows.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/remove-from-personal-recommendations/remove-items-from-personal-recommendations">"Trakt API Doc - Sync: Remove from Personal Recommendations"</a> for more information.
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/remove-from-favorites/remove-items-from-favorites">"Trakt API Doc - Sync: Remove from Favorites"</a> for more information.
         /// </para>
         /// <para>
-        /// It is recommended to use the <see cref="ITraktSyncRecommendationsRemovePostBuilder" /> to create an instance
-        /// of the required <see cref="ITraktSyncRecommendationsRemovePost" />.
-        /// See also <seealso cref="TraktPost.NewSyncRecommendationsRemovePost()" />.
+        /// It is recommended to use the <see cref="ITraktSyncFavoritesRemovePostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktSyncFavoritesRemovePost" />.
+        /// See also <seealso cref="TraktPost.NewSyncFavoritesRemovePost()" />.
         /// </para>
         /// </summary>
-        /// <param name="recommendationsRemovePost">An <see cref="ITraktSyncRecommendationsRemovePost" /> instance containing all movies and shows, which should be removed.</param>
+        /// <param name="favoritesRemovePost">An <see cref="ITraktSyncFavoritesRemovePost" /> instance containing all movies and shows, which should be removed.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
         /// </param>
-        /// <returns>An <see cref="ITraktSyncRecommendationsRemovePostResponse" /> instance, which contains information about which items were removed and not found.</returns>
+        /// <returns>An <see cref="ITraktSyncFavoritesRemovePostResponse" /> instance, which contains information about which items were removed and not found.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktSyncRecommendationsRemovePostResponse>> RemovePersonalRecommendationsAsync(ITraktSyncRecommendationsRemovePost recommendationsRemovePost,
-                                                                                                                   CancellationToken cancellationToken = default)
+        public Task<TraktResponse<ITraktSyncFavoritesRemovePostResponse>> RemoveFavoriteItemsAsync(ITraktSyncFavoritesRemovePost favoritesRemovePost,
+                                                                                                   CancellationToken cancellationToken = default)
         {
             var requestHandler = new RequestHandler(Client);
 
-            return requestHandler.ExecuteSingleItemRequestAsync(new SyncRecommendationsRemoveRequest
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncFavoritesRemoveRequest
             {
-                RequestBody = recommendationsRemovePost
+                RequestBody = favoritesRemovePost
             },
             cancellationToken);
         }
