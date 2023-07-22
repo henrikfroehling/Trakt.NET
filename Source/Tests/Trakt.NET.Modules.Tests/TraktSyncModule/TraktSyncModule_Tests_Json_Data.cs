@@ -28,10 +28,10 @@
         private const int PLAYBACK_PROGRESS_ITEM_COUNT = 4;
         private readonly DateTime PLAYBACK_PROGRESS_START_AT = DateTime.UtcNow;
         private readonly DateTime PLAYBACK_PROGRESS_END_AT = DateTime.UtcNow;
-        private readonly TraktFavoriteObjectType RECOMMENDATION_TYPE = TraktFavoriteObjectType.Movie;
-        private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
-        private const int RECOMMENDATIONS_ITEM_COUNT = 2;
-        private const int RECOMMENDATIONS_LIMIT = 6;
+        private readonly TraktFavoriteObjectType FAVORITE_TYPE = TraktFavoriteObjectType.Movie;
+        private readonly TraktWatchlistSortOrder FAVORITES_SORT_ORDER = TraktWatchlistSortOrder.Rank;
+        private const int FAVORITES_ITEM_COUNT = 2;
+        private const int FAVORITES_LIMIT = 6;
         private readonly IList<uint> REORDERED_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
         private const uint WATCHLIST_ITEM_ID = 1;
         private const uint FAVORITE_ITEM_ID = 1;
@@ -97,7 +97,7 @@
                 }
               }";
 
-        private const string RECOMMENDATIONS_POST_RESPONSE_JSON =
+        private const string FAVORITES_POST_RESPONSE_JSON =
             @"{
                 ""added"": {
                   ""movies"": 1,
@@ -125,7 +125,7 @@
                 }
               }";
 
-        private const string RECOMMENDATIONS_REMOVE_POST_RESPONSE_JSON =
+        private const string FAVORITES_REMOVE_POST_RESPONSE_JSON =
             @"{
                 ""deleted"": {
                   ""movies"": 1,
@@ -888,7 +888,7 @@
                 }
               }";
 
-        private const string RECOMMENDATIONS_JSON =
+        private const string FAVORITES_JSON =
             @"[
                 {
                   ""rank"": 1,
