@@ -9,9 +9,9 @@
 
     internal interface IAuthenticationRequestHandler
     {
-        string CreateAuthorizationUrl(string clientId, string redirectUri, string state = null);
+        string CreateAuthorizationUrl(string clientId, string redirectUri, string state = null, bool? showSignupPage = null, bool? forceLoginPrompt = null);
 
-        string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri);
+        string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri, bool? showSignupPage = null, bool? forceLoginPrompt = null);
 
         Task<Pair<bool, TraktResponse<ITraktAuthorization>>> CheckIfAuthorizationIsExpiredOrWasRevokedAsync(bool autoRefresh = false, CancellationToken cancellationToken = default);
 
