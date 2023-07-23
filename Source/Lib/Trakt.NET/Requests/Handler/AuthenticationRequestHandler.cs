@@ -32,16 +32,18 @@
         internal static IAuthenticationRequestHandler GetInstance(TraktClient client)
             => s_requestHandler ??= new AuthenticationRequestHandler(client);
 
-        public string CreateAuthorizationUrl(string clientId, string redirectUri, string state = null)
+        public string CreateAuthorizationUrl(string clientId, string redirectUri, string state = null,
+                                             bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             ValidateAuthorizationUrlArguments(clientId, redirectUri, state);
-            return BuildAuthorizationUrl(clientId, redirectUri, state);
+            return BuildAuthorizationUrl(clientId, redirectUri, state, showSignupPage, forceLoginPrompt);
         }
 
-        public string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri)
+        public string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri,
+                                                             bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             string state = _client.Authentication.AntiForgeryToken;
-            return CreateAuthorizationUrl(clientId, redirectUri, state);
+            return CreateAuthorizationUrl(clientId, redirectUri, state, showSignupPage, forceLoginPrompt);
         }
 
         public async Task<Pair<bool, TraktResponse<ITraktAuthorization>>> CheckIfAuthorizationIsExpiredOrWasRevokedAsync(bool autoRefresh = false, CancellationToken cancellationToken = default)
@@ -389,7 +391,8 @@
             return new TraktResponse<ITraktAuthorization>();
         }
 
-        private string CreateEncodedAuthorizationUri(string clientId, string redirectUri, string state = null)
+        private string CreateEncodedAuthorizationUriParameters(string clientId, string redirectUri, string state = null,
+                                                               bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             var uriParams = new Dictionary<string, string>
             {
@@ -401,6 +404,12 @@
             if (!string.IsNullOrEmpty(state))
                 uriParams["state"] = state;
 
+            if (showSignupPage.HasValue)
+                uriParams.Add("signup", showSignupPage.Value.ToString().ToLower());
+
+            if (forceLoginPrompt.HasValue && forceLoginPrompt.Value)
+                uriParams.Add("prompt", "login");
+
             var encodedUriContent = new FormUrlEncodedContent(uriParams);
             string encodedUri = encodedUriContent.ReadAsStringAsync().Result;
 
@@ -410,9 +419,10 @@
             return $"?{encodedUri}";
         }
 
-        private string BuildAuthorizationUrl(string clientId, string redirectUri, string state = null)
+        private string BuildAuthorizationUrl(string clientId, string redirectUri, string state = null,
+                                             bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
-            string encodedUriParams = CreateEncodedAuthorizationUri(clientId, redirectUri, state);
+            string encodedUriParams = CreateEncodedAuthorizationUriParameters(clientId, redirectUri, state, showSignupPage, forceLoginPrompt);
             bool isStagingUsed = _client.Configuration.UseSandboxEnvironment;
             string baseUrl = isStagingUsed ? Constants.OAuthBaseAuthorizeStagingUrl : Constants.OAuthBaseAuthorizeUrl;
             return $"{baseUrl}/{Constants.OAuthAuthorizeUri}{encodedUriParams}";

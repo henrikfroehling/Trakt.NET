@@ -137,7 +137,7 @@
         /// </param>
         /// <returns>True, if the given access token was revoked and / or is not valid anymore, otherwise false.</returns>
         /// <exception cref="ArgumentException">Thrown, if the given access token is null, empty or contains spaces.</exception>
-        /// <exception cref="TraktException">Thrown, if the request <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync(CancellationToken)" /> fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request <see cref="TraktSyncModule.GetLastActivitiesAsync(CancellationToken)" /> fails.</exception>
         public Task<bool> CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken, CancellationToken cancellationToken = default)
         {
             var requestHandler = new AuthenticationRequestHandler(Client);
@@ -150,8 +150,11 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrl() => CreateAuthorizationUrl(ClientId);
+        public string CreateAuthorizationUrl(bool? showSignupPage = null, bool? forceLoginPrompt = null)
+            => CreateAuthorizationUrl(ClientId, showSignupPage, forceLoginPrompt);
 
         /// <summary>
         /// Creates a new OAuth authorization URL. Uses the current <see cref="RedirectUri" /> to build the authorization URL.
@@ -160,8 +163,11 @@
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrl(string clientId) => CreateAuthorizationUrl(clientId, RedirectUri);
+        public string CreateAuthorizationUrl(string clientId, bool? showSignupPage = null, bool? forceLoginPrompt = null)
+            => CreateAuthorizationUrl(clientId, RedirectUri, showSignupPage, forceLoginPrompt);
 
         /// <summary>
         /// Creates a new OAuth authorization URL.
@@ -171,11 +177,13 @@
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
         /// <param name="redirectUri">The redirect URI, which will be used to build the authorization URL.</param>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrl(string clientId, string redirectUri)
+        public string CreateAuthorizationUrl(string clientId, string redirectUri, bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             var requestHandler = new AuthenticationRequestHandler(Client);
-            return requestHandler.CreateAuthorizationUrl(clientId, redirectUri);
+            return requestHandler.CreateAuthorizationUrl(clientId, redirectUri, null, showSignupPage, forceLoginPrompt);
         }
 
         /// <summary>
@@ -190,11 +198,14 @@
         /// The state variable, which will be used to build the authorization URL. See also <see cref="AntiForgeryToken" />.
         /// This parameter is optional and will not be used, if it's null or empty.
         /// </param>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrl(string clientId, string redirectUri, string state)
+        public string CreateAuthorizationUrl(string clientId, string redirectUri, string state,
+                                             bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             var requestHandler = new AuthenticationRequestHandler(Client);
-            return requestHandler.CreateAuthorizationUrl(clientId, redirectUri, state);
+            return requestHandler.CreateAuthorizationUrl(clientId, redirectUri, state, showSignupPage, forceLoginPrompt);
         }
 
         /// <summary>
@@ -204,8 +215,11 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrlWithDefaultState() => CreateAuthorizationUrlWithDefaultState(ClientId);
+        public string CreateAuthorizationUrlWithDefaultState(bool? showSignupPage = null, bool? forceLoginPrompt = null)
+            => CreateAuthorizationUrlWithDefaultState(ClientId, showSignupPage, forceLoginPrompt);
 
         /// <summary>
         /// Creates a new OAuth authorization URL. Uses the current <see cref="RedirectUri" />
@@ -215,8 +229,11 @@
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrlWithDefaultState(string clientId) => CreateAuthorizationUrlWithDefaultState(clientId, RedirectUri);
+        public string CreateAuthorizationUrlWithDefaultState(string clientId, bool? showSignupPage = null, bool? forceLoginPrompt = null)
+            => CreateAuthorizationUrlWithDefaultState(clientId, RedirectUri, showSignupPage, forceLoginPrompt);
 
         /// <summary>
         /// Creates a new OAuth authorization URL. Uses the <see cref="AntiForgeryToken" /> as state variable to build the authorization URL.
@@ -226,11 +243,14 @@
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
         /// <param name="redirectUri">The redirect URI, which will be used to build the authorization URL.</param>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri)
+        public string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri,
+                                                             bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             var requestHandler = new AuthenticationRequestHandler(Client);
-            return requestHandler.CreateAuthorizationUrlWithDefaultState(clientId, redirectUri);
+            return requestHandler.CreateAuthorizationUrlWithDefaultState(clientId, redirectUri, showSignupPage, forceLoginPrompt);
         }
 
         /// <summary>
