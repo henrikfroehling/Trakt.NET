@@ -9,6 +9,8 @@
         private const uint LIMIT = 4;
         private const int ITEM_COUNT = 2;
         private const string LIST_ID = "55";
+        private const uint TRAKT_LIST_ID = 55;
+        private const string LIST_SLUG = "incredible-thoughts";
         private readonly TraktListItemType LIST_ITEM_TYPE = TraktListItemType.Movie;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
         private const int LIST_ITEM_COUNT = 5;

@@ -36,6 +36,94 @@
         }
 
         [Fact]
+        public async Task Test_TraktListsModule_GetListItems_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"lists/{TRAKT_LIST_ID}/items",
+                LIST_ITEMS_JSON, 1, 10, 1, LIST_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktListItem> response = await client.Lists.GetListItemsAsync(TRAKT_LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetListItems_With_ListIds_TraktID()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"lists/{TRAKT_LIST_ID}/items",
+                LIST_ITEMS_JSON, 1, 10, 1, LIST_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktListItem> response = await client.Lists.GetListItemsAsync(listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetListItems_With_ListIds_Slug()
+        {
+            var listIds = new TraktListIds
+            {
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"lists/{LIST_SLUG}/items",
+                LIST_ITEMS_JSON, 1, 10, 1, LIST_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktListItem> response = await client.Lists.GetListItemsAsync(listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetListItems_With_ListIds()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID,
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"lists/{TRAKT_LIST_ID}/items",
+                LIST_ITEMS_JSON, 1, 10, 1, LIST_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktListItem> response = await client.Lists.GetListItemsAsync(listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktListsModule_GetListItems_With_Type()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_LIST_ITEMS_URI}/{LIST_ITEM_TYPE.UriName}",
@@ -409,6 +497,19 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetListItems_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_LIST_ITEMS_URI,
+                LIST_ITEMS_JSON, 1, 10, 1, LIST_ITEM_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Lists.GetListItemsAsync(default(ITraktListIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Lists.GetListItemsAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

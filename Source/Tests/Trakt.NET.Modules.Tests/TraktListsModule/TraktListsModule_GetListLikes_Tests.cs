@@ -36,6 +36,94 @@
         }
 
         [Fact]
+        public async Task Test_TraktListsModule_GetListLikes_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"lists/{TRAKT_LIST_ID}/likes",
+                LIST_LIKES_JSON, 1, 10, 1, LIST_LIKES_COUNT);
+
+            TraktPagedResponse<ITraktListLike> response = await client.Lists.GetListLikesAsync(TRAKT_LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_LIKES_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_LIKES_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetListLikes_With_ListIds_TraktID()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"lists/{TRAKT_LIST_ID}/likes",
+                LIST_LIKES_JSON, 1, 10, 1, LIST_LIKES_COUNT);
+
+            TraktPagedResponse<ITraktListLike> response = await client.Lists.GetListLikesAsync(listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_LIKES_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_LIKES_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetListLikes_With_ListIds_Slug()
+        {
+            var listIds = new TraktListIds
+            {
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"lists/{LIST_SLUG}/likes",
+                LIST_LIKES_JSON, 1, 10, 1, LIST_LIKES_COUNT);
+
+            TraktPagedResponse<ITraktListLike> response = await client.Lists.GetListLikesAsync(listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_LIKES_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_LIKES_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetListLikes_With_ListIds()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID,
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"lists/{TRAKT_LIST_ID}/likes",
+                LIST_LIKES_JSON, 1, 10, 1, LIST_LIKES_COUNT);
+
+            TraktPagedResponse<ITraktListLike> response = await client.Lists.GetListLikesAsync(listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_LIKES_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_LIKES_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktListsModule_GetListLikes_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_LIST_LIKES_URI}?extended={EXTENDED_INFO}",
@@ -361,6 +449,19 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetListLikes_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_LIST_LIKES_URI,
+                LIST_LIKES_JSON, 1, 10, 1, LIST_LIKES_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktListLike>>> act = () => client.Lists.GetListLikesAsync(default(ITraktListIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Lists.GetListLikesAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

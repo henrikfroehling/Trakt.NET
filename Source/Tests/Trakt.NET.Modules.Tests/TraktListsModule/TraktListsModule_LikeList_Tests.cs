@@ -29,10 +29,8 @@
         [Fact]
         public async Task Test_TraktListsModule_LikeList_With_TraktID()
         {
-            const uint traktID = 55;
-
-            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{traktID}/like", HttpStatusCode.NoContent);
-            TraktNoContentResponse response = await client.Lists.LikeListAsync(traktID);
+            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{TRAKT_LIST_ID}/like", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Lists.LikeListAsync(TRAKT_LIST_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -41,14 +39,12 @@
         [Fact]
         public async Task Test_TraktListsModule_LikeList_With_ListIds_TraktID()
         {
-            const uint traktID = 55;
-
             var listIds = new TraktListIds
             {
-                Trakt = traktID
+                Trakt = TRAKT_LIST_ID
             };
 
-            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{traktID}/like", HttpStatusCode.NoContent);
+            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{TRAKT_LIST_ID}/like", HttpStatusCode.NoContent);
             TraktNoContentResponse response = await client.Lists.LikeListAsync(listIds);
 
             response.Should().NotBeNull();
@@ -58,14 +54,12 @@
         [Fact]
         public async Task Test_TraktListsModule_LikeList_With_ListIds_Slug()
         {
-            const string listSlug = "incredible-thoughts";
-
             var listIds = new TraktListIds
             {
-                Slug = listSlug
+                Slug = LIST_SLUG
             };
 
-            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{listSlug}/like", HttpStatusCode.NoContent);
+            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{LIST_SLUG}/like", HttpStatusCode.NoContent);
             TraktNoContentResponse response = await client.Lists.LikeListAsync(listIds);
 
             response.Should().NotBeNull();
@@ -75,16 +69,13 @@
         [Fact]
         public async Task Test_TraktListsModule_LikeList_With_ListIds()
         {
-            const uint traktID = 55;
-            const string listSlug = "incredible-thoughts";
-
             var listIds = new TraktListIds
             {
-                Trakt = traktID,
-                Slug = listSlug
+                Trakt = TRAKT_LIST_ID,
+                Slug = LIST_SLUG
             };
 
-            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{traktID}/like", HttpStatusCode.NoContent);
+            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{TRAKT_LIST_ID}/like", HttpStatusCode.NoContent);
             TraktNoContentResponse response = await client.Lists.LikeListAsync(listIds);
 
             response.Should().NotBeNull();
