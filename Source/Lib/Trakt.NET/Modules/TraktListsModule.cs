@@ -353,6 +353,7 @@
         /// </param>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="listIds"/> is null.</exception>
         public Task<TraktNoContentResponse> UnlikeListAsync(ITraktListIds listIds, CancellationToken cancellationToken = default)
         {
             if (listIds == null)
