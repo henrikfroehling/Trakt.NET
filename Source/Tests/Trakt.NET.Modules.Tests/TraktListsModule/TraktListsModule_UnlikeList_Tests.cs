@@ -14,32 +14,32 @@
     [TestCategory("Modules.Lists")]
     public partial class TraktListsModule_Tests
     {
-        private readonly string LIKE_LIST_URI = $"lists/{LIST_ID}/like";
+        private readonly string UNLIKE_LIST_URI = $"lists/{LIST_ID}/like";
 
         [Fact]
-        public async Task Test_TraktListsModule_LikeList()
+        public async Task Test_TraktListsModule_UnlikeList()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.NoContent);
-            TraktNoContentResponse response = await client.Lists.LikeListAsync(LIST_ID);
+            TraktClient client = TestUtility.GetOAuthMockClient(UNLIKE_LIST_URI, HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Lists.UnlikeListAsync(LIST_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_TraktListsModule_LikeList_With_TraktID()
+        public async Task Test_TraktListsModule_UnlikeList_With_TraktID()
         {
             const uint traktID = 55;
 
             TraktClient client = TestUtility.GetOAuthMockClient($"lists/{traktID}/like", HttpStatusCode.NoContent);
-            TraktNoContentResponse response = await client.Lists.LikeListAsync(traktID);
+            TraktNoContentResponse response = await client.Lists.UnlikeListAsync(traktID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_TraktListsModule_LikeList_With_ListIds_TraktID()
+        public async Task Test_TraktListsModule_UnlikeList_With_ListIds_TraktID()
         {
             const uint traktID = 55;
 
@@ -49,14 +49,14 @@
             };
 
             TraktClient client = TestUtility.GetOAuthMockClient($"lists/{traktID}/like", HttpStatusCode.NoContent);
-            TraktNoContentResponse response = await client.Lists.LikeListAsync(listIds);
+            TraktNoContentResponse response = await client.Lists.UnlikeListAsync(listIds);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_TraktListsModule_LikeList_With_ListIds_Slug()
+        public async Task Test_TraktListsModule_UnlikeList_With_ListIds_Slug()
         {
             const string listSlug = "incredible-thoughts";
 
@@ -66,14 +66,14 @@
             };
 
             TraktClient client = TestUtility.GetOAuthMockClient($"lists/{listSlug}/like", HttpStatusCode.NoContent);
-            TraktNoContentResponse response = await client.Lists.LikeListAsync(listIds);
+            TraktNoContentResponse response = await client.Lists.UnlikeListAsync(listIds);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Test_TraktListsModule_LikeList_With_ListIds()
+        public async Task Test_TraktListsModule_UnlikeList_With_ListIds()
         {
             const uint traktID = 55;
             const string listSlug = "incredible-thoughts";
@@ -85,7 +85,7 @@
             };
 
             TraktClient client = TestUtility.GetOAuthMockClient($"lists/{traktID}/like", HttpStatusCode.NoContent);
-            TraktNoContentResponse response = await client.Lists.LikeListAsync(listIds);
+            TraktNoContentResponse response = await client.Lists.UnlikeListAsync(listIds);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -108,13 +108,13 @@
         [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
-        public async Task Test_TraktListsModule_LikeList_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
+        public async Task Test_TraktListsModule_UnlikeList_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, statusCode);
+            TraktClient client = TestUtility.GetOAuthMockClient(UNLIKE_LIST_URI, statusCode);
 
             try
             {
-                await client.Lists.LikeListAsync(LIST_ID);
+                await client.Lists.UnlikeListAsync(LIST_ID);
                 Assert.False(true);
             }
             catch (Exception exception)
@@ -124,14 +124,14 @@
         }
 
         [Fact]
-        public async Task Test_TraktListsModule_LikeList_Throws_ArgumentExceptions()
+        public async Task Test_TraktListsModule_UnlikeList_Throws_ArgumentExceptions()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.NoContent);
+            TraktClient client = TestUtility.GetOAuthMockClient(UNLIKE_LIST_URI, HttpStatusCode.NoContent);
 
-            Func<Task<TraktNoContentResponse>> act = () => client.Lists.LikeListAsync(default(ITraktListIds));
+            Func<Task<TraktNoContentResponse>> act = () => client.Lists.UnlikeListAsync(default(ITraktListIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
-            act = () => client.Lists.LikeListAsync(0);
+            act = () => client.Lists.UnlikeListAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }
     }
