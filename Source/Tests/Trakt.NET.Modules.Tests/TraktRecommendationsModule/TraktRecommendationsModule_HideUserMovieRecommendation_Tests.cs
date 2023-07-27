@@ -7,6 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
+    using TraktNet.Objects.Get.Movies;
     using TraktNet.Responses;
     using Xunit;
 
@@ -20,6 +21,62 @@
         {
             TraktClient client = TestUtility.GetOAuthMockClient(HIDE_MOVIE_RECOMMENDATION_URI, HttpStatusCode.NoContent);
             TraktNoContentResponse response = await client.Recommendations.HideMovieRecommendationAsync(MOVIE_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_HideMovieRecommendationRatings_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"recommendations/movies/{TRAKT_MOVIE_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Recommendations.HideMovieRecommendationAsync(TRAKT_MOVIE_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_HideMovieRecommendationRatings_With_MovieIds_TraktID()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Trakt = TRAKT_MOVIE_ID
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"recommendations/movies/{TRAKT_MOVIE_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Recommendations.HideMovieRecommendationAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_HideMovieRecommendationRatings_With_MovieIds_Slug()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Slug = MOVIE_SLUG
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"recommendations/movies/{MOVIE_SLUG}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Recommendations.HideMovieRecommendationAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_HideMovieRecommendationRatings_With_MovieIds()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Trakt = TRAKT_MOVIE_ID,
+                Slug = MOVIE_SLUG
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"recommendations/movies/{TRAKT_MOVIE_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Recommendations.HideMovieRecommendationAsync(movieIds);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -55,6 +112,18 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetMovieRatings_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_MOVIE_RECOMMENDATION_URI, HttpStatusCode.NoContent);
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideMovieRecommendationAsync(default(ITraktMovieIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Recommendations.HideMovieRecommendationAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }
