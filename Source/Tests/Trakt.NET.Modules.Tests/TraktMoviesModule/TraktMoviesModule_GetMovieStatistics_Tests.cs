@@ -8,6 +8,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Basic;
+    using TraktNet.Objects.Get.Movies;
     using TraktNet.Responses;
     using Xunit;
 
@@ -25,6 +26,7 @@
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
 
             ITraktStatistics responseValue = response.Value;
 
@@ -35,6 +37,70 @@
             responseValue.Comments.Should().Be(99);
             responseValue.Lists.Should().Be(17089);
             responseValue.Votes.Should().Be(10359);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieStatistics_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/stats", MOVIE_STATISTICS_JSON);
+            TraktResponse<ITraktStatistics> response = await client.Movies.GetMovieStatisticsAsync(TRAKT_MOVIE_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieStatistics_With_MovieIds_TraktID()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Trakt = TRAKT_MOVIE_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/stats", MOVIE_STATISTICS_JSON);
+            TraktResponse<ITraktStatistics> response = await client.Movies.GetMovieStatisticsAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieStatistics_With_MovieIds_Slug()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Slug = MOVIE_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{MOVIE_SLUG}/stats", MOVIE_STATISTICS_JSON);
+            TraktResponse<ITraktStatistics> response = await client.Movies.GetMovieStatisticsAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieStatistics_With_MovieIds()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Trakt = TRAKT_MOVIE_ID,
+                Slug = MOVIE_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/stats", MOVIE_STATISTICS_JSON);
+            TraktResponse<ITraktStatistics> response = await client.Movies.GetMovieStatisticsAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
         }
 
         [Theory]
@@ -67,6 +133,18 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieStatistics_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_STATISTICS_URI, MOVIE_STATISTICS_JSON);
+
+            Func<Task<TraktResponse<ITraktStatistics>>> act = () => client.Movies.GetMovieStatisticsAsync(default(ITraktMovieIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Movies.GetMovieStatisticsAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

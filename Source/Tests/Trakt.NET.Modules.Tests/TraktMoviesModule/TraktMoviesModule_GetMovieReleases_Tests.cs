@@ -28,6 +28,70 @@
             response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieReleases_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/releases", MOVIE_RELEASES_JSON);
+            TraktListResponse<ITraktMovieRelease> response = await client.Movies.GetMovieReleasesAsync(TRAKT_MOVIE_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieReleases_With_MovieIds_TraktID()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Trakt = TRAKT_MOVIE_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/releases", MOVIE_RELEASES_JSON);
+            TraktListResponse<ITraktMovieRelease> response = await client.Movies.GetMovieReleasesAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieReleases_With_MovieIds_Slug()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Slug = MOVIE_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{MOVIE_SLUG}/releases", MOVIE_RELEASES_JSON);
+            TraktListResponse<ITraktMovieRelease> response = await client.Movies.GetMovieReleasesAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieReleases_With_MovieIds()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Trakt = TRAKT_MOVIE_ID,
+                Slug = MOVIE_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/releases", MOVIE_RELEASES_JSON);
+            TraktListResponse<ITraktMovieRelease> response = await client.Movies.GetMovieReleasesAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktMovieNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -70,6 +134,18 @@
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieReleases_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_RELEASES_URI, MOVIE_RELEASES_JSON);
+
+            Func<Task<TraktListResponse<ITraktMovieRelease>>> act = () => client.Movies.GetMovieReleasesAsync(default(ITraktMovieIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Movies.GetMovieReleasesAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

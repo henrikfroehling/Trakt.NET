@@ -36,6 +36,94 @@
         }
 
         [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieRelatedMovies_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/related",
+                MOVIE_RELATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktMovie> response = await client.Movies.GetMovieRelatedMoviesAsync(TRAKT_MOVIE_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieRelatedMovies_With_MovieIds_TraktID()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Trakt = TRAKT_MOVIE_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/related",
+                MOVIE_RELATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktMovie> response = await client.Movies.GetMovieRelatedMoviesAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieRelatedMovies_With_MovieIds_Slug()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Slug = MOVIE_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{MOVIE_SLUG}/related",
+                MOVIE_RELATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktMovie> response = await client.Movies.GetMovieRelatedMoviesAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieRelatedMovies_With_MovieIds()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Trakt = TRAKT_MOVIE_ID,
+                Slug = MOVIE_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/related",
+                MOVIE_RELATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktMovie> response = await client.Movies.GetMovieRelatedMoviesAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktMoviesModule_GetMovieRelatedMovies_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_RELATED_MOVIES_URI}?extended={EXTENDED_INFO}",
@@ -355,6 +443,19 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieRelatedMovies_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_RELATED_MOVIES_URI,
+                MOVIE_RELATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktMovie>>> act = () => client.Movies.GetMovieRelatedMoviesAsync(default(ITraktMovieIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Movies.GetMovieRelatedMoviesAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }
