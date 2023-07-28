@@ -101,6 +101,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="listIds"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given <paramref name="listIds"/> has not any ids set.</exception>
         public Task<TraktPagedResponse<ITraktListItem>> GetListItemsAsync(ITraktListIds listIds, TraktListItemType listItemType = null,
                                                                           TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)

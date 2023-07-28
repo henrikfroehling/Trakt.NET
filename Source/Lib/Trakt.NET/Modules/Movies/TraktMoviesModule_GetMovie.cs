@@ -89,6 +89,7 @@
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="movieIds"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given <paramref name="movieIds"/> has not any ids set.</exception>
         public Task<TraktResponse<ITraktMovie>> GetMovieAsync(ITraktMovieIds movieIds, TraktExtendedInfo extendedInfo = null,
                                                               CancellationToken cancellationToken = default)
         {
