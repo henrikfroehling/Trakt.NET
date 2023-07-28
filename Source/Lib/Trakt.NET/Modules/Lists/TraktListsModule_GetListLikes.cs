@@ -103,6 +103,9 @@
             if (listIds == null)
                 throw new ArgumentNullException(nameof(listIds));
 
+            if (!listIds.HasAnyId)
+                throw new ArgumentException($"{nameof(listIds)} has not any ids set", nameof(listIds));
+
             return GetListLikesAsync(listIds.GetBestId(), extendedInfo, pagedParameters, cancellationToken);
         }
     }

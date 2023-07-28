@@ -187,6 +187,9 @@
             Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Episodes.GetEpisodePeopleAsync(default(ITraktShowIds), SEASON_NR, EPISODE_NR);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Episodes.GetEpisodePeopleAsync(new TraktShowIds(), SEASON_NR, EPISODE_NR);
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Episodes.GetEpisodePeopleAsync(0, SEASON_NR, EPISODE_NR);
             await act.Should().ThrowAsync<ArgumentException>();
         }

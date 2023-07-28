@@ -205,6 +205,9 @@
             Func<Task<TraktResponse<ITraktList>>> act = () => client.Lists.GetListAsync(default(ITraktListIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Lists.GetListAsync(new TraktListIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Lists.GetListAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

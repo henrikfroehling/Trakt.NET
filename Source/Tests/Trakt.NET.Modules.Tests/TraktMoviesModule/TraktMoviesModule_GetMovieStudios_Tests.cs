@@ -133,6 +133,9 @@ namespace TraktNet.Modules.Tests.TraktMoviesModule
             Func<Task<TraktListResponse<ITraktStudio>>> act = () => client.Movies.GetMovieStudiosAsync(default(ITraktMovieIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Movies.GetMovieStudiosAsync(new TraktMovieIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Movies.GetMovieStudiosAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

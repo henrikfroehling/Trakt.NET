@@ -803,6 +803,9 @@
             Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.People.GetPersonListsAsync(default(ITraktPersonIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.People.GetPersonListsAsync(new TraktPersonIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.People.GetPersonListsAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

@@ -460,6 +460,9 @@
             Func<Task<TraktPagedResponse<ITraktListLike>>> act = () => client.Lists.GetListLikesAsync(default(ITraktListIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Lists.GetListLikesAsync(new TraktListIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Lists.GetListLikesAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

@@ -615,6 +615,9 @@
             Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Lists.GetListCommentsAsync(default(ITraktListIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Lists.GetListCommentsAsync(new TraktListIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Lists.GetListCommentsAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

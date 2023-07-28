@@ -508,6 +508,9 @@
             Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Lists.GetListItemsAsync(default(ITraktListIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Lists.GetListItemsAsync(new TraktListIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Lists.GetListItemsAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

@@ -151,6 +151,9 @@
             Func<Task<TraktResponse<ITraktStatistics>>> act = () => client.Episodes.GetEpisodeStatisticsAsync(default(ITraktShowIds), SEASON_NR, EPISODE_NR);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Episodes.GetEpisodeStatisticsAsync(new TraktShowIds(), SEASON_NR, EPISODE_NR);
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Episodes.GetEpisodeStatisticsAsync(0, SEASON_NR, EPISODE_NR);
             await act.Should().ThrowAsync<ArgumentException>();
         }

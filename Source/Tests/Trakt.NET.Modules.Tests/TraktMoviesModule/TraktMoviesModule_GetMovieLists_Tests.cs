@@ -803,6 +803,9 @@
             Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Movies.GetMovieListsAsync(default(ITraktMovieIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Movies.GetMovieListsAsync(new TraktMovieIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Movies.GetMovieListsAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

@@ -177,6 +177,9 @@
             Func<Task<TraktResponse<ITraktCastAndCrew>>> act = () => client.Movies.GetMoviePeopleAsync(default(ITraktMovieIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Movies.GetMoviePeopleAsync(new TraktMovieIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Movies.GetMoviePeopleAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

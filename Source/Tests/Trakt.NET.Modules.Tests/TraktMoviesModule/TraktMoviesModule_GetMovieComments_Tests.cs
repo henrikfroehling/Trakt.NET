@@ -574,6 +574,9 @@
             Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Movies.GetMovieCommentsAsync(default(ITraktMovieIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Movies.GetMovieCommentsAsync(new TraktMovieIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Movies.GetMovieCommentsAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

@@ -122,6 +122,9 @@
             Func<Task<TraktNoContentResponse>> act = () => client.Lists.UnlikeListAsync(default(ITraktListIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Lists.UnlikeListAsync(new TraktListIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Lists.UnlikeListAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

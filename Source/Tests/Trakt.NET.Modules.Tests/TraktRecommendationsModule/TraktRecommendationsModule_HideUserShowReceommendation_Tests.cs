@@ -122,6 +122,9 @@
             Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(default(ITraktShowIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.Recommendations.HideShowRecommendationAsync(new TraktShowIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.Recommendations.HideShowRecommendationAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

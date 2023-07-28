@@ -298,6 +298,9 @@
             Func<Task<TraktResponse<ITraktPersonMovieCredits>>> act = () => client.People.GetPersonMovieCreditsAsync(default(ITraktPersonIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
+            act = () => client.People.GetPersonMovieCreditsAsync(new TraktPersonIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
             act = () => client.People.GetPersonMovieCreditsAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();
         }

@@ -105,6 +105,9 @@
             if (showIds == null)
                 throw new ArgumentNullException(nameof(showIds));
 
+            if (!showIds.HasAnyId)
+                throw new ArgumentException($"{nameof(showIds)} has not any ids set", nameof(showIds));
+
             return GetEpisodeImplementationAsync(false, showIds.GetBestId(), seasonNumber, episodeNumber, extendedInfo, cancellationToken);
         }
 

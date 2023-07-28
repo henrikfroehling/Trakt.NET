@@ -136,6 +136,9 @@
             if (movieIds == null)
                 throw new ArgumentNullException(nameof(movieIds));
 
+            if (!movieIds.HasAnyId)
+                throw new ArgumentException($"{nameof(movieIds)} has not any ids set", nameof(movieIds));
+
             return GetMovieCommentsAsync(movieIds.GetBestId(), commentSortOrder, extendedInfo, pagedParameters, cancellationToken);
         }
     }

@@ -100,6 +100,9 @@
             if (personIds == null)
                 throw new ArgumentNullException(nameof(personIds));
 
+            if (!personIds.HasAnyId)
+                throw new ArgumentException($"{nameof(personIds)} has not any ids set", nameof(personIds));
+
             return GetPersonShowCreditsAsync(personIds.GetBestId(), extendedInfo, cancellationToken);
         }
     }
