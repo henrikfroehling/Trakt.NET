@@ -8,6 +8,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Episodes;
+    using TraktNet.Objects.Get.Shows;
     using TraktNet.Responses;
     using Xunit;
 
@@ -21,6 +22,70 @@
         {
             TraktClient client = TestUtility.GetMockClient(GET_SEASON_URI, SEASON_EPISODES_JSON);
             TraktListResponse<ITraktEpisode> response = await client.Seasons.GetSeasonAsync(SHOW_ID, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeason_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}", SEASON_EPISODES_JSON);
+            TraktListResponse<ITraktEpisode> response = await client.Seasons.GetSeasonAsync(TRAKT_SHOD_ID, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeason_With_ShowIds_TraktID()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}", SEASON_EPISODES_JSON);
+            TraktListResponse<ITraktEpisode> response = await client.Seasons.GetSeasonAsync(showIds, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeason_With_ShowIds_Slug()
+        {
+            var showIds = new TraktShowIds
+            {
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{SHOW_SLUG}/seasons/{SEASON_NR}", SEASON_EPISODES_JSON);
+            TraktListResponse<ITraktEpisode> response = await client.Seasons.GetSeasonAsync(showIds, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(10);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeason_With_ShowIds()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID,
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}", SEASON_EPISODES_JSON);
+            TraktListResponse<ITraktEpisode> response = await client.Seasons.GetSeasonAsync(showIds, SEASON_NR);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -128,6 +193,21 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeason_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SEASON_URI, SEASON_EPISODES_JSON);
+
+            Func<Task<TraktListResponse<ITraktEpisode>>> act = () => client.Seasons.GetSeasonAsync(default(ITraktShowIds), SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Seasons.GetSeasonAsync(new TraktShowIds(), SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Seasons.GetSeasonAsync(0, SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

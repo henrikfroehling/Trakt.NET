@@ -6,6 +6,8 @@
     public partial class TraktSeasonsModule_Tests
     {
         private const string SHOW_ID = "1390";
+        private const uint TRAKT_SHOD_ID = 1390;
+        private const string SHOW_SLUG = "game-of-thrones";
         private const uint SEASON_NR = 1U;
         private const string TRANSLATION_LANGUAGE_CODE = "en";
         private const string TRANSLATION_LANGUAGE_CODE_All = "all";
