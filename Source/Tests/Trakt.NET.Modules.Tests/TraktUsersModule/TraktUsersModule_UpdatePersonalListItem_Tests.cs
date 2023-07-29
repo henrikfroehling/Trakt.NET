@@ -7,6 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
+    using TraktNet.Objects.Get.Lists;
     using TraktNet.Responses;
     using Xunit;
 
@@ -21,6 +22,62 @@
         {
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_ITEM_URI, HttpStatusCode.NoContent);
             TraktNoContentResponse response = await client.Users.UpdatePersonalListItemAsync(USERNAME, LIST_ID, LIST_ITEM_ID, NOTES);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_UpdatePersonalListItem_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items/{LIST_ITEM_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.UpdatePersonalListItemAsync(USERNAME, TRAKT_LIST_ID, LIST_ITEM_ID, NOTES);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_UpdatePersonalListItem_With_ListIds_TraktID()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items/{LIST_ITEM_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.UpdatePersonalListItemAsync(USERNAME, listIds, LIST_ITEM_ID, NOTES);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_UpdatePersonalListItem_With_ListIds_Slug()
+        {
+            var listIds = new TraktListIds
+            {
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{LIST_SLUG}/items/{LIST_ITEM_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.UpdatePersonalListItemAsync(USERNAME, listIds, LIST_ITEM_ID, NOTES);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_UpdatePersonalListItem_With_ListIds()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID,
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items/{LIST_ITEM_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.UpdatePersonalListItemAsync(USERNAME, listIds, LIST_ITEM_ID, NOTES);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -56,6 +113,21 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_UpdatePersonalListItem_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_ITEM_URI, HttpStatusCode.NoContent);
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.UpdatePersonalListItemAsync(USERNAME, default(ITraktListIds), LIST_ITEM_ID, NOTES);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Users.UpdatePersonalListItemAsync(USERNAME, new TraktListIds(), LIST_ITEM_ID, NOTES);
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Users.UpdatePersonalListItemAsync(USERNAME, 0, LIST_ITEM_ID, NOTES);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

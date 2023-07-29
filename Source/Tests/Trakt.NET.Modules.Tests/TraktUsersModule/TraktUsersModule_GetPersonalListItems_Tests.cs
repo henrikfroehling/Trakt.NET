@@ -32,6 +32,70 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items", LIST_ITEMS_JSON);
+            TraktPagedResponse<ITraktListItem> response = await client.Users.GetPersonalListItemsAsync(USERNAME, TRAKT_LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_With_ListIds_TraktID()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items", LIST_ITEMS_JSON);
+            TraktPagedResponse<ITraktListItem> response = await client.Users.GetPersonalListItemsAsync(USERNAME, listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_With_ListIds_Slug()
+        {
+            var listIds = new TraktListIds
+            {
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"users/{USERNAME}/lists/{LIST_SLUG}/items", LIST_ITEMS_JSON);
+            TraktPagedResponse<ITraktListItem> response = await client.Users.GetPersonalListItemsAsync(USERNAME, listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_With_ListIds()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID,
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items", LIST_ITEMS_JSON);
+            TraktPagedResponse<ITraktListItem> response = await client.Users.GetPersonalListItemsAsync(USERNAME, listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetPersonalListItems_With_OAuth_Enforced()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(GET_PERSONAL_LIST_ITEMS_URI, LIST_ITEMS_JSON);
@@ -302,6 +366,21 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_ITEMS_URI, LIST_ITEMS_JSON);
+
+            Func<Task<TraktPagedResponse<ITraktListItem>>> act = () => client.Users.GetPersonalListItemsAsync(USERNAME, default(ITraktListIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Users.GetPersonalListItemsAsync(USERNAME, new TraktListIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Users.GetPersonalListItemsAsync(USERNAME, 0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

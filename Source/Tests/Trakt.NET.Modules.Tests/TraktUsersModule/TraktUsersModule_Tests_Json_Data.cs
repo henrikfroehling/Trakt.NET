@@ -10,6 +10,8 @@
         private const string ENCODED_COMMA = "%2C";
         private const string USERNAME = "sean";
         private const string LIST_ID = "55";
+        private const uint TRAKT_LIST_ID = 55;
+        private const string LIST_SLUG = "incredible-thoughts";
         private const uint LIST_ITEM_ID = 1;
         private readonly TraktListItemType LIST_ITEM_TYPE = TraktListItemType.Movie;
         private readonly TraktListItemType LIST_ITEM_TYPE_MOVIE = TraktListItemType.Movie;
