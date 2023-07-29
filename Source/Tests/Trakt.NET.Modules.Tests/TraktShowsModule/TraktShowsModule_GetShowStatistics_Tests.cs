@@ -8,6 +8,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Basic;
+    using TraktNet.Objects.Get.Shows;
     using TraktNet.Responses;
     using Xunit;
 
@@ -36,6 +37,70 @@
             responseValue.Comments.Should().Be(233);
             responseValue.Lists.Should().Be(103943);
             responseValue.Votes.Should().Be(44590);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowStatistics_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/stats", SHOW_STATISTICS_JSON);
+            TraktResponse<ITraktStatistics> response = await client.Shows.GetShowStatisticsAsync(TRAKT_SHOD_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowStatistics_With_ShowIds_TraktID()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/stats", SHOW_STATISTICS_JSON);
+            TraktResponse<ITraktStatistics> response = await client.Shows.GetShowStatisticsAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowStatistics_With_ShowIds_Slug()
+        {
+            var showIds = new TraktShowIds
+            {
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{SHOW_SLUG}/stats", SHOW_STATISTICS_JSON);
+            TraktResponse<ITraktStatistics> response = await client.Shows.GetShowStatisticsAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowStatistics_With_ShowIds()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID,
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/stats", SHOW_STATISTICS_JSON);
+            TraktResponse<ITraktStatistics> response = await client.Shows.GetShowStatisticsAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
         }
 
         [Theory]
@@ -68,6 +133,21 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowStatistics_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_STATISTICS_URI, SHOW_STATISTICS_JSON);
+
+            Func<Task<TraktResponse<ITraktStatistics>>> act = () => client.Shows.GetShowStatisticsAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowStatisticsAsync(new TraktShowIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Shows.GetShowStatisticsAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }
