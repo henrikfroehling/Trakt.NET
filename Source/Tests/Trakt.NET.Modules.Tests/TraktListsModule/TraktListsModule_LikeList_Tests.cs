@@ -82,6 +82,25 @@
             response.IsSuccess.Should().BeTrue();
         }
 
+        [Fact]
+        public async Task Test_TraktListsModule_LikeList_With_List()
+        {
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = TRAKT_LIST_ID,
+                    Slug = LIST_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{TRAKT_LIST_ID}/like", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Lists.LikeListAsync(list);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktListNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -120,6 +139,9 @@
             TraktClient client = TestUtility.GetOAuthMockClient(LIKE_LIST_URI, HttpStatusCode.NoContent);
 
             Func<Task<TraktNoContentResponse>> act = () => client.Lists.LikeListAsync(default(ITraktListIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Lists.LikeListAsync(default(ITraktList));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Lists.LikeListAsync(new TraktListIds());

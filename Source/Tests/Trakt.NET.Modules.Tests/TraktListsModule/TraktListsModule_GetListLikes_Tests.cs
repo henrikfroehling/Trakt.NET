@@ -124,6 +124,33 @@
         }
 
         [Fact]
+        public async Task Test_TraktListsModule_GetListLikes_With_List()
+        {
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = TRAKT_LIST_ID,
+                    Slug = LIST_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"lists/{TRAKT_LIST_ID}/likes",
+                LIST_LIKES_JSON, 1, 10, 1, LIST_LIKES_COUNT);
+
+            TraktPagedResponse<ITraktListLike> response = await client.Lists.GetListLikesAsync(list);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_LIKES_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_LIKES_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktListsModule_GetListLikes_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_LIST_LIKES_URI}?extended={EXTENDED_INFO}",
@@ -458,6 +485,9 @@
                 LIST_LIKES_JSON, 1, 10, 1, LIST_LIKES_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktListLike>>> act = () => client.Lists.GetListLikesAsync(default(ITraktListIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Lists.GetListLikesAsync(default(ITraktList));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Lists.GetListLikesAsync(new TraktListIds());

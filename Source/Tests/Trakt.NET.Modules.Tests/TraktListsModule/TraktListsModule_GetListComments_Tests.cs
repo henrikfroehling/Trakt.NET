@@ -125,6 +125,33 @@
         }
 
         [Fact]
+        public async Task Test_TraktListsModule_GetListComments_With_List()
+        {
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = TRAKT_LIST_ID,
+                    Slug = LIST_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"lists/{TRAKT_LIST_ID}/comments",
+                LIST_COMMENTS_JSON, 1, 10, 1, LIST_COMMENTS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Lists.GetListCommentsAsync(list);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktListsModule_GetListComments_With_SortOrder()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_LIST_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}",
@@ -613,6 +640,9 @@
                 LIST_COMMENTS_JSON, 1, 10, 1, LIST_COMMENTS_ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Lists.GetListCommentsAsync(default(ITraktListIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Lists.GetListCommentsAsync(default(ITraktList));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Lists.GetListCommentsAsync(new TraktListIds());

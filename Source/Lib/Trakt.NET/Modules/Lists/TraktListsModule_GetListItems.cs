@@ -114,5 +114,36 @@
 
             return GetListItemsAsync(listIds.GetBestId(), listItemType, extendedInfo, pagedParameters, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets the items on a list.
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list-items/get-items-on-a-list">"Trakt API Doc - Lists: List Items"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="list">The list. See also <seealso cref="ITraktListIds" />.</param>
+        /// <param name="listItemType">Determines, which type of list items should be queried. See also <seealso cref="TraktListItemType" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the list items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktListItem" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="list"/> is null.</exception>
+        public Task<TraktPagedResponse<ITraktListItem>> GetListItemsAsync(ITraktList list, TraktListItemType listItemType = null,
+                                                                          TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null,
+                                                                          CancellationToken cancellationToken = default)
+        {
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+
+            return GetListItemsAsync(list.Ids, listItemType, extendedInfo, pagedParameters, cancellationToken);
+        }
     }
 }
