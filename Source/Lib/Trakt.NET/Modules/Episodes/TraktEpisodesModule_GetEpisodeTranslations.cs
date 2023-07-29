@@ -107,5 +107,34 @@
 
             return GetEpisodeTranslationsAsync(showIds.GetBestId(), seasonNumber, episodeNumber, languageCode, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets all translations for a <see cref="ITraktEpisode" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/translations/get-all-episode-translations">"Trakt API Doc - Episodes: Translations"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The show. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="seasonNumber">The number of the season containing the episode, for which the translations should be queried.</param>
+        /// <param name="episodeNumber">The number of the episode, for which the translations should be queried.</param>
+        /// <param name="languageCode">An optional two letter language code to query a specific translation language.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktEpisodeTranslation" /> instances, each containing a title, overview and language code.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        public Task<TraktListResponse<ITraktEpisodeTranslation>> GetEpisodeTranslationsAsync(ITraktShow show, uint seasonNumber, uint episodeNumber,
+                                                                                             string languageCode = null,
+                                                                                             CancellationToken cancellationToken = default)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return GetEpisodeTranslationsAsync(show.Ids, seasonNumber, episodeNumber, languageCode, cancellationToken);
+        }
     }
 }

@@ -101,5 +101,32 @@
 
             return GetEpisodeRatingsAsync(showIds.GetBestId(), seasonNumber, episodeNumber, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets the ratings for a <see cref="ITraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/ratings/get-episode-ratings">"Trakt API Doc - Episodes: Ratings"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The show. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="seasonNumber">The number of the season containing the episode, for which the ratings should be queried.</param>
+        /// <param name="episodeNumber">The number of the episode, for which the ratings should be queried.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktRating" /> instance, containing the ratings for a episode with the given showIdOrSlug.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        public Task<TraktResponse<ITraktRating>> GetEpisodeRatingsAsync(ITraktShow show, uint seasonNumber, uint episodeNumber,
+                                                                        CancellationToken cancellationToken = default)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return GetEpisodeRatingsAsync(show.Ids, seasonNumber, episodeNumber, cancellationToken);
+        }
     }
 }

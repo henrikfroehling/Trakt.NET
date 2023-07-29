@@ -123,6 +123,33 @@
         }
 
         [Fact]
+        public async Task Test_TraktEpisodesModule_GetEpisodeComments_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/episodes/{EPISODE_NR}/comments",
+                EPISODE_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Episodes.GetEpisodeCommentsAsync(show, SEASON_NR, EPISODE_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktEpisodesModule_GetEpisodeComments_With_SortOrder()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}",
@@ -569,6 +596,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_EPISODE_COMMENTS_URI, EPISODE_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Episodes.GetEpisodeCommentsAsync(default(ITraktShowIds), SEASON_NR, EPISODE_NR);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Episodes.GetEpisodeCommentsAsync(default(ITraktShow), SEASON_NR, EPISODE_NR);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Episodes.GetEpisodeCommentsAsync(new TraktShowIds(), SEASON_NR, EPISODE_NR);

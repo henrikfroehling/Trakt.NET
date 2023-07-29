@@ -101,6 +101,29 @@
             response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
+        [Fact]
+        public async Task Test_TraktEpisodesModule_GetEpisodeTranslations_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/episodes/{EPISODE_NR}/translations",
+                EPISODE_TRANSLATIONS_JSON);
+
+            TraktListResponse<ITraktEpisodeTranslation> response = await client.Episodes.GetEpisodeTranslationsAsync(show, SEASON_NR, EPISODE_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktEpisodeNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -139,6 +162,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_EPISODE_TRANSLATIONS_URI, EPISODE_TRANSLATIONS_JSON);
 
             Func<Task<TraktListResponse<ITraktEpisodeTranslation>>> act = () => client.Episodes.GetEpisodeTranslationsAsync(default(ITraktShowIds), SEASON_NR, EPISODE_NR);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Episodes.GetEpisodeTranslationsAsync(default(ITraktShow), SEASON_NR, EPISODE_NR);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Episodes.GetEpisodeTranslationsAsync(new TraktShowIds(), SEASON_NR, EPISODE_NR);

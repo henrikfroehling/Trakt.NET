@@ -123,6 +123,33 @@
         }
 
         [Fact]
+        public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/episodes/{EPISODE_NR}/lists",
+                EPISODE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktList> response = await client.Episodes.GetEpisodeListsAsync(show, SEASON_NR, EPISODE_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktEpisodesModule_GetEpisodeLists_With_Type()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_EPISODE_LISTS_URI}/{LIST_TYPE.UriName}",
@@ -804,6 +831,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_EPISODE_LISTS_URI, EPISODE_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.Episodes.GetEpisodeListsAsync(default(ITraktShowIds), SEASON_NR, EPISODE_NR);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Episodes.GetEpisodeListsAsync(default(ITraktShow), SEASON_NR, EPISODE_NR);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Episodes.GetEpisodeListsAsync(new TraktShowIds(), SEASON_NR, EPISODE_NR);
