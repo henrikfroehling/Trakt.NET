@@ -82,6 +82,25 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             response.IsSuccess.Should().BeTrue();
         }
 
+        [Fact]
+        public async Task Test_TraktShowsModule_UndoResetShowWatchedProgress_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"shows/{TRAKT_SHOD_ID}/progress/watched/reset", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Shows.UndoResetShowWatchedProgressAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
         [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
@@ -120,6 +139,9 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             TraktClient client = TestUtility.GetOAuthMockClient(UNDO_RESET_SHOW_WATCHED_PROGRESS_URI, HttpStatusCode.NoContent);
 
             Func<Task<TraktNoContentResponse>> act = () => client.Shows.UndoResetShowWatchedProgressAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.UndoResetShowWatchedProgressAsync(default(ITraktShow));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Shows.UndoResetShowWatchedProgressAsync(new TraktShowIds());

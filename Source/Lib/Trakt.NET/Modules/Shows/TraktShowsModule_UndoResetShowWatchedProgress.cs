@@ -88,5 +88,29 @@
 
             return UndoResetShowWatchedProgressAsync(showIds.GetBestId(), cancellationToken);
         }
+
+        /// <summary>
+        /// Undo the reset and have watched progress use all watched history for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization required.</para>
+        /// <para>VIP only.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/shows/reset-watched-progress/undo-reset-show-progress">"Trakt API Doc - Shows: Reset Watched Progress"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        public Task<TraktNoContentResponse> UndoResetShowWatchedProgressAsync(ITraktShow show, CancellationToken cancellationToken = default)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return UndoResetShowWatchedProgressAsync(show.Ids, cancellationToken);
+        }
     }
 }

@@ -127,6 +127,33 @@
         }
 
         [Fact]
+        public async Task Test_TraktShowsModule_GetShowComments_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/comments",
+                SHOW_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Shows.GetShowCommentsAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktShowsModule_GetShowComments_With_SortOrder()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}",
@@ -593,6 +620,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_COMMENTS_URI, SHOW_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Shows.GetShowCommentsAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowCommentsAsync(default(ITraktShow));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Shows.GetShowCommentsAsync(new TraktShowIds());

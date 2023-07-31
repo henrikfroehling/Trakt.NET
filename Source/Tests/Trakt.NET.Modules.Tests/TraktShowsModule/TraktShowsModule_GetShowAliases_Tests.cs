@@ -92,6 +92,27 @@
             response.Value.Should().NotBeNull().And.HaveCount(8);
         }
 
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowAliases_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/aliases", SHOW_ALIASES_JSON);
+            TraktListResponse<ITraktShowAlias> response = await client.Shows.GetShowAliasesAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(8);
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktShowNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -130,6 +151,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_ALIASES_URI, SHOW_ALIASES_JSON);
 
             Func<Task<TraktListResponse<ITraktShowAlias>>> act = () => client.Shows.GetShowAliasesAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowAliasesAsync(default(ITraktShow));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Shows.GetShowAliasesAsync(new TraktShowIds());

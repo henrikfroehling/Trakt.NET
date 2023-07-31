@@ -93,6 +93,27 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             response.Value.Should().NotBeNull().And.HaveCount(4);
         }
 
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowStudios_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/studios", SHOW_STUDIOS_JSON);
+            TraktListResponse<ITraktStudio> response = await client.Shows.GetShowStudiosAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktShowNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -131,6 +152,9 @@ namespace TraktNet.Modules.Tests.TraktShowsModule
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_STUDIOS_URI, SHOW_STUDIOS_JSON);
 
             Func<Task<TraktListResponse<ITraktStudio>>> act = () => client.Shows.GetShowStudiosAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowStudiosAsync(default(ITraktShow));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Shows.GetShowStudiosAsync(new TraktShowIds());

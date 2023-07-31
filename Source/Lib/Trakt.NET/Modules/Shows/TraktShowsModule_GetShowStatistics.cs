@@ -89,5 +89,29 @@
 
             return GetShowStatisticsAsync(showIds.GetBestId(), cancellationToken);
         }
+
+        /// <summary>
+        /// Gets the statistics for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/stats/get-show-stats">"Trakt API Doc - Shows: Stats"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktStatistics" /> instance, containing the statistics for a show with the given showIdOrSlug.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        public Task<TraktResponse<ITraktStatistics>> GetShowStatisticsAsync(ITraktShow show, CancellationToken cancellationToken = default)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return GetShowStatisticsAsync(show.Ids, cancellationToken);
+        }
     }
 }

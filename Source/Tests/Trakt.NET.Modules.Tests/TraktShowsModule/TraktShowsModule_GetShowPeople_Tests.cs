@@ -109,6 +109,27 @@
         }
 
         [Fact]
+        public async Task Test_TraktShowsModule_GetShowPeople_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/people", SHOW_PEOPLE_JSON);
+            TraktResponse<ITraktShowCastAndCrew> response = await client.Shows.GetShowPeopleAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
         public async Task Test_TraktShowsModule_GetShowPeople_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient(
@@ -177,6 +198,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_PEOPLE_URI, SHOW_PEOPLE_JSON);
 
             Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Shows.GetShowPeopleAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowPeopleAsync(default(ITraktShow));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Shows.GetShowPeopleAsync(new TraktShowIds());

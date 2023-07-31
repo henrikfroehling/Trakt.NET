@@ -154,7 +154,7 @@
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
         public async IAsyncEnumerable<TraktResponse<ITraktShow>> GetShowsStreamAsync(TraktMultipleObjectsQueryParams showsQueryParams,
-                                                                                        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+                                                                                     [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
             if (showsQueryParams == null || showsQueryParams.Count == 0)
                 yield break;

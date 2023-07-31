@@ -156,6 +156,27 @@
         }
 
         [Fact]
+        public async Task Test_TraktShowsModule_GetShowWatchedProgress_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"shows/{TRAKT_SHOD_ID}/progress/watched", SHOW_WATCHED_PROGRESS_JSON);
+            TraktResponse<ITraktShowWatchedProgress> response = await client.Shows.GetShowWatchedProgressAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
         public async Task Test_TraktShowsModule_GetShowWatchedProgress_With_Hidden()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
@@ -913,6 +934,9 @@
             TraktClient client = TestUtility.GetOAuthMockClient(GET_SHOW_WATCHED_PROGRESS_URI, SHOW_WATCHED_PROGRESS_JSON);
 
             Func<Task<TraktResponse<ITraktShowWatchedProgress>>> act = () => client.Shows.GetShowWatchedProgressAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowWatchedProgressAsync(default(ITraktShow));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Shows.GetShowWatchedProgressAsync(new TraktShowIds());

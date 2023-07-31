@@ -103,6 +103,27 @@
             response.Value.Should().NotBeNull();
         }
 
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowStatistics_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/stats", SHOW_STATISTICS_JSON);
+            TraktResponse<ITraktStatistics> response = await client.Shows.GetShowStatisticsAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktShowNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -141,6 +162,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_SHOW_STATISTICS_URI, SHOW_STATISTICS_JSON);
 
             Func<Task<TraktResponse<ITraktStatistics>>> act = () => client.Shows.GetShowStatisticsAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowStatisticsAsync(default(ITraktShow));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Shows.GetShowStatisticsAsync(new TraktShowIds());

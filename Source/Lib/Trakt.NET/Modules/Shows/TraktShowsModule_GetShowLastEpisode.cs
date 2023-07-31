@@ -106,5 +106,34 @@
 
             return GetShowLastEpisodeAsync(showIds.GetBestId(), extendedInfo, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets the most recently aired <see cref="ITraktEpisode" /> for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/next-episode/get-last-episode">"Trakt API Doc - Shows: Last Episode"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the episode should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktEpisode" /> instance with the queried episode's data or null, if there is no most recently aired episode.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        public Task<TraktResponse<ITraktEpisode>> GetShowLastEpisodeAsync(ITraktShow show, TraktExtendedInfo extendedInfo = null,
+                                                                          CancellationToken cancellationToken = default)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return GetShowLastEpisodeAsync(show.Ids, extendedInfo, cancellationToken);
+        }
     }
 }

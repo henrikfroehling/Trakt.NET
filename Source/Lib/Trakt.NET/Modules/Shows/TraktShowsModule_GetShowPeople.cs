@@ -105,5 +105,34 @@
 
             return GetShowPeopleAsync(showIds.GetBestId(), extendedInfo, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets all people for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/people/get-all-people-for-a-show">"Trakt API Doc - Shows: People"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the people should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktShowCastAndCrew" /> instance, containing the cast and crew for a show with the given showIdOrSlug.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        public Task<TraktResponse<ITraktShowCastAndCrew>> GetShowPeopleAsync(ITraktShow show, TraktExtendedInfo extendedInfo = null,
+                                                                             CancellationToken cancellationToken = default)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return GetShowPeopleAsync(show.Ids, extendedInfo, cancellationToken);
+        }
     }
 }

@@ -88,5 +88,29 @@
 
             return GetShowCertificationsAsync(showIds.GetBestId(), cancellationToken);
         }
+
+        /// <summary>
+        /// Gets all certifications for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/shows/certifications/get-all-show-certifications">"Trakt API Doc - Shows: Certifications"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktShowCertification" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        public Task<TraktListResponse<ITraktShowCertification>> GetShowCertificationsAsync(ITraktShow show, CancellationToken cancellationToken = default)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return GetShowCertificationsAsync(show.Ids, cancellationToken);
+        }
     }
 }

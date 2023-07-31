@@ -102,5 +102,32 @@
 
             return ResetShowWatchedProgressAsync(showIds.GetBestId(), resetAt, cancellationToken);
         }
+
+        /// <summary>
+        /// Resets the watched progress for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/shows/watched-progress/reset-show-progress">"Trakt API Doc - Shows: Reset Watched Progress"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
+        /// <param name="resetAt">An optional reset_at UTC date to have it calculate progress from that specific date onwards.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktShowResetWatchedProgressPost" /> instance, containing an optional reset_at UTC date to have it
+        /// calculate progress from that specific date onwards.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        public Task<TraktResponse<ITraktShowResetWatchedProgressPost>> ResetShowWatchedProgressAsync(ITraktShow show, DateTime? resetAt = null,
+                                                                                                     CancellationToken cancellationToken = default)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return ResetShowWatchedProgressAsync(show.Ids, resetAt, cancellationToken);
+        }
     }
 }

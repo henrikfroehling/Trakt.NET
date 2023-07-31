@@ -119,5 +119,38 @@
             return GetShowCollectionProgressAsync(showIds.GetBestId(), includingHiddenSeasons, includingSpecialSeasons,
                                                   countSpecialSeasons, lastActivity, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets the collection progress for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/collection-progress/get-show-collection-progress">"Trakt API Doc - Shows: Collection Progress"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
+        /// <param name="includingHiddenSeasons">Determines, if the returned collection progress should contain hidden seasons.</param>
+        /// <param name="includingSpecialSeasons">Determines, if the returned collection progress should contain special seasons.</param>
+        /// <param name="countSpecialSeasons">Determins, if special seasons should be counted in the statistics of the returned collection progress.</param>
+        /// <param name="lastActivity">Determines the last activity type of the collection progress.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktShowCollectionProgress" /> instance, containing the collection progress for a show with the given showIdOrSlug.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        public Task<TraktResponse<ITraktShowCollectionProgress>> GetShowCollectionProgressAsync(ITraktShow show, bool? includingHiddenSeasons = null,
+                                                                                                bool? includingSpecialSeasons = null,
+                                                                                                bool? countSpecialSeasons = null,
+                                                                                                TraktLastActivity lastActivity = null,
+                                                                                                CancellationToken cancellationToken = default)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return GetShowCollectionProgressAsync(show.Ids, includingHiddenSeasons, includingSpecialSeasons,
+                                                  countSpecialSeasons, lastActivity, cancellationToken);
+        }
     }
 }

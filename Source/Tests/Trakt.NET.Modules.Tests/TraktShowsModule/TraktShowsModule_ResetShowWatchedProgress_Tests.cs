@@ -124,6 +124,33 @@
         }
 
         [Fact]
+        public async Task Test_TraktShowsModule_ResetShowWatchedProgress_With_Show()
+        {
+            string postJson = await TestUtility.SerializeObject(ResetWatchedProgressPostEmpty);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"shows/{TRAKT_SHOD_ID}/progress/watched/reset",
+                postJson, RESET_WATCHED_PROGRESS_POST_RESPONSE_JSON);
+
+            TraktResponse<ITraktShowResetWatchedProgressPost> response = await client.Shows.ResetShowWatchedProgressAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+            response.Value.ResetAt.Should().Be(DateTime.Parse("2022-01-23T21:12:25.000Z").ToUniversalTime());
+        }
+
+        [Fact]
         public async Task Test_TraktShowsModule_ResetShowWatchedProgress_With_ResetAt()
         {
             string postJson = await TestUtility.SerializeObject(ResetWatchedProgressPost);
@@ -182,6 +209,9 @@
                 postJson, RESET_WATCHED_PROGRESS_POST_RESPONSE_JSON);
 
             Func<Task<TraktResponse<ITraktShowResetWatchedProgressPost>>> act = () => client.Shows.ResetShowWatchedProgressAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.ResetShowWatchedProgressAsync(default(ITraktShow));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Shows.ResetShowWatchedProgressAsync(new TraktShowIds());
