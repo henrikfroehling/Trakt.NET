@@ -29,6 +29,91 @@
         }
 
         [Fact]
+        public async Task Test_TraktShowsModule_GetShowTranslations_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/translations", SHOW_TRANSLATIONS_JSON);
+            TraktListResponse<ITraktShowTranslation> response = await client.Shows.GetShowTranslationsAsync(TRAKT_SHOD_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowTranslations_With_ShowIds_TraktID()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/translations", SHOW_TRANSLATIONS_JSON);
+            TraktListResponse<ITraktShowTranslation> response = await client.Shows.GetShowTranslationsAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowTranslations_With_ShowIds_Slug()
+        {
+            var showIds = new TraktShowIds
+            {
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{SHOW_SLUG}/translations", SHOW_TRANSLATIONS_JSON);
+            TraktListResponse<ITraktShowTranslation> response = await client.Shows.GetShowTranslationsAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowTranslations_With_ShowIds()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID,
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/translations", SHOW_TRANSLATIONS_JSON);
+            TraktListResponse<ITraktShowTranslation> response = await client.Shows.GetShowTranslationsAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowTranslations_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/translations", SHOW_TRANSLATIONS_JSON);
+            TraktListResponse<ITraktShowTranslation> response = await client.Shows.GetShowTranslationsAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+        }
+
+        [Fact]
         public async Task Test_TraktShowsModule_GetShowTranslations_With_LanguageCode()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_SHOW_TRANSLATIONS_URI}/{LANGUAGE_CODE}", SHOW_TRANSLATIONS_JSON);
@@ -70,6 +155,24 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowTranslations_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_TRANSLATIONS_URI, SHOW_TRANSLATIONS_JSON);
+
+            Func<Task<TraktListResponse<ITraktShowTranslation>>> act = () => client.Shows.GetShowTranslationsAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowTranslationsAsync(default(ITraktShow));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowTranslationsAsync(new TraktShowIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Shows.GetShowTranslationsAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

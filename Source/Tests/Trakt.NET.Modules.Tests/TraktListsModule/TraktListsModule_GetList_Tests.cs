@@ -60,6 +60,70 @@
         }
 
         [Fact]
+        public async Task Test_TraktListsModule_GetList_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"lists/{TRAKT_LIST_ID}", SINGLE_LIST_JSON);
+            TraktResponse<ITraktList> response = await client.Lists.GetListAsync(TRAKT_LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetList_With_ListIds_TraktID()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"lists/{TRAKT_LIST_ID}", SINGLE_LIST_JSON);
+            TraktResponse<ITraktList> response = await client.Lists.GetListAsync(listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetList_With_ListIds_Slug()
+        {
+            var listIds = new TraktListIds
+            {
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"lists/{LIST_SLUG}", SINGLE_LIST_JSON);
+            TraktResponse<ITraktList> response = await client.Lists.GetListAsync(listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetList_With_ListIds()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID,
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"lists/{TRAKT_LIST_ID}", SINGLE_LIST_JSON);
+            TraktResponse<ITraktList> response = await client.Lists.GetListAsync(listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
         public async Task Test_TraktListsModule_GetList_Complete()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_LIST_URI}?extended={EXTENDED_INFO}", SINGLE_LIST_JSON);
@@ -131,6 +195,21 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_GetList_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_LIST_URI, SINGLE_LIST_JSON);
+
+            Func<Task<TraktResponse<ITraktList>>> act = () => client.Lists.GetListAsync(default(ITraktListIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Lists.GetListAsync(new TraktListIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Lists.GetListAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

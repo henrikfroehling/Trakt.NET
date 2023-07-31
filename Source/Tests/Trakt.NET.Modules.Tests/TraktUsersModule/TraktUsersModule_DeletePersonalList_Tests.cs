@@ -7,6 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
+    using TraktNet.Objects.Get.Lists;
     using TraktNet.Responses;
     using Xunit;
 
@@ -20,6 +21,81 @@
         {
             TraktClient client = TestUtility.GetOAuthMockClient(DELETE_PERSONAL_LIST_URI, HttpStatusCode.NoContent);
             TraktNoContentResponse response = await client.Users.DeletePersonalListAsync(USERNAME, LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_DeletePersonalList_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.DeletePersonalListAsync(USERNAME, TRAKT_LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_DeletePersonalList_With_ListIds_TraktID()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.DeletePersonalListAsync(USERNAME, listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_DeletePersonalList_With_ListIds_Slug()
+        {
+            var listIds = new TraktListIds
+            {
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{LIST_SLUG}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.DeletePersonalListAsync(USERNAME, listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_DeletePersonalList_With_ListIds()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID,
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.DeletePersonalListAsync(USERNAME, listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_DeletePersonalList_With_List()
+        {
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = TRAKT_LIST_ID,
+                    Slug = LIST_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.DeletePersonalListAsync(USERNAME, list);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -55,6 +131,24 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_DeletePersonalList_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(DELETE_PERSONAL_LIST_URI, HttpStatusCode.NoContent);
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Users.DeletePersonalListAsync(USERNAME, default(ITraktListIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Users.DeletePersonalListAsync(USERNAME, default(ITraktList));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Users.DeletePersonalListAsync(USERNAME, new TraktListIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Users.DeletePersonalListAsync(USERNAME, 0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

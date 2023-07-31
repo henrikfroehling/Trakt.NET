@@ -5,7 +5,11 @@
     public partial class TraktRecommendationsModule_Tests
     {
         private const string MOVIE_ID = "94024";
+        private const uint TRAKT_MOVIE_ID = 94024;
+        private const string MOVIE_SLUG = "tron-legacy-2010";
         private const string SHOW_ID = "1390";
+        private const uint TRAKT_SHOW_ID = 1390;
+        private const string SHOW_SLUG = "game-of-thrones";
         private const uint LIMIT = 4U;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
 

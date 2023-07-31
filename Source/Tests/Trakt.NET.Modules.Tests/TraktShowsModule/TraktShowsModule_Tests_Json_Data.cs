@@ -8,6 +8,8 @@
     public partial class TraktShowsModule_Tests
     {
         private const string SHOW_ID = "1390";
+        private const uint TRAKT_SHOD_ID = 1390;
+        private const string SHOW_SLUG = "game-of-thrones";
         private const int ITEM_COUNT = 2;
         private const int MOST_FAVORITED_ITEM_COUNT = 3;
         private const int LISTS_ITEM_COUNT = 10;

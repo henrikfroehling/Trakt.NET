@@ -7,6 +7,8 @@
     public partial class TraktMoviesModule_Tests
     {
         private const string MOVIE_ID = "94024";
+        private const uint TRAKT_MOVIE_ID = 94024;
+        private const string MOVIE_SLUG = "tron-legacy-2010";
         private const string COUNTRY_CODE = "us";
         private const string LANGUAGE_CODE = "en";
         private const uint PAGE = 2;
