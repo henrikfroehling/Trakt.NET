@@ -154,6 +154,35 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_UpdatePersonalList_With_List()
+        {
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
+            {
+                Name = NEW_LIST_NAME
+            };
+
+            string postJson = await TestUtility.SerializeObject(createListPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = TRAKT_LIST_ID,
+                    Slug = LIST_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}", postJson, LIST_JSON);
+            TraktResponse<ITraktList> response = await client.Users.UpdatePersonalListAsync(USERNAME, list, createListPost);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_UpdatePersonalList_With_Name_And_Description()
         {
             ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
@@ -1096,6 +1125,9 @@
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
 
             Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.UpdatePersonalListAsync(USERNAME, default(ITraktListIds), createListPost);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Users.UpdatePersonalListAsync(USERNAME, default(ITraktList), createListPost);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.UpdatePersonalListAsync(USERNAME, new TraktListIds(), createListPost);

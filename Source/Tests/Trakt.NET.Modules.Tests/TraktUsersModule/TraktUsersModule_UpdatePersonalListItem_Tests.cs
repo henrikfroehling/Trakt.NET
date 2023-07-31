@@ -83,6 +83,25 @@
             response.IsSuccess.Should().BeTrue();
         }
 
+        [Fact]
+        public async Task Test_TraktUsersModule_UpdatePersonalListItem_With_List()
+        {
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = TRAKT_LIST_ID,
+                    Slug = LIST_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items/{LIST_ITEM_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Users.UpdatePersonalListItemAsync(USERNAME, list, LIST_ITEM_ID, NOTES);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktListNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -121,6 +140,9 @@
             TraktClient client = TestUtility.GetOAuthMockClient(UPDATE_PERSONAL_LIST_ITEM_URI, HttpStatusCode.NoContent);
 
             Func<Task<TraktNoContentResponse>> act = () => client.Users.UpdatePersonalListItemAsync(USERNAME, default(ITraktListIds), LIST_ITEM_ID, NOTES);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Users.UpdatePersonalListItemAsync(USERNAME, default(ITraktList), LIST_ITEM_ID, NOTES);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.UpdatePersonalListItemAsync(USERNAME, new TraktListIds(), LIST_ITEM_ID, NOTES);

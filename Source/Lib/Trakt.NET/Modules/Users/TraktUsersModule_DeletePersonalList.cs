@@ -92,5 +92,30 @@
 
             return DeletePersonalListAsync(usernameOrSlug, listIds.GetBestId(), cancellationToken);
         }
+
+        /// <summary>
+        /// Deletes an user's personal list.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/list/delete-a-user's-personal-list">"Trakt API Doc - Users: List"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the personal list should be deleted.</param>
+        /// <param name="list">The list, which should be deleted.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="list"/> is null.</exception>
+        public Task<TraktNoContentResponse> DeletePersonalListAsync(string usernameOrSlug, ITraktList list,
+                                                                    CancellationToken cancellationToken = default)
+        {
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+
+            return DeletePersonalListAsync(usernameOrSlug, list.Ids, cancellationToken);
+        }
     }
 }

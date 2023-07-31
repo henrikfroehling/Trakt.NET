@@ -121,5 +121,39 @@
 
             return GetListLikesAsync(usernameOrSlug, listIds.GetBestId(), pagedParameters, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets all likes for an user's list.
+        /// <para>OAuth authorization optional.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/list-likes/get-all-users-who-liked-a-list">"Trakt API Doc - Users: List Likes"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the list likes should be queried.</param>
+        /// <param name="list">The list, for which the likes should be queried.</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktListLike}"/> instance containing the queried list likes and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktListLike" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="list"/> is null.</exception>
+        public Task<TraktPagedResponse<ITraktListLike>> GetListLikesAsync(string usernameOrSlug, ITraktList list,
+                                                                          TraktPagedParameters pagedParameters = null,
+                                                                          CancellationToken cancellationToken = default)
+        {
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+
+            return GetListLikesAsync(usernameOrSlug, list.Ids, pagedParameters, cancellationToken);
+        }
     }
 }

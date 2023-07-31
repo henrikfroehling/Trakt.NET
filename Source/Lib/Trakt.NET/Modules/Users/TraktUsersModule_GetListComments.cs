@@ -130,5 +130,41 @@
 
             return GetListCommentsAsync(usernameOrSlug, listIds.GetBestId(), commentSortOrder, pagedParameters, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets top level comments for an user's list.
+        /// <para>OAuth authorization optional.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/list-comments/get-all-list-comments">"Trakt API Doc - Users: List Comments"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the list comments should be queried.</param>
+        /// <param name="list">The list, for which the comments should be queried.</param>
+        /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried list comments and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktComment" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="list"/> is null.</exception>
+        public Task<TraktPagedResponse<ITraktComment>> GetListCommentsAsync(string usernameOrSlug, ITraktList list,
+                                                                            TraktCommentSortOrder commentSortOrder = null,
+                                                                            TraktPagedParameters pagedParameters = null,
+                                                                            CancellationToken cancellationToken = default)
+        {
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+
+            return GetListCommentsAsync(usernameOrSlug, list.Ids, commentSortOrder, pagedParameters, cancellationToken);
+        }
     }
 }

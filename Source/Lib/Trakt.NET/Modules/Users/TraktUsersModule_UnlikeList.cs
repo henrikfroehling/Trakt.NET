@@ -92,5 +92,30 @@
 
             return UnlikeListAsync(usernameOrSlug, listIds.GetBestId(), cancellationToken);
         }
+
+        /// <summary>
+        /// Removes like on an user's list.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/users/list-like/remove-like-on-a-list">"Trakt API Doc - Users: List Like"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which a like on a list should be removed.</param>
+        /// <param name="list">The list, for which a like should be removed.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="list"/> is null.</exception>
+        public Task<TraktNoContentResponse> UnlikeListAsync(string usernameOrSlug, ITraktList list,
+                                                            CancellationToken cancellationToken = default)
+        {
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+
+            return UnlikeListAsync(usernameOrSlug, list.Ids, cancellationToken);
+        }
     }
 }

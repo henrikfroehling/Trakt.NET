@@ -106,5 +106,34 @@
 
             return UpdatePersonalListAsync(usernameOrSlug, listIds.GetBestId(), personalListPost, cancellationToken);
         }
+
+        /// <summary>
+        /// Updates an user's personal list.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/list/update-personal-list">"Trakt API Doc - Users: List"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the personal list should be updated.</param>
+        /// <param name="list">The personal list, which should be updated.</param>
+        /// <param name="personalListPost">An <see cref="ITraktUserPersonalListPost" /> instance containing the data about the to be updated list.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktList" /> instance containing information about the successfully updated personal list.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="list"/> is null.</exception>
+        public Task<TraktResponse<ITraktList>> UpdatePersonalListAsync(string usernameOrSlug, ITraktList list,
+                                                                       ITraktUserPersonalListPost personalListPost,
+                                                                       CancellationToken cancellationToken = default)
+        {
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+
+            return UpdatePersonalListAsync(usernameOrSlug, list.Ids, personalListPost, cancellationToken);
+        }
     }
 }

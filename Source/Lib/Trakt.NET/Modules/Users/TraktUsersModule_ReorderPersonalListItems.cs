@@ -111,5 +111,34 @@
 
             return ReorderPersonalListItemsAsync(usernameOrSlug, listIds.GetBestId(), reorderedListItemsRank, cancellationToken);
         }
+
+        /// <summary>
+        /// Reorders an user's personal list items.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/reorder-list-items/reorder-items-on-a-list">"Trakt API Doc - Users: Reorder List Items"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the personal list items should be reordered.</param>
+        /// <param name="list">The list, for which the items should be reordered.</param>
+        /// <param name="reorderedListItemsRank">A collection of list item ids. Represents the new order of an user's personal list items.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktListItemsReorderPostResponse" /> instance containing information about the successfully updated personal list items order.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="list"/> is null.</exception>
+        public Task<TraktResponse<ITraktListItemsReorderPostResponse>> ReorderPersonalListItemsAsync(string usernameOrSlug, ITraktList list,
+                                                                                                     IList<uint> reorderedListItemsRank,
+                                                                                                     CancellationToken cancellationToken = default)
+        {
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+
+            return ReorderPersonalListItemsAsync(usernameOrSlug, list.Ids, reorderedListItemsRank, cancellationToken);
+        }
     }
 }

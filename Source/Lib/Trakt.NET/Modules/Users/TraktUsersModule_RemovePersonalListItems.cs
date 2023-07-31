@@ -123,5 +123,39 @@
 
             return RemovePersonalListItemsAsync(usernameOrSlug, listIds.GetBestId(), listItemsRemovePost, cancellationToken);
         }
+
+        /// <summary>
+        /// Removes items from an user's personal list. Accepts shows, seasons, episodes, movies and people.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/remove-list-items/remove-items-from-personal-list">"Trakt API Doc - Users: Remove List Items"</a> for more information.
+        /// </para>
+        /// <para>
+        /// It is recommended to use the <see cref="ITraktUserPersonalListItemsRemovePostBuilder" /> to create an instance
+        /// of the required <see cref="ITraktUserPersonalListItemsRemovePost" />.
+        /// See also <seealso cref="TraktPost.NewUserPersonalListItemsRemovePost()" />.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which items should be removed from a personal list.</param>
+        /// <param name="list">The personal list, from which items should be removed.</param>
+        /// <param name="listItemsRemovePost">An <see cref="ITraktUserPersonalListItemsRemovePost" /> instance containing all shows, seasons, episodes, movies and people, which should be removed.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="TraktUserPersonalListItemsRemovePostResponse" /> instance, which contains information about which items were deleted and not found.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="list"/> is null.</exception>
+        public Task<TraktResponse<ITraktUserPersonalListItemsRemovePostResponse>> RemovePersonalListItemsAsync(string usernameOrSlug, ITraktList list,
+                                                                                                               ITraktUserPersonalListItemsRemovePost listItemsRemovePost,
+                                                                                                               CancellationToken cancellationToken = default)
+        {
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+
+            return RemovePersonalListItemsAsync(usernameOrSlug, list.Ids, listItemsRemovePost, cancellationToken);
+        }
     }
 }

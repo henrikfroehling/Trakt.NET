@@ -153,6 +153,38 @@
             response.Value.Should().NotBeNull();
         }
 
+        [Fact]
+        public async Task Test_TraktUsersModule_ReorderPersonalListItems_With_List()
+        {
+            ITraktListItemsReorderPost personalListItemsReorderPost = new TraktListItemsReorderPost
+            {
+                Rank = REORDERED_CUSTOM_LIST_ITEMS
+            };
+
+            string postJson = await TestUtility.SerializeObject(personalListItemsReorderPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = TRAKT_LIST_ID,
+                    Slug = LIST_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items/reorder",
+                postJson, CUSTOM_LIST_ITEMS_REORDER_POST_RESPONSE_JSON);
+
+            TraktResponse<ITraktListItemsReorderPostResponse> response =
+                await client.Users.ReorderPersonalListItemsAsync(USERNAME, list, REORDERED_CUSTOM_LIST_ITEMS);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -237,6 +269,9 @@
             Func<Task<TraktResponse<ITraktListItemsReorderPostResponse>>> act =
                 () => client.Users.ReorderPersonalListItemsAsync(USERNAME, default(ITraktListIds), REORDERED_CUSTOM_LIST_ITEMS);
 
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Users.ReorderPersonalListItemsAsync(USERNAME, default(ITraktList), REORDERED_CUSTOM_LIST_ITEMS);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Users.ReorderPersonalListItemsAsync(USERNAME, new TraktListIds(), REORDERED_CUSTOM_LIST_ITEMS);

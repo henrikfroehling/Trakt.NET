@@ -109,5 +109,34 @@
 
             return UpdatePersonalListItemAsync(usernameOrSlug, listIds.GetBestId(), listItemId, notes, cancellationToken);
         }
+
+        /// <summary>
+        /// Update the notes on a single list item.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/update-list-item/update-a-list-item">"Trakt API Doc - Users: Update List Item"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the personal list item should be updated.</param>
+        /// <param name="list">The list, for which the item should be updated.</param>
+        /// <param name="listItemId">The id of the list item which should be updated.</param>
+        /// <param name="notes">The new list item's notes value. Can be null to delete the content of the notes.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns></returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="list"/> is null.</exception>
+        public Task<TraktNoContentResponse> UpdatePersonalListItemAsync(string usernameOrSlug, ITraktList list,
+                                                                        uint listItemId, string notes = null,
+                                                                        CancellationToken cancellationToken = default)
+        {
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+
+            return UpdatePersonalListItemAsync(usernameOrSlug, list.Ids, listItemId, notes, cancellationToken);
+        }
     }
 }
