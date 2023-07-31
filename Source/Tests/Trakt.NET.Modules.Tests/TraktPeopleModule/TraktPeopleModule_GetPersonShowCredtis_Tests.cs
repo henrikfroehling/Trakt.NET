@@ -152,6 +152,27 @@
         }
 
         [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonShowCredits_With_Person()
+        {
+            var person = new TraktPerson
+            {
+                Ids = new TraktPersonIds
+                {
+                    Trakt = TRAKT_PERSON_ID,
+                    Slug = PERSON_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"people/{TRAKT_PERSON_ID}/shows", PERSON_SHOW_CREDITS_JSON);
+            TraktResponse<ITraktPersonShowCredits> response = await client.People.GetPersonShowCreditsAsync(person);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
         public async Task Test_TraktPeopleModule_GetPersonShowCredits_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_SHOW_CREDITS_URI}?extended={EXTENDED_INFO}", PERSON_SHOW_CREDITS_JSON);
@@ -258,6 +279,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_PERSON_SHOW_CREDITS_URI, PERSON_SHOW_CREDITS_JSON);
 
             Func<Task<TraktResponse<ITraktPersonShowCredits>>> act = () => client.People.GetPersonShowCreditsAsync(default(ITraktPersonIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.People.GetPersonShowCreditsAsync(default(ITraktPerson));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.People.GetPersonShowCreditsAsync(new TraktPersonIds());

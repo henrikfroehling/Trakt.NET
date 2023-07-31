@@ -125,6 +125,33 @@
         }
 
         [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_Person()
+        {
+            var person = new TraktPerson
+            {
+                Ids = new TraktPersonIds
+                {
+                    Trakt = TRAKT_PERSON_ID,
+                    Slug = PERSON_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"people/{TRAKT_PERSON_ID}/lists",
+                PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(person);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktPeopleModule_GetPersonLists_With_Type()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}",
@@ -801,6 +828,9 @@
                 PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.People.GetPersonListsAsync(default(ITraktPersonIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.People.GetPersonListsAsync(default(ITraktPerson));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.People.GetPersonListsAsync(new TraktPersonIds());

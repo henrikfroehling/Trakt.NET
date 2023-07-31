@@ -106,5 +106,34 @@
 
             return GetPersonShowCreditsAsync(personIds.GetBestId(), extendedInfo, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets all shows where a person with the given Trakt-Id or -Slug is in the cast or crew.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/people/shows/get-show-credits">"Trakt API Doc - People: Shows"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="person">The person. See also <seealso cref="ITraktPerson" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the shows should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktPersonShowCredits" /> instance with the queried person's show credits.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="person"/> is null.</exception>
+        public Task<TraktResponse<ITraktPersonShowCredits>> GetPersonShowCreditsAsync(ITraktPerson person, TraktExtendedInfo extendedInfo = null,
+                                                                                      CancellationToken cancellationToken = default)
+        {
+            if (person == null)
+                throw new ArgumentNullException(nameof(person));
+
+            return GetPersonShowCreditsAsync(person.Ids, extendedInfo, cancellationToken);
+        }
     }
 }
