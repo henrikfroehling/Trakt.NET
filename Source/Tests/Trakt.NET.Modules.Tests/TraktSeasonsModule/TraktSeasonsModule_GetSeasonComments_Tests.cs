@@ -123,6 +123,33 @@
         }
 
         [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/comments",
+                SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(show, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktSeasonsModule_GetSeasonComments_With_SortOrder()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}",
@@ -569,6 +596,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_SEASON_COMMENTS_URI, SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Seasons.GetSeasonCommentsAsync(default(ITraktShowIds), SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Seasons.GetSeasonCommentsAsync(default(ITraktShow), SEASON_NR);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Seasons.GetSeasonCommentsAsync(new TraktShowIds(), SEASON_NR);

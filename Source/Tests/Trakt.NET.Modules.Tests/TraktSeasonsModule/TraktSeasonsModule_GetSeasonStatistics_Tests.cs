@@ -103,6 +103,27 @@
             response.Value.Should().NotBeNull();
         }
 
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonStatistics_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/stats", SEASON_STATISTICS_JSON);
+            TraktResponse<ITraktStatistics> response = await client.Seasons.GetSeasonStatisticsAsync(show, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktSeasonNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -141,6 +162,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_SEASON_STATISTICS_URI, SEASON_STATISTICS_JSON);
 
             Func<Task<TraktResponse<ITraktStatistics>>> act = () => client.Seasons.GetSeasonStatisticsAsync(default(ITraktShowIds), SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Seasons.GetSeasonStatisticsAsync(default(ITraktShow), SEASON_NR);
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Seasons.GetSeasonStatisticsAsync(new TraktShowIds(), SEASON_NR);

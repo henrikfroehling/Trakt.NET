@@ -110,5 +110,35 @@
 
             return GetSeasonPeopleAsync(showIds.GetBestId(), seasonNumber, extendedInfo, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets all people for a <see cref="ITraktSeason" /> in a show with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/seasons/people/get-all-people-for-a-season">"Trakt API Doc - Seasons: People"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
+        /// <param name="seasonNumber">The number of the season, for which the people should be queried.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the people should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktShowCastAndCrew" /> instance, containing the cast and crew for a season with the given showIdOrSlug and the given season number.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        public Task<TraktResponse<ITraktShowCastAndCrew>> GetSeasonPeopleAsync(ITraktShow show, uint seasonNumber, TraktExtendedInfo extendedInfo = null,
+                                                                               CancellationToken cancellationToken = default)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return GetSeasonPeopleAsync(show.Ids, seasonNumber, extendedInfo, cancellationToken);
+        }
     }
 }

@@ -153,5 +153,48 @@
             return GetSeasonListsAsync(showIds.GetBestId(), seasonNumber, listType, listSortOrder, extendedInfo,
                                        pagedParameters, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets all <see cref="ITraktList" />s containing the given <see cref="ITraktSeason" /> in a show with the given Trakt-Show-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/seasons/lists/get-lists-containing-this-season">"Trakt API Doc - Seasons: Lists"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
+        /// <param name="seasonNumber">The number of the season, for which the lists should be queried.</param>
+        /// <param name="listType">The type of lists, that should be queried. Defaults to personal lists.</param>
+        /// <param name="listSortOrder">The list sort order. See also <seealso cref="TraktListSortOrder" />. Defaults to sorted by popularity.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the list items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktList}"/> instance containing the queried season lists and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktList" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        public Task<TraktPagedResponse<ITraktList>> GetSeasonListsAsync(ITraktShow show, uint seasonNumber,
+                                                                        TraktListType listType = null, TraktListSortOrder listSortOrder = null,
+                                                                        TraktExtendedInfo extendedInfo = null,
+                                                                        TraktPagedParameters pagedParameters = null,
+                                                                        CancellationToken cancellationToken = default)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return GetSeasonListsAsync(show.Ids, seasonNumber, listType, listSortOrder, extendedInfo,
+                                       pagedParameters, cancellationToken);
+        }
     }
 }

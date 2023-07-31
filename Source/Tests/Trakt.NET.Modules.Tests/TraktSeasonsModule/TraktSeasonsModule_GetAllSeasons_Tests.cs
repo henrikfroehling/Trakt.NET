@@ -94,6 +94,27 @@
         }
 
         [Fact]
+        public async Task Test_TraktSeasonsModule_GetAllSeasons_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons", SEASONS_ALL_FULL_JSON);
+            TraktListResponse<ITraktSeason> response = await client.Seasons.GetAllSeasonsAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [Fact]
         public async Task Test_TraktSeasonsModule_GetAllSeasons_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_ALL_SEASONS_URI}?extended={EXTENDED_INFO}",
@@ -201,6 +222,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_ALL_SEASONS_URI, SEASONS_ALL_FULL_JSON);
 
             Func<Task<TraktListResponse<ITraktSeason>>> act = () => client.Seasons.GetAllSeasonsAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Seasons.GetAllSeasonsAsync(default(ITraktShow));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Seasons.GetAllSeasonsAsync(new TraktShowIds());
