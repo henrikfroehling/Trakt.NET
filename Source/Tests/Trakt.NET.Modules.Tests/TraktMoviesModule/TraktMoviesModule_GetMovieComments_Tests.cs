@@ -125,6 +125,33 @@
         }
 
         [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_Movie()
+        {
+            var movie = new TraktMovie
+            {
+                Ids = new TraktMovieIds
+                {
+                    Trakt = TRAKT_MOVIE_ID,
+                    Slug = MOVIE_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/comments",
+                MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(movie);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktMoviesModule_GetMovieComments_With_SortOrder()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}",
@@ -572,6 +599,9 @@
                 MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Movies.GetMovieCommentsAsync(default(ITraktMovieIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Movies.GetMovieCommentsAsync(default(ITraktMovie));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Movies.GetMovieCommentsAsync(new TraktMovieIds());

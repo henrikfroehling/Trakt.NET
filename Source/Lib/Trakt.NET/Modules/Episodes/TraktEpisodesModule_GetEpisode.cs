@@ -120,7 +120,7 @@
         /// </para>
         /// <para>See also <seealso cref="GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)" />.</para>
         /// </summary>
-        /// <param name="show">The show. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, which should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, which should be queried.</param>
         /// <param name="extendedInfo">

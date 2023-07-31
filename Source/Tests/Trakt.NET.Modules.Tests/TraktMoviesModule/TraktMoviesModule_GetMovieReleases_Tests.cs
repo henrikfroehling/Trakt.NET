@@ -92,6 +92,27 @@
             response.Value.Should().NotBeNull().And.HaveCount(3);
         }
 
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieReleases_With_Movie()
+        {
+            var movie = new TraktMovie
+            {
+                Ids = new TraktMovieIds
+                {
+                    Trakt = TRAKT_MOVIE_ID,
+                    Slug = MOVIE_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/releases", MOVIE_RELEASES_JSON);
+            TraktListResponse<ITraktMovieRelease> response = await client.Movies.GetMovieReleasesAsync(movie);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktMovieNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -142,6 +163,9 @@
             TraktClient client = TestUtility.GetMockClient(GET_MOVIE_RELEASES_URI, MOVIE_RELEASES_JSON);
 
             Func<Task<TraktListResponse<ITraktMovieRelease>>> act = () => client.Movies.GetMovieReleasesAsync(default(ITraktMovieIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Movies.GetMovieReleasesAsync(default(ITraktMovie));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Movies.GetMovieReleasesAsync(new TraktMovieIds());

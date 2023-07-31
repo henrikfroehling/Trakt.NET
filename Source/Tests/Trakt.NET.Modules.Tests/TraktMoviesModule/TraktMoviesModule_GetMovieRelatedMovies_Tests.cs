@@ -124,6 +124,33 @@
         }
 
         [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieRelatedMovies_With_Movie()
+        {
+            var movie = new TraktMovie
+            {
+                Ids = new TraktMovieIds
+                {
+                    Trakt = TRAKT_MOVIE_ID,
+                    Slug = MOVIE_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/related",
+                MOVIE_RELATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktMovie> response = await client.Movies.GetMovieRelatedMoviesAsync(movie);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktMoviesModule_GetMovieRelatedMovies_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_RELATED_MOVIES_URI}?extended={EXTENDED_INFO}",
@@ -452,6 +479,9 @@
                 MOVIE_RELATED_MOVIES_JSON, 1, 10, 1, ITEM_COUNT);
 
             Func<Task<TraktPagedResponse<ITraktMovie>>> act = () => client.Movies.GetMovieRelatedMoviesAsync(default(ITraktMovieIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Movies.GetMovieRelatedMoviesAsync(default(ITraktMovie));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Movies.GetMovieRelatedMoviesAsync(new TraktMovieIds());

@@ -89,5 +89,29 @@
 
             return GetMovieStatisticsAsync(movieIds.GetBestId(), cancellationToken);
         }
+
+        /// <summary>
+        /// Gets the statistics for a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/stats/get-movie-stats">"Trakt API Doc - Movies: Stats"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movie">The movie. See also <seealso cref="ITraktMovie" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktStatistics" /> instance, containing the statistics for a movie with the given movieIdOrSlug.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="movie"/> is null.</exception>
+        public Task<TraktResponse<ITraktStatistics>> GetMovieStatisticsAsync(ITraktMovie movie, CancellationToken cancellationToken = default)
+        {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
+            return GetMovieStatisticsAsync(movie.Ids, cancellationToken);
+        }
     }
 }

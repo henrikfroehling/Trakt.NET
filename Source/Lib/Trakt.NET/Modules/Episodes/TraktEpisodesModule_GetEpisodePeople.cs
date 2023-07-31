@@ -125,7 +125,7 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/episodes/people/get-all-people-for-an-episode">"Trakt API Doc - Episodes: People"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="show">The show. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
         /// <param name="seasonNumber">The number of the season, for which the people should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the people should be queried.</param>
         /// <param name="extendedInfo">

@@ -161,7 +161,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/comments/get-all-episode-comments">"Trakt API Doc - Episodes: Comments"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="show">The show. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the comments should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the comments should be queried.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktExtendedCommentSortOrder" />.</param>

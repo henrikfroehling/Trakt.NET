@@ -115,7 +115,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/translations/get-all-episode-translations">"Trakt API Doc - Episodes: Translations"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="show">The show. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the translations should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the translations should be queried.</param>
         /// <param name="languageCode">An optional two letter language code to query a specific translation language.</param>

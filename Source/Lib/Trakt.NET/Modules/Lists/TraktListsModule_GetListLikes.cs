@@ -116,7 +116,7 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list-likes/get-all-users-who-liked-a-list">"Trakt API Doc - Lists: List Likes"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="list">The list. See also <seealso cref="ITraktListIds" />.</param>
+        /// <param name="list">The list. See also <seealso cref="ITraktList" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about the list items should be queried.
         /// See also <seealso cref="TraktExtendedInfo" />.

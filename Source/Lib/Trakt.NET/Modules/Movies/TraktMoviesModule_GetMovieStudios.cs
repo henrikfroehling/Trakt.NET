@@ -89,5 +89,29 @@
 
             return GetMovieStudiosAsync(movieIds.GetBestId(), cancellationToken);
         }
+
+        /// <summary>
+        /// Gets all studios of a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/movies/studios/get-movie-studios">"Trakt API Doc - Movies: Studios"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movie">The movie. See also <seealso cref="ITraktMovie" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktStudio" /> instances.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="movie"/> is null.</exception>
+        public Task<TraktListResponse<ITraktStudio>> GetMovieStudiosAsync(ITraktMovie movie, CancellationToken cancellationToken = default)
+        {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
+            return GetMovieStudiosAsync(movie.Ids, cancellationToken);
+        }
     }
 }

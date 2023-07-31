@@ -140,7 +140,7 @@
         /// See <a href="https://trakt.docs.apiary.io/#reference/lists/list-comments/get-all-list-comments">"Trakt API Doc - Lists: List Comments"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="list">The list. See also <seealso cref="ITraktListIds" />.</param>
+        /// <param name="list">The list. See also <seealso cref="ITraktList" />.</param>
         /// <param name="commentSortOrder">The comments sort order. See also <seealso cref="TraktCommentSortOrder" />.</param>
         /// <param name="extendedInfo">
         /// The extended info, which determines how much data about a comment's media item should be queried.

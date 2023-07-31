@@ -126,7 +126,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/watching/get-users-watching-right-now">"Trakt API Doc - Episodes: Watching"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="show">The show. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the watching users should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the watching users should be queried.</param>
         /// <param name="extendedInfo">

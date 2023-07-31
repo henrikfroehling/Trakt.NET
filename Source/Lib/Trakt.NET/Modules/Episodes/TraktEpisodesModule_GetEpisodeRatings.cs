@@ -109,7 +109,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/ratings/get-episode-ratings">"Trakt API Doc - Episodes: Ratings"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="show">The show. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the ratings should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the ratings should be queried.</param>
         /// <param name="cancellationToken">

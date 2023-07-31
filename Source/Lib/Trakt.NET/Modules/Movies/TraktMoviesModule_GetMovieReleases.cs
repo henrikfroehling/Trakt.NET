@@ -95,5 +95,31 @@
 
             return GetMovieReleasesAsync(movieIds.GetBestId(), countryCode, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets all releases for a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/releases/get-all-movie-releases">"Trakt API Doc - Movies: Releases"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movie">The movie. See also <seealso cref="ITraktMovie" />.</param>
+        /// <param name="countryCode">An optional two letter country code to query a specific release.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktMovieRelease" /> instances, each containing a country code, certification, release date and a note.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="movie"/> is null.</exception>
+        public Task<TraktListResponse<ITraktMovieRelease>> GetMovieReleasesAsync(ITraktMovie movie, string countryCode = null,
+                                                                                 CancellationToken cancellationToken = default)
+        {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
+            return GetMovieReleasesAsync(movie.Ids, countryCode, cancellationToken);
+        }
     }
 }

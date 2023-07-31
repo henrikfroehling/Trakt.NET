@@ -95,5 +95,31 @@
 
             return GetMovieTranslationsAsync(movieIds.GetBestId(), languageCode, cancellationToken);
         }
+
+        /// <summary>
+        /// Gets all translations for a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/translations/get-all-movie-translations">"Trakt API Doc - Movies: Translations"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movie">The movie. See also <seealso cref="ITraktMovie" />.</param>
+        /// <param name="languageCode">An optional two letter language code to query a specific translation language.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>A list of <see cref="ITraktMovieTranslation" /> instances, each containing a title, tagline, overview and language code.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="movie"/> is null.</exception>
+        public Task<TraktListResponse<ITraktMovieTranslation>> GetMovieTranslationsAsync(ITraktMovie movie, string languageCode = null,
+                                                                                         CancellationToken cancellationToken = default)
+        {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
+            return GetMovieTranslationsAsync(movie.Ids, languageCode, cancellationToken);
+        }
     }
 }

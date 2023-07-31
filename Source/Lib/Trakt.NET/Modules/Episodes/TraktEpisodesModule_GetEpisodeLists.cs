@@ -165,7 +165,7 @@
         /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
         /// </para>
         /// </summary>
-        /// <param name="show">The show. See also <seealso cref="ITraktShowIds" />.</param>
+        /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
         /// <param name="seasonNumber">The number of the season containing the episode, for which the lists should be queried.</param>
         /// <param name="episodeNumber">The number of the episode, for which the lists should be queried.</param>
         /// <param name="listType">The type of lists, that should be queried. Defaults to personal lists.</param>
