@@ -85,5 +85,28 @@
 
             return HideMovieRecommendationAsync(movieIds.GetBestId(), cancellationToken);
         }
+
+        /// <summary>
+        /// Hides a movie with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="http://docs.trakt.apiary.io/#reference/recommendations/hide-movie/hide-a-movie-recommendation">"Trakt API Doc - Recommendations: Movies"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="movie">The movie, which should be hidden from recommendations.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="movie"/> is null.</exception>
+        public Task<TraktNoContentResponse> HideMovieRecommendationAsync(ITraktMovie movie, CancellationToken cancellationToken = default)
+        {
+            if (movie == null)
+                throw new ArgumentNullException(nameof(movie));
+
+            return HideMovieRecommendationAsync(movie.Ids, cancellationToken);
+        }
     }
 }

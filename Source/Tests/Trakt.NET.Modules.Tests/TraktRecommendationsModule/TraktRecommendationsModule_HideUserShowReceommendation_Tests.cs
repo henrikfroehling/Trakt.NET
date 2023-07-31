@@ -82,6 +82,25 @@
             response.IsSuccess.Should().BeTrue();
         }
 
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_HideShowRecommendationRatings_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOW_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"recommendations/shows/{TRAKT_SHOW_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Recommendations.HideShowRecommendationAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktShowNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -120,6 +139,9 @@
             TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.NoContent);
 
             Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Recommendations.HideShowRecommendationAsync(default(ITraktShow));
             await act.Should().ThrowAsync<ArgumentNullException>();
 
             act = () => client.Recommendations.HideShowRecommendationAsync(new TraktShowIds());
