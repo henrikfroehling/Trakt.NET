@@ -13,6 +13,10 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="episode"/> is null.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="episode"/>s ids are null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given <paramref name="episode"/>s ids are not valid.</exception>
+        /// <remarks>
+        /// Overrides values already set by <see cref="WithEpisode(ITraktEpisodeIds)"/>, <see cref="WithEpisode(ITraktShow, int)"/>
+        /// or <see cref="WithEpisode(ITraktShow, int, int)"/>.
+        /// </remarks>
         ITraktEpisodeCheckinPostBuilder WithEpisode(ITraktEpisode episode);
 
         /// <summary>Adds the given <paramref name="episodeIds"/> to the builder.</summary>
@@ -20,6 +24,10 @@
         /// <returns>Returns a reference to itself. See also <seealso cref="ITraktEpisodeCheckinPostBuilder"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="episodeIds"/> is null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given <paramref name="episodeIds"/>s ids are not valid.</exception>
+        /// <remarks>
+        /// Overrides values already set by <see cref="WithEpisode(ITraktEpisode)"/>, <see cref="WithEpisode(ITraktShow, int)"/>
+        /// or <see cref="WithEpisode(ITraktShow, int, int)"/>.
+        /// </remarks>
         ITraktEpisodeCheckinPostBuilder WithEpisode(ITraktEpisodeIds episodeIds);
 
         /// <summary>Adds the given <paramref name="show"/> and a season and episode number to the builder.</summary>
@@ -32,6 +40,10 @@
         /// <exception cref="ArgumentException">Thrown, if the given <paramref name="show"/>s ids are not valid.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given <paramref name="seasonNumber"/> is not valid.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given <paramref name="episodeNumber"/> is not valid.</exception>
+        /// <remarks>
+        /// Overrides values already set by <see cref="WithEpisode(ITraktEpisode)"/>, <see cref="WithEpisode(ITraktEpisodeIds)"/>
+        /// or <see cref="WithEpisode(ITraktShow, int)"/>.
+        /// </remarks>
         ITraktEpisodeCheckinPostBuilder WithEpisode(ITraktShow show, int seasonNumber, int episodeNumber);
 
         /// <summary>Adds the given <paramref name="show"/> and an absolute episode number to the builder.</summary>
@@ -42,6 +54,10 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/>s ids are null.</exception>
         /// <exception cref="ArgumentException">Thrown, if the given <paramref name="show"/>s ids are not valid.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown, if the given <paramref name="absoluteEpisodeNumber"/> is not valid.</exception>
+        /// <remarks>
+        /// Overrides values already set by <see cref="WithEpisode(ITraktEpisode)"/>, <see cref="WithEpisode(ITraktEpisodeIds)"/>
+        /// or <see cref="WithEpisode(ITraktShow, int, int)"/>.
+        /// </remarks>
         ITraktEpisodeCheckinPostBuilder WithEpisode(ITraktShow show, int absoluteEpisodeNumber);
     }
 }
