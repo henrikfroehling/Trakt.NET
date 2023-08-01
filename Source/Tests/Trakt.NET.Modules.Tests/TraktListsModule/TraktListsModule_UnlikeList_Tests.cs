@@ -29,10 +29,8 @@
         [Fact]
         public async Task Test_TraktListsModule_UnlikeList_With_TraktID()
         {
-            const uint traktID = 55;
-
-            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{traktID}/like", HttpStatusCode.NoContent);
-            TraktNoContentResponse response = await client.Lists.UnlikeListAsync(traktID);
+            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{TRAKT_LIST_ID}/like", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Lists.UnlikeListAsync(TRAKT_LIST_ID);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -41,14 +39,12 @@
         [Fact]
         public async Task Test_TraktListsModule_UnlikeList_With_ListIds_TraktID()
         {
-            const uint traktID = 55;
-
             var listIds = new TraktListIds
             {
-                Trakt = traktID
+                Trakt = TRAKT_LIST_ID
             };
 
-            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{traktID}/like", HttpStatusCode.NoContent);
+            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{TRAKT_LIST_ID}/like", HttpStatusCode.NoContent);
             TraktNoContentResponse response = await client.Lists.UnlikeListAsync(listIds);
 
             response.Should().NotBeNull();
@@ -58,14 +54,12 @@
         [Fact]
         public async Task Test_TraktListsModule_UnlikeList_With_ListIds_Slug()
         {
-            const string listSlug = "incredible-thoughts";
-
             var listIds = new TraktListIds
             {
-                Slug = listSlug
+                Slug = LIST_SLUG
             };
 
-            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{listSlug}/like", HttpStatusCode.NoContent);
+            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{LIST_SLUG}/like", HttpStatusCode.NoContent);
             TraktNoContentResponse response = await client.Lists.UnlikeListAsync(listIds);
 
             response.Should().NotBeNull();
@@ -75,17 +69,33 @@
         [Fact]
         public async Task Test_TraktListsModule_UnlikeList_With_ListIds()
         {
-            const uint traktID = 55;
-            const string listSlug = "incredible-thoughts";
-
             var listIds = new TraktListIds
             {
-                Trakt = traktID,
-                Slug = listSlug
+                Trakt = TRAKT_LIST_ID,
+                Slug = LIST_SLUG
             };
 
-            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{traktID}/like", HttpStatusCode.NoContent);
+            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{TRAKT_LIST_ID}/like", HttpStatusCode.NoContent);
             TraktNoContentResponse response = await client.Lists.UnlikeListAsync(listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktListsModule_UnlikeList_With_List()
+        {
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = TRAKT_LIST_ID,
+                    Slug = LIST_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"lists/{TRAKT_LIST_ID}/like", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Lists.UnlikeListAsync(list);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -130,6 +140,12 @@
 
             Func<Task<TraktNoContentResponse>> act = () => client.Lists.UnlikeListAsync(default(ITraktListIds));
             await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Lists.UnlikeListAsync(default(ITraktList));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Lists.UnlikeListAsync(new TraktListIds());
+            await act.Should().ThrowAsync<ArgumentException>();
 
             act = () => client.Lists.UnlikeListAsync(0);
             await act.Should().ThrowAsync<ArgumentException>();

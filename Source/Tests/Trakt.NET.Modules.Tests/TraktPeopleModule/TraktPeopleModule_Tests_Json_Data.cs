@@ -6,6 +6,8 @@
     public partial class TraktPeopleModule_Tests
     {
         private const string PERSON_ID = "297737";
+        private const uint TRAKT_PERSON_ID = 297737;
+        private const string PERSON_SLUG = "bryan-cranston";
         private const int LISTS_ITEM_COUNT = 1;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;

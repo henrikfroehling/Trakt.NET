@@ -16,7 +16,7 @@
     /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/recommendations">"Trakt API Doc - Recommendations"</a> section.
     /// </para>
     /// </summary>
-    public class TraktRecommendationsModule : ATraktModule
+    public partial class TraktRecommendationsModule : ATraktModule
     {
         internal TraktRecommendationsModule(TraktClient client) : base(client)
         {
@@ -66,31 +66,6 @@
         }
 
         /// <summary>
-        /// Hides a movie with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
-        /// <para>OAuth authorization required.</para>
-        /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/recommendations/hide-movie/hide-a-movie-recommendation">"Trakt API Doc - Recommendations: Movies"</a> for more information.
-        /// </para>
-        /// </summary>
-        /// <param name="movieIdOrSlug">The Trakt-Id or -Slug or an IMDB-Id of the movie, which should be hidden from recommendations.</param>
-        /// <param name="cancellationToken">
-        /// Propagates notification that the request should be canceled.<para/>
-        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
-        /// </param>
-        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktNoContentResponse> HideMovieRecommendationAsync(string movieIdOrSlug, CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteNoContentRequestAsync(new UserRecommendationHideMovieRequest
-            {
-                Id = movieIdOrSlug
-            },
-            cancellationToken);
-        }
-
-        /// <summary>
         /// Gets personalized show recommendations for an user.
         /// <para>OAuth authorization required.</para>
         /// <para>
@@ -129,31 +104,6 @@
                 Limit = limit,
                 IgnoreCollected = ignoreCollected,
                 IgnoreWatchlisted = ignoreWatchlisted
-            },
-            cancellationToken);
-        }
-
-        /// <summary>
-        /// Hides a show with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
-        /// <para>OAuth authorization required.</para>
-        /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/recommendations/hide-show/hide-a-show-recommendation">"Trakt API Doc - Recommendations: Shows"</a> for more information.
-        /// </para>
-        /// </summary>
-        /// <param name="showIdOrSlug">The Trakt-Id or -Slug or an IMDB-Id of the show, which should be hidden from recommendations.</param>
-        /// <param name="cancellationToken">
-        /// Propagates notification that the request should be canceled.<para/>
-        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
-        /// </param>
-        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktNoContentResponse> HideShowRecommendationAsync(string showIdOrSlug, CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteNoContentRequestAsync(new UserRecommendationHideShowRequest
-            {
-                Id = showIdOrSlug
             },
             cancellationToken);
         }
