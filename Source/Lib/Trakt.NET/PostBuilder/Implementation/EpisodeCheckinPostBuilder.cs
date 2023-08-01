@@ -1,4 +1,4 @@
-﻿namespace TraktNet.PostBuilder
+namespace TraktNet.PostBuilder
 {
     using System;
     using TraktNet.Objects.Get.Episodes;
@@ -8,6 +8,7 @@
     internal sealed class EpisodeCheckinPostBuilder : ACheckinPostBuilder<ITraktEpisodeCheckinPostBuilder, ITraktEpisodeCheckinPost>, ITraktEpisodeCheckinPostBuilder
     {
         private ITraktEpisode _episode;
+        private ITraktEpisodeIds _episodeIds;
         private ITraktShow _show;
         private int _seasonNumber;
         private int _episodeNumber;
@@ -28,6 +29,18 @@
             return this;
         }
 
+        public ITraktEpisodeCheckinPostBuilder WithEpisode(ITraktEpisodeIds episodeIds)
+        {
+            if (episodeIds == null)
+                throw new ArgumentNullException(nameof(episodeIds));
+
+            if (!episodeIds.HasAnyId)
+                throw new ArgumentException($"{nameof(episodeIds)} have no valid id");
+
+            _episodeIds = episodeIds;
+            return this;
+        }
+
         public ITraktEpisodeCheckinPostBuilder WithEpisode(ITraktShow show, int seasonNumber, int episodeNumber)
         {
             CheckShow(show);
@@ -36,9 +49,10 @@
                 throw new ArgumentOutOfRangeException(nameof(seasonNumber), "season number must be at least 0");
 
             if (episodeNumber < 1)
-                throw new ArgumentOutOfRangeException(nameof(episodeNumber), "episode season number must be at least 1");
+                throw new ArgumentOutOfRangeException(nameof(episodeNumber), "episode number must be at least 1");
 
             _episode = null;
+            _episodeIds = null;
             _show = show;
             _seasonNumber = seasonNumber;
             _episodeNumber = episodeNumber;
@@ -54,6 +68,7 @@
                 throw new ArgumentOutOfRangeException(nameof(absoluteEpisodeNumber), "episode season number must be at least 1");
 
             _episode = null;
+            _episodeIds = null;
             _show = show;
             _episodeNumber = absoluteEpisodeNumber;
             _useSeasonAndEpisodeNumber = false;
@@ -72,7 +87,7 @@
                 Sharing = _sharing
             };
 
-            if (_episode == null)
+            if (_episode == null && _episodeIds == null)
             {
                 episodeCheckinPost.Show = _show;
 
@@ -91,6 +106,13 @@
                         NumberAbsolute = _episodeNumber
                     };
                 }
+            }
+            else if (_episode == null && _episodeIds != null)
+            {
+                episodeCheckinPost.Episode = new TraktEpisode
+                {
+                    Ids = _episodeIds
+                };
             }
             else
             {

@@ -45,6 +45,33 @@
         }
 
         [Fact]
+        public void Test_TraktPost_EpisodeCheckinPostBuilder_Checkin_EpisodeIds()
+        {
+            ITraktEpisodeCheckinPost episodeCheckinPost = TraktPost.NewEpisodeCheckinPost()
+                .WithEpisode(TraktPost_Tests_Common_Data.EPISODE_IDS_1)
+                .Build();
+
+            episodeCheckinPost.Should().NotBeNull();
+            episodeCheckinPost.Episode.Should().NotBeNull();
+            episodeCheckinPost.Episode.Ids.Should().NotBeNull();
+            episodeCheckinPost.Episode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            episodeCheckinPost.Episode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            episodeCheckinPost.Episode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            episodeCheckinPost.Episode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            episodeCheckinPost.Episode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
+            episodeCheckinPost.Episode.SeasonNumber.Should().BeNull();
+            episodeCheckinPost.Episode.Number.Should().BeNull();
+            episodeCheckinPost.Episode.NumberAbsolute.Should().BeNull();
+            episodeCheckinPost.Show.Should().BeNull();
+            episodeCheckinPost.Message.Should().BeNull();
+            episodeCheckinPost.AppVersion.Should().BeNull();
+            episodeCheckinPost.AppDate.Should().BeNull();
+            episodeCheckinPost.FoursquareVenueId.Should().BeNull();
+            episodeCheckinPost.FoursquareVenueName.Should().BeNull();
+            episodeCheckinPost.Sharing.Should().BeNull();
+        }
+
+        [Fact]
         public void Test_TraktPost_EpisodeCheckinPostBuilder_Checkin_Episode_WithShow()
         {
             ITraktEpisodeCheckinPost episodeCheckinPost = TraktPost.NewEpisodeCheckinPost()

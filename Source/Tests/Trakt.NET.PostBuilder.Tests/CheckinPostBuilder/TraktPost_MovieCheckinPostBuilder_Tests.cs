@@ -40,6 +40,28 @@
         }
 
         [Fact]
+        public void Test_TraktPost_MovieCheckinPostBuilder_Checkin_MovieIds()
+        {
+            ITraktMovieCheckinPost movieCheckinPost = TraktPost.NewMovieCheckinPost()
+                .WithMovie(TraktPost_Tests_Common_Data.MOVIE_IDS_1)
+                .Build();
+
+            movieCheckinPost.Should().NotBeNull();
+            movieCheckinPost.Movie.Should().NotBeNull();
+            movieCheckinPost.Movie.Ids.Should().NotBeNull();
+            movieCheckinPost.Movie.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Trakt);
+            movieCheckinPost.Movie.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Slug);
+            movieCheckinPost.Movie.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Imdb);
+            movieCheckinPost.Movie.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Tmdb);
+            movieCheckinPost.Message.Should().BeNull();
+            movieCheckinPost.AppVersion.Should().BeNull();
+            movieCheckinPost.AppDate.Should().BeNull();
+            movieCheckinPost.FoursquareVenueId.Should().BeNull();
+            movieCheckinPost.FoursquareVenueName.Should().BeNull();
+            movieCheckinPost.Sharing.Should().BeNull();
+        }
+
+        [Fact]
         public void Test_TraktPost_MovieCheckinPostBuilder_Checkin_Movie_Message()
         {
             ITraktMovieCheckinPost movieCheckinPost = TraktPost.NewMovieCheckinPost()
