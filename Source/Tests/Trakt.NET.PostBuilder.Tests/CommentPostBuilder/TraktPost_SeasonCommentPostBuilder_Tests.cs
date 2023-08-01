@@ -38,6 +38,26 @@
         }
 
         [Fact]
+        public void Test_TraktPost_SeasonCommentPostBuilder_Comment_SeasonIds()
+        {
+            ITraktSeasonCommentPost seasonCommentPost = TraktPost.NewSeasonCommentPost()
+                .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
+                .WithSeason(TraktPost_Tests_Common_Data.SEASON_IDS_1)
+                .Build();
+
+            seasonCommentPost.Should().NotBeNull();
+            seasonCommentPost.Comment.Should().Be(TraktPost_Tests_Common_Data.VALID_COMMENT);
+            seasonCommentPost.Season.Should().NotBeNull();
+            seasonCommentPost.Season.Ids.Should().NotBeNull();
+            seasonCommentPost.Season.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SEASON_IDS_1.Trakt);
+            seasonCommentPost.Season.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.SEASON_IDS_1.Tvdb);
+            seasonCommentPost.Season.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.SEASON_IDS_1.TvRage);
+            seasonCommentPost.Season.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.SEASON_IDS_1.Tmdb);
+            seasonCommentPost.Sharing.Should().BeNull();
+            seasonCommentPost.Spoiler.Should().BeNull();
+        }
+
+        [Fact]
         public void Test_TraktPost_SeasonCommentPostBuilder_Comment_Season_Sharing()
         {
             ITraktSeasonCommentPost seasonCommentPost = TraktPost.NewSeasonCommentPost()

@@ -37,7 +37,7 @@
         {
             Func<ITraktMovieCommentPost> act = () => TraktPost.NewMovieCommentPost()
                 .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
-                .WithMovie(null)
+                .WithMovie(default(ITraktMovie))
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -52,6 +52,13 @@
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
+
+            act = () => TraktPost.NewMovieCommentPost()
+                .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
+                .WithMovie(default(ITraktMovieIds))
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
@@ -60,6 +67,13 @@
             Func<ITraktMovieCommentPost> act = () => TraktPost.NewMovieCommentPost()
                 .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
                 .WithMovie(new TraktMovie { Ids = new TraktMovieIds() })
+                .Build();
+
+            act.Should().Throw<ArgumentException>();
+
+            act = () => TraktPost.NewMovieCommentPost()
+                .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
+                .WithMovie(new TraktMovieIds())
                 .Build();
 
             act.Should().Throw<ArgumentException>();

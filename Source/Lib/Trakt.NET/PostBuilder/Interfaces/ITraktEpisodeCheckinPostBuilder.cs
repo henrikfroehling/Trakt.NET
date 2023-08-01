@@ -1,9 +1,9 @@
 ﻿namespace TraktNet.PostBuilder
 {
+    using Objects.Get.Episodes;
+    using Objects.Get.Shows;
+    using Objects.Post.Checkins;
     using System;
-    using TraktNet.Objects.Get.Episodes;
-    using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Checkins;
 
     public interface ITraktEpisodeCheckinPostBuilder : ITraktCheckinPostBuilder<ITraktEpisodeCheckinPostBuilder, ITraktEpisodeCheckinPost>
     {
@@ -23,7 +23,7 @@
         /// <param name="episodeIds">The <see cref="ITraktEpisodeIds"/> which will be added.</param>
         /// <returns>Returns a reference to itself. See also <seealso cref="ITraktEpisodeCheckinPostBuilder"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="episodeIds"/> is null.</exception>
-        /// <exception cref="ArgumentException">Thrown, if the given <paramref name="episodeIds"/>s ids are not valid.</exception>
+        /// <exception cref="ArgumentException">Thrown, if the given <paramref name="episodeIds"/>s are not valid.</exception>
         /// <remarks>
         /// Overrides values already set by <see cref="WithEpisode(ITraktEpisode)"/>, <see cref="WithEpisode(ITraktShow, int)"/>
         /// or <see cref="WithEpisode(ITraktShow, int, int)"/>.

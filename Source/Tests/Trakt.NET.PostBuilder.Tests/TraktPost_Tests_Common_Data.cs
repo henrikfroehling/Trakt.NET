@@ -337,6 +337,12 @@
             }
         };
 
+        internal static readonly ITraktListIds LIST_IDS = new TraktListIds
+        {
+            Trakt = 1,
+            Slug = "list-1"
+        };
+
         internal static readonly ITraktConnections SHARING = new TraktConnections
         {
             Apple = true,
