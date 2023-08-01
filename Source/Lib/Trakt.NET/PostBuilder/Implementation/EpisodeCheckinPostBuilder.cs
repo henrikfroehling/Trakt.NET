@@ -15,7 +15,7 @@ namespace TraktNet.PostBuilder
             Episode,
             EpisodeIds,
             ShowWithSeasonAndEpisodeNumber,
-            ShowWithAbsoluteEpisdoeNumber
+            ShowWithAbsoluteEpisodeNumber
         }
 
         private State _state;
@@ -82,7 +82,7 @@ namespace TraktNet.PostBuilder
                 throw new ArgumentOutOfRangeException(nameof(absoluteEpisodeNumber), "episode number must be at least 1");
 
             Reset();
-            _state = State.ShowWithAbsoluteEpisdoeNumber;
+            _state = State.ShowWithAbsoluteEpisodeNumber;
             _show = show;
             _episodeNumber = absoluteEpisodeNumber;
             return this;
@@ -126,7 +126,7 @@ namespace TraktNet.PostBuilder
                     };
 
                     break;
-                case State.ShowWithAbsoluteEpisdoeNumber:
+                case State.ShowWithAbsoluteEpisodeNumber:
                     Debug.Assert(_show != null);
                     episodeCheckinPost.Show = _show;
 
