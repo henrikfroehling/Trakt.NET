@@ -1,13 +1,13 @@
 ﻿namespace TraktNet.PostBuilder
 {
+    using Objects.Get.Episodes;
+    using Objects.Get.Movies;
+    using Objects.Get.Seasons;
+    using Objects.Get.Shows;
+    using Objects.Post.Syncs.Watchlist;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktNet.Objects.Get.Episodes;
-    using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.Seasons;
-    using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Syncs.Watchlist;
 
     internal sealed class SyncWatchlistPostBuilder : ITraktSyncWatchlistPostBuilder
     {
@@ -303,6 +303,25 @@
             return WithShowAndSeasons(new ShowAndSeasons(show, seasons));
         }
 
+        public ITraktSyncWatchlistPostBuilder WithShowAndSeasons(ITraktShow show, IEnumerable<int> seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowAndSeasons(show, new PostSeasons { seasons }));
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowAndSeasons(ITraktShow show, int season, params int[] seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return WithShowAndSeasons(new ShowAndSeasons(show, new PostSeasons { season, seasons }));
+        }
+
         public ITraktSyncWatchlistPostBuilder WithShowAndSeasons(ShowAndSeasons showAndSeasons)
         {
             if (showAndSeasons == null)
@@ -321,6 +340,25 @@
                 throw new ArgumentNullException(nameof(seasons));
 
             return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, seasons));
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowAndSeasons(ITraktShowIds showIds, IEnumerable<int> seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, new PostSeasons { seasons }));
+        }
+
+        public ITraktSyncWatchlistPostBuilder WithShowAndSeasons(ITraktShowIds showIds, int season, params int[] seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, new PostSeasons { season, seasons }));
         }
 
         public ITraktSyncWatchlistPostBuilder WithShowAndSeasons(ShowIdsAndSeasons showIdsAndSeasons)

@@ -11,7 +11,7 @@
     public partial class TraktPost_SyncRatingsRemovePostBuilder_Tests
     {
         [Fact]
-        public void Test_TraktPost_SyncRatingsRemovePostBuilder_WithShowAndSeasons_ITraktShow()
+        public void Test_TraktPost_SyncRatingsRemovePostBuilder_WithShowAndSeasons_ITraktShow_PostSeasons()
         {
             ITraktSyncRatingsRemovePost syncRatingsRemovePost = TraktPost.NewSyncRatingsRemovePost()
                 .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_1, TraktPost_Tests_Common_Data.SHOW_SEASONS_1)
@@ -49,7 +49,73 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncRatingsRemovePostBuilder_WithShowAndSeasons_ITraktShowIds()
+        public void Test_TraktPost_SyncRatingsRemovePostBuilder_WithShowAndSeasons_ITraktShow_IEnumerableSeasons()
+        {
+            ITraktSyncRatingsRemovePost syncRatingsRemovePost = TraktPost.NewSyncRatingsRemovePost()
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_1, new List<int> { 1, 2, 3 })
+                .Build();
+
+            syncRatingsRemovePost.Should().NotBeNull();
+            syncRatingsRemovePost.Shows.Should().NotBeNull().And.HaveCount(1);
+
+            ITraktSyncRatingsPostShow postShow = syncRatingsRemovePost.Shows.ToArray()[0];
+            postShow.Title.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Title);
+            postShow.Year.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Year);
+            postShow.Ids.Should().NotBeNull();
+            postShow.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Trakt);
+            postShow.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Slug);
+            postShow.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Imdb);
+            postShow.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Tmdb);
+
+            postShow.Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            ITraktSyncRatingsPostShowSeason[] postShowSeasons = postShow.Seasons.ToArray();
+
+            postShowSeasons[0].Number.Should().Be(1);
+            postShowSeasons[0].Episodes.Should().BeNull();
+
+            postShowSeasons[1].Number.Should().Be(2);
+            postShowSeasons[1].Episodes.Should().BeNull();
+
+            postShowSeasons[2].Number.Should().Be(3);
+            postShowSeasons[2].Episodes.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktPost_SyncRatingsRemovePostBuilder_WithShowAndSeasons_ITraktShow_SeasonsArray()
+        {
+            ITraktSyncRatingsRemovePost syncRatingsRemovePost = TraktPost.NewSyncRatingsRemovePost()
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_1, 1, 2, 3)
+                .Build();
+
+            syncRatingsRemovePost.Should().NotBeNull();
+            syncRatingsRemovePost.Shows.Should().NotBeNull().And.HaveCount(1);
+
+            ITraktSyncRatingsPostShow postShow = syncRatingsRemovePost.Shows.ToArray()[0];
+            postShow.Title.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Title);
+            postShow.Year.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Year);
+            postShow.Ids.Should().NotBeNull();
+            postShow.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Trakt);
+            postShow.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Slug);
+            postShow.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Imdb);
+            postShow.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Tmdb);
+
+            postShow.Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            ITraktSyncRatingsPostShowSeason[] postShowSeasons = postShow.Seasons.ToArray();
+
+            postShowSeasons[0].Number.Should().Be(1);
+            postShowSeasons[0].Episodes.Should().BeNull();
+
+            postShowSeasons[1].Number.Should().Be(2);
+            postShowSeasons[1].Episodes.Should().BeNull();
+
+            postShowSeasons[2].Number.Should().Be(3);
+            postShowSeasons[2].Episodes.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktPost_SyncRatingsRemovePostBuilder_WithShowAndSeasons_ITraktShowIds_PostSeasons()
         {
             ITraktSyncRatingsRemovePost syncRatingsRemovePost = TraktPost.NewSyncRatingsRemovePost()
                 .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_IDS_1, TraktPost_Tests_Common_Data.SHOW_SEASONS_1)
@@ -84,6 +150,72 @@
             syncRatingsRemovePost.Movies.Should().BeNull();
             syncRatingsRemovePost.Seasons.Should().BeNull();
             syncRatingsRemovePost.Episodes.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktPost_SyncRatingsRemovePostBuilder_WithShowAndSeasons_ITraktShowIds_IEnumerableSeasons()
+        {
+            ITraktSyncRatingsRemovePost syncRatingsRemovePost = TraktPost.NewSyncRatingsRemovePost()
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_IDS_1, new List<int> { 1, 2, 3 })
+                .Build();
+
+            syncRatingsRemovePost.Should().NotBeNull();
+            syncRatingsRemovePost.Shows.Should().NotBeNull().And.HaveCount(1);
+
+            ITraktSyncRatingsPostShow postShow = syncRatingsRemovePost.Shows.ToArray()[0];
+            postShow.Title.Should().BeNull();
+            postShow.Year.Should().BeNull();
+            postShow.Ids.Should().NotBeNull();
+            postShow.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Trakt);
+            postShow.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Slug);
+            postShow.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Imdb);
+            postShow.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Tmdb);
+
+            postShow.Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            ITraktSyncRatingsPostShowSeason[] postShowSeasons = postShow.Seasons.ToArray();
+
+            postShowSeasons[0].Number.Should().Be(1);
+            postShowSeasons[0].Episodes.Should().BeNull();
+
+            postShowSeasons[1].Number.Should().Be(2);
+            postShowSeasons[1].Episodes.Should().BeNull();
+
+            postShowSeasons[2].Number.Should().Be(3);
+            postShowSeasons[2].Episodes.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktPost_SyncRatingsRemovePostBuilder_WithShowAndSeasons_ITraktShowIds_SeasonsArray()
+        {
+            ITraktSyncRatingsRemovePost syncRatingsRemovePost = TraktPost.NewSyncRatingsRemovePost()
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_IDS_1, 1, 2, 3)
+                .Build();
+
+            syncRatingsRemovePost.Should().NotBeNull();
+            syncRatingsRemovePost.Shows.Should().NotBeNull().And.HaveCount(1);
+
+            ITraktSyncRatingsPostShow postShow = syncRatingsRemovePost.Shows.ToArray()[0];
+            postShow.Title.Should().BeNull();
+            postShow.Year.Should().BeNull();
+            postShow.Ids.Should().NotBeNull();
+            postShow.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Trakt);
+            postShow.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Slug);
+            postShow.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Imdb);
+            postShow.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Tmdb);
+
+            postShow.Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            ITraktSyncRatingsPostShowSeason[] postShowSeasons = postShow.Seasons.ToArray();
+
+            postShowSeasons[0].Number.Should().Be(1);
+            postShowSeasons[0].Episodes.Should().BeNull();
+
+            postShowSeasons[1].Number.Should().Be(2);
+            postShowSeasons[1].Episodes.Should().BeNull();
+
+            postShowSeasons[2].Number.Should().Be(3);
+            postShowSeasons[2].Episodes.Should().BeNull();
         }
 
         [Fact]
