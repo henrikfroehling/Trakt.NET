@@ -9,10 +9,7 @@
         }
       ],
       "dest": "api",
-      "filter": "filterConfig.yml",
-      "properties": {
-        "TargetFramework": "netstandard2.0"
-      }
+      "filter": "filterConfig.yml"
     }
   ],
   "build": {
@@ -20,10 +17,6 @@
       {
         "files": [ "**/*.{md,yml}" ],
         "exclude": [ "_site/**", "obj/**", "filterConfig.yml" ]
-      },
-      {
-        "files": "Changelog.md",
-        "src": ".."
       }
     ],
     "resource": [
@@ -32,30 +25,25 @@
         "exclude": [ "_site/**", "obj/**" ]
       }
     ],
-    "dest": "_site",
+    "postProcessors": [ "ExtractSearchIndex" ],
     "globalMetadata": {
       "_appTitle": "Trakt.NET",
       "_appName": "Trakt.NET",
-      "_appFooter": "<span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span>",
-      "_copyrightFooter": "Copyright © 2016 - Current Henrik Fröhling et al.",
-      "_enableSearch": true,
-      "_disableSideFilter": false,
-      "_enableNewTab": true,
-      "_disableContribution": false,
-      "_disableBreadcrumb": false,
+      "_appFooter": "<span>Made with <a href='https://dotnet.github.io/docfx/'>docfx</a></span><br />Copyright © 2016 - Current Henrik Fröhling et al.",
       "_gitContribute": {
         "branch": "develop"
       }
     },
+    "sitemap": {
+      "baseUrl": "https://henrikfroehling.github.io/Trakt.NET",
+      "priority": 0.1,
+      "changefreq": "monthly"
+    },
+    "output": "_site",
     "template": [
       "default",
-      "templates/singulinkfx",
-      "plugins/memberpage/memberpage.2.59.4/content",
-      "plugins/memberpage-extras"
-    ],
-    "postProcessors": [ "ExtractSearchIndex" ],
-    "xrefService": [
-      "https://xref.docs.microsoft.com/query?uid={uid}"
+      "modern",
+      "template"
     ]
   }
 }

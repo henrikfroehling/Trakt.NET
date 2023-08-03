@@ -37,8 +37,8 @@ To use Trakt.NET, you will need to obtain an API key from Trakt and follow the g
 
 #### Quickstart
 
-```
-> dotnet add package Trakt.NET
+```bash
+dotnet add package Trakt.NET
 ```
 
 ```csharp

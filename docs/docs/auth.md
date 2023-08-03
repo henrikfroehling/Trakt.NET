@@ -52,7 +52,7 @@ client.Authorization = authorization;
 
 The workflow for authenticating users with the [traditional OAuth method](https://trakt.docs.apiary.io/#reference/authentication-oauth) is the following:
 
-1. Create an authorization URL: `string authorizationUrl = client.Authentication.CreateAuthorizationUrl();` [Reference](xref:TraktNet.Modules.TraktAuthenticationModule.CreateAuthorizationUrl)
+1. Create an authorization URL: `string authorizationUrl = client.Authentication.CreateAuthorizationUrl();` [Reference](xref:TraktNet.Modules.TraktAuthenticationModule.CreateAuthorizationUrl(System.Nullable{System.Boolean},System.Nullable{System.Boolean}))
 2. Your users need to visit the `authorizationUrl`'s webpage.
 3. Your users need to provide you a PIN code that they get from Trakt.tv.
 4. Get authorization with the PIN code provided by your users:

@@ -24,7 +24,7 @@
       href: parameters/filter/calendar-filter.md
   - name: Post Builder
     items:
-    - name: Recommendations Post Builder
-      href: parameters/postbuilder/recommendations-post-builder.md
+    - name: Favorites Post Builder
+      href: parameters/postbuilder/favorites-post-builder.md
 - name: Serialization
   href: serialization/serialize-authorization.md

@@ -84,24 +84,24 @@ ITraktCalendarFilter calendarFilter = TraktFilter.NewCalenderFilter()
 ### Multiple Ids
 
 The methods
-- [`TraktClient.Movies.GetMultipleMoviesAsync()`](xref:TraktNet.Modules.TraktMoviesModule.GetMultipleMoviesAsync(TraktNet.Modules.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken))
-- [`TraktClient.Shows.GetMultipleShowsAsync()`](xref:TraktNet.Modules.TraktShowsModule.GetMultipleShowsAsync(TraktNet.Modules.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken))
-- [`TraktClient.Seasons.GetMultipleSeasonsAsync()`](xref:TraktNet.Modules.TraktSeasonsModule.GetMultipleSeasonsAsync(TraktNet.Modules.TraktMultipleSeasonsQueryParams,System.Threading.CancellationToken))
-- [`TraktClient.Episodes.GetMultipleEpisodesAsync()`](xref:TraktNet.Modules.TraktEpisodesModule.GetMultipleEpisodesAsync(TraktNet.Modules.TraktMultipleEpisodesQueryParams,System.Threading.CancellationToken))
-- [`TraktClient.People.GetMultiplePersonsAsync()`](xref:TraktNet.Modules.TraktPeopleModule.GetMultiplePersonsAsync(TraktNet.Modules.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken))
-- [`TraktClient.Users.GetMultipleCustomListsAsync()`](xref:TraktNet.Modules.TraktUsersModule.GetMultiplePersonalListsAsync(TraktNet.Modules.TraktMultipleUserListsQueryParams,System.Threading.CancellationToken))
+- [`TraktClient.Movies.GetMultipleMoviesAsync()`](xref:TraktNet.Modules.TraktMoviesModule.GetMultipleMoviesAsync(TraktNet.Parameters.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken))
+- [`TraktClient.Shows.GetMultipleShowsAsync()`](xref:TraktNet.Modules.TraktShowsModule.GetMultipleShowsAsync(TraktNet.Parameters.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken))
+- [`TraktClient.Seasons.GetMultipleSeasonsAsync()`](xref:TraktNet.Modules.TraktSeasonsModule.GetMultipleSeasonsAsync(TraktNet.Parameters.TraktMultipleSeasonsQueryParams,System.Threading.CancellationToken))
+- [`TraktClient.Episodes.GetMultipleEpisodesAsync()`](xref:TraktNet.Modules.TraktEpisodesModule.GetMultipleEpisodesAsync(TraktNet.Parameters.TraktMultipleEpisodesQueryParams,System.Threading.CancellationToken))
+- [`TraktClient.People.GetMultiplePersonsAsync()`](xref:TraktNet.Modules.TraktPeopleModule.GetMultiplePersonsAsync(TraktNet.Parameters.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken))
+- [`TraktClient.Users.GetMultipleCustomListsAsync()`](xref:TraktNet.Modules.TraktUsersModule.GetMultiplePersonalListsAsync(TraktNet.Parameters.TraktMultipleUserListsQueryParams,System.Threading.CancellationToken))
 require each a collection of mutliple ids of objects, which you want to retrieve, as an argument.
 
 | Method | Collection |
 |--------|------------|
-| [`TraktClient.Movies.GetMultipleMoviesAsync()`](xref:TraktNet.Modules.TraktMoviesModule.GetMultipleMoviesAsync(TraktNet.Modules.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleObjectsQueryParams`](xref:TraktNet.Modules.TraktMultipleObjectsQueryParams) |
-| [`TraktClient.Shows.GetMultipleShowsAsync()`](xref:TraktNet.Modules.TraktShowsModule.GetMultipleShowsAsync(TraktNet.Modules.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleObjectsQueryParams`](xref:TraktNet.Modules.TraktMultipleObjectsQueryParams) |
-| [`TraktClient.Seasons.GetMultipleSeasonsAsync()`](xref:TraktNet.Modules.TraktSeasonsModule.GetMultipleSeasonsAsync(TraktNet.Modules.TraktMultipleSeasonsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleSeasonsQueryParams`](xref:TraktNet.Modules.TraktMultipleSeasonsQueryParams) |
-| [`TraktClient.Episodes.GetMultipleEpisodesAsync()`](xref:TraktNet.Modules.TraktEpisodesModule.GetMultipleEpisodesAsync(TraktNet.Modules.TraktMultipleEpisodesQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleEpisodesQueryParams`](xref:TraktNet.Modules.TraktMultipleEpisodesQueryParams) |
-| [`TraktClient.People.GetMultiplePersonsAsync()`](xref:TraktNet.Modules.TraktPeopleModule.GetMultiplePersonsAsync(TraktNet.Modules.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleObjectsQueryParams`](xref:TraktNet.Modules.TraktMultipleObjectsQueryParams) |
-| [`TraktClient.Users.GetMultipleCustomListsAsync()`](xref:TraktNet.Modules.TraktUsersModule.GetMultiplePersonalListsAsync(TraktNet.Modules.TraktMultipleUserListsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleUserListsQueryParams`](xref:TraktNet.Modules.TraktMultipleUserListsQueryParams) |
+| [`TraktClient.Movies.GetMultipleMoviesAsync()`](xref:TraktNet.Modules.TraktMoviesModule.GetMultipleMoviesAsync(TraktNet.Parameters.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleObjectsQueryParams`](xref:TraktNet.Parameters.TraktMultipleObjectsQueryParams) |
+| [`TraktClient.Shows.GetMultipleShowsAsync()`](xref:TraktNet.Modules.TraktShowsModule.GetMultipleShowsAsync(TraktNet.Parameters.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleObjectsQueryParams`](xref:TraktNet.Parameters.TraktMultipleObjectsQueryParams) |
+| [`TraktClient.Seasons.GetMultipleSeasonsAsync()`](xref:TraktNet.Modules.TraktSeasonsModule.GetMultipleSeasonsAsync(TraktNet.Parameters.TraktMultipleSeasonsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleSeasonsQueryParams`](xref:TraktNet.Parameters.TraktMultipleSeasonsQueryParams) |
+| [`TraktClient.Episodes.GetMultipleEpisodesAsync()`](xref:TraktNet.Modules.TraktEpisodesModule.GetMultipleEpisodesAsync(TraktNet.Parameters.TraktMultipleEpisodesQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleEpisodesQueryParams`](xref:TraktNet.Parameters.TraktMultipleEpisodesQueryParams) |
+| [`TraktClient.People.GetMultiplePersonsAsync()`](xref:TraktNet.Modules.TraktPeopleModule.GetMultiplePersonsAsync(TraktNet.Parameters.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleObjectsQueryParams`](xref:TraktNet.Parameters.TraktMultipleObjectsQueryParams) |
+| [`TraktClient.Users.GetMultipleCustomListsAsync()`](xref:TraktNet.Modules.TraktUsersModule.GetMultiplePersonalListsAsync(TraktNet.Parameters.TraktMultipleUserListsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleUserListsQueryParams`](xref:TraktNet.Parameters.TraktMultipleUserListsQueryParams) |
 
-#### [`TraktMultipleObjectsQueryParams`](xref:TraktNet.Modules.TraktMultipleObjectsQueryParams)
+#### [`TraktMultipleObjectsQueryParams`](xref:TraktNet.Parameters.TraktMultipleObjectsQueryParams)
 
 ```csharp
 using TraktNet.Modules;
@@ -123,7 +123,7 @@ queryParams.Add("id-2", new TraktExtendedInfo { Full = true });
 queryParams.Add("id-3");
 ```
 
-#### [`TraktMultipleSeasonsQueryParams`](xref:TraktNet.Modules.TraktMultipleSeasonsQueryParams)
+#### [`TraktMultipleSeasonsQueryParams`](xref:TraktNet.Parameters.TraktMultipleSeasonsQueryParams)
 
 ```csharp
 using TraktNet.Modules;
@@ -145,7 +145,7 @@ queryParams.Add("show-id-2", 3, new TraktExtendedInfo { Full = true });
 queryParams.Add("show-id-3", 2);
 ```
 
-#### [`TraktMultipleEpisodesQueryParams`](xref:TraktNet.Modules.TraktMultipleEpisodesQueryParams)
+#### [`TraktMultipleEpisodesQueryParams`](xref:TraktNet.Parameters.TraktMultipleEpisodesQueryParams)
 
 ```csharp
 using TraktNet.Modules;
@@ -167,7 +167,7 @@ queryParams.Add("show-id-2", 3, 5, new TraktExtendedInfo { Full = true });
 queryParams.Add("show-id-3", 2, 1);
 ```
 
-#### [`TraktMultipleUserListsQueryParams`](xref:TraktNet.Modules.TraktMultipleUserListsQueryParams)
+#### [`TraktMultipleUserListsQueryParams`](xref:TraktNet.Parameters.TraktMultipleUserListsQueryParams)
 
 ```csharp
 using TraktNet.Modules;
@@ -208,8 +208,8 @@ Here is an overview of the post objects, its modules and its builder methods:
 | [`ITraktSyncHistoryRemovePost`](xref:TraktNet.Objects.Post.Syncs.History.ITraktSyncHistoryRemovePost) | [`TraktClient.Sync`](xref:TraktNet.TraktClient.Sync) | `TraktPost.NewSyncHistoryRemovePost().Build()` [[`NewSyncHistoryRemovePost()`](xref:TraktNet.PostBuilder.TraktPost.NewSyncHistoryRemovePost) [`Builder`](xref:TraktNet.PostBuilder.ITraktSyncHistoryRemovePostBuilder)] |
 | [`ITraktSyncRatingsPost`](xref:TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsPost) | [`TraktClient.Sync`](xref:TraktNet.TraktClient.Sync) | `TraktPost.NewSyncRatingsPost().Build()` [[`NewSyncRatingsPost()`](xref:TraktNet.PostBuilder.TraktPost.NewSyncRatingsPost) [`Builder`](xref:TraktNet.PostBuilder.ITraktSyncRatingsPostBuilder)] |
 | [`ITraktSyncRatingsRemovePost`](xref:TraktNet.Objects.Post.Syncs.Ratings.ITraktSyncRatingsRemovePost) | [`TraktClient.Sync`](xref:TraktNet.TraktClient.Sync) | `TraktPost.NewSyncRatingsRemovePost().Build()` [[`NewSyncRatingsRemovePost()`](xref:TraktNet.PostBuilder.TraktPost.NewSyncRatingsRemovePost) [`Builder`](xref:TraktNet.PostBuilder.ITraktSyncRatingsRemovePostBuilder)] |
-| [`ITraktSyncRecommendationsPost`](xref:TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost) | [`TraktClient.Sync`](xref:TraktNet.TraktClient.Sync) | `TraktPost.NewSyncRecommendationsPost().Build()` [[`NewSyncRecommendationsPost()`](xref:TraktNet.PostBuilder.TraktPost.NewSyncRecommendationsPost) [`Builder`](xref:TraktNet.PostBuilder.ITraktSyncRecommendationsPostBuilder)] |
-| [`ITraktSyncRecommendationsRemovePost`](xref:TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsRemovePost) | [`TraktClient.Sync`](xref:TraktNet.TraktClient.Sync) | `TraktPost.NewSyncRecommendationsRemovePost().Build()` [[`NewSyncRecommendationsRemovePost()`](xref:TraktNet.PostBuilder.TraktPost.NewSyncRecommendationsRemovePost) [`Builder`](xref:TraktNet.PostBuilder.ITraktSyncRecommendationsRemovePostBuilder)] |
+| [`ITraktSyncFavoritesPost`](xref:TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesPost) | [`TraktClient.Sync`](xref:TraktNet.TraktClient.Sync) | `TraktPost.NewSyncFavoritesPost().Build()` [[`NewSyncFavoritesPost()`](xref:TraktNet.PostBuilder.TraktPost.NewSyncFavoritesPost) [`Builder`](xref:TraktNet.PostBuilder.ITraktSyncFavoritesPostBuilder)] |
+| [`ITraktSyncFavoritesRemovePost`](xref:TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesRemovePost) | [`TraktClient.Sync`](xref:TraktNet.TraktClient.Sync) | `TraktPost.NewSyncFavoritesRemovePost().Build()` [[`NewSyncFavoritesRemovePost()`](xref:TraktNet.PostBuilder.TraktPost.NewSyncFavoritesRemovePost) [`Builder`](xref:TraktNet.PostBuilder.ITraktSyncFavoritesRemovePostBuilder)] |
 | [`ITraktSyncWatchlistPost`](xref:TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistPost) | [`TraktClient.Sync`](xref:TraktNet.TraktClient.Sync) | `TraktPost.NewSyncWatchlistPost().Build()` [[`NewSyncWatchlistPost()`](xref:TraktNet.PostBuilder.TraktPost.NewSyncWatchlistPost) [`Builder`](xref:TraktNet.PostBuilder.ITraktSyncWatchlistPostBuilder)] |
 | [`ITraktSyncWatchlistRemovePost`](xref:TraktNet.Objects.Post.Syncs.Watchlist.ITraktSyncWatchlistRemovePost) | [`TraktClient.Sync`](xref:TraktNet.TraktClient.Sync) | `TraktPost.NewSyncWatchlistRemovePost().Build()` [[`NewSyncWatchlistRemovePost()`](xref:TraktNet.PostBuilder.TraktPost.NewSyncWatchlistRemovePost) [`Builder`](xref:TraktNet.PostBuilder.ITraktSyncWatchlistRemovePostBuilder)] |
 | [`ITraktUserHiddenItemsPost`](xref:TraktNet.Objects.Post.Users.HiddenItems.ITraktUserHiddenItemsPost) | [`TraktClient.Users`](xref:TraktNet.TraktClient.Users) | `TraktPost.NewUserHiddenItemsPost().Build()` [[`NewUserHiddenItemsPost()`](xref:TraktNet.PostBuilder.TraktPost.NewUserHiddenItemsPost) [`Builder`](xref:TraktNet.PostBuilder.ITraktUserHiddenItemsPostBuilder)] |
@@ -230,13 +230,13 @@ You do not need to use the builder methods for creating instances of post object
 
 It is also possible to just create an instance, like this:
 ```csharp
-ITraktSyncRecommendationsPost recommendationsPost = new TraktSyncRecommendationsPost();
+ITraktSyncFavoritesPost favoritesPost = new TraktSyncFavoritesPost();
 ```
 But it is recommended to use the builder methods.
 
 They check the added values for validity while creating an instance.
 
-The following example creates an [`ITraktSyncRecommendationsPost`](xref:TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost) instance which is required for the [`AddPersonalRecommendationsAsync()`](xref:TraktNet.Modules.TraktSyncModule.AddPersonalRecommendationsAsync(TraktNet.Objects.Post.Syncs.Recommendations.ITraktSyncRecommendationsPost,System.Threading.CancellationToken)) method in the [`TraktClient.Sync`](xref:TraktNet.TraktClient.Sync) module.
+The following example creates an [`ITraktSyncFavoritesPost`](xref:TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesPost) instance which is required for the [`AddFavoriteItemsAsync()`](xref:TraktNet.Modules.TraktSyncModule.AddFavoriteItemsAsync(TraktNet.Objects.Post.Syncs.Favorites.ITraktSyncFavoritesPost,System.Threading.CancellationToken)) method in the [`TraktClient.Sync`](xref:TraktNet.TraktClient.Sync) module.
 
 ```csharp
 // Get shows and movies for this example.
@@ -244,11 +244,11 @@ TraktPagedResponse<ITraktTrendingMovie> trendingMovies = await client.Movies.Get
 TraktPagedResponse<ITraktTrendingShow> trendingShows = await client.Shows.GetTrendingShowsAsync();
 
 // Create the post object with the queried shows and movies.
-ITraktSyncRecommendationsPost recommendationsPost = TraktPost.NewSyncRecommendationsPost()
-                                                        .WithMovies(trendingMovies)
-                                                        .WithShows(trendingShows)
-                                                        .Build();
+ITraktSyncFavoritesPost favoritesPost = TraktPost.NewSyncFavoritesPost()
+                                            .WithMovies(trendingMovies)
+                                            .WithShows(trendingShows)
+                                            .Build();
 
 // Use the post object.
-TraktResponse<ITraktSyncRecommendationsPostResponse> response = await client.Sync.AddPersonalRecommendationsAsync(recommendationsPost);
+TraktResponse<ITraktSyncFavoritesPostResponse> response = await client.Sync.AddFavoriteItemsAsync(favoritesPost);
 ```

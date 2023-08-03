@@ -1,8 +1,8 @@
 using TraktNet.Exceptions;
 using TraktNet.Objects.Get.Movies;
 using TraktNet.Objects.Get.Shows;
-using TraktNet.Objects.Post.Syncs.Recommendations;
-using TraktNet.Objects.Post.Syncs.Recommendations.Responses;
+using TraktNet.Objects.Post.Syncs.Favorites;
+using TraktNet.Objects.Post.Syncs.Favorites.Responses;
 using TraktNet.PostBuilder;
 using TraktNet.Responses;
 
@@ -12,15 +12,15 @@ try
     TraktPagedResponse<ITraktTrendingMovie> trendingMovies = await client.Movies.GetTrendingMoviesAsync();
     TraktPagedResponse<ITraktTrendingShow> trendingShows = await client.Shows.GetTrendingShowsAsync();
 
-    // Create the recommendations post by using its post builder.
-    ITraktSyncRecommendationsPost recommendationsPost = TraktPost.NewSyncRecommendationsPost()
-                                                            .WithMovies(trendingMovies) // Add all movies.
-                                                            .WithShows(trendingShows)   // Add all shows.
-                                                            .Build();                   // Creates the recommendations post with the added movies and shows.
+    // Create the favorites post by using its post builder.
+    ITraktSyncFavoritesPost favoritesPost = TraktPost.NewSyncFavoritesPost()
+                                                .WithMovies(trendingMovies) // Add all movies.
+                                                .WithShows(trendingShows)   // Add all shows.
+                                                .Build();                   // Creates the favorites post with the added movies and shows.
 
     // Using the post in the request.
     // NOTE: This call needs a valid authorization, which is not set in this example.
-    TraktResponse<ITraktSyncRecommendationsPostResponse> response = await client.Sync.AddPersonalRecommendationsAsync(recommendationsPost);
+    TraktResponse<ITraktSyncFavoritesPostResponse> response = await client.Sync.AddFavoriteItemsAsync(favoritesPost);
 }
 catch (TraktException ex)
 {
