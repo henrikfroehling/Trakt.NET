@@ -184,7 +184,7 @@
 
         /// <summary>Adds the given <paramref name="show"/> to the builder.</summary>
         /// <param name="show">The <see cref="ITraktShow"/> which will be added.</param>
-        /// <param name="seasons">The <see cref="IEnumerable<int>"/> for the <paramref name="show"/> which will be added.</param>
+        /// <param name="seasons">The seasons for the <paramref name="show"/> which will be added.</param>
         /// <returns>Returns a reference to itself. See also <seealso cref="ITraktSyncWatchlistPostBuilder"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="seasons"/> is null.</exception>
@@ -214,7 +214,7 @@
 
         /// <summary>Adds the given <paramref name="showIds"/> to the builder.</summary>
         /// <param name="showIds">The <see cref="ITraktShowIds"/> which will be added.</param>
-        /// <param name="seasons">The <see cref="IEnumerable<int>"/> for the <paramref name="showIds"/> which will be added.</param>
+        /// <param name="seasons">The seasons for the <paramref name="showIds"/> which will be added.</param>
         /// <returns>Returns a reference to itself. See also <seealso cref="ITraktSyncWatchlistPostBuilder"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="showIds"/> is null.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="seasons"/> is null.</exception>

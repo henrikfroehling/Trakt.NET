@@ -87,14 +87,14 @@
         { }
 
         /// <summary>Initializes a new instance of the <see cref="ShowIdsAndSeasons" /> class.</summary>
-        /// <param name="show">A <see cref="ITraktShow"/>.</param>
+        /// <param name="showIds">A <see cref="ITraktShow"/>.</param>
         /// <param name="seasons">A collection of season numbers for the <paramref name="showIds"/>.</param>
         public ShowIdsAndSeasons(ITraktShowIds showIds, IEnumerable<int> seasons)
             : base(showIds, seasons)
         { }
 
         /// <summary>Initializes a new instance of the <see cref="ShowIdsAndSeasons" /> class.</summary>
-        /// <param name="show">A <see cref="ITraktShow"/>.</param>
+        /// <param name="showIds">A <see cref="ITraktShow"/>.</param>
         /// <param name="season">An season number for the <paramref name="showIds"/>.</param>
         /// <param name="seasons">An optional array of season numbers for the <paramref name="showIds"/>.</param>
         public ShowIdsAndSeasons(ITraktShowIds showIds, int season, params int[] seasons)
