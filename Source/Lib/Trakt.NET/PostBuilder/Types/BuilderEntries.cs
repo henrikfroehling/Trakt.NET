@@ -1,11 +1,12 @@
 ﻿namespace TraktNet.PostBuilder
 {
+    using Objects.Get.Episodes;
+    using Objects.Get.Movies;
+    using Objects.Get.People;
+    using Objects.Get.Seasons;
+    using Objects.Get.Shows;
     using System;
-    using TraktNet.Objects.Get.Episodes;
-    using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.People;
-    using TraktNet.Objects.Get.Seasons;
-    using TraktNet.Objects.Get.Shows;
+    using System.Collections.Generic;
 
     public abstract class WithSeasons<T>
     {
@@ -17,6 +18,23 @@
         {
             Object = obj ?? throw new ArgumentNullException(nameof(obj));
             Seasons = seasons ?? throw new ArgumentNullException(nameof(seasons));
+        }
+
+        protected WithSeasons(T obj, IEnumerable<int> seasons)
+        {
+            Object = obj ?? throw new ArgumentNullException(nameof(obj));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            Seasons = new PostSeasons { seasons };
+        }
+
+        protected WithSeasons(T obj, int season, params int[] seasons)
+        {
+            Object = obj ?? throw new ArgumentNullException(nameof(obj));
+
+            Seasons = new PostSeasons { season, seasons };
         }
     }
 
@@ -35,6 +53,21 @@
         public ShowAndSeasons(ITraktShow show, PostSeasons seasons)
             : base(show, seasons)
         { }
+
+        /// <summary>Initializes a new instance of the <see cref="ShowAndSeasons" /> class.</summary>
+        /// <param name="show">A <see cref="ITraktShow"/>.</param>
+        /// <param name="seasons">A collection of season numbers for the <paramref name="show"/>.</param>
+        public ShowAndSeasons(ITraktShow show, IEnumerable<int> seasons)
+            : base(show, seasons)
+        { }
+
+        /// <summary>Initializes a new instance of the <see cref="ShowAndSeasons" /> class.</summary>
+        /// <param name="show">A <see cref="ITraktShow"/>.</param>
+        /// <param name="season">An season number for the <paramref name="show"/>.</param>
+        /// <param name="seasons">An optional array of season numbers for the <paramref name="show"/>.</param>
+        public ShowAndSeasons(ITraktShow show, int season, params int[] seasons)
+            : base(show, season, seasons)
+        { }
     }
 
     /// <summary>
@@ -51,6 +84,21 @@
         /// </param>
         public ShowIdsAndSeasons(ITraktShowIds showIds, PostSeasons seasons)
             : base(showIds, seasons)
+        { }
+
+        /// <summary>Initializes a new instance of the <see cref="ShowIdsAndSeasons" /> class.</summary>
+        /// <param name="showIds">A <see cref="ITraktShow"/>.</param>
+        /// <param name="seasons">A collection of season numbers for the <paramref name="showIds"/>.</param>
+        public ShowIdsAndSeasons(ITraktShowIds showIds, IEnumerable<int> seasons)
+            : base(showIds, seasons)
+        { }
+
+        /// <summary>Initializes a new instance of the <see cref="ShowIdsAndSeasons" /> class.</summary>
+        /// <param name="showIds">A <see cref="ITraktShow"/>.</param>
+        /// <param name="season">An season number for the <paramref name="showIds"/>.</param>
+        /// <param name="seasons">An optional array of season numbers for the <paramref name="showIds"/>.</param>
+        public ShowIdsAndSeasons(ITraktShowIds showIds, int season, params int[] seasons)
+            : base(showIds, season, seasons)
         { }
     }
 

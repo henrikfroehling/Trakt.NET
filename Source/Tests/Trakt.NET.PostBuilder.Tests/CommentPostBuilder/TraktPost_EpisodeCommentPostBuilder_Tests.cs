@@ -39,6 +39,27 @@
         }
 
         [Fact]
+        public void Test_TraktPost_EpisodeCommentPostBuilder_Comment_EpisodeIds()
+        {
+            ITraktEpisodeCommentPost episodeCommentPost = TraktPost.NewEpisodeCommentPost()
+                .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
+                .WithEpisode(TraktPost_Tests_Common_Data.EPISODE_IDS_1)
+                .Build();
+
+            episodeCommentPost.Should().NotBeNull();
+            episodeCommentPost.Comment.Should().Be(TraktPost_Tests_Common_Data.VALID_COMMENT);
+            episodeCommentPost.Episode.Should().NotBeNull();
+            episodeCommentPost.Episode.Ids.Should().NotBeNull();
+            episodeCommentPost.Episode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            episodeCommentPost.Episode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            episodeCommentPost.Episode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            episodeCommentPost.Episode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            episodeCommentPost.Episode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
+            episodeCommentPost.Sharing.Should().BeNull();
+            episodeCommentPost.Spoiler.Should().BeNull();
+        }
+
+        [Fact]
         public void Test_TraktPost_EpisodeCommentPostBuilder_Comment_Episode_Sharing()
         {
             ITraktEpisodeCommentPost episodeCommentPost = TraktPost.NewEpisodeCommentPost()

@@ -15,7 +15,7 @@
         public void Test_TraktPost_EpisodeCheckinPostBuilder_WithEpisode_Episode_ArgumentNullException()
         {
             Func<ITraktEpisodeCheckinPost> act = () => TraktPost.NewEpisodeCheckinPost()
-                .WithEpisode(null)
+                .WithEpisode(default(ITraktEpisode))
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -29,6 +29,12 @@
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
+
+            act = () => TraktPost.NewEpisodeCheckinPost()
+                .WithEpisode(default(ITraktEpisodeIds))
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
@@ -36,6 +42,12 @@
         {
             Func<ITraktEpisodeCheckinPost> act = () => TraktPost.NewEpisodeCheckinPost()
                 .WithEpisode(new TraktEpisode { Ids = new TraktEpisodeIds() })
+                .Build();
+
+            act.Should().Throw<ArgumentException>();
+
+            act = () => TraktPost.NewEpisodeCheckinPost()
+                .WithEpisode(new TraktEpisodeIds())
                 .Build();
 
             act.Should().Throw<ArgumentException>();

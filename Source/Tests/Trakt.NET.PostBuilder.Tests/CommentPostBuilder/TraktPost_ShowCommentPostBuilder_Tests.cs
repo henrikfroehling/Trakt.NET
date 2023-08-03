@@ -39,6 +39,27 @@
         }
 
         [Fact]
+        public void Test_TraktPost_ShowCommentPostBuilder_Comment_ShowIds()
+        {
+            ITraktShowCommentPost showCommentPost = TraktPost.NewShowCommentPost()
+                .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
+                .WithShow(TraktPost_Tests_Common_Data.SHOW_IDS_1)
+                .Build();
+
+            showCommentPost.Should().NotBeNull();
+            showCommentPost.Comment.Should().Be(TraktPost_Tests_Common_Data.VALID_COMMENT);
+            showCommentPost.Show.Should().NotBeNull();
+            showCommentPost.Show.Ids.Should().NotBeNull();
+            showCommentPost.Show.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Trakt);
+            showCommentPost.Show.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Imdb);
+            showCommentPost.Show.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Tvdb);
+            showCommentPost.Show.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.TvRage);
+            showCommentPost.Show.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Tmdb);
+            showCommentPost.Sharing.Should().BeNull();
+            showCommentPost.Spoiler.Should().BeNull();
+        }
+
+        [Fact]
         public void Test_TraktPost_ShowCommentPostBuilder_Comment_Show_Sharing()
         {
             ITraktShowCommentPost showCommentPost = TraktPost.NewShowCommentPost()

@@ -37,7 +37,7 @@
         {
             Func<ITraktShowCommentPost> act = () => TraktPost.NewShowCommentPost()
                 .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
-                .WithShow(null)
+                .WithShow(default(ITraktShow))
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -52,6 +52,13 @@
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
+
+            act = () => TraktPost.NewShowCommentPost()
+                .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
+                .WithShow(default(ITraktShowIds))
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
@@ -60,6 +67,13 @@
             Func<ITraktShowCommentPost> act = () => TraktPost.NewShowCommentPost()
                 .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
                 .WithShow(new TraktShow { Ids = new TraktShowIds() })
+                .Build();
+
+            act.Should().Throw<ArgumentException>();
+
+            act = () => TraktPost.NewShowCommentPost()
+                .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
+                .WithShow(new TraktShowIds())
                 .Build();
 
             act.Should().Throw<ArgumentException>();

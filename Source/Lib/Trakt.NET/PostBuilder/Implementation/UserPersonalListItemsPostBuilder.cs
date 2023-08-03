@@ -1,14 +1,14 @@
 namespace TraktNet.PostBuilder
 {
+    using Objects.Get.Episodes;
+    using Objects.Get.Movies;
+    using Objects.Get.People;
+    using Objects.Get.Seasons;
+    using Objects.Get.Shows;
+    using Objects.Post.Users.PersonalListItems;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktNet.Objects.Get.Episodes;
-    using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.People;
-    using TraktNet.Objects.Get.Seasons;
-    using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Users.PersonalListItems;
 
     internal sealed class UserPersonalListItemsPostBuilder : ITraktUserPersonalListItemsPostBuilder
     {
@@ -312,6 +312,25 @@ namespace TraktNet.PostBuilder
             return WithShowAndSeasons(new ShowAndSeasons(show, seasons));
         }
 
+        public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ITraktShow show, IEnumerable<int> seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowAndSeasons(show, new PostSeasons { seasons }));
+        }
+
+        public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ITraktShow show, int season, params int[] seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return WithShowAndSeasons(new ShowAndSeasons(show, new PostSeasons { season, seasons }));
+        }
+
         public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ShowAndSeasons showAndSeasons)
         {
             if (showAndSeasons == null)
@@ -330,6 +349,25 @@ namespace TraktNet.PostBuilder
                 throw new ArgumentNullException(nameof(seasons));
 
             return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, seasons));
+        }
+
+        public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ITraktShowIds showIds, IEnumerable<int> seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, new PostSeasons { seasons }));
+        }
+
+        public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ITraktShowIds showIds, int season, params int[] seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, new PostSeasons { season, seasons }));
         }
 
         public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ShowIdsAndSeasons showIdsAndSeasons)
