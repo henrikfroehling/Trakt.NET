@@ -9,11 +9,3 @@ using TraktNet.Services;
 ```
 
 The [`TraktSerializationService`](xref:TraktNet.Services.TraktSerializationService) provides methods for serializing and deserializing Trakt.NET objects. Objects will be serialized as a JSON string.
-
-### Language Service
-
-```csharp
-using TraktNet.Services;
-```
-
-The [`TraktLanguageService`](xref:TraktNet.Services.TraktLanguageService) provides methods for looking up the language and country names for language codes, that are returned by the Trakt API.

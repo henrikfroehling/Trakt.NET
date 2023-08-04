@@ -75,7 +75,7 @@ ITraktAuthorization authorization = await client.Authentication.GetAuthorization
 > [!NOTE]
 > A [`TraktAuthenticationOAuthException`](xref:TraktNet.Exceptions.TraktAuthenticationOAuthException) will be thrown if the code provided by your users is invalid.
 
-[Here](../examples/auth/oauth-authentication.md) is an example of how to authenticate a user with OAuth Authentication.
+[Here](../../examples/auth/oauth-authentication.md) is an example of how to authenticate a user with OAuth Authentication.
 
 ### Device Authentication
 
@@ -97,7 +97,7 @@ ITraktAuthorization authorization = await client.Authentication.PollForAuthoriza
 > [!NOTE]
 > A [`TraktAuthenticationDeviceException`](xref:TraktNet.Exceptions.TraktAuthenticationDeviceException) will be thrown, if [`PollForAuthorizationAsync()`](xref:TraktNet.Modules.TraktAuthenticationModule.PollForAuthorizationAsync(System.Threading.CancellationToken)) fails.
 
-[Here](../examples/auth/device-authentication.md) is an example of how to authenticate a user with Device Authentication.
+[Here](../../examples/auth/device-authentication.md) is an example of how to authenticate a user with Device Authentication.
 
 ### Refresh Authorization
 

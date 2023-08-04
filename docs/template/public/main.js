@@ -4,7 +4,7 @@ export default {
       {
         icon: 'github',
         href: 'https://github.com/henrikfroehling/Trakt.NET',
-        title: 'GitHub'
+        title: 'Trakt.NET on GitHub'
       }
     ]
   }

@@ -1,6 +1,6 @@
 # Null Handling
 
-The Trakt API might not return all data, especially not when you are using the [extended info](requestparameters.md#extended-info). Therefore, you should check object properties, if they are null or not.
+The Trakt API might not return all data, especially not when you are using the [extended info](../references/requestparameters.md#extended-info). Therefore, you should check object properties, if they are null or not.
 
 ```csharp
 using TraktNet.Objects.Get.Shows;
