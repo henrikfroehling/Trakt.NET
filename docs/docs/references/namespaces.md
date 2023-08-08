@@ -36,5 +36,5 @@ This is an overview of all namespaces in the **Trakt.NET** library.
 | [`TraktNet.Parameters`](xref:TraktNet.Parameters) | Contains request parameters like [`TraktExtendedInfo`](xref:TraktNet.Parameters.TraktExtendedInfo), [`TraktPagedParameters`](xref:TraktNet.Parameters.TraktPagedParameters) and filters. |
 | [`TraktNet.PostBuilder`](xref:TraktNet.PostBuilder) | Contains helper classes for building post objects, which are mainly used in the sync and the users module. |
 | [`TraktNet.Responses`](xref:TraktNet.Responses) | Contains response classes like [`TraktResponse`](xref:TraktNet.Responses.TraktResponse`1), [`TraktListResponse`](xref:TraktNet.Responses.TraktListResponse`1) and [`TraktPagedResponse`](xref:TraktNet.Responses.TraktPagedResponse`1). |
-| [`TraktNet.Services`](xref:TraktNet.Services) | Contains Serialization- and Language-Service. |
+| [`TraktNet.Services`](xref:TraktNet.Services) | Contains Serialization-Service. |
 | [`TraktNet.Utils`](xref:TraktNet.Utils) | Contains the utility classes [`Pair`](xref:TraktNet.Utils.Pair`2) and [`Range`](xref:TraktNet.Utils.Range`1).|

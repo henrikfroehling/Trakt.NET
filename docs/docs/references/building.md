@@ -1,10 +1,10 @@
 # Build from Source
 
-### Prerequisites
+## Prerequisites
 
 Install Visual Studio 2022 (Community or higher) or Visual Studio Code and make sure you have the latest updates.
 
-### Build
+## Build
 
 To clone and build it locally run the following git commands:
 ```
@@ -12,7 +12,7 @@ To clone and build it locally run the following git commands:
 > cd Trakt.NET
 ```
 
-#### Complete Solution (including tests)
+### Complete Solution (including tests)
 
 Run following commands in the projects root directory to build the complete solution:
 ```
@@ -27,7 +27,7 @@ Running the tests:
 
 Alternatively you can also open the solution `<PROJECT_ROOT>/Source/Trakt.NET.sln` in Visual Studio or Visual Studio Code.
 
-#### Only Library itself (without any tests, etc.)
+### Only Library itself (without any tests, etc.)
 
 Run following commands in the projects root directory to build only the library itself:
 ```

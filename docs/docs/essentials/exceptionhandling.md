@@ -1,8 +1,8 @@
 # Exception Handling
 
-Trakt.NET uses exceptions extensively. Every exception in the library inherits by [`TraktException`](xref:TraktNet.Exceptions.TraktException). That means you don't need to catch every single exception thrown by the library, only [`TraktException`](xref:TraktNet.Exceptions.TraktException):
+**Trakt.NET** uses exceptions extensively. Every exception in the library inherits by [`TraktException`](xref:TraktNet.Exceptions.TraktException). That means you don't need to catch every single exception thrown by the library, only [`TraktException`](xref:TraktNet.Exceptions.TraktException):
 
-### Usage
+## Usage
 
 The library usage would look like this:
 
@@ -41,7 +41,7 @@ catch (TraktException ex) // Base exception type
 }
 ```
 
-### Disabling Exceptions
+## Disabling Exceptions
 
 If you do not want to use exceptions, you can disable this behaviour with the following setting:
 
@@ -65,14 +65,19 @@ else
 }
 ```
 
-### Exception Types
+## Exception Types
 
 Other exceptions, you need to be aware of, are [`ArgumentNullException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception?view=net-7.0), [`ArgumentException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception?view=net-7.0) and occasionally [`ArgumentOutOfRangeException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception?view=net-7.0). As the names suggest, they are only thrown, if you pass invalid arguments to the library methods.
 
 > [!NOTE]
 > Trakt.NET checks all input parameters before any actual Trakt API request is made.
 
+> [!NOTE]
+> `Argument...` exceptions are not affected by the setting `client.Configuration.ThrowResponseExceptions`.
+
 This means, that you will get one of the `Argument...` exceptions before a [`TraktException`](xref:TraktNet.Exceptions.TraktException).
+
+## Not Found Exceptions
 
 For every possible Trakt media object (show, movie, person, etc.), there is also an exception, if the object was not found, e.g. a call to
 
@@ -84,6 +89,7 @@ TraktResponse<ITraktShow> show = client.Shows.GetShowAsync("unknown-slug");
 ```
 
 could throw a [`TraktShowNotFoundException`](xref:TraktNet.Exceptions.TraktShowNotFoundException).
+
 Each
 - [`TraktCommentNotFoundException`](xref:TraktNet.Exceptions.TraktCommentNotFoundException)
 - [`TraktEpisodeNotFoundException`](xref:TraktNet.Exceptions.TraktEpisodeNotFoundException)
@@ -93,7 +99,5 @@ Each
 - [`TraktSeasonNotFoundException`](xref:TraktNet.Exceptions.TraktSeasonNotFoundException)
 - [`TraktShowNotFoundException`](xref:TraktNet.Exceptions.TraktShowNotFoundException)
 has a property [`ObjectId`](xref:TraktNet.Exceptions.TraktObjectNotFoundException.ObjectId), that tells you the id, which was not found.
-
-If no exception was thrown, you can consider, that the method call was successful. But you should always check the return value if it is [not null](nullhandling.md).
 
 For more information on responses see the [Responses Section](responses.md).

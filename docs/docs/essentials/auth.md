@@ -2,13 +2,13 @@
 
 Authentication is necessary if you need to call Trakt API requests, that require authorization. Every method in the library, that requires authorization, indicates this in its method documentation.
 
-The Trakt API provides two methods for authenticating users and both are supported by the library. See [here](auth.md#oauth-authentication) and [here](auth.md#device-authentication) for more information.
+The Trakt API provides two methods for authenticating users and both are supported by the library. For more information read the [OAuth Authentication](auth.md#oauth-authentication) and [Device Authentication](auth.md#device-authentication) sections.
 
-### Authorization
+## Authorization
 
 Authorization information for the Trakt API contains not only the access token but also a refresh token, that makes it possible to retrieve new authorization information without authenticating the user again and without the need of the user to interact.
 
-The [`TraktAuthorization`](xref:TraktNet.Objects.Authentication.TraktAuthorization) class represents such authorization information. It also contains the UTC DateTime, when it was created and can tell you if it is expired and if the containing authorization information can be [refreshed](auth.md#refresh-authorization). You can get a new TraktAuthorization instance by authenticating the user either with [OAuth](auth.md#oauth-authentication)- or [Device](auth.md#device-authentication)-Authentication.
+The [`ITraktAuthorization`](xref:TraktNet.Objects.Authentication.ITraktAuthorization) interface represents such authorization information. It also contains the UTC DateTime, when it was created and can tell you if it is expired and if the containing authorization information can be [refreshed](auth.md#refresh-authorization). You can get a new TraktAuthorization instance by authenticating the user either with [OAuth](auth.md#oauth-authentication)- or [Device](auth.md#device-authentication)-Authentication.
 
 If you already have an access token (and optionally a refresh token), you can create a new [`ITraktAuthorization`](xref:TraktNet.Objects.Authentication.ITraktAuthorization) instance in one of the following ways:
 
@@ -48,7 +48,7 @@ And then just pass it to your [`TraktClient`](xref:TraktNet.TraktClient) instanc
 client.Authorization = authorization;
 ```
 
-### OAuth Authentication
+## OAuth Authentication
 
 The workflow for authenticating users with the [traditional OAuth method](https://trakt.docs.apiary.io/#reference/authentication-oauth) is the following:
 
@@ -77,7 +77,7 @@ ITraktAuthorization authorization = await client.Authentication.GetAuthorization
 
 [Here](../../examples/auth/oauth-authentication.md) is an example of how to authenticate a user with OAuth Authentication.
 
-### Device Authentication
+## Device Authentication
 
 The workflow for authenticating users with the [Device method](https://trakt.docs.apiary.io/#reference/authentication-devices) is the following:
 
@@ -99,7 +99,7 @@ ITraktAuthorization authorization = await client.Authentication.PollForAuthoriza
 
 [Here](../../examples/auth/device-authentication.md) is an example of how to authenticate a user with Device Authentication.
 
-### Refresh Authorization
+## Refresh Authorization
 
 The Trakt authorization information will be valid for 90 days for each one of your users. You need to refresh the authorization before the current one expires. Your [`ITraktAuthorization`](xref:TraktNet.Objects.Authentication.ITraktAuthorization) needs to have a valid refresh token set. You can check this with its property [`IsRefreshPossible`](xref:TraktNet.Objects.Authentication.ITraktAuthorization.IsRefreshPossible). The [`ITraktAuthorization`](xref:TraktNet.Objects.Authentication.ITraktAuthorization) interface has the property [`IsExpired`](xref:TraktNet.Objects.Authentication.ITraktAuthorization.IsExpired), that tells you if it is expired. To check, if an authorization was revoked by the user, you can call the following method:
 
@@ -134,7 +134,7 @@ ITraktAuthorization newAuthorization = await client.Authentication.RefreshAuthor
 > [!NOTE]
 > You don't need to pass the returned [`ITraktAuthorization`](xref:TraktNet.Objects.Authentication.ITraktAuthorization) to your [`TraktClient`](xref:TraktNet.TraktClient) instance. This happens automatically inside the library.
 
-### Revoke Authorization
+## Revoke Authorization
 
 Revoking the current authorization is also very simple:
 

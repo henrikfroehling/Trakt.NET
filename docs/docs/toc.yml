@@ -14,6 +14,8 @@
   href: essentials/auth.md
 - name: Responses
   href: essentials/responses.md
+- name: Paging
+  href: essentials/paging.md
 - name: Exception Handling
   href: essentials/exceptionhandling.md
 - name: Null Handling
@@ -26,6 +28,8 @@
   href: utilities/services.md
 - name: Post Builder
   href: utilities/postbuilder.md
+- name: Streams
+  href: utilities/streams.md
 
 - name: Reference
 - name: Modules

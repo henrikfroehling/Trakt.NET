@@ -18,6 +18,10 @@ You can enable the usage of the sandbox environment with the following setting:
 client.Configuration.UseSandboxEnvironment = true;
 ```
 
+> [!IMPORTANT]
+> You can't use your **Production**-Client-ID and -Client-Secret in the **Sandbox**-Environment.
+> For the **Sandbox**-Environment, you need to create an app on [Staging Trakt.tv](https://staging.trakt.tv/).
+
 ## Forced Authorization
 
 Some API requests support optional OAuth authorization.

@@ -1,13 +1,15 @@
 # Responses
 
-Trakt.NET has a response system with four different response types.
+**Trakt.NET** has a response system with four different response types.
 
-- [`TraktNoContentResponse`](xref:TraktNet.Responses.TraktNoContentResponse) for Trakt responses without content (HTTP Code 204)
+## Response Types
+
+- [`TraktNoContentResponse`](xref:TraktNet.Responses.TraktNoContentResponse) for Trakt responses without content (HTTP Code 20x)
 - [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1) for Trakt responses that return only a single object, where `TContentType` is the type of that object
 - [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) for Trakt responses that return a list of objects, where `TContentType` is the type of a list item object
 - [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1) for Trakt responses that return a list and pagination headers, where `TContentType` is the type of a list item object
 
-### Response Properties
+## Response Properties
 
 - `bool IsSuccess`, indicating whether a request was successful
 - `Exception Exception`, containing the exception which was thrown on failure (only assigned, if [`client.Configuration.ThrowResponseExceptions`](xref:TraktNet.Core.TraktConfiguration.ThrowResponseExceptions) is set to `false`
@@ -15,82 +17,57 @@ Trakt.NET has a response system with four different response types.
 [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1), [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) and [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1) also have the following properties:
 
 - `bool HasValue`, indicating whether a response contains a value (single object or list of objects)
-- `TContentType Value`, the actual response value (single object for [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1) and `IEnumerable<TContentType>` for [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) and [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1))
+- `TContentType Value`, the actual response value (single object for [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1) and `IList<TContentType>` for [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) and [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1))
 
-### Exceptions
+## Exceptions
 
 By default, the library throws an exception, when a request fails.
 This means, you should wrap each request in a `try`-`catch`-block.
 
-You can disable this behaviour with the following setting:
+You can [disable this behaviour](exceptionhandling.md#disabling-exceptions).
 
-```csharp
-client.Configuration.ThrowResponseExceptions = false;
-```
+## Response Headers
 
-If you disable exceptions, they are still thrown, but will be catched internally.
-
-You should then check if a request succeded by wrapping it in an `if`-statement, since each response type is implicitly converted to `bool`:
-
-```csharp
-var response = await client.Shows.GetShowAsync("game-of-thrones");
-
-if (response) // or if (response.IsSuccess && response.HasValue)
-{
-    // process response
-    ITraktShow show = response.Value;
-}
-else
-{
-    // get the exception, if request failed
-    Exception exception = response.Exception;
-}
-```
-
-### Response Headers
-
-Every response type (see above) contains response headers returned by the Trakt API.
+Every [response type](responses.md#response-types), except [`TraktNoContentResponse`](xref:TraktNet.Responses.TraktNoContentResponse), contains response headers returned by the Trakt API.
 
 Following headers are available in [`TraktResponse<TContentType>`](xref:TraktNet.Responses.TraktResponse`1), [`TraktListResponse<TContentType>`](xref:TraktNet.Responses.TraktListResponse`1) and [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1):
 
-- `int? AccountLimit`
-- `TraktSortBy? AppliedSortBy`
-- `TraktSortHow? AppliedSortHow`
+Which of the following headers is set depends on the request.
+
+- `TraktSortBy SortBy`
+- `TraktSortHow SortHow`
+- `TraktSortBy AppliedSortBy`
+- `TraktSortHow AppliedSortHow`
+- `DateTime? StartDate`
 - `DateTime? EndDate`
+- `int? TrendingUserCount`
+- `uint? Page`
+- `uint? Limit`
 - `bool? IsPrivateUser`
-- `bool? IsVIPUser`
 - `int? ItemId`
 - `string ItemType`
-- `uint? Limit`
-- `uint? Page`
 - `string RateLimit`
 - `int? RetryAfter`
-- `TraktSortBy? SortBy`
-- `TraktSortHow? SortHow`
-- `DateTime? StartDate`
-- `int? TrendingUserCount`
 - `string UpgradeURL`
+- `bool? IsVIPUser`
+- `int? AccountLimit`
 
 Following headers are only available in [`TraktPagedResponse<TContentType>`](xref:TraktNet.Responses.TraktPagedResponse`1):
 
 - `int? ItemCount`
 - `int? PageCount`
 
-[`TraktNoContentResponse`](xref:TraktNet.Responses.TraktNoContentResponse) doesn't contain any headers.
+## Example Usage
 
-### Example Usage
-
+### Exceptions Enabled
 ```csharp
 using TraktNet;
+using TraktNet.Exceptions;
 using TraktNet.Objects.Get.Shows;
+using TraktNet.Parameters;
 using TraktNet.Responses;
-using TraktNet.Requests.Parameters;
 
-var client = new TraktClient("client-id", "client-secret");
-
-// set this to false, if requests shouldn't throw any exceptions
-// enabled by default
-// client.Configuration.ThrowResponseExceptions = false;
+var client = new TraktClient("client-id");
 
 try
 {
@@ -113,14 +90,34 @@ try
 
         List<ITraktTrendingShow> trendingShows = trendingShowsResponse; // implicit conversion
     }
+
+    // Built in paging for paged responses
+    if (trendingShowsResponse.HasNextPage)
+    {
+        trendingShowsResponse = await trendingShowsResponse.GetNextPageAsync();
+
+        // Get back to previous page
+        trendingShowsResponse = await trendingShowsResponse.GetPreviousPageAsync();
+    }
+}
+catch (TraktException ex)
+{
+    // ...
 }
 catch (Exception ex)
 {
     // ...
 }
+```
 
-// ------------------------------------------------------
-// same request with throwing exceptions disabled
+### Exceptions Disabled
+```csharp
+using TraktNet;
+using TraktNet.Objects.Get.Shows;
+using TraktNet.Parameters;
+using TraktNet.Responses;
+
+var client = new TraktClient("client-id");
 client.Configuration.ThrowResponseExceptions = false;
 
 TraktPagedResponse<ITraktTrendingShow> trendingShowsResponse = await client.Shows.GetTrendingShowsAsync(new TraktExtendedInfo() { Full = true }, 1, 10);
@@ -140,6 +137,18 @@ if (trendingShowsResponse) // IsSuccess == true && HasValue == true
     }
 
     List<ITraktTrendingShow> trendingShows = trendingShowsResponse; // implicit conversion
+
+    // Built in paging for paged responses
+    if (trendingShowsResponse.HasNextPage)
+    {
+        trendingShowsResponse = await trendingShowsResponse.GetNextPageAsync();
+
+        if (trendingShowsResponse)
+        {
+            // Get back to previous page
+            trendingShowsResponse = await trendingShowsResponse.GetPreviousPageAsync();
+        }
+    }
 }
 else
 {

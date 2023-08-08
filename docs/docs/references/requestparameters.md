@@ -2,7 +2,7 @@
 
 Many methods in the [modules](modules.md) accept [extended info](requestparameters.md#extended-info) specifications, [filters](requestparameters.md#filters) and / or collections with [multiple object ids](requestparameters.md#multiple-ids).
 
-### Extended Info
+## Extended Info
 
 A [`TraktExtendedInfo`](xref:TraktNet.Parameters.TraktExtendedInfo) instance can be created to specify, how much data should be retrieved for a request. It is possible to create just one instance of it and use it for each request or to create a new instance of it for every new request.
 
@@ -41,7 +41,7 @@ using TraktNet.Parameters;
 var extendedInfo = new TraktExtendedInfo().SetMetadata().SetFull().SetNoSeasons().SetEpisodes().Reset().SetNoSeasons().Reset();
 ```
 
-### Filters
+## Filters
 
 There are four different filters you can use.
 
@@ -81,7 +81,7 @@ ITraktCalendarFilter calendarFilter = TraktFilter.NewCalenderFilter()
                                           .Build();
 ```
 
-### Multiple Ids
+## Multiple Ids
 
 The methods
 - [`TraktClient.Movies.GetMultipleMoviesAsync()`](xref:TraktNet.Modules.TraktMoviesModule.GetMultipleMoviesAsync(TraktNet.Parameters.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken))
@@ -101,7 +101,7 @@ require each a collection of mutliple ids of objects, which you want to retrieve
 | [`TraktClient.People.GetMultiplePersonsAsync()`](xref:TraktNet.Modules.TraktPeopleModule.GetMultiplePersonsAsync(TraktNet.Parameters.TraktMultipleObjectsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleObjectsQueryParams`](xref:TraktNet.Parameters.TraktMultipleObjectsQueryParams) |
 | [`TraktClient.Users.GetMultipleCustomListsAsync()`](xref:TraktNet.Modules.TraktUsersModule.GetMultiplePersonalListsAsync(TraktNet.Parameters.TraktMultipleUserListsQueryParams,System.Threading.CancellationToken)) | [`TraktMultipleUserListsQueryParams`](xref:TraktNet.Parameters.TraktMultipleUserListsQueryParams) |
 
-#### [`TraktMultipleObjectsQueryParams`](xref:TraktNet.Parameters.TraktMultipleObjectsQueryParams)
+### [`TraktMultipleObjectsQueryParams`](xref:TraktNet.Parameters.TraktMultipleObjectsQueryParams)
 
 ```csharp
 using TraktNet.Modules;
@@ -123,7 +123,7 @@ queryParams.Add("id-2", new TraktExtendedInfo { Full = true });
 queryParams.Add("id-3");
 ```
 
-#### [`TraktMultipleSeasonsQueryParams`](xref:TraktNet.Parameters.TraktMultipleSeasonsQueryParams)
+### [`TraktMultipleSeasonsQueryParams`](xref:TraktNet.Parameters.TraktMultipleSeasonsQueryParams)
 
 ```csharp
 using TraktNet.Modules;
@@ -145,7 +145,7 @@ queryParams.Add("show-id-2", 3, new TraktExtendedInfo { Full = true });
 queryParams.Add("show-id-3", 2);
 ```
 
-#### [`TraktMultipleEpisodesQueryParams`](xref:TraktNet.Parameters.TraktMultipleEpisodesQueryParams)
+### [`TraktMultipleEpisodesQueryParams`](xref:TraktNet.Parameters.TraktMultipleEpisodesQueryParams)
 
 ```csharp
 using TraktNet.Modules;
@@ -167,7 +167,7 @@ queryParams.Add("show-id-2", 3, 5, new TraktExtendedInfo { Full = true });
 queryParams.Add("show-id-3", 2, 1);
 ```
 
-#### [`TraktMultipleUserListsQueryParams`](xref:TraktNet.Parameters.TraktMultipleUserListsQueryParams)
+### [`TraktMultipleUserListsQueryParams`](xref:TraktNet.Parameters.TraktMultipleUserListsQueryParams)
 
 ```csharp
 using TraktNet.Modules;
@@ -189,7 +189,7 @@ queryParams.Add("username-2", "list-id-3");
 queryParams.Add("username-3", "list-id-5");
 ```
 
-### Post Objects (Post Builder)
+## Post Objects (Post Builder)
 
 There are several methods which require a post object.
 These are mostly required in the following modules:

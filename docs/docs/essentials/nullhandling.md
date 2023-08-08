@@ -4,7 +4,7 @@ The Trakt API might not return all data, especially not when you are using the [
 
 ```csharp
 using TraktNet.Objects.Get.Shows;
-using TraktNet.Requests.Parameters;
+using TraktNet.Parameters;
 using TraktNet.Responses;
 
 TraktResponse<ITraktShow> showResponse = await client.Shows.GetShowAsync("game-of-thrones");

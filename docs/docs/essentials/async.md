@@ -23,9 +23,7 @@ await foreach (var result in results) {
 
 // or from a stream to a list
 using TraktNet.Extensions;
-using System.Collections.Generic;
-..
-..
+
 var results = await client[ModuleName].[MethodName]StreamAsync([arguments]).ToListAsync();
 ```
 

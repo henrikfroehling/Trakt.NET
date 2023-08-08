@@ -8,7 +8,7 @@ This is a .NET wrapper library with which developers can build .NET applications
 dotnet add package Trakt.NET
 ```
 
-### Get basic info about the the show "[The Last of Us](https://trakt.tv/shows/the-last-of-us)"
+### Get basic info about the show "[The Last of Us](https://trakt.tv/shows/the-last-of-us)"
 
 ```csharp
 using System;
