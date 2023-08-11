@@ -27,4 +27,4 @@ using TraktNet.Extensions;
 var results = await client[ModuleName].[MethodName]StreamAsync([arguments]).ToListAsync();
 ```
 
-[More information on async programming in C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/).
+[More information on async programming in C#](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/).

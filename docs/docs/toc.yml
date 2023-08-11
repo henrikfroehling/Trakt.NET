@@ -14,18 +14,18 @@
   href: essentials/auth.md
 - name: Responses
   href: essentials/responses.md
-- name: Paging
-  href: essentials/paging.md
 - name: Exception Handling
   href: essentials/exceptionhandling.md
+- name: Paging
+  href: essentials/paging.md
 - name: Null Handling
   href: essentials/nullhandling.md
 - name: Async / Await
   href: essentials/async.md
 
 - name: Utilities
-- name: Services
-  href: utilities/services.md
+- name: Serialization
+  href: utilities/serialization.md
 - name: Post Builder
   href: utilities/postbuilder.md
 - name: Streams

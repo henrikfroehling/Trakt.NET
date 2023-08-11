@@ -37,7 +37,7 @@ try
     // Get the first page with 40 items
     TraktPagedResponse<ITraktTrendingShow> trendingShowsResponse = await client.Shows.GetTrendingShowsAsync(pagedParameters: limitItemsPerPage);
 
-    // Do something with the first page trending shows response...
+    // Do something with the first page of trending shows response...
 
     // Basically, load all pages of trending shows.
     // Each page with 40 items.
@@ -46,9 +46,8 @@ try
         // Get the next page
         trendingShowsResponse = await trendingShowsResponse.GetNextPageAsync();
 
-        // Do something with the current page trending shows response...
+        // Do something with the current page of trending shows response...
     }
-
 }
 catch (TraktException ex)
 {
@@ -79,7 +78,7 @@ try
     // Get the 10th page with 40 items
     TraktPagedResponse<ITraktTrendingShow> trendingShowsResponse = await client.Shows.GetTrendingShowsAsync(pagedParameters: limitItemsPerPage);
 
-    // Do something with the 10th page trending shows response...
+    // Do something with the 10th page of trending shows response...
 
     // Load all previous pages of trending shows.
     // Each page with 40 items.
@@ -88,9 +87,8 @@ try
         // Get the previous page
         trendingShowsResponse = await trendingShowsResponse.GetPreviousPageAsync();
 
-        // Do something with the current page trending shows response...
+        // Do something with the current page of trending shows response...
     }
-
 }
 catch (TraktException ex)
 {

@@ -65,7 +65,7 @@ else
 }
 ```
 
-## Exception Types
+## Argument Exceptions
 
 Other exceptions, you need to be aware of, are [`ArgumentNullException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentnullexception?view=net-7.0), [`ArgumentException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception?view=net-7.0) and occasionally [`ArgumentOutOfRangeException`](https://learn.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception?view=net-7.0). As the names suggest, they are only thrown, if you pass invalid arguments to the library methods.
 
@@ -101,3 +101,24 @@ Each
 has a property [`ObjectId`](xref:TraktNet.Exceptions.TraktObjectNotFoundException.ObjectId), that tells you the id, which was not found.
 
 For more information on responses see the [Responses Section](responses.md).
+
+## Rate Limit Exception
+
+Rate limits can be catched with the exception [`TraktRateLimitException`](xref:TraktNet.Exceptions.TraktRateLimitException).
+This exception provides detailed information about the rate limit.
+
+## Failed VIP Validation Exception
+
+The [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#) provides requests which can only be used by VIP users.
+If a non [VIP](https://trakt.tv/vip) user tries to use such a request, a [`TraktFailedVIPValidationException`](xref:TraktNet.Exceptions.TraktFailedVIPValidationException) is thrown.
+This exception provides a `UpgradeURL` where the user can sign up for [Trakt.tv](https://trakt.tv/) [VIP](https://trakt.tv/vip).
+
+## User Account Limit Exception
+
+A [`TraktUserAccountLimitException`](xref:TraktNet.Exceptions.TraktUserAccountLimitException) is thrown when a user has exceeded their account limits, such as list counts, item counts, etc.
+
+## Locked User Account Exception
+
+If an OAuth authorized user has a locked user account, a [`TraktLockedUserAccountException`](xref:TraktNet.Exceptions.TraktLockedUserAccountException) is thrown.
+
+This means that the user should [contact the Trakt support](https://support.trakt.tv/).
