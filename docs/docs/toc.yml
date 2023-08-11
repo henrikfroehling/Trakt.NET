@@ -28,6 +28,8 @@
   href: utilities/serialization.md
 - name: Post Builder
   href: utilities/postbuilder.md
+- name: Filter Builder
+  href: utilities/filterbuilder.md
 - name: Streams
   href: utilities/streams.md
 

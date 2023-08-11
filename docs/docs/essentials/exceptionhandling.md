@@ -122,3 +122,14 @@ A [`TraktUserAccountLimitException`](xref:TraktNet.Exceptions.TraktUserAccountLi
 If an OAuth authorized user has a locked user account, a [`TraktLockedUserAccountException`](xref:TraktNet.Exceptions.TraktLockedUserAccountException) is thrown.
 
 This means that the user should [contact the Trakt support](https://support.trakt.tv/).
+
+## Request Validation Exception
+
+Any argument, such as movie or show ids, given to a module method is validated before actually executing the request.
+If for example an id is not valid (contains spaces, etc.) a [`TraktRequestValidationException`](xref:TraktNet.Exceptions.TraktRequestValidationException) is thrown.
+
+## Post Validation Exception
+
+For post requests where data is sent to the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#) a [`TraktPostValidationException`](xref:TraktNet.Exceptions.TraktPostValidationException) might be thrown,
+if the post object contains invalid data.
+E.g. a required property is null.
