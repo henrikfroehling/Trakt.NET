@@ -70,3 +70,5 @@ using TraktNet.Objects.Post.Syncs.Favorites.Responses;
 // NOTE: This call needs a valid authorization, which is not set in this example.
 TraktResponse<ITraktSyncFavoritesPostResponse> response = await client.Sync.AddFavoriteItemsAsync(favoritesPost);
 ```
+
+An overview of all post builders can be found in the [references section](../references/requestparameters.md#post-objects-post-builder).
