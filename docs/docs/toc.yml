@@ -1,28 +1,44 @@
-- name: Overview
-  href: index.md
+- name: Quick Start
+  href: ../index.md
+
+- name: Get started
 - name: Installation
-  href: installation.md
-- name: Build from Source
-  href: building.md
-- name: Namespaces
-  href: namespaces.md
+  href: getstarted/installation.md
 - name: Basic Setup
-  href: basicsetup.md
+  href: getstarted/basicsetup.md
 - name: Configuration
-  href: configuration.md
+  href: getstarted/configuration.md
+
+- name: Essentials
 - name: Authentication and Authorization
-  href: auth.md
-- name: Async / Await
-  href: async.md
-- name: Exception Handling
-  href: exceptionhandling.md
-- name: Null Handling
-  href: nullhandling.md
+  href: essentials/auth.md
 - name: Responses
-  href: responses.md
+  href: essentials/responses.md
+- name: Exception Handling
+  href: essentials/exceptionhandling.md
+- name: Paging
+  href: essentials/paging.md
+- name: Null Handling
+  href: essentials/nullhandling.md
+- name: Async / Await
+  href: essentials/async.md
+
+- name: Utilities
+- name: Serialization
+  href: utilities/serialization.md
+- name: Post Builder
+  href: utilities/postbuilder.md
+- name: Filter Builder
+  href: utilities/filterbuilder.md
+- name: Streams
+  href: utilities/streams.md
+
+- name: Reference
 - name: Modules
-  href: modules.md
+  href: references/modules.md
 - name: Request Parameters
-  href: requestparameters.md
-- name: Services
-  href: services.md
+  href: references/requestparameters.md
+- name: Namespaces
+  href: references/namespaces.md
+- name: Build from Source
+  href: references/building.md
