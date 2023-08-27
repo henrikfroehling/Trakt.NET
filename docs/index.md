@@ -4,7 +4,7 @@
 This is a .NET wrapper library with which developers can build .NET applications that integrate with the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#) and access its features and data.
 
 ### Install latest Trakt.NET package
-```bash
+```ps
 dotnet add package Trakt.NET
 ```
 
