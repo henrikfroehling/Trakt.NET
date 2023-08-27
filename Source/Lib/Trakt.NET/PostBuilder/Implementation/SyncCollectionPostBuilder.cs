@@ -1,14 +1,14 @@
 ﻿namespace TraktNet.PostBuilder
 {
+    using Objects.Basic;
+    using Objects.Get.Episodes;
+    using Objects.Get.Movies;
+    using Objects.Get.Seasons;
+    using Objects.Get.Shows;
+    using Objects.Post.Syncs.Collection;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Get.Episodes;
-    using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.Seasons;
-    using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Syncs.Collection;
 
     internal sealed class SyncCollectionPostBuilder : ITraktSyncCollectionPostBuilder
     {
@@ -584,6 +584,25 @@
             return WithShowAndSeasons(new CollectionShowAndSeasons(show, seasons));
         }
 
+        public ITraktSyncCollectionPostBuilder WithShowAndSeasons(ITraktShow show, IEnumerable<int> seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new CollectionShowAndSeasons(show, new PostCollectionSeasons { seasons }));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowAndSeasons(ITraktShow show, int season, params int[] seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return WithShowAndSeasons(new CollectionShowAndSeasons(show, new PostCollectionSeasons { season, seasons }));
+        }
+
         public ITraktSyncCollectionPostBuilder WithShowAndSeasons(CollectionShowAndSeasons showAndSeasons)
         {
             if (showAndSeasons == null)
@@ -602,6 +621,25 @@
                 throw new ArgumentNullException(nameof(seasons));
 
             return WithShowAndSeasons(new CollectionShowIdsAndSeasons(showIds, seasons));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowAndSeasons(ITraktShowIds showIds, IEnumerable<int> seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new CollectionShowIdsAndSeasons(showIds, new PostCollectionSeasons { seasons }));
+        }
+
+        public ITraktSyncCollectionPostBuilder WithShowAndSeasons(ITraktShowIds showIds, int season, params int[] seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            return WithShowAndSeasons(new CollectionShowIdsAndSeasons(showIds, new PostCollectionSeasons { season, seasons }));
         }
 
         public ITraktSyncCollectionPostBuilder WithShowAndSeasons(CollectionShowIdsAndSeasons showIdsAndSeasons)

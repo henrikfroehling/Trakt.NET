@@ -23,7 +23,13 @@
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncHistoryPost()
-                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_1, null)
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_1, default(PostHistorySeasons))
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
+
+            act = () => TraktPost.NewSyncHistoryPost()
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_1, default(IEnumerable<int>))
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -41,7 +47,13 @@
             act.Should().Throw<ArgumentNullException>();
 
             act = () => TraktPost.NewSyncHistoryPost()
-                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_IDS_1, null)
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_IDS_1, default(PostHistorySeasons))
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
+
+            act = () => TraktPost.NewSyncHistoryPost()
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_IDS_1, default(IEnumerable<int>))
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();

@@ -37,7 +37,7 @@
         {
             Func<ITraktSeasonCommentPost> act = () => TraktPost.NewSeasonCommentPost()
                 .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
-                .WithSeason(null)
+                .WithSeason(default(ITraktSeason))
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -52,6 +52,13 @@
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
+
+            act = () => TraktPost.NewSeasonCommentPost()
+                .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
+                .WithSeason(default(ITraktSeasonIds))
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
@@ -60,6 +67,13 @@
             Func<ITraktSeasonCommentPost> act = () => TraktPost.NewSeasonCommentPost()
                 .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
                 .WithSeason(new TraktSeason { Ids = new TraktSeasonIds() })
+                .Build();
+
+            act.Should().Throw<ArgumentException>();
+
+            act = () => TraktPost.NewSeasonCommentPost()
+                .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
+                .WithSeason(new TraktSeasonIds())
                 .Build();
 
             act.Should().Throw<ArgumentException>();

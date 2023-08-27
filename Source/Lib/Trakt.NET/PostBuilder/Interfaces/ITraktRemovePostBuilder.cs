@@ -1,11 +1,11 @@
 ﻿namespace TraktNet.PostBuilder
 {
+    using Objects.Get.Episodes;
+    using Objects.Get.Movies;
+    using Objects.Get.Seasons;
+    using Objects.Get.Shows;
     using System;
     using System.Collections.Generic;
-    using TraktNet.Objects.Get.Episodes;
-    using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.Seasons;
-    using TraktNet.Objects.Get.Shows;
 
     public interface ITraktRemovePostBuilder<TPostBuilder, TPostObject> where TPostBuilder : ITraktRemovePostBuilder<TPostBuilder, TPostObject>
     {
@@ -65,6 +65,22 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="seasons"/> is null.</exception>
         TPostBuilder WithShowAndSeasons(ITraktShow show, PostSeasons seasons);
 
+        /// <summary>Adds the given <paramref name="show"/> to the builder.</summary>
+        /// <param name="show">The <see cref="ITraktShow"/> which will be added.</param>
+        /// <param name="seasons">The seasons for the <paramref name="show"/> which will be added.</param>
+        /// <returns>Returns a reference to itself. See also <typeparamref name="TPostBuilder"/>.</returns>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="seasons"/> is null.</exception>
+        TPostBuilder WithShowAndSeasons(ITraktShow show, IEnumerable<int> seasons);
+
+        /// <summary>Adds the given <paramref name="show"/> to the builder.</summary>
+        /// <param name="show">The <see cref="ITraktShow"/> which will be added.</param>
+        /// <param name="season">A season number for the <paramref name="show"/> which will be added.</param>
+        /// <param name="seasons">An optional array of season numbers for the <paramref name="show"/> which will be added.</param>
+        /// <returns>Returns a reference to itself. See also <typeparamref name="TPostBuilder"/>.</returns>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="show"/> is null.</exception>
+        TPostBuilder WithShowAndSeasons(ITraktShow show, int season, params int[] seasons);
+
         /// <summary>Adds the given <paramref name="showAndSeasons"/> to the builder.</summary>
         /// <param name="showAndSeasons">The <see cref="ShowAndSeasons"/> which will be added.</param>
         /// <returns>Returns a reference to itself. See also <typeparamref name="TPostBuilder"/>.</returns>
@@ -78,6 +94,22 @@
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="showIds"/> is null.</exception>
         /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="seasons"/> is null.</exception>
         TPostBuilder WithShowAndSeasons(ITraktShowIds showIds, PostSeasons seasons);
+
+        /// <summary>Adds the given <paramref name="showIds"/> to the builder.</summary>
+        /// <param name="showIds">The <see cref="ITraktShowIds"/> which will be added.</param>
+        /// <param name="seasons">The seasons for the <paramref name="showIds"/> which will be added.</param>
+        /// <returns>Returns a reference to itself. See also <typeparamref name="TPostBuilder"/>.</returns>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="showIds"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="seasons"/> is null.</exception>
+        TPostBuilder WithShowAndSeasons(ITraktShowIds showIds, IEnumerable<int> seasons);
+
+        /// <summary>Adds the given <paramref name="showIds"/> to the builder.</summary>
+        /// <param name="showIds">The <see cref="ITraktShowIds"/> which will be added.</param>
+        /// <param name="season">A season number for the <paramref name="showIds"/> which will be added.</param>
+        /// <param name="seasons">An optional array of season numbers for the <paramref name="showIds"/> which will be added.</param>
+        /// <returns>Returns a reference to itself. See also <typeparamref name="TPostBuilder"/>.</returns>
+        /// <exception cref="ArgumentNullException">Thrown, if the given <paramref name="showIds"/> is null.</exception>
+        TPostBuilder WithShowAndSeasons(ITraktShowIds showIds, int season, params int[] seasons);
 
         /// <summary>Adds the given <paramref name="showIdsAndSeasons"/> to the builder.</summary>
         /// <param name="showIdsAndSeasons">The <see cref="ShowIdsAndSeasons"/> which will be added.</param>

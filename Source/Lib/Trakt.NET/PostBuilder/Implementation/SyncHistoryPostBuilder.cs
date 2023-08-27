@@ -1,13 +1,13 @@
 ﻿namespace TraktNet.PostBuilder
 {
+    using Objects.Get.Episodes;
+    using Objects.Get.Movies;
+    using Objects.Get.Seasons;
+    using Objects.Get.Shows;
+    using Objects.Post.Syncs.History;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktNet.Objects.Get.Episodes;
-    using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.Seasons;
-    using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Syncs.History;
 
     internal sealed class SyncHistoryPostBuilder : ITraktSyncHistoryPostBuilder
     {
@@ -279,6 +279,25 @@
             return WithShowAndSeasons(new WatchedShowAndSeasons(show, seasons));
         }
 
+        public ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShow show, IEnumerable<int> seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new WatchedShowAndSeasons(show, new PostHistorySeasons { seasons }));
+        }
+
+        public ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShow show, int season, params int[] seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return WithShowAndSeasons(new WatchedShowAndSeasons(show, new PostHistorySeasons { season, seasons }));
+        }
+
         public ITraktSyncHistoryPostBuilder WithShowAndSeasons(WatchedShowAndSeasons showAndSeasons)
         {
             if (showAndSeasons == null)
@@ -297,6 +316,25 @@
                 throw new ArgumentNullException(nameof(seasons));
 
             return WithShowAndSeasons(new WatchedShowIdsAndSeasons(showIds, seasons));
+        }
+
+        public ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShowIds showIds, IEnumerable<int> seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new WatchedShowIdsAndSeasons(showIds, new PostHistorySeasons { seasons }));
+        }
+
+        public ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShowIds showIds, int season, params int[] seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            return WithShowAndSeasons(new WatchedShowIdsAndSeasons(showIds, new PostHistorySeasons { season, seasons }));
         }
 
         public ITraktSyncHistoryPostBuilder WithShowAndSeasons(WatchedShowIdsAndSeasons showIdsAndSeasons)

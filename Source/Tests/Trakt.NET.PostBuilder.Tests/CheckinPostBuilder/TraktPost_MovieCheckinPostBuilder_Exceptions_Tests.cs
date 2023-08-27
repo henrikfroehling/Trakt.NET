@@ -14,7 +14,7 @@
         public void Test_TraktPost_MovieCheckinPostBuilder_WithMovie_Movie_ArgumentNullException()
         {
             Func<ITraktMovieCheckinPost> act = () => TraktPost.NewMovieCheckinPost()
-                .WithMovie(null)
+                .WithMovie(default(ITraktMovie))
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -28,6 +28,12 @@
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
+
+            act = () => TraktPost.NewMovieCheckinPost()
+                .WithMovie(default(ITraktMovieIds))
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
@@ -35,6 +41,12 @@
         {
             Func<ITraktMovieCheckinPost> act = () => TraktPost.NewMovieCheckinPost()
                 .WithMovie(new TraktMovie { Ids = new TraktMovieIds() })
+                .Build();
+
+            act.Should().Throw<ArgumentException>();
+
+            act = () => TraktPost.NewMovieCheckinPost()
+                .WithMovie(new TraktMovieIds())
                 .Build();
 
             act.Should().Throw<ArgumentException>();

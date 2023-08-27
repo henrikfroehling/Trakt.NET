@@ -55,7 +55,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: '17'
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
@@ -85,6 +85,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"henrikfroehling_Trakt.NET" /o:"henrikfroehling-github" /n:"Trakt.NET" /d:sonar.sources="Source/" /d:sonar.sourceEncoding="UTF-8" /d:sonar.exclusions="Source/Tests/**" /d:sonar.dotnet.excludeTestProjects=true /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"henrikfroehling_Trakt.NET" /o:"henrikfroehling-github" /n:"Trakt.NET" /d:sonar.sources="Source/" /d:sonar.sourceEncoding="UTF-8" /d:sonar.exclusions="Source/Tests/**" /d:sonar.dotnet.excludeTestProjects=true /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_TYPE }} --no-restore
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"

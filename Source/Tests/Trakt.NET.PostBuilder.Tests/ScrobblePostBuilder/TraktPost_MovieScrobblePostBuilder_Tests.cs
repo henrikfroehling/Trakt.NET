@@ -38,6 +38,26 @@
         }
 
         [Fact]
+        public void Test_TraktPost_MovieScrobblePostBuilder_Scrobble_MovieIds()
+        {
+            ITraktMovieScrobblePost movieScrobblePost = TraktPost.NewMovieScrobblePost()
+                .WithMovie(TraktPost_Tests_Common_Data.MOVIE_IDS_1)
+                .WithProgress(TraktPost_Tests_Common_Data.PROGRESS)
+                .Build();
+
+            movieScrobblePost.Should().NotBeNull();
+            movieScrobblePost.Movie.Should().NotBeNull();
+            movieScrobblePost.Movie.Ids.Should().NotBeNull();
+            movieScrobblePost.Movie.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Trakt);
+            movieScrobblePost.Movie.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Slug);
+            movieScrobblePost.Movie.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Imdb);
+            movieScrobblePost.Movie.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Tmdb);
+            movieScrobblePost.Progress.Should().Be(TraktPost_Tests_Common_Data.PROGRESS);
+            movieScrobblePost.AppVersion.Should().BeNull();
+            movieScrobblePost.AppDate.Should().BeNull();
+        }
+
+        [Fact]
         public void Test_TraktPost_MovieScrobblePostBuilder_Scrobble_Movie_AppVersion()
         {
             ITraktMovieScrobblePost movieScrobblePost = TraktPost.NewMovieScrobblePost()

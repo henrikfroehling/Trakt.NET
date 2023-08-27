@@ -15,7 +15,7 @@
 - [Calendar Filter](parameters/filter/calendar-filter.md)
 
 #### Post Builder
-- [Recommendations Post Builder](parameters/postbuilder/recommendations-post-builder.md)
+- [Favorites Post Builder](parameters/postbuilder/favorites-post-builder.md)
 
 ### Serialization
 - [Serialize Authorization](serialization/serialize-authorization.md)

@@ -11,9 +11,6 @@ apiRules:
 - include:
     uidRegex: ^TraktNet\.Requests\.Handler\.HttpClientProvider$
     type: Type
-- include:
-    uidRegex: ^TraktNet\.Requests\.Parameters
-    type: Type
 - exclude:
     uidRegex: ^TraktNet\.Core\.Constants$
     type: Type

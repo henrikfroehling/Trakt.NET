@@ -164,7 +164,7 @@ jobs:
           dotnet-quality: ${{ env.DOTNET_QUALITY }}
 
       - name: Setup DocFX
-        run: dotnet tool install -g docfx
+        run: dotnet tool update -g docfx
 
       - name: Restore dependencies
         run: dotnet restore ${{ env.PROJECT_DEVELOP_NAME }}
