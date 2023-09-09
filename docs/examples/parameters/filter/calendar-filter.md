@@ -13,7 +13,3 @@ The following lines create a new calendar filter, which filters the request for 
 Get all new calendar shows filtered with the above created filter.
 
 [!code-csharp[](../../../codesnippets/examples/parameters/filter/CalendarFilter.cs#L22-L32)]
-
-Here are the complete codes.
-
-[!code-csharp[](../../../codesnippets/examples/parameters/filter/CalendarFilter.cs)]

@@ -1,4 +1,4 @@
-# Get trending shows
+# Get Trending Shows
 
 In this example we get the first two pages of trending shows.
 

@@ -1,21 +1,7 @@
 # Trakt.NET Examples
 
-### Authentication
-- [Device Authentication](auth/device-authentication.md)
-- [OAuth Authentication](auth/oauth-authentication.md)
+This page contains examples for different **Trakt.NET** library features.
 
-### Modules
-#### Shows Module
-- [Get trending shows](modules/shows/get-trending-shows.md)
-- [Get single shows](modules/shows/get-single-show.md)
-- [Get multiple shows](modules/shows/get-multiple-shows.md)
+Each example only highlights important snippets.
 
-### Parameters
-#### Filter
-- [Calendar Filter](parameters/filter/calendar-filter.md)
-
-#### Post Builder
-- [Favorites Post Builder](parameters/postbuilder/favorites-post-builder.md)
-
-### Serialization
-- [Serialize Authorization](serialization/serialize-authorization.md)
+The complete code for each example can be found at: [https://github.com/henrikfroehling/Trakt.NET/docs/codesnippets/examples](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.4.0/docs/codesnippets/examples)

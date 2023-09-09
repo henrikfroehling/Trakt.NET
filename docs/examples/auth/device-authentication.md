@@ -10,7 +10,7 @@ We can now request authorization by authenticating with the Device Authenticatio
 
 The following lines show the steps which are required to get an authorization.
 
-Create a new device
+## Create a new device
 
 [!code-csharp[](../../codesnippets/examples/auth/DeviceAuthentication.cs#L30-L32)]
 
@@ -30,6 +30,8 @@ The user needs to visit the verification website and enter the user code.
 
 [!code-csharp[](../../codesnippets/examples/auth/DeviceAuthentication.cs#L45-L47)]
 
+## Poll for Authorization
+
 We poll for authorization.
 
 [!code-csharp[](../../codesnippets/examples/auth/DeviceAuthentication.cs#L49-L67)]
@@ -40,14 +42,14 @@ The time window is a few minutes long before the polling fails.
 
 There are some additional steps in this example, which are not required for authenticating. They only show the usage in the context of this example.
 
+## Refresh Authorization
+
 Refreshing an already existing authorization
 
 [!code-csharp[](../../codesnippets/examples/auth/DeviceAuthentication.cs#L69-L86)]
 
+## Revoke Authorization
+
 Revoking an already existing authorization
 
 [!code-csharp[](../../codesnippets/examples/auth/DeviceAuthentication.cs#L88-L99)]
-
-Here is the complete code:
-
-[!code-csharp[](../../codesnippets/examples/auth/DeviceAuthentication.cs)]
