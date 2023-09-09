@@ -1,4 +1,4 @@
-# Get details for multiple single shows
+# Get Details For Multiple Single Shows
 
 In this example we get the details of multiple single shows simultaneously.
 
@@ -33,7 +33,3 @@ We create a [TraktMultipleObjectsQueryParams](xref:TraktNet.Parameters.TraktMult
 We use the [TraktMultipleObjectsQueryParams](xref:TraktNet.Parameters.TraktMultipleObjectsQueryParams) for the request.
 
 [!code-csharp[](../../../codesnippets/examples/modules/shows/GetShowsStream.cs#L20-L82)]
-
-Here is the complete code:
-
-[!code-csharp[](../../../codesnippets/examples/modules/shows/GetShowsStream.cs)]

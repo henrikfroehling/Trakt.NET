@@ -24,7 +24,3 @@ We use the post builder to create a favorites post.
 Then we use the created favorites post in a request.
 
 [!code-csharp[](../../../codesnippets/examples/parameters/postbuilder/FavoritesPostBuilder.cs#L23-L23)]
-
-Here is the complete code:
-
-[!code-csharp[](../../../codesnippets/examples/parameters/postbuilder/FavoritesPostBuilder.cs)]
