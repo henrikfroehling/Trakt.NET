@@ -6,9 +6,9 @@
     using Interfaces;
     using System.Collections.Generic;
 
-    internal sealed class UserListLikeRequest : ABodylessPostRequest, IHasId
+    internal sealed class UserListLikeRequest : ABodylessPostRequest, IHasId, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public string Id { get; set; }
 

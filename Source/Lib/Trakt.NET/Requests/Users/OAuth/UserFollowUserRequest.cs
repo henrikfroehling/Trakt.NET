@@ -6,9 +6,9 @@
     using Objects.Post.Users.Responses;
     using System.Collections.Generic;
 
-    internal sealed class UserFollowUserRequest : ABodylessPostRequest<ITraktUserFollowUserPostResponse>
+    internal sealed class UserFollowUserRequest : ABodylessPostRequest<ITraktUserFollowUserPostResponse>, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public override string UriTemplate => "users/{username}/follow";
 

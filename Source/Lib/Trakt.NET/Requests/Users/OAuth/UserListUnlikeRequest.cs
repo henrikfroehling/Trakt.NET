@@ -5,9 +5,9 @@
     using Extensions;
     using System.Collections.Generic;
 
-    internal sealed class UserListUnlikeRequest : AUsersDeleteByIdRequest
+    internal sealed class UserListUnlikeRequest : AUsersDeleteByIdRequest, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public override RequestObjectType RequestObjectType => RequestObjectType.Lists;
 

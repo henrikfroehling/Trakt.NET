@@ -8,9 +8,9 @@
     using Objects.Post.Users;
     using System.Collections.Generic;
 
-    internal sealed class UserPersonalListUpdateRequest : APutRequest<ITraktList, ITraktUserPersonalListPost>, IHasId
+    internal sealed class UserPersonalListUpdateRequest : APutRequest<ITraktList, ITraktUserPersonalListPost>, IHasId, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public string Id { get; set; }
 

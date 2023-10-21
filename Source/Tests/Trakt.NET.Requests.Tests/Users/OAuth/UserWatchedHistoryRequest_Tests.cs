@@ -17,10 +17,10 @@
     public class UserWatchedHistoryRequest_Tests
     {
         [Fact]
-        public void Test_UserWatchedHistoryRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserWatchedHistoryRequest_Has_AuthorizationRequirement_OptionalButMightBeRequired()
         {
             var request = new UserWatchedHistoryRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.OptionalButMightBeRequired);
         }
 
         [Fact]

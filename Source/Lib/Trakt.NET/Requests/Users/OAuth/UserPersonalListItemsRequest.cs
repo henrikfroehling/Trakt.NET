@@ -8,15 +8,17 @@
     using Objects.Get.Lists;
     using System.Collections.Generic;
 
-    internal sealed class UserPersonalListItemsRequest : AUsersPagedGetRequest<ITraktListItem>, IHasId
+    internal sealed class UserPersonalListItemsRequest : AUsersPagedGetRequest<ITraktListItem>, IHasId, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public string Id { get; set; }
 
         internal TraktListItemType Type { get; set; }
 
         public RequestObjectType RequestObjectType => RequestObjectType.Lists;
+
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public override string UriTemplate => "users/{username}/lists/{id}/items{/type}{?extended,page,limit}";
 

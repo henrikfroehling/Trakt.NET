@@ -7,9 +7,9 @@
     using Objects.Post.Users;
     using System.Collections.Generic;
 
-    internal sealed class UserPersonalListAddRequest : APostRequest<ITraktList, ITraktUserPersonalListPost>
+    internal sealed class UserPersonalListAddRequest : APostRequest<ITraktList, ITraktUserPersonalListPost>, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public override ITraktUserPersonalListPost RequestBody { get; set; }
 

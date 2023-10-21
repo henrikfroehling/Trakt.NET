@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
+    using Base;
     using Enums;
     using Exceptions;
     using Extensions;
@@ -7,15 +8,17 @@
     using Parameters;
     using System.Collections.Generic;
 
-    internal sealed class UserCommentsRequest : AUsersPagedGetRequest<ITraktUserComment>
+    internal sealed class UserCommentsRequest : AUsersPagedGetRequest<ITraktUserComment>, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         internal TraktCommentType CommentType { get; set; }
 
         internal TraktObjectType ObjectType { get; set; }
 
         internal TraktIncludeReplies? IncludeReplies { get; set; }
+
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public override string UriTemplate => "users/{username}/comments{/comment_type}{/object_type}{?include_replies,extended,page,limit}";
 

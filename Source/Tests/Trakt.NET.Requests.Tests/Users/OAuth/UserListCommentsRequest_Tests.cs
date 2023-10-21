@@ -15,10 +15,10 @@
     public class UserListCommentsRequest_Tests
     {
         [Fact]
-        public void Test_UserListCommentsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserListCommentsRequest_Has_AuthorizationRequirement_OptionalButMightBeRequired()
         {
             var request = new UserListCommentsRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.OptionalButMightBeRequired);
         }
 
         [Fact]

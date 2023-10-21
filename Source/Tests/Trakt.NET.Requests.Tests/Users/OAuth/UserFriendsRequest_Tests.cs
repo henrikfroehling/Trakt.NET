@@ -14,10 +14,10 @@
     public class UserFriendsRequest_Tests
     {
         [Fact]
-        public void Test_UserFriendsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserFriendsRequest_Has_AuthorizationRequirement_OptionalButMightBeRequired()
         {
             var request = new UserFriendsRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.OptionalButMightBeRequired);
         }
 
         [Fact]

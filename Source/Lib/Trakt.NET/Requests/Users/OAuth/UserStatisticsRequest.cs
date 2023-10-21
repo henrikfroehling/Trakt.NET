@@ -6,11 +6,11 @@
     using Objects.Get.Users.Statistics;
     using System.Collections.Generic;
 
-    internal sealed class UserStatisticsRequest : AGetRequest<ITraktUserStatistics>
+    internal sealed class UserStatisticsRequest : AGetRequest<ITraktUserStatistics>, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
-        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Optional;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public override string UriTemplate => "users/{username}/stats";
 

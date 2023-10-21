@@ -1,12 +1,14 @@
-namespace TraktNet.Requests.Users.OAuth
+﻿namespace TraktNet.Requests.Users.OAuth
 {
     using Base;
     using Enums;
+    using Exceptions;
+    using Extensions;
     using Interfaces;
     using Objects.Get.Users;
     using System.Collections.Generic;
 
-    internal sealed class UserLikesRequest : AGetRequest<ITraktUserLikeItem>, ISupportsPagination
+    internal sealed class UserLikesRequest : AGetRequest<ITraktUserLikeItem>, ISupportsPagination, IHasUsername
     {
         public string Username { get; set; }
 
@@ -16,7 +18,7 @@ namespace TraktNet.Requests.Users.OAuth
 
         public uint? Limit { get; set; }
 
-        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Optional;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public override string UriTemplate => "users/{username}/likes{/type}{?page,limit}";
 

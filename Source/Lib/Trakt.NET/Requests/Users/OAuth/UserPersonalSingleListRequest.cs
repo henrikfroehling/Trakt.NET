@@ -7,13 +7,13 @@
     using Objects.Get.Lists;
     using System.Collections.Generic;
 
-    internal sealed class UserPersonalSingleListRequest : AGetRequest<ITraktList>, IHasId
+    internal sealed class UserPersonalSingleListRequest : AGetRequest<ITraktList>, IHasId, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public string Id { get; set; }
 
-        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Optional;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public RequestObjectType RequestObjectType => RequestObjectType.Lists;
 
