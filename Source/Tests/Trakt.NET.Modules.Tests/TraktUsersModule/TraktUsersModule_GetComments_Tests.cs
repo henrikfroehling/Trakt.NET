@@ -58,6 +58,25 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetComments_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                "users/me/comments",
+                USER_COMMENTS_JSON, 1, 10, 1, COMMENTS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktUserComment> response = await client.Users.GetCommentsAsync("me");
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetComments_With_CommentType()
         {
             TraktClient client = TestUtility.GetMockClient(

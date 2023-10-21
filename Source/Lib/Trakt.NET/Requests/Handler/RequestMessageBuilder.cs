@@ -12,6 +12,7 @@
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using Users.OAuth;
 
     internal class RequestMessageBuilder
     {
@@ -24,7 +25,7 @@
         private readonly string _baseUrl;
         private readonly string _accessToken;
         private readonly bool _isAuthorized;
-        private readonly bool _forceAuthorization;
+        private bool _forceAuthorization;
 
         internal bool UseAPIVersionHeader { get; set; } = true;
 
@@ -121,6 +122,13 @@
 
             AuthorizationRequirement authorizationRequirement = Request.AuthorizationRequirement;
 
+            if (authorizationRequirement == AuthorizationRequirement.OptionalButMightBeRequired && !_forceAuthorization)
+            {
+                // Force authorization for user requests where the username is "me",
+                // even if forced authorization is disabled.
+                _forceAuthorization = Request is IHasUsername && (Request as IHasUsername).Username == "me";
+            }
+
             if (authorizationRequirement != AuthorizationRequirement.NotRequired)
             {
                 if (!_isAuthorized)
@@ -128,6 +136,7 @@
                     switch (authorizationRequirement)
                     {
                         case AuthorizationRequirement.Optional:
+                        case AuthorizationRequirement.OptionalButMightBeRequired:
                             if (_forceAuthorization)
                                 throw new TraktAuthorizationException("authorization is optional for this request, but forced and the current authorization parameters are invalid");
 
@@ -137,7 +146,10 @@
                     }
                 }
 
-                if (authorizationRequirement == AuthorizationRequirement.Required || (authorizationRequirement == AuthorizationRequirement.Optional && _forceAuthorization))
+                bool authorizationOptionalButRequired = _forceAuthorization &&
+                    (authorizationRequirement == AuthorizationRequirement.Optional || authorizationRequirement == AuthorizationRequirement.OptionalButMightBeRequired);
+
+                if (authorizationRequirement == AuthorizationRequirement.Required || authorizationOptionalButRequired)
                     requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _accessToken);
             }
         }

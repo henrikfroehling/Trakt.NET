@@ -64,6 +64,28 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetWatchlist_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                "users/me/watchlist",
+                WATCHLIST_JSON, 1, 10, 1, WATCHLIST_ITEM_COUNT,
+                sortBy: SORT_BY, sortHow: SORT_HOW);
+
+            TraktPagedResponse<ITraktWatchlistItem> response = await client.Users.GetWatchlistAsync("me");
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(WATCHLIST_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(WATCHLIST_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.SortBy.Should().NotBeNull().And.Be(SORT_BY);
+            response.SortHow.Should().NotBeNull().And.Be(SORT_HOW);
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetWatchlist_With_Type()
         {
             TraktClient client = TestUtility.GetMockClient(

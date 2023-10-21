@@ -14,10 +14,10 @@
     public class UserWatchedMoviesRequest_Tests
     {
         [Fact]
-        public void Test_UserWatchedMoviesRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserWatchedMoviesRequest_Has_AuthorizationRequirement_OptionalButMightBeRequired()
         {
             var request = new UserWatchedMoviesRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.OptionalButMightBeRequired);
         }
 
         [Fact]

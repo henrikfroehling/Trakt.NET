@@ -16,10 +16,10 @@
     public class UserPersonalListItemsRequest_Tests
     {
         [Fact]
-        public void Test_UserPersonalListItemsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserPersonalListItemsRequest_Has_AuthorizationRequirement_OptionalButMightBeRequired()
         {
             var request = new UserPersonalListItemsRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.OptionalButMightBeRequired);
         }
 
         [Fact]

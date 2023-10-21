@@ -43,6 +43,18 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetCollectionShows_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient("users/me/collection/shows", COLLECTION_SHOWS_JSON);
+            TraktListResponse<ITraktCollectionShow> response = await client.Users.GetCollectionShowsAsync("me");
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetCollectionShows_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient(

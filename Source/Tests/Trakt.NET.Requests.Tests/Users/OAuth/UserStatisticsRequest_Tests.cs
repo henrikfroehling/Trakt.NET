@@ -13,10 +13,10 @@
     public class UserStatisticsRequest_Tests
     {
         [Fact]
-        public void Test_UserStatisticsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserStatisticsRequest_Has_AuthorizationRequirement_OptionalButMightBeRequired()
         {
             var request = new UserStatisticsRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.OptionalButMightBeRequired);
         }
 
         [Fact]

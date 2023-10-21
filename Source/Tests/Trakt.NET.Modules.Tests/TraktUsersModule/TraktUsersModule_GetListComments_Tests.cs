@@ -173,6 +173,25 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetListComments_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"users/me/lists/{LIST_ID}/comments",
+                LIST_COMMENTS_JSON, 1, 10, 1, LIST_COMMENTS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Users.GetListCommentsAsync("me", LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LIST_COMMENTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LIST_COMMENTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetListComments_With_SortOrder()
         {
             TraktClient client = TestUtility.GetMockClient(

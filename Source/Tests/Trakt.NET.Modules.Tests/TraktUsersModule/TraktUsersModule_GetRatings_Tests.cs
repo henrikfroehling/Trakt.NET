@@ -52,6 +52,22 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetRatings_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient("users/me/ratings", RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
+            TraktPagedResponse<ITraktRatingsItem> response = await client.Users.GetRatingsAsync("me");
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetRatings_With_Type()
         {
             TraktClient client = TestUtility.GetMockClient(

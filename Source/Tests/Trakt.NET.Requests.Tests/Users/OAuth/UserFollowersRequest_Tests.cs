@@ -14,10 +14,10 @@
     public class UserFollowersRequest_Tests
     {
         [Fact]
-        public void Test_UserFollowersRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserFollowersRequest_Has_AuthorizationRequirement_OptionalButMightBeRequired()
         {
             var request = new UserFollowersRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.OptionalButMightBeRequired);
         }
 
         [Fact]
