@@ -43,6 +43,18 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetWatchedShows_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient("users/me/watched/shows", WATCHED_SHOWS_JSON);
+            TraktListResponse<ITraktWatchedShow> response = await client.Users.GetWatchedShowsAsync("me");
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetWatchedShows_Complete()
         {
             TraktClient client = TestUtility.GetMockClient(

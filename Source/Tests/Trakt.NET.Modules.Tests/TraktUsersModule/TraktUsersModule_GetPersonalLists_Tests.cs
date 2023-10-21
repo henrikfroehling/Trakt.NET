@@ -42,6 +42,18 @@
             response.Value.Should().NotBeNull().And.HaveCount(2);
         }
 
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalLists_With_OAuth_Enfored_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient("users/me/lists", LISTS_JSON);
+            TraktListResponse<ITraktList> response = await client.Users.GetPersonalListsAsync("me");
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(2);
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]

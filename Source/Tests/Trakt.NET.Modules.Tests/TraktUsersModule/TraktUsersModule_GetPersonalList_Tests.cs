@@ -145,6 +145,37 @@
             responseValue.User.Should().NotBeNull();
         }
 
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalList_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/me/lists/{LIST_ID}", LIST_JSON);
+            TraktResponse<ITraktList> response = await client.Users.GetPersonalListAsync("me", LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            ITraktList responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktListNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
