@@ -5,9 +5,9 @@
     using Extensions;
     using System.Collections.Generic;
 
-    internal sealed class UserUnfollowUserRequest : ADeleteRequest
+    internal sealed class UserUnfollowUserRequest : ADeleteRequest, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public override string UriTemplate => "users/{username}/follow";
 

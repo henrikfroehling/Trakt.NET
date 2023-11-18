@@ -9,9 +9,9 @@
     using System;
     using System.Collections.Generic;
 
-    internal sealed class UserWatchedHistoryRequest : AUsersPagedGetRequest<ITraktHistoryItem>, IHasId
+    internal sealed class UserWatchedHistoryRequest : AUsersPagedGetRequest<ITraktHistoryItem>, IHasId, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         internal TraktSyncItemType Type { get; set; }
 
@@ -24,6 +24,8 @@
         public string Id { get; set; }
 
         public RequestObjectType RequestObjectType => RequestObjectType.Object;
+
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public override string UriTemplate => "users/{username}/history{/type}{/item_id}{?start_at,end_at,extended,page,limit}";
 

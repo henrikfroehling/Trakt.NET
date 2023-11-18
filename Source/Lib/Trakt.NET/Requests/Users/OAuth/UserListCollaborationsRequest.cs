@@ -6,11 +6,11 @@
     using Objects.Get.Lists;
     using System.Collections.Generic;
 
-    internal class UserListCollaborationsRequest : AGetRequest<ITraktList>
+    internal class UserListCollaborationsRequest : AGetRequest<ITraktList>, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
-        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Optional;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public override string UriTemplate => "users/{username}/lists/collaborations";
 

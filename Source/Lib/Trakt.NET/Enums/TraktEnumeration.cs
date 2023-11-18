@@ -128,7 +128,7 @@
         /// An enumeration of type T or null, if the value could not be found
         /// in the available values for the enumeration.
         /// </returns>
-        public static T FromObjectName<T>(string objectName) where T : TraktEnumeration, new() => Search<T>(e => e.ObjectName == objectName);
+        public static T FromObjectName<T>(string objectName) where T : TraktEnumeration, new() => Search<T>(e => e.ObjectName.ToLower() == objectName.ToLower());
 
         /// <summary>Creates an enumeration of type T from the given URI name.</summary>
         /// <typeparam name="T">The type of the enumeration, which should be created.</typeparam>

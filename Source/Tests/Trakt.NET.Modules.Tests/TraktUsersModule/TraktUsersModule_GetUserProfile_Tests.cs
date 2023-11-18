@@ -71,6 +71,32 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetUserProfile_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient("users/me", PROFILE_JSON);
+            TraktResponse<ITraktUser> response = await client.Users.GetUserProfileAsync("me");
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            ITraktUser responseValue = response.Value;
+
+            responseValue.Username.Should().Be("sean");
+            responseValue.IsPrivate.Should().BeFalse();
+            responseValue.Name.Should().Be("Sean Rudford");
+            responseValue.IsVIP.Should().BeTrue();
+            responseValue.IsVIP_EP.Should().BeTrue();
+            responseValue.JoinedAt.Should().NotHaveValue();
+            responseValue.Location.Should().BeNullOrEmpty();
+            responseValue.About.Should().BeNullOrEmpty();
+            responseValue.Gender.Should().BeNullOrEmpty();
+            responseValue.Age.Should().NotHaveValue();
+            responseValue.Images.Should().BeNull();
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetUserProfile_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient(

@@ -78,6 +78,35 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetWatching_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient("users/me/watching", WATCHING_ITEM_MOVIE_JSON);
+            TraktResponse<ITraktUserWatchingItem> response = await client.Users.GetWatchingAsync("me");
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            ITraktUserWatchingItem responseValue = response.Value;
+
+            responseValue.ExpiresAt.Should().Be(DateTime.Parse("2014-10-23T08:36:02.000Z").ToUniversalTime());
+            responseValue.StartedAt.Should().Be(DateTime.Parse("2014-10-23T06:44:02.000Z").ToUniversalTime());
+            responseValue.Action.Should().Be(TraktHistoryActionType.Checkin);
+            responseValue.Type.Should().Be(TraktSyncType.Movie);
+            responseValue.Movie.Should().NotBeNull();
+            responseValue.Movie.Title.Should().Be("Super 8");
+            responseValue.Movie.Year.Should().Be(2011);
+            responseValue.Movie.Ids.Should().NotBeNull();
+            responseValue.Movie.Ids.Trakt.Should().Be(2U);
+            responseValue.Movie.Ids.Slug.Should().Be("super-8-2011");
+            responseValue.Movie.Ids.Imdb.Should().Be("tt1650062");
+            responseValue.Movie.Ids.Tmdb.Should().Be(37686U);
+            responseValue.Show.Should().BeNull();
+            responseValue.Episode.Should().BeNull();
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetWatching_Complete()
         {
             TraktClient client = TestUtility.GetMockClient(

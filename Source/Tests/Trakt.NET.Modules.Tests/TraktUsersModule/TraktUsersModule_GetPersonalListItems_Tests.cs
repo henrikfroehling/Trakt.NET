@@ -132,6 +132,20 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalListItems_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/me/lists/{LIST_ID}/items", LIST_ITEMS_JSON);
+
+            TraktPagedResponse<ITraktListItem> response =
+                await client.Users.GetPersonalListItemsAsync("me", LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(5);
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetPersonalListItems_With_Type()
         {
             TraktClient client = TestUtility.GetMockClient(

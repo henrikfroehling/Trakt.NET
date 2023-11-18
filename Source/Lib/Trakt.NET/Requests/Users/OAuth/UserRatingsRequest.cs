@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
+    using Base;
     using Enums;
     using Exceptions;
     using Extensions;
@@ -8,9 +9,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal sealed class UserRatingsRequest : AUsersGetRequest<ITraktRatingsItem>, ISupportsPagination
+    internal sealed class UserRatingsRequest : AUsersGetRequest<ITraktRatingsItem>, ISupportsPagination, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         internal TraktRatingsItemType Type { get; set; }
 
@@ -19,6 +20,8 @@
         public uint? Page { get; set; }
 
         public uint? Limit { get; set; }
+
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public override string UriTemplate => "users/{username}/ratings{/type}{/rating}{?extended,page,limit}";
 

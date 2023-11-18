@@ -275,6 +275,7 @@ namespace TraktNet.Modules
         /// See <a href="http://docs.trakt.apiary.io/#reference/users/likes/get-likes">"Trakt API Doc - Users: Likes"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the likes should be queried.</param>
         /// <param name="likeType">Determines, which type of objects liked should be queried. See also <seealso cref="TraktUserLikeType" />.</param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
@@ -289,12 +290,13 @@ namespace TraktNet.Modules
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
-        public Task<TraktPagedResponse<ITraktUserLikeItem>> GetLikesAsync(TraktUserLikeType likeType = null,
+        public Task<TraktPagedResponse<ITraktUserLikeItem>> GetLikesAsync(string usernameOrSlug, TraktUserLikeType likeType = null,
                                                                           TraktPagedParameters pagedParameters = null,
                                                                           CancellationToken cancellationToken = default)
         {
             var request = new UserLikesRequest
             {
+                Username = usernameOrSlug,
                 Type = likeType,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit

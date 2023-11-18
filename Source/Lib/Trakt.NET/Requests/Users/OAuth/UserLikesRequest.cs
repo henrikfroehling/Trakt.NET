@@ -2,25 +2,32 @@
 {
     using Base;
     using Enums;
+    using Exceptions;
+    using Extensions;
     using Interfaces;
     using Objects.Get.Users;
     using System.Collections.Generic;
 
-    internal sealed class UserLikesRequest : AGetRequest<ITraktUserLikeItem>, ISupportsPagination
+    internal sealed class UserLikesRequest : AGetRequest<ITraktUserLikeItem>, ISupportsPagination, IHasUsername
     {
+        public string Username { get; set; }
+
         internal TraktUserLikeType Type { get; set; }
 
         public uint? Page { get; set; }
 
         public uint? Limit { get; set; }
 
-        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Optional;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
-        public override string UriTemplate => "users/likes{/type}{?page,limit}";
+        public override string UriTemplate => "users/{username}/likes{/type}{?page,limit}";
 
         public override IDictionary<string, object> GetUriPathParameters()
         {
-            var uriParams = new Dictionary<string, object>();
+            var uriParams = new Dictionary<string, object>
+            {
+                { "username", Username }
+            };
 
             if (Type != null && Type != TraktUserLikeType.Unspecified)
                 uriParams.Add("type", Type.UriName);
@@ -34,6 +41,13 @@
             return uriParams;
         }
 
-        public override void Validate() { }
+        public override void Validate()
+        {
+            if (Username == null)
+                throw new TraktRequestValidationException(nameof(Username), "username must not be null");
+
+            if (Username == string.Empty || Username.ContainsSpace())
+                throw new TraktRequestValidationException(nameof(Username), "username not valid");
+        }
     }
 }

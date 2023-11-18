@@ -4,6 +4,7 @@
     {
         Required,
         NotRequired,
-        Optional
+        Optional,
+        OptionalButMightBeRequired
     }
 }

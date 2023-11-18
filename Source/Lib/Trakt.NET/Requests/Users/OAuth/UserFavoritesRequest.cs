@@ -7,9 +7,9 @@
     using Objects.Get.Users;
     using System.Collections.Generic;
 
-    internal sealed class UserFavoritesRequest : AUsersPagedGetRequest<ITraktFavorite>
+    internal sealed class UserFavoritesRequest : AUsersPagedGetRequest<ITraktFavorite>, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public override string UriTemplate => "users/{username}/favorites{/type}{/sort}{?extended,page,limit}";
 

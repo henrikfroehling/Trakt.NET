@@ -6,9 +6,9 @@
     using Interfaces;
     using System.Collections.Generic;
 
-    internal sealed class UserPersonalListItemUpdateRequest : AListItemUpdateRequest, IHasId
+    internal sealed class UserPersonalListItemUpdateRequest : AListItemUpdateRequest, IHasId, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public string Id { get; set; }
 
