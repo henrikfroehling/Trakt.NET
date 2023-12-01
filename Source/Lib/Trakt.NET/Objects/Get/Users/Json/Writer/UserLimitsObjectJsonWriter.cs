@@ -33,6 +33,13 @@
                 await userRecommendationsLimitsJsonWriter.WriteObjectAsync(jsonWriter, obj.Recommendations, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Favorites != null)
+            {
+                var userFavoritesLimitsJsonWriter = new UserFavoritesLimitsObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_FAVORITES, cancellationToken).ConfigureAwait(false);
+                await userFavoritesLimitsJsonWriter.WriteObjectAsync(jsonWriter, obj.Favorites, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

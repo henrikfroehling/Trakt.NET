@@ -23,5 +23,12 @@
         /// <para>Nullable</para>
         /// </summary>
         ITraktUserRecommendationsLimits Recommendations { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user's favorites limits.
+        /// See also <seealso cref="ITraktUserFavoritesLimits" />.
+        /// <para>Nullable</para>
+        /// </summary>
+        ITraktUserFavoritesLimits Favorites { get; set; }
     }
 }
