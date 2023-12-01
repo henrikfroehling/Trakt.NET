@@ -438,6 +438,7 @@
             s_jsonIOFactories.Add(typeof(ITraktFavorite), new FavoriteJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSharingText), new SharingTextJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUser), new UserJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserFavoritesLimits), new UserFavoritesLimitsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserComment), new UserCommentJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserFollower), new UserFollowerJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserFollowRequest), new UserFollowRequestJsonIOFactory());
