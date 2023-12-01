@@ -304,6 +304,7 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncLastActivities), new SyncLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncListsLastActivities), new SyncListsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncMoviesLastActivities), new SyncMoviesLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncNotesLastActivities), new SyncNotesLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsLastActivities), new SyncRecommendationsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncSavedFiltersLastActivities), new SyncSavedFiltersLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncSeasonsLastActivities), new SyncSeasonsLastActivitiesJsonIOFactory());
@@ -437,6 +438,7 @@
             s_jsonIOFactories.Add(typeof(ITraktFavorite), new FavoriteJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSharingText), new SharingTextJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUser), new UserJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserFavoritesLimits), new UserFavoritesLimitsJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserComment), new UserCommentJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserFollower), new UserFollowerJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktUserFollowRequest), new UserFollowRequestJsonIOFactory());
