@@ -25,6 +25,7 @@
                 var savedFiltersLastActivitiesReader = new SyncSavedFiltersLastActivitiesObjectJsonReader();
                 var favoritesLastActivitiesReader = new SyncFavoritesLastActivitiesObjectJsonReader();
                 var collaborationsLastActivitiesReader = new SyncCollaborationsLastActivitiesObjectJsonReader();
+                var notesLastActivitiesReader = new SyncNotesLastActivitiesObjectJsonReader();
 
                 ITraktSyncLastActivities lastActivities = new TraktSyncLastActivities();
 
@@ -78,6 +79,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_SAVED_FILTERS:
                             lastActivities.SavedFilters = await savedFiltersLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_NOTES:
+                            lastActivities.Notes = await notesLastActivitiesReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
