@@ -304,6 +304,7 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncLastActivities), new SyncLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncListsLastActivities), new SyncListsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncMoviesLastActivities), new SyncMoviesLastActivitiesJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktSyncNotesLastActivities), new SyncNotesLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncRecommendationsLastActivities), new SyncRecommendationsLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncSavedFiltersLastActivities), new SyncSavedFiltersLastActivitiesJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncSeasonsLastActivities), new SyncSeasonsLastActivitiesJsonIOFactory());

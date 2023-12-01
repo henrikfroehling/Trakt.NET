@@ -103,6 +103,13 @@
                 await syncSavedFiltersLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.SavedFilters, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Notes != null)
+            {
+                var notesLastActivitiesObjectJsonWriter = new SyncNotesLastActivitiesObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NOTES, cancellationToken).ConfigureAwait(false);
+                await notesLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Notes, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }

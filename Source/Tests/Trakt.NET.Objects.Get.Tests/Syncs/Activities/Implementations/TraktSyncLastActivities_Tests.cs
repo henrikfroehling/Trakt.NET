@@ -29,6 +29,7 @@
             lastActivities.Collaborations.Should().BeNull();
             lastActivities.Account.Should().BeNull();
             lastActivities.SavedFilters.Should().BeNull();
+            lastActivities.Notes.Should().BeNull();
         }
 
         [Fact]
@@ -103,6 +104,9 @@
 
             lastActivities.SavedFilters.Should().NotBeNull();
             lastActivities.SavedFilters.UpdatedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+
+            lastActivities.Notes.Should().NotBeNull();
+            lastActivities.Notes.UpdatedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
         }
 
         private const string JSON =
@@ -170,6 +174,9 @@
                   ""requested_at"": ""2015-02-18T12:54:39.000Z""
                 },
                 ""saved_filters"": {
+                  ""updated_at"": ""2015-02-18T12:54:39.000Z""
+                },
+                ""notes"": {
                   ""updated_at"": ""2015-02-18T12:54:39.000Z""
                 }
               }";
