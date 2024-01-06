@@ -6,7 +6,6 @@
     using Get.People.Json.Reader;
     using Get.Seasons.Json.Reader;
     using Get.Shows.Json.Reader;
-    using Get.Users.Json.Reader;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -27,8 +26,6 @@
                 var episodeObjectReader = new EpisodeObjectJsonReader();
                 var personObjectReader = new PersonObjectJsonReader();
                 var noteObjectReader = new UserNoteObjectJsonReader();
-
-                var userObjectReader = new UserObjectJsonReader();
 
                 ITraktUserNoteItem userNoteItem = new TraktUserNoteItem();
 
