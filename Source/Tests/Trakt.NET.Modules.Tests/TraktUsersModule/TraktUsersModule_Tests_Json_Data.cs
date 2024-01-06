@@ -70,6 +70,9 @@
         private const int SAVED_FILTERS_COUNT = 2;
         private const int SAVED_FILTERS_LIMIT = 4;
         private const int LIST_ITEMS_COUNT = 5;
+        private readonly TraktNotesObjectType NOTES_OBJECT_TYPE = TraktNotesObjectType.Show;
+        private const int NOTES_ITEM_COUNT = 2;
+        private const uint NOTES_ITEM_LIMIT = 4;
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 
@@ -1501,6 +1504,92 @@
                     ""vip_ep"": true,
                     ""ids"": {
                       ""slug"": ""justin""
+                    }
+                  }
+                }
+              ]";
+
+        private const string NOTES_ITEMS_JSON =
+            @"[
+                {                
+                  ""attached_to"": {
+                    ""type"": ""movie""
+                  },
+                  ""type"": ""movie"",
+                  ""movie"": {
+                    ""title"": ""Batman Begins"",
+                    ""year"": 2005,
+                    ""ids"": {
+                      ""trakt"": 1,
+                      ""slug"": ""batman-begins-2005"",
+                      ""imdb"": ""tt0372784"",
+                      ""tmdb"": 272
+                    }
+                  },
+                  ""note"": {
+                    ""id"": 49,
+                    ""notes"": ""Only watch the extended edition."",
+                    ""privacy"": ""private"",
+                    ""spoiler"": false,
+                    ""created_at"": ""2023-09-07T20:10:18.000Z"",
+                    ""updated_at"": ""2023-09-07T20:10:56.000Z"",
+                    ""user"": {
+                      ""username"": ""justin"",
+                      ""private"": false,
+                      ""name"": ""Justin Nemeth"",
+                      ""vip"": true,
+                      ""vip_ep"": true,
+                      ""ids"": {
+                        ""slug"": ""justin"",
+                        ""trakt"": 1
+                      }
+                    }
+                  }
+                },
+                {
+                  ""attached_to"": {
+                    ""type"": ""episode""
+                  },
+                  ""type"": ""episode"",
+                  ""episode"": {
+                    ""season"": 1,
+                    ""number"": 1,
+                    ""title"": ""Jim Gordon"",
+                    ""ids"": {
+                      ""trakt"": 63958,
+                      ""tvdb"": 4768720,
+                      ""imdb"": ""tt3216414"",
+                      ""tmdb"": 975968
+                    }
+                  },
+                  ""show"": {
+                    ""title"": ""Gotham"",
+                    ""year"": 2014,
+                    ""ids"": {
+                      ""trakt"": 869,
+                      ""slug"": ""gotham"",
+                      ""tvdb"": 274431,
+                      ""imdb"": ""tt3749900"",
+                      ""tmdb"": 60708
+                    }
+                  },
+                  ""note"": {
+                    ""id"": 48,
+                    ""notes"": ""Streaming quality on Netflix is mediocre."",
+                    ""privacy"": ""private"",
+                    ""spoiler"": false,
+                    ""created_at"": ""2023-09-07T20:03:26.000Z"",
+                    ""updated_at"": ""2023-09-07T20:03:26.000Z"",
+                    ""user"": {
+                      ""username"": ""justin"",
+                      ""private"": false,
+                      ""name"": ""Justin Nemeth"",
+                      ""vip"": true,
+                      ""vip_ep"": true,
+                      ""ids"": {
+                        ""slug"": ""justin"",
+                        ""trakt"": 1
+                      }
                     }
                   }
                 }
