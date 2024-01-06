@@ -34,6 +34,8 @@
     using Get.Syncs.Playback.Json.Factories;
     using Get.Users;
     using Get.Users.Json.Factories;
+    using Get.Users.Notes;
+    using Get.Users.Notes.Json.Factories;
     using Get.Users.Statistics;
     using Get.Users.Statistics.Json.Factories;
     using Get.Watched;
@@ -460,6 +462,11 @@
 
             // user response post objects
             s_jsonIOFactories.Add(typeof(ITraktUserFollowUserPostResponse), new UserFollowUserPostResponseJsonIOFactory());
+
+            // user notes objects
+            s_jsonIOFactories.Add(typeof(ITraktUserNote), new UserNoteJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserNoteAttachedTo), new UserNoteAttachedToJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktUserNoteItem), new UserNoteItemJsonIOFactory());
 
             // user statistic objects
             s_jsonIOFactories.Add(typeof(ITraktUserStatistics), new UserStatisticsJsonIOFactory());

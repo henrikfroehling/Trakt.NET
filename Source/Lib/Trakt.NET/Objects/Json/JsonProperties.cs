@@ -19,6 +19,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_APPLE = "apple";
         internal const string PROPERTY_NAME_APPROVED_AT = "approved_at";
         internal const string PROPERTY_NAME_ART = "art";
+        internal const string PROPERTY_NAME_ATTACHED_TO = "attached_to";
         internal const string PROPERTY_NAME_AUDIO = "audio";
         internal const string PROPERTY_NAME_AUDIO_CHANNELS = "audio_channels";
         internal const string PROPERTY_NAME_AVAILABLE_TRANSLATIONS = "available_translations";
