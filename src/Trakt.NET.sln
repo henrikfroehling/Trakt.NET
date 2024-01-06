@@ -81,6 +81,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{377A7F6A-A
 		libs\Directory.Build.props = libs\Directory.Build.props
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{12789CC6-7A48-4C0C-9E4E-3DCF6F2056B9}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Directory.Build.props = tests\Directory.Build.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +114,7 @@ Global
 		{818576FB-5FF1-430E-A6A6-CDEB87536F03} = {E4690B7D-5380-4003-99C3-2091827DB262}
 		{B8E93AC4-B8E3-4DD9-8DF2-81AD047D9248} = {E7B2A7FC-F550-4546-8F2C-6FC9AA49F6B5}
 		{377A7F6A-A4B9-45F6-AB2A-492F0E1F71AD} = {3DC8C555-C99D-4991-B74A-C75E966703DB}
+		{12789CC6-7A48-4C0C-9E4E-3DCF6F2056B9} = {3DC8C555-C99D-4991-B74A-C75E966703DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7025A39E-11A6-4587-98F7-E887B941D5A0}
