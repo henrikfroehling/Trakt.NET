@@ -27,13 +27,13 @@ on:
 
 env:
   BRANCH_NAME: ${{ github.base_ref || github.ref_name }}
-  DOTNET_VERSION: '7.0.x'
+  DOTNET_VERSION: '8.0.x'
   DOTNET_QUALITY: 'ga'
   BUILD_CONFIGURATION: Release
   PROJECT_DEVELOP_NAME: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
-  PROJECT_V200_NAME: 'src/libs/Trakt.NET/Trakt.NET.csproj'
+  PROJECT_V2_NAME: 'src/libs/Trakt.NET/Trakt.NET.csproj'
   ARTIFACTS_DEVELOP_DIRECTORY: 'artifacts'
-  ARTIFACTS_V200_DIRECTORY: 'artifacts-v2.0.0-alpha'
+  ARTIFACTS_V2_DIRECTORY: 'artifacts-v2.0.0-alpha'
 
 jobs:
   environment-check:
@@ -189,7 +189,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: 'docs/_site'
 
-  build-v200-alpha:
+  build-v2-alpha:
     runs-on: windows-latest
     environment: Development
     steps:
@@ -208,29 +208,29 @@ jobs:
 #          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Restore dependencies
-        run: dotnet restore ${{ env.PROJECT_V200_NAME }}
+        run: dotnet restore ${{ env.PROJECT_V2_NAME }}
 
       - name: Build solution
-        run: dotnet build  ${{ env.PROJECT_V200_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+        run: dotnet build  ${{ env.PROJECT_V2_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
 
       - name: Create NuGet package
         if: ${{ github.actor != 'dependabot[bot]' }}
-        run: dotnet pack ${{ env.PROJECT_V200_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore
+        run: dotnet pack ${{ env.PROJECT_V2_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore
 
       - name: Copy files for deployment
         if: ${{ github.actor != 'dependabot[bot]' }}
         shell: pwsh
         run: |
-          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V200_DIRECTORY }}'
-          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V200_DIRECTORY }}/netstandard2.1'
-          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V200_DIRECTORY }}/netstandard2.0'
-          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V200_DIRECTORY }}/net6.0'
-          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V200_DIRECTORY }}/net7.0'
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}' | Where-Object {$_.Fullname -match '[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination ${{ env.ARTIFACTS_V200_DIRECTORY }}
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/netstandard2.1' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V200_DIRECTORY }}/netstandard2.1'
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/netstandard2.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V200_DIRECTORY }}/netstandard2.0'
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net6.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V200_DIRECTORY }}/net6.0'
-          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net7.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V200_DIRECTORY }}/net7.0'
+          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}'
+          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/netstandard2.1'
+          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/netstandard2.0'
+          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/net6.0'
+          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/net7.0'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}' | Where-Object {$_.Fullname -match '[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination ${{ env.ARTIFACTS_V2_DIRECTORY }}
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/netstandard2.1' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/netstandard2.1'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/netstandard2.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/netstandard2.0'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net6.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/net6.0'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net7.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/net7.0'
 
       - name: Upload artifacts
         if: ${{ github.actor != 'dependabot[bot]' }}
@@ -238,7 +238,7 @@ jobs:
         with:
           name: Trakt.NET-CI-Build-v2.0.0-Alpha.${{ github.run_number }}-${{ github.sha }}
           retention-days: 14
-          path: '${{ env.ARTIFACTS_V200_DIRECTORY }}/'
+          path: '${{ env.ARTIFACTS_V2_DIRECTORY }}/'
 
 #      - name: Push NuGet package to Github Package Registry
 #        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
