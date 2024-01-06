@@ -7,6 +7,7 @@ namespace TraktNet.Modules
     using Objects.Get.Lists;
     using Objects.Get.Ratings;
     using Objects.Get.Users;
+    using Objects.Get.Users.Notes;
     using Objects.Get.Users.Statistics;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
@@ -1076,6 +1077,49 @@ namespace TraktNet.Modules
                 Username = usernameOrSlug
             },
             cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets the most recently notes for a user.
+        /// <para>OAuth authorization optional.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/notes/get-notes">"Trakt API Doc - Users: Notes"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the notes should be queried.</param>
+        /// <param name="notesObjectType">Determines, which type of notes should be queried. See also <seealso cref="TraktNotesObjectType" />.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the notes media items should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktUserNoteItem}"/> instance containing the notes items and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktUserNoteItem" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktPagedResponse<ITraktUserNoteItem>> GetUserNotesAsync(string usernameOrSlug, TraktNotesObjectType notesObjectType = null,
+                                                                              TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null,
+                                                                              CancellationToken cancellationToken = default)
+        {
+            var request = new UserNotesRequest
+            {
+                Username = usernameOrSlug,
+                Type = notesObjectType,
+                ExtendedInfo = extendedInfo,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         private Task<TraktResponse<ITraktList>> GetPersonalListInStreamAsync(string usernameOrSlug, string listIdOrSlug,
