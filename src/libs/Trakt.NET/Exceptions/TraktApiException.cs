@@ -7,7 +7,7 @@ namespace TraktNET.Exceptions
     /// Can contain additional information like the response's status code, the request's url, a reason phrase of the server,
     /// the request body, if it was a post or put request and the actual response content.
     /// </summary>
-    public class TraktApiException : Exception
+    public class TraktApiException : TraktException
     {
         /// <summary>Response HTTP status code.</summary>
         public HttpStatusCode StatusCode { get; }

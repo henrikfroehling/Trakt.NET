@@ -213,6 +213,10 @@ jobs:
       - name: Build solution
         run: dotnet build  ${{ env.PROJECT_V2_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
 
+      - name: Run tests
+        run: dotnet test --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        working-directory: 'src'
+
       - name: Create NuGet package
         if: ${{ github.actor != 'dependabot[bot]' }}
         run: dotnet pack ${{ env.PROJECT_V2_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore
