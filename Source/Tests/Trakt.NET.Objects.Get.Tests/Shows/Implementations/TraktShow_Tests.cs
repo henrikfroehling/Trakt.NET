@@ -25,6 +25,7 @@
             show.Genres.Should().BeNull();
             show.Seasons.Should().BeNull();
             show.Overview.Should().BeNullOrEmpty();
+            show.Tagline.Should().BeNullOrEmpty();
             show.FirstAired.Should().NotHaveValue();
             show.Runtime.Should().NotHaveValue();
             show.Certification.Should().BeNullOrEmpty();
@@ -61,6 +62,7 @@
             show.Genres.Should().BeNull();
             show.Seasons.Should().BeNull();
             show.Overview.Should().BeNullOrEmpty();
+            show.Tagline.Should().BeNullOrEmpty();
             show.FirstAired.Should().NotHaveValue();
             show.Runtime.Should().NotHaveValue();
             show.Certification.Should().BeNullOrEmpty();
@@ -100,6 +102,7 @@
             show.Genres.Should().NotBeNull().And.HaveCount(5).And.Contain("drama", "fantasy", "science-fiction", "action", "adventure");
             show.Seasons.Should().BeNull();
             show.Overview.Should().Be("Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond.");
+            show.Tagline.Should().Be("Winter Is Coming");
             show.FirstAired.Should().Be(DateTime.Parse("2011-04-17T07:00:00Z").ToUniversalTime());
             show.Runtime.Should().Be(60);
             show.Certification.Should().Be("TV-MA");
@@ -142,6 +145,7 @@
                   ""tvrage"": 24493
                 },
                 ""overview"": ""Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond."",
+                ""tagline"": ""Winter Is Coming"",
                 ""first_aired"": ""2011-04-17T07:00:00Z"",
                 ""airs"": {
                   ""day"": ""Sunday"",

@@ -28,6 +28,7 @@ namespace TraktNet.Objects.Get.Tests.Shows.Implementations
             favoritedShow.Genres.Should().BeNull();
             favoritedShow.Seasons.Should().BeNull();
             favoritedShow.Overview.Should().BeNull();
+            favoritedShow.Tagline.Should().BeNullOrEmpty();
             favoritedShow.FirstAired.Should().BeNull();
             favoritedShow.Runtime.Should().BeNull();
             favoritedShow.Certification.Should().BeNull();
@@ -70,6 +71,7 @@ namespace TraktNet.Objects.Get.Tests.Shows.Implementations
             favoritedShow.Show.Genres.Should().NotBeNull().And.HaveCount(5).And.Contain("drama", "fantasy", "science-fiction", "action", "adventure");
             favoritedShow.Show.Seasons.Should().BeNull();
             favoritedShow.Show.Overview.Should().Be("Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond.");
+            favoritedShow.Show.Tagline.Should().Be("Winter Is Coming");
             favoritedShow.Show.FirstAired.Should().Be(DateTime.Parse("2011-04-17T07:00:00Z").ToUniversalTime());
             favoritedShow.Show.Runtime.Should().Be(60);
             favoritedShow.Show.Certification.Should().Be("TV-MA");
@@ -101,6 +103,7 @@ namespace TraktNet.Objects.Get.Tests.Shows.Implementations
             favoritedShow.Genres.Should().NotBeNull().And.HaveCount(5).And.Contain("drama", "fantasy", "science-fiction", "action", "adventure");
             favoritedShow.Seasons.Should().BeNull();
             favoritedShow.Overview.Should().Be("Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond.");
+            favoritedShow.Tagline.Should().Be("Winter Is Coming");
             favoritedShow.FirstAired.Should().Be(DateTime.Parse("2011-04-17T07:00:00Z").ToUniversalTime());
             favoritedShow.Runtime.Should().Be(60);
             favoritedShow.Certification.Should().Be("TV-MA");
@@ -131,6 +134,7 @@ namespace TraktNet.Objects.Get.Tests.Shows.Implementations
                     ""tvrage"": 24493
                   },
                   ""overview"": ""Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond."",
+                  ""tagline"": ""Winter Is Coming"",
                   ""first_aired"": ""2011-04-17T07:00:00Z"",
                   ""airs"": {
                     ""day"": ""Sunday"",
