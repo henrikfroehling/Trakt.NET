@@ -226,11 +226,13 @@ jobs:
           New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/netstandard2.0'
           New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/net6.0'
           New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/net7.0'
+          New-Item -Type Directory -Force '${{ env.ARTIFACTS_V2_DIRECTORY }}/net8.0'
           Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}' | Where-Object {$_.Fullname -match '[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination ${{ env.ARTIFACTS_V2_DIRECTORY }}
           Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/netstandard2.1' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/netstandard2.1'
           Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/netstandard2.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/netstandard2.0'
           Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net6.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/net6.0'
           Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net7.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/net7.0'
+          Get-ChildItem -Path 'src/libs/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}/net8.0' | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.pdb|Trakt.NET*.deps.json'} | Copy-Item -Destination '${{ env.ARTIFACTS_V2_DIRECTORY }}/net8.0'
 
       - name: Upload artifacts
         if: ${{ github.actor != 'dependabot[bot]' }}
