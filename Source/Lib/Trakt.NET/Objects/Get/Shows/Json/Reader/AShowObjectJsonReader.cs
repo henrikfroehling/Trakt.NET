@@ -46,6 +46,9 @@ namespace TraktNet.Objects.Get.Shows.Json.Reader
                 case JsonProperties.PROPERTY_NAME_OVERVIEW:
                     show.Overview = await jsonReader.ReadAsStringAsync(cancellationToken);
                     break;
+                case JsonProperties.PROPERTY_NAME_TAGLINE:
+                    show.Tagline = await jsonReader.ReadAsStringAsync(cancellationToken);
+                    break;
                 case JsonProperties.PROPERTY_NAME_FIRST_AIRED:
                     {
                         var value = await JsonReaderHelper.ReadDateTimeValueAsync(jsonReader, cancellationToken);
