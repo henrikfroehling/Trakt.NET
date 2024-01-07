@@ -906,5 +906,40 @@ namespace TraktNet.Modules
             },
             cancellationToken);
         }
+
+        /// <summary>
+        /// Update the watchlist by sending 1 or more parameters.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/update-watchlist/update-watchlist">"Trakt API Doc - Sync: Update Watchlist"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="description">Description for the watchlist.</param>
+        /// <param name="sortBy">Sort by value for the watchlist.</param>
+        /// <param name="sortHow">Sort how value for the watchlist.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktList" /> instance, which contains information about the updated watchlist</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktResponse<ITraktList>> UpdateWatchlistAsync(string description, TraktSortBy sortBy = null, TraktSortHow sortHow = null,
+                                                                    CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncWatchlistUpdateRequest
+            {
+                RequestBody = new TraktUpdateListPost
+                {
+                    Description = description,
+                    SortBy = sortBy,
+                    SortHow = sortHow
+                }
+            },
+            cancellationToken);
+        }
     }
 }
