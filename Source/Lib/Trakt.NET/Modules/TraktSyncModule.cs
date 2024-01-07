@@ -4,6 +4,7 @@ namespace TraktNet.Modules
     using Exceptions;
     using Objects.Get.Collections;
     using Objects.Get.History;
+    using Objects.Get.Lists;
     using Objects.Get.Ratings;
     using Objects.Get.Syncs.Activities;
     using Objects.Get.Syncs.Playback;
@@ -14,14 +15,16 @@ namespace TraktNet.Modules
     using Objects.Post.Basic.Responses;
     using Objects.Post.Syncs.Collection;
     using Objects.Post.Syncs.Collection.Responses;
-    using Objects.Post.Syncs.History;
-    using Objects.Post.Syncs.History.Responses;
-    using Objects.Post.Syncs.Ratings;
-    using Objects.Post.Syncs.Ratings.Responses;
     using Objects.Post.Syncs.Favorites;
     using Objects.Post.Syncs.Favorites.Responses;
+    using Objects.Post.Syncs.History;
+    using Objects.Post.Syncs.History.Responses;
+    using Objects.Post.Syncs.Lists;
+    using Objects.Post.Syncs.Ratings;
+    using Objects.Post.Syncs.Ratings.Responses;
     using Objects.Post.Syncs.Watchlist;
     using Objects.Post.Syncs.Watchlist.Responses;
+    using Parameters;
     using PostBuilder;
     using Requests.Handler;
     using Requests.Syncs.OAuth;
@@ -30,7 +33,6 @@ namespace TraktNet.Modules
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to sync.
@@ -694,6 +696,41 @@ namespace TraktNet.Modules
             return requestHandler.ExecuteSingleItemRequestAsync(new SyncFavoritesRemoveRequest
             {
                 RequestBody = favoritesRemovePost
+            },
+            cancellationToken);
+        }
+
+        /// <summary>
+        /// Update the favorites list by sending 1 or more parameters.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/sync/update-favorites/update-favorites">"Trakt API Doc - Sync: Update Favorites"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="description">Description for the favorites list.</param>
+        /// <param name="sortBy">Sort by value for the favorites list.</param>
+        /// <param name="sortHow">Sort how value for the favorites list.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktList" /> instance, which contains information about the updated favorites list</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktPostValidationException">Thrown, if validation of post data fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktResponse<ITraktList>> UpdateFavoritesAsync(string description, TraktSortBy sortBy = null, TraktSortHow sortHow = null,
+                                                                    CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(new SyncFavoritesUpdateRequest
+            {
+                RequestBody = new TraktUpdateListPost
+                {
+                    Description = description,
+                    SortBy = sortBy,
+                    SortHow = sortHow
+                }
             },
             cancellationToken);
         }

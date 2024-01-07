@@ -74,6 +74,8 @@
     using Post.Syncs.History.Json.Factories;
     using Post.Syncs.History.Responses;
     using Post.Syncs.History.Responses.Json.Factories;
+    using Post.Syncs.Lists;
+    using Post.Syncs.Lists.Json.Factories;
     using Post.Syncs.Ratings;
     using Post.Syncs.Ratings.Json.Factories;
     using Post.Syncs.Ratings.Responses;
@@ -363,6 +365,9 @@
             s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostResponse), new SyncHistoryRemovePostResponseJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseGroup), new SyncHistoryRemovePostResponseGroupJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktSyncHistoryRemovePostResponseNotFoundGroup), new SyncHistoryRemovePostResponseNotFoundGroupJsonIOFactory());
+
+            // sync list update post objects
+            s_jsonIOFactories.Add(typeof(ITraktUpdateListPost), new UpdateListPostJsonIOFactory());
 
             // sync ratings post objects
             s_jsonIOFactories.Add(typeof(ITraktSyncRatingsPost), new SyncRatingsPostJsonIOFactory());
