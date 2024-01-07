@@ -924,5 +924,37 @@
                   }
                 }
               ]";
+
+        private const string UPDATED_LIST_JSON =
+            @"{
+                ""name"": ""Favorites"",
+                ""description"": ""These are my favorites!"",
+                ""privacy"": ""public"",
+                ""share_link"": ""https://trakt.tv/lists/2"",
+                ""type"": ""favorites"",
+                ""display_numbers"": false,
+                ""allow_comments"": false,
+                ""sort_by"": ""runtime"",
+                ""sort_how"": ""desc"",
+                ""created_at"": ""2014-10-11T17:00:54.000Z"",
+                ""updated_at"": ""2023-10-11T17:00:54.000Z"",
+                ""item_count"": 5,
+                ""comment_count"": 0,
+                ""likes"": 0,
+                ""ids"": {
+                  ""trakt"": 2,
+                  ""slug"": null
+                },
+                ""user"": {
+                  ""username"": ""sean"",
+                  ""private"": false,
+                  ""name"": ""Sean Rudford"",
+                  ""vip"": true,
+                  ""vip_ep"": false,
+                  ""ids"": {
+                    ""slug"": ""sean""
+                  }
+                }
+              }";
     }
 }
