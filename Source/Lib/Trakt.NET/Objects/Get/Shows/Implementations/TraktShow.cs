@@ -24,6 +24,9 @@
         /// <summary>Gets or sets the synopsis of the show.<para>Nullable</para></summary>
         public string Overview { get; set; }
 
+        /// <summary>Gets or sets the show tagline.<para>Nullable</para></summary>
+        public string Tagline { get; set; }
+
         /// <summary>Gets or sets the UTC datetime when the first episode of the first season of the show was aired.</summary>
         public DateTime? FirstAired { get; set; }
 

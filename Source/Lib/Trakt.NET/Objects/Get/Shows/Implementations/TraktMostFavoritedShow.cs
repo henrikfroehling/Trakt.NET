@@ -66,6 +66,18 @@ namespace TraktNet.Objects.Get.Shows
             }
         }
 
+        /// <summary>Gets or sets the show tagline.<para>Nullable</para></summary>
+        public string Tagline
+        {
+            get { return Show?.Tagline; }
+
+            set
+            {
+                if (Show != null)
+                    Show.Tagline = value;
+            }
+        }
+
         /// <summary>Gets or sets the UTC datetime when the first episode of the first season of the show was aired.</summary>
         public DateTime? FirstAired
         {
