@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Exceptions
+﻿namespace TraktNET
 {
     public sealed class TraktApiLockedUserAccountException(HttpMethod httpMethod, HttpRequestMessage requestMessage,
                                                            string? responseContent, Exception? innerException = null)

@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace TraktNET.Exceptions
+namespace TraktNET
 {
     public partial class TraktApiException
     {

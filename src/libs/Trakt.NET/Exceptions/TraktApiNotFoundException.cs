@@ -1,4 +1,4 @@
-﻿namespace TraktNET.Exceptions
+﻿namespace TraktNET
 {
     public class TraktApiNotFoundException(HttpMethod httpMethod, HttpRequestMessage requestMessage,
                                            string? responseContent, Exception? innerException = null)

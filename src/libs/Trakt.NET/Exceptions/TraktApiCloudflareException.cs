@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace TraktNET.Exceptions
+namespace TraktNET
 {
     public sealed class TraktApiCloudflareException(HttpStatusCode httpStatusCode, HttpMethod httpMethod, HttpRequestMessage requestMessage,
                                                     string? responseContent, Exception? innerException = null)
