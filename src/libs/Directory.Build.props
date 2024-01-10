@@ -4,7 +4,6 @@
   <PropertyGroup>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <NoPackageAnalysis>true</NoPackageAnalysis>
-    <RootNamespace>TraktNet</RootNamespace>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 

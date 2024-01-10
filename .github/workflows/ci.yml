@@ -208,10 +208,12 @@ jobs:
 #          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Restore dependencies
-        run: dotnet restore ${{ env.PROJECT_V2_NAME }}
+        run: dotnet restore
+        working-directory: 'src'
 
       - name: Build solution
-        run: dotnet build  ${{ env.PROJECT_V2_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+        run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+        working-directory: 'src'
 
       - name: Run tests
         run: dotnet test --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
