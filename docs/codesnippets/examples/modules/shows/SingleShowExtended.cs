@@ -1,4 +1,16 @@
+using TraktNet;
 using TraktNet.Parameters;
+
+Console.WriteLine("Please enter your Trakt Client-ID:");
+string clientID = Console.ReadLine();
+
+var client = new TraktClient(clientID);
+
+Console.WriteLine("Enter the Trakt-Id or -Slug of the Show:");
+string showIdOrSlug = Console.ReadLine();
+
+if (string.IsNullOrEmpty(showIdOrSlug))
+    showIdOrSlug = "game-of-thrones"; // Game of Thrones as fallback
 
 try
 {

@@ -1,3 +1,4 @@
+using TraktNet;
 using TraktNet.Exceptions;
 using TraktNet.Objects.Get.Movies;
 using TraktNet.Objects.Get.Shows;
@@ -5,6 +6,17 @@ using TraktNet.Objects.Post.Syncs.Favorites;
 using TraktNet.Objects.Post.Syncs.Favorites.Responses;
 using TraktNet.PostBuilder;
 using TraktNet.Responses;
+
+Console.WriteLine("Please enter your Trakt Client-ID:");
+string clientID = Console.ReadLine();
+
+Console.WriteLine("Please enter your Trakt Client-Secret:");
+string clientSecret = Console.ReadLine();
+
+var client = new TraktClient(clientID, clientSecret);
+
+// For this example we do not want to manipulate the production API
+client.Configuration.UseSandboxEnvironment = true;
 
 try
 {
