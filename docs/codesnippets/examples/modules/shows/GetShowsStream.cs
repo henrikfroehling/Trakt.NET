@@ -1,8 +1,27 @@
+using TraktNet;
 using TraktNet.Exceptions;
-using TraktNet.Modules;
 using TraktNet.Objects.Get.Shows;
 using TraktNet.Parameters;
 using TraktNet.Responses;
+
+Console.WriteLine("Please enter your Trakt Client-ID:");
+string clientID = Console.ReadLine();
+
+var client = new TraktClient(clientID);
+
+Console.WriteLine("Enter the Trakt-Id or -Slug of Show 1:");
+string showIdOrSlug1 = Console.ReadLine();
+
+Console.WriteLine("Enter the Trakt-Id or -Slug of Show 2:");
+string showIdOrSlug2 = Console.ReadLine();
+
+Console.WriteLine("Enter the Trakt-Id or -Slug of Show 3:");
+string showIdOrSlug3 = Console.ReadLine();
+
+// Default fallback slugs.
+showIdOrSlug1 = string.IsNullOrEmpty(showIdOrSlug1) ? "game-of-thrones" : showIdOrSlug1;
+showIdOrSlug2 = string.IsNullOrEmpty(showIdOrSlug2) ? "mr-robot" : showIdOrSlug2;
+showIdOrSlug3 = string.IsNullOrEmpty(showIdOrSlug3) ? "breaking-bad" : showIdOrSlug3;
 
 try
 {

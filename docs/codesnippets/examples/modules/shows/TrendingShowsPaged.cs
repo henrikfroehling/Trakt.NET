@@ -1,5 +1,15 @@
-try
-{
+using TraktNet;
+using TraktNet.Exceptions;
+using TraktNet.Objects.Get.Shows;
+using TraktNet.Parameters;
+using TraktNet.Responses;
+
+Console.WriteLine("Please enter your Trakt Client-ID:");
+string clientID = Console.ReadLine();
+
+var client = new TraktClient(clientID);
+
+try {
     var pagedParameters = new TraktPagedParameters { Page = 2 };
 
     TraktPagedResponse<ITraktTrendingShow> trendingShowsResponse = await client.Shows.GetTrendingShowsAsync(
@@ -7,13 +17,10 @@ try
         pagedParameters: pagedParameters
     );
 
-    foreach (ITraktTrendingShow trendingShow in trendingShowsResponse)
-    {
+    foreach (ITraktTrendingShow trendingShow in trendingShowsResponse) {
         Console.WriteLine($"Watchers: {trendingShow.Watchers}, Title: {trendingShow.Title}, Year: {trendingShow.Year}, Rating: {trendingShow.Rating}");
     }
-}
-catch (TraktException ex)
-{
+} catch (TraktException ex) {
     Console.WriteLine("-------------- Trakt Exception --------------");
     Console.WriteLine($"Exception message: {ex.Message}");
     Console.WriteLine($"Status code: {ex.StatusCode}");
