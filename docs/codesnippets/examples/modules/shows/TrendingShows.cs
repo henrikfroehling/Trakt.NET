@@ -1,6 +1,12 @@
+using TraktNet;
 using TraktNet.Exceptions;
 using TraktNet.Parameters;
 using TraktNet.Responses;
+
+Console.WriteLine("Please enter your Trakt Client-ID:");
+string clientID = Console.ReadLine();
+
+var client = new TraktClient(clientID);
 
 try
 {

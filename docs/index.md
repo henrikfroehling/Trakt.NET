@@ -40,10 +40,12 @@ catch (TraktException ex)
 
 #### Output:
 
-```json
+```ps
 Title: The Last of Us
 Year: 2023
+```
 
+```json
 {
     "title": "The Last of Us",
     "year": 2023,
