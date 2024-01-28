@@ -3,7 +3,7 @@
     public class TraktApiAuthorizationExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiAuthorizationException()
+        public void TestTraktApiAuthorizationExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.Unauthorized, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

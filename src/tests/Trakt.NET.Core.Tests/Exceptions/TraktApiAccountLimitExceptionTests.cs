@@ -3,7 +3,7 @@
     public class TraktApiAccountLimitExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiAccountLimitException()
+        public void TestTraktApiAccountLimitExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.AccountLimitExceeded, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

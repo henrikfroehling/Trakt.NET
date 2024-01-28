@@ -3,7 +3,7 @@
     public class TraktApiVIPValidationExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiVIPValidationException()
+        public void TestTraktApiVIPValidationExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.VIPOnly, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

@@ -3,7 +3,7 @@
     public class TraktApiForbiddenExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiForbiddenException()
+        public void TestTraktApiForbiddenExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.Forbidden, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

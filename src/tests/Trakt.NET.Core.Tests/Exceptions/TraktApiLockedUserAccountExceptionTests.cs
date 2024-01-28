@@ -3,7 +3,7 @@
     public class TraktApiLockedUserAccountExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiLockedUserAccountException()
+        public void TestTraktApiLockedUserAccountExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.LockedUserAccount, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

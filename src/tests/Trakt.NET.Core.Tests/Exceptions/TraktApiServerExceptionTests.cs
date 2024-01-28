@@ -3,7 +3,7 @@
     public class TraktApiServerExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiServerException()
+        public void TestTraktApiServerExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.ServerError, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

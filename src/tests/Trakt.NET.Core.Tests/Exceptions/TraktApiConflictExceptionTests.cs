@@ -3,7 +3,7 @@
     public class TraktApiConflictExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiConflictException()
+        public void TestTraktApiConflictExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.Conflict, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

@@ -3,7 +3,7 @@
     public class TraktApiGatewayTimeoutExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiGatewayTimeoutException()
+        public void TestTraktApiGatewayTimeoutExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.ServiceUnavailableGatewayTimeout, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

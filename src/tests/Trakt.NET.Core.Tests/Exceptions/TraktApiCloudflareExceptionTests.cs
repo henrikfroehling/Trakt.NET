@@ -3,7 +3,7 @@
     public class TraktApiCloudflareExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiCloudflareExceptionCode520()
+        public void TestTraktApiCloudflareExceptionCode520Create()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.ServiceUnavailableCloudflareError520, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");
@@ -18,7 +18,7 @@
         }
 
         [Fact]
-        public void TestCreateTraktApiCloudflareExceptionCode521()
+        public void TestTraktApiCloudflareExceptionCode521Create()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.ServiceUnavailableCloudflareError521, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");
@@ -33,7 +33,7 @@
         }
 
         [Fact]
-        public void TestCreateTraktApiCloudflareExceptionCode522()
+        public void TestTraktApiCloudflareExceptionCode522Create()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.ServiceUnavailableCloudflareError522, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

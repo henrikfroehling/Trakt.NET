@@ -3,7 +3,7 @@
     public class TraktApiMethodNotFoundExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiMethodNotFoundException()
+        public void TestTraktApiMethodNotFoundExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.MethodNotFound, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

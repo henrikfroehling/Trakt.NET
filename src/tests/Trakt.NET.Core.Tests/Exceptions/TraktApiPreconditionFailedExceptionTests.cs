@@ -3,7 +3,7 @@
     public class TraktApiPreconditionFailedExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiPreconditionFailedException()
+        public void TestTraktApiPreconditionFailedExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.PreconditionFailed, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

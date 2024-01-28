@@ -4,11 +4,18 @@ namespace TraktNET
 {
     internal static class Constants
     {
-        internal const string APIBaseURL = "https://api.trakt.tv/";
+        internal static class API
+        {
+            internal const string BaseURL = "https://api.trakt.tv/";
 
-        internal const string APIStagingBaseURL = "https://api-staging.trakt.tv/";
+            internal const string StagingBaseURL = "https://api-staging.trakt.tv/";
 
-        internal const int API_VERSION = 2;
+            internal const string BaseAuthorizationURL = "https://trakt.tv/";
+
+            internal const string StagingBaseAuthorizationURL = "https://staging.trakt.tv/";
+
+            internal const int Version = 2;
+        }
 
         internal static class StatusCodes
         {

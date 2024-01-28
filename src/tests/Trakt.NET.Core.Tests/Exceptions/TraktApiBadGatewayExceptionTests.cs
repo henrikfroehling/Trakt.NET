@@ -3,7 +3,7 @@
     public class TraktApiBadGatewayExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiBadGatewayException()
+        public void TestTraktApiBadGatewayExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.ServiceUnavailableBadGateway, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

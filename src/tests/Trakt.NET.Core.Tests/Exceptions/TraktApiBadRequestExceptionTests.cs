@@ -3,7 +3,7 @@
     public class TraktApiBadRequestExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiBadRequestException()
+        public void TestTraktApiBadRequestExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.BadRequest, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

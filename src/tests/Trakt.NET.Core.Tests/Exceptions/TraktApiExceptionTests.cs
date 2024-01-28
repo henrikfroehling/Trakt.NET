@@ -3,7 +3,7 @@
     public class TraktApiExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiException()
+        public void TestTraktApiExceptionCreate()
         {
             // Test with a random unused status code
             var exception = TraktApiException.Create(System.Net.HttpStatusCode.UnavailableForLegalReasons, HttpMethod.Get,

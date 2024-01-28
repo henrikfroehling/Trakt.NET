@@ -3,7 +3,7 @@
     public class TraktApiServerUnavailableExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiServerUnavailableException()
+        public void TestTraktApiServerUnavailableExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.ServiceUnavailable, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

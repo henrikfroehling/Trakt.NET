@@ -3,7 +3,7 @@
     public class TraktApiRateLimitExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiRateLimitException()
+        public void TestTraktApiRateLimitExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.RateLimitExceeded, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");

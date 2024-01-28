@@ -3,7 +3,7 @@
     public class TraktApiValidationExceptionTests
     {
         [Fact]
-        public void TestCreateTraktApiValidationException()
+        public void TestTraktApiValidationExceptionCreate()
         {
             var exception = TraktApiException.Create(Constants.StatusCodes.UnprocessableEntity, HttpMethod.Get,
                                                      new HttpRequestMessage(), "response content");
