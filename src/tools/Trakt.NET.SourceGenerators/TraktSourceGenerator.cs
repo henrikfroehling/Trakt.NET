@@ -11,18 +11,18 @@ namespace TraktNET.SourceGenerators
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
-            context.RegisterPostInitializationOutput(ctx => ctx.AddSource(Constants.GeneratedSmartEnumAttributeFilename,
-                SourceText.From(Constants.SmartEnumAttribute, Encoding.UTF8)));
+            context.RegisterPostInitializationOutput(ctx => ctx.AddSource(Constants.GeneratedTraktEnumAttributeFilename,
+                SourceText.From(Constants.TraktEnumAttribute, Encoding.UTF8)));
 
             IncrementalValuesProvider<TraktEnumToGenerate?> enumValuesProvider = context.SyntaxProvider
                 .ForAttributeWithMetadataName(
-                    Constants.FullTraktSmartEnumAttributeName,
+                    Constants.FullTraktEnumAttributeName,
                     predicate: static (syntaxNode, _) => syntaxNode is EnumDeclarationSyntax,
                     transform: GetEnumTypeToGenerate
                 )
-                .WithTrackingName("InitialEnumExtraction")
+                .WithTrackingName(Constants.TrackingNames.InitialEnumExtraction)
                 .Where(static syntaxNode => syntaxNode is not null)
-                .WithTrackingName("NullFilteredEnums");
+                .WithTrackingName(Constants.TrackingNames.NullFilteredEnums);
 
             IncrementalValueProvider<(Compilation Left, ImmutableArray<TraktEnumToGenerate?> Right)> compilation =
                 context.CompilationProvider.Combine(enumValuesProvider.Collect());
@@ -38,10 +38,6 @@ namespace TraktNET.SourceGenerators
             cancellationToken.ThrowIfCancellationRequested();
 
             string enumExtensionName = enumSymbol.Name + "Extensions";
-            string namespaceName = enumSymbol.ContainingNamespace.IsGlobalNamespace ? string.Empty : enumSymbol.ContainingNamespace.ToString();
-            string fullyQualifiedName = enumSymbol.ToString();
-            string underlyingType = enumSymbol.EnumUnderlyingType?.ToString() ?? "int";
-
             ImmutableArray<ISymbol> enumMembers = enumSymbol.GetMembers();
             var members = new List<string>(enumMembers.Length);
 
@@ -53,7 +49,7 @@ namespace TraktNET.SourceGenerators
                 members.Add(member.Name);
             }
 
-            return new TraktEnumToGenerate(enumSymbol.Name, enumExtensionName, fullyQualifiedName, members);
+            return new TraktEnumToGenerate(enumSymbol.Name, enumExtensionName, members);
         }
 
         private static void Execute(SourceProductionContext context, (Compilation Left, ImmutableArray<TraktEnumToGenerate?> Right) tuple)
@@ -68,7 +64,7 @@ namespace TraktNET.SourceGenerators
                 {
                     string enumExtensionContent = SourceGenerationHelper.GenerateEnumExtensionClass(stringBuilder, in enumToBeGenerated);
 
-                    context.AddSource(enumToGenerate.Value.Name + Constants.GeneratedSmartEnumFileExtension,
+                    context.AddSource(enumToGenerate.Value.Name + Constants.GeneratedTraktEnumFileExtension,
                         SourceText.From(enumExtensionContent, Encoding.UTF8));
                 }
             }

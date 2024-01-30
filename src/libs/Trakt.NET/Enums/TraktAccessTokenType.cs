@@ -2,7 +2,7 @@
 
 namespace TraktNET
 {
-    [TraktSmartEnum]
+    [TraktEnum]
     public enum TraktAccessTokenType
     {
         Unspecified,
