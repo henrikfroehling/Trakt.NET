@@ -88,7 +88,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{12789CC6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0BCCCEE2-F3F0-41AF-855E-0671CC966898}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Core.Tests", "tests\Trakt.NET.Core.Tests\Trakt.NET.Core.Tests.csproj", "{BDB5D945-5E7D-43B2-B95C-93CF115EE252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Core.Tests", "tests\Trakt.NET.Core.Tests\Trakt.NET.Core.Tests.csproj", "{BDB5D945-5E7D-43B2-B95C-93CF115EE252}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{AEDBA600-CDF3-4DDD-8506-AA04C49884E2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.SourceGenerators", "tools\Trakt.NET.SourceGenerators\Trakt.NET.SourceGenerators.csproj", "{8CD99D13-25D1-4920-B629-843D2470669A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{F9B8AD43-FEDA-408C-B843-1D1A03ED827E}"
+	ProjectSection(SolutionItems) = preProject
+		tools\Directory.Build.props = tools\Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -104,6 +113,10 @@ Global
 		{BDB5D945-5E7D-43B2-B95C-93CF115EE252}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDB5D945-5E7D-43B2-B95C-93CF115EE252}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDB5D945-5E7D-43B2-B95C-93CF115EE252}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CD99D13-25D1-4920-B629-843D2470669A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CD99D13-25D1-4920-B629-843D2470669A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CD99D13-25D1-4920-B629-843D2470669A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CD99D13-25D1-4920-B629-843D2470669A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +137,8 @@ Global
 		{377A7F6A-A4B9-45F6-AB2A-492F0E1F71AD} = {3DC8C555-C99D-4991-B74A-C75E966703DB}
 		{12789CC6-7A48-4C0C-9E4E-3DCF6F2056B9} = {3DC8C555-C99D-4991-B74A-C75E966703DB}
 		{BDB5D945-5E7D-43B2-B95C-93CF115EE252} = {0BCCCEE2-F3F0-41AF-855E-0671CC966898}
+		{8CD99D13-25D1-4920-B629-843D2470669A} = {AEDBA600-CDF3-4DDD-8506-AA04C49884E2}
+		{F9B8AD43-FEDA-408C-B843-1D1A03ED827E} = {3DC8C555-C99D-4991-B74A-C75E966703DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7025A39E-11A6-4587-98F7-E887B941D5A0}

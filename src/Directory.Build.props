@@ -4,7 +4,7 @@
     <IsTestUtilityProject>$(MSBuildProjectName.EndsWith('Tests.Utility'))</IsTestUtilityProject>
 
     <NoWarn>1701;1702;1705;1591</NoWarn>
-    <Copyright>Copyright (c) 2016 - Current Henrik Fröhling and Contributors</Copyright>
+    <Copyright>Copyright (c) 2016 - now | Henrik Fröhling and Contributors</Copyright>
 
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
