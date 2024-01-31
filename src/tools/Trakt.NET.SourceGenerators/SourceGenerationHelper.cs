@@ -10,6 +10,9 @@ namespace TraktNET.SourceGenerators
             stringBuilder.Clear();
             stringBuilder.Append(Constants.Header);
             stringBuilder.Append(@"
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace TraktNET
 {
     /// <summary>Extension methods for <see cref=""").Append(enumToGenerate.Name).Append(@""" />.</summary>
@@ -101,6 +104,30 @@ namespace TraktNET
 
             stringBuilder.Append(@"
             };");
+
+            stringBuilder.Append(@"
+    }
+
+");
+            stringBuilder.Append(Constants.ExcludeCodeCoverage);
+            stringBuilder.Append(@"
+    public sealed class ").Append(enumToGenerate.Name).Append("JsonConverter : JsonConverter<").Append(enumToGenerate.Name).Append(@"?>
+    {");
+
+            stringBuilder.Append(@"
+        public override ").Append(enumToGenerate.Name).Append(@"? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            if (reader.TokenType == JsonTokenType.String)
+            {
+                string? enumValue = reader.GetString();
+                return enumValue.To").Append(enumToGenerate.Name).Append(@"();
+            }
+
+            throw new JsonException($""The JSON value could not be converted to {nameof(").Append(enumToGenerate.Name).Append(@")}."");
+        }
+
+        public override void Write(Utf8JsonWriter writer, ").Append(enumToGenerate.Name).Append(@"? value, JsonSerializerOptions options)
+            => writer.WriteStringValue(value.ToJson());");
 
             stringBuilder.Append(@"
     }
