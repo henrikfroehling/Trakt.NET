@@ -109,6 +109,10 @@ namespace TraktNET
     }
 
 ");
+
+            stringBuilder.Append(@"
+    /// <summary>JSON converter for <see cref=""").Append(enumToGenerate.Name).Append(@""" />.</summary>
+");
             stringBuilder.Append(Constants.ExcludeCodeCoverage);
             stringBuilder.Append(@"
     public sealed class ").Append(enumToGenerate.Name).Append("JsonConverter : JsonConverter<").Append(enumToGenerate.Name).Append(@"?>

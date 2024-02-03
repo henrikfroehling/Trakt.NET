@@ -21,7 +21,8 @@
         internal const string TraktEnumAttribute = Header + @"
 namespace TraktNET.SourceGenerators
 {
-    " + ExcludeCodeCoverage + @"
+    /// <summary>Provides extension methods and a Json converter for an enum.</summary>
+" + ExcludeCodeCoverage + @"
     [global::System.AttributeUsage(global::System.AttributeTargets.Enum)]
     public sealed class TraktEnumAttribute : global::System.Attribute
     {
