@@ -3,12 +3,18 @@ name: Dependabot auto-approve
 on: pull_request
 
 jobs:
-  auto-approve:
+  dependabot-auto-approve:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    if: github.actor == 'dependabot[bot]'
     steps:
-      - uses: hmarr/auto-approve-action@v4
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1
         with:
-          github-token: ${{ secrets.PR_APPROVAL }}
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Enable auto-merge for Dependabot PRs
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{ secrets.PR_APPROVAL }}
