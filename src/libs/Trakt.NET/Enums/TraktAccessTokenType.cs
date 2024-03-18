@@ -4,7 +4,7 @@ using TraktNET.SourceGenerators;
 namespace TraktNET
 {
     [TraktEnum]
-    [JsonConverter(typeof(TraktAccessScopeJsonConverter))]
+    [JsonConverter(typeof(TraktAccessTokenTypeJsonConverter))]
     public enum TraktAccessTokenType
     {
         Unspecified,

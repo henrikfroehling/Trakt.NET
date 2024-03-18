@@ -1,5 +1,6 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace TraktNET.SourceGenerators
 {
@@ -45,7 +46,7 @@ namespace TraktNET
                 {
                     stringBuilder.Append(@"
                 ").Append(enumToGenerate.Name).Append('.').Append(member)
-                    .Append(" => ").Append('"').Append(member.ToLower(CultureInfo.InvariantCulture)).Append(@""",");
+                    .Append(" => ").Append('"').Append(member.ToLowercaseNamingConvention()).Append(@""",");
                 }
             }
 
@@ -68,13 +69,10 @@ namespace TraktNET
             foreach (string member in enumToGenerate.Values)
             {
                 stringBuilder.Append(@"
-                ").Append($"\"{member.ToLower(CultureInfo.InvariantCulture)}\" => {enumToGenerate.Name}.{member},");
+                ").Append($"\"{member.ToLowercaseNamingConvention()}\" => {enumToGenerate.Name}.{member},");
 
                 stringBuilder.Append(@"
-                ").Append($"\"{member.ToUpper(CultureInfo.InvariantCulture)}\" => {enumToGenerate.Name}.{member},");
-
-                stringBuilder.Append(@"
-                ").Append($"\"{member}\" => {enumToGenerate.Name}.{member},");
+                ").Append($"\"{member.ToLowercaseNamingConvention().ToUpperInvariant()}\" => {enumToGenerate.Name}.{member},");
             }
 
             stringBuilder.Append(@"
@@ -96,7 +94,7 @@ namespace TraktNET
             foreach (string member in enumToGenerate.Values)
             {
                 stringBuilder.Append(@"
-                ").Append(enumToGenerate.Name).Append('.').Append(member).Append(" => ").Append('"').Append(member).Append(@""",");
+                ").Append(enumToGenerate.Name).Append('.').Append(member).Append(" => ").Append('"').Append(member.ToDisplayName()).Append(@""",");
             }
 
             stringBuilder.Append(@"
@@ -107,7 +105,6 @@ namespace TraktNET
 
             stringBuilder.Append(@"
     }
-
 ");
 
             stringBuilder.Append(@"
@@ -140,5 +137,12 @@ namespace TraktNET
 
             return stringBuilder.ToString();
         }
+
+        internal static string ToLowercaseNamingConvention(this string value) => CapitalLetter.Replace(value, "_").ToLowerInvariant();
+
+        internal static string ToDisplayName(this string value) => CapitalLetter.Replace(value, " ");
+
+        private static readonly Regex CapitalLetter = new(@"(?<=[A-Z])(?=[A-Z][a-z]) | (?<=[^A-Z])(?=[A-Z]) | (?<=[A-Za-z])(?=[^A-Za-z])",
+                                                          RegexOptions.IgnorePatternWhitespace);
     }
 }
