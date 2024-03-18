@@ -99,6 +99,12 @@
                 await jsonWriter.WriteValueAsync(obj.CommentCount, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.EpisodeType != null)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODE_TYPE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.EpisodeType.ObjectName, cancellationToken).ConfigureAwait(false);
+            }
+
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);
         }
     }
