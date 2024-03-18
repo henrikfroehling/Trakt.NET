@@ -66,6 +66,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_EDITING = "editing";
         internal const string PROPERTY_NAME_EPISODE = "episode";
         internal const string PROPERTY_NAME_EPISODE_COUNT = "episode_count";
+        internal const string PROPERTY_NAME_EPISODE_TYPE = "episode_type";
         internal const string PROPERTY_NAME_EPISODES = "episodes";
         internal const string PROPERTY_NAME_ERROR = "error";
         internal const string PROPERTY_NAME_ERROR_DESCRIPTION = "error_description";
