@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Episodes
 {
+    using Enums;
     using Get.Seasons;
     using Modules;
     using System;
@@ -66,5 +67,8 @@
 
         /// <summary>Gets or sets the comment count of the episode.<para>Nullable</para></summary>
         int? CommentCount { get; set; }
+
+        /// <summary>Gets or sets the episode type. See also <seealso cref="TraktEpisodeType" />.<para>Nullable</para></summary>
+        TraktEpisodeType EpisodeType { get; set; }
     }
 }
