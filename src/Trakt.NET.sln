@@ -101,22 +101,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{F9B8AD43
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frameworks", "frameworks", "{4DE4B89E-B794-47B3-AC99-F9EBC64E635C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Framework.NET8", "tests\frameworks\Trakt.NET.Framework.NET8\Trakt.NET.Framework.NET8.csproj", "{52C63B3B-A8A8-41F3-9092-ED13D13B3598}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Framework.NET8", "tests\frameworks\Trakt.NET.Framework.NET8\Trakt.NET.Framework.NET8.csproj", "{52C63B3B-A8A8-41F3-9092-ED13D13B3598}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frameworks", "frameworks", "{74374985-BB3F-4CBF-8EB1-FCE266BCB0B0}"
 	ProjectSection(SolutionItems) = preProject
 		tests\frameworks\Directory.Build.props = tests\frameworks\Directory.Build.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Framework.NET7", "tests\frameworks\Trakt.NET.Framework.NET7\Trakt.NET.Framework.NET7.csproj", "{89CFFACB-C7CA-403D-A423-5EEEF032F2AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Framework.NET7", "tests\frameworks\Trakt.NET.Framework.NET7\Trakt.NET.Framework.NET7.csproj", "{89CFFACB-C7CA-403D-A423-5EEEF032F2AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Framework.NET6", "tests\frameworks\Trakt.NET.Framework.NET6\Trakt.NET.Framework.NET6.csproj", "{B5A6A418-B7E8-4CF7-8C6D-BAA64EBC19B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Framework.NET6", "tests\frameworks\Trakt.NET.Framework.NET6\Trakt.NET.Framework.NET6.csproj", "{B5A6A418-B7E8-4CF7-8C6D-BAA64EBC19B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Framework.NET5", "tests\frameworks\Trakt.NET.Framework.NET5\Trakt.NET.Framework.NET5.csproj", "{849A0ADA-6722-4FB1-9C36-236ADE620D76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Framework.NET5", "tests\frameworks\Trakt.NET.Framework.NET5\Trakt.NET.Framework.NET5.csproj", "{849A0ADA-6722-4FB1-9C36-236ADE620D76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Framework.NETStandard2.0", "tests\frameworks\Trakt.NET.Framework.NETStandard2.0\Trakt.NET.Framework.NETStandard2.0.csproj", "{182135AB-A02B-41C2-94B2-D977AB29753F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Framework.NETStandard2.0", "tests\frameworks\Trakt.NET.Framework.NETStandard2.0\Trakt.NET.Framework.NETStandard2.0.csproj", "{182135AB-A02B-41C2-94B2-D977AB29753F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Framework.NETStandard2.1", "tests\frameworks\Trakt.NET.Framework.NETStandard2.1\Trakt.NET.Framework.NETStandard2.1.csproj", "{CCC3FA9E-8E2B-4DDF-9357-9C7E3E1D8896}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trakt.NET.Framework.NETStandard2.1", "tests\frameworks\Trakt.NET.Framework.NETStandard2.1\Trakt.NET.Framework.NETStandard2.1.csproj", "{CCC3FA9E-8E2B-4DDF-9357-9C7E3E1D8896}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Framework.NETFramework4.8.1", "tests\frameworks\Trakt.NET.Framework.NETFramework4.8.1\Trakt.NET.Framework.NETFramework4.8.1.csproj", "{02DE482F-023E-455B-B2E2-D2906F6B1347}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trakt.NET.Framework.NETFramework4.7.2", "tests\frameworks\Trakt.NET.Framework.NETFramework4.7.2\Trakt.NET.Framework.NETFramework4.7.2.csproj", "{3A0964B3-1C6D-4349-81C8-8C4CC6C26328}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -160,6 +164,14 @@ Global
 		{CCC3FA9E-8E2B-4DDF-9357-9C7E3E1D8896}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCC3FA9E-8E2B-4DDF-9357-9C7E3E1D8896}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCC3FA9E-8E2B-4DDF-9357-9C7E3E1D8896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02DE482F-023E-455B-B2E2-D2906F6B1347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02DE482F-023E-455B-B2E2-D2906F6B1347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02DE482F-023E-455B-B2E2-D2906F6B1347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02DE482F-023E-455B-B2E2-D2906F6B1347}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A0964B3-1C6D-4349-81C8-8C4CC6C26328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A0964B3-1C6D-4349-81C8-8C4CC6C26328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A0964B3-1C6D-4349-81C8-8C4CC6C26328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A0964B3-1C6D-4349-81C8-8C4CC6C26328}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -190,6 +202,8 @@ Global
 		{849A0ADA-6722-4FB1-9C36-236ADE620D76} = {4DE4B89E-B794-47B3-AC99-F9EBC64E635C}
 		{182135AB-A02B-41C2-94B2-D977AB29753F} = {4DE4B89E-B794-47B3-AC99-F9EBC64E635C}
 		{CCC3FA9E-8E2B-4DDF-9357-9C7E3E1D8896} = {4DE4B89E-B794-47B3-AC99-F9EBC64E635C}
+		{02DE482F-023E-455B-B2E2-D2906F6B1347} = {4DE4B89E-B794-47B3-AC99-F9EBC64E635C}
+		{3A0964B3-1C6D-4349-81C8-8C4CC6C26328} = {4DE4B89E-B794-47B3-AC99-F9EBC64E635C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7025A39E-11A6-4587-98F7-E887B941D5A0}
