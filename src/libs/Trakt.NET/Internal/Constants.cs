@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text.Json;
 
 namespace TraktNET
 {
@@ -74,6 +75,15 @@ namespace TraktNET
             internal const HttpStatusCode ServiceUnavailableCloudflareError521 = (HttpStatusCode)521;
 
             internal const HttpStatusCode ServiceUnavailableCloudflareError522 = (HttpStatusCode)522;
+        }
+
+        internal static class Json
+        {
+#if NET8_0_OR_GREATER
+            internal static readonly JsonNamingPolicy NamingPolicy = JsonNamingPolicy.SnakeCaseLower;
+#else
+            internal static readonly JsonNamingPolicy NamingPolicy = new LowerSnakeCaseJsonNamingPolicy();
+#endif
         }
     }
 }

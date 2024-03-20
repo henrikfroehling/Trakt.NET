@@ -16,13 +16,13 @@
         }
 
         internal static void ThrowIfNull(object? argument)
-        {
 #if NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0
+        {
             if (argument == null)
                 throw new ArgumentNullException(nameof(argument));
-#else
-            ArgumentNullException.ThrowIfNull(argument);
-#endif
         }
+#else
+            => ArgumentNullException.ThrowIfNull(argument);
+#endif
     }
 }
