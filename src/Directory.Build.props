@@ -13,6 +13,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>TraktNET</RootNamespace>
     <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <WarningLevel>7</WarningLevel>
   </PropertyGroup>
 

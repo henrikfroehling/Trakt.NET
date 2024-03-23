@@ -15,8 +15,8 @@
         public TraktContext(string contextID, string clientID, string clientSecret)
         {
             ArgumentValidator.ThrowIfNullOrWhiteSpace(contextID, "invalid context id");
-            ArgumentValidator.ThrowIfNullOrWhiteSpace(clientID, "invalid client id", true);
-            ArgumentValidator.ThrowIfNullOrWhiteSpace(clientSecret, "invalid client secret", true);
+            ArgumentValidator.ThrowIfNullOrWhiteSpace(clientID, "invalid client id", checkSpaces: true);
+            ArgumentValidator.ThrowIfNullOrWhiteSpace(clientSecret, "invalid client secret", checkSpaces: true);
 
             ID = contextID;
             ClientID = clientID;
