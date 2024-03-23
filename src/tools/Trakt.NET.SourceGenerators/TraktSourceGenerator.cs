@@ -14,6 +14,9 @@ namespace TraktNET.SourceGenerators
             context.RegisterPostInitializationOutput(ctx => ctx.AddSource(Constants.GeneratedTraktEnumAttributeFilename,
                 SourceText.From(Constants.TraktEnumAttribute, Encoding.UTF8)));
 
+            context.RegisterPostInitializationOutput(ctx => ctx.AddSource(Constants.GeneratedTraktEnumMemberJsonValueAttributeFilename,
+                SourceText.From(Constants.TraktEnumMemberJsonValueAttribute, Encoding.UTF8)));
+
             IncrementalValuesProvider<TraktEnumToGenerate?> enumValuesProvider = context.SyntaxProvider
                 .ForAttributeWithMetadataName(
                     Constants.FullTraktEnumAttributeName,
@@ -39,14 +42,39 @@ namespace TraktNET.SourceGenerators
 
             string enumExtensionName = enumSymbol.Name + "Extensions";
             ImmutableArray<ISymbol> enumMembers = enumSymbol.GetMembers();
-            var members = new List<string>(enumMembers.Length);
+            var members = new List<TraktEnumMemberToGenerate>(enumMembers.Length);
 
             foreach (ISymbol member in enumMembers)
             {
                 if (member is not IFieldSymbol field || field.ConstantValue is null)
                     continue;
 
-                members.Add(member.Name);
+                bool hasAttribute = false;
+                string? jsonValue = string.Empty;
+                string? displayName = string.Empty;
+
+                AttributeData? attribute = field.GetAttributes()
+                    .FirstOrDefault(attr => attr?.AttributeClass?.ToDisplayString() == Constants.FullTraktEnumMemberJsonValueAttributeName);
+
+                if (attribute != null)
+                {
+                    hasAttribute = true;
+
+                    ImmutableArray<TypedConstant> constructorArguments = attribute.ConstructorArguments;
+                    jsonValue = constructorArguments[0].Value as string;
+
+                    var namedArguments = attribute.NamedArguments.ToImmutableDictionary();
+
+                    if (namedArguments.TryGetValue(Constants.TraktEnumMemberJsonValuePropertyDisplayName, out TypedConstant displayNameConstant))
+                    {
+                        if (!displayNameConstant.IsNull)
+                        {
+                            displayName = displayNameConstant.Value as string;
+                        }
+                    }
+                }
+
+                members.Add(new TraktEnumMemberToGenerate(field.Name, hasAttribute, jsonValue!, displayName!));
             }
 
             return new TraktEnumToGenerate(enumSymbol.Name, enumExtensionName, members);

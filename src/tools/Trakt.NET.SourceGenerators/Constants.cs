@@ -23,20 +23,49 @@ namespace TraktNET.SourceGenerators
 {
     /// <summary>Provides extension methods and a Json converter for an enum.</summary>
 " + ExcludeCodeCoverage + @"
-    [global::System.AttributeUsage(global::System.AttributeTargets.Enum)]
+    [global::System.AttributeUsage(global::System.AttributeTargets.Enum, AllowMultiple = false, Inherited = false)]
     public sealed class TraktEnumAttribute : global::System.Attribute
     {
     }
 }
 ";
 
+        internal const string TraktEnumMemberJsonValuePropertyDisplayName = "DisplayName";
+
+        internal const string TraktEnumMemberJsonValueAttribute = Header + @"
+namespace TraktNET.SourceGenerators
+{
+    /// <summary>Provides a custom Json value and optional display name for an enum member.</summary>
+" + ExcludeCodeCoverage + @"
+    [global::System.AttributeUsage(global::System.AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
+    public sealed class TraktEnumMemberJsonValueAttribute : global::System.Attribute
+    {
+        private string _jsonValue;
+
+        public TraktEnumMemberJsonValueAttribute(string jsonValue)
+        {
+            _jsonValue = jsonValue;
+        }
+
+        public string JsonValue => _jsonValue;
+        public string? " + TraktEnumMemberJsonValuePropertyDisplayName + @" { get; set; }
+    }
+}
+";
+
         internal const string FullTraktEnumAttributeName = "TraktNET.SourceGenerators.TraktEnumAttribute";
 
+        internal const string FullTraktEnumMemberJsonValueAttributeName = "TraktNET.SourceGenerators.TraktEnumMemberJsonValueAttribute";
+
         internal const string GeneratedTraktEnumAttributeFilename = "TraktEnumAttribute.g.cs";
+
+        internal const string GeneratedTraktEnumMemberJsonValueAttributeFilename = "TraktEnumMemberJsonValueAttribute.g.cs";
 
         internal const string GeneratedTraktEnumFileExtension = "EnumExtensions.g.cs";
 
         internal const string TraktEnumAttributeName = "TraktEnumAttribute";
+
+        internal const string TraktEnumMemberJsonValueAttributeName = "TraktEnumMemberJsonValueAttribute";
 
         internal static class TrackingNames
         {

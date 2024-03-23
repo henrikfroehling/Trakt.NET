@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -9,6 +8,7 @@ namespace TraktNET.SourceGenerators
         internal static string GenerateEnumExtensionClass(StringBuilder stringBuilder, in TraktEnumToGenerate enumToGenerate)
         {
             stringBuilder.Clear();
+
             stringBuilder.Append(Constants.Header);
             stringBuilder.Append(@"
 using System.Text.Json;
@@ -34,19 +34,25 @@ namespace TraktNET
             => value switch
             {");
 
-            foreach (string member in enumToGenerate.Values)
+            foreach (TraktEnumMemberToGenerate member in enumToGenerate.Values)
             {
-                if (member == "Unspecified")
+                if (member.Name == "Unspecified")
                 {
                     stringBuilder.Append(@"
-                ").Append(enumToGenerate.Name).Append('.').Append(member)
+                ").Append(enumToGenerate.Name).Append('.').Append(member.Name)
                 .Append(" => null,");
+                }
+                else if (member.HasAttribute && !string.IsNullOrWhiteSpace(member.JsonValue))
+                {
+                    stringBuilder.Append(@"
+                ").Append(enumToGenerate.Name).Append('.').Append(member.Name)
+                    .Append(" => ").Append('"').Append(member.JsonValue).Append(@""",");
                 }
                 else
                 {
                     stringBuilder.Append(@"
-                ").Append(enumToGenerate.Name).Append('.').Append(member)
-                    .Append(" => ").Append('"').Append(member.ToLowercaseNamingConvention()).Append(@""",");
+                ").Append(enumToGenerate.Name).Append('.').Append(member.Name)
+                    .Append(" => ").Append('"').Append(member.Name.ToLowercaseNamingConvention()).Append(@""",");
                 }
             }
 
@@ -66,13 +72,18 @@ namespace TraktNET
             => value switch
             {");
 
-            foreach (string member in enumToGenerate.Values)
+            foreach (TraktEnumMemberToGenerate member in enumToGenerate.Values)
             {
-                stringBuilder.Append(@"
-                ").Append($"\"{member.ToLowercaseNamingConvention()}\" => {enumToGenerate.Name}.{member},");
-
-                stringBuilder.Append(@"
-                ").Append($"\"{member.ToLowercaseNamingConvention().ToUpperInvariant()}\" => {enumToGenerate.Name}.{member},");
+                if (member.HasAttribute && !string.IsNullOrWhiteSpace(member.JsonValue))
+                {
+                    stringBuilder.Append(@"
+                ").Append($"\"{member.JsonValue}\" => {enumToGenerate.Name}.{member.Name},");
+                }
+                else
+                {
+                    stringBuilder.Append(@"
+                ").Append($"\"{member.Name.ToLowercaseNamingConvention()}\" => {enumToGenerate.Name}.{member.Name},");
+                }
             }
 
             stringBuilder.Append(@"
@@ -91,10 +102,18 @@ namespace TraktNET
             => value switch
             {");
 
-            foreach (string member in enumToGenerate.Values)
+            foreach (TraktEnumMemberToGenerate member in enumToGenerate.Values)
             {
-                stringBuilder.Append(@"
-                ").Append(enumToGenerate.Name).Append('.').Append(member).Append(" => ").Append('"').Append(member.ToDisplayName()).Append(@""",");
+                if (member.HasAttribute && !string.IsNullOrWhiteSpace(member.DisplayName))
+                {
+                    stringBuilder.Append(@"
+                ").Append(enumToGenerate.Name).Append('.').Append(member.Name).Append(" => ").Append('"').Append(member.DisplayName).Append(@""",");
+                }
+                else
+                {
+                    stringBuilder.Append(@"
+                ").Append(enumToGenerate.Name).Append('.').Append(member.Name).Append(" => ").Append('"').Append(member.Name.ToDisplayName()).Append(@""",");
+                }
             }
 
             stringBuilder.Append(@"
