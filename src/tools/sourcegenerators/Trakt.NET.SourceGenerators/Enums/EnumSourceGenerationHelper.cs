@@ -27,7 +27,7 @@ namespace TraktNET
             stringBuilder.Append(@"
         /// <summary>Returns the Json value for <see cref=""").Append(enumToGenerate.Name).Append(@""" />.</summary>");
             stringBuilder.Append(@"
-        public static string? ToJson(this ").Append(enumToGenerate.Name).Append("? value)");
+        public static string? ToJson(this ").Append(enumToGenerate.Name).Append(" value)");
 
             stringBuilder.Append(@"
             => value switch
@@ -65,7 +65,7 @@ namespace TraktNET
 
         /// <summary>Returns a <see cref=""").Append(enumToGenerate.Name).Append(@""" /> for the given value, if possible.</summary>");
             stringBuilder.Append(@"
-        public static ").Append(enumToGenerate.Name).Append("? To").Append(enumToGenerate.Name).Append("(this string? value)");
+        public static ").Append(enumToGenerate.Name).Append(" To").Append(enumToGenerate.Name).Append("(this string? value)");
 
             stringBuilder.Append(@"
             => value switch
@@ -86,7 +86,7 @@ namespace TraktNET
             }
 
             stringBuilder.Append(@"
-                _ => null,");
+                _ => ").Append(enumToGenerate.Name).Append(@".Unspecified,");
 
             stringBuilder.Append(@"
             };");
@@ -130,22 +130,19 @@ namespace TraktNET
 ");
             stringBuilder.Append(Constants.ExcludeCodeCoverage);
             stringBuilder.Append(@"
-    public sealed class ").Append(enumToGenerate.Name).Append("JsonConverter : JsonConverter<").Append(enumToGenerate.Name).Append(@"?>
+    public sealed class ").Append(enumToGenerate.Name).Append("JsonConverter : JsonConverter<").Append(enumToGenerate.Name).Append(@">
     {");
 
             stringBuilder.Append(@"
-        public override ").Append(enumToGenerate.Name).Append(@"? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            if (reader.TokenType == JsonTokenType.String)
-            {
-                string? enumValue = reader.GetString();
-                return enumValue.To").Append(enumToGenerate.Name).Append(@"();
-            }
+        public override bool CanConvert(Type typeToConvert) => typeof(").Append(enumToGenerate.Name).Append(@") == typeToConvert;
 
-            throw new JsonException($""The JSON value could not be converted to {nameof(").Append(enumToGenerate.Name).Append(@")}."");
+        public override ").Append(enumToGenerate.Name).Append(@" Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            string? enumValue = reader.GetString();
+            return string.IsNullOrEmpty(enumValue) ? default : enumValue.To").Append(enumToGenerate.Name).Append(@"();
         }
 
-        public override void Write(Utf8JsonWriter writer, ").Append(enumToGenerate.Name).Append(@"? value, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, ").Append(enumToGenerate.Name).Append(@" value, JsonSerializerOptions options)
             => writer.WriteStringValue(value.ToJson());");
 
             stringBuilder.Append(@"

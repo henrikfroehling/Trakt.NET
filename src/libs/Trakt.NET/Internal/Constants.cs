@@ -84,6 +84,11 @@ namespace TraktNET
 #else
             internal static readonly JsonNamingPolicy NamingPolicy = new LowerSnakeCaseJsonNamingPolicy();
 #endif
+
+            internal static readonly JsonSerializerOptions JsonSettings = new()
+            {
+                PropertyNamingPolicy = NamingPolicy
+            };
         }
     }
 }

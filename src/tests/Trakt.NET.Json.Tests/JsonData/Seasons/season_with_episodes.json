@@ -1,0 +1,140 @@
+{
+  "number": 1,
+  "ids": {
+    "trakt": 3963,
+    "tvdb": 364731,
+    "tmdb": 3624,
+    "tvrage": null
+  },
+  "rating": 8.96076,
+  "votes": 4970,
+  "episode_count": 10,
+  "aired_episodes": 10,
+  "title": "Season 1",
+  "overview": "Trouble is brewing in the Seven Kingdoms of Westeros.",
+  "first_aired": "2011-04-18T01:00:00.000Z",
+  "updated_at": "2024-03-23T06:24:59.000Z",
+  "network": "HBO",
+  "episodes": [
+    {
+      "season": 1,
+      "number": 1,
+      "title": "Winter Is Coming",
+      "ids": {
+        "trakt": 73640,
+        "tvdb": 3254641,
+        "imdb": "tt1480055",
+        "tmdb": 63056,
+        "tvrage": null
+      }
+    },
+    {
+      "season": 1,
+      "number": 2,
+      "title": "The Kingsroad",
+      "ids": {
+        "trakt": 73641,
+        "tvdb": 3436411,
+        "imdb": "tt1668746",
+        "tmdb": 63057,
+        "tvrage": null
+      }
+    },
+    {
+      "season": 1,
+      "number": 3,
+      "title": "Lord Snow",
+      "ids": {
+        "trakt": 73642,
+        "tvdb": 3436421,
+        "imdb": "tt1829962",
+        "tmdb": 63058,
+        "tvrage": null
+      }
+    },
+    {
+      "season": 1,
+      "number": 4,
+      "title": "Cripples, Bastards, and Broken Things",
+      "ids": {
+        "trakt": 73643,
+        "tvdb": 3436431,
+        "imdb": "tt1829963",
+        "tmdb": 63059,
+        "tvrage": null
+      }
+    },
+    {
+      "season": 1,
+      "number": 5,
+      "title": "The Wolf and the Lion",
+      "ids": {
+        "trakt": 73644,
+        "tvdb": 3436441,
+        "imdb": "tt1829964",
+        "tmdb": 63060,
+        "tvrage": null
+      }
+    },
+    {
+      "season": 1,
+      "number": 6,
+      "title": "A Golden Crown",
+      "ids": {
+        "trakt": 73645,
+        "tvdb": 3436451,
+        "imdb": "tt1837862",
+        "tmdb": 63061,
+        "tvrage": null
+      }
+    },
+    {
+      "season": 1,
+      "number": 7,
+      "title": "You Win or You Die",
+      "ids": {
+        "trakt": 73646,
+        "tvdb": 3436461,
+        "imdb": "tt1837863",
+        "tmdb": 63062,
+        "tvrage": null
+      }
+    },
+    {
+      "season": 1,
+      "number": 8,
+      "title": "The Pointy End",
+      "ids": {
+        "trakt": 73647,
+        "tvdb": 3360391,
+        "imdb": "tt1837864",
+        "tmdb": 63063,
+        "tvrage": null
+      }
+    },
+    {
+      "season": 1,
+      "number": 9,
+      "title": "Baelor",
+      "ids": {
+        "trakt": 73648,
+        "tvdb": 4063481,
+        "imdb": "tt1851398",
+        "tmdb": 63064,
+        "tvrage": null
+      }
+    },
+    {
+      "season": 1,
+      "number": 10,
+      "title": "Fire and Blood",
+      "ids": {
+        "trakt": 73649,
+        "tvdb": 4063491,
+        "imdb": "tt1851397",
+        "tmdb": 63065,
+        "tvrage": null
+      }
+    }
+  ]
+}
