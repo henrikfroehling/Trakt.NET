@@ -4,28 +4,28 @@ using Microsoft.CodeAnalysis.Text;
 using System.Collections.Immutable;
 using System.Text;
 
-namespace TraktNET.SourceGenerators
+namespace TraktNET.SourceGenerators.Enums
 {
     [Generator]
-    public class TraktSourceGenerator : IIncrementalGenerator
+    public sealed class TraktEnumSourceGenerator : IIncrementalGenerator
     {
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
-            context.RegisterPostInitializationOutput(ctx => ctx.AddSource(Constants.GeneratedTraktEnumAttributeFilename,
-                SourceText.From(Constants.TraktEnumAttribute, Encoding.UTF8)));
+            context.RegisterPostInitializationOutput(ctx => ctx.AddSource(EnumConstants.GeneratedTraktEnumAttributeFilename,
+                SourceText.From(EnumConstants.TraktEnumAttribute, Encoding.UTF8)));
 
-            context.RegisterPostInitializationOutput(ctx => ctx.AddSource(Constants.GeneratedTraktEnumMemberJsonValueAttributeFilename,
-                SourceText.From(Constants.TraktEnumMemberJsonValueAttribute, Encoding.UTF8)));
+            context.RegisterPostInitializationOutput(ctx => ctx.AddSource(EnumConstants.GeneratedTraktEnumMemberJsonValueAttributeFilename,
+                SourceText.From(EnumConstants.TraktEnumMemberJsonValueAttribute, Encoding.UTF8)));
 
             IncrementalValuesProvider<TraktEnumToGenerate?> enumValuesProvider = context.SyntaxProvider
                 .ForAttributeWithMetadataName(
-                    Constants.FullTraktEnumAttributeName,
+                    EnumConstants.FullTraktEnumAttributeName,
                     predicate: static (syntaxNode, _) => syntaxNode is EnumDeclarationSyntax,
                     transform: GetEnumTypeToGenerate
                 )
-                .WithTrackingName(Constants.TrackingNames.InitialEnumExtraction)
+                .WithTrackingName(EnumConstants.TrackingNames.InitialEnumExtraction)
                 .Where(static syntaxNode => syntaxNode is not null)
-                .WithTrackingName(Constants.TrackingNames.NullFilteredEnums);
+                .WithTrackingName(EnumConstants.TrackingNames.NullFilteredEnums);
 
             IncrementalValueProvider<(Compilation Left, ImmutableArray<TraktEnumToGenerate?> Right)> compilation =
                 context.CompilationProvider.Combine(enumValuesProvider.Collect());
@@ -54,7 +54,7 @@ namespace TraktNET.SourceGenerators
                 string? displayName = string.Empty;
 
                 AttributeData? attribute = field.GetAttributes()
-                    .FirstOrDefault(attr => attr?.AttributeClass?.ToDisplayString() == Constants.FullTraktEnumMemberJsonValueAttributeName);
+                    .FirstOrDefault(attr => attr?.AttributeClass?.ToDisplayString() == EnumConstants.FullTraktEnumMemberJsonValueAttributeName);
 
                 if (attribute != null)
                 {
@@ -65,12 +65,10 @@ namespace TraktNET.SourceGenerators
 
                     var namedArguments = attribute.NamedArguments.ToImmutableDictionary();
 
-                    if (namedArguments.TryGetValue(Constants.TraktEnumMemberJsonValuePropertyDisplayName, out TypedConstant displayNameConstant))
+                    if (namedArguments.TryGetValue(EnumConstants.TraktEnumMemberJsonValuePropertyDisplayName, out TypedConstant displayNameConstant))
                     {
                         if (!displayNameConstant.IsNull)
-                        {
                             displayName = displayNameConstant.Value as string;
-                        }
                     }
                 }
 
@@ -90,9 +88,9 @@ namespace TraktNET.SourceGenerators
             {
                 if (enumToGenerate is { } enumToBeGenerated)
                 {
-                    string enumExtensionContent = SourceGenerationHelper.GenerateEnumExtensionClass(stringBuilder, in enumToBeGenerated);
+                    string enumExtensionContent = EnumSourceGenerationHelper.GenerateEnumExtensionClass(stringBuilder, in enumToBeGenerated);
 
-                    context.AddSource(enumToGenerate.Value.Name + Constants.GeneratedTraktEnumFileExtension,
+                    context.AddSource(enumToGenerate.Value.Name + EnumConstants.GeneratedTraktEnumFileExtension,
                         SourceText.From(enumExtensionContent, Encoding.UTF8));
                 }
             }

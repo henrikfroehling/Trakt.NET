@@ -1,9 +1,8 @@
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text;
 
-namespace TraktNET.SourceGenerators
+namespace TraktNET.SourceGenerators.Enums
 {
-    internal static class SourceGenerationHelper
+    internal static class EnumSourceGenerationHelper
     {
         internal static string GenerateEnumExtensionClass(StringBuilder stringBuilder, in TraktEnumToGenerate enumToGenerate)
         {
@@ -156,12 +155,5 @@ namespace TraktNET
 
             return stringBuilder.ToString();
         }
-
-        internal static string ToLowercaseNamingConvention(this string value) => CapitalLetter.Replace(value, "_").ToLowerInvariant();
-
-        internal static string ToDisplayName(this string value) => CapitalLetter.Replace(value, " ");
-
-        private static readonly Regex CapitalLetter = new(@"(?<=[A-Z])(?=[A-Z][a-z]) | (?<=[^A-Z])(?=[A-Z]) | (?<=[A-Za-z])(?=[^A-Za-z])",
-                                                          RegexOptions.IgnorePatternWhitespace);
     }
 }
