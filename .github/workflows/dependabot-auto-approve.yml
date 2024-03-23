@@ -3,12 +3,16 @@ name: Dependabot auto-approve
 on: pull_request
 
 permissions:
+  contents: write
   pull-requests: write
+  repository-projects: write
 
 jobs:
   dependabot-auto-approve:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
+    env:
+      GH_TOKEN: ${{ secrets.PR_APPROVAL }}
     steps:
       - name: Dependabot metadata
         id: metadata
