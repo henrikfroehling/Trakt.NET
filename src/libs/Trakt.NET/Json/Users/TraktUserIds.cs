@@ -6,7 +6,6 @@ namespace TraktNET
     {
         public string? Slug { get; set; }
 
-        [JsonPropertyName("uuid")]
         public string? UUID { get; set; }
 
         [JsonIgnore]
