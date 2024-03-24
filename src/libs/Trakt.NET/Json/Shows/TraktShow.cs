@@ -1,13 +1,7 @@
 ﻿namespace TraktNET
 {
-    public class TraktShow
+    public class TraktShow : TraktShowMinimal
     {
-        public string? Title { get; set; }
-
-        public uint? Year { get; set; }
-
-        public TraktShowIds? Ids { get; set; }
-
         public string? Tagline { get; set; }
 
         public string? Overview { get; set; }

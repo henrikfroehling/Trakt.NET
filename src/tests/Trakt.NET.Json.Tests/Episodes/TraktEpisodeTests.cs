@@ -27,13 +27,12 @@
         [Fact]
         public async Task TestTraktEpisodeFromJsonMinimal()
         {
-            TraktEpisode? episode = await TestUtility.DeserializeJsonAsync<TraktEpisode>("Episodes\\episode_minimal.json");
+            TraktEpisodeMinimal? episode = await TestUtility.DeserializeJsonAsync<TraktEpisodeMinimal>("Episodes\\episode_minimal.json");
 
             episode.Should().NotBeNull();
 
             episode!.Season.Should().Be(1U);
             episode!.Number.Should().Be(1U);
-            episode!.NumberAbsolute.Should().BeNull();
             episode!.Title.Should().Be("Winter Is Coming");
 
             episode!.Ids.Should().NotBeNull();
@@ -43,17 +42,6 @@
             episode!.Ids!.TMDB.Should().Be(63056U);
             episode!.Ids!.HasAnyID.Should().BeTrue();
             episode!.Ids!.BestID.Should().Be("73640");
-
-            episode!.Overview.Should().BeNull();
-            episode!.Rating.Should().BeNull();
-            episode!.Votes.Should().BeNull();
-            episode!.CommentCount.Should().BeNull();
-            episode!.FirstAired.Should().BeNull();
-            episode!.UpdatedAt.Should().BeNull();
-            episode!.Runtime.Should().BeNull();
-            episode!.EpisodeType.Should().BeNull();
-            episode!.AvailableTranslations.Should().BeNull();
-            episode.Translations.Should().BeNull();
         }
 
         [Fact]

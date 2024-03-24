@@ -32,7 +32,7 @@
         [Fact]
         public async Task TestTraktMovieFromJsonMinimal()
         {
-            TraktMovie? movie = await TestUtility.DeserializeJsonAsync<TraktMovie>("Movies\\movie_minimal.json");
+            TraktMovieMinimal? movie = await TestUtility.DeserializeJsonAsync<TraktMovieMinimal>("Movies\\movie_minimal.json");
 
             movie.Should().NotBeNull();
 
@@ -45,24 +45,6 @@
             movie!.Ids!.TMDB.Should().Be(447365U);
             movie!.Ids!.HasAnyID.Should().BeTrue();
             movie!.Ids!.BestID.Should().Be("293990");
-
-            movie!.Tagline.Should().BeNull();
-            movie!.Overview.Should().BeNull();
-            movie!.Released.Should().BeNull();
-            movie!.Runtime.Should().BeNull();
-            movie!.Country.Should().BeNull();
-            movie!.Trailer.Should().BeNull();
-            movie!.Homepage.Should().BeNull();
-            movie!.Status.Should().BeNull();
-            movie!.Rating.Should().BeNull();
-            movie!.Votes.Should().BeNull();
-            movie!.CommentCount.Should().BeNull();
-            movie!.UpdatedAt.Should().BeNull();
-            movie!.Language.Should().BeNull();
-            movie!.Languages.Should().BeNull();
-            movie!.AvailableTranslations.Should().BeNull();
-            movie!.Genres.Should().BeNull();
-            movie!.Certification.Should().BeNull();
         }
 
         [Fact]

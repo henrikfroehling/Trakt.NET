@@ -23,7 +23,7 @@
         [Fact]
         public async Task TestTraktPersonFromJsonMinimal()
         {
-            TraktPerson? person = await TestUtility.DeserializeJsonAsync<TraktPerson>("People\\person_minimal.json");
+            TraktPersonMinimal? person = await TestUtility.DeserializeJsonAsync<TraktPersonMinimal>("People\\person_minimal.json");
 
             person.Should().NotBeNull();
 
@@ -36,16 +36,6 @@
             person!.Ids!.TMDB.Should().Be(17419U);
             person!.Ids!.HasAnyID.Should().BeTrue();
             person!.Ids!.BestID.Should().Be("297737");
-
-            person!.SocialIds.Should().BeNull();
-            person!.Biography.Should().BeNull();
-            person!.Birthday.Should().BeNull();
-            person!.Death.Should().BeNull();
-            person!.Birthplace.Should().BeNull();
-            person!.Homepage.Should().BeNull();
-            person!.KnownForDepartment.Should().BeNull();
-            person!.Gender.Should().BeNull();
-            person!.UpdatedAt.Should().BeNull();
         }
 
         [Fact]

@@ -2,18 +2,10 @@
 
 namespace TraktNET
 {
-    public class TraktEpisode
+    public class TraktEpisode : TraktEpisodeMinimal
     {
-        public uint? Season { get; set; }
-
-        public uint? Number { get; set; }
-
         [JsonPropertyName("number_abs")]
         public uint? NumberAbsolute { get; set; }
-
-        public string? Title { get; set; }
-
-        public TraktEpisodeIds? Ids { get; set; }
 
         public string? Overview { get; set; }
 

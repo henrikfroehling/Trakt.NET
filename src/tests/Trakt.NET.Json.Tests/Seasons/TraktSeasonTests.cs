@@ -24,7 +24,7 @@
         [Fact]
         public async Task TestTraktSeasonFromJsonMinimal()
         {
-            TraktSeason? season = await TestUtility.DeserializeJsonAsync<TraktSeason>("Seasons\\season_minimal.json");
+            TraktSeasonMinimal? season = await TestUtility.DeserializeJsonAsync<TraktSeasonMinimal>("Seasons\\season_minimal.json");
 
             season.Should().NotBeNull();
 
@@ -36,17 +36,6 @@
             season!.Ids!.TMDB.Should().Be(3624U);
             season!.Ids!.HasAnyID.Should().BeTrue();
             season!.Ids!.BestID.Should().Be("3963");
-
-            season!.Rating.Should().BeNull();
-            season!.Votes.Should().BeNull();
-            season!.EpisodeCount.Should().BeNull();
-            season!.AiredEpisodes.Should().BeNull();
-            season!.Title.Should().BeNull();
-            season!.Overview.Should().BeNull();
-            season!.FirstAired.Should().BeNull();
-            season!.UpdatedAt.Should().BeNull();
-            season!.Network.Should().BeNull();
-            season!.Episodes.Should().BeNull();
         }
 
         [Fact]

@@ -1,11 +1,7 @@
 ﻿namespace TraktNET
 {
-    public class TraktSeason
+    public class TraktSeason : TraktSeasonMinimal
     {
-        public uint? Number { get; set; }
-
-        public TraktSeasonIds? Ids { get; set; }
-
         public float? Rating { get; set; }
 
         public uint? Votes { get; set; }

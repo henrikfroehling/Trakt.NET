@@ -1,13 +1,7 @@
 ﻿namespace TraktNET
 {
-    public class TraktMovie
+    public class TraktMovie : TraktMovieMinimal
     {
-        public string? Title { get; set; }
-
-        public uint? Year { get; set; }
-
-        public TraktMovieIds? Ids { get; set; }
-
         public string? Tagline { get; set; }
 
         public string? Overview { get; set; }

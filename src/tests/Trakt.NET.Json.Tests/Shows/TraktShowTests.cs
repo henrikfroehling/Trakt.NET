@@ -35,7 +35,7 @@
         [Fact]
         public async Task TestTraktShowFromJsonMinimal()
         {
-            TraktShow? show = await TestUtility.DeserializeJsonAsync<TraktShow>("Shows\\show_minimal.json");
+            TraktShowMinimal? show = await TestUtility.DeserializeJsonAsync<TraktShowMinimal>("Shows\\show_minimal.json");
 
             show.Should().NotBeNull();
 
@@ -50,27 +50,6 @@
             show!.Ids!.TMDB.Should().Be(1399U);
             show!.Ids!.HasAnyID.Should().BeTrue();
             show!.Ids!.BestID.Should().Be("1390");
-
-            show!.Tagline.Should().BeNull();
-            show!.Overview.Should().BeNull();
-            show!.FirstAired.Should().BeNull();
-            show!.UpdatedAt.Should().BeNull();
-            show!.Airs.Should().BeNull();
-            show!.Runtime.Should().BeNull();
-            show!.Certification.Should().BeNull();
-            show!.Network.Should().BeNull();
-            show!.Country.Should().BeNull();
-            show!.Trailer.Should().BeNull();
-            show!.Homepage.Should().BeNull();
-            show!.Rating.Should().BeNull();
-            show!.Votes.Should().BeNull();
-            show!.CommentCount.Should().BeNull();
-            show!.Language.Should().BeNull();
-            show!.Languages.Should().BeNull();
-            show!.AvailableTranslations.Should().BeNull();
-            show!.Genres.Should().BeNull();
-            show!.AiredEpisodes.Should().BeNull();
-            show!.Status.Should().BeNull();
         }
 
         [Fact]
