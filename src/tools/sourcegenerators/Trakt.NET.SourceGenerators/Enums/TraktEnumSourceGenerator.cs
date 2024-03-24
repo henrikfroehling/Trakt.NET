@@ -1,8 +1,10 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
+using System;
 using System.Collections.Immutable;
 using System.Text;
+using System.Text.Json.Nodes;
 
 namespace TraktNET.SourceGenerators.Enums
 {
@@ -16,6 +18,9 @@ namespace TraktNET.SourceGenerators.Enums
 
             context.RegisterPostInitializationOutput(ctx => ctx.AddSource(EnumConstants.GeneratedTraktEnumMemberJsonValueAttributeFilename,
                 SourceText.From(EnumConstants.TraktEnumMemberJsonValueAttribute, Encoding.UTF8)));
+
+            context.RegisterPostInitializationOutput(ctx => ctx.AddSource(EnumConstants.GeneratedTraktParameterEnumAttributeFilename,
+                SourceText.From(EnumConstants.TraktParameterEnumAttribute, Encoding.UTF8)));
 
             IncrementalValuesProvider<TraktEnumToGenerate?> enumValuesProvider = context.SyntaxProvider
                 .ForAttributeWithMetadataName(
@@ -40,9 +45,29 @@ namespace TraktNET.SourceGenerators.Enums
 
             cancellationToken.ThrowIfCancellationRequested();
 
+            ImmutableArray<AttributeData> enumAttributes = enumSymbol.GetAttributes();
+
+            AttributeData? flagsAttribute = enumAttributes
+                .FirstOrDefault(attr => attr?.AttributeClass?.ToDisplayString() == EnumConstants.FullSystemFlagsAttributeName);
+
+            AttributeData? traktParameterEnumAttribute = enumAttributes
+                .FirstOrDefault(attr => attr?.AttributeClass?.ToDisplayString() == EnumConstants.FullTraktParameterEnumAttributeName);
+
+            bool hasFlagsAttribute = flagsAttribute != null;
+            bool hasTraktParameterEnumAttribute = traktParameterEnumAttribute != null;
+            string? parameterEnumAttributeValue = string.Empty;
+
+            if (hasTraktParameterEnumAttribute)
+            {
+                ImmutableArray<TypedConstant> constructorArguments = traktParameterEnumAttribute!.ConstructorArguments;
+                parameterEnumAttributeValue = constructorArguments[0].Value as string;
+            }
+
             string enumExtensionName = enumSymbol.Name + "Extensions";
             ImmutableArray<ISymbol> enumMembers = enumSymbol.GetMembers();
             var members = new List<TraktEnumMemberToGenerate>(enumMembers.Length);
+
+            cancellationToken.ThrowIfCancellationRequested();
 
             foreach (ISymbol member in enumMembers)
             {
@@ -75,7 +100,7 @@ namespace TraktNET.SourceGenerators.Enums
                 members.Add(new TraktEnumMemberToGenerate(field.Name, hasAttribute, jsonValue!, displayName!));
             }
 
-            return new TraktEnumToGenerate(enumSymbol.Name, enumExtensionName, members);
+            return new TraktEnumToGenerate(enumSymbol.Name, enumExtensionName, hasFlagsAttribute, hasTraktParameterEnumAttribute, parameterEnumAttributeValue!, members);
         }
 
         private static void Execute(SourceProductionContext context, (Compilation Left, ImmutableArray<TraktEnumToGenerate?> Right) tuple)

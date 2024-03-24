@@ -4,9 +4,15 @@ namespace TraktNET.SourceGenerators.Enums
 {
     internal static class EnumSourceGenerationHelper
     {
+        private const string UnspecifiedValue = "Unspecified";
+        private const string NoneValue = "None";
+
         internal static string GenerateEnumExtensionClass(StringBuilder stringBuilder, in TraktEnumToGenerate enumToGenerate)
         {
             stringBuilder.Clear();
+
+            bool hasUnspecifiedMember = enumToGenerate.Values.Any(m => m.Name == UnspecifiedValue);
+            bool hasNoneMember = enumToGenerate.Values.Any(m => m.Name == NoneValue);
 
             stringBuilder.Append(Constants.Header);
             stringBuilder.Append(@"
@@ -35,13 +41,13 @@ namespace TraktNET
 
             foreach (TraktEnumMemberToGenerate member in enumToGenerate.Values)
             {
-                if (member.Name == "Unspecified")
+                if ((member.Name == UnspecifiedValue || member.Name == NoneValue) && !member.HasTraktEnumMemberAttribute)
                 {
                     stringBuilder.Append(@"
                 ").Append(enumToGenerate.Name).Append('.').Append(member.Name)
                 .Append(" => null,");
                 }
-                else if (member.HasAttribute && !string.IsNullOrWhiteSpace(member.JsonValue))
+                else if (member.HasTraktEnumMemberAttribute && member.JsonValue != null)
                 {
                     stringBuilder.Append(@"
                 ").Append(enumToGenerate.Name).Append('.').Append(member.Name)
@@ -73,7 +79,7 @@ namespace TraktNET
 
             foreach (TraktEnumMemberToGenerate member in enumToGenerate.Values)
             {
-                if (member.HasAttribute && !string.IsNullOrWhiteSpace(member.JsonValue))
+                if (member.HasTraktEnumMemberAttribute && member.JsonValue != null)
                 {
                     stringBuilder.Append(@"
                 ").Append($"\"{member.JsonValue}\" => {enumToGenerate.Name}.{member.Name},");
@@ -85,8 +91,16 @@ namespace TraktNET
                 }
             }
 
-            stringBuilder.Append(@"
-                _ => ").Append(enumToGenerate.Name).Append(@".Unspecified,");
+            if (hasUnspecifiedMember)
+            {
+                stringBuilder.Append(@"
+                _ => ").Append(enumToGenerate.Name).Append('.').Append(UnspecifiedValue).Append(',');
+            }
+            else if (hasNoneMember)
+            {
+                stringBuilder.Append(@"
+                _ => ").Append(enumToGenerate.Name).Append('.').Append(NoneValue).Append(',');
+            }
 
             stringBuilder.Append(@"
             };");
@@ -103,7 +117,7 @@ namespace TraktNET
 
             foreach (TraktEnumMemberToGenerate member in enumToGenerate.Values)
             {
-                if (member.HasAttribute && !string.IsNullOrWhiteSpace(member.DisplayName))
+                if (member.HasTraktEnumMemberAttribute && !string.IsNullOrWhiteSpace(member.DisplayName))
                 {
                     stringBuilder.Append(@"
                 ").Append(enumToGenerate.Name).Append('.').Append(member.Name).Append(" => ").Append('"').Append(member.DisplayName).Append(@""",");
@@ -120,6 +134,87 @@ namespace TraktNET
 
             stringBuilder.Append(@"
             };");
+
+            if (enumToGenerate.HasFlagsAttribute)
+            {
+                stringBuilder.Append(@"
+
+        /// <summary>Determines whether one or more bit fields are set in <see cref=""").Append(enumToGenerate.Name).Append(@""" />.</summary>
+        public static bool HasFlagSet(this ").Append(enumToGenerate.Name).Append(" value, ").Append(enumToGenerate.Name).Append(@" flag)
+            => flag == 0 ? true : (value & flag) == flag;");
+            }
+
+            if (enumToGenerate.HasParameterEnumAttribute)
+            {
+                stringBuilder.Append(@"
+
+        /// <summary>Converts a <see cref=""").Append(enumToGenerate.Name).Append(@""" /> to a valid URI path value.</summary>
+        public static string ToUriPath(this ").Append(enumToGenerate.Name).Append(@" value)
+        {");
+                string invalidValueMember = string.Empty;
+
+                if (hasUnspecifiedMember)
+                    invalidValueMember = UnspecifiedValue;
+                else if (hasNoneMember)
+                    invalidValueMember = NoneValue;
+
+                if (hasUnspecifiedMember || hasNoneMember)
+                {
+                    if (enumToGenerate.HasFlagsAttribute)
+                    {
+                        stringBuilder.Append(@"
+            if (value.HasFlagSet(").Append(enumToGenerate.Name).Append('.').Append(invalidValueMember).Append(@"))
+                return string.Empty;
+");
+                    }
+                    else
+                    {
+                        stringBuilder.Append(@"
+            if (value == ").Append(enumToGenerate.Name).Append('.').Append(invalidValueMember).Append(@")
+                return string.Empty;
+");
+                    }
+                }
+
+                if (enumToGenerate.HasFlagsAttribute)
+                {
+                    stringBuilder.Append(@"
+            var values = new List<string>();");
+
+                    foreach (TraktEnumMemberToGenerate member in enumToGenerate.Values)
+                    {
+                        if (member.Name == invalidValueMember)
+                            continue;
+
+                        stringBuilder.Append(@"
+
+            if (value.HasFlagSet(").Append(enumToGenerate.Name).Append('.').Append(member.Name).Append(@"))
+                values.Add(").Append(enumToGenerate.Name).Append('.').Append(member.Name).Append(@".ToJson()!);");
+                    }
+
+                    stringBuilder.Append(@"
+
+            return ");
+
+                    if (!string.IsNullOrWhiteSpace(enumToGenerate.ParameterEnumAttributeValue))
+                        stringBuilder.Append('"').Append(enumToGenerate.ParameterEnumAttributeValue).Append(@"="" + ");
+
+                    stringBuilder.Append(@"string.Join(',', values);");
+                }
+                else
+                {
+                    stringBuilder.Append(@"
+            return ");
+
+                    if (!string.IsNullOrWhiteSpace(enumToGenerate.ParameterEnumAttributeValue))
+                        stringBuilder.Append('"').Append(enumToGenerate.ParameterEnumAttributeValue).Append(@"="" + ");
+
+                    stringBuilder.Append(@"value.ToJson();");
+                }
+
+                stringBuilder.Append(@"
+        }");
+            }
 
             stringBuilder.Append(@"
     }

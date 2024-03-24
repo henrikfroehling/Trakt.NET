@@ -6,15 +6,23 @@
 
         internal const string TraktEnumMemberJsonValueAttributeName = "TraktEnumMemberJsonValueAttribute";
 
+        internal const string TraktParameterEnumAttributeName = "TraktParameterEnumAttribute";
+
         internal const string FullTraktEnumAttributeName = Constants.Namespace + "." + TraktEnumAttributeName;
 
         internal const string FullTraktEnumMemberJsonValueAttributeName = Constants.Namespace + "." + TraktEnumMemberJsonValueAttributeName;
 
-        internal const string GeneratedTraktEnumAttributeFilename = TraktEnumAttributeName + ".g.cs";
+        internal const string FullTraktParameterEnumAttributeName = Constants.Namespace + "." + TraktParameterEnumAttributeName;
 
-        internal const string GeneratedTraktEnumMemberJsonValueAttributeFilename = TraktEnumMemberJsonValueAttributeName + ".g.cs";
+        internal const string FullSystemFlagsAttributeName = "System.FlagsAttribute";
 
-        internal const string GeneratedTraktEnumFileExtension = "EnumExtensions.g.cs";
+        internal const string GeneratedTraktEnumAttributeFilename = TraktEnumAttributeName + Constants.GeneratedFilenameSuffix;
+
+        internal const string GeneratedTraktEnumMemberJsonValueAttributeFilename = TraktEnumMemberJsonValueAttributeName + Constants.GeneratedFilenameSuffix;
+
+        internal const string GeneratedTraktParameterEnumAttributeFilename = TraktParameterEnumAttributeName + Constants.GeneratedFilenameSuffix;
+
+        internal const string GeneratedTraktEnumFileExtension = "EnumExtensions" + Constants.GeneratedFilenameSuffix;
 
         internal const string TraktEnumAttribute = Constants.Header + @"
 namespace " + Constants.Namespace + @"
@@ -38,15 +46,27 @@ namespace " + Constants.Namespace + @"
     [global::System.AttributeUsage(global::System.AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
     public sealed class " + TraktEnumMemberJsonValueAttributeName + @": global::System.Attribute
     {
-        private string _jsonValue;
-
         public " + TraktEnumMemberJsonValueAttributeName + @"(string jsonValue)
-        {
-            _jsonValue = jsonValue;
-        }
+            => JsonValue = jsonValue;
 
-        public string JsonValue => _jsonValue;
+        public string JsonValue { get; }
         public string? " + TraktEnumMemberJsonValuePropertyDisplayName + @" { get; set; }
+    }
+}
+";
+
+        internal const string TraktParameterEnumAttribute = Constants.Header + @"
+namespace " + Constants.Namespace + @"
+{
+    ///<summary>Provides extension methods for an enum which can be used as a request parameter.</summary>
+" + Constants.ExcludeCodeCoverage + @"
+    [global::System.AttributeUsage(global::System.AttributeTargets.Enum, AllowMultiple = false, Inherited = false)]
+    public sealed class " + TraktParameterEnumAttributeName + @": global::System.Attribute
+    {
+        public " + TraktParameterEnumAttributeName + @"(string uriParameterName)
+            => UriParameterName = uriParameterName;
+
+        public string UriParameterName { get; }
     }
 }
 ";

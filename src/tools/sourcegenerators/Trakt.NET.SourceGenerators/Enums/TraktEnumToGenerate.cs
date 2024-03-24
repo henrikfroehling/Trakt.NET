@@ -4,16 +4,16 @@
     {
         public readonly string Name;
 
-        public readonly bool HasAttribute;
+        public readonly bool HasTraktEnumMemberAttribute;
 
         public readonly string JsonValue;
 
         public readonly string DisplayName;
 
-        public TraktEnumMemberToGenerate(string name, bool hasAttribute, string jsonValue, string displayName)
+        public TraktEnumMemberToGenerate(string name, bool hasTraktEnumMemberAttribute, string jsonValue, string displayName)
         {
             Name = name;
-            HasAttribute = hasAttribute;
+            HasTraktEnumMemberAttribute = hasTraktEnumMemberAttribute;
             JsonValue = jsonValue;
             DisplayName = displayName;
         }
@@ -25,12 +25,22 @@
 
         public readonly string EnumExtensionClassName;
 
+        public readonly bool HasFlagsAttribute;
+
+        public readonly bool HasParameterEnumAttribute;
+
+        public readonly string ParameterEnumAttributeValue;
+
         public readonly IList<TraktEnumMemberToGenerate> Values;
 
-        public TraktEnumToGenerate(string name, string enumExtensionClassName, IList<TraktEnumMemberToGenerate> values)
+        public TraktEnumToGenerate(string name, string enumExtensionClassName, bool hasFlagsAttribute, bool hasParameterEnumAttribute,
+            string parameterEnumAttributeValue, IList<TraktEnumMemberToGenerate> values)
         {
             Name = name;
             EnumExtensionClassName = enumExtensionClassName;
+            HasFlagsAttribute = hasFlagsAttribute;
+            HasParameterEnumAttribute = hasParameterEnumAttribute;
+            ParameterEnumAttributeValue = parameterEnumAttributeValue;
             Values = values;
         }
     }
