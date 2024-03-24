@@ -199,7 +199,7 @@ namespace TraktNET
                     if (!string.IsNullOrWhiteSpace(enumToGenerate.ParameterEnumAttributeValue))
                         stringBuilder.Append('"').Append(enumToGenerate.ParameterEnumAttributeValue).Append(@"="" + ");
 
-                    stringBuilder.Append(@"string.Join(',', values);");
+                    stringBuilder.Append(@"string.Join("","", values);");
                 }
                 else
                 {
