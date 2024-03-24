@@ -7,7 +7,6 @@ namespace TraktNET
     [JsonConverter(typeof(TraktDayOfWeekJsonConverter))]
     public enum TraktDayOfWeek
     {
-        [TraktEnumMemberJsonValue("Unspecified")]
         Unspecified,
 
         [TraktEnumMemberJsonValue("Monday")]
