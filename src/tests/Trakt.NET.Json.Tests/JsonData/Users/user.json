@@ -1,0 +1,24 @@
+{
+  "username": "ixxus",
+  "private": false,
+  "name": "Henrik",
+  "vip": true,
+  "vip_ep": false,
+  "ids": {
+    "slug": "ixxus",
+    "uuid": "jljgsagj092ß9u0294jlgalngoi0t0qntggnafng82"
+  },
+  "joined_at": "2015-02-18T12:54:39.000Z",
+  "location": "Germany",
+  "about": "",
+  "gender": "male",
+  "age": 36,
+  "images": {
+    "avatar": {
+      "full": "https://walter.trakt.tv/images/users/000/894/246/avatars/large/754b7e3761.png"
+    }
+  },
+  "vip_og": false,
+  "vip_years": 6,
+  "vip_cover_image": "https://walter.trakt.tv/images/shows/000/043/973/fanarts/full/eb3a126015.jpg"
+}
