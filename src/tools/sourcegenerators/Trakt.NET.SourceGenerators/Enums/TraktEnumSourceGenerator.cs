@@ -1,10 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
-using System;
 using System.Collections.Immutable;
 using System.Text;
-using System.Text.Json.Nodes;
 
 namespace TraktNET.SourceGenerators.Enums
 {
@@ -113,7 +111,7 @@ namespace TraktNET.SourceGenerators.Enums
             {
                 if (enumToGenerate is { } enumToBeGenerated)
                 {
-                    string enumExtensionContent = EnumSourceGenerationHelper.GenerateEnumExtensionClass(stringBuilder, in enumToBeGenerated);
+                    string enumExtensionContent = TraktEnumExtensionsSourceWriter.Write(stringBuilder, in enumToBeGenerated);
 
                     context.AddSource(enumToGenerate.Value.Name + EnumConstants.GeneratedTraktEnumFileExtension,
                         SourceText.From(enumExtensionContent, Encoding.UTF8));
