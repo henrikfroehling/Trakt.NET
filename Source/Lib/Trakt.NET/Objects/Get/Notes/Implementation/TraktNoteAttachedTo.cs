@@ -1,9 +1,9 @@
-﻿namespace TraktNet.Objects.Get.Users.Notes
+﻿namespace TraktNet.Objects.Get.Notes
 {
     using Enums;
 
     /// <summary>Contains information about to which media a Trakt user note is attached.</summary>
-    public class TraktUserNoteAttachedTo : ITraktUserNoteAttachedTo
+    public class TraktNoteAttachedTo : ITraktNoteAttachedTo
     {
         /// <summary>Gets or sets the media type to which a note is attached. See also <seealso cref="TraktNotesObjectType" />.</summary>
         public TraktNotesObjectType Type { get; set; }

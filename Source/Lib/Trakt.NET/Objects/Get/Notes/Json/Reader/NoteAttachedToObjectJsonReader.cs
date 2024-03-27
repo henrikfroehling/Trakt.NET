@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Get.Users.Notes.Json.Reader
+﻿namespace TraktNet.Objects.Get.Notes.Json.Reader
 {
     using Enums;
     using Newtonsoft.Json;
@@ -6,15 +6,15 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class UserNoteAttachedToObjectJsonReader : AObjectJsonReader<ITraktUserNoteAttachedTo>
+    internal class NoteAttachedToObjectJsonReader : AObjectJsonReader<ITraktNoteAttachedTo>
     {
-        public override async Task<ITraktUserNoteAttachedTo> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<ITraktNoteAttachedTo> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                ITraktUserNoteAttachedTo userNoteAttachedTo = new TraktUserNoteAttachedTo();
+                ITraktNoteAttachedTo userNoteAttachedTo = new TraktNoteAttachedTo();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -43,7 +43,7 @@
                 return userNoteAttachedTo;
             }
 
-            return await Task.FromResult(default(ITraktUserNoteAttachedTo));
+            return await Task.FromResult(default(ITraktNoteAttachedTo));
         }
     }
 }

@@ -16,6 +16,8 @@
     using Get.Lists.Json.Factories;
     using Get.Movies;
     using Get.Movies.Json.Factories;
+    using Get.Notes;
+    using Get.Notes.Json.Factories;
     using Get.People;
     using Get.People.Credits;
     using Get.People.Credits.Json.Factories;
@@ -34,8 +36,6 @@
     using Get.Syncs.Playback.Json.Factories;
     using Get.Users;
     using Get.Users.Json.Factories;
-    using Get.Users.Notes;
-    using Get.Users.Notes.Json.Factories;
     using Get.Users.Statistics;
     using Get.Users.Statistics.Json.Factories;
     using Get.Watched;
@@ -232,6 +232,11 @@
             s_jsonIOFactories.Add(typeof(ITraktMovieTranslation), new MovieTranslationJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktRecentlyUpdatedMovie), new RecentlyUpdatedMovieJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktTrendingMovie), new TrendingMovieJsonIOFactory());
+
+            // notes objects
+            s_jsonIOFactories.Add(typeof(ITraktNote), new NoteJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktNoteAttachedTo), new NoteAttachedToJsonIOFactory());
+            s_jsonIOFactories.Add(typeof(ITraktNoteItem), new NoteItemJsonIOFactory());
 
             // people objects
             s_jsonIOFactories.Add(typeof(ITraktPerson), new PersonJsonIOFactory());
@@ -467,11 +472,6 @@
 
             // user response post objects
             s_jsonIOFactories.Add(typeof(ITraktUserFollowUserPostResponse), new UserFollowUserPostResponseJsonIOFactory());
-
-            // user notes objects
-            s_jsonIOFactories.Add(typeof(ITraktUserNote), new UserNoteJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserNoteAttachedTo), new UserNoteAttachedToJsonIOFactory());
-            s_jsonIOFactories.Add(typeof(ITraktUserNoteItem), new UserNoteItemJsonIOFactory());
 
             // user statistic objects
             s_jsonIOFactories.Add(typeof(ITraktUserStatistics), new UserStatisticsJsonIOFactory());
