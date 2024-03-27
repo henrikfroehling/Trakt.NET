@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Get.Users.Notes
+﻿namespace TraktNet.Objects.Get.Notes
 {
     using Enums;
     using Episodes;
@@ -8,14 +8,14 @@
     using Shows;
 
     /// <summary>A Trakt user note item containing the note including the media object to which the note is attached.</summary>
-    public interface ITraktUserNoteItem
+    public interface ITraktNoteItem
     {
         /// <summary>
         /// Gets or sets information to which this note item is attached.
         /// If it is attached to an history item, this property contains the history item id.
-        /// See also <seealso cref="ITraktUserNoteAttachedTo" />.
+        /// See also <seealso cref="ITraktNoteAttachedTo" />.
         /// </summary>
-        ITraktUserNoteAttachedTo AttachedTo { get; set; }
+        ITraktNoteAttachedTo AttachedTo { get; set; }
 
         /// <summary>
         /// Gets or sets the object type, which this note item contains.
@@ -62,8 +62,8 @@
 
         /// <summary>
         /// Gets or sets the note content of this item.
-        /// See also <seealso cref="ITraktUserNote" />.
+        /// See also <seealso cref="ITraktNote" />.
         /// </summary>
-        ITraktUserNote Note { get; set; }
+        ITraktNote Note { get; set; }
     }
 }

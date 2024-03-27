@@ -1,10 +1,11 @@
-﻿namespace TraktNet.Objects.Get.Users.Notes
+﻿namespace TraktNet.Objects.Get.Notes
 {
     using Enums;
     using System;
+    using Users;
 
     /// <summary>A Trakt user note.</summary>
-    public interface ITraktUserNote
+    public interface ITraktNote
     {
         /// <summary>Gets or sets the id of the note.</summary>
         ulong Id { get; set; }

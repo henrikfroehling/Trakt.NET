@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Get.Users.Notes.Json.Writer
+﻿namespace TraktNet.Objects.Get.Notes.Json.Writer
 {
     using Extensions;
     using Get.Users.Json.Writer;
@@ -7,9 +7,9 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class UserNoteObjectJsonWriter : AObjectJsonWriter<ITraktUserNote>
+    internal class NoteObjectJsonWriter : AObjectJsonWriter<ITraktNote>
     {
-        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktUserNote obj, CancellationToken cancellationToken = default)
+        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktNote obj, CancellationToken cancellationToken = default)
         {
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);

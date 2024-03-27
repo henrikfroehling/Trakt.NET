@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Get.Users.Notes.Json.Reader
+﻿namespace TraktNet.Objects.Get.Notes.Json.Reader
 {
     using Enums;
     using Get.Episodes.Json.Reader;
@@ -11,23 +11,23 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class UserNoteItemObjectJsonReader : AObjectJsonReader<ITraktUserNoteItem>
+    internal class NoteItemObjectJsonReader : AObjectJsonReader<ITraktNoteItem>
     {
-        public override async Task<ITraktUserNoteItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<ITraktNoteItem> ReadObjectAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var attachedToObjectReader = new UserNoteAttachedToObjectJsonReader();
+                var attachedToObjectReader = new NoteAttachedToObjectJsonReader();
                 var movieObjectReader = new MovieObjectJsonReader();
                 var showObjectReader = new ShowObjectJsonReader();
                 var seasonObjectReader = new SeasonObjectJsonReader();
                 var episodeObjectReader = new EpisodeObjectJsonReader();
                 var personObjectReader = new PersonObjectJsonReader();
-                var noteObjectReader = new UserNoteObjectJsonReader();
+                var noteObjectReader = new NoteObjectJsonReader();
 
-                ITraktUserNoteItem userNoteItem = new TraktUserNoteItem();
+                ITraktNoteItem userNoteItem = new TraktNoteItem();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
                 {
@@ -68,7 +68,7 @@
                 return userNoteItem;
             }
 
-            return await Task.FromResult(default(ITraktUserNoteItem));
+            return await Task.FromResult(default(ITraktNoteItem));
         }
     }
 }

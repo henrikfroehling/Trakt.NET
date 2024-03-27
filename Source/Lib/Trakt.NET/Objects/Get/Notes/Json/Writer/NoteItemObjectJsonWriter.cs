@@ -1,4 +1,4 @@
-﻿namespace TraktNet.Objects.Get.Users.Notes.Json.Writer
+﻿namespace TraktNet.Objects.Get.Notes.Json.Writer
 {
     using Get.Episodes.Json.Writer;
     using Get.Movies.Json.Writer;
@@ -10,16 +10,16 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class UserNoteItemObjectJsonWriter : AObjectJsonWriter<ITraktUserNoteItem>
+    internal class NoteItemObjectJsonWriter : AObjectJsonWriter<ITraktNoteItem>
     {
-        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktUserNoteItem obj, CancellationToken cancellationToken = default)
+        public override async Task WriteObjectAsync(JsonTextWriter jsonWriter, ITraktNoteItem obj, CancellationToken cancellationToken = default)
         {
             CheckJsonTextWriter(jsonWriter);
             await jsonWriter.WriteStartObjectAsync(cancellationToken).ConfigureAwait(false);
 
             if (obj.AttachedTo != null)
             {
-                var attachedToObjectWriter = new UserNoteAttachedToObjectJsonWriter();
+                var attachedToObjectWriter = new NoteAttachedToObjectJsonWriter();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_ATTACHED_TO, cancellationToken).ConfigureAwait(false);
                 await attachedToObjectWriter.WriteObjectAsync(obj.AttachedTo, cancellationToken).ConfigureAwait(false);
             }
@@ -67,7 +67,7 @@
 
             if (obj.Note != null)
             {
-                var userNoteObjectWriter = new UserNoteObjectJsonWriter();
+                var userNoteObjectWriter = new NoteObjectJsonWriter();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NOTE, cancellationToken).ConfigureAwait(false);
                 await userNoteObjectWriter.WriteObjectAsync(obj.Note, cancellationToken).ConfigureAwait(false);
             }

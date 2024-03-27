@@ -1,21 +1,21 @@
-﻿namespace TraktNet.Objects.Get.Tests.Users.Notes.Implementations
+﻿namespace TraktNet.Objects.Get.Tests.Notes.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
-    using TraktNet.Objects.Get.Users.Notes;
-    using TraktNet.Objects.Get.Users.Notes.Json.Reader;
+    using TraktNet.Objects.Get.Notes;
+    using TraktNet.Objects.Get.Notes.Json.Reader;
     using Xunit;
 
-    [TestCategory("Objects.Get.Users.Notes.Implementations")]
-    public class TraktUserNote_Tests
+    [TestCategory("Objects.Get.Notes.Implementations")]
+    public class TraktNote_Tests
     {
         [Fact]
         public void Test_TraktUserNote_Default_Constructor()
         {
-            var userNote = new TraktUserNote();
+            var userNote = new TraktNote();
 
             userNote.Id.Should().Be(0);
             userNote.Notes.Should().BeNullOrEmpty();
@@ -29,8 +29,8 @@
         [Fact]
         public async Task Test_TraktUserNote_From_Json()
         {
-            var jsonReader = new UserNoteObjectJsonReader();
-            var userNote = await jsonReader.ReadObjectAsync(JSON) as TraktUserNote;
+            var jsonReader = new NoteObjectJsonReader();
+            var userNote = await jsonReader.ReadObjectAsync(JSON) as TraktNote;
 
             userNote.Should().NotBeNull();
             userNote.Id.Should().Be(49);

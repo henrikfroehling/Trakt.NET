@@ -1,21 +1,21 @@
-﻿namespace TraktNet.Objects.Get.Tests.Users.Notes.Implementations
+﻿namespace TraktNet.Objects.Get.Tests.Notes.Implementations
 {
     using FluentAssertions;
     using System;
     using System.Threading.Tasks;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
-    using TraktNet.Objects.Get.Users.Notes;
-    using TraktNet.Objects.Get.Users.Notes.Json.Reader;
+    using TraktNet.Objects.Get.Notes;
+    using TraktNet.Objects.Get.Notes.Json.Reader;
     using Xunit;
 
-    [TestCategory("Objects.Get.Users.Notes.Implementations")]
-    public class TraktUserNoteItem_Tests
+    [TestCategory("Objects.Get.Notes.Implementations")]
+    public class TraktNoteItem_Tests
     {
         [Fact]
         public void Test_TraktUserNoteItem_Default_Constructor()
         {
-            var userNoteItem = new TraktUserNoteItem();
+            var userNoteItem = new TraktNoteItem();
 
             userNoteItem.AttachedTo.Should().BeNull();
             userNoteItem.Type.Should().BeNull();
@@ -30,8 +30,8 @@
         [Fact]
         public async Task Test_TraktUserNoteItem_From_Json_Movie()
         {
-            var jsonReader = new UserNoteItemObjectJsonReader();
-            var userNoteItem = await jsonReader.ReadObjectAsync(JSON_MOVIE) as TraktUserNoteItem;
+            var jsonReader = new NoteItemObjectJsonReader();
+            var userNoteItem = await jsonReader.ReadObjectAsync(JSON_MOVIE) as TraktNoteItem;
 
             userNoteItem.Should().NotBeNull();
 
@@ -75,8 +75,8 @@
         [Fact]
         public async Task Test_TraktUserNoteItem_From_Json_Movie_History()
         {
-            var jsonReader = new UserNoteItemObjectJsonReader();
-            var userNoteItem = await jsonReader.ReadObjectAsync(JSON_MOVIE_HISTORY) as TraktUserNoteItem;
+            var jsonReader = new NoteItemObjectJsonReader();
+            var userNoteItem = await jsonReader.ReadObjectAsync(JSON_MOVIE_HISTORY) as TraktNoteItem;
 
             userNoteItem.Should().NotBeNull();
 
