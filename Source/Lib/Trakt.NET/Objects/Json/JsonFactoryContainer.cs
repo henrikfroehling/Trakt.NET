@@ -54,6 +54,8 @@
     using Post.Comments.Json.Factories;
     using Post.Comments.Responses;
     using Post.Comments.Responses.Json.Factories;
+    using Post.Notes;
+    using Post.Notes.Json.Factories;
     using Post.Responses;
     using Post.Responses.Json.Factories;
     using Post.Scrobbles;
@@ -237,6 +239,9 @@
             s_jsonIOFactories.Add(typeof(ITraktNote), new NoteJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktNoteAttachedTo), new NoteAttachedToJsonIOFactory());
             s_jsonIOFactories.Add(typeof(ITraktNoteItem), new NoteItemJsonIOFactory());
+
+            // notes post objects
+            s_jsonIOFactories.Add(typeof(ITraktNotePost), new NotePostJsonIOFactory());
 
             // people objects
             s_jsonIOFactories.Add(typeof(ITraktPerson), new PersonJsonIOFactory());
