@@ -68,9 +68,9 @@
 
         public void Validate()
         {
-            if (Notes == null)
+            if (string.IsNullOrEmpty(Notes))
             {
-                throw new TraktPostValidationException(nameof(Notes), "notes must not be null");
+                throw new TraktPostValidationException(nameof(Notes), "notes must not be null or empty");
             }
 
             if (AttachedTo == null && Movie == null && Show == null && Season == null && Episode == null && Person == null)
