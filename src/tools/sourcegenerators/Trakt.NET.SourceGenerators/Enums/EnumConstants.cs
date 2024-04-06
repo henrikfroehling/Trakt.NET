@@ -44,7 +44,7 @@ namespace " + Constants.Namespace + @"
     /// <summary>Provides a custom Json value and optional display name for an enum member.</summary>
 " + Constants.ExcludeCodeCoverage + @"
     [global::System.AttributeUsage(global::System.AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
-    public sealed class " + TraktEnumMemberJsonValueAttributeName + @": global::System.Attribute
+    public sealed class " + TraktEnumMemberJsonValueAttributeName + @" : global::System.Attribute
     {
         public " + TraktEnumMemberJsonValueAttributeName + @"(string jsonValue)
             => JsonValue = jsonValue;
@@ -61,7 +61,7 @@ namespace " + Constants.Namespace + @"
     ///<summary>Provides extension methods for an enum which can be used as a request parameter.</summary>
 " + Constants.ExcludeCodeCoverage + @"
     [global::System.AttributeUsage(global::System.AttributeTargets.Enum, AllowMultiple = false, Inherited = false)]
-    public sealed class " + TraktParameterEnumAttributeName + @": global::System.Attribute
+    public sealed class " + TraktParameterEnumAttributeName + @" : global::System.Attribute
     {
         public " + TraktParameterEnumAttributeName + @"(string uriParameterName)
             => UriParameterName = uriParameterName;

@@ -1,8 +1,10 @@
-﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using System.Collections.Immutable;
 using System.Text;
+
+using CompilationTuple = (Microsoft.CodeAnalysis.Compilation Left, System.Collections.Immutable.ImmutableArray<TraktNET.SourceGenerators.Enums.TraktEnumToGenerate?> Right);
 
 namespace TraktNET.SourceGenerators.Enums
 {
@@ -30,7 +32,7 @@ namespace TraktNET.SourceGenerators.Enums
                 .Where(static syntaxNode => syntaxNode is not null)
                 .WithTrackingName(EnumConstants.TrackingNames.NullFilteredEnums);
 
-            IncrementalValueProvider<(Compilation Left, ImmutableArray<TraktEnumToGenerate?> Right)> compilation =
+            IncrementalValueProvider<CompilationTuple> compilation =
                 context.CompilationProvider.Combine(enumValuesProvider.Collect());
 
             context.RegisterSourceOutput(compilation, Execute);
@@ -101,9 +103,9 @@ namespace TraktNET.SourceGenerators.Enums
             return new TraktEnumToGenerate(enumSymbol.Name, enumExtensionName, hasFlagsAttribute, hasTraktParameterEnumAttribute, parameterEnumAttributeValue!, members);
         }
 
-        private static void Execute(SourceProductionContext context, (Compilation Left, ImmutableArray<TraktEnumToGenerate?> Right) tuple)
+        private static void Execute(SourceProductionContext context, CompilationTuple compilation)
         {
-            (Compilation _, ImmutableArray<TraktEnumToGenerate?> enumValues) = tuple;
+            (Compilation _, ImmutableArray<TraktEnumToGenerate?> enumValues) = compilation;
 
             var stringBuilder = new StringBuilder();
 
