@@ -8,6 +8,8 @@
 
     public partial class TraktNotesModule_Tests
     {
+        private const ulong NOTE_ID = 190;
+
         private const string MOVIE_NOTES = "Watch this in IMAX!";
 
         private const string SHOW_NOTES = "Welcome to Pollos Hermanos!";
