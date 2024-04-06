@@ -22,12 +22,8 @@
     /// This module contains all methods of the <a href ="https://trakt.docs.apiary.io/#reference/notes">"Trakt API Doc - Notes"</a> section.
     /// </para>
     /// </summary>
-    public class TraktNotesModule : ATraktModule
+    public partial class TraktNotesModule : ATraktModule
     {
-        internal TraktNotesModule(TraktClient client) : base(client)
-        {
-        }
-
         /// <summary>
         /// Adds notes for a <see cref="ITraktMovie" />.
         /// <para>OAuth authorization required.</para>
