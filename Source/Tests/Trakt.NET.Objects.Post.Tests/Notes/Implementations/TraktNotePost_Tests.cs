@@ -32,6 +32,10 @@
             // no media object
             notePost.Notes = "notes test";
             act.Should().Throw<TraktPostValidationException>();
+
+            // no media object, but validation ignored
+            (notePost as TraktNotePost).IgnoreCompleteValidation = true;
+            act.Should().NotThrow();
         }
 
         [Fact]

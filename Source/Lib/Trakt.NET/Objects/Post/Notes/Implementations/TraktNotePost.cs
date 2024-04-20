@@ -73,10 +73,17 @@
                 throw new TraktPostValidationException(nameof(Notes), "notes must not be null or empty");
             }
 
+            if (IgnoreCompleteValidation)
+            {
+                return;
+            }
+
             if (AttachedTo == null && Movie == null && Show == null && Season == null && Episode == null && Person == null)
             {
                 throw new TraktPostValidationException("note post must contain a media object");
             }
         }
+
+        internal bool IgnoreCompleteValidation { get; set; }
     }
 }
