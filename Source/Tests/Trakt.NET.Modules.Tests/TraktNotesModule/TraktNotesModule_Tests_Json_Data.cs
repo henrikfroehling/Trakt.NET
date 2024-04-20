@@ -90,5 +90,23 @@
                   }
                 }
               }";
+
+        private const string NOTE_ITEM_POST_RESPONSE_JSON =
+            @"{
+                ""attached_to"": {
+                    ""type"": ""movie""
+                  },
+                  ""type"": ""movie"",
+                  ""movie"": {
+                    ""title"": ""Batman Begins"",
+                    ""year"": 2005,
+                    ""ids"": {
+                      ""trakt"": 1,
+                      ""slug"": ""batman-begins-2005"",
+                      ""imdb"": ""tt0372784"",
+                      ""tmdb"": 272
+                    }
+                  }
+              }";
     }
 }

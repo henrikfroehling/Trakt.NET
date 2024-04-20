@@ -7,6 +7,7 @@
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Notes;
     using TraktNet.Objects.Post.Notes;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Handler;
     using TraktNet.Requests.Notes.OAuth;
     using TraktNet.Responses;
@@ -110,6 +111,37 @@
                 new NoteDeleteRequest
                 {
                     Id = noteId
+                }, cancellationToken);
+        }
+
+        /// <summary>
+        /// Returns the item this note is attached to.
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/notes/item/get-the-attached-item">"Trakt API Doc - Item: Get the attached item"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="noteId">The id of the note for which the attached item should is requested.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the attached item should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <see cref="ITraktNoteItem" /> instance, which contains information about the requested note item.</returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktResponse<ITraktNoteItem>> GetNoteItemAsync(ulong noteId, TraktExtendedInfo extendedInfo = null,
+                                                                    CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(
+                new NoteItemGetRequest
+                {
+                    Id = noteId,
+                    ExtendedInfo = extendedInfo
                 }, cancellationToken);
         }
     }
