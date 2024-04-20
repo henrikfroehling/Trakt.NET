@@ -4,10 +4,10 @@
     using Enums;
     using Exceptions;
     using Extensions;
-    using Objects.Get.Users.Notes;
+    using Objects.Get.Notes;
     using System.Collections.Generic;
 
-    internal sealed class UserNotesRequest : AUsersPagedGetRequest<ITraktUserNoteItem>, IHasUsername
+    internal sealed class UserNotesRequest : AUsersPagedGetRequest<ITraktNoteItem>, IHasUsername
     {
         public string Username { get; set; }
 
