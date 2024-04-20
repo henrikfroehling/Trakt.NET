@@ -19,8 +19,11 @@
         internal static void AssertHttpResponseCodeIsExpected(HttpStatusCode actualStatusCode, HttpStatusCode expectedStatusCode, string assertionMessage)
             => Debug.Assert(actualStatusCode == expectedStatusCode, assertionMessage);
 
-        internal static void AssertHttpResponseCodeIsNotExpected(HttpStatusCode actualStatusCode, HttpStatusCode expectedStatusCode, string assertionMessage)
-            => Debug.Assert(actualStatusCode != expectedStatusCode, assertionMessage);
+        internal static void AssertHttpResponseCodeIsExpected(HttpStatusCode actualStatusCode, HttpStatusCode expectedStatusCode1, HttpStatusCode expectedStatusCode2, string assertionMessage)
+            => Debug.Assert(actualStatusCode == expectedStatusCode1 || actualStatusCode == expectedStatusCode2, assertionMessage);
+
+        internal static void AssertHttpResponseCodeIsNotExpected(HttpStatusCode actualStatusCode, HttpStatusCode expectedStatusCode1, HttpStatusCode expectedStatusCode2, string assertionMessage)
+            => Debug.Assert(actualStatusCode != expectedStatusCode1 && actualStatusCode != expectedStatusCode2, assertionMessage);
 
         internal static void AssertResponseContentStreamIsNotNull(Stream stream)
             => Debug.Assert(stream != null, "precondition for deserializing response content failed: stream is null");
