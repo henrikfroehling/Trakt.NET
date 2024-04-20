@@ -5,9 +5,9 @@ namespace TraktNet.Modules
     using Objects.Get.Collections;
     using Objects.Get.History;
     using Objects.Get.Lists;
+    using Objects.Get.Notes;
     using Objects.Get.Ratings;
     using Objects.Get.Users;
-    using Objects.Get.Users.Notes;
     using Objects.Get.Users.Statistics;
     using Objects.Get.Watched;
     using Objects.Get.Watchlist;
@@ -1101,14 +1101,14 @@ namespace TraktNet.Modules
         /// An <see cref="TraktPagedResponse{ITraktUserNoteItem}"/> instance containing the notes items and which also
         /// contains the queried page number, the page's item count, maximum page count and maximum item count.
         /// <para>
-        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktUserNoteItem" />.
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktNoteItem" />.
         /// </para>
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktPagedResponse<ITraktUserNoteItem>> GetUserNotesAsync(string usernameOrSlug, TraktNotesObjectType notesObjectType = null,
-                                                                              TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null,
-                                                                              CancellationToken cancellationToken = default)
+        public Task<TraktPagedResponse<ITraktNoteItem>> GetUserNotesAsync(string usernameOrSlug, TraktNotesObjectType notesObjectType = null,
+                                                                          TraktExtendedInfo extendedInfo = null, TraktPagedParameters pagedParameters = null,
+                                                                          CancellationToken cancellationToken = default)
         {
             var request = new UserNotesRequest
             {

@@ -29,6 +29,7 @@
             Lists = new TraktListsModule(this);
             Movies = new TraktMoviesModule(this);
             Networks = new TraktNetworksModule(this);
+            Notes = new TraktNotesModule(this);
             People = new TraktPeopleModule(this);
             Recommendations = new TraktRecommendationsModule(this);
             Scrobble = new TraktScrobbleModule(this);
@@ -146,6 +147,9 @@
 
         /// <summary>Provides access to the networks module. See <seealso cref="TraktNetworksModule" />.</summary>
         public TraktNetworksModule Networks { get; }
+
+        /// <summary>Provides access to the notes module. See <seealso cref="TraktNotesModule" />.</summary>
+        public TraktNotesModule Notes { get; }
 
         /// <summary>Provides access to the people module. See <seealso cref="TraktPeopleModule" />.</summary>
         public TraktPeopleModule People { get; }
