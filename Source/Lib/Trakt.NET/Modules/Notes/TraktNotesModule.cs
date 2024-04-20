@@ -87,5 +87,30 @@
                     }
                 }, cancellationToken);
         }
+
+        /// <summary>
+        /// Delete a single note.
+        /// <para>OAuth authorization required.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/notes/note/delete-a-note">"Trakt API Doc - Note: Delete a note"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="noteId">The id of the note which should be deleted.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktNoContentResponse> DeleteNoteAsync(ulong noteId, CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+
+            return requestHandler.ExecuteNoContentRequestAsync(
+                new NoteDeleteRequest
+                {
+                    Id = noteId
+                }, cancellationToken);
+        }
     }
 }
