@@ -1,5 +1,6 @@
 ﻿namespace TraktNET
 {
+    /// <summary>Exception, that will be thrown, if a user has exceeded their account limits.</summary>
     public sealed class TraktApiAccountLimitException(HttpMethod httpMethod, HttpRequestMessage requestMessage,
                                                       string? responseContent, Exception? innerException = null)
         : TraktApiException(CreateExceptionMessage(Constants.StatusCodes.AccountLimitExceeded), Constants.StatusCodes.AccountLimitExceeded,
