@@ -1594,5 +1594,37 @@
                   }
                 }
               ]";
+
+        private const string COMMENTS_JSON =
+            @"[
+                {
+                  ""id"": 8,
+                  ""parent_id"": 0,
+                  ""created_at"": ""2011-03-25T22:35:17.000Z"",
+                  ""updated_at"": ""2011-03-25T22:35:17.000Z"",
+                  ""comment"": ""Can't wait to watch everything on this epic list!"",
+                  ""spoiler"": false,
+                  ""review"": false,
+                  ""replies"": 0,
+                  ""likes"": 0,
+                  ""user_stats"": {
+                    ""rating"": null,
+                    ""play_count"": 1,
+                    ""completed_count"": 1
+                  },
+                  ""user"": {
+                    ""username"": ""sean"",
+                    ""private"": false,
+                    ""name"": ""Sean Rudford"",
+                    ""vip"": true,
+                    ""vip_ep"": false,
+                    ""ids"": {
+                      ""slug"": ""sean""
+                    }
+                  }
+                }
+              ]";
+
+        private const int COMMENTS_COUNT = 1;
     }
 }
