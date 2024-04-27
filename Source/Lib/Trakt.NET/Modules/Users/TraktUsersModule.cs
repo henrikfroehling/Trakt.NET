@@ -868,6 +868,44 @@ namespace TraktNet.Modules
         }
 
         /// <summary>
+        /// Returns all top level comments for the favorites.
+        /// <para>OAuth authorization optional.</para>
+        /// <para>
+        /// See <a href="https://trakt.docs.apiary.io/#reference/users/favorites-comments/get-all-favorites-comments">"Trakt API Doc - Users: Favorites Comments"</a> for more information.
+        /// </para>
+        /// </summary>
+        /// <param name="usernameOrSlug">The username or slug of the user, for which the favorites comments should be queried.</param>
+        /// <param name="sortOrder">Determines the sort order of the returned favorites comments. See also <seealso cref="TraktCommentSortOrder" />.</param>
+        /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>
+        /// An <see cref="TraktPagedResponse{ITraktComment}"/> instance containing the queried favorites comments and which also
+        /// contains the queried page number, the page's item count, maximum page count and maximum item count.
+        /// <para>
+        /// See also <seealso cref="TraktPagedResponse{ListItem}" /> and <seealso cref="ITraktComment" />.
+        /// </para>
+        /// </returns>
+        /// <exception cref="TraktException">Thrown, if the request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public Task<TraktPagedResponse<ITraktComment>> GetFavoritesCommentsAsync(string usernameOrSlug, TraktCommentSortOrder sortOrder = null,
+                                                                                 TraktPagedParameters pagedParameters = null,
+                                                                                 CancellationToken cancellationToken = default)
+        {
+            var request = new UserFavoritesCommentsRequest
+            {
+                Username = usernameOrSlug,
+                Sort = sortOrder,
+                Page = pagedParameters?.Page,
+                Limit = pagedParameters?.Limit
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
+        }
+
+        /// <summary>
         /// Gets an user's ratings for movies, shows, seasons and / or episodes.
         /// <para>OAuth authorization optional.</para>
         /// <para>
