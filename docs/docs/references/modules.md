@@ -68,6 +68,12 @@ This module contains all methods, that are described in the [Trakt API Networks 
 
 Access this module via [`TraktClient.Networks`](xref:TraktNet.TraktClient.Networks).
 
+## Notes
+
+This module contains all methods, that are described in the [Trakt API Notes section](https://trakt.docs.apiary.io/#reference/notes).
+
+Access this module via [`TraktClient.Notes`](xref:TraktNet.TraktClient.Notes).
+
 ## People
 
 This module contains all methods, that are described in the [Trakt API People section](https://trakt.docs.apiary.io/#reference/people).
