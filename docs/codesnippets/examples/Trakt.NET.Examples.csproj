@@ -11,7 +11,10 @@
   <ItemGroup>
     <PackageReference Include="Spectre.Console" Version="0.49.1" />
     <PackageReference Include="Spectre.Console.Cli" Version="0.49.1" />
-    <PackageReference Include="Trakt.NET" Version="1.4.0-g88d51285c3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Source\Lib\Trakt.NET\Trakt.NET.csproj" />
   </ItemGroup>
 
 </Project>
