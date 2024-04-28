@@ -17,7 +17,7 @@
         /// Gets all shows where a person with the given Trakt-Id or -Slug is in the cast or crew.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/people/shows/get-show-credits">"Trakt API Doc - People: Shows"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/people/shows/get-show-credits">"Trakt API Doc - People: Shows"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="personIdOrSlug">The Trakt-Id or -Slug of the person, for which the shows should be queried.</param>
@@ -49,7 +49,7 @@
         /// Gets all shows where a person with the given Trakt-Id or -Slug is in the cast or crew.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/people/shows/get-show-credits">"Trakt API Doc - People: Shows"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/people/shows/get-show-credits">"Trakt API Doc - People: Shows"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="traktPersonId">The person's Trakt-Id. See also <seealso cref="ITraktPersonIds" />.</param>
@@ -78,7 +78,7 @@
         /// Gets all shows where a person with the given Trakt-Id or -Slug is in the cast or crew.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/people/shows/get-show-credits">"Trakt API Doc - People: Shows"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/people/shows/get-show-credits">"Trakt API Doc - People: Shows"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="personIds">The person's ids. See also <seealso cref="ITraktPersonIds" />.</param>
@@ -111,7 +111,7 @@
         /// Gets all shows where a person with the given Trakt-Id or -Slug is in the cast or crew.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/people/shows/get-show-credits">"Trakt API Doc - People: Shows"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/people/shows/get-show-credits">"Trakt API Doc - People: Shows"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="person">The person. See also <seealso cref="ITraktPerson" />.</param>

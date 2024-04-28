@@ -31,7 +31,7 @@ namespace TraktNet.Modules
     /// <summary>
     /// Provides access to data retrieving methods specific to users.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/users">"Trakt API Doc - Users"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/users">"Trakt API Doc - Users"</a> section.
     /// </para>
     /// </summary>
     public partial class TraktUsersModule : ATraktModule
@@ -44,7 +44,7 @@ namespace TraktNet.Modules
         /// Gets the user's settings.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/settings/retrieve-settings">"Trakt API Doc - Users: Settings"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/settings/retrieve-settings">"Trakt API Doc - Users: Settings"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -63,7 +63,7 @@ namespace TraktNet.Modules
         /// Gets the user's pending follow requests.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/follower-requests/get-follow-requests">"Trakt API Doc - Users: Follower Requests"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/follower-requests/get-follow-requests">"Trakt API Doc - Users: Follower Requests"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="extendedInfo">
@@ -121,7 +121,7 @@ namespace TraktNet.Modules
         /// Gets the user's hidden items, like movies, shows and / or seasons.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/hidden-items/get-hidden-items">"Trakt API Doc - Users: Hidden Items"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/hidden-items/get-hidden-items">"Trakt API Doc - Users: Hidden Items"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="hiddenItemsSection">Determines, from which section the hidden items should be queried. See also <seealso cref="TraktHiddenItemsSection" />.</param>
@@ -274,7 +274,7 @@ namespace TraktNet.Modules
         /// Gets the items (movies, shows, seasons, episodes, persons, comments, lists) the user likes.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/likes/get-likes">"Trakt API Doc - Users: Likes"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/likes/get-likes">"Trakt API Doc - Users: Likes"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the likes should be queried.</param>
@@ -311,7 +311,7 @@ namespace TraktNet.Modules
         /// Gets an user's profile information.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/profile/get-user-profile">"Trakt API Doc - Users: Profile"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/profile/get-user-profile">"Trakt API Doc - Users: Profile"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the profile should be queried.</param>
@@ -343,7 +343,7 @@ namespace TraktNet.Modules
         /// Gets all collected movies in an user's collection.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/collection/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/collection/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the collected movies should be queried.</param>
@@ -376,7 +376,7 @@ namespace TraktNet.Modules
         /// Gets all collected shows in an user's collection.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/collection/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/collection/get-collection">"Trakt API Doc - Users: Collection"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the collected shows should be queried.</param>
@@ -409,7 +409,7 @@ namespace TraktNet.Modules
         /// Gets all comments an user has posted, sorted by most recent.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/comments/get-comments">"Trakt API Doc - Users: Comments"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/comments/get-comments">"Trakt API Doc - Users: Comments"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the comments should be queried.</param>
@@ -575,7 +575,7 @@ namespace TraktNet.Modules
         /// Gets an user's followers.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/followers/get-followers">"Trakt API Doc - Users: Followers"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/followers/get-followers">"Trakt API Doc - Users: Followers"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the followers should be queried.</param>
@@ -607,7 +607,7 @@ namespace TraktNet.Modules
         /// Gets users an user is following.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/following/get-following">"Trakt API Doc - Users: Following"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/following/get-following">"Trakt API Doc - Users: Following"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the following users should be queried.</param>
@@ -639,7 +639,7 @@ namespace TraktNet.Modules
         /// Gets an user's friends.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/friends/get-friends">"Trakt API Doc - Users: Friends"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/friends/get-friends">"Trakt API Doc - Users: Friends"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the friends should be queried.</param>
@@ -671,7 +671,7 @@ namespace TraktNet.Modules
         /// Sends a follow request for an user with the given username.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/follow/follow-this-user">"Trakt API Doc - Users: Follow"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/follow/follow-this-user">"Trakt API Doc - Users: Follow"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, which should be followed.</param>
@@ -701,7 +701,7 @@ namespace TraktNet.Modules
         /// Sends an unfollow request for an user with the given username.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/follow/unfollow-this-user">"Trakt API Doc - Users: Follow"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/follow/unfollow-this-user">"Trakt API Doc - Users: Follow"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, which should be unfollowed.</param>
@@ -726,7 +726,7 @@ namespace TraktNet.Modules
         /// Approves a follower request with the given id.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/approve-or-deny-follower-requests/approve-follow-request">"Trakt API Doc - Users: Approve or Deny Follower Requests"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/approve-or-deny-follower-requests/approve-follow-request">"Trakt API Doc - Users: Approve or Deny Follower Requests"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="followerRequestId">The id of the follower request, which should be approved.</param>
@@ -752,7 +752,7 @@ namespace TraktNet.Modules
         /// Denies a follower request with the given id.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/approve-or-deny-follower-requests/deny-follow-request">"Trakt API Doc - Users: Approve or Deny Follower Requests"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/approve-or-deny-follower-requests/deny-follow-request">"Trakt API Doc - Users: Approve or Deny Follower Requests"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="followerRequestId">The id of the follower request, which should be denied.</param>
@@ -777,7 +777,7 @@ namespace TraktNet.Modules
         /// Gets all movies, shows, seasons and / or episodes an user has watched, sorted by most recent.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/history/get-watched-history">"Trakt API Doc - Users: History"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/history/get-watched-history">"Trakt API Doc - Users: History"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the watched history should be queried.</param>
@@ -909,7 +909,7 @@ namespace TraktNet.Modules
         /// Gets an user's ratings for movies, shows, seasons and / or episodes.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/ratings/get-ratings">"Trakt API Doc - Users: Ratings"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/ratings/get-ratings">"Trakt API Doc - Users: Ratings"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the ratings should be queried.</param>
@@ -953,7 +953,7 @@ namespace TraktNet.Modules
         /// Gets all items in an user's watchlist.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/watchlist/get-watchlist">"Trakt API Doc - Users: Watchlist"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/watchlist/get-watchlist">"Trakt API Doc - Users: Watchlist"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the watchlist items should be queried.</param>
@@ -1038,7 +1038,7 @@ namespace TraktNet.Modules
         /// Gets the movie or episode an user is currently watching.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/watching/get-watching">"Trakt API Doc - Users: Watching"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/watching/get-watching">"Trakt API Doc - Users: Watching"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the currently watching item should be queried.</param>
@@ -1070,7 +1070,7 @@ namespace TraktNet.Modules
         /// Gets all movies an user has watched, sorted by most plays.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/watched/get-watched">"Trakt API Doc - Users: Watched"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/watched/get-watched">"Trakt API Doc - Users: Watched"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the watched movies should be queried.</param>
@@ -1102,7 +1102,7 @@ namespace TraktNet.Modules
         /// Gets all shows an user has watched, sorted by most plays.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/watched/get-watched">"Trakt API Doc - Users: Watched"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/watched/get-watched">"Trakt API Doc - Users: Watched"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the watched shows should be queried.</param>
@@ -1134,7 +1134,7 @@ namespace TraktNet.Modules
         /// Gets statistics about the movies, shows and episodes an user has watched.
         /// <para>OAuth authorization optional.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/users/stats/get-stats">"Trakt API Doc - Users: Stats"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/users/stats/get-stats">"Trakt API Doc - Users: Stats"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="usernameOrSlug">The username or slug of the user, for which the statistics should be queried.</param>

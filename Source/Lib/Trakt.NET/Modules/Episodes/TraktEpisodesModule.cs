@@ -11,7 +11,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to episodes.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/episodes">"Trakt API Doc - Episodes"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/episodes">"Trakt API Doc - Episodes"</a> section.
     /// </para>
     /// </summary>
     public partial class TraktEpisodesModule : ATraktModule

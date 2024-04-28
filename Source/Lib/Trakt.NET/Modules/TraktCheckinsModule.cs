@@ -16,7 +16,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to checkins.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/checkin">"Trakt API Doc - Checkin"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/checkin">"Trakt API Doc - Checkin"</a> section.
     /// </para>
     /// </summary>
     public class TraktCheckinsModule : ATraktModule
@@ -29,7 +29,7 @@
         /// Checks into the given <see cref="ITraktMovie" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/check-into-an-item">"Trakt API Doc - Checkin: Checkin"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/checkin/check-into-an-item">"Trakt API Doc - Checkin: Checkin"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktMovieCheckinPostBuilder" /> to create an instance
@@ -62,7 +62,7 @@
         /// Checks into the given <see cref="ITraktEpisode" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/check-into-an-item">"Trakt API Doc - Checkin: Checkin"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/checkin/check-into-an-item">"Trakt API Doc - Checkin: Checkin"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktEpisodeCheckinPostBuilder" /> to create an instance
@@ -95,7 +95,7 @@
         /// Deletes any active checkins.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/checkin/checkin/delete-any-active-checkins">"Trakt API Doc - Checkin: Checkin"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/checkin/checkin/delete-any-active-checkins">"Trakt API Doc - Checkin: Checkin"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">

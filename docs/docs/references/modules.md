@@ -1,10 +1,10 @@
 # Modules
 
-The modules in the library represent each a section in the official [Trakt API documentation](http://docs.trakt.apiary.io/). You can not create a new instance of any module. The only way to access a module is through a [`TraktClient`](xref:TraktNet.TraktClient) instance.
+The modules in the library represent each a section in the official [Trakt API documentation](http://trakt.docs.apiary.io/). You can not create a new instance of any module. The only way to access a module is through a [`TraktClient`](xref:TraktNet.TraktClient) instance.
 
 ## Authentication
 
-This module contains all methods, that are described in [Trakt API Authentication - OAuth](http://docs.trakt.apiary.io/#reference/authentication-oauth) and in [Trakt API Authentication - Devices](http://docs.trakt.apiary.io/#reference/authentication-devices) sections.
+This module contains all methods, that are described in [Trakt API Authentication - OAuth](http://trakt.docs.apiary.io/#reference/authentication-oauth) and in [Trakt API Authentication - Devices](http://trakt.docs.apiary.io/#reference/authentication-devices) sections.
 
 Access this module via [`TraktClient.Authentication`](xref:TraktNet.TraktClient.Authentication).
 
@@ -16,7 +16,7 @@ Access this module via [`TraktClient.Calendar`](xref:TraktNet.TraktClient.Calend
 
 ## Certifications
 
-This module contains all methods, that are described in the [Trakt API Certifications section](http://docs.trakt.apiary.io/#reference/certifications).
+This module contains all methods, that are described in the [Trakt API Certifications section](http://trakt.docs.apiary.io/#reference/certifications).
 
 Access this module via [`TraktClient.Certifications`](xref:TraktNet.TraktClient.Certifications).
 
@@ -67,6 +67,12 @@ Access this module via [`TraktClient.Movies`](xref:TraktNet.TraktClient.Movies).
 This module contains all methods, that are described in the [Trakt API Networks section](https://trakt.docs.apiary.io/#reference/networks).
 
 Access this module via [`TraktClient.Networks`](xref:TraktNet.TraktClient.Networks).
+
+## Notes
+
+This module contains all methods, that are described in the [Trakt API Notes section](https://trakt.docs.apiary.io/#reference/notes).
+
+Access this module via [`TraktClient.Notes`](xref:TraktNet.TraktClient.Notes).
 
 ## People
 

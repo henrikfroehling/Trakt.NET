@@ -147,7 +147,7 @@
         /// <summary>
         /// Creates a new OAuth authorization URL. Uses the current <see cref="ClientId" /> and <see cref="RedirectUri" /> to build the authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
@@ -159,7 +159,7 @@
         /// <summary>
         /// Creates a new OAuth authorization URL. Uses the current <see cref="RedirectUri" /> to build the authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
@@ -172,7 +172,7 @@
         /// <summary>
         /// Creates a new OAuth authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
@@ -189,7 +189,7 @@
         /// <summary>
         /// Creates a new OAuth authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
@@ -212,7 +212,7 @@
         /// Creates a new OAuth authorization URL. Uses the current <see cref="ClientId" />, <see cref="RedirectUri" />
         /// and <see cref="AntiForgeryToken" /> as state variable to build the authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
@@ -225,7 +225,7 @@
         /// Creates a new OAuth authorization URL. Uses the current <see cref="RedirectUri" />
         /// and <see cref="AntiForgeryToken" /> as state variable to build the authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
@@ -238,7 +238,7 @@
         /// <summary>
         /// Creates a new OAuth authorization URL. Uses the <see cref="AntiForgeryToken" /> as state variable to build the authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
@@ -386,7 +386,7 @@
         /// Generates a new Trakt device and starts the device authentication process. Uses the current <see cref="ClientId" /> for the request.
         /// Assigns the returned <see cref="ITraktDevice" /> instance to <see cref="Device" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/device-code/generate-new-device-codes">"Trakt API Doc - Devices: Device Code"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/device-code/generate-new-device-codes">"Trakt API Doc - Devices: Device Code"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -403,7 +403,7 @@
         /// Generates a new Trakt device and starts the device authentication process.
         /// Assigns the returned <see cref="ITraktDevice" /> instance to <see cref="Device" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/device-code/generate-new-device-codes">"Trakt API Doc - Devices: Device Code"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/device-code/generate-new-device-codes">"Trakt API Doc - Devices: Device Code"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used for the request.</param>
@@ -432,7 +432,7 @@
         /// Polls for a new access token. Uses the current <see cref="Device" />, <see cref="ClientId" /> and <see cref="ClientSecret" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -459,7 +459,7 @@
         /// Polls for a new access token. Uses the current <see cref="ClientId" /> and <see cref="ClientSecret" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="device">The <see cref="ITraktDevice" />, which will be used for the request.</param>
@@ -487,7 +487,7 @@
         /// Polls for a new access token. Uses the current <see cref="ClientSecret" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="device">The <see cref="ITraktDevice" />, which will be used for the request.</param>
@@ -515,7 +515,7 @@
         /// <summary>
         /// Polls for a new access token. Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="device">The <see cref="ITraktDevice" />, which will be used for the request.</param>
@@ -560,7 +560,7 @@
         /// <see cref="ClientSecret" /> and <see cref="RedirectUri" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -588,7 +588,7 @@
         /// Uses the current <see cref="ClientId" />, <see cref="ClientSecret" /> and <see cref="RedirectUri" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="refreshToken">The refresh token, which will be used for the exchange.</param>
@@ -617,7 +617,7 @@
         /// Uses the current <see cref="ClientSecret" /> and <see cref="RedirectUri" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="refreshToken">The refresh token, which will be used for the exchange.</param>
@@ -647,7 +647,7 @@
         /// Uses the current <see cref="RedirectUri" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="refreshToken">The refresh token, which will be used for the exchange.</param>
@@ -677,7 +677,7 @@
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="refreshToken">The refresh token, which will be used for the exchange.</param>
@@ -723,7 +723,7 @@
         /// and the user has to be re-authenticated.
         /// Uses the current <see cref="Authorization" />'s access token, <see cref="ClientId" /> and <see cref="ClientSecret" /> for the request.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -748,7 +748,7 @@
         /// and the user has to be re-authenticated.
         /// Uses the current <see cref="ClientId" /> and <see cref="ClientSecret" /> for the request.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="accessToken">The given access token, which will be revoked.</param>
@@ -774,7 +774,7 @@
         /// and the user has to be re-authenticated.
         /// Uses the current <see cref="ClientSecret" /> for the request.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="accessToken">The given access token, which will be revoked.</param>
@@ -800,7 +800,7 @@
         /// Revokes the current access token. If, successful, the current access token will be invalid
         /// and the user has to be re-authenticated.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="accessToken">The given access token, which will be revoked.</param>

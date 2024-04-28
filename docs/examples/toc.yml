@@ -14,8 +14,8 @@
       href: modules/shows/get-trending-shows.md
     - name: Get Single Show
       href: modules/shows/get-single-show.md
-    - name: Get Multiple Shows
-      href: modules/shows/get-multiple-shows.md
+    - name: Get Shows Stream
+      href: modules/shows/get-shows-stream.md
 - name: Parameters
   items:
   - name: Filter

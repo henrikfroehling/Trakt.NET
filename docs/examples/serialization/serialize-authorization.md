@@ -4,39 +4,14 @@ This example shows how we can serialize a given authorization as JSON data and d
 
 For this example we simply create a fake authorization.
 
-```csharp
-using TraktNet.Objects.Authentication;
-
-ITraktAuthorization fakeAuthorization = TraktAuthorization.CreateWith(DateTime.Now, 90 * 24 * 3600, "FakeAccessToken", "FakeRefreshToken");
-```
+[!code-csharp[](../../codesnippets/examples/serialization/SerializationExample.cs#L13-L13)]
 
 We use the [`TraktSerializationService`](xref:TraktNet.Services.TraktSerializationService) to serialize the previously created authorization as JSON data.
 
-```csharp
-using TraktNet.Services;
-
-string fakeAuthorizationJson = await TraktSerializationService.SerializeAsync(fakeAuthorization);
-
-Console.WriteLine("Serialized Fake Authorization:");
-Console.WriteLine(fakeAuthorizationJson);
-```
+[!code-csharp[](../../codesnippets/examples/serialization/SerializationExample.cs#L15-L18)]
 
 Then, we use the [`TraktSerializationService`](xref:TraktNet.Services.TraktSerializationService) to deserialize the JSON data back to an authorization object.
 
-```csharp
-ITraktAuthorization deserializedFakeAuthorization = await TraktSerializationService.DeserializeAsync(fakeAuthorizationJson);
+[!code-csharp[](../../codesnippets/examples/serialization/SerializationExample.cs#L20-L34)]
 
-if (deserializedFakeAuthorization != null)
-{
-    Console.WriteLine("Deserialized Fake Authorization:");
-    Console.WriteLine($"Created (UTC): {deserializedFakeAuthorization.CreatedAt}");
-    Console.WriteLine($"Access Scope: {deserializedFakeAuthorization.Scope.DisplayName}");
-    Console.WriteLine($"Refresh Possible: {deserializedFakeAuthorization.IsRefreshPossible}");
-    Console.WriteLine($"Valid: {deserializedFakeAuthorization.IsValid}");
-    Console.WriteLine($"Token Type: {deserializedFakeAuthorization.TokenType.DisplayName}");
-    Console.WriteLine($"Access Token: {deserializedFakeAuthorization.AccessToken}");
-    Console.WriteLine($"Refresh Token: {deserializedFakeAuthorization.RefreshToken}");
-    Console.WriteLine($"Token Expired: {deserializedFakeAuthorization.IsExpired}");
-    Console.WriteLine($"Expires in {deserializedFakeAuthorization.ExpiresInSeconds / 3600 / 24} days");
-}
-```
+__The complete code for this example can be found at: [Trakt.NET/docs/codesnippets/examples/serialization/SerializationExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/v1.4.0/docs/codesnippets/examples/serialization/SerializationExample.cs)__

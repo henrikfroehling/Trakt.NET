@@ -1,6 +1,6 @@
 # Post Builder
 
-The [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#) has many requests which require the user to send data.
+The [Trakt.tv](https://trakt.tv/) [API](http://trakt.docs.apiary.io/#) has many requests which require the user to send data.
 These post objects can be filled manually with data like if you are creating a new object.
 
 But **Trakt.NET** also provides some helper classes for creating these post objects.

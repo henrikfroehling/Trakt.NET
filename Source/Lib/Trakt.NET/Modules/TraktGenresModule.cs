@@ -13,7 +13,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to genres.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/genres">"Trakt API Doc - Genres"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/genres">"Trakt API Doc - Genres"</a> section.
     /// </para>
     /// </summary>
     public class TraktGenresModule : ATraktModule
@@ -26,7 +26,7 @@
         /// Gets a list of all movie genres.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/genres/list/get-genres">"Trakt API Doc - Genres: List"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/genres/list/get-genres">"Trakt API Doc - Genres: List"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -53,7 +53,7 @@
         /// Gets a list of all show genres.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/genres/list/get-genres">"Trakt API Doc - Genres: List"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/genres/list/get-genres">"Trakt API Doc - Genres: List"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">

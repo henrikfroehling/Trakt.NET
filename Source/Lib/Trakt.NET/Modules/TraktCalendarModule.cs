@@ -14,7 +14,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to calendars.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/calendars">"Trakt API Doc - Calendars"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/calendars">"Trakt API Doc - Calendars"</a> section.
     /// </para>
     /// </summary>
     public class TraktCalendarModule : ATraktModule
@@ -27,7 +27,7 @@
         /// Gets all users <see cref="ITraktCalendarShow" />s airing during the given time period.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-shows/get-shows">"Trakt API Doc - Calendars: My Shows"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/calendars/my-shows/get-shows">"Trakt API Doc - Calendars: My Shows"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
@@ -68,7 +68,7 @@
         /// Gets all new users <see cref="ITraktCalendarShow" />s airing during the given time period.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-new-shows/get-new-shows">"Trakt API Doc - Calendars: My New Shows"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/calendars/my-new-shows/get-new-shows">"Trakt API Doc - Calendars: My New Shows"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
@@ -109,7 +109,7 @@
         /// Gets all users season premieres airing during the given time period.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-season-premieres/get-season-premieres">"Trakt API Doc - Calendars: My Season Premieres"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/calendars/my-season-premieres/get-season-premieres">"Trakt API Doc - Calendars: My Season Premieres"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
@@ -150,7 +150,7 @@
         /// Gets all users <see cref="ITraktCalendarMovie" />s airing during the given time period.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-movies/get-movies">"Trakt API Doc - Calendars: My Movies"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/calendars/my-movies/get-movies">"Trakt API Doc - Calendars: My Movies"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
@@ -191,7 +191,7 @@
         /// Gets all users <see cref="ITraktCalendarMovie" />s with a DVD release during the given time period.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/my-dvd/get-dvd-releases">"Trakt API Doc - Calendars: My DVD"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/calendars/my-dvd/get-dvd-releases">"Trakt API Doc - Calendars: My DVD"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
@@ -232,7 +232,7 @@
         /// Gets all <see cref="ITraktCalendarShow" />s airing during the given time period.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-shows/get-shows">"Trakt API Doc - Calendars: All Shows"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/calendars/all-shows/get-shows">"Trakt API Doc - Calendars: All Shows"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
@@ -273,7 +273,7 @@
         /// Gets all new <see cref="ITraktCalendarShow" />s airing during the given time period.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-new-shows/get-new-shows">"Trakt API Doc - Calendars: All New Shows"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/calendars/all-new-shows/get-new-shows">"Trakt API Doc - Calendars: All New Shows"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
@@ -314,7 +314,7 @@
         /// Gets all season premieres airing during the given time period.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-season-premieres/get-season-premieres">"Trakt API Doc - Calendars: All Season Premieres"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/calendars/all-season-premieres/get-season-premieres">"Trakt API Doc - Calendars: All Season Premieres"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
@@ -355,7 +355,7 @@
         /// Gets all <see cref="ITraktCalendarMovie" />s airing during the given time period.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-movies/get-movies">"Trakt API Doc - Calendars: All Movies"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/calendars/all-movies/get-movies">"Trakt API Doc - Calendars: All Movies"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
@@ -396,7 +396,7 @@
         /// Gets all <see cref="ITraktCalendarMovie" />s with a DVD release during the given time period.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/calendars/all-movies/get-dvd-releases">"Trakt API Doc - Calendars: All DVD"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/calendars/all-movies/get-dvd-releases">"Trakt API Doc - Calendars: All DVD"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktCalendarFilterBuilder" /> to create an instance of the optional <see cref="ITraktCalendarFilter" />.
