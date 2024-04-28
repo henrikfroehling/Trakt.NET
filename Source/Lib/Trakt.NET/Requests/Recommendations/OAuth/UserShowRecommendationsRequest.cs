@@ -4,7 +4,7 @@
 
     internal sealed class UserShowRecommendationsRequest : AUserRecommendationsRequest<ITraktRecommendedShow>
     {
-        public override string UriTemplate => "recommendations/shows{?extended,limit,ignore_collected,ignore_watchlisted}";
+        public override string UriTemplate => "recommendations/shows{?extended,page,limit,ignore_collected,ignore_watchlisted}";
 
         public override void Validate() { }
     }

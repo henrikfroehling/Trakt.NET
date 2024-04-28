@@ -5,11 +5,13 @@
     using Parameters;
     using System.Collections.Generic;
 
-    internal abstract class AUserRecommendationsRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ISupportsExtendedInfo
+    internal abstract class AUserRecommendationsRequest<TResponseContentType> : AGetRequest<TResponseContentType>, ISupportsExtendedInfo, ISupportsPagination
     {
         public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Required;
 
         public TraktExtendedInfo ExtendedInfo { get; set; }
+
+        public uint? Page { get; set; }
 
         public uint? Limit { get; set; }
 
@@ -23,6 +25,9 @@
 
             if (ExtendedInfo != null && ExtendedInfo.HasAnySet)
                 uriParams.Add("extended", ExtendedInfo.ToString());
+
+            if (Page.HasValue)
+                uriParams.Add("page", Page.Value.ToString());
 
             if (Limit.HasValue)
                 uriParams.Add("limit", Limit.Value.ToString());

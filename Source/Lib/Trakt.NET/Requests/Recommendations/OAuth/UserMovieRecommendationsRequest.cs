@@ -4,7 +4,7 @@
 
     internal sealed class UserMovieRecommendationsRequest : AUserRecommendationsRequest<ITraktRecommendedMovie>
     {
-        public override string UriTemplate => "recommendations/movies{?extended,limit,ignore_collected,ignore_watchlisted}";
+        public override string UriTemplate => "recommendations/movies{?extended,page,limit,ignore_collected,ignore_watchlisted}";
 
         public override void Validate() { }
     }
