@@ -1,7 +1,7 @@
 # Quick Start
 [![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.4.0-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.4.0) [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT) 
 
-This is a .NET wrapper library with which developers can build .NET applications that integrate with the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#) and access its features and data.
+This is a .NET wrapper library with which developers can build .NET applications that integrate with the [Trakt.tv](https://trakt.tv/) [API](http://trakt.docs.apiary.io/#) and access its features and data.
 
 ### Install latest Trakt.NET package
 ```ps
@@ -40,10 +40,12 @@ catch (TraktException ex)
 
 #### Output:
 
-```json
+```ps
 Title: The Last of Us
 Year: 2023
+```
 
+```json
 {
     "title": "The Last of Us",
     "year": 2023,
@@ -65,7 +67,7 @@ Some examples that **Trakt.NET** can be used for include:
 - Providing recommendations for TV shows and movies based on a user's watch history
 - Building custom TV show and movie lists
 
-To use **Trakt.NET**, you will need to [obtain an API key](https://trakt.tv/oauth/applications) from Trakt and follow the guidelines for using the [API](http://docs.trakt.apiary.io/#).
+To use **Trakt.NET**, you will need to [obtain an API key](https://trakt.tv/oauth/applications) from Trakt and follow the guidelines for using the [API](http://trakt.docs.apiary.io/#).
 
 ## Features
 - Full Trakt.tv API Coverage (As of August 2023)
