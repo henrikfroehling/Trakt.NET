@@ -28,7 +28,7 @@ on:
       - 'docs/**'
 
 env:
-  DOTNET_VERSION: '7.0.x'
+  DOTNET_VERSION: '8.0.x'
   DOTNET_QUALITY: 'ga'
   BUILD_CONFIGURATION: Release
   PROJECT_NAME: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
