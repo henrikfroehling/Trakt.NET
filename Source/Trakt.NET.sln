@@ -51,7 +51,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Git", "Git", "{695F47B0-A80
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Releases", "Releases", "{8315C2AB-046F-4BE5-B417-E4CB97AA6A34}"
 	ProjectSection(SolutionItems) = preProject
-		..\Changelog.md = ..\Changelog.md
 		..\PublishRelease.txt = ..\PublishRelease.txt
 	EndProjectSection
 EndProject
@@ -65,7 +64,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Information", "Information", "{02EDFC5A-10AE-4653-AF73-F0C2E30CFFB3}"
 	ProjectSection(SolutionItems) = preProject
 		..\AUTHORS.md = ..\AUTHORS.md
-		..\Changelog.md = ..\Changelog.md
 		..\CODE_OF_CONDUCT.md = ..\CODE_OF_CONDUCT.md
 		..\LICENSE.md = ..\LICENSE.md
 		..\README.md = ..\README.md
