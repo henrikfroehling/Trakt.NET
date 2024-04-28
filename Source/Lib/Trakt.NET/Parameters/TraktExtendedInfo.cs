@@ -7,7 +7,7 @@
     /// A boolean flag container representing the possible extended options for Trakt requests, allowing retrieving of
     /// additional data, such as images.<para />
     /// This class has an fluent interface.
-    /// <para>See <a href ="http://docs.trakt.apiary.io/#introduction/extended-info">"Trakt API Doc - Extended Info"</a> for more information.</para>
+    /// <para>See <a href ="http://trakt.docs.apiary.io/#introduction/extended-info">"Trakt API Doc - Extended Info"</a> for more information.</para>
     /// </summary>
     public class TraktExtendedInfo
     {

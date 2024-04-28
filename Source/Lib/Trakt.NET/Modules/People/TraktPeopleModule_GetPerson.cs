@@ -18,7 +18,7 @@
         /// Gets a <see cref="ITraktPerson" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -42,7 +42,7 @@
         /// Gets a <see cref="ITraktPerson" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -72,7 +72,7 @@
         /// Gets a <see cref="ITraktPerson" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultiplePersonsAsync(TraktMultipleObjectsQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -106,7 +106,7 @@
         /// Gets multiple different <see cref="ITraktPerson" />s at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetPersonAsync(string, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>
@@ -141,7 +141,7 @@
         /// Gets multiple different <see cref="ITraktPerson" />s at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/people/summary/get-a-single-person">"Trakt API Doc - People: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetPersonAsync(string, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>

@@ -18,7 +18,7 @@
         /// Gets a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultipleMoviesAsync(TraktMultipleObjectsQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -42,7 +42,7 @@
         /// Gets a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultipleMoviesAsync(TraktMultipleObjectsQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -72,7 +72,7 @@
         /// Gets a <see cref="ITraktMovie" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultipleMoviesAsync(TraktMultipleObjectsQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -106,7 +106,7 @@
         /// Gets multiple different <see cref="ITraktMovie" />s at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMovieAsync(string, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>
@@ -141,7 +141,7 @@
         /// Gets multiple different <see cref="ITraktMovie" />s at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/summary/get-a-movie">"Trakt API Doc - Movies: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMovieAsync(string, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>

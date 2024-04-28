@@ -12,7 +12,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to certifications.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/certifications">"Trakt API Doc - Certifications"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/certifications">"Trakt API Doc - Certifications"</a> section.
     /// </para>
     /// </summary>
     public class TraktCertificationsModule : ATraktModule
@@ -25,7 +25,7 @@
         /// Gets all movie certifications.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/certifications/list/get-certifications">"Trakt API Doc - Certifications: List"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/certifications/list/get-certifications">"Trakt API Doc - Certifications: List"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -44,7 +44,7 @@
         /// Gets all show certifications.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/certifications/list/get-certifications">"Trakt API Doc - Certifications: List"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/certifications/list/get-certifications">"Trakt API Doc - Certifications: List"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">

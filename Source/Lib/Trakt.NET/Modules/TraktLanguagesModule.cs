@@ -12,7 +12,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to languages.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/languages">"Trakt API Doc - Languages"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/languages">"Trakt API Doc - Languages"</a> section.
     /// </para>
     /// </summary>
     public class TraktLanguagesModule : ATraktModule

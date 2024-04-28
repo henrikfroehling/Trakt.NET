@@ -15,7 +15,7 @@
         /// Hides a movie with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/recommendations/hide-movie/hide-a-movie-recommendation">"Trakt API Doc - Recommendations: Movies"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/recommendations/hide-movie/hide-a-movie-recommendation">"Trakt API Doc - Recommendations: Movies"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="movieIdOrSlug">The Trakt-Id or -Slug or an IMDB-Id of the movie, which should be hidden from recommendations.</param>
@@ -40,7 +40,7 @@
         /// Hides a movie with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/recommendations/hide-movie/hide-a-movie-recommendation">"Trakt API Doc - Recommendations: Movies"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/recommendations/hide-movie/hide-a-movie-recommendation">"Trakt API Doc - Recommendations: Movies"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="traktMovieId">The Trakt-Id of the movie, which should be hidden from recommendations.</param>
@@ -63,7 +63,7 @@
         /// Hides a movie with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/recommendations/hide-movie/hide-a-movie-recommendation">"Trakt API Doc - Recommendations: Movies"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/recommendations/hide-movie/hide-a-movie-recommendation">"Trakt API Doc - Recommendations: Movies"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="movieIds">The ids of the movie, which should be hidden from recommendations.</param>
@@ -90,7 +90,7 @@
         /// Hides a movie with the given Trakt-Id or -Slug or IMDB-Id from getting recommended anymore.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/recommendations/hide-movie/hide-a-movie-recommendation">"Trakt API Doc - Recommendations: Movies"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/recommendations/hide-movie/hide-a-movie-recommendation">"Trakt API Doc - Recommendations: Movies"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="movie">The movie, which should be hidden from recommendations.</param>

@@ -13,7 +13,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to recommendations.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/recommendations">"Trakt API Doc - Recommendations"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/recommendations">"Trakt API Doc - Recommendations"</a> section.
     /// </para>
     /// </summary>
     public partial class TraktRecommendationsModule : ATraktModule
@@ -26,7 +26,7 @@
         /// Gets personalized movie recommendations for an user.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/recommendations/movies/get-movie-recommendations">"Trakt API Doc - Recommendations: Movies"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/recommendations/movies/get-movie-recommendations">"Trakt API Doc - Recommendations: Movies"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="limit">Determines, how many movie recommendations should be queried. Maximum is 100.</param>
@@ -69,7 +69,7 @@
         /// Gets personalized show recommendations for an user.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/recommendations/shows/get-show-recommendations">"Trakt API Doc - Recommendations: Shows"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/recommendations/shows/get-show-recommendations">"Trakt API Doc - Recommendations: Shows"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="limit">Determines, how many show recommendations should be queried. Maximum is 100.</param>

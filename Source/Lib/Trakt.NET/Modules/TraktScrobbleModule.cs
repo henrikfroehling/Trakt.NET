@@ -17,7 +17,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to scrobbles.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/scrobble">"Trakt API Doc - Scrobble"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/scrobble">"Trakt API Doc - Scrobble"</a> section.
     /// </para>
     /// </summary>
     public class TraktScrobbleModule : ATraktModule
@@ -30,7 +30,7 @@
         /// Starts watching a <see cref="ITraktMovie" /> in a media center.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktMovieScrobblePostBuilder" /> to create an instance
@@ -58,7 +58,7 @@
         /// Pauses watching a <see cref="ITraktMovie" /> in a media center.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktMovieScrobblePostBuilder" /> to create an instance
@@ -86,7 +86,7 @@
         /// Stops watching a <see cref="ITraktMovie" /> in a media center.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktMovieScrobblePostBuilder" /> to create an instance
@@ -114,7 +114,7 @@
         /// Starts watching a <see cref="ITraktEpisode" /> in a media center.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktEpisodeScrobblePostBuilder" /> to create an instance
@@ -142,7 +142,7 @@
         /// Pauses watching a <see cref="ITraktEpisode" /> in a media center.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktEpisodeScrobblePostBuilder" /> to create an instance
@@ -170,7 +170,7 @@
         /// Stops watching a <see cref="ITraktEpisode" /> in a media center.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/scrobble/start-watching-in-a-media-center">"Trakt API Doc - Scrobble: Start"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktEpisodeScrobblePostBuilder" /> to create an instance

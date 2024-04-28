@@ -11,7 +11,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to seasons.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/seasons">"Trakt API Doc - Seasons"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/seasons">"Trakt API Doc - Seasons"</a> section.
     /// </para>
     /// </summary>
     public partial class TraktSeasonsModule : ATraktModule

@@ -28,7 +28,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to comments.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/comments">"Trakt API Doc - Comments"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/comments">"Trakt API Doc - Comments"</a> section.
     /// </para>
     /// </summary>
     public class TraktCommentsModule : ATraktModule
@@ -41,7 +41,7 @@
         /// Gets a <see cref="ITraktComment" /> or reply with the given id.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMutlipleCommentsAsync(TraktMultipleCommentsQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -138,7 +138,7 @@
         /// Gets multiple different <see cref="ITraktComment" />s or replies at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetCommentAsync(uint, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>
@@ -173,7 +173,7 @@
         /// Gets multiple different <see cref="ITraktComment" />s or replies at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetCommentAsync(uint, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>
@@ -350,7 +350,7 @@
         /// Posts a comment for the given <see cref="ITraktMovie" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktMovieCommentPostBuilder" /> to create an instance
@@ -383,7 +383,7 @@
         /// Posts a comment for the given <see cref="ITraktShow" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktShowCommentPostBuilder" /> to create an instance
@@ -416,7 +416,7 @@
         /// Posts a comment for the given <see cref="ITraktSeason" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktSeasonCommentPostBuilder" /> to create an instance
@@ -449,7 +449,7 @@
         /// Posts a comment for the given <see cref="ITraktEpisode" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktEpisodeCommentPostBuilder" /> to create an instance
@@ -482,7 +482,7 @@
         /// Posts a comment for the given <see cref="ITraktList" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktListCommentPostBuilder" /> to create an instance
@@ -515,7 +515,7 @@
         /// Updates a comment or reply with the given comment id, which was posted within the last hour.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/update-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comment/update-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be updated.</param>
@@ -550,7 +550,7 @@
         /// Posts a reply to a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/replies/post-a-reply-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/replies/post-a-reply-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, for which the reply should be posted.</param>
@@ -585,7 +585,7 @@
         /// Deletes a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/delete-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comment/delete-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be deleted.</param>
@@ -610,7 +610,7 @@
         /// Likes a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/like/like-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/like/like-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be liked.</param>
@@ -635,7 +635,7 @@
         /// Unlikes a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/like/remove-like-on-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/like/remove-like-on-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be unliked.</param>
@@ -660,7 +660,7 @@
         /// Gets replies for comment with the given id.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/replies/get-replies-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/replies/get-replies-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, for which the replies should be queried.</param>

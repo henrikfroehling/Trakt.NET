@@ -16,7 +16,7 @@
         /// Gets the watched progress for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/watched-progress/get-show-watched-progress">"Trakt API Doc - Shows: Watched Progress"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/shows/watched-progress/get-show-watched-progress">"Trakt API Doc - Shows: Watched Progress"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
@@ -54,7 +54,7 @@
         /// Gets the watched progress for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/watched-progress/get-show-watched-progress">"Trakt API Doc - Shows: Watched Progress"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/shows/watched-progress/get-show-watched-progress">"Trakt API Doc - Shows: Watched Progress"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="traktShowID">The show's Trakt-Id. See also <seealso cref="ITraktShowIds" />.</param>
@@ -87,7 +87,7 @@
         /// Gets the watched progress for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/watched-progress/get-show-watched-progress">"Trakt API Doc - Shows: Watched Progress"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/shows/watched-progress/get-show-watched-progress">"Trakt API Doc - Shows: Watched Progress"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="showIds">The show's ids. See also <seealso cref="ITraktShowIds" />.</param>
@@ -124,7 +124,7 @@
         /// Gets the watched progress for a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/watched-progress/get-show-watched-progress">"Trakt API Doc - Shows: Watched Progress"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/shows/watched-progress/get-show-watched-progress">"Trakt API Doc - Shows: Watched Progress"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>

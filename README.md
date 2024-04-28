@@ -15,7 +15,7 @@ Trakt.NET
 
 ### Overview
 
-This is a .NET wrapper library with which developers can build .NET applications that integrate with the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#) and access its features and data.
+This is a .NET wrapper library with which developers can build .NET applications that integrate with the [Trakt.tv](https://trakt.tv/) [API](http://trakt.docs.apiary.io/#) and access its features and data.
 
 Some examples that Trakt.NET can be used for include:
 - Retrieve information about movies and TV shows, including details such as titles, descriptions, ratings and release dates

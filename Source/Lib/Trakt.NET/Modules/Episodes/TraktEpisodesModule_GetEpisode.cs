@@ -19,7 +19,7 @@
         /// Gets a <see cref="ITraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -46,7 +46,7 @@
         /// Gets a <see cref="ITraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -79,7 +79,7 @@
         /// Gets a <see cref="ITraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -116,7 +116,7 @@
         /// Gets a <see cref="ITraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultipleEpisodesAsync(TraktMultipleEpisodesQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -149,7 +149,7 @@
         /// Gets multiple different <see cref="ITraktEpisode" />s at once in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetEpisodeAsync(string, uint, uint, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>
@@ -185,7 +185,7 @@
         /// Gets multiple different <see cref="ITraktEpisode" />s at once in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show">"Trakt API Doc - Episodes: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetEpisodeAsync(string, uint, uint, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>

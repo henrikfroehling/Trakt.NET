@@ -18,7 +18,7 @@
         /// Gets a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultipleShowsAsync(TraktMultipleObjectsQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -42,7 +42,7 @@
         /// Gets a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultipleShowsAsync(TraktMultipleObjectsQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -72,7 +72,7 @@
         /// Gets a <see cref="ITraktShow" /> with the given Trakt-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetMultipleShowsAsync(TraktMultipleObjectsQueryParams, CancellationToken)" />.</para>
         /// </summary>
@@ -106,7 +106,7 @@
         /// Gets multiple different <see cref="ITraktShow" />s at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetShowAsync(string, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>
@@ -141,7 +141,7 @@
         /// Gets multiple different <see cref="ITraktShow" />s at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/shows/summary/get-a-single-show">"Trakt API Doc - Shows: Summary"</a> for more information.
         /// </para>
         /// <para>See also <seealso cref="GetShowAsync(string, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>

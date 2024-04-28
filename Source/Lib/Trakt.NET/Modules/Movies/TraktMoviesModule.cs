@@ -14,7 +14,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to movies.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/movies">"Trakt API Doc - Movies"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/movies">"Trakt API Doc - Movies"</a> section.
     /// </para>
     /// </summary>
     public partial class TraktMoviesModule : ATraktModule
@@ -27,7 +27,7 @@
         /// Gets trending movies.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/trending/get-trending-movies">"Trakt API Doc - Movies: Trending"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/trending/get-trending-movies">"Trakt API Doc - Movies: Trending"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
@@ -72,7 +72,7 @@
         /// Gets popular movies.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/popular/get-popular-movies">"Trakt API Doc - Movies: Popular"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/popular/get-popular-movies">"Trakt API Doc - Movies: Popular"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
@@ -165,7 +165,7 @@
         /// Gets the most played movies.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/played/get-the-most-played-movies">"Trakt API Doc - Movies: Played"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/played/get-the-most-played-movies">"Trakt API Doc - Movies: Played"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
@@ -213,7 +213,7 @@
         /// Gets the most watched movies.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/watched/get-the-most-watched-movies">"Trakt API Doc - Movies: Watched"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/watched/get-the-most-watched-movies">"Trakt API Doc - Movies: Watched"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
@@ -261,7 +261,7 @@
         /// Gets the most collected movies.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/watched/get-the-most-collected-movies">"Trakt API Doc - Movies: Collected"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/watched/get-the-most-collected-movies">"Trakt API Doc - Movies: Collected"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
@@ -309,7 +309,7 @@
         /// Gets the most anticipated movies.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/anticipated/get-the-most-anticipated-movies">"Trakt API Doc - Movies: Anticipated"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/anticipated/get-the-most-anticipated-movies">"Trakt API Doc - Movies: Anticipated"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktMovieFilterBuilder" /> to create an instance of the optional <see cref="ITraktMovieFilter" />.
@@ -354,7 +354,7 @@
         /// Gets the top 10 box office movies.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/box-office/get-the-weekend-box-office">"Trakt API Doc - Movies: Box Office"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/box-office/get-the-weekend-box-office">"Trakt API Doc - Movies: Box Office"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="extendedInfo">
@@ -383,7 +383,7 @@
         /// Gets updated movies since the given <paramref name="startDate" />.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/movies/updates/get-recently-updated-movies">"Trakt API Doc - Movies: Updates"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/movies/updates/get-recently-updated-movies">"Trakt API Doc - Movies: Updates"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="startDate">The start date, after which updated movies should be queried. Will be converted to the Trakt UTC-datetime and -format.</param>

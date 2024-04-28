@@ -19,7 +19,7 @@
         /// Gets all <see cref="ITraktList" />s containing the given <see cref="ITraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="showIdOrSlug">The show's Trakt-Id or -Slug. See also <seealso cref="ITraktShowIds" />.</param>
@@ -70,7 +70,7 @@
         /// Gets all <see cref="ITraktList" />s containing the given <see cref="ITraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="traktShowID">The show's Trakt-Id. See also <seealso cref="ITraktShowIds" />.</param>
@@ -114,7 +114,7 @@
         /// Gets all <see cref="ITraktList" />s containing the given <see cref="ITraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="showIds">The show's ids. See also <seealso cref="ITraktShowIds" />.</param>
@@ -162,7 +162,7 @@
         /// Gets all <see cref="ITraktList" />s containing the given <see cref="ITraktEpisode" /> in a show with the given Trakt-Show-Id or -Slug.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/episodes/lists/get-lists-containing-this-episode">"Trakt API Doc - Episodes: Lists"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="show">The show. See also <seealso cref="ITraktShow" />.</param>
