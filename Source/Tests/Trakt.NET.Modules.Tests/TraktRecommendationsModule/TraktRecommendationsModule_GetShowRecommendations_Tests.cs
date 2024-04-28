@@ -8,6 +8,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Recommendations;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
@@ -20,97 +21,300 @@
         public async Task Test_TraktRecommendationsModule_GetShowRecommendations()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(GET_SHOW_RECOMMENDATIONS_URI,
-                                                                SHOW_RECOMMENDATIONS_JSON, 1, 10);
+                                                                SHOW_RECOMMENDATIONS_JSON, 1, 10, 1, SHOW_RECOMMENDATIONS_COUNT);
 
-            TraktListResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync();
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().Be(1u);
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
             response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetShowRecommendations_With_Page()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}?page={PAGE}",
+                                                                SHOW_RECOMMENDATIONS_JSON, PAGE, 10, 1, SHOW_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(pagedParameters: pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
         public async Task Test_TraktRecommendationsModule_GetShowRecommendations_With_Limit()
         {
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}?limit={LIMIT}",
-                                                                SHOW_RECOMMENDATIONS_JSON, 1, LIMIT);
+                                                                SHOW_RECOMMENDATIONS_JSON, 1, LIMIT, 1, SHOW_RECOMMENDATIONS_COUNT);
 
-            TraktListResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(LIMIT);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(pagedParameters: pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().Be(1u);
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
             response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
         public async Task Test_TraktRecommendationsModule_GetShowRecommendations_With_IgnoreCollected()
         {
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}?ignore_collected=true",
-                                                                SHOW_RECOMMENDATIONS_JSON, 1, 10);
+                                                                SHOW_RECOMMENDATIONS_JSON, 1, 10, 1, SHOW_RECOMMENDATIONS_COUNT);
 
-            TraktListResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(null, true);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(ignoreCollected: true);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().Be(1u);
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
             response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
         public async Task Test_TraktRecommendationsModule_GetShowRecommendations_With_IgnoreWatchlisted()
         {
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}?ignore_watchlisted=true",
-                                                                SHOW_RECOMMENDATIONS_JSON, 1, 10);
+                                                                SHOW_RECOMMENDATIONS_JSON, 1, 10, 1, SHOW_RECOMMENDATIONS_COUNT);
 
-            TraktListResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(null, null, true);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(ignoreWatchlisted: true);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().Be(1u);
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
             response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
         public async Task Test_TraktRecommendationsModule_GetShowRecommendations_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}?extended={EXTENDED_INFO}",
-                                                                SHOW_RECOMMENDATIONS_JSON, 1, 10);
+                                                                SHOW_RECOMMENDATIONS_JSON, 1, 10, 1, SHOW_RECOMMENDATIONS_COUNT);
 
-            TraktListResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(null, null, null, EXTENDED_INFO);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(extendedInfo: EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().Be(1u);
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
             response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
         public async Task Test_TraktRecommendationsModule_GetShowRecommendations_Complete()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(
-                $"{GET_SHOW_RECOMMENDATIONS_URI}?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&limit={LIMIT}",
-                SHOW_RECOMMENDATIONS_JSON, 1, LIMIT);
+                $"{GET_SHOW_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                SHOW_RECOMMENDATIONS_JSON, PAGE, LIMIT, 1, SHOW_RECOMMENDATIONS_COUNT);
 
-            TraktListResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(LIMIT, true, true, EXTENDED_INFO);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().Be(1u);
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
             response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetShowRecommendations_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                SHOW_RECOMMENDATIONS_JSON, 2, LIMIT, 5, SHOW_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetShowRecommendations_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                SHOW_RECOMMENDATIONS_JSON, 2, LIMIT, 2, SHOW_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetShowRecommendations_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                SHOW_RECOMMENDATIONS_JSON, 1, LIMIT, 2, SHOW_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetShowRecommendations_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                SHOW_RECOMMENDATIONS_JSON, 1, LIMIT, 1, SHOW_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetShowRecommendations_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                SHOW_RECOMMENDATIONS_JSON, 2, LIMIT, 2, SHOW_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetMockClient(client, $"{GET_SHOW_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                SHOW_RECOMMENDATIONS_JSON, 1, LIMIT, 2, SHOW_RECOMMENDATIONS_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetShowRecommendations_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_SHOW_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                SHOW_RECOMMENDATIONS_JSON, 1, LIMIT, 2, SHOW_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktRecommendedShow> response = await client.Recommendations.GetShowRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetMockClient(client, $"{GET_SHOW_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                SHOW_RECOMMENDATIONS_JSON, 2, LIMIT, 2, SHOW_RECOMMENDATIONS_COUNT);
+
+            response = await response.GetNextPageAsync();
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(SHOW_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(SHOW_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
         }
 
         [Theory]

@@ -23,7 +23,7 @@
         public void Test_UserShowRecommendationsRequest_Has_Valid_UriTemplate()
         {
             var request = new UserShowRecommendationsRequest();
-            request.UriTemplate.Should().Be("recommendations/shows{?extended,limit,ignore_collected,ignore_watchlisted}");
+            request.UriTemplate.Should().Be("recommendations/shows{?extended,page,limit,ignore_collected,ignore_watchlisted}");
         }
 
         [Theory, ClassData(typeof(UserShowRecommendationsRequest_TestData))]
@@ -39,6 +39,7 @@
         public class UserShowRecommendationsRequest_TestData : IEnumerable<object[]>
         {
             private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
+            private const int _page = 2;
             private const int _limit = 20;
             private const bool _ignoreCollected = true;
             private const bool _ignoreWatchlisted = true;
@@ -118,6 +119,15 @@
                 IgnoreWatchlisted = _ignoreWatchlisted
             };
 
+            private static readonly UserShowRecommendationsRequest _request14 = new UserShowRecommendationsRequest
+            {
+                ExtendedInfo = _extendedInfo,
+                Page = _page,
+                Limit = _limit,
+                IgnoreCollected = _ignoreCollected,
+                IgnoreWatchlisted = _ignoreWatchlisted
+            };
+
             private static readonly List<object[]> _data = new List<object[]>();
 
             public UserShowRecommendationsRequest_TestData()
@@ -128,6 +138,7 @@
             private void SetupPathParamters()
             {
                 var strExtendedInfo = _extendedInfo.ToString();
+                var strPage = _page.ToString();
                 var strLimit = _limit.ToString();
                 var strIgnoreCollected = "true";
                 var strIgnoreWatchlisted = "true";
@@ -202,6 +213,15 @@
                 _data.Add(new object[] { _request13.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["extended"] = strExtendedInfo,
+                        ["limit"] = strLimit,
+                        ["ignore_collected"] = strIgnoreCollected,
+                        ["ignore_watchlisted"] = strIgnoreWatchlisted
+                    }});
+
+                _data.Add(new object[] { _request14.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage,
                         ["limit"] = strLimit,
                         ["ignore_collected"] = strIgnoreCollected,
                         ["ignore_watchlisted"] = strIgnoreWatchlisted

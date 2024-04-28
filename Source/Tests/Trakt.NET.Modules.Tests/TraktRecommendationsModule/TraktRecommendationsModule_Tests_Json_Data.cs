@@ -10,8 +10,11 @@
         private const string SHOW_ID = "1390";
         private const uint TRAKT_SHOW_ID = 1390;
         private const string SHOW_SLUG = "game-of-thrones";
+        private const uint PAGE = 2U;
         private const uint LIMIT = 4U;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
+        private const int MOVIE_RECOMMENDATIONS_COUNT = 3;
+        private const int SHOW_RECOMMENDATIONS_COUNT = 3;
 
         private const string MOVIE_RECOMMENDATIONS_JSON =
             @"[
