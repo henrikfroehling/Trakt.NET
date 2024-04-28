@@ -10,6 +10,9 @@ internal static class TrendingShowsExample
 {
     internal static async Task RunAsync()
     {
+        Console.WriteLine("Trakt.NET - Get Trending Shows Example");
+        Console.WriteLine();
+
         Console.WriteLine("Please enter your Trakt Client-ID:");
         string? clientID = Console.ReadLine();
 
@@ -35,5 +38,7 @@ internal static class TrendingShowsExample
             Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
             Console.WriteLine("---------------------------------------------");
         }
+
+        Console.WriteLine();
     }
 }

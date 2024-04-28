@@ -10,6 +10,9 @@ internal static class CalendarFilterExample
 {
     internal static async Task RunAsync()
     {
+        Console.WriteLine("Trakt.NET - Calendar Filter Example");
+        Console.WriteLine();
+
         Console.WriteLine("Please enter your Trakt Client-ID:");
         string? clientID = Console.ReadLine();
 
@@ -54,5 +57,7 @@ internal static class CalendarFilterExample
             Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
             Console.WriteLine("---------------------------------------------");
         }
+
+        Console.WriteLine();
     }
 }

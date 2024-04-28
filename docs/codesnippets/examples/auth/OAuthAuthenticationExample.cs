@@ -10,6 +10,9 @@ internal static class AuthenticationOAuthExample
 {
     internal static async Task RunAsync()
     {
+        Console.WriteLine("Trakt.NET - OAuth Authentication Example");
+        Console.WriteLine();
+
         Console.WriteLine("Please enter your Trakt Client-ID:");
         string? clientID = Console.ReadLine();
 
@@ -102,5 +105,7 @@ internal static class AuthenticationOAuthExample
             Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
             Console.WriteLine("---------------------------------------------");
         }
+
+        Console.WriteLine();
     }
 }

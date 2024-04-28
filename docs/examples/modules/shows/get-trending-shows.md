@@ -4,19 +4,19 @@ In this example we get the first two pages of trending shows.
 
 Since we do not need authentication or authorization for this example, only the Client-ID is required.
 
-[!code-csharp[](../../../codesnippets/examples/modules/shows/TrendingShowsExample.cs#L13-L16)]
+[!code-csharp[](../../../codesnippets/examples/modules/shows/TrendingShowsExample.cs#L16-L19)]
 
 The following lines show how to get the first page of trending shows.
 
 If no [`TraktPagedParameters`](xref:TraktNet.Parameters.TraktPagedParameters) are given, the default page is the first page and the default limit per page is 10 items.
 
-[!code-csharp[](../../../codesnippets/examples/modules/shows/TrendingShowsExample.cs#L20-L25)]
+[!code-csharp[](../../../codesnippets/examples/modules/shows/TrendingShowsExample.cs#L23-L28)]
 
 For getting the second page, we use the [`TraktPagedParameters`](xref:TraktNet.Parameters.TraktPagedParameters) for setting the page we want to get.
 
-[!code-csharp[](../../../codesnippets/examples/modules/shows/TrendingShowsPagedExample.cs#L20-L20)]
+[!code-csharp[](../../../codesnippets/examples/modules/shows/TrendingShowsPagedExample.cs#L23-L23)]
 
-[!code-csharp[](../../../codesnippets/examples/modules/shows/TrendingShowsPagedExample.cs#L22-L30)]
+[!code-csharp[](../../../codesnippets/examples/modules/shows/TrendingShowsPagedExample.cs#L25-L33)]
 
 Here are the complete codes.
 

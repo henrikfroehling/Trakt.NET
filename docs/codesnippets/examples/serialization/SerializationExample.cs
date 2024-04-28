@@ -7,9 +7,12 @@ internal static class SerializationExample
 {
     internal static async Task RunAsync()
     {
+        Console.WriteLine("Trakt.NET - Serialization Example");
+        Console.WriteLine();
+
         ITraktAuthorization fakeAuthorization = TraktAuthorization.CreateWith(DateTime.Now, 90 * 24 * 3600, "FakeAccessToken", "FakeRefreshToken");
 
-        string fakeAuthorizationJson = await TraktSerializationService.SerializeAsync(fakeAuthorization);
+        string fakeAuthorizationJson = await TraktSerializationService.SerializeAsync(fakeAuthorization, indentation: true);
 
         Console.WriteLine("Serialized Fake Authorization:");
         Console.WriteLine(fakeAuthorizationJson);
@@ -29,5 +32,7 @@ internal static class SerializationExample
             Console.WriteLine($"Token Expired: {deserializedFakeAuthorization.IsExpired}");
             Console.WriteLine($"Expires in {deserializedFakeAuthorization.ExpiresInSeconds / 3600 / 24} days");
         }
+
+        Console.WriteLine();
     }
 }

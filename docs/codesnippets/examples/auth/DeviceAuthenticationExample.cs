@@ -10,6 +10,9 @@ internal static class AuthenticationDeviceExample
 {
     public static async Task RunAsync()
     {
+        Console.WriteLine("Trakt.NET - Device Authentication Example");
+        Console.WriteLine();
+
         Console.WriteLine("Please enter your Trakt Client-ID:");
         string? clientID = Console.ReadLine();
 
@@ -108,5 +111,7 @@ internal static class AuthenticationDeviceExample
             Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
             Console.WriteLine("---------------------------------------------");
         }
+
+        Console.WriteLine();
     }
 }

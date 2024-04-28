@@ -9,6 +9,9 @@ internal static class SingleShowExample
 {
     internal static async Task RunAsync()
     {
+        Console.WriteLine("Trakt.NET - Get Single Show Example");
+        Console.WriteLine();
+
         Console.WriteLine("Please enter your Trakt Client-ID:");
         string? clientID = Console.ReadLine();
 
@@ -51,5 +54,7 @@ internal static class SingleShowExample
             Console.WriteLine($"Server Reason Phrase: {ex.ServerReasonPhrase}");
             Console.WriteLine("---------------------------------------------");
         }
+
+        Console.WriteLine();
     }
 }
