@@ -14,4 +14,4 @@ Then, we use the [`TraktSerializationService`](xref:TraktNet.Services.TraktSeria
 
 [!code-csharp[](../../codesnippets/examples/serialization/SerializationExample.cs#L20-L34)]
 
-__The complete code for this example can be found at: [Trakt.NET/docs/codesnippets/examples/serialization/SerializationExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.4.0/docs/codesnippets/examples/serialization/SerializationExample.cs)__
+__The complete code for this example can be found at: [Trakt.NET/docs/codesnippets/examples/serialization/SerializationExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/v1.4.0/docs/codesnippets/examples/serialization/SerializationExample.cs)__

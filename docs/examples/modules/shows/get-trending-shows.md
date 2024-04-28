@@ -21,7 +21,7 @@ For getting the second page, we use the [`TraktPagedParameters`](xref:TraktNet.P
 Here are the complete codes.
 
 Trending Shows with default first page:
-[Trakt.NET/docs/codesnippets/examples/modules/shows/TrendingShowsExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.4.0/docs/codesnippets/examples/modules/shows/TrendingShowsExample.cs)
+[Trakt.NET/docs/codesnippets/examples/modules/shows/TrendingShowsExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/v1.4.0/docs/codesnippets/examples/modules/shows/TrendingShowsExample.cs)
 
 Trending Shows with second page:
-[Trakt.NET/docs/codesnippets/examples/modules/shows/TrendingShowsPagedExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.4.0/docs/codesnippets/examples/modules/shows/TrendingShowsPagedExample.cs)
+[Trakt.NET/docs/codesnippets/examples/modules/shows/TrendingShowsPagedExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/v1.4.0/docs/codesnippets/examples/modules/shows/TrendingShowsPagedExample.cs)

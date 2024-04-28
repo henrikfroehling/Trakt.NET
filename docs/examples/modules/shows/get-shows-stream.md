@@ -20,4 +20,4 @@ We use the [TraktMultipleObjectsQueryParams](xref:TraktNet.Parameters.TraktMulti
 
 [!code-csharp[](../../../codesnippets/examples/modules/shows/GetShowsStreamExample.cs#L48-L120)]
 
-__The complete code for this example can be found at: [Trakt.NET/docs/codesnippets/examples/modules/shows/GetShowsStreamExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.4.0/docs/codesnippets/examples/modules/shows/GetShowsStreamExample.cs)__
+__The complete code for this example can be found at: [Trakt.NET/docs/codesnippets/examples/modules/shows/GetShowsStreamExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/v1.4.0/docs/codesnippets/examples/modules/shows/GetShowsStreamExample.cs)__

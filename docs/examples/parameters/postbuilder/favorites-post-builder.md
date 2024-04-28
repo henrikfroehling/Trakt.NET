@@ -22,4 +22,4 @@ Then we use the created favorites post in a request.
 
 [!code-csharp[](../../../codesnippets/examples/parameters/postbuilder/FavoritesPostBuilderExample.cs#L44-L44)]
 
-__The complete code for this example can be found at: [Trakt.NET/docs/codesnippets/examples/parameters/postbuilder/FavoritesPostBuilderExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.4.0/docs/codesnippets/examples/parameters/postbuilder/FavoritesPostBuilderExample.cs)__
+__The complete code for this example can be found at: [Trakt.NET/docs/codesnippets/examples/parameters/postbuilder/FavoritesPostBuilderExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/v1.4.0/docs/codesnippets/examples/parameters/postbuilder/FavoritesPostBuilderExample.cs)__

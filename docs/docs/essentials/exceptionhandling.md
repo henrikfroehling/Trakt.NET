@@ -109,7 +109,7 @@ This exception provides detailed information about the rate limit.
 
 ## Failed VIP Validation Exception
 
-The [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#) provides requests which can only be used by VIP users.
+The [Trakt.tv](https://trakt.tv/) [API](http://trakt.docs.apiary.io/#) provides requests which can only be used by VIP users.
 If a non [VIP](https://trakt.tv/vip) user tries to use such a request, a [`TraktFailedVIPValidationException`](xref:TraktNet.Exceptions.TraktFailedVIPValidationException) is thrown.
 This exception provides a `UpgradeURL` where the user can sign up for [Trakt.tv](https://trakt.tv/) [VIP](https://trakt.tv/vip).
 
@@ -130,6 +130,6 @@ If for example an id is not valid (contains spaces, etc.) a [`TraktRequestValida
 
 ## Post Validation Exception
 
-For post requests where data is sent to the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#) a [`TraktPostValidationException`](xref:TraktNet.Exceptions.TraktPostValidationException) might be thrown,
+For post requests where data is sent to the [Trakt.tv](https://trakt.tv/) [API](http://trakt.docs.apiary.io/#) a [`TraktPostValidationException`](xref:TraktNet.Exceptions.TraktPostValidationException) might be thrown,
 if the post object contains invalid data.
 E.g. a required property is null.

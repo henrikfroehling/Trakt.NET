@@ -14,4 +14,4 @@ Get all new calendar shows filtered with the above created filter.
 
 [!code-csharp[](../../../codesnippets/examples/parameters/filter/CalendarFilterExample.cs#L37-L47)]
 
-__The complete code for this example can be found at: [Trakt.NET/docs/codesnippets/examples/parameters/filter/CalendarFilterExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.4.0/docs/codesnippets/examples/parameters/filter/CalendarFilterExample.cs)__
+__The complete code for this example can be found at: [Trakt.NET/docs/codesnippets/examples/parameters/filter/CalendarFilterExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/v1.4.0/docs/codesnippets/examples/parameters/filter/CalendarFilterExample.cs)__

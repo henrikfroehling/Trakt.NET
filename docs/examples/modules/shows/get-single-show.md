@@ -21,7 +21,7 @@ The following lines show how to get full information about a show. The only diff
 Here are the complete codes.
 
 Single Show without extended info:
-[Trakt.NET/docs/codesnippets/examples/modules/shows/SingleShowExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.4.0/docs/codesnippets/examples/modules/shows/SingleShowExample.cs)
+[Trakt.NET/docs/codesnippets/examples/modules/shows/SingleShowExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/v1.4.0/docs/codesnippets/examples/modules/shows/SingleShowExample.cs)
 
 Single Show with extended info:
-[Trakt.NET/docs/codesnippets/examples/modules/shows/SingleShowExtendedExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/release-1.4.0/docs/codesnippets/examples/modules/shows/SingleShowExtendedExample.cs)
+[Trakt.NET/docs/codesnippets/examples/modules/shows/SingleShowExtendedExample.cs](https://github.com/henrikfroehling/Trakt.NET/tree/v1.4.0/docs/codesnippets/examples/modules/shows/SingleShowExtendedExample.cs)
