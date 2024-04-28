@@ -26,7 +26,6 @@ on:
       - 'coding_style.md'
 
 env:
-  BRANCH_NAME: ${{ github.base_ref || github.ref_name }}
   DOTNET_VERSION: '8.0.x'
   DOTNET_QUALITY: 'ga'
   BUILD_CONFIGURATION: Release
