@@ -136,7 +136,7 @@ jobs:
 
       - name: Push NuGet package to Github Package Registry
         if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
-        run: dotnet nuget push '**/Trakt.NET*.nupkg'
+        run: dotnet nuget push '**/Trakt.NET*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/henrikfroehling --skip-duplicate
         working-directory: 'Source'
 
       - name: Push package to NuGet
