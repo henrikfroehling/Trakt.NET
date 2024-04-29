@@ -7,7 +7,7 @@
     public class TraktPersonShowCreditsCastItem : ITraktPersonShowCreditsCastItem
     {
         /// <summary>Gets or sets the characters collection of the cast position.<para>Nullable</para></summary>
-        public IEnumerable<string> Characters { get; set; }
+        public IList<string> Characters { get; set; }
 
         /// <summary>Gets or sets the episode count of the cast position.<para>Nullable</para></summary>
         public int? EpisodeCount { get; set; }

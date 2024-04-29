@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Episodes.Json.Reader
 {
+    using Enums;
     using Newtonsoft.Json;
     using Objects.Json;
     using System.Threading;
@@ -76,6 +77,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_COMMENT_COUNT:
                             traktEpisode.CommentCount = await jsonReader.ReadAsInt32Async(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_EPISODE_TYPE:
+                            traktEpisode.EpisodeType = await JsonReaderHelper.ReadEnumerationValueAsync<TraktEpisodeType>(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

@@ -1,7 +1,8 @@
 ﻿namespace TraktNet.PostBuilder
 {
+    using Exceptions;
+    using Objects.Post.Scrobbles;
     using System;
-    using TraktNet.Objects.Post.Scrobbles;
 
     public interface ITraktScrobblePostBuilder<TPostBuilder, out TPostObject>
         where TPostBuilder : ITraktScrobblePostBuilder<TPostBuilder, TPostObject>
@@ -27,6 +28,7 @@
 
         /// <summary>Creates a new <typeparamref name="TPostObject"/> instance.</summary>
         /// <returns>A new <typeparamref name="TPostObject"/> instance.</returns>
+        /// <exception cref="TraktPostValidationException">Thrown, if the post object is empty.</exception>
         TPostObject Build();
     }
 }

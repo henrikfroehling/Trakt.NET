@@ -1,8 +1,9 @@
 ﻿namespace TraktNet.PostBuilder
 {
+    using Exceptions;
+    using Objects.Basic;
+    using Objects.Post.Comments;
     using System;
-    using TraktNet.Objects.Basic;
-    using TraktNet.Objects.Post.Comments;
 
     public interface ITraktCommentPostBuilder<TPostBuilder, out TPostObject>
         where TPostBuilder : ITraktCommentPostBuilder<TPostBuilder, TPostObject>
@@ -28,6 +29,7 @@
 
         /// <summary>Creates a new <typeparamref name="TPostObject"/> instance.</summary>
         /// <returns>A new <typeparamref name="TPostObject"/> instance.</returns>
+        /// <exception cref="TraktPostValidationException">Thrown, if the post object is empty.</exception>
         TPostObject Build();
     }
 }

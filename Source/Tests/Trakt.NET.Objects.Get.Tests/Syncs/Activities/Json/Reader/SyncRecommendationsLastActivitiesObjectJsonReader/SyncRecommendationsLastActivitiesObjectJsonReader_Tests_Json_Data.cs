@@ -4,12 +4,12 @@ namespace TraktNet.Objects.Get.Tests.Syncs.Activities.Json.Reader
     {
         private const string JSON_COMPLETE =
             @"{
-                ""updated_at"": ""2014-09-01T09:10:11.000Z""
+                ""updated_at"": ""2022-05-14T19:04:12.000Z""
               }";
 
         private const string JSON_NOT_VALID =
             @"{
-                ""updated"": ""2014-09-01T09:10:11.000Z""
+                ""updated"": ""2022-05-14T19:04:12.000Z""
               }";
     }
 }

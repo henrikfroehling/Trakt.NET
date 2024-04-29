@@ -6,28 +6,30 @@
     using TraktNet.Objects.Get.Movies;
     using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Post.Syncs.Collection;
+    using TraktNet.Objects.Post.Syncs.Favorites;
     using TraktNet.Objects.Post.Syncs.History;
     using TraktNet.Objects.Post.Syncs.Ratings;
-    using TraktNet.Objects.Post.Syncs.Recommendations;
     using TraktNet.Objects.Post.Syncs.Watchlist;
 
     public partial class TraktSyncModule_Tests
     {
         private ITraktSyncCollectionPost AddCollectionItemsPost { get; }
         private ITraktSyncRatingsPost AddRatingsPost { get; }
-        private ITraktSyncRecommendationsPost RecommendationsPost { get; }
+        private ITraktSyncFavoritesPost FavoritesPost { get; }
+        private ITraktSyncFavoritesRemovePost RemoveFavoritesPost { get; }
         private ITraktSyncHistoryPost AddHistoryPost { get; }
         private ITraktSyncWatchlistPost AddWatchlistPost { get; }
-        private ITraktSyncCollectionPost RemoveCollectionItemsPost { get; }
-        private ITraktSyncRatingsPost RemoveRatingsPost { get; }
+        private ITraktSyncCollectionRemovePost RemoveCollectionItemsPost { get; }
+        private ITraktSyncRatingsRemovePost RemoveRatingsPost { get; }
         private ITraktSyncHistoryRemovePost RemoveHistoryPost { get; }
-        private ITraktSyncWatchlistPost RemoveWatchlistPost { get; }
+        private ITraktSyncWatchlistRemovePost RemoveWatchlistPost { get; }
 
         public TraktSyncModule_Tests()
         {
             AddCollectionItemsPost = SetupAddCollectionItemsPost();
             AddRatingsPost = SetupAddRatingsPost();
-            RecommendationsPost = SetupAddRecommendationsPost();
+            FavoritesPost = SetupAddFavoritesPost();
+            RemoveFavoritesPost = SetupFavoritesRemovePost();
             AddHistoryPost = SetupAddHistoryPost();
             AddWatchlistPost = SetupAddWatchlistPost();
             RemoveCollectionItemsPost = SetupRemoveCollectionItemsPost();
@@ -271,13 +273,13 @@
             };
         }
 
-        private ITraktSyncRecommendationsPost SetupAddRecommendationsPost()
+        private ITraktSyncFavoritesPost SetupAddFavoritesPost()
         {
-            return new TraktSyncRecommendationsPost
+            return new TraktSyncFavoritesPost
             {
-                Movies = new List<ITraktSyncRecommendationsPostMovie>
+                Movies = new List<ITraktSyncFavoritesPostMovie>
                 {
-                    new TraktSyncRecommendationsPostMovie
+                    new TraktSyncFavoritesPostMovie
                     {
                         Title = "Batman Begins",
                         Year = 2005,
@@ -290,7 +292,7 @@
                         },
                         Notes = "One of Chritian Bale's most iconic roles."
                     },
-                    new TraktSyncRecommendationsPostMovie
+                    new TraktSyncFavoritesPostMovie
                     {
                         Ids = new TraktMovieIds
                         {
@@ -298,9 +300,9 @@
                         }
                     }
                 },
-                Shows = new List<ITraktSyncRecommendationsPostShow>
+                Shows = new List<ITraktSyncFavoritesPostShow>
                 {
-                    new TraktSyncRecommendationsPostShow
+                    new TraktSyncFavoritesPostShow
                     {
                         Title = "Breaking Bad",
                         Year = 2008,
@@ -314,7 +316,67 @@
                         },
                         Notes = "I AM THE DANGER!"
                     },
-                    new TraktSyncRecommendationsPostShow
+                    new TraktSyncFavoritesPostShow
+                    {
+                        Title = "The Walking Dead",
+                        Year = 2010,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 2,
+                            Slug = "the-walking-dead",
+                            Tvdb = 153021,
+                            Imdb = "tt1520211",
+                            Tmdb = 1402
+                        }
+                    }
+                }
+            };
+        }
+
+        private ITraktSyncFavoritesRemovePost SetupFavoritesRemovePost()
+        {
+            return new TraktSyncFavoritesRemovePost
+            {
+                Movies = new List<ITraktSyncFavoritesPostMovie>
+                {
+                    new TraktSyncFavoritesPostMovie
+                    {
+                        Title = "Batman Begins",
+                        Year = 2005,
+                        Ids = new TraktMovieIds
+                        {
+                            Trakt = 1,
+                            Slug = "batman-begins-2005",
+                            Imdb = "tt0372784",
+                            Tmdb = 272
+                        },
+                        Notes = "One of Chritian Bale's most iconic roles."
+                    },
+                    new TraktSyncFavoritesPostMovie
+                    {
+                        Ids = new TraktMovieIds
+                        {
+                            Imdb = "tt0000111"
+                        }
+                    }
+                },
+                Shows = new List<ITraktSyncFavoritesPostShow>
+                {
+                    new TraktSyncFavoritesPostShow
+                    {
+                        Title = "Breaking Bad",
+                        Year = 2008,
+                        Ids = new TraktShowIds
+                        {
+                            Trakt = 1,
+                            Slug = "breaking-bad",
+                            Tvdb = 81189,
+                            Imdb = "tt0903747",
+                            Tmdb = 1396
+                        },
+                        Notes = "I AM THE DANGER!"
+                    },
+                    new TraktSyncFavoritesPostShow
                     {
                         Title = "The Walking Dead",
                         Year = 2010,
@@ -561,9 +623,9 @@
             };
         }
 
-        private ITraktSyncCollectionPost SetupRemoveCollectionItemsPost()
+        private ITraktSyncCollectionRemovePost SetupRemoveCollectionItemsPost()
         {
-            return new TraktSyncCollectionPost
+            return new TraktSyncCollectionRemovePost
             {
                 Movies = new List<ITraktSyncCollectionPostMovie>()
                 {
@@ -675,9 +737,9 @@
             };
         }
 
-        private ITraktSyncRatingsPost SetupRemoveRatingsPost()
+        private ITraktSyncRatingsRemovePost SetupRemoveRatingsPost()
         {
-            return new TraktSyncRatingsPost
+            return new TraktSyncRatingsRemovePost
             {
                 Movies = new List<ITraktSyncRatingsPostMovie>()
                 {
@@ -901,9 +963,9 @@
             };
         }
 
-        private ITraktSyncWatchlistPost SetupRemoveWatchlistPost()
+        private ITraktSyncWatchlistRemovePost SetupRemoveWatchlistPost()
         {
-            return new TraktSyncWatchlistPost
+            return new TraktSyncWatchlistRemovePost
             {
                 Movies = new List<ITraktSyncWatchlistPostMovie>()
                 {
@@ -997,7 +1059,7 @@
                         }
                     }
                 },
-                Episodes = new List<TraktSyncWatchlistPostEpisode>()
+                Episodes = new List<ITraktSyncWatchlistPostEpisode>()
                 {
                     new TraktSyncWatchlistPostEpisode
                     {

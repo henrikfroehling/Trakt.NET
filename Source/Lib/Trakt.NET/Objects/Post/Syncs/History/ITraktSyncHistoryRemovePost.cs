@@ -13,27 +13,27 @@
         /// An optional list of <see cref="ITraktSyncHistoryRemovePostMovie" />s.
         /// <para>Each <see cref="ITraktSyncHistoryRemovePostMovie" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        IEnumerable<ITraktSyncHistoryRemovePostMovie> Movies { get; set; }
+        IList<ITraktSyncHistoryRemovePostMovie> Movies { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncHistoryRemovePostShow" />s.
         /// <para>Each <see cref="ITraktSyncHistoryRemovePostShow" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        IEnumerable<ITraktSyncHistoryRemovePostShow> Shows { get; set; }
+        IList<ITraktSyncHistoryRemovePostShow> Shows { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncHistoryRemovePostSeason" />s.
         /// <para>Each <see cref="ITraktSyncHistoryRemovePostSeason" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        IEnumerable<ITraktSyncHistoryRemovePostSeason> Seasons { get; set; }
+        IList<ITraktSyncHistoryRemovePostSeason> Seasons { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktSyncHistoryRemovePostEpisode" />s.
         /// <para>Each <see cref="ITraktSyncHistoryRemovePostEpisode" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        IEnumerable<ITraktSyncHistoryRemovePostEpisode> Episodes { get; set; }
+        IList<ITraktSyncHistoryRemovePostEpisode> Episodes { get; set; }
 
         /// <summary>An optional list of history ids, which should be removed.</summary>
-        IEnumerable<ulong> HistoryIds { get; set; }
+        IList<ulong> HistoryIds { get; set; }
     }
 }

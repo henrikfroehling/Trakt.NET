@@ -1,13 +1,13 @@
 ﻿namespace TraktNet.PostBuilder
 {
+    using Objects.Get.Episodes;
+    using Objects.Get.Movies;
+    using Objects.Get.Seasons;
+    using Objects.Get.Shows;
+    using Objects.Post.Syncs.History;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktNet.Objects.Get.Episodes;
-    using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.Seasons;
-    using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Syncs.History;
 
     internal sealed class SyncHistoryPostBuilder : ITraktSyncHistoryPostBuilder
     {
@@ -279,6 +279,25 @@
             return WithShowAndSeasons(new WatchedShowAndSeasons(show, seasons));
         }
 
+        public ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShow show, IEnumerable<int> seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new WatchedShowAndSeasons(show, new PostHistorySeasons { seasons }));
+        }
+
+        public ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShow show, int season, params int[] seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return WithShowAndSeasons(new WatchedShowAndSeasons(show, new PostHistorySeasons { season, seasons }));
+        }
+
         public ITraktSyncHistoryPostBuilder WithShowAndSeasons(WatchedShowAndSeasons showAndSeasons)
         {
             if (showAndSeasons == null)
@@ -297,6 +316,25 @@
                 throw new ArgumentNullException(nameof(seasons));
 
             return WithShowAndSeasons(new WatchedShowIdsAndSeasons(showIds, seasons));
+        }
+
+        public ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShowIds showIds, IEnumerable<int> seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new WatchedShowIdsAndSeasons(showIds, new PostHistorySeasons { seasons }));
+        }
+
+        public ITraktSyncHistoryPostBuilder WithShowAndSeasons(ITraktShowIds showIds, int season, params int[] seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            return WithShowAndSeasons(new WatchedShowIdsAndSeasons(showIds, new PostHistorySeasons { season, seasons }));
         }
 
         public ITraktSyncHistoryPostBuilder WithShowAndSeasons(WatchedShowIdsAndSeasons showIdsAndSeasons)
@@ -573,37 +611,25 @@
             if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
-                {
-                    (syncHistoryPost.Movies as List<ITraktSyncHistoryPostMovie>)
-                        .Add(CreateHistoryPostMovie(movie));
-                }
+                    syncHistoryPost.Movies.Add(CreateHistoryPostMovie(movie));
             }
 
             if (_movieIds.IsValueCreated && _movieIds.Value.Any())
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
-                {
-                    (syncHistoryPost.Movies as List<ITraktSyncHistoryPostMovie>)
-                        .Add(CreateHistoryPostMovie(movieIds));
-                }
+                    syncHistoryPost.Movies.Add(CreateHistoryPostMovie(movieIds));
             }
 
             if (_moviesWatchedAt.IsValueCreated && _moviesWatchedAt.Value.Any())
             {
                 foreach (WatchedMovie movieWatchedAt in _moviesWatchedAt.Value)
-                {
-                    (syncHistoryPost.Movies as List<ITraktSyncHistoryPostMovie>)
-                        .Add(CreateHistoryPostMovie(movieWatchedAt.Object, movieWatchedAt.WatchedAt));
-                }
+                    syncHistoryPost.Movies.Add(CreateHistoryPostMovie(movieWatchedAt.Object, movieWatchedAt.WatchedAt));
             }
 
             if (_movieIdsWatchedAt.IsValueCreated && _movieIdsWatchedAt.Value.Any())
             {
                 foreach (WatchedMovieIds movieIdWatchedAt in _movieIdsWatchedAt.Value)
-                {
-                    (syncHistoryPost.Movies as List<ITraktSyncHistoryPostMovie>)
-                        .Add(CreateHistoryPostMovie(movieIdWatchedAt.Object, movieIdWatchedAt.WatchedAt));
-                }
+                    syncHistoryPost.Movies.Add(CreateHistoryPostMovie(movieIdWatchedAt.Object, movieIdWatchedAt.WatchedAt));
             }
         }
 
@@ -620,37 +646,25 @@
             if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
-                {
-                    (syncHistoryPost.Shows as List<ITraktSyncHistoryPostShow>)
-                        .Add(CreateHistoryPostShow(show));
-                }
+                    syncHistoryPost.Shows.Add(CreateHistoryPostShow(show));
             }
 
             if (_showIds.IsValueCreated && _showIds.Value.Any())
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
-                {
-                    (syncHistoryPost.Shows as List<ITraktSyncHistoryPostShow>)
-                        .Add(CreateHistoryPostShow(showIds));
-                }
+                    syncHistoryPost.Shows.Add(CreateHistoryPostShow(showIds));
             }
 
             if (_showsWatchedAt.IsValueCreated && _showsWatchedAt.Value.Any())
             {
                 foreach (WatchedShow showWatchedAt in _showsWatchedAt.Value)
-                {
-                    (syncHistoryPost.Shows as List<ITraktSyncHistoryPostShow>)
-                        .Add(CreateHistoryPostShow(showWatchedAt.Object, showWatchedAt.WatchedAt));
-                }
+                    syncHistoryPost.Shows.Add(CreateHistoryPostShow(showWatchedAt.Object, showWatchedAt.WatchedAt));
             }
 
             if (_showIdsWatchedAt.IsValueCreated && _showIdsWatchedAt.Value.Any())
             {
                 foreach (WatchedShowIds showIdWatchedAt in _showIdsWatchedAt.Value)
-                {
-                    (syncHistoryPost.Shows as List<ITraktSyncHistoryPostShow>)
-                        .Add(CreateHistoryPostShow(showIdWatchedAt.Object, showIdWatchedAt.WatchedAt));
-                }
+                    syncHistoryPost.Shows.Add(CreateHistoryPostShow(showIdWatchedAt.Object, showIdWatchedAt.WatchedAt));
             }
 
             if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Any())
@@ -670,37 +684,25 @@
             if (_seasons.IsValueCreated && _seasons.Value.Any())
             {
                 foreach (ITraktSeason season in _seasons.Value)
-                {
-                    (syncHistoryPost.Seasons as List<ITraktSyncHistoryPostSeason>)
-                        .Add(CreateHistoryPostSeason(season));
-                }
+                    syncHistoryPost.Seasons.Add(CreateHistoryPostSeason(season));
             }
 
             if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
             {
                 foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
-                {
-                    (syncHistoryPost.Seasons as List<ITraktSyncHistoryPostSeason>)
-                        .Add(CreateHistoryPostSeason(seasonIds));
-                }
+                    syncHistoryPost.Seasons.Add(CreateHistoryPostSeason(seasonIds));
             }
 
             if (_seasonsWatchedAt.IsValueCreated && _seasonsWatchedAt.Value.Any())
             {
                 foreach (WatchedSeason seasonWatchedAt in _seasonsWatchedAt.Value)
-                {
-                    (syncHistoryPost.Seasons as List<ITraktSyncHistoryPostSeason>)
-                        .Add(CreateHistoryPostSeason(seasonWatchedAt.Object, seasonWatchedAt.WatchedAt));
-                }
+                    syncHistoryPost.Seasons.Add(CreateHistoryPostSeason(seasonWatchedAt.Object, seasonWatchedAt.WatchedAt));
             }
 
             if (_seasonIdsWatchedAt.IsValueCreated && _seasonIdsWatchedAt.Value.Any())
             {
                 foreach (WatchedSeasonIds seasonIdWatchedAt in _seasonIdsWatchedAt.Value)
-                {
-                    (syncHistoryPost.Seasons as List<ITraktSyncHistoryPostSeason>)
-                        .Add(CreateHistoryPostSeason(seasonIdWatchedAt.Object, seasonIdWatchedAt.WatchedAt));
-                }
+                    syncHistoryPost.Seasons.Add(CreateHistoryPostSeason(seasonIdWatchedAt.Object, seasonIdWatchedAt.WatchedAt));
             }
         }
 
@@ -714,37 +716,25 @@
             if (_episodes.IsValueCreated && _episodes.Value.Any())
             {
                 foreach (ITraktEpisode episode in _episodes.Value)
-                {
-                    (syncHistoryPost.Episodes as List<ITraktSyncHistoryPostEpisode>)
-                        .Add(CreateHistoryPostEpisode(episode));
-                }
+                    syncHistoryPost.Episodes.Add(CreateHistoryPostEpisode(episode));
             }
 
             if (_episodeIds.IsValueCreated && _episodeIds.Value.Any())
             {
                 foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
-                {
-                    (syncHistoryPost.Episodes as List<ITraktSyncHistoryPostEpisode>)
-                        .Add(CreateHistoryPostEpisode(episodeIds));
-                }
+                    syncHistoryPost.Episodes.Add(CreateHistoryPostEpisode(episodeIds));
             }
 
             if (_episodesWatchedAt.IsValueCreated && _episodesWatchedAt.Value.Any())
             {
                 foreach (WatchedEpisode episodeWatchedAt in _episodesWatchedAt.Value)
-                {
-                    (syncHistoryPost.Episodes as List<ITraktSyncHistoryPostEpisode>)
-                        .Add(CreateHistoryPostEpisode(episodeWatchedAt.Object, episodeWatchedAt.WatchedAt));
-                }
+                    syncHistoryPost.Episodes.Add(CreateHistoryPostEpisode(episodeWatchedAt.Object, episodeWatchedAt.WatchedAt));
             }
 
             if (_episodeIdsWatchedAt.IsValueCreated && _episodeIdsWatchedAt.Value.Any())
             {
                 foreach (WatchedEpisodeIds episodeIdWatchedAt in _episodeIdsWatchedAt.Value)
-                {
-                    (syncHistoryPost.Episodes as List<ITraktSyncHistoryPostEpisode>)
-                        .Add(CreateHistoryPostEpisode(episodeIdWatchedAt.Object, episodeIdWatchedAt.WatchedAt));
-                }
+                    syncHistoryPost.Episodes.Add(CreateHistoryPostEpisode(episodeIdWatchedAt.Object, episodeIdWatchedAt.WatchedAt));
             }
 
         }
@@ -838,17 +828,14 @@
                         syncHistoryPostShowSeason.Episodes = new List<ITraktSyncHistoryPostShowEpisode>();
 
                         foreach (PostHistoryEpisode episode in season.Episodes)
-                        {
-                            (syncHistoryPostShowSeason.Episodes as List<ITraktSyncHistoryPostShowEpisode>)
-                                .Add(CreateHistoryPostShowEpisode(episode));
-                        }
+                            syncHistoryPostShowSeason.Episodes.Add(CreateHistoryPostShowEpisode(episode));
                     }
 
-                    (syncHistoryPostShow.Seasons as List<ITraktSyncHistoryPostShowSeason>).Add(syncHistoryPostShowSeason);
+                    syncHistoryPostShow.Seasons.Add(syncHistoryPostShowSeason);
                 }
             }
 
-            (syncHistoryPost.Shows as List<ITraktSyncHistoryPostShow>).Add(syncHistoryPostShow);
+            syncHistoryPost.Shows.Add(syncHistoryPostShow);
         }
 
         private static ITraktSyncHistoryPostShowSeason CreateHistoryPostShowSeason(PostHistorySeason season)

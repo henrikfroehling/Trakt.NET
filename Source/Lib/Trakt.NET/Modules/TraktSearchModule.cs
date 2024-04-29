@@ -14,7 +14,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to search.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/search">"Trakt API Doc - Search"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/search">"Trakt API Doc - Search"</a> section.
     /// </para>
     /// </summary>
     public class TraktSearchModule : ATraktModule
@@ -27,7 +27,7 @@
         /// Searches for movies, shows, episodes, people and / or lists with the given search query.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/search/text-query/get-text-query-results">"Trakt API Doc - Search: Text Query"</a> for more information.
         /// </para>
         /// <para>
         /// Use the <see cref="ITraktSearchFilterBuilder" /> to create an instance of the optional <see cref="ITraktSearchFilter" />.
@@ -65,9 +65,7 @@
                                                                                      TraktPagedParameters pagedParameters = null,
                                                                                      CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new SearchTextQueryRequest
+            var request = new SearchTextQueryRequest
             {
                 ResultTypes = searchResultTypes,
                 Query = searchQuery,
@@ -76,15 +74,16 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
         /// Looks up items by their Trakt-, IMDB-, TMDB-, TVDB- or TVRage-Id.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/search/text-query/get-id-lookup-results">"Trakt API Doc - Search: Id Lookup"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/search/text-query/get-id-lookup-results">"Trakt API Doc - Search: Id Lookup"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="searchIdType">The id type, which should be looked up. See also <seealso cref="TraktSearchIdType" />.</param>
@@ -114,9 +113,7 @@
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new SearchIdLookupRequest
+            var request = new SearchIdLookupRequest
             {
                 IdType = searchIdType,
                 LookupId = lookupId,
@@ -124,8 +121,9 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
     }
 }

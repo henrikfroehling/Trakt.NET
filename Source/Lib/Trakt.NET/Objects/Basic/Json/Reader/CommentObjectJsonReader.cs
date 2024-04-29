@@ -14,7 +14,6 @@
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartObject)
             {
-                var userReader = new UserObjectJsonReader();
                 ITraktComment traktComment = new TraktComment();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -74,18 +73,18 @@
                         case JsonProperties.PROPERTY_NAME_LIKES:
                             traktComment.Likes = await jsonReader.ReadAsInt32Async(cancellationToken);
                             break;
-                        case JsonProperties.PROPERTY_NAME_USER_RATING:
+                        case JsonProperties.PROPERTY_NAME_USER_STATS:
                             {
-                                var value = await JsonReaderHelper.ReadFloatValueAsync(jsonReader, cancellationToken);
-
-                                if (value.First)
-                                    traktComment.UserRating = value.Second;
-
+                                var userStatsReader = new CommentUserStatsObjectJsonReader();
+                                traktComment.UserStats = await userStatsReader.ReadObjectAsync(jsonReader, cancellationToken);
                                 break;
                             }
                         case JsonProperties.PROPERTY_NAME_USER:
-                            traktComment.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
-                            break;
+                            {
+                                var userReader = new UserObjectJsonReader();
+                                traktComment.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
+                                break;
+                            }
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);
                             break;

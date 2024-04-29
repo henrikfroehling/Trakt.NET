@@ -1,58 +1,50 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Product>Trakt.NET</Product>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>TraktNet</RootNamespace>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <VersionPrefix>1.3.0</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
-    <Authors>Henrik Fröhling</Authors>
-    <Company>Henrik Fröhling</Company>
-    <PackageProjectUrl>https://github.com/henrikfroehling/Trakt.NET</PackageProjectUrl>
-    <Copyright>Copyright © 2016 - Current Henrik Fröhling et al.</Copyright>
-    <Description>A .NET wrapper library with which developers can build .NET applications that integrate with the Trakt.tv API and access its features and data.
+    <GenerateDocumentationFile Condition="'$(Configuration)' == 'Release'">true</GenerateDocumentationFile>
 
-Features
-- Full Trakt.tv API Coverage
-- Authentication and Authorization Support (OAuth 2.0 and Device)
-- Completely asynchronous
-- API Environments (Production and Sandbox)
-- Serialization Service</Description>
-    <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
-    <PackageTags>trakt rest api</PackageTags>
-    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/develop/Changelog.md#130</PackageReleaseNotes>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
+    <DebugType>embedded</DebugType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\..\Build\Lib\Debug\</OutputPath>
-    <DocumentationFile>..\..\..\Build\Lib\Debug\netstandard2.0\Trakt.NET.xml</DocumentationFile>
-    <LangVersion>latest</LangVersion>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\..\Build\Lib\Release\</OutputPath>
-    <DocumentationFile>..\..\..\Build\Lib\Release\netstandard2.0\Trakt.NET.xml</DocumentationFile>
-    <LangVersion>latest</LangVersion>
-    <NoWarn>1701;1702;1705;1591</NoWarn>
+    <Title>Trakt.NET</Title>
+    <Description>A .NET wrapper library with which developers can build .NET applications that integrate with the Trakt.tv API and access its features and data.</Description>
+    <Authors>Henrik Fröhling</Authors>
+    <Company>Henrik Fröhling</Company>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <PackageProjectUrl>https://henrikfroehling.github.io/Trakt.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/henrikfroehling/Trakt.NET</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>trakt rest api dotnet</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageReleaseNotes>https://github.com/henrikfroehling/Trakt.NET/blob/v1.4.0/Changelogs/v1.4.0.md</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <None Include="$(MSBuildThisFileDirectory)\..\..\..\LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
+    <None Include="$(MSBuildThisFileDirectory)\..\..\..\README.md" Pack="true" PackagePath="README.md" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\LICENSE.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.133" PrivateAssets="all" />
   </ItemGroup>
 
+  <Target Name="AddCommitHashToAssemblyAttributes" BeforeTargets="GetAssemblyAttributes">
+    <ItemGroup>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="'$(SourceRevisionId)' != ''">
+        <_Parameter1>CommitHash</_Parameter1>
+        <_Parameter2>$(SourceRevisionId)</_Parameter2>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
 </Project>

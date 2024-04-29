@@ -16,5 +16,8 @@ namespace TraktNet.Objects.Get.Syncs.Activities
         
         /// <summary>Gets or sets the UTC datetime, when a follow request was lastly pended.</summary>
         public DateTime? PendingAt { get; set; }
+        
+        /// <summary>Gets or sets the UTC datetime, when a follow request lastly occured.</summary>
+        public DateTime? RequestedAt { get; set; }
     }
 }

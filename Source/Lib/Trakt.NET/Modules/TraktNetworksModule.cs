@@ -12,7 +12,7 @@
     /// <summary>
     /// Provides access to data retrieving methods specific to networks.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/networks">"Trakt API Doc - Networks"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/networks">"Trakt API Doc - Networks"</a> section.
     /// </para>
     /// </summary>
     public class TraktNetworksModule : ATraktModule
@@ -25,7 +25,7 @@
         /// Gets a list of all networks.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/networks/list/get-networks">"Trakt API Doc - Networks: List"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/networks/list/get-networks">"Trakt API Doc - Networks: List"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">

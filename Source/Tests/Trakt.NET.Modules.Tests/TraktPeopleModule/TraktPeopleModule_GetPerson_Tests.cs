@@ -39,6 +39,70 @@
         }
 
         [Fact]
+        public async Task Test_TraktPeopleModule_GetPerson_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"people/{TRAKT_PERSON_ID}", PERSON_MINIMAL_JSON);
+            TraktResponse<ITraktPerson> response = await client.People.GetPersonAsync(TRAKT_PERSON_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPerson_With_PersonIds_TraktID()
+        {
+            var personIds = new TraktPersonIds
+            {
+                Trakt = TRAKT_PERSON_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"people/{TRAKT_PERSON_ID}", PERSON_MINIMAL_JSON);
+            TraktResponse<ITraktPerson> response = await client.People.GetPersonAsync(personIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPerson_With_PersonIds_Slug()
+        {
+            var personIds = new TraktPersonIds
+            {
+                Slug = PERSON_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"people/{PERSON_SLUG}", PERSON_MINIMAL_JSON);
+            TraktResponse<ITraktPerson> response = await client.People.GetPersonAsync(personIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPerson_With_PersonIds()
+        {
+            var personIds = new TraktPersonIds
+            {
+                Trakt = TRAKT_PERSON_ID,
+                Slug = PERSON_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"people/{TRAKT_PERSON_ID}", PERSON_MINIMAL_JSON);
+            TraktResponse<ITraktPerson> response = await client.People.GetPersonAsync(personIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
         public async Task Test_TraktPeopleModule_GetPerson_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_URI}?extended={EXTENDED_INFO}", PERSON_FULL_JSON);
@@ -96,6 +160,21 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPerson_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_URI, PERSON_MINIMAL_JSON);
+
+            Func<Task<TraktResponse<ITraktPerson>>> act = () => client.People.GetPersonAsync(default(ITraktPersonIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.People.GetPersonAsync(new TraktPersonIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.People.GetPersonAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

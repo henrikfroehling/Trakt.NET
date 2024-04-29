@@ -9,7 +9,7 @@
     using TraktNet.Enums;
     using TraktNet.Requests.Handler;
 
-    internal class TestHttpClientProvider : IHttpClientProvider
+    internal class TestHttpClientProvider : HttpClientProvider
     {
         private const string HEADER_PAGINATION_PAGE_KEY = "X-Pagination-Page";
         private const string HEADER_PAGINATION_LIMIT_KEY = "X-Pagination-Limit";
@@ -35,20 +35,21 @@
             _mockHttpMessageHandler = new MockHttpMessageHandler();
         }
 
-        public HttpClient GetHttpClient()
+        public override HttpClient GetHttpClient(string _)
         {
-            _mockHttpMessageHandler.Should().NotBeNull();
-            var httpClient = new HttpClient(_mockHttpMessageHandler);
+            var httpClient = _mockHttpMessageHandler.ToHttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ACCEPT_MEDIA_TYPE));
             return httpClient;
         }
+
+        internal void Clear() => _mockHttpMessageHandler.Clear();
 
         internal void SetupMockResponse(string uri, string responseContent,
                                         uint? page = null, uint? limit = null,
                                         int? pageCount = null, int? itemCount = null,
                                         int? userCount = null, string startDate = null,
-                                        string endDate = null, TraktSortBy? sortBy = null,
-                                        TraktSortHow? sortHow = null)
+                                        string endDate = null, TraktSortBy sortBy = null,
+                                        TraktSortHow sortHow = null)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
             _baseUrl.Should().NotBeNullOrEmpty();
@@ -79,11 +80,11 @@
             if (!string.IsNullOrEmpty(endDate))
                 response.Headers.Add(HEADER_ENDDATE_KEY, endDate);
 
-            if (sortBy.HasValue)
-                response.Headers.Add(HEADER_SORT_BY_KEY, SortByToString(sortBy.Value));
+            if (sortBy != null)
+                response.Headers.Add(HEADER_SORT_BY_KEY, sortBy.UriName);
 
-            if (sortHow.HasValue)
-                response.Headers.Add(HEADER_SORT_HOW_KEY, SortHowToString(sortHow.Value));
+            if (sortHow != null)
+                response.Headers.Add(HEADER_SORT_HOW_KEY, sortHow.UriName);
 
             response.Headers.Add("Accept", ACCEPT_MEDIA_TYPE);
             response.Content = new StringContent(responseContent);
@@ -116,8 +117,8 @@
                                              uint? page = null, uint? limit = null,
                                              int? pageCount = null, int? itemCount = null,
                                              int? userCount = null, string startDate = null,
-                                             string endDate = null, TraktSortBy? sortBy = null,
-                                             TraktSortHow? sortHow = null)
+                                             string endDate = null, TraktSortBy sortBy = null,
+                                             TraktSortHow sortHow = null)
         {
             _mockHttpMessageHandler.Should().NotBeNull();
             _baseUrl.Should().NotBeNullOrEmpty();
@@ -148,11 +149,11 @@
             if (!string.IsNullOrEmpty(endDate))
                 response.Headers.Add(HEADER_ENDDATE_KEY, endDate);
 
-            if (sortBy.HasValue)
-                response.Headers.Add(HEADER_SORT_BY_KEY, SortByToString(sortBy.Value));
+            if (sortBy != null)
+                response.Headers.Add(HEADER_SORT_BY_KEY, sortBy.UriName);
 
-            if (sortHow.HasValue)
-                response.Headers.Add(HEADER_SORT_HOW_KEY, SortHowToString(sortHow.Value));
+            if (sortHow != null)
+                response.Headers.Add(HEADER_SORT_HOW_KEY, sortHow.UriName);
 
             response.Headers.Add("Accept", ACCEPT_MEDIA_TYPE);
             response.Content = new StringContent(responseContent);
@@ -311,33 +312,5 @@
             _mockHttpMessageHandler.Should().NotBeNull();
             _mockHttpMessageHandler.VerifyNoOutstandingExpectation();
         }
-
-        private static string SortByToString(TraktSortBy sortBy)
-            => sortBy switch
-            {
-                TraktSortBy.Rank => "rank",
-                TraktSortBy.Added => "added",
-                TraktSortBy.Title => "title",
-                TraktSortBy.Released => "released",
-                TraktSortBy.Runtime => "runtime",
-                TraktSortBy.Popularity => "popularity",
-                TraktSortBy.Percentage => "percentage",
-                TraktSortBy.Votes => "votes",
-                TraktSortBy.MyRating => "my_rating",
-                TraktSortBy.Random => "random",
-                TraktSortBy.Watched => "watched",
-                TraktSortBy.Collected => "collected",
-                TraktSortBy.Unspecified => null,
-                _ => null
-            };
-
-        private static string SortHowToString(TraktSortHow sortHow)
-            => sortHow switch
-            {
-                TraktSortHow.Ascending => "asc",
-                TraktSortHow.Descending => "desc",
-                TraktSortHow.Unspecified => null,
-                _ => null
-            };
     }
 }

@@ -44,7 +44,10 @@
             userComment.Comment.Review.Should().BeFalse();
             userComment.Comment.Replies.Should().Be(1);
             userComment.Comment.Likes.Should().Be(2);
-            userComment.Comment.UserRating.Should().Be(7.3f);
+            userComment.Comment.UserStats.Should().NotBeNull();
+            userComment.Comment.UserStats.Rating.Should().Be(8);
+            userComment.Comment.UserStats.PlayCount.Should().Be(1);
+            userComment.Comment.UserStats.CompletedCount.Should().Be(1);
             userComment.Comment.User.Should().NotBeNull();
             userComment.Comment.User.Username.Should().Be("sean");
             userComment.Comment.User.IsPrivate.Should().BeFalse();
@@ -85,7 +88,10 @@
             userComment.Comment.Review.Should().BeFalse();
             userComment.Comment.Replies.Should().Be(1);
             userComment.Comment.Likes.Should().Be(2);
-            userComment.Comment.UserRating.Should().Be(7.3f);
+            userComment.Comment.UserStats.Should().NotBeNull();
+            userComment.Comment.UserStats.Rating.Should().Be(8);
+            userComment.Comment.UserStats.PlayCount.Should().Be(1);
+            userComment.Comment.UserStats.CompletedCount.Should().Be(1);
             userComment.Comment.User.Should().NotBeNull();
             userComment.Comment.User.Username.Should().Be("sean");
             userComment.Comment.User.IsPrivate.Should().BeFalse();
@@ -128,7 +134,10 @@
             userComment.Comment.Review.Should().BeFalse();
             userComment.Comment.Replies.Should().Be(1);
             userComment.Comment.Likes.Should().Be(2);
-            userComment.Comment.UserRating.Should().Be(7.3f);
+            userComment.Comment.UserStats.Should().NotBeNull();
+            userComment.Comment.UserStats.Rating.Should().Be(8);
+            userComment.Comment.UserStats.PlayCount.Should().Be(1);
+            userComment.Comment.UserStats.CompletedCount.Should().Be(1);
             userComment.Comment.User.Should().NotBeNull();
             userComment.Comment.User.Username.Should().Be("sean");
             userComment.Comment.User.IsPrivate.Should().BeFalse();
@@ -169,7 +178,10 @@
             userComment.Comment.Review.Should().BeFalse();
             userComment.Comment.Replies.Should().Be(1);
             userComment.Comment.Likes.Should().Be(2);
-            userComment.Comment.UserRating.Should().Be(7.3f);
+            userComment.Comment.UserStats.Should().NotBeNull();
+            userComment.Comment.UserStats.Rating.Should().Be(8);
+            userComment.Comment.UserStats.PlayCount.Should().Be(1);
+            userComment.Comment.UserStats.CompletedCount.Should().Be(1);
             userComment.Comment.User.Should().NotBeNull();
             userComment.Comment.User.Username.Should().Be("sean");
             userComment.Comment.User.IsPrivate.Should().BeFalse();
@@ -221,7 +233,10 @@
             userComment.Comment.Review.Should().BeFalse();
             userComment.Comment.Replies.Should().Be(1);
             userComment.Comment.Likes.Should().Be(2);
-            userComment.Comment.UserRating.Should().Be(7.3f);
+            userComment.Comment.UserStats.Should().NotBeNull();
+            userComment.Comment.UserStats.Rating.Should().Be(8);
+            userComment.Comment.UserStats.PlayCount.Should().Be(1);
+            userComment.Comment.UserStats.CompletedCount.Should().Be(1);
             userComment.Comment.User.Should().NotBeNull();
             userComment.Comment.User.Username.Should().Be("sean");
             userComment.Comment.User.IsPrivate.Should().BeFalse();
@@ -233,11 +248,11 @@
             userComment.List.Should().NotBeNull();
             userComment.List.Name.Should().Be("Star Wars in machete order");
             userComment.List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            userComment.List.Privacy.Should().Be(TraktAccessScope.Public);
+            userComment.List.Privacy.Should().Be(TraktListPrivacy.Public);
             userComment.List.DisplayNumbers.Should().BeTrue();
             userComment.List.AllowComments.Should().BeFalse();
-            userComment.List.SortBy.Should().Be("rank");
-            userComment.List.SortHow.Should().Be("asc");
+            userComment.List.SortBy.Should().Be(TraktSortBy.Rank);
+            userComment.List.SortHow.Should().Be(TraktSortHow.Ascending);
             userComment.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             userComment.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             userComment.List.ItemCount.Should().Be(5);
@@ -273,7 +288,11 @@
                   ""review"": false,
                   ""replies"": 1,
                   ""likes"": 2,
-                  ""user_rating"": 7.3,
+                  ""user_stats"": {
+                    ""rating"": 8,
+                    ""play_count"": 1,
+                    ""completed_count"": 1
+                  },
                   ""user"": {
                     ""username"": ""sean"",
                     ""private"": false,
@@ -310,7 +329,11 @@
                   ""review"": false,
                   ""replies"": 1,
                   ""likes"": 2,
-                  ""user_rating"": 7.3,
+                  ""user_stats"": {
+                    ""rating"": 8,
+                    ""play_count"": 1,
+                    ""completed_count"": 1
+                  },
                   ""user"": {
                     ""username"": ""sean"",
                     ""private"": false,
@@ -349,7 +372,11 @@
                   ""review"": false,
                   ""replies"": 1,
                   ""likes"": 2,
-                  ""user_rating"": 7.3,
+                  ""user_stats"": {
+                    ""rating"": 8,
+                    ""play_count"": 1,
+                    ""completed_count"": 1
+                  },
                   ""user"": {
                     ""username"": ""sean"",
                     ""private"": false,
@@ -385,7 +412,11 @@
                   ""review"": false,
                   ""replies"": 1,
                   ""likes"": 2,
-                  ""user_rating"": 7.3,
+                  ""user_stats"": {
+                    ""rating"": 8,
+                    ""play_count"": 1,
+                    ""completed_count"": 1
+                  },
                   ""user"": {
                     ""username"": ""sean"",
                     ""private"": false,
@@ -436,7 +467,11 @@
                   ""review"": false,
                   ""replies"": 1,
                   ""likes"": 2,
-                  ""user_rating"": 7.3,
+                  ""user_stats"": {
+                    ""rating"": 8,
+                    ""play_count"": 1,
+                    ""completed_count"": 1
+                  },
                   ""user"": {
                     ""username"": ""sean"",
                     ""private"": false,

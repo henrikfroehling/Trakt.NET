@@ -24,6 +24,6 @@
         /// See also <seealso cref="ITraktCollectionShowSeason" />.
         /// <para>Nullable</para>
         /// </summary>
-        IEnumerable<ITraktCollectionShowSeason> CollectionSeasons { get; set; }
+        IList<ITraktCollectionShowSeason> CollectionSeasons { get; set; }
     }
 }

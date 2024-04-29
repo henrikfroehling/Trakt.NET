@@ -640,26 +640,20 @@
             if (_moviesWithRating.IsValueCreated && _moviesWithRating.Value.Any())
             {
                 foreach (RatingsMovie ratingsMovie in _moviesWithRating.Value)
-                {
-                    (syncRatingsPost.Movies as List<ITraktSyncRatingsPostMovie>)
-                        .Add(CreateRatingsPostMovie(ratingsMovie.Object, ratingsMovie.Rating));
-                }
+                    syncRatingsPost.Movies.Add(CreateRatingsPostMovie(ratingsMovie.Object, ratingsMovie.Rating));
             }
 
             if (_movieIdsWithRating.IsValueCreated && _movieIdsWithRating.Value.Any())
             {
                 foreach (RatingsMovieIds ratingsMovieIds in _movieIdsWithRating.Value)
-                {
-                    (syncRatingsPost.Movies as List<ITraktSyncRatingsPostMovie>)
-                        .Add(CreateRatingsPostMovie(ratingsMovieIds.Object, ratingsMovieIds.Rating));
-                }
+                    syncRatingsPost.Movies.Add(CreateRatingsPostMovie(ratingsMovieIds.Object, ratingsMovieIds.Rating));
             }
 
             if (_moviesWithRatingRatedAt.IsValueCreated && _moviesWithRatingRatedAt.Value.Any())
             {
                 foreach (RatingsMovieRatedAt ratingsMovieRatedAt in _moviesWithRatingRatedAt.Value)
                 {
-                    (syncRatingsPost.Movies as List<ITraktSyncRatingsPostMovie>)
+                    syncRatingsPost.Movies
                         .Add(CreateRatingsPostMovie(ratingsMovieRatedAt.Object, ratingsMovieRatedAt.Rating, ratingsMovieRatedAt.RatedAt));
                 }
             }
@@ -668,7 +662,7 @@
             {
                 foreach (RatingsMovieIdsRatedAt ratingsMovieIdsRatedAt in _movieIdsWithRatingRatedAt.Value)
                 {
-                    (syncRatingsPost.Movies as List<ITraktSyncRatingsPostMovie>)
+                    syncRatingsPost.Movies
                         .Add(CreateRatingsPostMovie(ratingsMovieIdsRatedAt.Object, ratingsMovieIdsRatedAt.Rating, ratingsMovieIdsRatedAt.RatedAt));
                 }
             }
@@ -687,26 +681,20 @@
             if (_showsWithRating.IsValueCreated && _showsWithRating.Value.Any())
             {
                 foreach (RatingsShow ratingsShow in _showsWithRating.Value)
-                {
-                    (syncRatingsPost.Shows as List<ITraktSyncRatingsPostShow>)
-                        .Add(CreateRatingsPostShow(ratingsShow.Object, ratingsShow.Rating));
-                }
+                    syncRatingsPost.Shows.Add(CreateRatingsPostShow(ratingsShow.Object, ratingsShow.Rating));
             }
 
             if (_showIdsWithRating.IsValueCreated && _showIdsWithRating.Value.Any())
             {
                 foreach (RatingsShowIds ratingsShowIds in _showIdsWithRating.Value)
-                {
-                    (syncRatingsPost.Shows as List<ITraktSyncRatingsPostShow>)
-                        .Add(CreateRatingsPostShow(ratingsShowIds.Object, ratingsShowIds.Rating));
-                }
+                    syncRatingsPost.Shows.Add(CreateRatingsPostShow(ratingsShowIds.Object, ratingsShowIds.Rating));
             }
 
             if (_showsWithRatingRatedAt.IsValueCreated && _showsWithRatingRatedAt.Value.Any())
             {
                 foreach (RatingsShowRatedAt ratingsShowRatedAt in _showsWithRatingRatedAt.Value)
                 {
-                    (syncRatingsPost.Shows as List<ITraktSyncRatingsPostShow>)
+                    syncRatingsPost.Shows
                         .Add(CreateRatingsPostShow(ratingsShowRatedAt.Object, ratingsShowRatedAt.Rating, ratingsShowRatedAt.RatedAt));
                 }
             }
@@ -715,7 +703,7 @@
             {
                 foreach (RatingsShowIdsRatedAt ratingsShowIdsRatedAt in _showIdsWithRatingRatedAt.Value)
                 {
-                    (syncRatingsPost.Shows as List<ITraktSyncRatingsPostShow>)
+                    syncRatingsPost.Shows
                         .Add(CreateRatingsPostShow(ratingsShowIdsRatedAt.Object, ratingsShowIdsRatedAt.Rating, ratingsShowIdsRatedAt.RatedAt));
                 }
             }
@@ -740,26 +728,20 @@
             if (_seasonsWithRating.IsValueCreated && _seasonsWithRating.Value.Any())
             {
                 foreach (RatingsSeason ratingsSeason in _seasonsWithRating.Value)
-                {
-                    (syncRatingsPost.Seasons as List<ITraktSyncRatingsPostSeason>)
-                        .Add(CreateRatingsPostSeason(ratingsSeason.Object, ratingsSeason.Rating));
-                }
+                    syncRatingsPost.Seasons.Add(CreateRatingsPostSeason(ratingsSeason.Object, ratingsSeason.Rating));
             }
 
             if (_seasonIdsWithRating.IsValueCreated && _seasonIdsWithRating.Value.Any())
             {
                 foreach (RatingsSeasonIds ratingsSeasonIds in _seasonIdsWithRating.Value)
-                {
-                    (syncRatingsPost.Seasons as List<ITraktSyncRatingsPostSeason>)
-                        .Add(CreateRatingsPostSeason(ratingsSeasonIds.Object, ratingsSeasonIds.Rating));
-                }
+                    syncRatingsPost.Seasons.Add(CreateRatingsPostSeason(ratingsSeasonIds.Object, ratingsSeasonIds.Rating));
             }
 
             if (_seasonsWithRatingRatedAt.IsValueCreated && _seasonsWithRatingRatedAt.Value.Any())
             {
                 foreach (RatingsSeasonRatedAt ratingsSeasonatedAt in _seasonsWithRatingRatedAt.Value)
                 {
-                    (syncRatingsPost.Seasons as List<ITraktSyncRatingsPostSeason>)
+                    syncRatingsPost.Seasons
                         .Add(CreateRatingsPostSeason(ratingsSeasonatedAt.Object, ratingsSeasonatedAt.Rating, ratingsSeasonatedAt.RatedAt));
                 }
             }
@@ -768,7 +750,7 @@
             {
                 foreach (RatingsSeasonIdsRatedAt ratingsSeasonIdsRatedAt in _seasonIdsWithRatingRatedAt.Value)
                 {
-                    (syncRatingsPost.Seasons as List<ITraktSyncRatingsPostSeason>)
+                    syncRatingsPost.Seasons
                         .Add(CreateRatingsPostSeason(ratingsSeasonIdsRatedAt.Object, ratingsSeasonIdsRatedAt.Rating, ratingsSeasonIdsRatedAt.RatedAt));
                 }
             }
@@ -787,26 +769,20 @@
             if (_episodesWithRating.IsValueCreated && _episodesWithRating.Value.Any())
             {
                 foreach (RatingsEpisode ratingsEpisode in _episodesWithRating.Value)
-                {
-                    (syncRatingsPost.Episodes as List<ITraktSyncRatingsPostEpisode>)
-                        .Add(CreateRatingsPostEpisode(ratingsEpisode.Object, ratingsEpisode.Rating));
-                }
+                    syncRatingsPost.Episodes.Add(CreateRatingsPostEpisode(ratingsEpisode.Object, ratingsEpisode.Rating));
             }
 
             if (_episodeIdsWithRating.IsValueCreated && _episodeIdsWithRating.Value.Any())
             {
                 foreach (RatingsEpisodeIds ratingsEpisodeIds in _episodeIdsWithRating.Value)
-                {
-                    (syncRatingsPost.Episodes as List<ITraktSyncRatingsPostEpisode>)
-                        .Add(CreateRatingsPostEpisode(ratingsEpisodeIds.Object, ratingsEpisodeIds.Rating));
-                }
+                    syncRatingsPost.Episodes.Add(CreateRatingsPostEpisode(ratingsEpisodeIds.Object, ratingsEpisodeIds.Rating));
             }
 
             if (_episodesWithRatingRatedAt.IsValueCreated && _episodesWithRatingRatedAt.Value.Any())
             {
                 foreach (RatingsEpisodeRatedAt ratingsEpisodeRatedAt in _episodesWithRatingRatedAt.Value)
                 {
-                    (syncRatingsPost.Episodes as List<ITraktSyncRatingsPostEpisode>)
+                    syncRatingsPost.Episodes
                         .Add(CreateRatingsPostEpisode(ratingsEpisodeRatedAt.Object, ratingsEpisodeRatedAt.Rating, ratingsEpisodeRatedAt.RatedAt));
                 }
             }
@@ -815,7 +791,7 @@
             {
                 foreach (RatingsEpisodeIdsRatedAt ratingsEpisodeIdsRatedAt in _episodeIdsWithRatingRatedAt.Value)
                 {
-                    (syncRatingsPost.Episodes as List<ITraktSyncRatingsPostEpisode>)
+                    syncRatingsPost.Episodes
                         .Add(CreateRatingsPostEpisode(ratingsEpisodeIdsRatedAt.Object, ratingsEpisodeIdsRatedAt.Rating, ratingsEpisodeIdsRatedAt.RatedAt));
                 }
             }
@@ -918,17 +894,14 @@
                         syncRatingsPostShowSeason.Episodes = new List<ITraktSyncRatingsPostShowEpisode>();
 
                         foreach (PostRatingsEpisode episode in season.Episodes)
-                        {
-                            (syncRatingsPostShowSeason.Episodes as List<ITraktSyncRatingsPostShowEpisode>)
-                                .Add(CreateRatingsPostShowEpisode(episode));
-                        }
+                            syncRatingsPostShowSeason.Episodes.Add(CreateRatingsPostShowEpisode(episode));
                     }
 
-                    (syncRatingsPostShow.Seasons as List<ITraktSyncRatingsPostShowSeason>).Add(syncRatingsPostShowSeason);
+                    syncRatingsPostShow.Seasons.Add(syncRatingsPostShowSeason);
                 }
             }
 
-            (syncRatingsPost.Shows as List<ITraktSyncRatingsPostShow>).Add(syncRatingsPostShow);
+            syncRatingsPost.Shows.Add(syncRatingsPostShow);
         }
 
         private static ITraktSyncRatingsPostShowSeason CreateRatingsPostShowSeason(PostRatingsSeason season)

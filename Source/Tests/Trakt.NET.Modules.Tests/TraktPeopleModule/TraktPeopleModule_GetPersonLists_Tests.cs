@@ -8,6 +8,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Get.Lists;
+    using TraktNet.Objects.Get.People;
     using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
@@ -23,7 +24,122 @@
             TraktClient client = TestUtility.GetMockClient(GET_PERSON_LISTS_URI,
                                                            PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"people/{TRAKT_PERSON_ID}/lists",
+                PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(TRAKT_PERSON_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_PersonIds_TraktID()
+        {
+            var personIds = new TraktPersonIds
+            {
+                Trakt = TRAKT_PERSON_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"people/{TRAKT_PERSON_ID}/lists",
+                PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(personIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_PersonIds_Slug()
+        {
+            var personIds = new TraktPersonIds
+            {
+                Slug = PERSON_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"people/{PERSON_SLUG}/lists",
+                PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(personIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_PersonIds()
+        {
+            var personIds = new TraktPersonIds
+            {
+                Trakt = TRAKT_PERSON_ID,
+                Slug = PERSON_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"people/{TRAKT_PERSON_ID}/lists",
+                PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(personIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_Person()
+        {
+            var person = new TraktPerson
+            {
+                Ids = new TraktPersonIds
+                {
+                    Trakt = TRAKT_PERSON_ID,
+                    Slug = PERSON_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"people/{TRAKT_PERSON_ID}/lists",
+                PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(person);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -41,7 +157,7 @@
             TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}",
                                                            PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -59,7 +175,25 @@
             TraktClient client = TestUtility.GetMockClient(GET_PERSON_LISTS_URI,
                                                            PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, null, LIST_SORT_ORDER);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, LIST_SORT_ORDER);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_ExtendedInfo()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}?extended={EXTENDED_INFO}",
+                                                           PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -78,7 +212,7 @@
                                                            PERSON_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, null, null, pagedParameters);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -97,7 +231,7 @@
                                                            PERSON_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, null, null, pagedParameters);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -110,31 +244,31 @@
         }
 
         [Fact]
-        public async Task Test_TraktPeopleModule_GetPersonLists_With_Page_And_Limit()
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_Type_And_SortOrder()
         {
-            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}?page={PAGE}&limit={LIMIT}",
-                                                           PERSON_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}",
+                                                           PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, null, null, pagedParameters);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
             response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
             response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
-            response.Limit.Should().Be(LIMIT);
-            response.Page.Should().Be(PAGE);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public async Task Test_TraktPeopleModule_GetPersonLists_With_Type_And_SortOrder()
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_Type_And_ExtendedInfo()
         {
-            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}",
-                                                           PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}?extended={EXTENDED_INFO}",
+                PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
 
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -153,7 +287,7 @@
                                                            PERSON_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, null, pagedParameters);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -172,7 +306,7 @@
                                                            PERSON_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, null, pagedParameters);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -191,7 +325,7 @@
                                                            PERSON_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, null, pagedParameters);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -204,13 +338,186 @@
         }
 
         [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_SortOrder_And_ExtendedInfo_And_Without_Type()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}?extended={EXTENDED_INFO}",
+                                                           PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, LIST_SORT_ORDER, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_SortOrder_And_Page_And_Without_Type()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}?page={PAGE}",
+                                                           PERSON_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_SortOrder_And_Limit_And_Without_Type()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}?limit={LIMIT}",
+                                                           PERSON_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_SortOrder_Page_And_Limit_And_Without_Type()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}?page={PAGE}&limit={LIMIT}",
+                                                           PERSON_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_ExtendedInfo_And_Page()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSON_LISTS_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                PERSON_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, null, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_ExtendedInfo_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSON_LISTS_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                PERSON_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, null, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_ExtendedInfo_And_Page_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSON_LISTS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                PERSON_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, null, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_Page_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}?page={PAGE}&limit={LIMIT}",
+                                                           PERSON_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, null, null, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_Type_And_SortOrder_And_ExtendedInfo()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?extended={EXTENDED_INFO}",
+                PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktPeopleModule_GetPersonLists_With_Type_And_SortOrder_And_Page()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page={PAGE}",
                                                            PERSON_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, pagedParameters);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -229,7 +536,69 @@
                                                            PERSON_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, pagedParameters);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_Type_And_SortOrder_And_Page_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page={PAGE}&limit={LIMIT}",
+                PERSON_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_Type_And_SortOrder_And_ExtendedInfo_And_Page()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page={PAGE}",
+                PERSON_LISTS_JSON, PAGE, 10, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_With_Type_And_SortOrder_And_ExtendedInfo_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&limit={LIMIT}",
+                PERSON_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -244,11 +613,13 @@
         [Fact]
         public async Task Test_TraktPeopleModule_GetPersonLists_Complete()
         {
-            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page={PAGE}&limit={LIMIT}",
-                                                           PERSON_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}" +
+                $"?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                PERSON_LISTS_JSON, PAGE, LIMIT, 1, LISTS_ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, pagedParameters);
+            var response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -258,6 +629,164 @@
             response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                PERSON_LISTS_JSON, 2, LIMIT, 5, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                PERSON_LISTS_JSON, 2, LIMIT, 2, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                PERSON_LISTS_JSON, 1, LIMIT, 2, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                PERSON_LISTS_JSON, 1, LIMIT, 1, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                PERSON_LISTS_JSON, 2, LIMIT, 2, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetMockClient(client, $"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                PERSON_LISTS_JSON, 1, LIMIT, 2, LISTS_ITEM_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                PERSON_LISTS_JSON, 1, LIMIT, 2, LISTS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktList> response = await client.People.GetPersonListsAsync(PERSON_ID, LIST_TYPE, LIST_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetMockClient(client, $"{GET_PERSON_LISTS_URI}/{LIST_TYPE.UriName}/{LIST_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                PERSON_LISTS_JSON, 2, LIMIT, 2, LISTS_ITEM_COUNT);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(LISTS_ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(LISTS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
         }
 
         [Theory]
@@ -290,6 +819,25 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktPeopleModule_GetPersonLists_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSON_LISTS_URI,
+                PERSON_LISTS_JSON, 1, 10, 1, LISTS_ITEM_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktList>>> act = () => client.People.GetPersonListsAsync(default(ITraktPersonIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.People.GetPersonListsAsync(default(ITraktPerson));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.People.GetPersonListsAsync(new TraktPersonIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.People.GetPersonListsAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

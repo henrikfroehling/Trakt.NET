@@ -7,6 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
+    using TraktNet.Objects.Get.Shows;
     using TraktNet.Responses;
     using Xunit;
 
@@ -20,6 +21,81 @@
         {
             TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.NoContent);
             TraktNoContentResponse response = await client.Recommendations.HideShowRecommendationAsync(SHOW_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_HideShowRecommendationRatings_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"recommendations/shows/{TRAKT_SHOW_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Recommendations.HideShowRecommendationAsync(TRAKT_SHOW_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_HideShowRecommendationRatings_With_ShowIds_TraktID()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOW_ID
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"recommendations/shows/{TRAKT_SHOW_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Recommendations.HideShowRecommendationAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_HideShowRecommendationRatings_With_ShowIds_Slug()
+        {
+            var showIds = new TraktShowIds
+            {
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"recommendations/shows/{SHOW_SLUG}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Recommendations.HideShowRecommendationAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_HideShowRecommendationRatings_With_ShowIds()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOW_ID,
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"recommendations/shows/{TRAKT_SHOW_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Recommendations.HideShowRecommendationAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_HideShowRecommendationRatings_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOW_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"recommendations/shows/{TRAKT_SHOW_ID}", HttpStatusCode.NoContent);
+            TraktNoContentResponse response = await client.Recommendations.HideShowRecommendationAsync(show);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -55,6 +131,24 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetShowRatings_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient(HIDE_SHOW_RECOMMENDATION_URI, HttpStatusCode.NoContent);
+
+            Func<Task<TraktNoContentResponse>> act = () => client.Recommendations.HideShowRecommendationAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Recommendations.HideShowRecommendationAsync(default(ITraktShow));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Recommendations.HideShowRecommendationAsync(new TraktShowIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Recommendations.HideShowRecommendationAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

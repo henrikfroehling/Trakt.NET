@@ -51,7 +51,7 @@
         [Fact]
         public void Test_UserPersonalListItemsRemoveRequest_Validate_Throws_Exceptions()
         {
-            var listItemsPost = new TraktUserPersonalListItemsPost
+            var listItemsPost = new TraktUserPersonalListItemsRemovePost
             {
                 Movies = new List<ITraktUserPersonalListItemsPostMovie> { new TraktUserPersonalListItemsPostMovie() }
             };

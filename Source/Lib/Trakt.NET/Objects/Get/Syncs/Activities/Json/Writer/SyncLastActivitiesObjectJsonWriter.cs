@@ -26,6 +26,13 @@
                 await syncMoviesLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Movies, cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.Episodes != null)
+            {
+                var syncEpisodesLastActivitiesObjectJsonWriter = new SyncEpisodesLastActivitiesObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
+                await syncEpisodesLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Episodes, cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.Shows != null)
             {
                 var syncShowsLastActivitiesObjectJsonWriter = new SyncShowsLastActivitiesObjectJsonWriter();
@@ -38,13 +45,6 @@
                 var syncSeasonsLastActivitiesObjectJsonWriter = new SyncSeasonsLastActivitiesObjectJsonWriter();
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SEASONS, cancellationToken).ConfigureAwait(false);
                 await syncSeasonsLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Seasons, cancellationToken).ConfigureAwait(false);
-            }
-
-            if (obj.Episodes != null)
-            {
-                var syncEpisodesLastActivitiesObjectJsonWriter = new SyncEpisodesLastActivitiesObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_EPISODES, cancellationToken).ConfigureAwait(false);
-                await syncEpisodesLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Episodes, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Comments != null)
@@ -64,22 +64,50 @@
             if (obj.Watchlist != null)
             {
                 var syncWatchlistLastActivitiesObjectJsonWriter = new SyncWatchlistLastActivitiesObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LISTS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_WATCHLIST, cancellationToken).ConfigureAwait(false);
                 await syncWatchlistLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Watchlist, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Favorites != null)
+            {
+                var syncFavoritesLastActivitiesObjectJsonWriter = new SyncFavoritesLastActivitiesObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_FAVORITES, cancellationToken).ConfigureAwait(false);
+                await syncFavoritesLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Favorites, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Recommendations != null)
             {
                 var syncRecommendationsLastActivitiesObjectJsonWriter = new SyncRecommendationsLastActivitiesObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LISTS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RECOMMENDATIONS, cancellationToken).ConfigureAwait(false);
                 await syncRecommendationsLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Recommendations, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Collaborations != null)
+            {
+                var syncCollaborationsLastActivitiesObjectJsonWriter = new SyncCollaborationsLastActivitiesObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_COLLABORATIONS, cancellationToken).ConfigureAwait(false);
+                await syncCollaborationsLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Collaborations, cancellationToken).ConfigureAwait(false);
             }
 
             if (obj.Account != null)
             {
                 var syncAccountLastActivitiesObjectJsonWriter = new SyncAccountLastActivitiesObjectJsonWriter();
-                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_LISTS, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_ACCOUNT, cancellationToken).ConfigureAwait(false);
                 await syncAccountLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Account, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.SavedFilters != null)
+            {
+                var syncSavedFiltersLastActivitiesObjectJsonWriter = new SyncSavedFiltersLastActivitiesObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_SAVED_FILTERS, cancellationToken).ConfigureAwait(false);
+                await syncSavedFiltersLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.SavedFilters, cancellationToken).ConfigureAwait(false);
+            }
+
+            if (obj.Notes != null)
+            {
+                var notesLastActivitiesObjectJsonWriter = new SyncNotesLastActivitiesObjectJsonWriter();
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_NOTES, cancellationToken).ConfigureAwait(false);
+                await notesLastActivitiesObjectJsonWriter.WriteObjectAsync(jsonWriter, obj.Notes, cancellationToken).ConfigureAwait(false);
             }
 
             await jsonWriter.WriteEndObjectAsync(cancellationToken).ConfigureAwait(false);

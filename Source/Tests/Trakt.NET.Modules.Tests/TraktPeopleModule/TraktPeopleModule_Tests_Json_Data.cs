@@ -6,12 +6,16 @@
     public partial class TraktPeopleModule_Tests
     {
         private const string PERSON_ID = "297737";
+        private const uint TRAKT_PERSON_ID = 297737;
+        private const string PERSON_SLUG = "bryan-cranston";
         private const int LISTS_ITEM_COUNT = 1;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
         private const uint PAGE = 2;
         private const uint LIMIT = 4;
+        private const int UPDATED_IDS_COUNT = 4;
+        private const int UPDATED_PEOPLE_COUNT = 2;
 
         private const string PERSON_MINIMAL_JSON =
             @"{
@@ -219,6 +223,44 @@
                     ""vip_ep"": false,
                     ""ids"": {
                       ""slug"": ""justin""
+                    }
+                  }
+                }
+              ]";
+
+        private const string RECENTLY_UPDATED_PEOPLE_IDS_JSON =
+            @"[
+                1,
+                20,
+                34,
+                50
+              ]";
+
+        private const string RECENTLY_UPDATED_PEOPLE_JSON =
+            @"[
+                {
+                  ""updated_at"": ""2022-11-03T18:58:09.000Z"",
+                  ""person"": {
+                    ""name"": ""Charlie Cox"",
+                    ""ids"": {
+                      ""trakt"": 417084,
+                      ""slug"": ""charlie-cox"",
+                      ""imdb"": ""nm1214435"",
+                      ""tmdb"": 23458,
+                      ""tvrage"": 145276
+                    }
+                  }
+                },
+                {
+                  ""updated_at"": ""2022-11-03T18:58:09.000Z"",
+                  ""person"": {
+                    ""name"": ""Deborah Ann Woll"",
+                    ""ids"": {
+                      ""trakt"": 451773,
+                      ""slug"": ""deborah-ann-woll"",
+                      ""imdb"": ""nm2832695"",
+                      ""tmdb"": 212154,
+                      ""tvrage"": null
                     }
                   }
                 }

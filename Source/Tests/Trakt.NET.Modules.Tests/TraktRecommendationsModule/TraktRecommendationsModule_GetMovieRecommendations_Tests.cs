@@ -7,7 +7,8 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Movies;
+    using TraktNet.Objects.Get.Recommendations;
+    using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
 
@@ -20,80 +21,300 @@
         public async Task Test_TraktRecommendationsModule_GetMovieRecommendations()
         {
             TraktClient client = TestUtility.GetOAuthMockClient(GET_MOVIE_RECOMMENDATIONS_URI,
-                                                                MOVIE_RECOMMENDATIONS_JSON, 1, 10);
+                                                                MOVIE_RECOMMENDATIONS_JSON, 1, 10, 1, MOVIE_RECOMMENDATIONS_COUNT);
 
-            TraktPagedResponse<ITraktMovie> response = await client.Recommendations.GetMovieRecommendationsAsync();
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync();
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().Be(1u);
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
             response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_With_Page()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}?page={PAGE}",
+                                                                MOVIE_RECOMMENDATIONS_JSON, PAGE, 10, 1, MOVIE_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(pagedParameters: pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
         public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_With_Limit()
         {
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}?limit={LIMIT}",
-                                                                MOVIE_RECOMMENDATIONS_JSON, 1, LIMIT);
+                                                                MOVIE_RECOMMENDATIONS_JSON, 1, LIMIT, 1, MOVIE_RECOMMENDATIONS_COUNT);
 
-            TraktPagedResponse<ITraktMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(LIMIT);
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(pagedParameters: pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().Be(1u);
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
             response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
         public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_With_IgnoreCollected()
         {
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}?ignore_collected=true",
-                                                                MOVIE_RECOMMENDATIONS_JSON, 1, 10);
+                                                                MOVIE_RECOMMENDATIONS_JSON, 1, 10, 1, MOVIE_RECOMMENDATIONS_COUNT);
 
-            TraktPagedResponse<ITraktMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(null, true);
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(ignoreCollected: true);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().Be(1u);
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
             response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_With_IgnoreWatchlisted()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}?ignore_watchlisted=true",
+                                                                MOVIE_RECOMMENDATIONS_JSON, 1, 10, 1, MOVIE_RECOMMENDATIONS_COUNT);
+
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(ignoreWatchlisted: true);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
         public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}?extended={EXTENDED_INFO}",
-                                                                MOVIE_RECOMMENDATIONS_JSON, 1, 10);
+                                                                MOVIE_RECOMMENDATIONS_JSON, 1, 10, 1, MOVIE_RECOMMENDATIONS_COUNT);
 
-            TraktPagedResponse<ITraktMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(null, null, EXTENDED_INFO);
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(extendedInfo: EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().Be(1u);
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
             response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
         public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_Complete()
         {
-            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}?ignore_collected=true&extended={EXTENDED_INFO}&limit={LIMIT}",
-                                                                MOVIE_RECOMMENDATIONS_JSON, 1, LIMIT);
+            TraktClient client = TestUtility.GetOAuthMockClient(
+                $"{GET_MOVIE_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                MOVIE_RECOMMENDATIONS_JSON, PAGE, LIMIT, 1, MOVIE_RECOMMENDATIONS_COUNT);
 
-            TraktPagedResponse<ITraktMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(LIMIT, true, EXTENDED_INFO);
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
             response.HasValue.Should().BeTrue();
-            response.Value.Should().NotBeNull().And.HaveCount(3);
-            response.Page.Should().Be(1u);
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
             response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                MOVIE_RECOMMENDATIONS_JSON, 2, LIMIT, 5, MOVIE_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                MOVIE_RECOMMENDATIONS_JSON, 2, LIMIT, 2, MOVIE_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                MOVIE_RECOMMENDATIONS_JSON, 1, LIMIT, 2, MOVIE_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                MOVIE_RECOMMENDATIONS_JSON, 1, LIMIT, 1, MOVIE_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                MOVIE_RECOMMENDATIONS_JSON, 2, LIMIT, 2, MOVIE_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetMockClient(client, $"{GET_MOVIE_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                MOVIE_RECOMMENDATIONS_JSON, 1, LIMIT, 2, MOVIE_RECOMMENDATIONS_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktRecommendationsModule_GetMovieRecommendations_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"{GET_MOVIE_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                MOVIE_RECOMMENDATIONS_JSON, 1, LIMIT, 2, MOVIE_RECOMMENDATIONS_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktRecommendedMovie> response = await client.Recommendations.GetMovieRecommendationsAsync(true, true, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetMockClient(client, $"{GET_MOVIE_RECOMMENDATIONS_URI}" +
+                $"?ignore_collected=true&ignore_watchlisted=true&extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                MOVIE_RECOMMENDATIONS_JSON, 2, LIMIT, 2, MOVIE_RECOMMENDATIONS_COUNT);
+
+            response = await response.GetNextPageAsync();
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(MOVIE_RECOMMENDATIONS_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(MOVIE_RECOMMENDATIONS_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
         }
 
         [Theory]

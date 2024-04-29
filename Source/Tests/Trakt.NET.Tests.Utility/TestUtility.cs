@@ -8,6 +8,7 @@
     using TraktNet.Core;
     using TraktNet.Enums;
     using TraktNet.Objects.Json;
+    using TraktNet.Requests.Handler;
 
     internal static class TestUtility
     {
@@ -18,12 +19,48 @@
             return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
         }
 
+        internal static void ResetMockClient(this TraktClient client, string uri, string responseContent,
+                                             uint? page = null, uint? limit = null,
+                                             int? pageCount = null, int? itemCount = null,
+                                             int? userCount = null, string startDate = null,
+                                             string endDate = null, TraktSortBy sortBy = null,
+                                             TraktSortHow sortHow = null)
+        {
+            (client.HttpClientProvider as TestHttpClientProvider).Clear();
+
+            (client.HttpClientProvider as TestHttpClientProvider)
+                .SetupMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
+        }
+
+        internal static void ResetOAuthMockClient(this TraktClient client, string uri, string responseContent,
+                                                  uint? page = null, uint? limit = null,
+                                                  int? pageCount = null, int? itemCount = null,
+                                                  int? userCount = null, string startDate = null,
+                                                  string endDate = null, TraktSortBy sortBy = null,
+                                                  TraktSortHow sortHow = null)
+        {
+            (client.HttpClientProvider as TestHttpClientProvider).Clear();
+
+            (client.HttpClientProvider as TestHttpClientProvider)
+                .SetupOAuthMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
+        }
+
+        internal static TraktClient GetMockClientForMultipleCalls(string uri, string responseContent, int calls)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            for (int i = 0; i < calls; i++)
+            {
+                httpClientProvider.SetupMockResponse(uri, responseContent);
+            }
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider);
+        }
+
         internal static TraktClient GetMockClient(string uri, string responseContent,
                                                   uint? page = null, uint? limit = null,
                                                   int? pageCount = null, int? itemCount = null,
                                                   int? userCount = null, string startDate = null,
-                                                  string endDate = null, TraktSortBy? sortBy = null,
-                                                  TraktSortHow? sortHow = null)
+                                                  string endDate = null, TraktSortBy sortBy = null,
+                                                  TraktSortHow sortHow = null)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
             httpClientProvider.SetupMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
@@ -41,11 +78,29 @@
                                                        uint? page = null, uint? limit = null,
                                                        int? pageCount = null, int? itemCount = null,
                                                        int? userCount = null, string startDate = null,
-                                                       string endDate = null, TraktSortBy? sortBy = null,
-                                                       TraktSortHow? sortHow = null)
+                                                       string endDate = null, TraktSortBy sortBy = null,
+                                                       TraktSortHow sortHow = null)
         {
             var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
             httpClientProvider.SetupOAuthMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
+            return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider)
+            {
+                Authorization = TestConstants.MOCK_AUTHORIZATION
+            };
+        }
+
+        internal static TraktClient GetOAuthMockClientForMultipleCalls(string uri, string responseContent, int calls,
+                                                       uint? page = null, uint? limit = null,
+                                                       int? pageCount = null, int? itemCount = null,
+                                                       int? userCount = null, string startDate = null,
+                                                       string endDate = null, TraktSortBy sortBy = null,
+                                                       TraktSortHow sortHow = null)
+        {
+            var httpClientProvider = new TestHttpClientProvider(Constants.API_URL);
+            for (var i = 0; i < calls; i++)
+            {
+                httpClientProvider.SetupOAuthMockResponse(uri, responseContent, page, limit, pageCount, itemCount, userCount, startDate, endDate, sortBy, sortHow);
+            }
             return new TraktClient(TestConstants.TRAKT_CLIENT_ID, TestConstants.TRAKT_CLIENT_SECRET, httpClientProvider)
             {
                 Authorization = TestConstants.MOCK_AUTHORIZATION
@@ -157,5 +212,7 @@
 
             return stream;
         }
+
+        internal static string EncodeForURL(string uri) => RequestUri.Encode(uri);
     }
 }

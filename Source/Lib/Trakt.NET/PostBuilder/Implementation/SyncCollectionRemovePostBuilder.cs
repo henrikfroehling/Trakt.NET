@@ -35,19 +35,13 @@
             if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
-                {
-                    (syncCollectionRemovePost.Movies as List<ITraktSyncCollectionPostMovie>)
-                        .Add(CreateCollectionPostMovie(movie));
-                }
+                    syncCollectionRemovePost.Movies.Add(CreateCollectionPostMovie(movie));
             }
 
             if (_movieIds.IsValueCreated && _movieIds.Value.Any())
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
-                {
-                    (syncCollectionRemovePost.Movies as List<ITraktSyncCollectionPostMovie>)
-                        .Add(CreateCollectionPostMovie(movieIds));
-                }
+                    syncCollectionRemovePost.Movies.Add(CreateCollectionPostMovie(movieIds));
             }
         }
 
@@ -61,19 +55,13 @@
             if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
-                {
-                    (syncCollectionRemovePost.Shows as List<ITraktSyncCollectionPostShow>)
-                        .Add(CreateCollectionPostShow(show));
-                }
+                    syncCollectionRemovePost.Shows.Add(CreateCollectionPostShow(show));
             }
 
             if (_showIds.IsValueCreated && _showIds.Value.Any())
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
-                {
-                    (syncCollectionRemovePost.Shows as List<ITraktSyncCollectionPostShow>)
-                        .Add(CreateCollectionRemovePostShow(showIds));
-                }
+                    syncCollectionRemovePost.Shows.Add(CreateCollectionRemovePostShow(showIds));
             }
 
             if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Any())
@@ -93,19 +81,13 @@
             if (_seasons.IsValueCreated && _seasons.Value.Any())
             {
                 foreach (ITraktSeason season in _seasons.Value)
-                {
-                    (syncCollectionRemovePost.Seasons as List<ITraktSyncCollectionPostSeason>)
-                        .Add(CreateCollectionPostSeason(season));
-                }
+                    syncCollectionRemovePost.Seasons.Add(CreateCollectionPostSeason(season));
             }
 
             if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
             {
                 foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
-                {
-                    (syncCollectionRemovePost.Seasons as List<ITraktSyncCollectionPostSeason>)
-                        .Add(CreateCollectionPostSeason(seasonIds));
-                }
+                    syncCollectionRemovePost.Seasons.Add(CreateCollectionPostSeason(seasonIds));
             }
         }
 
@@ -119,19 +101,13 @@
             if (_episodes.IsValueCreated && _episodes.Value.Any())
             {
                 foreach (ITraktEpisode episode in _episodes.Value)
-                {
-                    (syncCollectionRemovePost.Episodes as List<ITraktSyncCollectionPostEpisode>)
-                        .Add(CreateCollectionPostEpisode(episode));
-                }
+                    syncCollectionRemovePost.Episodes.Add(CreateCollectionPostEpisode(episode));
             }
 
             if (_episodeIds.IsValueCreated && _episodeIds.Value.Any())
             {
                 foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
-                {
-                    (syncCollectionRemovePost.Episodes as List<ITraktSyncCollectionPostEpisode>)
-                        .Add(CreateCollectionPostEpisode(episodeIds));
-                }
+                    syncCollectionRemovePost.Episodes.Add(CreateCollectionPostEpisode(episodeIds));
             }
         }
 
@@ -190,17 +166,14 @@
                         syncCollectionRemovePostShowSeason.Episodes = new List<ITraktSyncCollectionPostShowEpisode>();
 
                         foreach (PostEpisode episode in season.Episodes)
-                        {
-                            (syncCollectionRemovePostShowSeason.Episodes as List<ITraktSyncCollectionPostShowEpisode>)
-                                .Add(CreateCollectionPostShowEpisode(episode));
-                        }
+                            syncCollectionRemovePostShowSeason.Episodes.Add(CreateCollectionPostShowEpisode(episode));
                     }
 
-                    (syncCollectionRemovePostShow.Seasons as List<ITraktSyncCollectionPostShowSeason>).Add(syncCollectionRemovePostShowSeason);
+                    syncCollectionRemovePostShow.Seasons.Add(syncCollectionRemovePostShowSeason);
                 }
             }
 
-            (syncCollectionRemovePost.Shows as List<ITraktSyncCollectionPostShow>).Add(syncCollectionRemovePostShow);
+            syncCollectionRemovePost.Shows.Add(syncCollectionRemovePostShow);
         }
 
         private static ITraktSyncCollectionPostShowSeason CreateCollectionPostShowSeason(PostSeason season)

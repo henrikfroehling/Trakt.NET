@@ -1,18 +1,21 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
+    using Base;
     using Enums;
     using Exceptions;
     using Extensions;
     using Objects.Get.Watchlist;
     using System.Collections.Generic;
 
-    internal sealed class UserWatchlistRequest : AUsersPagedGetRequest<ITraktWatchlistItem>
+    internal sealed class UserWatchlistRequest : AUsersPagedGetRequest<ITraktWatchlistItem>, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         internal TraktSyncItemType Type { get; set; }
 
         public TraktWatchlistSortOrder Sort { get; set; }
+
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public override string UriTemplate => "users/{username}/watchlist{/type}{/sort}{?extended,page,limit}";
 

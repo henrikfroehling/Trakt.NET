@@ -4,7 +4,9 @@
     using System;
     using System.Collections.Generic;
     using Trakt.NET.Tests.Utility.Traits;
+    using TraktNet.Enums;
     using TraktNet.Exceptions;
+    using TraktNet.Objects.Post.Users;
     using TraktNet.Requests.Base;
     using TraktNet.Requests.Users.OAuth;
     using Xunit;
@@ -42,20 +44,45 @@
         [Fact]
         public void Test_UserPersonalListAddRequest_Validate_Throws_Exceptions()
         {
-            // username is null
-            var request = new UserPersonalListAddRequest();
+            var validPost = new TraktUserPersonalListPost
+            {
+                Name = "list name"
+            };
+
+            // request body is null
+            var request = new UserPersonalListAddRequest { Username = "username" };
 
             Action act = () => request.Validate();
             act.Should().Throw<TraktRequestValidationException>();
 
+            // empty list name
+            request = new UserPersonalListAddRequest { Username = "username", RequestBody = new TraktUserPersonalListPost { Name = string.Empty } };
+
+            act = () => request.Validate();
+            act.Should().Throw<TraktPostValidationException>();
+
+            // list privacy unspecified
+            request = new UserPersonalListAddRequest
+            {
+                Username = "username",
+                RequestBody = new TraktUserPersonalListPost
+                {
+                    Name = "list name",
+                    Privacy = TraktListPrivacy.Unspecified
+                }
+            };
+
+            act = () => request.Validate();
+            act.Should().Throw<TraktPostValidationException>();
+
             // empty username
-            request = new UserPersonalListAddRequest { Username = string.Empty };
+            request = new UserPersonalListAddRequest { Username = string.Empty, RequestBody = validPost };
 
             act = () => request.Validate();
             act.Should().Throw<TraktRequestValidationException>();
 
             // username with spaces
-            request = new UserPersonalListAddRequest { Username = "invalid username" };
+            request = new UserPersonalListAddRequest { Username = "invalid username", RequestBody = validPost };
 
             act = () => request.Validate();
             act.Should().Throw<TraktRequestValidationException>();

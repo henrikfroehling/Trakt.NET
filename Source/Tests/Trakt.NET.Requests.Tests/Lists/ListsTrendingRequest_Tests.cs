@@ -12,7 +12,7 @@
         public void Test_ListsTrendingRequest_Has_Valid_UriTemplate()
         {
             var request = new ListsTrendingRequest();
-            request.UriTemplate.Should().Be("lists/trending{?page,limit}");
+            request.UriTemplate.Should().Be("lists/trending{?extended,page,limit}");
         }
     }
 }

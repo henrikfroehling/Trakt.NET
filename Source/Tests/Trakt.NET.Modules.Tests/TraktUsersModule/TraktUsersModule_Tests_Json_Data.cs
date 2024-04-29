@@ -10,6 +10,9 @@
         private const string ENCODED_COMMA = "%2C";
         private const string USERNAME = "sean";
         private const string LIST_ID = "55";
+        private const uint TRAKT_LIST_ID = 55;
+        private const string LIST_SLUG = "incredible-thoughts";
+        private const uint LIST_ITEM_ID = 1;
         private readonly TraktListItemType LIST_ITEM_TYPE = TraktListItemType.Movie;
         private readonly TraktListItemType LIST_ITEM_TYPE_MOVIE = TraktListItemType.Movie;
         private readonly TraktListItemType LIST_ITEM_TYPE_SHOW = TraktListItemType.Show;
@@ -17,7 +20,7 @@
         private const string LIST_NAME = "new list";
         private const string NEW_LIST_NAME = "new list name";
         private const string DESCRIPTION = "list description";
-        private readonly TraktAccessScope PRIVACY = TraktAccessScope.Public;
+        private readonly TraktListPrivacy PRIVACY = TraktListPrivacy.Public;
         private const bool DISPLAY_NUMBERS = true;
         private const bool ALLOW_COMMENTS = true;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
@@ -45,27 +48,31 @@
         private readonly TraktSyncItemType HISTORY_ITEM_TYPE = TraktSyncItemType.Episode;
         private const uint HISTORY_LIMIT = 4;
         private const int WATCHLIST_ITEM_COUNT = 4;
-        private const TraktSortBy SORT_BY = TraktSortBy.Rank;
-        private const TraktSortHow SORT_HOW = TraktSortHow.Ascending;
+        private readonly TraktSortBy SORT_BY = TraktSortBy.Rank;
+        private readonly TraktSortHow SORT_HOW = TraktSortHow.Ascending;
         private readonly TraktSyncItemType WATCHLIST_ITEM_TYPE = TraktSyncItemType.Movie;
         private readonly TraktWatchlistSortOrder WATCHLIST_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const uint WATCHLIST_LIMIT = 4;
         private const string NEW_DESCRIPTION = "new list description";
-        private readonly TraktAccessScope NEW_PRIVACY = TraktAccessScope.Private;
+        private readonly TraktListPrivacy NEW_PRIVACY = TraktListPrivacy.Private;
         private const bool NEW_DISPLAY_NUMBERS = false;
         private const bool NEW_ALLOW_COMMENTS = false;
-        private readonly IEnumerable<uint> REORDERED_CUSTOM_LISTS = new List<uint> { 823, 224, 88768, 356456, 245, 2, 890 };
-        private readonly IEnumerable<uint> REORDERED_CUSTOM_LIST_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
+        private readonly IList<uint> REORDERED_CUSTOM_LISTS = new List<uint> { 823, 224, 88768, 356456, 245, 2, 890 };
+        private readonly IList<uint> REORDERED_CUSTOM_LIST_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
         private const int RATINGS_ITEM_COUNT = 5;
-        private readonly TraktRecommendationObjectType RECOMMENDATION_TYPE = TraktRecommendationObjectType.Movie;
-        private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
-        private const int RECOMMENDATIONS_ITEM_COUNT = 2;
-        private const int RECOMMENDATIONS_LIMIT = 6;
+        private readonly TraktFavoriteObjectType FAVORITE_TYPE = TraktFavoriteObjectType.Movie;
+        private readonly TraktWatchlistSortOrder FAVORITES_SORT_ORDER = TraktWatchlistSortOrder.Rank;
+        private const int FAVORITES_ITEM_COUNT = 2;
+        private const int FAVORITES_LIMIT = 6;
         private const int LIST_LIKES_LIMIT = 3;
         private const int LIST_LIKES_ITEM_COUNT = 2;
         private readonly TraktFilterSection FILTER_SECTION = TraktFilterSection.Movies;
         private const int SAVED_FILTERS_COUNT = 2;
         private const int SAVED_FILTERS_LIMIT = 4;
+        private const int LIST_ITEMS_COUNT = 5;
+        private readonly TraktNotesObjectType NOTES_OBJECT_TYPE = TraktNotesObjectType.Show;
+        private const int NOTES_ITEM_COUNT = 2;
+        private const uint NOTES_ITEM_LIMIT = 4;
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 
@@ -1427,7 +1434,7 @@
                 ]
               }";
 
-        private const string USER_RECOMMENDATIONS_JSON =
+        private const string USER_FAVORITES_JSON =
             @"[
                 {
                   ""rank"": 1,
@@ -1501,5 +1508,123 @@
                   }
                 }
               ]";
+
+        private const string NOTES_ITEMS_JSON =
+            @"[
+                {                
+                  ""attached_to"": {
+                    ""type"": ""movie""
+                  },
+                  ""type"": ""movie"",
+                  ""movie"": {
+                    ""title"": ""Batman Begins"",
+                    ""year"": 2005,
+                    ""ids"": {
+                      ""trakt"": 1,
+                      ""slug"": ""batman-begins-2005"",
+                      ""imdb"": ""tt0372784"",
+                      ""tmdb"": 272
+                    }
+                  },
+                  ""note"": {
+                    ""id"": 49,
+                    ""notes"": ""Only watch the extended edition."",
+                    ""privacy"": ""private"",
+                    ""spoiler"": false,
+                    ""created_at"": ""2023-09-07T20:10:18.000Z"",
+                    ""updated_at"": ""2023-09-07T20:10:56.000Z"",
+                    ""user"": {
+                      ""username"": ""justin"",
+                      ""private"": false,
+                      ""name"": ""Justin Nemeth"",
+                      ""vip"": true,
+                      ""vip_ep"": true,
+                      ""ids"": {
+                        ""slug"": ""justin"",
+                        ""trakt"": 1
+                      }
+                    }
+                  }
+                },
+                {
+                  ""attached_to"": {
+                    ""type"": ""episode""
+                  },
+                  ""type"": ""episode"",
+                  ""episode"": {
+                    ""season"": 1,
+                    ""number"": 1,
+                    ""title"": ""Jim Gordon"",
+                    ""ids"": {
+                      ""trakt"": 63958,
+                      ""tvdb"": 4768720,
+                      ""imdb"": ""tt3216414"",
+                      ""tmdb"": 975968
+                    }
+                  },
+                  ""show"": {
+                    ""title"": ""Gotham"",
+                    ""year"": 2014,
+                    ""ids"": {
+                      ""trakt"": 869,
+                      ""slug"": ""gotham"",
+                      ""tvdb"": 274431,
+                      ""imdb"": ""tt3749900"",
+                      ""tmdb"": 60708
+                    }
+                  },
+                  ""note"": {
+                    ""id"": 48,
+                    ""notes"": ""Streaming quality on Netflix is mediocre."",
+                    ""privacy"": ""private"",
+                    ""spoiler"": false,
+                    ""created_at"": ""2023-09-07T20:03:26.000Z"",
+                    ""updated_at"": ""2023-09-07T20:03:26.000Z"",
+                    ""user"": {
+                      ""username"": ""justin"",
+                      ""private"": false,
+                      ""name"": ""Justin Nemeth"",
+                      ""vip"": true,
+                      ""vip_ep"": true,
+                      ""ids"": {
+                        ""slug"": ""justin"",
+                        ""trakt"": 1
+                      }
+                    }
+                  }
+                }
+              ]";
+
+        private const string COMMENTS_JSON =
+            @"[
+                {
+                  ""id"": 8,
+                  ""parent_id"": 0,
+                  ""created_at"": ""2011-03-25T22:35:17.000Z"",
+                  ""updated_at"": ""2011-03-25T22:35:17.000Z"",
+                  ""comment"": ""Can't wait to watch everything on this epic list!"",
+                  ""spoiler"": false,
+                  ""review"": false,
+                  ""replies"": 0,
+                  ""likes"": 0,
+                  ""user_stats"": {
+                    ""rating"": null,
+                    ""play_count"": 1,
+                    ""completed_count"": 1
+                  },
+                  ""user"": {
+                    ""username"": ""sean"",
+                    ""private"": false,
+                    ""name"": ""Sean Rudford"",
+                    ""vip"": true,
+                    ""vip_ep"": false,
+                    ""ids"": {
+                      ""slug"": ""sean""
+                    }
+                  }
+                }
+              ]";
+
+        private const int COMMENTS_COUNT = 1;
     }
 }

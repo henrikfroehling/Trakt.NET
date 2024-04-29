@@ -7,9 +7,9 @@
     using Objects.Post.Users.PersonalListItems.Responses;
     using System.Collections.Generic;
 
-    internal sealed class UserPersonalListItemsAddRequest : AUsersPostByIdRequest<ITraktUserPersonalListItemsPostResponse, ITraktUserPersonalListItemsPost>
+    internal sealed class UserPersonalListItemsAddRequest : AUsersPostByIdRequest<ITraktUserPersonalListItemsPostResponse, ITraktUserPersonalListItemsPost>, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public override RequestObjectType RequestObjectType => RequestObjectType.Lists;
 

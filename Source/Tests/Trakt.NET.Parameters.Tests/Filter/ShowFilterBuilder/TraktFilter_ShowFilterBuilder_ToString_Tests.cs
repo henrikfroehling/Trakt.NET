@@ -218,23 +218,23 @@
         }
 
         [Fact]
-        public void Test_TraktFilter_ShowFilterBuilder_WithNetworks_Params_ToString()
+        public void Test_TraktFilter_ShowFilterBuilder_WithNetworkIds_Params_ToString()
         {
             ITraktShowFilter filter = TraktFilter.NewShowFilter()
-                .WithNetworks("HBO", "Netflix")
+                .WithNetworkIds(53, 78)
                 .Build();
 
-            filter.ToString().Should().Be("networks=HBO,Netflix");
+            filter.ToString().Should().Be("network_ids=53,78");
         }
 
         [Fact]
-        public void Test_TraktFilter_ShowFilterBuilder_WithNetworks_ToString()
+        public void Test_TraktFilter_ShowFilterBuilder_WithNetworkIds_ToString()
         {
             ITraktShowFilter filter = TraktFilter.NewShowFilter()
-                .WithNetworks(new List<string> { "HBO", "Netflix" })
+                .WithNetworkIds(new List<uint> { 53, 78 })
                 .Build();
 
-            filter.ToString().Should().Be("networks=HBO,Netflix");
+            filter.ToString().Should().Be("network_ids=53,78");
         }
 
         [Fact]
@@ -285,7 +285,7 @@
                 .WithTMDBVotes(7000, 9000)
                 .WithIMDBRatings(7, 9)
                 .WithIMDBVotes(7000, 9000)
-                .WithNetworks("HBO", "Netflix")
+                .WithNetworkIds(53, 78)
                 .WithStates(state1, state2)
                 .Build();
 
@@ -297,7 +297,7 @@
                                           "&runtimes=90-120" +
                                           "&studios=marvel-studios,disney-studios" +
                                           "&certifications=pg-13,tv-pg" +
-                                          "&networks=HBO,Netflix" +
+                                          "&network_ids=53,78" +
                                           $"&status={state1.UriName},{state2.UriName}" +
                                           "&ratings=70-90" +
                                           "&votes=7000-9000" +
@@ -329,7 +329,7 @@
                 .WithTMDBVotes(7000, 9000)
                 .WithIMDBRatings(7, 9)
                 .WithIMDBVotes(7000, 9000)
-                .WithNetworks("HBO", "Netflix")
+                .WithNetworkIds(53, 78)
                 .WithStates(state1, state2)
                 .Build();
 
@@ -341,7 +341,7 @@
                                           "&runtimes=90-120" +
                                           "&studios=marvel-studios,disney-studios" +
                                           "&certifications=pg-13,tv-pg" +
-                                          "&networks=HBO,Netflix" +
+                                          "&network_ids=53,78" +
                                           $"&status={state1.UriName},{state2.UriName}" +
                                           "&ratings=70-90" +
                                           "&votes=7000-9000" +

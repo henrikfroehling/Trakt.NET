@@ -23,7 +23,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
                 traktCommentItems.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -35,7 +35,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -85,11 +85,11 @@
                 commentItems[0].List.Should().NotBeNull();
                 commentItems[0].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[0].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[0].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[0].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[0].List.DisplayNumbers.Should().BeTrue();
                 commentItems[0].List.AllowComments.Should().BeFalse();
-                commentItems[0].List.SortBy.Should().Be("rank");
-                commentItems[0].List.SortHow.Should().Be("asc");
+                commentItems[0].List.SortBy.Should().Be(TraktSortBy.Rank);
+                commentItems[0].List.SortHow.Should().Be(TraktSortHow.Ascending);
                 commentItems[0].List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 commentItems[0].List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 commentItems[0].List.ItemCount.Should().Be(5);
@@ -152,11 +152,11 @@
                 commentItems[1].List.Should().NotBeNull();
                 commentItems[1].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[1].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[1].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[1].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[1].List.DisplayNumbers.Should().BeTrue();
                 commentItems[1].List.AllowComments.Should().BeFalse();
-                commentItems[1].List.SortBy.Should().Be("rank");
-                commentItems[1].List.SortHow.Should().Be("asc");
+                commentItems[1].List.SortBy.Should().Be(TraktSortBy.Rank);
+                commentItems[1].List.SortHow.Should().Be(TraktSortHow.Ascending);
                 commentItems[1].List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 commentItems[1].List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 commentItems[1].List.ItemCount.Should().Be(5);
@@ -183,7 +183,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -233,11 +233,11 @@
                 commentItems[0].List.Should().NotBeNull();
                 commentItems[0].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[0].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[0].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[0].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[0].List.DisplayNumbers.Should().BeTrue();
                 commentItems[0].List.AllowComments.Should().BeFalse();
-                commentItems[0].List.SortBy.Should().Be("rank");
-                commentItems[0].List.SortHow.Should().Be("asc");
+                commentItems[0].List.SortBy.Should().Be(TraktSortBy.Rank);
+                commentItems[0].List.SortHow.Should().Be(TraktSortHow.Ascending);
                 commentItems[0].List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 commentItems[0].List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 commentItems[0].List.ItemCount.Should().Be(5);
@@ -281,7 +281,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -348,11 +348,11 @@
                 commentItems[1].List.Should().NotBeNull();
                 commentItems[1].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[1].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[1].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[1].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[1].List.DisplayNumbers.Should().BeTrue();
                 commentItems[1].List.AllowComments.Should().BeFalse();
-                commentItems[1].List.SortBy.Should().Be("rank");
-                commentItems[1].List.SortHow.Should().Be("asc");
+                commentItems[1].List.SortBy.Should().Be(TraktSortBy.Rank);
+                commentItems[1].List.SortHow.Should().Be(TraktSortHow.Ascending);
                 commentItems[1].List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 commentItems[1].List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 commentItems[1].List.ItemCount.Should().Be(5);
@@ -379,7 +379,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -422,11 +422,11 @@
                 commentItems[0].List.Should().NotBeNull();
                 commentItems[0].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[0].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[0].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[0].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[0].List.DisplayNumbers.Should().BeTrue();
                 commentItems[0].List.AllowComments.Should().BeFalse();
-                commentItems[0].List.SortBy.Should().Be("rank");
-                commentItems[0].List.SortHow.Should().Be("asc");
+                commentItems[0].List.SortBy.Should().Be(TraktSortBy.Rank);
+                commentItems[0].List.SortHow.Should().Be(TraktSortHow.Ascending);
                 commentItems[0].List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 commentItems[0].List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 commentItems[0].List.ItemCount.Should().Be(5);
@@ -489,11 +489,11 @@
                 commentItems[1].List.Should().NotBeNull();
                 commentItems[1].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[1].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[1].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[1].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[1].List.DisplayNumbers.Should().BeTrue();
                 commentItems[1].List.AllowComments.Should().BeFalse();
-                commentItems[1].List.SortBy.Should().Be("rank");
-                commentItems[1].List.SortHow.Should().Be("asc");
+                commentItems[1].List.SortBy.Should().Be(TraktSortBy.Rank);
+                commentItems[1].List.SortHow.Should().Be(TraktSortHow.Ascending);
                 commentItems[1].List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 commentItems[1].List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 commentItems[1].List.ItemCount.Should().Be(5);
@@ -520,7 +520,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -570,11 +570,11 @@
                 commentItems[0].List.Should().NotBeNull();
                 commentItems[0].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[0].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[0].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[0].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[0].List.DisplayNumbers.Should().BeTrue();
                 commentItems[0].List.AllowComments.Should().BeFalse();
-                commentItems[0].List.SortBy.Should().Be("rank");
-                commentItems[0].List.SortHow.Should().Be("asc");
+                commentItems[0].List.SortBy.Should().Be(TraktSortBy.Rank);
+                commentItems[0].List.SortHow.Should().Be(TraktSortHow.Ascending);
                 commentItems[0].List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 commentItems[0].List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 commentItems[0].List.ItemCount.Should().Be(5);
@@ -630,11 +630,11 @@
                 commentItems[1].List.Should().NotBeNull();
                 commentItems[1].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[1].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[1].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[1].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[1].List.DisplayNumbers.Should().BeTrue();
                 commentItems[1].List.AllowComments.Should().BeFalse();
-                commentItems[1].List.SortBy.Should().Be("rank");
-                commentItems[1].List.SortHow.Should().Be("asc");
+                commentItems[1].List.SortBy.Should().Be(TraktSortBy.Rank);
+                commentItems[1].List.SortHow.Should().Be(TraktSortHow.Ascending);
                 commentItems[1].List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 commentItems[1].List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 commentItems[1].List.ItemCount.Should().Be(5);
@@ -661,7 +661,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
 
                 traktCommentItems.Should().NotBeNull();
                 ITraktCommentItem[] commentItems = traktCommentItems.ToArray();
@@ -704,11 +704,11 @@
                 commentItems[0].List.Should().NotBeNull();
                 commentItems[0].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[0].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[0].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[0].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[0].List.DisplayNumbers.Should().BeTrue();
                 commentItems[0].List.AllowComments.Should().BeFalse();
-                commentItems[0].List.SortBy.Should().Be("rank");
-                commentItems[0].List.SortHow.Should().Be("asc");
+                commentItems[0].List.SortBy.Should().Be(TraktSortBy.Rank);
+                commentItems[0].List.SortHow.Should().Be(TraktSortHow.Ascending);
                 commentItems[0].List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 commentItems[0].List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 commentItems[0].List.ItemCount.Should().Be(5);
@@ -764,11 +764,11 @@
                 commentItems[1].List.Should().NotBeNull();
                 commentItems[1].List.Name.Should().Be("Star Wars in machete order");
                 commentItems[1].List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-                commentItems[1].List.Privacy.Should().Be(TraktAccessScope.Public);
+                commentItems[1].List.Privacy.Should().Be(TraktListPrivacy.Public);
                 commentItems[1].List.DisplayNumbers.Should().BeTrue();
                 commentItems[1].List.AllowComments.Should().BeFalse();
-                commentItems[1].List.SortBy.Should().Be("rank");
-                commentItems[1].List.SortHow.Should().Be("asc");
+                commentItems[1].List.SortBy.Should().Be(TraktSortBy.Rank);
+                commentItems[1].List.SortHow.Should().Be(TraktSortHow.Ascending);
                 commentItems[1].List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
                 commentItems[1].List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
                 commentItems[1].List.ItemCount.Should().Be(5);
@@ -792,7 +792,7 @@
         public async Task Test_CommentItemArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCommentItem>();
-            Func<Task<IEnumerable<ITraktCommentItem>>> traktCommentItems = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktCommentItem>>> traktCommentItems = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktCommentItems.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -803,7 +803,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCommentItem> traktCommentItems = await jsonReader.ReadArrayAsync(stream);
                 traktCommentItems.Should().BeNull();
             }
         }

@@ -17,31 +17,31 @@
         /// An optional list of <see cref="ITraktUserPersonalListItemsPostMovie" />s.
         /// <para>Each <see cref="ITraktUserPersonalListItemsPostMovie" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktUserPersonalListItemsPostMovie> Movies { get; set; }
+        public IList<ITraktUserPersonalListItemsPostMovie> Movies { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktUserPersonalListItemsPostShow" />s.
         /// <para>Each <see cref="ITraktUserPersonalListItemsPostShow" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktUserPersonalListItemsPostShow> Shows { get; set; }
+        public IList<ITraktUserPersonalListItemsPostShow> Shows { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktUserPersonalListItemsPostSeason" />s.
         /// <para>Each <see cref="ITraktUserPersonalListItemsPostSeason" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktUserPersonalListItemsPostSeason> Seasons { get; set; }
+        public IList<ITraktUserPersonalListItemsPostSeason> Seasons { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktUserPersonalListItemsPostEpisode" />s.
         /// <para>Each <see cref="ITraktUserPersonalListItemsPostEpisode" /> must have at least a valid Trakt id.</para>
         /// </summary>
-        public IEnumerable<ITraktUserPersonalListItemsPostEpisode> Episodes { get; set; }
+        public IList<ITraktUserPersonalListItemsPostEpisode> Episodes { get; set; }
 
         /// <summary>
         /// An optional list of <see cref="ITraktUserPersonalListItemsPostPerson" />s.
         /// <para>Each <see cref="ITraktUserPersonalListItemsPostPerson" /> must have at least a valid Trakt id and a name.</para>
         /// </summary>
-        public IEnumerable<ITraktUserPersonalListItemsPostPerson> People { get; set; }
+        public IList<ITraktUserPersonalListItemsPostPerson> People { get; set; }
 
         public Task<string> ToJson(CancellationToken cancellationToken = default)
         {

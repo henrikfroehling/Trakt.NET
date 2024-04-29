@@ -1,0 +1,9 @@
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        informational: true
+        if_ci_failed: success
+        only_pulls: false
+        removed_code_behavior: adjust_base

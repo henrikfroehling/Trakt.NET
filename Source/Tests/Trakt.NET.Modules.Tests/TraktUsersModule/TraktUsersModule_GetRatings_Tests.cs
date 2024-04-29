@@ -52,6 +52,22 @@
         }
 
         [Fact]
+        public async Task Test_TraktUsersModule_GetRatings_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient("users/me/ratings", RATINGS_JSON, 1, 10, 1, RATINGS_ITEM_COUNT);
+            TraktPagedResponse<ITraktRatingsItem> response = await client.Users.GetRatingsAsync("me");
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktUsersModule_GetRatings_With_Type()
         {
             TraktClient client = TestUtility.GetMockClient(
@@ -594,6 +610,204 @@
             response.Limit.Should().Be(10u);
             response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetRatings_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}" +
+                $"/{BuildRatingsFilterString(ratingsFilter)}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                RATINGS_JSON, 2, LIMIT, 5, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Users.GetRatingsAsync(USERNAME, RATINGS_ITEM_TYPE, ratingsFilter, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetRatings_Paging_Only_HasPreviousPage()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}" +
+                $"/{BuildRatingsFilterString(ratingsFilter)}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                RATINGS_JSON, 2, LIMIT, 2, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Users.GetRatingsAsync(USERNAME, RATINGS_ITEM_TYPE, ratingsFilter, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetRatings_Paging_Only_HasNextPage()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}" +
+                $"/{BuildRatingsFilterString(ratingsFilter)}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                RATINGS_JSON, 1, LIMIT, 2, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Users.GetRatingsAsync(USERNAME, RATINGS_ITEM_TYPE, ratingsFilter, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetRatings_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}" +
+                $"/{BuildRatingsFilterString(ratingsFilter)}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                RATINGS_JSON, 1, LIMIT, 1, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Users.GetRatingsAsync(USERNAME, RATINGS_ITEM_TYPE, ratingsFilter, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetRatings_Paging_GetPreviousPage()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}" +
+                $"/{BuildRatingsFilterString(ratingsFilter)}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                RATINGS_JSON, 2, LIMIT, 2, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Users.GetRatingsAsync(USERNAME, RATINGS_ITEM_TYPE, ratingsFilter, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetMockClient(client,
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}" +
+                $"/{BuildRatingsFilterString(ratingsFilter)}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                RATINGS_JSON, 1, LIMIT, 2, RATINGS_ITEM_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetRatings_Paging_GetNextPage()
+        {
+            var ratingsFilter = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}" +
+                $"/{BuildRatingsFilterString(ratingsFilter)}?extended={EXTENDED_INFO}&page=1&limit={LIMIT}",
+                RATINGS_JSON, 1, LIMIT, 2, RATINGS_ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+
+            TraktPagedResponse<ITraktRatingsItem> response =
+                await client.Users.GetRatingsAsync(USERNAME, RATINGS_ITEM_TYPE, ratingsFilter, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetMockClient(client,
+                $"{GET_RATINGS_URI}/{RATINGS_ITEM_TYPE.UriName}" +
+                $"/{BuildRatingsFilterString(ratingsFilter)}?extended={EXTENDED_INFO}&page=2&limit={LIMIT}",
+                RATINGS_JSON, 2, LIMIT, 2, RATINGS_ITEM_COUNT);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(4);
+            response.ItemCount.Should().HaveValue().And.Be(RATINGS_ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
         }
 
         [Theory]

@@ -137,7 +137,7 @@
         /// </param>
         /// <returns>True, if the given access token was revoked and / or is not valid anymore, otherwise false.</returns>
         /// <exception cref="ArgumentException">Thrown, if the given access token is null, empty or contains spaces.</exception>
-        /// <exception cref="TraktException">Thrown, if the request <see cref="Modules.TraktSyncModule.GetLastActivitiesAsync(CancellationToken)" /> fails.</exception>
+        /// <exception cref="TraktException">Thrown, if the request <see cref="TraktSyncModule.GetLastActivitiesAsync(CancellationToken)" /> fails.</exception>
         public Task<bool> CheckIfAccessTokenWasRevokedOrIsNotValidAsync(string accessToken, CancellationToken cancellationToken = default)
         {
             var requestHandler = new AuthenticationRequestHandler(Client);
@@ -147,41 +147,49 @@
         /// <summary>
         /// Creates a new OAuth authorization URL. Uses the current <see cref="ClientId" /> and <see cref="RedirectUri" /> to build the authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrl() => CreateAuthorizationUrl(ClientId);
+        public string CreateAuthorizationUrl(bool? showSignupPage = null, bool? forceLoginPrompt = null)
+            => CreateAuthorizationUrl(ClientId, showSignupPage, forceLoginPrompt);
 
         /// <summary>
         /// Creates a new OAuth authorization URL. Uses the current <see cref="RedirectUri" /> to build the authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrl(string clientId) => CreateAuthorizationUrl(clientId, RedirectUri);
+        public string CreateAuthorizationUrl(string clientId, bool? showSignupPage = null, bool? forceLoginPrompt = null)
+            => CreateAuthorizationUrl(clientId, RedirectUri, showSignupPage, forceLoginPrompt);
 
         /// <summary>
         /// Creates a new OAuth authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
         /// <param name="redirectUri">The redirect URI, which will be used to build the authorization URL.</param>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrl(string clientId, string redirectUri)
+        public string CreateAuthorizationUrl(string clientId, string redirectUri, bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             var requestHandler = new AuthenticationRequestHandler(Client);
-            return requestHandler.CreateAuthorizationUrl(clientId, redirectUri);
+            return requestHandler.CreateAuthorizationUrl(clientId, redirectUri, null, showSignupPage, forceLoginPrompt);
         }
 
         /// <summary>
         /// Creates a new OAuth authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
@@ -190,47 +198,59 @@
         /// The state variable, which will be used to build the authorization URL. See also <see cref="AntiForgeryToken" />.
         /// This parameter is optional and will not be used, if it's null or empty.
         /// </param>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrl(string clientId, string redirectUri, string state)
+        public string CreateAuthorizationUrl(string clientId, string redirectUri, string state,
+                                             bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             var requestHandler = new AuthenticationRequestHandler(Client);
-            return requestHandler.CreateAuthorizationUrl(clientId, redirectUri, state);
+            return requestHandler.CreateAuthorizationUrl(clientId, redirectUri, state, showSignupPage, forceLoginPrompt);
         }
 
         /// <summary>
         /// Creates a new OAuth authorization URL. Uses the current <see cref="ClientId" />, <see cref="RedirectUri" />
         /// and <see cref="AntiForgeryToken" /> as state variable to build the authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrlWithDefaultState() => CreateAuthorizationUrlWithDefaultState(ClientId);
+        public string CreateAuthorizationUrlWithDefaultState(bool? showSignupPage = null, bool? forceLoginPrompt = null)
+            => CreateAuthorizationUrlWithDefaultState(ClientId, showSignupPage, forceLoginPrompt);
 
         /// <summary>
         /// Creates a new OAuth authorization URL. Uses the current <see cref="RedirectUri" />
         /// and <see cref="AntiForgeryToken" /> as state variable to build the authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrlWithDefaultState(string clientId) => CreateAuthorizationUrlWithDefaultState(clientId, RedirectUri);
+        public string CreateAuthorizationUrlWithDefaultState(string clientId, bool? showSignupPage = null, bool? forceLoginPrompt = null)
+            => CreateAuthorizationUrlWithDefaultState(clientId, RedirectUri, showSignupPage, forceLoginPrompt);
 
         /// <summary>
         /// Creates a new OAuth authorization URL. Uses the <see cref="AntiForgeryToken" /> as state variable to build the authorization URL.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/authorize-application">"Trakt API Doc - OAuth: Authorize"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used to build the authorization URL.</param>
         /// <param name="redirectUri">The redirect URI, which will be used to build the authorization URL.</param>
+        /// <param name="showSignupPage">Prefer the account sign up page to be the default.</param>
+        /// <param name="forceLoginPrompt">Force the user to sign in and authorize your app.</param>
         /// <returns>Returns the created authorization URL.</returns>
-        public string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri)
+        public string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri,
+                                                             bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             var requestHandler = new AuthenticationRequestHandler(Client);
-            return requestHandler.CreateAuthorizationUrlWithDefaultState(clientId, redirectUri);
+            return requestHandler.CreateAuthorizationUrlWithDefaultState(clientId, redirectUri, showSignupPage, forceLoginPrompt);
         }
 
         /// <summary>
@@ -366,7 +386,7 @@
         /// Generates a new Trakt device and starts the device authentication process. Uses the current <see cref="ClientId" /> for the request.
         /// Assigns the returned <see cref="ITraktDevice" /> instance to <see cref="Device" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/device-code/generate-new-device-codes">"Trakt API Doc - Devices: Device Code"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/device-code/generate-new-device-codes">"Trakt API Doc - Devices: Device Code"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -383,7 +403,7 @@
         /// Generates a new Trakt device and starts the device authentication process.
         /// Assigns the returned <see cref="ITraktDevice" /> instance to <see cref="Device" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/device-code/generate-new-device-codes">"Trakt API Doc - Devices: Device Code"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/device-code/generate-new-device-codes">"Trakt API Doc - Devices: Device Code"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="clientId">The Trakt Client ID, which will be used for the request.</param>
@@ -412,7 +432,7 @@
         /// Polls for a new access token. Uses the current <see cref="Device" />, <see cref="ClientId" /> and <see cref="ClientSecret" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -439,7 +459,7 @@
         /// Polls for a new access token. Uses the current <see cref="ClientId" /> and <see cref="ClientSecret" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="device">The <see cref="ITraktDevice" />, which will be used for the request.</param>
@@ -467,7 +487,7 @@
         /// Polls for a new access token. Uses the current <see cref="ClientSecret" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="device">The <see cref="ITraktDevice" />, which will be used for the request.</param>
@@ -495,7 +515,7 @@
         /// <summary>
         /// Polls for a new access token. Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-devices/get-token/poll-for-the-access_token">"Trakt API Doc - Devices: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="device">The <see cref="ITraktDevice" />, which will be used for the request.</param>
@@ -540,7 +560,7 @@
         /// <see cref="ClientSecret" /> and <see cref="RedirectUri" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -568,7 +588,7 @@
         /// Uses the current <see cref="ClientId" />, <see cref="ClientSecret" /> and <see cref="RedirectUri" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="refreshToken">The refresh token, which will be used for the exchange.</param>
@@ -597,7 +617,7 @@
         /// Uses the current <see cref="ClientSecret" /> and <see cref="RedirectUri" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="refreshToken">The refresh token, which will be used for the exchange.</param>
@@ -627,7 +647,7 @@
         /// Uses the current <see cref="RedirectUri" /> for the request.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="refreshToken">The refresh token, which will be used for the exchange.</param>
@@ -657,7 +677,7 @@
         /// Exchanges the current refresh token for a new access token, without re-authenticating the associated user.
         /// Assigns the returned <see cref="ITraktAuthorization" /> instance to <see cref="Authorization" />, if successful.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/exchange-refresh_token-for-access_token">"Trakt API Doc - OAuth: Get Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="refreshToken">The refresh token, which will be used for the exchange.</param>
@@ -703,7 +723,7 @@
         /// and the user has to be re-authenticated.
         /// Uses the current <see cref="Authorization" />'s access token, <see cref="ClientId" /> and <see cref="ClientSecret" /> for the request.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -728,7 +748,7 @@
         /// and the user has to be re-authenticated.
         /// Uses the current <see cref="ClientId" /> and <see cref="ClientSecret" /> for the request.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="accessToken">The given access token, which will be revoked.</param>
@@ -754,7 +774,7 @@
         /// and the user has to be re-authenticated.
         /// Uses the current <see cref="ClientSecret" /> for the request.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="accessToken">The given access token, which will be revoked.</param>
@@ -780,7 +800,7 @@
         /// Revokes the current access token. If, successful, the current access token will be invalid
         /// and the user has to be re-authenticated.
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/authentication-oauth/get-token/revoke-an-access_token">"Trakt API Doc - OAuth: Revoke Token"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="accessToken">The given access token, which will be revoked.</param>

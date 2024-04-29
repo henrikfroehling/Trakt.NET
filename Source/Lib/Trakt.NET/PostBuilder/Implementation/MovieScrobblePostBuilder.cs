@@ -1,13 +1,14 @@
 ﻿namespace TraktNet.PostBuilder
 {
+    using Exceptions;
+    using Objects.Get.Movies;
+    using Objects.Post.Scrobbles;
     using System;
-    using TraktNet.Exceptions;
-    using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Post.Scrobbles;
 
     internal sealed class MovieScrobblePostBuilder : AScrobblePostBuilder<ITraktMovieScrobblePostBuilder, ITraktMovieScrobblePost>, ITraktMovieScrobblePostBuilder
     {
         private ITraktMovie _movie;
+        private ITraktMovieIds _movieIds;
 
         public ITraktMovieScrobblePostBuilder WithMovie(ITraktMovie movie)
         {
@@ -21,6 +22,20 @@
                 throw new ArgumentException("movie ids have no valid id", $"{nameof(movie)}.Ids");
 
             _movie = movie;
+            _movieIds = null;
+            return this;
+        }
+
+        public ITraktMovieScrobblePostBuilder WithMovie(ITraktMovieIds movieIds)
+        {
+            if (movieIds == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            if (!movieIds.HasAnyId)
+                throw new ArgumentException($"{nameof(movieIds)} have no valid id");
+
+            _movie = null;
+            _movieIds = movieIds;
             return this;
         }
 
@@ -31,11 +46,25 @@
 
             ITraktMovieScrobblePost movieScrobblePost = new TraktMovieScrobblePost
             {
-                Movie = _movie,
                 Progress = _progress.Value,
                 AppVersion = _appVersion,
                 AppDate = _appDate
             };
+
+            if (_movie == null && _movieIds == null)
+                throw new TraktPostValidationException("Empty scrobble post. No movie value set.");
+
+            if (_movie != null)
+            {
+                movieScrobblePost.Movie = _movie;
+            }
+            else
+            {
+                movieScrobblePost.Movie = new TraktMovie
+                {
+                    Ids = _movieIds
+                };
+            }
 
             movieScrobblePost.Validate();
             return movieScrobblePost;

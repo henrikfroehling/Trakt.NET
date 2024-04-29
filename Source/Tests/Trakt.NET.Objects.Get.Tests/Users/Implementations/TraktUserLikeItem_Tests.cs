@@ -43,7 +43,10 @@
             likeItem.Comment.Review.Should().BeFalse();
             likeItem.Comment.Replies.Should().Be(1);
             likeItem.Comment.Likes.Should().Be(2);
-            likeItem.Comment.UserRating.Should().Be(7.3f);
+            likeItem.Comment.UserStats.Should().NotBeNull();
+            likeItem.Comment.UserStats.Rating.Should().Be(8);
+            likeItem.Comment.UserStats.PlayCount.Should().Be(1);
+            likeItem.Comment.UserStats.CompletedCount.Should().Be(1);
             likeItem.Comment.User.Should().NotBeNull();
             likeItem.Comment.User.Username.Should().Be("sean");
             likeItem.Comment.User.IsPrivate.Should().BeFalse();
@@ -67,11 +70,11 @@
             likeItem.List.Should().NotBeNull();
             likeItem.List.Name.Should().Be("Star Wars in machete order");
             likeItem.List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            likeItem.List.Privacy.Should().Be(TraktAccessScope.Public);
+            likeItem.List.Privacy.Should().Be(TraktListPrivacy.Public);
             likeItem.List.DisplayNumbers.Should().BeTrue();
             likeItem.List.AllowComments.Should().BeFalse();
-            likeItem.List.SortBy.Should().Be("rank");
-            likeItem.List.SortHow.Should().Be("asc");
+            likeItem.List.SortBy.Should().Be(TraktSortBy.Rank);
+            likeItem.List.SortHow.Should().Be(TraktSortHow.Ascending);
             likeItem.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             likeItem.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             likeItem.List.ItemCount.Should().Be(5);
@@ -105,7 +108,11 @@
                   ""review"": false,
                   ""replies"": 1,
                   ""likes"": 2,
-                  ""user_rating"": 7.3,
+                  ""user_stats"": {
+                    ""rating"": 8,
+                    ""play_count"": 1,
+                    ""completed_count"": 1
+                  },
                   ""user"": {
                     ""username"": ""sean"",
                     ""private"": false,

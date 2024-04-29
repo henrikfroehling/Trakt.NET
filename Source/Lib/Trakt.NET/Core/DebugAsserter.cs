@@ -19,11 +19,17 @@
         internal static void AssertHttpResponseCodeIsExpected(HttpStatusCode actualStatusCode, HttpStatusCode expectedStatusCode, string assertionMessage)
             => Debug.Assert(actualStatusCode == expectedStatusCode, assertionMessage);
 
-        internal static void AssertHttpResponseCodeIsNotExpected(HttpStatusCode actualStatusCode, HttpStatusCode expectedStatusCode, string assertionMessage)
-            => Debug.Assert(actualStatusCode != expectedStatusCode, assertionMessage);
+        internal static void AssertHttpResponseCodeIsExpected(HttpStatusCode actualStatusCode, HttpStatusCode expectedStatusCode1, HttpStatusCode expectedStatusCode2, string assertionMessage)
+            => Debug.Assert(actualStatusCode == expectedStatusCode1 || actualStatusCode == expectedStatusCode2, assertionMessage);
+
+        internal static void AssertHttpResponseCodeIsNotExpected(HttpStatusCode actualStatusCode, HttpStatusCode expectedStatusCode1, HttpStatusCode expectedStatusCode2, string assertionMessage)
+            => Debug.Assert(actualStatusCode != expectedStatusCode1 && actualStatusCode != expectedStatusCode2, assertionMessage);
 
         internal static void AssertResponseContentStreamIsNotNull(Stream stream)
             => Debug.Assert(stream != null, "precondition for deserializing response content failed: stream is null");
+
+        internal static void AssertResponseContentIsNotEmpty(string responseContent)
+            => Debug.Assert(!string.IsNullOrEmpty(responseContent), "precondition for deserializing response content failed: response content is empty");
 
         internal static void AssertObjectJsonReaderIsNotNull<TReturnType>(IObjectJsonReader<TReturnType> objectJsonReader)
             => Debug.Assert(objectJsonReader != null, "precondition for deserializing response content failed: json object reader is null");

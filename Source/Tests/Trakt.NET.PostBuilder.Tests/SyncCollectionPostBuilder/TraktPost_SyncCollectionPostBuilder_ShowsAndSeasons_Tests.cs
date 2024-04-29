@@ -11,7 +11,7 @@
     public partial class TraktPost_SyncCollectionPostBuilder_Tests
     {
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndSeasons_ITraktShow()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndSeasons_ITraktShow_PostSeasons()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
                 .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_1, TraktPost_Tests_Common_Data.COLLECTION_SHOW_SEASONS_1)
@@ -278,7 +278,129 @@
         }
 
         [Fact]
-        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndSeasons_ITraktShowIds()
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndSeasons_ITraktShow_IEnumerableSeasons()
+        {
+            ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_1, new List<int> { 1, 2, 3 })
+                .Build();
+
+            syncCollectionPost.Should().NotBeNull();
+            syncCollectionPost.Shows.Should().NotBeNull().And.HaveCount(1);
+
+            ITraktSyncCollectionPostShow postShow = syncCollectionPost.Shows.ToArray()[0];
+            postShow.Title.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Title);
+            postShow.Year.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Year);
+            postShow.Ids.Should().NotBeNull();
+            postShow.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Trakt);
+            postShow.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Slug);
+            postShow.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Imdb);
+            postShow.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Tmdb);
+            postShow.CollectedAt.Should().BeNull();
+            postShow.Audio.Should().BeNull();
+            postShow.AudioChannels.Should().BeNull();
+            postShow.MediaType.Should().BeNull();
+            postShow.MediaResolution.Should().BeNull();
+            postShow.HDR.Should().BeNull();
+            postShow.ThreeDimensional.Should().BeNull();
+
+            postShow.Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            ITraktSyncCollectionPostShowSeason[] postShowSeasons = postShow.Seasons.ToArray();
+
+            postShowSeasons[0].Number.Should().Be(1);
+            postShowSeasons[0].CollectedAt.Should().BeNull();
+            postShowSeasons[0].Audio.Should().BeNull();
+            postShowSeasons[0].AudioChannels.Should().BeNull();
+            postShowSeasons[0].MediaType.Should().BeNull();
+            postShowSeasons[0].MediaResolution.Should().BeNull();
+            postShowSeasons[0].HDR.Should().BeNull();
+            postShowSeasons[0].ThreeDimensional.Should().BeNull();
+            postShowSeasons[0].Episodes.Should().BeNull();
+
+            postShowSeasons[1].Number.Should().Be(2);
+            postShowSeasons[1].CollectedAt.Should().BeNull();
+            postShowSeasons[1].Audio.Should().BeNull();
+            postShowSeasons[1].AudioChannels.Should().BeNull();
+            postShowSeasons[1].MediaType.Should().BeNull();
+            postShowSeasons[1].MediaResolution.Should().BeNull();
+            postShowSeasons[1].HDR.Should().BeNull();
+            postShowSeasons[1].ThreeDimensional.Should().BeNull();
+            postShowSeasons[1].Episodes.Should().BeNull();
+
+            postShowSeasons[2].Number.Should().Be(3);
+            postShowSeasons[2].CollectedAt.Should().BeNull();
+            postShowSeasons[2].Audio.Should().BeNull();
+            postShowSeasons[2].AudioChannels.Should().BeNull();
+            postShowSeasons[2].MediaType.Should().BeNull();
+            postShowSeasons[2].MediaResolution.Should().BeNull();
+            postShowSeasons[2].HDR.Should().BeNull();
+            postShowSeasons[2].ThreeDimensional.Should().BeNull();
+            postShowSeasons[2].Episodes.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndSeasons_ITraktShow_SeasonsArray()
+        {
+            ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_1, 1, 2, 3)
+                .Build();
+
+            syncCollectionPost.Should().NotBeNull();
+            syncCollectionPost.Shows.Should().NotBeNull().And.HaveCount(1);
+
+            ITraktSyncCollectionPostShow postShow = syncCollectionPost.Shows.ToArray()[0];
+            postShow.Title.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Title);
+            postShow.Year.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Year);
+            postShow.Ids.Should().NotBeNull();
+            postShow.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Trakt);
+            postShow.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Slug);
+            postShow.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Imdb);
+            postShow.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_1.Ids.Tmdb);
+            postShow.CollectedAt.Should().BeNull();
+            postShow.Audio.Should().BeNull();
+            postShow.AudioChannels.Should().BeNull();
+            postShow.MediaType.Should().BeNull();
+            postShow.MediaResolution.Should().BeNull();
+            postShow.HDR.Should().BeNull();
+            postShow.ThreeDimensional.Should().BeNull();
+
+            postShow.Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            ITraktSyncCollectionPostShowSeason[] postShowSeasons = postShow.Seasons.ToArray();
+
+            postShowSeasons[0].Number.Should().Be(1);
+            postShowSeasons[0].CollectedAt.Should().BeNull();
+            postShowSeasons[0].Audio.Should().BeNull();
+            postShowSeasons[0].AudioChannels.Should().BeNull();
+            postShowSeasons[0].MediaType.Should().BeNull();
+            postShowSeasons[0].MediaResolution.Should().BeNull();
+            postShowSeasons[0].HDR.Should().BeNull();
+            postShowSeasons[0].ThreeDimensional.Should().BeNull();
+            postShowSeasons[0].Episodes.Should().BeNull();
+
+            postShowSeasons[1].Number.Should().Be(2);
+            postShowSeasons[1].CollectedAt.Should().BeNull();
+            postShowSeasons[1].Audio.Should().BeNull();
+            postShowSeasons[1].AudioChannels.Should().BeNull();
+            postShowSeasons[1].MediaType.Should().BeNull();
+            postShowSeasons[1].MediaResolution.Should().BeNull();
+            postShowSeasons[1].HDR.Should().BeNull();
+            postShowSeasons[1].ThreeDimensional.Should().BeNull();
+            postShowSeasons[1].Episodes.Should().BeNull();
+
+            postShowSeasons[2].Number.Should().Be(3);
+            postShowSeasons[2].CollectedAt.Should().BeNull();
+            postShowSeasons[2].Audio.Should().BeNull();
+            postShowSeasons[2].AudioChannels.Should().BeNull();
+            postShowSeasons[2].MediaType.Should().BeNull();
+            postShowSeasons[2].MediaResolution.Should().BeNull();
+            postShowSeasons[2].HDR.Should().BeNull();
+            postShowSeasons[2].ThreeDimensional.Should().BeNull();
+            postShowSeasons[2].Episodes.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndSeasons_ITraktShowIds_PostSeasons()
         {
             ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
                 .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_IDS_1, TraktPost_Tests_Common_Data.COLLECTION_SHOW_SEASONS_1)
@@ -542,6 +664,128 @@
             syncCollectionPost.Movies.Should().BeNull();
             syncCollectionPost.Seasons.Should().BeNull();
             syncCollectionPost.Episodes.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndSeasons_ITraktShowIds_IEnumerableSeasons()
+        {
+            ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_IDS_1, new List<int> { 1, 2, 3 })
+                .Build();
+
+            syncCollectionPost.Should().NotBeNull();
+            syncCollectionPost.Shows.Should().NotBeNull().And.HaveCount(1);
+
+            ITraktSyncCollectionPostShow postShow = syncCollectionPost.Shows.ToArray()[0];
+            postShow.Title.Should().BeNull();
+            postShow.Year.Should().BeNull();
+            postShow.Ids.Should().NotBeNull();
+            postShow.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Trakt);
+            postShow.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Slug);
+            postShow.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Imdb);
+            postShow.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Tmdb);
+            postShow.CollectedAt.Should().BeNull();
+            postShow.Audio.Should().BeNull();
+            postShow.AudioChannels.Should().BeNull();
+            postShow.MediaType.Should().BeNull();
+            postShow.MediaResolution.Should().BeNull();
+            postShow.HDR.Should().BeNull();
+            postShow.ThreeDimensional.Should().BeNull();
+
+            postShow.Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            ITraktSyncCollectionPostShowSeason[] postShowSeasons = postShow.Seasons.ToArray();
+
+            postShowSeasons[0].Number.Should().Be(1);
+            postShowSeasons[0].CollectedAt.Should().BeNull();
+            postShowSeasons[0].Audio.Should().BeNull();
+            postShowSeasons[0].AudioChannels.Should().BeNull();
+            postShowSeasons[0].MediaType.Should().BeNull();
+            postShowSeasons[0].MediaResolution.Should().BeNull();
+            postShowSeasons[0].HDR.Should().BeNull();
+            postShowSeasons[0].ThreeDimensional.Should().BeNull();
+            postShowSeasons[0].Episodes.Should().BeNull();
+
+            postShowSeasons[1].Number.Should().Be(2);
+            postShowSeasons[1].CollectedAt.Should().BeNull();
+            postShowSeasons[1].Audio.Should().BeNull();
+            postShowSeasons[1].AudioChannels.Should().BeNull();
+            postShowSeasons[1].MediaType.Should().BeNull();
+            postShowSeasons[1].MediaResolution.Should().BeNull();
+            postShowSeasons[1].HDR.Should().BeNull();
+            postShowSeasons[1].ThreeDimensional.Should().BeNull();
+            postShowSeasons[1].Episodes.Should().BeNull();
+
+            postShowSeasons[2].Number.Should().Be(3);
+            postShowSeasons[2].CollectedAt.Should().BeNull();
+            postShowSeasons[2].Audio.Should().BeNull();
+            postShowSeasons[2].AudioChannels.Should().BeNull();
+            postShowSeasons[2].MediaType.Should().BeNull();
+            postShowSeasons[2].MediaResolution.Should().BeNull();
+            postShowSeasons[2].HDR.Should().BeNull();
+            postShowSeasons[2].ThreeDimensional.Should().BeNull();
+            postShowSeasons[2].Episodes.Should().BeNull();
+        }
+
+        [Fact]
+        public void Test_TraktPost_SyncCollectionPostBuilder_WithShowAndSeasons_ITraktShowIds_SeasonsArray()
+        {
+            ITraktSyncCollectionPost syncCollectionPost = TraktPost.NewSyncCollectionPost()
+                .WithShowAndSeasons(TraktPost_Tests_Common_Data.SHOW_IDS_1, 1, 2, 3)
+                .Build();
+
+            syncCollectionPost.Should().NotBeNull();
+            syncCollectionPost.Shows.Should().NotBeNull().And.HaveCount(1);
+
+            ITraktSyncCollectionPostShow postShow = syncCollectionPost.Shows.ToArray()[0];
+            postShow.Title.Should().BeNull();
+            postShow.Year.Should().BeNull();
+            postShow.Ids.Should().NotBeNull();
+            postShow.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Trakt);
+            postShow.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Slug);
+            postShow.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Imdb);
+            postShow.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.SHOW_IDS_1.Tmdb);
+            postShow.CollectedAt.Should().BeNull();
+            postShow.Audio.Should().BeNull();
+            postShow.AudioChannels.Should().BeNull();
+            postShow.MediaType.Should().BeNull();
+            postShow.MediaResolution.Should().BeNull();
+            postShow.HDR.Should().BeNull();
+            postShow.ThreeDimensional.Should().BeNull();
+
+            postShow.Seasons.Should().NotBeNull().And.HaveCount(3);
+
+            ITraktSyncCollectionPostShowSeason[] postShowSeasons = postShow.Seasons.ToArray();
+
+            postShowSeasons[0].Number.Should().Be(1);
+            postShowSeasons[0].CollectedAt.Should().BeNull();
+            postShowSeasons[0].Audio.Should().BeNull();
+            postShowSeasons[0].AudioChannels.Should().BeNull();
+            postShowSeasons[0].MediaType.Should().BeNull();
+            postShowSeasons[0].MediaResolution.Should().BeNull();
+            postShowSeasons[0].HDR.Should().BeNull();
+            postShowSeasons[0].ThreeDimensional.Should().BeNull();
+            postShowSeasons[0].Episodes.Should().BeNull();
+
+            postShowSeasons[1].Number.Should().Be(2);
+            postShowSeasons[1].CollectedAt.Should().BeNull();
+            postShowSeasons[1].Audio.Should().BeNull();
+            postShowSeasons[1].AudioChannels.Should().BeNull();
+            postShowSeasons[1].MediaType.Should().BeNull();
+            postShowSeasons[1].MediaResolution.Should().BeNull();
+            postShowSeasons[1].HDR.Should().BeNull();
+            postShowSeasons[1].ThreeDimensional.Should().BeNull();
+            postShowSeasons[1].Episodes.Should().BeNull();
+
+            postShowSeasons[2].Number.Should().Be(3);
+            postShowSeasons[2].CollectedAt.Should().BeNull();
+            postShowSeasons[2].Audio.Should().BeNull();
+            postShowSeasons[2].AudioChannels.Should().BeNull();
+            postShowSeasons[2].MediaType.Should().BeNull();
+            postShowSeasons[2].MediaResolution.Should().BeNull();
+            postShowSeasons[2].HDR.Should().BeNull();
+            postShowSeasons[2].ThreeDimensional.Should().BeNull();
+            postShowSeasons[2].Episodes.Should().BeNull();
         }
 
         [Fact]

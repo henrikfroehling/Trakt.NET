@@ -76,11 +76,11 @@
             traktCommentItem.List.Should().NotBeNull();
             traktCommentItem.List.Name.Should().Be("Star Wars in machete order");
             traktCommentItem.List.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            traktCommentItem.List.Privacy.Should().Be(TraktAccessScope.Public);
+            traktCommentItem.List.Privacy.Should().Be(TraktListPrivacy.Public);
             traktCommentItem.List.DisplayNumbers.Should().BeTrue();
             traktCommentItem.List.AllowComments.Should().BeFalse();
-            traktCommentItem.List.SortBy.Should().Be("rank");
-            traktCommentItem.List.SortHow.Should().Be("asc");
+            traktCommentItem.List.SortBy.Should().Be(TraktSortBy.Rank);
+            traktCommentItem.List.SortHow.Should().Be(TraktSortHow.Ascending);
             traktCommentItem.List.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             traktCommentItem.List.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             traktCommentItem.List.ItemCount.Should().Be(5);

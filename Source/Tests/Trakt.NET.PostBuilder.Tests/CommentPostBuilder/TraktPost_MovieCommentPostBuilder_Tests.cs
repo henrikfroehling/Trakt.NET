@@ -38,6 +38,26 @@
         }
 
         [Fact]
+        public void Test_TraktPost_MovieCommentPostBuilder_Comment_MovieIds()
+        {
+            ITraktMovieCommentPost movieCommentPost = TraktPost.NewMovieCommentPost()
+                .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
+                .WithMovie(TraktPost_Tests_Common_Data.MOVIE_IDS_1)
+                .Build();
+
+            movieCommentPost.Should().NotBeNull();
+            movieCommentPost.Comment.Should().Be(TraktPost_Tests_Common_Data.VALID_COMMENT);
+            movieCommentPost.Movie.Should().NotBeNull();
+            movieCommentPost.Movie.Ids.Should().NotBeNull();
+            movieCommentPost.Movie.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Trakt);
+            movieCommentPost.Movie.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Slug);
+            movieCommentPost.Movie.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Imdb);
+            movieCommentPost.Movie.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.MOVIE_IDS_1.Tmdb);
+            movieCommentPost.Sharing.Should().BeNull();
+            movieCommentPost.Spoiler.Should().BeNull();
+        }
+
+        [Fact]
         public void Test_TraktPost_MovieCommentPostBuilder_Comment_Movie_Sharing()
         {
             ITraktMovieCommentPost movieCommentPost = TraktPost.NewMovieCommentPost()

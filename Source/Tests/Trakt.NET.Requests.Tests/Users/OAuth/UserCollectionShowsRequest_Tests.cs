@@ -14,10 +14,10 @@
     public class UserCollectionShowsRequest_Tests
     {
         [Fact]
-        public void Test_UserCollectionShowsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserCollectionShowsRequest_Has_AuthorizationRequirement_OptionalButMightBeRequired()
         {
             var request = new UserCollectionShowsRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.OptionalButMightBeRequired);
         }
 
         [Fact]

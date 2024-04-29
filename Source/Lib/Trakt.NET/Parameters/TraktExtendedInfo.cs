@@ -7,7 +7,7 @@
     /// A boolean flag container representing the possible extended options for Trakt requests, allowing retrieving of
     /// additional data, such as images.<para />
     /// This class has an fluent interface.
-    /// <para>See <a href ="http://docs.trakt.apiary.io/#introduction/extended-info">"Trakt API Doc - Extended Info"</a> for more information.</para>
+    /// <para>See <a href ="http://trakt.docs.apiary.io/#introduction/extended-info">"Trakt API Doc - Extended Info"</a> for more information.</para>
     /// </summary>
     public class TraktExtendedInfo
     {
@@ -22,6 +22,8 @@
             NoSeasons = false;
             Episodes = false;
             GuestStars = false;
+            Comments = false;
+            Vip = false;
         }
 
         /// <summary>
@@ -70,8 +72,27 @@
         /// </summary>
         public bool GuestStars { get; set; }
 
+        /// <summary>
+        /// Gets or sets, whether comment media object information should be retrieved.
+        /// <para>
+        /// Only supported by <see cref="Modules.TraktListsModule.GetListLikesAsync(string, TraktExtendedInfo, TraktPagedParameters, CancellationToken)" />.
+        /// Will be ignored otherwise.
+        /// </para>
+        /// <para>See also <see cref="SetEpisodes()" /> and <see cref="ResetEpisodes()" />.</para>
+        /// </summary>
+        public bool Comments { get; set; }
+
+        /// <summary>
+        /// Gets or sets, whether user vip information should be retrieved.
+        /// <para>
+        /// For example supported by <see cref="Modules.TraktUsersModule.GetUserProfileAsync(string, TraktExtendedInfo, CancellationToken)" />.
+        /// </para>
+        /// <para>See also <see cref="SetVip()" /> and <see cref="ResetVip()" />.</para>
+        /// </summary>
+        public bool Vip { get; set; }
+
         /// <summary>Returns, whether any flag is enabled.</summary>
-        public bool HasAnySet => Metadata || Full || NoSeasons || Episodes || GuestStars;
+        public bool HasAnySet => Metadata || Full || NoSeasons || Episodes || GuestStars || Comments || Vip;
 
         /// <summary>
         /// Enables the metadata information flag.
@@ -183,6 +204,50 @@
             return this;
         }
 
+        /// <summary>
+        /// Enables the comments information flag.
+        /// <para>See also <see cref="Comments" />.</para>
+        /// </summary>
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo SetComments()
+        {
+            Comments = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Disables the comments information flag.
+        /// <para>See also <see cref="Comments" />.</para>
+        /// </summary>
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo ResetComments()
+        {
+            Comments = false;
+            return this;
+        }
+
+        /// <summary>
+        /// Enables the vip information flag.
+        /// <para>See also <see cref="Vip" />.</para>
+        /// </summary>
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo SetVip()
+        {
+            Vip = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Disables the vip information flag.
+        /// <para>See also <see cref="Vip" />.</para>
+        /// </summary>
+        /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
+        public TraktExtendedInfo ResetVip()
+        {
+            Vip = false;
+            return this;
+        }
+
         /// <summary>Disables all flags.</summary>
         /// <returns>The current <see cref="TraktExtendedInfo" /> instance.</returns>
         public TraktExtendedInfo Reset()
@@ -192,6 +257,8 @@
             NoSeasons = false;
             Episodes = false;
             GuestStars = false;
+            Comments = false;
+            Vip = false;
             return this;
         }
 
@@ -218,6 +285,12 @@
 
             if (GuestStars)
                 options.Add("guest_stars");
+
+            if (Comments)
+                options.Add("comments");
+
+            if (Vip)
+                options.Add("vip");
 
             return options;
         }

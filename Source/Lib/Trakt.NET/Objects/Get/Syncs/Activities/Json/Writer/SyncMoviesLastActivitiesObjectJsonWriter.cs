@@ -37,6 +37,12 @@
                 await jsonWriter.WriteValueAsync(obj.WatchlistedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
             }
 
+            if (obj.FavoritedAt.HasValue)
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_FAVORITED_AT, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.FavoritedAt.Value.ToTraktLongDateTimeString(), cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.RecommendationsAt.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_RECOMMENDATIONS_AT, cancellationToken).ConfigureAwait(false);

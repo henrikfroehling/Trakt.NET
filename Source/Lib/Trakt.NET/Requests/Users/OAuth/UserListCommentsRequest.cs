@@ -8,9 +8,9 @@
     using Objects.Basic;
     using System.Collections.Generic;
 
-    internal sealed class UserListCommentsRequest : AGetRequest<ITraktComment>, IHasId, ISupportsPagination
+    internal sealed class UserListCommentsRequest : AGetRequest<ITraktComment>, IHasId, ISupportsPagination, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public string Id { get; set; }
 
@@ -20,7 +20,7 @@
 
         public uint? Limit { get; set; }
 
-        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Optional;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public RequestObjectType RequestObjectType => RequestObjectType.Lists;
 

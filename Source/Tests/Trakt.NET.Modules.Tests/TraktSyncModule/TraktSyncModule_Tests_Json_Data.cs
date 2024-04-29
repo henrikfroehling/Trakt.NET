@@ -19,8 +19,8 @@
         private readonly DateTime START_AT = DateTime.UtcNow.AddMonths(-1);
         private readonly DateTime END_AT = DateTime.UtcNow;
         private const uint HISTORY_ITEM_ID = 123U;
-        private const TraktSortBy WATCHLIST_SORT_BY = TraktSortBy.Rank;
-        private const TraktSortHow WATCHLIST_SORT_HOW = TraktSortHow.Ascending;
+        private readonly TraktSortBy WATCHLIST_SORT_BY = TraktSortBy.Rank;
+        private readonly TraktSortHow WATCHLIST_SORT_HOW = TraktSortHow.Ascending;
         private readonly TraktSyncItemType WATCHLIST_ITEM_TYPE = TraktSyncItemType.Episode;
         private readonly TraktWatchlistSortOrder WATCHLIST_SORT_ORDER = TraktWatchlistSortOrder.Rank;
         private const uint PLAYBACK_ID = 13U;
@@ -28,11 +28,13 @@
         private const int PLAYBACK_PROGRESS_ITEM_COUNT = 4;
         private readonly DateTime PLAYBACK_PROGRESS_START_AT = DateTime.UtcNow;
         private readonly DateTime PLAYBACK_PROGRESS_END_AT = DateTime.UtcNow;
-        private readonly TraktRecommendationObjectType RECOMMENDATION_TYPE = TraktRecommendationObjectType.Movie;
-        private readonly TraktWatchlistSortOrder RECOMMENDATION_SORT_ORDER = TraktWatchlistSortOrder.Rank;
-        private const int RECOMMENDATIONS_ITEM_COUNT = 2;
-        private const int RECOMMENDATIONS_LIMIT = 6;
-        private readonly IEnumerable<uint> REORDERED_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
+        private readonly TraktFavoriteObjectType FAVORITE_TYPE = TraktFavoriteObjectType.Movie;
+        private readonly TraktWatchlistSortOrder FAVORITES_SORT_ORDER = TraktWatchlistSortOrder.Rank;
+        private const int FAVORITES_ITEM_COUNT = 2;
+        private const int FAVORITES_LIMIT = 6;
+        private readonly IList<uint> REORDERED_ITEMS = new List<uint> { 923, 324, 98768, 456456, 345, 12, 990 };
+        private const uint WATCHLIST_ITEM_ID = 1;
+        private const uint FAVORITE_ITEM_ID = 1;
 
         private string BuildRatingsFilterString(int[] ratings) => string.Join(ENCODED_COMMA, ratings);
 
@@ -95,7 +97,7 @@
                 }
               }";
 
-        private const string RECOMMENDATIONS_POST_RESPONSE_JSON =
+        private const string FAVORITES_POST_RESPONSE_JSON =
             @"{
                 ""added"": {
                   ""movies"": 1,
@@ -123,7 +125,7 @@
                 }
               }";
 
-        private const string RECOMMENDATIONS_REMOVE_POST_RESPONSE_JSON =
+        private const string FAVORITES_REMOVE_POST_RESPONSE_JSON =
             @"{
                 ""deleted"": {
                   ""movies"": 1,
@@ -886,7 +888,7 @@
                 }
               }";
 
-        private const string RECOMMENDATIONS_JSON =
+        private const string FAVORITES_JSON =
             @"[
                 {
                   ""rank"": 1,
@@ -922,5 +924,37 @@
                   }
                 }
               ]";
+
+        private const string UPDATED_LIST_JSON =
+            @"{
+                ""name"": ""Favorites"",
+                ""description"": ""These are my favorites!"",
+                ""privacy"": ""public"",
+                ""share_link"": ""https://trakt.tv/lists/2"",
+                ""type"": ""favorites"",
+                ""display_numbers"": false,
+                ""allow_comments"": false,
+                ""sort_by"": ""runtime"",
+                ""sort_how"": ""desc"",
+                ""created_at"": ""2014-10-11T17:00:54.000Z"",
+                ""updated_at"": ""2023-10-11T17:00:54.000Z"",
+                ""item_count"": 5,
+                ""comment_count"": 0,
+                ""likes"": 0,
+                ""ids"": {
+                  ""trakt"": 2,
+                  ""slug"": null
+                },
+                ""user"": {
+                  ""username"": ""sean"",
+                  ""private"": false,
+                  ""name"": ""Sean Rudford"",
+                  ""vip"": true,
+                  ""vip_ep"": false,
+                  ""ids"": {
+                    ""slug"": ""sean""
+                  }
+                }
+              }";
     }
 }

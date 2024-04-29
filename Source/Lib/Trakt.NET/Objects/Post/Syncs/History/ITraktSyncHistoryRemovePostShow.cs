@@ -25,6 +25,6 @@
         /// Otherwise, only the specified seasons and / or episodes will be added to the history.
         /// </para>
         /// </summary>
-        IEnumerable<ITraktSyncHistoryRemovePostShowSeason> Seasons { get; set; }
+        IList<ITraktSyncHistoryRemovePostShowSeason> Seasons { get; set; }
     }
 }

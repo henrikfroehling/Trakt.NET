@@ -30,7 +30,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -41,11 +41,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -70,9 +70,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, DESCRIPTION);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -83,11 +81,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -113,9 +111,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, DESCRIPTION, PRIVACY);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -126,11 +122,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -157,9 +153,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, DESCRIPTION, PRIVACY, DISPLAY_NUMBERS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -170,11 +164,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -201,10 +195,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, DESCRIPTION, PRIVACY,
-                                                         null, ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -215,11 +206,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -245,9 +236,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, DESCRIPTION, null, DISPLAY_NUMBERS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -258,11 +247,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -288,10 +277,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, DESCRIPTION, null,
-                                                         null, ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -302,11 +288,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -333,10 +319,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, DESCRIPTION, null,
-                                                         DISPLAY_NUMBERS, ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -347,11 +330,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -376,9 +359,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, null, PRIVACY);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -389,11 +370,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -419,9 +400,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, null, PRIVACY, DISPLAY_NUMBERS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -432,11 +411,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -462,9 +441,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, null, PRIVACY, null, ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -475,11 +452,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -506,10 +483,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, null, PRIVACY,
-                                                         DISPLAY_NUMBERS, ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -520,11 +494,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -549,9 +523,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, null, null, DISPLAY_NUMBERS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -562,11 +534,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -591,9 +563,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, null, null, null, ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -604,11 +574,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -634,10 +604,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, null, null,
-                                                         DISPLAY_NUMBERS, ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -648,11 +615,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -680,10 +647,7 @@
             postJson.Should().NotBeNullOrEmpty();
 
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, postJson, LIST_JSON);
-
-            TraktResponse<ITraktList> response =
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME, DESCRIPTION, PRIVACY,
-                                                         DISPLAY_NUMBERS, ALLOW_COMMENTS);
+            TraktResponse<ITraktList> response = await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -694,11 +658,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -729,11 +693,16 @@
         [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
         public async Task Test_TraktUsersModule_CreatePersonalList_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
+            ITraktUserPersonalListPost createListPost = new TraktUserPersonalListPost
+            {
+                Name = LIST_NAME
+            };
+
             TraktClient client = TestUtility.GetOAuthMockClient(CREATE_PERSONAL_LIST_URI, statusCode);
 
             try
             {
-                await client.Users.CreatePersonalListAsync(USERNAME, LIST_NAME);
+                await client.Users.CreatePersonalListAsync(USERNAME, createListPost);
                 Assert.False(true);
             }
             catch (Exception exception)

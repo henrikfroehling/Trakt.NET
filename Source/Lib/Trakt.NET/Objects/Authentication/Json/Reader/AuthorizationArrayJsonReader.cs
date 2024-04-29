@@ -10,10 +10,10 @@
     {
         internal bool CompleteDeserialization { get; set; }
 
-        public override async Task<IEnumerable<ITraktAuthorization>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public override async Task<IList<ITraktAuthorization>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             if (jsonReader == null)
-                return await Task.FromResult(default(IEnumerable<ITraktAuthorization>));
+                return await Task.FromResult(default(IList<ITraktAuthorization>));
 
             if (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.StartArray)
             {
@@ -34,7 +34,7 @@
                 return authorizations;
             }
 
-            return await Task.FromResult(default(IEnumerable<ITraktAuthorization>));
+            return await Task.FromResult(default(IList<ITraktAuthorization>));
         }
     }
 }

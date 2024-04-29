@@ -7,6 +7,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Enums;
     using TraktNet.Exceptions;
+    using TraktNet.Parameters;
     using TraktNet.Requests.Seasons;
     using Xunit;
 
@@ -17,7 +18,7 @@
         public void Test_SeasonCommentsRequest_Has_Valid_UriTemplate()
         {
             var request = new SeasonCommentsRequest();
-            request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/comments{/sort_order}{?page,limit}");
+            request.UriTemplate.Should().Be("shows/{id}/seasons/{season}/comments{/sort_order}{?extended,page,limit}");
         }
 
         [Fact]
@@ -56,7 +57,8 @@
         {
             private const string _id = "123";
             private const uint _seasonNumber = 1;
-            private static readonly TraktCommentSortOrder _sortOrder = TraktCommentSortOrder.Newest;
+            private static readonly TraktShowsCommentSortOrder _sortOrder = TraktShowsCommentSortOrder.Newest;
+            private static readonly TraktExtendedInfo _extendedInfo = new TraktExtendedInfo { Full = true };
             private const int _page = 5;
             private const int _limit = 20;
 
@@ -77,22 +79,21 @@
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
-                Page = _page
+                ExtendedInfo = _extendedInfo
             };
 
             private static readonly SeasonCommentsRequest _request4 = new SeasonCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
-                Limit = _limit
+                Page = _page
             };
 
             private static readonly SeasonCommentsRequest _request5 = new SeasonCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
-                SortOrder = _sortOrder,
-                Page = _page
+                Limit = _limit
             };
 
             private static readonly SeasonCommentsRequest _request6 = new SeasonCommentsRequest
@@ -100,15 +101,15 @@
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 SortOrder = _sortOrder,
-                Limit = _limit
+                ExtendedInfo = _extendedInfo
             };
 
             private static readonly SeasonCommentsRequest _request7 = new SeasonCommentsRequest
             {
                 Id = _id,
                 SeasonNumber = _seasonNumber,
-                Page = _page,
-                Limit = _limit
+                SortOrder = _sortOrder,
+                Page = _page
             };
 
             private static readonly SeasonCommentsRequest _request8 = new SeasonCommentsRequest
@@ -116,6 +117,57 @@
                 Id = _id,
                 SeasonNumber = _seasonNumber,
                 SortOrder = _sortOrder,
+                Limit = _limit
+            };
+
+            private static readonly SeasonCommentsRequest _request9 = new SeasonCommentsRequest
+            {
+                Id = _id,
+                SeasonNumber = _seasonNumber,
+                ExtendedInfo = _extendedInfo,
+                Page = _page
+            };
+
+            private static readonly SeasonCommentsRequest _request10 = new SeasonCommentsRequest
+            {
+                Id = _id,
+                SeasonNumber = _seasonNumber,
+                ExtendedInfo = _extendedInfo,
+                Limit = _limit
+            };
+
+            private static readonly SeasonCommentsRequest _request11 = new SeasonCommentsRequest
+            {
+                Id = _id,
+                SeasonNumber = _seasonNumber,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly SeasonCommentsRequest _request12 = new SeasonCommentsRequest
+            {
+                Id = _id,
+                SeasonNumber = _seasonNumber,
+                SortOrder = _sortOrder,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly SeasonCommentsRequest _request13 = new SeasonCommentsRequest
+            {
+                Id = _id,
+                SeasonNumber = _seasonNumber,
+                ExtendedInfo = _extendedInfo,
+                Page = _page,
+                Limit = _limit
+            };
+
+            private static readonly SeasonCommentsRequest _request14 = new SeasonCommentsRequest
+            {
+                Id = _id,
+                SeasonNumber = _seasonNumber,
+                SortOrder = _sortOrder,
+                ExtendedInfo = _extendedInfo,
                 Page = _page,
                 Limit = _limit
             };
@@ -127,10 +179,11 @@
                 SetupPathParamters();
             }
 
-            private void SetupPathParamters()
+            private static void SetupPathParamters()
             {
                 var strSeasonNumber = _seasonNumber.ToString();
                 var strSortOrder = _sortOrder.UriName;
+                var strExtendedInfo = _extendedInfo.ToString();
                 var strPage = _page.ToString();
                 var strLimit = _limit.ToString();
 
@@ -151,22 +204,21 @@
                     {
                         ["id"] = _id,
                         ["season"] = strSeasonNumber,
-                        ["page"] = strPage
+                        ["extended"] = strExtendedInfo
                     }});
 
                 _data.Add(new object[] { _request4.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["season"] = strSeasonNumber,
-                        ["limit"] = strLimit
+                        ["page"] = strPage
                     }});
 
                 _data.Add(new object[] { _request5.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["season"] = strSeasonNumber,
-                        ["sort_order"] = strSortOrder,
-                        ["page"] = strPage
+                        ["limit"] = strLimit
                     }});
 
                 _data.Add(new object[] { _request6.GetUriPathParameters(), new Dictionary<string, object>
@@ -174,15 +226,15 @@
                         ["id"] = _id,
                         ["season"] = strSeasonNumber,
                         ["sort_order"] = strSortOrder,
-                        ["limit"] = strLimit
+                        ["extended"] = strExtendedInfo
                     }});
 
                 _data.Add(new object[] { _request7.GetUriPathParameters(), new Dictionary<string, object>
                     {
                         ["id"] = _id,
                         ["season"] = strSeasonNumber,
-                        ["page"] = strPage,
-                        ["limit"] = strLimit
+                        ["sort_order"] = strSortOrder,
+                        ["page"] = strPage
                     }});
 
                 _data.Add(new object[] { _request8.GetUriPathParameters(), new Dictionary<string, object>
@@ -190,6 +242,57 @@
                         ["id"] = _id,
                         ["season"] = strSeasonNumber,
                         ["sort_order"] = strSortOrder,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request9.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["season"] = strSeasonNumber,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage
+                    }});
+
+                _data.Add(new object[] { _request10.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["season"] = strSeasonNumber,
+                        ["extended"] = strExtendedInfo,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request11.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["season"] = strSeasonNumber,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request12.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["season"] = strSeasonNumber,
+                        ["sort_order"] = strSortOrder,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request13.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["season"] = strSeasonNumber,
+                        ["extended"] = strExtendedInfo,
+                        ["page"] = strPage,
+                        ["limit"] = strLimit
+                    }});
+
+                _data.Add(new object[] { _request14.GetUriPathParameters(), new Dictionary<string, object>
+                    {
+                        ["id"] = _id,
+                        ["season"] = strSeasonNumber,
+                        ["sort_order"] = strSortOrder,
+                        ["extended"] = strExtendedInfo,
                         ["page"] = strPage,
                         ["limit"] = strLimit
                     }});

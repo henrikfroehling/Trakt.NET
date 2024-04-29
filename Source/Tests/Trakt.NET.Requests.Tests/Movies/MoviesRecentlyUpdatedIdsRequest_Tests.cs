@@ -94,7 +94,7 @@
 
             private void SetupPathParamters()
             {
-                var strStartDate = _startDate.ToTraktDateString();
+                var strStartDate = _startDate.ToTraktCacheEfficientLongDateTimeString();
                 var strPage = _page.ToString();
                 var strLimit = _limit.ToString();
 

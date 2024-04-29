@@ -66,6 +66,18 @@
             }
         }
 
+        /// <summary>Gets or sets the show tagline.<para>Nullable</para></summary>
+        public string Tagline
+        {
+            get { return Show?.Tagline; }
+
+            set
+            {
+                if (Show != null)
+                    Show.Tagline = value;
+            }
+        }
+
         /// <summary>Gets or sets the UTC datetime when the first episode of the first season of the show was aired.</summary>
         public DateTime? FirstAired
         {
@@ -223,7 +235,7 @@
         }
 
         /// <summary>Gets or sets the list of translation language codes (two letters) for the show.<para>Nullable</para></summary>
-        public IEnumerable<string> AvailableTranslationLanguageCodes
+        public IList<string> AvailableTranslationLanguageCodes
         {
             get { return Show?.AvailableTranslationLanguageCodes; }
 
@@ -235,7 +247,7 @@
         }
 
         /// <summary>Gets or sets the collection of Trakt genre slugs for the show.<para>Nullable</para></summary>
-        public IEnumerable<string> Genres
+        public IList<string> Genres
         {
             get { return Show?.Genres; }
 
@@ -259,7 +271,7 @@
         }
 
         /// <summary>Gets or sets the collection of Trakt seasons for the show. See also <seealso cref="ITraktSeason" />.<para>Nullable</para></summary>
-        public IEnumerable<ITraktSeason> Seasons
+        public IList<ITraktSeason> Seasons
         {
             get { return Show?.Seasons; }
 

@@ -1,14 +1,14 @@
 namespace TraktNet.PostBuilder
 {
+    using Objects.Get.Episodes;
+    using Objects.Get.Movies;
+    using Objects.Get.People;
+    using Objects.Get.Seasons;
+    using Objects.Get.Shows;
+    using Objects.Post.Users.PersonalListItems;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using TraktNet.Objects.Get.Episodes;
-    using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.People;
-    using TraktNet.Objects.Get.Seasons;
-    using TraktNet.Objects.Get.Shows;
-    using TraktNet.Objects.Post.Users.PersonalListItems;
 
     internal sealed class UserPersonalListItemsPostBuilder : ITraktUserPersonalListItemsPostBuilder
     {
@@ -312,6 +312,25 @@ namespace TraktNet.PostBuilder
             return WithShowAndSeasons(new ShowAndSeasons(show, seasons));
         }
 
+        public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ITraktShow show, IEnumerable<int> seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowAndSeasons(show, new PostSeasons { seasons }));
+        }
+
+        public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ITraktShow show, int season, params int[] seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return WithShowAndSeasons(new ShowAndSeasons(show, new PostSeasons { season, seasons }));
+        }
+
         public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ShowAndSeasons showAndSeasons)
         {
             if (showAndSeasons == null)
@@ -330,6 +349,25 @@ namespace TraktNet.PostBuilder
                 throw new ArgumentNullException(nameof(seasons));
 
             return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, seasons));
+        }
+
+        public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ITraktShowIds showIds, IEnumerable<int> seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, new PostSeasons { seasons }));
+        }
+
+        public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ITraktShowIds showIds, int season, params int[] seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, new PostSeasons { season, seasons }));
         }
 
         public ITraktUserPersonalListItemsPostBuilder WithShowAndSeasons(ShowIdsAndSeasons showIdsAndSeasons)
@@ -802,37 +840,25 @@ namespace TraktNet.PostBuilder
             if (_movies.IsValueCreated && _movies.Value.Any())
             {
                 foreach (ITraktMovie movie in _movies.Value)
-                {
-                    (userListItemsPost.Movies as List<ITraktUserPersonalListItemsPostMovie>)
-                        .Add(CreateListItemsPostMovie(movie));
-                }
+                    userListItemsPost.Movies.Add(CreateListItemsPostMovie(movie));
             }
 
             if (_movieIds.IsValueCreated && _movieIds.Value.Any())
             {
                 foreach (ITraktMovieIds movieIds in _movieIds.Value)
-                {
-                    (userListItemsPost.Movies as List<ITraktUserPersonalListItemsPostMovie>)
-                        .Add(CreateListItemsPostMovie(movieIds));
-                }
+                    userListItemsPost.Movies.Add(CreateListItemsPostMovie(movieIds));
             }
 
             if (_moviesWithNotes.IsValueCreated && _moviesWithNotes.Value.Any())
             {
                 foreach (MovieWithNotes movieWithNotes in _moviesWithNotes.Value)
-                {
-                    (userListItemsPost.Movies as List<ITraktUserPersonalListItemsPostMovie>)
-                        .Add(CreateListItemsPostMovie(movieWithNotes.Object, movieWithNotes.Notes));
-                }
+                    userListItemsPost.Movies.Add(CreateListItemsPostMovie(movieWithNotes.Object, movieWithNotes.Notes));
             }
 
             if (_movieIdsWithNotes.IsValueCreated && _movieIdsWithNotes.Value.Any())
             {
                 foreach (MovieIdsWithNotes movieIdsWithNotes in _movieIdsWithNotes.Value)
-                {
-                    (userListItemsPost.Movies as List<ITraktUserPersonalListItemsPostMovie>)
-                        .Add(CreateListItemsPostMovie(movieIdsWithNotes.Object, movieIdsWithNotes.Notes));
-                }
+                    userListItemsPost.Movies.Add(CreateListItemsPostMovie(movieIdsWithNotes.Object, movieIdsWithNotes.Notes));
             }
         }
 
@@ -851,37 +877,25 @@ namespace TraktNet.PostBuilder
             if (_shows.IsValueCreated && _shows.Value.Any())
             {
                 foreach (ITraktShow show in _shows.Value)
-                {
-                    (userListItemsPost.Shows as List<ITraktUserPersonalListItemsPostShow>)
-                        .Add(CreateListItemsPostShow(show));
-                }
+                    userListItemsPost.Shows.Add(CreateListItemsPostShow(show));
             }
 
             if (_showIds.IsValueCreated && _showIds.Value.Any())
             {
                 foreach (ITraktShowIds showIds in _showIds.Value)
-                {
-                    (userListItemsPost.Shows as List<ITraktUserPersonalListItemsPostShow>)
-                        .Add(CreateListItemsPostShow(showIds));
-                }
+                    userListItemsPost.Shows.Add(CreateListItemsPostShow(showIds));
             }
 
             if (_showsWithNotes.IsValueCreated && _showsWithNotes.Value.Any())
             {
                 foreach (ShowWithNotes showWithNotes in _showsWithNotes.Value)
-                {
-                    (userListItemsPost.Shows as List<ITraktUserPersonalListItemsPostShow>)
-                        .Add(CreateListItemsPostShow(showWithNotes.Object, showWithNotes.Notes));
-                }
+                    userListItemsPost.Shows.Add(CreateListItemsPostShow(showWithNotes.Object, showWithNotes.Notes));
             }
 
             if (_showIdsWithNotes.IsValueCreated && _showIdsWithNotes.Value.Any())
             {
                 foreach (ShowIdsWithNotes showIdsWithNotes in _showIdsWithNotes.Value)
-                {
-                    (userListItemsPost.Shows as List<ITraktUserPersonalListItemsPostShow>)
-                        .Add(CreateListItemsPostShow(showIdsWithNotes.Object, showIdsWithNotes.Notes));
-                }
+                    userListItemsPost.Shows.Add(CreateListItemsPostShow(showIdsWithNotes.Object, showIdsWithNotes.Notes));
             }
 
             if (_showsAndSeasons.IsValueCreated && _showsAndSeasons.Value.Any())
@@ -910,37 +924,25 @@ namespace TraktNet.PostBuilder
             if (_seasons.IsValueCreated && _seasons.Value.Any())
             {
                 foreach (ITraktSeason season in _seasons.Value)
-                {
-                    (userListItemsPost.Seasons as List<ITraktUserPersonalListItemsPostSeason>)
-                        .Add(CreateListItemsPostSeason(season));
-                }
+                    userListItemsPost.Seasons.Add(CreateListItemsPostSeason(season));
             }
 
             if (_seasonIds.IsValueCreated && _seasonIds.Value.Any())
             {
                 foreach (ITraktSeasonIds seasonIds in _seasonIds.Value)
-                {
-                    (userListItemsPost.Seasons as List<ITraktUserPersonalListItemsPostSeason>)
-                        .Add(CreateListItemsPostSeason(seasonIds));
-                }
+                    userListItemsPost.Seasons.Add(CreateListItemsPostSeason(seasonIds));
             }
 
             if (_seasonsWithNotes.IsValueCreated && _seasonsWithNotes.Value.Any())
             {
                 foreach (SeasonWithNotes seasonWithNotes in _seasonsWithNotes.Value)
-                {
-                    (userListItemsPost.Seasons as List<ITraktUserPersonalListItemsPostSeason>)
-                        .Add(CreateListItemsPostSeason(seasonWithNotes.Object, seasonWithNotes.Notes));
-                }
+                    userListItemsPost.Seasons.Add(CreateListItemsPostSeason(seasonWithNotes.Object, seasonWithNotes.Notes));
             }
 
             if (_seasonIdsWithNotes.IsValueCreated && _seasonIdsWithNotes.Value.Any())
             {
                 foreach (SeasonIdsWithNotes seasonIdsWithNotes in _seasonIdsWithNotes.Value)
-                {
-                    (userListItemsPost.Seasons as List<ITraktUserPersonalListItemsPostSeason>)
-                        .Add(CreateListItemsPostSeason(seasonIdsWithNotes.Object, seasonIdsWithNotes.Notes));
-                }
+                    userListItemsPost.Seasons.Add(CreateListItemsPostSeason(seasonIdsWithNotes.Object, seasonIdsWithNotes.Notes));
             }
         }
 
@@ -957,37 +959,25 @@ namespace TraktNet.PostBuilder
             if (_episodes.IsValueCreated && _episodes.Value.Any())
             {
                 foreach (ITraktEpisode episode in _episodes.Value)
-                {
-                    (userListItemsPost.Episodes as List<ITraktUserPersonalListItemsPostEpisode>)
-                        .Add(CreateListItemsPostEpisode(episode));
-                }
+                    userListItemsPost.Episodes.Add(CreateListItemsPostEpisode(episode));
             }
 
             if (_episodeIds.IsValueCreated && _episodeIds.Value.Any())
             {
                 foreach (ITraktEpisodeIds episodeIds in _episodeIds.Value)
-                {
-                    (userListItemsPost.Episodes as List<ITraktUserPersonalListItemsPostEpisode>)
-                        .Add(CreateListItemsPostEpisode(episodeIds));
-                }
+                    userListItemsPost.Episodes.Add(CreateListItemsPostEpisode(episodeIds));
             }
 
             if (_episodesWithNotes.IsValueCreated && _episodesWithNotes.Value.Any())
             {
                 foreach (EpisodeWithNotes episodeWithNotes in _episodesWithNotes.Value)
-                {
-                    (userListItemsPost.Episodes as List<ITraktUserPersonalListItemsPostEpisode>)
-                        .Add(CreateListItemsPostEpisode(episodeWithNotes.Object, episodeWithNotes.Notes));
-                }
+                    userListItemsPost.Episodes.Add(CreateListItemsPostEpisode(episodeWithNotes.Object, episodeWithNotes.Notes));
             }
 
             if (_episodeIdsWithNotes.IsValueCreated && _episodeIdsWithNotes.Value.Any())
             {
                 foreach (EpisodeIdsWithNotes episodeIdsWithNotes in _episodeIdsWithNotes.Value)
-                {
-                    (userListItemsPost.Episodes as List<ITraktUserPersonalListItemsPostEpisode>)
-                        .Add(CreateListItemsPostEpisode(episodeIdsWithNotes.Object, episodeIdsWithNotes.Notes));
-                }
+                    userListItemsPost.Episodes.Add(CreateListItemsPostEpisode(episodeIdsWithNotes.Object, episodeIdsWithNotes.Notes));
             }
         }
 
@@ -1004,37 +994,25 @@ namespace TraktNet.PostBuilder
             if (_persons.IsValueCreated && _persons.Value.Any())
             {
                 foreach (ITraktPerson person in _persons.Value)
-                {
-                    (userListItemsPost.People as List<ITraktUserPersonalListItemsPostPerson>)
-                        .Add(CreateListItemsPostPerson(person));
-                }
+                    userListItemsPost.People.Add(CreateListItemsPostPerson(person));
             }
 
             if (_personIds.IsValueCreated && _personIds.Value.Any())
             {
                 foreach (ITraktPersonIds personIds in _personIds.Value)
-                {
-                    (userListItemsPost.People as List<ITraktUserPersonalListItemsPostPerson>)
-                        .Add(CreateListItemsPostPerson(personIds));
-                }
+                    userListItemsPost.People.Add(CreateListItemsPostPerson(personIds));
             }
 
             if (_personsWithNotes.IsValueCreated && _personsWithNotes.Value.Any())
             {
                 foreach (PersonWithNotes personWithNotes in _personsWithNotes.Value)
-                {
-                    (userListItemsPost.People as List<ITraktUserPersonalListItemsPostPerson>)
-                        .Add(CreateListItemsPostPerson(personWithNotes.Object, personWithNotes.Notes));
-                }
+                    userListItemsPost.People.Add(CreateListItemsPostPerson(personWithNotes.Object, personWithNotes.Notes));
             }
 
             if (_personIdsWithNotes.IsValueCreated && _personIdsWithNotes.Value.Any())
             {
                 foreach (PersonIdsWithNotes personIdsWithNotes in _personIdsWithNotes.Value)
-                {
-                    (userListItemsPost.People as List<ITraktUserPersonalListItemsPostPerson>)
-                        .Add(CreateListItemsPostPerson(personIdsWithNotes.Object, personIdsWithNotes.Notes));
-                }
+                    userListItemsPost.People.Add(CreateListItemsPostPerson(personIdsWithNotes.Object, personIdsWithNotes.Notes));
             }
         }
 
@@ -1125,17 +1103,14 @@ namespace TraktNet.PostBuilder
                         userListItemsPostShowSeason.Episodes = new List<ITraktUserPersonalListItemsPostShowEpisode>();
 
                         foreach (PostEpisode episode in season.Episodes)
-                        {
-                            (userListItemsPostShowSeason.Episodes as List<ITraktUserPersonalListItemsPostShowEpisode>)
-                                .Add(CreateListItemsPostShowEpisode(episode));
-                        }
+                            userListItemsPostShowSeason.Episodes.Add(CreateListItemsPostShowEpisode(episode));
                     }
 
-                    (userListItemsPostShow.Seasons as List<ITraktUserPersonalListItemsPostShowSeason>).Add(userListItemsPostShowSeason);
+                    userListItemsPostShow.Seasons.Add(userListItemsPostShowSeason);
                 }
             }
 
-            (userListItemsPost.Shows as List<ITraktUserPersonalListItemsPostShow>).Add(userListItemsPostShow);
+            userListItemsPost.Shows.Add(userListItemsPostShow);
         }
 
         private static ITraktUserPersonalListItemsPostShowSeason CreateListItemsPostShowSeason(PostSeason season)

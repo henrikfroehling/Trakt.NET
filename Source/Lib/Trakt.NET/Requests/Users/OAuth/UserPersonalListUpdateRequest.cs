@@ -8,9 +8,9 @@
     using Objects.Post.Users;
     using System.Collections.Generic;
 
-    internal sealed class UserPersonalListUpdateRequest : APutRequest<ITraktList, ITraktUserPersonalListPost>, IHasId
+    internal sealed class UserPersonalListUpdateRequest : APutRequest<ITraktList, ITraktUserPersonalListPost>, IHasId, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public string Id { get; set; }
 
@@ -31,6 +31,9 @@
         {
             if (EqualityComparer<ITraktUserPersonalListPost>.Default.Equals(RequestBody, default))
                 throw new TraktRequestValidationException(nameof(RequestBody), "request body must not be null");
+
+            if (!RequestBody.HasAnyValuesSet())
+                throw new TraktRequestValidationException(nameof(RequestBody), "no list specific values set");
 
             if (Username == null)
                 throw new TraktRequestValidationException(nameof(Username), "username must not be null");

@@ -1,13 +1,16 @@
 ﻿namespace TraktNet.Requests.Users.OAuth
 {
+    using Base;
     using Exceptions;
     using Extensions;
     using Objects.Get.Users;
     using System.Collections.Generic;
 
-    internal sealed class UserWatchingRequest : AUsersGetRequest<ITraktUserWatchingItem>
+    internal sealed class UserWatchingRequest : AUsersGetRequest<ITraktUserWatchingItem>, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
+
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public override string UriTemplate => "users/{username}/watching{?extended}";
 

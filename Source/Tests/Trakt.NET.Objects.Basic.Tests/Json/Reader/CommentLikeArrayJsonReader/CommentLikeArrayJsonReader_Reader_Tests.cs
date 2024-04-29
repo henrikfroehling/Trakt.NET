@@ -23,7 +23,7 @@
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktCommentLikes.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -36,7 +36,7 @@
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -73,7 +73,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -103,7 +103,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -133,7 +133,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -170,7 +170,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -200,7 +200,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCommentLikes.Should().NotBeNull();
                 ITraktCommentLike[] commentLikes = traktCommentLikes.ToArray();
@@ -226,7 +226,7 @@
         public async Task Test_CommentLikeArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktCommentLike>();
-            Func<Task<IEnumerable<ITraktCommentLike>>> traktCommentLikes = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktCommentLike>>> traktCommentLikes = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             await traktCommentLikes.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -238,7 +238,7 @@
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCommentLike> traktCommentLikes = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktCommentLikes.Should().BeNull();
             }
         }

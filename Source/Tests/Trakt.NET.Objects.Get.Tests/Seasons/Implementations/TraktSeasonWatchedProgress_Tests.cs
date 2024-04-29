@@ -17,9 +17,10 @@
         {
             var seasonWatchedProgress = new TraktSeasonWatchedProgress();
 
-            seasonWatchedProgress.Number.Should().NotHaveValue();
-            seasonWatchedProgress.Aired.Should().NotHaveValue();
-            seasonWatchedProgress.Completed.Should().NotHaveValue();
+            seasonWatchedProgress.Number.Should().BeNull();
+            seasonWatchedProgress.Title.Should().BeNull();
+            seasonWatchedProgress.Aired.Should().BeNull();
+            seasonWatchedProgress.Completed.Should().BeNull();
             seasonWatchedProgress.Episodes.Should().BeNull();
         }
 
@@ -31,6 +32,7 @@
 
             seasonWatchedProgress.Should().NotBeNull();
             seasonWatchedProgress.Number.Should().Be(2);
+            seasonWatchedProgress.Title.Should().Be("The first Hodor.");
             seasonWatchedProgress.Aired.Should().Be(3);
             seasonWatchedProgress.Completed.Should().Be(2);
             seasonWatchedProgress.Episodes.Should().NotBeNull().And.HaveCount(2);
@@ -51,6 +53,7 @@
         private const string JSON =
             @"{
                 ""number"": 2,
+                ""title"": ""The first Hodor."",
                 ""aired"": 3,
                 ""completed"": 2,
                 ""episodes"": [

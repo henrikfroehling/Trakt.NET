@@ -43,6 +43,31 @@
         }
 
         [Fact]
+        public void Test_TraktPost_EpisodeScrobblePostBuilder_Scrobble_EpisodeIds()
+        {
+            ITraktEpisodeScrobblePost episodeScrobblePost = TraktPost.NewEpisodeScrobblePost()
+                .WithEpisode(TraktPost_Tests_Common_Data.EPISODE_IDS_1)
+                .WithProgress(TraktPost_Tests_Common_Data.PROGRESS)
+                .Build();
+
+            episodeScrobblePost.Should().NotBeNull();
+            episodeScrobblePost.Episode.Should().NotBeNull();
+            episodeScrobblePost.Episode.Ids.Should().NotBeNull();
+            episodeScrobblePost.Episode.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Trakt);
+            episodeScrobblePost.Episode.Ids.Imdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Imdb);
+            episodeScrobblePost.Episode.Ids.Tvdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tvdb);
+            episodeScrobblePost.Episode.Ids.TvRage.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.TvRage);
+            episodeScrobblePost.Episode.Ids.Tmdb.Should().Be(TraktPost_Tests_Common_Data.EPISODE_IDS_1.Tmdb);
+            episodeScrobblePost.Episode.SeasonNumber.Should().BeNull();
+            episodeScrobblePost.Episode.Number.Should().BeNull();
+            episodeScrobblePost.Episode.NumberAbsolute.Should().BeNull();
+            episodeScrobblePost.Show.Should().BeNull();
+            episodeScrobblePost.Progress.Should().Be(TraktPost_Tests_Common_Data.PROGRESS);
+            episodeScrobblePost.AppVersion.Should().BeNull();
+            episodeScrobblePost.AppDate.Should().BeNull();
+        }
+
+        [Fact]
         public void Test_TraktPost_EpisodeScrobblePostBuilder_Scrobble_Episode_WithShow()
         {
             ITraktEpisodeScrobblePost episodeScrobblePost = TraktPost.NewEpisodeScrobblePost()

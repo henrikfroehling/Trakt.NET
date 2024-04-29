@@ -7,6 +7,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
+    using TraktNet.Objects.Get.Shows;
     using TraktNet.Objects.Get.Users;
     using TraktNet.Responses;
     using Xunit;
@@ -25,6 +26,91 @@
 
             TraktListResponse<ITraktUser> response =
                 await client.Shows.GetShowWatchingUsersAsync(SHOW_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowWatchingUsers_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/watching", SHOW_WATCHING_USERS_JSON);
+            TraktListResponse<ITraktUser> response = await client.Shows.GetShowWatchingUsersAsync(TRAKT_SHOD_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowWatchingUsers_With_ShowIds_TraktID()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/watching", SHOW_WATCHING_USERS_JSON);
+            TraktListResponse<ITraktUser> response = await client.Shows.GetShowWatchingUsersAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowWatchingUsers_With_ShowIds_Slug()
+        {
+            var showIds = new TraktShowIds
+            {
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{SHOW_SLUG}/watching", SHOW_WATCHING_USERS_JSON);
+            TraktListResponse<ITraktUser> response = await client.Shows.GetShowWatchingUsersAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowWatchingUsers_With_ShowIds()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID,
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/watching", SHOW_WATCHING_USERS_JSON);
+            TraktListResponse<ITraktUser> response = await client.Shows.GetShowWatchingUsersAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(3);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowWatchingUsers_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/watching", SHOW_WATCHING_USERS_JSON);
+            TraktListResponse<ITraktUser> response = await client.Shows.GetShowWatchingUsersAsync(show);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -78,6 +164,24 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowWatchingUsers_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_WATCHING_USERS_URI, SHOW_WATCHING_USERS_JSON);
+
+            Func<Task<TraktListResponse<ITraktUser>>> act = () => client.Shows.GetShowWatchingUsersAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowWatchingUsersAsync(default(ITraktShow));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowWatchingUsersAsync(new TraktShowIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Shows.GetShowWatchingUsersAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

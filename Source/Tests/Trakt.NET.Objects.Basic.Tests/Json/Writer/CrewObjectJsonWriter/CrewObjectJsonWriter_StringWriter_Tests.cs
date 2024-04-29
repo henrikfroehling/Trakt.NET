@@ -41,7 +41,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                Production = new List<TraktCrewMember>
+                Production = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -81,7 +81,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                Art = new List<TraktCrewMember>
+                Art = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -121,7 +121,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                Crew = new List<TraktCrewMember>
+                Crew = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -161,7 +161,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                CostumeAndMakeup = new List<TraktCrewMember>
+                CostumeAndMakeup = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -201,7 +201,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                Directing = new List<TraktCrewMember>
+                Directing = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -241,7 +241,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                Writing = new List<TraktCrewMember>
+                Writing = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -281,7 +281,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                Sound = new List<TraktCrewMember>
+                Sound = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -321,7 +321,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                Camera = new List<TraktCrewMember>
+                Camera = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -361,7 +361,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                Lighting = new List<TraktCrewMember>
+                Lighting = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -401,7 +401,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                VisualEffects = new List<TraktCrewMember>
+                VisualEffects = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -441,7 +441,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                Editing = new List<TraktCrewMember>
+                Editing = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -481,7 +481,7 @@
         {
             ITraktCrew traktCrew = new TraktCrew
             {
-                Production = new List<TraktCrewMember>
+                Production = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -503,7 +503,7 @@
                         }
                     }
                 },
-                Art = new List<TraktCrewMember>
+                Art = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -525,7 +525,7 @@
                         }
                     }
                 },
-                Crew = new List<TraktCrewMember>
+                Crew = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -547,7 +547,7 @@
                         }
                     }
                 },
-                CostumeAndMakeup = new List<TraktCrewMember>
+                CostumeAndMakeup = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -569,7 +569,7 @@
                         }
                     }
                 },
-                Directing = new List<TraktCrewMember>
+                Directing = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -591,7 +591,7 @@
                         }
                     }
                 },
-                Writing = new List<TraktCrewMember>
+                Writing = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -613,7 +613,7 @@
                         }
                     }
                 },
-                Sound = new List<TraktCrewMember>
+                Sound = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -635,7 +635,7 @@
                         }
                     }
                 },
-                Camera = new List<TraktCrewMember>
+                Camera = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -657,7 +657,7 @@
                         }
                     }
                 },
-                Lighting = new List<TraktCrewMember>
+                Lighting = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -679,7 +679,7 @@
                         }
                     }
                 },
-                VisualEffects = new List<TraktCrewMember>
+                VisualEffects = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {
@@ -701,7 +701,7 @@
                         }
                     }
                 },
-                Editing = new List<TraktCrewMember>
+                Editing = new List<ITraktCrewMember>
                 {
                     new TraktCrewMember
                     {

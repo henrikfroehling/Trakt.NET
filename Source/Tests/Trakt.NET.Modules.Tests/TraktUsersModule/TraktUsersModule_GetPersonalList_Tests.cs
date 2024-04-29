@@ -32,11 +32,11 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -46,6 +46,70 @@
             responseValue.Ids.Trakt.Should().Be(55);
             responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
             responseValue.User.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalList_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}", LIST_JSON);
+            TraktResponse<ITraktList> response = await client.Users.GetPersonalListAsync(USERNAME, TRAKT_LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalList_With_ListIds_TraktID()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}", LIST_JSON);
+            TraktResponse<ITraktList> response = await client.Users.GetPersonalListAsync(USERNAME, listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalList_With_ListIds_Slug()
+        {
+            var listIds = new TraktListIds
+            {
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"users/{USERNAME}/lists/{LIST_SLUG}", LIST_JSON);
+            TraktResponse<ITraktList> response = await client.Users.GetPersonalListAsync(USERNAME, listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalList_With_ListIds()
+        {
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID,
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}", LIST_JSON);
+            TraktResponse<ITraktList> response = await client.Users.GetPersonalListAsync(USERNAME, listIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
         }
 
         [Fact]
@@ -65,11 +129,42 @@
 
             responseValue.Name.Should().Be("Star Wars in machete order");
             responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            responseValue.Privacy.Should().Be(TraktAccessScope.Public);
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
             responseValue.DisplayNumbers.Should().BeTrue();
             responseValue.AllowComments.Should().BeFalse();
-            responseValue.SortBy.Should().Be("rank");
-            responseValue.SortHow.Should().Be("asc");
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
+            responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
+            responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
+            responseValue.ItemCount.Should().Be(5);
+            responseValue.CommentCount.Should().Be(1);
+            responseValue.Likes.Should().Be(2);
+            responseValue.Ids.Should().NotBeNull();
+            responseValue.Ids.Trakt.Should().Be(55);
+            responseValue.Ids.Slug.Should().Be("star-wars-in-machete-order");
+            responseValue.User.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalList_With_OAuth_Enforced_For_Username_Me()
+        {
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/me/lists/{LIST_ID}", LIST_JSON);
+            TraktResponse<ITraktList> response = await client.Users.GetPersonalListAsync("me", LIST_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+
+            ITraktList responseValue = response.Value;
+
+            responseValue.Name.Should().Be("Star Wars in machete order");
+            responseValue.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
+            responseValue.Privacy.Should().Be(TraktListPrivacy.Public);
+            responseValue.DisplayNumbers.Should().BeTrue();
+            responseValue.AllowComments.Should().BeFalse();
+            responseValue.SortBy.Should().Be(TraktSortBy.Rank);
+            responseValue.SortHow.Should().Be(TraktSortHow.Ascending);
             responseValue.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             responseValue.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             responseValue.ItemCount.Should().Be(5);
@@ -111,6 +206,21 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_GetPersonalList_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_PERSONAL_LIST_URI, LIST_JSON);
+
+            Func<Task<TraktResponse<ITraktList>>> act = () => client.Users.GetPersonalListAsync(USERNAME, default(ITraktListIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Users.GetPersonalListAsync(USERNAME, new TraktListIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Users.GetPersonalListAsync(USERNAME, 0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

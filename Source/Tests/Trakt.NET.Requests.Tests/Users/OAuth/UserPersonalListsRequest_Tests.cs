@@ -13,10 +13,10 @@
     public class UserPersonalListsRequest_Tests
     {
         [Fact]
-        public void Test_UserPersonalListsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserPersonalListsRequest_Has_AuthorizationRequirement_OptionalButMightBeRequired()
         {
             var request = new UserPersonalListsRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.OptionalButMightBeRequired);
         }
 
         [Fact]

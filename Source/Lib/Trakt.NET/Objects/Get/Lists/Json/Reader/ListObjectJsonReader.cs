@@ -32,7 +32,13 @@
                             traktList.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_PRIVACY:
-                            traktList.Privacy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktAccessScope>(jsonReader, cancellationToken);
+                            traktList.Privacy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktListPrivacy>(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_SHARE_LINK:
+                            traktList.ShareLink = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_TYPE:
+                            traktList.Type = await JsonReaderHelper.ReadEnumerationValueAsync<TraktListType>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_DISPLAY_NUMBERS:
                             traktList.DisplayNumbers = await jsonReader.ReadAsBooleanAsync(cancellationToken);
@@ -41,10 +47,10 @@
                             traktList.AllowComments = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SORT_BY:
-                            traktList.SortBy = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            traktList.SortBy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSortBy>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SORT_HOW:
-                            traktList.SortHow = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            traktList.SortHow = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSortHow>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_CREATED_AT:
                             {

@@ -7,7 +7,7 @@
     public interface ITraktPersonShowCreditsCastItem
     {
         /// <summary>Gets or sets the characters collection of the cast position.<para>Nullable</para></summary>
-        IEnumerable<string> Characters { get; set; }
+        IList<string> Characters { get; set; }
 
         /// <summary>Gets or sets the episode count of the cast position.<para>Nullable</para></summary>
         int? EpisodeCount { get; set; }

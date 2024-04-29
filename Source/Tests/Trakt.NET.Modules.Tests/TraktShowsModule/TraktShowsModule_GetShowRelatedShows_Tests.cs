@@ -38,6 +38,121 @@
         }
 
         [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/related",
+                SHOW_RELATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
+            
+            TraktPagedResponse<ITraktShow> response = await client.Shows.GetShowRelatedShowsAsync(TRAKT_SHOD_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_With_ShowIds_TraktID()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/related",
+                SHOW_RELATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
+            
+            TraktPagedResponse<ITraktShow> response = await client.Shows.GetShowRelatedShowsAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_With_ShowIds_Slug()
+        {
+            var showIds = new TraktShowIds
+            {
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{SHOW_SLUG}/related",
+                SHOW_RELATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
+            
+            TraktPagedResponse<ITraktShow> response = await client.Shows.GetShowRelatedShowsAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_With_ShowIds()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID,
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/related",
+                SHOW_RELATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
+            
+            TraktPagedResponse<ITraktShow> response = await client.Shows.GetShowRelatedShowsAsync(showIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/related",
+                SHOW_RELATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktShow> response = await client.Shows.GetShowRelatedShowsAsync(show);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktShowsModule_GetShowRelatedShows_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient(
@@ -189,6 +304,184 @@
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_RELATED_SHOWS_URI}?extended={EXTENDED_INFO}&page=2&limit={RELATED_SHOWS_LIMIT}",
+                SHOW_RELATED_SHOWS_JSON, 2, RELATED_SHOWS_LIMIT, 5, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, RELATED_SHOWS_LIMIT);
+
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetShowRelatedShowsAsync(SHOW_ID, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(RELATED_SHOWS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_RELATED_SHOWS_URI}?extended={EXTENDED_INFO}&page=2&limit={RELATED_SHOWS_LIMIT}",
+                SHOW_RELATED_SHOWS_JSON, 2, RELATED_SHOWS_LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, RELATED_SHOWS_LIMIT);
+
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetShowRelatedShowsAsync(SHOW_ID, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(RELATED_SHOWS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_RELATED_SHOWS_URI}?extended={EXTENDED_INFO}&page=1&limit={RELATED_SHOWS_LIMIT}",
+                SHOW_RELATED_SHOWS_JSON, 1, RELATED_SHOWS_LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, RELATED_SHOWS_LIMIT);
+
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetShowRelatedShowsAsync(SHOW_ID, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(RELATED_SHOWS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_RELATED_SHOWS_URI}?extended={EXTENDED_INFO}&page=1&limit={RELATED_SHOWS_LIMIT}",
+                SHOW_RELATED_SHOWS_JSON, 1, RELATED_SHOWS_LIMIT, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, RELATED_SHOWS_LIMIT);
+
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetShowRelatedShowsAsync(SHOW_ID, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(RELATED_SHOWS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_RELATED_SHOWS_URI}?extended={EXTENDED_INFO}&page=2&limit={RELATED_SHOWS_LIMIT}",
+                SHOW_RELATED_SHOWS_JSON, 2, RELATED_SHOWS_LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, RELATED_SHOWS_LIMIT);
+
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetShowRelatedShowsAsync(SHOW_ID, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(RELATED_SHOWS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetMockClient(client,
+                $"{GET_SHOW_RELATED_SHOWS_URI}?extended={EXTENDED_INFO}&page=1&limit={RELATED_SHOWS_LIMIT}",
+                SHOW_RELATED_SHOWS_JSON, 1, RELATED_SHOWS_LIMIT, 2, ITEM_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(RELATED_SHOWS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SHOW_RELATED_SHOWS_URI}?extended={EXTENDED_INFO}&page=1&limit={RELATED_SHOWS_LIMIT}",
+                SHOW_RELATED_SHOWS_JSON, 1, RELATED_SHOWS_LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, RELATED_SHOWS_LIMIT);
+
+            TraktPagedResponse<ITraktShow> response =
+                await client.Shows.GetShowRelatedShowsAsync(SHOW_ID, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(RELATED_SHOWS_LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetMockClient(client,
+                $"{GET_SHOW_RELATED_SHOWS_URI}?extended={EXTENDED_INFO}&page=2&limit={RELATED_SHOWS_LIMIT}",
+                SHOW_RELATED_SHOWS_JSON, 2, RELATED_SHOWS_LIMIT, 2, ITEM_COUNT);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(RELATED_SHOWS_LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
         [Theory]
         [InlineData(HttpStatusCode.NotFound, typeof(TraktShowNotFoundException))]
         [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
@@ -219,6 +512,24 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktShowsModule_GetShowRelatedShows_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SHOW_RELATED_SHOWS_URI, SHOW_RELATED_SHOWS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktShow>>> act = () => client.Shows.GetShowRelatedShowsAsync(default(ITraktShowIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowRelatedShowsAsync(default(ITraktShow));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Shows.GetShowRelatedShowsAsync(new TraktShowIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Shows.GetShowRelatedShowsAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

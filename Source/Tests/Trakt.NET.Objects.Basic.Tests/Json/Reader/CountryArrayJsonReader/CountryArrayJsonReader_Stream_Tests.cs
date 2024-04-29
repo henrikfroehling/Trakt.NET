@@ -22,7 +22,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
                 traktCountries.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -34,7 +34,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -56,7 +56,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -78,7 +78,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -100,7 +100,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -122,7 +122,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -144,7 +144,7 @@
 
             using (var stream = JSON_NOT_VALID_3.ToStream())
             {
-                IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -163,7 +163,7 @@
         public async Task Test_CountryArrayJsonReader_ReadArray_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCountry>();
-            Func<Task<IEnumerable<ITraktCountry>>> traktCountries = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktCountry>>> traktCountries = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktCountries.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -174,7 +174,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
+                IList<ITraktCountry> traktCountries = await jsonReader.ReadArrayAsync(stream);
                 traktCountries.Should().BeNull();
             }
         }

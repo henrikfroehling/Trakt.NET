@@ -12,7 +12,7 @@
         public void Test_ListsPopularRequest_Has_Valid_UriTemplate()
         {
             var request = new ListsPopularRequest();
-            request.UriTemplate.Should().Be("lists/popular{?page,limit}");
+            request.UriTemplate.Should().Be("lists/popular{?extended,page,limit}");
         }
     }
 }

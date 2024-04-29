@@ -1,21 +1,21 @@
 Trakt.NET
 ===
 
-[![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.3.0-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.3.0)
+[![NuGet Package](https://img.shields.io/badge/Latest%20Version%20on%20NuGet-v1.4.0-blue.svg?style=flat)](https://www.nuget.org/packages/Trakt.NET/1.4.0)
 
 [![Project Status](https://img.shields.io/badge/Project%20Status-In%20Development-blue.svg?style=flat)](https://img.shields.io/badge/Project%20Status-In%20Development-green)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/Pull%20Requests-Welcome-blue.svg?style=flat)](https://github.com/henrikfroehling/Trakt.NET/blob/develop/CONTRIBUTING.md)
 
-[![Development CI-Build](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/develop-CI.yml)
-[![Release CI-Build](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/release-CI.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/release-CI.yml)
+[![CI-Build](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/ci.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/ci.yml)
 [![Code Scan](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/code-scan.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/code-scan.yml)
 [![Static Analysis](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/henrikfroehling/Trakt.NET/actions/workflows/sonarcloud.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=henrikfroehling_Trakt.NET&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=henrikfroehling_Trakt.NET)
+[![codecov](https://codecov.io/gh/henrikfroehling/Trakt.NET/branch/develop/graph/badge.svg?token=U2B0KXA0QC)](https://codecov.io/gh/henrikfroehling/Trakt.NET)
 
 ### Overview
 
-This is a .NET wrapper library with which developers can build .NET applications that integrate with the [Trakt.tv](https://trakt.tv/) [API](http://docs.trakt.apiary.io/#) and access its features and data.
+This is a .NET wrapper library with which developers can build .NET applications that integrate with the [Trakt.tv](https://trakt.tv/) [API](http://trakt.docs.apiary.io/#) and access its features and data.
 
 Some examples that Trakt.NET can be used for include:
 - Retrieve information about movies and TV shows, including details such as titles, descriptions, ratings and release dates
@@ -66,7 +66,7 @@ try
     Console.WriteLine($"Year: {show.Year}");
     Console.WriteLine();
 
-    string json = await TraktSerializationService.SerializeAsync(show);
+    string json = await TraktSerializationService.SerializeAsync(show, indentation: true);
     Console.WriteLine(json);
 }
 catch (TraktException ex)
@@ -79,8 +79,19 @@ Output:
 ```
 Title: The Last of Us
 Year: 2023
-
-{"title":"The Last of Us","year":2023,"ids":{"trakt":158947,"slug":"the-last-of-us","tvdb":392256,"imdb":"tt3581920","tmdb":100088}}
+```
+```json
+{
+    "title": "The Last of Us",
+    "year": 2023,
+    "ids": {
+        "trakt": 158947,
+        "slug": "the-last-of-us",
+        "tvdb": 392256,
+        "imdb": "tt3581920",
+        "tmdb": 100088
+    }
+}
 ```
 
 ### Documentation
@@ -104,7 +115,7 @@ Do want to contribute? [See how you can contribute](https://github.com/henrikfro
 ```text
 The MIT License (MIT)
 
-Copyright © 2016 - Current Henrik Fröhling et al.
+Copyright (c) 2016 - Current Henrik Fröhling and Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

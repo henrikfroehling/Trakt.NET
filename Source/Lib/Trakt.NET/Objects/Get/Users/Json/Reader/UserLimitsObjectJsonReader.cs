@@ -16,6 +16,7 @@
                 var userListLimitsReader = new UserListLimitsObjectJsonReader();
                 var userWatchlistLimitsReader = new UserWatchlistLimitsObjectJsonReader();
                 var userRecommendationsLimitsReader = new UserRecommendationsLimitsObjectJsonReader();
+                var userFavoritesLimitsReader = new UserFavoritesLimitsObjectJsonReader();
 
                 ITraktUserLimits userLimits = new TraktUserLimits();
 
@@ -33,6 +34,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_RECOMMENDATIONS:
                             userLimits.Recommendations = await userRecommendationsLimitsReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_FAVORITES:
+                            userLimits.Favorites = await userFavoritesLimitsReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

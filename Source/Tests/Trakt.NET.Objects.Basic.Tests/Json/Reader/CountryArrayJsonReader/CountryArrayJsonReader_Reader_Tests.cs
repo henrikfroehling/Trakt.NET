@@ -23,7 +23,7 @@
             using (var reader = new StringReader(JSON_EMPTY_ARRAY))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktCountries.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -36,7 +36,7 @@
             using (var reader = new StringReader(JSON_COMPLETE))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -59,7 +59,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -82,7 +82,7 @@
             using (var reader = new StringReader(JSON_INCOMPLETE_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -105,7 +105,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_1))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -128,7 +128,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_2))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -151,7 +151,7 @@
             using (var reader = new StringReader(JSON_NOT_VALID_3))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
 
                 traktCountries.Should().NotBeNull();
                 ITraktCountry[] countries = traktCountries.ToArray();
@@ -170,7 +170,7 @@
         public async Task Test_CountryArrayJsonReader_ReadArray_From_JsonReader_Null()
         {
             var traktJsonReader = new ArrayJsonReader<ITraktCountry>();
-            Func<Task<IEnumerable<ITraktCountry>>> traktCountries = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
+            Func<Task<IList<ITraktCountry>>> traktCountries = () => traktJsonReader.ReadArrayAsync(default(JsonTextReader));
             await traktCountries.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -182,7 +182,7 @@
             using (var reader = new StringReader(string.Empty))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                IEnumerable<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
+                IList<ITraktCountry> traktCountries = await traktJsonReader.ReadArrayAsync(jsonReader);
                 traktCountries.Should().BeNull();
             }
         }

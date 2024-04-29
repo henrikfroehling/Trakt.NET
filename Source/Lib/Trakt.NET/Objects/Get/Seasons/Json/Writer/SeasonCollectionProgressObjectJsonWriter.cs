@@ -19,6 +19,12 @@
                 await jsonWriter.WriteValueAsync(obj.Number, cancellationToken).ConfigureAwait(false);
             }
 
+            if (!string.IsNullOrEmpty(obj.Title))
+            {
+                await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_TITLE, cancellationToken).ConfigureAwait(false);
+                await jsonWriter.WriteValueAsync(obj.Title, cancellationToken).ConfigureAwait(false);
+            }
+
             if (obj.Aired.HasValue)
             {
                 await jsonWriter.WritePropertyNameAsync(JsonProperties.PROPERTY_NAME_AIRED, cancellationToken).ConfigureAwait(false);

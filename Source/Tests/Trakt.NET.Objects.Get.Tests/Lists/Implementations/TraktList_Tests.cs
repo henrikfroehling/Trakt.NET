@@ -21,6 +21,8 @@
             list.Name.Should().BeNull();
             list.Description.Should().BeNull();
             list.Privacy.Should().BeNull();
+            list.ShareLink.Should().BeNull();
+            list.Type.Should().BeNull();
             list.DisplayNumbers.Should().BeNull();
             list.AllowComments.Should().BeNull();
             list.SortBy.Should().BeNull();
@@ -42,12 +44,14 @@
 
             list.Should().NotBeNull();
             list.Name.Should().Be("Star Wars in machete order");
-            list.Description.Should().Be("Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI.");
-            list.Privacy.Should().Be(TraktAccessScope.Public);
+            list.Description.Should().Be("Next time you want to introduce someone to Star Wars...");
+            list.Privacy.Should().Be(TraktListPrivacy.Public);
+            list.ShareLink.Should().Be("https://trakt.tv/lists/55");
+            list.Type.Should().Be(TraktListType.Personal);
             list.DisplayNumbers.Should().BeTrue();
             list.AllowComments.Should().BeFalse();
-            list.SortBy.Should().Be("rank");
-            list.SortHow.Should().Be("asc");
+            list.SortBy.Should().Be(TraktSortBy.Rank);
+            list.SortHow.Should().Be(TraktSortHow.Ascending);
             list.CreatedAt.Should().Be(DateTime.Parse("2014-10-11T17:00:54.000Z").ToUniversalTime());
             list.UpdatedAt.Should().Be(DateTime.Parse("2014-11-09T17:00:54.000Z").ToUniversalTime());
             list.ItemCount.Should().Be(5);
@@ -71,8 +75,10 @@
         private const string JSON =
             @"{
                 ""name"": ""Star Wars in machete order"",
-                ""description"": ""Next time you want to introduce someone to Star Wars for the first time, watch the films with them in this order: IV, V, II, III, VI."",
+                ""description"": ""Next time you want to introduce someone to Star Wars..."",
                 ""privacy"": ""public"",
+                ""share_link"": ""https://trakt.tv/lists/55"",
+                ""type"": ""personal"",
                 ""display_numbers"": true,
                 ""allow_comments"": false,
                 ""sort_by"": ""rank"",

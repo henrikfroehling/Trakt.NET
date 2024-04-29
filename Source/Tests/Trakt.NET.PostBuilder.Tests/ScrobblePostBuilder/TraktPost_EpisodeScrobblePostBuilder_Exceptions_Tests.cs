@@ -15,7 +15,7 @@
         public void Test_TraktPost_EpisodeScrobblePostBuilder_WithEpisode_Episode_ArgumentNullException()
         {
             Func<ITraktEpisodeScrobblePost> act = () => TraktPost.NewEpisodeScrobblePost()
-                .WithEpisode(null)
+                .WithEpisode(default(ITraktEpisode))
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -29,6 +29,12 @@
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
+
+            act = () => TraktPost.NewEpisodeScrobblePost()
+                .WithEpisode(default(ITraktEpisodeIds))
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
@@ -36,6 +42,12 @@
         {
             Func<ITraktEpisodeScrobblePost> act = () => TraktPost.NewEpisodeScrobblePost()
                 .WithEpisode(new TraktEpisode { Ids = new TraktEpisodeIds() })
+                .Build();
+
+            act.Should().Throw<ArgumentException>();
+
+            act = () => TraktPost.NewEpisodeScrobblePost()
+                .WithEpisode(new TraktEpisodeIds())
                 .Build();
 
             act.Should().Throw<ArgumentException>();

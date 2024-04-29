@@ -1,5 +1,6 @@
 ﻿namespace TraktNet.Objects.Get.Episodes
 {
+    using Enums;
     using Get.Seasons;
     using Modules;
     using System;
@@ -48,7 +49,7 @@
         DateTime? UpdatedAt { get; set; }
 
         /// <summary>Gets or sets the list of translation language codes (two letters) for the episode.<para>Nullable</para></summary>
-        IEnumerable<string> AvailableTranslationLanguageCodes { get; set; }
+        IList<string> AvailableTranslationLanguageCodes { get; set; }
 
         /// <summary>Gets or sets the list of <see cref="ITraktEpisodeTranslation" />s for the episode.<para>Nullable</para></summary>
         /// <seealso cref="ITraktSeason.Episodes" />
@@ -62,9 +63,12 @@
         /// a collection returned by <see cref="TraktSeasonsModule.GetSeasonAsync(string, uint, TraktExtendedInfo, string, CancellationToken)" />
         /// and a translation language code was specified.
         /// </remarks>
-        IEnumerable<ITraktEpisodeTranslation> Translations { get; set; }
+        IList<ITraktEpisodeTranslation> Translations { get; set; }
 
         /// <summary>Gets or sets the comment count of the episode.<para>Nullable</para></summary>
         int? CommentCount { get; set; }
+
+        /// <summary>Gets or sets the episode type. See also <seealso cref="TraktEpisodeType" />.<para>Nullable</para></summary>
+        TraktEpisodeType EpisodeType { get; set; }
     }
 }

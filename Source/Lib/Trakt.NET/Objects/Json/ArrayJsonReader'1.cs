@@ -9,19 +9,19 @@
 
     internal class ArrayJsonReader<TReturnType> : IArrayJsonReader<TReturnType>
     {
-        public virtual Task<IEnumerable<TReturnType>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
+        public virtual Task<IList<TReturnType>> ReadArrayAsync(string json, CancellationToken cancellationToken = default)
         {
             CheckJson(json);
 
             if (json == string.Empty)
-                return Task.FromResult(default(IEnumerable<TReturnType>));
+                return Task.FromResult(default(IList<TReturnType>));
 
             using var reader = new StringReader(json);
             using var jsonReader = new JsonTextReader(reader);
             return ReadArrayAsync(jsonReader, cancellationToken);
         }
 
-        public virtual Task<IEnumerable<TReturnType>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default)
+        public virtual Task<IList<TReturnType>> ReadArrayAsync(Stream stream, CancellationToken cancellationToken = default)
         {
             CheckStream(stream);
             using var streamReader = new StreamReader(stream);
@@ -29,7 +29,7 @@
             return ReadArrayAsync(jsonReader, cancellationToken);
         }
 
-        public virtual async Task<IEnumerable<TReturnType>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
+        public virtual async Task<IList<TReturnType>> ReadArrayAsync(JsonTextReader jsonReader, CancellationToken cancellationToken = default)
         {
             CheckJsonTextReader(jsonReader);
 
@@ -48,7 +48,7 @@
                 return objects;
             }
 
-            return await Task.FromResult(default(IEnumerable<TReturnType>));
+            return await Task.FromResult(default(IList<TReturnType>));
         }
 
         protected void CheckJson(string json)

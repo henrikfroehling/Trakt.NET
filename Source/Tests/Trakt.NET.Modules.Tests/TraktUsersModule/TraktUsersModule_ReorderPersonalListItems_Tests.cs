@@ -8,6 +8,7 @@
     using Trakt.NET.Tests.Utility;
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
+    using TraktNet.Objects.Get.Lists;
     using TraktNet.Objects.Post.Basic;
     using TraktNet.Objects.Post.Basic.Responses;
     using TraktNet.Responses;
@@ -42,6 +43,146 @@
             responseValue.Updated.Should().Be(6);
             responseValue.SkippedIds.Should().NotBeNull().And.HaveCount(1);
             responseValue.SkippedIds.Should().BeEquivalentTo(new List<uint> { 12 });
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_ReorderPersonalListItems_With_TraktID()
+        {
+            ITraktListItemsReorderPost personalListItemsReorderPost = new TraktListItemsReorderPost
+            {
+                Rank = REORDERED_CUSTOM_LIST_ITEMS
+            };
+
+            string postJson = await TestUtility.SerializeObject(personalListItemsReorderPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items/reorder",
+                postJson, CUSTOM_LIST_ITEMS_REORDER_POST_RESPONSE_JSON);
+
+            TraktResponse<ITraktListItemsReorderPostResponse> response =
+                await client.Users.ReorderPersonalListItemsAsync(USERNAME, TRAKT_LIST_ID, REORDERED_CUSTOM_LIST_ITEMS);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_ReorderPersonalListItems_With_ListIds_TraktID()
+        {
+            ITraktListItemsReorderPost personalListItemsReorderPost = new TraktListItemsReorderPost
+            {
+                Rank = REORDERED_CUSTOM_LIST_ITEMS
+            };
+
+            string postJson = await TestUtility.SerializeObject(personalListItemsReorderPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items/reorder",
+                postJson, CUSTOM_LIST_ITEMS_REORDER_POST_RESPONSE_JSON);
+
+            TraktResponse<ITraktListItemsReorderPostResponse> response =
+                await client.Users.ReorderPersonalListItemsAsync(USERNAME, listIds, REORDERED_CUSTOM_LIST_ITEMS);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_ReorderPersonalListItems_With_ListIds_Slug()
+        {
+            ITraktListItemsReorderPost personalListItemsReorderPost = new TraktListItemsReorderPost
+            {
+                Rank = REORDERED_CUSTOM_LIST_ITEMS
+            };
+
+            string postJson = await TestUtility.SerializeObject(personalListItemsReorderPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var listIds = new TraktListIds
+            {
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{LIST_SLUG}/items/reorder",
+                postJson, CUSTOM_LIST_ITEMS_REORDER_POST_RESPONSE_JSON);
+
+            TraktResponse<ITraktListItemsReorderPostResponse> response =
+                await client.Users.ReorderPersonalListItemsAsync(USERNAME, listIds, REORDERED_CUSTOM_LIST_ITEMS);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_ReorderPersonalListItems_With_ListIds()
+        {
+            ITraktListItemsReorderPost personalListItemsReorderPost = new TraktListItemsReorderPost
+            {
+                Rank = REORDERED_CUSTOM_LIST_ITEMS
+            };
+
+            string postJson = await TestUtility.SerializeObject(personalListItemsReorderPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var listIds = new TraktListIds
+            {
+                Trakt = TRAKT_LIST_ID,
+                Slug = LIST_SLUG
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items/reorder",
+                postJson, CUSTOM_LIST_ITEMS_REORDER_POST_RESPONSE_JSON);
+
+            TraktResponse<ITraktListItemsReorderPostResponse> response =
+                await client.Users.ReorderPersonalListItemsAsync(USERNAME, listIds, REORDERED_CUSTOM_LIST_ITEMS);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_ReorderPersonalListItems_With_List()
+        {
+            ITraktListItemsReorderPost personalListItemsReorderPost = new TraktListItemsReorderPost
+            {
+                Rank = REORDERED_CUSTOM_LIST_ITEMS
+            };
+
+            string postJson = await TestUtility.SerializeObject(personalListItemsReorderPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            var list = new TraktList
+            {
+                Ids = new TraktListIds
+                {
+                    Trakt = TRAKT_LIST_ID,
+                    Slug = LIST_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetOAuthMockClient($"users/{USERNAME}/lists/{TRAKT_LIST_ID}/items/reorder",
+                postJson, CUSTOM_LIST_ITEMS_REORDER_POST_RESPONSE_JSON);
+
+            TraktResponse<ITraktListItemsReorderPostResponse> response =
+                await client.Users.ReorderPersonalListItemsAsync(USERNAME, list, REORDERED_CUSTOM_LIST_ITEMS);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
         }
 
         [Theory]
@@ -98,7 +239,7 @@
             act = () => client.Users.ReorderPersonalListItemsAsync("user name", LIST_ID, REORDERED_CUSTOM_LIST_ITEMS);
             await act.Should().ThrowAsync<TraktRequestValidationException>();
 
-            act = () => client.Users.ReorderPersonalListItemsAsync("username", null, REORDERED_CUSTOM_LIST_ITEMS);
+            act = () => client.Users.ReorderPersonalListItemsAsync("username", default(string), REORDERED_CUSTOM_LIST_ITEMS);
             await act.Should().ThrowAsync<TraktRequestValidationException>();
 
             act = () => client.Users.ReorderPersonalListItemsAsync("username", string.Empty, REORDERED_CUSTOM_LIST_ITEMS);
@@ -109,6 +250,35 @@
 
             act = () => client.Users.ReorderPersonalListItemsAsync(USERNAME, LIST_ID, null);
             await act.Should().ThrowAsync<TraktPostValidationException>();
+        }
+
+        [Fact]
+        public async Task Test_TraktUsersModule_ReorderPersonalListItems_Throws_ArgumentExceptions()
+        {
+            ITraktListItemsReorderPost personalListItemsReorderPost = new TraktListItemsReorderPost
+            {
+                Rank = REORDERED_CUSTOM_LIST_ITEMS
+            };
+
+            string postJson = await TestUtility.SerializeObject(personalListItemsReorderPost);
+            postJson.Should().NotBeNullOrEmpty();
+
+            TraktClient client = TestUtility.GetOAuthMockClient(REORDER_PERSONAL_LIST_ITEMS_URI,
+                postJson, CUSTOM_LIST_ITEMS_REORDER_POST_RESPONSE_JSON);
+
+            Func<Task<TraktResponse<ITraktListItemsReorderPostResponse>>> act =
+                () => client.Users.ReorderPersonalListItemsAsync(USERNAME, default(ITraktListIds), REORDERED_CUSTOM_LIST_ITEMS);
+
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Users.ReorderPersonalListItemsAsync(USERNAME, default(ITraktList), REORDERED_CUSTOM_LIST_ITEMS);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Users.ReorderPersonalListItemsAsync(USERNAME, new TraktListIds(), REORDERED_CUSTOM_LIST_ITEMS);
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Users.ReorderPersonalListItemsAsync(USERNAME, 0, REORDERED_CUSTOM_LIST_ITEMS);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

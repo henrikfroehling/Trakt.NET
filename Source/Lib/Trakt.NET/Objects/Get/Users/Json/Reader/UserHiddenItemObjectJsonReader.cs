@@ -20,6 +20,7 @@
                 var movieReader = new MovieObjectJsonReader();
                 var showReader = new ShowObjectJsonReader();
                 var seasonReader = new SeasonObjectJsonReader();
+                var userReader = new UserObjectJsonReader();
                 ITraktUserHiddenItem traktUserHiddenItem = new TraktUserHiddenItem();
 
                 while (await jsonReader.ReadAsync(cancellationToken) && jsonReader.TokenType == JsonToken.PropertyName)
@@ -48,6 +49,9 @@
                             break;
                         case JsonProperties.PROPERTY_NAME_SEASON:
                             traktUserHiddenItem.Season = await seasonReader.ReadObjectAsync(jsonReader, cancellationToken);
+                            break;
+                        case JsonProperties.PROPERTY_NAME_USER:
+                            traktUserHiddenItem.User = await userReader.ReadObjectAsync(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

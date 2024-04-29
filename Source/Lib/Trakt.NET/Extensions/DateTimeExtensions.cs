@@ -100,5 +100,17 @@
         /// <returns>A string, containing the datetime in the Trakt datetime format.</returns>
         public static string ToTraktLongDateTimeString(this DateTime value)
             => value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+
+        /// <summary>
+        /// Converts the given datetime to a cache efficient string, containing the datetime in the Trakt datetime format,
+        /// with minutes, seconds and milliseconds set to zero.
+        /// </summary>
+        /// <param name="value">The datetime, which should be converted. Will be automatically converted to universal (UTC) datetime.</param>
+        /// <returns>A cache efficient string, containing the datetime in the Trakt datetime format, with minutes, seconds and milliseconds set to zero.</returns>
+        public static string ToTraktCacheEfficientLongDateTimeString(this DateTime value)
+        {
+            var dateTime = value.ToUniversalTime();
+            return $"{dateTime.Year}-{dateTime.Month:00}-{dateTime.Day:00}T{dateTime.Hour:00}:00:00.000Z";
+        }
     }
 }

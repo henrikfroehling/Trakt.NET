@@ -19,14 +19,16 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using TraktNet.Extensions;
     using TraktNet.Parameters;
 
     /// <summary>
     /// Provides access to data retrieving methods specific to comments.
     /// <para>
-    /// This module contains all methods of the <a href ="http://docs.trakt.apiary.io/#reference/comments">"Trakt API Doc - Comments"</a> section.
+    /// This module contains all methods of the <a href ="http://trakt.docs.apiary.io/#reference/comments">"Trakt API Doc - Comments"</a> section.
     /// </para>
     /// </summary>
     public class TraktCommentsModule : ATraktModule
@@ -39,11 +41,15 @@
         /// Gets a <see cref="ITraktComment" /> or reply with the given id.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetMutlipleCommentsAsync(uint[], CancellationToken)" />.</para>
+        /// <para>See also <seealso cref="GetMutlipleCommentsAsync(TraktMultipleCommentsQueryParams, CancellationToken)" />.</para>
         /// </summary>
         /// <param name="commentId">The comment's id.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the comment's media item should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -51,16 +57,9 @@
         /// <returns>An <see cref="ITraktComment" /> instance with the queried comment's data.</returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, CancellationToken cancellationToken = default)
-        {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecuteSingleItemRequestAsync(new CommentSummaryRequest
-            {
-                Id = commentId.ToString()
-            },
-            cancellationToken);
-        }
+        public Task<TraktResponse<ITraktComment>> GetCommentAsync(uint commentId, TraktExtendedInfo extendedInfo = null,
+                                                                  CancellationToken cancellationToken = default)
+            => GetCommentImplementationAsync(false, commentId, extendedInfo, cancellationToken);
 
         /// <summary>
         /// Gets the attached media <see cref="ITraktCommentItem" /> from a comment with the given id.
@@ -124,27 +123,26 @@
                                                                                 TraktPagedParameters pagedParameters = null,
                                                                                 CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new CommentLikesRequest
+            var request = new CommentLikesRequest
             {
                 Id = commentId.ToString(),
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
         /// Gets multiple different <see cref="ITraktComment" />s or replies at once with the given Trakt-Ids or -Slugs.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
-        /// <para>See also <seealso cref="GetCommentAsync(uint, CancellationToken)" />.</para>
+        /// <para>See also <seealso cref="GetCommentAsync(uint, TraktExtendedInfo, CancellationToken)" />.</para>
         /// </summary>
-        /// <param name="commentIds">An array of comment ids.</param>
+        /// <param name="commentsQueryParams">A list of comment ids and optional extended infos. See also <seealso cref="TraktMultipleCommentsQueryParams" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
         /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
@@ -152,21 +150,59 @@
         /// <returns>A list of <see cref="ITraktComment" /> instances with the data of each queried comment.</returns>
         /// <exception cref="TraktException">Thrown, if one request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public async Task<IEnumerable<TraktResponse<ITraktComment>>> GetMutlipleCommentsAsync(uint[] commentIds, CancellationToken cancellationToken = default)
+        [Obsolete("GetMutlipleCommentsAsync is deprecated, please use GetCommentsStreamAsync instead.")]
+        public async Task<IEnumerable<TraktResponse<ITraktComment>>> GetMutlipleCommentsAsync(TraktMultipleCommentsQueryParams commentsQueryParams,
+                                                                                              CancellationToken cancellationToken = default)
         {
-            if (commentIds == null || commentIds.Length == 0)
+            if (commentsQueryParams == null || commentsQueryParams.Count == 0)
                 return new List<TraktResponse<ITraktComment>>();
 
             var tasks = new List<Task<TraktResponse<ITraktComment>>>();
 
-            for (int i = 0; i < commentIds.Length; i++)
+            foreach (TraktCommentQueryParams queryParam in commentsQueryParams)
             {
-                Task<TraktResponse<ITraktComment>> task = GetCommentAsync(commentIds[i], cancellationToken);
+                Task<TraktResponse<ITraktComment>> task = GetCommentAsync(queryParam.CommentId, queryParam.ExtendedInfo, cancellationToken);
                 tasks.Add(task);
             }
 
             TraktResponse<ITraktComment>[] comments = await Task.WhenAll(tasks).ConfigureAwait(false);
             return comments.ToList();
+        }
+
+        /// <summary>
+        /// Gets multiple different <see cref="ITraktComment" />s or replies at once with the given Trakt-Ids or -Slugs.
+        /// <para>OAuth authorization not required.</para>
+        /// <para>
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comment/get-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// </para>
+        /// <para>See also <seealso cref="GetCommentAsync(uint, TraktExtendedInfo, CancellationToken)" />.</para>
+        /// </summary>
+        /// <param name="commentsQueryParams">A list of comment ids and optional extended infos. See also <seealso cref="TraktMultipleCommentsQueryParams" />.</param>
+        /// <param name="cancellationToken">
+        /// Propagates notification that the request should be canceled.<para/>
+        /// If provided, the exception <see cref="OperationCanceledException" /> should be catched.
+        /// </param>
+        /// <returns>An <a href="https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.iasyncenumerable-1?view=net-7.0">async stream</a> of <see cref="ITraktComment" /> instances with the data of each queried comment.</returns>
+        /// <exception cref="TraktException">Thrown, if one request fails.</exception>
+        /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
+        public async IAsyncEnumerable<TraktResponse<ITraktComment>> GetCommentsStreamAsync(TraktMultipleCommentsQueryParams commentsQueryParams,
+                                                                                           [EnumeratorCancellation] CancellationToken cancellationToken = default)
+        {
+            if (commentsQueryParams == null || commentsQueryParams.Count == 0)
+                yield break;
+
+            var tasks = new List<Task<TraktResponse<ITraktComment>>>();
+
+            foreach (TraktCommentQueryParams queryParam in commentsQueryParams)
+            {
+                Task<TraktResponse<ITraktComment>> task = GetCommentInStreamAsync(queryParam.CommentId, queryParam.ExtendedInfo, cancellationToken);
+                tasks.Add(task);
+            }
+
+            await foreach(TraktResponse<ITraktComment> result in tasks.StreamFinishedTaskResultsAsync())
+            {
+                yield return result;
+            }
         }
 
         /// <summary>
@@ -203,9 +239,7 @@
                                                                                            TraktPagedParameters pagedParameters = null,
                                                                                            CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new CommentsUpdatesRequest
+            var request = new CommentsUpdatesRequest
             {
                 CommentType = commentType,
                 ObjectType = objectType,
@@ -213,8 +247,9 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -251,9 +286,7 @@
                                                                                            TraktPagedParameters pagedParameters = null,
                                                                                            CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new CommentsRecentRequest
+            var request = new CommentsRecentRequest
             {
                 CommentType = commentType,
                 ObjectType = objectType,
@@ -261,8 +294,9 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
@@ -299,9 +333,7 @@
                                                                                     TraktPagedParameters pagedParameters = null,
                                                                                     CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new CommentsTrendingRequest
+            var request = new CommentsTrendingRequest
             {
                 CommentType = commentType,
                 ObjectType = objectType,
@@ -309,15 +341,16 @@
                 ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
         }
 
         /// <summary>
         /// Posts a comment for the given <see cref="ITraktMovie" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktMovieCommentPostBuilder" /> to create an instance
@@ -350,7 +383,7 @@
         /// Posts a comment for the given <see cref="ITraktShow" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktShowCommentPostBuilder" /> to create an instance
@@ -383,7 +416,7 @@
         /// Posts a comment for the given <see cref="ITraktSeason" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktSeasonCommentPostBuilder" /> to create an instance
@@ -416,7 +449,7 @@
         /// Posts a comment for the given <see cref="ITraktEpisode" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktEpisodeCommentPostBuilder" /> to create an instance
@@ -449,7 +482,7 @@
         /// Posts a comment for the given <see cref="ITraktList" />.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comments/post-a-comment">"Trakt API Doc - Comments: Comments"</a> for more information.
         /// </para>
         /// <para>
         /// It is recommended to use the <see cref="ITraktListCommentPostBuilder" /> to create an instance
@@ -482,7 +515,7 @@
         /// Updates a comment or reply with the given comment id, which was posted within the last hour.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/update-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comment/update-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be updated.</param>
@@ -517,7 +550,7 @@
         /// Posts a reply to a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/replies/post-a-reply-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/replies/post-a-reply-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, for which the reply should be posted.</param>
@@ -552,7 +585,7 @@
         /// Deletes a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/comment/delete-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/comment/delete-a-comment-or-reply">"Trakt API Doc - Comments: Comment"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be deleted.</param>
@@ -577,7 +610,7 @@
         /// Likes a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/like/like-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/like/like-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be liked.</param>
@@ -602,7 +635,7 @@
         /// Unlikes a comment with the given comment id.
         /// <para>OAuth authorization required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/like/remove-like-on-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/like/remove-like-on-a-comment">"Trakt API Doc - Comments: Like"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, which should be unliked.</param>
@@ -627,10 +660,14 @@
         /// Gets replies for comment with the given id.
         /// <para>OAuth authorization not required.</para>
         /// <para>
-        /// See <a href="http://docs.trakt.apiary.io/#reference/comments/replies/get-replies-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
+        /// See <a href="http://trakt.docs.apiary.io/#reference/comments/replies/get-replies-for-a-comment">"Trakt API Doc - Comments: Replies"</a> for more information.
         /// </para>
         /// </summary>
         /// <param name="commentId">The id of the comment, for which the replies should be queried.</param>
+        /// <param name="extendedInfo">
+        /// The extended info, which determines how much data about the comment's media item should be queried.
+        /// See also <seealso cref="TraktExtendedInfo" />.
+        /// </param>
         /// <param name="pagedParameters">Specifies pagination parameters. <see cref="TraktPagedParameters" />.</param>
         /// <param name="cancellationToken">
         /// Propagates notification that the request should be canceled.<para/>
@@ -645,18 +682,40 @@
         /// </returns>
         /// <exception cref="TraktException">Thrown, if the request fails.</exception>
         /// <exception cref="TraktRequestValidationException">Thrown, if validation of request data fails.</exception>
-        public Task<TraktPagedResponse<ITraktComment>> GetCommentRepliesAsync(uint commentId, TraktPagedParameters pagedParameters = null,
+        public Task<TraktPagedResponse<ITraktComment>> GetCommentRepliesAsync(uint commentId, TraktExtendedInfo extendedInfo = null,
+                                                                              TraktPagedParameters pagedParameters = null,
                                                                               CancellationToken cancellationToken = default)
         {
-            var requestHandler = new RequestHandler(Client);
-
-            return requestHandler.ExecutePagedRequestAsync(new CommentRepliesRequest
+            var request = new CommentRepliesRequest
             {
                 Id = commentId.ToString(),
+                ExtendedInfo = extendedInfo,
                 Page = pagedParameters?.Page,
                 Limit = pagedParameters?.Limit,
-            },
-            cancellationToken);
+            };
+
+            return RequestHandler.ExecutePagedRequestAsync(Client, request, cancellationToken);
+        }
+
+        private Task<TraktResponse<ITraktComment>> GetCommentInStreamAsync(uint commentId, TraktExtendedInfo extendedInfo = null,
+                                                                           CancellationToken cancellationToken = default)
+            => GetCommentImplementationAsync(true, commentId, extendedInfo, cancellationToken);
+
+        private Task<TraktResponse<ITraktComment>> GetCommentImplementationAsync(bool asyncStream, uint commentId,
+                                                                                 TraktExtendedInfo extendedInfo = null,
+                                                                                 CancellationToken cancellationToken = default)
+        {
+            var requestHandler = new RequestHandler(Client);
+            var request = new CommentSummaryRequest
+            {
+                Id = commentId.ToString(),
+                ExtendedInfo = extendedInfo
+            };
+
+            if (asyncStream)
+                return requestHandler.ExecuteSingleItemStreamRequestAsync(request, cancellationToken);
+
+            return requestHandler.ExecuteSingleItemRequestAsync(request, cancellationToken);
         }
     }
 }

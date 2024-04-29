@@ -4,6 +4,6 @@
 
     public interface IHttpClientProvider
     {
-        HttpClient GetHttpClient();
+        HttpClient GetHttpClient(string clientId);
     }
 }

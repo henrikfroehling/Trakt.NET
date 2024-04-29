@@ -36,6 +36,24 @@
         }
 
         [Fact]
+        public void Test_TraktPost_ListCommentPostBuilder_Comment_ListIds()
+        {
+            ITraktListCommentPost listCommentPost = TraktPost.NewListCommentPost()
+                .WithComment(TraktPost_Tests_Common_Data.VALID_COMMENT)
+                .WithList(TraktPost_Tests_Common_Data.LIST_IDS)
+                .Build();
+
+            listCommentPost.Should().NotBeNull();
+            listCommentPost.Comment.Should().Be(TraktPost_Tests_Common_Data.VALID_COMMENT);
+            listCommentPost.List.Should().NotBeNull();
+            listCommentPost.List.Ids.Should().NotBeNull();
+            listCommentPost.List.Ids.Trakt.Should().Be(TraktPost_Tests_Common_Data.LIST_IDS.Trakt);
+            listCommentPost.List.Ids.Slug.Should().Be(TraktPost_Tests_Common_Data.LIST_IDS.Slug);
+            listCommentPost.Sharing.Should().BeNull();
+            listCommentPost.Spoiler.Should().BeNull();
+        }
+
+        [Fact]
         public void Test_TraktPost_ListCommentPostBuilder_Comment_List_Sharing()
         {
             ITraktListCommentPost listCommentPost = TraktPost.NewListCommentPost()

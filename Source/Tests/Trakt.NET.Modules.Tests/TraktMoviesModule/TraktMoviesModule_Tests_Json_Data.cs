@@ -7,19 +7,23 @@
     public partial class TraktMoviesModule_Tests
     {
         private const string MOVIE_ID = "94024";
+        private const uint TRAKT_MOVIE_ID = 94024;
+        private const string MOVIE_SLUG = "tron-legacy-2010";
         private const string COUNTRY_CODE = "us";
         private const string LANGUAGE_CODE = "en";
         private const uint PAGE = 2;
         private const uint LIMIT = 4;
         private const int ITEM_COUNT = 2;
+        private const int MOST_FAVORITED_ITEM_COUNT = 3;
         private const int USER_COUNT = 300;
         private const int LISTS_ITEM_COUNT = 10;
         private readonly TraktExtendedInfo EXTENDED_INFO = new TraktExtendedInfo { Full = true };
         private readonly TraktTimePeriod TIME_PERIOD = TraktTimePeriod.Monthly;
-        private readonly TraktCommentSortOrder COMMENT_SORT_ORDER = TraktCommentSortOrder.Likes;
+        private readonly TraktExtendedCommentSortOrder COMMENT_SORT_ORDER = TraktExtendedCommentSortOrder.Likes;
         private readonly TraktListSortOrder LIST_SORT_ORDER = TraktListSortOrder.Comments;
         private readonly TraktListType LIST_TYPE = TraktListType.Official;
         private readonly DateTime TODAY = DateTime.UtcNow;
+        private readonly DateTime START_DATE = DateTime.UtcNow;
         private const int UPDATED_IDS_COUNT = 4;
 
         private readonly ITraktMovieFilter FILTER = TraktFilter.NewMovieFilter()
@@ -1173,6 +1177,98 @@
                       ""slug"": ""deadpool-2016"",
                       ""imdb"": ""tt1431045"",
                       ""tmdb"": 293660
+                    }
+                  }
+                }
+              ]";
+
+        private const string MOVIE_STUDIOS_JSON =
+            @"[
+                {
+                  ""name"": ""20th Century Fox"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 20,
+                    ""slug"": ""20th-century-fox"",
+                    ""tmdb"": 25
+                  }
+                },
+                {
+                  ""name"": ""Marvel Entertainment"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 19,
+                    ""slug"": ""marvel-entertainment"",
+                    ""tmdb"": 7505
+                  }
+                },
+                {
+                  ""name"": ""The Donners' Company"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 25,
+                    ""slug"": ""the-donners-company"",
+                    ""tmdb"": 431
+                  }
+                },
+                {
+                  ""name"": ""TSG Entertainment"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 22,
+                    ""slug"": ""tsg-entertainment"",
+                    ""tmdb"": 22213
+                  }
+                },
+                {
+                  ""name"": ""Genre Films"",
+                  ""country"": ""us"",
+                  ""ids"": {
+                    ""trakt"": 23,
+                    ""slug"": ""genre-films"",
+                    ""tmdb"": 28788
+                  }
+                }
+              ]";
+
+        private const string MOST_FAVORITED_MOVIES_JSON =
+            @"[
+                {
+                  ""user_count"": 76254,
+                  ""movie"": {
+                    ""title"": ""The Dark Knight"",
+                    ""year"": 2008,
+                    ""ids"": {
+                      ""trakt"": 120,
+                      ""slug"": ""the-dark-knight-2008"",
+                      ""imdb"": ""tt0468569"",
+                      ""tmdb"": 155
+                    }
+                  }
+                },
+                {
+                  ""user_count"": 61289,
+                  ""movie"": {
+                    ""title"": ""The Avengers"",
+                    ""year"": 2012,
+                    ""ids"": {
+                      ""trakt"": 14701,
+                      ""slug"": ""the-avengers-2012"",
+                      ""imdb"": ""tt0848228"",
+                      ""tmdb"": 24428
+                    }
+                  }
+                },
+                {
+                  ""user_count"": 55443,
+                  ""movie"": {
+                    ""title"": ""Despicable Me"",
+                    ""year"": 2010,
+                    ""ids"": {
+                      ""trakt"": 12496,
+                      ""slug"": ""despicable-me-2010"",
+                      ""imdb"": ""tt1323594"",
+                      ""tmdb"": 20352
                     }
                   }
                 }

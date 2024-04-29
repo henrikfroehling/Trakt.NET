@@ -45,6 +45,91 @@
         }
 
         [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonPeople_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/people", SEASON_PEOPLE_JSON);
+            TraktResponse<ITraktShowCastAndCrew> response = await client.Seasons.GetSeasonPeopleAsync(TRAKT_SHOD_ID, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonPeople_With_ShowIds_TraktID()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/people", SEASON_PEOPLE_JSON);
+            TraktResponse<ITraktShowCastAndCrew> response = await client.Seasons.GetSeasonPeopleAsync(showIds, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonPeople_With_ShowIds_Slug()
+        {
+            var showIds = new TraktShowIds
+            {
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{SHOW_SLUG}/seasons/{SEASON_NR}/people", SEASON_PEOPLE_JSON);
+            TraktResponse<ITraktShowCastAndCrew> response = await client.Seasons.GetSeasonPeopleAsync(showIds, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonPeople_With_ShowIds()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID,
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/people", SEASON_PEOPLE_JSON);
+            TraktResponse<ITraktShowCastAndCrew> response = await client.Seasons.GetSeasonPeopleAsync(showIds, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonPeople_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/people", SEASON_PEOPLE_JSON);
+            TraktResponse<ITraktShowCastAndCrew> response = await client.Seasons.GetSeasonPeopleAsync(show, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull();
+        }
+
+        [Fact]
         public async Task Test_TraktSeasonsModule_GetSeasonPeople_With_ExtendedInfo()
         {
             TraktClient client = TestUtility.GetMockClient(
@@ -75,132 +160,54 @@
             responseValue.Crew.Editing.Should().BeNull();
         }
 
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_NotFoundException()
+        [Theory]
+        [InlineData(HttpStatusCode.NotFound, typeof(TraktSeasonNotFoundException))]
+        [InlineData(HttpStatusCode.Unauthorized, typeof(TraktAuthorizationException))]
+        [InlineData(HttpStatusCode.BadRequest, typeof(TraktBadRequestException))]
+        [InlineData(HttpStatusCode.Forbidden, typeof(TraktForbiddenException))]
+        [InlineData(HttpStatusCode.MethodNotAllowed, typeof(TraktMethodNotFoundException))]
+        [InlineData(HttpStatusCode.Conflict, typeof(TraktConflictException))]
+        [InlineData(HttpStatusCode.InternalServerError, typeof(TraktServerException))]
+        [InlineData(HttpStatusCode.BadGateway, typeof(TraktBadGatewayException))]
+        [InlineData(HttpStatusCode.PreconditionFailed, typeof(TraktPreconditionFailedException))]
+        [InlineData(HttpStatusCode.UnprocessableEntity, typeof(TraktValidationException))]
+        [InlineData(HttpStatusCode.TooManyRequests, typeof(TraktRateLimitException))]
+        [InlineData(HttpStatusCode.ServiceUnavailable, typeof(TraktServerUnavailableException))]
+        [InlineData(HttpStatusCode.GatewayTimeout, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)520, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)521, typeof(TraktServerUnavailableException))]
+        [InlineData((HttpStatusCode)522, typeof(TraktServerUnavailableException))]
+        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_API_Exception(HttpStatusCode statusCode, Type exceptionType)
         {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, HttpStatusCode.NotFound);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktSeasonNotFoundException>();
+            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, statusCode);
+
+            try
+            {
+                await client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
+                Assert.False(true);
+            }
+            catch (Exception exception)
+            {
+                (exception.GetType() == exceptionType).Should().BeTrue();
+            }
         }
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_AuthorizationException()
+        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_ArgumentExceptions()
         {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, HttpStatusCode.Unauthorized);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktAuthorizationException>();
-        }
+            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, SEASON_PEOPLE_JSON);
 
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_BadRequestException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, HttpStatusCode.BadRequest);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktBadRequestException>();
-        }
+            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(default(ITraktShowIds), SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_ForbiddenException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, HttpStatusCode.Forbidden);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktForbiddenException>();
-        }
+            act = () => client.Seasons.GetSeasonPeopleAsync(default(ITraktShow), SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentNullException>();
 
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_MethodNotFoundException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, HttpStatusCode.MethodNotAllowed);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktMethodNotFoundException>();
-        }
+            act = () => client.Seasons.GetSeasonPeopleAsync(new TraktShowIds(), SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentException>();
 
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_ConflictException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, HttpStatusCode.Conflict);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktConflictException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_ServerException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, HttpStatusCode.InternalServerError);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktServerException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_BadGatewayException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, HttpStatusCode.BadGateway);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktBadGatewayException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_PreconditionFailedException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, (HttpStatusCode)412);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktPreconditionFailedException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_ValidationException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, (HttpStatusCode)422);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktValidationException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_RateLimitException()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, (HttpStatusCode)429);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktRateLimitException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_ServerUnavailableException_503()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, (HttpStatusCode)503);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_ServerUnavailableException_504()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, (HttpStatusCode)504);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_ServerUnavailableException_520()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, (HttpStatusCode)520);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_ServerUnavailableException_521()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, (HttpStatusCode)521);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktServerUnavailableException>();
-        }
-
-        [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonPeople_Throws_ServerUnavailableException_522()
-        {
-            TraktClient client = TestUtility.GetMockClient(GET_SEASON_PEOPLE_URI, (HttpStatusCode)522);
-            Func<Task<TraktResponse<ITraktShowCastAndCrew>>> act = () => client.Seasons.GetSeasonPeopleAsync(SHOW_ID, SEASON_NR);
-            await act.Should().ThrowAsync<TraktServerUnavailableException>();
+            act = () => client.Seasons.GetSeasonPeopleAsync(0, SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

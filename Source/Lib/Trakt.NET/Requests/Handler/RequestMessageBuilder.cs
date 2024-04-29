@@ -5,7 +5,6 @@
     using Exceptions;
     using Interfaces;
     using Interfaces.Base;
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Net.Http;
@@ -13,6 +12,7 @@
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using Users.OAuth;
 
     internal class RequestMessageBuilder
     {
@@ -20,58 +20,29 @@
         private const string SEASON_KEY = "season";
         private const string EPISODE_KEY = "episode";
 
-        private IRequest _request;
-        private IRequestBody _requestBody;
-        private readonly TraktClient _client;
-        private bool _useAPIVersionHeader;
-        private bool _useAPIClientIdHeader;
+        private readonly string _clientId;
+        private readonly int _apiVersion;
+        private readonly string _baseUrl;
+        private readonly string _accessToken;
+        private readonly bool _isAuthorized;
+        private bool _forceAuthorization;
 
-        internal RequestMessageBuilder(TraktClient client)
+        internal bool UseAPIVersionHeader { get; set; } = true;
+
+        internal bool UseAPIClientIdHeader { get; set; } = true;
+
+        internal IRequest Request { get; set; }
+
+        internal IRequestBody RequestBody { get; set; }
+
+        internal RequestMessageBuilder(string clientId, int apiVersion, string baseUrl, string accessToken, bool isAuthorized, bool forceAuthorization)
         {
-            _useAPIVersionHeader = true;
-            _useAPIClientIdHeader = true;
-            _client = client ?? throw new ArgumentNullException(nameof(client));
-        }
-
-        internal RequestMessageBuilder(IRequest request, TraktClient client) : this(client) => _request = request;
-
-        internal RequestMessageBuilder WithRequestBody(IRequestBody requestBody)
-        {
-            _requestBody = requestBody;
-            return this;
-        }
-
-        internal RequestMessageBuilder Reset(IRequest request)
-        {
-            _useAPIVersionHeader = true;
-            _useAPIClientIdHeader = true;
-            _request = request;
-            _requestBody = null;
-            return this;
-        }
-
-        internal RequestMessageBuilder DisableAPIVersionHeader()
-        {
-            _useAPIVersionHeader = false;
-            return this;
-        }
-
-        internal RequestMessageBuilder EnableAPIVersionHeader()
-        {
-            _useAPIVersionHeader = true;
-            return this;
-        }
-
-        internal RequestMessageBuilder DisableAPIClientIdHeader()
-        {
-            _useAPIClientIdHeader = false;
-            return this;
-        }
-
-        internal RequestMessageBuilder EnableAPIClientIdHeader()
-        {
-            _useAPIClientIdHeader = true;
-            return this;
+            _clientId = clientId;
+            _apiVersion = apiVersion;
+            _baseUrl = baseUrl;
+            _accessToken = accessToken;
+            _isAuthorized = isAuthorized;
+            _forceAuthorization = forceAuthorization;
         }
 
         internal async Task<ExtendedHttpRequestMessage> Build(CancellationToken cancellationToken = default)
@@ -84,23 +55,23 @@
 
         private ExtendedHttpRequestMessage CreateRequestMessage()
         {
-            Debug.Assert(_request != null);
+            Debug.Assert(Request != null);
             string url = BuildUrl();
 
-            var requestMessage = new ExtendedHttpRequestMessage(_request.Method, url)
+            var requestMessage = new ExtendedHttpRequestMessage(Request.Method, url)
             {
                 Url = url
             };
 
-            if (_request is IHasId)
+            if (Request is IHasId)
             {
-                var idRequest = _request as IHasId;
+                var idRequest = Request as IHasId;
 
                 requestMessage.ObjectId = idRequest?.Id;
                 requestMessage.RequestObjectType = idRequest?.RequestObjectType;
             }
 
-            IDictionary<string, object> requestUriParameters = _request.GetUriPathParameters();
+            IDictionary<string, object> requestUriParameters = Request.GetUriPathParameters();
 
             if (requestUriParameters.Count != 0)
             {
@@ -126,16 +97,16 @@
 
         private string BuildUrl()
         {
-            var requestUri = new RequestUri(_request.UriTemplate, _request.GetUriPathParameters());
+            var requestUri = new RequestUri(Request.UriTemplate, Request.GetUriPathParameters());
             string url = requestUri.ResolveUrl();
-            return _client.Configuration.BaseUrl + url;
+            return _baseUrl + url;
         }
 
         private async Task AddRequestBodyContent(ExtendedHttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
-            if (_requestBody != null)
+            if (RequestBody != null)
             {
-                string json = await _requestBody.ToJson(cancellationToken).ConfigureAwait(false);
+                string json = await RequestBody.ToJson(cancellationToken).ConfigureAwait(false);
                 requestMessage.Content = new StringContent(json, Encoding.UTF8, Constants.MEDIA_TYPE);
                 requestMessage.RequestBodyJson = json;
             }
@@ -143,22 +114,30 @@
 
         private void SetRequestMessageHeaders(ExtendedHttpRequestMessage requestMessage)
         {
-            if (_useAPIVersionHeader)
-                requestMessage.Headers.Add(Constants.APIVersionHeaderKey, $"{_client.Configuration.ApiVersion}");
+            if (UseAPIVersionHeader)
+                requestMessage.Headers.Add(Constants.APIVersionHeaderKey, $"{_apiVersion}");
 
-            if (_useAPIClientIdHeader)
-                requestMessage.Headers.Add(Constants.APIClientIdHeaderKey, _client.ClientId);
+            if (UseAPIClientIdHeader)
+                requestMessage.Headers.Add(Constants.APIClientIdHeaderKey, _clientId);
 
-            AuthorizationRequirement authorizationRequirement = _request.AuthorizationRequirement;
+            AuthorizationRequirement authorizationRequirement = Request.AuthorizationRequirement;
+
+            if (authorizationRequirement == AuthorizationRequirement.OptionalButMightBeRequired && !_forceAuthorization)
+            {
+                // Force authorization for user requests where the username is "me",
+                // even if forced authorization is disabled.
+                _forceAuthorization = Request is IHasUsername && (Request as IHasUsername).Username == "me";
+            }
 
             if (authorizationRequirement != AuthorizationRequirement.NotRequired)
             {
-                if (!_client.Authentication.IsAuthorized)
+                if (!_isAuthorized)
                 {
                     switch (authorizationRequirement)
                     {
                         case AuthorizationRequirement.Optional:
-                            if (_client.Configuration.ForceAuthorization)
+                        case AuthorizationRequirement.OptionalButMightBeRequired:
+                            if (_forceAuthorization)
                                 throw new TraktAuthorizationException("authorization is optional for this request, but forced and the current authorization parameters are invalid");
 
                             break;
@@ -167,8 +146,11 @@
                     }
                 }
 
-                if (authorizationRequirement == AuthorizationRequirement.Required || (authorizationRequirement == AuthorizationRequirement.Optional && _client.Configuration.ForceAuthorization))
-                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _client.Authentication.Authorization.AccessToken);
+                bool authorizationOptionalButRequired = _forceAuthorization &&
+                    (authorizationRequirement == AuthorizationRequirement.Optional || authorizationRequirement == AuthorizationRequirement.OptionalButMightBeRequired);
+
+                if (authorizationRequirement == AuthorizationRequirement.Required || authorizationOptionalButRequired)
+                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue(AUTHENTICATION_SCHEME, _accessToken);
             }
         }
     }

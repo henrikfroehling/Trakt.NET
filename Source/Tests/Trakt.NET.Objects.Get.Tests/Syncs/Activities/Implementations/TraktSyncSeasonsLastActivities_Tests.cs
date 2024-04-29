@@ -29,18 +29,18 @@
             var seasonsLastActivities = await jsonReader.ReadObjectAsync(JSON) as TraktSyncSeasonsLastActivities;
 
             seasonsLastActivities.Should().NotBeNull();
-            seasonsLastActivities.RatedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.305Z").ToUniversalTime());
-            seasonsLastActivities.WatchlistedAt.Should().Be(DateTime.Parse("2014-11-19T22:02:41.308Z").ToUniversalTime());
-            seasonsLastActivities.CommentedAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.325Z").ToUniversalTime());
-            seasonsLastActivities.HiddenAt.Should().Be(DateTime.Parse("2014-11-20T06:51:30.325Z").ToUniversalTime());
+            seasonsLastActivities.RatedAt.Should().Be(DateTime.Parse("2022-06-25T23:46:39.000Z").ToUniversalTime());
+            seasonsLastActivities.WatchlistedAt.Should().Be(DateTime.Parse("2022-10-06T17:42:50.000Z").ToUniversalTime());
+            seasonsLastActivities.CommentedAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
+            seasonsLastActivities.HiddenAt.Should().Be(DateTime.Parse("2015-02-18T12:54:39.000Z").ToUniversalTime());
         }
 
         private const string JSON =
             @"{
-                ""rated_at"": ""2014-11-20T06:51:30.305Z"",
-                ""watchlisted_at"": ""2014-11-19T22:02:41.308Z"",
-                ""commented_at"": ""2014-11-20T06:51:30.325Z"",
-                ""hidden_at"": ""2014-11-20T06:51:30.325Z""
+                ""rated_at"": ""2022-06-25T23:46:39.000Z"",
+                ""watchlisted_at"": ""2022-10-06T17:42:50.000Z"",
+                ""commented_at"": ""2015-02-18T12:54:39.000Z"",
+                ""hidden_at"": ""2015-02-18T12:54:39.000Z""
               }";
     }
 }

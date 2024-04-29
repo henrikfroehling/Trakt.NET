@@ -7,9 +7,9 @@
     using Objects.Get.Lists;
     using System.Collections.Generic;
 
-    internal sealed class UserListLikesRequest : AGetRequest<ITraktListLike>, ISupportsPagination
+    internal sealed class UserListLikesRequest : AGetRequest<ITraktListLike>, ISupportsPagination, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public string ListId { get; set; }
 
@@ -17,7 +17,7 @@
 
         public uint? Limit { get; set; }
 
-        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.Optional;
+        public override AuthorizationRequirement AuthorizationRequirement => AuthorizationRequirement.OptionalButMightBeRequired;
 
         public override string UriTemplate => "users/{username}/lists/{list_id}/likes{?page,limit}";
 

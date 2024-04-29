@@ -1,11 +1,11 @@
 ﻿namespace TraktNet.PostBuilder
 {
+    using Objects.Get.Episodes;
+    using Objects.Get.Movies;
+    using Objects.Get.Seasons;
+    using Objects.Get.Shows;
     using System;
     using System.Collections.Generic;
-    using TraktNet.Objects.Get.Episodes;
-    using TraktNet.Objects.Get.Movies;
-    using TraktNet.Objects.Get.Seasons;
-    using TraktNet.Objects.Get.Shows;
 
     internal abstract class ARemovePostBuilder<TPostBuilder, TPostObject> : ITraktRemovePostBuilder<TPostBuilder, TPostObject>
         where TPostBuilder : ITraktRemovePostBuilder<TPostBuilder, TPostObject>
@@ -138,6 +138,25 @@
             return WithShowAndSeasons(new ShowAndSeasons(show, seasons));
         }
 
+        public TPostBuilder WithShowAndSeasons(ITraktShow show, IEnumerable<int> seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowAndSeasons(show, new PostSeasons { seasons }));
+        }
+
+        public TPostBuilder WithShowAndSeasons(ITraktShow show, int season, params int[] seasons)
+        {
+            if (show == null)
+                throw new ArgumentNullException(nameof(show));
+
+            return WithShowAndSeasons(new ShowAndSeasons(show, new PostSeasons { season, seasons }));
+        }
+
         public TPostBuilder WithShowAndSeasons(ShowAndSeasons showAndSeasons)
         {
             if (showAndSeasons == null)
@@ -156,6 +175,25 @@
                 throw new ArgumentNullException(nameof(seasons));
 
             return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, seasons));
+        }
+
+        public TPostBuilder WithShowAndSeasons(ITraktShowIds showIds, IEnumerable<int> seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            if (seasons == null)
+                throw new ArgumentNullException(nameof(seasons));
+
+            return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, new PostSeasons { seasons }));
+        }
+
+        public TPostBuilder WithShowAndSeasons(ITraktShowIds showIds, int season, params int[] seasons)
+        {
+            if (showIds == null)
+                throw new ArgumentNullException(nameof(showIds));
+
+            return WithShowAndSeasons(new ShowIdsAndSeasons(showIds, new PostSeasons { season, seasons }));
         }
 
         public TPostBuilder WithShowAndSeasons(ShowIdsAndSeasons showIdsAndSeasons)

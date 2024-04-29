@@ -15,7 +15,7 @@
     {
         internal TraktClient(IHttpClientProvider httpClientProvider = default)
         {
-            HttpClientProvider = httpClientProvider ?? new HttpClientProvider(this);
+            HttpClientProvider = httpClientProvider ?? new HttpClientProvider();
             Configuration = new TraktConfiguration();
             Authentication = new TraktAuthenticationModule(this);
             Calendar = new TraktCalendarModule(this);
@@ -29,6 +29,7 @@
             Lists = new TraktListsModule(this);
             Movies = new TraktMoviesModule(this);
             Networks = new TraktNetworksModule(this);
+            Notes = new TraktNotesModule(this);
             People = new TraktPeopleModule(this);
             Recommendations = new TraktRecommendationsModule(this);
             Scrobble = new TraktScrobbleModule(this);
@@ -64,22 +65,22 @@
         /// <summary>Gets or sets the Trakt Client Id. See also <seealso cref="ClientSecret" />.</summary>
         public string ClientId
         {
-            get { return Authentication.ClientId; }
-            set { Authentication.ClientId = value; }
+            get => Authentication.ClientId;
+            set => Authentication.ClientId = value;
         }
 
         /// <summary>Gets or sets the Trakt Client Secret. See also <seealso cref="ClientId" />.</summary>
         public string ClientSecret
         {
-            get { return Authentication.ClientSecret; }
-            set { Authentication.ClientSecret = value; }
+            get => Authentication.ClientSecret;
+            set => Authentication.ClientSecret = value;
         }
 
         /// <summary>Gets or sets the Trakt Authorization information. See also <seealso cref="ITraktAuthorization" />.</summary>
         public ITraktAuthorization Authorization
         {
-            get { return Authentication.Authorization; }
-            set { Authentication.Authorization = value; }
+            get => Authentication.Authorization;
+            set => Authentication.Authorization = value;
         }
 
         /// <summary>
@@ -146,6 +147,9 @@
 
         /// <summary>Provides access to the networks module. See <seealso cref="TraktNetworksModule" />.</summary>
         public TraktNetworksModule Networks { get; }
+
+        /// <summary>Provides access to the notes module. See <seealso cref="TraktNotesModule" />.</summary>
+        public TraktNotesModule Notes { get; }
 
         /// <summary>Provides access to the people module. See <seealso cref="TraktPeopleModule" />.</summary>
         public TraktPeopleModule People { get; }

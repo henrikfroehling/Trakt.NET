@@ -29,7 +29,7 @@
                             userPersonalListPost.Description = await jsonReader.ReadAsStringAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_PRIVACY:
-                            userPersonalListPost.Privacy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktAccessScope>(jsonReader, cancellationToken);
+                            userPersonalListPost.Privacy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktListPrivacy>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_DISPLAY_NUMBERS:
                             userPersonalListPost.DisplayNumbers = await jsonReader.ReadAsBooleanAsync(cancellationToken);
@@ -38,10 +38,10 @@
                             userPersonalListPost.AllowComments = await jsonReader.ReadAsBooleanAsync(cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SORT_BY:
-                            userPersonalListPost.SortBy = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            userPersonalListPost.SortBy = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSortBy>(jsonReader, cancellationToken);
                             break;
                         case JsonProperties.PROPERTY_NAME_SORT_HOW:
-                            userPersonalListPost.SortHow = await jsonReader.ReadAsStringAsync(cancellationToken);
+                            userPersonalListPost.SortHow = await JsonReaderHelper.ReadEnumerationValueAsync<TraktSortHow>(jsonReader, cancellationToken);
                             break;
                         default:
                             await JsonReaderHelper.ReadAndIgnoreInvalidContentAsync(jsonReader, cancellationToken);

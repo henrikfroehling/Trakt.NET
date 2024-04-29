@@ -1,0 +1,190 @@
+name: 'CI-Build'
+
+on:
+  workflow_dispatch:
+  push:
+    paths-ignore:
+      - 'Postman/**'
+      - 'AUTHORS.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'Changelog.md'
+      - 'LICENSE.md'
+      - 'PublishRelease.txt'
+      - 'README.md'
+      - 'coding_style.md'
+  pull_request:
+    paths-ignore:
+      - 'Postman/**'
+      - 'AUTHORS.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'CONTRIBUTING.md'
+      - 'Changelog.md'
+      - 'LICENSE.md'
+      - 'PublishRelease.txt'
+      - 'README.md'
+      - 'coding_style.md'
+
+env:
+  DOTNET_VERSION: '8.0.x'
+  DOTNET_QUALITY: 'ga'
+  BUILD_CONFIGURATION: Release
+  PROJECT_NAME: 'Source/Lib/Trakt.NET/Trakt.NET.csproj'
+
+jobs:
+  environment-check:
+    runs-on: windows-latest
+    steps:
+      - name: Check branch for enviroment
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          echo "Running on branch ${{ github.ref_name }}"
+          br_name=${{ github.ref_name }}
+          echo "target_br_name=${br_name//\//-}" >> "$GITHUB_ENV"
+          if [[ "${{ github.ref_name }}" == *"main"* ]]; then
+            echo "env_name=Production" >> "$GITHUB_ENV"
+          elif [[ "${{ github.ref_name }}" == *"develop"* ]]; then
+            echo "env_name=Development" >> "$GITHUB_ENV"
+          elif [[ "${{ github.ref_name }}" == *"release"* ]]; then
+            echo "env_name=Release-Previews" >> "$GITHUB_ENV"
+          else
+            echo "env_name=Development" >> "$GITHUB_ENV"
+          fi 
+
+      - name: Check branch for enviroment in PR
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          echo "Running on branch ${{ github.head_ref }}"
+          br_name=${{ github.base_ref }}
+          echo "target_br_name=${br_name//\//-}" >> "$GITHUB_ENV"
+          if [[ "${{ github.base_ref }}" == *"main"* ]]; then
+            echo "env_name=Production" >> "$GITHUB_ENV"
+          elif [[ "${{ github.base_ref }}" == *"develop"* ]]; then
+            echo "env_name=Development" >> "$GITHUB_ENV"
+          elif [[ "${{ github.base_ref }}" == *"release"* ]]; then
+            echo "env_name=Release-Previews" >> "$GITHUB_ENV"
+          else
+            echo "env_name=Development" >> "$GITHUB_ENV"
+          fi 
+
+      - name: Output environment
+        shell: bash
+        run: |
+          echo "Environment name = ${{ env.env_name }}"
+          echo "Branch name = ${{ env.target_br_name }}"
+
+    outputs:
+      environment_name: ${{ env.env_name }}
+      target_branch_name: ${{ env.target_br_name }}
+
+  build:
+    needs: [environment-check]
+    runs-on: windows-latest
+    environment:
+      name: ${{ needs.environment-check.outputs.environment_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-quality: ${{ env.DOTNET_QUALITY }}
+          source-url: https://nuget.pkg.github.com/henrikfroehling/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Restore dependencies
+        run: dotnet restore
+        working-directory: 'Source'
+
+      - name: Build solution
+        run: dotnet build  --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+        working-directory: 'Source'
+
+      - name: Run tests
+        run: dotnet test --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+        working-directory: 'Source'
+
+      - name: Upload coverage reports to Codecov
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        uses: codecov/codecov-action@v3
+
+      - name: Create NuGet package
+        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
+        run: dotnet pack ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --no-restore
+
+      - name: Copy files for deployment
+        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
+        shell: pwsh
+        run: |
+          New-Item -Type Directory -Force 'release'
+          Get-ChildItem -Path 'Source/Lib/Trakt.NET/bin/${{ env.BUILD_CONFIGURATION }}' -Recurse | Where-Object {$_.Fullname -match 'Trakt.NET*.dll|Trakt.NET*.xml|Trakt.NET*.deps.json|[a-z[A-Z]*.nupkg|[a-z][A-Z]*.snupkg'} | Copy-Item -Destination 'release'
+
+      - name: Upload artifacts
+        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: Trakt.NET-CI-Build-${{ needs.environment-check.outputs.target_branch_name }}.${{ github.run_number }}-${{ github.sha }}
+          retention-days: 14
+          path: 'release/'
+
+      - name: Push NuGet package to Github Package Registry
+        if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
+        run: dotnet nuget push '**/Trakt.NET*.nupkg'
+        working-directory: 'Source'
+
+      - name: Push package to NuGet
+        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        run: dotnet nuget push '**/Trakt.NET*.nupkg' --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+
+  docs:
+    needs: [environment-check]
+    if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-quality: ${{ env.DOTNET_QUALITY }}
+
+      - name: Setup DocFX
+        run: dotnet tool update -g docfx
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.PROJECT_NAME }}
+
+      - name: Build library
+        run: dotnet build ${{ env.PROJECT_NAME }} --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+
+      - name: Build documentation
+        run: cd docs && docfx metadata && docfx build
+
+      - name: Upload documentation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Trakt.NET-Documentation-${{ needs.environment-check.outputs.target_branch_name }}.${{ github.run_number }}-${{ github.sha }}
+          retention-days: 14
+          path: 'docs/_site/'
+
+      - name: Deploy documentation
+        uses: peaceiris/actions-gh-pages@v4
+        if: ${{ github.ref_name == 'main' && (github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')) }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: 'docs/_site'

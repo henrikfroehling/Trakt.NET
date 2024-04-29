@@ -1,0 +1,98 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Module Tests",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build Module Tests Debug",
+            "program": "${workspaceFolder}/Build/Tests/Trakt.NET.Modules.Tests/Debug/net7.0/Trakt.NET.Modules.Tests.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Source/Tests/Trakt.NET.Modules.Tests",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug Objects.Authentication Tests",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build Objects.Authentication Tests Debug",
+            "program": "${workspaceFolder}/Build/Tests/Trakt.NET.Objects.Authentication.Tests/Debug/net7.0/Trakt.NET.Objects.Authentication.Tests.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Source/Tests/Trakt.NET.Objects.Authentication.Tests",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug Objects.Basic Tests",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build Objects.Basic Tests Debug",
+            "program": "${workspaceFolder}/Build/Tests/Trakt.NET.Objects.Basic.Tests/Debug/net7.0/Trakt.NET.Objects.Basic.Tests.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Source/Tests/Trakt.NET.Objects.Basic.Tests",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug Objects.Get Tests",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build Objects.Get Tests Debug",
+            "program": "${workspaceFolder}/Build/Tests/Trakt.NET.Objects.Get.Tests/Debug/net7.0/Trakt.NET.Objects.Get.Tests.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Source/Tests/Trakt.NET.Objects.Get.Tests",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug Objects.Post Tests",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build Objects.Post Tests Debug",
+            "program": "${workspaceFolder}/Build/Tests/Trakt.NET.Objects.Post.Tests/Debug/net7.0/Trakt.NET.Objects.Post.Tests.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Source/Tests/Trakt.NET.Objects.Post.Tests",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug Parameters Tests",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build Parameters Tests Debug",
+            "program": "${workspaceFolder}/Build/Tests/Trakt.NET.Parameters.Tests/Debug/net7.0/Trakt.NET.Parameters.Tests.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Source/Tests/Trakt.NET.Parameters.Tests",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug PostBuilder Tests",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build PostBuilder Tests Debug",
+            "program": "${workspaceFolder}/Build/Tests/Trakt.NET.PostBuilder.Tests/Debug/net7.0/Trakt.NET.PostBuilder.Tests.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Source/Tests/Trakt.NET.PostBuilder.Tests",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Debug Requests Tests",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build Requests Tests Debug",
+            "program": "${workspaceFolder}/Build/Tests/Trakt.NET.Requests.Tests/Debug/net7.0/Trakt.NET.Requests.Tests.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Source/Tests/Trakt.NET.Requests.Tests",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}

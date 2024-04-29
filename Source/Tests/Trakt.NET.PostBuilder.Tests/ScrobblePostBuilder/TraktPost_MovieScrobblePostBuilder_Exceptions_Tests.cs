@@ -14,7 +14,7 @@
         public void Test_TraktPost_MovieScrobblePostBuilder_WithMovie_Movie_ArgumentNullException()
         {
             Func<ITraktMovieScrobblePost> act = () => TraktPost.NewMovieScrobblePost()
-                .WithMovie(null)
+                .WithMovie(default(ITraktMovie))
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
@@ -28,6 +28,12 @@
                 .Build();
 
             act.Should().Throw<ArgumentNullException>();
+
+            act = () => TraktPost.NewMovieScrobblePost()
+                .WithMovie(default(ITraktMovieIds))
+                .Build();
+
+            act.Should().Throw<ArgumentNullException>();
         }
 
         [Fact]
@@ -35,6 +41,12 @@
         {
             Func<ITraktMovieScrobblePost> act = () => TraktPost.NewMovieScrobblePost()
                 .WithMovie(new TraktMovie { Ids = new TraktMovieIds() })
+                .Build();
+
+            act.Should().Throw<ArgumentException>();
+
+            act = () => TraktPost.NewMovieScrobblePost()
+                .WithMovie(new TraktMovieIds())
                 .Build();
 
             act.Should().Throw<ArgumentException>();

@@ -225,7 +225,7 @@
         public async Task Test_CastMemberArrayJsonReader_ReadObject_From_Stream_Null()
         {
             var jsonReader = new ArrayJsonReader<ITraktCastMember>();
-            Func<Task<IEnumerable<ITraktCastMember>>> traktCastMembers = () => jsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktCastMember>>> traktCastMembers = () => jsonReader.ReadArrayAsync(default(Stream));
             await traktCastMembers.Should().ThrowAsync<ArgumentNullException>();
         }
 

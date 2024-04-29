@@ -19,6 +19,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_APPLE = "apple";
         internal const string PROPERTY_NAME_APPROVED_AT = "approved_at";
         internal const string PROPERTY_NAME_ART = "art";
+        internal const string PROPERTY_NAME_ATTACHED_TO = "attached_to";
         internal const string PROPERTY_NAME_AUDIO = "audio";
         internal const string PROPERTY_NAME_AUDIO_CHANNELS = "audio_channels";
         internal const string PROPERTY_NAME_AVAILABLE_TRANSLATIONS = "available_translations";
@@ -32,6 +33,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_CERTIFICATION = "certification";
         internal const string PROPERTY_NAME_CHARACTERS = "characters";
         internal const string PROPERTY_NAME_CODE = "code";
+        internal const string PROPERTY_NAME_COLLABORATIONS = "collaborations";
         internal const string PROPERTY_NAME_COLLECTED = "collected";
         internal const string PROPERTY_NAME_COLLECTED_AT = "collected_at";
         internal const string PROPERTY_NAME_COLLECTED_COUNT = "collected_count";
@@ -43,6 +45,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_COMMENTED_AT = "commented_at";
         internal const string PROPERTY_NAME_COMMENTS = "comments";
         internal const string PROPERTY_NAME_COMPLETED = "completed";
+        internal const string PROPERTY_NAME_COMPLETED_COUNT = "completed_count";
         internal const string PROPERTY_NAME_CONNECTIONS = "connections";
         internal const string PROPERTY_NAME_COSTUME_AND_MAKE_UP = "costume & make-up";
         internal const string PROPERTY_NAME_COUNT = "count";
@@ -59,9 +62,11 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_DIRECTING = "directing";
         internal const string PROPERTY_NAME_DISPLAY_NUMBERS = "display_numbers";
         internal const string PROPERTY_NAME_DISTRIBUTION = "distribution";
+        internal const string PROPERTY_NAME_DROPBOX = "dropbox";
         internal const string PROPERTY_NAME_EDITING = "editing";
         internal const string PROPERTY_NAME_EPISODE = "episode";
         internal const string PROPERTY_NAME_EPISODE_COUNT = "episode_count";
+        internal const string PROPERTY_NAME_EPISODE_TYPE = "episode_type";
         internal const string PROPERTY_NAME_EPISODES = "episodes";
         internal const string PROPERTY_NAME_ERROR = "error";
         internal const string PROPERTY_NAME_ERROR_DESCRIPTION = "error_description";
@@ -69,6 +74,9 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_EXPIRES_AT = "expires_at";
         internal const string PROPERTY_NAME_EXPIRES_IN = "expires_in";
         internal const string PROPERTY_NAME_FACEBOOK = "facebook";
+        internal const string PROPERTY_NAME_FAVORITED_AT = "favorited_at";
+        internal const string PROPERTY_NAME_FAVORITED_BY = "favorited_by";
+        internal const string PROPERTY_NAME_FAVORITES = "favorites";
         internal const string PROPERTY_NAME_FIRST_AIRED = "first_aired";
         internal const string PROPERTY_NAME_FOLLOWED_AT = "followed_at";
         internal const string PROPERTY_NAME_FOLLOWERS = "followers";
@@ -102,6 +110,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_LAST_UPDATED_AT = "last_updated_at";
         internal const string PROPERTY_NAME_LAST_WATCHED_AT = "last_watched_at";
         internal const string PROPERTY_NAME_LIGHTING = "lighting";
+        internal const string PROPERTY_NAME_LIKE_COUNT = "like_count";
         internal const string PROPERTY_NAME_LIKED_AT = "liked_at";
         internal const string PROPERTY_NAME_LIKES = "likes";
         internal const string PROPERTY_NAME_LIMIT = "limit";
@@ -111,10 +120,12 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_LISTED_AT = "listed_at";
         internal const string PROPERTY_NAME_LISTS = "lists";
         internal const string PROPERTY_NAME_LOCATION = "location";
+        internal const string PROPERTY_NAME_MASTODON = "mastodon";
         internal const string PROPERTY_NAME_MEDIA_TYPE = "media_type";
         internal const string PROPERTY_NAME_MEDIUM = "medium";
         internal const string PROPERTY_NAME_MESSAGE = "message";
         internal const string PROPERTY_NAME_METADATA = "metadata";
+        internal const string PROPERTY_NAME_MICROSOFT = "microsoft";
         internal const string PROPERTY_NAME_MINUTES = "minutes";
         internal const string PROPERTY_NAME_MOVIE = "movie";
         internal const string PROPERTY_NAME_MOVIES = "movies";
@@ -161,6 +172,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_REVENUE = "revenue";
         internal const string PROPERTY_NAME_REVIEW = "review";
         internal const string PROPERTY_NAME_RUNTIME = "runtime";
+        internal const string PROPERTY_NAME_SAVED_FILTERS = "saved_filters";
         internal const string PROPERTY_NAME_SCOPE = "scope";
         internal const string PROPERTY_NAME_SCORE = "score";
         internal const string PROPERTY_NAME_SECTION = "section";
@@ -168,6 +180,7 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_SEASONS = "seasons";
         internal const string PROPERTY_NAME_SERIES_REGULAR = "series_regular";
         internal const string PROPERTY_NAME_SETTINGS_AT = "settings_at";
+        internal const string PROPERTY_NAME_SHARE_LINK = "share_link";
         internal const string PROPERTY_NAME_SHARING = "sharing";
         internal const string PROPERTY_NAME_SHARING_TEXT = "sharing_text";
         internal const string PROPERTY_NAME_SHOW = "show";
@@ -206,7 +219,9 @@ namespace TraktNet.Objects.Json
         internal const string PROPERTY_NAME_USER = "user";
         internal const string PROPERTY_NAME_USERS = "users";
         internal const string PROPERTY_NAME_USER_CODE = "user_code";
+        internal const string PROPERTY_NAME_USER_COUNT = "user_count";
         internal const string PROPERTY_NAME_USER_RATING = "user_rating";
+        internal const string PROPERTY_NAME_USER_STATS = "user_stats";
         internal const string PROPERTY_NAME_USERNAME = "username";
         internal const string PROPERTY_NAME_UUID = "uuid";
         internal const string PROPERTY_NAME_VENUE_ID = "venue_id";

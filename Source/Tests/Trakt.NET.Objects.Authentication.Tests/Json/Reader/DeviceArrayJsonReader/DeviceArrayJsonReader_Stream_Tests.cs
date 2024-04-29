@@ -22,7 +22,7 @@
 
             using (var stream = JSON_EMPTY_ARRAY.ToStream())
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
                 traktDevices.Should().NotBeNull().And.BeEmpty();
             }
         }
@@ -34,7 +34,7 @@
 
             using (var stream = JSON_COMPLETE.ToStream())
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
 
                 traktDevices.Should().NotBeNull();
                 ITraktDevice[] items = traktDevices.ToArray();
@@ -62,7 +62,7 @@
 
             using (var stream = JSON_INCOMPLETE_1.ToStream())
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
 
                 traktDevices.Should().NotBeNull();
                 ITraktDevice[] items = traktDevices.ToArray();
@@ -90,7 +90,7 @@
 
             using (var stream = JSON_INCOMPLETE_2.ToStream())
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
 
                 traktDevices.Should().NotBeNull();
                 ITraktDevice[] items = traktDevices.ToArray();
@@ -118,7 +118,7 @@
 
             using (var stream = JSON_NOT_VALID_1.ToStream())
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
 
                 traktDevices.Should().NotBeNull();
                 ITraktDevice[] items = traktDevices.ToArray();
@@ -146,7 +146,7 @@
 
             using (var stream = JSON_NOT_VALID_2.ToStream())
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
 
                 traktDevices.Should().NotBeNull();
                 ITraktDevice[] items = traktDevices.ToArray();
@@ -171,7 +171,7 @@
         public async Task Test_DeviceArrayJsonReader_ReadObject_From_Stream_Null()
         {
             var objectJsonReader = new ArrayJsonReader<ITraktDevice>();
-            Func<Task<IEnumerable<ITraktDevice>>> traktDevices = () => objectJsonReader.ReadArrayAsync(default(Stream));
+            Func<Task<IList<ITraktDevice>>> traktDevices = () => objectJsonReader.ReadArrayAsync(default(Stream));
             await traktDevices.Should().ThrowAsync<ArgumentNullException>();
         }
 
@@ -182,7 +182,7 @@
 
             using (var stream = string.Empty.ToStream())
             {
-                IEnumerable<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
+                IList<ITraktDevice> traktDevices = await objectJsonReader.ReadArrayAsync(stream);
                 traktDevices.Should().BeNull();
             }
         }

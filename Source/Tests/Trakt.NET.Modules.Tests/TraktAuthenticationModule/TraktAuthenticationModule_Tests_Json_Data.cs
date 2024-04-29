@@ -17,7 +17,8 @@
         private const uint DEVICE_EXPIRES_IN_SECONDS = 600;
         private const uint DEVICE_INTERVAL_IN_SECONDS = 6;
 
-        private static async Task<string> BuildEncodedAuthorizeUrl(bool staging, string clientId, string redirectUri, string state = null)
+        private static async Task<string> BuildEncodedAuthorizeUrl(bool staging, string clientId, string redirectUri, string state = null,
+                                                                   bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             const string oauthAuthorizeUri = Constants.OAuthAuthorizeUri;
             string baseUrl = staging ? Constants.OAuthBaseAuthorizeStagingUrl : Constants.OAuthBaseAuthorizeUrl;
@@ -31,6 +32,12 @@
 
             if (!string.IsNullOrEmpty(state))
                 uriParams["state"] = state;
+
+            if (showSignupPage.HasValue)
+                uriParams.Add("signup", showSignupPage.Value.ToString().ToLower());
+
+            if (forceLoginPrompt.HasValue && forceLoginPrompt.Value)
+                uriParams.Add("prompt", "login");
 
             var encodedUriContent = new FormUrlEncodedContent(uriParams);
             string encodedUri = await encodedUriContent.ReadAsStringAsync();

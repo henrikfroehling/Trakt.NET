@@ -22,28 +22,28 @@
     internal sealed class AuthenticationRequestHandler : IAuthenticationRequestHandler
     {
         private readonly TraktClient _client;
-        private readonly RequestMessageBuilder _requestMessageBuilder;
         private static IAuthenticationRequestHandler s_requestHandler;
 
         internal AuthenticationRequestHandler(TraktClient client)
         {
             _client = client;
-            _requestMessageBuilder = new RequestMessageBuilder(_client);
         }
 
         internal static IAuthenticationRequestHandler GetInstance(TraktClient client)
             => s_requestHandler ??= new AuthenticationRequestHandler(client);
 
-        public string CreateAuthorizationUrl(string clientId, string redirectUri, string state = null)
+        public string CreateAuthorizationUrl(string clientId, string redirectUri, string state = null,
+                                             bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             ValidateAuthorizationUrlArguments(clientId, redirectUri, state);
-            return BuildAuthorizationUrl(clientId, redirectUri, state);
+            return BuildAuthorizationUrl(clientId, redirectUri, state, showSignupPage, forceLoginPrompt);
         }
 
-        public string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri)
+        public string CreateAuthorizationUrlWithDefaultState(string clientId, string redirectUri,
+                                                             bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             string state = _client.Authentication.AntiForgeryToken;
-            return CreateAuthorizationUrl(clientId, redirectUri, state);
+            return CreateAuthorizationUrl(clientId, redirectUri, state, showSignupPage, forceLoginPrompt);
         }
 
         public async Task<Pair<bool, TraktResponse<ITraktAuthorization>>> CheckIfAuthorizationIsExpiredOrWasRevokedAsync(bool autoRefresh = false, CancellationToken cancellationToken = default)
@@ -148,14 +148,10 @@
             {
                 request.Validate();
 
-                ExtendedHttpRequestMessage requestMessage =
-                    await _requestMessageBuilder.Reset(request)
-                        .WithRequestBody(request.RequestBody)
-                        .DisableAPIVersionHeader()
-                        .DisableAPIClientIdHeader()
-                        .Build().ConfigureAwait(false);
+                var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+                ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build().ConfigureAwait(false);
 
-                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient(_client.ClientId).SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 if (!responseMessage.IsSuccessStatusCode)
                     await ResponseErrorHandler.HandleErrorsAsync(requestMessage, responseMessage, isDeviceRequest: true, cancellationToken: cancellationToken).ConfigureAwait(false);
@@ -198,12 +194,8 @@
             {
                 request.Validate();
 
-                ExtendedHttpRequestMessage requestMessage =
-                    await _requestMessageBuilder.Reset(request)
-                        .WithRequestBody(request.RequestBody)
-                        .DisableAPIVersionHeader()
-                        .DisableAPIClientIdHeader()
-                        .Build().ConfigureAwait(false);
+                var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+                ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build().ConfigureAwait(false);
 
                 HttpResponseMessage responseMessage;
                 Stream responseContentStream;
@@ -215,7 +207,7 @@
 
                 while (totalExpiredSeconds < device.ExpiresInSeconds)
                 {
-                    responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+                    responseMessage = await _client.HttpClientProvider.GetHttpClient(_client.ClientId).SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                     responseCode = responseMessage.StatusCode;
                     reasonPhrase = responseMessage.ReasonPhrase;
@@ -242,7 +234,9 @@
                     {
                         await Task.Delay((int)device.IntervalInMilliseconds).ConfigureAwait(false);
                         totalExpiredSeconds += device.IntervalInSeconds;
-                        requestMessage = await _requestMessageBuilder.Reset(request).WithRequestBody(request.RequestBody).Build().ConfigureAwait(false);
+
+                        requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+                        requestMessage = await requestMessageBuilder.Build().ConfigureAwait(false);
                         continue;
                     }
 
@@ -275,14 +269,10 @@
             {
                 request.Validate();
 
-                ExtendedHttpRequestMessage requestMessage =
-                    await _requestMessageBuilder.Reset(request)
-                        .WithRequestBody(request.RequestBody)
-                        .DisableAPIVersionHeader()
-                        .DisableAPIClientIdHeader()
-                        .Build().ConfigureAwait(false);
+                var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+                ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build().ConfigureAwait(false);
 
-                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient(_client.ClientId).SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 if (!responseMessage.IsSuccessStatusCode)
                 {
@@ -334,14 +324,10 @@
             {
                 request.Validate();
 
-                ExtendedHttpRequestMessage requestMessage =
-                    await _requestMessageBuilder.Reset(request)
-                        .WithRequestBody(request.RequestBody)
-                        .DisableAPIVersionHeader()
-                        .DisableAPIClientIdHeader()
-                        .Build().ConfigureAwait(false);
+                var requestMessageBuilder = CreateRequestMessageBuilder(request, request.RequestBody);
+                ExtendedHttpRequestMessage requestMessage = await requestMessageBuilder.Build().ConfigureAwait(false);
 
-                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient().SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+                HttpResponseMessage responseMessage = await _client.HttpClientProvider.GetHttpClient(_client.ClientId).SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
 
                 HttpStatusCode responseCode = responseMessage.StatusCode;
                 Stream responseContentStream;
@@ -405,7 +391,8 @@
             return new TraktResponse<ITraktAuthorization>();
         }
 
-        private string CreateEncodedAuthorizationUri(string clientId, string redirectUri, string state = null)
+        private string CreateEncodedAuthorizationUriParameters(string clientId, string redirectUri, string state = null,
+                                                               bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
             var uriParams = new Dictionary<string, string>
             {
@@ -417,6 +404,12 @@
             if (!string.IsNullOrEmpty(state))
                 uriParams["state"] = state;
 
+            if (showSignupPage.HasValue)
+                uriParams.Add("signup", showSignupPage.Value.ToString().ToLower());
+
+            if (forceLoginPrompt.HasValue && forceLoginPrompt.Value)
+                uriParams.Add("prompt", "login");
+
             var encodedUriContent = new FormUrlEncodedContent(uriParams);
             string encodedUri = encodedUriContent.ReadAsStringAsync().Result;
 
@@ -426,9 +419,10 @@
             return $"?{encodedUri}";
         }
 
-        private string BuildAuthorizationUrl(string clientId, string redirectUri, string state = null)
+        private string BuildAuthorizationUrl(string clientId, string redirectUri, string state = null,
+                                             bool? showSignupPage = null, bool? forceLoginPrompt = null)
         {
-            string encodedUriParams = CreateEncodedAuthorizationUri(clientId, redirectUri, state);
+            string encodedUriParams = CreateEncodedAuthorizationUriParameters(clientId, redirectUri, state, showSignupPage, forceLoginPrompt);
             bool isStagingUsed = _client.Configuration.UseSandboxEnvironment;
             string baseUrl = isStagingUsed ? Constants.OAuthBaseAuthorizeStagingUrl : Constants.OAuthBaseAuthorizeUrl;
             return $"{baseUrl}/{Constants.OAuthAuthorizeUri}{encodedUriParams}";
@@ -450,5 +444,16 @@
             if (state != null && (state.Length == 0 || state.ContainsSpace()))
                 throw new ArgumentException("state not valid", nameof(state));
         }
+
+        private RequestMessageBuilder CreateRequestMessageBuilder(IRequest request = null, IRequestBody requestBody = null)
+            => new RequestMessageBuilder(_client.ClientId, _client.Configuration.ApiVersion, _client.Configuration.BaseUrl,
+                                         _client.Authentication.Authorization.AccessToken, _client.Authentication.IsAuthorized,
+                                         _client.Configuration.ForceAuthorization)
+               {
+                    UseAPIVersionHeader = false,
+                    UseAPIClientIdHeader = false,
+                    Request = request,
+                    RequestBody = requestBody
+               };
     }
 }

@@ -8,6 +8,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Basic;
+    using TraktNet.Objects.Get.Movies;
     using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
@@ -24,6 +25,121 @@
                                                            MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
 
             TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/comments",
+                MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(TRAKT_MOVIE_ID);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_MovieIds_TraktID()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Trakt = TRAKT_MOVIE_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/comments",
+                MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_MovieIds_Slug()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Slug = MOVIE_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{MOVIE_SLUG}/comments",
+                MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_MovieIds()
+        {
+            var movieIds = new TraktMovieIds
+            {
+                Trakt = TRAKT_MOVIE_ID,
+                Slug = MOVIE_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/comments",
+                MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(movieIds);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_Movie()
+        {
+            var movie = new TraktMovie
+            {
+                Ids = new TraktMovieIds
+                {
+                    Trakt = TRAKT_MOVIE_ID,
+                    Slug = MOVIE_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"movies/{TRAKT_MOVIE_ID}/comments",
+                MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(movie);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -54,13 +170,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieComments_With_Page()
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_ExtendedInfo()
         {
-            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}?page={PAGE}",
-                                                           MOVIE_COMMENTS_JSON, PAGE, 10, 1, ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOVIE_COMMENTS_URI}?extended={EXTENDED_INFO}",
+                MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, null, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -68,18 +184,18 @@
             response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
             response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(PAGE);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieComments_With_SortOrder_And_Page()
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_Page()
         {
-            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page={PAGE}",
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}?page={PAGE}",
                                                            MOVIE_COMMENTS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -98,7 +214,7 @@
                                                            MOVIE_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, null, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -111,13 +227,91 @@
         }
 
         [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_SortOrder_And_ExtendedInfo()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?extended={EXTENDED_INFO}",
+                MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_SortOrder_And_Page()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page={PAGE}",
+                                                           MOVIE_COMMENTS_JSON, PAGE, 10, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktMoviesModule_GetMovieComments_With_SortOrder_And_Limit()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?limit={LIMIT}",
                                                            MOVIE_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_ExtendedInfo_And_Page()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOVIE_COMMENTS_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                MOVIE_COMMENTS_JSON, PAGE, 10, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, null, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_ExtendedInfo_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOVIE_COMMENTS_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -136,7 +330,7 @@
                                                            MOVIE_COMMENTS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, null, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -149,13 +343,54 @@
         }
 
         [Fact]
-        public async Task Test_TraktMoviesModule_GetMovieComments_Complete()
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_SortOrder_And_Page_And_Limit()
         {
-            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page={PAGE}&limit={LIMIT}",
-                                                           MOVIE_COMMENTS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page={PAGE}&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_With_ExtendedInfo_And_Page_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOVIE_COMMENTS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, null, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_Complete()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -165,6 +400,164 @@
             response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, 2, LIMIT, 5, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, 2, LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, 1, LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, 2, LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetMockClient(client, $"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, 1, LIMIT, 2, ITEM_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, 1, LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Movies.GetMovieCommentsAsync(MOVIE_ID, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetMockClient(client, $"{GET_MOVIE_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                MOVIE_COMMENTS_JSON, 2, LIMIT, 2, ITEM_COUNT);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
         }
 
         [Theory]
@@ -197,6 +590,25 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktMoviesModule_GetMovieComments_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_MOVIE_COMMENTS_URI,
+                MOVIE_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Movies.GetMovieCommentsAsync(default(ITraktMovieIds));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Movies.GetMovieCommentsAsync(default(ITraktMovie));
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Movies.GetMovieCommentsAsync(new TraktMovieIds());
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Movies.GetMovieCommentsAsync(0);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

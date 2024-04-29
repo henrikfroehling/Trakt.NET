@@ -1,7 +1,9 @@
 ﻿namespace TraktNet.Requests.Lists
 {
-    internal sealed class ListsPopularRequest : AListsRequest
+    using Objects.Get.Lists;
+
+    internal sealed class ListsPopularRequest : AListsRequest<ITraktPopularList>
     {
-        public override string UriTemplate => "lists/popular{?page,limit}";
+        public override string UriTemplate => "lists/popular{?extended,page,limit}";
     }
 }

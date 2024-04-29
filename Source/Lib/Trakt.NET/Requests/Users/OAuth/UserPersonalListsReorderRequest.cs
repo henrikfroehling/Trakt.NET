@@ -7,9 +7,9 @@
     using Objects.Post.Basic.Responses;
     using System.Collections.Generic;
 
-    internal sealed class UserPersonalListsReorderRequest : APostRequest<ITraktListItemsReorderPostResponse, ITraktListItemsReorderPost>
+    internal sealed class UserPersonalListsReorderRequest : APostRequest<ITraktListItemsReorderPostResponse, ITraktListItemsReorderPost>, IHasUsername
     {
-        internal string Username { get; set; }
+        public string Username { get; set; }
 
         public override ITraktListItemsReorderPost RequestBody { get; set; }
 

@@ -8,6 +8,7 @@
     using Trakt.NET.Tests.Utility.Traits;
     using TraktNet.Exceptions;
     using TraktNet.Objects.Basic;
+    using TraktNet.Objects.Get.Shows;
     using TraktNet.Parameters;
     using TraktNet.Responses;
     using Xunit;
@@ -22,6 +23,121 @@
         {
             TraktClient client = TestUtility.GetMockClient(GET_SEASON_COMMENTS_URI, SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
             TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_TraktID()
+        {
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/comments",
+                SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(TRAKT_SHOD_ID, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_ShowIds_TraktID()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/comments",
+                SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(showIds, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_ShowIds_Slug()
+        {
+            var showIds = new TraktShowIds
+            {
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{SHOW_SLUG}/seasons/{SEASON_NR}/comments",
+                SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(showIds, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_ShowIds()
+        {
+            var showIds = new TraktShowIds
+            {
+                Trakt = TRAKT_SHOD_ID,
+                Slug = SHOW_SLUG
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/comments",
+                SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(showIds, SEASON_NR);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_Show()
+        {
+            var show = new TraktShow
+            {
+                Ids = new TraktShowIds
+                {
+                    Trakt = TRAKT_SHOD_ID,
+                    Slug = SHOW_SLUG
+                }
+            };
+
+            TraktClient client = TestUtility.GetMockClient($"shows/{TRAKT_SHOD_ID}/seasons/{SEASON_NR}/comments",
+                SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(show, SEASON_NR);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -52,13 +168,13 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_Page()
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_ExtendedInfo()
         {
-            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}?page={PAGE}",
-                                                           SEASON_COMMENTS_JSON, PAGE, 10, 1, ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SEASON_COMMENTS_URI}?extended={EXTENDED_INFO}",
+                SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
 
-            var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, null, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, null, EXTENDED_INFO);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -66,18 +182,18 @@
             response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
             response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
             response.Limit.Should().Be(10u);
-            response.Page.Should().Be(PAGE);
+            response.Page.Should().Be(1u);
             response.PageCount.Should().HaveValue().And.Be(1);
         }
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_SortOrder_And_Page()
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_Page()
         {
-            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page={PAGE}",
+            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}?page={PAGE}",
                                                            SEASON_COMMENTS_JSON, PAGE, 10, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE);
-            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -96,7 +212,7 @@
                                                            SEASON_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, null, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -109,13 +225,91 @@
         }
 
         [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_SortOrder_And_ExtendedInfo()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?extended={EXTENDED_INFO}",
+                SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, EXTENDED_INFO);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_SortOrder_And_Page()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page={PAGE}",
+                                                           SEASON_COMMENTS_JSON, PAGE, 10, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
         public async Task Test_TraktSeasonsModule_GetSeasonComments_With_SortOrder_And_Limit()
         {
             TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?limit={LIMIT}",
                                                            SEASON_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(null, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_ExtendedInfo_And_Page()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SEASON_COMMENTS_URI}?extended={EXTENDED_INFO}&page={PAGE}",
+                SEASON_COMMENTS_JSON, PAGE, 10, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, null, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(10u);
+            response.Page.Should().Be(PAGE);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_ExtendedInfo_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SEASON_COMMENTS_URI}?extended={EXTENDED_INFO}&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(null, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, null, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -134,7 +328,7 @@
                                                            SEASON_COMMENTS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, null, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, null, null, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -147,13 +341,54 @@
         }
 
         [Fact]
-        public async Task Test_TraktSeasonsModule_GetSeasonComments_Complete()
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_SortOrder_And_Page_And_Limit()
         {
-            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page={PAGE}&limit={LIMIT}",
-                                                           SEASON_COMMENTS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page={PAGE}&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
 
             var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
-            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, pagedParameters);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_With_ExtendedInfo_And_Page_And_Limit()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SEASON_COMMENTS_URI}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, null, EXTENDED_INFO, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1u);
+            response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_Complete()
+        {
+            TraktClient client = TestUtility.GetMockClient(
+                $"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?extended={EXTENDED_INFO}&page={PAGE}&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, PAGE, LIMIT, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(PAGE, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, EXTENDED_INFO, pagedParameters);
 
             response.Should().NotBeNull();
             response.IsSuccess.Should().BeTrue();
@@ -163,6 +398,164 @@
             response.Limit.Should().Be(LIMIT);
             response.Page.Should().Be(PAGE);
             response.PageCount.Should().HaveValue().And.Be(1);
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_Paging_HasPreviousPage_And_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, 2, LIMIT, 5, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(5);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_Paging_Only_HasPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, 2, LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_Paging_Only_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, 1, LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_Paging_Not_HasPreviousPage_Or_HasNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, 1, LIMIT, 1, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(1);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_Paging_GetPreviousPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, 2, LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(2, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
+
+            TestUtility.ResetMockClient(client, $"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, 1, LIMIT, 2, ITEM_COUNT);
+
+            response = await response.GetPreviousPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_Paging_GetNextPage()
+        {
+            TraktClient client = TestUtility.GetMockClient($"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=1&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, 1, LIMIT, 2, ITEM_COUNT);
+
+            var pagedParameters = new TraktPagedParameters(1, LIMIT);
+            TraktPagedResponse<ITraktComment> response = await client.Seasons.GetSeasonCommentsAsync(SHOW_ID, SEASON_NR, COMMENT_SORT_ORDER, null, pagedParameters);
+
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(1);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeFalse();
+            response.HasNextPage.Should().BeTrue();
+
+            TestUtility.ResetMockClient(client, $"{GET_SEASON_COMMENTS_URI}/{COMMENT_SORT_ORDER.UriName}?page=2&limit={LIMIT}",
+                SEASON_COMMENTS_JSON, 2, LIMIT, 2, ITEM_COUNT);
+
+            response = await response.GetNextPageAsync();
+            
+            response.Should().NotBeNull();
+            response.IsSuccess.Should().BeTrue();
+            response.HasValue.Should().BeTrue();
+            response.Value.Should().NotBeNull().And.HaveCount(ITEM_COUNT);
+            response.ItemCount.Should().HaveValue().And.Be(ITEM_COUNT);
+            response.Limit.Should().Be(LIMIT);
+            response.Page.Should().Be(2);
+            response.PageCount.Should().HaveValue().And.Be(2);
+            response.HasPreviousPage.Should().BeTrue();
+            response.HasNextPage.Should().BeFalse();
         }
 
         [Theory]
@@ -195,6 +588,24 @@
             {
                 (exception.GetType() == exceptionType).Should().BeTrue();
             }
+        }
+
+        [Fact]
+        public async Task Test_TraktSeasonsModule_GetSeasonComments_Throws_ArgumentExceptions()
+        {
+            TraktClient client = TestUtility.GetMockClient(GET_SEASON_COMMENTS_URI, SEASON_COMMENTS_JSON, 1, 10, 1, ITEM_COUNT);
+
+            Func<Task<TraktPagedResponse<ITraktComment>>> act = () => client.Seasons.GetSeasonCommentsAsync(default(ITraktShowIds), SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Seasons.GetSeasonCommentsAsync(default(ITraktShow), SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentNullException>();
+
+            act = () => client.Seasons.GetSeasonCommentsAsync(new TraktShowIds(), SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentException>();
+
+            act = () => client.Seasons.GetSeasonCommentsAsync(0, SEASON_NR);
+            await act.Should().ThrowAsync<ArgumentException>();
         }
     }
 }

@@ -13,10 +13,10 @@
     public class UserListCollaborationsRequest_Tests
     {
         [Fact]
-        public void Test_UserListCollaborationsRequest_Has_AuthorizationRequirement_Optional()
+        public void Test_UserListCollaborationsRequest_Has_AuthorizationRequirement_OptionalButMightBeRequired()
         {
             var request = new UserListCollaborationsRequest();
-            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.Optional);
+            request.AuthorizationRequirement.Should().Be(AuthorizationRequirement.OptionalButMightBeRequired);
         }
 
         [Fact]

@@ -22,7 +22,7 @@
         public async Task Test_EpisodeArrayJsonWriter_WriteArray_JsonWriter_Exceptions()
         {
             var traktJsonWriter = new ArrayJsonWriter<ITraktEpisode>();
-            IEnumerable<ITraktEpisode> traktEpisodes = new List<TraktEpisode>();
+            IList<ITraktEpisode> traktEpisodes = new List<ITraktEpisode>();
             Func<Task> action = () => traktJsonWriter.WriteArrayAsync(default(JsonTextWriter), traktEpisodes);
             await action.Should().ThrowAsync<ArgumentNullException>();
         }
@@ -30,7 +30,7 @@
         [Fact]
         public async Task Test_EpisodeArrayJsonWriter_WriteArray_JsonWriter_Empty()
         {
-            IEnumerable<ITraktEpisode> traktEpisodes = new List<TraktEpisode>();
+            IList<ITraktEpisode> traktEpisodes = new List<ITraktEpisode>();
 
             using (var stringWriter = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(stringWriter))
@@ -44,7 +44,7 @@
         [Fact]
         public async Task Test_EpisodeArrayJsonWriter_WriteArray_JsonWriter_SingleObject()
         {
-            IEnumerable<ITraktEpisode> traktEpisodes = new List<ITraktEpisode>
+            IList<ITraktEpisode> traktEpisodes = new List<ITraktEpisode>
             {
                 new TraktEpisode
                 {
@@ -71,7 +71,7 @@
                         "en",
                         "de"
                     },
-                    Translations = new List<TraktEpisodeTranslation>
+                    Translations = new List<ITraktEpisodeTranslation>
                     {
                         new TraktEpisodeTranslation
                         {
@@ -109,7 +109,7 @@
         [Fact]
         public async Task Test_EpisodeArrayJsonWriter_WriteArray_JsonWriter_Complete()
         {
-            IEnumerable<ITraktEpisode> traktEpisodes = new List<ITraktEpisode>
+            IList<ITraktEpisode> traktEpisodes = new List<ITraktEpisode>
             {
                 new TraktEpisode
                 {
@@ -136,7 +136,7 @@
                         "en",
                         "de"
                     },
-                    Translations = new List<TraktEpisodeTranslation>
+                    Translations = new List<ITraktEpisodeTranslation>
                     {
                         new TraktEpisodeTranslation
                         {
@@ -177,7 +177,7 @@
                         "en",
                         "de"
                     },
-                    Translations = new List<TraktEpisodeTranslation>
+                    Translations = new List<ITraktEpisodeTranslation>
                     {
                         new TraktEpisodeTranslation
                         {
