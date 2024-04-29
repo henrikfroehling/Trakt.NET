@@ -142,6 +142,10 @@ jobs:
         run: dotnet nuget push '**/Trakt.NET*.nupkg'
         working-directory: 'Source'
 
+      - name: Push package to NuGet
+        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        run: dotnet nuget push '**/Trakt.NET*.nupkg' --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+
   docs:
     needs: [environment-check]
     if: ${{ !contains(github.ref, 'pull') && !contains(github.ref, 'epic') && github.actor != 'dependabot[bot]' }}
