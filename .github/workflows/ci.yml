@@ -44,6 +44,8 @@ jobs:
           echo "target_br_name=${br_name//\//-}" >> "$GITHUB_ENV"
           if [[ "${{ github.ref_name }}" == *"main"* ]]; then
             echo "env_name=Production" >> "$GITHUB_ENV"
+          elif [[ "${{ github.ref }}" == "refs/tags/v"* ]]; then
+            echo "env_name=Production" >> "$GITHUB_ENV"
           elif [[ "${{ github.ref_name }}" == *"develop"* ]]; then
             echo "env_name=Development" >> "$GITHUB_ENV"
           elif [[ "${{ github.ref_name }}" == *"release"* ]]; then
@@ -60,6 +62,8 @@ jobs:
           br_name=${{ github.base_ref }}
           echo "target_br_name=${br_name//\//-}" >> "$GITHUB_ENV"
           if [[ "${{ github.base_ref }}" == *"main"* ]]; then
+            echo "env_name=Production" >> "$GITHUB_ENV"
+          elif [[ "${{ github.ref }}" == "refs/tags/v"* ]]; then
             echo "env_name=Production" >> "$GITHUB_ENV"
           elif [[ "${{ github.base_ref }}" == *"develop"* ]]; then
             echo "env_name=Development" >> "$GITHUB_ENV"
